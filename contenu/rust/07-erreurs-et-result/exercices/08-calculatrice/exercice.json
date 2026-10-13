@@ -1,0 +1,11 @@
+{
+  "titre": "La calculatrice",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`let mut morceaux = expression.split_whitespace();` puis `morceaux.next().ok_or(ErreurCalcul::FormatInvalide)?` trois fois.",
+    "Après les trois morceaux, `if morceaux.next().is_some() { return Err(ErreurCalcul::FormatInvalide); }`.",
+    "Une petite fonction `lire_nombre(texte) -> Result<i64, ErreurCalcul>` avec `map_err(|_| ErreurCalcul::NombreInvalide(texte.to_string()))` évite de répéter le code.",
+    "Pour l'opérateur, un `match operateur { \"+\" => Ok(a + b), ... }` ; le bras `\"/\" if b == 0 => ...` doit venir avant `\"/\"`."
+  ]
+}

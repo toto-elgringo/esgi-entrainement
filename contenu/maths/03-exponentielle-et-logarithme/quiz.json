@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Que vaut $e^{a+b}$ ?",
+    "choix": ["$e^a + e^b$", "$e^a \\times e^b$", "$e^{ab}$", "$a\\,e^b$"],
+    "reponse": 1,
+    "explication": "L'exponentielle transforme une somme dans l'exposant en produit : $e^{a+b} = e^a \\times e^b$."
+  },
+  {
+    "question": "Que vaut $\\ln(e^5)$ ?",
+    "choix": ["$5$", "$e^5$", "$\\ln 5$", "$5e$"],
+    "reponse": 0,
+    "explication": "$\\ln$ et $\\exp$ sont réciproques : $\\ln(e^x) = x$ pour tout réel $x$."
+  },
+  {
+    "question": "Pour quelles valeurs de $x$ le nombre $\\ln x$ existe-t-il ?",
+    "choix": ["Pour tout réel $x$", "Pour $x \\ge 0$", "Pour $x \\neq 0$", "Pour $x > 0$"],
+    "reponse": 3,
+    "explication": "Le logarithme n'est défini que sur $]0, +\\infty[$ : $\\ln 0$ et le logarithme d'un nombre négatif n'existent pas."
+  },
+  {
+    "question": "Laquelle de ces égalités est **fausse** (avec $a, b > 0$) ?",
+    "choix": ["$\\ln(ab) = \\ln a + \\ln b$", "$\\ln(a^3) = 3\\ln a$", "$\\ln(a+b) = \\ln a + \\ln b$", "$\\ln\\frac{a}{b} = \\ln a - \\ln b$"],
+    "reponse": 2,
+    "explication": "Il n'existe aucune formule pour le logarithme d'une somme. Le logarithme transforme un **produit** en somme, pas l'inverse."
+  },
+  {
+    "question": "Quelle est la dérivée de $x \\mapsto \\ln x$ ?",
+    "choix": ["$\\ln x$", "$e^x$", "$\\dfrac{1}{x}$", "$x \\ln x - x$"],
+    "reponse": 2,
+    "explication": "$(\\ln x)' = \\dfrac{1}{x}$ pour $x > 0$. Attention : $x \\ln x - x$ est une **primitive** de $\\ln x$, pas sa dérivée."
+  },
+  {
+    "question": "Comment écrire $\\log_2(x)$ avec le logarithme népérien ?",
+    "choix": ["$\\dfrac{\\ln x}{\\ln 2}$", "$\\dfrac{\\ln 2}{\\ln x}$", "$\\ln x - \\ln 2$", "$2 \\ln x$"],
+    "reponse": 0,
+    "explication": "Formule du changement de base : $\\log_a(x) = \\dfrac{\\ln x}{\\ln a}$."
+  },
+  {
+    "question": "Quelle est la solution de $e^x = 12$ ?",
+    "choix": ["$x = e^{12}$", "$x = \\dfrac{12}{e}$", "$x = \\sqrt{12}$", "$x = \\ln 12$"],
+    "reponse": 3,
+    "explication": "On applique $\\ln$ des deux côtés : $\\ln(e^x) = \\ln 12$, donc $x = \\ln 12$."
+  },
+  {
+    "question": "Quand $x \\to +\\infty$, quel classement est correct (du plus lent au plus rapide) ?",
+    "choix": ["$x \\ll \\ln x \\ll e^x$", "$\\ln x \\ll x \\ll e^x$", "$e^x \\ll x \\ll \\ln x$", "$\\ln x \\ll e^x \\ll x$"],
+    "reponse": 1,
+    "explication": "Croissances comparées : le logarithme est négligeable devant $x$, qui est lui-même négligeable devant l'exponentielle."
+  },
+  {
+    "question": "Environ combien de comparaisons fait une recherche dichotomique dans un tableau trié de $1\\,000\\,000$ éléments ?",
+    "choix": ["$20$", "$1\\,000$", "$500\\,000$", "$1\\,000\\,000$"],
+    "reponse": 0,
+    "explication": "Une recherche dichotomique fait environ $\\log_2(n)$ comparaisons, et $\\log_2(10^6) \\approx 20$."
+  },
+  {
+    "question": "La fonction $\\ln$ est :",
+    "choix": ["convexe", "affine", "constante", "concave"],
+    "reponse": 3,
+    "explication": "Sa dérivée seconde vaut $-\\dfrac{1}{x^2} < 0$ : $\\ln$ est concave. En revanche $-\\ln$ est convexe, ce qui rend la log-loss facile à optimiser."
+  },
+  {
+    "question": "Si $y = a\\,e^{bx}$, que devient la relation quand on pose $z = \\ln y$ ?",
+    "choix": ["$z = a\\,b\\,x$", "$z = e^{a+bx}$", "$z = \\ln a + b\\,x$", "$z = a + \\ln(bx)$"],
+    "reponse": 2,
+    "explication": "$\\ln(a\\,e^{bx}) = \\ln a + \\ln(e^{bx}) = \\ln a + bx$ : une droite en fonction de $x$. C'est le principe de l'échelle logarithmique."
+  },
+  {
+    "question": "Avec la log-loss et $y = 1$, que se passe-t-il quand le modèle prédit $\\hat{p}$ très proche de $0$ ?",
+    "choix": ["La perte est presque nulle", "La perte devient énorme", "La perte vaut exactement $1$", "La perte devient négative"],
+    "reponse": 1,
+    "explication": "La perte vaut $-\\ln \\hat{p}$, qui tend vers $+\\infty$ quand $\\hat{p} \\to 0$. Un modèle sûr de lui et qui se trompe est lourdement pénalisé."
+  }
+]

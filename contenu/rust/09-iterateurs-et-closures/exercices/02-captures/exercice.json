@@ -1,0 +1,10 @@
+{
+  "titre": "Captures : mut et move",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lis la première erreur : la closure modifie `compteur`, qui n'est pas déclaré `mut`.",
+    "Deuxième erreur (E0373) : la closure emprunte `nom`, mais `nom` disparaît à la fin de la fonction. Le `help:` propose un mot-clé.",
+    "Écris `move` devant la closure : `move || format!(...)`."
+  ]
+}

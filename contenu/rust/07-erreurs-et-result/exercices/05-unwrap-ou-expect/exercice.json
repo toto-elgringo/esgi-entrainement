@@ -1,0 +1,9 @@
+{
+  "titre": "unwrap, expect ou valeur par défaut ?",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`lire_port` : remplace `unwrap()` par `unwrap_or(8080)`.",
+    "`lire_port_obligatoire` : remplace `unwrap()` par `expect(\"...\")` avec le message exact de l'énoncé."
+  ]
+}

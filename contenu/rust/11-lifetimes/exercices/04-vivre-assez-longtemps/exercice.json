@@ -1,0 +1,10 @@
+{
+  "titre": "Vivre assez longtemps",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Première erreur (E0597) : `second` est détruite à la fin du bloc `{ }`, mais `resultat` l'emprunte encore après.",
+    "Supprime le bloc intérieur, ou calcule `.len()` à l'intérieur du bloc.",
+    "Deuxième erreur (E0716) : range `texte.to_uppercase()` dans une variable avant d'appeler `split_whitespace()` dessus."
+  ]
+}

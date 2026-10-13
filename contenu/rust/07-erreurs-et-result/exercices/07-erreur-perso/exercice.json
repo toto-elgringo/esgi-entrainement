@@ -1,0 +1,10 @@
+{
+  "titre": "Sa propre enum d'erreur",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Commence par `let texte = texte.trim();` puis `if texte.is_empty() { return Err(ErreurAge::Vide); }`.",
+    "`texte.parse::<u32>().map_err(|_| ErreurAge::PasUnNombre)?` remplace l'erreur de `parse` par la tienne.",
+    "Pour finir : `if age > 150 { return Err(ErreurAge::TropGrand(age)); }` puis `Ok(age)`."
+  ]
+}

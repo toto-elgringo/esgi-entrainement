@@ -1,0 +1,10 @@
+{
+  "titre": "Fibonacci rapide",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Garde deux variables modifiables : `a` (le nombre actuel) et `b` (le suivant).",
+    "À chaque tour : le nouveau `a` est l'ancien `b`, le nouveau `b` est l'ancien `a + b`. Une variable `tmp` aide.",
+    "Fais `n` tours de boucle avec `for _ in 0..n`, puis renvoie `a`."
+  ]
+}

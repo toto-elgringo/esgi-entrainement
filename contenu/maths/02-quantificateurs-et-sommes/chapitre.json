@@ -1,0 +1,6 @@
+{
+  "titre": "Quantificateurs, prédicats et sommes",
+  "description": "Prédicats, quantificateurs imbriqués et leur négation, contraintes de base de données, sommes, télescopage, produits et lien avec les agrégats SQL.",
+  "source": "Séance 2",
+  "matieres": ["informatique"]
+}

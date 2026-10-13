@@ -1,0 +1,9 @@
+{
+  "titre": "Bonjour, Rust !",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Il faut deux appels à `println!`, un par ligne.",
+    "`println!(\"J'ai {age} ans.\")` remplace `{age}` par la valeur de la variable `age`."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "Une struct qui emprunte",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "La struct s'écrit `struct Extrait<'a> { texte: &'a str }` et le bloc `impl<'a> Extrait<'a> { ... }`.",
+    "`nouveau` reçoit `texte: &'a str` et renvoie `Extrait<'a>` (ou `Self`).",
+    "`premiere_phrase` doit renvoyer `&'a str`, pas `&str` : sinon le résultat serait lié à la vie de l'Extrait.",
+    "`self.texte.split('.').next()` donne le morceau avant le premier point, puis `.trim()` enlève les espaces."
+  ]
+}

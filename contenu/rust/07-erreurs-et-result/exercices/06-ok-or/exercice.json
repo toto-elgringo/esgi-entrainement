@@ -1,0 +1,10 @@
+{
+  "titre": "Passer une commande (ok_or)",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`let prix = prix_unitaire(produit).ok_or(ErreurCommande::ProduitInconnu)?;` donne le prix, ou renvoie l'erreur.",
+    "Ensuite : `if stock(produit) < quantite { return Err(ErreurCommande::StockInsuffisant); }`.",
+    "Termine par `Ok(prix * quantite)`."
+  ]
+}

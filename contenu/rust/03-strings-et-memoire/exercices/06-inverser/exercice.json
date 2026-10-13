@@ -1,0 +1,10 @@
+{
+  "titre": "Inverser sans casser les émojis",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Inverser les octets casserait les caractères de plusieurs octets : travaille caractère par caractère avec `s.chars()`.",
+    "Pour chaque caractère, ajoute-le au **début** du résultat : `resultat.insert(0, caractere);`.",
+    "Autre solution plus courte : `s.chars().rev().collect()` (on verra les itérateurs plus tard)."
+  ]
+}

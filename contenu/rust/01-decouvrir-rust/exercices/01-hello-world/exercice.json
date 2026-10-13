@@ -1,0 +1,9 @@
+{
+  "titre": "Hello, world!",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Change seulement le texte entre guillemets.",
+    "Attention à la virgule, à l'espace et au point d'exclamation : `Hello, world!`."
+  ]
+}

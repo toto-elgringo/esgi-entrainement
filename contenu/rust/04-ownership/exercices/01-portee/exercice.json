@@ -1,0 +1,10 @@
+{
+  "titre": "La remise hors de portée",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Lis l'erreur : « cannot find value `remise` in this scope ». Une variable créée dans un bloc `{ }` disparaît à la fin de ce bloc.",
+    "Le `if` est une expression : il peut directement donner sa valeur à `remise`.",
+    "`let remise = if quantite >= 10 { 10 } else { 0 };`"
+  ]
+}

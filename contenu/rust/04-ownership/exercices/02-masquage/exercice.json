@@ -1,0 +1,10 @@
+{
+  "titre": "Masquer pour convertir",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Le type d'une variable ne change jamais : on ne peut pas ranger un nombre dans une variable qui contient un `&str`.",
+    "Mais on peut créer une **nouvelle** variable avec le même nom grâce à `let`.",
+    "`let saisie: u32 = saisie.parse().unwrap();`"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Un seul écrivain à la fois",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Erreur E0499 : deux emprunts mutables (`&mut s`) sont vivants en même temps.",
+    "Un emprunt s'arrête à sa **dernière utilisation**. Termine d'utiliser `r1` avant de créer `r2`.",
+    "Déplace la ligne `r1.push_str(\", World\");` juste après la création de `r1`."
+  ]
+}

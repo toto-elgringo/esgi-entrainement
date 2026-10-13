@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Quel type choisir pour le paramètre d'une fonction qui **lit seulement** du texte ?",
+    "choix": ["`String`", "`&str`", "`char`", "`Box<str>`"],
+    "reponse": 1,
+    "explication": "`&str` emprunte le texte : il accepte un texte écrit dans le code, une `String` avec `&` ou un morceau de texte, sans rien copier."
+  },
+  {
+    "question": "Quel est le type de `\"Bonjour\"` écrit directement dans le code ?",
+    "choix": ["`String`", "`&'static str`", "`char`", "`Vec<u8>`"],
+    "reponse": 1,
+    "explication": "Les octets sont rangés dans le programme lui-même et existent pendant toute l'exécution : c'est un `&'static str`."
+  },
+  {
+    "question": "Que vaut `\"Hello, 🦀\".len()` ?",
+    "choix": ["8", "11", "9", "12"],
+    "reponse": 1,
+    "explication": "`len()` compte les **octets** : 7 pour `Hello, ` et 4 pour le crabe, soit 11. Il y a seulement 8 caractères."
+  },
+  {
+    "question": "Combien d'octets prend la lettre `é` en UTF-8 ?",
+    "choix": ["1", "2", "3", "4"],
+    "reponse": 1,
+    "explication": "Les lettres accentuées prennent 2 octets. L'ASCII en prend 1, `€` en prend 3 et les émojis 4."
+  },
+  {
+    "question": "Que se passe-t-il avec `&\"Hello, 🦀\"[0..8]` ?",
+    "choix": ["On obtient `\"Hello, \"`", "Le code ne compile pas", "Le programme panique", "On obtient `None`"],
+    "reponse": 2,
+    "explication": "La position 8 tombe au milieu du crabe (octets 7 à 10) : panique `byte index 8 is not a char boundary`."
+  },
+  {
+    "question": "Que renvoie `\"Hello, 🦀\".get(0..8)` ?",
+    "choix": ["`Some(\"Hello, \")`", "`None`", "Une panique", "`\"Hello, 🦀\"`"],
+    "reponse": 1,
+    "explication": "`get` est la version sûre : elle renvoie `None` au lieu de paniquer quand la coupe est impossible."
+  },
+  {
+    "question": "Combien d'octets prend un `char` ?",
+    "choix": ["Toujours 1", "De 1 à 4 selon le caractère", "Toujours 4", "Toujours 2"],
+    "reponse": 2,
+    "explication": "Un `char` prend toujours 4 octets. C'est dans une `String`, encodée en UTF-8, qu'un caractère prend de 1 à 4 octets."
+  },
+  {
+    "question": "Quelle est la différence entre `push` et `push_str` sur une `String` ?",
+    "choix": ["Aucune", "`push` ajoute un `char`, `push_str` ajoute un `&str`", "`push` ajoute au début, `push_str` à la fin", "`push_str` crée une nouvelle `String`"],
+    "reponse": 1,
+    "explication": "`s.push('a')` ajoute un seul caractère, `s.push_str(\"abc\")` ajoute un texte entier. Les deux ajoutent à la fin."
+  },
+  {
+    "question": "Quelle est la taille d'une `String` **sur la pile** (machine 64 bits) ?",
+    "choix": ["8 octets", "16 octets", "24 octets", "La longueur du texte"],
+    "reponse": 2,
+    "explication": "Adresse + longueur + capacité = 3 × 8 = 24 octets. Le texte lui-même est sur le tas. Un `&str` fait 16 octets (adresse + longueur)."
+  },
+  {
+    "question": "Où est rangée la valeur `42` dans `let b = Box::new(42);` ?",
+    "choix": ["Sur la pile", "Sur le tas", "Dans le fichier du programme", "Nulle part, elle est calculée à chaque fois"],
+    "reponse": 1,
+    "explication": "La boîte (une adresse de 8 octets) est sur la pile, la valeur pointée est sur le tas. Elle est libérée quand `b` disparaît."
+  },
+  {
+    "question": "Que se passe-t-il avec `let t = [0u8; 9_000_000];` dans `main` sous Windows ?",
+    "choix": ["Rien de spécial", "Une panique qu'on peut rattraper", "Un débordement de pile qui tue le programme", "Une erreur de compilation"],
+    "reponse": 2,
+    "explication": "La pile du thread principal fait 1 Mo sous Windows : 9 Mo ne rentrent pas. Le programme est tué net (stack overflow). Solution : `vec![0u8; 9_000_000]`."
+  },
+  {
+    "question": "Pourquoi un micro-benchmark en `--release` peut-il donner un temps presque nul ?",
+    "choix": ["Le processeur est très rapide", "Le compilateur a pu calculer le résultat à l'avance et supprimer la boucle", "Le mode release ne lance pas le programme", "hyperfine se trompe toujours"],
+    "reponse": 1,
+    "explication": "L'optimiseur supprime le travail dont le résultat est connu ou inutile. `std::hint::black_box` l'en empêche."
+  }
+]

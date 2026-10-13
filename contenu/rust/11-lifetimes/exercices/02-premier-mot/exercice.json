@@ -1,0 +1,10 @@
+{
+  "titre": "Premier et dernier mot",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`phrase.split_whitespace()` découpe la phrase en mots en ignorant les espaces en trop.",
+    "`.next()` donne le premier élément (un `Option`), `.last()` le dernier.",
+    "`.unwrap_or(\"\")` renvoie `\"\"` quand il n'y a aucun mot."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Les formes géométriques",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Dans le `match`, `Forme::Cercle { rayon } => ...` sort le rayon dans une variable `rayon`.",
+    "Pour la variante tuple : `Forme::Triangle(base, hauteur) => base * hauteur / 2.0`.",
+    "Aire d'un cercle : `PI * rayon * rayon` (la constante `PI` est déjà importée)."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Les méthodes du rectangle",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Dans une méthode, on lit les champs avec `self.largeur` et `self.hauteur`.",
+    "`peut_contenir` : compare `self.largeur` avec `autre.largeur`, pareil pour la hauteur, et relie les deux avec `&&`.",
+    "`carre` n'a pas de paramètre `self` : elle renvoie `Self { largeur: cote, hauteur: cote }`."
+  ]
+}

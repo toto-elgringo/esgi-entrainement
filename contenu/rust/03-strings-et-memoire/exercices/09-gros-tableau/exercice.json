@@ -1,0 +1,10 @@
+{
+  "titre": "Trop gros pour la pile",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lance « Vérifier » : le programme s'arrête avec « has overflowed its stack ».",
+    "`[1u8; 9_000_000]` est un tableau rangé sur la pile, qui ne fait que 1 à 8 Mo selon le système.",
+    "Remplace-le par `vec![1u8; 9_000_000]` : le contenu est alors rangé sur le tas."
+  ]
+}

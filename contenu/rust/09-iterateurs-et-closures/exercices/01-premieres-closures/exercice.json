@@ -1,0 +1,10 @@
+{
+  "titre": "Premières closures",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Une closure qui teste si un nombre est positif : `|x| x > 0`.",
+    "Pour tester la parité : `|x| x % 2 == 0`.",
+    "La closure peut utiliser `seuil` directement : `|x| x > seuil`. C'est la capture."
+  ]
+}

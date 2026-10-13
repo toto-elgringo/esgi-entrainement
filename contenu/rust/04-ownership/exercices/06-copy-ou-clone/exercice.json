@@ -1,0 +1,10 @@
+{
+  "titre": "Copy ou Clone ?",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Lis les erreurs E0382 : `s1` et `p1` sont déplacés par `let s2 = s1;` et `let p2 = p1;`.",
+    "Pour la `String` : `let s2 = s1.clone();` fait une vraie copie, `s1` reste utilisable.",
+    "Pour `Point` : `#[derive(Debug, Clone, Copy)]` (le trait `Copy` exige aussi `Clone`)."
+  ]
+}

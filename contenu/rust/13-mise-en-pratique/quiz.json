@@ -1,0 +1,56 @@
+[
+  {
+    "question": "Dans l'exercice des calories, pourquoi faut-il traiter le dernier lutin **après** la boucle ?",
+    "choix": ["Parce qu'il est le plus gros", "Parce qu'il n'est pas suivi d'une ligne vide", "Parce que `lines()` saute la dernière ligne", "Ce n'est pas nécessaire"],
+    "reponse": 1,
+    "explication": "Le total d'un lutin est enregistré quand on rencontre une ligne vide. Le dernier n'en a pas après lui : sans traitement après la boucle, il est oublié."
+  },
+  {
+    "question": "Que fait `*best = ongoing_total;` quand `best` est un `&mut i32` ?",
+    "choix": ["Change la référence pour qu'elle pointe ailleurs", "Écrit la valeur derrière la référence", "Copie la référence", "Ne compile pas"],
+    "reponse": 1,
+    "explication": "L'étoile **déréférence** : on modifie le nombre emprunté, pas la référence elle-même."
+  },
+  {
+    "question": "Que renvoie `\"\".parse::<i32>().unwrap_or(0)` ?",
+    "choix": ["Une panique", "`0`", "`None`", "Une erreur de compilation"],
+    "reponse": 1,
+    "explication": "La conversion d'un texte vide échoue (`Err`), et `unwrap_or(0)` remplace l'erreur par 0."
+  },
+  {
+    "question": "Que fait `include_str!(\"inputs/real_input.txt\")` ?",
+    "choix": ["Lit le fichier à chaque exécution", "Copie le contenu du fichier dans le programme, à la compilation", "Crée le fichier", "Affiche le fichier"],
+    "reponse": 1,
+    "explication": "C'est une macro : le texte du fichier est intégré au programme quand on compile. Le type obtenu est `&'static str`."
+  },
+  {
+    "question": "Quel type choisir pour représenter « dépôt ou retrait d'un montant » ?",
+    "choix": ["Deux `bool`", "Une `struct` avec deux champs", "Un `enum Operation { Depot(u64), Retrait(u64) }`", "Une `String`"],
+    "reponse": 2,
+    "explication": "Un `enum` exprime un choix entre plusieurs cas, chacun pouvant porter ses propres données."
+  },
+  {
+    "question": "Que fait `*compte.entry(mot).or_insert(0) += 1;` sur une `HashMap` ?",
+    "choix": ["Supprime le mot", "Ajoute 1 au compteur du mot, en le créant à 0 s'il n'existe pas", "Remet le compteur à 0", "Ne compile pas"],
+    "reponse": 1,
+    "explication": "C'est la façon idiomatique de compter des occurrences avec une `HashMap`."
+  },
+  {
+    "question": "Dans une fonction qui renvoie `Result<i64, String>`, que fait `valeur?` si `valeur` est un `Err` ?",
+    "choix": ["Le programme panique", "La fonction renvoie immédiatement cette erreur", "L'erreur est ignorée", "La valeur devient 0"],
+    "reponse": 1,
+    "explication": "`?` propage l'erreur à l'appelant. Si c'est un `Ok`, il donne la valeur contenue."
+  },
+  {
+    "question": "Que renvoie `\"ajoute 5\".split_once(' ')` ?",
+    "choix": ["`[\"ajoute\", \"5\"]`", "`Some((\"ajoute\", \"5\"))`", "`(\"ajoute\", \"5\")`", "`\"ajoute\"`"],
+    "reponse": 1,
+    "explication": "`split_once` coupe en deux au premier séparateur et renvoie `None` si le séparateur est absent."
+  },
+  {
+    "question": "Pour obtenir les trois plus gros totaux d'un `Vec<u32>`, quelle approche est la plus simple ?",
+    "choix": ["Trier du plus grand au plus petit puis prendre les 3 premiers", "Supprimer les éléments un par un", "Utiliser une `HashMap`", "C'est impossible sans boucle"],
+    "reponse": 0,
+    "explication": "`totaux.sort_unstable_by(|a, b| b.cmp(a));` puis `totaux.iter().take(3).sum()`."
+  }
+]

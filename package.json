@@ -1,0 +1,16 @@
+{
+  "name": "esgi-entrainement",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cours, quiz et exercices corrigés automatiquement pour les cours de Rust et de maths de l'ESGI",
+  "scripts": {
+    "start": "node serveur/index.js",
+    "test": "node --test",
+    "sommaire": "node scripts/sommaire-rust.js",
+    "verifier-contenu": "node scripts/verifier-contenu.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

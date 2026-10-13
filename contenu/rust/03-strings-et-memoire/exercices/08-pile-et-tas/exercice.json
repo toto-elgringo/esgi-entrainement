@@ -1,0 +1,10 @@
+{
+  "titre": "La boîte sur le tas",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Lis l'erreur : on ne peut pas additionner un `u64` et une `Box<u64>`. Pour lire la valeur rangée dans la boîte, écris `*sur_le_tas`.",
+    "`std::mem::size_of::<String>()` donne la taille d'un type sur la pile, en octets.",
+    "Pour un `&str`, le type s'écrit tel quel entre les chevrons : `std::mem::size_of::<&str>()`."
+  ]
+}

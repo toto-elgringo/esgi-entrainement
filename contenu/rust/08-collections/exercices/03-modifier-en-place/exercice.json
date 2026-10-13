@@ -1,0 +1,10 @@
+{
+  "titre": "Modifier une liste sur place",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Pour modifier la liste, la fonction doit la recevoir en `&mut` : `v: &mut [i32]` ou `v: &mut Vec<i32>`.",
+    "Dans `for x in v`, si `v` est une référence modifiable, `x` est un `&mut i32` : on écrit `*x *= 2;`.",
+    "Pour `ajouter_fin`, il faut pouvoir grandir : le paramètre doit être `&mut Vec<i32>` (une tranche ne peut pas changer de taille)."
+  ]
+}

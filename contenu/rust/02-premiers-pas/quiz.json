@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Quelle commande vérifie les erreurs le plus rapidement, sans produire de programme ?",
+    "choix": ["`cargo build`", "`cargo run`", "`cargo check`", "`cargo test`"],
+    "reponse": 2,
+    "explication": "`cargo check` analyse le code sans générer le programme final, c'est l'étape la plus rapide quand on corrige des erreurs."
+  },
+  {
+    "question": "Pourquoi `println!` a-t-il un point d'exclamation ?",
+    "choix": ["C'est une fonction importante", "C'est une macro", "Il affiche en rouge", "Il peut paniquer"],
+    "reponse": 1,
+    "explication": "Le `!` indique une macro : du code qui écrit du code à la compilation. Elle accepte un nombre variable d'arguments et vérifie le texte de format."
+  },
+  {
+    "question": "Que vaut le bloc `{ let x = 3; x + 1; }` ?",
+    "choix": ["4", "3", "`()`", "Il ne compile pas"],
+    "reponse": 2,
+    "explication": "La dernière ligne finit par `;` : c'est une instruction, donc le bloc vaut `()`, le « rien » de Rust."
+  },
+  {
+    "question": "Quel est le type entier utilisé par défaut quand on écrit `let x = 5;` ?",
+    "choix": ["`u32`", "`i32`", "`i64`", "`usize`"],
+    "reponse": 1,
+    "explication": "Sans autre information, Rust choisit `i32` pour un entier et `f64` pour un nombre à virgule."
+  },
+  {
+    "question": "Quel type faut-il pour l'indice `i` dans `v[i]` ?",
+    "choix": ["`i32`", "`u64`", "`usize`", "N'importe quel entier"],
+    "reponse": 2,
+    "explication": "Les indices et les longueurs utilisent `usize`, dont la taille dépend de la machine (64 bits sur une machine 64 bits)."
+  },
+  {
+    "question": "Que donne `300u32 as u8` ?",
+    "choix": ["255", "Une panique", "44", "Une erreur de compilation"],
+    "reponse": 2,
+    "explication": "`as` coupe les bits en trop sans prévenir : 300 - 256 = 44. Pour une conversion qui peut échouer proprement, utiliser `u8::try_from`."
+  },
+  {
+    "question": "En mode **debug**, que se passe-t-il si `250u8 + 10` est calculé à l'exécution ?",
+    "choix": ["Le résultat vaut 4", "Le résultat vaut 255", "Le programme panique", "Le résultat vaut 260"],
+    "reponse": 2,
+    "explication": "En debug, un débordement provoque une panique (`attempt to add with overflow`). En release, le calcul repart de zéro et donne 4."
+  },
+  {
+    "question": "Que renvoie `200u8.checked_add(100)` ?",
+    "choix": ["`Some(44)`", "`None`", "`255`", "Une panique"],
+    "reponse": 1,
+    "explication": "`checked_add` renvoie `None` si le résultat ne tient pas dans le type, sinon `Some(résultat)`."
+  },
+  {
+    "question": "Que signifie « `match` est exhaustif » ?",
+    "choix": ["Il est lent", "Il doit couvrir tous les cas possibles", "Il teste tous les bras en même temps", "Il ne marche qu'avec des nombres"],
+    "reponse": 1,
+    "explication": "Si un cas n'est pas couvert, le code ne compile pas (erreur E0004). Le joker `_` couvre « tout le reste »."
+  },
+  {
+    "question": "Dans FizzBuzz, pourquoi le test « multiple de 15 » doit-il être le premier bras ?",
+    "choix": ["Pour aller plus vite", "Parce que les bras sont testés dans l'ordre", "Parce que 15 est le plus grand", "Ce n'est pas obligatoire"],
+    "reponse": 1,
+    "explication": "Le premier bras qui correspond gagne. Si « multiple de 3 » est avant, 15 affichera seulement Fizz."
+  },
+  {
+    "question": "Quelle erreur obtient-on en modifiant une variable déclarée sans `mut` ?",
+    "choix": ["E0382", "E0384", "E0499", "E0004"],
+    "reponse": 1,
+    "explication": "E0384 : cannot assign twice to immutable variable. Le `help:` propose d'ajouter `mut`."
+  },
+  {
+    "question": "Que produit `for i in 0..3` ?",
+    "choix": ["0, 1, 2, 3", "1, 2, 3", "0, 1, 2", "1, 2"],
+    "reponse": 2,
+    "explication": "`..` exclut la fin. Pour l'inclure, on écrit `0..=3`."
+  }
+]

@@ -1,0 +1,9 @@
+création de A
+création de B
+drop B
+création de C
+drop C
+création de D
+fin du main
+drop D
+drop A

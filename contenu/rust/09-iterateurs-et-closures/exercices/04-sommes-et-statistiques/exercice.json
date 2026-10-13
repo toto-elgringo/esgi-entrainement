@@ -1,0 +1,12 @@
+{
+  "titre": "Sommes et statistiques",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`prix.iter().sum()` : le type de retour de la fonction suffit à indiquer le type de la somme.",
+    "`filter(...)` puis `count()` pour compter les mots longs.",
+    "`v.iter().max()` renvoie un `Option<&i32>`. `.copied()` le transforme en `Option<i32>`.",
+    "`fold(1, |acc, x| acc * x)` : on part de 1 et on multiplie par chaque élément.",
+    "Pour la moyenne : si la liste est vide, `None`. Sinon `Some(somme / notes.len() as f64)`, avec `notes.iter().sum::<f64>()`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Le derive qui manque",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Le compilateur dit « doesn't implement `Debug` » : la ligne `help:` propose la solution.",
+    "La syntaxe : `#[derive(Trait1, Trait2, Trait3)]` juste au-dessus de `struct Point`.",
+    "Il faut `Debug` (pour `{:?}`), `Clone` (pour `.clone()`) et `PartialEq` (pour `==`)."
+  ]
+}

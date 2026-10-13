@@ -1,0 +1,9 @@
+{
+  "titre": "Lire une erreur du compilateur",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Clique sur « Vérifier » et lis le message en entier, jusqu'à la ligne `help:`.",
+    "Le compilateur a trouvé une fonction au nom très proche : il te la propose."
+  ]
+}

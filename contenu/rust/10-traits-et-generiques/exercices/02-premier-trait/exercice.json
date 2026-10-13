@@ -1,0 +1,10 @@
+{
+  "titre": "Mon premier trait",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "La méthode par défaut utilise les autres méthodes du trait : `format!(\"{} : {} roues\", self.nom(), self.roues())`.",
+    "Pour `Velo`, `nom` renvoie `\"Vélo\".to_string()` et `roues` renvoie `2`.",
+    "Pour remplacer `presenter` pour le vélo, écris une méthode `fn presenter(&self) -> String` dans `impl Vehicule for Velo`."
+  ]
+}

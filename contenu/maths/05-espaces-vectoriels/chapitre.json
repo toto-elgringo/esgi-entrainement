@@ -1,0 +1,6 @@
+{
+  "titre": "Espaces vectoriels",
+  "description": "Vecteurs, combinaisons linéaires, familles libres et liées, bases, dimension et sous-espaces. La base de la PCA.",
+  "source": "Cours 2",
+  "matieres": ["informatique", "big-data"]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Comment lire le champ `age` d'une variable `eleve` de type `Eleve` ?",
+    "choix": ["`eleve::age`", "`eleve.age`", "`eleve[age]`", "`eleve->age`"],
+    "reponse": 1,
+    "explication": "On accède à un champ avec un point : `eleve.age`. Le `::` sert pour les fonctions associées comme `Eleve::new`."
+  },
+  {
+    "question": "Comment rendre modifiable **un seul** champ d'une struct ?",
+    "choix": ["Écrire `mut age: u32` dans la struct", "C'est impossible : c'est toute la variable qui est `mut` ou non", "Écrire `let mut eleve.age`", "Ajouter `#[derive(Mut)]`"],
+    "reponse": 1,
+    "explication": "La mutabilité concerne la variable entière : `let mut eleve = ...` rend tous les champs modifiables."
+  },
+  {
+    "question": "Quel premier paramètre choisir pour une méthode qui **lit** la struct sans la modifier ?",
+    "choix": ["`self`", "`&self`", "`&mut self`", "Aucun"],
+    "reponse": 1,
+    "explication": "`&self` emprunte la valeur en lecture : elle reste utilisable après l'appel."
+  },
+  {
+    "question": "On appelle `panier.vider()` où `vider` prend `&mut self`, avec `let panier = Panier::new();`. Que se passe-t-il ?",
+    "choix": ["Ça marche", "Erreur : `panier` doit être déclaré avec `let mut`", "Le panier est détruit", "Erreur : il faut écrire `Panier::vider()`"],
+    "reponse": 1,
+    "explication": "Une méthode `&mut self` modifie la valeur : la variable doit être déclarée `mut`."
+  },
+  {
+    "question": "Après `let ticket = commande.payer();` où `payer` prend `self`, peut-on encore utiliser `commande` ?",
+    "choix": ["Oui, toujours", "Non : la méthode a pris possession de la commande (move)", "Oui, mais seulement en lecture", "Seulement avec `&commande`"],
+    "reponse": 1,
+    "explication": "`self` par valeur déplace la commande dans la méthode. L'utiliser ensuite donne l'erreur E0382 (borrow of moved value)."
+  },
+  {
+    "question": "Comment appelle-t-on la fonction associée `fn new(nom: &str) -> Self` du type `Eleve` ?",
+    "choix": ["`Eleve.new(\"Alice\")`", "`new Eleve(\"Alice\")`", "`Eleve::new(\"Alice\")`", "`eleve.new(\"Alice\")`"],
+    "reponse": 2,
+    "explication": "Une fonction sans `self` s'appelle sur le type avec `::`."
+  },
+  {
+    "question": "Dans un bloc `impl Rectangle`, que désigne `Self` (avec une majuscule) ?",
+    "choix": ["La valeur sur laquelle on appelle la méthode", "Le type `Rectangle` lui-même", "Le fichier courant", "Une copie de la valeur"],
+    "reponse": 1,
+    "explication": "`Self` est le type du bloc `impl`. `self` (minuscule) est la valeur."
+  },
+  {
+    "question": "`new` est-il un mot-clé de Rust ?",
+    "choix": ["Oui, c'est le constructeur obligatoire", "Non, c'est seulement une convention de nom", "Oui, mais seulement dans un `impl`", "Oui, il réserve la mémoire sur le tas"],
+    "reponse": 1,
+    "explication": "Rust n'a pas de constructeur spécial. `new` est une fonction associée comme les autres, nommée ainsi par habitude."
+  },
+  {
+    "question": "Quel `derive` faut-il pour afficher une struct avec `{:?}` ?",
+    "choix": ["`Display`", "`Debug`", "`Clone`", "`Print`"],
+    "reponse": 1,
+    "explication": "`#[derive(Debug)]` permet `{:?}` et `{:#?}`. `Display` (pour `{}`) ne peut pas être dérivé, il faut l'écrire."
+  },
+  {
+    "question": "Que faut-il pour écrire `assert_eq!(p1, p2)` avec deux `Point` ?",
+    "choix": ["`#[derive(PartialEq)]` seulement", "`#[derive(Debug, PartialEq)]`", "`#[derive(Clone)]`", "Rien, ça marche toujours"],
+    "reponse": 1,
+    "explication": "`assert_eq!` compare les valeurs (`PartialEq`) et les affiche si le test échoue (`Debug`)."
+  },
+  {
+    "question": "Avec `struct Couleur(u8, u8, u8);` et `let c = Couleur(255, 128, 0);`, comment lire `128` ?",
+    "choix": ["`c.1`", "`c[1]`", "`c.vert`", "`c.2`"],
+    "reponse": 0,
+    "explication": "Les champs d'une struct tuple sont numérotés à partir de 0 : `c.0`, `c.1`, `c.2`."
+  },
+  {
+    "question": "Que signifie `Eleve { nom, age }` quand des variables `nom` et `age` existent déjà ?",
+    "choix": ["Une erreur de syntaxe", "Un raccourci pour `Eleve { nom: nom, age: age }`", "Une copie d'un autre élève", "Un tuple"],
+    "reponse": 1,
+    "explication": "Quand la variable a le même nom que le champ, on peut l'écrire une seule fois."
+  }
+]

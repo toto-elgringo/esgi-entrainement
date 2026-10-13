@@ -1,0 +1,10 @@
+{
+  "titre": "Le compte bancaire",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`new` renvoie `Self { titulaire: titulaire.to_string(), solde: 0 }`.",
+    "`deposer` et `retirer` modifient le compte : elles prennent `&mut self` et changent `self.solde`.",
+    "Dans `retirer` : `if montant > self.solde { return false; }`, puis retire le montant et renvoie `true`."
+  ]
+}

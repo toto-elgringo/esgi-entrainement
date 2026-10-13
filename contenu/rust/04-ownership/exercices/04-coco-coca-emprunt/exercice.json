@@ -1,0 +1,10 @@
+{
+  "titre": "Coco → Coca (emprunt)",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Erreur E0382 : `s` a été **déplacé** (move) dans la fonction, puis `main` essaie encore de l'utiliser.",
+    "La fonction doit seulement **emprunter** la `String` pour la modifier : paramètre `s: &mut String`.",
+    "Dans `main` : la variable doit être `let mut s`, et l'appel s'écrit `changer_derniere_lettre(&mut s);`."
+  ]
+}

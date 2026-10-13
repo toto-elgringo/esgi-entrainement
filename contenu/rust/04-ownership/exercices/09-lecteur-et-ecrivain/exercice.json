@@ -1,0 +1,10 @@
+{
+  "titre": "Lire pendant qu'on écrit",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Erreur E0502 : `premier` emprunte `v` en lecture, et `v.push(...)` veut l'emprunter en écriture **pendant** que `premier` est encore utilisé.",
+    "Un `i32` est `Copy` : au lieu d'emprunter la case, copie sa valeur avec `let premier = v[0];`.",
+    "Pour `ajouter_les_doubles`, ne parcours pas `v` pendant que tu le modifies : note la longueur `let n = v.len();`, puis `for i in 0..n { let x = v[i]; v.push(x * 2); }`."
+  ]
+}

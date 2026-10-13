@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Que devient une variable à la fin du bloc `{ }` où elle a été créée ?",
+    "choix": ["Elle reste en mémoire jusqu'à la fin du programme", "Elle est détruite (drop) et sa mémoire est rendue", "Le ramasse-miettes la libérera plus tard", "Il faut appeler `free` soi-même"],
+    "reponse": 1,
+    "explication": "À la fin de sa portée, la valeur est détruite automatiquement : c'est le RAII. Rust n'a pas de ramasse-miettes."
+  },
+  {
+    "question": "Avec `let _a = A; let _b = B; let _c = C;` dans `main`, dans quel ordre sont-ils détruits ?",
+    "choix": ["A, B, C", "C, B, A", "B, A, C", "Dans un ordre aléatoire"],
+    "reponse": 1,
+    "explication": "Ordre inverse de création : une variable peut dépendre d'une variable créée avant elle, donc on détruit d'abord la plus récente."
+  },
+  {
+    "question": "Que fait `let _ = Bruyant::new(\"X\");` ?",
+    "choix": ["Garde la valeur jusqu'à la fin du bloc", "Détruit la valeur immédiatement", "Ne compile pas", "Crée une variable nommée `_`"],
+    "reponse": 1,
+    "explication": "`_` n'est pas un nom : c'est un motif qui jette la valeur, détruite tout de suite. `let _x = ...` la garderait jusqu'à la fin du bloc."
+  },
+  {
+    "question": "Que se passe-t-il avec `let x = \"5\"; let x: u32 = x.parse().unwrap();` ?",
+    "choix": ["Erreur : on ne peut pas changer le type de x", "Erreur E0384 : il manque `mut`", "Ça compile : le deuxième `let` crée une nouvelle variable qui masque l'ancienne", "x vaut \"5\" à la fin"],
+    "reponse": 2,
+    "explication": "C'est le masquage (shadowing) : un nouveau binding avec le même nom, qui peut avoir un autre type."
+  },
+  {
+    "question": "Combien de propriétaires une valeur peut-elle avoir en même temps ?",
+    "choix": ["Un seul", "Deux", "Autant qu'on veut", "Zéro"],
+    "reponse": 0,
+    "explication": "Règle n°1 : un seul propriétaire. C'est ce qui empêche de libérer deux fois la même mémoire."
+  },
+  {
+    "question": "Après `let s1 = String::from(\"a\"); let s2 = s1;`, que peut-on faire avec `s1` ?",
+    "choix": ["L'utiliser normalement", "Plus rien : la valeur a été déplacée dans s2", "La lire mais pas la modifier", "La modifier mais pas la lire"],
+    "reponse": 1,
+    "explication": "Une `String` n'est pas `Copy` : `let s2 = s1;` la déplace (move). Utiliser `s1` ensuite donne l'erreur E0382."
+  },
+  {
+    "question": "Après `let a = 5; let b = a;`, peut-on encore utiliser `a` ?",
+    "choix": ["Oui, car les entiers sont `Copy`", "Non, `a` a été déplacé", "Seulement avec `a.clone()`", "Seulement si `a` est `mut`"],
+    "reponse": 0,
+    "explication": "Les types simples (entiers, flottants, bool, char) sont `Copy` : la valeur est copiée et l'original reste utilisable."
+  },
+  {
+    "question": "Lequel de ces types ne peut **pas** être `Copy` ?",
+    "choix": ["`i32`", "`bool`", "`(i32, char)`", "`String`"],
+    "reponse": 3,
+    "explication": "Un type `Copy` ne doit rien avoir à libérer. Une `String` possède de la mémoire sur le tas : elle ne peut pas être `Copy`."
+  },
+  {
+    "question": "Combien de références `&mut` vers une même valeur peuvent être vivantes en même temps ?",
+    "choix": ["Aucune", "Une seule", "Deux", "Autant qu'on veut"],
+    "reponse": 1,
+    "explication": "Un seul écrivain à la fois. Deux `&mut` vivants en même temps donnent l'erreur E0499."
+  },
+  {
+    "question": "Que signifie l'erreur E0502 ?",
+    "choix": ["Une valeur a été déplacée puis utilisée", "On veut écrire dans une valeur pendant que quelqu'un la lit", "Il manque `mut`", "Un `match` n'est pas exhaustif"],
+    "reponse": 1,
+    "explication": "E0502 : cannot borrow as mutable because it is also borrowed as immutable. Un emprunt `&mut` arrive pendant qu'un `&` est encore utilisé."
+  },
+  {
+    "question": "Jusqu'à quand dure un emprunt `let r = &v;` ?",
+    "choix": ["Jusqu'à la fin du bloc", "Jusqu'à la fin du programme", "Jusqu'à la dernière utilisation de `r`", "Jusqu'au prochain `;`"],
+    "reponse": 2,
+    "explication": "Depuis 2018 (non-lexical lifetimes), un emprunt s'arrête à sa dernière utilisation réelle."
+  },
+  {
+    "question": "Quel est le meilleur type de paramètre pour une fonction qui **lit** une liste d'entiers ?",
+    "choix": ["`Vec<i32>`", "`&Vec<i32>`", "`&[i32]`", "`&mut Vec<i32>`"],
+    "reponse": 2,
+    "explication": "`&[i32]` (une tranche) emprunte en lecture et accepte un `Vec`, un tableau ou un morceau de liste. `Vec<i32>` déplacerait la liste."
+  }
+]

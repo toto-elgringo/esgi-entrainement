@@ -1,0 +1,10 @@
+{
+  "titre": "Construire une String",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence par `let mut resultat = String::new();` et termine la fonction par `resultat`.",
+    "`push` ajoute un `char` (guillemets simples : `'['`), `push_str` ajoute un `&str` (guillemets doubles).",
+    "Pour `repeter`, ajoute le tiret seulement entre deux mots : avant chaque mot, sauf le premier (`if i > 0`)."
+  ]
+}

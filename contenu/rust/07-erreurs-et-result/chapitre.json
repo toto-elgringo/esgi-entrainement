@@ -1,0 +1,5 @@
+{
+  "titre": "Erreurs et Result",
+  "description": "panic! ou Result, parse, l'opérateur ?, erreurs personnalisées, ok_or, map_err, unwrap et expect.",
+  "source": "fondamentaux"
+}

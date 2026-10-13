@@ -1,0 +1,10 @@
+{
+  "titre": "Un compte bien protégé",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`ouvrir` construit le compte : `Compte { titulaire: titulaire.to_string(), solde: 0 }`.",
+    "Les accesseurs renvoient simplement le champ : `self.solde`, `&self.titulaire`.",
+    "`retirer` : si `montant > self.solde`, renvoie `false` sans rien toucher ; sinon soustrais et renvoie `true`."
+  ]
+}

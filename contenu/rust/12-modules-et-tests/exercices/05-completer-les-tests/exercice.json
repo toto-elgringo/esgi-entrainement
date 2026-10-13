@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer ses propres tests",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`diviser` renvoie un `u32` : on ne peut pas le comparer à `3.5`. En division entière, 7 / 2 vaut 3.",
+    "Dans `diviser`, ajoute `if b == 0 { panic!(\"division par zéro\"); }` avant la division.",
+    "Au-dessus de `fn division_par_zero`, sous `#[test]`, ajoute `#[should_panic(expected = \"division par zéro\")]`."
+  ]
+}

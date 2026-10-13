@@ -1,0 +1,10 @@
+{
+  "titre": "Trois boucles",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`somme_des_pairs` : une boucle `for i in 1..=n` et un `if i % 2 == 0`.",
+    "`puissance` : commence avec `let mut resultat = 1;` et multiplie `exposant` fois.",
+    "`plus_petit_diviseur` : `let mut d = 2;` puis `while n % d != 0 { d += 1; }`."
+  ]
+}

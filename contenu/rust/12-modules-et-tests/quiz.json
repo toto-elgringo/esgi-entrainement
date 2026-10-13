@@ -1,0 +1,68 @@
+[
+  {
+    "question": "Par défaut, une fonction déclarée dans un `mod` est...",
+    "choix": ["publique", "privée", "statique", "mutable"],
+    "reponse": 1,
+    "explication": "Tout est privé par défaut. Il faut `pub` pour l'utiliser en dehors du module (sinon erreur E0603)."
+  },
+  {
+    "question": "Avec `pub struct Compte { solde: u64 }`, peut-on écrire `compte.solde = 10;` en dehors du module ?",
+    "choix": ["Oui, car la struct est `pub`", "Non, le champ `solde` est privé", "Oui, si `compte` est `mut`", "Seulement dans `main`"],
+    "reponse": 1,
+    "explication": "`pub struct` rend le type public, pas ses champs. Erreur E0616 : il faut passer par une méthode publique."
+  },
+  {
+    "question": "Que fait `use restaurant::desserts;` ?",
+    "choix": ["Copie le module", "Crée un raccourci : on peut écrire `desserts::...`", "Rend `desserts` public", "Exécute le module"],
+    "reponse": 1,
+    "explication": "`use` crée un raccourci vers un chemin, pour ne pas tout réécrire à chaque fois."
+  },
+  {
+    "question": "Dans un module, que désigne `super::` ?",
+    "choix": ["Le module actuel", "La racine du programme", "Le module parent", "La bibliothèque standard"],
+    "reponse": 2,
+    "explication": "`super::` remonte d'un niveau. `crate::` désigne la racine et `self::` le module actuel."
+  },
+  {
+    "question": "À quoi sert `#[cfg(test)]` devant `mod tests` ?",
+    "choix": ["À rendre le module public", "À compiler ce module seulement pendant les tests", "À lancer les tests en release", "À ignorer les tests"],
+    "reponse": 1,
+    "explication": "Le module de tests n'est pas inclus dans le programme final : il n'est compilé que par `cargo test`."
+  },
+  {
+    "question": "Pourquoi écrit-on `use super::*;` au début du module de tests ?",
+    "choix": ["Pour importer tout ce qui est dans le module parent", "Pour rendre les tests plus rapides", "C'est obligatoire pour `#[test]`", "Pour importer la bibliothèque standard"],
+    "reponse": 0,
+    "explication": "Le module `tests` est un enfant : `use super::*` lui donne accès aux fonctions à tester sans écrire leur chemin complet."
+  },
+  {
+    "question": "Quand un test marqué `#[test]` échoue-t-il ?",
+    "choix": ["Quand il renvoie `false`", "Quand il panique", "Quand il affiche du texte", "Quand il dure plus d'une seconde"],
+    "reponse": 1,
+    "explication": "Un test réussit s'il se termine normalement. `assert!` et `assert_eq!` paniquent quand la vérification est fausse."
+  },
+  {
+    "question": "Que vérifie `#[should_panic(expected = \"division par zéro\")]` ?",
+    "choix": ["Que le test ne panique jamais", "Que le test panique avec un message contenant « division par zéro »", "Que la division renvoie zéro", "Rien, c'est un commentaire"],
+    "reponse": 1,
+    "explication": "Le test réussit seulement si le code panique, et si le message de panique contient le texte attendu."
+  },
+  {
+    "question": "Quelle macro vérifie que deux valeurs sont **différentes** ?",
+    "choix": ["`assert!`", "`assert_eq!`", "`assert_ne!`", "`assert_diff!`"],
+    "reponse": 2,
+    "explication": "`assert_ne!(a, b)` panique si `a == b`. « ne » veut dire *not equal*."
+  },
+  {
+    "question": "Que lance `cargo test division` ?",
+    "choix": ["Tous les tests", "Seulement les tests dont le nom contient « division »", "Le fichier `division.rs`", "Rien, la commande est invalide"],
+    "reponse": 1,
+    "explication": "Le texte après `cargo test` filtre les tests par leur nom."
+  },
+  {
+    "question": "Que fait `pub use meteo::alerte::niveau;` à la racine du programme ?",
+    "choix": ["Supprime le module `meteo`", "Rend `niveau` utilisable directement depuis la racine (réexport)", "Rend tout `meteo` public", "Copie la fonction"],
+    "reponse": 1,
+    "explication": "`pub use` réexporte : `niveau` devient accessible à la racine, comme s'il y avait été écrit."
+  }
+]

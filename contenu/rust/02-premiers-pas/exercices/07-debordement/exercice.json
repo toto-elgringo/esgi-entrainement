@@ -1,0 +1,9 @@
+{
+  "titre": "Gérer le débordement",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lance « Vérifier » une première fois : regarde le message « attempt to add with overflow ».",
+    "Les méthodes à utiliser : `checked_add`, `saturating_add` et `wrapping_add`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "L'opérateur ?",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`let x = a.parse::<i32>()?;` : si `a` n'est pas un nombre, la fonction s'arrête et renvoie l'erreur.",
+    "N'oublie pas d'emballer le résultat final : `Ok(x + y)`.",
+    "`moyenne_de_trois` peut réutiliser `?` trois fois, puis renvoyer `Ok((x + y + z) / 3)`."
+  ]
+}

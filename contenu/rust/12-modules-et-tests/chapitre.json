@@ -1,0 +1,5 @@
+{
+  "titre": "Modules et tests",
+  "description": "Ranger son code avec mod, pub, use et super, puis le vérifier avec #[test], assert! et #[should_panic].",
+  "source": "fondamentaux"
+}

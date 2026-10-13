@@ -1,0 +1,5 @@
+{
+  "titre": "Traits et génériques",
+  "description": "Définir des comportements communs, écrire du code qui marche pour plusieurs types, derive, Display, Box<dyn Trait>.",
+  "source": "fondamentaux"
+}

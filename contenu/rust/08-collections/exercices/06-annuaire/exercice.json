@@ -1,0 +1,11 @@
+{
+  "titre": "Un annuaire avec HashMap",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`insert` renvoie l'ancienne valeur : `None` si le nom était nouveau. `.is_none()` transforme ça en `bool`.",
+    "Les clés sont des `String` : `nom.to_string()` transforme le `&str` reçu en `String`.",
+    "`get` renvoie une `Option<&String>`. `.cloned()` la transforme en `Option<String>` (une copie).",
+    "`remove` renvoie `Some(valeur)` si la clé existait : `.is_some()`."
+  ]
+}

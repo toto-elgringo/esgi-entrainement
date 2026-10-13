@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 1 : le lutin le plus chargé",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Deux variables modifiables : `meilleur` (le record) et `total` (le lutin en cours).",
+    "Parcours `entree.lines()`. Sur une ligne vide (`ligne.trim().is_empty()`), compare `total` au record puis remets `total` à 0.",
+    "Sinon, ajoute `ligne.trim().parse::<u32>().unwrap_or(0)` à `total`.",
+    "Après la boucle, n'oublie pas de comparer une dernière fois : le dernier lutin n'a pas de ligne vide après lui."
+  ]
+}

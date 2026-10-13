@@ -1,0 +1,10 @@
+{
+  "titre": "Manipuler un Vec pas à pas",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Les méthodes à utiliser, dans l'ordre : `push`, `pop`, `sort`, `len`, `get`.",
+    "`{:?}` affiche une liste ou une `Option` : `println!(\"pop() renvoie : {:?}\", v.pop());`",
+    "`v.get(0)` renvoie `Some(&1)`, qui s'affiche `Some(1)` avec `{:?}`."
+  ]
+}

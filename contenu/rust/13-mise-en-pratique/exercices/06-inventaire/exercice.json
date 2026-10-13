@@ -1,0 +1,12 @@
+{
+  "titre": "Gestion d'inventaire",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`ajouter` : `*self.stock.entry(article.to_string()).or_insert(0) += quantite;`.",
+    "`retirer` : `let disponible = self.stock.get(article).copied().ok_or_else(|| ErreurStock::ArticleInconnu(article.to_string()))?;` puis compare avec `quantite`.",
+    "Quand la quantité tombe à 0, `self.stock.remove(article);`. Sinon, `self.stock.insert(article.to_string(), disponible - quantite);`.",
+    "`quantite` : `self.stock.get(article).copied().unwrap_or(0)`.",
+    "`Display` : récupère les couples avec `self.stock.iter().collect::<Vec<_>>()`, trie-les avec `.sort()`, transforme chaque couple en `format!(\"{article} : {quantite}\")` et assemble avec `.join(\"\\n\")`."
+  ]
+}

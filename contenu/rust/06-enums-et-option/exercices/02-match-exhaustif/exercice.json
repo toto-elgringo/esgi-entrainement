@@ -1,0 +1,9 @@
+{
+  "titre": "Le cas oublié",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Lis l'erreur E0004 : elle dit exactement quelle variante n'est pas couverte.",
+    "En tournant à droite depuis l'Ouest, on se retrouve face au Nord. L'Ouest vaut 270 degrés."
+  ]
+}

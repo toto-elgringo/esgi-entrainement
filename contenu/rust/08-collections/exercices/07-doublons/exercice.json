@@ -1,0 +1,10 @@
+{
+  "titre": "Chasse aux doublons avec HashSet",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`insert` renvoie `false` si l'élément était déjà dans l'ensemble : c'est un doublon !",
+    "Pour `valeurs_uniques` : mets tout dans un `HashSet`, puis renvoie sa taille avec `len()`.",
+    "Pour `elements_communs` : range `b` dans un `HashSet`, puis garde les éléments de `a` pour lesquels `contains` répond `true`. Un deuxième `HashSet` évite de garder deux fois la même valeur. Trie le résultat à la fin."
+  ]
+}

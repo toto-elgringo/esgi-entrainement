@@ -1,0 +1,5 @@
+{
+  "titre": "Mise en pratique",
+  "description": "L'exemple Advent of Code du cours, puis des mini-projets qui mélangent struct, enum, Result, collections et itérateurs.",
+  "source": "cours"
+}

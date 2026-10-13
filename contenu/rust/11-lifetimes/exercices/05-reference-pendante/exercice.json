@@ -1,0 +1,10 @@
+{
+  "titre": "La référence pendante",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`message` et `resultat` sont créées dans la fonction : elles sont détruites à sa fin.",
+    "Aucune annotation `'a` ne peut résoudre ce problème : il faut changer le type de retour.",
+    "Renvoie une `String` (la valeur possédée) au lieu d'un `&str`, sans le `&`."
+  ]
+}

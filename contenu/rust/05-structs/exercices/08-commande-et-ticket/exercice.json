@@ -1,0 +1,10 @@
+{
+  "titre": "Commande et ticket (self)",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Pour pouvoir modifier `self` dans `ajouter`, écris le paramètre `mut self`.",
+    "`ajouter` : `self.plats += 1; self.total += prix; self` (on renvoie `self` à la fin, sans `;`).",
+    "`payer` : `Ticket { numero, montant: self.total }`."
+  ]
+}

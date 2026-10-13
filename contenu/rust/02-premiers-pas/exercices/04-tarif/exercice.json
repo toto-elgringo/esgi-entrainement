@@ -1,0 +1,10 @@
+{
+  "titre": "Le tarif du cinéma",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Utilise une chaîne `if ... else if ... else`.",
+    "Le `if` est une expression : chaque branche se termine par une valeur sans `;`, par exemple `5`.",
+    "Attention à l'ordre des conditions : teste `age >= 65` avant le cas général."
+  ]
+}

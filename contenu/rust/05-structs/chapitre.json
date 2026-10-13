@@ -1,0 +1,5 @@
+{
+  "titre": "Structures (struct)",
+  "description": "Regrouper des données : struct, struct tuple, impl, méthodes &self / &mut self / self, new et derive.",
+  "source": "fondamentaux"
+}

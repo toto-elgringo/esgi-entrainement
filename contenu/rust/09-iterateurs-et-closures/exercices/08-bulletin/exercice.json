@@ -1,0 +1,11 @@
+{
+  "titre": "Le bulletin de notes",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Moyenne : `notes.iter().sum::<u32>() as f64 / notes.len() as f64`. Un `f64` qui vaut 12,5 s'affiche `12.5` avec `{}`.",
+    "Meilleure : `notes.iter().max()` renvoie une `Option`. `if let Some(meilleure) = ...` ou `.unwrap_or(&0)`.",
+    "Reçus : `filter(|n| **n >= 10).count()`.",
+    "Notes sur 100 : `map(|n| n * 5).collect::<Vec<u32>>()`, puis affichage avec `{:?}`."
+  ]
+}

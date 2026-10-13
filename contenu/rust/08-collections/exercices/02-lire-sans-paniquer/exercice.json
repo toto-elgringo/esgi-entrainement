@@ -1,0 +1,10 @@
+{
+  "titre": "Lire sans paniquer",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`v.get(i)` renvoie `Some(&valeur)` ou `None` au lieu de paniquer.",
+    "`match v.get(i) { Some(x) => *x, None => 0 }` : l'étoile récupère la valeur derrière la référence.",
+    "Pour `premier_et_dernier`, `v.first()` et `v.last()` renvoient aussi des `Option`. Tu peux faire un `match` sur le couple `(v.first(), v.last())`."
+  ]
+}

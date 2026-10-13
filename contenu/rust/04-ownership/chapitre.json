@@ -1,0 +1,5 @@
+{
+  "titre": "Ownership",
+  "description": "Portée, drop et RAII, masquage, move, Copy et Clone, emprunts & et &mut.",
+  "source": "cours"
+}

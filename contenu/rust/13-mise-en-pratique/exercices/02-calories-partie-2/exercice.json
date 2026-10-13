@@ -1,0 +1,10 @@
+{
+  "titre": "AoC 2022 jour 1 : le podium",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`totaux_par_lutin` : même boucle que la partie 1, mais au lieu de comparer, `totaux.push(total)` à chaque ligne vide... et après la boucle.",
+    "`top3_calories` : récupère les totaux, puis trie-les du plus grand au plus petit avec `totaux.sort_unstable_by(|a, b| b.cmp(a));`.",
+    "`totaux.iter().take(3).sum()` additionne les 3 premiers (ou moins s'il y en a moins)."
+  ]
+}

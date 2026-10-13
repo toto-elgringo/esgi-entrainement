@@ -1,0 +1,68 @@
+[
+  {
+    "question": "Qu'est-ce qu'une **référence pendante** ?",
+    "choix": ["Une référence modifiable", "Une référence vers une valeur déjà détruite", "Une référence vers un texte vide", "Une référence `'static`"],
+    "reponse": 1,
+    "explication": "Elle pointerait vers de la mémoire libérée. Rust refuse ce code à la compilation."
+  },
+  {
+    "question": "Que fait l'annotation `'a` à l'exécution du programme ?",
+    "choix": ["Elle prolonge la vie de la valeur", "Elle copie la valeur", "Rien : elle sert seulement au compilateur", "Elle libère la valeur plus tôt"],
+    "reponse": 2,
+    "explication": "Les durées de vie sont vérifiées uniquement à la compilation. Elles décrivent des liens entre références sans rien changer au programme."
+  },
+  {
+    "question": "Pourquoi `fn plus_long(a: &str, b: &str) -> &str` ne compile pas ?",
+    "choix": ["`&str` ne peut pas être renvoyé", "Le compilateur ne sait pas si le résultat vient de `a` ou de `b`", "Il manque `mut`", "`len()` n'existe pas sur `&str`"],
+    "reponse": 1,
+    "explication": "Erreur E0106 : avec deux paramètres références, les règles d'élision ne suffisent pas. Il faut écrire `<'a>`."
+  },
+  {
+    "question": "Dans `fn plus_long<'a>(a: &'a str, b: &'a str) -> &'a str`, combien de temps le résultat est-il valable ?",
+    "choix": ["Pendant tout le programme", "Tant que `a` existe", "Tant que les deux textes existent", "Seulement dans la fonction"],
+    "reponse": 2,
+    "explication": "`'a` devient la plus courte des deux durées de vie : le résultat est utilisable tant que `a` et `b` existent."
+  },
+  {
+    "question": "Pourquoi `fn premier_mot(phrase: &str) -> &str` compile sans `'a` ?",
+    "choix": ["Grâce aux règles d'élision : un seul paramètre référence", "Parce que le résultat est `'static`", "Parce que `phrase` est copiée", "Ça ne compile pas"],
+    "reponse": 0,
+    "explication": "Règle 2 : s'il n'y a qu'un paramètre référence, sa durée de vie est donnée au résultat."
+  },
+  {
+    "question": "Que signifie `&'static str` ?",
+    "choix": ["Un texte modifiable", "Un texte valable pendant tout le programme", "Un texte rangé sur le tas", "Un texte vide"],
+    "reponse": 1,
+    "explication": "Les textes écrits directement dans le code sont rangés dans le programme lui-même : ils existent du début à la fin."
+  },
+  {
+    "question": "Une fonction crée `let s = format!(\"...\");` et renvoie `&s`. Comment corriger ?",
+    "choix": ["Ajouter `'static`", "Ajouter `<'a>` partout", "Renvoyer `s` directement, avec le type `String`", "Mettre `mut`"],
+    "reponse": 2,
+    "explication": "`s` meurt à la fin de la fonction (E0515). Aucune annotation ne la sauve : on renvoie la valeur possédée."
+  },
+  {
+    "question": "Que veut dire `struct Extrait<'a> { texte: &'a str }` ?",
+    "choix": ["L'Extrait possède le texte", "Un Extrait ne peut pas vivre plus longtemps que le texte qu'il regarde", "Le texte est copié dans l'Extrait", "Le texte doit être `'static`"],
+    "reponse": 1,
+    "explication": "La struct contient un emprunt : elle doit mourir avant la valeur empruntée."
+  },
+  {
+    "question": "Quelle erreur obtient-on si une valeur est détruite alors qu'une référence vers elle est encore utilisée ?",
+    "choix": ["E0106", "E0384", "E0597", "E0004"],
+    "reponse": 2,
+    "explication": "E0597 : `x` does not live long enough. Solution : faire vivre la valeur plus longtemps, ou utiliser la référence plus tôt."
+  },
+  {
+    "question": "Que provoque `let mot = texte.to_uppercase().split_whitespace().next();` si on utilise `mot` à la ligne suivante ?",
+    "choix": ["Rien, c'est correct", "E0716 : la `String` temporaire est détruite à la fin de la ligne", "E0384", "Une panique"],
+    "reponse": 1,
+    "explication": "`to_uppercase()` crée une `String` temporaire. Il faut la ranger dans une variable avant de l'emprunter."
+  },
+  {
+    "question": "Dans `fn trouver<'a>(mots: &[&'a str], prefixe: &str) -> Option<&'a str>`, peut-on détruire `prefixe` avant d'utiliser le résultat ?",
+    "choix": ["Oui, le résultat ne dépend que de `mots`", "Non, jamais", "Seulement si `prefixe` est vide", "Seulement en mode release"],
+    "reponse": 0,
+    "explication": "`'a` n'est mis que sur `mots` : le compilateur sait que le résultat ne vient pas de `prefixe`."
+  }
+]

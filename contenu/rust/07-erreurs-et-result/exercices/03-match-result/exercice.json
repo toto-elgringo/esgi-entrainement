@@ -1,0 +1,9 @@
+{
+  "titre": "Traiter chaque saisie",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "`match texte.parse::<i32>() { Ok(nombre) => ..., Err(erreur) => ... }`",
+    "`{texte:?}` affiche le texte entre guillemets, `{erreur}` affiche le message de l'erreur."
+  ]
+}

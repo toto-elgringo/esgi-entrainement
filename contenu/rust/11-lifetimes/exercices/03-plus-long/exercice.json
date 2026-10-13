@@ -1,0 +1,10 @@
+{
+  "titre": "Le plus long des deux",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Déclare la durée de vie après le nom de la fonction : `fn plus_long<'a>(...)`.",
+    "Mets `'a` sur les deux paramètres et sur le résultat : `a: &'a str, b: &'a str) -> &'a str`.",
+    "`plus_long_de_trois` peut réutiliser `plus_long` deux fois : `plus_long(plus_long(a, b), c)`."
+  ]
+}

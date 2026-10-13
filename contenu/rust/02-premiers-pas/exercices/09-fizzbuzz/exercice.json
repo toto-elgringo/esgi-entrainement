@@ -1,0 +1,9 @@
+{
+  "titre": "FizzBuzz (trouve le bug)",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Que renvoie le code pour 15 ? Quel bras du `match` est testé en premier ?",
+    "Les bras d'un `match` sont testés dans l'ordre : le cas le plus précis doit venir en premier."
+  ]
+}

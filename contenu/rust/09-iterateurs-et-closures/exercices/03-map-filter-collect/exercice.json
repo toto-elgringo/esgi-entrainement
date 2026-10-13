@@ -1,0 +1,10 @@
+{
+  "titre": "map, filter, collect",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Le modèle : `v.iter().map(|x| ...).collect()`. Le type de retour de la fonction indique à `collect` de fabriquer un `Vec`.",
+    "Pour `seulement_pairs`, `v.iter().copied()` donne des `i32` (au lieu de `&i32`), ce qui simplifie le `filter` : `.filter(|x| x % 2 == 0)`.",
+    "Pour `longueurs`, chaque mot a une méthode `len()`."
+  ]
+}

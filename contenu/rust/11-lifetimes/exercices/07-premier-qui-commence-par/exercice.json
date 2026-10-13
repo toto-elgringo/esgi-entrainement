@@ -1,0 +1,11 @@
+{
+  "titre": "Lier le résultat au bon paramètre",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Le résultat vient toujours de `mots`, jamais de `prefixe` : seul `mots` doit porter `'a`.",
+    "La signature : `fn premier_qui_commence_par<'a>(mots: &[&'a str], prefixe: &str) -> Option<&'a str>`.",
+    "Avec une boucle : `for mot in mots { if mot.starts_with(prefixe) { return Some(*mot); } }` puis `None` à la fin.",
+    "Avec les itérateurs : `mots.iter().find(|mot| mot.starts_with(prefixe)).copied()`."
+  ]
+}

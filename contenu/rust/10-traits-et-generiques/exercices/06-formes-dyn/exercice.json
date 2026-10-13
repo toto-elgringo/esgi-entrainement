@@ -1,0 +1,11 @@
+{
+  "titre": "Des formes dans un Vec<Box<dyn Forme>>",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Aire d'un rectangle : `largeur * hauteur`. Aire d'un cercle : `PI * rayon * rayon`. Aire d'un carré : `cote * cote`.",
+    "Crée `struct Carre { cote: f64 }` et écris `impl Forme for Carre { ... }` avec ses deux méthodes. Le nom est `\"carré\"`.",
+    "`aire_totale` : `formes.iter().map(|forme| forme.aire()).sum()`.",
+    "`nom_de_la_plus_grande` : `max_by(|a, b| a.aire().total_cmp(&b.aire()))` trouve la plus grande (les `f64` se comparent avec `total_cmp`), puis `.map(|forme| forme.nom())`."
+  ]
+}

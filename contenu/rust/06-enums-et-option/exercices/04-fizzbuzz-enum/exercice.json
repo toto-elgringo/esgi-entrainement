@@ -1,0 +1,10 @@
+{
+  "titre": "FizzBuzz avec une enum",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Reprends le `match` avec gardes du chapitre 2, mais renvoie `FizzBuzz::Fizz` au lieu de `\"Fizz\".to_string()`.",
+    "N'oublie pas l'ordre : le cas « multiple de 15 » en premier.",
+    "Dans `en_texte`, la variante avec donnée s'écrit `FizzBuzz::Nombre(n) => n.to_string()`."
+  ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Que crée `vec![0; 3]` ?",
+    "choix": ["`[0, 3]`", "`[0, 0, 0]`", "`[0, 1, 2]`", "`[3, 3, 3]`"],
+    "reponse": 1,
+    "explication": "`vec![valeur; n]` crée une liste de `n` éléments tous égaux à `valeur`."
+  },
+  {
+    "question": "Que renvoie `pop()` sur un `Vec<i32>` vide ?",
+    "choix": ["`0`", "Une panique", "`None`", "`-1`"],
+    "reponse": 2,
+    "explication": "`pop()` renvoie une `Option` : `Some(dernier)` s'il y a un élément, `None` si la liste est vide. Pas de panique."
+  },
+  {
+    "question": "Avec `let v = vec![1, 2, 3];`, que fait `v[5]` ?",
+    "choix": ["Renvoie `None`", "Renvoie `0`", "Le programme panique", "Ne compile pas"],
+    "reponse": 2,
+    "explication": "L'indexation avec `[]` vérifie les bornes à l'exécution et panique (index out of bounds). `v.get(5)` renverrait `None`."
+  },
+  {
+    "question": "Quel type de paramètre accepte à la fois un `Vec<i32>` et un tableau `[i32; 4]` en lecture ?",
+    "choix": ["`Vec<i32>`", "`&Vec<i32>`", "`&[i32]`", "`[i32]`"],
+    "reponse": 2,
+    "explication": "`&[i32]` est une tranche (slice) : une vue empruntée sur des éléments qui se suivent en mémoire, quelle que soit leur origine."
+  },
+  {
+    "question": "Dans `for x in &mut v { ... }`, comment doubler l'élément ?",
+    "choix": ["`x *= 2;`", "`*x *= 2;`", "`&x *= 2;`", "`v[x] *= 2;`"],
+    "reponse": 1,
+    "explication": "`x` est une référence modifiable (`&mut i32`). L'étoile `*x` désigne la valeur derrière la référence."
+  },
+  {
+    "question": "Que donne `[3, 1, 3, 2]` après `sort()` puis `dedup()` ?",
+    "choix": ["`[1, 2, 3, 3]`", "`[1, 2, 3]`", "`[3, 1, 2]`", "`[1, 3, 2]`"],
+    "reponse": 1,
+    "explication": "`sort()` donne `[1, 2, 3, 3]`, puis `dedup()` retire les doublons qui se suivent : `[1, 2, 3]`. Sans le tri, `dedup` ne voit pas les doublons éloignés."
+  },
+  {
+    "question": "Que renvoie `insert` sur une `HashMap` quand la clé existait déjà ?",
+    "choix": ["`false`", "Une panique", "`Some(ancienne_valeur)`", "`None`"],
+    "reponse": 2,
+    "explication": "La nouvelle valeur remplace l'ancienne, et `insert` renvoie `Some(ancienne_valeur)`. Il renvoie `None` si la clé était nouvelle."
+  },
+  {
+    "question": "Quel est le type de `ages.get(\"Alice\")` pour une `HashMap<String, u32>` ?",
+    "choix": ["`u32`", "`&u32`", "`Option<&u32>`", "`Result<u32, String>`"],
+    "reponse": 2,
+    "explication": "La clé peut ne pas exister, donc `get` renvoie une `Option`. La valeur reste dans la map : on reçoit une référence."
+  },
+  {
+    "question": "Que fait `*compteur.entry(mot).or_insert(0) += 1;` ?",
+    "choix": ["Remet le compteur à 0", "Ajoute 1 au compteur du mot, en le créant à 0 s'il n'existe pas", "Ne compile pas", "Ajoute le mot seulement s'il est nouveau"],
+    "reponse": 1,
+    "explication": "`entry(...).or_insert(0)` renvoie la case du mot (créée à 0 si besoin) sous forme de `&mut u32`. L'étoile permet d'y ajouter 1."
+  },
+  {
+    "question": "Tu parcours une `HashMap` deux fois de suite dans deux exécutions différentes du programme. L'ordre est...",
+    "choix": ["Toujours l'ordre d'insertion", "Toujours l'ordre alphabétique", "Pas garanti", "Toujours l'ordre inverse d'insertion"],
+    "reponse": 2,
+    "explication": "L'ordre d'une `HashMap` dépend d'un calcul (le hachage) qui change entre les exécutions. Pour un ordre fixe, trier les clés ou utiliser un `BTreeMap`."
+  },
+  {
+    "question": "Que renvoie `ensemble.insert(5)` si `5` est déjà dans le `HashSet` ?",
+    "choix": ["`true`", "`false`", "`Some(5)`", "Une panique"],
+    "reponse": 1,
+    "explication": "Un `HashSet` ne garde jamais de doublon. `insert` renvoie `false` quand l'élément était déjà présent."
+  },
+  {
+    "question": "Après `for x in v { ... }` (sans `&`), peut-on encore utiliser `v` ?",
+    "choix": ["Oui, toujours", "Non : la boucle a consommé (déplacé) la liste", "Oui, mais seulement en lecture", "Seulement si `v` est `mut`"],
+    "reponse": 1,
+    "explication": "Sans `&`, la boucle prend la propriété de la liste et la détruit à la fin. Pour la garder, on parcourt `&v`."
+  }
+]

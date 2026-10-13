@@ -1,0 +1,10 @@
+{
+  "titre": "Fibonacci récursif",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une fonction récursive s'appelle elle-même : `fibonacci(n - 1) + fibonacci(n - 2)`.",
+    "Il faut d'abord traiter les cas de base : `0` et `1`, sinon la fonction s'appelle à l'infini.",
+    "Avec un `match` : `0 => 0, 1 => 1, _ => fibonacci(n - 1) + fibonacci(n - 2)`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "L'annuaire (if let)",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Une boucle `for nom in [\"Alice\", \"Zoé\", \"Bob\"]` parcourt les trois noms dans l'ordre.",
+    "`if let Some(age) = chercher_age(nom) { ... } else { ... }`",
+    "`chercher_age(\"Alice\").map(|age| age + 1)` donne `Some(31)`."
+  ]
+}

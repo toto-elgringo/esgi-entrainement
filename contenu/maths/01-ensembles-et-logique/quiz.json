@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Combien d'éléments contient l'ensemble $\\{2, 5, 5, 7, 2\\}$ ?",
+    "choix": ["5", "4", "3", "2"],
+    "reponse": 2,
+    "explication": "Un ensemble n'a pas de répétition : $\\{2, 5, 5, 7, 2\\} = \\{2, 5, 7\\}$, soit 3 éléments."
+  },
+  {
+    "question": "Avec $A = \\{1, 2, 3\\}$ et $B = \\{2, 3, 4\\}$, que vaut $A \\setminus B$ ?",
+    "choix": ["$\\{4\\}$", "$\\{1\\}$", "$\\{2, 3\\}$", "$\\{1, 4\\}$"],
+    "reponse": 1,
+    "explication": "$A \\setminus B$ garde les éléments de $A$ qui ne sont pas dans $B$ : seulement 1."
+  },
+  {
+    "question": "Quel opérateur SQL correspond à l'intersection $A \\cap B$ ?",
+    "choix": ["`UNION`", "`EXCEPT`", "`JOIN`", "`INTERSECT`"],
+    "reponse": 3,
+    "explication": "`INTERSECT` garde les lignes présentes dans les deux résultats, comme $\\cap$."
+  },
+  {
+    "question": "D'après De Morgan, $\\overline{A \\cup B}$ est égal à :",
+    "choix": ["$\\overline{A} \\cap \\overline{B}$", "$\\overline{A} \\cup \\overline{B}$", "$A \\cap B$", "$\\overline{A} \\setminus B$"],
+    "reponse": 0,
+    "explication": "Le complémentaire échange l'union et l'intersection : $\\overline{A \\cup B} = \\overline{A} \\cap \\overline{B}$."
+  },
+  {
+    "question": "Une table de 6 lignes et une table de 9 lignes : combien de lignes donne leur `CROSS JOIN` ?",
+    "choix": ["15", "54", "6", "9"],
+    "reponse": 1,
+    "explication": "`CROSS JOIN` est un produit cartésien : $|A \\times B| = |A| \\times |B| = 6 \\times 9 = 54$."
+  },
+  {
+    "question": "Une relation réflexive, symétrique et transitive est :",
+    "choix": ["une relation d'ordre", "une fonction injective", "une relation d'équivalence", "une relation antisymétrique"],
+    "reponse": 2,
+    "explication": "Réflexive + symétrique + transitive = équivalence. Elle découpe l'ensemble en classes, comme un `GROUP BY`."
+  },
+  {
+    "question": "Pourquoi la relation « $x$ divise $y$ » sur $\\mathbb{N}^*$ est-elle un ordre **partiel** ?",
+    "choix": ["Parce qu'elle n'est pas transitive", "Parce que certains nombres ne sont pas comparables, comme 6 et 10", "Parce qu'elle n'est pas réflexive", "Parce qu'elle est symétrique"],
+    "reponse": 1,
+    "explication": "6 ne divise pas 10 et 10 ne divise pas 6 : ils ne sont pas comparables. Dans un ordre total comme $\\le$, deux éléments sont toujours comparables."
+  },
+  {
+    "question": "Quand l'implication $P \\Rightarrow Q$ est-elle fausse ?",
+    "choix": ["Quand $P$ est fausse", "Quand $Q$ est vraie", "Quand $P$ et $Q$ sont fausses", "Seulement quand $P$ est vraie et $Q$ fausse"],
+    "reponse": 3,
+    "explication": "C'est le seul cas où la promesse « si $P$ alors $Q$ » est rompue. Dans tous les autres cas, l'implication est vraie."
+  },
+  {
+    "question": "Quelle est la négation de $P \\Rightarrow Q$ ?",
+    "choix": ["$P \\wedge \\neg Q$", "$\\neg P \\Rightarrow \\neg Q$", "$Q \\Rightarrow P$", "$\\neg P \\wedge Q$"],
+    "reponse": 0,
+    "explication": "Pour contredire une implication, il faut un cas où $P$ est vraie et $Q$ fausse : $\\neg(P \\Rightarrow Q) \\equiv P \\wedge \\neg Q$."
+  },
+  {
+    "question": "Quelle est la contraposée de $P \\Rightarrow Q$ ?",
+    "choix": ["$Q \\Rightarrow P$", "$\\neg P \\Rightarrow \\neg Q$", "$\\neg Q \\Rightarrow \\neg P$", "$P \\wedge \\neg Q$"],
+    "reponse": 2,
+    "explication": "La contraposée est $\\neg Q \\Rightarrow \\neg P$ et elle a toujours la même valeur que $P \\Rightarrow Q$. $Q \\Rightarrow P$ est la réciproque, qui peut être fausse."
+  },
+  {
+    "question": "Quelle est la négation de « tous les champs sont remplis » ?",
+    "choix": ["Aucun champ n'est rempli", "Tous les champs sont vides", "Au moins un champ est rempli", "Au moins un champ n'est pas rempli"],
+    "reponse": 3,
+    "explication": "$\\neg(\\forall x,\\ P(x)) \\equiv \\exists x,\\ \\neg P(x)$ : il suffit d'un seul champ vide pour contredire « tous »."
+  },
+  {
+    "question": "Pour montrer qu'un énoncé « pour tout $n$ » est **faux**, il suffit :",
+    "choix": ["de le vérifier sur 100 exemples", "de trouver un seul contre-exemple", "de faire une preuve par contraposée", "de calculer sa table de vérité"],
+    "reponse": 1,
+    "explication": "Un seul cas où l'énoncé ne marche pas le réfute. À l'inverse, des exemples, même nombreux, ne prouvent jamais un « pour tout »."
+  }
+]

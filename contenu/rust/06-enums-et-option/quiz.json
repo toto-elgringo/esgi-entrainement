@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Quelle est la différence entre une struct et une enum ?",
+    "choix": ["Aucune", "Une struct contient tous ses champs (ET), une enum vaut une seule variante parmi plusieurs (OU)", "Une enum ne peut pas avoir de méthodes", "Une struct ne peut pas contenir de texte"],
+    "reponse": 1,
+    "explication": "Une struct regroupe plusieurs valeurs en même temps ; une enum représente un choix entre plusieurs possibilités."
+  },
+  {
+    "question": "Comment créer la valeur `Rouge` de l'enum `Feu` ?",
+    "choix": ["`Feu.Rouge`", "`Feu::Rouge`", "`Rouge::Feu`", "`new Feu(Rouge)`"],
+    "reponse": 1,
+    "explication": "On écrit le nom de l'enum, `::`, puis le nom de la variante."
+  },
+  {
+    "question": "Un `match` sur une enum oublie une variante (sans `_`). Que se passe-t-il ?",
+    "choix": ["Le programme panique si ce cas arrive", "Le code ne compile pas (erreur E0004)", "La variante oubliée est ignorée", "Seulement un avertissement"],
+    "reponse": 1,
+    "explication": "Le `match` est exhaustif : le compilateur refuse le code et indique la variante non couverte."
+  },
+  {
+    "question": "Pourquoi éviter un `_ =>` sur ses propres enums ?",
+    "choix": ["Il rend le programme plus lent", "Si on ajoute une variante plus tard, le compilateur ne signalera plus ce `match`", "Il est interdit sur les enums", "Il ne marche qu'avec les nombres"],
+    "reponse": 1,
+    "explication": "Sans `_`, ajouter une variante fait échouer la compilation de chaque `match` à compléter : une aide précieuse."
+  },
+  {
+    "question": "Dans `Forme::Rectangle(l, h) => l * h`, que sont `l` et `h` ?",
+    "choix": ["Des constantes globales", "Les données sorties de la variante (déstructuration)", "Des types", "Des fonctions"],
+    "reponse": 1,
+    "explication": "Le motif extrait les données transportées par la variante dans de nouvelles variables."
+  },
+  {
+    "question": "Que remplace `Option<T>` en Rust ?",
+    "choix": ["Les exceptions", "La valeur `null` des autres langages", "Les boucles", "Les tableaux"],
+    "reponse": 1,
+    "explication": "Rust n'a pas de `null` : une valeur qui peut manquer a le type `Option<T>`, et le compilateur oblige à traiter `None`."
+  },
+  {
+    "question": "Quel est le type de `Some(5)` ?",
+    "choix": ["`i32`", "`Option<i32>`", "`Result<i32>`", "`Some<i32>`"],
+    "reponse": 1,
+    "explication": "`Some` est une variante de l'enum `Option`. Ici `T` vaut `i32`."
+  },
+  {
+    "question": "Avec `let x: Option<i32> = Some(2);`, peut-on écrire `let y = x + 1;` ?",
+    "choix": ["Oui, y vaut 3", "Non : il faut d'abord sortir la valeur de l'`Option` en traitant le cas `None`", "Oui, y vaut `Some(3)`", "Oui, mais seulement en mode release"],
+    "reponse": 1,
+    "explication": "Un `Option<i32>` n'est pas un `i32`. On utilise `match`, `if let`, `map` ou `unwrap_or`."
+  },
+  {
+    "question": "Que vaut `x.unwrap_or(7)` quand `x` vaut `None` ?",
+    "choix": ["`None`", "`0`", "`7`", "Une panique"],
+    "reponse": 2,
+    "explication": "`unwrap_or` donne la valeur si elle existe, sinon la valeur par défaut fournie."
+  },
+  {
+    "question": "Que vaut `Some(3).map(|x| x * 2)` ?",
+    "choix": ["`6`", "`Some(6)`", "`Some(3)`", "`None`"],
+    "reponse": 1,
+    "explication": "`map` transforme la valeur à l'intérieur et garde l'enveloppe `Some`. Sur `None`, il renvoie `None`."
+  },
+  {
+    "question": "Quand utiliser `if let` plutôt que `match` ?",
+    "choix": ["Jamais", "Quand un seul cas nous intéresse", "Seulement avec des nombres", "Quand il y a plus de trois cas"],
+    "reponse": 1,
+    "explication": "`if let Some(v) = x { ... }` est un `match` raccourci quand on ne traite qu'un motif (avec un `else` éventuel)."
+  },
+  {
+    "question": "Que fait `unwrap()` sur un `None` ?",
+    "choix": ["Renvoie 0", "Renvoie `None`", "Fait paniquer le programme", "Ne compile pas"],
+    "reponse": 2,
+    "explication": "`unwrap()` suppose qu'il y a une valeur : s'il n'y en a pas, le programme s'arrête avec une panique."
+  }
+]

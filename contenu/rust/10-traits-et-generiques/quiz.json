@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Qu'est-ce qu'un trait ?",
+    "choix": ["Une variable globale", "Une liste de méthodes qu'un type promet de fournir", "Un type de nombre", "Une macro"],
+    "reponse": 1,
+    "explication": "Un trait décrit un comportement (des méthodes). Chaque type qui l'implémente avec `impl Trait for Type` doit fournir ces méthodes."
+  },
+  {
+    "question": "Que se passe-t-il si un `impl` oublie une méthode du trait qui n'a pas de version par défaut ?",
+    "choix": ["Elle renvoie `()`", "Le programme panique à l'appel", "Le code ne compile pas", "Elle est ignorée"],
+    "reponse": 2,
+    "explication": "Le compilateur exige toutes les méthodes sans version par défaut (erreur E0046 : missing trait item)."
+  },
+  {
+    "question": "Un type peut-il remplacer une méthode par défaut de son trait ?",
+    "choix": ["Non, jamais", "Oui, en l'écrivant dans son bloc `impl`", "Seulement avec `unsafe`", "Seulement si le trait est `pub`"],
+    "reponse": 1,
+    "explication": "Il suffit d'écrire la méthode dans `impl Trait for Type` : sa version remplace celle par défaut pour ce type."
+  },
+  {
+    "question": "Quel trait faut-il pour afficher une valeur avec `{:?}` ?",
+    "choix": ["`Display`", "`Debug`", "`Clone`", "`ToString`"],
+    "reponse": 1,
+    "explication": "`{:?}` utilise `Debug`, qu'on obtient souvent avec `#[derive(Debug)]`. `{}` utilise `Display`, à écrire à la main."
+  },
+  {
+    "question": "Quel trait faut-il pour comparer deux valeurs avec `==` ?",
+    "choix": ["`PartialOrd`", "`Eq` seulement", "`PartialEq`", "`Hash`"],
+    "reponse": 2,
+    "explication": "`PartialEq` fournit `==` et `!=`. `PartialOrd` fournit `<`, `>`, `<=`, `>=`."
+  },
+  {
+    "question": "Pourquoi `Display` ne peut-il pas être dérivé avec `#[derive]` ?",
+    "choix": ["Parce qu'il est lent", "Parce que l'affichage pour un humain est un choix : Rust ne peut pas le deviner", "Parce qu'il est réservé aux nombres", "Il peut l'être"],
+    "reponse": 1,
+    "explication": "Comment afficher une fraction : `1/2`, `0.5`, `un demi` ? C'est à toi de l'écrire avec `impl fmt::Display`."
+  },
+  {
+    "question": "Que veut dire `fn f<T: PartialOrd>(a: T, b: T)` ?",
+    "choix": ["`T` doit être un nombre", "`T` peut être n'importe quel type qui sait se comparer", "`T` est forcément `i32`", "`a` et `b` peuvent être de types différents"],
+    "reponse": 1,
+    "explication": "`T` est un paramètre de type, et `: PartialOrd` est une contrainte. `a` et `b` ont le même type `T`."
+  },
+  {
+    "question": "À quoi sert `where` dans une signature ?",
+    "choix": ["À écrire les contraintes des types génériques de façon plus lisible", "À indiquer où la fonction est rangée", "À gérer les erreurs", "À créer une boucle"],
+    "reponse": 0,
+    "explication": "`where T: Display, U: Debug` est équivalent aux contraintes écrites dans les `< >`, mais plus lisible quand il y en a beaucoup."
+  },
+  {
+    "question": "`fn annoncer(a: &impl Animal)` est un raccourci pour...",
+    "choix": ["`fn annoncer(a: &Animal)`", "`fn annoncer<T: Animal>(a: &T)`", "`fn annoncer(a: Box<dyn Animal>)`", "`fn annoncer(a: Vec<Animal>)`"],
+    "reponse": 1,
+    "explication": "`impl Trait` en paramètre est une écriture courte d'un générique avec contrainte."
+  },
+  {
+    "question": "Comment ranger un `Chien` et un `Chat` (qui implémentent `Animal`) dans le même `Vec` ?",
+    "choix": ["`Vec<Animal>`", "`Vec<impl Animal>`", "`Vec<Box<dyn Animal>>`", "C'est impossible"],
+    "reponse": 2,
+    "explication": "Un `Vec` contient un seul type. `Box<dyn Animal>` est ce type commun : une boîte vers « quelque chose qui est un Animal »."
+  },
+  {
+    "question": "Avec `Box<dyn Animal>`, quand est choisie la méthode `cri()` à appeler ?",
+    "choix": ["À la compilation", "À l'exécution", "Jamais", "Au moment du `derive`"],
+    "reponse": 1,
+    "explication": "Avec `dyn`, le programme regarde à l'exécution quel est le vrai type pour appeler la bonne méthode. Avec un générique, c'est décidé à la compilation."
+  },
+  {
+    "question": "Qu'est-ce que la monomorphisation ?",
+    "choix": ["Une erreur de compilation", "Le compilateur crée une version de la fonction générique pour chaque type utilisé", "Transformer un trait en struct", "Supprimer les génériques inutilisés"],
+    "reponse": 1,
+    "explication": "C'est ce qui rend les génériques gratuits à l'exécution : `plus_grand::<i32>` et `plus_grand::<f64>` deviennent deux fonctions distinctes."
+  }
+]

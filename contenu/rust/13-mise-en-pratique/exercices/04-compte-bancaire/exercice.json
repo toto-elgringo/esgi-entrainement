@@ -1,0 +1,12 @@
+{
+  "titre": "Compte bancaire avec historique",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Dans `appliquer`, commence par `match operation { Operation::Depot(montant) => ..., Operation::Retrait(montant) => ... }`.",
+    "Un montant de 0 : `return Err(ErreurBancaire::MontantNul);`. Un retrait trop gros : `Err(ErreurBancaire::SoldeInsuffisant { solde: self.solde, demande: montant })`.",
+    "Si tout va bien : modifie le solde, `self.historique.push(operation)`, puis `Ok(self.solde)`.",
+    "`appliquer_tout` : une boucle `for operation in operations { self.appliquer(*operation)?; }` puis `Ok(self.solde)`.",
+    "`total_depose` : `self.historique.iter().map(|op| match op { Operation::Depot(m) => *m, Operation::Retrait(_) => 0 }).sum()`."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "titre": "La mention au bac",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Un intervalle dans un `match` s'écrit `10..=11 => ...`.",
+    "N'oublie pas le joker `_` pour les notes au-dessus de 20 : sans lui, le `match` n'est pas exhaustif."
+  ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Avec $P(x) : x^2 \\geq 4$, que vaut $P(-3)$ ?",
+    "choix": ["Faux, car $-3 < 4$", "Vrai, car $9 \\geq 4$", "On ne peut pas savoir", "Ce n'est pas un prédicat"],
+    "reponse": 1,
+    "explication": "On remplace $x$ par $-3$ : $(-3)^2 = 9$ et $9 \\geq 4$, donc $P(-3)$ est vrai."
+  },
+  {
+    "question": "$R(x, y)$ : « $y$ est le manager de $x$ ». Que signifie $\\exists y\\ \\forall x\\ R(x, y)$ ?",
+    "choix": ["Chaque employé a un manager", "Aucun employé n'a de manager", "Une seule personne manage tout le monde", "Chaque manager a au moins un employé"],
+    "reponse": 2,
+    "explication": "Le $\\exists y$ est devant : on choisit **un** $y$ qui doit marcher pour **tous** les $x$. C'est bien plus fort que $\\forall x\\ \\exists y$, où chacun peut avoir un manager différent."
+  },
+  {
+    "question": "Quelle est la négation de $\\forall x\\ \\exists y\\ R(x, y)$ ?",
+    "choix": ["$\\exists x\\ \\forall y\\ \\neg R(x, y)$", "$\\forall x\\ \\exists y\\ \\neg R(x, y)$", "$\\exists x\\ \\exists y\\ \\neg R(x, y)$", "$\\forall x\\ \\forall y\\ \\neg R(x, y)$"],
+    "reponse": 0,
+    "explication": "On nie couche par couche : $\\forall$ devient $\\exists$, $\\exists$ devient $\\forall$, puis on nie le prédicat."
+  },
+  {
+    "question": "Quelle est la négation de « Tous les champs du formulaire sont remplis » ?",
+    "choix": ["Aucun champ n'est rempli", "Tous les champs sont vides", "Au moins un champ est rempli", "Il existe un champ qui n'est pas rempli"],
+    "reponse": 3,
+    "explication": "Nier « tous » donne « il en existe au moins un qui ne... pas ». Il suffit d'un seul champ vide pour que la phrase soit fausse."
+  },
+  {
+    "question": "Que vaut $\\sum_{k=1}^{20} k$ ?",
+    "choix": ["$200$", "$210$", "$400$", "$420$"],
+    "reponse": 1,
+    "explication": "$\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$, donc $\\frac{20 \\times 21}{2} = 210$."
+  },
+  {
+    "question": "Combien de termes contient la somme $\\sum_{k=4}^{15} a_k$ ?",
+    "choix": ["$11$", "$15$", "$12$", "$19$"],
+    "reponse": 2,
+    "explication": "De $k = p$ à $k = q$, il y a $q - p + 1$ termes : $15 - 4 + 1 = 12$."
+  },
+  {
+    "question": "Que vaut $\\sum_{k=1}^{10} 7$ ?",
+    "choix": ["$70$", "$7$", "$385$", "$55$"],
+    "reponse": 0,
+    "explication": "On additionne 10 fois le nombre 7 : $\\sum_{k=1}^{n} c = n\\,c = 10 \\times 7 = 70$."
+  },
+  {
+    "question": "L'égalité $\\sum a_k b_k = \\left(\\sum a_k\\right)\\left(\\sum b_k\\right)$ est :",
+    "choix": ["toujours vraie", "vraie seulement si les $a_k$ sont positifs", "vraie seulement pour les sommes doubles", "fausse en général"],
+    "reponse": 3,
+    "explication": "Contre-exemple : $1 \\times 1 + 2 \\times 2 = 5$ mais $(1 + 2)(1 + 2) = 9$. Seules l'addition et la multiplication par une constante passent à travers la somme."
+  },
+  {
+    "question": "Dans $\\sum_{k=5}^{n+4} (k - 4)$, on pose $j = k - 4$. Quelles sont les nouvelles bornes ?",
+    "choix": ["De $j = 5$ à $j = n + 4$", "De $j = 1$ à $j = n$", "De $j = 0$ à $j = n$", "De $j = 1$ à $j = n + 4$"],
+    "reponse": 1,
+    "explication": "Quand $k = 5$, $j = 1$ ; quand $k = n + 4$, $j = n$. Les deux bornes se décalent de 4."
+  },
+  {
+    "question": "Que vaut la somme télescopique $\\sum_{k=1}^{n} (u_{k+1} - u_k)$ ?",
+    "choix": ["$u_n - u_1$", "$0$", "$u_{n+1} - u_1$", "$n\\,(u_{n+1} - u_1)$"],
+    "reponse": 2,
+    "explication": "Chaque $u_k$ du milieu apparaît une fois avec $+$ et une fois avec $-$ : il ne reste que le dernier, $u_{n+1}$, et le premier, $-u_1$."
+  },
+  {
+    "question": "Que vaut $\\prod_{k=1}^{4} k$ ?",
+    "choix": ["$10$", "$24$", "$16$", "$4$"],
+    "reponse": 1,
+    "explication": "$\\prod_{k=1}^{4} k = 1 \\times 2 \\times 3 \\times 4 = 4! = 24$."
+  },
+  {
+    "question": "Quel mot-clé SQL applique une condition sur le **résultat** d'une somme ?",
+    "choix": ["`WHERE`", "`GROUP BY`", "`ORDER BY`", "`HAVING`"],
+    "reponse": 3,
+    "explication": "`WHERE` filtre les lignes **avant** l'agrégation ; `HAVING` filtre **après**, sur des valeurs comme `SUM(montant)`."
+  }
+]

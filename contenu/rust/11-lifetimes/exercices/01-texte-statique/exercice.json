@@ -1,0 +1,9 @@
+{
+  "titre": "Un texte pour toute la vie",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Lis la ligne `help:` de l'erreur E0106 : elle propose une durée de vie précise.",
+    "Le type de retour devient `&'static str`, puis un `match` sur `code`."
+  ]
+}

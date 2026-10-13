@@ -1,0 +1,10 @@
+{
+  "titre": "Trier et dédoublonner",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`dedup()` ne retire que les doublons qui se suivent : il faut trier avant.",
+    "Pour `trois_plus_grands`, `v.to_vec()` crée une copie modifiable de la tranche.",
+    "Tri croissant avec `sort()`, puis `reverse()` pour l'ordre décroissant, puis `truncate(3)` pour ne garder que 3 éléments."
+  ]
+}

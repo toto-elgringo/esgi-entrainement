@@ -1,0 +1,11 @@
+{
+  "titre": "any, all, find, position",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`v.iter().any(|x| *x < 0)` : au moins un négatif ?",
+    "`ages.iter().all(|age| *age >= 18)` : tous majeurs ? Sur une liste vide, `all` répond `true`.",
+    "`v.iter().copied().find(|x| x % diviseur == 0)` renvoie directement un `Option<u32>`.",
+    "`mots.iter().position(|mot| mot.len() >= taille)` renvoie l'indice du premier mot assez long."
+  ]
+}

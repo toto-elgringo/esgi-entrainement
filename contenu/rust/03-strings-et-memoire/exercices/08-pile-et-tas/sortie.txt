@@ -1,0 +1,6 @@
+pile : 42
+tas : 42
+somme : 84
+taille d'une Box : 8 octets
+taille d'une String : 24 octets
+taille d'un &str : 16 octets

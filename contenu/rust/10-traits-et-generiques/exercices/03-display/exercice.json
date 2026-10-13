@@ -1,0 +1,10 @@
+{
+  "titre": "Afficher avec Display",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`write!(f, \"{}/{}\", self.numerateur, self.denominateur)` écrit dans le formateur et renvoie le `fmt::Result` attendu.",
+    "Pour la fraction, un `if self.denominateur == 1 { ... } else { ... }` choisit entre les deux affichages.",
+    "Pour la température, `{:.1}` affiche un seul chiffre après la virgule : `write!(f, \"{:.1} °C\", self.celsius)`."
+  ]
+}

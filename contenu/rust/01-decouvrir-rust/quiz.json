@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Quel programme installe et met à jour les outils Rust ?",
+    "choix": ["`cargo`", "`rustup`", "`rustc`", "`clippy`"],
+    "reponse": 1,
+    "explication": "`rustup` installe le compilateur, Cargo et les autres outils, et gère plusieurs versions (toolchains)."
+  },
+  {
+    "question": "À quoi sert `rustc` ?",
+    "choix": ["À créer un projet", "À compiler le code", "À formater le code", "À télécharger des bibliothèques"],
+    "reponse": 1,
+    "explication": "`rustc` est le compilateur. En pratique, on passe par `cargo`, qui l'appelle pour nous."
+  },
+  {
+    "question": "Quel outil donne des conseils pour améliorer le code ?",
+    "choix": ["`rustfmt`", "`rustup`", "`clippy`", "`rust-docs`"],
+    "reponse": 2,
+    "explication": "`cargo clippy` propose plus de 700 conseils (« lints »). `rustfmt` ne fait que la mise en forme."
+  },
+  {
+    "question": "Tous les combien sort une nouvelle version stable de Rust ?",
+    "choix": ["Tous les jours", "Toutes les 6 semaines", "Tous les ans", "Tous les 3 ans"],
+    "reponse": 1,
+    "explication": "Une stable sort toutes les 6 semaines. Ce qui change tous les 3 ans environ, c'est l'édition."
+  },
+  {
+    "question": "Qu'est-ce qu'une **édition** (2018, 2021, 2024) ?",
+    "choix": ["La version du compilateur", "Un jeu de règles de syntaxe choisi par le projet", "Un canal comme nightly", "Une bibliothèque officielle"],
+    "reponse": 1,
+    "explication": "L'édition est choisie dans `Cargo.toml`. Des crates d'éditions différentes fonctionnent ensemble."
+  },
+  {
+    "question": "Comment Rust libère-t-il la mémoire ?",
+    "choix": ["Avec un ramasse-miettes", "Avec `free()` écrit à la main", "Grâce à l'ownership, vérifié à la compilation", "Il ne la libère jamais"],
+    "reponse": 2,
+    "explication": "Chaque valeur a un propriétaire ; quand il disparaît, la mémoire est libérée. Le compilateur vérifie les règles."
+  },
+  {
+    "question": "Quel est l'ordre des priorités de Rust ?",
+    "choix": ["Performance, Safety, Productivity", "Productivity, Performance, Safety", "Safety, Performance, Productivity", "Safety, Productivity, Performance"],
+    "reponse": 2,
+    "explication": "La sûreté passe avant tout, puis la performance, puis le confort du développeur."
+  },
+  {
+    "question": "Que se passe-t-il en Rust si on lit après la fin d'un tableau (`v[10]` sur 3 éléments) ?",
+    "choix": ["On lit une valeur au hasard", "Le programme s'arrête proprement (panique)", "La valeur vaut 0", "Le compilateur l'ajoute au tableau"],
+    "reponse": 1,
+    "explication": "Rust vérifie les bornes : au lieu de lire la mémoire voisine comme en C, le programme panique avec un message clair."
+  },
+  {
+    "question": "Qu'utilise Rust à la place de `null` ?",
+    "choix": ["`0`", "`None` du type `Option`", "`undefined`", "Rien, `null` existe aussi"],
+    "reponse": 1,
+    "explication": "Une valeur qui peut manquer a le type `Option<T>` : `Some(valeur)` ou `None`. Le compilateur oblige à traiter les deux cas."
+  },
+  {
+    "question": "Comment appelle-t-on un paquet Rust publié sur crates.io ?",
+    "choix": ["Un module", "Un package npm", "Une crate", "Un trait"],
+    "reponse": 2,
+    "explication": "Une crate est l'unité de compilation de Rust : un programme ou une bibliothèque."
+  },
+  {
+    "question": "En quelle année est sortie Rust 1.0 ?",
+    "choix": ["2006", "2010", "2015", "2021"],
+    "reponse": 2,
+    "explication": "Rust 1.0 est sorti le 15 mai 2015, avec la promesse de ne plus casser le code existant."
+  },
+  {
+    "question": "Quel est le principal défaut de Rust cité dans le cours ?",
+    "choix": ["Il est lent", "Il n'a pas de bibliothèques", "Il est difficile à apprendre", "Il ne marche pas sous Windows"],
+    "reponse": 2,
+    "explication": "La courbe d'apprentissage (surtout l'ownership) est la première cause d'abandon. La compilation longue est le deuxième défaut."
+  }
+]

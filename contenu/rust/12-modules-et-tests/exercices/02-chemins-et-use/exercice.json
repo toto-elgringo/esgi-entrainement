@@ -1,0 +1,10 @@
+{
+  "titre": "Chemins et use",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`entrees` est rangé dans `restaurant` : son chemin complet est `restaurant::entrees`.",
+    "Un `use restaurant::{desserts, entrees};` en haut du fichier crée les deux raccourcis d'un coup.",
+    "Le nouveau module s'écrit `pub mod plats { pub fn du_jour() -> &'static str { \"steak\" } }` à l'intérieur de `restaurant`."
+  ]
+}

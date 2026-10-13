@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Sur quel ensemble la fonction $g(x) = \\dfrac{1}{x-2}$ est-elle continue ?",
+    "choix": ["$\\mathbb{R}$", "$\\mathbb{R} \\setminus \\{2\\}$", "$]2, +\\infty[$", "$\\mathbb{R} \\setminus \\{0\\}$"],
+    "reponse": 1,
+    "explication": "Une fraction est continue partout où elle est définie : on enlève seulement la valeur qui annule le dénominateur, $x = 2$."
+  },
+  {
+    "question": "Quelle affirmation est vraie ?",
+    "choix": ["Toute fonction dérivable est continue", "Toute fonction continue est dérivable", "Continue et dérivable veulent dire la même chose", "Une fonction dérivable peut avoir un saut"],
+    "reponse": 0,
+    "explication": "Dérivable ⇒ continue. La réciproque est fausse : $|x|$ est continue en 0 mais pas dérivable (sa courbe fait une pointe)."
+  },
+  {
+    "question": "Pourquoi $|x|$ n'est-elle pas dérivable en 0 ?",
+    "choix": ["Elle n'est pas définie en 0", "Elle fait un saut en 0", "La pente vaut $-1$ à gauche et $+1$ à droite", "Elle vaut 0 en 0"],
+    "reponse": 2,
+    "explication": "Les deux demi-tangentes n'ont pas la même pente : il n'y a pas de tangente unique, donc pas de nombre dérivé."
+  },
+  {
+    "question": "Quelle est la règle de dérivation d'un produit $uv$ ?",
+    "choix": ["$u'v'$", "$u'v - uv'$", "$\\dfrac{u'v - uv'}{v^2}$", "$u'v + uv'$"],
+    "reponse": 3,
+    "explication": "$(uv)' = u'v + uv'$. La formule avec $v^2$ au dénominateur est celle du quotient."
+  },
+  {
+    "question": "Quelle est la dérivée de $e^{5x}$ ?",
+    "choix": ["$5e^{5x}$", "$e^{5x}$", "$5x\\,e^{5x}$", "$\\dfrac{1}{5}e^{5x}$"],
+    "reponse": 0,
+    "explication": "C'est une composée : on garde $e^{5x}$ et on multiplie par la dérivée de l'intérieur $5x$, qui vaut 5."
+  },
+  {
+    "question": "Quelle est la dérivée de $\\cos x$ ?",
+    "choix": ["$\\sin x$", "$-\\sin x$", "$-\\cos x$", "$\\tan x$"],
+    "reponse": 1,
+    "explication": "$(\\sin)' = \\cos$ et $(\\cos)' = -\\sin$. Attention au signe moins."
+  },
+  {
+    "question": "En quelles valeurs de $[0, 2\\pi]$ la fonction $\\tan$ n'est-elle pas définie ?",
+    "choix": ["$0$ et $\\pi$", "$\\dfrac{\\pi}{4}$ et $\\dfrac{3\\pi}{4}$", "Elle est définie partout", "$\\dfrac{\\pi}{2}$ et $\\dfrac{3\\pi}{2}$"],
+    "reponse": 3,
+    "explication": "$\\tan x = \\dfrac{\\sin x}{\\cos x}$ n'existe pas quand $\\cos x = 0$, soit en $\\dfrac{\\pi}{2}$ et $\\dfrac{3\\pi}{2}$ sur $[0, 2\\pi]$."
+  },
+  {
+    "question": "Quelle est une primitive de $x^4$ ?",
+    "choix": ["$4x^3$", "$x^5$", "$\\dfrac{x^5}{5}$", "$\\dfrac{x^4}{4}$"],
+    "reponse": 2,
+    "explication": "On augmente la puissance de 1 et on divise par la nouvelle puissance : $\\dfrac{x^{4+1}}{4+1} = \\dfrac{x^5}{5}$. On vérifie en dérivant."
+  },
+  {
+    "question": "Quelle est une primitive de $\\dfrac{1}{x}$ pour $x > 0$ ?",
+    "choix": ["$\\dfrac{x^0}{0}$", "$-\\dfrac{1}{x^2}$", "$\\ln x$", "$e^x$"],
+    "reponse": 2,
+    "explication": "La formule $\\dfrac{x^{n+1}}{n+1}$ ne marche pas pour $n = -1$ (division par 0). La primitive de $\\dfrac{1}{x}$ est $\\ln x$."
+  },
+  {
+    "question": "Deux primitives d'une même fonction...",
+    "choix": ["diffèrent d'une constante", "sont toujours égales", "diffèrent d'un facteur multiplicatif", "n'ont aucun lien"],
+    "reponse": 0,
+    "explication": "Si $F$ est une primitive, toutes les autres s'écrivent $F + C$. Cette constante disparaît dans $F(b) - F(a)$."
+  },
+  {
+    "question": "Que vaut $\\displaystyle\\int_0^2 3x^2\\,dx$ ?",
+    "choix": ["$6$", "$12$", "$8$", "$4$"],
+    "reponse": 2,
+    "explication": "Une primitive de $3x^2$ est $x^3$. Donc $2^3 - 0^3 = 8$."
+  },
+  {
+    "question": "En IA, à quoi sert la dérivée d'une fonction de perte ?",
+    "choix": ["À mesurer l'aire sous la courbe ROC", "À rendre la fonction continue", "À compter le nombre d'erreurs", "À savoir dans quel sens corriger les paramètres du modèle"],
+    "reponse": 3,
+    "explication": "La descente de gradient utilise la dérivée (le gradient) pour savoir dans quelle direction modifier les paramètres afin de diminuer la perte. L'aire sous la courbe ROC, elle, est une intégrale."
+  }
+]

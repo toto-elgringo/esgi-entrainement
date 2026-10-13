@@ -1,0 +1,10 @@
+{
+  "titre": "L'ordre des drop",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Clique sur « Exécuter » pour voir l'ordre actuel. À la fin d'un bloc, les variables sont détruites dans l'ordre **inverse** de leur création.",
+    "Pour que B soit détruit avant la création de C, crée B dans un bloc : `{ let _b = Bruyant::new(\"B\"); }`.",
+    "Pour C : `let c = Bruyant::new(\"C\");` puis `drop(c);` le détruit immédiatement (`let _ = Bruyant::new(\"C\");` marche aussi)."
+  ]
+}

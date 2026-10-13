@@ -1,0 +1,5 @@
+{
+  "titre": "Collections : Vec, HashMap, HashSet",
+  "description": "Listes qui grandissent, dictionnaires clé → valeur et ensembles sans doublons.",
+  "source": "fondamentaux"
+}

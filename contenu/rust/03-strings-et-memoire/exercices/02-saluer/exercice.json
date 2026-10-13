@@ -1,0 +1,9 @@
+{
+  "titre": "Saluer tout le monde",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Lis l'erreur : « expected `String`, found `&str` ». La fonction exige une `String` possédée.",
+    "Change seulement le type du paramètre `nom` : un emprunt de texte s'écrit `&str`."
+  ]
+}

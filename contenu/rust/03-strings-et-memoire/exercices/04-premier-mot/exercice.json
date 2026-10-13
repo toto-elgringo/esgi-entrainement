@@ -1,0 +1,10 @@
+{
+  "titre": "Le premier mot",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Parcours le texte avec `for (position, caractere) in s.char_indices()` : tu obtiens la position en octets de chaque caractère.",
+    "Dès que `caractere == ' '`, renvoie le morceau `&s[..position]` avec `return`.",
+    "S'il n'y a aucun espace, tout le texte est le premier mot : après la boucle, renvoie `s`."
+  ]
+}

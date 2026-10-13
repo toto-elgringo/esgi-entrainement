@@ -1,0 +1,562 @@
+[
+  {
+    "id": "simplifier-exponentielles",
+    "titre": "Simplifier des exponentielles",
+    "difficulte": 1,
+    "enonce": "Simplifie chaque expression et donne le résultat sous la forme $e^n$ (tu peux écrire `e^2`) ou sous forme d'un entier.",
+    "questions": [
+      {
+        "intitule": "$e^{4} \\times e^{-2}$",
+        "type": "nombre",
+        "reponse": "e^2",
+        "acceptes": ["e^2", "exp(2)", "e²"],
+        "refuses": ["e^8", "e^(-8)", "e^6"]
+      },
+      {
+        "intitule": "$\\dfrac{e^{7}}{e^{3}}$",
+        "type": "nombre",
+        "reponse": "e^4",
+        "acceptes": ["e^4", "exp(4)"],
+        "refuses": ["e^10", "e^(7/3)"]
+      },
+      {
+        "intitule": "$\\left(e^{2}\\right)^{3}$",
+        "type": "nombre",
+        "reponse": "e^6",
+        "acceptes": ["e^6"],
+        "refuses": ["e^5", "e^8"]
+      },
+      {
+        "intitule": "$e^{0}$",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": ["0", "e"]
+      }
+    ],
+    "indices": [
+      "Un produit d'exponentielles : on **additionne** les exposants.",
+      "Un quotient : on **soustrait** les exposants. Une puissance de puissance : on **multiplie** les exposants."
+    ],
+    "correction": "- $e^{4} \\times e^{-2} = e^{4 + (-2)} = e^{2}$\n- $\\dfrac{e^{7}}{e^{3}} = e^{7 - 3} = e^{4}$\n- $\\left(e^{2}\\right)^{3} = e^{2 \\times 3} = e^{6}$\n- $e^{0} = 1$, comme pour toute puissance d'exposant $0$."
+  },
+  {
+    "id": "simplifier-logarithmes",
+    "titre": "Simplifier des logarithmes",
+    "difficulte": 1,
+    "enonce": "Donne la valeur de chaque expression (un nombre entier).",
+    "questions": [
+      {
+        "intitule": "$\\ln\\left(e^{5}\\right)$",
+        "type": "nombre",
+        "reponse": 5,
+        "refuses": ["e^5", "ln(5)"]
+      },
+      {
+        "intitule": "$e^{\\ln 9}$",
+        "type": "nombre",
+        "reponse": 9,
+        "refuses": ["ln(9)", "e^9"]
+      },
+      {
+        "intitule": "$\\ln 1$",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": ["1"]
+      },
+      {
+        "intitule": "$\\ln e$",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": ["0", "e"]
+      }
+    ],
+    "indices": [
+      "$\\ln$ et $\\exp$ sont réciproques : l'une défait ce que fait l'autre.",
+      "$\\ln(e^x) = x$ et $e^{\\ln x} = x$ (pour $x > 0$)."
+    ],
+    "correction": "- $\\ln(e^{5}) = 5$ car $\\ln$ défait l'exponentielle.\n- $e^{\\ln 9} = 9$ car l'exponentielle défait $\\ln$.\n- $\\ln 1 = 0$ car $e^0 = 1$.\n- $\\ln e = 1$ car $e^1 = e$."
+  },
+  {
+    "id": "regrouper-logarithmes",
+    "titre": "Regrouper en un seul logarithme",
+    "difficulte": 2,
+    "enonce": "Chaque expression peut s'écrire sous la forme $\\ln N$ avec $N$ un entier. Donne la valeur de $N$.",
+    "questions": [
+      {
+        "intitule": "$\\ln 12 - \\ln 3 = \\ln N$. Que vaut $N$ ?",
+        "type": "nombre",
+        "reponse": 4,
+        "refuses": ["9", "ln(4)", "36"]
+      },
+      {
+        "intitule": "$3\\ln 2 + \\ln 5 = \\ln N$. Que vaut $N$ ?",
+        "type": "nombre",
+        "reponse": 40,
+        "refuses": ["11", "30", "ln(40)"]
+      },
+      {
+        "intitule": "$2\\ln 5 - \\ln 25 = \\ln N$. Que vaut $N$ ?",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": ["0", "25"]
+      },
+      {
+        "intitule": "$\\ln 6 + \\ln\\dfrac{1}{2} = \\ln N$. Que vaut $N$ ?",
+        "type": "nombre",
+        "reponse": 3,
+        "refuses": ["6", "12", "6.5"]
+      }
+    ],
+    "indices": [
+      "Utilise $\\ln a + \\ln b = \\ln(ab)$ et $\\ln a - \\ln b = \\ln\\frac{a}{b}$.",
+      "Un coefficient devant un $\\ln$ remonte en exposant : $3\\ln 2 = \\ln(2^3) = \\ln 8$."
+    ],
+    "correction": "- $\\ln 12 - \\ln 3 = \\ln\\dfrac{12}{3} = \\ln 4$, donc $N = 4$.\n- $3\\ln 2 + \\ln 5 = \\ln(2^3) + \\ln 5 = \\ln(8 \\times 5) = \\ln 40$, donc $N = 40$.\n- $2\\ln 5 - \\ln 25 = \\ln 25 - \\ln 25 = 0 = \\ln 1$, donc $N = 1$.\n- $\\ln 6 + \\ln\\dfrac{1}{2} = \\ln\\left(6 \\times \\dfrac{1}{2}\\right) = \\ln 3$, donc $N = 3$."
+  },
+  {
+    "id": "logarithme-en-base-a",
+    "titre": "Logarithme en base a",
+    "difficulte": 1,
+    "enonce": "Rappel : $\\log_a(x) = \\dfrac{\\ln x}{\\ln a}$. Donne la valeur exacte (un entier) des trois premiers logarithmes.",
+    "questions": [
+      {
+        "intitule": "$\\log_2(32)$",
+        "type": "nombre",
+        "reponse": 5,
+        "refuses": ["16", "6"]
+      },
+      {
+        "intitule": "$\\log_{10}(10\\,000)$",
+        "type": "nombre",
+        "reponse": 4,
+        "refuses": ["1000", "5"]
+      },
+      {
+        "intitule": "$\\log_3(81)$",
+        "type": "nombre",
+        "reponse": 4,
+        "refuses": ["27", "3"]
+      },
+      {
+        "intitule": "Pour $a > 0$ et $a \\neq 1$, que vaut $\\log_a\\left(a^{7}\\right)$ ?",
+        "type": "choix",
+        "choix": ["$7$", "$a^7$", "$7a$", "$\\ln 7$"],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "$\\log_a(x)$ répond à la question : « à quelle puissance faut-il élever $a$ pour obtenir $x$ ? »",
+      "$32 = 2^5$, $10\\,000 = 10^4$ et $81 = 3^4$."
+    ],
+    "correction": "- $\\log_2(32) = \\dfrac{\\ln 32}{\\ln 2} = \\dfrac{5\\ln 2}{\\ln 2} = 5$, car $32 = 2^5$.\n- $\\log_{10}(10\\,000) = \\dfrac{4\\ln 10}{\\ln 10} = 4$, car $10\\,000 = 10^4$.\n- $\\log_3(81) = \\dfrac{4\\ln 3}{\\ln 3} = 4$, car $81 = 3^4$.\n- $\\log_a(a^7) = \\dfrac{7\\ln a}{\\ln a} = 7$."
+  },
+  {
+    "id": "equations-exp-ln",
+    "titre": "Résoudre des équations",
+    "difficulte": 2,
+    "enonce": "Résous chaque équation dans $\\mathbb{R}$ (ou dans le domaine où elle a un sens). Donne la **valeur exacte** de $x$ : tu peux écrire `ln(15)`, `e^4`, `(ln(9)-1)/2`...",
+    "questions": [
+      {
+        "intitule": "$e^{x} = 15$",
+        "type": "nombre",
+        "reponse": "ln(15)",
+        "acceptes": ["ln 15", "ln(15)"],
+        "refuses": ["e^15", "15", "ln(14)"]
+      },
+      {
+        "intitule": "$e^{2x+1} = 9$",
+        "type": "nombre",
+        "reponse": "(ln(9)-1)/2",
+        "acceptes": ["(ln9-1)/2", "ln(3) - 1/2", "(2ln(3)-1)/2"],
+        "refuses": ["(ln(9)+1)/2", "ln(9)/2", "ln(9)-1"]
+      },
+      {
+        "intitule": "$\\ln x = 4$",
+        "type": "nombre",
+        "reponse": "e^4",
+        "acceptes": ["e^4", "exp(4)"],
+        "refuses": ["ln(4)", "4"]
+      },
+      {
+        "intitule": "$\\ln(3x - 2) = 0$",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": ["2/3", "0"]
+      }
+    ],
+    "indices": [
+      "Pour « enlever » une exponentielle, applique $\\ln$ des deux côtés. Pour enlever un $\\ln$, applique l'exponentielle.",
+      "$e^{2x+1} = 9 \\iff 2x + 1 = \\ln 9$.",
+      "$\\ln(3x - 2) = 0 \\iff 3x - 2 = e^0 = 1$."
+    ],
+    "correction": "- $e^{x} = 15 \\iff x = \\ln 15$.\n- $e^{2x+1} = 9 \\iff 2x + 1 = \\ln 9 \\iff x = \\dfrac{\\ln 9 - 1}{2}$ (ou $\\ln 3 - \\dfrac{1}{2}$, car $\\ln 9 = 2\\ln 3$).\n- $\\ln x = 4 \\iff x = e^{4}$ (et on a bien $e^4 > 0$).\n- $\\ln(3x - 2) = 0 \\iff 3x - 2 = 1 \\iff x = 1$. On vérifie le domaine : $3 \\times 1 - 2 = 1 > 0$."
+  },
+  {
+    "id": "equation-avec-domaine",
+    "titre": "Une équation avec un domaine",
+    "difficulte": 3,
+    "enonce": "On veut résoudre l'équation $\\ln x + \\ln(x - 2) = \\ln 8$.",
+    "questions": [
+      {
+        "intitule": "À quelle condition sur $x$ l'équation a-t-elle un sens ?",
+        "type": "choix",
+        "choix": ["$x > 0$", "$x > 2$", "$x > -2$", "$x \\neq 2$"],
+        "reponse": 1
+      },
+      {
+        "intitule": "En regroupant les $\\ln$, on obtient une équation du second degré. Donne l'ensemble de **ses** solutions (ex. : `{1, 2}`).",
+        "type": "ensemble",
+        "reponse": [-2, 4],
+        "acceptes": ["{4, -2}", "-2; 4"],
+        "refuses": ["{4}", "{2, -4}"]
+      },
+      {
+        "intitule": "Donne l'ensemble des solutions de l'équation **de départ**.",
+        "type": "ensemble",
+        "reponse": [4],
+        "acceptes": ["{4}", "4"],
+        "refuses": ["{-2, 4}", "{-2}"]
+      }
+    ],
+    "indices": [
+      "Les deux logarithmes doivent exister : $x > 0$ **et** $x - 2 > 0$.",
+      "$\\ln x + \\ln(x-2) = \\ln\\big(x(x-2)\\big)$, donc $x(x - 2) = 8$, soit $x^2 - 2x - 8 = 0$.",
+      "Garde seulement les solutions qui respectent la condition de la première question."
+    ],
+    "correction": "1. **Domaine** : il faut $x > 0$ et $x - 2 > 0$, donc $x > 2$.\n2. **Regroupement** : $\\ln\\big(x(x - 2)\\big) = \\ln 8$, donc $x^2 - 2x = 8$, soit $x^2 - 2x - 8 = 0$.\n3. **Second degré** : $\\Delta = 4 + 32 = 36$, donc $x = \\dfrac{2 \\pm 6}{2}$, c'est-à-dire $x = 4$ ou $x = -2$.\n4. **Tri** : $-2$ ne respecte pas $x > 2$ (on aurait $\\ln(-2)$, impossible). La seule solution est $x = 4$.\n\nVérification : $\\ln 4 + \\ln 2 = \\ln 8$."
+  },
+  {
+    "id": "inequations",
+    "titre": "Résoudre des inéquations",
+    "difficulte": 2,
+    "enonce": "On résout $e^{x} > 50$ et $\\ln x \\le 3$.",
+    "questions": [
+      {
+        "intitule": "$e^{x} > 50 \\iff x > a$. Donne la valeur exacte de $a$.",
+        "type": "nombre",
+        "reponse": "ln(50)",
+        "acceptes": ["ln 50", "ln(50)"],
+        "refuses": ["e^50", "50"]
+      },
+      {
+        "intitule": "Pourquoi peut-on appliquer $\\ln$ des deux côtés sans changer le sens de l'inégalité ?",
+        "type": "choix",
+        "choix": ["Parce que $\\ln$ est strictement croissante", "Parce que $e^x$ est toujours positif", "Parce que $\\ln$ est concave", "Parce que $e > 1$"],
+        "reponse": 0
+      },
+      {
+        "intitule": "$\\ln x \\le 3 \\iff 0 < x \\le b$. Donne la valeur exacte de $b$.",
+        "type": "nombre",
+        "reponse": "e^3",
+        "acceptes": ["e^3", "exp(3)"],
+        "refuses": ["3", "ln(3)"]
+      },
+      {
+        "intitule": "Quel est l'ensemble des solutions de $\\ln x \\le 3$ ?",
+        "type": "choix",
+        "choix": ["$]-\\infty, e^3]$", "$]0, e^3]$", "$[e^3, +\\infty[$", "$]0, 3]$"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "$\\exp$ et $\\ln$ sont strictement croissantes : elles gardent le sens des inégalités.",
+      "Pour $\\ln x \\le 3$, n'oublie pas que $\\ln x$ n'existe que pour $x > 0$."
+    ],
+    "correction": "- $e^{x} > 50 \\iff x > \\ln 50$ (on applique $\\ln$, qui est strictement croissante, donc le sens ne change pas).\n- $\\ln x \\le 3 \\iff x \\le e^{3}$ (on applique $\\exp$, strictement croissante), **et** il faut $x > 0$ pour que $\\ln x$ existe.\n- Ensemble des solutions : $]0, e^{3}]$."
+  },
+  {
+    "id": "deriver-exp-ln",
+    "titre": "Dériver avec exp et ln",
+    "difficulte": 2,
+    "enonce": "Calcule la dérivée de chaque fonction (définie sur $]0, +\\infty[$). Écris ta réponse en fonction de `x`, par exemple `3e^(3x)` ou `2x/(x^2+1)`.",
+    "questions": [
+      {
+        "intitule": "$f(x) = e^{3x}$. Que vaut $f'(x)$ ?",
+        "type": "expression",
+        "reponse": "3e^(3x)",
+        "acceptes": ["3exp(3x)", "3*e^(3*x)"],
+        "refuses": ["e^(3x)", "3x e^(3x)", "3e^x"]
+      },
+      {
+        "intitule": "$g(x) = x^2 e^{x}$. Que vaut $g'(x)$ ?",
+        "type": "expression",
+        "reponse": "(2x+x^2)e^x",
+        "acceptes": ["2xe^x + x^2e^x", "x(x+2)e^x"],
+        "refuses": ["2xe^x", "x^2e^x"]
+      },
+      {
+        "intitule": "$h(x) = \\ln(x^2 + 1)$. Que vaut $h'(x)$ ?",
+        "type": "expression",
+        "reponse": "2x/(x^2+1)",
+        "acceptes": ["2x/(1+x^2)", "(2x)/(x²+1)"],
+        "refuses": ["1/(x^2+1)", "2x"]
+      },
+      {
+        "intitule": "$k(x) = x \\ln x$. Que vaut $k'(x)$ ?",
+        "type": "expression",
+        "reponse": "ln(x)+1",
+        "acceptes": ["1 + ln x", "lnx+1"],
+        "refuses": ["1/x", "ln(x)"]
+      }
+    ],
+    "indices": [
+      "Composée : $\\left(e^{u}\\right)' = u'\\,e^{u}$ et $(\\ln u)' = \\dfrac{u'}{u}$.",
+      "Produit : $(uv)' = u'v + uv'$. Pour $k$, prends $u = x$ et $v = \\ln x$."
+    ],
+    "correction": "- $f'(x) = 3e^{3x}$ (composée avec $u = 3x$, $u' = 3$).\n- $g'(x) = 2x\\,e^{x} + x^2 e^{x} = (x^2 + 2x)\\,e^{x}$ (produit).\n- $h'(x) = \\dfrac{2x}{x^2 + 1}$ (composée avec $u = x^2 + 1$, $u' = 2x$).\n- $k'(x) = 1 \\times \\ln x + x \\times \\dfrac{1}{x} = \\ln x + 1$ (produit)."
+  },
+  {
+    "id": "croissances-comparees",
+    "titre": "Croissances comparées et complexité",
+    "difficulte": 1,
+    "enonce": "Questions sur la vitesse de croissance des fonctions et le lien avec la complexité des algorithmes.",
+    "questions": [
+      {
+        "intitule": "Quand $x \\to +\\infty$, laquelle de ces fonctions grandit le plus vite ?",
+        "type": "choix",
+        "choix": ["$\\ln x$", "$x$", "$e^x$", "Elles grandissent toutes à la même vitesse"],
+        "reponse": 2
+      },
+      {
+        "intitule": "Que vaut $\\lim\\limits_{x \\to +\\infty} \\dfrac{x}{e^{x}}$ ?",
+        "type": "choix",
+        "choix": ["$+\\infty$", "$0$", "$1$", "$e$"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Pour $n = 10^9$ données, quelle complexité donne l'algorithme le plus rapide ?",
+        "type": "choix",
+        "choix": ["$O(n^2)$", "$O(n \\log n)$", "$O(\\log n)$", "$O(2^n)$"],
+        "reponse": 2
+      },
+      {
+        "intitule": "Arrondi à l'unité, combien vaut $\\log_2(10^9)$ (le nombre d'étapes d'une recherche dichotomique) ?",
+        "type": "nombre",
+        "reponse": 30,
+        "tolerance": 0.5,
+        "acceptes": ["30", "log2(10^9)"],
+        "refuses": ["9", "1000000000"]
+      },
+      {
+        "intitule": "La fonction $\\ln$ est :",
+        "type": "choix",
+        "choix": ["convexe", "concave", "ni convexe ni concave", "constante"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Retiens la hiérarchie : $\\ln x \\ll x \\ll e^x$.",
+      "$\\log_2(10^9) = 9 \\times \\log_2(10)$ et $\\log_2(10) \\approx 3{,}32$.",
+      "Pour la convexité, regarde le signe de la dérivée seconde de $\\ln$."
+    ],
+    "correction": "- L'exponentielle l'emporte : $\\ln x \\ll x \\ll e^x$.\n- $\\lim\\limits_{x \\to +\\infty} \\dfrac{x}{e^x} = 0$ : l'exponentielle écrase $x$.\n- $O(\\log n)$ est de loin le plus rapide : avec $n = 10^9$, environ $30$ étapes seulement.\n- $\\log_2(10^9) = 9 \\log_2 10 \\approx 9 \\times 3{,}32 \\approx 29{,}9$, soit environ $30$.\n- $(\\ln x)'' = -\\dfrac{1}{x^2} < 0$ : $\\ln$ est concave."
+  },
+  {
+    "id": "etude-de-fonction",
+    "titre": "Étude de fonction : e^x / x",
+    "difficulte": 3,
+    "enonce": "On étudie $h(x) = \\dfrac{e^{x}}{x}$ sur $]0, +\\infty[$.",
+    "questions": [
+      {
+        "intitule": "Calcule $h'(x)$ (règle du quotient). Exemple d'écriture : `e^x(x+1)/x^2`.",
+        "type": "expression",
+        "reponse": "e^x(x-1)/x^2",
+        "acceptes": ["(xe^x - e^x)/x^2", "e^x/x - e^x/x^2", "(x-1)e^x/x²"],
+        "refuses": ["e^x/x^2", "e^x(x+1)/x^2", "e^x"]
+      },
+      {
+        "intitule": "Pour quelle valeur de $x$ la dérivée s'annule-t-elle ?",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": ["0", "e"]
+      },
+      {
+        "intitule": "Sur $]0, 1]$, la fonction $h$ est :",
+        "type": "choix",
+        "choix": ["croissante", "décroissante", "constante", "négative"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Quelle est la valeur exacte du minimum de $h$ sur $]0, +\\infty[$ ?",
+        "type": "nombre",
+        "reponse": "e",
+        "acceptes": ["e", "exp(1)", "e^1"],
+        "refuses": ["1", "e^2", "0"]
+      },
+      {
+        "intitule": "Que vaut $\\lim\\limits_{x \\to +\\infty} h(x)$ ?",
+        "type": "choix",
+        "choix": ["$0$", "$1$", "$+\\infty$", "$e$"],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Quotient : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$ avec $u = e^x$ et $v = x$.",
+      "$x^2 > 0$ et $e^x > 0$ : le signe de $h'(x)$ est celui de $x - 1$.",
+      "Pour la limite en $+\\infty$, utilise les croissances comparées : $e^x$ l'emporte sur $x$."
+    ],
+    "correction": "1. **Dérivée** : $h'(x) = \\dfrac{e^x \\times x - e^x \\times 1}{x^2} = \\dfrac{e^x (x - 1)}{x^2}$.\n2. **Signe** : $e^x > 0$ et $x^2 > 0$, donc $h'(x)$ a le signe de $x - 1$. Elle s'annule en $x = 1$, est négative avant et positive après.\n3. **Variations** : $h$ décroît sur $]0, 1]$ puis croît sur $[1, +\\infty[$. Son minimum vaut $h(1) = \\dfrac{e^1}{1} = e$.\n4. **Limites** : en $0^+$, $e^x \\to 1$ et $x \\to 0^+$, donc $h(x) \\to +\\infty$. En $+\\infty$, $\\dfrac{e^x}{x} \\to +\\infty$ par croissances comparées."
+  },
+  {
+    "id": "volume-de-donnees",
+    "titre": "Croissance d'un volume de données",
+    "difficulte": 2,
+    "enonce": "Un entrepôt de données contient $40$ To. Son volume double tous les $6$ mois : $Q(t) = 40 \\times 2^{t/6}$, avec $t$ en mois.",
+    "questions": [
+      {
+        "intitule": "On écrit $Q(t) = 40\\,e^{kt}$. Donne la valeur exacte de $k$ (ex. : `ln(3)/4`).",
+        "type": "nombre",
+        "reponse": "ln(2)/6",
+        "acceptes": ["ln2/6", "(ln 2)/6"],
+        "refuses": ["6ln(2)", "ln(6)/2", "2/6"]
+      },
+      {
+        "intitule": "Calcule $Q(18)$, en To.",
+        "type": "nombre",
+        "reponse": 320,
+        "refuses": ["240", "120"]
+      },
+      {
+        "intitule": "Le volume dépasse $1\\,280$ To quand $t > T$. Donne $T$, en mois.",
+        "type": "nombre",
+        "reponse": 30,
+        "refuses": ["32", "5"]
+      },
+      {
+        "intitule": "Calcule $Q(10)$, arrondi au To près.",
+        "type": "nombre",
+        "reponse": "40*2^(10/6)",
+        "tolerance": 0.5,
+        "acceptes": ["127"],
+        "refuses": ["126", "67"]
+      }
+    ],
+    "indices": [
+      "$2^{t/6} = e^{\\frac{t}{6}\\ln 2}$.",
+      "$18$ mois, c'est $3$ doublements.",
+      "$40 \\times 2^{t/6} > 1\\,280 \\iff 2^{t/6} > 32 = 2^5$."
+    ],
+    "correction": "- $2^{t/6} = e^{\\frac{t}{6}\\ln 2}$, donc $Q(t) = 40\\,e^{kt}$ avec $k = \\dfrac{\\ln 2}{6} \\approx 0{,}1155$.\n- $Q(18) = 40 \\times 2^{3} = 320$ To.\n- $40 \\times 2^{t/6} > 1\\,280 \\iff 2^{t/6} > 32 = 2^{5} \\iff \\dfrac{t}{6} > 5 \\iff t > 30$ mois.\n- $Q(10) = 40 \\times 2^{10/6} \\approx 40 \\times 3{,}175 \\approx 127$ To."
+  },
+  {
+    "id": "log-loss",
+    "titre": "Calculer une log-loss",
+    "difficulte": 2,
+    "enonce": "Un modèle prédit la probabilité $\\hat{p}$ qu'un e-mail soit un spam. On mesure son erreur avec la log-loss :\n\n$$\\text{perte}(\\hat{p}, y) = -\\big(y \\ln \\hat{p} + (1 - y)\\ln(1 - \\hat{p})\\big)$$\n\noù $y = 1$ si l'e-mail est vraiment un spam, $y = 0$ sinon. Donne les pertes **arrondies au centième**.",
+    "questions": [
+      {
+        "intitule": "$y = 1$ et $\\hat{p} = 0{,}8$.",
+        "type": "nombre",
+        "reponse": "-ln(0.8)",
+        "tolerance": 0.005,
+        "acceptes": ["0.22", "0,22"],
+        "refuses": ["0.8", "-0.22"]
+      },
+      {
+        "intitule": "$y = 1$ et $\\hat{p} = 0{,}05$.",
+        "type": "nombre",
+        "reponse": "-ln(0.05)",
+        "tolerance": 0.005,
+        "acceptes": ["3", "3.00"],
+        "refuses": ["0.05", "-3"]
+      },
+      {
+        "intitule": "$y = 0$ et $\\hat{p} = 0{,}3$.",
+        "type": "nombre",
+        "reponse": "-ln(0.7)",
+        "tolerance": 0.005,
+        "acceptes": ["0.36", "0,36"],
+        "refuses": ["1.2", "0.3"]
+      },
+      {
+        "intitule": "Que traduit une perte très élevée ?",
+        "type": "choix",
+        "choix": ["Le modèle était sûr de lui et s'est trompé", "Le modèle a hésité entre les deux classes", "Le modèle a eu raison avec certitude", "Les données sont vides"],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Si $y = 1$, la perte se réduit à $-\\ln \\hat{p}$.",
+      "Si $y = 0$, la perte se réduit à $-\\ln(1 - \\hat{p})$."
+    ],
+    "correction": "- $y = 1$, $\\hat{p} = 0{,}8$ : perte $= -\\ln 0{,}8 \\approx 0{,}22$ (bonne prédiction, petite perte).\n- $y = 1$, $\\hat{p} = 0{,}05$ : perte $= -\\ln 0{,}05 \\approx 3{,}00$ (le modèle était presque sûr que ce n'était pas un spam : grosse perte).\n- $y = 0$, $\\hat{p} = 0{,}3$ : perte $= -\\ln(1 - 0{,}3) = -\\ln 0{,}7 \\approx 0{,}36$.\n- Plus le modèle est **confiant et faux**, plus $-\\ln$ explose : c'est ce qui pousse le modèle à éviter les certitudes injustifiées."
+  },
+  {
+    "id": "linearisation",
+    "titre": "Linéariser une croissance exponentielle",
+    "difficulte": 2,
+    "enonce": "Le nombre d'utilisateurs actifs $y$ d'une application suit, en fonction du nombre de semaines $x$, la relation $y = 3\\,e^{0{,}4x}$ (en milliers).",
+    "questions": [
+      {
+        "intitule": "En posant $z = \\ln y$, quelle relation obtient-on ?",
+        "type": "choix",
+        "choix": ["$z = \\ln 3 + 0{,}4\\,x$", "$z = 3 + \\ln(0{,}4\\,x)$", "$z = 1{,}2\\,x$", "$z = e^{3 + 0{,}4x}$"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Quelle est la pente de la droite $z$ en fonction de $x$ ?",
+        "type": "nombre",
+        "reponse": 0.4,
+        "acceptes": ["0.4", "0,4", "2/5"],
+        "refuses": ["3", "1.2"]
+      },
+      {
+        "intitule": "Quelle est l'ordonnée à l'origine de cette droite (valeur exacte) ?",
+        "type": "nombre",
+        "reponse": "ln(3)",
+        "acceptes": ["ln 3", "ln(3)"],
+        "refuses": ["3", "e^3"]
+      },
+      {
+        "intitule": "Explique en une ou deux phrases pourquoi on préfère tracer $\\ln y$ plutôt que $y$ pour repérer une croissance exponentielle.",
+        "type": "auto",
+        "reponse": "Avec $z = \\ln y$, une croissance exponentielle devient une **droite**. Or il est beaucoup plus facile de reconnaître une droite à l'œil (et d'en mesurer la pente) qu'une courbe exponentielle. Si les points $(x, \\ln y)$ sont alignés, la croissance de $y$ est exponentielle."
+      }
+    ],
+    "indices": [
+      "$\\ln(ab) = \\ln a + \\ln b$ et $\\ln(e^{u}) = u$.",
+      "Une droite s'écrit $z = (\\text{ordonnée à l'origine}) + (\\text{pente}) \\times x$."
+    ],
+    "correction": "$z = \\ln y = \\ln\\left(3\\,e^{0{,}4x}\\right) = \\ln 3 + \\ln\\left(e^{0{,}4x}\\right) = \\ln 3 + 0{,}4\\,x$.\n\nC'est une droite de **pente** $0{,}4$ et d'**ordonnée à l'origine** $\\ln 3 \\approx 1{,}10$.\n\nSur un graphique avec $\\ln y$ en ordonnée (échelle logarithmique), la croissance exponentielle devient une droite : elle se repère et se mesure facilement."
+  },
+  {
+    "id": "cout-logarithmique",
+    "titre": "Un coût logarithmique",
+    "difficulte": 3,
+    "enonce": "Une API facture ses clients selon le nombre $n$ de requêtes traitées : $C(n) = 5 + 2\\ln(n + 1)$ (en euros).",
+    "questions": [
+      {
+        "intitule": "Que vaut $C(0)$ ?",
+        "type": "nombre",
+        "reponse": 5,
+        "refuses": ["7", "0"]
+      },
+      {
+        "intitule": "Que vaut $C(999)$, arrondi au centime ?",
+        "type": "nombre",
+        "reponse": "5+2ln(1000)",
+        "tolerance": 0.005,
+        "acceptes": ["18.82", "18,82"],
+        "refuses": ["18.8", "2003"]
+      },
+      {
+        "intitule": "Pour quelle valeur exacte de $n$ le coût vaut-il $11$ euros ?",
+        "type": "nombre",
+        "reponse": "e^3-1",
+        "acceptes": ["e^3 - 1", "exp(3)-1"],
+        "refuses": ["e^3", "e^(3-1)", "3"]
+      },
+      {
+        "intitule": "Le coût peut-il dépasser n'importe quelle valeur fixée à l'avance si $n$ devient très grand ? Justifie avec une propriété du logarithme.",
+        "type": "auto",
+        "reponse": "**Oui.** $\\lim\\limits_{n \\to +\\infty} \\ln(n + 1) = +\\infty$, donc $C(n) \\to +\\infty$ : le coût finit par dépasser n'importe quelle valeur, même s'il grandit **très lentement** (bien plus lentement qu'un coût proportionnel à $n$)."
+      }
+    ],
+    "indices": [
+      "$\\ln 1 = 0$.",
+      "$C(n) = 11 \\iff 2\\ln(n+1) = 6 \\iff \\ln(n+1) = 3$.",
+      "Rappelle-toi la limite de $\\ln x$ quand $x \\to +\\infty$."
+    ],
+    "correction": "- $C(0) = 5 + 2\\ln 1 = 5$ €.\n- $C(999) = 5 + 2\\ln 1000 \\approx 5 + 2 \\times 6{,}9078 \\approx 18{,}82$ €.\n- $C(n) = 11 \\iff \\ln(n + 1) = 3 \\iff n + 1 = e^{3} \\iff n = e^{3} - 1 \\approx 19{,}09$.\n- $\\ln(n+1) \\to +\\infty$ quand $n \\to +\\infty$, donc le coût n'est pas plafonné. Mais il grandit très lentement : passer de $1\\,000$ à $1\\,000\\,000$ requêtes n'ajoute que $2\\ln 1000 \\approx 13{,}8$ €. C'est avantageux pour un gros client."
+  }
+]

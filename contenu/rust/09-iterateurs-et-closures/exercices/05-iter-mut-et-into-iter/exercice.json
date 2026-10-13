@@ -1,0 +1,10 @@
+{
+  "titre": "iter, iter_mut, into_iter",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`augmenter_tous` : `iter()` donne des `&u32` en lecture seule. Pour modifier, il faut `iter_mut()`, puis `*x += montant`.",
+    "`en_majuscules` : la fonction possède la liste, donc `mots.into_iter()` donne directement les `String`. `m.to_uppercase()` crée la version en majuscules.",
+    "`noms_des_majeurs` : `into_iter()`, puis `filter(|(_, age)| *age >= 18)`, puis `map(|(nom, _)| nom)` pour ne garder que le nom, puis `collect()`."
+  ]
+}

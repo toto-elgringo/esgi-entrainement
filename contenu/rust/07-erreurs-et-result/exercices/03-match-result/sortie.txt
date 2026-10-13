@@ -1,0 +1,4 @@
+"12" -> nombre 12
+"abc" -> erreur : invalid digit found in string
+"-5" -> nombre -5
+"" -> erreur : cannot parse integer from empty string

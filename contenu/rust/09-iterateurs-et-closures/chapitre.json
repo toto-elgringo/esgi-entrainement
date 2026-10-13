@@ -1,0 +1,5 @@
+{
+  "titre": "Itérateurs et closures",
+  "description": "Fonctions anonymes, map, filter, collect, sum, fold... : remplacer les boucles par des chaînes d'itérateurs.",
+  "source": "fondamentaux"
+}

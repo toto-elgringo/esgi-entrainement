@@ -1,0 +1,5 @@
+{
+  "titre": "Enums et Option",
+  "description": "Enum simple et avec données, match sur enum, Option<T> à la place de null, if let, unwrap_or et map.",
+  "source": "fondamentaux"
+}

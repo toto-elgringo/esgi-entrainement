@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Que vaut `(|x| x * 3)(4)` ?",
+    "choix": ["`7`", "`12`", "`34`", "Ne compile pas"],
+    "reponse": 1,
+    "explication": "La closure multiplie son paramètre par 3, et on l'appelle immédiatement avec 4 : 12."
+  },
+  {
+    "question": "Qu'est-ce qu'une closure peut faire qu'une fonction `fn` ne peut pas ?",
+    "choix": ["Renvoyer une valeur", "Avoir des paramètres", "Utiliser les variables de l'endroit où elle est écrite", "Être appelée plusieurs fois"],
+    "reponse": 2,
+    "explication": "Une closure capture son environnement : elle peut lire ou modifier les variables qui l'entourent."
+  },
+  {
+    "question": "Pourquoi écrire `move` devant une closure ?",
+    "choix": ["Pour qu'elle soit plus rapide", "Pour qu'elle prenne possession des variables capturées", "Pour pouvoir la modifier", "Pour la copier"],
+    "reponse": 1,
+    "explication": "`move` déplace les variables capturées dans la closure. Utile quand elle doit survivre à la fonction qui la crée."
+  },
+  {
+    "question": "Que donne `v.iter()` sur un `Vec<i32>` ?",
+    "choix": ["Des `i32`", "Des `&i32`", "Des `&mut i32`", "Un `Vec<i32>`"],
+    "reponse": 1,
+    "explication": "`iter()` prête les éléments en lecture : des `&i32`. `iter_mut()` donne des `&mut i32` et `into_iter()` des `i32`."
+  },
+  {
+    "question": "Après `let w: Vec<String> = v.into_iter().collect();`, que devient `v` ?",
+    "choix": ["Il est intact", "Il est vide mais utilisable", "Il a été consommé : on ne peut plus l'utiliser", "Il contient des copies"],
+    "reponse": 2,
+    "explication": "`into_iter()` prend possession de la liste et donne ses éléments par valeur. `v` a été déplacé."
+  },
+  {
+    "question": "Que fait la ligne `v.iter().map(|x| x * 2);` toute seule ?",
+    "choix": ["Double les éléments de `v`", "Crée un nouveau `Vec`", "Rien : un adaptateur ne calcule rien tant qu'on ne le consomme pas", "Affiche les doubles"],
+    "reponse": 2,
+    "explication": "Les itérateurs sont paresseux. Il faut un consommateur (`collect`, `sum`, `for`...) pour lancer le calcul. Le compilateur affiche d'ailleurs un avertissement."
+  },
+  {
+    "question": "Que vaut `[1, 2, 3, 4].iter().filter(|x| **x > 2).count()` ?",
+    "choix": ["`2`", "`7`", "`[3, 4]`", "`4`"],
+    "reponse": 0,
+    "explication": "`filter` garde 3 et 4, puis `count` compte les éléments restants : 2."
+  },
+  {
+    "question": "Que donne `[\"a\", \"b\"].iter().enumerate()` ?",
+    "choix": ["`\"a\", \"b\"`", "`(0, \"a\"), (1, \"b\")`", "`(1, \"a\"), (2, \"b\")`", "`0, 1`"],
+    "reponse": 1,
+    "explication": "`enumerate` associe à chaque élément son indice, en commençant à 0."
+  },
+  {
+    "question": "Que vaut `[2, 3, 4].iter().fold(0, |acc, x| acc + x)` ?",
+    "choix": ["`0`", "`24`", "`9`", "`4`"],
+    "reponse": 2,
+    "explication": "On part de 0 puis on ajoute chaque élément : 0 + 2 + 3 + 4 = 9. C'est ce que fait `sum`, écrit à la main."
+  },
+  {
+    "question": "Que renvoie `v.iter().all(|x| *x > 0)` si `v` est vide ?",
+    "choix": ["`true`", "`false`", "`None`", "Une panique"],
+    "reponse": 0,
+    "explication": "« Tous les éléments vérifient la condition » est vrai quand il n'y a aucun élément. À l'inverse, `any` renvoie `false` sur une liste vide."
+  },
+  {
+    "question": "Quel est le type de `v.iter().max()` pour un `Vec<i32>` ?",
+    "choix": ["`i32`", "`&i32`", "`Option<&i32>`", "`Result<i32, ()>`"],
+    "reponse": 2,
+    "explication": "La liste peut être vide, donc `max` renvoie une `Option`. Comme `iter()` donne des références, c'est un `Option<&i32>`."
+  },
+  {
+    "question": "Pourquoi `let total = v.iter().sum();` ne compile-t-il pas ?",
+    "choix": ["`sum` n'existe pas", "Rust ne sait pas quel type de résultat produire", "Il faut une boucle", "`v` doit être `mut`"],
+    "reponse": 1,
+    "explication": "`sum` peut produire plusieurs types. On l'indique : `let total: i32 = ...` ou `v.iter().sum::<i32>()`."
+  }
+]

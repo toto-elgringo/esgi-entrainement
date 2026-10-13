@@ -1,0 +1,10 @@
+{
+  "titre": "Le bestiaire",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Écris `impl Animal for Perroquet { ... }` avec les trois méthodes obligatoires. Son cri est le mot qu'il a appris : `self.mot.clone()`.",
+    "Ajoute le perroquet dans la liste : `Box::new(Perroquet { nom: \"Coco\".to_string(), mot: \"Bonjour\".to_string() })`.",
+    "Pas besoin de toucher à la boucle ni à `presenter` : la méthode par défaut marche aussi pour le perroquet."
+  ]
+}

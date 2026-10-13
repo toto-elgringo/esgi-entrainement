@@ -1,0 +1,10 @@
+{
+  "titre": "Le robot et ses messages",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Commence `traiter` par `if !self.actif { return; }` pour ignorer les messages d'un robot arrêté.",
+    "`Message::Avancer { x, y } => { self.position.0 += x; self.position.1 += y; }`",
+    "`Message::Ecrire(texte) => self.texte.push_str(&texte)` ajoute le texte à la fin."
+  ]
+}

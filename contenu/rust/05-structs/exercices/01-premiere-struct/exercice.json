@@ -1,0 +1,10 @@
+{
+  "titre": "Ma première struct",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Les champs se déclarent `nom: Type,` entre les accolades de `struct Livre { }`.",
+    "Pour obtenir un `String` à partir d'un `&str` : `titre.to_string()`.",
+    "`creer_livre` renvoie `Livre { titre: titre.to_string(), pages }`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Tronquer sans paniquer",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Premier cas : si `octets >= s.len()`, renvoie `s` en entier.",
+    "`s.is_char_boundary(fin)` dit si on peut couper à la position `fin` sans tomber au milieu d'un caractère.",
+    "Crée `let mut fin = octets;` puis recule : `while !s.is_char_boundary(fin) { fin -= 1; }` et renvoie `&s[..fin]`."
+  ]
+}

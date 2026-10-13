@@ -1,0 +1,10 @@
+{
+  "titre": "Coco → Coca (transfert)",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "La fonction prend la `String` (elle en devient propriétaire) : elle doit la **rendre** à la fin.",
+    "Ajoute `-> String` à la signature et termine la fonction par `s` (sans point-virgule).",
+    "Dans `main` : `let s = changer_derniere_lettre(s);` récupère la propriété de la `String` modifiée."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "titre": "Calculatrice à commandes",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`analyser` : `let mut morceaux = ligne.split_whitespace();` puis `let nom = morceaux.next().unwrap_or(\"\");`.",
+    "Traite `reset` tout de suite, puis vérifie que le nom est connu **avant** de lire le nombre.",
+    "`morceaux.next().ok_or_else(|| ErreurCommande::ArgumentManquant(nom.to_string()))?` donne l'argument ou renvoie l'erreur.",
+    "`argument.parse::<i64>().map_err(|_| ErreurCommande::NombreInvalide(argument.to_string()))?` donne le nombre.",
+    "`executer` : `for (index, ligne) in programme.lines().enumerate()`, saute les lignes vides, et `analyser(ligne).map_err(|erreur| (index + 1, erreur))?`."
+  ]
+}

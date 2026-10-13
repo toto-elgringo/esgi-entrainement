@@ -1,0 +1,11 @@
+{
+  "titre": "Station météo",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Les formules : `celsius * 9.0 / 5.0 + 32.0` et `(fahrenheit - 32.0) * 5.0 / 9.0`.",
+    "Dans `alerte`, le module `conversion` est un voisin : `use super::conversion::fahrenheit_vers_celsius;`.",
+    "`niveau` : convertis d'abord en Celsius, puis une chaîne `if ... else if ...`.",
+    "À la racine, `pub use meteo::alerte::niveau;` rend `niveau` utilisable directement."
+  ]
+}

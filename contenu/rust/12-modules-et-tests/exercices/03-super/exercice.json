@@ -1,0 +1,10 @@
+{
+  "titre": "Remonter avec super",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`taux_tva` est à la racine, `tva` est dans `facture` : depuis `facture`, la racine est le parent.",
+    "Écris `super::taux_tva()` au lieu de `taux_tva()`.",
+    "Dans `remise`, le parent est `facture` : `super::prix_ttc(prix_ht)` calcule le prix TTC, puis `appliquer(...)` enlève la remise."
+  ]
+}

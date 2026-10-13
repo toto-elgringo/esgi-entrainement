@@ -1,0 +1,10 @@
+{
+  "titre": "Regrouper par initiale",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`mot.chars().next()` renvoie la première lettre : `Some(lettre)`, ou `None` si le mot est vide.",
+    "`if let Some(initiale) = mot.chars().next() { ... }` n'exécute le bloc que si le mot a une première lettre.",
+    "`groupes.entry(initiale).or_default()` donne le `Vec<String>` de cette lettre (créé vide si besoin). Il ne reste qu'à faire `.push(mot.to_string())`."
+  ]
+}

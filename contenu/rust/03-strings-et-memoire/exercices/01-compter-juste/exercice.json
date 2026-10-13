@@ -1,0 +1,9 @@
+{
+  "titre": "Compter juste",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`.len()` compte les octets.",
+    "`.chars()` parcourt les caractères et `.count()` les compte : `s.chars().count()`."
+  ]
+}

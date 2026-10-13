@@ -1,0 +1,10 @@
+{
+  "titre": "Ne plus paniquer",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Change le type de retour en `-> Result<i32, String>`.",
+    "Remplace `panic!(...)` par `return Err(\"division par zéro\".to_string());`.",
+    "La dernière ligne devient `Ok(a / b)`, et `main` affiche les résultats avec `{:?}`."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "titre": "Le point-virgule de trop",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Le compilateur dit « expected `i32`, found `()` » : la fonction ne renvoie rien.",
+    "La dernière ligne d'une fonction ne doit pas finir par `;` si on veut renvoyer sa valeur."
+  ]
+}

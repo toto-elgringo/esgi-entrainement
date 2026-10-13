@@ -1,0 +1,13 @@
+{
+  "matieres": [
+    { "id": "informatique", "titre": "Maths pour l'informatique" },
+    { "id": "big-data", "titre": "Maths pour le big data" }
+  ],
+  "chapitres": [
+    "01-ensembles-et-logique",
+    "02-quantificateurs-et-sommes",
+    "03-exponentielle-et-logarithme",
+    "04-etude-de-fonctions",
+    "05-espaces-vectoriels"
+  ]
+}

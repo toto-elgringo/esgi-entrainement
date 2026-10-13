@@ -1,0 +1,10 @@
+{
+  "titre": "Emprunter une tranche",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Erreur E0382 : `somme(nombres)` **déplace** le `Vec` dans `somme`, il n'existe plus pour `nombres.len()`.",
+    "Les deux fonctions ont seulement besoin de **lire** les nombres : elles doivent prendre un emprunt.",
+    "Change les deux signatures en `nombres: &[i32]`, et dans `main` appelle `moyenne(&notes)`."
+  ]
+}

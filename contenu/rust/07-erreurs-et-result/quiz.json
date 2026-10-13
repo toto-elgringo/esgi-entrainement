@@ -1,0 +1,74 @@
+[
+  {
+    "question": "Quelle erreur faut-il traiter avec `Result` plutôt qu'avec `panic!` ?",
+    "choix": ["Un bug dans le programme", "Une saisie invalide de l'utilisateur", "Un indice hors du tableau", "Un état impossible"],
+    "reponse": 1,
+    "explication": "Une saisie invalide est prévisible : le programme doit pouvoir réagir. `panic!` est réservé aux bugs et aux situations impossibles."
+  },
+  {
+    "question": "Que contient une valeur de type `Result<T, E>` ?",
+    "choix": ["Soit `Ok(T)`, soit `Err(E)`", "Soit `Some(T)`, soit `None`", "T et E en même temps", "Seulement une erreur"],
+    "reponse": 0,
+    "explication": "`Result` est une enum à deux variantes : le succès avec sa valeur, ou l'échec avec son erreur."
+  },
+  {
+    "question": "Quelle est la différence entre `Option` et `Result` ?",
+    "choix": ["Aucune", "`Result` dit pourquoi ça a échoué, `Option` dit seulement qu'il n'y a rien", "`Option` est plus rapide", "`Result` ne marche qu'avec des nombres"],
+    "reponse": 1,
+    "explication": "`Err(E)` transporte une information sur l'échec, `None` ne transporte rien."
+  },
+  {
+    "question": "Que renvoie `\"abc\".parse::<i32>()` ?",
+    "choix": ["`0`", "`None`", "`Err(...)` contenant une `ParseIntError`", "Une panique"],
+    "reponse": 2,
+    "explication": "`parse` ne panique pas : il renvoie un `Result`. Ici c'est un `Err` car « abc » n'est pas un nombre."
+  },
+  {
+    "question": "À quoi sert `::<i32>` dans `texte.parse::<i32>()` ?",
+    "choix": ["À mettre le texte en majuscules", "À préciser le type voulu (le « turbofish »)", "À ignorer les erreurs", "C'est obligatoire pour toutes les méthodes"],
+    "reponse": 1,
+    "explication": "`parse` peut produire beaucoup de types différents : `::<i32>` dit lequel on veut."
+  },
+  {
+    "question": "Que fait `?` placé après une valeur `Err(e)` ?",
+    "choix": ["Il fait paniquer le programme", "Il arrête la fonction et renvoie `Err(e)` à l'appelant", "Il remplace l'erreur par 0", "Il ignore l'erreur et continue"],
+    "reponse": 1,
+    "explication": "`?` propage l'erreur : c'est un raccourci pour `match ... { Err(e) => return Err(e), ... }`."
+  },
+  {
+    "question": "Où peut-on utiliser `?` sur un `Result` ?",
+    "choix": ["Partout", "Dans une fonction qui renvoie elle-même un `Result`", "Seulement dans `main`", "Seulement dans les tests"],
+    "reponse": 1,
+    "explication": "`?` peut faire un `return Err(...)` : la fonction doit donc renvoyer un `Result` compatible."
+  },
+  {
+    "question": "Que vaut `Some(3).ok_or(\"vide\")` ?",
+    "choix": ["`Ok(3)`", "`Err(\"vide\")`", "`Some(3)`", "`3`"],
+    "reponse": 0,
+    "explication": "`ok_or` transforme `Some(v)` en `Ok(v)` et `None` en `Err(erreur)`."
+  },
+  {
+    "question": "À quoi sert `map_err` ?",
+    "choix": ["À transformer la valeur dans `Ok`", "À remplacer l'erreur par une autre erreur", "À ignorer l'erreur", "À paniquer avec un message"],
+    "reponse": 1,
+    "explication": "`map_err` transforme le contenu de `Err` sans toucher à `Ok`. Très utilisé avec `?` pour passer à son propre type d'erreur."
+  },
+  {
+    "question": "Quelle est la différence entre `unwrap()` et `expect(\"message\")` ?",
+    "choix": ["`expect` ne panique jamais", "Les deux paniquent en cas d'erreur, mais `expect` affiche ton message", "`unwrap` est plus sûr", "`expect` renvoie un `Result`"],
+    "reponse": 1,
+    "explication": "`expect` permet d'expliquer pourquoi on pensait que l'échec était impossible."
+  },
+  {
+    "question": "Dans quel cas un `unwrap()` est-il acceptable ?",
+    "choix": ["Pour lire une saisie de l'utilisateur", "Dans un test ou un prototype, ou quand l'échec est vraiment impossible", "Pour lire un fichier", "Toujours, c'est plus court"],
+    "reponse": 1,
+    "explication": "Pour tout ce qui peut raisonnablement échouer, on traite l'erreur avec `match`, `?` ou une valeur par défaut."
+  },
+  {
+    "question": "Que vaut `\"12\".parse::<i32>().ok()` ?",
+    "choix": ["`Ok(12)`", "`Some(12)`", "`12`", "`true`"],
+    "reponse": 1,
+    "explication": "`.ok()` transforme un `Result` en `Option` : `Ok(12)` devient `Some(12)`, une erreur deviendrait `None`."
+  }
+]

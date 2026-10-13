@@ -1,0 +1,9 @@
+{
+  "titre": "Somme de 1 à n",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Clique sur « Vérifier » et lis l'erreur : quel est son code (E0...) ?",
+    "La ligne `help:` du compilateur te donne la correction exacte."
+  ]
+}

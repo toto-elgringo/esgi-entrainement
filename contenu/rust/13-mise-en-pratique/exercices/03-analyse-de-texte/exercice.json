@@ -1,0 +1,11 @@
+{
+  "titre": "Analyse de texte",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Écris une fonction d'aide qui découpe en mots : `texte.split(|c: char| !c.is_alphanumeric())`, puis `.filter(|mot| !mot.is_empty())` et `.map(|mot| mot.to_lowercase())`.",
+    "`frequences` : `*compte.entry(mot).or_insert(0) += 1;` pour chaque mot.",
+    "`mot_le_plus_frequent` : parcours la `HashMap` et garde le meilleur couple ; en cas d'égalité, garde le mot le plus petit dans l'ordre alphabétique.",
+    "Avec les itérateurs : `.into_iter().max_by(|(mot_a, n_a), (mot_b, n_b)| n_a.cmp(n_b).then(mot_b.cmp(mot_a)))`."
+  ]
+}

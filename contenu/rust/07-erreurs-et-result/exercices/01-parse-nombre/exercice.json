@@ -1,0 +1,10 @@
+{
+  "titre": "Lire un nombre",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`texte.trim()` enlève les espaces au début et à la fin.",
+    "`texte.trim().parse::<i32>()` renvoie déjà un `Result<i32, ParseIntError>`.",
+    "`lire_ou_zero` : `lire_nombre(texte).unwrap_or(0)`."
+  ]
+}

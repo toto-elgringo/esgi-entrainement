@@ -1,0 +1,10 @@
+{
+  "titre": "derive : les traits offerts",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Les erreurs disent quels traits manquent : `Clone` (pour `.clone()`), `Debug` (pour `{:?}`), `PartialEq` (pour `==`).",
+    "Les tests utilisent aussi `Point::default()` : il faut le trait `Default`.",
+    "Une seule ligne au-dessus de la structure : `#[derive(Debug, Clone, PartialEq, Default)]`."
+  ]
+}

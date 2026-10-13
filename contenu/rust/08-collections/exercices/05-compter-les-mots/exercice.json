@@ -1,0 +1,11 @@
+{
+  "titre": "Compter les mots",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`texte.split_whitespace()` découpe le texte en mots (séparés par des espaces).",
+    "`mot.to_lowercase()` renvoie le mot en minuscules, sous forme de `String`.",
+    "Le cœur de la boucle : `*compteur.entry(mot.to_lowercase()).or_insert(0) += 1;`",
+    "Pour `nombre_de` : `match compteur.get(mot) { Some(n) => *n, None => 0 }`."
+  ]
+}

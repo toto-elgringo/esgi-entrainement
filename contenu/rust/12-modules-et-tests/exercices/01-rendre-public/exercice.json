@@ -1,0 +1,9 @@
+{
+  "titre": "Rendre public",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "L'erreur E0603 dit « function is private » : le mot à ajouter est `pub`.",
+    "`double` n'est utilisée qu'à l'intérieur du module : elle peut rester privée."
+  ]
+}

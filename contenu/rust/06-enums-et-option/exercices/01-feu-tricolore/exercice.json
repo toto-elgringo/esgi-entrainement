@@ -1,0 +1,10 @@
+{
+  "titre": "Le feu tricolore",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Un `match feu { Feu::Vert => Feu::Orange, ... }` avec un bras par couleur.",
+    "Pour `peut_passer`, un `match` qui renvoie `true` ou `false` marche très bien.",
+    "Comme `Feu` a `PartialEq`, tu peux aussi écrire `*feu == Feu::Vert` (l'étoile lit la valeur derrière la référence)."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Transformer un Option",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`doubler` : `x.map(|v| v * 2)`.",
+    "`longueur` : d'abord `map` pour obtenir la longueur, puis `unwrap_or(0)` pour le cas `None`.",
+    "`appliquer_reduction` : `prix.map(|p| p.saturating_sub(reduction))`. `saturating_sub` s'arrête à 0 au lieu de déborder."
+  ]
+}

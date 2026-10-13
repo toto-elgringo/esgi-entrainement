@@ -1,0 +1,10 @@
+{
+  "titre": "Une pile générique",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Toutes les méthodes s'appuient sur le `Vec` interne : `self.elements.push(...)`, `self.elements.pop()`, `self.elements.last()`, `self.elements.len()`, `self.elements.is_empty()`.",
+    "`new` renvoie `Pile { elements: Vec::new() }` (ou `Self { ... }`).",
+    "`afficher` : si la pile est vide, renvoie `\"(vide)\"`. Sinon `self.elements.iter().map(|e| e.to_string()).collect::<Vec<String>>().join(\" | \")`."
+  ]
+}

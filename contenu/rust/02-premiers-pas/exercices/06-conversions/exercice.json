@@ -1,0 +1,10 @@
+{
+  "titre": "Conversions de nombres",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`additionner` : convertis `petit` en `u32` avec `u32::from(petit)` avant d'additionner.",
+    "`vers_u8` : `u8::try_from(n)` renvoie un `Result`. La méthode `.ok()` le transforme en `Option`.",
+    "`garder_octet_bas` : c'est exactement ce que fait `as u8`."
+  ]
+}

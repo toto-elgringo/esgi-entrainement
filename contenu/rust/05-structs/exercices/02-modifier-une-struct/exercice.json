@@ -1,0 +1,10 @@
+{
+  "titre": "Modifier une struct",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Clique sur « Vérifier » : il y a deux erreurs. Lis la ligne `help:` de chacune.",
+    "Pour modifier un champ, la variable doit être déclarée avec `let mut`.",
+    "Une fonction qui modifie la struct reçue doit prendre `&mut Compteur`, pas `&Compteur`."
+  ]
+}

@@ -1,0 +1,507 @@
+[
+  {
+    "id": "calculs-vecteurs",
+    "titre": "Calculer avec des vecteurs",
+    "difficulte": 1,
+    "enonce": "Soit $u = (2, -1, 3)$, $v = (1, 4, 0)$ et $w = (0, 2, -2)$, trois vecteurs de $\\mathbb{R}^3$.\n\nCalcule chaque vecteur. Format attendu : `(a, b, c)`.",
+    "questions": [
+      {
+        "intitule": "$u + v$",
+        "type": "vecteur",
+        "reponse": [3, 3, 3],
+        "acceptes": ["(3; 3; 3)", "3, 3, 3"],
+        "refuses": ["(3, 3)", "(2, 3, 3)"]
+      },
+      {
+        "intitule": "$3u$",
+        "type": "vecteur",
+        "reponse": [6, -3, 9],
+        "acceptes": ["(6;-3;9)"],
+        "refuses": ["(6, 3, 9)", "(5, 2, 6)"]
+      },
+      {
+        "intitule": "$2u - v$",
+        "type": "vecteur",
+        "reponse": [3, -6, 6],
+        "refuses": ["(5, 2, 6)", "(3, 6, 6)"]
+      },
+      {
+        "intitule": "$u - v + w$",
+        "type": "vecteur",
+        "reponse": [1, -3, 1],
+        "refuses": ["(1, -3, -1)", "(3, 5, 1)"]
+      }
+    ],
+    "indices": [
+      "On calcule coordonnée par coordonnée.",
+      "Pour $2u - v$ : commence par $2u = (4, -2, 6)$, puis soustrais $v$."
+    ],
+    "correction": "On travaille coordonnée par coordonnée.\n\n- $u + v = (2 + 1, -1 + 4, 3 + 0) = (3, 3, 3)$\n- $3u = (3 \\times 2, 3 \\times (-1), 3 \\times 3) = (6, -3, 9)$\n- $2u - v = (4, -2, 6) - (1, 4, 0) = (3, -6, 6)$\n- $u - v + w = (2 - 1 + 0, -1 - 4 + 2, 3 - 0 - 2) = (1, -3, 1)$"
+  },
+  {
+    "id": "base-canonique",
+    "titre": "Écrire dans la base canonique",
+    "difficulte": 1,
+    "enonce": "Dans $\\mathbb{R}^2$, on note $e_1 = (1, 0)$ et $e_2 = (0, 1)$. Dans $\\mathbb{R}^3$, on note $f_1 = (1, 0, 0)$, $f_2 = (0, 1, 0)$ et $f_3 = (0, 0, 1)$.",
+    "questions": [
+      {
+        "intitule": "On écrit $(5, -2) = a\\,e_1 + b\\,e_2$. Que vaut $a$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 5
+      },
+      {
+        "intitule": "Et $b$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": -2,
+        "refuses": ["2"]
+      },
+      {
+        "intitule": "On écrit $(4, 0, -7) = a\\,f_1 + b\\,f_2 + c\\,f_3$. Donne les coefficients au format `(a, b, c)`.",
+        "type": "vecteur",
+        "reponse": [4, 0, -7],
+        "acceptes": ["(4; 0; -7)"],
+        "refuses": ["(4, -7)", "(-7, 0, 4)"]
+      }
+    ],
+    "indices": [
+      "$a\\,e_1 + b\\,e_2 = (a, 0) + (0, b) = (a, b)$."
+    ],
+    "correction": "Dans la base canonique, les coefficients sont **les coordonnées elles-mêmes**.\n\n- $(5, -2) = 5\\,e_1 - 2\\,e_2$, donc $a = 5$ et $b = -2$.\n- $(4, 0, -7) = 4\\,f_1 + 0\\,f_2 - 7\\,f_3$, donc $(a, b, c) = (4, 0, -7)$.\n\nC'est pour ça qu'on l'appelle la base « canonique » (la base naturelle)."
+  },
+  {
+    "id": "prediction-lineaire",
+    "titre": "Une prédiction est une combinaison linéaire",
+    "difficulte": 1,
+    "enonce": "Un modèle de régression linéaire prédit une note à partir de 3 variables $x = (x_1, x_2, x_3)$ :\n\n$$\\hat{y} = w_1 x_1 + w_2 x_2 + w_3 x_3 \\qquad \\text{avec } w = (0{,}5;\\ 2;\\ -1)$$",
+    "questions": [
+      {
+        "intitule": "Que vaut $\\hat{y}$ pour $x = (4, 1, 3)$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 1
+      },
+      {
+        "intitule": "Que vaut $\\hat{y}$ pour $x = (2, 0, 5)$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": -4,
+        "refuses": ["4", "6"]
+      },
+      {
+        "intitule": "La prédiction $\\hat{y}$ est :",
+        "type": "choix",
+        "choix": [
+          "un produit des variables",
+          "une combinaison linéaire des variables",
+          "une base de $\\mathbb{R}^3$",
+          "un sous-espace vectoriel"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Multiplie chaque variable par son poids, puis additionne les trois résultats."
+    ],
+    "correction": "On calcule la somme pondérée :\n\n- $x = (4, 1, 3)$ : $\\hat{y} = 0{,}5 \\times 4 + 2 \\times 1 - 1 \\times 3 = 2 + 2 - 3 = 1$.\n- $x = (2, 0, 5)$ : $\\hat{y} = 0{,}5 \\times 2 + 2 \\times 0 - 1 \\times 5 = 1 + 0 - 5 = -4$.\n\nUne somme pondérée de variables, c'est exactement une **combinaison linéaire** : les poids $w_i$ sont les coefficients."
+  },
+  {
+    "id": "libre-ou-liee-r2",
+    "titre": "Libre ou liée ? (deux vecteurs)",
+    "difficulte": 1,
+    "enonce": "Pour chaque famille de deux vecteurs de $\\mathbb{R}^2$, dis si elle est libre ou liée.",
+    "questions": [
+      {
+        "intitule": "$(2, 3)$ et $(4, 6)$",
+        "type": "choix",
+        "choix": ["Libre", "Liée"],
+        "reponse": 1
+      },
+      {
+        "intitule": "$(1, 2)$ et $(2, 1)$",
+        "type": "choix",
+        "choix": ["Libre", "Liée"],
+        "reponse": 0
+      },
+      {
+        "intitule": "$(3, -1)$ et $(-6, 2)$",
+        "type": "choix",
+        "choix": ["Libre", "Liée"],
+        "reponse": 1
+      },
+      {
+        "intitule": "$(0, 0)$ et $(5, 1)$",
+        "type": "choix",
+        "choix": ["Libre", "Liée"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Deux vecteurs sont liés si et seulement si l'un est un multiple de l'autre.",
+      "Attention au vecteur nul : $0 = 0 \\times (5, 1)$."
+    ],
+    "correction": "Deux vecteurs sont liés exactement quand l'un est un multiple de l'autre.\n\n- $(4, 6) = 2(2, 3)$ : **liée**.\n- $(2, 1)$ n'est pas un multiple de $(1, 2)$ (il faudrait $\\lambda = 2$ pour la 1re coordonnée et $\\lambda = \\frac{1}{2}$ pour la 2e) : **libre**.\n- $(-6, 2) = -2(3, -1)$ : **liée**.\n- $(0, 0) = 0 \\times (5, 1)$, et surtout $1 \\times (0, 0) + 0 \\times (5, 1) = 0$ avec un coefficient non nul : **liée**. Une famille qui contient le vecteur nul est toujours liée."
+  },
+  {
+    "id": "combien-de-vecteurs",
+    "titre": "Compter les vecteurs",
+    "difficulte": 1,
+    "enonce": "Questions rapides sur le nombre de vecteurs d'une famille dans $\\mathbb{R}^n$.",
+    "questions": [
+      {
+        "intitule": "Une famille de 3 vecteurs de $\\mathbb{R}^2$ est forcément :",
+        "type": "choix",
+        "choix": ["Libre", "Liée", "Une base de $\\mathbb{R}^2$"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Combien de vecteurs, au maximum, peut contenir une famille libre de $\\mathbb{R}^4$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 4
+      },
+      {
+        "intitule": "Combien de vecteurs contient une base de $\\mathbb{R}^5$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 5
+      },
+      {
+        "intitule": "Une famille de 2 vecteurs de $\\mathbb{R}^3$ peut-elle engendrer tout $\\mathbb{R}^3$ ?",
+        "type": "choix",
+        "choix": ["Oui, si les vecteurs sont libres", "Non, jamais"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Dans $\\mathbb{R}^n$, toutes les bases ont exactement $n$ vecteurs.",
+      "Plus de $n$ vecteurs : forcément liée. Moins de $n$ vecteurs : jamais génératrice."
+    ],
+    "correction": "Dans $\\mathbb{R}^n$ (dimension $n$) :\n\n- plus de $n$ vecteurs : la famille est forcément **liée**. Donc 3 vecteurs de $\\mathbb{R}^2$ sont liés ;\n- une famille libre a **au plus $n$** vecteurs : 4 dans $\\mathbb{R}^4$ ;\n- une base a **exactement $n$** vecteurs : 5 dans $\\mathbb{R}^5$ ;\n- moins de $n$ vecteurs ne peuvent **jamais** engendrer tout l'espace : 2 vecteurs engendrent au mieux un plan de $\\mathbb{R}^3$."
+  },
+  {
+    "id": "trouver-coefficients",
+    "titre": "Trouver les coefficients",
+    "difficulte": 2,
+    "enonce": "Soit $u = (1, 2)$ et $v = (3, -1)$. On cherche $\\lambda$ et $\\mu$ tels que :\n\n$$\\lambda u + \\mu v = (7, 0)$$",
+    "questions": [
+      {
+        "intitule": "Que vaut $\\lambda$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 1
+      },
+      {
+        "intitule": "Que vaut $\\mu$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Écris l'égalité coordonnée par coordonnée : tu obtiens deux équations.",
+      "La 2e équation $2\\lambda - \\mu = 0$ donne $\\mu = 2\\lambda$. Remplace dans la 1re."
+    ],
+    "correction": "On écrit $\\lambda(1, 2) + \\mu(3, -1) = (\\lambda + 3\\mu,\\ 2\\lambda - \\mu) = (7, 0)$.\n\nD'où le système :\n\n$$\\begin{cases} \\lambda + 3\\mu = 7 \\\\ 2\\lambda - \\mu = 0 \\end{cases}$$\n\nLa 2e équation donne $\\mu = 2\\lambda$. Dans la 1re : $\\lambda + 6\\lambda = 7$, donc $\\lambda = 1$ et $\\mu = 2$.\n\nVérification : $(1, 2) + 2(3, -1) = (1 + 6, 2 - 2) = (7, 0)$."
+  },
+  {
+    "id": "combinaison-impossible",
+    "titre": "Une combinaison impossible",
+    "difficulte": 2,
+    "enonce": "Soit $u = (1, 0, 2)$ et $v = (0, 1, -1)$. On se demande si $w = (3, 2, 5)$ est une combinaison linéaire de $u$ et $v$, c'est-à-dire s'il existe $\\lambda$ et $\\mu$ tels que $\\lambda u + \\mu v = w$.",
+    "questions": [
+      {
+        "intitule": "La 1re coordonnée impose la valeur de $\\lambda$. Laquelle ? (un nombre)",
+        "type": "nombre",
+        "reponse": 3
+      },
+      {
+        "intitule": "La 2e coordonnée impose la valeur de $\\mu$. Laquelle ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2
+      },
+      {
+        "intitule": "Avec ces valeurs, que vaut la 3e coordonnée de $\\lambda u + \\mu v$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 4
+      },
+      {
+        "intitule": "$w = (3, 2, 5)$ est-il une combinaison linéaire de $u$ et $v$ ?",
+        "type": "choix",
+        "choix": ["Oui", "Non"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "$\\lambda u + \\mu v = (\\lambda,\\ \\mu,\\ 2\\lambda - \\mu)$.",
+      "Si la 3e coordonnée ne tombe pas sur 5, le système n'a pas de solution."
+    ],
+    "correction": "On calcule $\\lambda u + \\mu v = (\\lambda,\\ \\mu,\\ 2\\lambda - \\mu)$.\n\n- 1re coordonnée : $\\lambda = 3$.\n- 2e coordonnée : $\\mu = 2$.\n- 3e coordonnée : $2 \\times 3 - 2 = 4$.\n\nOr il faudrait obtenir $5$. Les deux premières équations imposent $\\lambda$ et $\\mu$, et la troisième n'est pas vérifiée : le système n'a **pas de solution**. Donc $w$ n'est **pas** une combinaison linéaire de $u$ et $v$.\n\nEn revanche, $(3, 2, 4) = 3u + 2v$ en est une."
+  },
+  {
+    "id": "trois-vecteurs-r3",
+    "titre": "Trois vecteurs de R³",
+    "difficulte": 2,
+    "enonce": "Soit $u = (1, 2, 0)$, $v = (0, 1, 1)$ et $w = (2, 5, 1)$.",
+    "questions": [
+      {
+        "intitule": "On cherche $a$ et $b$ tels que $w = a\\,u + b\\,v$. Que vaut $a$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2
+      },
+      {
+        "intitule": "Que vaut $b$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 1
+      },
+      {
+        "intitule": "Donne les coefficients $(\\alpha, \\beta, \\gamma)$, avec $\\gamma = -1$, tels que $\\alpha u + \\beta v + \\gamma w = 0$. Format : `(α, β, γ)`.",
+        "type": "vecteur",
+        "reponse": [2, 1, -1],
+        "acceptes": ["(2; 1; -1)"],
+        "refuses": ["(-2, -1, 1)", "(0, 0, 0)"]
+      },
+      {
+        "intitule": "La famille $(u, v, w)$ est :",
+        "type": "choix",
+        "choix": ["Libre", "Liée"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Cette famille est-elle une base de $\\mathbb{R}^3$ ?",
+        "type": "choix",
+        "choix": ["Oui", "Non, car elle est liée", "Non, car il faudrait 4 vecteurs"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "La 1re coordonnée de $a\\,u + b\\,v$ vaut $a$ (car $v$ commence par 0).",
+      "Si $w = 2u + v$, alors $2u + v - w = 0$."
+    ],
+    "correction": "On cherche $a\\,u + b\\,v = (a,\\ 2a + b,\\ b) = (2, 5, 1)$. Donc $a = 2$ et $b = 1$, et la 2e coordonnée vérifie bien $2 \\times 2 + 1 = 5$.\n\nAinsi $w = 2u + v$, c'est-à-dire $2u + 1v - 1w = 0$ : les coefficients $(2, 1, -1)$ ne sont pas tous nuls, la famille est **liée**.\n\nUne base doit être libre : $(u, v, w)$ n'est donc **pas** une base de $\\mathbb{R}^3$. Elle engendre seulement un plan (un sous-espace de dimension 2)."
+  },
+  {
+    "id": "verifier-une-base",
+    "titre": "Vérifier une base et trouver des coordonnées",
+    "difficulte": 2,
+    "enonce": "Dans $\\mathbb{R}^2$, soit $u = (2, 1)$ et $v = (1, -1)$.",
+    "questions": [
+      {
+        "intitule": "Si $\\lambda u + \\mu v = (0, 0)$, on trouve $\\lambda = \\mu = 0$. La famille $(u, v)$ est donc :",
+        "type": "choix",
+        "choix": ["Libre", "Liée"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Pourquoi $(u, v)$ est-elle une base de $\\mathbb{R}^2$ ?",
+        "type": "choix",
+        "choix": [
+          "Parce que, dans $\\mathbb{R}^2$, 2 vecteurs libres forment une base",
+          "Parce que les deux vecteurs sont non nuls",
+          "Parce que les deux vecteurs sont différents"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Écris $(5, 1) = a\\,u + b\\,v$. Format : `(a, b)`.",
+        "type": "vecteur",
+        "reponse": [2, 1],
+        "acceptes": ["(2; 1)", "2, 1"],
+        "refuses": ["(1, 2)", "(5, 1)"]
+      },
+      {
+        "intitule": "Écris $(0, 3) = a\\,u + b\\,v$. Format : `(a, b)`.",
+        "type": "vecteur",
+        "reponse": [1, -2],
+        "refuses": ["(-2, 1)", "(1, 2)"]
+      }
+    ],
+    "indices": [
+      "Le système pour $(5, 1)$ est $2a + b = 5$ et $a - b = 1$.",
+      "Additionne les deux équations : $3a = 6$."
+    ],
+    "correction": "**Libre** : $\\lambda(2, 1) + \\mu(1, -1) = (0, 0)$ donne $2\\lambda + \\mu = 0$ et $\\lambda - \\mu = 0$. La 2e donne $\\lambda = \\mu$, puis $3\\lambda = 0$ : $\\lambda = \\mu = 0$.\n\n**Base** : en dimension 2, une famille libre de 2 vecteurs est automatiquement une base (résultat admis).\n\n**Coordonnées de $(5, 1)$** : $2a + b = 5$ et $a - b = 1$. En additionnant : $3a = 6$, donc $a = 2$ puis $b = 1$. Vérification : $2(2, 1) + (1, -1) = (5, 1)$.\n\n**Coordonnées de $(0, 3)$** : $2a + b = 0$ et $a - b = 3$. En additionnant : $3a = 3$, donc $a = 1$ puis $b = -2$. Vérification : $(2, 1) - 2(1, -1) = (0, 3)$."
+  },
+  {
+    "id": "sous-espace-ou-pas",
+    "titre": "Sous-espace ou pas ?",
+    "difficulte": 2,
+    "enonce": "Pour chaque ensemble, dis s'il s'agit d'un sous-espace vectoriel.",
+    "questions": [
+      {
+        "intitule": "$F = \\{(x, y) \\in \\mathbb{R}^2 \\mid y = 3x\\}$",
+        "type": "choix",
+        "choix": ["Oui, c'est un sous-espace", "Non"],
+        "reponse": 0
+      },
+      {
+        "intitule": "$G = \\{(x, y) \\in \\mathbb{R}^2 \\mid y = 3x + 1\\}$",
+        "type": "choix",
+        "choix": ["Oui, c'est un sous-espace", "Non"],
+        "reponse": 1
+      },
+      {
+        "intitule": "$H = \\{(x, y, z) \\in \\mathbb{R}^3 \\mid x - 2y + z = 0\\}$",
+        "type": "choix",
+        "choix": ["Oui, c'est un sous-espace", "Non"],
+        "reponse": 0
+      },
+      {
+        "intitule": "$K = \\{(x, y) \\in \\mathbb{R}^2 \\mid x \\geq 0\\}$",
+        "type": "choix",
+        "choix": ["Oui, c'est un sous-espace", "Non"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Premier test : l'ensemble contient-il le vecteur nul ?",
+      "Deuxième test : si on multiplie un de ses vecteurs par $-1$, reste-t-on dedans ?"
+    ],
+    "correction": "Un sous-espace contient 0 et est stable par combinaison linéaire.\n\n- $F$ : droite qui passe par l'origine. Si $y_1 = 3x_1$ et $y_2 = 3x_2$, alors $\\lambda y_1 + \\mu y_2 = 3(\\lambda x_1 + \\mu x_2)$ : **oui**.\n- $G$ : $(0, 0)$ ne vérifie pas $0 = 3 \\times 0 + 1$. Il ne contient pas le vecteur nul : **non**.\n- $H$ : plan d'équation $x - 2y + z = 0$, qui passe par l'origine (hyperplan) : **oui**.\n- $K$ : $(1, 0) \\in K$ mais $-1 \\times (1, 0) = (-1, 0) \\notin K$ : pas stable, **non**."
+  },
+  {
+    "id": "dimension-d-un-plan",
+    "titre": "Dimension d'un plan",
+    "difficulte": 2,
+    "enonce": "On considère le plan $F$ de $\\mathbb{R}^3$ d'équation :\n\n$$x + 2y - z = 0$$",
+    "questions": [
+      {
+        "intitule": "Le vecteur $(2, -1, 0)$ appartient-il à $F$ ?",
+        "type": "choix",
+        "choix": ["Oui", "Non"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Le vecteur $(1, 1, 1)$ appartient-il à $F$ ?",
+        "type": "choix",
+        "choix": ["Oui", "Non"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Quelle valeur de $c$ met le vecteur $(3, 1, c)$ dans $F$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 5
+      },
+      {
+        "intitule": "Les vecteurs $(1, 0, 1)$ et $(0, 1, 2)$ sont dans $F$, sont libres et engendrent $F$. Quelle est la dimension de $F$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2
+      },
+      {
+        "intitule": "Quelle est la dimension d'un hyperplan $a_1 x_1 + \\dots + a_6 x_6 = 0$ de $\\mathbb{R}^6$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 5
+      }
+    ],
+    "indices": [
+      "Un vecteur est dans $F$ si ses coordonnées vérifient l'équation.",
+      "Un hyperplan de $\\mathbb{R}^n$ est de dimension $n - 1$."
+    ],
+    "correction": "- $(2, -1, 0)$ : $2 + 2 \\times (-1) - 0 = 0$, donc **oui**.\n- $(1, 1, 1)$ : $1 + 2 - 1 = 2 \\neq 0$, donc **non**.\n- $(3, 1, c)$ : $3 + 2 - c = 0$, donc $c = 5$.\n- $(1, 0, 1)$ et $(0, 1, 2)$ forment une base de $F$ (2 vecteurs) : $\\dim F = 2$. C'est cohérent avec la règle : un hyperplan de $\\mathbb{R}^3$ est de dimension $3 - 1 = 2$.\n- Un hyperplan de $\\mathbb{R}^6$ est de dimension $6 - 1 = 5$."
+  },
+  {
+    "id": "multicolinearite",
+    "titre": "Repérer la multicolinéarité",
+    "difficulte": 2,
+    "enonce": "Un jeu de données sur des salariés contient les colonnes `brut`, `cotisations` et `net`, avec toujours :\n\n$$\\text{net} = \\text{brut} - \\text{cotisations}$$\n\nOn voit chaque colonne comme un vecteur (une coordonnée par salarié).",
+    "questions": [
+      {
+        "intitule": "La famille de colonnes $(\\text{brut}, \\text{cotisations}, \\text{net})$ est :",
+        "type": "choix",
+        "choix": ["Libre", "Liée"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Donne les coefficients $(a, b, c)$, avec $a = 1$, tels que $a \\cdot \\text{brut} + b \\cdot \\text{cotisations} + c \\cdot \\text{net} = 0$. Format : `(a, b, c)`.",
+        "type": "vecteur",
+        "reponse": [1, -1, -1],
+        "acceptes": ["(1; -1; -1)"],
+        "refuses": ["(1, 1, -1)", "(-1, 1, 1)"]
+      },
+      {
+        "intitule": "Un autre fichier contient `ht`, `taux` et `ttc` avec $\\text{ttc} = \\text{ht} \\times (1 + \\text{taux})$, le taux changeant selon les produits. Est-ce une relation linéaire entre ces trois colonnes ?",
+        "type": "choix",
+        "choix": ["Oui", "Non, c'est un produit de colonnes"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Si le taux vaut toujours 20 %, quel nombre $k$ vérifie $\\text{ttc} = k \\times \\text{ht}$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 1.2,
+        "acceptes": ["1,2", "6/5"],
+        "refuses": ["0.2", "20"]
+      },
+      {
+        "intitule": "Pourquoi faut-il repérer ce genre de colonne avant d'entraîner une régression linéaire ?",
+        "type": "auto",
+        "reponse": "Une colonne qui est une combinaison linéaire des autres n'apporte **aucune information nouvelle** : la famille des colonnes est liée (multicolinéarité). Les coefficients de la régression deviennent alors **instables** (plusieurs réglages donnent la même prédiction) et difficiles à interpréter. On supprime la colonne redondante, ce qui réduit aussi la dimension."
+      }
+    ],
+    "indices": [
+      "Réécris la relation avec tout du même côté : $\\text{brut} - \\text{cotisations} - \\text{net} = 0$.",
+      "Une combinaison linéaire est une **somme** de colonnes multipliées par des **nombres**, jamais un produit de deux colonnes."
+    ],
+    "correction": "- $\\text{net} = \\text{brut} - \\text{cotisations}$ s'écrit $1 \\cdot \\text{brut} - 1 \\cdot \\text{cotisations} - 1 \\cdot \\text{net} = 0$. Les coefficients $(1, -1, -1)$ ne sont pas tous nuls : la famille est **liée**.\n- $\\text{ht} \\times \\text{taux}$ multiplie deux colonnes entre elles : ce n'est **pas** une combinaison linéaire.\n- Si le taux est constant (20 %), $\\text{ttc} = 1{,}2 \\times \\text{ht}$ : les colonnes `ttc` et `ht` sont proportionnelles, donc liées.\n- Intérêt : une colonne redondante provoque de la **multicolinéarité**. Les coefficients de la régression deviennent instables ; on retire la colonne avant l'entraînement."
+  },
+  {
+    "id": "ecrire-dans-une-base-r3",
+    "titre": "Coordonnées dans une autre base de R³",
+    "difficulte": 3,
+    "enonce": "Soit $u = (1, 0, 0)$, $v = (1, 1, 0)$ et $w = (1, 1, 1)$. On admet que $(u, v, w)$ est une base de $\\mathbb{R}^3$.\n\nPour un vecteur $X$, on cherche ses coordonnées $(a, b, c)$ telles que $X = a\\,u + b\\,v + c\\,w$.",
+    "questions": [
+      {
+        "intitule": "Calcule $a\\,u + b\\,v + c\\,w$ en fonction de $a$, $b$, $c$. Quelle est sa 3e coordonnée ?",
+        "type": "choix",
+        "choix": ["$a$", "$c$", "$a + b + c$", "$b + c$"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Coordonnées de $X = (4, 3, 2)$. Format : `(a, b, c)`.",
+        "type": "vecteur",
+        "reponse": [1, 1, 2],
+        "acceptes": ["(1; 1; 2)"],
+        "refuses": ["(4, 3, 2)", "(2, 1, 1)"]
+      },
+      {
+        "intitule": "Coordonnées de $X = (0, 0, 5)$. Format : `(a, b, c)`.",
+        "type": "vecteur",
+        "reponse": [0, -5, 5],
+        "refuses": ["(0, 0, 5)", "(5, -5, 0)"]
+      }
+    ],
+    "indices": [
+      "$a\\,u + b\\,v + c\\,w = (a + b + c,\\ b + c,\\ c)$.",
+      "Résous en partant de la fin : la 3e coordonnée donne $c$, puis la 2e donne $b$, puis la 1re donne $a$."
+    ],
+    "correction": "On calcule :\n\n$$a\\,u + b\\,v + c\\,w = (a + b + c,\\ b + c,\\ c)$$\n\nLe système est « en escalier » : on le résout du bas vers le haut.\n\n**Pour $(4, 3, 2)$** : $c = 2$, puis $b + c = 3$ donne $b = 1$, puis $a + b + c = 4$ donne $a = 1$. Coordonnées : $(1, 1, 2)$. Vérification : $(1, 0, 0) + (1, 1, 0) + 2(1, 1, 1) = (4, 3, 2)$.\n\n**Pour $(0, 0, 5)$** : $c = 5$, puis $b = -5$, puis $a = 0$. Coordonnées : $(0, -5, 5)$. Vérification : $-5(1, 1, 0) + 5(1, 1, 1) = (0, 0, 5)$.\n\nComme la solution est toujours unique, on retrouve que $(u, v, w)$ est bien une base."
+  },
+  {
+    "id": "dimension-des-donnees",
+    "titre": "La vraie dimension des données",
+    "difficulte": 3,
+    "enonce": "Un jeu de données a 4 colonnes numériques $c_1, c_2, c_3, c_4$. On constate que, sur toutes les lignes :\n\n$$c_3 = c_1 + c_2 \\qquad\\text{et}\\qquad c_4 = 2c_1 - c_2$$\n\nOn suppose que $c_1$ et $c_2$ ne sont pas proportionnelles.",
+    "questions": [
+      {
+        "intitule": "Combien de colonnes, au maximum, sont linéairement indépendantes ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2
+      },
+      {
+        "intitule": "Quelle famille de colonnes peut servir de base pour représenter toutes les données ?",
+        "type": "choix",
+        "choix": ["$(c_1, c_2)$", "$(c_3)$ seule", "$(c_1, c_3, c_4)$", "$(c_1, c_2, c_3, c_4)$"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Sur une ligne où $c_1 = 3$ et $c_2 = -1$, que valent $c_3$ et $c_4$ ? Format : `(c3, c4)`.",
+        "type": "vecteur",
+        "reponse": [2, 7],
+        "acceptes": ["(2; 7)"],
+        "refuses": ["(7, 2)", "(4, 5)"]
+      },
+      {
+        "intitule": "Explique en une ou deux phrases pourquoi on préfère garder une base de 2 vecteurs plutôt que les 4 colonnes, et le lien avec la PCA.",
+        "type": "auto",
+        "reponse": "Les colonnes $c_3$ et $c_4$ se calculent à partir de $c_1$ et $c_2$ : elles n'apportent **aucune information nouvelle**. Les données vivent dans un sous-espace de **dimension 2**, donc 2 vecteurs suffisent pour tout représenter, sans perte. On gagne en mémoire, en temps de calcul et on évite la multicolinéarité. La **PCA** fait la même chose sur des données réelles : elle cherche une petite base qui garde l'essentiel de l'information."
+      }
+    ],
+    "indices": [
+      "$c_3$ et $c_4$ sont des combinaisons linéaires de $c_1$ et $c_2$.",
+      "Une famille de 3 colonnes dans un espace de dimension 2 est forcément liée."
+    ],
+    "correction": "- $c_3$ et $c_4$ sont des combinaisons linéaires de $c_1$ et $c_2$ : toutes les colonnes vivent dans l'espace engendré par $(c_1, c_2)$, de **dimension 2** (car $c_1$ et $c_2$ ne sont pas proportionnelles, donc libres). Au maximum **2** colonnes sont linéairement indépendantes.\n- $(c_1, c_2)$ est libre et génératrice : c'est une **base**. $(c_3)$ seule ne suffit pas (dimension 1) ; $(c_1, c_3, c_4)$ et les 4 colonnes sont liées.\n- Avec $c_1 = 3$ et $c_2 = -1$ : $c_3 = 3 + (-1) = 2$ et $c_4 = 2 \\times 3 - (-1) = 7$.\n- Garder 2 colonnes au lieu de 4 : même information, moins de calculs, pas de multicolinéarité. C'est l'idée de la **PCA** (réduction de dimension)."
+  }
+]

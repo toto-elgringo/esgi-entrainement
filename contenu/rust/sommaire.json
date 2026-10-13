@@ -1,0 +1,2879 @@
+{
+  "chapitres": [
+    {
+      "id": "01-decouvrir-rust",
+      "titre": "Découvrir Rust",
+      "description": "Installation, outils, histoire du langage et ses trois priorités.",
+      "source": "cours",
+      "exercices": [
+        {
+          "id": "01-hello-world",
+          "titre": "Hello, world!",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "Change seulement le texte entre guillemets.",
+            "Attention à la virgule, à l'espace et au point d'exclamation : `Hello, world!`."
+          ]
+        },
+        {
+          "id": "02-lire-une-erreur",
+          "titre": "Lire une erreur du compilateur",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Clique sur « Vérifier » et lis le message en entier, jusqu'à la ligne `help:`.",
+            "Le compilateur a trouvé une fonction au nom très proche : il te la propose."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quel programme installe et met à jour les outils Rust ?",
+          "choix": [
+            "`cargo`",
+            "`rustup`",
+            "`rustc`",
+            "`clippy`"
+          ],
+          "reponse": 1,
+          "explication": "`rustup` installe le compilateur, Cargo et les autres outils, et gère plusieurs versions (toolchains)."
+        },
+        {
+          "question": "À quoi sert `rustc` ?",
+          "choix": [
+            "À créer un projet",
+            "À compiler le code",
+            "À formater le code",
+            "À télécharger des bibliothèques"
+          ],
+          "reponse": 1,
+          "explication": "`rustc` est le compilateur. En pratique, on passe par `cargo`, qui l'appelle pour nous."
+        },
+        {
+          "question": "Quel outil donne des conseils pour améliorer le code ?",
+          "choix": [
+            "`rustfmt`",
+            "`rustup`",
+            "`clippy`",
+            "`rust-docs`"
+          ],
+          "reponse": 2,
+          "explication": "`cargo clippy` propose plus de 700 conseils (« lints »). `rustfmt` ne fait que la mise en forme."
+        },
+        {
+          "question": "Tous les combien sort une nouvelle version stable de Rust ?",
+          "choix": [
+            "Tous les jours",
+            "Toutes les 6 semaines",
+            "Tous les ans",
+            "Tous les 3 ans"
+          ],
+          "reponse": 1,
+          "explication": "Une stable sort toutes les 6 semaines. Ce qui change tous les 3 ans environ, c'est l'édition."
+        },
+        {
+          "question": "Qu'est-ce qu'une **édition** (2018, 2021, 2024) ?",
+          "choix": [
+            "La version du compilateur",
+            "Un jeu de règles de syntaxe choisi par le projet",
+            "Un canal comme nightly",
+            "Une bibliothèque officielle"
+          ],
+          "reponse": 1,
+          "explication": "L'édition est choisie dans `Cargo.toml`. Des crates d'éditions différentes fonctionnent ensemble."
+        },
+        {
+          "question": "Comment Rust libère-t-il la mémoire ?",
+          "choix": [
+            "Avec un ramasse-miettes",
+            "Avec `free()` écrit à la main",
+            "Grâce à l'ownership, vérifié à la compilation",
+            "Il ne la libère jamais"
+          ],
+          "reponse": 2,
+          "explication": "Chaque valeur a un propriétaire ; quand il disparaît, la mémoire est libérée. Le compilateur vérifie les règles."
+        },
+        {
+          "question": "Quel est l'ordre des priorités de Rust ?",
+          "choix": [
+            "Performance, Safety, Productivity",
+            "Productivity, Performance, Safety",
+            "Safety, Performance, Productivity",
+            "Safety, Productivity, Performance"
+          ],
+          "reponse": 2,
+          "explication": "La sûreté passe avant tout, puis la performance, puis le confort du développeur."
+        },
+        {
+          "question": "Que se passe-t-il en Rust si on lit après la fin d'un tableau (`v[10]` sur 3 éléments) ?",
+          "choix": [
+            "On lit une valeur au hasard",
+            "Le programme s'arrête proprement (panique)",
+            "La valeur vaut 0",
+            "Le compilateur l'ajoute au tableau"
+          ],
+          "reponse": 1,
+          "explication": "Rust vérifie les bornes : au lieu de lire la mémoire voisine comme en C, le programme panique avec un message clair."
+        },
+        {
+          "question": "Qu'utilise Rust à la place de `null` ?",
+          "choix": [
+            "`0`",
+            "`None` du type `Option`",
+            "`undefined`",
+            "Rien, `null` existe aussi"
+          ],
+          "reponse": 1,
+          "explication": "Une valeur qui peut manquer a le type `Option<T>` : `Some(valeur)` ou `None`. Le compilateur oblige à traiter les deux cas."
+        },
+        {
+          "question": "Comment appelle-t-on un paquet Rust publié sur crates.io ?",
+          "choix": [
+            "Un module",
+            "Un package npm",
+            "Une crate",
+            "Un trait"
+          ],
+          "reponse": 2,
+          "explication": "Une crate est l'unité de compilation de Rust : un programme ou une bibliothèque."
+        },
+        {
+          "question": "En quelle année est sortie Rust 1.0 ?",
+          "choix": [
+            "2006",
+            "2010",
+            "2015",
+            "2021"
+          ],
+          "reponse": 2,
+          "explication": "Rust 1.0 est sorti le 15 mai 2015, avec la promesse de ne plus casser le code existant."
+        },
+        {
+          "question": "Quel est le principal défaut de Rust cité dans le cours ?",
+          "choix": [
+            "Il est lent",
+            "Il n'a pas de bibliothèques",
+            "Il est difficile à apprendre",
+            "Il ne marche pas sous Windows"
+          ],
+          "reponse": 2,
+          "explication": "La courbe d'apprentissage (surtout l'ownership) est la première cause d'abandon. La compilation longue est le deuxième défaut."
+        }
+      ]
+    },
+    {
+      "id": "02-premiers-pas",
+      "titre": "Premiers pas",
+      "description": "Cargo, fonctions, expressions, types numériques, conversions, débordement, match et mutabilité.",
+      "source": "cours",
+      "exercices": [
+        {
+          "id": "01-bonjour",
+          "titre": "Bonjour, Rust !",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "Il faut deux appels à `println!`, un par ligne.",
+            "`println!(\"J'ai {age} ans.\")` remplace `{age}` par la valeur de la variable `age`."
+          ]
+        },
+        {
+          "id": "02-mutabilite",
+          "titre": "Somme de 1 à n",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Clique sur « Vérifier » et lis l'erreur : quel est son code (E0...) ?",
+            "La ligne `help:` du compilateur te donne la correction exacte."
+          ]
+        },
+        {
+          "id": "03-point-virgule",
+          "titre": "Le point-virgule de trop",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Le compilateur dit « expected `i32`, found `()` » : la fonction ne renvoie rien.",
+            "La dernière ligne d'une fonction ne doit pas finir par `;` si on veut renvoyer sa valeur."
+          ]
+        },
+        {
+          "id": "04-tarif",
+          "titre": "Le tarif du cinéma",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Utilise une chaîne `if ... else if ... else`.",
+            "Le `if` est une expression : chaque branche se termine par une valeur sans `;`, par exemple `5`.",
+            "Attention à l'ordre des conditions : teste `age >= 65` avant le cas général."
+          ]
+        },
+        {
+          "id": "05-boucles",
+          "titre": "Trois boucles",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`somme_des_pairs` : une boucle `for i in 1..=n` et un `if i % 2 == 0`.",
+            "`puissance` : commence avec `let mut resultat = 1;` et multiplie `exposant` fois.",
+            "`plus_petit_diviseur` : `let mut d = 2;` puis `while n % d != 0 { d += 1; }`."
+          ]
+        },
+        {
+          "id": "06-conversions",
+          "titre": "Conversions de nombres",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`additionner` : convertis `petit` en `u32` avec `u32::from(petit)` avant d'additionner.",
+            "`vers_u8` : `u8::try_from(n)` renvoie un `Result`. La méthode `.ok()` le transforme en `Option`.",
+            "`garder_octet_bas` : c'est exactement ce que fait `as u8`."
+          ]
+        },
+        {
+          "id": "07-debordement",
+          "titre": "Gérer le débordement",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lance « Vérifier » une première fois : regarde le message « attempt to add with overflow ».",
+            "Les méthodes à utiliser : `checked_add`, `saturating_add` et `wrapping_add`."
+          ]
+        },
+        {
+          "id": "08-mention",
+          "titre": "La mention au bac",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Un intervalle dans un `match` s'écrit `10..=11 => ...`.",
+            "N'oublie pas le joker `_` pour les notes au-dessus de 20 : sans lui, le `match` n'est pas exhaustif."
+          ]
+        },
+        {
+          "id": "09-fizzbuzz",
+          "titre": "FizzBuzz (trouve le bug)",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Que renvoie le code pour 15 ? Quel bras du `match` est testé en premier ?",
+            "Les bras d'un `match` sont testés dans l'ordre : le cas le plus précis doit venir en premier."
+          ]
+        },
+        {
+          "id": "10-fibonacci-recursif",
+          "titre": "Fibonacci récursif",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Une fonction récursive s'appelle elle-même : `fibonacci(n - 1) + fibonacci(n - 2)`.",
+            "Il faut d'abord traiter les cas de base : `0` et `1`, sinon la fonction s'appelle à l'infini.",
+            "Avec un `match` : `0 => 0, 1 => 1, _ => fibonacci(n - 1) + fibonacci(n - 2)`."
+          ]
+        },
+        {
+          "id": "11-fibonacci-iteratif",
+          "titre": "Fibonacci rapide",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Garde deux variables modifiables : `a` (le nombre actuel) et `b` (le suivant).",
+            "À chaque tour : le nouveau `a` est l'ancien `b`, le nouveau `b` est l'ancien `a + b`. Une variable `tmp` aide.",
+            "Fais `n` tours de boucle avec `for _ in 0..n`, puis renvoie `a`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle commande vérifie les erreurs le plus rapidement, sans produire de programme ?",
+          "choix": [
+            "`cargo build`",
+            "`cargo run`",
+            "`cargo check`",
+            "`cargo test`"
+          ],
+          "reponse": 2,
+          "explication": "`cargo check` analyse le code sans générer le programme final, c'est l'étape la plus rapide quand on corrige des erreurs."
+        },
+        {
+          "question": "Pourquoi `println!` a-t-il un point d'exclamation ?",
+          "choix": [
+            "C'est une fonction importante",
+            "C'est une macro",
+            "Il affiche en rouge",
+            "Il peut paniquer"
+          ],
+          "reponse": 1,
+          "explication": "Le `!` indique une macro : du code qui écrit du code à la compilation. Elle accepte un nombre variable d'arguments et vérifie le texte de format."
+        },
+        {
+          "question": "Que vaut le bloc `{ let x = 3; x + 1; }` ?",
+          "choix": [
+            "4",
+            "3",
+            "`()`",
+            "Il ne compile pas"
+          ],
+          "reponse": 2,
+          "explication": "La dernière ligne finit par `;` : c'est une instruction, donc le bloc vaut `()`, le « rien » de Rust."
+        },
+        {
+          "question": "Quel est le type entier utilisé par défaut quand on écrit `let x = 5;` ?",
+          "choix": [
+            "`u32`",
+            "`i32`",
+            "`i64`",
+            "`usize`"
+          ],
+          "reponse": 1,
+          "explication": "Sans autre information, Rust choisit `i32` pour un entier et `f64` pour un nombre à virgule."
+        },
+        {
+          "question": "Quel type faut-il pour l'indice `i` dans `v[i]` ?",
+          "choix": [
+            "`i32`",
+            "`u64`",
+            "`usize`",
+            "N'importe quel entier"
+          ],
+          "reponse": 2,
+          "explication": "Les indices et les longueurs utilisent `usize`, dont la taille dépend de la machine (64 bits sur une machine 64 bits)."
+        },
+        {
+          "question": "Que donne `300u32 as u8` ?",
+          "choix": [
+            "255",
+            "Une panique",
+            "44",
+            "Une erreur de compilation"
+          ],
+          "reponse": 2,
+          "explication": "`as` coupe les bits en trop sans prévenir : 300 - 256 = 44. Pour une conversion qui peut échouer proprement, utiliser `u8::try_from`."
+        },
+        {
+          "question": "En mode **debug**, que se passe-t-il si `250u8 + 10` est calculé à l'exécution ?",
+          "choix": [
+            "Le résultat vaut 4",
+            "Le résultat vaut 255",
+            "Le programme panique",
+            "Le résultat vaut 260"
+          ],
+          "reponse": 2,
+          "explication": "En debug, un débordement provoque une panique (`attempt to add with overflow`). En release, le calcul repart de zéro et donne 4."
+        },
+        {
+          "question": "Que renvoie `200u8.checked_add(100)` ?",
+          "choix": [
+            "`Some(44)`",
+            "`None`",
+            "`255`",
+            "Une panique"
+          ],
+          "reponse": 1,
+          "explication": "`checked_add` renvoie `None` si le résultat ne tient pas dans le type, sinon `Some(résultat)`."
+        },
+        {
+          "question": "Que signifie « `match` est exhaustif » ?",
+          "choix": [
+            "Il est lent",
+            "Il doit couvrir tous les cas possibles",
+            "Il teste tous les bras en même temps",
+            "Il ne marche qu'avec des nombres"
+          ],
+          "reponse": 1,
+          "explication": "Si un cas n'est pas couvert, le code ne compile pas (erreur E0004). Le joker `_` couvre « tout le reste »."
+        },
+        {
+          "question": "Dans FizzBuzz, pourquoi le test « multiple de 15 » doit-il être le premier bras ?",
+          "choix": [
+            "Pour aller plus vite",
+            "Parce que les bras sont testés dans l'ordre",
+            "Parce que 15 est le plus grand",
+            "Ce n'est pas obligatoire"
+          ],
+          "reponse": 1,
+          "explication": "Le premier bras qui correspond gagne. Si « multiple de 3 » est avant, 15 affichera seulement Fizz."
+        },
+        {
+          "question": "Quelle erreur obtient-on en modifiant une variable déclarée sans `mut` ?",
+          "choix": [
+            "E0382",
+            "E0384",
+            "E0499",
+            "E0004"
+          ],
+          "reponse": 1,
+          "explication": "E0384 : cannot assign twice to immutable variable. Le `help:` propose d'ajouter `mut`."
+        },
+        {
+          "question": "Que produit `for i in 0..3` ?",
+          "choix": [
+            "0, 1, 2, 3",
+            "1, 2, 3",
+            "0, 1, 2",
+            "1, 2"
+          ],
+          "reponse": 2,
+          "explication": "`..` exclut la fin. Pour l'inclure, on écrit `0..=3`."
+        }
+      ]
+    },
+    {
+      "id": "03-strings-et-memoire",
+      "titre": "Strings et mémoire",
+      "description": "&str et String, UTF-8, octets et caractères, couper un texte, la pile et le tas, Box, mesurer.",
+      "source": "cours",
+      "exercices": [
+        {
+          "id": "01-compter-juste",
+          "titre": "Compter juste",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`.len()` compte les octets.",
+            "`.chars()` parcourt les caractères et `.count()` les compte : `s.chars().count()`."
+          ]
+        },
+        {
+          "id": "02-saluer",
+          "titre": "Saluer tout le monde",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Lis l'erreur : « expected `String`, found `&str` ». La fonction exige une `String` possédée.",
+            "Change seulement le type du paramètre `nom` : un emprunt de texte s'écrit `&str`."
+          ]
+        },
+        {
+          "id": "03-construire-une-string",
+          "titre": "Construire une String",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence par `let mut resultat = String::new();` et termine la fonction par `resultat`.",
+            "`push` ajoute un `char` (guillemets simples : `'['`), `push_str` ajoute un `&str` (guillemets doubles).",
+            "Pour `repeter`, ajoute le tiret seulement entre deux mots : avant chaque mot, sauf le premier (`if i > 0`)."
+          ]
+        },
+        {
+          "id": "04-premier-mot",
+          "titre": "Le premier mot",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Parcours le texte avec `for (position, caractere) in s.char_indices()` : tu obtiens la position en octets de chaque caractère.",
+            "Dès que `caractere == ' '`, renvoie le morceau `&s[..position]` avec `return`.",
+            "S'il n'y a aucun espace, tout le texte est le premier mot : après la boucle, renvoie `s`."
+          ]
+        },
+        {
+          "id": "05-positions-des-caracteres",
+          "titre": "Où commence chaque caractère ?",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Crée une liste vide : `let mut resultat = Vec::new();` et renvoie-la à la fin.",
+            "`for (position, _) in s.char_indices()` donne la position en octets de chaque caractère (`_` ignore le caractère).",
+            "Pour `nb_caracteres_speciaux`, parcours `s.chars()` et compte les caractères dont `c.len_utf8() > 1`."
+          ]
+        },
+        {
+          "id": "06-inverser",
+          "titre": "Inverser sans casser les émojis",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Inverser les octets casserait les caractères de plusieurs octets : travaille caractère par caractère avec `s.chars()`.",
+            "Pour chaque caractère, ajoute-le au **début** du résultat : `resultat.insert(0, caractere);`.",
+            "Autre solution plus courte : `s.chars().rev().collect()` (on verra les itérateurs plus tard)."
+          ]
+        },
+        {
+          "id": "07-tronquer-sans-paniquer",
+          "titre": "Tronquer sans paniquer",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Premier cas : si `octets >= s.len()`, renvoie `s` en entier.",
+            "`s.is_char_boundary(fin)` dit si on peut couper à la position `fin` sans tomber au milieu d'un caractère.",
+            "Crée `let mut fin = octets;` puis recule : `while !s.is_char_boundary(fin) { fin -= 1; }` et renvoie `&s[..fin]`."
+          ]
+        },
+        {
+          "id": "08-pile-et-tas",
+          "titre": "La boîte sur le tas",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Lis l'erreur : on ne peut pas additionner un `u64` et une `Box<u64>`. Pour lire la valeur rangée dans la boîte, écris `*sur_le_tas`.",
+            "`std::mem::size_of::<String>()` donne la taille d'un type sur la pile, en octets.",
+            "Pour un `&str`, le type s'écrit tel quel entre les chevrons : `std::mem::size_of::<&str>()`."
+          ]
+        },
+        {
+          "id": "09-gros-tableau",
+          "titre": "Trop gros pour la pile",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lance « Vérifier » : le programme s'arrête avec « has overflowed its stack ».",
+            "`[1u8; 9_000_000]` est un tableau rangé sur la pile, qui ne fait que 1 à 8 Mo selon le système.",
+            "Remplace-le par `vec![1u8; 9_000_000]` : le contenu est alors rangé sur le tas."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quel type choisir pour le paramètre d'une fonction qui **lit seulement** du texte ?",
+          "choix": [
+            "`String`",
+            "`&str`",
+            "`char`",
+            "`Box<str>`"
+          ],
+          "reponse": 1,
+          "explication": "`&str` emprunte le texte : il accepte un texte écrit dans le code, une `String` avec `&` ou un morceau de texte, sans rien copier."
+        },
+        {
+          "question": "Quel est le type de `\"Bonjour\"` écrit directement dans le code ?",
+          "choix": [
+            "`String`",
+            "`&'static str`",
+            "`char`",
+            "`Vec<u8>`"
+          ],
+          "reponse": 1,
+          "explication": "Les octets sont rangés dans le programme lui-même et existent pendant toute l'exécution : c'est un `&'static str`."
+        },
+        {
+          "question": "Que vaut `\"Hello, 🦀\".len()` ?",
+          "choix": [
+            "8",
+            "11",
+            "9",
+            "12"
+          ],
+          "reponse": 1,
+          "explication": "`len()` compte les **octets** : 7 pour `Hello, ` et 4 pour le crabe, soit 11. Il y a seulement 8 caractères."
+        },
+        {
+          "question": "Combien d'octets prend la lettre `é` en UTF-8 ?",
+          "choix": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "reponse": 1,
+          "explication": "Les lettres accentuées prennent 2 octets. L'ASCII en prend 1, `€` en prend 3 et les émojis 4."
+        },
+        {
+          "question": "Que se passe-t-il avec `&\"Hello, 🦀\"[0..8]` ?",
+          "choix": [
+            "On obtient `\"Hello, \"`",
+            "Le code ne compile pas",
+            "Le programme panique",
+            "On obtient `None`"
+          ],
+          "reponse": 2,
+          "explication": "La position 8 tombe au milieu du crabe (octets 7 à 10) : panique `byte index 8 is not a char boundary`."
+        },
+        {
+          "question": "Que renvoie `\"Hello, 🦀\".get(0..8)` ?",
+          "choix": [
+            "`Some(\"Hello, \")`",
+            "`None`",
+            "Une panique",
+            "`\"Hello, 🦀\"`"
+          ],
+          "reponse": 1,
+          "explication": "`get` est la version sûre : elle renvoie `None` au lieu de paniquer quand la coupe est impossible."
+        },
+        {
+          "question": "Combien d'octets prend un `char` ?",
+          "choix": [
+            "Toujours 1",
+            "De 1 à 4 selon le caractère",
+            "Toujours 4",
+            "Toujours 2"
+          ],
+          "reponse": 2,
+          "explication": "Un `char` prend toujours 4 octets. C'est dans une `String`, encodée en UTF-8, qu'un caractère prend de 1 à 4 octets."
+        },
+        {
+          "question": "Quelle est la différence entre `push` et `push_str` sur une `String` ?",
+          "choix": [
+            "Aucune",
+            "`push` ajoute un `char`, `push_str` ajoute un `&str`",
+            "`push` ajoute au début, `push_str` à la fin",
+            "`push_str` crée une nouvelle `String`"
+          ],
+          "reponse": 1,
+          "explication": "`s.push('a')` ajoute un seul caractère, `s.push_str(\"abc\")` ajoute un texte entier. Les deux ajoutent à la fin."
+        },
+        {
+          "question": "Quelle est la taille d'une `String` **sur la pile** (machine 64 bits) ?",
+          "choix": [
+            "8 octets",
+            "16 octets",
+            "24 octets",
+            "La longueur du texte"
+          ],
+          "reponse": 2,
+          "explication": "Adresse + longueur + capacité = 3 × 8 = 24 octets. Le texte lui-même est sur le tas. Un `&str` fait 16 octets (adresse + longueur)."
+        },
+        {
+          "question": "Où est rangée la valeur `42` dans `let b = Box::new(42);` ?",
+          "choix": [
+            "Sur la pile",
+            "Sur le tas",
+            "Dans le fichier du programme",
+            "Nulle part, elle est calculée à chaque fois"
+          ],
+          "reponse": 1,
+          "explication": "La boîte (une adresse de 8 octets) est sur la pile, la valeur pointée est sur le tas. Elle est libérée quand `b` disparaît."
+        },
+        {
+          "question": "Que se passe-t-il avec `let t = [0u8; 9_000_000];` dans `main` sous Windows ?",
+          "choix": [
+            "Rien de spécial",
+            "Une panique qu'on peut rattraper",
+            "Un débordement de pile qui tue le programme",
+            "Une erreur de compilation"
+          ],
+          "reponse": 2,
+          "explication": "La pile du thread principal fait 1 Mo sous Windows : 9 Mo ne rentrent pas. Le programme est tué net (stack overflow). Solution : `vec![0u8; 9_000_000]`."
+        },
+        {
+          "question": "Pourquoi un micro-benchmark en `--release` peut-il donner un temps presque nul ?",
+          "choix": [
+            "Le processeur est très rapide",
+            "Le compilateur a pu calculer le résultat à l'avance et supprimer la boucle",
+            "Le mode release ne lance pas le programme",
+            "hyperfine se trompe toujours"
+          ],
+          "reponse": 1,
+          "explication": "L'optimiseur supprime le travail dont le résultat est connu ou inutile. `std::hint::black_box` l'en empêche."
+        }
+      ]
+    },
+    {
+      "id": "04-ownership",
+      "titre": "Ownership",
+      "description": "Portée, drop et RAII, masquage, move, Copy et Clone, emprunts & et &mut.",
+      "source": "cours",
+      "exercices": [
+        {
+          "id": "01-portee",
+          "titre": "La remise hors de portée",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Lis l'erreur : « cannot find value `remise` in this scope ». Une variable créée dans un bloc `{ }` disparaît à la fin de ce bloc.",
+            "Le `if` est une expression : il peut directement donner sa valeur à `remise`.",
+            "`let remise = if quantite >= 10 { 10 } else { 0 };`"
+          ]
+        },
+        {
+          "id": "02-masquage",
+          "titre": "Masquer pour convertir",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Le type d'une variable ne change jamais : on ne peut pas ranger un nombre dans une variable qui contient un `&str`.",
+            "Mais on peut créer une **nouvelle** variable avec le même nom grâce à `let`.",
+            "`let saisie: u32 = saisie.parse().unwrap();`"
+          ]
+        },
+        {
+          "id": "03-ordre-des-drop",
+          "titre": "L'ordre des drop",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Clique sur « Exécuter » pour voir l'ordre actuel. À la fin d'un bloc, les variables sont détruites dans l'ordre **inverse** de leur création.",
+            "Pour que B soit détruit avant la création de C, crée B dans un bloc : `{ let _b = Bruyant::new(\"B\"); }`.",
+            "Pour C : `let c = Bruyant::new(\"C\");` puis `drop(c);` le détruit immédiatement (`let _ = Bruyant::new(\"C\");` marche aussi)."
+          ]
+        },
+        {
+          "id": "04-coco-coca-emprunt",
+          "titre": "Coco → Coca (emprunt)",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Erreur E0382 : `s` a été **déplacé** (move) dans la fonction, puis `main` essaie encore de l'utiliser.",
+            "La fonction doit seulement **emprunter** la `String` pour la modifier : paramètre `s: &mut String`.",
+            "Dans `main` : la variable doit être `let mut s`, et l'appel s'écrit `changer_derniere_lettre(&mut s);`."
+          ]
+        },
+        {
+          "id": "05-coco-coca-transfert",
+          "titre": "Coco → Coca (transfert)",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "La fonction prend la `String` (elle en devient propriétaire) : elle doit la **rendre** à la fin.",
+            "Ajoute `-> String` à la signature et termine la fonction par `s` (sans point-virgule).",
+            "Dans `main` : `let s = changer_derniere_lettre(s);` récupère la propriété de la `String` modifiée."
+          ]
+        },
+        {
+          "id": "06-copy-ou-clone",
+          "titre": "Copy ou Clone ?",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Lis les erreurs E0382 : `s1` et `p1` sont déplacés par `let s2 = s1;` et `let p2 = p1;`.",
+            "Pour la `String` : `let s2 = s1.clone();` fait une vraie copie, `s1` reste utilisable.",
+            "Pour `Point` : `#[derive(Debug, Clone, Copy)]` (le trait `Copy` exige aussi `Clone`)."
+          ]
+        },
+        {
+          "id": "07-deux-ecrivains",
+          "titre": "Un seul écrivain à la fois",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Erreur E0499 : deux emprunts mutables (`&mut s`) sont vivants en même temps.",
+            "Un emprunt s'arrête à sa **dernière utilisation**. Termine d'utiliser `r1` avant de créer `r2`.",
+            "Déplace la ligne `r1.push_str(\", World\");` juste après la création de `r1`."
+          ]
+        },
+        {
+          "id": "08-emprunter-une-tranche",
+          "titre": "Emprunter une tranche",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Erreur E0382 : `somme(nombres)` **déplace** le `Vec` dans `somme`, il n'existe plus pour `nombres.len()`.",
+            "Les deux fonctions ont seulement besoin de **lire** les nombres : elles doivent prendre un emprunt.",
+            "Change les deux signatures en `nombres: &[i32]`, et dans `main` appelle `moyenne(&notes)`."
+          ]
+        },
+        {
+          "id": "09-lecteur-et-ecrivain",
+          "titre": "Lire pendant qu'on écrit",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Erreur E0502 : `premier` emprunte `v` en lecture, et `v.push(...)` veut l'emprunter en écriture **pendant** que `premier` est encore utilisé.",
+            "Un `i32` est `Copy` : au lieu d'emprunter la case, copie sa valeur avec `let premier = v[0];`.",
+            "Pour `ajouter_les_doubles`, ne parcours pas `v` pendant que tu le modifies : note la longueur `let n = v.len();`, puis `for i in 0..n { let x = v[i]; v.push(x * 2); }`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que devient une variable à la fin du bloc `{ }` où elle a été créée ?",
+          "choix": [
+            "Elle reste en mémoire jusqu'à la fin du programme",
+            "Elle est détruite (drop) et sa mémoire est rendue",
+            "Le ramasse-miettes la libérera plus tard",
+            "Il faut appeler `free` soi-même"
+          ],
+          "reponse": 1,
+          "explication": "À la fin de sa portée, la valeur est détruite automatiquement : c'est le RAII. Rust n'a pas de ramasse-miettes."
+        },
+        {
+          "question": "Avec `let _a = A; let _b = B; let _c = C;` dans `main`, dans quel ordre sont-ils détruits ?",
+          "choix": [
+            "A, B, C",
+            "C, B, A",
+            "B, A, C",
+            "Dans un ordre aléatoire"
+          ],
+          "reponse": 1,
+          "explication": "Ordre inverse de création : une variable peut dépendre d'une variable créée avant elle, donc on détruit d'abord la plus récente."
+        },
+        {
+          "question": "Que fait `let _ = Bruyant::new(\"X\");` ?",
+          "choix": [
+            "Garde la valeur jusqu'à la fin du bloc",
+            "Détruit la valeur immédiatement",
+            "Ne compile pas",
+            "Crée une variable nommée `_`"
+          ],
+          "reponse": 1,
+          "explication": "`_` n'est pas un nom : c'est un motif qui jette la valeur, détruite tout de suite. `let _x = ...` la garderait jusqu'à la fin du bloc."
+        },
+        {
+          "question": "Que se passe-t-il avec `let x = \"5\"; let x: u32 = x.parse().unwrap();` ?",
+          "choix": [
+            "Erreur : on ne peut pas changer le type de x",
+            "Erreur E0384 : il manque `mut`",
+            "Ça compile : le deuxième `let` crée une nouvelle variable qui masque l'ancienne",
+            "x vaut \"5\" à la fin"
+          ],
+          "reponse": 2,
+          "explication": "C'est le masquage (shadowing) : un nouveau binding avec le même nom, qui peut avoir un autre type."
+        },
+        {
+          "question": "Combien de propriétaires une valeur peut-elle avoir en même temps ?",
+          "choix": [
+            "Un seul",
+            "Deux",
+            "Autant qu'on veut",
+            "Zéro"
+          ],
+          "reponse": 0,
+          "explication": "Règle n°1 : un seul propriétaire. C'est ce qui empêche de libérer deux fois la même mémoire."
+        },
+        {
+          "question": "Après `let s1 = String::from(\"a\"); let s2 = s1;`, que peut-on faire avec `s1` ?",
+          "choix": [
+            "L'utiliser normalement",
+            "Plus rien : la valeur a été déplacée dans s2",
+            "La lire mais pas la modifier",
+            "La modifier mais pas la lire"
+          ],
+          "reponse": 1,
+          "explication": "Une `String` n'est pas `Copy` : `let s2 = s1;` la déplace (move). Utiliser `s1` ensuite donne l'erreur E0382."
+        },
+        {
+          "question": "Après `let a = 5; let b = a;`, peut-on encore utiliser `a` ?",
+          "choix": [
+            "Oui, car les entiers sont `Copy`",
+            "Non, `a` a été déplacé",
+            "Seulement avec `a.clone()`",
+            "Seulement si `a` est `mut`"
+          ],
+          "reponse": 0,
+          "explication": "Les types simples (entiers, flottants, bool, char) sont `Copy` : la valeur est copiée et l'original reste utilisable."
+        },
+        {
+          "question": "Lequel de ces types ne peut **pas** être `Copy` ?",
+          "choix": [
+            "`i32`",
+            "`bool`",
+            "`(i32, char)`",
+            "`String`"
+          ],
+          "reponse": 3,
+          "explication": "Un type `Copy` ne doit rien avoir à libérer. Une `String` possède de la mémoire sur le tas : elle ne peut pas être `Copy`."
+        },
+        {
+          "question": "Combien de références `&mut` vers une même valeur peuvent être vivantes en même temps ?",
+          "choix": [
+            "Aucune",
+            "Une seule",
+            "Deux",
+            "Autant qu'on veut"
+          ],
+          "reponse": 1,
+          "explication": "Un seul écrivain à la fois. Deux `&mut` vivants en même temps donnent l'erreur E0499."
+        },
+        {
+          "question": "Que signifie l'erreur E0502 ?",
+          "choix": [
+            "Une valeur a été déplacée puis utilisée",
+            "On veut écrire dans une valeur pendant que quelqu'un la lit",
+            "Il manque `mut`",
+            "Un `match` n'est pas exhaustif"
+          ],
+          "reponse": 1,
+          "explication": "E0502 : cannot borrow as mutable because it is also borrowed as immutable. Un emprunt `&mut` arrive pendant qu'un `&` est encore utilisé."
+        },
+        {
+          "question": "Jusqu'à quand dure un emprunt `let r = &v;` ?",
+          "choix": [
+            "Jusqu'à la fin du bloc",
+            "Jusqu'à la fin du programme",
+            "Jusqu'à la dernière utilisation de `r`",
+            "Jusqu'au prochain `;`"
+          ],
+          "reponse": 2,
+          "explication": "Depuis 2018 (non-lexical lifetimes), un emprunt s'arrête à sa dernière utilisation réelle."
+        },
+        {
+          "question": "Quel est le meilleur type de paramètre pour une fonction qui **lit** une liste d'entiers ?",
+          "choix": [
+            "`Vec<i32>`",
+            "`&Vec<i32>`",
+            "`&[i32]`",
+            "`&mut Vec<i32>`"
+          ],
+          "reponse": 2,
+          "explication": "`&[i32]` (une tranche) emprunte en lecture et accepte un `Vec`, un tableau ou un morceau de liste. `Vec<i32>` déplacerait la liste."
+        }
+      ]
+    },
+    {
+      "id": "05-structs",
+      "titre": "Structures (struct)",
+      "description": "Regrouper des données : struct, struct tuple, impl, méthodes &self / &mut self / self, new et derive.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-premiere-struct",
+          "titre": "Ma première struct",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Les champs se déclarent `nom: Type,` entre les accolades de `struct Livre { }`.",
+            "Pour obtenir un `String` à partir d'un `&str` : `titre.to_string()`.",
+            "`creer_livre` renvoie `Livre { titre: titre.to_string(), pages }`."
+          ]
+        },
+        {
+          "id": "02-modifier-une-struct",
+          "titre": "Modifier une struct",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Clique sur « Vérifier » : il y a deux erreurs. Lis la ligne `help:` de chacune.",
+            "Pour modifier un champ, la variable doit être déclarée avec `let mut`.",
+            "Une fonction qui modifie la struct reçue doit prendre `&mut Compteur`, pas `&Compteur`."
+          ]
+        },
+        {
+          "id": "03-methodes-rectangle",
+          "titre": "Les méthodes du rectangle",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Dans une méthode, on lit les champs avec `self.largeur` et `self.hauteur`.",
+            "`peut_contenir` : compare `self.largeur` avec `autre.largeur`, pareil pour la hauteur, et relie les deux avec `&&`.",
+            "`carre` n'a pas de paramètre `self` : elle renvoie `Self { largeur: cote, hauteur: cote }`."
+          ]
+        },
+        {
+          "id": "04-compte-bancaire",
+          "titre": "Le compte bancaire",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`new` renvoie `Self { titulaire: titulaire.to_string(), solde: 0 }`.",
+            "`deposer` et `retirer` modifient le compte : elles prennent `&mut self` et changent `self.solde`.",
+            "Dans `retirer` : `if montant > self.solde { return false; }`, puis retire le montant et renvoie `true`."
+          ]
+        },
+        {
+          "id": "05-derive",
+          "titre": "Le derive qui manque",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Le compilateur dit « doesn't implement `Debug` » : la ligne `help:` propose la solution.",
+            "La syntaxe : `#[derive(Trait1, Trait2, Trait3)]` juste au-dessus de `struct Point`.",
+            "Il faut `Debug` (pour `{:?}`), `Clone` (pour `.clone()`) et `PartialEq` (pour `==`)."
+          ]
+        },
+        {
+          "id": "06-struct-tuple",
+          "titre": "Celsius ou Fahrenheit ?",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "On lit la valeur d'une struct tuple avec `.0` : `c.0`.",
+            "`vers_fahrenheit` renvoie `Fahrenheit(c.0 * 9.0 / 5.0 + 32.0)`.",
+            "Écris toujours `9.0` et pas `9` : Rust ne mélange pas les entiers et les nombres à virgule."
+          ]
+        },
+        {
+          "id": "07-afficher-une-struct",
+          "titre": "Afficher une struct",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "`#[derive(Debug)]` au-dessus de la struct permet `{:?}` et `{:#?}`.",
+            "`format!(\"{} a eu {}/20\", self.nom, self.note)` fabrique le texte, comme `println!` mais sans l'afficher.",
+            "Dans `main` : `println!(\"{:?}\", alice);` puis `println!(\"{:#?}\", bob);` puis les deux `presenter()`."
+          ]
+        },
+        {
+          "id": "08-commande-et-ticket",
+          "titre": "Commande et ticket (self)",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Pour pouvoir modifier `self` dans `ajouter`, écris le paramètre `mut self`.",
+            "`ajouter` : `self.plats += 1; self.total += prix; self` (on renvoie `self` à la fin, sans `;`).",
+            "`payer` : `Ticket { numero, montant: self.total }`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Comment lire le champ `age` d'une variable `eleve` de type `Eleve` ?",
+          "choix": [
+            "`eleve::age`",
+            "`eleve.age`",
+            "`eleve[age]`",
+            "`eleve->age`"
+          ],
+          "reponse": 1,
+          "explication": "On accède à un champ avec un point : `eleve.age`. Le `::` sert pour les fonctions associées comme `Eleve::new`."
+        },
+        {
+          "question": "Comment rendre modifiable **un seul** champ d'une struct ?",
+          "choix": [
+            "Écrire `mut age: u32` dans la struct",
+            "C'est impossible : c'est toute la variable qui est `mut` ou non",
+            "Écrire `let mut eleve.age`",
+            "Ajouter `#[derive(Mut)]`"
+          ],
+          "reponse": 1,
+          "explication": "La mutabilité concerne la variable entière : `let mut eleve = ...` rend tous les champs modifiables."
+        },
+        {
+          "question": "Quel premier paramètre choisir pour une méthode qui **lit** la struct sans la modifier ?",
+          "choix": [
+            "`self`",
+            "`&self`",
+            "`&mut self`",
+            "Aucun"
+          ],
+          "reponse": 1,
+          "explication": "`&self` emprunte la valeur en lecture : elle reste utilisable après l'appel."
+        },
+        {
+          "question": "On appelle `panier.vider()` où `vider` prend `&mut self`, avec `let panier = Panier::new();`. Que se passe-t-il ?",
+          "choix": [
+            "Ça marche",
+            "Erreur : `panier` doit être déclaré avec `let mut`",
+            "Le panier est détruit",
+            "Erreur : il faut écrire `Panier::vider()`"
+          ],
+          "reponse": 1,
+          "explication": "Une méthode `&mut self` modifie la valeur : la variable doit être déclarée `mut`."
+        },
+        {
+          "question": "Après `let ticket = commande.payer();` où `payer` prend `self`, peut-on encore utiliser `commande` ?",
+          "choix": [
+            "Oui, toujours",
+            "Non : la méthode a pris possession de la commande (move)",
+            "Oui, mais seulement en lecture",
+            "Seulement avec `&commande`"
+          ],
+          "reponse": 1,
+          "explication": "`self` par valeur déplace la commande dans la méthode. L'utiliser ensuite donne l'erreur E0382 (borrow of moved value)."
+        },
+        {
+          "question": "Comment appelle-t-on la fonction associée `fn new(nom: &str) -> Self` du type `Eleve` ?",
+          "choix": [
+            "`Eleve.new(\"Alice\")`",
+            "`new Eleve(\"Alice\")`",
+            "`Eleve::new(\"Alice\")`",
+            "`eleve.new(\"Alice\")`"
+          ],
+          "reponse": 2,
+          "explication": "Une fonction sans `self` s'appelle sur le type avec `::`."
+        },
+        {
+          "question": "Dans un bloc `impl Rectangle`, que désigne `Self` (avec une majuscule) ?",
+          "choix": [
+            "La valeur sur laquelle on appelle la méthode",
+            "Le type `Rectangle` lui-même",
+            "Le fichier courant",
+            "Une copie de la valeur"
+          ],
+          "reponse": 1,
+          "explication": "`Self` est le type du bloc `impl`. `self` (minuscule) est la valeur."
+        },
+        {
+          "question": "`new` est-il un mot-clé de Rust ?",
+          "choix": [
+            "Oui, c'est le constructeur obligatoire",
+            "Non, c'est seulement une convention de nom",
+            "Oui, mais seulement dans un `impl`",
+            "Oui, il réserve la mémoire sur le tas"
+          ],
+          "reponse": 1,
+          "explication": "Rust n'a pas de constructeur spécial. `new` est une fonction associée comme les autres, nommée ainsi par habitude."
+        },
+        {
+          "question": "Quel `derive` faut-il pour afficher une struct avec `{:?}` ?",
+          "choix": [
+            "`Display`",
+            "`Debug`",
+            "`Clone`",
+            "`Print`"
+          ],
+          "reponse": 1,
+          "explication": "`#[derive(Debug)]` permet `{:?}` et `{:#?}`. `Display` (pour `{}`) ne peut pas être dérivé, il faut l'écrire."
+        },
+        {
+          "question": "Que faut-il pour écrire `assert_eq!(p1, p2)` avec deux `Point` ?",
+          "choix": [
+            "`#[derive(PartialEq)]` seulement",
+            "`#[derive(Debug, PartialEq)]`",
+            "`#[derive(Clone)]`",
+            "Rien, ça marche toujours"
+          ],
+          "reponse": 1,
+          "explication": "`assert_eq!` compare les valeurs (`PartialEq`) et les affiche si le test échoue (`Debug`)."
+        },
+        {
+          "question": "Avec `struct Couleur(u8, u8, u8);` et `let c = Couleur(255, 128, 0);`, comment lire `128` ?",
+          "choix": [
+            "`c.1`",
+            "`c[1]`",
+            "`c.vert`",
+            "`c.2`"
+          ],
+          "reponse": 0,
+          "explication": "Les champs d'une struct tuple sont numérotés à partir de 0 : `c.0`, `c.1`, `c.2`."
+        },
+        {
+          "question": "Que signifie `Eleve { nom, age }` quand des variables `nom` et `age` existent déjà ?",
+          "choix": [
+            "Une erreur de syntaxe",
+            "Un raccourci pour `Eleve { nom: nom, age: age }`",
+            "Une copie d'un autre élève",
+            "Un tuple"
+          ],
+          "reponse": 1,
+          "explication": "Quand la variable a le même nom que le champ, on peut l'écrire une seule fois."
+        }
+      ]
+    },
+    {
+      "id": "06-enums-et-option",
+      "titre": "Enums et Option",
+      "description": "Enum simple et avec données, match sur enum, Option<T> à la place de null, if let, unwrap_or et map.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-feu-tricolore",
+          "titre": "Le feu tricolore",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Un `match feu { Feu::Vert => Feu::Orange, ... }` avec un bras par couleur.",
+            "Pour `peut_passer`, un `match` qui renvoie `true` ou `false` marche très bien.",
+            "Comme `Feu` a `PartialEq`, tu peux aussi écrire `*feu == Feu::Vert` (l'étoile lit la valeur derrière la référence)."
+          ]
+        },
+        {
+          "id": "02-match-exhaustif",
+          "titre": "Le cas oublié",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Lis l'erreur E0004 : elle dit exactement quelle variante n'est pas couverte.",
+            "En tournant à droite depuis l'Ouest, on se retrouve face au Nord. L'Ouest vaut 270 degrés."
+          ]
+        },
+        {
+          "id": "03-formes",
+          "titre": "Les formes géométriques",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Dans le `match`, `Forme::Cercle { rayon } => ...` sort le rayon dans une variable `rayon`.",
+            "Pour la variante tuple : `Forme::Triangle(base, hauteur) => base * hauteur / 2.0`.",
+            "Aire d'un cercle : `PI * rayon * rayon` (la constante `PI` est déjà importée)."
+          ]
+        },
+        {
+          "id": "04-fizzbuzz-enum",
+          "titre": "FizzBuzz avec une enum",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Reprends le `match` avec gardes du chapitre 2, mais renvoie `FizzBuzz::Fizz` au lieu de `\"Fizz\".to_string()`.",
+            "N'oublie pas l'ordre : le cas « multiple de 15 » en premier.",
+            "Dans `en_texte`, la variante avec donnée s'écrit `FizzBuzz::Nombre(n) => n.to_string()`."
+          ]
+        },
+        {
+          "id": "05-option-division",
+          "titre": "Peut-être un résultat",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`diviser` : `if b == 0 { None } else { Some(a / b) }`.",
+            "`diviser_ou_zero` peut réutiliser `diviser` avec `.unwrap_or(0)`.",
+            "`mot.chars().next()` renvoie déjà un `Option<char>` : `None` si le mot est vide."
+          ]
+        },
+        {
+          "id": "06-if-let",
+          "titre": "L'annuaire (if let)",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Une boucle `for nom in [\"Alice\", \"Zoé\", \"Bob\"]` parcourt les trois noms dans l'ordre.",
+            "`if let Some(age) = chercher_age(nom) { ... } else { ... }`",
+            "`chercher_age(\"Alice\").map(|age| age + 1)` donne `Some(31)`."
+          ]
+        },
+        {
+          "id": "07-map-et-unwrap-or",
+          "titre": "Transformer un Option",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`doubler` : `x.map(|v| v * 2)`.",
+            "`longueur` : d'abord `map` pour obtenir la longueur, puis `unwrap_or(0)` pour le cas `None`.",
+            "`appliquer_reduction` : `prix.map(|p| p.saturating_sub(reduction))`. `saturating_sub` s'arrête à 0 au lieu de déborder."
+          ]
+        },
+        {
+          "id": "08-robot-messages",
+          "titre": "Le robot et ses messages",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Commence `traiter` par `if !self.actif { return; }` pour ignorer les messages d'un robot arrêté.",
+            "`Message::Avancer { x, y } => { self.position.0 += x; self.position.1 += y; }`",
+            "`Message::Ecrire(texte) => self.texte.push_str(&texte)` ajoute le texte à la fin."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la différence entre une struct et une enum ?",
+          "choix": [
+            "Aucune",
+            "Une struct contient tous ses champs (ET), une enum vaut une seule variante parmi plusieurs (OU)",
+            "Une enum ne peut pas avoir de méthodes",
+            "Une struct ne peut pas contenir de texte"
+          ],
+          "reponse": 1,
+          "explication": "Une struct regroupe plusieurs valeurs en même temps ; une enum représente un choix entre plusieurs possibilités."
+        },
+        {
+          "question": "Comment créer la valeur `Rouge` de l'enum `Feu` ?",
+          "choix": [
+            "`Feu.Rouge`",
+            "`Feu::Rouge`",
+            "`Rouge::Feu`",
+            "`new Feu(Rouge)`"
+          ],
+          "reponse": 1,
+          "explication": "On écrit le nom de l'enum, `::`, puis le nom de la variante."
+        },
+        {
+          "question": "Un `match` sur une enum oublie une variante (sans `_`). Que se passe-t-il ?",
+          "choix": [
+            "Le programme panique si ce cas arrive",
+            "Le code ne compile pas (erreur E0004)",
+            "La variante oubliée est ignorée",
+            "Seulement un avertissement"
+          ],
+          "reponse": 1,
+          "explication": "Le `match` est exhaustif : le compilateur refuse le code et indique la variante non couverte."
+        },
+        {
+          "question": "Pourquoi éviter un `_ =>` sur ses propres enums ?",
+          "choix": [
+            "Il rend le programme plus lent",
+            "Si on ajoute une variante plus tard, le compilateur ne signalera plus ce `match`",
+            "Il est interdit sur les enums",
+            "Il ne marche qu'avec les nombres"
+          ],
+          "reponse": 1,
+          "explication": "Sans `_`, ajouter une variante fait échouer la compilation de chaque `match` à compléter : une aide précieuse."
+        },
+        {
+          "question": "Dans `Forme::Rectangle(l, h) => l * h`, que sont `l` et `h` ?",
+          "choix": [
+            "Des constantes globales",
+            "Les données sorties de la variante (déstructuration)",
+            "Des types",
+            "Des fonctions"
+          ],
+          "reponse": 1,
+          "explication": "Le motif extrait les données transportées par la variante dans de nouvelles variables."
+        },
+        {
+          "question": "Que remplace `Option<T>` en Rust ?",
+          "choix": [
+            "Les exceptions",
+            "La valeur `null` des autres langages",
+            "Les boucles",
+            "Les tableaux"
+          ],
+          "reponse": 1,
+          "explication": "Rust n'a pas de `null` : une valeur qui peut manquer a le type `Option<T>`, et le compilateur oblige à traiter `None`."
+        },
+        {
+          "question": "Quel est le type de `Some(5)` ?",
+          "choix": [
+            "`i32`",
+            "`Option<i32>`",
+            "`Result<i32>`",
+            "`Some<i32>`"
+          ],
+          "reponse": 1,
+          "explication": "`Some` est une variante de l'enum `Option`. Ici `T` vaut `i32`."
+        },
+        {
+          "question": "Avec `let x: Option<i32> = Some(2);`, peut-on écrire `let y = x + 1;` ?",
+          "choix": [
+            "Oui, y vaut 3",
+            "Non : il faut d'abord sortir la valeur de l'`Option` en traitant le cas `None`",
+            "Oui, y vaut `Some(3)`",
+            "Oui, mais seulement en mode release"
+          ],
+          "reponse": 1,
+          "explication": "Un `Option<i32>` n'est pas un `i32`. On utilise `match`, `if let`, `map` ou `unwrap_or`."
+        },
+        {
+          "question": "Que vaut `x.unwrap_or(7)` quand `x` vaut `None` ?",
+          "choix": [
+            "`None`",
+            "`0`",
+            "`7`",
+            "Une panique"
+          ],
+          "reponse": 2,
+          "explication": "`unwrap_or` donne la valeur si elle existe, sinon la valeur par défaut fournie."
+        },
+        {
+          "question": "Que vaut `Some(3).map(|x| x * 2)` ?",
+          "choix": [
+            "`6`",
+            "`Some(6)`",
+            "`Some(3)`",
+            "`None`"
+          ],
+          "reponse": 1,
+          "explication": "`map` transforme la valeur à l'intérieur et garde l'enveloppe `Some`. Sur `None`, il renvoie `None`."
+        },
+        {
+          "question": "Quand utiliser `if let` plutôt que `match` ?",
+          "choix": [
+            "Jamais",
+            "Quand un seul cas nous intéresse",
+            "Seulement avec des nombres",
+            "Quand il y a plus de trois cas"
+          ],
+          "reponse": 1,
+          "explication": "`if let Some(v) = x { ... }` est un `match` raccourci quand on ne traite qu'un motif (avec un `else` éventuel)."
+        },
+        {
+          "question": "Que fait `unwrap()` sur un `None` ?",
+          "choix": [
+            "Renvoie 0",
+            "Renvoie `None`",
+            "Fait paniquer le programme",
+            "Ne compile pas"
+          ],
+          "reponse": 2,
+          "explication": "`unwrap()` suppose qu'il y a une valeur : s'il n'y en a pas, le programme s'arrête avec une panique."
+        }
+      ]
+    },
+    {
+      "id": "07-erreurs-et-result",
+      "titre": "Erreurs et Result",
+      "description": "panic! ou Result, parse, l'opérateur ?, erreurs personnalisées, ok_or, map_err, unwrap et expect.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-parse-nombre",
+          "titre": "Lire un nombre",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`texte.trim()` enlève les espaces au début et à la fin.",
+            "`texte.trim().parse::<i32>()` renvoie déjà un `Result<i32, ParseIntError>`.",
+            "`lire_ou_zero` : `lire_nombre(texte).unwrap_or(0)`."
+          ]
+        },
+        {
+          "id": "02-panic-vers-result",
+          "titre": "Ne plus paniquer",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Change le type de retour en `-> Result<i32, String>`.",
+            "Remplace `panic!(...)` par `return Err(\"division par zéro\".to_string());`.",
+            "La dernière ligne devient `Ok(a / b)`, et `main` affiche les résultats avec `{:?}`."
+          ]
+        },
+        {
+          "id": "03-match-result",
+          "titre": "Traiter chaque saisie",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "`match texte.parse::<i32>() { Ok(nombre) => ..., Err(erreur) => ... }`",
+            "`{texte:?}` affiche le texte entre guillemets, `{erreur}` affiche le message de l'erreur."
+          ]
+        },
+        {
+          "id": "04-point-interrogation",
+          "titre": "L'opérateur ?",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`let x = a.parse::<i32>()?;` : si `a` n'est pas un nombre, la fonction s'arrête et renvoie l'erreur.",
+            "N'oublie pas d'emballer le résultat final : `Ok(x + y)`.",
+            "`moyenne_de_trois` peut réutiliser `?` trois fois, puis renvoyer `Ok((x + y + z) / 3)`."
+          ]
+        },
+        {
+          "id": "05-unwrap-ou-expect",
+          "titre": "unwrap, expect ou valeur par défaut ?",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`lire_port` : remplace `unwrap()` par `unwrap_or(8080)`.",
+            "`lire_port_obligatoire` : remplace `unwrap()` par `expect(\"...\")` avec le message exact de l'énoncé."
+          ]
+        },
+        {
+          "id": "06-ok-or",
+          "titre": "Passer une commande (ok_or)",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`let prix = prix_unitaire(produit).ok_or(ErreurCommande::ProduitInconnu)?;` donne le prix, ou renvoie l'erreur.",
+            "Ensuite : `if stock(produit) < quantite { return Err(ErreurCommande::StockInsuffisant); }`.",
+            "Termine par `Ok(prix * quantite)`."
+          ]
+        },
+        {
+          "id": "07-erreur-perso",
+          "titre": "Sa propre enum d'erreur",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Commence par `let texte = texte.trim();` puis `if texte.is_empty() { return Err(ErreurAge::Vide); }`.",
+            "`texte.parse::<u32>().map_err(|_| ErreurAge::PasUnNombre)?` remplace l'erreur de `parse` par la tienne.",
+            "Pour finir : `if age > 150 { return Err(ErreurAge::TropGrand(age)); }` puis `Ok(age)`."
+          ]
+        },
+        {
+          "id": "08-calculatrice",
+          "titre": "La calculatrice",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`let mut morceaux = expression.split_whitespace();` puis `morceaux.next().ok_or(ErreurCalcul::FormatInvalide)?` trois fois.",
+            "Après les trois morceaux, `if morceaux.next().is_some() { return Err(ErreurCalcul::FormatInvalide); }`.",
+            "Une petite fonction `lire_nombre(texte) -> Result<i64, ErreurCalcul>` avec `map_err(|_| ErreurCalcul::NombreInvalide(texte.to_string()))` évite de répéter le code.",
+            "Pour l'opérateur, un `match operateur { \"+\" => Ok(a + b), ... }` ; le bras `\"/\" if b == 0 => ...` doit venir avant `\"/\"`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle erreur faut-il traiter avec `Result` plutôt qu'avec `panic!` ?",
+          "choix": [
+            "Un bug dans le programme",
+            "Une saisie invalide de l'utilisateur",
+            "Un indice hors du tableau",
+            "Un état impossible"
+          ],
+          "reponse": 1,
+          "explication": "Une saisie invalide est prévisible : le programme doit pouvoir réagir. `panic!` est réservé aux bugs et aux situations impossibles."
+        },
+        {
+          "question": "Que contient une valeur de type `Result<T, E>` ?",
+          "choix": [
+            "Soit `Ok(T)`, soit `Err(E)`",
+            "Soit `Some(T)`, soit `None`",
+            "T et E en même temps",
+            "Seulement une erreur"
+          ],
+          "reponse": 0,
+          "explication": "`Result` est une enum à deux variantes : le succès avec sa valeur, ou l'échec avec son erreur."
+        },
+        {
+          "question": "Quelle est la différence entre `Option` et `Result` ?",
+          "choix": [
+            "Aucune",
+            "`Result` dit pourquoi ça a échoué, `Option` dit seulement qu'il n'y a rien",
+            "`Option` est plus rapide",
+            "`Result` ne marche qu'avec des nombres"
+          ],
+          "reponse": 1,
+          "explication": "`Err(E)` transporte une information sur l'échec, `None` ne transporte rien."
+        },
+        {
+          "question": "Que renvoie `\"abc\".parse::<i32>()` ?",
+          "choix": [
+            "`0`",
+            "`None`",
+            "`Err(...)` contenant une `ParseIntError`",
+            "Une panique"
+          ],
+          "reponse": 2,
+          "explication": "`parse` ne panique pas : il renvoie un `Result`. Ici c'est un `Err` car « abc » n'est pas un nombre."
+        },
+        {
+          "question": "À quoi sert `::<i32>` dans `texte.parse::<i32>()` ?",
+          "choix": [
+            "À mettre le texte en majuscules",
+            "À préciser le type voulu (le « turbofish »)",
+            "À ignorer les erreurs",
+            "C'est obligatoire pour toutes les méthodes"
+          ],
+          "reponse": 1,
+          "explication": "`parse` peut produire beaucoup de types différents : `::<i32>` dit lequel on veut."
+        },
+        {
+          "question": "Que fait `?` placé après une valeur `Err(e)` ?",
+          "choix": [
+            "Il fait paniquer le programme",
+            "Il arrête la fonction et renvoie `Err(e)` à l'appelant",
+            "Il remplace l'erreur par 0",
+            "Il ignore l'erreur et continue"
+          ],
+          "reponse": 1,
+          "explication": "`?` propage l'erreur : c'est un raccourci pour `match ... { Err(e) => return Err(e), ... }`."
+        },
+        {
+          "question": "Où peut-on utiliser `?` sur un `Result` ?",
+          "choix": [
+            "Partout",
+            "Dans une fonction qui renvoie elle-même un `Result`",
+            "Seulement dans `main`",
+            "Seulement dans les tests"
+          ],
+          "reponse": 1,
+          "explication": "`?` peut faire un `return Err(...)` : la fonction doit donc renvoyer un `Result` compatible."
+        },
+        {
+          "question": "Que vaut `Some(3).ok_or(\"vide\")` ?",
+          "choix": [
+            "`Ok(3)`",
+            "`Err(\"vide\")`",
+            "`Some(3)`",
+            "`3`"
+          ],
+          "reponse": 0,
+          "explication": "`ok_or` transforme `Some(v)` en `Ok(v)` et `None` en `Err(erreur)`."
+        },
+        {
+          "question": "À quoi sert `map_err` ?",
+          "choix": [
+            "À transformer la valeur dans `Ok`",
+            "À remplacer l'erreur par une autre erreur",
+            "À ignorer l'erreur",
+            "À paniquer avec un message"
+          ],
+          "reponse": 1,
+          "explication": "`map_err` transforme le contenu de `Err` sans toucher à `Ok`. Très utilisé avec `?` pour passer à son propre type d'erreur."
+        },
+        {
+          "question": "Quelle est la différence entre `unwrap()` et `expect(\"message\")` ?",
+          "choix": [
+            "`expect` ne panique jamais",
+            "Les deux paniquent en cas d'erreur, mais `expect` affiche ton message",
+            "`unwrap` est plus sûr",
+            "`expect` renvoie un `Result`"
+          ],
+          "reponse": 1,
+          "explication": "`expect` permet d'expliquer pourquoi on pensait que l'échec était impossible."
+        },
+        {
+          "question": "Dans quel cas un `unwrap()` est-il acceptable ?",
+          "choix": [
+            "Pour lire une saisie de l'utilisateur",
+            "Dans un test ou un prototype, ou quand l'échec est vraiment impossible",
+            "Pour lire un fichier",
+            "Toujours, c'est plus court"
+          ],
+          "reponse": 1,
+          "explication": "Pour tout ce qui peut raisonnablement échouer, on traite l'erreur avec `match`, `?` ou une valeur par défaut."
+        },
+        {
+          "question": "Que vaut `\"12\".parse::<i32>().ok()` ?",
+          "choix": [
+            "`Ok(12)`",
+            "`Some(12)`",
+            "`12`",
+            "`true`"
+          ],
+          "reponse": 1,
+          "explication": "`.ok()` transforme un `Result` en `Option` : `Ok(12)` devient `Some(12)`, une erreur deviendrait `None`."
+        }
+      ]
+    },
+    {
+      "id": "08-collections",
+      "titre": "Collections : Vec, HashMap, HashSet",
+      "description": "Listes qui grandissent, dictionnaires clé → valeur et ensembles sans doublons.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-manipuler-un-vec",
+          "titre": "Manipuler un Vec pas à pas",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "Les méthodes à utiliser, dans l'ordre : `push`, `pop`, `sort`, `len`, `get`.",
+            "`{:?}` affiche une liste ou une `Option` : `println!(\"pop() renvoie : {:?}\", v.pop());`",
+            "`v.get(0)` renvoie `Some(&1)`, qui s'affiche `Some(1)` avec `{:?}`."
+          ]
+        },
+        {
+          "id": "02-lire-sans-paniquer",
+          "titre": "Lire sans paniquer",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`v.get(i)` renvoie `Some(&valeur)` ou `None` au lieu de paniquer.",
+            "`match v.get(i) { Some(x) => *x, None => 0 }` : l'étoile récupère la valeur derrière la référence.",
+            "Pour `premier_et_dernier`, `v.first()` et `v.last()` renvoient aussi des `Option`. Tu peux faire un `match` sur le couple `(v.first(), v.last())`."
+          ]
+        },
+        {
+          "id": "03-modifier-en-place",
+          "titre": "Modifier une liste sur place",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Pour modifier la liste, la fonction doit la recevoir en `&mut` : `v: &mut [i32]` ou `v: &mut Vec<i32>`.",
+            "Dans `for x in v`, si `v` est une référence modifiable, `x` est un `&mut i32` : on écrit `*x *= 2;`.",
+            "Pour `ajouter_fin`, il faut pouvoir grandir : le paramètre doit être `&mut Vec<i32>` (une tranche ne peut pas changer de taille)."
+          ]
+        },
+        {
+          "id": "04-trier",
+          "titre": "Trier et dédoublonner",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`dedup()` ne retire que les doublons qui se suivent : il faut trier avant.",
+            "Pour `trois_plus_grands`, `v.to_vec()` crée une copie modifiable de la tranche.",
+            "Tri croissant avec `sort()`, puis `reverse()` pour l'ordre décroissant, puis `truncate(3)` pour ne garder que 3 éléments."
+          ]
+        },
+        {
+          "id": "05-compter-les-mots",
+          "titre": "Compter les mots",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`texte.split_whitespace()` découpe le texte en mots (séparés par des espaces).",
+            "`mot.to_lowercase()` renvoie le mot en minuscules, sous forme de `String`.",
+            "Le cœur de la boucle : `*compteur.entry(mot.to_lowercase()).or_insert(0) += 1;`",
+            "Pour `nombre_de` : `match compteur.get(mot) { Some(n) => *n, None => 0 }`."
+          ]
+        },
+        {
+          "id": "06-annuaire",
+          "titre": "Un annuaire avec HashMap",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`insert` renvoie l'ancienne valeur : `None` si le nom était nouveau. `.is_none()` transforme ça en `bool`.",
+            "Les clés sont des `String` : `nom.to_string()` transforme le `&str` reçu en `String`.",
+            "`get` renvoie une `Option<&String>`. `.cloned()` la transforme en `Option<String>` (une copie).",
+            "`remove` renvoie `Some(valeur)` si la clé existait : `.is_some()`."
+          ]
+        },
+        {
+          "id": "07-doublons",
+          "titre": "Chasse aux doublons avec HashSet",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`insert` renvoie `false` si l'élément était déjà dans l'ensemble : c'est un doublon !",
+            "Pour `valeurs_uniques` : mets tout dans un `HashSet`, puis renvoie sa taille avec `len()`.",
+            "Pour `elements_communs` : range `b` dans un `HashSet`, puis garde les éléments de `a` pour lesquels `contains` répond `true`. Un deuxième `HashSet` évite de garder deux fois la même valeur. Trie le résultat à la fin."
+          ]
+        },
+        {
+          "id": "08-regrouper",
+          "titre": "Regrouper par initiale",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`mot.chars().next()` renvoie la première lettre : `Some(lettre)`, ou `None` si le mot est vide.",
+            "`if let Some(initiale) = mot.chars().next() { ... }` n'exécute le bloc que si le mot a une première lettre.",
+            "`groupes.entry(initiale).or_default()` donne le `Vec<String>` de cette lettre (créé vide si besoin). Il ne reste qu'à faire `.push(mot.to_string())`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que crée `vec![0; 3]` ?",
+          "choix": [
+            "`[0, 3]`",
+            "`[0, 0, 0]`",
+            "`[0, 1, 2]`",
+            "`[3, 3, 3]`"
+          ],
+          "reponse": 1,
+          "explication": "`vec![valeur; n]` crée une liste de `n` éléments tous égaux à `valeur`."
+        },
+        {
+          "question": "Que renvoie `pop()` sur un `Vec<i32>` vide ?",
+          "choix": [
+            "`0`",
+            "Une panique",
+            "`None`",
+            "`-1`"
+          ],
+          "reponse": 2,
+          "explication": "`pop()` renvoie une `Option` : `Some(dernier)` s'il y a un élément, `None` si la liste est vide. Pas de panique."
+        },
+        {
+          "question": "Avec `let v = vec![1, 2, 3];`, que fait `v[5]` ?",
+          "choix": [
+            "Renvoie `None`",
+            "Renvoie `0`",
+            "Le programme panique",
+            "Ne compile pas"
+          ],
+          "reponse": 2,
+          "explication": "L'indexation avec `[]` vérifie les bornes à l'exécution et panique (index out of bounds). `v.get(5)` renverrait `None`."
+        },
+        {
+          "question": "Quel type de paramètre accepte à la fois un `Vec<i32>` et un tableau `[i32; 4]` en lecture ?",
+          "choix": [
+            "`Vec<i32>`",
+            "`&Vec<i32>`",
+            "`&[i32]`",
+            "`[i32]`"
+          ],
+          "reponse": 2,
+          "explication": "`&[i32]` est une tranche (slice) : une vue empruntée sur des éléments qui se suivent en mémoire, quelle que soit leur origine."
+        },
+        {
+          "question": "Dans `for x in &mut v { ... }`, comment doubler l'élément ?",
+          "choix": [
+            "`x *= 2;`",
+            "`*x *= 2;`",
+            "`&x *= 2;`",
+            "`v[x] *= 2;`"
+          ],
+          "reponse": 1,
+          "explication": "`x` est une référence modifiable (`&mut i32`). L'étoile `*x` désigne la valeur derrière la référence."
+        },
+        {
+          "question": "Que donne `[3, 1, 3, 2]` après `sort()` puis `dedup()` ?",
+          "choix": [
+            "`[1, 2, 3, 3]`",
+            "`[1, 2, 3]`",
+            "`[3, 1, 2]`",
+            "`[1, 3, 2]`"
+          ],
+          "reponse": 1,
+          "explication": "`sort()` donne `[1, 2, 3, 3]`, puis `dedup()` retire les doublons qui se suivent : `[1, 2, 3]`. Sans le tri, `dedup` ne voit pas les doublons éloignés."
+        },
+        {
+          "question": "Que renvoie `insert` sur une `HashMap` quand la clé existait déjà ?",
+          "choix": [
+            "`false`",
+            "Une panique",
+            "`Some(ancienne_valeur)`",
+            "`None`"
+          ],
+          "reponse": 2,
+          "explication": "La nouvelle valeur remplace l'ancienne, et `insert` renvoie `Some(ancienne_valeur)`. Il renvoie `None` si la clé était nouvelle."
+        },
+        {
+          "question": "Quel est le type de `ages.get(\"Alice\")` pour une `HashMap<String, u32>` ?",
+          "choix": [
+            "`u32`",
+            "`&u32`",
+            "`Option<&u32>`",
+            "`Result<u32, String>`"
+          ],
+          "reponse": 2,
+          "explication": "La clé peut ne pas exister, donc `get` renvoie une `Option`. La valeur reste dans la map : on reçoit une référence."
+        },
+        {
+          "question": "Que fait `*compteur.entry(mot).or_insert(0) += 1;` ?",
+          "choix": [
+            "Remet le compteur à 0",
+            "Ajoute 1 au compteur du mot, en le créant à 0 s'il n'existe pas",
+            "Ne compile pas",
+            "Ajoute le mot seulement s'il est nouveau"
+          ],
+          "reponse": 1,
+          "explication": "`entry(...).or_insert(0)` renvoie la case du mot (créée à 0 si besoin) sous forme de `&mut u32`. L'étoile permet d'y ajouter 1."
+        },
+        {
+          "question": "Tu parcours une `HashMap` deux fois de suite dans deux exécutions différentes du programme. L'ordre est...",
+          "choix": [
+            "Toujours l'ordre d'insertion",
+            "Toujours l'ordre alphabétique",
+            "Pas garanti",
+            "Toujours l'ordre inverse d'insertion"
+          ],
+          "reponse": 2,
+          "explication": "L'ordre d'une `HashMap` dépend d'un calcul (le hachage) qui change entre les exécutions. Pour un ordre fixe, trier les clés ou utiliser un `BTreeMap`."
+        },
+        {
+          "question": "Que renvoie `ensemble.insert(5)` si `5` est déjà dans le `HashSet` ?",
+          "choix": [
+            "`true`",
+            "`false`",
+            "`Some(5)`",
+            "Une panique"
+          ],
+          "reponse": 1,
+          "explication": "Un `HashSet` ne garde jamais de doublon. `insert` renvoie `false` quand l'élément était déjà présent."
+        },
+        {
+          "question": "Après `for x in v { ... }` (sans `&`), peut-on encore utiliser `v` ?",
+          "choix": [
+            "Oui, toujours",
+            "Non : la boucle a consommé (déplacé) la liste",
+            "Oui, mais seulement en lecture",
+            "Seulement si `v` est `mut`"
+          ],
+          "reponse": 1,
+          "explication": "Sans `&`, la boucle prend la propriété de la liste et la détruit à la fin. Pour la garder, on parcourt `&v`."
+        }
+      ]
+    },
+    {
+      "id": "09-iterateurs-et-closures",
+      "titre": "Itérateurs et closures",
+      "description": "Fonctions anonymes, map, filter, collect, sum, fold... : remplacer les boucles par des chaînes d'itérateurs.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-premieres-closures",
+          "titre": "Premières closures",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Une closure qui teste si un nombre est positif : `|x| x > 0`.",
+            "Pour tester la parité : `|x| x % 2 == 0`.",
+            "La closure peut utiliser `seuil` directement : `|x| x > seuil`. C'est la capture."
+          ]
+        },
+        {
+          "id": "02-captures",
+          "titre": "Captures : mut et move",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lis la première erreur : la closure modifie `compteur`, qui n'est pas déclaré `mut`.",
+            "Deuxième erreur (E0373) : la closure emprunte `nom`, mais `nom` disparaît à la fin de la fonction. Le `help:` propose un mot-clé.",
+            "Écris `move` devant la closure : `move || format!(...)`."
+          ]
+        },
+        {
+          "id": "03-map-filter-collect",
+          "titre": "map, filter, collect",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Le modèle : `v.iter().map(|x| ...).collect()`. Le type de retour de la fonction indique à `collect` de fabriquer un `Vec`.",
+            "Pour `seulement_pairs`, `v.iter().copied()` donne des `i32` (au lieu de `&i32`), ce qui simplifie le `filter` : `.filter(|x| x % 2 == 0)`.",
+            "Pour `longueurs`, chaque mot a une méthode `len()`."
+          ]
+        },
+        {
+          "id": "04-sommes-et-statistiques",
+          "titre": "Sommes et statistiques",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`prix.iter().sum()` : le type de retour de la fonction suffit à indiquer le type de la somme.",
+            "`filter(...)` puis `count()` pour compter les mots longs.",
+            "`v.iter().max()` renvoie un `Option<&i32>`. `.copied()` le transforme en `Option<i32>`.",
+            "`fold(1, |acc, x| acc * x)` : on part de 1 et on multiplie par chaque élément.",
+            "Pour la moyenne : si la liste est vide, `None`. Sinon `Some(somme / notes.len() as f64)`, avec `notes.iter().sum::<f64>()`."
+          ]
+        },
+        {
+          "id": "05-iter-mut-et-into-iter",
+          "titre": "iter, iter_mut, into_iter",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`augmenter_tous` : `iter()` donne des `&u32` en lecture seule. Pour modifier, il faut `iter_mut()`, puis `*x += montant`.",
+            "`en_majuscules` : la fonction possède la liste, donc `mots.into_iter()` donne directement les `String`. `m.to_uppercase()` crée la version en majuscules.",
+            "`noms_des_majeurs` : `into_iter()`, puis `filter(|(_, age)| *age >= 18)`, puis `map(|(nom, _)| nom)` pour ne garder que le nom, puis `collect()`."
+          ]
+        },
+        {
+          "id": "06-enumerate-et-zip",
+          "titre": "enumerate et zip",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`v.iter().enumerate()` donne des couples `(indice, &valeur)`. Filtre ceux dont la valeur vaut `cible`, puis garde l'indice avec `map(|(i, _)| i)`.",
+            "Dans `filter(|(_, x)| ...)`, `x` est un `&&i32` : compare avec `**x == cible`.",
+            "`a.iter().zip(b)` donne des couples `(&a[i], &b[i])`. Multiplie-les avec `map`, puis `sum()`.",
+            "`format!(\"{}. {}\", i + 1, mot)` construit une ligne numérotée."
+          ]
+        },
+        {
+          "id": "07-any-all-find",
+          "titre": "any, all, find, position",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`v.iter().any(|x| *x < 0)` : au moins un négatif ?",
+            "`ages.iter().all(|age| *age >= 18)` : tous majeurs ? Sur une liste vide, `all` répond `true`.",
+            "`v.iter().copied().find(|x| x % diviseur == 0)` renvoie directement un `Option<u32>`.",
+            "`mots.iter().position(|mot| mot.len() >= taille)` renvoie l'indice du premier mot assez long."
+          ]
+        },
+        {
+          "id": "08-bulletin",
+          "titre": "Le bulletin de notes",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Moyenne : `notes.iter().sum::<u32>() as f64 / notes.len() as f64`. Un `f64` qui vaut 12,5 s'affiche `12.5` avec `{}`.",
+            "Meilleure : `notes.iter().max()` renvoie une `Option`. `if let Some(meilleure) = ...` ou `.unwrap_or(&0)`.",
+            "Reçus : `filter(|n| **n >= 10).count()`.",
+            "Notes sur 100 : `map(|n| n * 5).collect::<Vec<u32>>()`, puis affichage avec `{:?}`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que vaut `(|x| x * 3)(4)` ?",
+          "choix": [
+            "`7`",
+            "`12`",
+            "`34`",
+            "Ne compile pas"
+          ],
+          "reponse": 1,
+          "explication": "La closure multiplie son paramètre par 3, et on l'appelle immédiatement avec 4 : 12."
+        },
+        {
+          "question": "Qu'est-ce qu'une closure peut faire qu'une fonction `fn` ne peut pas ?",
+          "choix": [
+            "Renvoyer une valeur",
+            "Avoir des paramètres",
+            "Utiliser les variables de l'endroit où elle est écrite",
+            "Être appelée plusieurs fois"
+          ],
+          "reponse": 2,
+          "explication": "Une closure capture son environnement : elle peut lire ou modifier les variables qui l'entourent."
+        },
+        {
+          "question": "Pourquoi écrire `move` devant une closure ?",
+          "choix": [
+            "Pour qu'elle soit plus rapide",
+            "Pour qu'elle prenne possession des variables capturées",
+            "Pour pouvoir la modifier",
+            "Pour la copier"
+          ],
+          "reponse": 1,
+          "explication": "`move` déplace les variables capturées dans la closure. Utile quand elle doit survivre à la fonction qui la crée."
+        },
+        {
+          "question": "Que donne `v.iter()` sur un `Vec<i32>` ?",
+          "choix": [
+            "Des `i32`",
+            "Des `&i32`",
+            "Des `&mut i32`",
+            "Un `Vec<i32>`"
+          ],
+          "reponse": 1,
+          "explication": "`iter()` prête les éléments en lecture : des `&i32`. `iter_mut()` donne des `&mut i32` et `into_iter()` des `i32`."
+        },
+        {
+          "question": "Après `let w: Vec<String> = v.into_iter().collect();`, que devient `v` ?",
+          "choix": [
+            "Il est intact",
+            "Il est vide mais utilisable",
+            "Il a été consommé : on ne peut plus l'utiliser",
+            "Il contient des copies"
+          ],
+          "reponse": 2,
+          "explication": "`into_iter()` prend possession de la liste et donne ses éléments par valeur. `v` a été déplacé."
+        },
+        {
+          "question": "Que fait la ligne `v.iter().map(|x| x * 2);` toute seule ?",
+          "choix": [
+            "Double les éléments de `v`",
+            "Crée un nouveau `Vec`",
+            "Rien : un adaptateur ne calcule rien tant qu'on ne le consomme pas",
+            "Affiche les doubles"
+          ],
+          "reponse": 2,
+          "explication": "Les itérateurs sont paresseux. Il faut un consommateur (`collect`, `sum`, `for`...) pour lancer le calcul. Le compilateur affiche d'ailleurs un avertissement."
+        },
+        {
+          "question": "Que vaut `[1, 2, 3, 4].iter().filter(|x| **x > 2).count()` ?",
+          "choix": [
+            "`2`",
+            "`7`",
+            "`[3, 4]`",
+            "`4`"
+          ],
+          "reponse": 0,
+          "explication": "`filter` garde 3 et 4, puis `count` compte les éléments restants : 2."
+        },
+        {
+          "question": "Que donne `[\"a\", \"b\"].iter().enumerate()` ?",
+          "choix": [
+            "`\"a\", \"b\"`",
+            "`(0, \"a\"), (1, \"b\")`",
+            "`(1, \"a\"), (2, \"b\")`",
+            "`0, 1`"
+          ],
+          "reponse": 1,
+          "explication": "`enumerate` associe à chaque élément son indice, en commençant à 0."
+        },
+        {
+          "question": "Que vaut `[2, 3, 4].iter().fold(0, |acc, x| acc + x)` ?",
+          "choix": [
+            "`0`",
+            "`24`",
+            "`9`",
+            "`4`"
+          ],
+          "reponse": 2,
+          "explication": "On part de 0 puis on ajoute chaque élément : 0 + 2 + 3 + 4 = 9. C'est ce que fait `sum`, écrit à la main."
+        },
+        {
+          "question": "Que renvoie `v.iter().all(|x| *x > 0)` si `v` est vide ?",
+          "choix": [
+            "`true`",
+            "`false`",
+            "`None`",
+            "Une panique"
+          ],
+          "reponse": 0,
+          "explication": "« Tous les éléments vérifient la condition » est vrai quand il n'y a aucun élément. À l'inverse, `any` renvoie `false` sur une liste vide."
+        },
+        {
+          "question": "Quel est le type de `v.iter().max()` pour un `Vec<i32>` ?",
+          "choix": [
+            "`i32`",
+            "`&i32`",
+            "`Option<&i32>`",
+            "`Result<i32, ()>`"
+          ],
+          "reponse": 2,
+          "explication": "La liste peut être vide, donc `max` renvoie une `Option`. Comme `iter()` donne des références, c'est un `Option<&i32>`."
+        },
+        {
+          "question": "Pourquoi `let total = v.iter().sum();` ne compile-t-il pas ?",
+          "choix": [
+            "`sum` n'existe pas",
+            "Rust ne sait pas quel type de résultat produire",
+            "Il faut une boucle",
+            "`v` doit être `mut`"
+          ],
+          "reponse": 1,
+          "explication": "`sum` peut produire plusieurs types. On l'indique : `let total: i32 = ...` ou `v.iter().sum::<i32>()`."
+        }
+      ]
+    },
+    {
+      "id": "10-traits-et-generiques",
+      "titre": "Traits et génériques",
+      "description": "Définir des comportements communs, écrire du code qui marche pour plusieurs types, derive, Display, Box<dyn Trait>.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-derive",
+          "titre": "derive : les traits offerts",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Les erreurs disent quels traits manquent : `Clone` (pour `.clone()`), `Debug` (pour `{:?}`), `PartialEq` (pour `==`).",
+            "Les tests utilisent aussi `Point::default()` : il faut le trait `Default`.",
+            "Une seule ligne au-dessus de la structure : `#[derive(Debug, Clone, PartialEq, Default)]`."
+          ]
+        },
+        {
+          "id": "02-premier-trait",
+          "titre": "Mon premier trait",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "La méthode par défaut utilise les autres méthodes du trait : `format!(\"{} : {} roues\", self.nom(), self.roues())`.",
+            "Pour `Velo`, `nom` renvoie `\"Vélo\".to_string()` et `roues` renvoie `2`.",
+            "Pour remplacer `presenter` pour le vélo, écris une méthode `fn presenter(&self) -> String` dans `impl Vehicule for Velo`."
+          ]
+        },
+        {
+          "id": "03-display",
+          "titre": "Afficher avec Display",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`write!(f, \"{}/{}\", self.numerateur, self.denominateur)` écrit dans le formateur et renvoie le `fmt::Result` attendu.",
+            "Pour la fraction, un `if self.denominateur == 1 { ... } else { ... }` choisit entre les deux affichages.",
+            "Pour la température, `{:.1}` affiche un seul chiffre après la virgule : `write!(f, \"{:.1} °C\", self.celsius)`."
+          ]
+        },
+        {
+          "id": "04-plus-grand-generique",
+          "titre": "Une fonction générique",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Remplace `i32` par un paramètre de type : `fn plus_grand<T>(a: T, b: T) -> T`.",
+            "Le compilateur refuse alors `a > b` : il faut promettre que `T` sait se comparer avec la contrainte `T: PartialOrd`.",
+            "Pour la liste : commence avec le premier élément (`match liste.first()`), puis parcours la liste et garde le plus grand. `Copy` permet de copier les éléments avec `*x`."
+          ]
+        },
+        {
+          "id": "05-impl-trait-et-where",
+          "titre": "impl Trait et where",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Les deux `resumer` : `format!(\"{}, par {}\", self.titre, self.auteur)` et `format!(\"@{} : {}\", self.pseudo, self.texte)`.",
+            "`annoncer` : `element` sait se résumer, il suffit d'appeler `element.resumer()` dans un `format!`.",
+            "`tout_resumer` : `elements.iter().map(|e| e.resumer()).collect::<Vec<String>>().join(\" | \")`.",
+            "`tweet_du_jour` crée et renvoie un `Tweet` : le type de retour `impl Resume` cache simplement le type exact."
+          ]
+        },
+        {
+          "id": "06-formes-dyn",
+          "titre": "Des formes dans un Vec<Box<dyn Forme>>",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Aire d'un rectangle : `largeur * hauteur`. Aire d'un cercle : `PI * rayon * rayon`. Aire d'un carré : `cote * cote`.",
+            "Crée `struct Carre { cote: f64 }` et écris `impl Forme for Carre { ... }` avec ses deux méthodes. Le nom est `\"carré\"`.",
+            "`aire_totale` : `formes.iter().map(|forme| forme.aire()).sum()`.",
+            "`nom_de_la_plus_grande` : `max_by(|a, b| a.aire().total_cmp(&b.aire()))` trouve la plus grande (les `f64` se comparent avec `total_cmp`), puis `.map(|forme| forme.nom())`."
+          ]
+        },
+        {
+          "id": "07-pile-generique",
+          "titre": "Une pile générique",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Toutes les méthodes s'appuient sur le `Vec` interne : `self.elements.push(...)`, `self.elements.pop()`, `self.elements.last()`, `self.elements.len()`, `self.elements.is_empty()`.",
+            "`new` renvoie `Pile { elements: Vec::new() }` (ou `Self { ... }`).",
+            "`afficher` : si la pile est vide, renvoie `\"(vide)\"`. Sinon `self.elements.iter().map(|e| e.to_string()).collect::<Vec<String>>().join(\" | \")`."
+          ]
+        },
+        {
+          "id": "08-bestiaire",
+          "titre": "Le bestiaire",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Écris `impl Animal for Perroquet { ... }` avec les trois méthodes obligatoires. Son cri est le mot qu'il a appris : `self.mot.clone()`.",
+            "Ajoute le perroquet dans la liste : `Box::new(Perroquet { nom: \"Coco\".to_string(), mot: \"Bonjour\".to_string() })`.",
+            "Pas besoin de toucher à la boucle ni à `presenter` : la méthode par défaut marche aussi pour le perroquet."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Qu'est-ce qu'un trait ?",
+          "choix": [
+            "Une variable globale",
+            "Une liste de méthodes qu'un type promet de fournir",
+            "Un type de nombre",
+            "Une macro"
+          ],
+          "reponse": 1,
+          "explication": "Un trait décrit un comportement (des méthodes). Chaque type qui l'implémente avec `impl Trait for Type` doit fournir ces méthodes."
+        },
+        {
+          "question": "Que se passe-t-il si un `impl` oublie une méthode du trait qui n'a pas de version par défaut ?",
+          "choix": [
+            "Elle renvoie `()`",
+            "Le programme panique à l'appel",
+            "Le code ne compile pas",
+            "Elle est ignorée"
+          ],
+          "reponse": 2,
+          "explication": "Le compilateur exige toutes les méthodes sans version par défaut (erreur E0046 : missing trait item)."
+        },
+        {
+          "question": "Un type peut-il remplacer une méthode par défaut de son trait ?",
+          "choix": [
+            "Non, jamais",
+            "Oui, en l'écrivant dans son bloc `impl`",
+            "Seulement avec `unsafe`",
+            "Seulement si le trait est `pub`"
+          ],
+          "reponse": 1,
+          "explication": "Il suffit d'écrire la méthode dans `impl Trait for Type` : sa version remplace celle par défaut pour ce type."
+        },
+        {
+          "question": "Quel trait faut-il pour afficher une valeur avec `{:?}` ?",
+          "choix": [
+            "`Display`",
+            "`Debug`",
+            "`Clone`",
+            "`ToString`"
+          ],
+          "reponse": 1,
+          "explication": "`{:?}` utilise `Debug`, qu'on obtient souvent avec `#[derive(Debug)]`. `{}` utilise `Display`, à écrire à la main."
+        },
+        {
+          "question": "Quel trait faut-il pour comparer deux valeurs avec `==` ?",
+          "choix": [
+            "`PartialOrd`",
+            "`Eq` seulement",
+            "`PartialEq`",
+            "`Hash`"
+          ],
+          "reponse": 2,
+          "explication": "`PartialEq` fournit `==` et `!=`. `PartialOrd` fournit `<`, `>`, `<=`, `>=`."
+        },
+        {
+          "question": "Pourquoi `Display` ne peut-il pas être dérivé avec `#[derive]` ?",
+          "choix": [
+            "Parce qu'il est lent",
+            "Parce que l'affichage pour un humain est un choix : Rust ne peut pas le deviner",
+            "Parce qu'il est réservé aux nombres",
+            "Il peut l'être"
+          ],
+          "reponse": 1,
+          "explication": "Comment afficher une fraction : `1/2`, `0.5`, `un demi` ? C'est à toi de l'écrire avec `impl fmt::Display`."
+        },
+        {
+          "question": "Que veut dire `fn f<T: PartialOrd>(a: T, b: T)` ?",
+          "choix": [
+            "`T` doit être un nombre",
+            "`T` peut être n'importe quel type qui sait se comparer",
+            "`T` est forcément `i32`",
+            "`a` et `b` peuvent être de types différents"
+          ],
+          "reponse": 1,
+          "explication": "`T` est un paramètre de type, et `: PartialOrd` est une contrainte. `a` et `b` ont le même type `T`."
+        },
+        {
+          "question": "À quoi sert `where` dans une signature ?",
+          "choix": [
+            "À écrire les contraintes des types génériques de façon plus lisible",
+            "À indiquer où la fonction est rangée",
+            "À gérer les erreurs",
+            "À créer une boucle"
+          ],
+          "reponse": 0,
+          "explication": "`where T: Display, U: Debug` est équivalent aux contraintes écrites dans les `< >`, mais plus lisible quand il y en a beaucoup."
+        },
+        {
+          "question": "`fn annoncer(a: &impl Animal)` est un raccourci pour...",
+          "choix": [
+            "`fn annoncer(a: &Animal)`",
+            "`fn annoncer<T: Animal>(a: &T)`",
+            "`fn annoncer(a: Box<dyn Animal>)`",
+            "`fn annoncer(a: Vec<Animal>)`"
+          ],
+          "reponse": 1,
+          "explication": "`impl Trait` en paramètre est une écriture courte d'un générique avec contrainte."
+        },
+        {
+          "question": "Comment ranger un `Chien` et un `Chat` (qui implémentent `Animal`) dans le même `Vec` ?",
+          "choix": [
+            "`Vec<Animal>`",
+            "`Vec<impl Animal>`",
+            "`Vec<Box<dyn Animal>>`",
+            "C'est impossible"
+          ],
+          "reponse": 2,
+          "explication": "Un `Vec` contient un seul type. `Box<dyn Animal>` est ce type commun : une boîte vers « quelque chose qui est un Animal »."
+        },
+        {
+          "question": "Avec `Box<dyn Animal>`, quand est choisie la méthode `cri()` à appeler ?",
+          "choix": [
+            "À la compilation",
+            "À l'exécution",
+            "Jamais",
+            "Au moment du `derive`"
+          ],
+          "reponse": 1,
+          "explication": "Avec `dyn`, le programme regarde à l'exécution quel est le vrai type pour appeler la bonne méthode. Avec un générique, c'est décidé à la compilation."
+        },
+        {
+          "question": "Qu'est-ce que la monomorphisation ?",
+          "choix": [
+            "Une erreur de compilation",
+            "Le compilateur crée une version de la fonction générique pour chaque type utilisé",
+            "Transformer un trait en struct",
+            "Supprimer les génériques inutilisés"
+          ],
+          "reponse": 1,
+          "explication": "C'est ce qui rend les génériques gratuits à l'exécution : `plus_grand::<i32>` et `plus_grand::<f64>` deviennent deux fonctions distinctes."
+        }
+      ]
+    },
+    {
+      "id": "11-lifetimes",
+      "titre": "Les durées de vie",
+      "description": "Références pendantes, E0106, annotations 'a, règles d'élision, 'static et struct qui contient une référence.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-texte-statique",
+          "titre": "Un texte pour toute la vie",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Lis la ligne `help:` de l'erreur E0106 : elle propose une durée de vie précise.",
+            "Le type de retour devient `&'static str`, puis un `match` sur `code`."
+          ]
+        },
+        {
+          "id": "02-premier-mot",
+          "titre": "Premier et dernier mot",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`phrase.split_whitespace()` découpe la phrase en mots en ignorant les espaces en trop.",
+            "`.next()` donne le premier élément (un `Option`), `.last()` le dernier.",
+            "`.unwrap_or(\"\")` renvoie `\"\"` quand il n'y a aucun mot."
+          ]
+        },
+        {
+          "id": "03-plus-long",
+          "titre": "Le plus long des deux",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Déclare la durée de vie après le nom de la fonction : `fn plus_long<'a>(...)`.",
+            "Mets `'a` sur les deux paramètres et sur le résultat : `a: &'a str, b: &'a str) -> &'a str`.",
+            "`plus_long_de_trois` peut réutiliser `plus_long` deux fois : `plus_long(plus_long(a, b), c)`."
+          ]
+        },
+        {
+          "id": "04-vivre-assez-longtemps",
+          "titre": "Vivre assez longtemps",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Première erreur (E0597) : `second` est détruite à la fin du bloc `{ }`, mais `resultat` l'emprunte encore après.",
+            "Supprime le bloc intérieur, ou calcule `.len()` à l'intérieur du bloc.",
+            "Deuxième erreur (E0716) : range `texte.to_uppercase()` dans une variable avant d'appeler `split_whitespace()` dessus."
+          ]
+        },
+        {
+          "id": "05-reference-pendante",
+          "titre": "La référence pendante",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`message` et `resultat` sont créées dans la fonction : elles sont détruites à sa fin.",
+            "Aucune annotation `'a` ne peut résoudre ce problème : il faut changer le type de retour.",
+            "Renvoie une `String` (la valeur possédée) au lieu d'un `&str`, sans le `&`."
+          ]
+        },
+        {
+          "id": "06-struct-extrait",
+          "titre": "Une struct qui emprunte",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "La struct s'écrit `struct Extrait<'a> { texte: &'a str }` et le bloc `impl<'a> Extrait<'a> { ... }`.",
+            "`nouveau` reçoit `texte: &'a str` et renvoie `Extrait<'a>` (ou `Self`).",
+            "`premiere_phrase` doit renvoyer `&'a str`, pas `&str` : sinon le résultat serait lié à la vie de l'Extrait.",
+            "`self.texte.split('.').next()` donne le morceau avant le premier point, puis `.trim()` enlève les espaces."
+          ]
+        },
+        {
+          "id": "07-premier-qui-commence-par",
+          "titre": "Lier le résultat au bon paramètre",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Le résultat vient toujours de `mots`, jamais de `prefixe` : seul `mots` doit porter `'a`.",
+            "La signature : `fn premier_qui_commence_par<'a>(mots: &[&'a str], prefixe: &str) -> Option<&'a str>`.",
+            "Avec une boucle : `for mot in mots { if mot.starts_with(prefixe) { return Some(*mot); } }` puis `None` à la fin.",
+            "Avec les itérateurs : `mots.iter().find(|mot| mot.starts_with(prefixe)).copied()`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Qu'est-ce qu'une **référence pendante** ?",
+          "choix": [
+            "Une référence modifiable",
+            "Une référence vers une valeur déjà détruite",
+            "Une référence vers un texte vide",
+            "Une référence `'static`"
+          ],
+          "reponse": 1,
+          "explication": "Elle pointerait vers de la mémoire libérée. Rust refuse ce code à la compilation."
+        },
+        {
+          "question": "Que fait l'annotation `'a` à l'exécution du programme ?",
+          "choix": [
+            "Elle prolonge la vie de la valeur",
+            "Elle copie la valeur",
+            "Rien : elle sert seulement au compilateur",
+            "Elle libère la valeur plus tôt"
+          ],
+          "reponse": 2,
+          "explication": "Les durées de vie sont vérifiées uniquement à la compilation. Elles décrivent des liens entre références sans rien changer au programme."
+        },
+        {
+          "question": "Pourquoi `fn plus_long(a: &str, b: &str) -> &str` ne compile pas ?",
+          "choix": [
+            "`&str` ne peut pas être renvoyé",
+            "Le compilateur ne sait pas si le résultat vient de `a` ou de `b`",
+            "Il manque `mut`",
+            "`len()` n'existe pas sur `&str`"
+          ],
+          "reponse": 1,
+          "explication": "Erreur E0106 : avec deux paramètres références, les règles d'élision ne suffisent pas. Il faut écrire `<'a>`."
+        },
+        {
+          "question": "Dans `fn plus_long<'a>(a: &'a str, b: &'a str) -> &'a str`, combien de temps le résultat est-il valable ?",
+          "choix": [
+            "Pendant tout le programme",
+            "Tant que `a` existe",
+            "Tant que les deux textes existent",
+            "Seulement dans la fonction"
+          ],
+          "reponse": 2,
+          "explication": "`'a` devient la plus courte des deux durées de vie : le résultat est utilisable tant que `a` et `b` existent."
+        },
+        {
+          "question": "Pourquoi `fn premier_mot(phrase: &str) -> &str` compile sans `'a` ?",
+          "choix": [
+            "Grâce aux règles d'élision : un seul paramètre référence",
+            "Parce que le résultat est `'static`",
+            "Parce que `phrase` est copiée",
+            "Ça ne compile pas"
+          ],
+          "reponse": 0,
+          "explication": "Règle 2 : s'il n'y a qu'un paramètre référence, sa durée de vie est donnée au résultat."
+        },
+        {
+          "question": "Que signifie `&'static str` ?",
+          "choix": [
+            "Un texte modifiable",
+            "Un texte valable pendant tout le programme",
+            "Un texte rangé sur le tas",
+            "Un texte vide"
+          ],
+          "reponse": 1,
+          "explication": "Les textes écrits directement dans le code sont rangés dans le programme lui-même : ils existent du début à la fin."
+        },
+        {
+          "question": "Une fonction crée `let s = format!(\"...\");` et renvoie `&s`. Comment corriger ?",
+          "choix": [
+            "Ajouter `'static`",
+            "Ajouter `<'a>` partout",
+            "Renvoyer `s` directement, avec le type `String`",
+            "Mettre `mut`"
+          ],
+          "reponse": 2,
+          "explication": "`s` meurt à la fin de la fonction (E0515). Aucune annotation ne la sauve : on renvoie la valeur possédée."
+        },
+        {
+          "question": "Que veut dire `struct Extrait<'a> { texte: &'a str }` ?",
+          "choix": [
+            "L'Extrait possède le texte",
+            "Un Extrait ne peut pas vivre plus longtemps que le texte qu'il regarde",
+            "Le texte est copié dans l'Extrait",
+            "Le texte doit être `'static`"
+          ],
+          "reponse": 1,
+          "explication": "La struct contient un emprunt : elle doit mourir avant la valeur empruntée."
+        },
+        {
+          "question": "Quelle erreur obtient-on si une valeur est détruite alors qu'une référence vers elle est encore utilisée ?",
+          "choix": [
+            "E0106",
+            "E0384",
+            "E0597",
+            "E0004"
+          ],
+          "reponse": 2,
+          "explication": "E0597 : `x` does not live long enough. Solution : faire vivre la valeur plus longtemps, ou utiliser la référence plus tôt."
+        },
+        {
+          "question": "Que provoque `let mot = texte.to_uppercase().split_whitespace().next();` si on utilise `mot` à la ligne suivante ?",
+          "choix": [
+            "Rien, c'est correct",
+            "E0716 : la `String` temporaire est détruite à la fin de la ligne",
+            "E0384",
+            "Une panique"
+          ],
+          "reponse": 1,
+          "explication": "`to_uppercase()` crée une `String` temporaire. Il faut la ranger dans une variable avant de l'emprunter."
+        },
+        {
+          "question": "Dans `fn trouver<'a>(mots: &[&'a str], prefixe: &str) -> Option<&'a str>`, peut-on détruire `prefixe` avant d'utiliser le résultat ?",
+          "choix": [
+            "Oui, le résultat ne dépend que de `mots`",
+            "Non, jamais",
+            "Seulement si `prefixe` est vide",
+            "Seulement en mode release"
+          ],
+          "reponse": 0,
+          "explication": "`'a` n'est mis que sur `mots` : le compilateur sait que le résultat ne vient pas de `prefixe`."
+        }
+      ]
+    },
+    {
+      "id": "12-modules-et-tests",
+      "titre": "Modules et tests",
+      "description": "Ranger son code avec mod, pub, use et super, puis le vérifier avec #[test], assert! et #[should_panic].",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-rendre-public",
+          "titre": "Rendre public",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "L'erreur E0603 dit « function is private » : le mot à ajouter est `pub`.",
+            "`double` n'est utilisée qu'à l'intérieur du module : elle peut rester privée."
+          ]
+        },
+        {
+          "id": "02-chemins-et-use",
+          "titre": "Chemins et use",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`entrees` est rangé dans `restaurant` : son chemin complet est `restaurant::entrees`.",
+            "Un `use restaurant::{desserts, entrees};` en haut du fichier crée les deux raccourcis d'un coup.",
+            "Le nouveau module s'écrit `pub mod plats { pub fn du_jour() -> &'static str { \"steak\" } }` à l'intérieur de `restaurant`."
+          ]
+        },
+        {
+          "id": "03-super",
+          "titre": "Remonter avec super",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`taux_tva` est à la racine, `tva` est dans `facture` : depuis `facture`, la racine est le parent.",
+            "Écris `super::taux_tva()` au lieu de `taux_tva()`.",
+            "Dans `remise`, le parent est `facture` : `super::prix_ttc(prix_ht)` calcule le prix TTC, puis `appliquer(...)` enlève la remise."
+          ]
+        },
+        {
+          "id": "04-champs-prives",
+          "titre": "Un compte bien protégé",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`ouvrir` construit le compte : `Compte { titulaire: titulaire.to_string(), solde: 0 }`.",
+            "Les accesseurs renvoient simplement le champ : `self.solde`, `&self.titulaire`.",
+            "`retirer` : si `montant > self.solde`, renvoie `false` sans rien toucher ; sinon soustrais et renvoie `true`."
+          ]
+        },
+        {
+          "id": "05-completer-les-tests",
+          "titre": "Réparer ses propres tests",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`diviser` renvoie un `u32` : on ne peut pas le comparer à `3.5`. En division entière, 7 / 2 vaut 3.",
+            "Dans `diviser`, ajoute `if b == 0 { panic!(\"division par zéro\"); }` avant la division.",
+            "Au-dessus de `fn division_par_zero`, sous `#[test]`, ajoute `#[should_panic(expected = \"division par zéro\")]`."
+          ]
+        },
+        {
+          "id": "06-modules-imbriques",
+          "titre": "Station météo",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Les formules : `celsius * 9.0 / 5.0 + 32.0` et `(fahrenheit - 32.0) * 5.0 / 9.0`.",
+            "Dans `alerte`, le module `conversion` est un voisin : `use super::conversion::fahrenheit_vers_celsius;`.",
+            "`niveau` : convertis d'abord en Celsius, puis une chaîne `if ... else if ...`.",
+            "À la racine, `pub use meteo::alerte::niveau;` rend `niveau` utilisable directement."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Par défaut, une fonction déclarée dans un `mod` est...",
+          "choix": [
+            "publique",
+            "privée",
+            "statique",
+            "mutable"
+          ],
+          "reponse": 1,
+          "explication": "Tout est privé par défaut. Il faut `pub` pour l'utiliser en dehors du module (sinon erreur E0603)."
+        },
+        {
+          "question": "Avec `pub struct Compte { solde: u64 }`, peut-on écrire `compte.solde = 10;` en dehors du module ?",
+          "choix": [
+            "Oui, car la struct est `pub`",
+            "Non, le champ `solde` est privé",
+            "Oui, si `compte` est `mut`",
+            "Seulement dans `main`"
+          ],
+          "reponse": 1,
+          "explication": "`pub struct` rend le type public, pas ses champs. Erreur E0616 : il faut passer par une méthode publique."
+        },
+        {
+          "question": "Que fait `use restaurant::desserts;` ?",
+          "choix": [
+            "Copie le module",
+            "Crée un raccourci : on peut écrire `desserts::...`",
+            "Rend `desserts` public",
+            "Exécute le module"
+          ],
+          "reponse": 1,
+          "explication": "`use` crée un raccourci vers un chemin, pour ne pas tout réécrire à chaque fois."
+        },
+        {
+          "question": "Dans un module, que désigne `super::` ?",
+          "choix": [
+            "Le module actuel",
+            "La racine du programme",
+            "Le module parent",
+            "La bibliothèque standard"
+          ],
+          "reponse": 2,
+          "explication": "`super::` remonte d'un niveau. `crate::` désigne la racine et `self::` le module actuel."
+        },
+        {
+          "question": "À quoi sert `#[cfg(test)]` devant `mod tests` ?",
+          "choix": [
+            "À rendre le module public",
+            "À compiler ce module seulement pendant les tests",
+            "À lancer les tests en release",
+            "À ignorer les tests"
+          ],
+          "reponse": 1,
+          "explication": "Le module de tests n'est pas inclus dans le programme final : il n'est compilé que par `cargo test`."
+        },
+        {
+          "question": "Pourquoi écrit-on `use super::*;` au début du module de tests ?",
+          "choix": [
+            "Pour importer tout ce qui est dans le module parent",
+            "Pour rendre les tests plus rapides",
+            "C'est obligatoire pour `#[test]`",
+            "Pour importer la bibliothèque standard"
+          ],
+          "reponse": 0,
+          "explication": "Le module `tests` est un enfant : `use super::*` lui donne accès aux fonctions à tester sans écrire leur chemin complet."
+        },
+        {
+          "question": "Quand un test marqué `#[test]` échoue-t-il ?",
+          "choix": [
+            "Quand il renvoie `false`",
+            "Quand il panique",
+            "Quand il affiche du texte",
+            "Quand il dure plus d'une seconde"
+          ],
+          "reponse": 1,
+          "explication": "Un test réussit s'il se termine normalement. `assert!` et `assert_eq!` paniquent quand la vérification est fausse."
+        },
+        {
+          "question": "Que vérifie `#[should_panic(expected = \"division par zéro\")]` ?",
+          "choix": [
+            "Que le test ne panique jamais",
+            "Que le test panique avec un message contenant « division par zéro »",
+            "Que la division renvoie zéro",
+            "Rien, c'est un commentaire"
+          ],
+          "reponse": 1,
+          "explication": "Le test réussit seulement si le code panique, et si le message de panique contient le texte attendu."
+        },
+        {
+          "question": "Quelle macro vérifie que deux valeurs sont **différentes** ?",
+          "choix": [
+            "`assert!`",
+            "`assert_eq!`",
+            "`assert_ne!`",
+            "`assert_diff!`"
+          ],
+          "reponse": 2,
+          "explication": "`assert_ne!(a, b)` panique si `a == b`. « ne » veut dire *not equal*."
+        },
+        {
+          "question": "Que lance `cargo test division` ?",
+          "choix": [
+            "Tous les tests",
+            "Seulement les tests dont le nom contient « division »",
+            "Le fichier `division.rs`",
+            "Rien, la commande est invalide"
+          ],
+          "reponse": 1,
+          "explication": "Le texte après `cargo test` filtre les tests par leur nom."
+        },
+        {
+          "question": "Que fait `pub use meteo::alerte::niveau;` à la racine du programme ?",
+          "choix": [
+            "Supprime le module `meteo`",
+            "Rend `niveau` utilisable directement depuis la racine (réexport)",
+            "Rend tout `meteo` public",
+            "Copie la fonction"
+          ],
+          "reponse": 1,
+          "explication": "`pub use` réexporte : `niveau` devient accessible à la racine, comme s'il y avait été écrit."
+        }
+      ]
+    },
+    {
+      "id": "13-mise-en-pratique",
+      "titre": "Mise en pratique",
+      "description": "L'exemple Advent of Code du cours, puis des mini-projets qui mélangent struct, enum, Result, collections et itérateurs.",
+      "source": "cours",
+      "exercices": [
+        {
+          "id": "01-calories-partie-1",
+          "titre": "AoC 2022 jour 1 : le lutin le plus chargé",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Deux variables modifiables : `meilleur` (le record) et `total` (le lutin en cours).",
+            "Parcours `entree.lines()`. Sur une ligne vide (`ligne.trim().is_empty()`), compare `total` au record puis remets `total` à 0.",
+            "Sinon, ajoute `ligne.trim().parse::<u32>().unwrap_or(0)` à `total`.",
+            "Après la boucle, n'oublie pas de comparer une dernière fois : le dernier lutin n'a pas de ligne vide après lui."
+          ]
+        },
+        {
+          "id": "02-calories-partie-2",
+          "titre": "AoC 2022 jour 1 : le podium",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`totaux_par_lutin` : même boucle que la partie 1, mais au lieu de comparer, `totaux.push(total)` à chaque ligne vide... et après la boucle.",
+            "`top3_calories` : récupère les totaux, puis trie-les du plus grand au plus petit avec `totaux.sort_unstable_by(|a, b| b.cmp(a));`.",
+            "`totaux.iter().take(3).sum()` additionne les 3 premiers (ou moins s'il y en a moins)."
+          ]
+        },
+        {
+          "id": "03-analyse-de-texte",
+          "titre": "Analyse de texte",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Écris une fonction d'aide qui découpe en mots : `texte.split(|c: char| !c.is_alphanumeric())`, puis `.filter(|mot| !mot.is_empty())` et `.map(|mot| mot.to_lowercase())`.",
+            "`frequences` : `*compte.entry(mot).or_insert(0) += 1;` pour chaque mot.",
+            "`mot_le_plus_frequent` : parcours la `HashMap` et garde le meilleur couple ; en cas d'égalité, garde le mot le plus petit dans l'ordre alphabétique.",
+            "Avec les itérateurs : `.into_iter().max_by(|(mot_a, n_a), (mot_b, n_b)| n_a.cmp(n_b).then(mot_b.cmp(mot_a)))`."
+          ]
+        },
+        {
+          "id": "04-compte-bancaire",
+          "titre": "Compte bancaire avec historique",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Dans `appliquer`, commence par `match operation { Operation::Depot(montant) => ..., Operation::Retrait(montant) => ... }`.",
+            "Un montant de 0 : `return Err(ErreurBancaire::MontantNul);`. Un retrait trop gros : `Err(ErreurBancaire::SoldeInsuffisant { solde: self.solde, demande: montant })`.",
+            "Si tout va bien : modifie le solde, `self.historique.push(operation)`, puis `Ok(self.solde)`.",
+            "`appliquer_tout` : une boucle `for operation in operations { self.appliquer(*operation)?; }` puis `Ok(self.solde)`.",
+            "`total_depose` : `self.historique.iter().map(|op| match op { Operation::Depot(m) => *m, Operation::Retrait(_) => 0 }).sum()`."
+          ]
+        },
+        {
+          "id": "05-calculatrice-commandes",
+          "titre": "Calculatrice à commandes",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`analyser` : `let mut morceaux = ligne.split_whitespace();` puis `let nom = morceaux.next().unwrap_or(\"\");`.",
+            "Traite `reset` tout de suite, puis vérifie que le nom est connu **avant** de lire le nombre.",
+            "`morceaux.next().ok_or_else(|| ErreurCommande::ArgumentManquant(nom.to_string()))?` donne l'argument ou renvoie l'erreur.",
+            "`argument.parse::<i64>().map_err(|_| ErreurCommande::NombreInvalide(argument.to_string()))?` donne le nombre.",
+            "`executer` : `for (index, ligne) in programme.lines().enumerate()`, saute les lignes vides, et `analyser(ligne).map_err(|erreur| (index + 1, erreur))?`."
+          ]
+        },
+        {
+          "id": "06-inventaire",
+          "titre": "Gestion d'inventaire",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`ajouter` : `*self.stock.entry(article.to_string()).or_insert(0) += quantite;`.",
+            "`retirer` : `let disponible = self.stock.get(article).copied().ok_or_else(|| ErreurStock::ArticleInconnu(article.to_string()))?;` puis compare avec `quantite`.",
+            "Quand la quantité tombe à 0, `self.stock.remove(article);`. Sinon, `self.stock.insert(article.to_string(), disponible - quantite);`.",
+            "`quantite` : `self.stock.get(article).copied().unwrap_or(0)`.",
+            "`Display` : récupère les couples avec `self.stock.iter().collect::<Vec<_>>()`, trie-les avec `.sort()`, transforme chaque couple en `format!(\"{article} : {quantite}\")` et assemble avec `.join(\"\\n\")`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Dans l'exercice des calories, pourquoi faut-il traiter le dernier lutin **après** la boucle ?",
+          "choix": [
+            "Parce qu'il est le plus gros",
+            "Parce qu'il n'est pas suivi d'une ligne vide",
+            "Parce que `lines()` saute la dernière ligne",
+            "Ce n'est pas nécessaire"
+          ],
+          "reponse": 1,
+          "explication": "Le total d'un lutin est enregistré quand on rencontre une ligne vide. Le dernier n'en a pas après lui : sans traitement après la boucle, il est oublié."
+        },
+        {
+          "question": "Que fait `*best = ongoing_total;` quand `best` est un `&mut i32` ?",
+          "choix": [
+            "Change la référence pour qu'elle pointe ailleurs",
+            "Écrit la valeur derrière la référence",
+            "Copie la référence",
+            "Ne compile pas"
+          ],
+          "reponse": 1,
+          "explication": "L'étoile **déréférence** : on modifie le nombre emprunté, pas la référence elle-même."
+        },
+        {
+          "question": "Que renvoie `\"\".parse::<i32>().unwrap_or(0)` ?",
+          "choix": [
+            "Une panique",
+            "`0`",
+            "`None`",
+            "Une erreur de compilation"
+          ],
+          "reponse": 1,
+          "explication": "La conversion d'un texte vide échoue (`Err`), et `unwrap_or(0)` remplace l'erreur par 0."
+        },
+        {
+          "question": "Que fait `include_str!(\"inputs/real_input.txt\")` ?",
+          "choix": [
+            "Lit le fichier à chaque exécution",
+            "Copie le contenu du fichier dans le programme, à la compilation",
+            "Crée le fichier",
+            "Affiche le fichier"
+          ],
+          "reponse": 1,
+          "explication": "C'est une macro : le texte du fichier est intégré au programme quand on compile. Le type obtenu est `&'static str`."
+        },
+        {
+          "question": "Quel type choisir pour représenter « dépôt ou retrait d'un montant » ?",
+          "choix": [
+            "Deux `bool`",
+            "Une `struct` avec deux champs",
+            "Un `enum Operation { Depot(u64), Retrait(u64) }`",
+            "Une `String`"
+          ],
+          "reponse": 2,
+          "explication": "Un `enum` exprime un choix entre plusieurs cas, chacun pouvant porter ses propres données."
+        },
+        {
+          "question": "Que fait `*compte.entry(mot).or_insert(0) += 1;` sur une `HashMap` ?",
+          "choix": [
+            "Supprime le mot",
+            "Ajoute 1 au compteur du mot, en le créant à 0 s'il n'existe pas",
+            "Remet le compteur à 0",
+            "Ne compile pas"
+          ],
+          "reponse": 1,
+          "explication": "C'est la façon idiomatique de compter des occurrences avec une `HashMap`."
+        },
+        {
+          "question": "Dans une fonction qui renvoie `Result<i64, String>`, que fait `valeur?` si `valeur` est un `Err` ?",
+          "choix": [
+            "Le programme panique",
+            "La fonction renvoie immédiatement cette erreur",
+            "L'erreur est ignorée",
+            "La valeur devient 0"
+          ],
+          "reponse": 1,
+          "explication": "`?` propage l'erreur à l'appelant. Si c'est un `Ok`, il donne la valeur contenue."
+        },
+        {
+          "question": "Que renvoie `\"ajoute 5\".split_once(' ')` ?",
+          "choix": [
+            "`[\"ajoute\", \"5\"]`",
+            "`Some((\"ajoute\", \"5\"))`",
+            "`(\"ajoute\", \"5\")`",
+            "`\"ajoute\"`"
+          ],
+          "reponse": 1,
+          "explication": "`split_once` coupe en deux au premier séparateur et renvoie `None` si le séparateur est absent."
+        },
+        {
+          "question": "Pour obtenir les trois plus gros totaux d'un `Vec<u32>`, quelle approche est la plus simple ?",
+          "choix": [
+            "Trier du plus grand au plus petit puis prendre les 3 premiers",
+            "Supprimer les éléments un par un",
+            "Utiliser une `HashMap`",
+            "C'est impossible sans boucle"
+          ],
+          "reponse": 0,
+          "explication": "`totaux.sort_unstable_by(|a, b| b.cmp(a));` puis `totaux.iter().take(3).sum()`."
+        }
+      ]
+    }
+  ]
+}

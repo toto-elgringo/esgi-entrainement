@@ -1,0 +1,11 @@
+{
+  "titre": "impl Trait et where",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Les deux `resumer` : `format!(\"{}, par {}\", self.titre, self.auteur)` et `format!(\"@{} : {}\", self.pseudo, self.texte)`.",
+    "`annoncer` : `element` sait se résumer, il suffit d'appeler `element.resumer()` dans un `format!`.",
+    "`tout_resumer` : `elements.iter().map(|e| e.resumer()).collect::<Vec<String>>().join(\" | \")`.",
+    "`tweet_du_jour` crée et renvoie un `Tweet` : le type de retour `impl Resume` cache simplement le type exact."
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "titre": "Strings et mémoire",
+  "description": "&str et String, UTF-8, octets et caractères, couper un texte, la pile et le tas, Box, mesurer.",
+  "source": "cours"
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "enumerate et zip",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`v.iter().enumerate()` donne des couples `(indice, &valeur)`. Filtre ceux dont la valeur vaut `cible`, puis garde l'indice avec `map(|(i, _)| i)`.",
+    "Dans `filter(|(_, x)| ...)`, `x` est un `&&i32` : compare avec `**x == cible`.",
+    "`a.iter().zip(b)` donne des couples `(&a[i], &b[i])`. Multiplie-les avec `map`, puis `sum()`.",
+    "`format!(\"{}. {}\", i + 1, mot)` construit une ligne numérotée."
+  ]
+}

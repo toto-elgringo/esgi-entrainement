@@ -1,0 +1,10 @@
+{
+  "titre": "Où commence chaque caractère ?",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Crée une liste vide : `let mut resultat = Vec::new();` et renvoie-la à la fin.",
+    "`for (position, _) in s.char_indices()` donne la position en octets de chaque caractère (`_` ignore le caractère).",
+    "Pour `nb_caracteres_speciaux`, parcours `s.chars()` et compte les caractères dont `c.len_utf8() > 1`."
+  ]
+}

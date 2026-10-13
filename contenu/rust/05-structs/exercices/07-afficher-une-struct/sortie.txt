@@ -1,0 +1,7 @@
+Eleve { nom: "Alice", note: 15 }
+Eleve {
+    nom: "Bob",
+    note: 9,
+}
+Alice a eu 15/20
+Bob a eu 9/20

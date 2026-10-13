@@ -1,0 +1,10 @@
+{
+  "titre": "Afficher une struct",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "`#[derive(Debug)]` au-dessus de la struct permet `{:?}` et `{:#?}`.",
+    "`format!(\"{} a eu {}/20\", self.nom, self.note)` fabrique le texte, comme `println!` mais sans l'afficher.",
+    "Dans `main` : `println!(\"{:?}\", alice);` puis `println!(\"{:#?}\", bob);` puis les deux `presenter()`."
+  ]
+}

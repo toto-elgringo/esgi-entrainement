@@ -1,0 +1,517 @@
+[
+  {
+    "id": "continuite-domaines",
+    "titre": "Où est-ce continu ?",
+    "difficulte": 1,
+    "enonce": "On considère trois fonctions :\n\n- $f(x) = x^2 + 4x - 7$ ;\n- $g(x) = \\dfrac{3}{x+5}$ ;\n- $h(x) = \\ln(x)$.",
+    "questions": [
+      {
+        "intitule": "Sur quel ensemble $f$ est-elle continue ?",
+        "type": "choix",
+        "choix": ["Sur $\\mathbb{R}$", "Sur $]0, +\\infty[$", "Sur $\\mathbb{R} \\setminus \\{-7\\}$", "Nulle part"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Quelle valeur de $x$ faut-il exclure pour que $g$ soit définie ? Donne un nombre.",
+        "type": "nombre",
+        "reponse": -5,
+        "acceptes": ["-5", "−5"],
+        "refuses": ["5", "3", "0"]
+      },
+      {
+        "intitule": "Sur quel ensemble $h$ est-elle continue ?",
+        "type": "choix",
+        "choix": ["Sur $\\mathbb{R}$", "Sur $[0, +\\infty[$", "Sur $]0, +\\infty[$", "Sur $\\mathbb{R} \\setminus \\{1\\}$"],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Un polynôme est continu sur $\\mathbb{R}$ tout entier.",
+      "Une fraction pose problème seulement là où son dénominateur vaut 0.",
+      "$\\ln$ n'est définie que pour des nombres **strictement** positifs."
+    ],
+    "correction": "- $f$ est un polynôme : elle est continue sur $\\mathbb{R}$.\n- $g$ n'existe pas quand $x + 5 = 0$, c'est-à-dire $x = -5$. Elle est continue sur $\\mathbb{R} \\setminus \\{-5\\}$.\n- $h = \\ln$ est définie et continue sur $]0, +\\infty[$ ($0$ est exclu : $\\ln(0)$ n'existe pas)."
+  },
+  {
+    "id": "derivees-polynomes",
+    "titre": "Dériver des polynômes",
+    "difficulte": 1,
+    "enonce": "Calcule la dérivée de chaque fonction. Écris ta réponse en fonction de $x$, par exemple `3x^2 - 2x + 1`.\n\nRappel : $(x^n)' = n\\,x^{n-1}$ et la dérivée d'une constante vaut 0.",
+    "questions": [
+      {
+        "intitule": "$f(x) = 4x^3 - 5x^2 + 2x - 7$. Donne $f'(x)$.",
+        "type": "expression",
+        "reponse": "12x^2 - 10x + 2",
+        "acceptes": ["2 - 10x + 12x^2", "2(6x^2 - 5x + 1)", "12*x^2-10*x+2"],
+        "refuses": ["12x^2 - 10x", "12x^2 - 10x - 5", "4x^3 - 5x^2 + 2x"]
+      },
+      {
+        "intitule": "$g(x) = \\dfrac{x^5}{5} - 3x$. Donne $g'(x)$.",
+        "type": "expression",
+        "reponse": "x^4 - 3",
+        "acceptes": ["x^4-3", "-3 + x^4"],
+        "refuses": ["x^4", "5x^4 - 3", "x^4 - 3x"]
+      },
+      {
+        "intitule": "$h(x) = 7$. Donne $h'(x)$ (un nombre).",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": ["7", "1"]
+      }
+    ],
+    "indices": [
+      "On dérive terme par terme : la dérivée d'une somme est la somme des dérivées.",
+      "$(4x^3)' = 4 \\times 3x^2 = 12x^2$. Et $(-7)' = 0$."
+    ],
+    "correction": "- $f'(x) = 4 \\times 3x^2 - 5 \\times 2x + 2 + 0 = 12x^2 - 10x + 2$.\n- $g'(x) = \\dfrac{5x^4}{5} - 3 = x^4 - 3$.\n- $h$ est constante : $h'(x) = 0$ (sa courbe est une droite horizontale, de pente nulle)."
+  },
+  {
+    "id": "derivee-produit",
+    "titre": "La règle du produit",
+    "difficulte": 2,
+    "enonce": "Utilise la règle $(uv)' = u'v + uv'$. Écris ta réponse en fonction de $x$ : `ln(x)`, `e^x`, `cos(x)`, `sin(x)`...",
+    "questions": [
+      {
+        "intitule": "$f(x) = x^3 \\ln(x)$ (pour $x > 0$). Donne $f'(x)$.",
+        "type": "expression",
+        "reponse": "3x^2 ln(x) + x^2",
+        "acceptes": ["x^2(3ln(x) + 1)", "3x^2lnx + x^2", "x^2 + 3x^2 ln x"],
+        "refuses": ["3x^2 * (1/x)", "3x^2 ln(x)", "3x^2 ln(x) + x^3"]
+      },
+      {
+        "intitule": "$g(x) = x\\,e^x$. Donne $g'(x)$.",
+        "type": "expression",
+        "reponse": "e^x + x e^x",
+        "acceptes": ["(1 + x)e^x", "e^x(x+1)", "exp(x) + x*exp(x)"],
+        "refuses": ["e^x", "x e^x", "1 * e^x"]
+      },
+      {
+        "intitule": "$k(x) = x \\cos(x)$. Donne $k'(x)$.",
+        "type": "expression",
+        "reponse": "cos(x) - x sin(x)",
+        "acceptes": ["cos x - x sin x", "-x sin(x) + cos(x)"],
+        "refuses": ["-sin(x)", "cos(x) + x sin(x)", "-x sin(x)"]
+      }
+    ],
+    "indices": [
+      "Repère $u$ et $v$ : pour $f$, $u = x^3$ et $v = \\ln(x)$.",
+      "Calcule $u'$ et $v'$ séparément, puis assemble $u'v + uv'$.",
+      "Pour $f$ : $u' = 3x^2$ et $v' = \\dfrac{1}{x}$, donc $uv' = x^3 \\times \\dfrac{1}{x} = x^2$."
+    ],
+    "correction": "- $f$ : $u = x^3$, $u' = 3x^2$, $v = \\ln x$, $v' = \\dfrac{1}{x}$. Donc $f'(x) = 3x^2 \\ln x + x^3 \\times \\dfrac{1}{x} = 3x^2\\ln x + x^2$.\n- $g$ : $u = x$, $u' = 1$, $v = e^x$, $v' = e^x$. Donc $g'(x) = e^x + x\\,e^x = (1 + x)\\,e^x$.\n- $k$ : $u = x$, $u' = 1$, $v = \\cos x$, $v' = -\\sin x$. Donc $k'(x) = \\cos x - x\\sin x$."
+  },
+  {
+    "id": "derivee-quotient",
+    "titre": "La règle du quotient",
+    "difficulte": 2,
+    "enonce": "Utilise la règle $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$. Écris une fraction avec `/` et des parenthèses, par exemple `-3/(x+1)^2`.",
+    "questions": [
+      {
+        "intitule": "$h(x) = \\dfrac{x+3}{x-2}$ (pour $x \\neq 2$). Donne $h'(x)$.",
+        "type": "expression",
+        "reponse": "-5/(x-2)^2",
+        "points": [-1, 0.5, 1, 3, 4, 5.5],
+        "acceptes": ["(-5)/(x-2)^2", "-5/(x^2 - 4x + 4)", "((x-2) - (x+3))/(x-2)^2"],
+        "refuses": ["5/(x-2)^2", "1", "-5/(x-2)"]
+      },
+      {
+        "intitule": "$k(x) = \\dfrac{1}{x^2 + 1}$. Donne $k'(x)$.",
+        "type": "expression",
+        "reponse": "-2x/(x^2+1)^2",
+        "acceptes": ["(-2x)/(x^2+1)^2", "-2x(x^2+1)^(-2)"],
+        "refuses": ["2x/(x^2+1)^2", "-1/(x^2+1)^2", "1/(2x)"]
+      }
+    ],
+    "indices": [
+      "Pour $h$ : $u = x + 3$ et $v = x - 2$, donc $u' = 1$ et $v' = 1$.",
+      "Au numérateur : $1 \\times (x - 2) - (x + 3) \\times 1$. Simplifie-le.",
+      "Pour $k$ : $u = 1$ (donc $u' = 0$) et $v = x^2 + 1$ (donc $v' = 2x$)."
+    ],
+    "correction": "- $h$ : $u' v - u v' = 1 \\times (x-2) - (x+3) \\times 1 = x - 2 - x - 3 = -5$. Donc $h'(x) = \\dfrac{-5}{(x-2)^2}$.\n- $k$ : $u' v - u v' = 0 \\times (x^2+1) - 1 \\times 2x = -2x$. Donc $k'(x) = \\dfrac{-2x}{(x^2+1)^2}$.\n\nAttention à l'ordre $u'v - uv'$ : l'inverser change le signe du résultat."
+  },
+  {
+    "id": "derivee-composee",
+    "titre": "La règle de la composée",
+    "difficulte": 2,
+    "enonce": "Pour une composée $u(v(x))$ : on dérive l'extérieur en gardant l'intérieur, puis on **multiplie par la dérivée de l'intérieur**.\n\n$$\\big(u(v(x))\\big)' = v'(x) \\times u'\\big(v(x)\\big)$$\n\nÉcris l'exponentielle avec des parenthèses : `e^(2x^2)`.",
+    "questions": [
+      {
+        "intitule": "$f(x) = e^{2x^2}$. Donne $f'(x)$.",
+        "type": "expression",
+        "reponse": "4x e^(2x^2)",
+        "acceptes": ["4x*exp(2x^2)", "e^(2x^2)*4x", "4x e^(2x²)"],
+        "refuses": ["e^(2x^2)", "2x^2 e^(2x^2)", "4x e^(4x)"]
+      },
+      {
+        "intitule": "$g(x) = \\ln(3x + 1)$ (pour $x > -\\frac{1}{3}$). Donne $g'(x)$.",
+        "type": "expression",
+        "reponse": "3/(3x+1)",
+        "acceptes": ["3(3x+1)^(-1)", "1/(x + 1/3)"],
+        "refuses": ["1/(3x+1)", "3/x", "ln(3)"]
+      },
+      {
+        "intitule": "$h(x) = (2x + 1)^4$. Donne $h'(x)$.",
+        "type": "expression",
+        "reponse": "8(2x+1)^3",
+        "acceptes": ["4(2x+1)^3 * 2", "8 (2x + 1)³"],
+        "refuses": ["4(2x+1)^3", "8x^3", "(2x+1)^3"]
+      }
+    ],
+    "indices": [
+      "Repère l'intérieur : pour $f$ c'est $2x^2$, pour $g$ c'est $3x + 1$, pour $h$ c'est $2x + 1$.",
+      "Dérivée de l'intérieur : $(2x^2)' = 4x$, $(3x+1)' = 3$, $(2x+1)' = 2$.",
+      "Pour $h$ : $(v^4)' = 4v^3 \\times v'$."
+    ],
+    "correction": "- $f$ : intérieur $2x^2$ de dérivée $4x$, et $(e^v)' = v' e^v$. Donc $f'(x) = 4x\\,e^{2x^2}$.\n- $g$ : intérieur $3x + 1$ de dérivée $3$, et $(\\ln v)' = \\dfrac{v'}{v}$. Donc $g'(x) = \\dfrac{3}{3x+1}$.\n- $h$ : intérieur $2x + 1$ de dérivée $2$, et $(v^4)' = 4v^3 \\times v'$. Donc $h'(x) = 4(2x+1)^3 \\times 2 = 8(2x+1)^3$.\n\nLe piège classique : oublier de multiplier par la dérivée de l'intérieur."
+  },
+  {
+    "id": "trigonometrie-valeurs",
+    "titre": "Valeurs remarquables",
+    "difficulte": 1,
+    "enonce": "Donne la valeur exacte de chaque expression (un nombre). Aide-toi du cercle trigonométrique : $\\cos$ est l'abscisse du point, $\\sin$ son ordonnée.",
+    "questions": [
+      { "intitule": "$\\sin\\left(\\dfrac{\\pi}{2}\\right)$", "type": "nombre", "reponse": 1, "refuses": ["0", "-1"] },
+      { "intitule": "$\\cos\\left(\\dfrac{\\pi}{2}\\right)$", "type": "nombre", "reponse": 0, "refuses": ["1", "-1"] },
+      { "intitule": "$\\cos(\\pi)$", "type": "nombre", "reponse": -1, "refuses": ["1", "0"] },
+      { "intitule": "$\\sin\\left(\\dfrac{3\\pi}{2}\\right)$", "type": "nombre", "reponse": -1, "refuses": ["1", "0"] },
+      { "intitule": "$\\cos(2\\pi)$", "type": "nombre", "reponse": 1, "refuses": ["0", "-1"] }
+    ],
+    "indices": [
+      "Sur le cercle de rayon 1 : l'angle $0$ donne le point $(1, 0)$, l'angle $\\dfrac{\\pi}{2}$ le point $(0, 1)$.",
+      "L'angle $\\pi$ donne le point $(-1, 0)$ et l'angle $\\dfrac{3\\pi}{2}$ le point $(0, -1)$. Un tour complet ($2\\pi$) ramène au départ."
+    ],
+    "correction": "| Angle | Point du cercle | $\\cos$ | $\\sin$ |\n|---|---|---|---|\n| $0$ | $(1, 0)$ | $1$ | $0$ |\n| $\\dfrac{\\pi}{2}$ | $(0, 1)$ | $0$ | $1$ |\n| $\\pi$ | $(-1, 0)$ | $-1$ | $0$ |\n| $\\dfrac{3\\pi}{2}$ | $(0, -1)$ | $0$ | $-1$ |\n| $2\\pi$ | $(1, 0)$ | $1$ | $0$ |\n\nDonc $\\sin\\left(\\frac{\\pi}{2}\\right) = 1$, $\\cos\\left(\\frac{\\pi}{2}\\right) = 0$, $\\cos(\\pi) = -1$, $\\sin\\left(\\frac{3\\pi}{2}\\right) = -1$ et $\\cos(2\\pi) = 1$ (période $2\\pi$)."
+  },
+  {
+    "id": "trigonometrie-derivees",
+    "titre": "Dériver sin, cos et tan",
+    "difficulte": 2,
+    "enonce": "Rappels : $(\\sin x)' = \\cos x$, $(\\cos x)' = -\\sin x$, et pour une composée $(\\sin(v))' = v' \\cos(v)$.\n\nÉcris `sin(3x)`, `cos(x)`... et `pi` pour $\\pi$.",
+    "questions": [
+      {
+        "intitule": "$f(x) = \\cos(x) + \\sin(3x)$. Donne $f'(x)$.",
+        "type": "expression",
+        "reponse": "-sin(x) + 3cos(3x)",
+        "acceptes": ["3cos(3x) - sin x", "3 cos(3x) - sin(x)"],
+        "refuses": ["sin(x) + 3cos(3x)", "-sin(x) + cos(3x)", "-sin(x) - 3cos(3x)"]
+      },
+      {
+        "intitule": "$g(x) = \\sin(4x^2)$. Donne $g'(x)$.",
+        "type": "expression",
+        "reponse": "8x cos(4x^2)",
+        "acceptes": ["cos(4x^2) * 8x", "8x*cos(4x²)"],
+        "refuses": ["cos(4x^2)", "8x sin(4x^2)", "-8x cos(4x^2)"]
+      },
+      {
+        "intitule": "Sur $[0, 2\\pi]$, en quelles valeurs $\\tan$ n'est-elle **pas** définie ? Écris l'ensemble, par exemple `{pi/3, pi}`.",
+        "type": "ensemble",
+        "reponse": ["pi/2", "3pi/2"],
+        "acceptes": ["{π/2, 3π/2}", "{3pi/2; pi/2}"],
+        "refuses": ["{pi/2}", "{0, pi}", "{pi/2, 3pi/2, 5pi/2}"]
+      }
+    ],
+    "indices": [
+      "Pour $\\sin(3x)$ : l'intérieur $3x$ a pour dérivée $3$.",
+      "Pour $\\sin(4x^2)$ : l'intérieur $4x^2$ a pour dérivée $8x$.",
+      "$\\tan x = \\dfrac{\\sin x}{\\cos x}$ : elle n'existe pas quand $\\cos x = 0$."
+    ],
+    "correction": "- $f'(x) = -\\sin x + 3\\cos(3x)$ (le $3$ vient de la dérivée de l'intérieur $3x$).\n- $g'(x) = 8x\\cos(4x^2)$ (intérieur $4x^2$, de dérivée $8x$).\n- $\\cos x = 0$ sur $[0, 2\\pi]$ pour $x = \\dfrac{\\pi}{2}$ et $x = \\dfrac{3\\pi}{2}$ : ce sont les valeurs où $\\tan$ n'est pas définie."
+  },
+  {
+    "id": "valeur-absolue",
+    "titre": "Continue mais pas dérivable",
+    "difficulte": 2,
+    "enonce": "Soit $f(x) = |x - 3|$. Autrement dit :\n\n- pour $x \\geq 3$ : $f(x) = x - 3$ ;\n- pour $x < 3$ : $f(x) = 3 - x$.\n\nSa courbe a la forme d'un « V » dont la pointe est en $x = 3$.",
+    "questions": [
+      {
+        "intitule": "$f$ est-elle continue en $3$ ?",
+        "type": "choix",
+        "choix": ["Oui", "Non"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Quelle est la pente de la courbe juste **à gauche** de 3 ? (un nombre)",
+        "type": "nombre",
+        "reponse": -1,
+        "refuses": ["1", "0"]
+      },
+      {
+        "intitule": "Quelle est la pente de la courbe juste **à droite** de 3 ? (un nombre)",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": ["-1", "0"]
+      },
+      {
+        "intitule": "$f$ est-elle dérivable en $3$ ?",
+        "type": "choix",
+        "choix": ["Oui", "Non"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Que peut-on en conclure ?",
+        "type": "choix",
+        "choix": ["Continue implique dérivable", "Dérivable implique continue, mais la réciproque est fausse", "Continue et dérivable veulent dire la même chose"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Les deux morceaux valent $0$ en $x = 3$ : y a-t-il un saut ?",
+      "$3 - x$ a pour pente $-1$, $x - 3$ a pour pente $+1$.",
+      "Pour être dérivable, il faut une seule tangente : les pentes à gauche et à droite doivent être égales."
+    ],
+    "correction": "- En $x = 3$, les deux morceaux valent $0$ : pas de saut, $f$ est **continue** en 3.\n- À gauche, $f(x) = 3 - x$ a une pente de $-1$. À droite, $f(x) = x - 3$ a une pente de $+1$.\n- Les deux pentes sont différentes : la courbe fait une pointe, il n'y a pas de tangente unique. $f$ n'est **pas dérivable** en 3.\n\nConclusion : une fonction continue peut ne pas être dérivable. En revanche, toute fonction dérivable est continue. La dérivabilité est une condition **plus forte**."
+  },
+  {
+    "id": "derivee-et-minimum",
+    "titre": "Trouver un minimum avec la dérivée",
+    "difficulte": 2,
+    "enonce": "Soit la fonction de coût $f(x) = x^2 - 4x + 1$. La descente de gradient cherche le point où la pente est nulle : c'est là que le coût est minimal.",
+    "questions": [
+      {
+        "intitule": "Donne $f'(x)$ en fonction de $x$.",
+        "type": "expression",
+        "reponse": "2x - 4",
+        "acceptes": ["2(x-2)", "-4 + 2x"],
+        "refuses": ["2x", "2x - 4x", "x - 4"]
+      },
+      {
+        "intitule": "Calcule $f'(3)$ : la pente de la tangente en $x = 3$ (un nombre).",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": ["-2", "6"]
+      },
+      {
+        "intitule": "Pour quelle valeur de $x$ a-t-on $f'(x) = 0$ ?",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": ["4", "-2", "0"]
+      },
+      {
+        "intitule": "Quelle est la valeur minimale du coût, $f(2)$ ?",
+        "type": "nombre",
+        "reponse": -3,
+        "refuses": ["3", "1", "2"]
+      }
+    ],
+    "indices": [
+      "$(x^2)' = 2x$, $(-4x)' = -4$ et $(1)' = 0$.",
+      "Résous $2x - 4 = 0$.",
+      "$f(2) = 2^2 - 4 \\times 2 + 1$."
+    ],
+    "correction": "- $f'(x) = 2x - 4$.\n- $f'(3) = 2 \\times 3 - 4 = 2$ : en $x = 3$, la courbe monte (pente positive). Pour descendre, il faut aller vers la gauche : c'est exactement ce que fait la descente de gradient.\n- $f'(x) = 0 \\iff 2x - 4 = 0 \\iff x = 2$.\n- $f(2) = 4 - 8 + 1 = -3$. Avant 2 la dérivée est négative (la courbe descend), après 2 elle est positive (la courbe monte) : $-3$ est bien le minimum."
+  },
+  {
+    "id": "primitives",
+    "titre": "Trouver des primitives",
+    "difficulte": 1,
+    "enonce": "Donne **une** primitive de chaque fonction. Tu peux ajouter la constante que tu veux : `3x^4` et `3x^4 + 7` sont toutes les deux acceptées.\n\nVérifie ta réponse en la dérivant : tu dois retomber sur la fonction de départ.",
+    "questions": [
+      {
+        "intitule": "$f(x) = 12x^3$",
+        "type": "expression",
+        "reponse": "3x^4",
+        "aUneConstantePres": true,
+        "acceptes": ["3x^4 + 7", "12x^4/4"],
+        "refuses": ["36x^2", "12x^4", "3x^3"]
+      },
+      {
+        "intitule": "$g(x) = e^x + 4x$",
+        "type": "expression",
+        "reponse": "e^x + 2x^2",
+        "aUneConstantePres": true,
+        "acceptes": ["exp(x) + 2x^2 - 1", "2x^2 + e^x"],
+        "refuses": ["e^x + 4", "e^x + 4x^2", "e^x"]
+      },
+      {
+        "intitule": "$h(x) = \\dfrac{2}{x} - 1$ (pour $x > 0$)",
+        "type": "expression",
+        "reponse": "2ln(x) - x",
+        "aUneConstantePres": true,
+        "acceptes": ["ln(x^2) - x", "2 ln x - x + 3"],
+        "refuses": ["-2/x^2", "2ln(x)", "2ln(x) - 1"]
+      },
+      {
+        "intitule": "$k(x) = \\cos(x) - \\sin(x)$",
+        "type": "expression",
+        "reponse": "sin(x) + cos(x)",
+        "aUneConstantePres": true,
+        "acceptes": ["cos x + sin x", "sin(x) + cos(x) + 1"],
+        "refuses": ["sin(x) - cos(x)", "-sin(x) - cos(x)", "cos(x) - sin(x)"]
+      }
+    ],
+    "indices": [
+      "Pour $x^n$ : on augmente la puissance de 1 et on divise par la nouvelle puissance.",
+      "Une primitive de $\\dfrac{1}{x}$ est $\\ln x$, une primitive d'une constante $k$ est $kx$.",
+      "Une primitive de $\\cos$ est $\\sin$, une primitive de $\\sin$ est $-\\cos$."
+    ],
+    "correction": "- $f$ : $12 \\times \\dfrac{x^4}{4} = 3x^4$. Vérification : $(3x^4)' = 12x^3$.\n- $g$ : $e^x + 4 \\times \\dfrac{x^2}{2} = e^x + 2x^2$.\n- $h$ : $2\\ln x - x$. Vérification : $(2\\ln x - x)' = \\dfrac{2}{x} - 1$.\n- $k$ : une primitive de $\\cos$ est $\\sin$, une primitive de $-\\sin$ est $\\cos$. Donc $\\sin x + \\cos x$.\n\nToutes les réponses sont valables **à une constante près**."
+  },
+  {
+    "id": "aire-algebrique",
+    "titre": "Intégrale et aire",
+    "difficulte": 1,
+    "enonce": "Soit $f(x) = x$. Sa courbe est une droite qui passe par l'origine.",
+    "questions": [
+      {
+        "intitule": "Calcule $\\displaystyle\\int_0^6 x\\,dx$ (un nombre).",
+        "type": "nombre",
+        "reponse": 18,
+        "refuses": ["36", "6", "12"]
+      },
+      {
+        "intitule": "Cette intégrale est l'aire de quelle figure ?",
+        "type": "choix",
+        "choix": ["Un rectangle de côtés 6 et 6", "Un triangle rectangle de base 6 et de hauteur 6", "Un carré de côté 3", "Un demi-disque de rayon 6"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Calcule $\\displaystyle\\int_{-2}^{0} x\\,dx$ (un nombre).",
+        "type": "nombre",
+        "reponse": -2,
+        "refuses": ["2", "0", "-4"]
+      },
+      {
+        "intitule": "Pourquoi ce dernier résultat est-il négatif ?",
+        "type": "choix",
+        "choix": ["C'est une erreur : une aire est toujours positive", "Sur $[-2, 0]$, la courbe est sous l'axe horizontal", "Parce que les bornes sont dans le mauvais ordre"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Une primitive de $x$ est $\\dfrac{x^2}{2}$.",
+      "L'aire d'un triangle vaut $\\dfrac{\\text{base} \\times \\text{hauteur}}{2}$.",
+      "L'intégrale est une aire **algébrique** : ce qui est sous l'axe compte en négatif."
+    ],
+    "correction": "- $\\displaystyle\\int_0^6 x\\,dx = \\left[\\frac{x^2}{2}\\right]_0^6 = \\frac{36}{2} - 0 = 18$.\n- La zone entre la droite $y = x$, l'axe horizontal et la verticale $x = 6$ est un triangle rectangle de base 6 et de hauteur 6 : $\\dfrac{6 \\times 6}{2} = 18$. Les deux méthodes donnent le même résultat.\n- $\\displaystyle\\int_{-2}^{0} x\\,dx = \\left[\\frac{x^2}{2}\\right]_{-2}^{0} = 0 - \\frac{4}{2} = -2$.\n- Sur $[-2, 0]$, $f(x) = x$ est négative : la courbe est sous l'axe, l'aire compte en négatif."
+  },
+  {
+    "id": "integrales",
+    "titre": "Calculer des intégrales",
+    "difficulte": 2,
+    "enonce": "Calcule chaque intégrale avec la méthode : primitive $F$, puis $F(b) - F(a)$.\n\nTu peux donner une valeur exacte, par exemple `e^2 - 3` ou `ln(4)`.",
+    "questions": [
+      {
+        "intitule": "$\\displaystyle\\int_0^3 x^2\\,dx$",
+        "type": "nombre",
+        "reponse": 9,
+        "refuses": ["27", "6", "3"]
+      },
+      {
+        "intitule": "$\\displaystyle\\int_1^4 \\dfrac{1}{x}\\,dx$",
+        "type": "nombre",
+        "reponse": "ln(4)",
+        "acceptes": ["2ln(2)", "ln 4", "ln(4) - ln(1)"],
+        "refuses": ["3", "ln(3)", "1/4"]
+      },
+      {
+        "intitule": "$\\displaystyle\\int_0^2 (e^x - 1)\\,dx$",
+        "type": "nombre",
+        "reponse": "e^2 - 3",
+        "acceptes": ["e^2 - 1 - 2", "e^2-2-1"],
+        "refuses": ["e^2 - 1", "e^2", "e^2 - 2"]
+      },
+      {
+        "intitule": "$\\displaystyle\\int_0^{\\pi} \\sin(x)\\,dx$",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": ["0", "-2", "1"]
+      }
+    ],
+    "indices": [
+      "Primitives : $x^2 \\to \\dfrac{x^3}{3}$, $\\dfrac{1}{x} \\to \\ln x$, $e^x - 1 \\to e^x - x$, $\\sin x \\to -\\cos x$.",
+      "Attention aux signes pour la dernière : $-\\cos(\\pi) - (-\\cos(0))$."
+    ],
+    "correction": "- $\\displaystyle\\int_0^3 x^2\\,dx = \\left[\\frac{x^3}{3}\\right]_0^3 = \\frac{27}{3} = 9$.\n- $\\displaystyle\\int_1^4 \\frac{1}{x}\\,dx = \\ln 4 - \\ln 1 = \\ln 4$ (car $\\ln 1 = 0$), soit aussi $2\\ln 2$.\n- $\\displaystyle\\int_0^2 (e^x - 1)\\,dx = \\Big[e^x - x\\Big]_0^2 = (e^2 - 2) - (e^0 - 0) = e^2 - 3$.\n- $\\displaystyle\\int_0^{\\pi} \\sin x\\,dx = \\Big[-\\cos x\\Big]_0^{\\pi} = -\\cos\\pi + \\cos 0 = 1 + 1 = 2$."
+  },
+  {
+    "id": "cout-penalite",
+    "titre": "Pénalité de retard et dérivabilité",
+    "difficulte": 3,
+    "enonce": "Une entreprise pénalise les retards de livraison. Pour un retard de $x$ jours, la pénalité vaut :\n\n$$C(x) = \\begin{cases} 0 & \\text{si } x \\leq 0 \\\\ 3x^2 & \\text{si } x > 0 \\end{cases}$$",
+    "questions": [
+      {
+        "intitule": "$C$ est-elle continue en $0$ ?",
+        "type": "choix",
+        "choix": ["Oui", "Non"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Quelle est la dérivée de $C$ juste à gauche de 0 ? (un nombre)",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": ["3", "6"]
+      },
+      {
+        "intitule": "Quelle est la dérivée de $3x^2$ en $x = 0$ (la dérivée à droite) ? (un nombre)",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": ["6", "3"]
+      },
+      {
+        "intitule": "$C$ est-elle dérivable en $0$ ?",
+        "type": "choix",
+        "choix": ["Oui", "Non"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Une autre entreprise utilise $D(x) = 0$ si $x \\leq 0$ et $D(x) = 2x$ si $x > 0$. $D$ est-elle dérivable en 0 ?",
+        "type": "choix",
+        "choix": ["Oui, comme $C$", "Non : la pente vaut 0 à gauche et 2 à droite"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Pourquoi le fait que $C$ soit dérivable partout est-il rassurant pour une descente de gradient ? Réponds en une ou deux phrases.",
+        "type": "auto",
+        "reponse": "La dérivée (le gradient) de $C$ existe en tout point, même en 0. L'algorithme peut donc toujours calculer dans quel sens corriger, sans cas particulier. Avec $D$, la dérivée n'existe pas en 0 (comme pour ReLU) : il faudrait choisir une convention à cet endroit."
+      }
+    ],
+    "indices": [
+      "En $x = 0$ : à gauche $C$ vaut 0, et $3x^2$ vaut aussi 0. Y a-t-il un saut ?",
+      "À gauche, $C$ est constante (dérivée 0). À droite, $(3x^2)' = 6x$, qui vaut 0 en $x = 0$.",
+      "Pour $D$ : à droite la pente de $2x$ est 2, à gauche elle est 0."
+    ],
+    "correction": "- **Continuité** : les deux morceaux valent 0 en $x = 0$, pas de saut. $C$ est continue en 0.\n- **Dérivée à gauche** : $C$ est constante (nulle), sa dérivée vaut $0$.\n- **Dérivée à droite** : $(3x^2)' = 6x$, qui vaut $0$ en $x = 0$. On peut aussi le voir avec $\\lim\\limits_{h \\to 0^+} \\frac{3h^2}{h} = \\lim\\limits_{h \\to 0^+} 3h = 0$.\n- Les deux dérivées sont égales : $C$ est **dérivable** en 0, avec $C'(0) = 0$.\n- Pour $D$, les pentes sont 0 à gauche et 2 à droite : la courbe fait une pointe, $D$ **n'est pas dérivable** en 0.\n\nPour un algorithme d'optimisation, une fonction de coût dérivable partout est idéale : le gradient est toujours défini et la descente de gradient s'applique sans traitement spécial."
+  },
+  {
+    "id": "revenu-cumule",
+    "titre": "Revenu cumulé",
+    "difficulte": 3,
+    "enonce": "Un service en ligne rapporte $r(t) = 200\\,e^{0{,}04t}$ euros par jour, où $t$ est le nombre de jours écoulés. On cherche le revenu total des 25 premiers jours.\n\nPour écrire une puissance de $e$, utilise des parenthèses : `e^(0.04t)`.",
+    "questions": [
+      {
+        "intitule": "Donne une primitive de $e^{0{,}04t}$, en fonction de $t$.",
+        "type": "expression",
+        "variable": "t",
+        "reponse": "25e^(0.04t)",
+        "aUneConstantePres": true,
+        "acceptes": ["e^(0.04t)/0.04", "1/0.04 e^(0.04t)", "25 exp(0.04t) + 1"],
+        "refuses": ["e^(0.04t)", "0.04e^(0.04t)", "25e^(0.04)"]
+      },
+      {
+        "intitule": "Quelle expression donne le revenu total des 25 premiers jours ?",
+        "type": "choix",
+        "choix": [
+          "$\\displaystyle\\int_0^{25} 200\\,e^{0{,}04t}\\,dt$",
+          "$200\\,e^{0{,}04 \\times 25}$",
+          "$\\displaystyle\\int_0^{25} 0{,}04\\,e^{0{,}04t}\\,dt$",
+          "$r'(25)$"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Calcule ce revenu total, en euros, arrondi à l'euro (ou valeur exacte).",
+        "type": "nombre",
+        "reponse": "5000(e - 1)",
+        "tolerance": 1,
+        "acceptes": ["8591", "5000e - 5000", "8591.41", "8591,4"],
+        "refuses": ["5000", "8600", "5000e"]
+      }
+    ],
+    "indices": [
+      "Une primitive de $e^{at}$ est $\\dfrac{1}{a}e^{at}$. Ici $a = 0{,}04$, donc $\\dfrac{1}{a} = 25$.",
+      "Le revenu total est la somme des revenus de chaque jour : c'est une intégrale de $r(t)$ entre 0 et 25.",
+      "$200 \\times 25 = 5000$, et $e^{0{,}04 \\times 25} = e^1 = e$."
+    ],
+    "correction": "- Une primitive de $e^{0{,}04t}$ est $\\dfrac{1}{0{,}04}e^{0{,}04t} = 25\\,e^{0{,}04t}$. Vérification : $(25\\,e^{0{,}04t})' = 25 \\times 0{,}04\\,e^{0{,}04t} = e^{0{,}04t}$.\n- Le revenu cumulé est $\\displaystyle\\int_0^{25} 200\\,e^{0{,}04t}\\,dt$ (on additionne le revenu de chaque instant).\n- $\\displaystyle\\int_0^{25} 200\\,e^{0{,}04t}\\,dt = 200 \\times \\Big[25\\,e^{0{,}04t}\\Big]_0^{25} = 5000\\,(e^{1} - e^{0}) = 5000\\,(e - 1) \\approx 8\\,591$ €."
+  }
+]

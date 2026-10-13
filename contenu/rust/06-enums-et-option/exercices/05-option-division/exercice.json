@@ -1,0 +1,10 @@
+{
+  "titre": "Peut-être un résultat",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`diviser` : `if b == 0 { None } else { Some(a / b) }`.",
+    "`diviser_ou_zero` peut réutiliser `diviser` avec `.unwrap_or(0)`.",
+    "`mot.chars().next()` renvoie déjà un `Option<char>` : `None` si le mot est vide."
+  ]
+}
