@@ -1,0 +1,11 @@
+{
+  "titre": "Mini-projet : notes dans un fichier",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Pour chaque ligne : `ligne.strip()`, ignore-la si elle est vide, puis `morceaux = ligne.split(\";\")`. Ignore-la aussi si `len(morceaux) != 2`.",
+    "Convertis la note avec `float(...)` dans un `try` / `except ValueError` : une ligne invalide est simplement ignorée (`continue`).",
+    "Pour le rapport : parcours `sorted(notes.items())` et écris `\"%s : %.1f/20\\n\" % (nom, note)`.",
+    "`moyenne_classe` réutilise `lire_notes` : si le dictionnaire est vide, renvoie `None`, sinon `sum(notes.values()) / len(notes)`."
+  ]
+}

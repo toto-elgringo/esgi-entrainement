@@ -1,0 +1,669 @@
+[
+  {
+    "id": "placer-si-p-different-de-np",
+    "titre": "Placer les problèmes si P ≠ NP",
+    "difficulte": 2,
+    "enonce": "On suppose $P \\neq NP$. Les problèmes sont numérotés ainsi : 1 chemin eulérien ; 2 plus court chemin (décision) ; 3 programmation linéaire continue (décision) ; 4 répondre toujours oui ; 5 factorisation (décision) ; 6 isomorphisme de graphes ; 7 SAT ; 8 voyageur de commerce (décision) ; 9 sac à dos (décision) ; 10 3-coloration ; 11 circuit hamiltonien ; 12 voyageur de commerce (optimisation) ; 13 problème de l'arrêt. Réponds avec des ensembles de numéros, par exemple `{1, 2}`.",
+    "questions": [
+      {
+        "intitule": "Problèmes dans P.",
+        "type": "ensemble",
+        "reponse": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "acceptes": [
+          "{4, 3, 2, 1}",
+          "1; 2; 3; 4"
+        ],
+        "refuses": [
+          "{1, 2, 3}",
+          "{1, 2, 3, 4, 5}"
+        ]
+      },
+      {
+        "intitule": "Problèmes NP-complets.",
+        "type": "ensemble",
+        "reponse": [
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "acceptes": [
+          "{11, 10, 9, 8, 7}"
+        ],
+        "refuses": [
+          "{7, 8, 9, 10, 11, 12}",
+          "{7, 8, 9, 10}"
+        ]
+      },
+      {
+        "intitule": "Problèmes de NP dont on ne sait pas s'ils sont dans P ou NP-complets (candidats NP-intermédiaires).",
+        "type": "ensemble",
+        "reponse": [
+          5,
+          6
+        ],
+        "refuses": [
+          "{5}",
+          "{12, 13}"
+        ]
+      },
+      {
+        "intitule": "Problèmes hors de NP.",
+        "type": "ensemble",
+        "reponse": [
+          12,
+          13
+        ],
+        "refuses": [
+          "{13}",
+          "{11, 12, 13}"
+        ]
+      }
+    ],
+    "indices": [
+      "Eulérien (arêtes), plus court chemin (Dijkstra), programmation linéaire continue (Khachiyan) et les problèmes triviaux sont polynomiaux.",
+      "Les problèmes 12 et 13 ne sont pas des problèmes de NP : l'un n'est pas un problème de décision, l'autre est indécidable."
+    ],
+    "correction": "- **P** : 1 (chemin eulérien, temps linéaire), 2 (plus court chemin, Dijkstra), 3 (programmation linéaire continue, Khachiyan 1979), 4 (problèmes triviaux).\n- **NP-complets** : 7 (SAT), 8 (TSP décision), 9 (sac à dos décision), 10 (3-coloration), 11 (circuit hamiltonien).\n- **Ni l'un ni l'autre connus** : 5 (factorisation) et 6 (isomorphisme de graphes), les candidats NP-intermédiaires.\n- **Hors de NP** : 12 (TSP en optimisation, pas un problème de décision) et 13 (arrêt, indécidable). Tous deux sont NP-difficiles."
+  },
+  {
+    "id": "placer-si-p-egal-np",
+    "titre": "Placer les problèmes si P = NP",
+    "difficulte": 3,
+    "enonce": "On suppose maintenant $P = NP$. Les problèmes sont numérotés ainsi : 1 chemin eulérien ; 2 plus court chemin (décision) ; 3 programmation linéaire continue (décision) ; 4 répondre toujours oui ; 5 factorisation (décision) ; 6 isomorphisme de graphes ; 7 SAT ; 8 voyageur de commerce (décision) ; 9 sac à dos (décision) ; 10 3-coloration ; 11 circuit hamiltonien ; 12 voyageur de commerce (optimisation) ; 13 problème de l'arrêt. Réponds avec des ensembles de numéros, par exemple `{1, 2}`.",
+    "questions": [
+      {
+        "intitule": "Problèmes NP-complets.",
+        "type": "ensemble",
+        "reponse": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "acceptes": [
+          "{11, 10, 9, 8, 7, 6, 5, 3, 2, 1}"
+        ],
+        "refuses": [
+          "{7, 8, 9, 10, 11}",
+          "{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}"
+        ]
+      },
+      {
+        "intitule": "Problèmes de NP qui ne sont **pas** NP-complets.",
+        "type": "ensemble",
+        "reponse": [
+          4
+        ],
+        "refuses": [
+          "{}",
+          "{1, 4}"
+        ]
+      },
+      {
+        "intitule": "Problèmes hors de NP.",
+        "type": "ensemble",
+        "reponse": [
+          12,
+          13
+        ],
+        "refuses": [
+          "{}",
+          "{13}"
+        ]
+      }
+    ],
+    "indices": [
+      "Si P = NP, tout problème **non trivial** de P devient NP-complet.",
+      "« Toujours oui » n'a aucune instance de réponse non : on ne peut pas y réduire SAT."
+    ],
+    "correction": "- Si $P = NP$, tout problème **non trivial** de NP (= P) est NP-complet : la réduction résout elle-même l'instance en temps polynomial puis renvoie une instance *oui* ou *non* fixée. D'où 1, 2, 3, 5, 6, 7, 8, 9, 10, 11.\n- Exception : 4 (« toujours oui » ou « toujours non ») : il faudrait envoyer une formule insatisfiable sur une instance de réponse *non*, et il n'y en a pas.\n- 12 et 13 restent hors de NP : $P = NP$ ne parle que des problèmes de NP."
+  },
+  {
+    "id": "placer-la-deux-coloration",
+    "titre": "Placer la 2-coloration",
+    "difficulte": 2,
+    "enonce": "« Ce graphe peut-il être colorié avec 2 couleurs, deux sommets voisins ayant toujours des couleurs différentes ? »",
+    "questions": [
+      {
+        "intitule": "Dans quelle classe est la 2-coloration (sans hypothèse sur P = NP) ?",
+        "type": "choix",
+        "choix": [
+          "NP-complet",
+          "Hors de NP",
+          "P"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Une 2-coloration est impossible si et seulement si le graphe contient…",
+        "type": "choix",
+        "choix": [
+          "plus de 10 sommets",
+          "un cycle de longueur impaire",
+          "un cycle de longueur paire",
+          "un sommet isolé"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Si P ≠ NP, la 2-coloration est-elle NP-complète ?",
+        "type": "choix",
+        "choix": [
+          "Non",
+          "Oui"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Si P = NP, la 2-coloration est-elle NP-complète ?",
+        "type": "choix",
+        "choix": [
+          "Oui, c'est un problème non trivial de P",
+          "Non"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Et la 3-coloration ?",
+        "type": "choix",
+        "choix": [
+          "Dans P dans les deux cas",
+          "Hors de NP",
+          "NP-complète dans les deux cas"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "On colorie un sommet, puis ses voisins de l'autre couleur, et ainsi de suite (parcours en largeur).",
+      "Un conflit apparaît quand on revient sur un sommet par un chemin de longueur impaire."
+    ],
+    "correction": "- La 2-coloration est dans **P** : un parcours en largeur colorie les sommets en alternant les deux couleurs ; un conflit apparaît si et seulement si le graphe a un **cycle impair**. Temps linéaire.\n- Si $P \\neq NP$ : dans P, donc pas NP-complète.\n- Si $P = NP$ : c'est un problème non trivial (certains graphes sont 2-coloriables, d'autres non), donc **NP-complet**, comme le chemin eulérien.\n- La 3-coloration est NP-complète dans les deux cas : passer de 2 à 3 couleurs suffit à changer de côté."
+  },
+  {
+    "id": "sac-a-dos-pseudo-polynomial",
+    "titre": "Un sac à dos « polynomial » ?",
+    "difficulte": 3,
+    "enonce": "La programmation dynamique résout le sac à dos à $n$ objets et de capacité entière $C$ en $O(n \\times C)$ opérations. Le sac à dos (décision) est NP-complet. On prend $n = 50$ objets, et des poids, des valeurs et une capacité écrits chacun sur 64 bits.",
+    "questions": [
+      {
+        "intitule": "A-t-on prouvé P = NP ?",
+        "type": "choix",
+        "choix": [
+          "Non",
+          "Oui"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Taille de l'instance en bits (50 poids, 50 valeurs, 1 capacité, 64 bits chacun).",
+        "type": "nombre",
+        "reponse": 6464,
+        "acceptes": [
+          "50*2*64+64",
+          "6 464"
+        ],
+        "refuses": [
+          "3200",
+          "6400"
+        ]
+      },
+      {
+        "intitule": "Nombre maximal de cases de la table : $50 \\times (2^{64} - 1)$. Donne un ordre de grandeur (tu peux écrire `9.2*10^20`).",
+        "type": "nombre",
+        "reponse": "50*(2^64-1)",
+        "tolerance": 1e+19,
+        "acceptes": [
+          "9.2*10^20",
+          "50*2^64"
+        ],
+        "refuses": [
+          "6464",
+          "10^19"
+        ]
+      },
+      {
+        "intitule": "Ajouter un bit à l'écriture de $C$…",
+        "type": "choix",
+        "choix": [
+          "ajoute une case à la table",
+          "ne change rien",
+          "double sa valeur maximale, donc la taille de la table"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Comment appelle-t-on un algorithme polynomial en la **valeur** des nombres mais pas en la **taille** de l'instance ?",
+        "type": "texte",
+        "reponse": [
+          "pseudo-polynomial",
+          "pseudo polynomial",
+          "pseudopolynomial"
+        ],
+        "acceptes": [
+          "Pseudo-polynomial"
+        ],
+        "refuses": [
+          "polynomial",
+          "exponentiel"
+        ]
+      }
+    ],
+    "indices": [
+      "$n \\times C$ est polynomial en la **valeur** de $C$. Mais combien de bits faut-il pour écrire $C$ ?",
+      "Avec 64 bits, $C$ peut valoir jusqu'à $2^{64} - 1 \\approx 1{,}8 \\times 10^{19}$."
+    ],
+    "correction": "- **Non**, P = NP n'est pas prouvé : $n \\times C$ est polynomial en la **valeur** de $C$, pas en la **taille** de l'instance. $C$ s'écrit avec environ $\\log_2 C$ bits.\n- Taille de l'instance : $50 \\times 2 \\times 64 + 64 = 6\\,464$ bits.\n- Table : jusqu'à $50 \\times (2^{64} - 1) \\approx 9{,}2 \\times 10^{20}$ cases.\n- Un bit de plus double la valeur maximale de $C$, donc la table : le temps est **exponentiel** en la taille de $C$.\n- C'est un algorithme **pseudo-polynomial** ; on dit que le sac à dos est **faiblement** NP-complet (facile quand les capacités sont petites)."
+  },
+  {
+    "id": "si-la-trois-coloration-tombait",
+    "titre": "Et si la 3-coloration tombait demain ?",
+    "difficulte": 3,
+    "enonce": "Quelqu'un publie un algorithme polynomial pour la 3-coloration (NP-complète). On considère un voyageur de commerce à **100 villes** avec des distances entières d'au plus $10^6$.",
+    "questions": [
+      {
+        "intitule": "Quelle figure devient la bonne ?",
+        "type": "choix",
+        "choix": [
+          "P = NP",
+          "P ≠ NP"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Le voyageur de commerce en décision devient…",
+        "type": "choix",
+        "choix": [
+          "polynomial",
+          "indécidable",
+          "inchangé"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Le coût d'une tournée est entre 0 et $100 \\times 10^6 = 10^8$. Combien de questions de décision faut-il pour trouver le coût optimal par dichotomie ? ($\\lceil \\log_2(10^8 + 1) \\rceil$)",
+        "type": "nombre",
+        "reponse": 27,
+        "refuses": [
+          "26",
+          "100",
+          "8"
+        ]
+      },
+      {
+        "intitule": "Pour retrouver la tournée elle-même, on teste chaque arête une fois. Combien d'arêtes entre 100 villes ?",
+        "type": "nombre",
+        "reponse": 4950,
+        "acceptes": [
+          "100*99/2",
+          "4 950"
+        ],
+        "refuses": [
+          "9900",
+          "10000"
+        ]
+      },
+      {
+        "intitule": "Nombre total de questions posées à l'algorithme polynomial.",
+        "type": "nombre",
+        "reponse": 4977,
+        "acceptes": [
+          "27+4950",
+          "4 977"
+        ],
+        "refuses": [
+          "4950",
+          "27"
+        ]
+      }
+    ],
+    "indices": [
+      "Un problème NP-complet dans P entraîne P = NP.",
+      "$2^{26} \\approx 6{,}7 \\times 10^7 < 10^8 + 1 \\le 2^{27} \\approx 1{,}34 \\times 10^8$.",
+      "Nombre d'arêtes : $\\dfrac{n(n-1)}{2}$."
+    ],
+    "correction": "- La 3-coloration est NP-complète : la voir tomber dans P donne **P = NP**. Le TSP en décision, qui est dans NP, s'y réduit et devient polynomial.\n- **Coût optimal** : une tournée coûte entre 0 et $10^8$ ; par dichotomie sur $K$, il faut $\\lceil \\log_2(10^8 + 1) \\rceil = 27$ questions.\n- **La tournée** : on prend les arêtes une à une et on remplace leur distance par une pénalité supérieure à $10^8$. S'il existe encore une tournée de coût au plus l'optimum, on garde la pénalité ; sinon l'arête est indispensable et on lui rend sa distance. Il y a $\\dfrac{100 \\times 99}{2} = 4\\,950$ arêtes.\n- Total : $27 + 4\\,950 = 4\\,977$ questions polynomiales : l'optimisation devient polynomiale elle aussi."
+  },
+  {
+    "id": "l-arret-np-complet",
+    "titre": "L'arrêt, NP-complet ?",
+    "difficulte": 2,
+    "enonce": "Le problème de l'arrêt (« ce programme s'arrête-t-il sur cette entrée ? ») est NP-difficile.",
+    "questions": [
+      {
+        "intitule": "Est-il NP-complet ?",
+        "type": "choix",
+        "choix": [
+          "Non",
+          "Oui"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Pourquoi ?",
+        "type": "choix",
+        "choix": [
+          "Il est dans P",
+          "Il n'est pas NP-difficile",
+          "Il est trop facile",
+          "Il n'est pas dans NP : aucun algorithme ne le décide"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "Si P = NP, où tombe-t-il ?",
+        "type": "choix",
+        "choix": [
+          "Toujours NP-difficile et hors de NP",
+          "Dans P",
+          "NP-complet"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Explique comment on réduit SAT au problème de l'arrêt.",
+        "type": "auto",
+        "reponse": "À une formule $\\varphi$, on associe un programme qui essaie toutes les affectations des variables, s'arrête s'il en trouve une qui rend $\\varphi$ vraie, et boucle indéfiniment sinon. **Écrire** ce programme prend un temps polynomial (c'est l'exécuter qui serait long), et il s'arrête si et seulement si $\\varphi$ est satisfiable."
+      }
+    ],
+    "indices": [
+      "Tout problème de NP se décide en essayant tous les certificats, en nombre fini.",
+      "Turing (1936) : aucun algorithme ne décide l'arrêt."
+    ],
+    "correction": "- **Non** : être NP-complet exige d'être dans NP, et tout problème de NP se **décide** (on essaie tous les certificats de taille polynomiale). Or aucun algorithme ne décide l'arrêt (Turing, 1936).\n- Il reste hors de NP dans les deux figures, dans la partie de NP-difficile qui déborde de NP. $P = NP$ ne parle que des problèmes de NP.\n- Réduction depuis SAT : le programme qui cherche une affectation satisfaisante et ne s'arrête qu'en cas de succès."
+  },
+  {
+    "id": "verifier-un-certificat",
+    "titre": "Vérifier un certificat",
+    "difficulte": 1,
+    "enonce": "Quatre villes A, B, C, D. Distances : AB = 3, AC = 5, AD = 4, BC = 2, BD = 6, CD = 3. Question : « existe-t-il une tournée de coût au plus $K = 12$ ? ».",
+    "questions": [
+      {
+        "intitule": "Coût de la tournée A → C → B → D → A.",
+        "type": "nombre",
+        "reponse": 17,
+        "refuses": [
+          "12",
+          "13"
+        ]
+      },
+      {
+        "intitule": "Cette tournée de coût 17 prouve-t-elle que la réponse est « non » ?",
+        "type": "choix",
+        "choix": [
+          "Non : une seule tournée ne dit rien des autres",
+          "Oui"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Coût de la tournée A → B → C → D → A.",
+        "type": "nombre",
+        "reponse": 12,
+        "refuses": [
+          "17"
+        ]
+      },
+      {
+        "intitule": "Cette deuxième tournée est-elle un certificat de la réponse « oui » ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Combien de tournées distinctes faudrait-il examiner pour être sûr d'une réponse « non » sur 4 villes ?",
+        "type": "nombre",
+        "reponse": 3,
+        "acceptes": [
+          "3!/2"
+        ],
+        "refuses": [
+          "24",
+          "6"
+        ]
+      }
+    ],
+    "indices": [
+      "A → C → B → D → A : AC + CB + BD + DA.",
+      "Tournées distinctes de $n$ villes : $\\dfrac{(n-1)!}{2}$."
+    ],
+    "correction": "- A → C → B → D → A : $5 + 2 + 6 + 4 = 17 > 12$. Cela ne prouve **rien** pour la réponse « non » : il faudrait montrer qu'**aucune** tournée ne convient.\n- A → B → C → D → A : $3 + 2 + 3 + 4 = 12 \\le 12$ : c'est un **certificat** de la réponse « oui », vérifié en additionnant 4 distances.\n- Pour prouver « non », il faudrait examiner toutes les tournées : $\\dfrac{3!}{2} = 3$ ici, mais un nombre astronomique en général. NP ne demande un certificat court que pour les réponses « oui »."
+  },
+  {
+    "id": "composer-des-reductions",
+    "titre": "Les réductions transportent la facilité",
+    "difficulte": 2,
+    "enonce": "On a $A \\le_p B$ : une transformation $f$ envoie une instance de A de taille $n$ sur une instance de B. Si $f$ s'exécute en $O(n^a)$, l'instance obtenue a une taille $m$ en $O(n^a)$. Si B se résout en $O(m^b)$, alors A se résout en $O(n^{a \\times b})$ (plus le temps de $f$). Donne l'exposant obtenu pour A.",
+    "questions": [
+      {
+        "intitule": "$f$ en $O(n^2)$ et B en $O(m^3)$.",
+        "type": "nombre",
+        "reponse": 6,
+        "refuses": [
+          "5",
+          "9"
+        ]
+      },
+      {
+        "intitule": "$f$ en $O(n)$ et B en $O(m^2)$.",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": [
+          "3",
+          "1"
+        ]
+      },
+      {
+        "intitule": "$f$ en $O(n^3)$ et B en $O(m^2)$.",
+        "type": "nombre",
+        "reponse": 6,
+        "refuses": [
+          "5",
+          "8"
+        ]
+      },
+      {
+        "intitule": "Que conclure si B est dans P ?",
+        "type": "choix",
+        "choix": [
+          "A est dans P",
+          "A est NP-complet",
+          "On ne peut rien dire"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "On remplace $m$ par $n^a$ dans $m^b$.",
+      "$(n^2)^3 = n^6$."
+    ],
+    "correction": "- $(n^2)^3 = n^6$ : A en $O(n^6)$.\n- $(n^1)^2 = n^2$ : A en $O(n^2)$.\n- $(n^3)^2 = n^6$ : A en $O(n^6)$.\n- Un polynôme appliqué à un polynôme reste un polynôme : si $A \\le_p B$ et $B \\in P$, alors $A \\in P$. Appliqué à un problème NP-complet, cela donne : un seul NP-complet dans P, et $P = NP$."
+  },
+  {
+    "id": "du-circuit-hamiltonien-au-tsp",
+    "titre": "Du circuit hamiltonien au voyageur de commerce",
+    "difficulte": 3,
+    "enonce": "Problème A : « ce graphe à $n$ sommets a-t-il un **circuit hamiltonien** (un cycle qui passe une fois par chaque sommet) ? ». On le réduit au voyageur de commerce en décision : une ville par sommet, distance **1** entre deux villes reliées dans le graphe, distance **2** sinon, et on demande s'il existe une tournée de coût au plus $K$.",
+    "questions": [
+      {
+        "intitule": "Pour un graphe à 5 sommets, quelle valeur de $K$ choisir ?",
+        "type": "nombre",
+        "reponse": 5,
+        "refuses": [
+          "10",
+          "4"
+        ]
+      },
+      {
+        "intitule": "Coût minimal possible d'une tournée qui utilise au moins une distance 2 (graphe à 5 sommets).",
+        "type": "nombre",
+        "reponse": 6,
+        "refuses": [
+          "5",
+          "10"
+        ]
+      },
+      {
+        "intitule": "Que montre cette réduction ?",
+        "type": "choix",
+        "choix": [
+          "Le circuit hamiltonien est plus difficile que le TSP",
+          "Le TSP est dans P",
+          "Le TSP (décision) est au moins aussi difficile que le circuit hamiltonien"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Explique pourquoi la réponse est la même pour les deux problèmes.",
+        "type": "auto",
+        "reponse": "Une tournée de 5 villes a 5 trajets, chacun de coût 1 ou 2. Elle coûte au plus $K = 5$ si et seulement si tous ses trajets valent 1, c'est-à-dire si elle n'utilise que des arêtes du graphe : c'est alors exactement un circuit hamiltonien. La transformation se calcule en temps polynomial (on remplit une table de $n^2$ distances)."
+      }
+    ],
+    "indices": [
+      "Une tournée de $n$ villes a $n$ trajets.",
+      "Avec un seul trajet à 2 et les autres à 1 : $4 \\times 1 + 2$."
+    ],
+    "correction": "- $K = n = 5$ : une tournée a 5 trajets, de coût au moins 1 chacun.\n- Dès qu'un trajet vaut 2, la tournée coûte au moins $4 + 2 = 6 > 5$.\n- Donc il existe une tournée de coût $\\le 5$ **si et seulement si** le graphe a un circuit hamiltonien. La transformation est polynomiale : circuit hamiltonien $\\le_p$ TSP (décision). Le TSP est au moins aussi difficile ; comme le circuit hamiltonien est NP-complet, le TSP (décision) est NP-difficile."
+  },
+  {
+    "id": "polynomial-pas-rapide",
+    "titre": "Polynomial ne veut pas dire rapide",
+    "difficulte": 2,
+    "enonce": "Une preuve de $P = NP$ pourrait ne fournir qu'un algorithme en $n^{100}$. On compare, pour $n = 20$, $20^{100}$ et $20!$ à l'aide du logarithme en base 10. Arrondis au dixième (tu peux écrire `log(20^100)`).",
+    "questions": [
+      {
+        "intitule": "$\\log_{10}(20^{100})$",
+        "type": "nombre",
+        "reponse": "100*log(20)",
+        "tolerance": 0.1,
+        "acceptes": [
+          "130.1",
+          "log(20^100)"
+        ],
+        "refuses": [
+          "100",
+          "20"
+        ]
+      },
+      {
+        "intitule": "$\\log_{10}(20!)$",
+        "type": "nombre",
+        "reponse": "log(20!)",
+        "tolerance": 0.1,
+        "acceptes": [
+          "18.4"
+        ],
+        "refuses": [
+          "130.1",
+          "20"
+        ]
+      },
+      {
+        "intitule": "Pour $n = 20$, lequel est le plus grand ?",
+        "type": "choix",
+        "choix": [
+          "$20^{100}$",
+          "$20!$"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Même si P = NP, les métaheuristiques deviendraient-elles inutiles du jour au lendemain ?",
+        "type": "choix",
+        "choix": [
+          "Non, un algorithme polynomial peut rester inutilisable",
+          "Oui"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "$\\log_{10}(a^b) = b \\log_{10} a$ et $\\log_{10} 20 \\approx 1{,}301$.",
+      "$20! \\approx 2{,}4 \\times 10^{18}$."
+    ],
+    "correction": "- $\\log_{10}(20^{100}) = 100 \\log_{10} 20 \\approx 130{,}1$, donc $20^{100} \\approx 1{,}3 \\times 10^{130}$.\n- $\\log_{10}(20!) \\approx 18{,}4$, donc $20! \\approx 2{,}4 \\times 10^{18}$.\n- L'algorithme « polynomial » en $n^{100}$ serait ici $10^{111}$ fois plus lent que la force brute. Polynomial ne veut pas dire rapide : les métaheuristiques garderaient tout leur intérêt."
+  },
+  {
+    "id": "vrai-ou-faux-classes",
+    "titre": "Vrai ou faux sur les classes",
+    "difficulte": 1,
+    "enonce": "Pour chaque affirmation, dis si elle est vraie ou fausse.",
+    "questions": [
+      {
+        "intitule": "« Tout problème NP-difficile est dans NP. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "« Un problème NP-complet est NP-difficile. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "« Pour prouver que mon problème X est NP-difficile, je réduis SAT à X. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "« Pour prouver que X est NP-difficile, il suffit de réduire X à SAT. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "« On sait aujourd'hui que P ≠ NP. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "« Un algorithme en $O(n \\times C)$ pour le sac à dos prouve que P = NP. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "NP-difficile n'exige pas d'être dans NP.",
+      "Pour montrer que X est difficile, on part d'un problème connu difficile et on le transforme **en** X."
+    ],
+    "correction": "- **Faux** : le TSP en optimisation et l'arrêt sont NP-difficiles mais hors de NP.\n- **Vrai** : NP-complet = NP-difficile **et** dans NP.\n- **Vrai** : réduire SAT à X ($SAT \\le_p X$) montre que X est au moins aussi difficile que SAT.\n- **Faux** : réduire X à SAT montre seulement que X n'est pas plus difficile que SAT (que X est dans NP s'il est de décision).\n- **Faux** : la question est ouverte depuis 1971.\n- **Faux** : $O(n \\times C)$ est pseudo-polynomial, pas polynomial en la taille de l'instance."
+  }
+]

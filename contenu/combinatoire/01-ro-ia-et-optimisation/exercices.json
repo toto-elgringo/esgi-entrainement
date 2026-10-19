@@ -1,0 +1,527 @@
+[
+  {
+    "id": "reconnaitre-combinatoire",
+    "titre": "Reconnaître un problème combinatoire",
+    "difficulte": 1,
+    "enonce": "Pour chaque situation, dis si elle relève de l'**optimisation combinatoire** (choisir la meilleure solution dans un ensemble **fini** de candidats).",
+    "questions": [
+      {
+        "intitule": "Régler la température d'une pièce pour minimiser l'écart à 21 °C.",
+        "type": "choix",
+        "choix": [
+          "Combinatoire",
+          "Pas combinatoire"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Affecter 30 étudiants à 6 projets en respectant leurs vœux et en maximisant la satisfaction globale.",
+        "type": "choix",
+        "choix": [
+          "Combinatoire",
+          "Pas combinatoire"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Choisir l'ordre de passage d'un livreur chez 40 clients.",
+        "type": "choix",
+        "choix": [
+          "Combinatoire",
+          "Pas combinatoire"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Comment s'appelle le problème du livreur (situation 3) ?",
+        "type": "texte",
+        "reponse": [
+          "voyageur de commerce",
+          "probleme du voyageur de commerce",
+          "TSP",
+          "le voyageur de commerce"
+        ],
+        "acceptes": [
+          "Voyageur de commerce",
+          "tsp",
+          "Problème du voyageur de commerce"
+        ],
+        "refuses": [
+          "sac à dos",
+          "coloration"
+        ]
+      }
+    ],
+    "indices": [
+      "Cherche s'il y a un nombre **fini** de solutions candidates, ou une variable continue.",
+      "Une température peut prendre une infinité de valeurs ; un ordre de passage est une permutation."
+    ],
+    "correction": "- **Thermostat** : pas combinatoire. La variable (la température) est **continue** : il n'y a pas d'ensemble fini de candidats. C'est un problème de contrôle/commande.\n- **Affectation des étudiants** : combinatoire. Il y a un nombre fini (énorme) d'affectations, et un critère à maximiser sous contraintes.\n- **Livreur** : combinatoire. On cherche une permutation des 40 adresses parmi $40!$ ordres : c'est le **voyageur de commerce** (TSP)."
+  },
+  {
+    "id": "modeliser-tournees",
+    "titre": "Modéliser des tournées de véhicules",
+    "difficulte": 1,
+    "enonce": "Une plateforme doit répartir 200 colis entre 8 camionnettes, respecter les fenêtres horaires des clients et minimiser le kilométrage total.",
+    "questions": [
+      {
+        "intitule": "Quelle est la **fonction objectif** ?",
+        "type": "choix",
+        "choix": [
+          "Respecter la capacité des camionnettes",
+          "Choisir la camionnette de chaque colis",
+          "Minimiser le kilométrage total des 8 tournées",
+          "Livrer chaque colis une fois"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Lequel de ces éléments est une **variable de décision** ?",
+        "type": "choix",
+        "choix": [
+          "Le nombre de camionnettes",
+          "La camionnette qui transporte chaque colis",
+          "La capacité d'une camionnette",
+          "La fenêtre horaire d'un client"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Lequel de ces éléments est une **contrainte** ?",
+        "type": "choix",
+        "choix": [
+          "Minimiser le kilométrage",
+          "L'ordre de livraison",
+          "Le choix de la camionnette",
+          "Chaque colis est livré exactement une fois"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "Quel est le sigle anglais de ce problème de tournées de véhicules ?",
+        "type": "texte",
+        "reponse": [
+          "VRP"
+        ],
+        "acceptes": [
+          "vrp"
+        ],
+        "refuses": [
+          "TSP"
+        ]
+      }
+    ],
+    "indices": [
+      "Variables = ce que l'on choisit ; objectif = ce que l'on minimise ; contraintes = ce que l'on doit respecter.",
+      "La capacité et les horaires sont des données imposées : ils apparaissent dans les contraintes, pas dans les variables."
+    ],
+    "correction": "- **Variables** : l'affectation de chaque colis à une camionnette, et l'ordre de livraison de chaque tournée.\n- **Objectif** : minimiser le kilométrage total des 8 tournées.\n- **Contraintes** : capacité de chaque camionnette, fenêtre horaire de chaque client, chaque colis livré exactement une fois.\n\nC'est un **VRP** (*Vehicle Routing Problem*), un classique de la recherche opérationnelle."
+  },
+  {
+    "id": "compter-tournees",
+    "titre": "Compter les tournées",
+    "difficulte": 1,
+    "enonce": "Pour un voyageur de commerce à $n$ villes, il y a $n!$ ordres de visite et $\\dfrac{(n-1)!}{2}$ tournées distinctes. Tu peux écrire `5!` dans tes réponses.",
+    "questions": [
+      {
+        "intitule": "Nombre d'ordres de visite de 5 villes.",
+        "type": "nombre",
+        "reponse": 120,
+        "acceptes": [
+          "5!"
+        ],
+        "refuses": [
+          "12",
+          "24"
+        ]
+      },
+      {
+        "intitule": "Nombre de tournées distinctes pour 5 villes.",
+        "type": "nombre",
+        "reponse": 12,
+        "acceptes": [
+          "4!/2"
+        ],
+        "refuses": [
+          "120",
+          "24"
+        ]
+      },
+      {
+        "intitule": "8 villes en partant de A : nombre d'ordres de visite des 7 autres villes.",
+        "type": "nombre",
+        "reponse": 5040,
+        "acceptes": [
+          "7!",
+          "5 040"
+        ],
+        "refuses": [
+          "40320",
+          "2520"
+        ]
+      },
+      {
+        "intitule": "Nombre de tournées distinctes pour 8 villes.",
+        "type": "nombre",
+        "reponse": 2520,
+        "acceptes": [
+          "7!/2",
+          "2 520"
+        ],
+        "refuses": [
+          "5040",
+          "40320"
+        ]
+      },
+      {
+        "intitule": "Nombre de tournées distinctes pour 10 villes.",
+        "type": "nombre",
+        "reponse": 181440,
+        "acceptes": [
+          "9!/2",
+          "181 440"
+        ],
+        "refuses": [
+          "3628800",
+          "362880"
+        ]
+      }
+    ],
+    "indices": [
+      "Une tournée ne dépend ni de la ville de départ, ni du sens de parcours.",
+      "Tournées distinctes : $\\dfrac{(n-1)!}{2}$. Pour 5 villes : $\\dfrac{4!}{2} = \\dfrac{24}{2}$."
+    ],
+    "correction": "- 5 villes : $5! = 120$ ordres, et $\\dfrac{4!}{2} = \\dfrac{24}{2} = 12$ tournées distinctes.\n- 8 villes depuis A : il reste 7 villes à ordonner, $7! = 5\\,040$ ordres, soit $\\dfrac{5\\,040}{2} = 2\\,520$ tournées distinctes (le sens ne compte pas).\n- 10 villes : $\\dfrac{9!}{2} = \\dfrac{362\\,880}{2} = 181\\,440$ tournées distinctes."
+  },
+  {
+    "id": "sac-a-dos-du-cours",
+    "titre": "Le sac à dos du cours",
+    "difficulte": 2,
+    "enonce": "Le sac a une capacité de 15 kg.\n\n| Objet | A | B | C | D | E |\n|---|---|---|---|---|---|\n| Poids (kg) | 4 | 5 | 7 | 3 | 6 |\n| Valeur (euros) | 10 | 13 | 20 | 6 | 22 |",
+    "questions": [
+      {
+        "intitule": "Combien de sous-ensembles d'objets différents peut-on former (y compris le sac vide) ?",
+        "type": "nombre",
+        "reponse": 32,
+        "acceptes": [
+          "2^5"
+        ],
+        "refuses": [
+          "25",
+          "120",
+          "5!"
+        ]
+      },
+      {
+        "intitule": "Poids du chargement A + C + D (en kg).",
+        "type": "nombre",
+        "reponse": 14,
+        "refuses": [
+          "36"
+        ]
+      },
+      {
+        "intitule": "Le chargement B + C + E est-il réalisable ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non, il dépasse la capacité"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Valeur maximale que l'on peut emporter (en euros).",
+        "type": "nombre",
+        "reponse": 45,
+        "refuses": [
+          "42",
+          "52",
+          "71"
+        ]
+      },
+      {
+        "intitule": "Quels objets donnent cette valeur maximale ?",
+        "type": "choix",
+        "choix": [
+          "A + B + E",
+          "C + E",
+          "A + C + D",
+          "B + D + E"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Chaque objet est pris ou non : $2 \\times 2 \\times 2 \\times 2 \\times 2$ possibilités.",
+      "Les objets C et E ont la meilleure valeur, mais C + E + un autre objet dépasse-t-il 15 kg ?",
+      "Essaie A + B + E : poids $4 + 5 + 6$."
+    ],
+    "correction": "- Nombre de sous-ensembles : $2^5 = 32$.\n- A + C + D : $4 + 7 + 3 = 14$ kg (36 euros), réalisable.\n- B + C + E : $5 + 7 + 6 = 18$ kg $> 15$ : **irréalisable**.\n- Meilleur choix : **A + B + E** = $4 + 5 + 6 = 15$ kg pour $10 + 13 + 22 = 45$ euros. Par exemple, C + E ne pèse que 13 kg (42 euros) mais on ne peut plus rien ajouter sans dépasser 15 kg (le plus léger, D, ferait 16 kg)."
+  },
+  {
+    "id": "modele-sac-a-dos",
+    "titre": "Écrire le modèle du sac à dos",
+    "difficulte": 2,
+    "enonce": "On note $x_i \\in \\{0, 1\\}$ la décision de prendre ($x_i = 1$) ou non ($x_i = 0$) l'objet $i$, de poids $p_i$ et de valeur $v_i$. Le sac a une capacité $C$.",
+    "questions": [
+      {
+        "intitule": "Quelle est la fonction objectif ?",
+        "type": "choix",
+        "choix": [
+          "$\\max \\sum_i p_i x_i$",
+          "$\\max \\sum_i x_i$",
+          "$\\max \\sum_i v_i x_i$",
+          "$\\min \\sum_i p_i x_i$"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Quelle est la contrainte ?",
+        "type": "choix",
+        "choix": [
+          "$\\sum_i v_i x_i \\le C$",
+          "$\\sum_i x_i \\le C$",
+          "$\\sum_i p_i x_i \\ge C$",
+          "$\\sum_i p_i x_i \\le C$"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "Avec les objets du cours (poids 4, 5, 7, 3, 6 et valeurs 10, 13, 20, 6, 22), que vaut l'objectif pour $x = (1, 0, 1, 0, 1)$ ?",
+        "type": "nombre",
+        "reponse": 52,
+        "refuses": [
+          "17",
+          "45"
+        ]
+      },
+      {
+        "intitule": "Cette solution $x = (1, 0, 1, 0, 1)$ est-elle réalisable pour $C = 15$ ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "On **maximise** la valeur emportée, sous une contrainte de **poids**.",
+      "Pour $x = (1, 0, 1, 0, 1)$, on prend les objets A, C et E."
+    ],
+    "correction": "- Objectif : $\\max \\sum_i v_i x_i$ (la valeur emportée).\n- Contrainte : $\\sum_i p_i x_i \\le C$ (le poids ne dépasse pas la capacité).\n- $x = (1, 0, 1, 0, 1)$ : on prend A, C, E. Valeur $10 + 20 + 22 = 52$ euros, mais poids $4 + 7 + 6 = 17 > 15$ : la solution est **irréalisable**. Une très bonne valeur ne sert à rien si une contrainte est violée."
+  },
+  {
+    "id": "planning-examens",
+    "titre": "Un planning d'examens",
+    "difficulte": 2,
+    "enonce": "Cinq examens : Maths (M), Physique (P), Informatique (I), Anglais (A), Gestion (G). Deux examens qu'un même étudiant passe ne peuvent pas avoir lieu au même créneau. Les conflits sont : M-P, M-I, P-I, I-A, A-G, G-M.",
+    "questions": [
+      {
+        "intitule": "Dans le graphe associé, que sont les sommets ?",
+        "type": "choix",
+        "choix": [
+          "Les créneaux",
+          "Les étudiants",
+          "Les conflits",
+          "Les examens"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "Deux créneaux suffisent-ils ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Nombre minimum de créneaux nécessaires.",
+        "type": "nombre",
+        "reponse": 3,
+        "refuses": [
+          "2",
+          "5"
+        ]
+      },
+      {
+        "intitule": "Quel problème fondateur reconnaît-on ?",
+        "type": "choix",
+        "choix": [
+          "L'ordonnancement",
+          "La coloration de graphe",
+          "Le voyageur de commerce",
+          "Le sac à dos"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Regarde M, P et I : sont-ils tous reliés deux à deux ?",
+      "Trois examens tous en conflit deux à deux demandent déjà trois créneaux différents. Essaie ensuite de placer A et G."
+    ],
+    "correction": "- Sommets = examens, arêtes = conflits, couleurs = créneaux : c'est une **coloration de graphe**.\n- M, P et I sont en conflit deux à deux (un triangle) : il faut au moins **3** créneaux, donc 2 ne suffisent pas.\n- 3 suffisent : M = créneau 1, P = créneau 2, I = créneau 3, A = créneau 1 (A n'est relié qu'à I et G), G = créneau 2 (G est relié à A et M, tous deux au créneau 1)."
+  },
+  {
+    "id": "ordonnancement-deux-machines",
+    "titre": "Ordonnancer sur deux machines",
+    "difficulte": 2,
+    "enonce": "Cinq tâches de durées 3, 5, 2, 4 et 6 heures doivent passer sur deux machines identiques. Une machine traite une tâche à la fois. On veut minimiser le **makespan** (la date de fin de la dernière tâche).\n\nRègle simple : on prend les tâches **dans l'ordre donné** et on place chacune sur la machine la moins chargée (en cas d'égalité, la machine 1).",
+    "questions": [
+      {
+        "intitule": "Makespan obtenu avec cette règle (en heures).",
+        "type": "nombre",
+        "reponse": 11,
+        "refuses": [
+          "10",
+          "20"
+        ]
+      },
+      {
+        "intitule": "Durée totale des tâches divisée par le nombre de machines : c'est une borne en dessous de laquelle aucun makespan ne peut descendre. Que vaut-elle ?",
+        "type": "nombre",
+        "reponse": 10,
+        "refuses": [
+          "20",
+          "11"
+        ]
+      },
+      {
+        "intitule": "Makespan optimal (en heures).",
+        "type": "nombre",
+        "reponse": 10,
+        "refuses": [
+          "11",
+          "9"
+        ]
+      }
+    ],
+    "indices": [
+      "Suis la règle pas à pas : 3 → machine 1, 5 → machine 2, 2 → machine 1…",
+      "Pour l'optimum : peut-on partager les durées en deux groupes de 10 heures ?"
+    ],
+    "correction": "**Règle simple** : 3 → M1 (charges 3 / 0) ; 5 → M2 (3 / 5) ; 2 → M1 (5 / 5) ; 4 → M1 en cas d'égalité (9 / 5) ; 6 → M2 (9 / 11). Makespan **11 h**.\n\n**Borne** : $\\dfrac{3 + 5 + 2 + 4 + 6}{2} = \\dfrac{20}{2} = 10$ h. Aucune répartition ne finit avant.\n\n**Optimum** : {6, 4} sur une machine et {5, 3, 2} sur l'autre : 10 h chacune, makespan **10 h**. La règle simple n'est donc pas optimale : c'est une heuristique."
+  },
+  {
+    "id": "decision-ou-optimisation",
+    "titre": "Décision ou optimisation ?",
+    "difficulte": 1,
+    "enonce": "Pour chaque question, dis s'il s'agit d'un **problème de décision** (réponse oui/non) ou d'un **problème d'optimisation** (trouver la meilleure solution).",
+    "questions": [
+      {
+        "intitule": "« Existe-t-il une tournée des 20 villes de longueur au plus 500 km ? »",
+        "type": "choix",
+        "choix": [
+          "Décision",
+          "Optimisation"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "« Trouver la tournée la plus courte des 20 villes. »",
+        "type": "choix",
+        "choix": [
+          "Décision",
+          "Optimisation"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "« Trois couleurs suffisent-elles pour colorier ce graphe ? »",
+        "type": "choix",
+        "choix": [
+          "Décision",
+          "Optimisation"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "« Quel chargement du sac donne la plus grande valeur ? »",
+        "type": "choix",
+        "choix": [
+          "Décision",
+          "Optimisation"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Quelle est la version décision de « maximiser la valeur du sac » ?",
+        "type": "choix",
+        "choix": [
+          "Combien d'objets peut-on prendre ?",
+          "Le sac est-il plein ?",
+          "Existe-t-il un chargement de valeur au moins $K$ sans dépasser la capacité ?",
+          "Quel est le chargement le plus lourd ?"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Une question qui commence par « existe-t-il » ou « suffit-il » attend un oui ou un non.",
+      "La version décision d'une optimisation ajoute un seuil $K$ : « existe-t-il une solution de valeur au moins $K$ ? »."
+    ],
+    "correction": "- Tournée de longueur au plus 500 km : **décision** (oui/non).\n- Tournée la plus courte : **optimisation** (on attend une tournée).\n- Trois couleurs suffisent-elles : **décision**.\n- Meilleur chargement : **optimisation**.\n- Version décision du sac à dos : « existe-t-il un chargement de valeur au moins $K$ sans dépasser la capacité ? ». C'est sous cette forme que la théorie de la complexité classe les problèmes."
+  },
+  {
+    "id": "clients-ou-rues",
+    "titre": "Clients ou rues ?",
+    "difficulte": 2,
+    "enonce": "Deux tournées se ressemblent : un livreur doit passer chez **40 clients** ; un facteur doit passer dans **40 rues** (parcourir chaque rue au moins une fois).",
+    "questions": [
+      {
+        "intitule": "Le livreur doit visiter…",
+        "type": "choix",
+        "choix": [
+          "des sommets du graphe (les adresses)",
+          "des arêtes du graphe (les rues)"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Le facteur doit parcourir…",
+        "type": "choix",
+        "choix": [
+          "des sommets du graphe (les adresses)",
+          "des arêtes du graphe (les rues)"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Comment s'appelle le problème du facteur ?",
+        "type": "texte",
+        "reponse": [
+          "postier chinois",
+          "probleme du postier chinois",
+          "le postier chinois"
+        ],
+        "acceptes": [
+          "Postier chinois"
+        ],
+        "refuses": [
+          "voyageur de commerce"
+        ]
+      },
+      {
+        "intitule": "Lequel des deux problèmes se résout en temps polynomial ?",
+        "type": "choix",
+        "choix": [
+          "Celui du livreur (voyageur de commerce)",
+          "Celui du facteur (postier chinois)"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Explique en une ou deux phrases pourquoi il faut lire l'énoncé avec soin.",
+        "type": "auto",
+        "reponse": "Deux énoncés presque identiques peuvent cacher des problèmes de difficulté très différente : visiter des **sommets** une fois chacun (voyageur de commerce) est difficile, alors que parcourir des **arêtes** (postier chinois) se résout en temps polynomial."
+      }
+    ],
+    "indices": [
+      "Dans un graphe routier, les adresses sont des sommets et les rues des arêtes.",
+      "Le voyageur de commerce visite des sommets ; le postier chinois parcourt des arêtes."
+    ],
+    "correction": "- Le livreur visite des **sommets** (40 adresses) : c'est un voyageur de commerce, avec $40!$ ordres possibles. Difficile.\n- Le facteur parcourt des **arêtes** (40 rues) : c'est le problème du **postier chinois**, qui se résout en temps polynomial (chapitre sur les graphes).\n- Morale : sommets à visiter = difficile, arêtes à parcourir = facile. Bien lire l'énoncé change tout."
+  }
+]

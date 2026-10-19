@@ -1,13 +1,24 @@
-import { execFile } from 'node:child_process';
 import fs from 'node:fs/promises';
-import os from 'node:os';
 import path from 'node:path';
+import { creerAteliers, creerVerificateurs, DELAI_EXECUTION, lancer, problemeExecution } from './processus.js';
+
+export { creerReserve, normaliserSortie } from './processus.js';
 
 const DELAI_COMPILATION = 90_000;
-const DELAI_EXECUTION = 10_000;
-const TAILLE_MAX_SORTIE = 2 * 1024 * 1024;
-const NOM_BINAIRE = process.platform === 'win32' ? 'main.exe' : 'main';
-const OPTIONS_RUSTC = ['--edition', '2024', '--color', 'never', '-A', 'dead_code'];
+const NOM_PROJET = 'exercice';
+const NOM_BINAIRE = process.platform === 'win32' ? `${NOM_PROJET}.exe` : NOM_PROJET;
+const ENV_RUST = { RUST_BACKTRACE: '0' };
+const CARGO_TOML = `[package]
+name = "${NOM_PROJET}"
+version = "0.1.0"
+edition = "2024"
+
+[lints.rust]
+dead_code = "allow"
+
+[profile.dev]
+debug = false
+`;
 
 export function assemblerCodeTest(code, tests) {
   return `${code.trimEnd()}\n\n${tests.trim()}\n`;
@@ -19,65 +30,48 @@ export function analyserResultatTests(sortie) {
   return { reussis: Number(resultat[1]), echoues: Number(resultat[2]) };
 }
 
-export function normaliserSortie(texte) {
-  return texte
-    .replace(/\r\n/g, '\n')
-    .split('\n')
-    .map((ligne) => ligne.trimEnd())
-    .join('\n')
-    .trim();
-}
-
-function lancer(commande, args, { delai, dossier }) {
-  return new Promise((resoudre) => {
-    const processus = execFile(
-      commande,
-      args,
-      {
-        cwd: dossier,
-        timeout: delai,
-        maxBuffer: TAILLE_MAX_SORTIE,
-        windowsHide: true,
-        env: { ...process.env, RUST_BACKTRACE: '0' },
-      },
-      (erreur, stdout, stderr) => {
-        resoudre({
-          code: erreur ? (typeof erreur.code === 'number' ? erreur.code : -1) : 0,
-          introuvable: erreur?.code === 'ENOENT',
-          delaiDepasse: Boolean(erreur?.killed),
-          sortieTropLongue: erreur?.code === 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER',
-          stdout,
-          stderr,
-        });
-      },
-    );
-    processus.stdin?.end();
-  });
-}
-
-async function avecDossierTemporaire(action) {
-  const dossier = await fs.mkdtemp(path.join(os.tmpdir(), 'rust-entrainement-'));
-  try {
-    return await action(dossier);
-  } finally {
-    await fs.rm(dossier, { recursive: true, force: true, maxRetries: 3 }).catch(() => {});
+export function cheminExecutableTest(messages) {
+  for (const ligne of messages.split('\n')) {
+    let message;
+    try {
+      message = JSON.parse(ligne);
+    } catch {
+      continue;
+    }
+    if (message.reason === 'compiler-artifact' && message.profile?.test && message.executable) return message.executable;
   }
+  return null;
 }
 
-async function compiler(dossier, code, { test }) {
-  await fs.writeFile(path.join(dossier, 'main.rs'), code, 'utf8');
-  const args = [...OPTIONS_RUSTC, '-o', NOM_BINAIRE, 'main.rs'];
-  if (test) args.unshift('--test');
-  return lancer('rustc', args, { delai: DELAI_COMPILATION, dossier });
+let outils = null;
+
+export function outilsRust() {
+  outils ??= Promise.all([
+    lancer('cargo', ['--version'], { delai: 15_000 }),
+    lancer('cargo', ['clippy', '--version'], { delai: 15_000 }),
+  ]).then(([cargo, clippy]) => ({
+    cargo: cargo.code === 0 ? cargo.stdout.trim() : null,
+    clippy: cargo.code === 0 && clippy.code === 0 ? clippy.stdout.trim() : null,
+  }));
+  return outils;
 }
 
-function executerBinaire(dossier, args = []) {
-  return lancer(path.join(dossier, NOM_BINAIRE), args, { delai: DELAI_EXECUTION, dossier });
+const avecAtelier = creerAteliers('cargo', async (dossier) => {
+  await fs.mkdir(path.join(dossier, 'src'), { recursive: true });
+  await fs.writeFile(path.join(dossier, 'Cargo.toml'), CARGO_TOML, 'utf8');
+});
+
+function cargo(dossier, sousCommande, options = []) {
+  return lancer('cargo', [sousCommande, '--quiet', '--color', 'always', ...options], {
+    delai: DELAI_COMPILATION,
+    dossier,
+    env: ENV_RUST,
+  });
 }
 
 function problemeCompilation(compilation) {
   if (compilation.introuvable) {
-    return { statut: 'rust_introuvable', sortie: 'La commande « rustc » est introuvable. Installe Rust avec rustup (https://rustup.rs).' };
+    return { statut: 'outil_introuvable', sortie: 'La commande « cargo » est introuvable. Installe Rust avec rustup (https://rustup.rs).' };
   }
   if (compilation.delaiDepasse) {
     return { statut: 'delai_depasse', sortie: 'La compilation a pris trop de temps.' };
@@ -88,74 +82,63 @@ function problemeCompilation(compilation) {
   return null;
 }
 
-function problemeExecution(execution) {
-  if (execution.delaiDepasse) {
-    return {
-      statut: 'delai_depasse',
-      sortie: `${execution.stdout}\nLe programme a dépassé ${DELAI_EXECUTION / 1000} secondes : boucle infinie ?`.trim(),
-    };
-  }
-  if (execution.sortieTropLongue) {
-    return { statut: 'erreur_execution', sortie: 'Le programme affiche beaucoup trop de texte : boucle infinie ?' };
-  }
-  return null;
+async function compiler(dossier, code, { test }) {
+  await fs.writeFile(path.join(dossier, 'src', 'main.rs'), code, 'utf8');
+  const { clippy } = await outilsRust();
+  const analyse = await cargo(dossier, clippy ? 'clippy' : 'check');
+  const problemeAnalyse = problemeCompilation(analyse);
+  if (problemeAnalyse) return { probleme: problemeAnalyse };
+
+  const construction = test
+    ? await cargo(dossier, 'test', ['--no-run', '--message-format=json-render-diagnostics'])
+    : await cargo(dossier, 'build');
+  const problemeConstruction = problemeCompilation(construction);
+  if (problemeConstruction) return { probleme: problemeConstruction };
+
+  const executable = test ? cheminExecutableTest(construction.stdout) : path.join(dossier, 'target', 'debug', NOM_BINAIRE);
+  if (!executable) return { probleme: { statut: 'erreur_compilation', sortie: 'cargo n’a pas produit le programme de test.' } };
+  return { executable, avertissements: analyse.stderr };
 }
 
-export async function versionRust() {
-  const resultat = await lancer('rustc', ['--version'], { delai: 15_000 });
-  return resultat.code === 0 ? resultat.stdout.trim() : null;
+function executerBinaire(executable, dossier, { args = [], entree = '' } = {}) {
+  return lancer(executable, args, { delai: DELAI_EXECUTION, dossier, entree, env: ENV_RUST });
 }
 
-export function executerProgramme(code) {
-  return avecDossierTemporaire(async (dossier) => {
-    const compilation = await compiler(dossier, code, { test: false });
-    const probleme = problemeCompilation(compilation);
+export function executerProgramme(code, entree = '') {
+  return avecAtelier(async (dossier) => {
+    const { probleme, executable, avertissements } = await compiler(dossier, code, { test: false });
     if (probleme) return probleme;
 
-    const execution = await executerBinaire(dossier);
+    const execution = await executerBinaire(executable, dossier, { entree });
     const blocage = problemeExecution(execution);
-    if (blocage) return { ...blocage, avertissements: compilation.stderr };
+    if (blocage) return { ...blocage, avertissements };
 
     return {
       statut: execution.code === 0 ? 'execute' : 'erreur_execution',
       sortie: `${execution.stdout}${execution.stderr}`,
-      avertissements: compilation.stderr,
+      avertissements,
     };
   });
 }
 
 export function verifierAvecTests(code, tests) {
-  return avecDossierTemporaire(async (dossier) => {
-    const compilation = await compiler(dossier, assemblerCodeTest(code, tests), { test: true });
-    const probleme = problemeCompilation(compilation);
+  return avecAtelier(async (dossier) => {
+    const { probleme, executable, avertissements } = await compiler(dossier, assemblerCodeTest(code, tests), { test: true });
     if (probleme) return probleme;
 
-    const execution = await executerBinaire(dossier, ['--test-threads=1']);
+    const execution = await executerBinaire(executable, dossier, { args: ['--test-threads=1', '--color', 'never'] });
     const blocage = problemeExecution(execution);
-    if (blocage) return { ...blocage, avertissements: compilation.stderr };
+    if (blocage) return { ...blocage, avertissements };
 
     const resume = analyserResultatTests(execution.stdout);
     const reussi = execution.code === 0 && resume !== null && resume.echoues === 0;
     return {
       statut: reussi ? 'reussi' : 'echec',
       sortie: `${execution.stdout}${execution.stderr}`,
-      avertissements: compilation.stderr,
+      avertissements,
       resume,
     };
   });
 }
 
-export async function verifierSortie(code, sortieAttendue) {
-  const resultat = await executerProgramme(code);
-  if (resultat.statut !== 'execute') {
-    return resultat.statut === 'erreur_execution' ? { ...resultat, statut: 'echec' } : resultat;
-  }
-  const identique = normaliserSortie(resultat.sortie) === normaliserSortie(sortieAttendue);
-  return { ...resultat, statut: identique ? 'reussi' : 'echec', attendu: sortieAttendue };
-}
-
-export function verifierExercice(exercice, code) {
-  return exercice.type === 'sortie'
-    ? verifierSortie(code, exercice.sortieAttendue ?? '')
-    : verifierAvecTests(code, exercice.tests ?? '');
-}
+export const { verifierSortie, verifierExercice } = creerVerificateurs(executerProgramme, verifierAvecTests);

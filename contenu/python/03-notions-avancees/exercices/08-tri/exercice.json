@@ -1,0 +1,11 @@
+{
+  "titre": "Trier avec sorted et key",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`sorted(mots, key=len)` trie selon la longueur. Le tri de Python est **stable** : à longueur égale, l'ordre d'origine est conservé.",
+    "Pour trier par note décroissante puis par nom croissant, la clé peut être un tuple : `key=lambda e: (-e[1], e[0])`.",
+    "`max(mots, key=len, default=\"\")` donne le plus long mot, ou `\"\"` si la liste est vide.",
+    "Pour la médiane, trie d'abord. Si la taille `n` est impaire, c'est l'élément du milieu `l[n // 2]` ; sinon la moyenne des deux du milieu, `l[n // 2 - 1]` et `l[n // 2]`."
+  ]
+}

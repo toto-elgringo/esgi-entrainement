@@ -1,0 +1,10 @@
+{
+  "titre": "Afficher une liste",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Parcours la liste avec `cur` et affiche chaque valeur suivie de ` -> `.",
+    "Après la boucle, il reste à afficher `NULL` et un retour à la ligne : ainsi la liste vide affiche juste `NULL`.",
+    "Dans la boucle : `printf(\"%d -> \", cur->value);`. Après la boucle : `printf(\"NULL\\n\");`"
+  ]
+}

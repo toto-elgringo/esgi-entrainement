@@ -1,0 +1,10 @@
+{
+  "titre": "Heures, minutes, secondes",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Il y a 3600 secondes dans une heure et 60 dans une minute.",
+    "Le quotient `//` donne le nombre d'heures, le reste `%` ce qui reste après avoir enlevé les heures.",
+    "`heures = secondes // 3600`, puis `reste = secondes % 3600`, puis `minutes = reste // 60` et `secondes = reste % 60`. Renvoie `heures, minutes, secondes` : c'est un tuple."
+  ]
+}

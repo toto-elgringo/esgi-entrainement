@@ -1,0 +1,91 @@
+[
+  {
+    "id": "geometries",
+    "titre": "Point, ligne ou surface ?",
+    "difficulte": 1,
+    "enonce": "Pour chaque objet, choisis le type de géométrie le plus courant dans un SIG.",
+    "questions": [
+      { "intitule": "Un bâtiment", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 2 },
+      { "intitule": "Un cours d'eau (vu de loin)", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 1 },
+      { "intitule": "Une adresse postale", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 0 },
+      { "intitule": "Un arrondissement de Paris", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 2 }
+    ],
+    "indices": ["Demande-toi si l'objet a une aire (surface), seulement une longueur (ligne), ou juste une position (point)."],
+    "correction": "Bâtiment et arrondissement ont une aire : **surfaces**. Un cours d'eau est représenté par son tracé : **ligne**. Une adresse est une simple position : **point**."
+  },
+  {
+    "id": "fichiers-shapefile",
+    "titre": "Les fichiers d'un Shapefile",
+    "difficulte": 1,
+    "enonce": "Donne l'extension (sans le point) du fichier qui contient…",
+    "questions": [
+      { "intitule": "les formes (géométries)", "type": "texte", "reponse": ["shp"] },
+      { "intitule": "la table des attributs", "type": "texte", "reponse": ["dbf"] },
+      { "intitule": "le système de coordonnées", "type": "texte", "reponse": ["prj"] },
+      { "intitule": "l'index des formes", "type": "texte", "reponse": ["shx"] }
+    ],
+    "indices": ["Les cinq extensions : shp, shx, dbf, prj, cpg.", "« prj » comme projection, « dbf » comme database file."],
+    "correction": "`.shp` = formes, `.shx` = index, `.dbf` = attributs, `.prj` = projection (système de coordonnées), `.cpg` = encodage des caractères."
+  },
+  {
+    "id": "nombre-de-fichiers",
+    "titre": "Copier une couche",
+    "difficulte": 1,
+    "enonce": "La couche `BATIMENT` de la BD TOPO est livrée avec les fichiers `.shp`, `.shx`, `.dbf`, `.prj` et `.cpg`. Tu veux l'envoyer à un camarade.",
+    "questions": [
+      { "intitule": "Combien de fichiers dois-tu lui envoyer au minimum pour garder la couche complète ?", "type": "nombre", "reponse": 5 }
+    ],
+    "indices": ["Tous les fichiers de même nom vont ensemble."],
+    "correction": "Les **5** fichiers : une couche Shapefile est un ensemble de fichiers de même nom. Sans le `.prj`, par exemple, QGIS ne sait plus où placer la couche."
+  },
+  {
+    "id": "themes-bd-topo",
+    "titre": "Retrouver le bon thème",
+    "difficulte": 2,
+    "enonce": "Dans quel thème de la BD TOPO chercher ces couches ?",
+    "questions": [
+      { "intitule": "`COMMUNE`", "type": "choix", "choix": ["ADMINISTRATIF", "LIEUX_NOMMES", "BATI", "ADRESSES"], "reponse": 0 },
+      { "intitule": "`ZONE_DE_VEGETATION`", "type": "choix", "choix": ["ZONES_REGLEMENTEES", "OCCUPATION_DU_SOL", "HYDROGRAPHIE", "BATI"], "reponse": 1 },
+      { "intitule": "`TRONCON_HYDROGRAPHIQUE`", "type": "choix", "choix": ["TRANSPORT", "HYDROGRAPHIE", "SERVICES_ET_ACTIVITES", "LIEUX_NOMMES"], "reponse": 1 },
+      { "intitule": "`ADRESSE_BAN`", "type": "choix", "choix": ["ADMINISTRATIF", "ADRESSES", "TRANSPORT", "BATI"], "reponse": 1 }
+    ],
+    "indices": ["Les noms des thèmes sont parlants : l'eau va dans HYDROGRAPHIE, la végétation dans OCCUPATION_DU_SOL."],
+    "correction": "COMMUNE → **ADMINISTRATIF** ; ZONE_DE_VEGETATION → **OCCUPATION_DU_SOL** ; TRONCON_HYDROGRAPHIQUE → **HYDROGRAPHIE** ; ADRESSE_BAN → **ADRESSES**."
+  },
+  {
+    "id": "lambert-93",
+    "titre": "Mesurer avec le Lambert 93",
+    "difficulte": 2,
+    "enonce": "En Lambert 93, deux points ont pour coordonnées A = (652 000 ; 6 862 000) et B = (655 000 ; 6 866 000).",
+    "questions": [
+      { "intitule": "Dans quelle unité sont ces coordonnées ?", "type": "choix", "choix": ["En mètres", "En degrés", "En kilomètres", "En pixels"], "reponse": 0 },
+      { "intitule": "Quelle est la distance AB, en mètres ?", "type": "nombre", "reponse": 5000 }
+    ],
+    "indices": ["Le Lambert 93 est une projection plane : on peut utiliser Pythagore.", "Écart en x : 3 000 m, écart en y : 4 000 m."],
+    "correction": "Le Lambert 93 donne des coordonnées en **mètres** sur un plan. Distance : racine de (3 000² + 4 000²) = **5 000 m**, soit 5 km."
+  },
+  {
+    "id": "systeme-du-projet",
+    "titre": "Le bon système de coordonnées",
+    "difficulte": 2,
+    "enonce": "Tu ouvres les couches de la BD TOPO de Paris dans un nouveau projet QGIS.",
+    "questions": [
+      { "intitule": "Quel code EPSG doit afficher le projet (en bas à droite) ?", "type": "nombre", "reponse": 2154 },
+      { "intitule": "Le système WGS 84 du GPS (EPSG:4326) donne des coordonnées en…", "type": "choix", "choix": ["degrés (latitude, longitude)", "mètres", "kilomètres", "mètres, mais seulement en France"], "reponse": 0 }
+    ],
+    "indices": ["Les données reçues sont en « LAMB93 »."],
+    "correction": "Le projet doit être en **EPSG:2154** (RGF93 / Lambert-93), comme les données. Le WGS 84 (EPSG:4326) utilise des **degrés** : pratique pour le GPS, moins pour mesurer."
+  },
+  {
+    "id": "ordre-des-couches",
+    "titre": "Ordonner les couches",
+    "difficulte": 1,
+    "enonce": "Tu as chargé, dans cet ordre (de haut en bas) : `COMMUNE` (surfaces), `ADRESSE_BAN` (points), `TRONCON_DE_ROUTE` (lignes). On ne voit plus que les communes.",
+    "questions": [
+      { "intitule": "Quelle couche faut-il placer tout en haut ?", "type": "choix", "choix": ["ADRESSE_BAN", "TRONCON_DE_ROUTE", "COMMUNE"], "reponse": 0 },
+      { "intitule": "Quelle couche faut-il placer tout en bas ?", "type": "choix", "choix": ["ADRESSE_BAN", "TRONCON_DE_ROUTE", "COMMUNE"], "reponse": 2 }
+    ],
+    "indices": ["Points, puis lignes, puis surfaces."],
+    "correction": "De haut en bas : **ADRESSE_BAN** (points), TRONCON_DE_ROUTE (lignes), **COMMUNE** (surfaces). Les surfaces opaques en haut cachaient le reste."
+  }
+]

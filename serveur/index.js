@@ -11,7 +11,9 @@ function ouvrirNavigateur(adresse) {
   exec(commandes[process.platform] ?? `xdg-open "${adresse}"`, () => {});
 }
 
-const serveur = creerServeur({ racine, dossierRust: path.join(racine, 'contenu', 'rust') });
+const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu') });
+
+process.on('SIGINT', () => process.exit(0));
 
 serveur.on('error', (erreur) => {
   if (erreur.code === 'EADDRINUSE') {

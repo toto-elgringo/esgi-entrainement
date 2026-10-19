@@ -1,0 +1,11 @@
+{
+  "titre": "Nettoyer un texte",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`texte.split()` découpe sur tous les espaces et ignore les vides ; `\" \".join(...)` recolle avec un seul espace.",
+    "Pour `nettoyer`, enchaîne : `\" \".join(texte.split()).lower()`.",
+    "Pour `capitaliser_mots`, pour chaque mot : `mot[0].upper() + mot[1:].lower()`.",
+    "Pour `extension`, `nom.rsplit(\".\", 1)` coupe au **dernier** point. S'il n'y a pas de point, renvoie `\"\"`."
+  ]
+}

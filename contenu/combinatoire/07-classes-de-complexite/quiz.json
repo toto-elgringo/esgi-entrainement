@@ -1,0 +1,132 @@
+[
+  {
+    "question": "Quels problèmes la théorie de la complexité classe-t-elle dans P et NP ?",
+    "choix": [
+      "Des problèmes de décision (réponse oui ou non)",
+      "Des problèmes d'optimisation",
+      "Des programmes informatiques",
+      "Des ordinateurs"
+    ],
+    "reponse": 0,
+    "explication": "P et NP ne contiennent que des problèmes de décision. Un problème d'optimisation est classé via sa version décision."
+  },
+  {
+    "question": "Comment mesure-t-on la **taille** d'une instance ?",
+    "choix": [
+      "Par le nombre de bits nécessaires pour l'écrire",
+      "Par la valeur du plus grand nombre",
+      "Par le temps de calcul",
+      "Par le nombre de solutions"
+    ],
+    "reponse": 0,
+    "explication": "C'est la longueur de l'écriture de l'instance. D'où le piège du pseudo-polynomial : $C$ s'écrit avec environ $\\log_2 C$ bits."
+  },
+  {
+    "question": "Un problème est dans **NP** si…",
+    "choix": [
+      "une réponse « oui » possède un certificat vérifiable en temps polynomial",
+      "aucun algorithme polynomial ne le résout",
+      "il n'a pas de solution",
+      "il se résout en temps exponentiel"
+    ],
+    "reponse": 0,
+    "explication": "NP = vérifiable en temps polynomial, grâce à un certificat. Ce n'est pas « non polynomial »."
+  },
+  {
+    "question": "Pour « existe-t-il une tournée de coût au plus $K$ ? », quel est le certificat d'une réponse oui ?",
+    "choix": [
+      "Une tournée de coût au plus $K$",
+      "La liste de toutes les tournées",
+      "La valeur de $K$",
+      "Le nombre de villes"
+    ],
+    "reponse": 0,
+    "explication": "On vérifie vite qu'elle passe une fois par chaque ville et qu'elle coûte au plus $K$."
+  },
+  {
+    "question": "Que signifie $A \\le_p B$ ?",
+    "choix": [
+      "A se réduit à B : B est au moins aussi difficile que A",
+      "A est plus difficile que B",
+      "A et B ont la même taille",
+      "A est dans P et B dans NP"
+    ],
+    "reponse": 0,
+    "explication": "Une transformation polynomiale envoie les instances de A sur des instances de B de même réponse : savoir résoudre B, c'est savoir résoudre A."
+  },
+  {
+    "question": "Un problème NP-difficile est-il forcément dans NP ?",
+    "choix": [
+      "Non",
+      "Oui"
+    ],
+    "reponse": 0,
+    "explication": "NP-difficile veut seulement dire que tout NP s'y réduit. Le TSP en optimisation et le problème de l'arrêt sont NP-difficiles mais hors de NP."
+  },
+  {
+    "question": "Un problème d'optimisation (trouver la meilleure tournée) peut-il être dans NP ?",
+    "choix": [
+      "Non, car ce n'est pas un problème de décision",
+      "Oui, toujours",
+      "Seulement s'il est facile",
+      "Seulement s'il a moins de 20 villes"
+    ],
+    "reponse": 0,
+    "explication": "NP ne contient que des problèmes de décision. Le TSP en optimisation est NP-difficile « au sens large »."
+  },
+  {
+    "question": "Quel est le premier problème prouvé NP-complet (Cook 1971, Levin 1973) ?",
+    "choix": [
+      "SAT",
+      "Le voyageur de commerce",
+      "Le sac à dos",
+      "Le problème de l'arrêt"
+    ],
+    "reponse": 0,
+    "explication": "Théorème de Cook-Levin : SAT est NP-complet. Karp en a déduit 20 autres problèmes NP-complets en 1972."
+  },
+  {
+    "question": "Que dit le théorème de **Ladner** (1975) ?",
+    "choix": [
+      "Si P ≠ NP, il existe des problèmes de NP ni dans P ni NP-complets",
+      "P = NP",
+      "SAT est dans P",
+      "Tout problème de NP est NP-complet"
+    ],
+    "reponse": 0,
+    "explication": "Ce sont les problèmes NP-intermédiaires. On n'en connaît aucun avec certitude ; la factorisation et l'isomorphisme de graphes sont les candidats cités."
+  },
+  {
+    "question": "Si on prouvait P = NP, que deviendrait le chemin eulérien ?",
+    "choix": [
+      "NP-complet",
+      "Indécidable",
+      "Hors de NP",
+      "Il ne changerait pas de statut et resterait non NP-complet"
+    ],
+    "reponse": 0,
+    "explication": "Si P = NP, tout problème non trivial de P devient NP-complet : la réduction peut résoudre l'instance elle-même en temps polynomial."
+  },
+  {
+    "question": "Où se trouve le **problème de l'arrêt** ?",
+    "choix": [
+      "NP-difficile, mais hors de NP (il est indécidable)",
+      "Dans P",
+      "NP-complet",
+      "NP-intermédiaire"
+    ],
+    "reponse": 0,
+    "explication": "On y réduit SAT, donc il est NP-difficile ; mais aucun algorithme ne le décide (Turing, 1936), donc il n'est pas dans NP."
+  },
+  {
+    "question": "Si un seul problème NP-complet était résolu en temps polynomial…",
+    "choix": [
+      "alors P = NP",
+      "alors P ≠ NP",
+      "cela ne changerait rien",
+      "seul ce problème changerait de classe"
+    ],
+    "reponse": 0,
+    "explication": "Tout NP se réduit à un problème NP-complet, et les réductions transportent la facilité : tout NP serait dans P."
+  }
+]

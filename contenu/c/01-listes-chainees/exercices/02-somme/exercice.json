@@ -1,0 +1,10 @@
+{
+  "titre": "La somme des éléments",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Parcours la liste avec un pointeur `cur` qui part de `start`, sans modifier `start`.",
+    "Garde un total qui commence à 0 et ajoute `cur->value` à chaque tour.",
+    "`while (cur != NULL) { resultat += cur->value; cur = cur->next; }`"
+  ]
+}

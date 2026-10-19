@@ -10,7 +10,7 @@ fn plus_grand(v: &[i32]) -> Option<i32> {
     todo!()
 }
 
-fn produit(v: &[u64]) -> u64 {
+fn assembler_chiffres(chiffres: &[u32]) -> u32 {
     todo!()
 }
 

@@ -1,0 +1,558 @@
+[
+  {
+    "id": "modeliser-l-atelier",
+    "titre": "Lire le modèle de l'atelier",
+    "difficulte": 1,
+    "enonce": "Atelier : $\\max z = 6x + 9y$ sous $2x + 5y \\le 22$ (matière), $x + y \\le 6$ (heures), avec $x$ et $y$ entiers positifs ou nuls.",
+    "questions": [
+      {
+        "intitule": "Profit de la production $(x, y) = (2, 3)$.",
+        "type": "nombre",
+        "reponse": 39,
+        "refuses": [
+          "45",
+          "21"
+        ]
+      },
+      {
+        "intitule": "Matière consommée par $(x, y) = (3, 3)$.",
+        "type": "nombre",
+        "reponse": 21,
+        "refuses": [
+          "22",
+          "45"
+        ]
+      },
+      {
+        "intitule": "La production $(4, 3)$ est-elle réalisable ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "La production $(6, 0)$ est-elle réalisable ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Profit de $(6, 0)$.",
+        "type": "nombre",
+        "reponse": 36,
+        "refuses": [
+          "54",
+          "12"
+        ]
+      }
+    ],
+    "indices": [
+      "Profit : $6x + 9y$. Matière : $2x + 5y$.",
+      "Pour $(4, 3)$ : vérifie les deux contraintes."
+    ],
+    "correction": "- $(2, 3)$ : $z = 12 + 27 = 39$.\n- $(3, 3)$ : matière $6 + 15 = 21 \\le 22$ et heures $6 \\le 6$.\n- $(4, 3)$ : matière $8 + 15 = 23 > 22$ (et heures $7 > 6$) : **irréalisable**.\n- $(6, 0)$ : matière 12 et heures 6, **réalisable**, profit $36$."
+  },
+  {
+    "id": "relaxation-continue",
+    "titre": "La relaxation continue",
+    "difficulte": 2,
+    "enonce": "Atelier : $\\max z = 6x + 9y$ sous $2x + 5y \\le 22$ (matière), $x + y \\le 6$ (heures), avec $x$ et $y$ entiers positifs ou nuls. On oublie l'obligation d'être entier. L'optimum continu se trouve là où les deux contraintes sont « serrées » (égalités). Donne les valeurs **exactes** (tu peux écrire `10/3`).",
+    "questions": [
+      {
+        "intitule": "Valeur de $y$ à l'optimum continu.",
+        "type": "nombre",
+        "reponse": "10/3",
+        "refuses": [
+          "3",
+          "3.3"
+        ]
+      },
+      {
+        "intitule": "Valeur de $x$ à l'optimum continu.",
+        "type": "nombre",
+        "reponse": "8/3",
+        "refuses": [
+          "3",
+          "2.6"
+        ]
+      },
+      {
+        "intitule": "Profit à l'optimum continu.",
+        "type": "nombre",
+        "reponse": 46,
+        "refuses": [
+          "45",
+          "45.9"
+        ]
+      },
+      {
+        "intitule": "Que représente ce profit pour le problème en nombres entiers ?",
+        "type": "choix",
+        "choix": [
+          "Une borne : l'optimum entier ne peut pas dépasser 46",
+          "L'optimum entier",
+          "Un minimum"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Résous le système $2x + 5y = 22$ et $x + y = 6$.",
+      "$x = 6 - y$, donc $2(6 - y) + 5y = 22$, soit $3y = 10$."
+    ],
+    "correction": "- $x + y = 6$ donne $x = 6 - y$ ; alors $12 - 2y + 5y = 22$, donc $y = \\dfrac{10}{3}$ et $x = \\dfrac{8}{3}$.\n- Profit : $6 \\times \\dfrac{8}{3} + 9 \\times \\dfrac{10}{3} = 16 + 30 = 46$.\n- Ce point n'est pas entier : 46 est une **borne supérieure** de l'optimum entier (qui vaut 45)."
+  },
+  {
+    "id": "enumerer-l-atelier",
+    "titre": "Énumérer les solutions entières",
+    "difficulte": 2,
+    "enonce": "Atelier : $\\max z = 6x + 9y$ sous $2x + 5y \\le 22$ (matière), $x + y \\le 6$ (heures), avec $x$ et $y$ entiers positifs ou nuls. Pour chaque valeur de $y$, on cherche le plus grand $x$ entier qui respecte les deux contraintes.",
+    "questions": [
+      {
+        "intitule": "Meilleur $x$ pour $y = 2$.",
+        "type": "nombre",
+        "reponse": 4,
+        "refuses": [
+          "6",
+          "3"
+        ]
+      },
+      {
+        "intitule": "Meilleur $x$ pour $y = 4$.",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": [
+          "2",
+          "0"
+        ]
+      },
+      {
+        "intitule": "Peut-on prendre $y = 5$ ?",
+        "type": "choix",
+        "choix": [
+          "Non : même avec $x = 0$, la matière vaut 25",
+          "Oui, avec $x = 1$"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Optimum entier $(x, y)$ (écris `(x, y)`).",
+        "type": "vecteur",
+        "reponse": [
+          3,
+          3
+        ],
+        "acceptes": [
+          "3, 3",
+          "(3;3)"
+        ],
+        "refuses": [
+          "(1, 4)",
+          "(4, 2)"
+        ]
+      },
+      {
+        "intitule": "Profit optimal.",
+        "type": "nombre",
+        "reponse": 45,
+        "refuses": [
+          "46",
+          "42"
+        ]
+      }
+    ],
+    "indices": [
+      "Pour $y$ fixé : $x \\le \\dfrac{22 - 5y}{2}$ et $x \\le 6 - y$.",
+      "$y = 2$ : $x \\le 6$ et $x \\le 4$."
+    ],
+    "correction": "| $y$ | 0 | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|---|\n| meilleur $x$ | 6 | 5 | 4 | 3 | 1 |\n| profit | 36 | 39 | 42 | **45** | 42 |\n\n- $y = 2$ : $x \\le 6$ (matière) et $x \\le 4$ (heures), donc $x = 4$.\n- $y = 4$ : $x \\le 1$ (matière) et $x \\le 2$, donc $x = 1$.\n- $y = 5$ : la matière vaut déjà 25 > 22.\n- Optimum entier : $(3, 3)$, profit **45**, juste sous la borne continue 46."
+  },
+  {
+    "id": "piege-de-l-arrondi",
+    "titre": "Le piège de l'arrondi",
+    "difficulte": 2,
+    "enonce": "Atelier : la solution continue est $(x, y) \\approx (2{,}67 ; 3{,}33)$ pour un profit de 46 ; l'optimum entier est $(3, 3)$ pour 45.",
+    "questions": [
+      {
+        "intitule": "Arrondi vers le bas de la solution continue (écris `(x, y)`).",
+        "type": "vecteur",
+        "reponse": [
+          2,
+          3
+        ],
+        "acceptes": [
+          "2, 3"
+        ],
+        "refuses": [
+          "(3, 3)",
+          "(3, 4)"
+        ]
+      },
+      {
+        "intitule": "Profit de cet arrondi.",
+        "type": "nombre",
+        "reponse": 39,
+        "refuses": [
+          "45",
+          "46"
+        ]
+      },
+      {
+        "intitule": "Écart entre ce profit et l'optimum entier.",
+        "type": "nombre",
+        "reponse": 6,
+        "refuses": [
+          "7",
+          "1"
+        ]
+      },
+      {
+        "intitule": "Écart entre la borne continue et l'optimum entier.",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": [
+          "0",
+          "6"
+        ]
+      },
+      {
+        "intitule": "L'arrondi vers le haut $(3, 4)$ est-il réalisable ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Arrondi vers le bas : $2{,}67 \\to 2$ et $3{,}33 \\to 3$.",
+      "Pour $(3, 4)$ : matière $6 + 20$."
+    ],
+    "correction": "- Arrondi vers le bas : $(2, 3)$, profit 39, soit 6 de moins que l'optimum.\n- Écart entre la borne (46) et l'optimum (45) : 1.\n- Arrondi vers le haut $(3, 4)$ : matière $6 + 20 = 26 > 22$, **irréalisable**.\n- Arrondir n'est pas une méthode : c'est pour cela qu'existent le branch & bound et les métaheuristiques."
+  },
+  {
+    "id": "descente-sur-l-atelier",
+    "titre": "La descente sur l'atelier",
+    "difficulte": 2,
+    "enonce": "Atelier : $\\max z = 6x + 9y$ sous $2x + 5y \\le 22$ (matière), $x + y \\le 6$ (heures), avec $x$ et $y$ entiers positifs ou nuls. Codage : $(x, y)$. Voisinage : $\\pm 1$ sur une coordonnée (en restant positif). On rejette les voisins irréalisables. Descente en **meilleure amélioration** depuis $(0, 0)$.",
+    "questions": [
+      {
+        "intitule": "Position après 4 pas (écris `(x, y)`).",
+        "type": "vecteur",
+        "reponse": [
+          0,
+          4
+        ],
+        "acceptes": [
+          "0, 4"
+        ],
+        "refuses": [
+          "(1, 3)",
+          "(4, 0)"
+        ]
+      },
+      {
+        "intitule": "Matière consommée par le voisin $(0, 5)$, refusé.",
+        "type": "nombre",
+        "reponse": 25,
+        "refuses": [
+          "22",
+          "5"
+        ]
+      },
+      {
+        "intitule": "Point où la descente s'arrête.",
+        "type": "vecteur",
+        "reponse": [
+          1,
+          4
+        ],
+        "acceptes": [
+          "1, 4"
+        ],
+        "refuses": [
+          "(3, 3)",
+          "(0, 4)"
+        ]
+      },
+      {
+        "intitule": "Profit en ce point.",
+        "type": "nombre",
+        "reponse": 42,
+        "refuses": [
+          "45",
+          "36"
+        ]
+      },
+      {
+        "intitule": "Ce point est…",
+        "type": "choix",
+        "choix": [
+          "un optimum local, pas global",
+          "l'optimum global",
+          "irréalisable"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Depuis $(0, 0)$ : $+y$ rapporte 9, $+x$ rapporte 6 : on prend $+y$.",
+      "Depuis $(0, 4)$ : $(0, 5)$ est irréalisable, $(1, 4)$ rapporte 42."
+    ],
+    "correction": "- La descente monte en $y$ : $(0, 1)$, $(0, 2)$, $(0, 3)$, $(0, 4)$ (profit 36).\n- $(0, 5)$ consommerait $25 > 22$ de matière : refusé. On passe en $(1, 4)$, profit 42.\n- Voisins de $(1, 4)$ : $(2, 4)$ et $(1, 5)$ irréalisables, $(0, 4)$ vaut 36, $(1, 3)$ vaut 33 : aucun n'améliore. **Optimum local** à 42, alors que l'optimum global vaut 45."
+  },
+  {
+    "id": "sortir-du-piege",
+    "titre": "Sortir du piège",
+    "difficulte": 3,
+    "enonce": "La descente est bloquée en $(1, 4)$ (profit 42). On veut atteindre $(3, 3)$ (profit 45). Ici on **maximise** : une dégradation est une **baisse** du profit, et le recuit l'accepte avec la probabilité $e^{-\\text{baisse}/T}$. On donne $e^{-0{,}9} \\approx 0{,}407$ et $e^{-4{,}5} \\approx 0{,}011$.",
+    "questions": [
+      {
+        "intitule": "Baisse de profit du mouvement $(1, 4) \\to (1, 3)$.",
+        "type": "nombre",
+        "reponse": 9,
+        "refuses": [
+          "-9",
+          "33"
+        ]
+      },
+      {
+        "intitule": "Probabilité de l'accepter à $T = 10$ (arrondie au millième).",
+        "type": "nombre",
+        "reponse": "e^(-0.9)",
+        "tolerance": 0.001,
+        "acceptes": [
+          "0.407",
+          "0,407"
+        ],
+        "refuses": [
+          "0.9",
+          "0.011"
+        ]
+      },
+      {
+        "intitule": "Probabilité de l'accepter à $T = 2$ (arrondie au millième).",
+        "type": "nombre",
+        "reponse": "e^(-4.5)",
+        "tolerance": 0.001,
+        "acceptes": [
+          "0.011"
+        ],
+        "refuses": [
+          "0.407"
+        ]
+      },
+      {
+        "intitule": "Algorithme génétique : enfant qui prend le $x$ du parent $(3, 2)$ et le $y$ du parent $(2, 3)$.",
+        "type": "vecteur",
+        "reponse": [
+          3,
+          3
+        ],
+        "acceptes": [
+          "3, 3"
+        ],
+        "refuses": [
+          "(2, 2)",
+          "(2, 3)"
+        ]
+      },
+      {
+        "intitule": "Explique en une phrase pourquoi le croisement réussit là où la descente échoue.",
+        "type": "auto",
+        "reponse": "Le croisement combine des morceaux de deux bonnes solutions différentes : il peut sauter directement vers $(3, 3)$ sans passer par des solutions moins bonnes, alors que la descente refuse toute dégradation."
+      }
+    ],
+    "indices": [
+      "$(1, 3)$ rapporte $6 + 27 = 33$.",
+      "Baisse de 9 : $P = e^{-9/T}$."
+    ],
+    "correction": "- $(1, 4) \\to (1, 3)$ : le profit passe de 42 à 33, baisse de **9**.\n- À $T = 10$ : $P = e^{-0{,}9} \\approx 0{,}407$, la remontée est plausible. À $T = 2$ : $P = e^{-4{,}5} \\approx 0{,}011$, presque jamais. Il faut donc une température encore assez haute pour franchir le col, puis $(2, 3)$ (39) et $(3, 3)$ (45) sont des améliorations.\n- Croisement : $x$ de $(3, 2)$ et $y$ de $(2, 3)$ donnent **$(3, 3)$**, profit 45, meilleur que les deux parents (36 et 39)."
+  },
+  {
+    "id": "comparer-les-methodes",
+    "titre": "Comparer les trois méthodes",
+    "difficulte": 1,
+    "enonce": "Associe chaque caractéristique à la méthode concernée.",
+    "questions": [
+      {
+        "intitule": "Aucun mécanisme contre les minima locaux (d'où le multi-start).",
+        "type": "choix",
+        "choix": [
+          "Recherche locale",
+          "Recuit simulé",
+          "Algorithme génétique"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Acceptation aléatoire des dégradations avec $e^{-\\Delta E/T}$.",
+        "type": "choix",
+        "choix": [
+          "Recherche locale",
+          "Recuit simulé",
+          "Algorithme génétique"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Diversité, croisements et mutations.",
+        "type": "choix",
+        "choix": [
+          "Recherche locale",
+          "Recuit simulé",
+          "Algorithme génétique"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Exploration large et facilement parallélisable.",
+        "type": "choix",
+        "choix": [
+          "Recherche locale",
+          "Recuit simulé",
+          "Algorithme génétique"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Faiblesse : le gel en fin de course quand $T$ devient très petite.",
+        "type": "choix",
+        "choix": [
+          "Recherche locale",
+          "Recuit simulé",
+          "Algorithme génétique"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Une seule solution sans échappatoire : recherche locale. Une seule solution avec température : recuit.",
+      "Une population : algorithme génétique."
+    ],
+    "correction": "- Recherche locale : simple et rapide, mais rien contre les minima locaux (on relance : multi-start).\n- Recuit simulé : acceptation $e^{-\\Delta E/T}$ ; faiblesse : réglage de $T$ et gel en fin de course.\n- Algorithme génétique : diversité, croisements, mutations ; exploration large et parallélisable, mais beaucoup de paramètres."
+  },
+  {
+    "id": "protocole-experimental",
+    "titre": "Un protocole de comparaison",
+    "difficulte": 2,
+    "enonce": "On compare deux méthodes aléatoires sur la même instance (un coût à **minimiser**), avec 5 lancements chacune :\n\n| Lancement | 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|---|\n| Méthode A | 102 | 98 | 100 | 101 | 99 |\n| Méthode B | 95 | 110 | 90 | 105 | 100 |",
+    "questions": [
+      {
+        "intitule": "Moyenne de la méthode A.",
+        "type": "nombre",
+        "reponse": 100,
+        "refuses": [
+          "98",
+          "102"
+        ]
+      },
+      {
+        "intitule": "Moyenne de la méthode B.",
+        "type": "nombre",
+        "reponse": 100,
+        "refuses": [
+          "90",
+          "110"
+        ]
+      },
+      {
+        "intitule": "Étendue (maximum − minimum) de la méthode B.",
+        "type": "nombre",
+        "reponse": 20,
+        "refuses": [
+          "10",
+          "15"
+        ]
+      },
+      {
+        "intitule": "Quelle méthode est la plus **régulière** ?",
+        "type": "choix",
+        "choix": [
+          "A",
+          "B"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Si on n'avait fait qu'un lancement de chaque (le 3ᵉ), qu'aurait-on conclu ?",
+        "type": "choix",
+        "choix": [
+          "À tort que B est meilleure (90 contre 100)",
+          "Que A est meilleure",
+          "Qu'elles sont identiques"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Combien de lancements recommande le cours comme standard ?",
+        "type": "nombre",
+        "reponse": 30,
+        "refuses": [
+          "1",
+          "5"
+        ]
+      }
+    ],
+    "indices": [
+      "Moyenne = somme ÷ 5.",
+      "Étendue de B : $110 - 90$."
+    ],
+    "correction": "- Moyennes : A $= \\dfrac{500}{5} = 100$, B $= \\dfrac{500}{5} = 100$ : égalité en moyenne.\n- Étendues : A $= 102 - 98 = 4$, B $= 110 - 90 = 20$. A est bien plus **régulière**.\n- Avec le seul 3ᵉ lancement, on aurait conclu à tort que B est meilleure (90 contre 100).\n- D'où le protocole : plusieurs lancements (30 est un standard), mêmes instances, même budget, et on rapporte **moyenne et dispersion**."
+  },
+  {
+    "id": "branch-and-bound-atelier",
+    "titre": "Pour aller plus loin : branch & bound sur l'atelier",
+    "difficulte": 3,
+    "enonce": "Atelier : $\\max z = 6x + 9y$ sous $2x + 5y \\le 22$ (matière), $x + y \\le 6$ (heures), avec $x$ et $y$ entiers positifs ou nuls. La relaxation continue donne $(8/3 ; 10/3)$ et $z = 46$. Le **branch & bound** sépare le problème sur la variable non entière $y$ : une branche avec $y \\le 3$, une branche avec $y \\ge 4$. Dans chaque branche, on résout la relaxation continue.",
+    "questions": [
+      {
+        "intitule": "Branche $y \\le 3$ : profit de la relaxation (elle tombe sur le point entier $(3, 3)$).",
+        "type": "nombre",
+        "reponse": 45,
+        "refuses": [
+          "46",
+          "42"
+        ]
+      },
+      {
+        "intitule": "Branche $y \\ge 4$ : profit de la relaxation (atteint en $(1, 4)$).",
+        "type": "nombre",
+        "reponse": 42,
+        "refuses": [
+          "46",
+          "39.6"
+        ]
+      },
+      {
+        "intitule": "Faut-il explorer davantage la branche $y \\ge 4$ ?",
+        "type": "choix",
+        "choix": [
+          "Non : sa borne 42 est inférieure à la solution entière 45 déjà trouvée",
+          "Oui, toujours"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Le résultat $(3, 3)$, 45 est-il prouvé optimal ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non, ce n'est qu'une bonne solution"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Branche $y \\le 3$ : avec $y = 3$, les heures imposent $x \\le 3$.",
+      "Branche $y \\ge 4$ : avec $y = 4$, la matière impose $x \\le 1$ ; augmenter $y$ au-delà fait baisser le profit."
+    ],
+    "correction": "- **Branche $y \\le 3$** : l'optimum continu est $(3, 3)$ (heures serrées), $z = 45$, et il est entier : meilleure solution connue = 45.\n- **Branche $y \\ge 4$** : l'optimum continu est $(1, 4)$, $z = 42$. Cette borne est inférieure à 45 : on **coupe** la branche, inutile de l'explorer.\n- Plus rien à explorer : $(3, 3)$, 45 est l'optimum **prouvé**. C'est la force des méthodes exactes ; sur de gros PLNE, l'arbre peut devenir énorme."
+  }
+]

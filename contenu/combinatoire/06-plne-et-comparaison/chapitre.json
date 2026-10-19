@@ -1,0 +1,8 @@
+{
+  "titre": "PLNE et comparaison des méthodes",
+  "description": "Un petit PLNE de production traité par la relaxation, l'énumération, la descente, le recuit et le croisement ; comparaison des trois métaheuristiques, conseils de réglage et protocole expérimental.",
+  "source": "Chapitre 2",
+  "matieres": [
+    "combinatoire"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Déplacer un point",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`p` est un pointeur vers un `Point` : on accède à ses champs avec la flèche `->`.",
+    "Il faut ajouter `dx` au champ `x` et `dy` au champ `y`.",
+    "`p->x = p->x + dx;` (ou `p->x += dx;`), et pareil pour `y`."
+  ]
+}

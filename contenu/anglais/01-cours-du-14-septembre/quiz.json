@@ -1,0 +1,145 @@
+[
+  {
+    "question": "Combien de questions compte le TOEIC Listening & Reading ?",
+    "choix": [
+      "100",
+      "150",
+      "200",
+      "250"
+    ],
+    "reponse": 2,
+    "explication": "100 questions de Listening (45 min) et 100 questions de Reading (75 min), soit 200 en 2 heures."
+  },
+  {
+    "question": "Quel est le score maximum au TOEIC ?",
+    "choix": [
+      "495",
+      "900",
+      "990",
+      "1000"
+    ],
+    "reponse": 2,
+    "explication": "Chaque section est notée de 5 à 495 : le total va de 10 à 990."
+  },
+  {
+    "question": "Combien de points faut-il viser pour réussir son TOEIC à l'ESGI ?",
+    "choix": [
+      "500",
+      "650",
+      "750",
+      "900"
+    ],
+    "reponse": 2,
+    "explication": "La prof l'a annoncé dès la première séance : 750 points sur 990."
+  },
+  {
+    "question": "Dans quelle partie entend-on une question suivie de **3** réponses seulement ?",
+    "choix": [
+      "Partie 1",
+      "Partie 2",
+      "Partie 3",
+      "Partie 4"
+    ],
+    "reponse": 1,
+    "explication": "La partie 2 (questions-réponses) est la seule avec 3 choix (A, B, C). Les autres parties en ont 4."
+  },
+  {
+    "question": "La partie 7 du TOEIC, c'est...",
+    "choix": [
+      "des phrases à compléter",
+      "des photos à décrire",
+      "la lecture de un, deux ou trois documents",
+      "des annonces enregistrées"
+    ],
+    "reponse": 2,
+    "explication": "La partie 7 (54 questions) fait lire des e-mails, publicités, articles... C'est la partie qui rapporte le plus de points."
+  },
+  {
+    "question": "Que faut-il faire si on ne connaît pas la réponse à une question ?",
+    "choix": [
+      "Laisser la case vide",
+      "Répondre au hasard ou par élimination",
+      "Cocher deux cases",
+      "Revenir à la fin de l'écoute"
+    ],
+    "reponse": 1,
+    "explication": "Une mauvaise réponse ne retire aucun point : une case vide est une chance perdue."
+  },
+  {
+    "question": "Que veut dire *actually* ?",
+    "choix": [
+      "actuellement",
+      "en fait",
+      "activement",
+      "finalement"
+    ],
+    "reponse": 1,
+    "explication": "Faux ami : *actually* = en fait. « Actuellement » se dit *currently* ou *at the moment*."
+  },
+  {
+    "question": "Que veut dire *eventually* ?",
+    "choix": [
+      "éventuellement",
+      "en fait",
+      "finalement",
+      "rarement"
+    ],
+    "reponse": 2,
+    "explication": "*Eventually* = finalement, au bout du compte. « Éventuellement » se dit *possibly*."
+  },
+  {
+    "question": "Comment dit-on « assister à une conférence » ?",
+    "choix": [
+      "to assist a conference",
+      "to attend a conference",
+      "to wait a conference",
+      "to assume a conference"
+    ],
+    "reponse": 1,
+    "explication": "*To attend* = assister à. *To assist* veut dire aider."
+  },
+  {
+    "question": "Quel mot désigne le prix d'un **trajet** en bus, en train ou en taxi ?",
+    "choix": [
+      "rate",
+      "fee",
+      "fare",
+      "price list"
+    ],
+    "reponse": 2,
+    "explication": "*Fare* = prix d'un trajet. *Rate* = taux ou tarif d'hôtel, *fee* = frais ou honoraires."
+  },
+  {
+    "question": "*An ...... car uses very little fuel.*",
+    "choix": [
+      "economic",
+      "economical",
+      "economy",
+      "economics"
+    ],
+    "reponse": 1,
+    "explication": "*Economical* = qui fait économiser. *Economic* = lié à l'économie (*economic growth*)."
+  },
+  {
+    "question": "Quel mot de liaison exprime une **conséquence** ?",
+    "choix": [
+      "although",
+      "whereas",
+      "therefore",
+      "unless"
+    ],
+    "reponse": 2,
+    "explication": "*Therefore* = par conséquent. *Although* = bien que, *whereas* = alors que, *unless* = à moins que."
+  },
+  {
+    "question": "*...... the bad weather, the flight left on time.*",
+    "choix": [
+      "Although",
+      "Despite",
+      "Because",
+      "Unless"
+    ],
+    "reponse": 1,
+    "explication": "Après le trou vient un **nom** (*the bad weather*) : il faut *despite*. *Although* doit être suivi d'un sujet et d'un verbe."
+  }
+]

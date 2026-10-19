@@ -1,0 +1,11 @@
+{
+  "titre": "Compte bancaire et attribut privé",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Un attribut dont le nom commence par deux `_` est privé : `self.__solde = solde`.",
+    "`get_solde` renvoie simplement `self.__solde`.",
+    "Dans `deposer`, si `montant <= 0`, fais `raise ValueError(\"montant invalide\")` avant de toucher au solde.",
+    "Dans `retirer`, deux cas d'erreur : un montant `<= 0` et un montant plus grand que le solde (`\"solde insuffisant\"`)."
+  ]
+}

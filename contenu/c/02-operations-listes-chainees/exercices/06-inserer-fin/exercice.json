@@ -1,0 +1,10 @@
+{
+  "titre": "Insérer en fin de liste",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Deux cas : si la liste est vide, le nouveau maillon devient le premier (`*start = nouveau`). Sinon, il faut trouver le dernier maillon.",
+    "Le dernier maillon est celui dont `next` vaut `NULL` : avance `cur` tant que `cur->next != NULL`, pour t'arrêter SUR lui.",
+    "`Cell *cur = *start; while (cur->next != NULL) cur = cur->next;` puis `cur->next = nouveau;`"
+  ]
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "question": "Quelle fonction doit recevoir un `Cell **start` plutôt qu'un `Cell *start` ?",
+    "choix": ["`int taille(...)`", "`Cell *rechercher(..., int valeur)`", "`void supprimerDebut(...)`", "`void afficherListe(...)`"],
+    "reponse": 2,
+    "explication": "Supprimer le premier maillon change le début de la liste : la fonction doit pouvoir modifier la variable de l'appelant, donc recevoir son adresse. Les trois autres ne font que lire la liste."
+  },
+  {
+    "question": "Dans `supprimerDebut`, pourquoi range-t-on le premier maillon dans une variable `ancien` avant de faire `*start = ancien->next;` ?",
+    "choix": ["Pour pouvoir le libérer avec `free` ensuite", "Pour le remettre en fin de liste", "Parce que `*start` ne peut pas changer", "Ce n'est pas utile"],
+    "reponse": 0,
+    "explication": "Une fois `*start` avancé, plus rien ne pointe sur l'ancien premier maillon. Sans `ancien`, on ne pourrait plus le libérer : ce serait une fuite mémoire."
+  },
+  {
+    "question": "Que fait ce code ? `while (cur != NULL) { free(cur); cur = cur->next; }`",
+    "choix": ["Il libère correctement toute la liste", "Il lit `cur->next` dans un maillon déjà libéré", "Il ne libère que le premier maillon", "Il ne compile pas"],
+    "reponse": 1,
+    "explication": "Après `free(cur)`, le maillon n'appartient plus au programme : lire `cur->next` est interdit. Il faut sauvegarder `suivant = cur->next` avant le `free`."
+  },
+  {
+    "question": "Pour insérer en fin de liste, avec quelle condition fait-on avancer `cur` ?",
+    "choix": ["`while (cur != NULL)`", "`while (cur->next != NULL)`", "`while (cur->value != 0)`", "`while (cur->next->next != NULL)`"],
+    "reponse": 1,
+    "explication": "On veut s'arrêter **sur** le dernier maillon pour modifier son `next`. Avec `cur != NULL`, on sortirait avec `cur == NULL`, sans accès au dernier maillon."
+  },
+  {
+    "question": "Quelle est la complexité de l'insertion en fin d'une liste chaînée dont on ne connaît que le premier maillon ?",
+    "choix": ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+    "reponse": 2,
+    "explication": "Il faut parcourir toute la liste pour trouver le dernier maillon. Avec un pointeur supplémentaire sur la fin, elle passerait en O(1)."
+  },
+  {
+    "question": "Pour insérer `nouveau` juste après le maillon `m`, quel ordre est correct ?",
+    "choix": ["`m->next = nouveau;` puis `nouveau->next = m->next;`", "`nouveau->next = m->next;` puis `m->next = nouveau;`", "`nouveau->next = m;` puis `m->next = NULL;`", "L'ordre n'a pas d'importance"],
+    "reponse": 1,
+    "explication": "On accroche d'abord la suite de la liste au nouveau maillon, puis on fait pointer `m` sur lui. Dans l'autre ordre, `nouveau->next` recevrait `nouveau` lui-même et la fin de la liste serait perdue."
+  },
+  {
+    "question": "Pour supprimer un maillon au milieu d'une liste simplement chaînée, de quel maillon a-t-on besoin ?",
+    "choix": ["Du dernier", "De celui d'avant", "De celui d'après seulement", "D'aucun, `free` suffit"],
+    "reponse": 1,
+    "explication": "Il faut modifier le `next` du maillon précédent pour qu'il saute la cible. Un maillon ne connaît pas son précédent : on avance donc avec un pointeur `prev`."
+  },
+  {
+    "question": "Quelle est la complexité de l'accès au maillon en position i ?",
+    "choix": ["O(1)", "O(i), donc O(N) au pire", "O(log N)", "O(N²)"],
+    "reponse": 1,
+    "explication": "Il faut suivre i pointeurs `next` depuis le début. Un tableau, lui, calcule directement l'adresse de `t[i]`."
+  },
+  {
+    "question": "Pour calculer le maximum d'une liste non vide, par quelle valeur initialiser le maximum ?",
+    "choix": ["0", "La valeur du premier maillon", "-1", "La taille de la liste"],
+    "reponse": 1,
+    "explication": "Avec 0, une liste qui ne contient que des nombres négatifs donnerait 0, qui n'est même pas dans la liste. On part du premier maillon."
+  },
+  {
+    "question": "Dans l'inversion d'une liste avec `prev`, `cur` et `suivant`, à quoi sert `suivant` ?",
+    "choix": ["À compter les maillons", "À garder l'accès au reste de la liste avant de modifier `cur->next`", "À mémoriser le premier maillon", "À rien, on peut s'en passer"],
+    "reponse": 1,
+    "explication": "`cur->next = prev` écrase le lien vers la suite. Il faut donc avoir rangé `cur->next` dans `suivant` juste avant, sinon le reste de la liste est perdu."
+  },
+  {
+    "question": "Que renvoie la fonction d'inversion à la fin ?",
+    "choix": ["`cur`, qui vaut `NULL`", "`prev`, le nouveau premier maillon", "L'ancien `start`", "`suivant`"],
+    "reponse": 1,
+    "explication": "La boucle s'arrête quand `cur` vaut `NULL`. `prev` est alors l'ancien dernier maillon, devenu le premier. L'ancien `start` est maintenant le dernier."
+  }
+]

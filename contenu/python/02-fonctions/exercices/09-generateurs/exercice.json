@@ -1,0 +1,11 @@
+{
+  "titre": "Générateurs avec yield",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Un générateur ressemble à une fonction normale, mais utilise `yield valeur` au lieu de `return`.",
+    "`pows` : une boucle `for i in range(1, n + 1):` qui fait `yield i ** p`.",
+    "`compte_a_rebours` : une boucle `while n > 0:` qui fait `yield n` puis `n -= 1`.",
+    "`fibonacci` est infini : `a, b = 0, 1` puis `while True:` avec `yield a` et `a, b = b, a + b`."
+  ]
+}

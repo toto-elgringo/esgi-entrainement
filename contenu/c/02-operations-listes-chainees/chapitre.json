@@ -1,0 +1,5 @@
+{
+  "titre": "Opérations sur les listes chaînées",
+  "description": "Recherche, i-ème élément, suppression, insertion en fin, au milieu et dans l'ordre, libération, inversion.",
+  "source": "fondamentaux"
+}

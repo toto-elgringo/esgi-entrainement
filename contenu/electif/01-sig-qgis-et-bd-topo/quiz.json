@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Que veut dire **SIG** ?",
+    "choix": ["Système d'Information Géographique", "Service d'Imagerie Géologique", "Système Informatique de Gestion", "Schéma d'Implantation Géométrique"],
+    "reponse": 0,
+    "explication": "Un SIG stocke, affiche et analyse des données liées à un lieu sur la Terre."
+  },
+  {
+    "question": "Dans QGIS, que contient une **couche** ?",
+    "choix": ["Un seul type d'objet (par exemple tous les bâtiments)", "Toute la carte d'un coup", "Seulement une image satellite", "Uniquement les coordonnées du projet"],
+    "reponse": 0,
+    "explication": "On empile les couches : une pour les bâtiments, une pour les routes, une pour les communes…"
+  },
+  {
+    "question": "Une **route** est représentée le plus souvent par…",
+    "choix": ["une ligne", "un point", "une surface", "un tableau sans géométrie"],
+    "reponse": 0,
+    "explication": "Les tronçons de route, les cours d'eau et les voies ferrées sont des lignes. Un bâtiment est une surface, une adresse un point."
+  },
+  {
+    "question": "Dans un Shapefile, quel fichier contient la **table des attributs** ?",
+    "choix": ["`.dbf`", "`.shp`", "`.shx`", "`.prj`"],
+    "reponse": 0,
+    "explication": "`.shp` = les formes, `.shx` = l'index des formes, `.dbf` = les attributs, `.prj` = le système de coordonnées, `.cpg` = l'encodage."
+  },
+  {
+    "question": "Que se passe-t-il si on copie seulement le fichier `BATIMENT.shp`, sans les autres ?",
+    "choix": ["La couche est inutilisable", "Rien, le `.shp` suffit", "QGIS recrée les fichiers manquants", "On perd seulement les couleurs"],
+    "reponse": 0,
+    "explication": "Les fichiers d'une même couche vont ensemble : sans `.shx` ni `.dbf`, le `.shp` ne s'ouvre pas correctement."
+  },
+  {
+    "question": "Qui produit la **BD TOPO** ?",
+    "choix": ["L'IGN", "L'INSEE", "Météo-France", "OpenStreetMap"],
+    "reponse": 0,
+    "explication": "L'IGN (Institut national de l'information géographique et forestière) produit les données géographiques de référence en France."
+  },
+  {
+    "question": "Le **Lambert 93** est…",
+    "choix": ["une projection plane avec des coordonnées en mètres", "un système en degrés de latitude et longitude", "un format de fichier", "un logiciel SIG"],
+    "reponse": 0,
+    "explication": "Lambert 93 (EPSG:2154) est la projection officielle de la France métropolitaine. Ses coordonnées sont en mètres, pratiques pour mesurer distances et surfaces."
+  },
+  {
+    "question": "Quel est le code EPSG du Lambert 93 ?",
+    "choix": ["2154", "4326", "3857", "75"],
+    "reponse": 0,
+    "explication": "EPSG:2154 = RGF93 / Lambert-93. EPSG:4326 est le WGS 84 du GPS (en degrés), 3857 la projection des cartes web."
+  },
+  {
+    "question": "Dans quel ordre ranger les couches dans QGIS pour bien tout voir ?",
+    "choix": ["Points en haut, puis lignes, puis surfaces", "Surfaces en haut, puis lignes, puis points", "Par ordre alphabétique", "L'ordre n'a aucune importance"],
+    "reponse": 0,
+    "explication": "Une grande surface placée au-dessus cache tout ce qu'il y a dessous : on met les objets les plus fins en haut."
+  },
+  {
+    "question": "Dans quel thème de la BD TOPO trouve-t-on la couche `TRONCON_DE_ROUTE` ?",
+    "choix": ["TRANSPORT", "ADRESSES", "BATI", "ADMINISTRATIF"],
+    "reponse": 0,
+    "explication": "TRANSPORT regroupe routes, voies ferrées, aérodromes… ADRESSES contient les adresses (ADRESSE_BAN) et les voies nommées."
+  }
+]

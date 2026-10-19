@@ -1,0 +1,145 @@
+[
+  {
+    "question": "Combien vaut *one billion* ?",
+    "choix": [
+      "un million",
+      "un milliard",
+      "un billion (mille milliards)",
+      "cent millions"
+    ],
+    "reponse": 1,
+    "explication": "*Billion* = 1 000 000 000 = un milliard. Faux ami avec le « billion » français."
+  },
+  {
+    "question": "Que veut dire *to borrow* ?",
+    "choix": [
+      "prêter",
+      "emprunter",
+      "rembourser",
+      "déposer"
+    ],
+    "reponse": 1,
+    "explication": "*Borrow* = emprunter (*borrow from*). Prêter = *lend*. Un prêt = *a loan*."
+  },
+  {
+    "question": "Un *overdraft*, c'est...",
+    "choix": [
+      "un découvert bancaire",
+      "un brouillon",
+      "un retrait",
+      "un virement"
+    ],
+    "reponse": 0,
+    "explication": "*Overdraft* = découvert. *Draft* = brouillon."
+  },
+  {
+    "question": "*Mortgage* signifie...",
+    "choix": [
+      "prêt immobilier",
+      "assurance vie",
+      "faillite",
+      "hypothèse"
+    ],
+    "reponse": 0,
+    "explication": "Un *mortgage* est un prêt immobilier (une hypothèque)."
+  },
+  {
+    "question": "*An overdue invoice* est une facture...",
+    "choix": [
+      "payée en avance",
+      "en retard de paiement",
+      "annulée",
+      "détaillée"
+    ],
+    "reponse": 1,
+    "explication": "*Overdue* = en retard, impayé."
+  },
+  {
+    "question": "*Quarterly* veut dire...",
+    "choix": [
+      "tous les quarts d'heure",
+      "trimestriel",
+      "en quart de finale",
+      "annuel"
+    ],
+    "reponse": 1,
+    "explication": "*A quarter* = un trimestre (3 mois). *Quarterly results* = résultats trimestriels."
+  },
+  {
+    "question": "*Sold out* veut dire...",
+    "choix": [
+      "vendu à perte",
+      "épuisé, complet",
+      "soldé",
+      "vendu à l'étranger"
+    ],
+    "reponse": 1,
+    "explication": "*Sold out* : il n'y en a plus (produit épuisé, spectacle complet)."
+  },
+  {
+    "question": "Une *warranty*, c'est...",
+    "choix": [
+      "un mandat",
+      "une garantie",
+      "un avertissement",
+      "un entrepôt"
+    ],
+    "reponse": 1,
+    "explication": "*Warranty* = garantie. *Warehouse* = entrepôt."
+  },
+  {
+    "question": "Que veut dire *wholesale* ?",
+    "choix": [
+      "vente au détail",
+      "vente en gros",
+      "vente aux enchères",
+      "soldes"
+    ],
+    "reponse": 1,
+    "explication": "*Wholesale* = en gros ; *retail* = au détail (*retailer* = détaillant)."
+  },
+  {
+    "question": "Un *plant*, dans l'industrie, c'est...",
+    "choix": [
+      "une plante",
+      "une usine",
+      "un plan",
+      "un planning"
+    ],
+    "reponse": 1,
+    "explication": "*Plant* = usine (*a car plant*). Le sens « plante » existe aussi, mais pas dans ce contexte."
+  },
+  {
+    "question": "*Mandatory* signifie...",
+    "choix": [
+      "facultatif",
+      "obligatoire",
+      "mandaté",
+      "mensuel"
+    ],
+    "reponse": 1,
+    "explication": "*Mandatory* = obligatoire : *Safety training is mandatory.*"
+  },
+  {
+    "question": "*To sue a company*, c'est...",
+    "choix": [
+      "la poursuivre en justice",
+      "la suivre",
+      "la racheter",
+      "la conseiller"
+    ],
+    "reponse": 0,
+    "explication": "*Sue* = poursuivre en justice. Un procès = *a lawsuit*."
+  },
+  {
+    "question": "*The products must comply ...... safety standards.*",
+    "choix": [
+      "to",
+      "with",
+      "by",
+      "at"
+    ],
+    "reponse": 1,
+    "explication": "*Comply with* = se conformer à. Le nom est *compliance*."
+  }
+]

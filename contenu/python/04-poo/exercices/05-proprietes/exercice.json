@@ -1,0 +1,11 @@
+{
+  "titre": "Propriétés : la température",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "La donnée réelle est rangée dans `self._celsius`. La propriété `celsius` lit et écrit cet attribut.",
+    "Avec les décorateurs : `@property` au-dessus de `def celsius(self):`, puis `@celsius.setter` au-dessus de `def celsius(self, valeur):`. (Ou bien `celsius = property(_get_celsius, _set_celsius)`.)",
+    "Dans `__init__`, écris `self.celsius = celsius` : l'affectation passe par le setter, donc la vérification marche dès la création.",
+    "Pour `fahrenheit`, le getter renvoie `self.celsius * 9 / 5 + 32` et le setter fait `self.celsius = (valeur - 32) * 5 / 9`."
+  ]
+}

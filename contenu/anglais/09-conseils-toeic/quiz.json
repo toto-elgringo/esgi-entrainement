@@ -1,0 +1,134 @@
+[
+  {
+    "question": "Le TOEIC est un test de...",
+    "choix": [
+      "vitesse autant que d'anglais",
+      "culture générale",
+      "prononciation",
+      "rédaction"
+    ],
+    "reponse": 0,
+    "explication": "Le document « TOEIC tips » insiste : il faut travailler le temps, pas seulement la justesse."
+  },
+  {
+    "question": "À l'écoute, la bonne réponse...",
+    "choix": [
+      "répète souvent les mots exacts entendus",
+      "reformule souvent l'idée avec d'autres mots",
+      "est toujours la plus longue",
+      "est toujours la réponse C"
+    ],
+    "reponse": 1,
+    "explication": "Il faut écouter les **paraphrases**. Les réponses qui répètent les mots entendus sont souvent des distracteurs."
+  },
+  {
+    "question": "Que faire si on rate une question à l'écoute ?",
+    "choix": [
+      "Réfléchir dessus jusqu'à la fin",
+      "Passer tout de suite à la suivante",
+      "Demander à réécouter",
+      "Laisser toutes les suivantes vides"
+    ],
+    "reponse": 1,
+    "explication": "*Don't panic, move on immediately* : sinon on rate aussi les questions suivantes."
+  },
+  {
+    "question": "Partie 1 : quel est le piège de *cleaning / leaning / leaving* ?",
+    "choix": [
+      "Ce sont des mots qui se ressemblent à l'oral",
+      "Ce sont des faux amis",
+      "Ce sont des verbes irréguliers",
+      "Ils ne s'utilisent qu'à l'écrit"
+    ],
+    "reponse": 0,
+    "explication": "Des mots proches à l'oral servent de pièges : il faut écouter attentivement chaque son."
+  },
+  {
+    "question": "Partie 2 : à une question *Why...?*, on attend...",
+    "choix": [
+      "un moment",
+      "une raison",
+      "un lieu",
+      "oui ou non"
+    ],
+    "reponse": 1,
+    "explication": "*Why* = pourquoi : on attend une raison. *When* attend un moment, *Where* un lieu."
+  },
+  {
+    "question": "Partie 3 : que faut-il faire **avant** l'écoute ?",
+    "choix": [
+      "Fermer les yeux",
+      "Lire les questions",
+      "Remplir la grille au hasard",
+      "Lire la partie 7"
+    ],
+    "reponse": 1,
+    "explication": "Lire les questions permet de savoir quoi écouter : qui, pourquoi, prochaine étape."
+  },
+  {
+    "question": "Quelle partie de la lecture rapporte le plus de points ?",
+    "choix": [
+      "Partie 5",
+      "Partie 6",
+      "Partie 7",
+      "Elles valent toutes autant"
+    ],
+    "reponse": 2,
+    "explication": "La partie 7 compte 54 questions sur 100 : il faut lui garder 45 à 50 minutes."
+  },
+  {
+    "question": "Partie 5 : par quoi commencer ?",
+    "choix": [
+      "Lire toute la phrase plusieurs fois",
+      "Identifier la nature du mot manquant",
+      "Traduire la phrase en français",
+      "Choisir le mot le plus long"
+    ],
+    "reponse": 1,
+    "explication": "Nom, verbe, adjectif ou adverbe ? Souvent, la grammaire suffit à trouver la réponse."
+  },
+  {
+    "question": "*She answered the question very ......*",
+    "choix": [
+      "quick",
+      "quickly",
+      "quicker",
+      "quickness"
+    ],
+    "reponse": 1,
+    "explication": "Il faut un **adverbe** pour décrire le verbe *answered*."
+  },
+  {
+    "question": "*The list of new employees ...... on the noticeboard.*",
+    "choix": [
+      "are",
+      "is",
+      "were",
+      "be"
+    ],
+    "reponse": 1,
+    "explication": "Le sujet est *the list* (singulier), pas *employees*."
+  },
+  {
+    "question": "Partie 7 avec plusieurs documents : il faut...",
+    "choix": [
+      "ne lire que le premier document",
+      "chercher l'information dans chaque document",
+      "répondre de mémoire",
+      "lire chaque mot"
+    ],
+    "reponse": 1,
+    "explication": "Une réponse peut être répartie entre deux documents (une date ici, un nom là)."
+  },
+  {
+    "question": "Pourquoi ne jamais laisser de case vide ?",
+    "choix": [
+      "Parce qu'une case vide enlève des points",
+      "Parce qu'une mauvaise réponse ne fait pas perdre de points",
+      "Parce que c'est interdit",
+      "Parce que la grille est rejetée"
+    ],
+    "reponse": 1,
+    "explication": "Pas de pénalité : répondre au hasard donne toujours une chance de gagner un point."
+  }
+]

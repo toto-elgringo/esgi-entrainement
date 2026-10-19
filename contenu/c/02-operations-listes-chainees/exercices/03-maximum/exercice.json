@@ -1,0 +1,10 @@
+{
+  "titre": "Le maximum",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Garde la plus grande valeur vue jusqu'ici, et compare-la à chaque maillon.",
+    "Ne pars pas de 0 : si toutes les valeurs sont négatives, 0 serait faux. Pars de la valeur du premier maillon.",
+    "`int max = start->value;` puis parcourir à partir de `start->next` avec `if (cur->value > max) max = cur->value;`"
+  ]
+}

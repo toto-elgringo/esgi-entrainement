@@ -1,0 +1,134 @@
+[
+  {
+    "question": "Que vaut `[x * 2 for x in range(4) if x % 2 == 1]` ?",
+    "choix": [
+      "`[0, 2, 4, 6]`",
+      "`[2, 6]`",
+      "`[1, 3]`",
+      "`[0, 4]`"
+    ],
+    "reponse": 1,
+    "explication": "On garde les `x` impairs (1 et 3) et on met leur double dans la liste : `[2, 6]`."
+  },
+  {
+    "question": "Quel est le type de `{m: len(m) for m in [\"a\", \"bb\"]}` ?",
+    "choix": [
+      "`set`",
+      "`dict`",
+      "`list`",
+      "`tuple`"
+    ],
+    "reponse": 1,
+    "explication": "Des accolades avec des éléments `cle: valeur` : c'est un dictionnaire en compréhension, ici `{'a': 1, 'bb': 2}`."
+  },
+  {
+    "question": "Quelle est la différence entre `[x * x for x in l]` et `(x * x for x in l)` ?",
+    "choix": [
+      "Aucune",
+      "La seconde crée un générateur qui calcule les valeurs à la demande",
+      "La seconde crée un tuple",
+      "La première est plus économe en mémoire"
+    ],
+    "reponse": 1,
+    "explication": "Avec des parenthèses, on obtient une expression génératrice : rien n'est stocké, chaque valeur est calculée au moment où on la demande, une seule fois."
+  },
+  {
+    "question": "Que vaut `len(list(zip([1, 2, 3, 4], \"ab\")))` ?",
+    "choix": [
+      "4",
+      "2",
+      "6",
+      "Une erreur : longueurs différentes"
+    ],
+    "reponse": 1,
+    "explication": "`zip` s'arrête à la fin du plus court des itérables : ici `\"ab\"`, donc 2 couples."
+  },
+  {
+    "question": "Qu'affiche `print(map(int, [\"1\", \"2\"]))` ?",
+    "choix": [
+      "`[1, 2]`",
+      "`(1, 2)`",
+      "Quelque chose comme `<map object at 0x...>`",
+      "`12`"
+    ],
+    "reponse": 2,
+    "explication": "`map` renvoie un itérable paresseux, pas une liste. `list(map(...))` permet de voir le contenu."
+  },
+  {
+    "question": "Que fournit `enumerate([\"a\", \"b\"], start=1)` ?",
+    "choix": [
+      "`(1, 'a')` puis `(2, 'b')`",
+      "`(0, 'a')` puis `(1, 'b')`",
+      "`'a'` puis `'b'`",
+      "`1` puis `2`"
+    ],
+    "reponse": 0,
+    "explication": "`enumerate` fournit des couples `(compteur, élément)`, avec un compteur qui démarre à `start`."
+  },
+  {
+    "question": "Après `l = [3, 1, 2]` puis `l = l.sort()`, que vaut `l` ?",
+    "choix": [
+      "`[1, 2, 3]`",
+      "`[3, 1, 2]`",
+      "`None`",
+      "`[3, 2, 1]`"
+    ],
+    "reponse": 2,
+    "explication": "`sort()` trie sur place et renvoie `None` : on a remplacé la liste par `None`. Il fallait écrire `l.sort()` seul, ou `l = sorted(l)`."
+  },
+  {
+    "question": "Que vaut `sorted([\"poire\", \"kiwi\", \"banane\"], key=len)` ?",
+    "choix": [
+      "`['banane', 'kiwi', 'poire']`",
+      "`['kiwi', 'poire', 'banane']`",
+      "`['banane', 'poire', 'kiwi']`",
+      "`[4, 5, 6]`"
+    ],
+    "reponse": 1,
+    "explication": "`key=len` trie selon la longueur des mots : kiwi (4), poire (5), banane (6)."
+  },
+  {
+    "question": "Que valent `any([])` et `all([])` ?",
+    "choix": [
+      "`False` et `False`",
+      "`True` et `True`",
+      "`False` et `True`",
+      "Une erreur"
+    ],
+    "reponse": 2,
+    "explication": "Aucun élément n'est vrai, donc `any` est faux ; aucun élément n'est faux, donc `all` est vrai."
+  },
+  {
+    "question": "Laquelle de ces lambdas est **invalide** ?",
+    "choix": [
+      "`lambda x: x * 2`",
+      "`lambda x, y: x + y`",
+      "`lambda x: x if x > 0 else -x`",
+      "`lambda x: y = x + 1`"
+    ],
+    "reponse": 3,
+    "explication": "Une lambda ne contient qu'une expression : une affectation `y = ...` n'est pas permise."
+  },
+  {
+    "question": "Que fait `open(\"notes.txt\", \"w\")` si `notes.txt` contient déjà du texte ?",
+    "choix": [
+      "Il ajoute à la fin",
+      "Il efface le contenu",
+      "Il lève une erreur",
+      "Il ouvre en lecture"
+    ],
+    "reponse": 1,
+    "explication": "Le mode `\"w\"` vide le fichier dès l'ouverture. Pour ajouter à la fin, on utilise `\"a\"`."
+  },
+  {
+    "question": "Quel est l'intérêt principal de `with open(...) as f:` ?",
+    "choix": [
+      "Le fichier est lu plus vite",
+      "Le fichier est fermé automatiquement à la fin du bloc, même en cas d'exception",
+      "Le fichier est créé s'il n'existe pas",
+      "On peut écrire et lire en même temps"
+    ],
+    "reponse": 1,
+    "explication": "`with` lie la durée de vie du fichier au bloc : il est fermé quoi qu'il arrive (fin normale, `return` ou exception)."
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "titre": "Insérer en début avec Cell **",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`start` est l'adresse de la variable de l'appelant : `*start` est cette variable, c'est-à-dire l'adresse du premier maillon actuel.",
+    "Même algorithme que d'habitude : créer le maillon, l'accrocher devant l'ancien premier, puis changer le début de la liste.",
+    "`Cell *nouveau = creerCell(valeur);` puis `nouveau->next = *start;` puis `*start = nouveau;`"
+  ]
+}

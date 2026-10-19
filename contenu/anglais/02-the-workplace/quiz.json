@@ -1,0 +1,134 @@
+[
+  {
+    "question": "Que veut dire *intern* ?",
+    "choix": [
+      "interne",
+      "stagiaire",
+      "intérimaire",
+      "informaticien"
+    ],
+    "reponse": 1,
+    "explication": "*Intern* = stagiaire ; *internship* = le stage ; *temp* = intérimaire."
+  },
+  {
+    "question": "Comment dit-on « PDG » ?",
+    "choix": [
+      "CFO",
+      "CEO",
+      "VP",
+      "PA"
+    ],
+    "reponse": 1,
+    "explication": "*CEO* = *Chief Executive Officer*. Le *CFO* est le directeur financier."
+  },
+  {
+    "question": "Que veut dire *to take on* (staff) ?",
+    "choix": [
+      "licencier",
+      "embaucher",
+      "former",
+      "muter"
+    ],
+    "reponse": 1,
+    "explication": "*Take on* = embaucher. *Lay off* = licencier, *transfer* = muter."
+  },
+  {
+    "question": "*To lay off* workers, c'est...",
+    "choix": [
+      "les licencier pour raison économique",
+      "les renvoyer pour faute",
+      "les former",
+      "les promouvoir"
+    ],
+    "reponse": 0,
+    "explication": "*Lay off* = licencier pour motif économique. Pour une faute : *dismiss* ou *fire*."
+  },
+  {
+    "question": "Quel document reçoit-on chaque mois avec son salaire ?",
+    "choix": [
+      "a pink slip",
+      "a pay slip",
+      "a résumé",
+      "an amendment"
+    ],
+    "reponse": 1,
+    "explication": "*Pay slip* = bulletin de paie. Un *pink slip* (US) annonce un licenciement."
+  },
+  {
+    "question": "*Perks* désigne...",
+    "choix": [
+      "des heures supplémentaires",
+      "des avantages en nature",
+      "une période d'essai",
+      "des impôts"
+    ],
+    "reponse": 1,
+    "explication": "Voiture de fonction, tickets restaurant... ce sont des *perks*."
+  },
+  {
+    "question": "Quel verbe complète : *Prices ...... every year.*",
+    "choix": [
+      "rise",
+      "raise",
+      "raises",
+      "are raising them"
+    ],
+    "reponse": 0,
+    "explication": "*Rise* s'emploie sans complément (les prix augmentent tout seuls). *Raise* demande un complément : *They raise prices.*"
+  },
+  {
+    "question": "Le compte-rendu d'une réunion se dit...",
+    "choix": [
+      "the agenda",
+      "the minutes",
+      "the schedule",
+      "the summary sheet"
+    ],
+    "reponse": 1,
+    "explication": "*Minutes* = compte-rendu (après la réunion). *Agenda* = ordre du jour (avant)."
+  },
+  {
+    "question": "*To postpone* une réunion, c'est...",
+    "choix": [
+      "l'annuler",
+      "l'avancer",
+      "la reporter",
+      "la présider"
+    ],
+    "reponse": 2,
+    "explication": "*Postpone* = reporter à plus tard. Avancer = *bring forward*, annuler = *cancel*, présider = *chair*."
+  },
+  {
+    "question": "Quel mot désigne une **personne** ?",
+    "choix": [
+      "attendance",
+      "retirement",
+      "applicant",
+      "employment"
+    ],
+    "reponse": 2,
+    "explication": "*Applicant* = le candidat. Les autres sont des noms de choses : présence, retraite, emploi."
+  },
+  {
+    "question": "*The meeting has been ...... for Friday.*",
+    "choix": [
+      "schedule",
+      "scheduled",
+      "scheduling",
+      "scheduler"
+    ],
+    "reponse": 1,
+    "explication": "Après *has been*, il faut un participe passé (passif)."
+  },
+  {
+    "question": "*I look forward ...... you next week.*",
+    "choix": [
+      "to meet",
+      "meeting",
+      "to meeting",
+      "meet"
+    ],
+    "reponse": 2,
+    "explication": "*Look forward to* + verbe en -ing : le *to* est une préposition."
+  }
+]

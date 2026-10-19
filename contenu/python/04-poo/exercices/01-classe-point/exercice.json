@@ -1,0 +1,10 @@
+{
+  "titre": "Une première classe : Point",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Dans `__init__`, range les coordonnées dans l'objet : `self.x = x` et `self.y = y`.",
+    "Chaque méthode reçoit `self` en premier paramètre : `def distance_origine(self):` utilise `self.x` et `self.y`.",
+    "`deplacer` modifie `self.x` et `self.y` (avec `+=`) et ne renvoie rien ; `symetrique` renvoie un **nouvel** objet : `return Point(-self.x, -self.y)`."
+  ]
+}

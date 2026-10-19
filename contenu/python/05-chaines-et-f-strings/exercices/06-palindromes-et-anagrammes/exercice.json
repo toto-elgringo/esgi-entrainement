@@ -1,0 +1,10 @@
+{
+  "titre": "Palindromes et anagrammes",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence par une fonction qui ne garde que les lettres et chiffres, en minuscules : `\"\".join(c.lower() for c in texte if c.isalnum())`.",
+    "Une phrase est un palindrome si sa version nettoyée est égale à son inverse `[::-1]`.",
+    "Deux mots sont des anagrammes si, une fois nettoyés, ils ont les mêmes lettres en même nombre : compare `sorted(a)` et `sorted(b)`."
+  ]
+}

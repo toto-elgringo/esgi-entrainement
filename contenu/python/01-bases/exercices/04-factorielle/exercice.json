@@ -1,0 +1,10 @@
+{
+  "titre": "La factorielle",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "La factorielle de n est le produit 1 × 2 × ... × n, et elle vaut 1 pour 0 et 1.",
+    "Version récursive (celle du cours) : si `x < 2`, renvoie 1, sinon renvoie `x * facto(x - 1)`.",
+    "Version avec une boucle : pars de `resultat = 1` et multiplie-le par chaque `i` de `range(2, x + 1)`."
+  ]
+}

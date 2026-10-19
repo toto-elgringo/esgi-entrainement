@@ -1,0 +1,11 @@
+{
+  "titre": "while, for, break et continue",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Pour `compte_a_rebours`, pars d'une liste vide et ajoute `n` avec `append` tant que `n >= 0`, en diminuant `n` à chaque tour.",
+    "Pour `premier_multiple`, parcours la liste avec `for` : dès qu'un nombre vérifie `x % k == 0`, renvoie-le. Si la boucle se termine, renvoie `None`.",
+    "Pour `somme_positifs`, utilise `continue` pour sauter les nombres négatifs.",
+    "Pour `nombre_de_voyelles`, parcours la chaîne en minuscules et compte les lettres qui sont `in \"aeiouy\"`."
+  ]
+}

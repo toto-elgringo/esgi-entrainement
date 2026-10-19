@@ -1,0 +1,10 @@
+{
+  "titre": "Lire des nombres au clavier",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "`input()` renvoie une chaîne : convertis chaque saisie avec `int(...)`.",
+    "Lis d'abord `n`, puis fais une boucle `for _ in range(n)` qui lit un nombre à chaque tour et le range dans une liste.",
+    "La moyenne avec deux décimales : `print(\"Moyenne : %.2f\" % moyenne)`. Pour le maximum, tu peux utiliser `max(liste)`."
+  ]
+}

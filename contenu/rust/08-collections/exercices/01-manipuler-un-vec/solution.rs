@@ -12,6 +12,6 @@ fn main() {
     println!("Après sort() : {:?}", v);
 
     println!("Taille : {}", v.len());
-    println!("get(0) : {:?}", v.get(0));
+    println!("get(1) : {:?}", v.get(1));
     println!("get(9) : {:?}", v.get(9));
 }

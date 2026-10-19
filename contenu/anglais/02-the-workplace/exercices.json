@@ -1,0 +1,1676 @@
+[
+  {
+    "id": "jobs-traduction",
+    "titre": "Les postes : traduire",
+    "difficulte": 1,
+    "enonce": "Traduis le nom du poste en anglais.",
+    "questions": [
+      {
+        "intitule": "PDG",
+        "type": "texte",
+        "reponse": [
+          "CEO",
+          "chief executive officer"
+        ]
+      },
+      {
+        "intitule": "stagiaire",
+        "type": "texte",
+        "reponse": [
+          "intern",
+          "an intern",
+          "trainee",
+          "a trainee"
+        ]
+      },
+      {
+        "intitule": "intérimaire",
+        "type": "texte",
+        "reponse": [
+          "temp",
+          "a temp",
+          "temporary worker",
+          "a temporary worker"
+        ]
+      },
+      {
+        "intitule": "prestataire",
+        "type": "texte",
+        "reponse": [
+          "contractor",
+          "a contractor"
+        ]
+      },
+      {
+        "intitule": "commercial",
+        "type": "texte",
+        "reponse": [
+          "sales rep",
+          "a sales rep",
+          "salesperson",
+          "a salesperson",
+          "sales representative",
+          "a sales representative",
+          "rep",
+          "salesman",
+          "saleswoman"
+        ]
+      },
+      {
+        "intitule": "graphiste",
+        "type": "texte",
+        "reponse": [
+          "graphic designer",
+          "a graphic designer"
+        ]
+      },
+      {
+        "intitule": "demandeur d'emploi",
+        "type": "texte",
+        "reponse": [
+          "job seeker",
+          "a job seeker",
+          "jobseeker",
+          "a jobseeker"
+        ]
+      },
+      {
+        "intitule": "chargé de clientèle",
+        "type": "texte",
+        "reponse": [
+          "account manager",
+          "an account manager"
+        ]
+      }
+    ],
+    "indices": [
+      "Ils sont tous dans le tableau « Jobs » du cours."
+    ],
+    "correction": "PDG = *CEO* ; stagiaire = *intern* ; intérimaire = *temp* ; prestataire = *contractor* ; commercial = *sales rep* ou *salesperson* ; graphiste = *graphic designer* ; demandeur d'emploi = *job seeker* ; chargé de clientèle = *account manager*."
+  },
+  {
+    "id": "jobs-definitions",
+    "titre": "Qui est-ce ?",
+    "difficulte": 1,
+    "enonce": "Lis la définition et choisis le poste.",
+    "questions": [
+      {
+        "intitule": "*This person repairs computers and solves network problems.*",
+        "type": "choix",
+        "choix": [
+          "floor manager",
+          "IT technician",
+          "clerk",
+          "graphic designer"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*This person checks visitors' badges at the entrance.*",
+        "type": "choix",
+        "choix": [
+          "board member",
+          "account manager",
+          "PA",
+          "security guard"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*This person manages the money of the company and prepares the budget.*",
+        "type": "choix",
+        "choix": [
+          "sales rep",
+          "CFO",
+          "office manager",
+          "HR director"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*This person organises the director's diary and travel.*",
+        "type": "choix",
+        "choix": [
+          "contractor",
+          "temp",
+          "executive",
+          "PA"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*This person is looking for a job.*",
+        "type": "choix",
+        "choix": [
+          "job seeker",
+          "clerk",
+          "board member",
+          "intern"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*This person runs a shop floor and supervises the sales staff.*",
+        "type": "choix",
+        "choix": [
+          "CEO",
+          "IT technician",
+          "floor manager",
+          "graphic designer"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*diary* = agenda ; *shop floor* = surface de vente."
+    ],
+    "correction": "IT technician (informaticien), security guard (agent de sécurité), CFO (directeur financier), PA (assistant de direction), job seeker (demandeur d'emploi), floor manager (chef de magasin)."
+  },
+  {
+    "id": "jobs-phrases",
+    "titre": "Les postes en contexte",
+    "difficulte": 2,
+    "enonce": "Complète chaque phrase avec le nom du poste (un ou deux mots).",
+    "questions": [
+      {
+        "intitule": "*The printer is broken again. Can you call the IT ......?*",
+        "type": "texte",
+        "reponse": [
+          "technician",
+          "technicians"
+        ]
+      },
+      {
+        "intitule": "*Our maintenance ...... checks the machines every night.*",
+        "type": "texte",
+        "reponse": [
+          "crew"
+        ]
+      },
+      {
+        "intitule": "*She started as a summer ...... and the company hired her after her degree.* (stagiaire)",
+        "type": "texte",
+        "reponse": [
+          "intern"
+        ]
+      },
+      {
+        "intitule": "*The board ...... will vote on the new strategy on Monday.* (membres du conseil)",
+        "type": "texte",
+        "reponse": [
+          "members"
+        ]
+      },
+      {
+        "intitule": "*We hired a ...... from an agency to replace Paul while he is on leave.* (intérimaire)",
+        "type": "texte",
+        "reponse": [
+          "temp"
+        ]
+      },
+      {
+        "intitule": "*Our head of ...... approved my holiday request.* (chef de service)",
+        "type": "texte",
+        "reponse": [
+          "department"
+        ]
+      }
+    ],
+    "indices": [
+      "Les mots manquants complètent des noms composés : *IT ...*, *maintenance ...*, *board ...*, *head of ...*"
+    ],
+    "correction": "*IT technician*, *maintenance crew*, *intern*, *board members*, *temp*, *head of department*."
+  },
+  {
+    "id": "abreviations",
+    "titre": "Les abréviations",
+    "difficulte": 1,
+    "enonce": "Donne l'abréviation utilisée en entreprise.",
+    "questions": [
+      {
+        "intitule": "chief financial officer",
+        "type": "texte",
+        "reponse": [
+          "CFO"
+        ]
+      },
+      {
+        "intitule": "vice president",
+        "type": "texte",
+        "reponse": [
+          "VP"
+        ]
+      },
+      {
+        "intitule": "human resources",
+        "type": "texte",
+        "reponse": [
+          "HR"
+        ]
+      },
+      {
+        "intitule": "research and development",
+        "type": "texte",
+        "reponse": [
+          "R&D",
+          "R and D",
+          "RD",
+          "R & D"
+        ]
+      },
+      {
+        "intitule": "public relations",
+        "type": "texte",
+        "reponse": [
+          "PR"
+        ]
+      },
+      {
+        "intitule": "memorandum",
+        "type": "texte",
+        "reponse": [
+          "memo"
+        ]
+      },
+      {
+        "intitule": "representative",
+        "type": "texte",
+        "reponse": [
+          "rep"
+        ]
+      },
+      {
+        "intitule": "information technology",
+        "type": "texte",
+        "reponse": [
+          "IT"
+        ]
+      }
+    ],
+    "indices": [
+      "On prend souvent les initiales ; *memo* et *rep* sont des mots raccourcis."
+    ],
+    "correction": "*CFO, VP, HR, R&D, PR, memo, rep, IT*."
+  },
+  {
+    "id": "postes-et-activites",
+    "titre": "Les postes et leurs activités",
+    "difficulte": 2,
+    "enonce": "Choisis l'activité qui correspond le mieux au poste.",
+    "questions": [
+      {
+        "intitule": "graphic designer",
+        "type": "choix",
+        "choix": [
+          "stocktaking",
+          "typing",
+          "troubleshooting",
+          "drawing"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "floor manager",
+        "type": "choix",
+        "choix": [
+          "programming",
+          "advising",
+          "drawing",
+          "stocktaking"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "IT technician",
+        "type": "choix",
+        "choix": [
+          "increasing sales",
+          "creating",
+          "typing",
+          "troubleshooting"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "account manager",
+        "type": "choix",
+        "choix": [
+          "programming",
+          "advising",
+          "drawing",
+          "stocktaking"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "PA",
+        "type": "choix",
+        "choix": [
+          "troubleshooting",
+          "programming",
+          "coordinating",
+          "drawing"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*stocktaking* = faire l'inventaire ; *troubleshooting* = dépanner."
+    ],
+    "correction": "Graphiste : dessiner (*drawing*) et créer. Chef de magasin : inventaire (*stocktaking*) et supervision. Informaticien : dépannage (*troubleshooting*) et programmation. Chargé de clientèle : conseil (*advising*) et augmentation des ventes. Assistant : coordination (*coordinating*) et saisie."
+  },
+  {
+    "id": "rh-traduction",
+    "titre": "Les RH : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "un poste vacant",
+        "type": "texte",
+        "reponse": [
+          "vacancy",
+          "a vacancy",
+          "opening",
+          "an opening",
+          "job opening",
+          "a job opening"
+        ]
+      },
+      {
+        "intitule": "embaucher",
+        "type": "texte",
+        "reponse": [
+          "take on",
+          "to take on",
+          "hire",
+          "to hire",
+          "recruit",
+          "to recruit",
+          "employ",
+          "to employ"
+        ]
+      },
+      {
+        "intitule": "démissionner",
+        "type": "texte",
+        "reponse": [
+          "resign",
+          "to resign",
+          "quit",
+          "to quit"
+        ]
+      },
+      {
+        "intitule": "nommer (à un poste)",
+        "type": "texte",
+        "reponse": [
+          "appoint",
+          "to appoint"
+        ]
+      },
+      {
+        "intitule": "pointer en arrivant",
+        "type": "texte",
+        "reponse": [
+          "clock in",
+          "to clock in"
+        ]
+      },
+      {
+        "intitule": "réduire les effectifs",
+        "type": "texte",
+        "reponse": [
+          "downsize",
+          "to downsize",
+          "cut staff",
+          "to cut staff"
+        ]
+      },
+      {
+        "intitule": "l'évaluation annuelle (d'un salarié)",
+        "type": "texte",
+        "reponse": [
+          "appraisal",
+          "an appraisal",
+          "the appraisal",
+          "assessment",
+          "an assessment",
+          "performance review",
+          "annual appraisal",
+          "the annual appraisal"
+        ]
+      },
+      {
+        "intitule": "un CV (anglais américain)",
+        "type": "texte",
+        "reponse": [
+          "résumé",
+          "a résumé",
+          "resume",
+          "a resume"
+        ]
+      }
+    ],
+    "indices": [
+      "*vacancy* veut aussi dire « chambre libre » à l'hôtel.",
+      "En américain, un CV se dit *résumé*."
+    ],
+    "correction": "poste vacant = *vacancy* ; embaucher = *take on* / *hire* ; démissionner = *resign* ; nommer = *appoint* ; pointer = *clock in* ; réduire les effectifs = *downsize* ; évaluation = *appraisal* ; CV = *résumé*."
+  },
+  {
+    "id": "rh-particules",
+    "titre": "Les verbes à particule des RH",
+    "difficulte": 2,
+    "enonce": "Complète avec la bonne particule (*for, on, off, out, from, in*).",
+    "questions": [
+      {
+        "intitule": "*Don't forget to clock ...... when you arrive in the morning.*",
+        "type": "texte",
+        "reponse": [
+          "in"
+        ],
+        "refuses": [
+          "out"
+        ]
+      },
+      {
+        "intitule": "*Because of the crisis, the factory laid ...... 40 workers.*",
+        "type": "texte",
+        "reponse": [
+          "off"
+        ]
+      },
+      {
+        "intitule": "*She applied ...... a job in the marketing department.*",
+        "type": "texte",
+        "reponse": [
+          "for"
+        ]
+      },
+      {
+        "intitule": "*He resigned ...... his position after ten years.*",
+        "type": "texte",
+        "reponse": [
+          "from"
+        ]
+      },
+      {
+        "intitule": "*We need to take ...... two new engineers before the summer.*",
+        "type": "texte",
+        "reponse": [
+          "on"
+        ]
+      },
+      {
+        "intitule": "*Good news: you are ...... the shortlist!*",
+        "type": "texte",
+        "reponse": [
+          "on"
+        ]
+      },
+      {
+        "intitule": "*At 6 p.m., the workers clock ...... and go home.*",
+        "type": "texte",
+        "reponse": [
+          "out"
+        ],
+        "refuses": [
+          "in"
+        ]
+      }
+    ],
+    "indices": [
+      "*apply for, take on, lay off, resign from, be on the shortlist*.",
+      "En arrivant : *clock in* ; en partant : *clock out*."
+    ],
+    "correction": "*clock in* (arrivée), *laid off*, *applied for*, *resigned from*, *take on*, *on the shortlist*, *clock out* (départ)."
+  },
+  {
+    "id": "licencier-ou-demissionner",
+    "titre": "Lay off, dismiss ou resign ?",
+    "difficulte": 2,
+    "enonce": "Lis la situation et choisis le verbe qui convient.",
+    "questions": [
+      {
+        "intitule": "*Sales have dropped, so the company has to reduce its staff. It will ...... 30 employees.*",
+        "type": "choix",
+        "choix": [
+          "dismiss",
+          "lay off",
+          "resign"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Tom stole money from the cash register. His manager decided to ...... him.*",
+        "type": "choix",
+        "choix": [
+          "lay off",
+          "resign",
+          "dismiss"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Julia found a better job abroad, so she decided to ......*",
+        "type": "choix",
+        "choix": [
+          "dismiss",
+          "lay off",
+          "resign"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Before leaving the company, you must give one month's ......*",
+        "type": "choix",
+        "choix": [
+          "appraisal",
+          "leave",
+          "notice"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Nadia is on maternity ...... until March.*",
+        "type": "choix",
+        "choix": [
+          "vacancy",
+          "leave",
+          "notice"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*lay off* : raison économique ; *dismiss* : faute ; *resign* : le salarié part."
+    ],
+    "correction": "1. Raison économique → *lay off*. 2. Faute → *dismiss* (ou *fire*). 3. Elle part d'elle-même → *resign*. 4. *give notice* = donner son préavis. 5. *maternity leave* = congé maternité."
+  },
+  {
+    "id": "paie-traduction",
+    "titre": "La paie : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "un bulletin de paie",
+        "type": "texte",
+        "reponse": [
+          "pay slip",
+          "a pay slip",
+          "payslip",
+          "a payslip"
+        ]
+      },
+      {
+        "intitule": "les heures supplémentaires",
+        "type": "texte",
+        "reponse": [
+          "overtime",
+          "overtime hours",
+          "extra hours"
+        ]
+      },
+      {
+        "intitule": "la période d'essai",
+        "type": "texte",
+        "reponse": [
+          "trial period",
+          "the trial period",
+          "probation period",
+          "probationary period",
+          "the probation period",
+          "probation"
+        ]
+      },
+      {
+        "intitule": "les avantages en nature",
+        "type": "texte",
+        "reponse": [
+          "perks",
+          "fringe benefits",
+          "benefits in kind"
+        ]
+      },
+      {
+        "intitule": "une augmentation (de salaire)",
+        "type": "texte",
+        "reponse": [
+          "raise",
+          "a raise",
+          "pay rise",
+          "a pay rise",
+          "pay raise",
+          "a pay raise",
+          "salary increase",
+          "a salary increase"
+        ]
+      },
+      {
+        "intitule": "un avenant (au contrat)",
+        "type": "texte",
+        "reponse": [
+          "amendment",
+          "an amendment"
+        ]
+      },
+      {
+        "intitule": "bénévole",
+        "type": "texte",
+        "reponse": [
+          "volunteer",
+          "a volunteer"
+        ]
+      },
+      {
+        "intitule": "le salaire horaire",
+        "type": "texte",
+        "reponse": [
+          "hourly wage",
+          "the hourly wage",
+          "hourly rate",
+          "the hourly rate"
+        ]
+      }
+    ],
+    "indices": [
+      "Ils sont dans le tableau « Pay & contracts »."
+    ],
+    "correction": "*pay slip*, *overtime*, *trial period*, *perks*, *raise* (US) ou *pay rise* (UK), *amendment*, *volunteer*, *hourly wage*."
+  },
+  {
+    "id": "paie-pieges",
+    "titre": "Les pièges de la paie",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*Fuel prices will ...... again next month.*",
+        "type": "choix",
+        "choix": [
+          "rise",
+          "raise"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The company has decided to ...... salaries by 3%.*",
+        "type": "choix",
+        "choix": [
+          "rise",
+          "raise"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Waiters receive weekly ...... plus tips.*",
+        "type": "choix",
+        "choix": [
+          "wages",
+          "salary"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*I checked my ...... and the overtime was missing.*",
+        "type": "choix",
+        "choix": [
+          "pay slip",
+          "pink slip"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Nobody can read this form: the signature is ......*",
+        "type": "choix",
+        "choix": [
+          "legible",
+          "eligible",
+          "illegible"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*After six months, staff are ...... for health insurance.*",
+        "type": "choix",
+        "choix": [
+          "illegible",
+          "legible",
+          "eligible"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The ...... web designer sent us an invoice for 20 hours of work.*",
+        "type": "choix",
+        "choix": [
+          "freelance",
+          "volunteer"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*rise* sans complément, *raise* + complément.",
+      "Un bénévole (*volunteer*) n'envoie pas de facture."
+    ],
+    "correction": "1. *rise* (les prix montent tout seuls). 2. *raise salaries* (augmenter quelque chose). 3. *wages* : payés à la semaine. 4. *pay slip* = bulletin de paie (*pink slip* = licenciement). 5. *illegible* = illisible. 6. *eligible* = qui a droit. 7. *freelance* : il facture son travail."
+  },
+  {
+    "id": "contrat-vocabulaire",
+    "titre": "Le langage des contrats",
+    "difficulte": 3,
+    "enonce": "Voici un extrait de contrat écrit pour l'exercice. Choisis le mot qui convient.\n\n> *This agreement is made between Brightline Ltd, (1) ...... referred to as \"the Client\", and Mr. Omar Haddad, referred to as \"the Consultant\". Both (2) ...... agree to (3) ...... the terms below. This contract is (4) ...... once it has been signed. Any change must be made by written (5) ....... A bonus system, (6) ...... the Consultant receives 5% of new sales, is described in Section 4.*",
+    "questions": [
+      {
+        "intitule": "(1)",
+        "type": "choix",
+        "choix": [
+          "whereas",
+          "whereby",
+          "hereunder"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "(2)",
+        "type": "choix",
+        "choix": [
+          "parts",
+          "parties",
+          "party"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "(3)",
+        "type": "choix",
+        "choix": [
+          "abide",
+          "apply for",
+          "abide by"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "(4)",
+        "type": "choix",
+        "choix": [
+          "bind",
+          "binding",
+          "bound"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "(5)",
+        "type": "choix",
+        "choix": [
+          "amendment",
+          "appraisal",
+          "appointment"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "(6)",
+        "type": "choix",
+        "choix": [
+          "whereas",
+          "whereby",
+          "hereunder"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*hereunder* = ci-dessous ; *whereby* = selon lequel.",
+      "*a binding contract* = un contrat qui engage."
+    ],
+    "correction": "(1) *hereunder* (ci-dessous). (2) *Both parties* (les deux parties). (3) *abide by* (respecter). (4) *binding* (qui engage ; *bound* s'emploie avec une personne : *you are bound by the contract*). (5) *amendment* (avenant). (6) *whereby* (selon lequel)."
+  },
+  {
+    "id": "evenements-traduction",
+    "titre": "Les événements : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "l'ordre du jour",
+        "type": "texte",
+        "reponse": [
+          "agenda",
+          "the agenda"
+        ]
+      },
+      {
+        "intitule": "le compte-rendu (de réunion)",
+        "type": "texte",
+        "reponse": [
+          "minutes",
+          "the minutes"
+        ]
+      },
+      {
+        "intitule": "un participant (à une conférence)",
+        "type": "texte",
+        "reponse": [
+          "attendee",
+          "an attendee",
+          "participant",
+          "a participant",
+          "delegate",
+          "a delegate"
+        ]
+      },
+      {
+        "intitule": "reporter (une réunion)",
+        "type": "texte",
+        "reponse": [
+          "postpone",
+          "to postpone",
+          "put off",
+          "to put off",
+          "delay",
+          "to delay",
+          "reschedule",
+          "to reschedule"
+        ]
+      },
+      {
+        "intitule": "reprendre (après une pause)",
+        "type": "texte",
+        "reponse": [
+          "resume",
+          "to resume"
+        ]
+      },
+      {
+        "intitule": "présider (une réunion)",
+        "type": "texte",
+        "reponse": [
+          "chair",
+          "to chair"
+        ]
+      },
+      {
+        "intitule": "avoir lieu",
+        "type": "texte",
+        "reponse": [
+          "take place",
+          "to take place"
+        ]
+      },
+      {
+        "intitule": "une collecte de fonds",
+        "type": "texte",
+        "reponse": [
+          "fundraiser",
+          "a fundraiser",
+          "fundraising event",
+          "a fundraising event",
+          "fundraising"
+        ]
+      }
+    ],
+    "indices": [
+      "Attention : *agenda* est un faux ami (ordre du jour, pas carnet)."
+    ],
+    "correction": "*agenda*, *minutes*, *attendee*, *postpone*, *resume*, *chair*, *take place*, *fundraiser*."
+  },
+  {
+    "id": "agenda-ou-minutes",
+    "titre": "Avant ou après la réunion ?",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*Please read the ...... before tomorrow's meeting so you know what we will discuss.*",
+        "type": "choix",
+        "choix": [
+          "agenda",
+          "minutes"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Sarah took the ...... and sent them to everyone after the meeting.*",
+        "type": "choix",
+        "choix": [
+          "agenda",
+          "minutes"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The meeting will ...... after a 10-minute break.*",
+        "type": "choix",
+        "choix": [
+          "resume",
+          "take place",
+          "postpone"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The director is ill, so we will ...... the meeting until next week.*",
+        "type": "choix",
+        "choix": [
+          "resume",
+          "bring forward",
+          "postpone"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The client wants to see the plans sooner, so we will ...... the presentation to Monday.*",
+        "type": "choix",
+        "choix": [
+          "postpone",
+          "put off",
+          "bring forward"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The annual convention will ...... in Lisbon this year.*",
+        "type": "choix",
+        "choix": [
+          "chair",
+          "take place",
+          "hold"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*agenda* = avant, *minutes* = après.",
+      "*bring forward* = avancer ; *postpone* = reporter."
+    ],
+    "correction": "1. *agenda* (à lire avant). 2. *minutes* (rédigées pendant, envoyées après). 3. *resume* (reprendre). 4. *postpone* (reporter). 5. *bring forward* (avancer). 6. *take place* (avoir lieu) ; *hold* demande un complément ou le passif (*will be held*)."
+  },
+  {
+    "id": "evenements-phrases",
+    "titre": "Les événements en contexte",
+    "difficulte": 2,
+    "enonce": "Complète avec un mot du vocabulaire des événements.",
+    "questions": [
+      {
+        "intitule": "*Every December, the staff go on an ...... to the mountains.* (sortie)",
+        "type": "texte",
+        "reponse": [
+          "outing"
+        ]
+      },
+      {
+        "intitule": "*Write your ideas on the flip ...... so everyone can see them.*",
+        "type": "texte",
+        "reponse": [
+          "chart"
+        ]
+      },
+      {
+        "intitule": "*Over 500 ...... registered for the conference.* (participants)",
+        "type": "texte",
+        "reponse": [
+          "attendees",
+          "participants",
+          "delegates"
+        ]
+      },
+      {
+        "intitule": "*Mr. Green will ...... the meeting because the CEO is away.* (présider)",
+        "type": "texte",
+        "reponse": [
+          "chair",
+          "lead"
+        ]
+      },
+      {
+        "intitule": "*Marta was voted employee of the ......*",
+        "type": "texte",
+        "reponse": [
+          "month"
+        ]
+      },
+      {
+        "intitule": "*We are organising a retirement ...... for Jack on Friday.* (pot de départ)",
+        "type": "texte",
+        "reponse": [
+          "reception",
+          "party"
+        ]
+      }
+    ],
+    "indices": [
+      "*flip chart* = paper-board ; *retirement reception* = pot de départ à la retraite."
+    ],
+    "correction": "*outing*, *flip chart*, *attendees*, *chair*, *employee of the month*, *retirement reception*."
+  },
+  {
+    "id": "familles-postes",
+    "titre": "Familles de mots : les postes",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète la phrase (style TOEIC partie 5).",
+    "questions": [
+      {
+        "intitule": "*The directors meet once a month in the ...... on the top floor.*",
+        "type": "choix",
+        "choix": [
+          "boarding",
+          "board",
+          "boardroom",
+          "board member"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*...... a new strategy takes time and money.*",
+        "type": "choix",
+        "choix": [
+          "Implementation of",
+          "Implement",
+          "Implementing",
+          "Implemented"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*All ...... of department must send their budgets by Friday.*",
+        "type": "choix",
+        "choix": [
+          "heading",
+          "heads",
+          "headed",
+          "head"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*She was appointed ...... director last year.*",
+        "type": "choix",
+        "choix": [
+          "managed",
+          "management",
+          "managing",
+          "manage"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The servers have been carefully ...... since they were installed.*",
+        "type": "choix",
+        "choix": [
+          "maintaining",
+          "maintain",
+          "maintenance",
+          "maintained"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*He accepted a ...... position to gain experience in an office.*",
+        "type": "choix",
+        "choix": [
+          "clerical",
+          "clergy",
+          "clerk",
+          "clerically"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Many students do an ...... before they graduate.*",
+        "type": "choix",
+        "choix": [
+          "intern",
+          "interned",
+          "internship",
+          "internal"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Paolo works as a ...... and chooses his own projects.*",
+        "type": "choix",
+        "choix": [
+          "contractor",
+          "contracting",
+          "contract",
+          "contracted"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Regarde le mot juste avant le trou : *the*, *all*, *has been*, *a*...",
+      "*-ship* = la chose (le stage) ; *-or* = la personne."
+    ],
+    "correction": "1. *the* + nom de lieu : *boardroom*. 2. Sujet en début de phrase : *Implementing*. 3. *All* + pluriel : *heads*. 4. *managing director* = directeur général. 5. *have been* + participe passé : *maintained*. 6. adjectif devant *position* : *clerical*. 7. *an* + nom de la chose : *internship*. 8. *work as a* + personne : *contractor*."
+  },
+  {
+    "id": "familles-rh",
+    "titre": "Familles de mots : les RH",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète la phrase.",
+    "questions": [
+      {
+        "intitule": "*The ...... of the sales director surprised everyone.*",
+        "type": "choix",
+        "choix": [
+          "dismissal",
+          "dismissive",
+          "dismiss",
+          "dismissed"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*We are delighted to announce the ...... of Ms. Kaur as head of HR.*",
+        "type": "choix",
+        "choix": [
+          "appointee",
+          "appoint",
+          "appointment",
+          "appointed"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Our manager gave the team a lot of ...... for their excellent work.*",
+        "type": "choix",
+        "choix": [
+          "appraising",
+          "appraisal",
+          "praise",
+          "appraise"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Every ...... must send a cover letter with their résumé.*",
+        "type": "choix",
+        "choix": [
+          "application",
+          "apply",
+          "applied",
+          "applicant"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*During her annual ......, she asked for more training.*",
+        "type": "choix",
+        "choix": [
+          "assessment",
+          "assessed",
+          "assessor",
+          "assess"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*He handed in his ...... and left the company a month later.*",
+        "type": "choix",
+        "choix": [
+          "resigned",
+          "resign",
+          "resignation",
+          "resigning"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*She asked to be ...... to the London office.*",
+        "type": "choix",
+        "choix": [
+          "transferred",
+          "transferral",
+          "transferring",
+          "transfer"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*There is a two-year gap in his ...... history.*",
+        "type": "choix",
+        "choix": [
+          "employ",
+          "employee",
+          "employment",
+          "employer"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*praise* = des éloges ; *appraisal* = une évaluation.",
+      "*to be* + participe passé = passif."
+    ],
+    "correction": "1. *The* + nom : *dismissal* (le renvoi). 2. *the appointment of* (la nomination). 3. *praise* (éloges). 4. *Every* + personne : *applicant*. 5. *annual assessment*. 6. *hand in one's resignation*. 7. *to be transferred*. 8. *employment history* = parcours professionnel."
+  },
+  {
+    "id": "familles-paie",
+    "titre": "Familles de mots : paie et contrats",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète la phrase.",
+    "questions": [
+      {
+        "intitule": "*After a long discussion, both companies ...... to work together.*",
+        "type": "choix",
+        "choix": [
+          "agree",
+          "agreement",
+          "agreed",
+          "agreeing"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Employees are ...... by the confidentiality clause.*",
+        "type": "choix",
+        "choix": [
+          "binding",
+          "binder",
+          "bind",
+          "bound"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Nurses' ...... will increase by 2% next year.*",
+        "type": "choix",
+        "choix": [
+          "wage",
+          "salaries",
+          "salaried",
+          "salary"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The training day starts with an ...... presentation of the company.*",
+        "type": "choix",
+        "choix": [
+          "hour-long",
+          "hourly",
+          "hours",
+          "hour"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*My brother ...... at a food bank every Saturday.*",
+        "type": "choix",
+        "choix": [
+          "volunteer",
+          "volunteering",
+          "volunteers",
+          "voluntary"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*If you work more than 20 hours, you are ...... for paid holidays.*",
+        "type": "choix",
+        "choix": [
+          "legible",
+          "alleged",
+          "illegible",
+          "eligible"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Her husband is the ...... of her life insurance.*",
+        "type": "choix",
+        "choix": [
+          "beneficiary",
+          "benefit",
+          "benefits",
+          "beneficial"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*an hour-long presentation* = une présentation d'une heure (adjectif composé).",
+      "*be bound by* = être lié par."
+    ],
+    "correction": "1. passé, sujet pluriel : *agreed*. 2. *bound* (participe passé de *bind*). 3. pluriel avec *will increase* : *salaries*. 4. *an hour-long presentation* : adjectif composé devant le nom (*hourly* = toutes les heures, à l'heure). 5. *My brother volunteers* (3e personne : -s). 6. *eligible for*. 7. *beneficiary* (la personne qui reçoit)."
+  },
+  {
+    "id": "familles-evenements",
+    "titre": "Familles de mots : les événements",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète la phrase.",
+    "questions": [
+      {
+        "intitule": "*The team enjoyed their ...... to the seaside.*",
+        "type": "choix",
+        "choix": [
+          "outer",
+          "outed",
+          "out",
+          "outing"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*As a ......, my father now has time for gardening.*",
+        "type": "choix",
+        "choix": [
+          "retired",
+          "retiree",
+          "retire",
+          "retirement"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*We printed 2,000 ...... leaflets for the trade fair.*",
+        "type": "choix",
+        "choix": [
+          "promoted",
+          "promoting",
+          "promotional",
+          "promote"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*After the strike, the ...... of talks took place on Monday.*",
+        "type": "choix",
+        "choix": [
+          "résumé",
+          "resume",
+          "resumed",
+          "resumption"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*She has never ...... a board meeting before.*",
+        "type": "choix",
+        "choix": [
+          "chairing",
+          "chairperson",
+          "chair",
+          "chaired"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*They are the ...... supplier of solar panels in Europe.*",
+        "type": "choix",
+        "choix": [
+          "leader",
+          "led",
+          "lead",
+          "leading"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Staff ...... is always lower in August.*",
+        "type": "choix",
+        "choix": [
+          "attendance",
+          "attended",
+          "attend",
+          "attendee"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*retiree* = la personne ; *retirement* = la retraite.",
+      "Devant un nom, il faut un adjectif (*leading supplier*)."
+    ],
+    "correction": "1. *their* + nom : *outing*. 2. *As a* + personne : *retiree*. 3. adjectif : *promotional*. 4. *the* + nom : *resumption*. 5. *has never* + participe passé : *chaired*. 6. adjectif : *leading* (*the leading supplier* = le premier fournisseur). 7. *staff attendance* = présence du personnel."
+  },
+  {
+    "id": "personne-ou-chose",
+    "titre": "La personne ou la chose ?",
+    "difficulte": 3,
+    "enonce": "Écris le nom demandé (un seul mot).",
+    "questions": [
+      {
+        "intitule": "La **personne** qui postule (*to apply*)",
+        "type": "texte",
+        "reponse": [
+          "applicant"
+        ]
+      },
+      {
+        "intitule": "La **personne** employée, le salarié (*to employ*)",
+        "type": "texte",
+        "reponse": [
+          "employee"
+        ],
+        "refuses": [
+          "employer"
+        ]
+      },
+      {
+        "intitule": "La **personne** qui participe (*to attend*)",
+        "type": "texte",
+        "reponse": [
+          "attendee",
+          "participant"
+        ]
+      },
+      {
+        "intitule": "La **personne** à la retraite (*to retire*)",
+        "type": "texte",
+        "reponse": [
+          "retiree",
+          "pensioner"
+        ]
+      },
+      {
+        "intitule": "La **chose** : le stage (*intern*)",
+        "type": "texte",
+        "reponse": [
+          "internship"
+        ]
+      },
+      {
+        "intitule": "La **chose** : la démission (*to resign*)",
+        "type": "texte",
+        "reponse": [
+          "resignation"
+        ]
+      },
+      {
+        "intitule": "La **chose** : la présence (*to attend*)",
+        "type": "texte",
+        "reponse": [
+          "attendance"
+        ]
+      }
+    ],
+    "indices": [
+      "*-ee* = celui qui reçoit l'action ; *-ant* = celui qui fait.",
+      "*-ship*, *-tion*, *-ance* forment des noms de choses."
+    ],
+    "correction": "*applicant*, *employee* (*employer* = l'employeur), *attendee*, *retiree*, *internship*, *resignation*, *attendance*."
+  },
+  {
+    "id": "expressions",
+    "titre": "Les expressions de réunion",
+    "difficulte": 2,
+    "enonce": "Complète l'expression.",
+    "questions": [
+      {
+        "intitule": "*to ...... a meeting* (présider une réunion)",
+        "type": "texte",
+        "reponse": [
+          "chair",
+          "lead"
+        ]
+      },
+      {
+        "intitule": "*to take the ......* (rédiger le compte-rendu)",
+        "type": "texte",
+        "reponse": [
+          "minutes"
+        ]
+      },
+      {
+        "intitule": "*to go on an ......* (faire une sortie)",
+        "type": "texte",
+        "reponse": [
+          "outing"
+        ]
+      },
+      {
+        "intitule": "*to take early ......* (prendre une retraite anticipée)",
+        "type": "texte",
+        "reponse": [
+          "retirement"
+        ]
+      },
+      {
+        "intitule": "*to ...... a meeting* (tenir, organiser une réunion)",
+        "type": "texte",
+        "reponse": [
+          "hold",
+          "have",
+          "organise",
+          "organize",
+          "arrange",
+          "call"
+        ]
+      }
+    ],
+    "indices": [
+      "*take the minutes*, *hold a meeting*, *chair a meeting*."
+    ],
+    "correction": "*chair a meeting*, *take the minutes*, *go on an outing*, *take early retirement*, *hold a meeting*."
+  },
+  {
+    "id": "synonymes",
+    "titre": "Les synonymes",
+    "difficulte": 2,
+    "enonce": "Donne un synonyme tiré du vocabulaire du chapitre.",
+    "questions": [
+      {
+        "intitule": "*opening* (a job ...)",
+        "type": "texte",
+        "reponse": [
+          "vacancy",
+          "position",
+          "post"
+        ]
+      },
+      {
+        "intitule": "*to hire*",
+        "type": "texte",
+        "reponse": [
+          "take on",
+          "to take on",
+          "employ",
+          "to employ",
+          "recruit",
+          "to recruit"
+        ]
+      },
+      {
+        "intitule": "*presence* (at work)",
+        "type": "texte",
+        "reponse": [
+          "attendance"
+        ]
+      },
+      {
+        "intitule": "*to put off*",
+        "type": "texte",
+        "reponse": [
+          "postpone",
+          "to postpone",
+          "delay",
+          "to delay"
+        ]
+      },
+      {
+        "intitule": "*calendar*",
+        "type": "texte",
+        "reponse": [
+          "schedule",
+          "timetable"
+        ]
+      },
+      {
+        "intitule": "*probationary period*",
+        "type": "texte",
+        "reponse": [
+          "trial period"
+        ]
+      },
+      {
+        "intitule": "*signatory* (of a contract)",
+        "type": "texte",
+        "reponse": [
+          "party"
+        ]
+      }
+    ],
+    "indices": [
+      "Tous ces mots sont dans les quatre tableaux du cours."
+    ],
+    "correction": "*opening* = *vacancy* ; *hire* = *take on* ; *presence* = *attendance* ; *put off* = *postpone* ; *calendar* = *schedule* ; *probationary period* = *trial period* ; *signatory* = *party*."
+  },
+  {
+    "id": "traduction-courte",
+    "titre": "Petites traductions",
+    "difficulte": 3,
+    "enonce": "Traduis en anglais puis compare avec la réponse modèle.",
+    "questions": [
+      {
+        "intitule": "Nous allons embaucher deux stagiaires le mois prochain.",
+        "type": "auto",
+        "reponse": "*We are going to take on (hire) two interns next month.*"
+      },
+      {
+        "intitule": "La réunion a été reportée à jeudi.",
+        "type": "auto",
+        "reponse": "*The meeting has been postponed until (to) Thursday.*"
+      },
+      {
+        "intitule": "Elle a démissionné après sa période d'essai.",
+        "type": "auto",
+        "reponse": "*She resigned after her trial period.*"
+      },
+      {
+        "intitule": "Les salariés à temps partiel ont droit aux tickets restaurant.",
+        "type": "auto",
+        "reponse": "*Part-time employees are eligible for meal vouchers.*"
+      }
+    ],
+    "indices": [
+      "embaucher = *take on* ; reporter = *postpone* ; avoir droit à = *be eligible for*."
+    ],
+    "correction": "Vérifie surtout le vocabulaire : *take on*, *intern*, *postpone*, *resign*, *trial period*, *part-time*, *be eligible for*."
+  },
+  {
+    "id": "rediger-candidature",
+    "titre": "Rédiger un court e-mail de candidature",
+    "difficulte": 3,
+    "enonce": "Écris un e-mail de 3 ou 4 phrases pour postuler à un poste d'*IT technician*. Utilise au moins : *apply for*, *vacancy*, *résumé*, *look forward to*.",
+    "questions": [
+      {
+        "intitule": "Ton e-mail",
+        "type": "auto",
+        "reponse": "Exemple :\n\n*Dear Ms. Brown,*\n\n*I am writing to apply for the IT technician vacancy advertised on your website. I have two years of experience in troubleshooting and network maintenance. Please find my résumé attached, and I can provide references if needed. I look forward to hearing from you.*\n\n*Best regards,*\n*Alex Martin*"
+      }
+    ],
+    "indices": [
+      "*I am writing to apply for...* est une ouverture classique.",
+      "*look forward to* + verbe en -ing : *hearing from you*."
+    ],
+    "correction": "Points à vérifier : formule d'appel (*Dear...*), *apply for the ... vacancy*, *résumé attached*, *I look forward to hearing from you* (avec -ing), formule de fin (*Best regards*)."
+  }
+]

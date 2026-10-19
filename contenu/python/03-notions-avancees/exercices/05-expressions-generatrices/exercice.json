@@ -1,0 +1,10 @@
+{
+  "titre": "Expressions génératrices",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une expression génératrice s'écrit comme une compréhension, avec des parenthèses. Seule dans une fonction, on écrit juste `sum(x ** 2 for x in range(1, n + 1))`.",
+    "Pour compter : `sum(1 for c in texte.lower() if c in \"aeiouy\")`.",
+    "`next(generateur, defaut)` renvoie la première valeur du générateur, ou `defaut` s'il est vide : `next((m for m in mots if len(m) >= taille), None)`."
+  ]
+}

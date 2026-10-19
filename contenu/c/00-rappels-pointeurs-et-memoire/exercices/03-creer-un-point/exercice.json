@@ -1,0 +1,10 @@
+{
+  "titre": "Créer un point sur le tas",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une variable locale disparaît à la fin de la fonction : il faut réserver le point avec `malloc`.",
+    "`malloc(sizeof(Point))` renvoie l'adresse d'une zone assez grande pour un `Point`, ou `NULL` si la mémoire manque.",
+    "`Point *p = malloc(sizeof(Point));`, si `p == NULL` alors `exit(EXIT_FAILURE);`, puis `p->x = x; p->y = y; return p;`"
+  ]
+}

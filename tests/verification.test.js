@@ -43,6 +43,10 @@ describe('vérification des réponses', () => {
     assert.equal(juste(ensemble, '{3}'), false);
     assert.equal(juste({ type: 'ensemble', reponse: [] }, '∅'), true);
     assert.equal(juste({ type: 'ensemble', reponse: ['a', 'b'] }, '{B, A}'), true);
+    assert.equal(juste({ type: 'ensemble', reponse: ['A', 'B', 'E'] }, '{a, b, e}'), true);
+    assert.equal(juste({ type: 'vecteur', reponse: ['E', 'D'] }, '(e, d)'), true);
+    assert.equal(juste({ type: 'ensemble', reponse: [0.5, 'e'] }, '{1/2, E}'), true);
+    assert.equal(juste({ type: 'ensemble', reponse: ['A', 'B'] }, '{a, e}'), false);
   });
 
   it('compare des vecteurs dans l’ordre', () => {

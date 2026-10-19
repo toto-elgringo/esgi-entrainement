@@ -1,0 +1,112 @@
+[
+  {
+    "question": "*The conference will be ...... in the main hall.*",
+    "choix": [
+      "take place",
+      "took place",
+      "hold",
+      "held"
+    ],
+    "reponse": 3,
+    "explication": "Passif au futur : *will be* + participe passé. *Take place* ne se met jamais au passif."
+  },
+  {
+    "question": "*Have you read the ...... for tomorrow's meeting?*",
+    "choix": [
+      "minutes",
+      "agenda",
+      "outcome",
+      "résumé"
+    ],
+    "reponse": 1,
+    "explication": "La réunion n'a pas encore eu lieu : on lit l'ordre du jour (*agenda*). Les *minutes* sont rédigées pendant et après."
+  },
+  {
+    "question": "*The rate of ...... in the region has fallen to 6%.*",
+    "choix": [
+      "employ",
+      "unemployed",
+      "unemployment",
+      "employed"
+    ],
+    "reponse": 2,
+    "explication": "Après *the rate of*, il faut un nom : *unemployment* (le chômage)."
+  },
+  {
+    "question": "*After the coffee break, the presentation will ...... at 11.*",
+    "choix": [
+      "resume",
+      "sum up",
+      "break up",
+      "postpone"
+    ],
+    "reponse": 0,
+    "explication": "*Resume* = reprendre. *Sum up* = résumer, *break up* = se séparer, *postpone* = reporter."
+  },
+  {
+    "question": "*We look forward ...... from you.*",
+    "choix": [
+      "hear",
+      "to hear",
+      "hearing",
+      "to hearing"
+    ],
+    "reponse": 3,
+    "explication": "*Look forward to* + -ing."
+  },
+  {
+    "question": "Dans une question *What is NOT mentioned?*, la bonne réponse est...",
+    "choix": [
+      "la première information du texte",
+      "la seule information absente des documents",
+      "l'information répétée deux fois",
+      "la plus longue réponse"
+    ],
+    "reponse": 1,
+    "explication": "On élimine les trois réponses qu'on retrouve dans les documents."
+  },
+  {
+    "question": "Pour une question « Que va-t-il se passer le lendemain de l'e-mail ? », il faut...",
+    "choix": [
+      "lire seulement l'e-mail",
+      "relier la date de l'e-mail à une date d'un autre document",
+      "répondre au hasard",
+      "chercher le mot *tomorrow*"
+    ],
+    "reponse": 1,
+    "explication": "Les questions de partie 7 à plusieurs documents demandent de croiser les informations."
+  },
+  {
+    "question": "*Please call me at your earliest ......*",
+    "choix": [
+      "convenient",
+      "convenience",
+      "conveniently",
+      "convene"
+    ],
+    "reponse": 1,
+    "explication": "Expression figée : *at your earliest convenience* = dès que possible."
+  },
+  {
+    "question": "*Could you ...... the names of two referees?*",
+    "choix": [
+      "issue",
+      "promote",
+      "provide",
+      "distribute"
+    ],
+    "reponse": 2,
+    "explication": "*Provide* = fournir. *Provide a reference* est une collocation des RH."
+  },
+  {
+    "question": "*Management is worried because staff ...... is very low.*",
+    "choix": [
+      "absenteeism",
+      "attendance",
+      "attendee",
+      "absentee"
+    ],
+    "reponse": 1,
+    "explication": "Une présence **basse** inquiète la direction. Un absentéisme bas serait une bonne nouvelle. *Attendee* et *absentee* sont des personnes."
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "titre": "__str__, __repr__ et __eq__",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`__str__` et `__repr__` doivent **renvoyer** une chaîne (pas l'afficher).",
+    "Pour `__repr__`, `repr(self.titre)` ajoute les apostrophes autour du texte : `\"Livre(\" + repr(self.titre) + \", \" + ...`. Le formatage `\"Livre(%r, %r, %d)\" % (...)` fait la même chose.",
+    "`__eq__(self, autre)` renvoie `True` si les trois attributs sont égaux : `self.titre == autre.titre and ...`."
+  ]
+}

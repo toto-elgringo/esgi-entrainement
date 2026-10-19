@@ -1,7 +1,7 @@
 const CLE = 'esgi-entrainement';
 
 function etatVide() {
-  return { exercices: {}, quiz: {}, saisies: {}, codes: {}, matiere: null };
+  return { exercices: {}, quiz: {}, saisies: {}, codes: {}, partiesQuiz: {}, affichages: {}, matiere: null };
 }
 
 function charger() {
@@ -36,6 +36,13 @@ export const stockage = {
     sauvegarder();
   },
 
+  partieQuiz: (chapitreCle) => etat.partiesQuiz[chapitreCle] ?? null,
+
+  enregistrerPartieQuiz(chapitreCle, partie) {
+    etat.partiesQuiz[chapitreCle] = partie;
+    sauvegarder();
+  },
+
   saisies: (cle) => ({ ...(etat.saisies[cle] ?? {}) }),
 
   enregistrerSaisies(cle, saisies) {
@@ -47,6 +54,13 @@ export const stockage = {
 
   enregistrerCode(cle, code) {
     etat.codes[cle] = code;
+    sauvegarder();
+  },
+
+  affichage: (cle) => ({ ...(etat.affichages[cle] ?? {}) }),
+
+  enregistrerAffichage(cle, changements) {
+    etat.affichages[cle] = { ...etat.affichages[cle], ...changements };
     sauvegarder();
   },
 

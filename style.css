@@ -1060,6 +1060,30 @@ h1 {
   overflow: hidden;
 }
 
+.entree-programme {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--texte-doux);
+}
+
+.entree-programme summary {
+  cursor: pointer;
+}
+
+.entree-programme textarea {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: #0b0d11;
+  color: var(--texte);
+  font-family: var(--police-code);
+  font-size: 13.5px;
+  resize: vertical;
+}
+
 .zone-editeur .CodeMirror,
 .zone-editeur textarea {
   height: 52vh;
@@ -1134,6 +1158,105 @@ h1 {
   cursor: pointer;
 }
 
+.ansi-gras {
+  font-weight: 700;
+}
+
+.ansi-gris {
+  color: #8b93a5;
+}
+
+.ansi-rouge {
+  color: #ff7b72;
+}
+
+.ansi-vert {
+  color: #7ee787;
+}
+
+.ansi-jaune {
+  color: #e3b341;
+}
+
+.ansi-bleu {
+  color: #79c0ff;
+}
+
+.ansi-magenta {
+  color: #d2a8ff;
+}
+
+.ansi-cyan {
+  color: #56d4dd;
+}
+
+.ansi-blanc {
+  color: #f0f3f6;
+}
+
+.exemple-code {
+  margin: 14px 0;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: #0b0d11;
+  overflow: hidden;
+}
+
+.exemple-entete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 14px;
+  border-bottom: 1px solid var(--bordure);
+  background: var(--panneau);
+}
+
+.exemple-langue {
+  color: var(--texte-tres-doux);
+  font-family: var(--police-code);
+  font-size: 12px;
+}
+
+.exemple-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.exemple-actions .bouton {
+  padding: 4px 12px;
+  font-size: 13px;
+}
+
+.markdown .exemple-code pre {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+
+.exemple-code .zone-editeur {
+  border: none;
+  border-radius: 0;
+}
+
+.exemple-code .zone-editeur .CodeMirror {
+  height: auto;
+  min-height: 0;
+}
+
+.exemple-code .zone-editeur textarea {
+  height: 260px;
+  min-height: 0;
+}
+
+.exemple-code .resultat {
+  border: none;
+  border-top: 1px solid var(--bordure);
+  border-radius: 0;
+}
+
 .chargement::after {
   content: "";
   width: 12px;
@@ -1170,7 +1293,8 @@ h1 {
   color: #4b5263;
 }
 
-.cm-s-rustique .CodeMirror-cursor {
+.cm-s-rustique .CodeMirror-cursor,
+.cm-s-rustique div.CodeMirror-secondarycursor {
   border-left: 2px solid var(--accent);
 }
 
@@ -1240,6 +1364,33 @@ body[data-domaine="rust"] {
   --accent: #f46623;
   --accent-doux: rgba(244, 102, 35, 0.14);
   --texte-code: #ffb38a;
+}
+
+body[data-domaine="python"] {
+  --accent: #e0b13a;
+  --accent-doux: rgba(224, 177, 58, 0.14);
+  --texte-code: #ffd98a;
+}
+
+body[data-domaine="c"] {
+  --accent: #5c8dd6;
+  --accent-doux: rgba(92, 141, 214, 0.15);
+  --texte-code: #a9c8ff;
+}
+
+body[data-domaine="combinatoire"] {
+  --accent: #b06ad9;
+  --accent-doux: rgba(176, 106, 217, 0.15);
+}
+
+body[data-domaine="anglais"] {
+  --accent: #d65c7a;
+  --accent-doux: rgba(214, 92, 122, 0.15);
+}
+
+body[data-domaine="electif"] {
+  --accent: #4caf7a;
+  --accent-doux: rgba(76, 175, 122, 0.15);
 }
 
 .menu-vide {

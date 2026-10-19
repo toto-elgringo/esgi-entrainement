@@ -1,0 +1,10 @@
+{
+  "titre": "Un ticket de caisse bien aligné",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "La largeur se met après `:` : `{nom:<10}` (à gauche sur 10 caractères), `{qte:>5}` (à droite sur 5).",
+    "Le prix d'une ligne est `quantite * prix_unitaire`, affiché avec `{prix:>8.2f}`.",
+    "La ligne de titre utilise les mêmes largeurs : `f\"{'Article':<10}{'Qté':>5}{'Prix':>8}\"`. Pour le total, laisse la colonne du milieu vide : `{'':>5}`."
+  ]
+}

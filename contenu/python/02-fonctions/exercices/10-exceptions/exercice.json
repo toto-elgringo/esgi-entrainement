@@ -1,0 +1,11 @@
+{
+  "titre": "Intercepter et lever des exceptions",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "La structure : `try:` le code risqué, puis `except NomDeLException:` ce qu'on fait en cas d'erreur.",
+    "`int(\"abc\")` lève une `ValueError`, `a / 0` une `ZeroDivisionError`.",
+    "`KeyError` (dictionnaire) et `IndexError` (liste) sont toutes deux des `LookupError` : un seul `except LookupError:` les attrape.",
+    "Pour lever : `raise ValueError(\"need to be positive\")`."
+  ]
+}

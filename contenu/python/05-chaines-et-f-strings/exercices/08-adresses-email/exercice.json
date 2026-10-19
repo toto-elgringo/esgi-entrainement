@@ -1,0 +1,11 @@
+{
+  "titre": "Vérifier des adresses e-mail",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence par les refus simples : un espace dans l'adresse, ou `adresse.count(\"@\") != 1`.",
+    "Découpe avec `nom, domaine = adresse.split(\"@\")`. Le nom ne doit pas être vide.",
+    "Le domaine doit contenir un `.`, sans commencer ni finir par un point : `\".\" in domaine and not domaine.startswith(\".\") and not domaine.endswith(\".\")`.",
+    "Pour masquer : `nom[0] + \"***@\" + domaine`."
+  ]
+}

@@ -22,9 +22,10 @@ mod tests {
     }
 
     #[test]
-    fn produit_avec_fold() {
-        assert_eq!(produit(&[2, 3, 4]), 24, "2 × 3 × 4 = 24");
-        assert_eq!(produit(&[]), 1, "le produit d'une liste vide vaut 1");
+    fn chiffres_avec_fold() {
+        assert_eq!(assembler_chiffres(&[4, 0, 7]), 407, "4, 0 et 7 donnent 407");
+        assert_eq!(assembler_chiffres(&[1, 2, 3]), 123, "1, 2 et 3 donnent 123");
+        assert_eq!(assembler_chiffres(&[]), 0, "aucun chiffre : 0");
     }
 
     #[test]

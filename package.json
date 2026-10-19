@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Cours, quiz et exercices corrigés automatiquement pour les cours de Rust et de maths de l'ESGI",
+  "description": "Cours, quiz et exercices corrigés automatiquement pour tous les cours de l'ESGI",
   "scripts": {
     "start": "node serveur/index.js",
     "test": "node --test",
-    "sommaire": "node scripts/sommaire-rust.js",
+    "sommaire": "node scripts/sommaire.js",
     "verifier-contenu": "node scripts/verifier-contenu.js"
   },
   "engines": {

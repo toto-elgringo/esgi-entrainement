@@ -1,0 +1,134 @@
+[
+  {
+    "question": "*To oversee* veut dire...",
+    "choix": [
+      "ne pas voir",
+      "superviser",
+      "voyager à l'étranger",
+      "dépasser"
+    ],
+    "reponse": 1,
+    "explication": "*Oversee* = superviser. *Overlook* = ne pas remarquer, fermer les yeux sur."
+  },
+  {
+    "question": "*We have run out of paper* veut dire...",
+    "choix": [
+      "Nous avons couru chercher du papier",
+      "Nous n'avons plus de papier",
+      "Nous avons trop de papier",
+      "Nous avons commandé du papier"
+    ],
+    "reponse": 1,
+    "explication": "*Run out of* = manquer de, ne plus avoir."
+  },
+  {
+    "question": "*She turned down the offer* veut dire...",
+    "choix": [
+      "Elle a accepté l'offre",
+      "Elle a refusé l'offre",
+      "Elle a baissé le prix",
+      "Elle a retourné l'offre"
+    ],
+    "reponse": 1,
+    "explication": "*Turn down* = refuser, rejeter."
+  },
+  {
+    "question": "*Thorough* signifie...",
+    "choix": [
+      "à travers",
+      "minutieux, approfondi",
+      "pensif",
+      "rapide"
+    ],
+    "reponse": 1,
+    "explication": "*A thorough check* = une vérification minutieuse. Ne pas confondre avec *through* (à travers)."
+  },
+  {
+    "question": "*Relevant* signifie...",
+    "choix": [
+      "pertinent",
+      "relevé",
+      "important uniquement",
+      "récent"
+    ],
+    "reponse": 0,
+    "explication": "*Relevant* = pertinent, en rapport. Le contraire est *irrelevant*."
+  },
+  {
+    "question": "*He was reluctant to sign* veut dire...",
+    "choix": [
+      "Il était pressé de signer",
+      "Il était réticent à signer",
+      "Il a refusé de signer",
+      "Il a oublié de signer"
+    ],
+    "reponse": 1,
+    "explication": "*Reluctant* = réticent, peu disposé."
+  },
+  {
+    "question": "*Drawback* signifie...",
+    "choix": [
+      "inconvénient",
+      "retrait",
+      "dessin",
+      "remboursement"
+    ],
+    "reponse": 0,
+    "explication": "*The main drawback of this job is the long hours.* = le principal inconvénient."
+  },
+  {
+    "question": "*...... the price is high, many customers buy it.*",
+    "choix": [
+      "Although",
+      "Despite",
+      "However",
+      "Regardless of"
+    ],
+    "reponse": 0,
+    "explication": "*Although* + sujet + verbe. *Despite* et *regardless of* se construisent avec un nom ; *however* ne relie pas deux propositions ainsi."
+  },
+  {
+    "question": "*Seldom* veut dire...",
+    "choix": [
+      "souvent",
+      "rarement",
+      "toujours",
+      "parfois"
+    ],
+    "reponse": 1,
+    "explication": "*Seldom* = rarement. *Hardly ever* = presque jamais."
+  },
+  {
+    "question": "*Lately* signifie...",
+    "choix": [
+      "en retard",
+      "récemment, ces derniers temps",
+      "tardivement",
+      "plus tard"
+    ],
+    "reponse": 1,
+    "explication": "*I haven't seen him lately.* Pour « en retard », on dit *late*."
+  },
+  {
+    "question": "*Please send the report ...... Friday.* (au plus tard vendredi)",
+    "choix": [
+      "until",
+      "by",
+      "since",
+      "during"
+    ],
+    "reponse": 1,
+    "explication": "*By* + date = au plus tard. *Until* = jusqu'à (une action qui dure)."
+  },
+  {
+    "question": "*I am calling on behalf of Mr. Smith* veut dire...",
+    "choix": [
+      "J'appelle à la place de M. Smith (en son nom)",
+      "J'appelle derrière M. Smith",
+      "J'appelle au sujet de M. Smith",
+      "J'appelle avant M. Smith"
+    ],
+    "reponse": 0,
+    "explication": "*On behalf of* = au nom de, de la part de."
+  }
+]

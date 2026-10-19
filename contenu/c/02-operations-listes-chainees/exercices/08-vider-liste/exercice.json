@@ -1,0 +1,10 @@
+{
+  "titre": "Vider une liste",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Parcours la liste et appelle `free` sur chaque maillon, en comptant les maillons libérés.",
+    "Après `free(cur)`, `cur->next` est interdit : range `cur->next` dans une variable `suivant` avant le `free`.",
+    "`Cell *suivant = cur->next; free(cur); cur = suivant; n++;` dans la boucle, puis `*start = NULL;` et `return n;`"
+  ]
+}

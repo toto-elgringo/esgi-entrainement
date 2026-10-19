@@ -1,0 +1,5 @@
+Lignes : 3
+Mots : 10
+Plus long : oiseau
+Mots distincts : 9
+Ordre alphabétique : aboie, chante, chat, chien, dort, fort, le, oiseau, un

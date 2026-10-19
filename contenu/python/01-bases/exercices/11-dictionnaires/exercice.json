@@ -1,0 +1,11 @@
+{
+  "titre": "Les dictionnaires",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le compteur classique : `compte[lettre] = compte.get(lettre, 0) + 1`.",
+    "Pour inverser, parcours `d.items()` et range chaque couple à l'envers dans un nouveau dictionnaire.",
+    "Pour fusionner sans modifier `d1`, fais d'abord une copie : `resultat = dict(d1)`, puis `resultat.update(d2)`.",
+    "Pour le panier, parcours `panier.items()` et ajoute `quantite * tarifs.get(article, 0)` au total."
+  ]
+}

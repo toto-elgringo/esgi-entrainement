@@ -1,0 +1,11 @@
+{
+  "titre": "Mettre en forme des nombres",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le format `:,.2f` donne `1,234.50` : il reste à échanger les virgules et les points.",
+    "Pour échanger, passe par un caractère intermédiaire : remplace `,` par un espace, puis `.` par `,`.",
+    "Le pourcentage : `f\"{x:.1%}\"`. Les zéros devant : `f\"{n:03d}\"` ou `str(n).zfill(3)`.",
+    "Pour l'heure : `f\"{h:02d}h{m:02d}\"`."
+  ]
+}

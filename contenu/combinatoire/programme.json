@@ -1,0 +1,14 @@
+{
+  "matieres": [
+    { "id": "combinatoire", "titre": "Combinatoire et complexité" }
+  ],
+  "chapitres": [
+    "01-ro-ia-et-optimisation",
+    "02-complexite-et-methodes",
+    "03-metaheuristiques-et-recherche-locale",
+    "04-recuit-simule",
+    "05-algorithmes-genetiques",
+    "06-plne-et-comparaison",
+    "07-classes-de-complexite"
+  ]
+}

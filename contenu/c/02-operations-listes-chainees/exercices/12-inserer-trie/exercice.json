@@ -1,0 +1,10 @@
+{
+  "titre": "Insérer dans une liste triée",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Premier cas : si la liste est vide ou si la valeur est plus petite que (ou égale à) la première, on insère en début.",
+    "Sinon, avance un pointeur `prev` tant que `prev->next` existe et contient une valeur plus petite que la nouvelle : il faut insérer juste après `prev`.",
+    "`while (prev->next != NULL && prev->next->value < valeur) prev = prev->next;` puis `nouveau->next = prev->next; prev->next = nouveau;`"
+  ]
+}

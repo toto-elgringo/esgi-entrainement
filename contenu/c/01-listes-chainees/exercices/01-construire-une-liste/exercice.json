@@ -1,0 +1,10 @@
+{
+  "titre": "Construire une liste à la main",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Crée le premier maillon avec `creerCell(10)` et range son adresse dans `start`.",
+    "Le deuxième maillon s'accroche au champ `next` du premier : `start->next = ...`.",
+    "`start = creerCell(10);` puis `start->next = creerCell(20);` puis `start->next->next = creerCell(30);`"
+  ]
+}

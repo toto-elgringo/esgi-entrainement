@@ -1,0 +1,8 @@
+{
+  "titre": "Classes de complexité",
+  "description": "Problèmes de décision, certificats, P et NP, réductions polynomiales, NP-difficile et NP-complet, les deux figures selon que P = NP ou non, pseudo-polynomial.",
+  "source": "Annexe",
+  "matieres": [
+    "combinatoire"
+  ]
+}

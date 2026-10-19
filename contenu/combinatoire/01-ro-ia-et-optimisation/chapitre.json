@@ -1,0 +1,8 @@
+{
+  "titre": "RO, IA et optimisation combinatoire",
+  "description": "Recherche opérationnelle et intelligence artificielle, anatomie d'un problème d'optimisation (variables, objectif, contraintes) et les quatre problèmes fondateurs : voyageur de commerce, sac à dos, coloration, ordonnancement.",
+  "source": "Chapitre 1",
+  "matieres": [
+    "combinatoire"
+  ]
+}

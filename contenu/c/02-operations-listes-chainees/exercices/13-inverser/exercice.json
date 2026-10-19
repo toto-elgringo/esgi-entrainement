@@ -1,0 +1,10 @@
+{
+  "titre": "Inverser une liste",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "On ne crée aucun maillon : on retourne les flèches une par une. Il faut trois pointeurs : la partie déjà inversée (`prev`), le maillon traité (`cur`) et la suite (`suivant`).",
+    "À chaque tour : sauver la suite, retourner la flèche de `cur` vers `prev`, puis avancer `prev` et `cur` d'un cran. Au départ, `prev` vaut `NULL`.",
+    "`Cell *suivant = cur->next; cur->next = prev; prev = cur; cur = suivant;` dans la boucle `while (cur != NULL)`, puis `return prev;`"
+  ]
+}

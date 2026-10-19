@@ -151,7 +151,7 @@ if let Some(resultat) = diviser(10, 2) {
 Au chapitre 2, `fizz_buzz` renvoyait un `String` : une allocation sur le tas pour un texte connu d'avance. Le cours propose mieux :
 
 ```rust
-enum FizzBuzz {
+enum Reponse {
     Fizz,
     Buzz,
     FizzBuzz,

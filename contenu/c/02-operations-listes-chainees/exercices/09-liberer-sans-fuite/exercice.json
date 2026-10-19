@@ -1,0 +1,10 @@
+{
+  "titre": "Libérer sans fuite",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Les valeurs sont justes : le problème est la mémoire. Compte les `malloc` (un par maillon) et cherche où les maillons retirés deviennent inaccessibles sans `free`.",
+    "`retirerPremier` oublie de libérer l'ancien premier maillon, et `libererListe` ne libère que le premier maillon de la liste.",
+    "Dans `retirerPremier` : `Cell *suivant = start->next; free(start); return suivant;`. Dans `libererListe` : une boucle `while (start != NULL) { Cell *suivant = start->next; free(start); start = suivant; }`"
+  ]
+}

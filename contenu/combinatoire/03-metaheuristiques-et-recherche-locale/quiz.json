@@ -1,0 +1,134 @@
+[
+  {
+    "question": "Qu'est-ce qu'une **métaheuristique** ?",
+    "choix": [
+      "Une méthode d'optimisation générique, souvent aléatoire, sans garantie d'optimalité",
+      "Un algorithme exact qui prouve l'optimum",
+      "Une formule qui donne directement la solution",
+      "Un langage de programmation"
+    ],
+    "reponse": 0,
+    "explication": "Une métaheuristique guide la recherche vers de bonnes solutions quel que soit le problème, sans prouver qu'elles sont optimales."
+  },
+  {
+    "question": "Que signifie le préfixe « méta » dans métaheuristique ?",
+    "choix": [
+      "« Au-dessus » : la méthode pilote une heuristique de bas niveau",
+      "« Après » : on l'applique après une méthode exacte",
+      "« Rapide »",
+      "« Aléatoire »"
+    ],
+    "reponse": 0,
+    "explication": "La métaheuristique est un cadre qui pilote une heuristique de bas niveau (le voisinage, un croisement…) au lieu de résoudre le problème lui-même."
+  },
+  {
+    "question": "Quels sont les trois ingrédients communs aux métaheuristiques du cours ?",
+    "choix": [
+      "Un codage, une fonction de coût, des mouvements élémentaires",
+      "Un graphe, une matrice, un solveur",
+      "Une base de données, une requête, un index",
+      "Une preuve, un lemme, un théorème"
+    ],
+    "reponse": 0,
+    "explication": "On code les solutions, on les note avec une fonction de coût, et on passe de l'une à l'autre par des mouvements élémentaires (le voisinage)."
+  },
+  {
+    "question": "Dans le casse-tête des 27 cubes, pourquoi un échange **horizontal** ne change-t-il pas l'erreur ?",
+    "choix": [
+      "Parce que l'erreur ne dépend que des lignes des cubes",
+      "Parce que les cubes ont la même couleur",
+      "Parce que l'erreur vaut toujours 0",
+      "Parce qu'on ne peut pas faire d'échange horizontal"
+    ],
+    "reponse": 0,
+    "explication": "L'erreur additionne des écarts de **lignes** : échanger deux cubes d'une même ligne ne change aucune ligne. C'est un plateau."
+  },
+  {
+    "question": "La recherche locale naïve s'arrête sur un minimum local quand…",
+    "choix": [
+      "aucune permutation voisine ne fait diminuer l'erreur",
+      "le critère d'arrêt de temps est atteint",
+      "l'erreur vaut exactement 0",
+      "on a essayé toutes les solutions"
+    ],
+    "reponse": 0,
+    "explication": "Un minimum local est un état dont aucun voisin n'est meilleur : la descente y reste bloquée, même si l'erreur n'est pas nulle."
+  },
+  {
+    "question": "Un **optimum local** (en minimisation) est une solution…",
+    "choix": [
+      "dont aucun voisin n'a un coût strictement plus petit",
+      "de coût minimal parmi toutes les solutions",
+      "trouvée au hasard",
+      "qui viole une contrainte"
+    ],
+    "reponse": 0,
+    "explication": "Optimum local : $c(s') \\ge c(s)$ pour tout voisin $s'$. L'optimum **global** est le meilleur de tous ; un optimum local peut être bien moins bon."
+  },
+  {
+    "question": "Qu'est-ce que le **multi-start** ?",
+    "choix": [
+      "Relancer la descente depuis plusieurs états initiaux et garder la meilleure solution",
+      "Lancer plusieurs ordinateurs",
+      "Commencer par la solution optimale",
+      "Accepter des dégradations"
+    ],
+    "reponse": 0,
+    "explication": "La solution trouvée dépend de l'état initial : en multipliant les départs, on explore plusieurs vallées. C'est bon marché mais sans garantie."
+  },
+  {
+    "question": "Quelle différence entre **première** et **meilleure** amélioration ?",
+    "choix": [
+      "La première prend le premier voisin améliorant ; la meilleure examine tout le voisinage",
+      "La première est exacte, la meilleure approchée",
+      "Aucune différence",
+      "La meilleure accepte les dégradations"
+    ],
+    "reponse": 0,
+    "explication": "La meilleure amélioration est plus chère par pas (tout le voisinage) mais fait en général moins de pas."
+  },
+  {
+    "question": "Que fait un mouvement **2-opt** sur une tournée ?",
+    "choix": [
+      "Il supprime deux arêtes et reconnecte la tournée en inversant un segment",
+      "Il échange deux villes au hasard",
+      "Il ajoute deux villes",
+      "Il trie les villes par ordre alphabétique"
+    ],
+    "reponse": 0,
+    "explication": "Supprimer deux arêtes coupe la tournée en deux morceaux ; on les reconnecte dans l'autre sens, ce qui revient à inverser un segment."
+  },
+  {
+    "question": "Une tournée **2-optimale** est…",
+    "choix": [
+      "un optimum local pour le voisinage 2-opt",
+      "toujours la tournée la plus courte",
+      "une tournée de 2 villes",
+      "une tournée construite au plus proche voisin"
+    ],
+    "reponse": 0,
+    "explication": "Aucun échange 2-opt ne la raccourcit : c'est la définition d'un optimum local pour ce voisinage. Elle n'est pas forcément globalement optimale."
+  },
+  {
+    "question": "Le **plus proche voisin** est une heuristique…",
+    "choix": [
+      "de construction",
+      "d'amélioration",
+      "exacte",
+      "à population"
+    ],
+    "reponse": 0,
+    "explication": "Il **crée** une tournée de toutes pièces. Le 2-opt, lui, est une heuristique d'amélioration : il répare une tournée existante."
+  },
+  {
+    "question": "Pourquoi retient-on la modélisation « cubes uniques » ($27!$ états) plutôt que « coloriages libres » ($3^{27}$) ?",
+    "choix": [
+      "Parce que les couleurs sont données : on déplace les cubes, on ne les repeint pas",
+      "Parce que $27!$ est plus petit",
+      "Parce que c'est plus rapide à énumérer",
+      "Parce qu'il n'y a que deux couleurs"
+    ],
+    "reponse": 0,
+    "explication": "Les coloriages libres comptent des états impossibles (27 cubes rouges) : ils décrivent un autre problème, où l'on choisirait les couleurs."
+  }
+]

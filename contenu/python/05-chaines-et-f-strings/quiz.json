@@ -1,0 +1,67 @@
+[
+  {
+    "question": "Avec `nom = \"Ada\"`, qu'affiche `print(f\"{nom} a {30 + 6} ans\")` ?",
+    "choix": ["`{nom} a {30 + 6} ans`", "`Ada a 36 ans`", "`Ada a 30 + 6 ans`", "Une erreur"],
+    "reponse": 1,
+    "explication": "Dans une f-string, ce qui est entre accolades est calculé : `nom` vaut `Ada` et `30 + 6` vaut `36`."
+  },
+  {
+    "question": "Que donne `f\"{3.14159:.2f}\"` ?",
+    "choix": ["`3.14159`", "`3.14`", "`3.1`", "`3`"],
+    "reponse": 1,
+    "explication": "`.2f` affiche le nombre avec exactement 2 décimales (arrondi)."
+  },
+  {
+    "question": "Que donne `f\"{42:05d}\"` ?",
+    "choix": ["`42000`", "`00042`", "`   42`", "`42`"],
+    "reponse": 1,
+    "explication": "`05d` : un entier sur 5 caractères, complété à gauche par des zéros."
+  },
+  {
+    "question": "Après `s = \"abc\"` puis `s.upper()`, que vaut `s` ?",
+    "choix": ["`\"ABC\"`", "`\"abc\"`", "`None`", "`\"Abc\"`"],
+    "reponse": 1,
+    "explication": "Une `str` n'est pas modifiable : `upper()` renvoie une nouvelle chaîne, qu'il faut ranger (`s = s.upper()`)."
+  },
+  {
+    "question": "Que renvoie `\"banane\".find(\"z\")` ?",
+    "choix": ["`None`", "`-1`", "`0`", "Une `ValueError`"],
+    "reponse": 1,
+    "explication": "`find` renvoie `-1` quand la sous-chaîne est absente. C'est `index` qui lèverait une `ValueError`."
+  },
+  {
+    "question": "Que renvoie `\"a=b=c\".split(\"=\", 1)` ?",
+    "choix": ["`[\"a\", \"b\", \"c\"]`", "`[\"a\", \"b=c\"]`", "`[\"a=b\", \"c\"]`", "`[\"a\"]`"],
+    "reponse": 1,
+    "explication": "Le deuxième argument limite le nombre de découpes : une seule, au premier `=`."
+  },
+  {
+    "question": "Comment remplacer les espaces multiples d'un texte par un seul espace (et enlever ceux des bouts) ?",
+    "choix": ["`texte.strip()`", "`texte.replace(\"  \", \" \")`", "`\" \".join(texte.split())`", "`texte.split(\" \")`"],
+    "reponse": 2,
+    "explication": "`split()` sans argument découpe sur tous les espaces et ignore les vides ; `join` recolle avec un seul espace."
+  },
+  {
+    "question": "Que vaut `chr(ord(\"a\") + 1)` ?",
+    "choix": ["`\"a1\"`", "`98`", "`\"b\"`", "`\"A\"`"],
+    "reponse": 2,
+    "explication": "`ord(\"a\")` vaut 97, `chr(98)` est `\"b\"`."
+  },
+  {
+    "question": "Pourquoi `\"Zoé\" < \"anna\"` vaut-il `True` ?",
+    "choix": [
+      "Parce que Zoé est plus court",
+      "Parce que les majuscules ont un code plus petit que les minuscules",
+      "Parce que Python ignore la casse",
+      "C'est faux, ça vaut `False`"
+    ],
+    "reponse": 1,
+    "explication": "Les chaînes se comparent par code de caractère : `\"Z\"` (90) est avant `\"a\"` (97). Pour ignorer la casse, compare `s.lower()`."
+  },
+  {
+    "question": "Combien vaut `len(r\"a\\nb\")` (chaîne brute contenant `a`, `\\`, `n`, `b`) ?",
+    "choix": ["3", "4", "2", "1"],
+    "reponse": 1,
+    "explication": "Dans une chaîne brute, `\\n` n'est pas un retour à la ligne mais deux caractères : `\\` et `n`. On a donc 4 caractères."
+  }
+]

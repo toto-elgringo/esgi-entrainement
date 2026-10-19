@@ -1,0 +1,11 @@
+{
+  "titre": "Mini-projet : la classe Fraction",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Dans `__init__`, refuse d'abord un dénominateur nul. Puis si le dénominateur est négatif, change le signe des deux nombres.",
+    "Pour simplifier : `d = math.gcd(numerateur, denominateur)`, puis divise les deux par `d` avec `//`.",
+    "a/b + c/d = (a×d + c×b) / (b×d), et a/b × c/d = (a×c) / (b×d). Renvoie `Fraction(...)` : le constructeur simplifie tout seul.",
+    "Comme les fractions sont toujours simplifiées avec un dénominateur positif, `__eq__` compare directement numérateurs et dénominateurs. Pour `__lt__` : a/b < c/d revient à a×d < c×b."
+  ]
+}

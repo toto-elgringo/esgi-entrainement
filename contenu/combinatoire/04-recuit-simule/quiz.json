@@ -1,0 +1,134 @@
+[
+  {
+    "question": "D'où vient l'idée du recuit simulé ?",
+    "choix": [
+      "De la métallurgie : chauffer un métal puis le refroidir lentement",
+      "De la biologie : la sélection naturelle",
+      "De la finance",
+      "Des réseaux de neurones"
+    ],
+    "reponse": 0,
+    "explication": "Refroidi lentement, un métal forme un cristal régulier de basse énergie ; refroidi brutalement (trempe), il garde des défauts."
+  },
+  {
+    "question": "En optimisation, à quoi correspond l'**énergie** du métal ?",
+    "choix": [
+      "Au coût (l'erreur) de la solution",
+      "À la température",
+      "Au nombre d'itérations",
+      "Au voisinage"
+    ],
+    "reponse": 0,
+    "explication": "L'énergie devient le coût à minimiser ; la température devient le paramètre qui règle l'acceptation des dégradations."
+  },
+  {
+    "question": "Au recuit simulé, quand la température $T$ est très élevée…",
+    "choix": [
+      "on accepte presque toutes les dégradations : on explore",
+      "on refuse tout : on est en descente pure",
+      "on n'accepte que les améliorations, mais plus souvent",
+      "l'algorithme s'arrête"
+    ],
+    "reponse": 0,
+    "explication": "Avec $T$ grand, $e^{-\\Delta E/T}$ est proche de 1 : presque toutes les dégradations passent, la recherche explore."
+  },
+  {
+    "question": "Un voisin **meilleur** que la solution courante ($\\Delta E \\le 0$) est…",
+    "choix": [
+      "toujours accepté",
+      "accepté avec la probabilité $e^{-\\Delta E/T}$, donc parfois refusé",
+      "toujours refusé",
+      "accepté seulement si $T$ est grand"
+    ],
+    "reponse": 0,
+    "explication": "Si $\\Delta E \\le 0$, alors $e^{-\\Delta E/T} \\ge 1$ : quel que soit $r$, on a $r < P$. Les améliorations passent toujours, comme en descente."
+  },
+  {
+    "question": "Quelle est la règle d'acceptation (Metropolis) d'une dégradation $\\Delta E > 0$ ?",
+    "choix": [
+      "Accepter si $r < e^{-\\Delta E/T}$, avec $r$ tiré au hasard dans $[0, 1[$",
+      "Accepter si $\\Delta E < T$",
+      "Accepter une fois sur deux",
+      "Accepter si $r > e^{-\\Delta E/T}$"
+    ],
+    "reponse": 0,
+    "explication": "On tire $r$ uniformément dans $[0, 1[$ et on accepte si $r < e^{-\\Delta E/T}$ : la dégradation passe avec la probabilité $e^{-\\Delta E/T}$."
+  },
+  {
+    "question": "Pourquoi la première proposition $P = e^{-1/T}$ est-elle abandonnée ?",
+    "choix": [
+      "Elle ne tient pas compte de la taille de la dégradation",
+      "Elle donne des probabilités négatives",
+      "Elle est trop lente à calculer",
+      "Elle n'utilise pas de hasard"
+    ],
+    "reponse": 0,
+    "explication": "Avec $e^{-1/T}$, une petite et une énorme dégradation ont la même chance de passer. La règle de Metropolis fait intervenir $\\Delta E$."
+  },
+  {
+    "question": "Quelle loi de refroidissement est la plus courante en pratique ?",
+    "choix": [
+      "Géométrique : $T \\leftarrow \\alpha T$ avec $\\alpha$ proche de 1",
+      "Logarithmique : $T = c / \\log(k+1)$",
+      "Aucune : $T$ reste constante",
+      "Exponentielle croissante"
+    ],
+    "reponse": 0,
+    "explication": "La loi géométrique, avec $\\alpha \\in [0{,}95 ; 0{,}999]$, est simple et efficace. La loi logarithmique garantit la convergence mais est beaucoup trop lente."
+  },
+  {
+    "question": "Avec $T \\leftarrow \\alpha T$, que se passe-t-il si $\\alpha$ est trop petit (par exemple 0,93) ?",
+    "choix": [
+      "La recherche gèle trop tôt, comme une trempe",
+      "La recherche n'en finit pas",
+      "Toutes les solutions sont acceptées",
+      "La température augmente"
+    ],
+    "reponse": 0,
+    "explication": "Un $\\alpha$ petit fait chuter $T$ très vite : la recherche cesse d'explorer avant d'avoir trouvé une bonne vallée."
+  },
+  {
+    "question": "Que dit le théorème de **Hajek** (1988) ?",
+    "choix": [
+      "Avec $T(k) = c/\\log(k+1)$, le recuit converge en probabilité vers l'optimum global, mais trop lentement pour la pratique",
+      "Le recuit trouve toujours l'optimum en temps polynomial",
+      "Le recuit est inutile",
+      "Il faut toujours choisir $\\alpha = 0{,}5$"
+    ],
+    "reponse": 0,
+    "explication": "C'est une garantie théorique : pour diviser $T$ par 2, il faut élever le nombre d'itérations au carré. En pratique, on refroidit géométriquement."
+  },
+  {
+    "question": "Que retourne le recuit simulé à la fin ?",
+    "choix": [
+      "La meilleure configuration rencontrée depuis le départ",
+      "La dernière solution courante",
+      "La solution initiale",
+      "Une solution au hasard"
+    ],
+    "reponse": 0,
+    "explication": "Pendant les phases chaudes, la solution courante peut se dégrader : on mémorise la meilleure rencontrée et c'est elle qu'on retourne."
+  },
+  {
+    "question": "Qui a proposé le recuit simulé, et quand ?",
+    "choix": [
+      "Kirkpatrick, Gelatt et Vecchi, en 1983",
+      "Darwin, en 1859",
+      "Croes, en 1958",
+      "Cook, en 1971"
+    ],
+    "reponse": 0,
+    "explication": "Kirkpatrick, Gelatt et Vecchi ont transposé le recuit métallurgique à l'optimisation en 1983."
+  },
+  {
+    "question": "Comment choisir la température initiale $T_0$ ?",
+    "choix": [
+      "Pour accepter environ 80 à 100 % des dégradations au départ",
+      "Toujours $T_0 = 1$",
+      "Pour refuser toutes les dégradations",
+      "Égale au nombre d'itérations"
+    ],
+    "reponse": 0,
+    "explication": "Au départ, on veut explorer : $T_0$ doit être assez grande pour que presque toutes les dégradations passent."
+  }
+]

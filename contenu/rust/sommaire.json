@@ -1173,9 +1173,9 @@
           "difficulte": 2,
           "type": "tests",
           "indices": [
-            "Reprends le `match` avec gardes du chapitre 2, mais renvoie `FizzBuzz::Fizz` au lieu de `\"Fizz\".to_string()`.",
+            "Reprends le `match` avec gardes du chapitre 2, mais renvoie `Reponse::Fizz` au lieu de `\"Fizz\".to_string()`.",
             "N'oublie pas l'ordre : le cas « multiple de 15 » en premier.",
-            "Dans `en_texte`, la variante avec donnée s'écrit `FizzBuzz::Nombre(n) => n.to_string()`."
+            "Dans `en_texte`, la variante avec donnée s'écrit `Reponse::Nombre(n) => n.to_string()`."
           ]
         },
         {
@@ -1601,7 +1601,7 @@
           "indices": [
             "Les méthodes à utiliser, dans l'ordre : `push`, `pop`, `sort`, `len`, `get`.",
             "`{:?}` affiche une liste ou une `Option` : `println!(\"pop() renvoie : {:?}\", v.pop());`",
-            "`v.get(0)` renvoie `Some(&1)`, qui s'affiche `Some(1)` avec `{:?}`."
+            "`v.get(1)` renvoie `Some(&3)`, qui s'affiche `Some(3)` avec `{:?}`."
           ]
         },
         {
@@ -1867,7 +1867,7 @@
             "`prix.iter().sum()` : le type de retour de la fonction suffit à indiquer le type de la somme.",
             "`filter(...)` puis `count()` pour compter les mots longs.",
             "`v.iter().max()` renvoie un `Option<&i32>`. `.copied()` le transforme en `Option<i32>`.",
-            "`fold(1, |acc, x| acc * x)` : on part de 1 et on multiplie par chaque élément.",
+            "`fold(0, |acc, chiffre| acc * 10 + chiffre)` : on part de 0, et à chaque chiffre on décale d'un rang (× 10) avant de l'ajouter.",
             "Pour la moyenne : si la liste est vide, `None`. Sinon `Some(somme / notes.len() as f64)`, avec `notes.iter().sum::<f64>()`."
           ]
         },
@@ -2101,7 +2101,7 @@
           "indices": [
             "Remplace `i32` par un paramètre de type : `fn plus_grand<T>(a: T, b: T) -> T`.",
             "Le compilateur refuse alors `a > b` : il faut promettre que `T` sait se comparer avec la contrainte `T: PartialOrd`.",
-            "Pour la liste : commence avec le premier élément (`match liste.first()`), puis parcours la liste et garde le plus grand. `Copy` permet de copier les éléments avec `*x`."
+            "Pour la liste : commence avec le premier élément (`*liste.first()?` renvoie `None` tout de suite si la liste est vide), puis parcours la liste et garde le plus grand. `Copy` permet de copier les éléments avec `*x`."
           ]
         },
         {

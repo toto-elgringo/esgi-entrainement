@@ -1,0 +1,11 @@
+{
+  "titre": "Les ensembles",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`set(l)` supprime les doublons, et `sorted(...)` renvoie une liste triée.",
+    "L'intersection s'écrit `a & b` (ou `a.intersection(b)`), la différence symétrique `a ^ b`.",
+    "Pour `est_binaire`, `set(\"01\").issuperset(texte)` vérifie que le texte ne contient que des 0 et des 1. N'oublie pas le cas du texte vide.",
+    "Pour `sans_ponctuation`, `set(\"!?.,;:\").isdisjoint(phrase)` vaut `True` si aucun signe n'est présent."
+  ]
+}

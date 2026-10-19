@@ -1,0 +1,10 @@
+{
+  "titre": "Une liste à partir d'un tableau",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "L'insertion en début met la dernière valeur insérée en premier : elle inverse l'ordre.",
+    "Pour obtenir le même ordre que le tableau, insère les valeurs en partant de la **fin** du tableau.",
+    "`Cell *start = NULL;` puis `for (int i = n - 1; i >= 0; i--) start = insererDebut(start, valeurs[i]);` et `return start;`"
+  ]
+}

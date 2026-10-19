@@ -1,0 +1,11 @@
+{
+  "titre": "Mini-projet : carnet de notes",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Commence par `moyenne(notes)` : tu pourras la réutiliser dans toutes les autres fonctions.",
+    "Pour `moyennes`, parcours `carnet.items()` et range `round(moyenne(notes), 2)` pour chaque nom.",
+    "Pour `meilleur_eleve`, parcours les noms **triés** (`sorted(carnet)`) et ne remplace le meilleur que si la moyenne est **strictement** plus grande : en cas d'égalité, le premier dans l'ordre alphabétique reste.",
+    "Pour `ajouter_note`, vérifie d'abord `0 <= note <= 20`. Si le nom n'existe pas, crée sa liste : `carnet[nom] = []`."
+  ]
+}

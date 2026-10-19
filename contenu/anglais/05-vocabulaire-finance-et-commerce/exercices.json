@@ -1,0 +1,1090 @@
+[
+  {
+    "id": "banque-traduction",
+    "titre": "La banque : traduire",
+    "difficulte": 1,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "un compte (bancaire)",
+        "type": "texte",
+        "reponse": [
+          "account",
+          "an account",
+          "bank account",
+          "a bank account"
+        ]
+      },
+      {
+        "intitule": "un relevé de compte",
+        "type": "texte",
+        "reponse": [
+          "statement",
+          "a statement",
+          "bank statement",
+          "a bank statement"
+        ]
+      },
+      {
+        "intitule": "un découvert",
+        "type": "texte",
+        "reponse": [
+          "overdraft",
+          "an overdraft"
+        ]
+      },
+      {
+        "intitule": "un prêt",
+        "type": "texte",
+        "reponse": [
+          "loan",
+          "a loan"
+        ]
+      },
+      {
+        "intitule": "emprunter",
+        "type": "texte",
+        "reponse": [
+          "borrow",
+          "to borrow"
+        ],
+        "refuses": [
+          "lend",
+          "to lend"
+        ]
+      },
+      {
+        "intitule": "un prêt immobilier",
+        "type": "texte",
+        "reponse": [
+          "mortgage",
+          "a mortgage",
+          "home loan",
+          "a home loan"
+        ]
+      },
+      {
+        "intitule": "un retrait (d'argent)",
+        "type": "texte",
+        "reponse": [
+          "withdrawal",
+          "a withdrawal"
+        ]
+      },
+      {
+        "intitule": "un distributeur de billets",
+        "type": "texte",
+        "reponse": [
+          "ATM",
+          "an ATM",
+          "cash dispenser",
+          "a cash dispenser",
+          "cash machine",
+          "a cash machine"
+        ]
+      }
+    ],
+    "indices": [
+      "emprunter = *borrow* ; prêter = *lend*."
+    ],
+    "correction": "*account*, *statement*, *overdraft*, *loan*, *borrow*, *mortgage*, *withdrawal*, *ATM* (ou *cash dispenser*)."
+  },
+  {
+    "id": "banque-phrases",
+    "titre": "La banque en contexte",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*I need to ...... some money from the bank to buy a car.*",
+        "type": "choix",
+        "choix": [
+          "loan",
+          "deposit",
+          "borrow",
+          "lend"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*She made a ...... of 500 euros into her savings account.*",
+        "type": "choix",
+        "choix": [
+          "deposit",
+          "overdraft",
+          "withdrawal",
+          "statement"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*My account is 200 euros in the red: I have an ......*",
+        "type": "choix",
+        "choix": [
+          "income",
+          "overdraft",
+          "asset",
+          "estimate"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Enter your ...... and press OK.*",
+        "type": "choix",
+        "choix": [
+          "ATM",
+          "GNP",
+          "PIN",
+          "CPA"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Check your monthly ...... to see all your payments.*",
+        "type": "choix",
+        "choix": [
+          "mortgage",
+          "quotation",
+          "statement",
+          "grant"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Can I ...... this to my credit card?*",
+        "type": "choix",
+        "choix": [
+          "borrow",
+          "earn",
+          "charge",
+          "deposit"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*in the red* = à découvert.",
+      "*charge to a card* = payer par carte."
+    ],
+    "correction": "1. *borrow* (emprunter). 2. *a deposit* (un dépôt). 3. *overdraft* (découvert). 4. *PIN* (code confidentiel). 5. *statement* (relevé). 6. *charge* (payer par carte)."
+  },
+  {
+    "id": "comptabilite-sens",
+    "titre": "Comptabilité : le sens",
+    "difficulte": 2,
+    "enonce": "Choisis la traduction.",
+    "questions": [
+      {
+        "intitule": "*invoice*",
+        "type": "choix",
+        "choix": [
+          "facture",
+          "devis",
+          "reçu"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*quotation* (ou *quote*)",
+        "type": "choix",
+        "choix": [
+          "quota",
+          "citation boursière",
+          "devis"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*refund*",
+        "type": "choix",
+        "choix": [
+          "refonte",
+          "remboursement",
+          "refus"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*remainder*",
+        "type": "choix",
+        "choix": [
+          "remise",
+          "reste, solde",
+          "rappel"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*income*",
+        "type": "choix",
+        "choix": [
+          "arrivée",
+          "incident",
+          "revenus"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*to incur costs*",
+        "type": "choix",
+        "choix": [
+          "réduire les coûts",
+          "calculer les coûts",
+          "engager des dépenses"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*cost-effective*",
+        "type": "choix",
+        "choix": [
+          "coûteux",
+          "efficace mais cher",
+          "rentable"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*accountant*",
+        "type": "choix",
+        "choix": [
+          "compte",
+          "comptable",
+          "client"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*remainder* (reste) ≠ *reminder* (rappel)."
+    ],
+    "correction": "*invoice* = facture ; *quotation* = devis ; *refund* = remboursement ; *remainder* = reste ; *income* = revenus ; *incur* = engager (des dépenses) ; *cost-effective* = rentable ; *accountant* = comptable."
+  },
+  {
+    "id": "chiffres",
+    "titre": "Les chiffres du business",
+    "difficulte": 2,
+    "enonce": "Réponds par un nombre.",
+    "questions": [
+      {
+        "intitule": "Combien de mois dure *a quarter* ?",
+        "type": "nombre",
+        "reponse": 3
+      },
+      {
+        "intitule": "Combien de *quarterly reports* une entreprise publie-t-elle par an ?",
+        "type": "nombre",
+        "reponse": 4
+      },
+      {
+        "intitule": "Écris *two billion* en chiffres (sans espace).",
+        "type": "nombre",
+        "reponse": 2000000000,
+        "refuses": [
+          "2000000000000"
+        ]
+      },
+      {
+        "intitule": "Une facture de 1 200 dollars : tu as déjà payé 800. Quel est *the remainder* ?",
+        "type": "nombre",
+        "reponse": 400
+      },
+      {
+        "intitule": "*A refund of 25%* sur un achat de 80 euros : combien te rembourse-t-on ?",
+        "type": "nombre",
+        "reponse": 20
+      }
+    ],
+    "indices": [
+      "*billion* = milliard.",
+      "*remainder* = ce qui reste à payer."
+    ],
+    "correction": "- *a quarter* = 3 mois ; *quarterly* = 4 fois par an.\n- *two billion* = 2 000 000 000.\n- 1 200 - 800 = **400** restent à payer.\n- 25 % de 80 = **20**."
+  },
+  {
+    "id": "assurance-et-impots",
+    "titre": "Assurance et impôts",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "une police d'assurance",
+        "type": "texte",
+        "reponse": [
+          "insurance policy",
+          "an insurance policy"
+        ]
+      },
+      {
+        "intitule": "une déclaration de sinistre",
+        "type": "texte",
+        "reponse": [
+          "insurance claim",
+          "an insurance claim",
+          "claim",
+          "a claim"
+        ]
+      },
+      {
+        "intitule": "une déclaration d'impôts",
+        "type": "texte",
+        "reponse": [
+          "tax return",
+          "a tax return"
+        ]
+      },
+      {
+        "intitule": "la fraude fiscale",
+        "type": "texte",
+        "reponse": [
+          "tax evasion",
+          "tax fraud"
+        ]
+      },
+      {
+        "intitule": "une subvention",
+        "type": "texte",
+        "reponse": [
+          "grant",
+          "a grant",
+          "subsidy",
+          "a subsidy"
+        ]
+      },
+      {
+        "intitule": "faire faillite",
+        "type": "texte",
+        "reponse": [
+          "go bankrupt",
+          "to go bankrupt",
+          "go bust",
+          "to go bust",
+          "go out of business"
+        ]
+      }
+    ],
+    "indices": [
+      "*policy* = police (d'assurance) ou politique, règle."
+    ],
+    "correction": "*insurance policy*, *insurance claim*, *tax return*, *tax evasion*, *grant* (ou *subsidy*), *go bankrupt*."
+  },
+  {
+    "id": "commerce-traduction",
+    "titre": "Le commerce : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "un échantillon",
+        "type": "texte",
+        "reponse": [
+          "sample",
+          "a sample"
+        ]
+      },
+      {
+        "intitule": "une garantie (sur un produit)",
+        "type": "texte",
+        "reponse": [
+          "warranty",
+          "a warranty",
+          "guarantee",
+          "a guarantee"
+        ]
+      },
+      {
+        "intitule": "un bon d'achat",
+        "type": "texte",
+        "reponse": [
+          "voucher",
+          "a voucher",
+          "coupon",
+          "a coupon",
+          "gift card"
+        ]
+      },
+      {
+        "intitule": "un salon professionnel",
+        "type": "texte",
+        "reponse": [
+          "trade fair",
+          "a trade fair",
+          "trade show",
+          "a trade show"
+        ]
+      },
+      {
+        "intitule": "un détaillant",
+        "type": "texte",
+        "reponse": [
+          "retailer",
+          "a retailer"
+        ]
+      },
+      {
+        "intitule": "une vente aux enchères",
+        "type": "texte",
+        "reponse": [
+          "auction",
+          "an auction"
+        ]
+      },
+      {
+        "intitule": "le stock, l'inventaire",
+        "type": "texte",
+        "reponse": [
+          "inventory",
+          "the inventory",
+          "stock",
+          "the stock"
+        ]
+      },
+      {
+        "intitule": "une campagne publicitaire",
+        "type": "texte",
+        "reponse": [
+          "ad campaign",
+          "an ad campaign",
+          "advertising campaign",
+          "an advertising campaign"
+        ]
+      }
+    ],
+    "indices": [
+      "Ils sont dans le tableau « Commerce, vente et marketing »."
+    ],
+    "correction": "*sample*, *warranty*, *voucher*, *trade fair*, *retailer*, *auction*, *inventory*, *ad campaign*."
+  },
+  {
+    "id": "commerce-phrases",
+    "titre": "Le commerce en contexte",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*The concert is ......: there are no tickets left.*",
+        "type": "choix",
+        "choix": [
+          "on sale",
+          "in bulk",
+          "sold out",
+          "on display"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Restaurants usually buy rice ...... because it is cheaper.*",
+        "type": "choix",
+        "choix": [
+          "sold out",
+          "on hand",
+          "upmarket",
+          "in bulk"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*This hotel is very ......: rooms cost over 800 dollars a night.*",
+        "type": "choix",
+        "choix": [
+          "upmarket",
+          "downmarket",
+          "affordable",
+          "disposable"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The new phone is powerful but still ......: it costs only 199 dollars.*",
+        "type": "choix",
+        "choix": [
+          "affordable",
+          "upmarket",
+          "mandatory",
+          "overdue"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The latest models are ...... in the shop window.*",
+        "type": "choix",
+        "choix": [
+          "on duty",
+          "sold out",
+          "on display",
+          "on hold"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Guests receive a ...... bottle of water in their room.*",
+        "type": "choix",
+        "choix": [
+          "complementary",
+          "complimentary",
+          "competitive",
+          "compulsory"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Because of a ...... of chips, the factory can't produce enough cars.*",
+        "type": "choix",
+        "choix": [
+          "surplus",
+          "shortage",
+          "supply",
+          "feature"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*in bulk* = en grande quantité.",
+      "*complimentary* = offert."
+    ],
+    "correction": "1. *sold out* (complet). 2. *in bulk* (en gros). 3. *upmarket* (haut de gamme). 4. *affordable* (abordable). 5. *on display* (exposé). 6. *complimentary* (offert). 7. *shortage* (pénurie)."
+  },
+  {
+    "id": "commerce-contraires",
+    "titre": "Les contraires",
+    "difficulte": 2,
+    "enonce": "Donne le contraire (un mot ou une expression de la liste des 400 mots).",
+    "questions": [
+      {
+        "intitule": "*retail* (au détail) ↔ ......",
+        "type": "texte",
+        "reponse": [
+          "wholesale"
+        ]
+      },
+      {
+        "intitule": "*downmarket* ↔ ......",
+        "type": "texte",
+        "reponse": [
+          "upmarket",
+          "up-market",
+          "high-end"
+        ]
+      },
+      {
+        "intitule": "*sale* (vente) ↔ ...... (achat)",
+        "type": "texte",
+        "reponse": [
+          "purchase",
+          "buying"
+        ]
+      },
+      {
+        "intitule": "*shortage* (pénurie) ↔ ...... (approvisionnement, réserves)",
+        "type": "texte",
+        "reponse": [
+          "supply",
+          "surplus",
+          "abundance"
+        ]
+      },
+      {
+        "intitule": "*turn off* ↔ ......",
+        "type": "texte",
+        "reponse": [
+          "turn on",
+          "switch on"
+        ]
+      },
+      {
+        "intitule": "*assets* (actif) ↔ ......",
+        "type": "texte",
+        "reponse": [
+          "liabilities",
+          "liability",
+          "debts"
+        ]
+      }
+    ],
+    "indices": [
+      "Ils sont tous dans le cours."
+    ],
+    "correction": "*wholesale*, *upmarket*, *purchase*, *supply*, *turn on*, *liabilities*."
+  },
+  {
+    "id": "industrie-traduction",
+    "titre": "Industrie et logistique : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "une usine",
+        "type": "texte",
+        "reponse": [
+          "plant",
+          "a plant",
+          "factory",
+          "a factory"
+        ]
+      },
+      {
+        "intitule": "un entrepôt",
+        "type": "texte",
+        "reponse": [
+          "warehouse",
+          "a warehouse"
+        ]
+      },
+      {
+        "intitule": "le fret, les marchandises",
+        "type": "texte",
+        "reponse": [
+          "freight",
+          "goods",
+          "cargo"
+        ]
+      },
+      {
+        "intitule": "une flotte (de véhicules)",
+        "type": "texte",
+        "reponse": [
+          "fleet",
+          "a fleet"
+        ]
+      },
+      {
+        "intitule": "un sous-traitant",
+        "type": "texte",
+        "reponse": [
+          "subcontractor",
+          "a subcontractor",
+          "sub-contractor"
+        ]
+      },
+      {
+        "intitule": "un appareil, un dispositif",
+        "type": "texte",
+        "reponse": [
+          "device",
+          "a device",
+          "appliance",
+          "an appliance"
+        ]
+      },
+      {
+        "intitule": "une panne",
+        "type": "texte",
+        "reponse": [
+          "failure",
+          "a failure",
+          "breakdown",
+          "a breakdown"
+        ]
+      },
+      {
+        "intitule": "une fuite (d'eau)",
+        "type": "texte",
+        "reponse": [
+          "leak",
+          "a leak"
+        ]
+      }
+    ],
+    "indices": [
+      "*power failure* = panne de courant."
+    ],
+    "correction": "*plant*, *warehouse*, *freight*, *fleet*, *subcontractor*, *device*, *failure*, *leak*."
+  },
+  {
+    "id": "industrie-phrases",
+    "titre": "Industrie et logistique en contexte",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*Your order was ...... yesterday and should arrive on Monday.*",
+        "type": "choix",
+        "choix": [
+          "shipment",
+          "shipped",
+          "ship",
+          "shipping"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The ...... of 500 laptops arrived damaged.*",
+        "type": "choix",
+        "choix": [
+          "shipper",
+          "shipment",
+          "shipped",
+          "ship"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*We are going to ...... our software to the latest version.*",
+        "type": "choix",
+        "choix": [
+          "upgrade",
+          "dispose",
+          "leak",
+          "refurbish"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The old hotel will be ...... and reopened next year.*",
+        "type": "choix",
+        "choix": [
+          "disposed",
+          "refurbished",
+          "dispatched",
+          "upgraded to"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The lab uses ...... equipment: it is the most advanced in the country.*",
+        "type": "choix",
+        "choix": [
+          "disposable",
+          "outdated",
+          "second-hand",
+          "state-of-the-art"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Please use ...... gloves and throw them away after use.*",
+        "type": "choix",
+        "choix": [
+          "disposable",
+          "refurbished",
+          "reusable",
+          "durable"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*A ...... failure stopped the machines for two hours.*",
+        "type": "choix",
+        "choix": [
+          "powerless",
+          "power",
+          "powerful",
+          "empower"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*ship* (verbe) / *shipment* (nom).",
+      "*refurbish* = remettre à neuf."
+    ],
+    "correction": "1. *was shipped* (passif). 2. *The shipment* (nom). 3. *upgrade* (mettre à niveau). 4. *refurbished* (remis à neuf). 5. *state-of-the-art* (dernier cri). 6. *disposable* (jetable). 7. *power failure* (panne de courant)."
+  },
+  {
+    "id": "droit-sens",
+    "titre": "Le droit : le sens",
+    "difficulte": 2,
+    "enonce": "Choisis la traduction.",
+    "questions": [
+      {
+        "intitule": "*mandatory*",
+        "type": "choix",
+        "choix": [
+          "mandaté",
+          "mensuel",
+          "obligatoire"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*compliance*",
+        "type": "choix",
+        "choix": [
+          "conformité",
+          "compliment",
+          "complicité"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*to sue*",
+        "type": "choix",
+        "choix": [
+          "suivre",
+          "poursuivre en justice",
+          "transpirer"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*a settlement*",
+        "type": "choix",
+        "choix": [
+          "un établissement scolaire",
+          "une installation",
+          "un règlement, un accord"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*to disclose*",
+        "type": "choix",
+        "choix": [
+          "fermer",
+          "révéler, divulguer",
+          "conclure"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*liability*",
+        "type": "choix",
+        "choix": [
+          "responsabilité (légale)",
+          "fiabilité",
+          "liberté"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*to enforce*",
+        "type": "choix",
+        "choix": [
+          "renforcer",
+          "forcer une porte",
+          "faire appliquer"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*sue* ressemble à « suivre », mais c'est un faux ami."
+    ],
+    "correction": "*mandatory* = obligatoire ; *compliance* = conformité ; *sue* = poursuivre en justice ; *settlement* = accord ; *disclose* = révéler ; *liability* = responsabilité ; *enforce* = faire appliquer."
+  },
+  {
+    "id": "droit-phrases",
+    "titre": "Le droit en contexte",
+    "difficulte": 2,
+    "enonce": "Complète avec un seul mot.",
+    "questions": [
+      {
+        "intitule": "*All our products comply ...... European standards.*",
+        "type": "texte",
+        "reponse": [
+          "with"
+        ]
+      },
+      {
+        "intitule": "*Wearing a helmet on the site is ......: you cannot enter without one.* (obligatoire)",
+        "type": "texte",
+        "reponse": [
+          "mandatory",
+          "compulsory",
+          "required",
+          "obligatory"
+        ]
+      },
+      {
+        "intitule": "*The customer decided to ...... the airline for losing his luggage.* (poursuivre en justice)",
+        "type": "texte",
+        "reponse": [
+          "sue"
+        ]
+      },
+      {
+        "intitule": "*After months of talks, both sides reached a ......* (accord)",
+        "type": "texte",
+        "reponse": [
+          "settlement",
+          "deal",
+          "agreement"
+        ]
+      },
+      {
+        "intitule": "*Employees must not ...... confidential information.* (divulguer)",
+        "type": "texte",
+        "reponse": [
+          "disclose",
+          "reveal",
+          "share",
+          "leak"
+        ]
+      }
+    ],
+    "indices": [
+      "*comply with* = se conformer à."
+    ],
+    "correction": "*comply with* ; *mandatory* ; *sue* ; *settlement* ; *disclose*."
+  },
+  {
+    "id": "familles-de-mots",
+    "titre": "Familles de mots : finance et commerce",
+    "difficulte": 3,
+    "enonce": "Choisis le mot qui complète la phrase (style TOEIC partie 5).",
+    "questions": [
+      {
+        "intitule": "*All ...... over 50 dollars are delivered free of charge.*",
+        "type": "choix",
+        "choix": [
+          "purchased",
+          "purchase",
+          "purchaser",
+          "purchases"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Tickets are not ...... once the show has started.*",
+        "type": "choix",
+        "choix": [
+          "refund",
+          "refunds",
+          "refundable",
+          "refunding"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Please read the safety ...... before using the machine.*",
+        "type": "choix",
+        "choix": [
+          "requirements",
+          "requiring",
+          "required",
+          "require"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The company was fined for its lack of ...... with the new rules.*",
+        "type": "choix",
+        "choix": [
+          "comply",
+          "complied",
+          "compliance",
+          "compliant"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The goods will be ...... from our warehouse in Lyon.*",
+        "type": "choix",
+        "choix": [
+          "dispatching",
+          "dispatcher",
+          "dispatched",
+          "dispatch"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Our sales ...... are published every quarter.*",
+        "type": "choix",
+        "choix": [
+          "figuring",
+          "figures",
+          "figure",
+          "figured"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Après *All*, il faut un pluriel.",
+      "*not* + adjectif après *are* : *refundable*."
+    ],
+    "correction": "1. *All* + nom pluriel : *purchases*. 2. *are not refundable* (adjectif : remboursable). 3. *safety requirements* (exigences). 4. *lack of* + nom : *compliance*. 5. *will be* + participe passé : *dispatched*. 6. *sales figures* (chiffres de vente)."
+  },
+  {
+    "id": "lecture-reclamation",
+    "titre": "Lecture : une réclamation client",
+    "difficulte": 3,
+    "enonce": "Lis les deux documents, puis réponds.\n\n**Document 1 : facture**\n\n| Brightoffice Supplies - Invoice n° 4471 | |\n|---|---|\n| Printer cartridges x 10 | $180 |\n| Office chairs x 4 | $560 |\n| Delivery | $40 |\n| **Total due by 30 June** | **$780** |\n\n**Document 2 : e-mail**\n\n> **To**: billing@brightoffice.com - **From**: Leo Martins, Office Manager, Delta Travel\n> Hello,\n> We received our order yesterday, but one of the four chairs was broken. As the chairs are still under warranty, could you send a replacement? Also, your website said delivery was free for orders over $500, so we should not have been charged for it. Could you send us a new invoice? We will pay the remainder as soon as we receive it.\n> Leo Martins",
+    "questions": [
+      {
+        "intitule": "Why is Mr. Martins writing?",
+        "type": "choix",
+        "choix": [
+          "To place a new order",
+          "To cancel his order",
+          "To ask for a job",
+          "To complain about a problem with his order"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "What does he want for the broken chair?",
+        "type": "choix",
+        "choix": [
+          "A discount",
+          "A refund",
+          "A replacement",
+          "A new warranty"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "According to Mr. Martins, how much should the new invoice be? (en dollars, sans le symbole)",
+        "type": "nombre",
+        "reponse": 740
+      },
+      {
+        "intitule": "Why does he think delivery should be free?",
+        "type": "choix",
+        "choix": [
+          "He is a regular customer.",
+          "Delivery was late.",
+          "The chairs were broken.",
+          "The order is over $500."
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "What is NOT mentioned?",
+        "type": "choix",
+        "choix": [
+          "The warranty",
+          "A late delivery",
+          "A delivery charge",
+          "A broken chair"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*under warranty* = sous garantie.",
+      "Total sans la livraison : 780 - 40."
+    ],
+    "correction": "1. Il signale des problèmes : une chaise cassée et des frais de livraison. 2. *could you send a replacement?* 3. 780 - 40 = **740** dollars. 4. *delivery was free for orders over $500*. 5. Le retard n'est jamais mentionné (la commande est arrivée hier, sans plainte sur la date)."
+  },
+  {
+    "id": "traduction-courte",
+    "titre": "Petites traductions",
+    "difficulte": 3,
+    "enonce": "Traduis en anglais puis compare avec la réponse modèle.",
+    "questions": [
+      {
+        "intitule": "Pouvez-vous nous envoyer un devis avant vendredi ?",
+        "type": "auto",
+        "reponse": "*Could you send us a quotation (a quote) by Friday?*"
+      },
+      {
+        "intitule": "La facture est en retard : merci de la régler rapidement.",
+        "type": "auto",
+        "reponse": "*The invoice is overdue: please pay (settle) it as soon as possible.*"
+      },
+      {
+        "intitule": "Notre entrepôt expédie 2 000 colis par jour.",
+        "type": "auto",
+        "reponse": "*Our warehouse ships (dispatches) 2,000 parcels (packages) a day.*"
+      }
+    ],
+    "indices": [
+      "avant vendredi (date limite) = *by Friday*.",
+      "devis = *quotation* ; en retard (paiement) = *overdue*."
+    ],
+    "correction": "Vocabulaire : *quotation*, *by Friday*, *overdue*, *settle an invoice*, *warehouse*, *ship / dispatch*, *package*. En anglais, on écrit **2,000** avec une virgule."
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "matieres": [
+    { "id": "electif", "titre": "Cours électif" }
+  ],
+  "chapitres": [
+    "01-sig-qgis-et-bd-topo"
+  ]
+}

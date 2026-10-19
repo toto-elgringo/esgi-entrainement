@@ -1,0 +1,8 @@
+3 + 4 = 7
+10 / 4 = 2.5
+7 * 6 = 42
+Erreur : division par zéro
+Erreur : opération inconnue
+Erreur : nombre invalide
+Erreur : format attendu « a op b »
+9 - 12 = -3

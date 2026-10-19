@@ -1,0 +1,134 @@
+[
+  {
+    "question": "D'où vient l'idée des algorithmes génétiques ?",
+    "choix": [
+      "De l'évolution des espèces et de la sélection naturelle (Darwin)",
+      "Du refroidissement des métaux",
+      "Des colonies de fourmis",
+      "De la physique quantique"
+    ],
+    "reponse": 0,
+    "explication": "Les mieux adaptés se reproduisent davantage, leurs enfants combinent leurs caractères avec quelques mutations : la population s'adapte."
+  },
+  {
+    "question": "Quelle est la grande différence entre un algorithme génétique et le recuit simulé ?",
+    "choix": [
+      "L'AG fait évoluer une population de solutions, le recuit une seule solution",
+      "L'AG est une méthode exacte",
+      "Le recuit n'utilise pas de hasard",
+      "L'AG n'a pas de fonction de coût"
+    ],
+    "reponse": 0,
+    "explication": "Recuit et recherche locale suivent une seule solution ; l'AG manipule toute une population et la fait évoluer."
+  },
+  {
+    "question": "La fitness d'un individu doit être…",
+    "choix": [
+      "à maximiser",
+      "à minimiser",
+      "toujours égale à 1",
+      "négative"
+    ],
+    "reponse": 0,
+    "explication": "Plus un individu est adapté, plus sa fitness est grande. Pour un coût $c$ à minimiser, on prend par exemple $f = 1/c$."
+  },
+  {
+    "question": "Dans un algorithme génétique, la mutation sert à…",
+    "choix": [
+      "maintenir la diversité génétique de la population",
+      "combiner deux parents en un enfant",
+      "choisir les individus qui vont se reproduire",
+      "trier la population"
+    ],
+    "reponse": 0,
+    "explication": "La mutation, rare, réintroduit de la diversité. Combiner deux parents, c'est le croisement ; choisir les reproducteurs, c'est la sélection."
+  },
+  {
+    "question": "Avec la sélection par **roulette**, la probabilité de choisir un individu est…",
+    "choix": [
+      "proportionnelle à sa fitness",
+      "la même pour tous",
+      "nulle pour tous sauf le meilleur",
+      "proportionnelle à son coût"
+    ],
+    "reponse": 0,
+    "explication": "$P(i) = f_i / \\sum_j f_j$ : le meilleur est favori, les autres gardent une chance."
+  },
+  {
+    "question": "Dans une sélection par **tournoi**, que se passe-t-il avec $k = 1$ ?",
+    "choix": [
+      "C'est un tirage uniforme : aucune pression de sélection",
+      "Le meilleur gagne toujours",
+      "Personne n'est sélectionné",
+      "On garde les 10 % meilleurs"
+    ],
+    "reponse": 0,
+    "explication": "Un tournoi d'un seul participant choisit un individu au hasard. Plus $k$ est grand, plus le meilleur a de chances de gagner."
+  },
+  {
+    "question": "Pourquoi ne pas utiliser un croisement « couper-coller » naïf sur des tournées (permutations) ?",
+    "choix": [
+      "Il produirait des doublons : une ville deux fois et une autre absente",
+      "Il est trop lent",
+      "Il donne toujours le même enfant",
+      "Il n'utilise pas les parents"
+    ],
+    "reponse": 0,
+    "explication": "Le codage impose des opérateurs adaptés, comme le croisement OX, qui donne toujours une permutation valide."
+  },
+  {
+    "question": "Qu'est-ce que la **dérive génétique** ?",
+    "choix": [
+      "La perte de diversité due au seul hasard, surtout dans les petites populations",
+      "Une sélection trop dure",
+      "Une mutation trop fréquente",
+      "Un croisement raté"
+    ],
+    "reponse": 0,
+    "explication": "Des variantes disparaissent par hasard d'une génération à l'autre. Remède : augmenter la taille de la population."
+  },
+  {
+    "question": "Garder systématiquement les « 10 % meilleurs » comme reproducteurs risque de provoquer…",
+    "choix": [
+      "une convergence prématurée",
+      "une dérive génétique",
+      "une explosion de la diversité",
+      "un refroidissement"
+    ],
+    "reponse": 0,
+    "explication": "Une pression de sélection excessive recopie le meilleur partout : la population devient une armée de clones. Remède : adoucir la sélection."
+  },
+  {
+    "question": "Qu'est-ce que l'**élitisme** ?",
+    "choix": [
+      "Recopier d'office quelques meilleurs individus dans la génération suivante",
+      "Ne garder que le meilleur individu",
+      "Supprimer les meilleurs individus",
+      "Muter tous les individus"
+    ],
+    "reponse": 0,
+    "explication": "Rien ne garantit que le meilleur survive à une génération : l'élitisme le protège, sans détruire la diversité du reste de la population."
+  },
+  {
+    "question": "Le codage par permutation du voyageur de commerce gère la contrainte « chaque ville une fois »…",
+    "choix": [
+      "automatiquement : toute permutation est une tournée réalisable",
+      "en pénalisant les individus",
+      "en réparant les individus",
+      "il ne la gère pas"
+    ],
+    "reponse": 0,
+    "explication": "C'est la meilleure des trois réponses aux contraintes : choisir un codage où l'irréalisable n'existe pas."
+  },
+  {
+    "question": "Quelles valeurs sont conseillées pour les probabilités de croisement $p_c$ et de mutation $p_m$ ?",
+    "choix": [
+      "$p_c \\approx 0{,}8$ et $p_m \\approx 0{,}01$",
+      "$p_c \\approx 0{,}01$ et $p_m \\approx 0{,}8$",
+      "$p_c = p_m = 0{,}5$",
+      "$p_c = 1$ et $p_m = 1$"
+    ],
+    "reponse": 0,
+    "explication": "Croisement fréquent, mutation rare : la mutation doit réinjecter de la diversité sans casser les bons individus."
+  }
+]

@@ -1,16 +1,16 @@
 #[derive(Debug, PartialEq)]
-enum FizzBuzz {
+enum Reponse {
     Fizz,
     Buzz,
     FizzBuzz,
     Nombre(u32),
 }
 
-fn fizz_buzz(n: u32) -> FizzBuzz {
+fn fizz_buzz(n: u32) -> Reponse {
     todo!()
 }
 
-fn en_texte(valeur: &FizzBuzz) -> String {
+fn en_texte(valeur: &Reponse) -> String {
     todo!()
 }
 

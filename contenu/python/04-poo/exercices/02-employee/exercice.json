@@ -1,0 +1,11 @@
+{
+  "titre": "La classe Employee",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`emp_count = 0` s'écrit dans le corps de la classe, hors des méthodes : c'est une variable de classe.",
+    "Dans `__init__`, augmente le compteur **via la classe** : `Employee.emp_count += 1` (pas `self.emp_count += 1`).",
+    "`description` renvoie `\"Name : \" + self.name + \", Salary : \" + str(self.salary)`.",
+    "Pour l'augmentation : `self.salary = round(self.salary * (1 + pourcentage / 100), 2)`."
+  ]
+}

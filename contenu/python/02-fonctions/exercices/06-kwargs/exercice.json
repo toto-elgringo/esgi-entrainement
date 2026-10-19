@@ -1,0 +1,10 @@
+{
+  "titre": "Des mots-clés inconnus : **kwargs",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`def fiche(nom, **infos):` range les arguments par mot-clé dans le dictionnaire `infos`.",
+    "Pour la fiche : construis la liste `[cle + \"=\" + str(valeur) for ...]` en parcourant `infos.items()` (ou avec une boucle et `append`), puis relie avec `\", \".join(...)`.",
+    "`appeler(func, *args, **kwargs)` renvoie simplement `func(*args, **kwargs)` : les étoiles déballent tout."
+  ]
+}

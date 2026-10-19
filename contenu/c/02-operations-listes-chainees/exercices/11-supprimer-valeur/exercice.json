@@ -1,0 +1,10 @@
+{
+  "titre": "Supprimer une valeur",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Sépare les cas : liste vide, valeur dans le premier maillon (le début change), valeur plus loin.",
+    "Pour retirer un maillon au milieu, il faut le maillon d'avant : avance un pointeur `prev` tant que `prev->next` existe et ne contient pas la valeur.",
+    "Si `prev->next != NULL` à la fin : `Cell *cible = prev->next; prev->next = cible->next; free(cible);`"
+  ]
+}

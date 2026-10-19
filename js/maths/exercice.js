@@ -1,3 +1,4 @@
+import { avecFormules } from '../domaines.js';
 import { versLatex } from './expression.js';
 import { colorerCode, echapper, rendreLatex, rendreMarkdown, rendreMarkdownEnLigne } from '../outils.js';
 import { cleExercice, estReussi, lienExercice, voisins } from '../parcours.js';
@@ -21,13 +22,13 @@ function etoiles(difficulte) {
   return `<span class="difficulte" title="Difficulté ${difficulte} sur 3">${'●'.repeat(difficulte)}${'○'.repeat(3 - difficulte)}</span>`;
 }
 
-function champ(question, index, saisie) {
+function champ(question, index, saisie, rendu) {
   if (question.type === 'choix') {
     const options = question.choix
       .map((texte, position) => `
         <label class="option">
           <input type="radio" name="q${index}" value="${position}" ${String(saisie) === String(position) ? 'checked' : ''}>
-          <span>${rendreMarkdownEnLigne(texte)}</span>
+          <span>${rendreMarkdownEnLigne(texte, rendu)}</span>
         </label>`)
       .join('');
     return `<div class="options">${options}</div>`;
@@ -43,15 +44,15 @@ function champ(question, index, saisie) {
     <div class="apercu" data-apercu="${index}"></div>`;
 }
 
-function blocQuestion(question, index, total, saisie) {
+function blocQuestion(question, index, total, saisie, options) {
   const prefixe = total > 1 ? `<span class="lettre">${LETTRES[index]})</span> ` : '';
   const intitule = question.intitule || total > 1
-    ? `<div class="intitule">${prefixe}${rendreMarkdownEnLigne(question.intitule ?? '')}</div>`
+    ? `<div class="intitule">${prefixe}${rendreMarkdownEnLigne(question.intitule ?? '', options)}</div>`
     : '';
   return `
     <div class="question-maths" data-question="${index}">
       ${intitule}
-      ${champ(question, index, saisie)}
+      ${champ(question, index, saisie, options)}
       <div class="retour" data-retour="${index}"></div>
     </div>`;
 }
@@ -65,19 +66,21 @@ function lienVoisin(exercice, sens) {
 export function afficherExerciceMaths(ctx, chapitre, exercice) {
   const cle = cleExercice(chapitre.cle, exercice.id);
   const saisies = ctx.saisies(cle);
+  const affichage = ctx.affichage(cle);
   const indices = exercice.indices ?? [];
   const { precedent, suivant } = voisins(ctx.chapitres, chapitre.cle, exercice.id);
   let reussi = estReussi(ctx.progression, chapitre.cle, exercice.id);
   let indicesAffiches = 0;
+  const options = { formules: avecFormules(chapitre.domaine) };
 
   ctx.conteneur.innerHTML = `
     <section class="exercice-maths">
       <p class="fil">${echapper(chapitre.titre)}</p>
       <h1>${echapper(exercice.titre)}</h1>
       <div class="meta">${etoiles(exercice.difficulte)}<span class="badge-reussi" data-badge ${reussi ? '' : 'hidden'}>Réussi</span></div>
-      <div class="markdown enonce">${rendreMarkdown(exercice.enonce)}</div>
+      <div class="markdown enonce">${rendreMarkdown(exercice.enonce, options)}</div>
       <form class="questions" data-formulaire novalidate>
-        ${exercice.questions.map((question, index) => blocQuestion(question, index, exercice.questions.length, saisies[index])).join('')}
+        ${exercice.questions.map((question, index) => blocQuestion(question, index, exercice.questions.length, saisies[index], options)).join('')}
         <div class="barre-outils">
           <button type="submit" class="bouton principal">Vérifier <kbd>Entrée</kbd></button>
           <button type="button" class="bouton" data-action="indice" ${indices.length ? '' : 'hidden'}></button>
@@ -135,7 +138,7 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
     const zone = trouver(`[data-modele="${index}"]`);
     zone.innerHTML = `
       <div class="modele-titre">Réponse attendue</div>
-      <div class="markdown">${rendreMarkdown(exercice.questions[index].reponse)}</div>
+      <div class="markdown">${rendreMarkdown(exercice.questions[index].reponse, options)}</div>
       <div class="auto-evaluation">
         <span>Tu avais bon ?</span>
         <button type="button" class="bouton succes" data-evaluation="${index}" data-valeur="oui">Oui</button>
@@ -160,13 +163,13 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
     zoneResultat.hidden = false;
   }
 
-  function verifierQuestionAuto(index) {
-    if (!String(saisies[index] ?? '').trim()) {
+  function verifierQuestionAuto(index, reponses) {
+    if (!String(reponses[index] ?? '').trim()) {
       marquer(index, 'illisible', 'Écris d’abord ta réponse.');
       return 'vide';
     }
     montrerModele(index);
-    const evaluation = saisies[`evaluation-${index}`];
+    const evaluation = reponses[`evaluation-${index}`];
     if (evaluation === true) {
       marquer(index, 'juste', 'Tu as indiqué que tu avais bon.');
       return 'juste';
@@ -179,17 +182,17 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
     return 'attente';
   }
 
-  function verifier() {
+  function corriger(reponses) {
     let justes = 0;
     let enAttente = 0;
     exercice.questions.forEach((question, index) => {
       if (question.type === 'auto') {
-        const etat = verifierQuestionAuto(index);
+        const etat = verifierQuestionAuto(index, reponses);
         if (etat === 'juste') justes++;
         if (etat === 'attente') enAttente++;
         return;
       }
-      const resultat = verifierQuestion(question, saisies[index]);
+      const resultat = verifierQuestion(question, reponses[index]);
       if (resultat.juste) {
         justes++;
         marquer(index, 'juste', 'Juste !');
@@ -201,14 +204,27 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
         marquer(index, 'faux', 'Pas encore.');
       }
     });
+    return { justes, enAttente };
+  }
 
+  function verifier() {
+    const { justes, enAttente } = corriger(saisies);
     const total = exercice.questions.length;
     ctx.enregistrerEssai(cle, justes === total);
+    ctx.enregistrerAffichage(cle, { corrigees: { ...saisies } });
     if (justes === total) {
       reussi = true;
       trouver('[data-badge]').hidden = false;
     }
     afficherBilan(justes, total, enAttente);
+  }
+
+  function restaurerVerification(corrigees) {
+    const { justes, enAttente } = corriger(corrigees);
+    exercice.questions.forEach((_, index) => {
+      if (String(corrigees[index] ?? '') !== String(saisies[index] ?? '')) effacerMarque(index);
+    });
+    afficherBilan(justes, exercice.questions.length, enAttente);
   }
 
   function majBoutonIndice() {
@@ -220,21 +236,28 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
     const indice = indices[indicesAffiches];
     if (indice === undefined) return;
     indicesAffiches++;
-    trouver('[data-indices]').insertAdjacentHTML('beforeend', `<div class="indice"><p>${rendreMarkdownEnLigne(indice)}</p></div>`);
+    trouver('[data-indices]').insertAdjacentHTML('beforeend', `<div class="indice"><p>${rendreMarkdownEnLigne(indice, options)}</p></div>`);
+    ctx.enregistrerAffichage(cle, { indices: indicesAffiches });
     majBoutonIndice();
+  }
+
+  function montrerCorrection() {
+    zoneCorrection.innerHTML = `<h3>Correction</h3>${rendreMarkdown(exercice.correction, options)}`;
+    zoneCorrection.hidden = false;
+    boutonCorrection.textContent = 'Masquer la correction';
+    colorerCode(zoneCorrection);
   }
 
   function basculerCorrection() {
     if (!zoneCorrection.hidden) {
       zoneCorrection.hidden = true;
       boutonCorrection.textContent = 'Voir la correction';
+      ctx.enregistrerAffichage(cle, { correction: false });
       return;
     }
     if (!reussi && !confirm('Essaie encore un peu avant de regarder !\nAfficher quand même la correction ?')) return;
-    zoneCorrection.innerHTML = `<h3>Correction</h3>${rendreMarkdown(exercice.correction)}`;
-    zoneCorrection.hidden = false;
-    boutonCorrection.textContent = 'Masquer la correction';
-    colorerCode(zoneCorrection);
+    montrerCorrection();
+    ctx.enregistrerAffichage(cle, { correction: true });
   }
 
   formulaire.addEventListener('submit', (evenement) => {
@@ -280,4 +303,7 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
 
   exercice.questions.forEach((_, index) => majApercu(index));
   majBoutonIndice();
+  for (let i = 0; i < (affichage.indices ?? 0); i++) afficherIndice();
+  if (affichage.corrigees) restaurerVerification(affichage.corrigees);
+  if (affichage.correction) montrerCorrection();
 }

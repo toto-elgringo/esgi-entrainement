@@ -1,0 +1,10 @@
+{
+  "titre": "Le maillon en position i",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Avance un pointeur `cur` depuis `start` en comptant les pas.",
+    "Il faut avancer `position` fois, mais s'arrêter aussi si `cur` devient `NULL` (la liste est trop courte).",
+    "`while (cur != NULL && i < position) { cur = cur->next; i++; }` puis `return cur;`"
+  ]
+}

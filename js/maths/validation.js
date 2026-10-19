@@ -52,7 +52,7 @@ export function validerChapitre(meta, idsMatieres) {
   return problemes;
 }
 
-export function validerQuiz(quiz) {
+export function validerQuiz(quiz, { formules = true } = {}) {
   if (!Array.isArray(quiz)) return ['quiz.json doit contenir une liste de questions'];
   const problemes = [];
   quiz.forEach((question, index) => {
@@ -65,7 +65,7 @@ export function validerQuiz(quiz) {
     }
     if (!texteRempli(question.explication)) problemes.push(`${prefixe} : « explication » manquante`);
     const textes = [question.question, question.explication, ...(question.choix ?? [])];
-    if (!textesCorrects(textes)) problemes.push(`${prefixe} : formule cassée (« $ » non fermé ou « \\ » non doublé dans le JSON)`);
+    if (formules && !textesCorrects(textes)) problemes.push(`${prefixe} : formule cassée (« $ » non fermé ou « \\ » non doublé dans le JSON)`);
   });
   return problemes;
 }
@@ -124,7 +124,7 @@ function validerQuestion(question, prefixe) {
   return problemes;
 }
 
-export function validerExercices(exercices) {
+export function validerExercices(exercices, { formules = true } = {}) {
   if (!Array.isArray(exercices)) return ['exercices.json doit contenir une liste'];
   const problemes = [];
   const ids = new Set();
@@ -150,7 +150,7 @@ export function validerExercices(exercices) {
         textes.push(question.intitule ?? '', ...(question.choix ?? []), question.type === 'auto' ? question.reponse : '');
       });
     }
-    if (!textesCorrects(textes)) problemes.push(`${nom} : formule cassée (« $ » non fermé ou « \\ » non doublé dans le JSON)`);
+    if (formules && !textesCorrects(textes)) problemes.push(`${nom} : formule cassée (« $ » non fermé ou « \\ » non doublé dans le JSON)`);
   });
   return problemes;
 }

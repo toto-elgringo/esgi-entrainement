@@ -108,7 +108,7 @@ v.iter().skip(1).take(2)           // saute 1, garde 2 : 2, 3
 let v = vec![1, 2, 3, 4];
 let total: i32 = v.iter().sum();                        // 10
 let pairs: Vec<i32> = v.iter().filter(|x| **x % 2 == 0).copied().collect();   // [2, 4]
-let produit = v.iter().fold(1, |acc, x| acc * x);       // 24
+let nombre = v.iter().fold(0, |acc, x| acc * 10 + x);   // 1234
 ```
 
 > [!tip] Indiquer le type pour `collect` et `sum`

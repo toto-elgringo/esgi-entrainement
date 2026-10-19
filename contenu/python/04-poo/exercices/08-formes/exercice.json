@@ -1,0 +1,11 @@
+{
+  "titre": "Polymorphisme : des formes",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Chaque forme redéfinit `aire()`. Celle de `Forme` reste telle quelle (elle lève `NotImplementedError`).",
+    "`Carre` hérite de `Rectangle` : son initialiseur appelle `super().__init__(cote, cote)`, et il n'a même pas besoin de redéfinir `aire`.",
+    "`description` est écrite **une seule fois**, dans `Forme` : `type(self).__name__` donne le nom de la classe réelle, et `self.aire()` appelle la bonne version. `\"%s d'aire %.2f\" % (...)`.",
+    "`aire_totale(formes)` : `sum(f.aire() for f in formes)`."
+  ]
+}

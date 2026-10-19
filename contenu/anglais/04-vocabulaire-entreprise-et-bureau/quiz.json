@@ -1,0 +1,134 @@
+[
+  {
+    "question": "Que veut dire *subsidiary* ?",
+    "choix": [
+      "subvention",
+      "filiale",
+      "succursale",
+      "actionnaire"
+    ],
+    "reponse": 1,
+    "explication": "*Subsidiary* = filiale. Ne pas confondre avec *subsidy* (subvention) ni *branch* (agence, succursale)."
+  },
+  {
+    "question": "Que veut dire *merger* ?",
+    "choix": [
+      "fusion",
+      "rachat",
+      "faillite",
+      "marché"
+    ],
+    "reponse": 0,
+    "explication": "*Merger* = fusion de deux entreprises. *Takeover* = rachat, prise de contrôle."
+  },
+  {
+    "question": "*Premises* désigne...",
+    "choix": [
+      "les locaux d'une entreprise",
+      "les premiers clients",
+      "une promesse",
+      "un prix"
+    ],
+    "reponse": 0,
+    "explication": "*Premises* = locaux, bâtiment. Le mot est toujours au pluriel : *No smoking on the premises.*"
+  },
+  {
+    "question": "Que veut dire *executive* ?",
+    "choix": [
+      "exécutant",
+      "cadre",
+      "huissier",
+      "stagiaire"
+    ],
+    "reponse": 1,
+    "explication": "Faux ami : *an executive* est un cadre, un membre de la direction."
+  },
+  {
+    "question": "Une *cover letter*, c'est...",
+    "choix": [
+      "une lettre de motivation",
+      "une enveloppe",
+      "une lettre de licenciement",
+      "une couverture"
+    ],
+    "reponse": 0,
+    "explication": "On envoie un *résumé* (CV) et une *cover letter* (lettre de motivation)."
+  },
+  {
+    "question": "*Redundancy* (UK) signifie...",
+    "choix": [
+      "redondance",
+      "licenciement économique",
+      "démission",
+      "retraite"
+    ],
+    "reponse": 1,
+    "explication": "*Redundancy* = licenciement ; *to be made redundant* = être licencié."
+  },
+  {
+    "question": "*She is entitled to five weeks of holiday* veut dire...",
+    "choix": [
+      "Elle a droit à cinq semaines de congés",
+      "Elle s'intitule cinq semaines",
+      "Elle demande cinq semaines",
+      "Elle a pris cinq semaines"
+    ],
+    "reponse": 0,
+    "explication": "*Be entitled to* = avoir droit à."
+  },
+  {
+    "question": "Que veut dire *stationery* ?",
+    "choix": [
+      "stationnement",
+      "fournitures de bureau",
+      "gare",
+      "immobile"
+    ],
+    "reponse": 1,
+    "explication": "*Stationery* (avec un *e*) = papeterie, fournitures. *Stationary* (avec un *a*) = immobile."
+  },
+  {
+    "question": "Au téléphone, *The line is busy* veut dire...",
+    "choix": [
+      "La ligne est occupée",
+      "La ligne est coupée",
+      "Le patron est occupé",
+      "Restez en ligne"
+    ],
+    "reponse": 0,
+    "explication": "*Busy* = occupé. *Please hold* = restez en ligne."
+  },
+  {
+    "question": "*Please find enclosed a copy of the contract.* Que veut dire *enclosed* ?",
+    "choix": [
+      "fermé",
+      "ci-joint",
+      "envoyé",
+      "signé"
+    ],
+    "reponse": 1,
+    "explication": "*Enclose* = joindre (à une lettre). *Please find enclosed* = veuillez trouver ci-joint."
+  },
+  {
+    "question": "*To step down as CEO*, c'est...",
+    "choix": [
+      "être promu PDG",
+      "démissionner du poste de PDG",
+      "descendre voir le PDG",
+      "remplacer le PDG"
+    ],
+    "reponse": 1,
+    "explication": "*Step down as* = quitter, démissionner d'un poste."
+  },
+  {
+    "question": "Quel mot désigne la **charge de travail** ?",
+    "choix": [
+      "workshop",
+      "workload",
+      "worktime",
+      "workforce"
+    ],
+    "reponse": 1,
+    "explication": "*Workload* = charge de travail. *Workshop* = atelier, *workforce* = main-d'oeuvre."
+  }
+]

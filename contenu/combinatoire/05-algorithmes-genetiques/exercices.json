@@ -1,0 +1,663 @@
+[
+  {
+    "id": "vocabulaire-ag",
+    "titre": "Le vocabulaire des algorithmes génétiques",
+    "difficulte": 1,
+    "enonce": "Donne le mot du vocabulaire des algorithmes génétiques qui correspond à chaque définition (un seul mot).",
+    "questions": [
+      {
+        "intitule": "Une solution candidate.",
+        "type": "texte",
+        "reponse": [
+          "individu",
+          "un individu"
+        ],
+        "acceptes": [
+          "Individu",
+          "un individu"
+        ],
+        "refuses": [
+          "population"
+        ]
+      },
+      {
+        "intitule": "Une itération de la boucle principale.",
+        "type": "texte",
+        "reponse": [
+          "génération",
+          "une génération"
+        ],
+        "acceptes": [
+          "Génération",
+          "une génération"
+        ],
+        "refuses": [
+          "mutation"
+        ]
+      },
+      {
+        "intitule": "La qualité d'un individu, à maximiser.",
+        "type": "texte",
+        "reponse": [
+          "fitness",
+          "la fitness"
+        ],
+        "acceptes": [
+          "Fitness",
+          "la fitness"
+        ],
+        "refuses": [
+          "cout"
+        ]
+      },
+      {
+        "intitule": "La perturbation rare d'un individu pour garder de la diversité.",
+        "type": "texte",
+        "reponse": [
+          "mutation",
+          "une mutation"
+        ],
+        "acceptes": [
+          "Mutation",
+          "une mutation"
+        ],
+        "refuses": [
+          "croisement"
+        ]
+      },
+      {
+        "intitule": "La combinaison de deux parents en un ou deux enfants.",
+        "type": "texte",
+        "reponse": [
+          "croisement",
+          "un croisement",
+          "crossover"
+        ],
+        "acceptes": [
+          "Croisement",
+          "un croisement",
+          "crossover"
+        ],
+        "refuses": [
+          "mutation"
+        ]
+      }
+    ],
+    "indices": [
+      "Pense à la biologie : organisme, naissance, reproduction, erreur de copie.",
+      "Les cinq mots : individu, génération, fitness, mutation, croisement."
+    ],
+    "correction": "- Solution candidate : **individu** (ses **gènes** sont son codage).\n- Itération : **génération**.\n- Qualité à maximiser : **fitness**.\n- Perturbation rare : **mutation**.\n- Combinaison de deux parents : **croisement**."
+  },
+  {
+    "id": "roulette-du-cours",
+    "titre": "La roulette du cours",
+    "difficulte": 1,
+    "enonce": "Quatre tournées de longueurs 100, 120, 140 et 160. Fitness $f = 1000 / L$. Sélection par roulette : $P(i) = \\dfrac{f_i}{\\sum_j f_j}$. Donne les probabilités **en pourcentage** (sans le symbole %), arrondies au dixième.",
+    "questions": [
+      {
+        "intitule": "Somme des fitness (arrondie au centième).",
+        "type": "nombre",
+        "reponse": "1000/100+1000/120+1000/140+1000/160",
+        "tolerance": 0.01,
+        "acceptes": [
+          "31.73",
+          "31,73"
+        ],
+        "refuses": [
+          "4",
+          "520"
+        ]
+      },
+      {
+        "intitule": "Probabilité de la tournée de longueur 100.",
+        "type": "nombre",
+        "reponse": 31.5,
+        "tolerance": 0.1,
+        "acceptes": [
+          "31,5"
+        ],
+        "refuses": [
+          "25",
+          "10"
+        ]
+      },
+      {
+        "intitule": "Probabilité de la tournée de longueur 120.",
+        "type": "nombre",
+        "reponse": 26.3,
+        "tolerance": 0.1,
+        "refuses": [
+          "25"
+        ]
+      },
+      {
+        "intitule": "Probabilité de la tournée de longueur 160.",
+        "type": "nombre",
+        "reponse": 19.7,
+        "tolerance": 0.1,
+        "refuses": [
+          "0",
+          "25"
+        ]
+      }
+    ],
+    "indices": [
+      "Fitness : $10$ ; $8{,}33$ ; $7{,}14$ ; $6{,}25$.",
+      "Probabilité de la première : $\\dfrac{10}{31{,}73}$."
+    ],
+    "correction": "- Fitness : $1000/100 = 10$, $1000/120 \\approx 8{,}33$, $1000/140 \\approx 7{,}14$, $1000/160 = 6{,}25$. Somme $\\approx 31{,}73$.\n- Probabilités : $\\dfrac{10}{31{,}73} \\approx 31{,}5$ %, $\\approx 26{,}3$ %, $\\approx 22{,}5$ %, $\\approx 19{,}7$ %.\n- La meilleure tournée est favorite, mais la pire garde presque une chance sur cinq : la diversité est préservée."
+  },
+  {
+    "id": "roulette-plus-dure",
+    "titre": "Roulette biaisée, mais vivante",
+    "difficulte": 2,
+    "enonce": "Mêmes tournées (longueurs 100, 120, 140, 160), mais avec la fitness $f = \\dfrac{10^4}{L^2}$, qui pénalise plus durement les tournées longues. Donne les probabilités de la roulette **en pourcentage**, arrondies au dixième.",
+    "questions": [
+      {
+        "intitule": "Probabilité de la tournée de longueur 100.",
+        "type": "nombre",
+        "reponse": 38.5,
+        "tolerance": 0.1,
+        "acceptes": [
+          "38,5"
+        ],
+        "refuses": [
+          "31.5"
+        ]
+      },
+      {
+        "intitule": "Probabilité de la tournée de longueur 120.",
+        "type": "nombre",
+        "reponse": 26.8,
+        "tolerance": 0.1,
+        "refuses": [
+          "26.3"
+        ]
+      },
+      {
+        "intitule": "Probabilité de la tournée de longueur 140.",
+        "type": "nombre",
+        "reponse": 19.7,
+        "tolerance": 0.1,
+        "refuses": [
+          "22.5"
+        ]
+      },
+      {
+        "intitule": "Probabilité de la tournée de longueur 160.",
+        "type": "nombre",
+        "reponse": 15.1,
+        "tolerance": 0.1,
+        "refuses": [
+          "19.7"
+        ]
+      },
+      {
+        "intitule": "Par rapport à $f = 1000/L$, la pression de sélection a…",
+        "type": "choix",
+        "choix": [
+          "diminué",
+          "pas changé",
+          "augmenté"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Dans une population de 4, probabilité (en %) que la meilleure gagne un tournoi à $k = 2$.",
+        "type": "nombre",
+        "reponse": "100*(1-(3/4)^2)",
+        "tolerance": 0.3,
+        "acceptes": [
+          "43.75",
+          "44"
+        ],
+        "refuses": [
+          "50",
+          "25"
+        ]
+      },
+      {
+        "intitule": "Pourquoi ne pas sélectionner les deux meilleures tournées à coup sûr ?",
+        "type": "auto",
+        "reponse": "Parce que la diversité s'effondrerait : la population **convergerait prématurément** vers un optimum local, le même écueil que la descente pure, mais à l'échelle d'une population."
+      }
+    ],
+    "indices": [
+      "Fitness : $1$ ; $0{,}6944$ ; $0{,}5102$ ; $0{,}3906$. Somme $\\approx 2{,}5952$.",
+      "Tournoi : la meilleure gagne si elle est tirée au moins une fois : $1 - (3/4)^2$."
+    ],
+    "correction": "- Fitness : $10^4/100^2 = 1$ ; $10^4/120^2 \\approx 0{,}6944$ ; $10^4/140^2 \\approx 0{,}5102$ ; $10^4/160^2 \\approx 0{,}3906$. Total $\\approx 2{,}5952$.\n- Probabilités : $\\approx 38{,}5$ % ; $26{,}8$ % ; $19{,}7$ % ; $15{,}1$ % (contre 31,5 / 26,3 / 22,5 / 19,7 % avec $1000/L$).\n- La pression a **augmenté** : la meilleure gagne 7 points, la pire en perd 5. Le choix de la fitness est un réglage de pression, comme le $k$ du tournoi.\n- Tournoi à $k = 2$ dans une population de 4 : $1 - (3/4)^2 = 43{,}75$ %, un peu plus dur encore.\n- Prendre les deux meilleures à coup sûr tuerait la diversité : convergence prématurée."
+  },
+  {
+    "id": "probabilites-du-tournoi",
+    "titre": "Les probabilités du tournoi",
+    "difficulte": 2,
+    "enonce": "Dans un tournoi, on tire $k$ individus **avec remise** et on garde le meilleur. Dans une population de $N$ individus, le meilleur gagne avec la probabilité $1 - \\left(\\dfrac{N-1}{N}\\right)^k$. Donne les résultats **en pourcentage**, arrondis au dixième.",
+    "questions": [
+      {
+        "intitule": "$N = 10$, $k = 2$.",
+        "type": "nombre",
+        "reponse": 19,
+        "tolerance": 0.1,
+        "refuses": [
+          "20",
+          "10"
+        ]
+      },
+      {
+        "intitule": "$N = 10$, $k = 4$.",
+        "type": "nombre",
+        "reponse": "100*(1-0.9^4)",
+        "tolerance": 0.1,
+        "acceptes": [
+          "34.4",
+          "34,4"
+        ],
+        "refuses": [
+          "40"
+        ]
+      },
+      {
+        "intitule": "$N = 10$, $k = 8$.",
+        "type": "nombre",
+        "reponse": "100*(1-0.9^8)",
+        "tolerance": 0.1,
+        "acceptes": [
+          "57"
+        ],
+        "refuses": [
+          "80"
+        ]
+      },
+      {
+        "intitule": "$N = 4$, $k = 3$.",
+        "type": "nombre",
+        "reponse": "100*(1-0.75^3)",
+        "tolerance": 0.1,
+        "acceptes": [
+          "57.8",
+          "57,8"
+        ],
+        "refuses": [
+          "75",
+          "42.2"
+        ]
+      },
+      {
+        "intitule": "Quel $k$ est le compromis habituel ?",
+        "type": "choix",
+        "choix": [
+          "2 ou 3",
+          "1",
+          "Égal à la taille de la population"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Le meilleur perd si on ne le tire jamais : probabilité $\\left(\\frac{N-1}{N}\\right)^k$.",
+      "$0{,}9^4 \\approx 0{,}656$ et $0{,}9^8 \\approx 0{,}430$."
+    ],
+    "correction": "- $N = 10$, $k = 2$ : $1 - 0{,}9^2 = 0{,}19$, soit 19 %.\n- $k = 4$ : $1 - 0{,}9^4 \\approx 0{,}344$, soit 34,4 %.\n- $k = 8$ : $1 - 0{,}9^8 \\approx 0{,}570$, soit 57,0 %.\n- $N = 4$, $k = 3$ : $1 - 0{,}75^3 \\approx 0{,}578$, soit 57,8 %.\n- $k = 1$ ne met aucune pression, $k$ très grand revient à toujours choisir le meilleur ; $k = 2$ ou $3$ est le compromis habituel."
+  },
+  {
+    "id": "croisement-un-point",
+    "titre": "Le croisement un point",
+    "difficulte": 1,
+    "enonce": "Codage binaire. Parents : `11010010` et `01101100`. On coupe les deux chromosomes après le **4ᵉ** bit et on échange les fins. Écris chaque enfant comme une suite de 8 chiffres (par exemple `10101010`).",
+    "questions": [
+      {
+        "intitule": "Enfant 1 (début du parent 1, fin du parent 2).",
+        "type": "texte",
+        "reponse": [
+          "11011100"
+        ],
+        "refuses": [
+          "11010010",
+          "01100010"
+        ]
+      },
+      {
+        "intitule": "Enfant 2 (début du parent 2, fin du parent 1).",
+        "type": "texte",
+        "reponse": [
+          "01100010"
+        ],
+        "refuses": [
+          "01101100",
+          "11011100"
+        ]
+      },
+      {
+        "intitule": "Peut-on utiliser ce croisement sur des tournées codées par permutation ?",
+        "type": "choix",
+        "choix": [
+          "Non, il créerait des doublons",
+          "Oui, sans problème"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Parent 1 = `1101` | `0010`, parent 2 = `0110` | `1100`.",
+      "Enfant 1 = `1101` + `1100`."
+    ],
+    "correction": "- Parent 1 : `1101|0010`, parent 2 : `0110|1100`.\n- Enfant 1 : `1101` + `1100` = `11011100`. Enfant 2 : `0110` + `0010` = `01100010`.\n- Sur une permutation, couper-coller ferait apparaître une ville deux fois et en oublierait une autre : il faut un opérateur adapté (OX)."
+  },
+  {
+    "id": "croisement-ox",
+    "titre": "Le croisement OX",
+    "difficulte": 2,
+    "enonce": "Croisement OX (variante du cours) : on recopie le segment du parent 1, puis on complète avec les villes manquantes **dans l'ordre du parent 2 lu depuis le début**, en remplissant les positions qui suivent le segment puis en revenant au début. Écris l'enfant sous la forme `(4, 8, 6, …)`.",
+    "questions": [
+      {
+        "intitule": "Parent 1 = `4 2 6 1 5 3 8 7`, parent 2 = `1 3 5 7 2 4 6 8`, segment = positions 3 à 5. Enfant ?",
+        "type": "vecteur",
+        "reponse": [
+          4,
+          8,
+          6,
+          1,
+          5,
+          3,
+          7,
+          2
+        ],
+        "acceptes": [
+          "4, 8, 6, 1, 5, 3, 7, 2",
+          "(4;8;6;1;5;3;7;2)"
+        ],
+        "refuses": [
+          "(4, 2, 6, 1, 5, 3, 8, 7)",
+          "(3, 7, 6, 1, 5, 2, 4, 8)"
+        ]
+      },
+      {
+        "intitule": "Parent 1 = `1 2 3 4 5 6 7 8`, parent 2 = `8 7 6 5 4 3 2 1`, segment = positions 3 à 6. Enfant ?",
+        "type": "vecteur",
+        "reponse": [
+          2,
+          1,
+          3,
+          4,
+          5,
+          6,
+          8,
+          7
+        ],
+        "acceptes": [
+          "2, 1, 3, 4, 5, 6, 8, 7"
+        ],
+        "refuses": [
+          "(8, 7, 3, 4, 5, 6, 2, 1)",
+          "(1, 2, 3, 4, 5, 6, 7, 8)"
+        ]
+      },
+      {
+        "intitule": "L'enfant d'un croisement OX est…",
+        "type": "choix",
+        "choix": [
+          "toujours une permutation valide (chaque ville une fois)",
+          "parfois une tournée avec doublons",
+          "toujours identique au parent 1"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Premier cas : le segment est `6 1 5`. Dans le parent 2, en sautant 6, 1 et 5, il reste `3 7 2 4 8`.",
+      "On place `3 7 2` en positions 6, 7, 8, puis `4 8` en positions 1 et 2."
+    ],
+    "correction": "**Premier cas.** Segment recopié : `_ _ 6 1 5 _ _ _`. Parent 2 lu depuis le début en sautant 6, 1, 5 : `3 7 2 4 8`. On remplit les positions 6, 7, 8 (`3 7 2`) puis 1, 2 (`4 8`) : enfant **`4 8 6 1 5 3 7 2`**.\n\n**Second cas.** Segment : `_ _ 3 4 5 6 _ _`. Parent 2 en sautant 3, 4, 5, 6 : `8 7 2 1`. Positions 7, 8 : `8 7` ; positions 1, 2 : `2 1`. Enfant **`2 1 3 4 5 6 8 7`**.\n\nL'enfant hérite d'un segment du parent 1 et de l'**ordre relatif** des autres villes du parent 2, sans jamais créer de doublon."
+  },
+  {
+    "id": "mutations",
+    "titre": "Les mutations",
+    "difficulte": 1,
+    "enonce": "Une mutation est une petite perturbation appliquée rarement.",
+    "questions": [
+      {
+        "intitule": "On échange les positions 2 et 7 de la tournée `4 8 6 1 5 3 7 2`. Résultat ? (écris `(4, …)`)",
+        "type": "vecteur",
+        "reponse": [
+          4,
+          7,
+          6,
+          1,
+          5,
+          3,
+          8,
+          2
+        ],
+        "acceptes": [
+          "4, 7, 6, 1, 5, 3, 8, 2"
+        ],
+        "refuses": [
+          "(4, 8, 6, 1, 5, 3, 7, 2)",
+          "(8, 4, 6, 1, 5, 3, 7, 2)"
+        ]
+      },
+      {
+        "intitule": "On inverse le 3ᵉ bit du chromosome `10110`. Résultat ?",
+        "type": "texte",
+        "reponse": [
+          "10010"
+        ],
+        "refuses": [
+          "10110",
+          "10111"
+        ]
+      },
+      {
+        "intitule": "Avec $p_m = 0{,}01$, combien d'individus mutent en moyenne dans une population de 200 ?",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": [
+          "20",
+          "0.01"
+        ]
+      },
+      {
+        "intitule": "Le rôle principal de la mutation est…",
+        "type": "choix",
+        "choix": [
+          "d'améliorer directement le meilleur individu",
+          "de choisir les parents",
+          "de maintenir la diversité et réintroduire des gènes perdus"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "En position 2 il y a 8, en position 7 il y a 7 : on les échange.",
+      "Inverser un bit : 0 devient 1, 1 devient 0."
+    ],
+    "correction": "- Échange des positions 2 (ville 8) et 7 (ville 7) : `4 7 6 1 5 3 8 2`. C'est toujours une permutation valide.\n- `10110` : le 3ᵉ bit vaut 1, il devient 0 : `10010`.\n- $200 \\times 0{,}01 = 2$ individus en moyenne.\n- La mutation ne cherche pas à améliorer directement : elle **maintient la diversité**."
+  },
+  {
+    "id": "fitness-c-max",
+    "titre": "Une autre fitness : c_max − c",
+    "difficulte": 2,
+    "enonce": "Quatre tournées de coûts 100, 120, 140 et 160. On prend cette fois la fitness $f = c_{\\max} - c$, où $c_{\\max} = 160$ est le plus grand coût de la population. Probabilités de la roulette **en pourcentage**, arrondies au dixième.",
+    "questions": [
+      {
+        "intitule": "Fitness de la tournée de coût 100.",
+        "type": "nombre",
+        "reponse": 60,
+        "refuses": [
+          "100",
+          "0.01"
+        ]
+      },
+      {
+        "intitule": "Probabilité de sélection de la tournée de coût 100.",
+        "type": "nombre",
+        "reponse": 50,
+        "tolerance": 0.1,
+        "refuses": [
+          "31.5",
+          "60"
+        ]
+      },
+      {
+        "intitule": "Probabilité de sélection de la tournée de coût 140.",
+        "type": "nombre",
+        "reponse": "100*20/120",
+        "tolerance": 0.1,
+        "acceptes": [
+          "16.7",
+          "16,7"
+        ],
+        "refuses": [
+          "22.5",
+          "20"
+        ]
+      },
+      {
+        "intitule": "Probabilité de sélection de la tournée de coût 160.",
+        "type": "nombre",
+        "reponse": 0,
+        "tolerance": 0.1,
+        "refuses": [
+          "19.7",
+          "25"
+        ]
+      },
+      {
+        "intitule": "Quel est le défaut de cette fitness ici ?",
+        "type": "choix",
+        "choix": [
+          "Elle favorise la pire tournée",
+          "Elle ne change rien",
+          "La pire tournée n'a plus aucune chance : la pression est plus forte"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Fitness : $160 - 100 = 60$, $160 - 120 = 40$, $160 - 140 = 20$, $160 - 160 = 0$.",
+      "Somme des fitness : $120$."
+    ],
+    "correction": "- Fitness : 60, 40, 20, 0 ; somme 120.\n- Probabilités : $60/120 = 50$ %, $40/120 \\approx 33{,}3$ %, $20/120 \\approx 16{,}7$ %, $0$ %.\n- La pire tournée n'est **jamais** sélectionnée : la pression est bien plus forte qu'avec $1000/L$ (où elle gardait 19,7 %). La forme de la fitness change la pression de sélection."
+  },
+  {
+    "id": "contraintes-sac-a-dos",
+    "titre": "Un AG pour le sac à dos",
+    "difficulte": 2,
+    "enonce": "Objets (poids ; valeur) : A (4 ; 10), B (5 ; 13), C (7 ; 20), D (3 ; 6), E (6 ; 22). Capacité 15 kg. Un individu est un vecteur de 5 bits dans l'ordre A, B, C, D, E (`1` = objet pris).",
+    "questions": [
+      {
+        "intitule": "Poids de l'individu `10101`.",
+        "type": "nombre",
+        "reponse": 17,
+        "refuses": [
+          "52",
+          "15"
+        ]
+      },
+      {
+        "intitule": "L'individu `10101` est-il réalisable ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "On **pénalise** : fitness = valeur − 10 × (kg en trop). Fitness de `10101` ?",
+        "type": "nombre",
+        "reponse": 32,
+        "refuses": [
+          "52",
+          "42"
+        ]
+      },
+      {
+        "intitule": "On **répare** `10101` en retirant l'objet C. Valeur de l'individu obtenu ?",
+        "type": "nombre",
+        "reponse": 32,
+        "refuses": [
+          "52",
+          "42"
+        ]
+      },
+      {
+        "intitule": "Valeur de l'individu `11001`.",
+        "type": "nombre",
+        "reponse": 45,
+        "refuses": [
+          "35",
+          "42"
+        ]
+      }
+    ],
+    "indices": [
+      "`10101` = A, C, E.",
+      "Poids $4 + 7 + 6 = 17$ : 2 kg de trop."
+    ],
+    "correction": "- `10101` = A + C + E : poids $4 + 7 + 6 = 17 > 15$, **irréalisable** ; valeur $10 + 20 + 22 = 52$.\n- Pénalité : $52 - 10 \\times 2 = 32$. L'individu reste dans la population mais il est désavantagé.\n- Réparation : sans C, il reste A + E = 10 kg pour 32 euros, réalisable.\n- `11001` = A + B + E : 15 kg, **45** euros, l'optimum du chapitre 1."
+  },
+  {
+    "id": "derive-ou-convergence",
+    "titre": "Dérive génétique ou convergence prématurée ?",
+    "difficulte": 2,
+    "enonce": "Pour chaque situation, identifie le phénomène ou le remède.",
+    "questions": [
+      {
+        "intitule": "Une population de 8 individus, sélection par roulette douce : au bout de quelques générations, des gènes utiles ont disparu par hasard.",
+        "type": "choix",
+        "choix": [
+          "Dérive génétique",
+          "Convergence prématurée"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Une population de 200 individus, mais on ne garde que les 5 % meilleurs comme parents : tout le monde ressemble vite au meilleur.",
+        "type": "choix",
+        "choix": [
+          "Dérive génétique",
+          "Convergence prématurée"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Remède à la dérive génétique ?",
+        "type": "choix",
+        "choix": [
+          "Supprimer les mutations",
+          "Augmenter la taille de la population",
+          "Garder seulement le meilleur"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Remède à la convergence prématurée ?",
+        "type": "choix",
+        "choix": [
+          "Garder les 1 % meilleurs",
+          "Réduire la population",
+          "Adoucir la sélection (roulette, tournoi avec petit $k$)"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "On veut ne jamais perdre le meilleur individu sans tuer la diversité. On utilise…",
+        "type": "choix",
+        "choix": [
+          "l'élitisme (recopier quelques meilleurs)",
+          "la troncature aux N % meilleurs",
+          "une mutation de 50 %"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Dérive = hasard (petite population). Convergence prématurée = sélection trop dure.",
+      "Les deux finissent en « armée de clones », mais on ne les soigne pas de la même façon."
+    ],
+    "correction": "- Petite population, gènes perdus par hasard : **dérive génétique**. Remède : une population plus **grande**.\n- Troncature aux 5 % meilleurs : **convergence prématurée**. Remède : une sélection plus **douce** (roulette, tournoi).\n- L'**élitisme** protège le meilleur pendant que le reste de la population continue d'explorer."
+  }
+]

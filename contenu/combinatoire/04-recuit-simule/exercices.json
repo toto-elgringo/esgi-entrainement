@@ -1,0 +1,509 @@
+[
+  {
+    "id": "probabilite-d-acceptation",
+    "titre": "Calculer une probabilité d'acceptation",
+    "difficulte": 1,
+    "enonce": "Au recuit simulé, une dégradation $\\Delta E > 0$ est acceptée avec la probabilité $P = e^{-\\Delta E/T}$. Donne chaque probabilité arrondie au millième (tu peux écrire `e^(-1)`).",
+    "questions": [
+      {
+        "intitule": "$\\Delta E = 10$ et $T = 10$.",
+        "type": "nombre",
+        "reponse": "e^(-1)",
+        "tolerance": 0.001,
+        "acceptes": [
+          "0.368",
+          "0,368",
+          "exp(-1)"
+        ],
+        "refuses": [
+          "1",
+          "0.1",
+          "e^(-10)"
+        ]
+      },
+      {
+        "intitule": "$\\Delta E = 5$ et $T = 50$.",
+        "type": "nombre",
+        "reponse": "e^(-0.1)",
+        "tolerance": 0.001,
+        "acceptes": [
+          "0.905"
+        ],
+        "refuses": [
+          "0.1",
+          "0.5"
+        ]
+      },
+      {
+        "intitule": "$\\Delta E = 50$ et $T = 100$.",
+        "type": "nombre",
+        "reponse": "e^(-0.5)",
+        "tolerance": 0.001,
+        "acceptes": [
+          "0.607"
+        ],
+        "refuses": [
+          "0.5"
+        ]
+      },
+      {
+        "intitule": "$\\Delta E = 5$ et $T = 1$.",
+        "type": "nombre",
+        "reponse": "e^(-5)",
+        "tolerance": 0.001,
+        "acceptes": [
+          "0.007",
+          "0.0067"
+        ],
+        "refuses": [
+          "0.2"
+        ]
+      }
+    ],
+    "indices": [
+      "Calcule d'abord le rapport $\\dfrac{\\Delta E}{T}$.",
+      "$e^{-1} \\approx 0{,}368$, $e^{-0{,}1} \\approx 0{,}905$, $e^{-0{,}5} \\approx 0{,}607$."
+    ],
+    "correction": "- $\\Delta E/T = 1$ : $P = e^{-1} \\approx 0{,}368$.\n- $\\Delta E/T = 0{,}1$ : $P = e^{-0{,}1} \\approx 0{,}905$ (il fait chaud, la petite dégradation passe presque toujours).\n- $\\Delta E/T = 0{,}5$ : $P = e^{-0{,}5} \\approx 0{,}607$.\n- $\\Delta E/T = 5$ : $P = e^{-5} \\approx 0{,}007$ (il fait froid : 7 fois sur 1 000).\n\nTout ne dépend que du rapport $\\Delta E / T$."
+  },
+  {
+    "id": "accepter-ou-refuser",
+    "titre": "Accepter ou refuser ?",
+    "difficulte": 2,
+    "enonce": "Un voisin dégrade l'erreur de $\\Delta E = 12$. On tire $r = 0{,}30$ dans $[0, 1[$. On donne $e^{-1{,}2} \\approx 0{,}301$ et $e^{-6} \\approx 0{,}0025$.",
+    "questions": [
+      {
+        "intitule": "Probabilité d'acceptation à $T = 10$ (arrondie au millième).",
+        "type": "nombre",
+        "reponse": "e^(-1.2)",
+        "tolerance": 0.001,
+        "acceptes": [
+          "0.301",
+          "0,301"
+        ],
+        "refuses": [
+          "0.3",
+          "1.2"
+        ]
+      },
+      {
+        "intitule": "Accepte-t-on le voisin à $T = 10$ ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Probabilité d'acceptation à $T = 2$ (arrondie au dix-millième).",
+        "type": "nombre",
+        "reponse": "e^(-6)",
+        "tolerance": 0.0001,
+        "acceptes": [
+          "0.0025",
+          "0,0025"
+        ],
+        "refuses": [
+          "0.3",
+          "6"
+        ]
+      },
+      {
+        "intitule": "Accepte-t-on le voisin à $T = 2$ ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Quelle leçon en tires-tu sur le rôle de $T$ ?",
+        "type": "auto",
+        "reponse": "À température élevée, le recuit **explore** : les dégradations passent. À température basse, il **exploite** : tout est refusé, il se comporte comme une descente. C'est le refroidissement qui transforme l'explorateur en descendeur."
+      }
+    ],
+    "indices": [
+      "On accepte si $r < e^{-\\Delta E/T}$.",
+      "À $T = 10$ : $\\Delta E/T = 1{,}2$. À $T = 2$ : $\\Delta E/T = 6$."
+    ],
+    "correction": "- À $T = 10$ : $P = e^{-12/10} = e^{-1{,}2} \\approx 0{,}301$. Comme $r = 0{,}30 < 0{,}301$, on **accepte** (de justesse) : la recherche peut encore remonter une pente.\n- À $T = 2$ : $P = e^{-6} \\approx 0{,}0025 < 0{,}30$ : on **refuse**, la recherche est presque gelée.\n- Leçon : chaud = exploration, froid = exploitation. Le refroidissement fait passer de l'un à l'autre."
+  },
+  {
+    "id": "tirages-au-hasard",
+    "titre": "Plusieurs tirages",
+    "difficulte": 2,
+    "enonce": "Solution courante d'erreur 80, température $T = 40$. On propose successivement trois voisins (indépendamment, toujours depuis l'erreur 80). On donne $e^{-0{,}5} \\approx 0{,}607$.",
+    "questions": [
+      {
+        "intitule": "Voisin d'erreur 100, tirage $r = 0{,}55$ : accepté ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Voisin d'erreur 100, tirage $r = 0{,}75$ : accepté ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Voisin d'erreur 77, tirage $r = 0{,}99$ : accepté ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Pour le voisin d'erreur 100, quelle température donnerait exactement $P = e^{-1}$ ?",
+        "type": "nombre",
+        "reponse": 20,
+        "refuses": [
+          "40",
+          "100"
+        ]
+      }
+    ],
+    "indices": [
+      "Erreur 100 depuis 80 : $\\Delta E = 20$, donc $P = e^{-20/40} = e^{-0{,}5}$.",
+      "Erreur 77 : $\\Delta E = -3 \\le 0$, c'est une amélioration."
+    ],
+    "correction": "- Voisin d'erreur 100 : $\\Delta E = 20$, $P = e^{-0{,}5} \\approx 0{,}607$. Avec $r = 0{,}55 < 0{,}607$ : **accepté** ; avec $r = 0{,}75 > 0{,}607$ : **refusé**.\n- Voisin d'erreur 77 : $\\Delta E = -3$, $P = e^{3/40} > 1$ : **toujours accepté**, quel que soit $r$.\n- $P = e^{-1}$ quand $\\Delta E / T = 1$, donc $T = \\Delta E = 20$."
+  },
+  {
+    "id": "refroidissement-geometrique",
+    "titre": "Le refroidissement géométrique",
+    "difficulte": 1,
+    "enonce": "La température suit $T(k) = T_0 \\times \\alpha^k$ après $k$ paliers. Arrondis au centième.",
+    "questions": [
+      {
+        "intitule": "$T_0 = 100$, $\\alpha = 0{,}95$ : température après 10 paliers.",
+        "type": "nombre",
+        "reponse": "100*0.95^10",
+        "tolerance": 0.01,
+        "acceptes": [
+          "59.87",
+          "59,87"
+        ],
+        "refuses": [
+          "50",
+          "95"
+        ]
+      },
+      {
+        "intitule": "Même réglage, après 50 paliers.",
+        "type": "nombre",
+        "reponse": "100*0.95^50",
+        "tolerance": 0.01,
+        "acceptes": [
+          "7.69"
+        ],
+        "refuses": [
+          "2.5",
+          "47.5"
+        ]
+      },
+      {
+        "intitule": "$T_0 = 100$, $\\alpha = 0{,}99$ : après 100 paliers.",
+        "type": "nombre",
+        "reponse": "100*0.99^100",
+        "tolerance": 0.01,
+        "acceptes": [
+          "36.6"
+        ],
+        "refuses": [
+          "1",
+          "99"
+        ]
+      },
+      {
+        "intitule": "Lequel refroidit le plus lentement ?",
+        "type": "choix",
+        "choix": [
+          "$\\alpha = 0{,}95$",
+          "$\\alpha = 0{,}93$",
+          "$\\alpha = 0{,}999$"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Calcule $\\alpha^k$ à la calculatrice, puis multiplie par $T_0$.",
+      "Plus $\\alpha$ est proche de 1, moins $T$ baisse à chaque palier."
+    ],
+    "correction": "- $100 \\times 0{,}95^{10} \\approx 59{,}87$.\n- $100 \\times 0{,}95^{50} \\approx 7{,}69$.\n- $100 \\times 0{,}99^{100} \\approx 36{,}60$.\n- $\\alpha = 0{,}999$ refroidit le plus lentement : on ne perd que 0,1 % de température par palier. $\\alpha = 0{,}93$ refroidit trop vite (trempe)."
+  },
+  {
+    "id": "nombre-de-paliers",
+    "titre": "Combien de paliers ?",
+    "difficulte": 2,
+    "enonce": "Refroidissement géométrique $T(k) = T_0 \\alpha^k$. On cherche le plus petit nombre de paliers $k$ tel que $T(k) \\le T_f$, c'est-à-dire $k \\ge \\dfrac{\\ln(T_f / T_0)}{\\ln \\alpha}$.",
+    "questions": [
+      {
+        "intitule": "De $T_0 = 100$ à $T_f = 1$ avec $\\alpha = 0{,}95$.",
+        "type": "nombre",
+        "reponse": 90,
+        "refuses": [
+          "89",
+          "100",
+          "5"
+        ]
+      },
+      {
+        "intitule": "De $T_0 = 100$ à $T_f = 0{,}01$ avec $\\alpha = 0{,}995$.",
+        "type": "nombre",
+        "reponse": 1838,
+        "acceptes": [
+          "1 838"
+        ],
+        "refuses": [
+          "1837",
+          "20000"
+        ]
+      },
+      {
+        "intitule": "Si on garde $T_0$ et $T_f$ mais qu'on passe de $\\alpha = 0{,}95$ à $\\alpha = 0{,}99$, le nombre de paliers…",
+        "type": "choix",
+        "choix": [
+          "ne change pas",
+          "augmente (environ 5 fois)",
+          "diminue"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "$\\dfrac{\\ln(0{,}01)}{\\ln(0{,}95)} \\approx 89{,}8$ : arrondis à l'entier **supérieur**.",
+      "$\\dfrac{\\ln(10^{-4})}{\\ln(0{,}995)} \\approx 1\\,837{,}5$."
+    ],
+    "correction": "- $k \\ge \\dfrac{\\ln(1/100)}{\\ln 0{,}95} = \\dfrac{-4{,}605}{-0{,}0513} \\approx 89{,}8$, donc **90** paliers.\n- $k \\ge \\dfrac{\\ln(10^{-4})}{\\ln 0{,}995} = \\dfrac{-9{,}210}{-0{,}00501} \\approx 1\\,837{,}5$, donc **1 838** paliers.\n- Avec $\\alpha = 0{,}99$ : $\\dfrac{-4{,}605}{-0{,}01005} \\approx 458$ paliers au lieu de 90 : refroidir plus lentement coûte plus d'itérations, mais explore davantage."
+  },
+  {
+    "id": "lineaire-ou-geometrique",
+    "titre": "Linéaire ou géométrique ?",
+    "difficulte": 2,
+    "enonce": "On part de $T_0 = 100$ avec un budget de 200 itérations. Loi linéaire : $T(k) = 100\\left(1 - \\dfrac{k}{200}\\right)$. Loi géométrique : $T(k) = 100 \\times 0{,}98^k$. Arrondis au centième.",
+    "questions": [
+      {
+        "intitule": "Loi linéaire : température après 50 itérations.",
+        "type": "nombre",
+        "reponse": 75,
+        "tolerance": 0.01,
+        "refuses": [
+          "50",
+          "25"
+        ]
+      },
+      {
+        "intitule": "Loi géométrique : température après 50 itérations.",
+        "type": "nombre",
+        "reponse": "100*0.98^50",
+        "tolerance": 0.01,
+        "acceptes": [
+          "36.42",
+          "36,42"
+        ],
+        "refuses": [
+          "98",
+          "49"
+        ]
+      },
+      {
+        "intitule": "Loi linéaire : température après 200 itérations.",
+        "type": "nombre",
+        "reponse": 0,
+        "tolerance": 0.01,
+        "refuses": [
+          "1",
+          "100"
+        ]
+      },
+      {
+        "intitule": "Laquelle refroidit le plus vite au début ?",
+        "type": "choix",
+        "choix": [
+          "La loi géométrique",
+          "La loi linéaire"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Linéaire : on enlève la même quantité à chaque itération.",
+      "Géométrique : on multiplie par 0,98 à chaque itération ; $0{,}98^{50} \\approx 0{,}364$."
+    ],
+    "correction": "- Linéaire : $100 \\times (1 - 50/200) = 75$ ; elle atteint 0 exactement à la fin du budget (200 itérations).\n- Géométrique : $100 \\times 0{,}98^{50} \\approx 36{,}42$ : elle chute vite au début puis ralentit, sans jamais atteindre 0.\n- Au début, la loi **géométrique** refroidit plus vite (36 contre 75 après 50 itérations)."
+  },
+  {
+    "id": "calibrer-la-temperature-initiale",
+    "titre": "Calibrer la température initiale",
+    "difficulte": 2,
+    "enonce": "On veut qu'au départ une dégradation typique $\\Delta E$ soit acceptée avec la probabilité $P_0$. Il faut $e^{-\\Delta E/T_0} = P_0$, soit $T_0 = \\dfrac{-\\Delta E}{\\ln P_0}$. Arrondis au dixième.",
+    "questions": [
+      {
+        "intitule": "$\\Delta E = 10$ et $P_0 = 0{,}8$.",
+        "type": "nombre",
+        "reponse": "-10/ln(0.8)",
+        "tolerance": 0.1,
+        "acceptes": [
+          "44.8",
+          "44,8"
+        ],
+        "refuses": [
+          "8",
+          "12.5"
+        ]
+      },
+      {
+        "intitule": "$\\Delta E = 10$ et $P_0 = 0{,}95$.",
+        "type": "nombre",
+        "reponse": "-10/ln(0.95)",
+        "tolerance": 0.1,
+        "acceptes": [
+          "195",
+          "194.96"
+        ],
+        "refuses": [
+          "9.5",
+          "44.8"
+        ]
+      },
+      {
+        "intitule": "Pour accepter plus de dégradations au départ, il faut une température initiale…",
+        "type": "choix",
+        "choix": [
+          "plus grande",
+          "plus petite"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "$\\ln 0{,}8 \\approx -0{,}223$ et $\\ln 0{,}95 \\approx -0{,}0513$.",
+      "$T_0 = \\dfrac{10}{0{,}223}$ pour le premier cas."
+    ],
+    "correction": "- $P_0 = 0{,}8$ : $T_0 = \\dfrac{-10}{\\ln 0{,}8} = \\dfrac{10}{0{,}223} \\approx 44{,}8$.\n- $P_0 = 0{,}95$ : $T_0 = \\dfrac{10}{0{,}0513} \\approx 195{,}0$.\n- Plus on veut accepter de dégradations au départ, plus $T_0$ doit être **grande**. Le conseil du cours : viser 80 à 100 % d'acceptation initiale."
+  },
+  {
+    "id": "hajek-trop-lent",
+    "titre": "Pourquoi Hajek est trop lent",
+    "difficulte": 3,
+    "enonce": "Le théorème de Hajek garantit la convergence avec $T(k) = \\dfrac{c}{\\ln(k+1)}$.",
+    "questions": [
+      {
+        "intitule": "À l'itération $k = 99$, $T = \\dfrac{c}{\\ln 100}$. À quelle itération $k$ la température est-elle divisée par 2 ?",
+        "type": "nombre",
+        "reponse": 9999,
+        "acceptes": [
+          "100^2-1",
+          "9 999"
+        ],
+        "refuses": [
+          "198",
+          "199",
+          "10000"
+        ]
+      },
+      {
+        "intitule": "Et pour la diviser par 4 (depuis $k = 99$) ?",
+        "type": "nombre",
+        "reponse": "100^4-1",
+        "acceptes": [
+          "99999999",
+          "99 999 999"
+        ],
+        "refuses": [
+          "9999",
+          "396"
+        ]
+      },
+      {
+        "intitule": "Conclusion pratique ?",
+        "type": "choix",
+        "choix": [
+          "On refroidit géométriquement et on renonce à la garantie",
+          "On utilise toujours la loi de Hajek",
+          "On ne refroidit pas"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Diviser $T$ par 2, c'est doubler $\\ln(k+1)$.",
+      "$\\ln(k'+1) = 2\\ln(100) = \\ln(100^2)$, donc $k' + 1 = 100^2$."
+    ],
+    "correction": "- Diviser $T$ par 2 revient à doubler $\\ln(k+1)$ : $\\ln(k'+1) = 2 \\ln 100 = \\ln(100^2)$, donc $k' + 1 = 10\\,000$ et $k' = 9\\,999$.\n- Diviser par 4 : $k' + 1 = 100^4 = 10^8$, donc $k' = 99\\,999\\,999$.\n- Chaque division de $T$ par 2 élève le nombre d'itérations au carré : la garantie est inutilisable. En pratique on refroidit géométriquement et on se contente d'un très bon optimum local."
+  },
+  {
+    "id": "derouler-le-recuit",
+    "titre": "Dérouler trois pas de recuit",
+    "difficulte": 3,
+    "enonce": "Solution courante d'erreur 50, température $T = 10$, meilleure erreur rencontrée : 50. Après chaque pas, la température est **divisée par 2** (elle vaut donc 10 au pas 1, 5 au pas 2 et 2,5 au pas 3). Chaque voisin est comparé à la solution **courante** du moment.\n\n| Pas | Erreur du voisin proposé | Tirage $r$ |\n|---|---|---|\n| 1 | 45 | 0,90 |\n| 2 | 48 | 0,30 |\n| 3 | 53 | 0,60 |\n\nOn donne $e^{-0{,}6} \\approx 0{,}549$ et $e^{-2} \\approx 0{,}135$.",
+    "questions": [
+      {
+        "intitule": "Erreur de la solution courante après le pas 1.",
+        "type": "nombre",
+        "reponse": 45,
+        "refuses": [
+          "50"
+        ]
+      },
+      {
+        "intitule": "Probabilité d'accepter le voisin du pas 2 (arrondie au millième).",
+        "type": "nombre",
+        "reponse": "e^(-0.6)",
+        "tolerance": 0.001,
+        "acceptes": [
+          "0.549",
+          "0,549"
+        ],
+        "refuses": [
+          "0.3",
+          "0.135"
+        ]
+      },
+      {
+        "intitule": "Erreur de la solution courante après le pas 2.",
+        "type": "nombre",
+        "reponse": 48,
+        "refuses": [
+          "45",
+          "50"
+        ]
+      },
+      {
+        "intitule": "Erreur de la solution courante après le pas 3.",
+        "type": "nombre",
+        "reponse": 48,
+        "refuses": [
+          "53",
+          "45"
+        ]
+      },
+      {
+        "intitule": "Erreur de la solution retournée si on s'arrête après le pas 3.",
+        "type": "nombre",
+        "reponse": 45,
+        "refuses": [
+          "48",
+          "53"
+        ]
+      }
+    ],
+    "indices": [
+      "Pas 1 : 45 < 50, c'est une amélioration.",
+      "Pas 2 : la courante vaut 45 et $T = 5$, donc $\\Delta E = 3$ et $P = e^{-3/5}$.",
+      "Pas 3 : la courante vaut 48 et $T = 2{,}5$, donc $\\Delta E = 5$ et $P = e^{-2}$."
+    ],
+    "correction": "- **Pas 1** ($T = 10$) : $45 < 50$, amélioration, toujours acceptée. Courante = 45, meilleure = 45.\n- **Pas 2** ($T = 5$) : $\\Delta E = 48 - 45 = 3$, $P = e^{-0{,}6} \\approx 0{,}549$. Comme $r = 0{,}30 < 0{,}549$ : **accepté**. Courante = 48 (on a accepté de remonter), meilleure = 45.\n- **Pas 3** ($T = 2{,}5$) : $\\Delta E = 53 - 48 = 5$, $P = e^{-2} \\approx 0{,}135$. Comme $r = 0{,}60 > 0{,}135$ : **refusé**. Courante = 48.\n- On retourne la **meilleure** solution rencontrée, d'erreur **45**, et non la courante (48)."
+  }
+]

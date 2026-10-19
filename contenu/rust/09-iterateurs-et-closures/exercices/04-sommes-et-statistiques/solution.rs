@@ -10,8 +10,8 @@ fn plus_grand(v: &[i32]) -> Option<i32> {
     v.iter().max().copied()
 }
 
-fn produit(v: &[u64]) -> u64 {
-    v.iter().fold(1, |acc, x| acc * x)
+fn assembler_chiffres(chiffres: &[u32]) -> u32 {
+    chiffres.iter().fold(0, |acc, chiffre| acc * 10 + chiffre)
 }
 
 fn moyenne(notes: &[f64]) -> Option<f64> {

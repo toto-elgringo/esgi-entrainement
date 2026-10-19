@@ -1,0 +1,567 @@
+[
+  {
+    "id": "mots-interrogatifs",
+    "titre": "Les mots interrogatifs",
+    "difficulte": 1,
+    "enonce": "Traduis le mot interrogatif en anglais (partie 2 : il faut le repérer immédiatement).",
+    "questions": [
+      {
+        "intitule": "quand",
+        "type": "texte",
+        "reponse": [
+          "when"
+        ]
+      },
+      {
+        "intitule": "pourquoi",
+        "type": "texte",
+        "reponse": [
+          "why"
+        ]
+      },
+      {
+        "intitule": "comment",
+        "type": "texte",
+        "reponse": [
+          "how"
+        ]
+      },
+      {
+        "intitule": "où",
+        "type": "texte",
+        "reponse": [
+          "where"
+        ]
+      },
+      {
+        "intitule": "qui",
+        "type": "texte",
+        "reponse": [
+          "who"
+        ]
+      },
+      {
+        "intitule": "combien (de temps)",
+        "type": "texte",
+        "reponse": [
+          "how long"
+        ]
+      },
+      {
+        "intitule": "combien (d'argent)",
+        "type": "texte",
+        "reponse": [
+          "how much"
+        ]
+      }
+    ],
+    "indices": [
+      "*how* se combine : *how long*, *how much*, *how many*, *how often*."
+    ],
+    "correction": "*when, why, how, where, who, how long, how much*. Repérer ce mot dit quel **type** de réponse attendre : un moment, une raison, une manière, un lieu, une personne, une durée, un prix."
+  },
+  {
+    "id": "type-de-reponse",
+    "titre": "Quel type de réponse ?",
+    "difficulte": 1,
+    "enonce": "Pour chaque question de partie 2, choisis le **type** de réponse attendu.",
+    "questions": [
+      {
+        "intitule": "*When is the delivery due?*",
+        "type": "choix",
+        "choix": [
+          "une raison",
+          "un lieu",
+          "un moment"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Why did the client cancel the order?*",
+        "type": "choix",
+        "choix": [
+          "une personne",
+          "une raison",
+          "un moment"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Where should I put these boxes?*",
+        "type": "choix",
+        "choix": [
+          "un lieu",
+          "une durée",
+          "une raison"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Who is in charge of the budget?*",
+        "type": "choix",
+        "choix": [
+          "un prix",
+          "un moment",
+          "une personne"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*How often do you visit the factory?*",
+        "type": "choix",
+        "choix": [
+          "une fréquence",
+          "une personne",
+          "un lieu"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*How often* = à quelle fréquence."
+    ],
+    "correction": "*When* → moment ; *Why* → raison ; *Where* → lieu ; *Who* → personne ; *How often* → fréquence (*twice a month*)."
+  },
+  {
+    "id": "trouver-le-distracteur",
+    "titre": "Trouver le distracteur",
+    "difficulte": 2,
+    "enonce": "Pour chaque question (partie 2), choisis la réponse **piège** : celle qui reprend un mot ou un son de la question sans répondre.",
+    "questions": [
+      {
+        "intitule": "*Did you book a table for lunch?*",
+        "type": "choix",
+        "choix": [
+          "No, I forgot, sorry.",
+          "Yes, at the Italian place.",
+          "The book is on my desk."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Where is the training room?*",
+        "type": "choix",
+        "choix": [
+          "The train leaves at six.",
+          "On the second floor.",
+          "Next to the cafeteria."
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Has the copier been fixed?*",
+        "type": "choix",
+        "choix": [
+          "The technician came this morning.",
+          "The coffee is fixed price.",
+          "Yes, it works now."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Why are you leaving early?*",
+        "type": "choix",
+        "choix": [
+          "The leaves are falling.",
+          "I have a doctor's appointment.",
+          "My son is ill."
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Cherche la réponse qui reprend un mot de la question avec **un autre sens** ou un son proche."
+    ],
+    "correction": "*book* (livre / réserver), *training / train*, *copier / coffee* et *fixed*, *leaving / leaves* : ces réponses reprennent un son ou un mot, mais ne répondent pas à la question. C'est le piège n° 1 de la partie 2."
+  },
+  {
+    "id": "reformulations",
+    "titre": "Reconnaître une reformulation",
+    "difficulte": 2,
+    "enonce": "Choisis la phrase qui a **le même sens** que la phrase entendue.",
+    "questions": [
+      {
+        "intitule": "*The meeting has been moved to Thursday.*",
+        "type": "choix",
+        "choix": [
+          "The meeting has been rescheduled.",
+          "The meeting has been cancelled.",
+          "The meeting room has moved."
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*We've run out of paper.*",
+        "type": "choix",
+        "choix": [
+          "Someone ran with the paper.",
+          "There is no paper left.",
+          "We need to recycle paper."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Ms. Gray is in charge of recruitment.*",
+        "type": "choix",
+        "choix": [
+          "Ms. Gray is being recruited.",
+          "Ms. Gray is charging the recruits.",
+          "Ms. Gray is responsible for hiring."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The store is open around the clock.*",
+        "type": "choix",
+        "choix": [
+          "The store never closes.",
+          "The store opens at noon.",
+          "The store sells clocks."
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Admission is complimentary for members.*",
+        "type": "choix",
+        "choix": [
+          "Members must pay extra.",
+          "Members don't pay to enter.",
+          "Members receive compliments."
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "La bonne réponse dit la même chose **avec d'autres mots**.",
+      "Les réponses qui reprennent des mots de la phrase (*moved, ran, charge, clock*) sont des pièges."
+    ],
+    "correction": "*moved to Thursday* = *rescheduled* ; *run out of* = *none left* ; *in charge of recruitment* = *responsible for hiring* ; *around the clock* = *never closes* ; *complimentary* = gratuit."
+  },
+  {
+    "id": "partie-1-pieges",
+    "titre": "Partie 1 : les pièges des photos",
+    "difficulte": 2,
+    "enonce": "Imagine la photo : **une femme est assise à un bureau et tape sur un ordinateur portable. Une tasse est posée à côté de l'ordinateur. La fenêtre derrière elle est fermée.** Choisis la phrase correcte.",
+    "questions": [
+      {
+        "intitule": "Quelle phrase décrit la photo ?",
+        "type": "choix",
+        "choix": [
+          "She's leaving the office.",
+          "She's drinking coffee.",
+          "She's cleaning the window.",
+          "She's typing on a laptop."
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "Quelle phrase est correcte sur la tasse ?",
+        "type": "choix",
+        "choix": [
+          "A cup is being washed.",
+          "She's pouring coffee into a cup.",
+          "A cup is under the desk.",
+          "A cup is next to the computer."
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "Pourquoi *She's drinking coffee* est-il un piège ?",
+        "type": "choix",
+        "choix": [
+          "On voit une tasse, mais elle ne boit pas",
+          "La phrase est au passé",
+          "Il n'y a pas de tasse"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Ne décris que ce qui est **clairement visible**.",
+      "Attention aux prépositions : *next to*, *under*, *on*."
+    ],
+    "correction": "- *She's typing on a laptop* : l'action visible.\n- *A cup is next to the computer* : la bonne préposition.\n- *She's drinking coffee* : on voit une tasse, mais l'action n'a pas lieu. On ne sur-interprète pas la photo. *Leaving* et *cleaning* ressemblent à *leaning* : pièges sonores."
+  },
+  {
+    "id": "adjectif-ou-adverbe",
+    "titre": "Adjectif ou adverbe ?",
+    "difficulte": 2,
+    "enonce": "Choisis la bonne forme (partie 5).",
+    "questions": [
+      {
+        "intitule": "*The new system is very ......*",
+        "type": "choix",
+        "choix": [
+          "efficient",
+          "efficiently"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The team worked ...... to finish on time.*",
+        "type": "choix",
+        "choix": [
+          "efficient",
+          "efficiently"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Please drive ...... near the school.*",
+        "type": "choix",
+        "choix": [
+          "careful",
+          "carefully"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*She gave a ...... answer.*",
+        "type": "choix",
+        "choix": [
+          "clear",
+          "clearly"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Sales increased ...... last quarter.*",
+        "type": "choix",
+        "choix": [
+          "significant",
+          "significantly"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The prices are ...... high.*",
+        "type": "choix",
+        "choix": [
+          "extreme",
+          "extremely"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "L'adjectif décrit un **nom** (ou suit *be*) ; l'adverbe décrit un **verbe** ou un **adjectif**."
+    ],
+    "correction": "*is very efficient* (après *be*) ; *worked efficiently* (verbe) ; *drive carefully* ; *a clear answer* (nom) ; *increased significantly* ; *extremely high* (adverbe devant un adjectif)."
+  },
+  {
+    "id": "accord-sujet-verbe",
+    "titre": "L'accord sujet-verbe",
+    "difficulte": 2,
+    "enonce": "Choisis la bonne forme du verbe.",
+    "questions": [
+      {
+        "intitule": "*The manager of the two stores ...... very busy.*",
+        "type": "choix",
+        "choix": [
+          "is",
+          "are"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Each employee ...... a parking space.*",
+        "type": "choix",
+        "choix": [
+          "has",
+          "have"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The results of the survey ...... surprising.*",
+        "type": "choix",
+        "choix": [
+          "was",
+          "were"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Mr. Lopez ...... at the head office.*",
+        "type": "choix",
+        "choix": [
+          "work",
+          "works"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Neither of the candidates ...... the job.*",
+        "type": "choix",
+        "choix": [
+          "has accepted",
+          "have accepted"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Cherche le **vrai** sujet : *the manager*, *each employee*, *the results*.",
+      "*each*, *neither of* + verbe au singulier."
+    ],
+    "correction": "1. sujet *the manager* → *is*. 2. *each* → singulier. 3. sujet *the results* → *were*. 4. 3e personne → *works*. 5. *neither of* → singulier (*has accepted*) en anglais soigné."
+  },
+  {
+    "id": "gestion-du-temps",
+    "titre": "Gérer son temps en lecture",
+    "difficulte": 2,
+    "enonce": "Réponds par un nombre.",
+    "questions": [
+      {
+        "intitule": "La section Reading dure 75 min. Si tu passes 12 min sur la partie 5 et 8 min sur la partie 6, combien de minutes te reste-t-il pour la partie 7 ?",
+        "type": "nombre",
+        "reponse": 55
+      },
+      {
+        "intitule": "Partie 5 : 30 phrases à 30 secondes maximum chacune. Combien de minutes au maximum ?",
+        "type": "nombre",
+        "reponse": 15
+      },
+      {
+        "intitule": "Combien de questions compte la partie 7 ?",
+        "type": "nombre",
+        "reponse": 54
+      },
+      {
+        "intitule": "Combien de questions compte toute la section Reading ?",
+        "type": "nombre",
+        "reponse": 100
+      }
+    ],
+    "indices": [
+      "75 - 12 - 8 = ?",
+      "30 × 30 s = 900 s."
+    ],
+    "correction": "- 75 - 12 - 8 = **55** minutes pour la partie 7.\n- 30 × 30 s = 900 s = **15** minutes.\n- La partie 7 compte **54** questions sur les **100** de la lecture : c'est là qu'il faut garder du temps."
+  },
+  {
+    "id": "vrai-ou-faux",
+    "titre": "Vrai ou faux ?",
+    "difficulte": 1,
+    "enonce": "Ces affirmations sur le TOEIC sont-elles vraies ou fausses ?",
+    "questions": [
+      {
+        "intitule": "Une mauvaise réponse fait perdre des points.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Il faut lire les questions avant d'écouter une conversation.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "En partie 7, il faut lire chaque document mot à mot.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "La bonne réponse reprend souvent les mots exacts entendus.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "En partie 6, il faut lire la phrase avant et après le trou.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "En partie 1, on décrit ce qui pourrait se passer sur la photo.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Relis le tableau des pièges du cours."
+    ],
+    "correction": "1. Faux : pas de pénalité. 2. Vrai. 3. Faux : on balaie le texte pour trouver les mots-clés. 4. Faux : elle reformule ; les mots exacts sont souvent des pièges. 5. Vrai. 6. Faux : seulement ce qui est clairement visible."
+  },
+  {
+    "id": "connecteurs-partie-6",
+    "titre": "Partie 6 : les connecteurs",
+    "difficulte": 2,
+    "enonce": "Choisis le connecteur logique.",
+    "questions": [
+      {
+        "intitule": "*The new printer is fast. ......, it uses less ink.*",
+        "type": "choix",
+        "choix": [
+          "In addition",
+          "Therefore",
+          "However"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The supplier was late again. ......, we have decided to change suppliers.*",
+        "type": "choix",
+        "choix": [
+          "However",
+          "In addition",
+          "Therefore"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The hotel was comfortable. ......, the restaurant was disappointing.*",
+        "type": "choix",
+        "choix": [
+          "Therefore",
+          "In addition",
+          "However"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*In addition* = de plus ; *Therefore* = donc ; *However* = cependant."
+    ],
+    "correction": "Ajout → *In addition* ; conséquence → *Therefore* ; opposition → *However*. Ce sont les trois connecteurs cités dans le document « TOEIC tips »."
+  },
+  {
+    "id": "mon-plan",
+    "titre": "Mon plan d'entraînement",
+    "difficulte": 3,
+    "enonce": "Écris en quelques lignes (en français) ton plan d'entraînement pour les 4 prochaines semaines avant le CC Listening : quoi, quand, avec quel site.",
+    "questions": [
+      {
+        "intitule": "Ton plan",
+        "type": "auto",
+        "reponse": "Exemple :\n\n- **Chaque jour (15 min)** : écouter un podcast ou une vidéo en anglais ; apprendre 10 mots d'un thème du TOEIC.\n- **Lundi et jeudi (30 min)** : une série de parties 1 et 2 sur ExamEnglish, en notant les pièges sonores.\n- **Samedi (45 min)** : un test d'écoute complet en temps réel (TestDEN ou MyPrepster), puis revoir chaque erreur.\n- **Fin de semaine 2** : refaire un test de niveau (ETS Level Projector) pour mesurer les progrès."
+      }
+    ],
+    "indices": [
+      "Un bon plan est **régulier** (un peu chaque jour) et **en temps réel**."
+    ],
+    "correction": "Les points importants : régularité, entraînement au format officiel, chronométrage, analyse des erreurs, vocabulaire par thème."
+  }
+]

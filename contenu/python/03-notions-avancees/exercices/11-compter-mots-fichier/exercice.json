@@ -1,0 +1,11 @@
+{
+  "titre": "Les mots les plus fréquents d'un fichier",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Lis le fichier ligne par ligne avec `with open(...)`, découpe chaque ligne avec `split()` et mets chaque mot en minuscules.",
+    "`mot.strip(\".,;:!?\")` enlève la ponctuation au début et à la fin du mot. Ignore les mots qui deviennent vides.",
+    "Le compteur : `compte[mot] = compte.get(mot, 0) + 1`, le tout dans un `try` / `except FileNotFoundError` qui renvoie `{}`.",
+    "Pour les plus fréquents : `sorted(compte.items(), key=lambda kv: (-kv[1], kv[0]))[:k]`."
+  ]
+}

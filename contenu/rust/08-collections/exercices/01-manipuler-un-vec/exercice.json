@@ -5,6 +5,6 @@
   "indices": [
     "Les méthodes à utiliser, dans l'ordre : `push`, `pop`, `sort`, `len`, `get`.",
     "`{:?}` affiche une liste ou une `Option` : `println!(\"pop() renvoie : {:?}\", v.pop());`",
-    "`v.get(0)` renvoie `Some(&1)`, qui s'affiche `Some(1)` avec `{:?}`."
+    "`v.get(1)` renvoie `Some(&3)`, qui s'affiche `Some(3)` avec `{:?}`."
   ]
 }

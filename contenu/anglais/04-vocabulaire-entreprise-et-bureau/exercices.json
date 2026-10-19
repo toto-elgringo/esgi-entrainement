@@ -1,0 +1,1003 @@
+[
+  {
+    "id": "entreprise-traduction",
+    "titre": "L'entreprise : traduire",
+    "difficulte": 1,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "le conseil d'administration",
+        "type": "texte",
+        "reponse": [
+          "board of directors",
+          "the board of directors",
+          "board",
+          "the board"
+        ]
+      },
+      {
+        "intitule": "une filiale",
+        "type": "texte",
+        "reponse": [
+          "subsidiary",
+          "a subsidiary"
+        ]
+      },
+      {
+        "intitule": "une agence, une succursale",
+        "type": "texte",
+        "reponse": [
+          "branch",
+          "a branch"
+        ]
+      },
+      {
+        "intitule": "une fusion (d'entreprises)",
+        "type": "texte",
+        "reponse": [
+          "merger",
+          "a merger"
+        ]
+      },
+      {
+        "intitule": "un actionnaire",
+        "type": "texte",
+        "reponse": [
+          "shareholder",
+          "a shareholder",
+          "stockholder",
+          "a stockholder"
+        ]
+      },
+      {
+        "intitule": "les locaux",
+        "type": "texte",
+        "reponse": [
+          "premises",
+          "the premises"
+        ]
+      },
+      {
+        "intitule": "le savoir-faire",
+        "type": "texte",
+        "reponse": [
+          "know-how",
+          "know how",
+          "expertise"
+        ]
+      },
+      {
+        "intitule": "interne (une formation ...)",
+        "type": "texte",
+        "reponse": [
+          "in-house",
+          "in house",
+          "internal"
+        ]
+      }
+    ],
+    "indices": [
+      "Ils sont dans le tableau « Entreprise, direction et organisation »."
+    ],
+    "correction": "*board of directors*, *subsidiary*, *branch*, *merger*, *shareholder* (ou *stockholder*), *premises*, *know-how*, *in-house*."
+  },
+  {
+    "id": "entreprise-sens",
+    "titre": "L'entreprise : le sens",
+    "difficulte": 1,
+    "enonce": "Choisis la traduction.",
+    "questions": [
+      {
+        "intitule": "*deputy manager*",
+        "type": "choix",
+        "choix": [
+          "député",
+          "directeur adjoint",
+          "directeur général"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*takeover bid*",
+        "type": "choix",
+        "choix": [
+          "appel d'offres",
+          "prise de poste",
+          "offre publique d'achat"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*competitive edge*",
+        "type": "choix",
+        "choix": [
+          "avantage sur la concurrence",
+          "concours",
+          "limite de la concurrence"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*benchmarking*",
+        "type": "choix",
+        "choix": [
+          "aménagement de bancs",
+          "analyse comparative",
+          "notation"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*corporate*",
+        "type": "choix",
+        "choix": [
+          "coopératif",
+          "d'entreprise, institutionnel",
+          "corporel"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*advisory committee*",
+        "type": "choix",
+        "choix": [
+          "comité d'avertissement",
+          "comité de publicité",
+          "comité consultatif"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*field*",
+        "type": "choix",
+        "choix": [
+          "fichier",
+          "domaine (d'activité)",
+          "filiale"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*deputy* = adjoint, remplaçant."
+    ],
+    "correction": "*deputy* = adjoint ; *takeover bid* = OPA ; *competitive edge* = avantage concurrentiel ; *benchmarking* = analyse comparative ; *corporate* = d'entreprise ; *advisory* = consultatif ; *field* = domaine."
+  },
+  {
+    "id": "entreprise-phrases",
+    "titre": "L'entreprise en contexte",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète la phrase.",
+    "questions": [
+      {
+        "intitule": "*The bank has just opened a new ...... in the city centre.*",
+        "type": "choix",
+        "choix": [
+          "premises",
+          "field",
+          "branch",
+          "board"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Smoking is not allowed anywhere on the ......*",
+        "type": "choix",
+        "choix": [
+          "subsidiary",
+          "benchmark",
+          "branch",
+          "premises"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*The ...... between the two airlines will create the biggest company in Europe.*",
+        "type": "choix",
+        "choix": [
+          "know-how",
+          "deputy",
+          "merger",
+          "takeover bid"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The ...... will vote on the dividend at the annual meeting.*",
+        "type": "choix",
+        "choix": [
+          "subsidiaries",
+          "premises",
+          "shareholders",
+          "branches"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Our ...... training is run by our own experts, not by an outside company.*",
+        "type": "choix",
+        "choix": [
+          "in-house",
+          "deputy",
+          "corporate",
+          "advisory"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Thanks to its unique ......, the company has a strong competitive edge.*",
+        "type": "choix",
+        "choix": [
+          "merger",
+          "know-how",
+          "premises",
+          "stockholder"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*premises* = les locaux ; *branch* = une agence."
+    ],
+    "correction": "1. *a new branch* (agence). 2. *on the premises* (dans les locaux). 3. *merger* (fusion). 4. les actionnaires votent le dividende. 5. *in-house* = interne. 6. *know-how* = savoir-faire."
+  },
+  {
+    "id": "emploi-traduction",
+    "titre": "L'emploi : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "une lettre de motivation",
+        "type": "texte",
+        "reponse": [
+          "cover letter",
+          "a cover letter",
+          "covering letter",
+          "a covering letter",
+          "motivation letter",
+          "a motivation letter"
+        ]
+      },
+      {
+        "intitule": "un candidat (à un poste)",
+        "type": "texte",
+        "reponse": [
+          "applicant",
+          "an applicant",
+          "candidate",
+          "a candidate"
+        ]
+      },
+      {
+        "intitule": "la formation (professionnelle)",
+        "type": "texte",
+        "reponse": [
+          "training"
+        ]
+      },
+      {
+        "intitule": "la formation sur le tas",
+        "type": "texte",
+        "reponse": [
+          "on-the-job training",
+          "on the job training"
+        ]
+      },
+      {
+        "intitule": "le congé maladie",
+        "type": "texte",
+        "reponse": [
+          "sick leave"
+        ]
+      },
+      {
+        "intitule": "le travail posté (en équipes)",
+        "type": "texte",
+        "reponse": [
+          "shift work",
+          "shiftwork"
+        ]
+      },
+      {
+        "intitule": "du temps libre, des jours de congé",
+        "type": "texte",
+        "reponse": [
+          "time off"
+        ]
+      },
+      {
+        "intitule": "gagner (de l'argent, un salaire)",
+        "type": "texte",
+        "reponse": [
+          "earn",
+          "to earn",
+          "make",
+          "to make"
+        ]
+      }
+    ],
+    "indices": [
+      "*to earn* = gagner un salaire ; *to win* = gagner un match."
+    ],
+    "correction": "*cover letter*, *applicant*, *training*, *on-the-job training*, *sick leave*, *shift work*, *time off*, *to earn*."
+  },
+  {
+    "id": "emploi-sens",
+    "titre": "L'emploi : le sens",
+    "difficulte": 2,
+    "enonce": "Choisis la traduction.",
+    "questions": [
+      {
+        "intitule": "*an assignment*",
+        "type": "choix",
+        "choix": [
+          "une mission",
+          "une assignation au tribunal",
+          "une signature"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*an allowance*",
+        "type": "choix",
+        "choix": [
+          "une autorisation de sortie",
+          "une indemnité, une allocation",
+          "une alliance"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*a chore*",
+        "type": "choix",
+        "choix": [
+          "une corvée",
+          "un choix",
+          "une chorale"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*a grievance*",
+        "type": "choix",
+        "choix": [
+          "une grève",
+          "un deuil",
+          "une réclamation, un grief"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*an achievement*",
+        "type": "choix",
+        "choix": [
+          "une réussite",
+          "un achat",
+          "un achèvement de travaux"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*commitment*",
+        "type": "choix",
+        "choix": [
+          "commission",
+          "comité",
+          "engagement, implication"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*an incentive*",
+        "type": "choix",
+        "choix": [
+          "un incendie",
+          "une motivation, une prime",
+          "une incitation à la haine"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*duties*",
+        "type": "choix",
+        "choix": [
+          "impôts locaux",
+          "devoirs scolaires",
+          "fonctions, responsabilités"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Attention aux mots qui ressemblent au français."
+    ],
+    "correction": "*assignment* = mission ; *allowance* = indemnité ; *chore* = corvée ; *grievance* = réclamation ; *achievement* = réussite ; *commitment* = engagement ; *incentive* = motivation, prime ; *duties* = fonctions."
+  },
+  {
+    "id": "emploi-phrases",
+    "titre": "L'emploi en contexte",
+    "difficulte": 2,
+    "enonce": "Complète avec un seul mot.",
+    "questions": [
+      {
+        "intitule": "*I have a doctor's appointment tomorrow. Could you cover ...... me?*",
+        "type": "texte",
+        "reponse": [
+          "for"
+        ]
+      },
+      {
+        "intitule": "*All full-time staff are entitled ...... 25 days of paid holiday.*",
+        "type": "texte",
+        "reponse": [
+          "to"
+        ]
+      },
+      {
+        "intitule": "*After the scandal, the CEO stepped ...... .*",
+        "type": "texte",
+        "reponse": [
+          "down"
+        ]
+      },
+      {
+        "intitule": "*Nurses often do ...... work, including nights and weekends.* (travail posté)",
+        "type": "texte",
+        "reponse": [
+          "shift"
+        ]
+      },
+      {
+        "intitule": "*Dr. Klein is on ...... tonight, so call her if there is an emergency.* (de garde)",
+        "type": "texte",
+        "reponse": [
+          "duty",
+          "call"
+        ]
+      },
+      {
+        "intitule": "*She worked very hard this year: she really ...... a promotion.* (mérite)",
+        "type": "texte",
+        "reponse": [
+          "deserves",
+          "deserved"
+        ]
+      }
+    ],
+    "indices": [
+      "*cover for* = remplacer ; *be entitled to* = avoir droit à."
+    ],
+    "correction": "*cover for* ; *entitled to* ; *stepped down* ; *shift work* ; *on duty* ; *deserves*."
+  },
+  {
+    "id": "emploi-familles",
+    "titre": "Familles de mots : l'emploi",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète la phrase.",
+    "questions": [
+      {
+        "intitule": "*The panel will ...... each candidate during a short test.*",
+        "type": "choix",
+        "choix": [
+          "assessment",
+          "assess",
+          "assessor",
+          "assessing"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*His ...... came as a surprise: he had worked here for 20 years.*",
+        "type": "choix",
+        "choix": [
+          "resignation",
+          "resigned",
+          "resign",
+          "resigning"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Forty workers were made ...... when the factory closed.*",
+        "type": "choix",
+        "choix": [
+          "redundant",
+          "redundantly",
+          "redundancies",
+          "redundancy"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Winning the contract was a great ...... for the team.*",
+        "type": "choix",
+        "choix": [
+          "achieve",
+          "achiever",
+          "achievement",
+          "achieved"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Every new ...... receives a laptop and a badge.*",
+        "type": "choix",
+        "choix": [
+          "trained",
+          "trainee",
+          "train",
+          "training"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*We thank you for your ...... to the project.*",
+        "type": "choix",
+        "choix": [
+          "committed",
+          "commit",
+          "commitment",
+          "committee"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*to be made + adjectif* : *redundant*.",
+      "*-ee* = la personne qui reçoit (le stagiaire)."
+    ],
+    "correction": "1. *will* + verbe : *assess*. 2. *His* + nom : *resignation*. 3. *made redundant* = licencié (adjectif). 4. *a great* + nom : *achievement*. 5. *Every new* + personne : *trainee*. 6. *your* + nom : *commitment* (*committee* = comité)."
+  },
+  {
+    "id": "bureau-traduction",
+    "titre": "Le bureau : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "un tableur, une feuille de calcul",
+        "type": "texte",
+        "reponse": [
+          "spreadsheet",
+          "a spreadsheet"
+        ]
+      },
+      {
+        "intitule": "les fournitures de bureau",
+        "type": "texte",
+        "reponse": [
+          "stationery",
+          "office supplies"
+        ]
+      },
+      {
+        "intitule": "un brouillon",
+        "type": "texte",
+        "reponse": [
+          "draft",
+          "a draft"
+        ]
+      },
+      {
+        "intitule": "une chemise, un classeur",
+        "type": "texte",
+        "reponse": [
+          "folder",
+          "a folder",
+          "file",
+          "a file",
+          "binder",
+          "a binder"
+        ]
+      },
+      {
+        "intitule": "un casier (vestiaire)",
+        "type": "texte",
+        "reponse": [
+          "locker",
+          "a locker"
+        ]
+      },
+      {
+        "intitule": "le destinataire",
+        "type": "texte",
+        "reponse": [
+          "recipient",
+          "the recipient",
+          "addressee",
+          "the addressee"
+        ]
+      },
+      {
+        "intitule": "un rappel (pour penser à quelque chose)",
+        "type": "texte",
+        "reponse": [
+          "reminder",
+          "a reminder"
+        ]
+      },
+      {
+        "intitule": "un communiqué de presse",
+        "type": "texte",
+        "reponse": [
+          "press release",
+          "a press release"
+        ]
+      }
+    ],
+    "indices": [
+      "*stationery* s'écrit avec un **e**."
+    ],
+    "correction": "*spreadsheet*, *stationery*, *draft*, *folder*, *locker*, *recipient*, *reminder*, *press release*."
+  },
+  {
+    "id": "au-telephone",
+    "titre": "Au téléphone",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*I called twice, but the line was ...... .*",
+        "type": "choix",
+        "choix": [
+          "busy",
+          "hold",
+          "dial",
+          "digit"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Could you put me through to ...... 305, please?*",
+        "type": "choix",
+        "choix": [
+          "extension",
+          "slip",
+          "recipient",
+          "digit"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*I tried to call the supplier all morning, but I couldn't get ...... .*",
+        "type": "choix",
+        "choix": [
+          "over",
+          "through",
+          "up",
+          "on"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Please ...... the line, I'll check if she is available.*",
+        "type": "choix",
+        "choix": [
+          "hang",
+          "hold",
+          "dial",
+          "forward"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*He was so angry that he ...... up without saying goodbye.*",
+        "type": "choix",
+        "choix": [
+          "got",
+          "dialled",
+          "hung",
+          "held"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*...... 9 to get an outside line.*",
+        "type": "choix",
+        "choix": [
+          "Enclose",
+          "Dial",
+          "Hold",
+          "Hang"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*My PIN code has four ...... .*",
+        "type": "choix",
+        "choix": [
+          "dials",
+          "slips",
+          "digits",
+          "figures out"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*hang up* = raccrocher (passé : *hung up*).",
+      "*get through* = réussir à joindre."
+    ],
+    "correction": "*busy* (occupé), *extension* (poste), *get through* (joindre), *hold the line* (rester en ligne), *hung up* (raccroché), *Dial* (composez), *digits* (chiffres)."
+  },
+  {
+    "id": "le-courrier",
+    "titre": "Le courrier",
+    "difficulte": 2,
+    "enonce": "Complète avec un seul mot.",
+    "questions": [
+      {
+        "intitule": "*Please find ...... a copy of your invoice.* (ci-joint)",
+        "type": "texte",
+        "reponse": [
+          "enclosed",
+          "attached"
+        ]
+      },
+      {
+        "intitule": "*I'll ...... your e-mail to the sales team so they can answer you.* (faire suivre)",
+        "type": "texte",
+        "reponse": [
+          "forward"
+        ]
+      },
+      {
+        "intitule": "*Send the contract by ...... mail, so we have proof that it arrived.* (recommandé)",
+        "type": "texte",
+        "reponse": [
+          "registered",
+          "certified",
+          "recorded"
+        ]
+      },
+      {
+        "intitule": "*Don't forget to put a ...... on the envelope.* (timbre)",
+        "type": "texte",
+        "reponse": [
+          "stamp"
+        ]
+      },
+      {
+        "intitule": "*Keep the delivery ...... : you will need it if there is a problem.* (bordereau)",
+        "type": "texte",
+        "reponse": [
+          "slip",
+          "note",
+          "receipt"
+        ]
+      }
+    ],
+    "indices": [
+      "*enclose* = joindre ; *forward* = faire suivre."
+    ],
+    "correction": "*enclosed* (ci-joint), *forward* (transférer), *registered / certified mail* (recommandé), *stamp* (timbre), *delivery slip* (bordereau de livraison)."
+  },
+  {
+    "id": "sens-multiples",
+    "titre": "Un mot, plusieurs sens",
+    "difficulte": 3,
+    "enonce": "Choisis le sens du mot **dans cette phrase**.",
+    "questions": [
+      {
+        "intitule": "*There is a vacancy in the accounts department.*",
+        "type": "choix",
+        "choix": [
+          "une chambre libre",
+          "un poste vacant",
+          "des vacances"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Sorry, the hotel has no vacancies this weekend.*",
+        "type": "choix",
+        "choix": [
+          "vacances",
+          "chambres libres",
+          "postes vacants"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*He gave three weeks' notice before leaving.*",
+        "type": "choix",
+        "choix": [
+          "une remarque",
+          "une annonce",
+          "un préavis"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Read the notice on the door before entering.*",
+        "type": "choix",
+        "choix": [
+          "le préavis",
+          "l'avis, l'affiche",
+          "la notice de montage"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Please file these invoices by date.*",
+        "type": "choix",
+        "choix": [
+          "classer",
+          "limer",
+          "filer"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*She sent her résumé to five companies.*",
+        "type": "choix",
+        "choix": [
+          "son CV",
+          "sa démission",
+          "son résumé"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Le contexte (hôtel, RH, bureau) donne le sens."
+    ],
+    "correction": "1. RH : poste vacant. 2. hôtel : chambres libres. 3. *give notice* : préavis. 4. *notice on the door* : un avis. 5. *file* (verbe) : classer. 6. *résumé* : CV (américain)."
+  },
+  {
+    "id": "lecture-note-de-service",
+    "titre": "Lecture : une note de service",
+    "difficulte": 2,
+    "enonce": "Lis la note, puis réponds.\n\n> **MEMO**\n> **To**: All staff - **From**: Office Manager\n> **Re**: Move to new premises\n>\n> As you know, our branch is moving to new premises at 12 Park Lane next month. Before Friday, please put all your files in the boxes provided and label them clearly. Empty your lockers and return the keys to reception. Stationery will be moved by the removal company, so you don't need to pack it. A reminder will be sent on Thursday with the new floor plan. If you have any questions, call me on extension 214.",
+    "questions": [
+      {
+        "intitule": "What is the memo mainly about?",
+        "type": "choix",
+        "choix": [
+          "New stationery",
+          "The move to a new building",
+          "A change of manager",
+          "A new branch opening abroad"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "What must staff do with their lockers?",
+        "type": "choix",
+        "choix": [
+          "Empty them and return the keys",
+          "Label them",
+          "Move them to Park Lane",
+          "Paint them"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "What do staff NOT need to pack?",
+        "type": "choix",
+        "choix": [
+          "Their personal items",
+          "Office supplies",
+          "Their files",
+          "Their keys"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "What will staff receive on Thursday?",
+        "type": "choix",
+        "choix": [
+          "Their new keys",
+          "A reminder with a floor plan",
+          "Boxes",
+          "A pay rise"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Which extension number should staff call? (un nombre)",
+        "type": "nombre",
+        "reponse": 214
+      }
+    ],
+    "indices": [
+      "*premises* = locaux ; *stationery* = fournitures de bureau."
+    ],
+    "correction": "1. *moving to new premises* : un déménagement. 2. *Empty your lockers and return the keys*. 3. *Stationery will be moved by the removal company* : pas besoin d'emballer les fournitures. 4. *A reminder will be sent on Thursday with the new floor plan*. 5. *extension 214*."
+  },
+  {
+    "id": "lecture-offre-emploi",
+    "titre": "Lecture : une offre d'emploi",
+    "difficulte": 2,
+    "enonce": "Lis l'annonce, puis réponds.\n\n> **Trainee accountant - Northbridge Group**\n> Northbridge Group, a leader in the field of renewable energy, is seeking a trainee accountant for its Manchester subsidiary. You will receive on-the-job training and attend courses one day a week. Duties include preparing invoices and updating spreadsheets. We offer a travel allowance and four weeks of time off per year.\n> Applicants should send a résumé and a cover letter to hr@northbridge.com. No phone calls, please.",
+    "questions": [
+      {
+        "intitule": "What kind of company is Northbridge Group?",
+        "type": "choix",
+        "choix": [
+          "A travel agency",
+          "A bank",
+          "A law firm",
+          "An energy company"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "Where will the trainee work?",
+        "type": "choix",
+        "choix": [
+          "In a subsidiary in Manchester",
+          "At home",
+          "In a branch abroad",
+          "At the head office in London"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "How will the trainee be trained?",
+        "type": "choix",
+        "choix": [
+          "Only online",
+          "Abroad",
+          "At work and with weekly courses",
+          "By a temp agency"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "What benefit is mentioned?",
+        "type": "choix",
+        "choix": [
+          "Health insurance",
+          "A company car",
+          "Free meals",
+          "Money for travel"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "How should candidates apply?",
+        "type": "choix",
+        "choix": [
+          "By post",
+          "By phone",
+          "By e-mail",
+          "In person"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*allowance* = indemnité ; *seek* = rechercher."
+    ],
+    "correction": "1. *renewable energy* : énergie. 2. *its Manchester subsidiary*. 3. *on-the-job training* + *courses one day a week*. 4. *a travel allowance* = indemnité de transport. 5. *send a résumé and a cover letter to hr@...* ; *No phone calls*."
+  },
+  {
+    "id": "traduction-courte",
+    "titre": "Petites traductions",
+    "difficulte": 3,
+    "enonce": "Traduis en anglais puis compare avec la réponse modèle.",
+    "questions": [
+      {
+        "intitule": "Notre filiale espagnole a fusionné avec un concurrent.",
+        "type": "auto",
+        "reponse": "*Our Spanish subsidiary has merged with a competitor.*"
+      },
+      {
+        "intitule": "Veuillez trouver ci-joint mon CV et ma lettre de motivation.",
+        "type": "auto",
+        "reponse": "*Please find enclosed (attached) my résumé (CV) and my cover letter.*"
+      },
+      {
+        "intitule": "J'ai essayé de vous joindre, mais la ligne était occupée.",
+        "type": "auto",
+        "reponse": "*I tried to call you, but I couldn't get through: the line was busy.*"
+      }
+    ],
+    "indices": [
+      "ci-joint = *enclosed* (courrier) ou *attached* (e-mail)."
+    ],
+    "correction": "Vocabulaire clé : *subsidiary*, *merge*, *competitor*, *enclosed / attached*, *résumé*, *cover letter*, *get through*, *busy*."
+  }
+]

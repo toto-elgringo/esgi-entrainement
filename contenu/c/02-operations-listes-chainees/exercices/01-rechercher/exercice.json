@@ -1,0 +1,10 @@
+{
+  "titre": "Rechercher une valeur",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "C'est un parcours : un pointeur `cur` qui avance de maillon en maillon.",
+    "Dès que `cur->value` vaut la valeur cherchée, on peut renvoyer `cur` tout de suite. Si la boucle se termine, la valeur n'est pas dans la liste.",
+    "Dans la boucle : `if (cur->value == valeur) return cur;` puis `cur = cur->next;`. Après la boucle : `return NULL;`"
+  ]
+}

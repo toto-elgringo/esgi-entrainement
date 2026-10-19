@@ -78,16 +78,17 @@ export function decouperListe(saisie) {
 }
 
 function normaliserElement(element) {
+  const texte = normaliserTexte(element);
   try {
     const valeur = valeurNumerique(element);
-    if (Number.isFinite(valeur)) return { nombre: valeur };
+    if (Number.isFinite(valeur)) return { texte, nombre: valeur };
   } catch {}
-  return { texte: normaliserTexte(element) };
+  return { texte };
 }
 
 function elementsEgaux(a, b) {
-  if ('nombre' in a && 'nombre' in b) return proches(a.nombre, b.nombre, 1e-9);
-  return 'texte' in a && a.texte === b.texte;
+  if (a.texte === b.texte) return true;
+  return 'nombre' in a && 'nombre' in b && proches(a.nombre, b.nombre, 1e-9);
 }
 
 function verifierEnsemble(question, saisie) {

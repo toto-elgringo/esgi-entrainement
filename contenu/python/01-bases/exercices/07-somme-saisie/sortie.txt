@@ -1,0 +1,3 @@
+Somme : 42
+Moyenne : 8.40
+Maximum : 15

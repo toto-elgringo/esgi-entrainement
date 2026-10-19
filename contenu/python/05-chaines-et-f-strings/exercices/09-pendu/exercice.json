@@ -1,0 +1,11 @@
+{
+  "titre": "Mini-projet : le jeu du pendu",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`afficher` : pour chaque lettre du mot, mets la lettre si elle est dans `trouvees`, sinon `_`, puis relie avec `\" \".join(...)`.",
+    "`proposer` : mets la proposition en minuscules. Si elle n'est pas une seule lettre (`len(...) != 1 or not lettre.isalpha()`), renvoie `\"invalide\"`.",
+    "Si la lettre est déjà dans `trouvees` ou `ratees`, renvoie `\"deja\"`. Sinon ajoute-la au bon ensemble avec `add` et renvoie `\"bonne\"` ou `\"mauvaise\"`.",
+    "`gagne` : `all(c in trouvees for c in mot)`, ou `set(mot) <= trouvees`."
+  ]
+}

@@ -1,0 +1,794 @@
+[
+  {
+    "id": "partie-5-serie-1",
+    "titre": "Partie 5 : série 1",
+    "difficulte": 1,
+    "enonce": "Choisis le mot qui complète chaque phrase.",
+    "questions": [
+      {
+        "intitule": "*The HR department is worried about staff ......, which has dropped this winter.*",
+        "type": "choix",
+        "choix": [
+          "absentee",
+          "attend",
+          "attendee",
+          "attendance"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*The high level of ...... in the town makes it easy to recruit workers.*",
+        "type": "choix",
+        "choix": [
+          "unemployment",
+          "employ",
+          "employed",
+          "unemployed"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The board meeting will be ...... on the fifth floor.*",
+        "type": "choix",
+        "choix": [
+          "took place",
+          "take place",
+          "held",
+          "hold"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Did you receive the ...... for Friday's meeting?*",
+        "type": "choix",
+        "choix": [
+          "agenda",
+          "summary",
+          "outcome",
+          "minutes"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*After a short lunch break, the workshop will ...... at 2 p.m.*",
+        "type": "choix",
+        "choix": [
+          "break up",
+          "postpone",
+          "sum up",
+          "resume"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "Regarde la nature du mot attendu, puis le sens.",
+      "*will be* + participe passé."
+    ],
+    "correction": "1. *attendance* a baissé (*dropped*) : c'est inquiétant. 2. *the level of* + nom : *unemployment*. 3. passif : *will be held*. 4. réunion à venir : *agenda*. 5. reprise après la pause : *resume*."
+  },
+  {
+    "id": "partie-5-serie-2",
+    "titre": "Partie 5 : série 2",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète chaque phrase.",
+    "questions": [
+      {
+        "intitule": "*All new staff must ...... in at the main entrance.*",
+        "type": "choix",
+        "choix": [
+          "clocks",
+          "clocked",
+          "clocking",
+          "clock"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Ms. Ito has been ...... head of the Tokyo branch.*",
+        "type": "choix",
+        "choix": [
+          "appointed",
+          "appointment",
+          "appointee",
+          "appoint"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Three ...... were invited for a second interview.*",
+        "type": "choix",
+        "choix": [
+          "applications",
+          "applied",
+          "applies",
+          "applicants"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*The company plans to ...... its workforce by 10% next year.*",
+        "type": "choix",
+        "choix": [
+          "reduce",
+          "lay",
+          "resign",
+          "retire"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Our contract is ...... for both parties.*",
+        "type": "choix",
+        "choix": [
+          "bind",
+          "bound",
+          "binding",
+          "binder"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Part-time workers are not ...... for the annual bonus.*",
+        "type": "choix",
+        "choix": [
+          "eligibility",
+          "eligible",
+          "illegible",
+          "legible"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*must* + verbe à la base.",
+      "*lay* demande la particule *off* ; *retire* et *resign* parlent d'une personne qui part."
+    ],
+    "correction": "1. *must clock in*. 2. *has been appointed* (passif). 3. personnes invitées : *applicants*. 4. *reduce its workforce by 10%* (réduire ses effectifs) ; *lay* sans *off* n'a pas ce sens. 5. *a binding contract*. 6. *eligible for*."
+  },
+  {
+    "id": "partie-5-serie-3",
+    "titre": "Partie 5 : série 3",
+    "difficulte": 3,
+    "enonce": "Choisis le mot qui complète chaque phrase. Attention, certains pièges sont plus fins.",
+    "questions": [
+      {
+        "intitule": "*Ms. Lopez ...... the meeting because the director was ill.*",
+        "type": "choix",
+        "choix": [
+          "chaired",
+          "attended to",
+          "resumed",
+          "took place"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The ...... of the new manager will be announced on Monday.*",
+        "type": "choix",
+        "choix": [
+          "appointing",
+          "appoint",
+          "appointed",
+          "appointment"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*We are pleased to offer you the ...... of sales assistant.*",
+        "type": "choix",
+        "choix": [
+          "position",
+          "appointment",
+          "vacant",
+          "availability"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Please let us know ...... you can attend the training session.*",
+        "type": "choix",
+        "choix": [
+          "although",
+          "whether",
+          "despite",
+          "unless"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The trainees are looking forward ...... the factory next week.*",
+        "type": "choix",
+        "choix": [
+          "to visiting",
+          "to visit",
+          "visiting",
+          "visit"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*...... the heavy snow, all employees came to work.*",
+        "type": "choix",
+        "choix": [
+          "Despite",
+          "Because",
+          "Unless",
+          "Although"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*whether* = si (alternative oui / non).",
+      "*Despite* + nom ; *Although* + sujet + verbe."
+    ],
+    "correction": "1. *chaired* = a présidé. 2. *The ... of* → nom : *appointment*. 3. *the position of sales assistant* = le poste de. 4. *let us know whether* = dites-nous si. 5. *look forward to* + -ing. 6. *Despite* + nom (*the heavy snow*)."
+  },
+  {
+    "id": "partie-6-entretien",
+    "titre": "Partie 6 : une invitation à un entretien",
+    "difficulte": 2,
+    "enonce": "Lis l'e-mail, puis complète chaque trou.\n\n> **From** : Laura Benson, HR Manager, Corvex Logistics\n> **To** : Daniel Okafor\n> **Subject** : Your application\n>\n> Dear Mr. Okafor,\n>\n> Thank you for your application for the (1) ...... of warehouse supervisor. We were impressed by your experience, and you are now on our (2) ....... We would like to meet you next Tuesday or Wednesday, (3) ...... .\n> Before the interview, could you (4) ...... the names of two former employers who can give you a reference?\n>\n> I look forward (5) ...... you.\n>\n> Kind regards,\n> Laura Benson",
+    "questions": [
+      {
+        "intitule": "(1)",
+        "type": "choix",
+        "choix": [
+          "appointee",
+          "position",
+          "availability",
+          "location"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "(2)",
+        "type": "choix",
+        "choix": [
+          "shortlisting",
+          "shortlisted",
+          "shortlist",
+          "short list of"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "(3)",
+        "type": "choix",
+        "choix": [
+          "unless you are available",
+          "whichever is more convenient for you",
+          "whether you are free",
+          "even if it suits you"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "(4)",
+        "type": "choix",
+        "choix": [
+          "provide",
+          "distribute",
+          "promote",
+          "issue"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "(5)",
+        "type": "choix",
+        "choix": [
+          "meet",
+          "meeting",
+          "to meet",
+          "to meeting"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*on our ...* : après un possessif, il faut un nom.",
+      "*look forward to* + -ing."
+    ],
+    "correction": "(1) *the position of* = le poste de. (2) *on our shortlist* (nom). (3) *whichever is more convenient for you* = le jour qui vous arrange le mieux ; les autres choix n'ont pas de sens ici. (4) *provide the names* = fournir. (5) *I look forward to meeting you*."
+  },
+  {
+    "id": "partie-6-note-de-service",
+    "titre": "Partie 6 : une note de service",
+    "difficulte": 2,
+    "enonce": "Lis la note, puis complète chaque trou.\n\n> **MEMO**\n> **To** : All staff\n> **From** : Events committee\n>\n> This year's staff (1) ...... will take place on Friday 14 June. We will spend the day at Lake Arden, where a picnic lunch will be (2) ....... The bus will leave the office at 9 a.m. (3) ......, anyone who prefers to drive can meet us at the lake.\n> Please tell Mia Clark (4) ...... you will join us by 31 May. The (5) ...... of the day will be posted on the noticeboard next week.",
+    "questions": [
+      {
+        "intitule": "(1)",
+        "type": "choix",
+        "choix": [
+          "out of",
+          "outer",
+          "outing",
+          "outed"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "(2)",
+        "type": "choix",
+        "choix": [
+          "provide",
+          "provider",
+          "provided",
+          "providing"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "(3)",
+        "type": "choix",
+        "choix": [
+          "Alternatively",
+          "Unless",
+          "Therefore",
+          "Because"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "(4)",
+        "type": "choix",
+        "choix": [
+          "unless",
+          "whether",
+          "although",
+          "despite"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "(5)",
+        "type": "choix",
+        "choix": [
+          "schedule",
+          "résumé",
+          "appraisal",
+          "minutes"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*will be* + participe passé.",
+      "*Alternatively* = sinon, autre possibilité."
+    ],
+    "correction": "(1) *staff outing* = sortie du personnel. (2) *will be provided* (passif). (3) *Alternatively* propose une autre solution (venir en voiture). (4) *tell her whether* = dire si. (5) *the schedule of the day* = le programme ; les *minutes* sont un compte-rendu de réunion."
+  },
+  {
+    "id": "partie-7-annonce",
+    "titre": "Partie 7 : une offre d'emploi",
+    "difficulte": 1,
+    "enonce": "Lis l'annonce, puis réponds.\n\n> **Weekend receptionist wanted - Harbour View Hotel**\n> We are looking for a friendly receptionist to work Saturdays and Sundays (16 hours per week). Experience in a hotel is an advantage but not required: full training will be given. The position is paid $15 per hour, and staff meals are included.\n> To apply, send your résumé to jobs@harbourview.com before 30 April. Shortlisted candidates will be interviewed in the first week of May.",
+    "questions": [
+      {
+        "intitule": "How many hours per week is the job?",
+        "type": "nombre",
+        "reponse": 16
+      },
+      {
+        "intitule": "What is said about experience?",
+        "type": "choix",
+        "choix": [
+          "It is useful but not necessary.",
+          "At least two years are needed.",
+          "It is required.",
+          "It is not mentioned."
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "What benefit is mentioned?",
+        "type": "choix",
+        "choix": [
+          "Free meals",
+          "Extra holidays",
+          "Health insurance",
+          "A company car"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "What will happen in early May?",
+        "type": "choix",
+        "choix": [
+          "Training will start.",
+          "Some candidates will be interviewed.",
+          "The hotel will open.",
+          "The job will be advertised."
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*an advantage but not required* = un plus, mais pas obligatoire."
+    ],
+    "correction": "1. *16 hours per week*. 2. *an advantage but not required*. 3. *staff meals are included*. 4. *Shortlisted candidates will be interviewed in the first week of May*."
+  },
+  {
+    "id": "partie-7-deux-documents",
+    "titre": "Partie 7 : un e-mail et un planning",
+    "difficulte": 2,
+    "enonce": "Lis les deux documents, puis réponds.\n\n**Document 1 : e-mail**\n\n> **From** : Ken Adams, Office Manager\n> **To** : Sales team\n> **Date** : Monday 3 March\n>\n> Hi all,\n> The sales training planned for Wednesday has been postponed by one day because the trainer's flight was cancelled. The session will be held in Room 4 instead of Room 2, which is being painted. Lunch will be provided.\n> Ken\n\n**Document 2 : planning des salles**\n\n| Day | Room 2 | Room 4 |\n|---|---|---|\n| Wednesday 5 March | closed (painting) | IT workshop |\n| Thursday 6 March | closed (painting) | free |\n| Friday 7 March | board meeting | client visit |",
+    "questions": [
+      {
+        "intitule": "Why was the training postponed?",
+        "type": "choix",
+        "choix": [
+          "The manager was ill.",
+          "The trainer could not travel.",
+          "The room was not available.",
+          "Too few people registered."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "On what day will the training take place?",
+        "type": "choix",
+        "choix": [
+          "Monday 3 March",
+          "Friday 7 March",
+          "Wednesday 5 March",
+          "Thursday 6 March"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "Why can't the session take place in Room 2?",
+        "type": "choix",
+        "choix": [
+          "It is booked for a board meeting.",
+          "It has no computers.",
+          "It is being painted.",
+          "It is too small."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "What is NOT mentioned about the training?",
+        "type": "choix",
+        "choix": [
+          "The name of the trainer",
+          "The new room",
+          "Lunch",
+          "The new date"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*postponed by one day* : décalé d'un jour.",
+      "Croise l'e-mail avec le planning : le jeudi, la salle 4 est libre."
+    ],
+    "correction": "1. *the trainer's flight was cancelled*. 2. Mercredi + un jour = **jeudi 6 mars**, et la salle 4 est libre ce jour-là. 3. *Room 2, which is being painted*. 4. Le nom du formateur n'est jamais donné."
+  },
+  {
+    "id": "partie-7-trois-documents",
+    "titre": "Partie 7 : trois documents à relier",
+    "difficulte": 3,
+    "enonce": "Lis les trois documents, puis réponds.\n\n**Document 1 : compte-rendu**\n\n> **Minutes - Greenfield Sports Centre committee - 2 April**\n> Present: Tom Reyes, Alice Moreau, Sam Patel. Absent: Nina Lee.\n> Members of the public have complained that the swimming pool closes too early. Tom Reyes said the budget does not allow more lifeguards. Alice Moreau suggested hiring sports-science students part-time, so the pool can stay open later and the students can gain experience. Sam Patel agreed to write a job advertisement for the university website.\n> Next meeting: 16 April.\n\n**Document 2 : annonce**\n\n> **Students: work at Greenfield Sports Centre!**\n> We are taking on four lifeguards for evening shifts (6 p.m. - 9 p.m., three evenings a week). Applicants must be studying sports science and hold a lifesaving certificate. Send your résumé to Nina Lee, Centre Manager, at nlee@greenfield.org.\n\n**Document 3 : e-mail**\n\n> **To** : Sam Patel\n> **From** : Nina Lee\n> **Date** : 15 April\n> Sam, thanks for the advert: we've received 30 applications! Could you help me choose the best candidates? I'm busy at the reception desk today, but we can compare our lists at the committee meeting.\n> Nina",
+    "questions": [
+      {
+        "intitule": "Why does the committee want to hire students?",
+        "type": "choix",
+        "choix": [
+          "To clean the centre",
+          "To organise sports competitions",
+          "To keep the pool open later",
+          "To reduce costs on equipment"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Who most likely wrote the advertisement?",
+        "type": "choix",
+        "choix": [
+          "Alice Moreau",
+          "Tom Reyes",
+          "Sam Patel",
+          "Nina Lee"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Who is Nina Lee?",
+        "type": "choix",
+        "choix": [
+          "A student",
+          "A lifeguard",
+          "The manager of the centre",
+          "A journalist"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "What is NOT stated about the job?",
+        "type": "choix",
+        "choix": [
+          "The field of study",
+          "A certificate needed",
+          "The salary",
+          "The working hours"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "What will happen on the day after the e-mail?",
+        "type": "choix",
+        "choix": [
+          "The advert will be published.",
+          "The committee will meet.",
+          "The students will start work.",
+          "The pool will close."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "How many lifeguards does the centre want to take on?",
+        "type": "nombre",
+        "reponse": 4
+      }
+    ],
+    "indices": [
+      "Cherche dans le compte-rendu qui s'est proposé pour rédiger l'annonce.",
+      "E-mail du 15 avril ; prochaine réunion le 16 avril."
+    ],
+    "correction": "1. *so the pool can stay open later*. 2. *Sam Patel agreed to write a job advertisement*, et Nina le remercie pour l'annonce. 3. *Nina Lee, Centre Manager*. 4. Horaires, études et certificat sont donnés ; le salaire, non. 5. E-mail le 15 avril, réunion le **16 avril** (*we can compare our lists at the committee meeting*). 6. *four lifeguards*."
+  },
+  {
+    "id": "partie-2-sur-papier",
+    "titre": "Partie 2 sur papier : réunions et RH",
+    "difficulte": 2,
+    "enonce": "Voici des questions de partie 2, écrites. Choisis la réponse logique.",
+    "questions": [
+      {
+        "intitule": "*Who is going to chair the meeting tomorrow?*",
+        "type": "choix",
+        "choix": [
+          "Yes, the chairs are new.",
+          "In the boardroom.",
+          "Ms. Grant, I think."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Has the agenda been sent out yet?*",
+        "type": "choix",
+        "choix": [
+          "Next Monday at ten.",
+          "The agent is on the phone.",
+          "Yes, it's in your inbox."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Why don't we postpone the training until May?*",
+        "type": "choix",
+        "choix": [
+          "It started in March.",
+          "Because the trainer is here.",
+          "That's a good idea."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Where should I send my résumé?*",
+        "type": "choix",
+        "choix": [
+          "Last week.",
+          "To the HR department.",
+          "Yes, I resumed it."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*You'll be at the retirement party, won't you?*",
+        "type": "choix",
+        "choix": [
+          "The party is a political group.",
+          "He retired last year.",
+          "Of course, I wouldn't miss it."
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*chair* (présider) et *chairs* (des chaises) : piège sonore.",
+      "*Why don't we...?* est une proposition."
+    ],
+    "correction": "1. *Who* → une personne. 2. *yet* → oui ou non + info. 3. *Why don't we...?* = proposition : on l'accepte ou on la refuse. 4. *Where* → un lieu ou un service. 5. *won't you?* attend une confirmation."
+  },
+  {
+    "id": "partie-3-sur-papier",
+    "titre": "Partie 3 sur papier : une réunion déplacée",
+    "difficulte": 2,
+    "enonce": "Lis la transcription, puis réponds.\n\n> **Man** : Hi Emma, quick question: the team meeting is still at 9 tomorrow, right?\n> **Woman** : Actually, no. It's been moved to 10. Several people are coming back from the trade fair tonight, and their train arrives very late.\n> **Man** : Ah, that makes sense. I'll tell the new intern, she starts tomorrow.\n> **Woman** : Great. And remind her it's important: we'll be discussing the summer schedule, so nobody should skip it.",
+    "questions": [
+      {
+        "intitule": "What time will the meeting start?",
+        "type": "choix",
+        "choix": [
+          "10 a.m.",
+          "At noon",
+          "9 a.m.",
+          "8 a.m."
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Why was the time changed?",
+        "type": "choix",
+        "choix": [
+          "The intern starts late.",
+          "Some colleagues will return late the night before.",
+          "The manager is ill.",
+          "The room is not available."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "What does the woman mean by \"nobody should skip it\"?",
+        "type": "choix",
+        "choix": [
+          "Nobody should speak.",
+          "Everyone should read the schedule.",
+          "Everyone should come to the meeting.",
+          "Nobody should be late."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "What will the man do?",
+        "type": "choix",
+        "choix": [
+          "Prepare the schedule",
+          "Book a train",
+          "Call the trainer",
+          "Inform the new intern"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*Actually* = en fait (faux ami).",
+      "*to skip* = sauter, ne pas aller à."
+    ],
+    "correction": "1. *It's been moved to 10*. 2. *Several people are coming back from the trade fair tonight, and their train arrives very late*. 3. *skip* = ne pas venir : tout le monde doit être présent. 4. *I'll tell the new intern*."
+  },
+  {
+    "id": "reperer-le-piege",
+    "titre": "Repérer le piège",
+    "difficulte": 3,
+    "enonce": "Pour chaque phrase, choisis pourquoi la réponse proposée est **fausse**.",
+    "questions": [
+      {
+        "intitule": "*The meeting will be take place in Room C.* Pourquoi est-ce faux ?",
+        "type": "choix",
+        "choix": [
+          "*will* est impossible",
+          "*take place* ne se met pas au passif",
+          "*Room* doit être au pluriel"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Have you seen the minutes of next week's meeting?* Pourquoi est-ce bizarre ?",
+        "type": "choix",
+        "choix": [
+          "Il faut *minute* au singulier",
+          "*minutes* veut dire secondes",
+          "Les *minutes* sont rédigées après une réunion"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*I look forward to meet you.* Pourquoi est-ce faux ?",
+        "type": "choix",
+        "choix": [
+          "Il manque *will*",
+          "Après *look forward to*, il faut un verbe en -ing",
+          "*meet* doit être au passé"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Staff absenteeism is very low, so the director is worried.* Pourquoi est-ce illogique ?",
+        "type": "choix",
+        "choix": [
+          "Un absentéisme bas est une bonne nouvelle",
+          "*low* doit être *lowly*",
+          "*absenteeism* n'existe pas"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Ce sont les pièges du mini test."
+    ],
+    "correction": "1. On dit *will take place* ou *will be held*. 2. Pour une réunion à venir : *the agenda*. 3. *look forward to meeting you*. 4. Si la direction s'inquiète, c'est que la **présence** (*attendance*) est basse."
+  },
+  {
+    "id": "vocabulaire-mini-test",
+    "titre": "Le vocabulaire du mini test",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "le chômage",
+        "type": "texte",
+        "reponse": [
+          "unemployment"
+        ]
+      },
+      {
+        "intitule": "l'absentéisme",
+        "type": "texte",
+        "reponse": [
+          "absenteeism"
+        ]
+      },
+      {
+        "intitule": "dès que possible (formule polie, 4 mots : *at your earliest ...*)",
+        "type": "texte",
+        "reponse": [
+          "at your earliest convenience",
+          "convenience"
+        ]
+      },
+      {
+        "intitule": "au nom de (la bibliothèque)",
+        "type": "texte",
+        "reponse": [
+          "on behalf of",
+          "in behalf of"
+        ]
+      },
+      {
+        "intitule": "la charge de travail",
+        "type": "texte",
+        "reponse": [
+          "workload",
+          "the workload"
+        ]
+      },
+      {
+        "intitule": "la liste des candidats retenus",
+        "type": "texte",
+        "reponse": [
+          "shortlist",
+          "the shortlist",
+          "short list",
+          "the short list"
+        ]
+      }
+    ],
+    "indices": [
+      "*on behalf of* = au nom de."
+    ],
+    "correction": "*unemployment*, *absenteeism*, *at your earliest convenience*, *on behalf of*, *workload*, *shortlist*."
+  },
+  {
+    "id": "rediger-reponse",
+    "titre": "Répondre à une invitation",
+    "difficulte": 3,
+    "enonce": "Tu as reçu l'e-mail de l'exercice « Partie 6 : une invitation à un entretien ». Rédige une réponse de 3 ou 4 phrases : remercie, choisis un jour, dis que tu fournis tes références.",
+    "questions": [
+      {
+        "intitule": "Ta réponse",
+        "type": "auto",
+        "reponse": "Exemple :\n\n*Dear Ms. Benson,*\n\n*Thank you for your e-mail and for shortlisting me. Wednesday would be the most convenient day for me, ideally in the morning. Please find attached the contact details of two former employers who can provide a reference. I look forward to meeting you.*\n\n*Kind regards,*\n*Daniel Okafor*"
+      }
+    ],
+    "indices": [
+      "*Thank you for...* + nom ou -ing.",
+      "Termine par *I look forward to meeting you*."
+    ],
+    "correction": "À vérifier : remerciement (*Thank you for...*), choix d'un jour (*Wednesday would suit me*), références (*Please find attached...*), formule finale avec *look forward to* + -ing."
+  }
+]

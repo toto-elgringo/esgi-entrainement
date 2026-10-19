@@ -1,0 +1,10 @@
+{
+  "titre": "Modifier ou copier ?",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "La fonction reçoit la **même** liste que l'appelant : modifier `notes[i]` modifie la liste d'origine.",
+    "Pour `ajouter_bonus`, parcours les indices avec `for i in range(len(notes))` et remplace `notes[i]` par `min(notes[i] + bonus, 20)`. Ne renvoie rien.",
+    "Pour `avec_bonus`, construis une **nouvelle** liste avec `append` et renvoie-la, sans jamais toucher à `notes`."
+  ]
+}

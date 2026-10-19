@@ -1,0 +1,10 @@
+{
+  "titre": "Des fonctions en paramètre",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Le paramètre `func` est une fonction : on l'appelle comme n'importe quelle fonction, `func(x)`.",
+    "Pour `filtrer`, ajoute `x` au résultat seulement si `condition(x)` est vrai.",
+    "Pour `appliquer_n_fois`, répète `x = func(x)` dans une boucle `for _ in range(n)`, puis renvoie `x`."
+  ]
+}

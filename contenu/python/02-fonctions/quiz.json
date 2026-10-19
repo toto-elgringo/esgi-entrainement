@@ -1,0 +1,89 @@
+[
+  {
+    "question": "Avec `def foo(a, b=4, c=\"toto\")`, que reçoit `c` lors de l'appel `foo(1, 2)` ?",
+    "choix": ["`2`", "`\"toto\"`", "`None`", "Une erreur : il manque un argument"],
+    "reponse": 1,
+    "explication": "`a` reçoit 1, `b` reçoit 2, et `c` garde sa valeur par défaut `\"toto\"`."
+  },
+  {
+    "question": "Quel appel est **invalide** pour `def foo(a, b=4)` ?",
+    "choix": ["`foo(1)`", "`foo(b=2, a=1)`", "`foo(a=1, 2)`", "`foo(1, b=2)`"],
+    "reponse": 2,
+    "explication": "Les arguments par position doivent venir avant ceux par mot-clé : `foo(a=1, 2)` est une erreur de syntaxe."
+  },
+  {
+    "question": "Que contient `args` dans `def foo(*args)` appelée par `foo(1, 2)` ?",
+    "choix": ["La liste `[1, 2]`", "Le tuple `(1, 2)`", "Le dict `{0: 1, 1: 2}`", "Seulement `1`"],
+    "reponse": 1,
+    "explication": "`*args` range les arguments par position en trop dans un **tuple**."
+  },
+  {
+    "question": "Que contient `kwargs` dans `def foo(x=0, **kwargs)` appelée par `foo(a=\"A\", x=\"X\")` ?",
+    "choix": ["`{'a': 'A', 'x': 'X'}`", "`{'a': 'A'}`", "`('A', 'X')`", "`{}`"],
+    "reponse": 1,
+    "explication": "`x` est un paramètre connu : il reçoit `\"X\"`. Seul `a`, inconnu, va dans le dictionnaire `kwargs`."
+  },
+  {
+    "question": "Pourquoi `def ajoute(x, l=[])` est-il un piège ?",
+    "choix": [
+      "Une liste vide n'est pas une valeur autorisée",
+      "La même liste est réutilisée à chaque appel",
+      "La liste est copiée à chaque appel, c'est lent",
+      "`l` vaudra toujours `None`"
+    ],
+    "reponse": 1,
+    "explication": "La valeur par défaut est créée une seule fois, à la définition. Les éléments ajoutés s'accumulent d'un appel à l'autre. On écrit plutôt `l=None` puis `if l is None: l = []`."
+  },
+  {
+    "question": "Qu'affiche `print(plus10(5))` avec `plus10 = create_adder(10)`, où `create_adder(n)` renvoie `adder(x)` qui fait `return x + n` ?",
+    "choix": ["`10`", "`15`", "`5`", "Une erreur : `n` n'existe plus"],
+    "reponse": 1,
+    "explication": "`adder` est une closure : elle a gardé en mémoire `n = 10`, même après la fin de `create_adder`."
+  },
+  {
+    "question": "À quoi équivaut `@decor` écrit au-dessus de `def f(): ...` ?",
+    "choix": ["`f = decor`", "`f = decor(f)`", "`decor = f(decor)`", "`f = decor()`"],
+    "reponse": 1,
+    "explication": "La syntaxe `@` remplace la fonction par ce que renvoie le décorateur appliqué à elle : `f = decor(f)`."
+  },
+  {
+    "question": "Pourquoi le `wrapper` d'un décorateur générique prend-il `*args, **kwargs` ?",
+    "choix": [
+      "Pour aller plus vite",
+      "Pour accepter et retransmettre n'importe quels arguments à la fonction décorée",
+      "C'est obligatoire pour toute fonction interne",
+      "Pour que le décorateur puisse prendre un paramètre"
+    ],
+    "reponse": 1,
+    "explication": "Sans eux, on ne pourrait décorer que des fonctions sans paramètre. `func(*args, **kwargs)` redonne tout à la fonction d'origine."
+  },
+  {
+    "question": "Que se passe-t-il quand on appelle une fonction qui contient `yield` ?",
+    "choix": [
+      "Elle s'exécute en entier et renvoie une liste",
+      "Elle renvoie un générateur sans rien exécuter encore",
+      "Elle renvoie la première valeur",
+      "Elle lève une erreur si on n'utilise pas `next`"
+    ],
+    "reponse": 1,
+    "explication": "L'appel crée un générateur. Le code ne s'exécute qu'au premier `next()` (ou au premier tour d'une boucle `for`), jusqu'au premier `yield`."
+  },
+  {
+    "question": "Dans un `try`, quand le bloc `else` est-il exécuté ?",
+    "choix": ["Toujours", "Seulement si une exception a été levée", "Seulement si aucune exception n'a été levée", "Jamais avec `finally`"],
+    "reponse": 2,
+    "explication": "`else` s'exécute seulement si le `try` s'est déroulé sans exception. C'est `finally` qui s'exécute dans tous les cas."
+  },
+  {
+    "question": "`except LookupError:` intercepte-t-il une `KeyError` ?",
+    "choix": ["Oui, `KeyError` est une sorte de `LookupError`", "Non, il faut écrire `KeyError`", "Seulement avec `as e`", "Seulement dans un dictionnaire vide"],
+    "reponse": 0,
+    "explication": "Les exceptions forment une hiérarchie : `KeyError` et `IndexError` héritent de `LookupError`. Intercepter le parent intercepte les enfants."
+  },
+  {
+    "question": "Comment signaler soi-même qu'une valeur est invalide ?",
+    "choix": ["`return ValueError`", "`raise ValueError(\"message\")`", "`throw ValueError(\"message\")`", "`except ValueError`"],
+    "reponse": 1,
+    "explication": "`raise` lève une exception. `return ValueError` renverrait juste la classe, sans interrompre quoi que ce soit."
+  }
+]

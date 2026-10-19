@@ -1,0 +1,11 @@
+{
+  "titre": "Compréhensions à plusieurs for",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Les mots en majuscules : `[w.upper() for w in ligne.split() if w.isalpha()]`.",
+    "Deux `for` dans la même compréhension se lisent comme deux boucles imbriquées : `[f + \" \" + n for f in prenoms for n in noms]`.",
+    "Les couples ordonnés : `[(i, j) for i in E for j in E if i < j]`.",
+    "Pour la table, une compréhension **dans** une compréhension : `[[i * j for j in range(1, n + 1)] for i in range(1, n + 1)]`."
+  ]
+}

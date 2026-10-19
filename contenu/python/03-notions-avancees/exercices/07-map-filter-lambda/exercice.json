@@ -1,0 +1,11 @@
+{
+  "titre": "map, filter et lambda",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`map` et `filter` renvoient un itérable paresseux : entoure-les de `list(...)` pour renvoyer une liste.",
+    "`list(map(int, textes))` convertit chaque texte en entier.",
+    "`list(filter(lambda x: x % k == 0, l))` garde les multiples de `k`. La lambda peut utiliser `k`, qui vient de la fonction.",
+    "`map` accepte plusieurs listes si la fonction prend plusieurs paramètres : `list(map(lambda x, y: x * y, l1, l2))`."
+  ]
+}

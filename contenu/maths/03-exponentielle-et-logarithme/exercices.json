@@ -352,6 +352,60 @@
     "correction": "- L'exponentielle l'emporte : $\\ln x \\ll x \\ll e^x$.\n- $\\lim\\limits_{x \\to +\\infty} \\dfrac{x}{e^x} = 0$ : l'exponentielle écrase $x$.\n- $O(\\log n)$ est de loin le plus rapide : avec $n = 10^9$, environ $30$ étapes seulement.\n- $\\log_2(10^9) = 9 \\log_2 10 \\approx 9 \\times 3{,}32 \\approx 29{,}9$, soit environ $30$.\n- $(\\ln x)'' = -\\dfrac{1}{x^2} < 0$ : $\\ln$ est concave."
   },
   {
+    "id": "ln-face-a-racine",
+    "titre": "ln, racine carrée et complexités",
+    "difficulte": 2,
+    "enonce": "On compare des quantités qui deviennent très grandes. Valeurs utiles : $\\ln 10 \\approx 2{,}3$ et $\\log_2 10 \\approx 3{,}32$.",
+    "questions": [
+      {
+        "intitule": "Calcule $\\ln(10^6)$, arrondi au dixième.",
+        "type": "nombre",
+        "reponse": "ln(10^6)",
+        "tolerance": 0.05,
+        "acceptes": ["13.8"],
+        "refuses": ["6", "1000000"]
+      },
+      {
+        "intitule": "Calcule $\\sqrt{10^6}$.",
+        "type": "nombre",
+        "reponse": 1000,
+        "refuses": ["100000", "500000"]
+      },
+      {
+        "intitule": "Lequel est le plus grand ?",
+        "type": "choix",
+        "choix": ["$\\ln(1\\,000\\,000)$", "$\\sqrt{1\\,000\\,000}$", "Ils sont à peu près égaux"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Quand $x \\to +\\infty$, vers quoi tend $\\dfrac{\\ln x}{\\sqrt{x}}$ ?",
+        "type": "choix",
+        "choix": ["$0$", "$1$", "$+\\infty$"],
+        "reponse": 0
+      },
+      {
+        "intitule": "L'algorithme A est en $O(n \\log n)$, l'algorithme B en $O(n^2)$. Pour $n$ très grand, lequel est le plus lent ?",
+        "type": "choix",
+        "choix": ["A", "B", "Ils se valent"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Pour $n = 10^6$, calcule le rapport $\\dfrac{n^2}{n \\log_2 n} = \\dfrac{n}{\\log_2 n}$ (une valeur approchée à $1\\,000$ près suffit).",
+        "type": "nombre",
+        "reponse": "10^6/log2(10^6)",
+        "tolerance": 1000,
+        "acceptes": ["50000"],
+        "refuses": ["20", "1000000"]
+      }
+    ],
+    "indices": [
+      "$\\ln(10^6) = 6 \\ln 10$ et $\\sqrt{10^6} = 10^{6/2}$.",
+      "Croissances comparées : $\\ln x$ grandit moins vite que toute puissance de $x$, même $\\sqrt{x} = x^{1/2}$.",
+      "$n \\log n = n \\times \\log n$ et $n^2 = n \\times n$ : il reste à comparer $\\log n$ et $n$."
+    ],
+    "correction": "- $\\ln(10^6) = 6 \\ln 10 \\approx 6 \\times 2{,}3 = 13{,}8$.\n- $\\sqrt{10^6} = 10^{6/2} = 10^3 = 1\\,000$.\n- Donc $\\sqrt{1\\,000\\,000}$ est **bien plus grand** que $\\ln(1\\,000\\,000)$, environ 70 fois plus. C'est la hiérarchie du cours : le logarithme grandit moins vite que $x$, et même moins vite que $\\sqrt{x}$.\n- Ainsi $\\dfrac{\\ln x}{\\sqrt{x}} \\to 0$ quand $x \\to +\\infty$.\n- $n \\log n = n \\times \\log n$ et $n^2 = n \\times n$. Comme $\\log n \\ll n$, on a $n \\log n \\ll n^2$ : c'est **B** qui devient le plus lent.\n- Pour $n = 10^6$ : $\\log_2(10^6) = 6 \\log_2 10 \\approx 19{,}9$, donc $\\dfrac{n}{\\log_2 n} \\approx \\dfrac{10^6}{20} = 50\\,000$. L'algorithme B fait environ $50\\,000$ fois plus d'opérations que A."
+  },
+  {
     "id": "etude-de-fonction",
     "titre": "Étude de fonction : e^x / x",
     "difficulte": 3,
@@ -518,6 +572,61 @@
       "Une droite s'écrit $z = (\\text{ordonnée à l'origine}) + (\\text{pente}) \\times x$."
     ],
     "correction": "$z = \\ln y = \\ln\\left(3\\,e^{0{,}4x}\\right) = \\ln 3 + \\ln\\left(e^{0{,}4x}\\right) = \\ln 3 + 0{,}4\\,x$.\n\nC'est une droite de **pente** $0{,}4$ et d'**ordonnée à l'origine** $\\ln 3 \\approx 1{,}10$.\n\nSur un graphique avec $\\ln y$ en ordonnée (échelle logarithmique), la croissance exponentielle devient une droite : elle se repère et se mesure facilement."
+  },
+  {
+    "id": "dichotomie-ou-lineaire",
+    "titre": "Dichotomie contre recherche linéaire",
+    "difficulte": 2,
+    "enonce": "On cherche une valeur dans un tableau **trié** de $n$ éléments.\n\n- La **recherche linéaire** regarde les cases une par une : jusqu'à $n$ comparaisons.\n- La **recherche dichotomique** coupe le tableau en deux à chaque étape : environ $\\log_2(n)$ comparaisons.\n\nRappel : $2^{10} = 1\\,024 \\approx 10^3$.",
+    "questions": [
+      {
+        "intitule": "Pour $n = 1\\,000$, combien de comparaisons fait environ la dichotomie ? (arrondi à l'unité)",
+        "type": "nombre",
+        "reponse": "log2(1000)",
+        "tolerance": 0.5,
+        "acceptes": ["10"],
+        "refuses": ["1000", "500"]
+      },
+      {
+        "intitule": "Et pour $n = 1\\,000\\,000$ ? (arrondi à l'unité)",
+        "type": "nombre",
+        "reponse": "log2(10^6)",
+        "tolerance": 0.5,
+        "acceptes": ["20"],
+        "refuses": ["1000", "6"]
+      },
+      {
+        "intitule": "Pour $n = 1\\,000\\,000$, en comptant 20 comparaisons pour la dichotomie : combien de fois la recherche linéaire est-elle plus lente dans le pire cas ?",
+        "type": "nombre",
+        "reponse": 50000,
+        "refuses": ["20", "1000000"]
+      },
+      {
+        "intitule": "On passe de $n = 10^6$ à $n = 10^9$ (1 000 fois plus de données). Combien de comparaisons **en plus**, environ, pour la dichotomie ?",
+        "type": "nombre",
+        "reponse": "log2(1000)",
+        "tolerance": 0.5,
+        "acceptes": ["10"],
+        "refuses": ["30", "1000"]
+      },
+      {
+        "intitule": "Et pour la recherche linéaire, dans le pire cas ?",
+        "type": "choix",
+        "choix": ["Environ 10 comparaisons de plus", "1 000 fois plus de comparaisons", "Le même nombre de comparaisons"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Explique en une ou deux phrases pourquoi l'écart se creuse quand $n$ augmente.",
+        "type": "auto",
+        "reponse": "$\\log_2 n$ grandit **extrêmement lentement** : multiplier $n$ par $1\\,000$ n'ajoute qu'environ 10 comparaisons à la dichotomie, alors que le travail de la recherche linéaire est multiplié par $1\\,000$. C'est la hiérarchie $\\ln x \\ll x$ : le rapport $\\dfrac{n}{\\log_2 n}$ tend vers $+\\infty$."
+      }
+    ],
+    "indices": [
+      "$1\\,000 \\approx 2^{10}$, donc $\\log_2(1\\,000) \\approx 10$. Et $10^6 = (10^3)^2 \\approx 2^{20}$.",
+      "Le rapport vaut $\\dfrac{1\\,000\\,000}{20}$.",
+      "$\\log_2(1\\,000 \\times n) = \\log_2(1\\,000) + \\log_2(n)$ : le logarithme transforme un produit en somme."
+    ],
+    "correction": "- $1\\,000 \\approx 2^{10}$, donc $\\log_2(1\\,000) \\approx 10$ comparaisons.\n- $10^6 \\approx (2^{10})^2 = 2^{20}$, donc $\\log_2(10^6) \\approx 20$ comparaisons.\n- Recherche linéaire : jusqu'à $1\\,000\\,000$ comparaisons, contre $20$. Rapport : $\\dfrac{1\\,000\\,000}{20} = 50\\,000$.\n- $\\log_2(10^9) = \\log_2(10^6) + \\log_2(1\\,000) \\approx 20 + 10 = 30$ : seulement **10 comparaisons de plus**.\n- La recherche linéaire passe de $10^6$ à $10^9$ comparaisons : **1 000 fois plus**.\n- L'écart se creuse car $\\log_2 n \\ll n$. C'est pour cela qu'on trie et qu'on indexe les données : les index des bases de données reposent sur une idée proche."
   },
   {
     "id": "cout-logarithmique",

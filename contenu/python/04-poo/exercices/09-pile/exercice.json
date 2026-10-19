@@ -1,0 +1,11 @@
+{
+  "titre": "Une pile avec des méthodes spéciales",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Range les éléments dans une liste : `self._elements = []` dans `__init__`. Le sommet de la pile est la **fin** de la liste.",
+    "`empiler` fait `append`, `depiler` fait `pop()`. Si la pile est vide, lève `IndexError(\"pile vide\")` avant.",
+    "`__len__` renvoie `len(self._elements)`. Python s'en sert aussi pour `if pile:` : une pile de longueur 0 est fausse.",
+    "`__repr__` peut s'écrire `\"Pile(\" + str(self._elements) + \")\"`."
+  ]
+}

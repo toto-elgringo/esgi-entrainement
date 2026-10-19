@@ -1,10 +1,14 @@
 import fs from 'node:fs/promises';
 import http from 'node:http';
 import path from 'node:path';
-import { ContenuIntrouvable, lireExercice } from './contenu-rust.js';
-import { executerProgramme, verifierExercice, versionRust } from './rust.js';
+import { LANGAGES } from '../js/domaines.js';
+import * as c from './c.js';
+import { ContenuIntrouvable, lireExercice } from './contenu-code.js';
+import * as python from './python.js';
+import * as rust from './rust.js';
 
 const TAILLE_MAX_CORPS = 512 * 1024;
+const EXECUTEURS = { rust, python, c };
 const TYPES_MIME = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -12,6 +16,8 @@ const TYPES_MIME = {
   '.json': 'application/json; charset=utf-8',
   '.md': 'text/markdown; charset=utf-8',
   '.rs': 'text/plain; charset=utf-8',
+  '.py': 'text/plain; charset=utf-8',
+  '.c': 'text/plain; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
   '.svg': 'image/svg+xml',
 };
@@ -46,7 +52,13 @@ async function lireCorpsJson(requete) {
 async function lireCode(requete) {
   const corps = await lireCorpsJson(requete);
   if (typeof corps.code !== 'string') throw new ErreurHttp(400, 'Le champ « code » est obligatoire');
+  if (corps.entree !== undefined && typeof corps.entree !== 'string') throw new ErreurHttp(400, 'Le champ « entree » doit être un texte');
   return corps;
+}
+
+async function etatOutils() {
+  const [outilsRust, outilsPython, outilsC] = await Promise.all([rust.outilsRust(), python.outilsPython(), c.outilsC()]);
+  return { ...outilsRust, ...outilsPython, ...outilsC };
 }
 
 async function servirFichier(racine, chemin, reponse) {
@@ -73,28 +85,31 @@ async function servirFichier(racine, chemin, reponse) {
   reponse.end(donnees);
 }
 
-function creerRoutes({ dossierRust }) {
-  return [
-    {
-      methode: 'GET',
-      chemin: '/api/etat',
-      action: async () => ({ rust: await versionRust() }),
-    },
-    {
-      methode: 'POST',
-      chemin: '/api/rust/executer',
-      action: async (requete) => executerProgramme((await lireCode(requete)).code),
-    },
-    {
-      methode: 'POST',
-      chemin: '/api/rust/verifier',
-      action: async (requete) => {
-        const { chapitreId, exerciceId, code } = await lireCode(requete);
-        const exercice = await lireExercice(dossierRust, chapitreId, exerciceId);
-        return verifierExercice(exercice, code);
+function creerRoutes({ dossierContenu }) {
+  const routes = [{ methode: 'GET', chemin: '/api/etat', action: () => etatOutils() }];
+  for (const langage of Object.keys(LANGAGES)) {
+    const executeur = EXECUTEURS[langage];
+    routes.push(
+      {
+        methode: 'POST',
+        chemin: `/api/${langage}/executer`,
+        action: async (requete) => {
+          const { code, entree } = await lireCode(requete);
+          return executeur.executerProgramme(code, entree ?? '');
+        },
       },
-    },
-  ];
+      {
+        methode: 'POST',
+        chemin: `/api/${langage}/verifier`,
+        action: async (requete) => {
+          const { chapitreId, exerciceId, code } = await lireCode(requete);
+          const exercice = await lireExercice(path.join(dossierContenu, langage), langage, chapitreId, exerciceId);
+          return executeur.verifierExercice(exercice, code);
+        },
+      },
+    );
+  }
+  return routes;
 }
 
 function statutErreur(erreur) {
@@ -103,8 +118,8 @@ function statutErreur(erreur) {
   return 500;
 }
 
-export function creerServeur({ racine, dossierRust }) {
-  const routes = creerRoutes({ dossierRust });
+export function creerServeur({ racine, dossierContenu }) {
+  const routes = creerRoutes({ dossierContenu });
   return http.createServer(async (requete, reponse) => {
     try {
       const { pathname } = new URL(requete.url, 'http://localhost');

@@ -1,0 +1,11 @@
+{
+  "titre": "Mini-projet : inventaire d'un magasin",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Pour `Produit`, deux propriétés (`prix` et `quantite`) dont le setter lève `ValueError` si la valeur est négative. Dans `__init__`, écris `self.prix = prix` pour passer par le setter.",
+    "Dans `Inventaire`, range les produits dans un dictionnaire nom → produit (`self._produits = {}`).",
+    "`ajouter` : si le nom existe déjà, augmente la quantité du produit existant ; sinon range le produit. `retirer` : `KeyError` si le nom est absent, `ValueError` si la quantité demandée dépasse le stock.",
+    "`__contains__(self, nom)` renvoie `nom in self._produits`, `__len__` renvoie `len(self._produits)`. `valeur_totale` : `sum(p.valeur() for p in self._produits.values())`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Afficher à l'envers (récursif)",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Commence par le cas d'arrêt : pour une liste vide, il n'y a rien à afficher.",
+    "Pour afficher le dernier maillon en premier, il faut d'abord afficher **tout le reste** (`c->next`) à l'envers, et seulement ensuite le maillon courant.",
+    "`if (c == NULL) return;` puis `afficherEnvers(c->next);` puis `printf(\"%d \", c->value);`"
+  ]
+}

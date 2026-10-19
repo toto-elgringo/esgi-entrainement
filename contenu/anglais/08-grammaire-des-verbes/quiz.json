@@ -1,0 +1,134 @@
+[
+  {
+    "question": "*I ...... him five minutes ago.*",
+    "choix": [
+      "have seen",
+      "saw",
+      "had seen",
+      "have been seeing"
+    ],
+    "reponse": 1,
+    "explication": "*Five minutes ago* est une date précise et terminée : prétérit."
+  },
+  {
+    "question": "*...... you ever ...... to Canada?*",
+    "choix": [
+      "Did / go",
+      "Have / been",
+      "Were / going",
+      "Had / gone"
+    ],
+    "reponse": 1,
+    "explication": "Expérience sans date avec *ever* : present perfect."
+  },
+  {
+    "question": "*How long ...... each other?*",
+    "choix": [
+      "do you know",
+      "are you knowing",
+      "have you known",
+      "have you been knowing"
+    ],
+    "reponse": 2,
+    "explication": "Situation qui dure jusqu'à maintenant + verbe d'état (*know*) : present perfect simple."
+  },
+  {
+    "question": "*Call me as soon as you ...... at the hotel.*",
+    "choix": [
+      "will arrive",
+      "arrive",
+      "are arriving",
+      "arrived"
+    ],
+    "reponse": 1,
+    "explication": "Après *as soon as* (futur), on met le présent simple."
+  },
+  {
+    "question": "*When I got to the station, the train ...... .*",
+    "choix": [
+      "already left",
+      "has already left",
+      "had already left",
+      "was already leaving"
+    ],
+    "reponse": 2,
+    "explication": "Action plus ancienne qu'une autre action passée : past perfect."
+  },
+  {
+    "question": "*This time tomorrow, I ...... on a beach.*",
+    "choix": [
+      "lie",
+      "will be lying",
+      "will have lain",
+      "have lain"
+    ],
+    "reponse": 1,
+    "explication": "*This time tomorrow* = action en cours à un moment du futur : future continuous."
+  },
+  {
+    "question": "*By 2030, the company ...... 50 new stores.*",
+    "choix": [
+      "will open",
+      "will have opened",
+      "opens",
+      "is opening"
+    ],
+    "reponse": 1,
+    "explication": "*By 2030* : action terminée avant un moment du futur : future perfect."
+  },
+  {
+    "question": "*I have worked here ...... 2019.*",
+    "choix": [
+      "for",
+      "since",
+      "during",
+      "ago"
+    ],
+    "reponse": 1,
+    "explication": "*Since* + point de départ (2019) ; *for* + durée (*for six years*)."
+  },
+  {
+    "question": "*Have you finished the report ......?*",
+    "choix": [
+      "already",
+      "yet",
+      "still",
+      "since"
+    ],
+    "reponse": 1,
+    "explication": "Dans une question au present perfect, « déjà » en fin de phrase = *yet*."
+  },
+  {
+    "question": "Lequel de ces verbes ne se met normalement **pas** à la forme en -ing ?",
+    "choix": [
+      "work",
+      "understand",
+      "run",
+      "write"
+    ],
+    "reponse": 1,
+    "explication": "*Understand* est un verbe d'état (comme *know, believe, want, own*)."
+  },
+  {
+    "question": "*We ...... a new manager next month: the decision has been made.*",
+    "choix": [
+      "will hire",
+      "are going to hire",
+      "hire",
+      "have hired"
+    ],
+    "reponse": 1,
+    "explication": "Projet déjà décidé : *be going to*."
+  },
+  {
+    "question": "*I ...... for an hour when the bus finally came.*",
+    "choix": [
+      "waited",
+      "have been waiting",
+      "had been waiting",
+      "was wait"
+    ],
+    "reponse": 2,
+    "explication": "Action qui durait avant un moment du passé : past perfect continuous."
+  }
+]

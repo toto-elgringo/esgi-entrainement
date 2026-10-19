@@ -1,0 +1,99 @@
+[
+  {
+    "question": "Qu'est-ce qu'une **instance** ?",
+    "choix": ["Le modèle qui décrit les objets", "Un objet fabriqué à partir d'une classe", "Une méthode spéciale", "Une variable partagée par tous les objets"],
+    "reponse": 1,
+    "explication": "La classe est le modèle ; une instance est un objet concret créé à partir de ce modèle, par exemple `emp1 = Employee(\"Tom\", 2000)`."
+  },
+  {
+    "question": "Que représente `self` dans une méthode ?",
+    "choix": ["La classe", "L'objet sur lequel la méthode est appelée", "Le module courant", "La classe parente"],
+    "reponse": 1,
+    "explication": "`self` est une référence vers l'instance. Python le passe automatiquement : `emp1.display()` équivaut à `Employee.display(emp1)`."
+  },
+  {
+    "question": "Comment crée-t-on un employé avec `def __init__(self, name, salary)` ?",
+    "choix": ["`Employee(self, \"Tom\", 2000)`", "`Employee(\"Tom\", 2000)`", "`Employee.__init__(\"Tom\", 2000)`", "`new Employee(\"Tom\", 2000)`"],
+    "reponse": 1,
+    "explication": "On appelle la classe avec les paramètres de `__init__`, **sans** `self` : Python crée l'objet puis appelle `__init__` en lui passant l'objet comme `self`."
+  },
+  {
+    "question": "Dans `class Employee:`, où se trouve une **variable de classe** ?",
+    "choix": [
+      "Dans `__init__`, sous la forme `self.x = ...`",
+      "Dans le corps de la classe, hors de toute méthode",
+      "Dans une variable globale du module",
+      "Dans les paramètres de `__init__`"
+    ],
+    "reponse": 1,
+    "explication": "Une variable écrite directement dans le corps de la classe (comme `emp_count = 0`) est partagée par toutes les instances. `self.x` crée une variable d'instance."
+  },
+  {
+    "question": "Après `emp1.emp_count = 100`, que vaut `Employee.emp_count` s'il valait 2 ?",
+    "choix": ["100", "2", "102", "Une erreur"],
+    "reponse": 1,
+    "explication": "Écrire via l'instance crée une variable d'instance sur `emp1`, qui masque la variable de classe pour cet objet seulement. `Employee.emp_count` reste à 2."
+  },
+  {
+    "question": "Que devient l'attribut `self.__code` d'une classe `Secret` ?",
+    "choix": [
+      "Il est totalement inaccessible",
+      "Python le renomme en `_Secret__code`",
+      "Il devient une variable de classe",
+      "Il provoque une erreur de syntaxe"
+    ],
+    "reponse": 1,
+    "explication": "Le double `_` déclenche le renommage (*name mangling*) : `obj.__code` ne marche plus de l'extérieur, mais `obj._Secret__code` reste accessible. Python n'a pas d'encapsulation stricte."
+  },
+  {
+    "question": "Dans le getter d'une propriété `name`, pourquoi écrire `return self._name` et pas `return self.name` ?",
+    "choix": [
+      "Par convention seulement",
+      "`self.name` rappellerait le getter à l'infini",
+      "`self.name` n'existe pas encore",
+      "Pour que l'attribut soit privé"
+    ],
+    "reponse": 1,
+    "explication": "`self.name` passe par la propriété, donc par le getter, qui repasserait par la propriété... jusqu'à une `RecursionError`. La donnée réelle est stockée sous un autre nom."
+  },
+  {
+    "question": "Quelle méthode faut-il écrire pour pouvoir faire `a + b` avec deux objets de sa classe ?",
+    "choix": ["`__plus__`", "`__add__`", "`__sum__`", "`add`"],
+    "reponse": 1,
+    "explication": "`a + b` est traduit par Python en `a.__add__(b)`."
+  },
+  {
+    "question": "Quelle méthode est utilisée par `print(obj)` ?",
+    "choix": ["`__repr__` uniquement", "`__str__` (ou `__repr__` s'il n'y a pas de `__str__`)", "`__print__`", "`__init__`"],
+    "reponse": 1,
+    "explication": "`print` utilise `__str__`, le texte lisible. Sans `__str__`, Python se rabat sur `__repr__`."
+  },
+  {
+    "question": "Dans `class ITGuy(Employee):`, que doit faire `ITGuy.__init__` pour que `name` et `salary` existent ?",
+    "choix": [
+      "Rien, c'est automatique",
+      "Appeler `Employee.__init__(self, name, salary)` ou `super().__init__(name, salary)`",
+      "Appeler `Employee(name, salary)`",
+      "Déclarer `name` et `salary` comme variables de classe"
+    ],
+    "reponse": 1,
+    "explication": "Quand l'enfant redéfinit `__init__`, celui du parent n'est plus appelé tout seul : il faut l'appeler explicitement pour initialiser la partie héritée."
+  },
+  {
+    "question": "Avec `class ITGuy(Employee, Geek):`, si les deux parents ont une méthode `presentation`, laquelle est utilisée par un `ITGuy` ?",
+    "choix": ["Celle de `Geek`", "Celle de `Employee`", "Les deux, l'une après l'autre", "Aucune : erreur d'ambiguïté"],
+    "reponse": 1,
+    "explication": "Python suit le MRO : `ITGuy`, puis les parents de gauche à droite. `Employee` est listé en premier."
+  },
+  {
+    "question": "Que signifie « toutes les méthodes sont virtuelles » en Python ?",
+    "choix": [
+      "Les méthodes n'existent qu'à l'exécution",
+      "C'est la méthode de la classe réelle de l'objet qui est appelée",
+      "Les méthodes ne peuvent pas être redéfinies",
+      "Il faut écrire le mot-clé `virtual`"
+    ],
+    "reponse": 1,
+    "explication": "Si `Chien` redéfinit `parler`, `animal.parler()` appelle la version de `Chien` quand l'objet est un `Chien`, même dans du code qui ne connaît que `Animal`. C'est le polymorphisme."
+  }
+]

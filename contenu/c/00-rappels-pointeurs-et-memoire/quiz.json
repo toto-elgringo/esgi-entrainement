@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Après `int n = 7; int *p = &n;`, que contient `p` ?",
+    "choix": ["La valeur 7", "L'adresse de `n`", "Une copie de `n`", "`NULL`"],
+    "reponse": 1,
+    "explication": "`&n` est l'adresse de `n`. Un pointeur contient une adresse, pas la valeur elle-même. Pour lire la valeur, on écrit `*p`."
+  },
+  {
+    "question": "Après `int n = 7; int *p = &n; *p = 3;`, combien vaut `n` ?",
+    "choix": ["7", "3", "L'adresse de `p`", "Le programme plante"],
+    "reponse": 1,
+    "explication": "`*p` désigne la variable pointée par `p`, c'est-à-dire `n`. Écrire `*p = 3` modifie donc `n`."
+  },
+  {
+    "question": "Une fonction `void plusUn(int x) { x = x + 1; }` est appelée avec `plusUn(n);`. Que devient `n` ?",
+    "choix": ["Il augmente de 1", "Il ne change pas", "Il vaut 0", "Ça ne compile pas"],
+    "reponse": 1,
+    "explication": "En C, les paramètres sont passés par valeur : `x` est une copie de `n`. Modifier la copie ne change pas l'original. Il faudrait `void plusUn(int *x)` et l'appel `plusUn(&n)`."
+  },
+  {
+    "question": "Comment écrire l'appel pour qu'une fonction `void echanger(int *a, int *b)` échange les variables `x` et `y` ?",
+    "choix": ["`echanger(x, y);`", "`echanger(*x, *y);`", "`echanger(&x, &y);`", "`echanger(x&, y&);`"],
+    "reponse": 2,
+    "explication": "La fonction attend des adresses (`int *`) : on lui passe `&x` et `&y`."
+  },
+  {
+    "question": "`p` est un pointeur vers une structure `Point`. Comment lire son champ `x` ?",
+    "choix": ["`p.x`", "`p->x`", "`*p.x`", "`&p.x`"],
+    "reponse": 1,
+    "explication": "Avec un pointeur vers une structure, on utilise la flèche : `p->x`, qui est un raccourci pour `(*p).x`. Le point `.` s'utilise sur une structure, pas sur un pointeur."
+  },
+  {
+    "question": "Que renvoie `malloc` quand il n'y a plus de mémoire disponible ?",
+    "choix": ["0 octet réservé mais une adresse valide", "`NULL`", "Il arrête le programme", "Une adresse au hasard"],
+    "reponse": 1,
+    "explication": "`malloc` renvoie `NULL` en cas d'échec. C'est pour ça qu'on teste toujours son résultat avant de l'utiliser."
+  },
+  {
+    "question": "Que contient un champ d'une structure qu'on vient de réserver avec `malloc`, sans l'avoir rempli ?",
+    "choix": ["Toujours 0", "Toujours `NULL`", "N'importe quoi", "La valeur du champ précédent"],
+    "reponse": 2,
+    "explication": "`malloc` ne met pas la mémoire à zéro : la zone contient ce qui traînait là avant. Il faut remplir chaque champ (par exemple `next = NULL`)."
+  },
+  {
+    "question": "Comment s'appelle l'erreur qui consiste à oublier de rendre avec `free` une mémoire réservée par `malloc` ?",
+    "choix": ["Un débordement de pile", "Une fuite mémoire", "Une erreur de segmentation", "Un double free"],
+    "reponse": 1,
+    "explication": "La mémoire reste réservée alors que plus personne ne s'en sert : c'est une fuite mémoire. Dans un programme qui tourne longtemps, elle s'accumule."
+  },
+  {
+    "question": "Après `free(p);`, que peut-on faire avec `p` sans risque ?",
+    "choix": ["Lire `p->x`", "Appeler `free(p)` une deuxième fois", "Lui donner une nouvelle valeur, par exemple `p = NULL`", "Écrire `p->x = 0`"],
+    "reponse": 2,
+    "explication": "La zone pointée a été rendue : la lire, y écrire ou la libérer à nouveau est interdit. On peut seulement changer le pointeur lui-même, et `p = NULL` est une bonne habitude."
+  },
+  {
+    "question": "Dans `typedef struct cell { int value; struct cell *next; } Cell;`, pourquoi écrit-on `struct cell *next` et pas `Cell *next` ?",
+    "choix": ["Par habitude, les deux marchent", "Le nom court `Cell` n'existe pas encore à cet endroit", "Parce que `next` est un entier", "Pour que `next` soit `NULL` par défaut"],
+    "reponse": 1,
+    "explication": "Le nom `Cell` n'est créé qu'à la fin de la déclaration, après l'accolade fermante. À l'intérieur, seul le nom complet `struct cell` est connu."
+  }
+]

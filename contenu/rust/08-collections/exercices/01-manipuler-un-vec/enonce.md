@@ -5,7 +5,7 @@ Pars de la liste `v = [3, 1, 4]` et effectue ces étapes, en affichant le résul
 3. retirer le dernier élément avec `pop` et afficher ce que `pop` renvoie ;
 4. trier la liste avec `sort`, puis l'afficher ;
 5. afficher sa taille avec `len` ;
-6. afficher `v.get(0)` puis `v.get(9)`.
+6. afficher `v.get(1)` (le 2ᵉ élément : on compte à partir de 0) puis `v.get(9)`.
 
 La sortie doit être **exactement** :
 
@@ -15,7 +15,7 @@ Après push(1) : [3, 1, 4, 1]
 pop() renvoie : Some(1)
 Après sort() : [1, 3, 4]
 Taille : 3
-get(0) : Some(1)
+get(1) : Some(3)
 get(9) : None
 ```
 

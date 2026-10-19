@@ -1,0 +1,10 @@
+{
+  "titre": "La taille d'une liste",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Une liste ne connaît pas sa taille : il faut compter les maillons en la parcourant.",
+    "Même squelette que la somme, mais on ajoute 1 à chaque maillon au lieu de sa valeur.",
+    "`int n = 0;` puis `while (cur != NULL) { n++; cur = cur->next; }` et `return n;`"
+  ]
+}

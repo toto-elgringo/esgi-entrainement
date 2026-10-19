@@ -1,9 +1,10 @@
 import { chargerCatalogue } from './catalogue.js';
+import { afficherExerciceCode } from './code/exercice.js';
+import { estDomaineCode } from './domaines.js';
 import { afficherExerciceMaths } from './maths/exercice.js';
 import { dessinerMenu, dessinerProgressionGlobale } from './menu.js';
 import { echapper } from './outils.js';
 import { chapitresDeMatiere } from './parcours.js';
-import { afficherExerciceRust } from './rust/exercice.js';
 import { stockage } from './stockage.js';
 import { afficherAccueil } from './vues/accueil.js';
 import { afficherCours } from './vues/cours.js';
@@ -78,6 +79,10 @@ function creerContexte(numeroNavigation) {
     enregistrerSaisies: (cle, saisies) => stockage.enregistrerSaisies(cle, saisies),
     code: (cle) => stockage.code(cle),
     enregistrerCode: (cle, code) => stockage.enregistrerCode(cle, code),
+    affichage: (cle) => stockage.affichage(cle),
+    enregistrerAffichage: (cle, changements) => stockage.enregistrerAffichage(cle, changements),
+    partieQuiz: (chapitreCle) => stockage.partieQuiz(chapitreCle),
+    enregistrerPartieQuiz: (chapitreCle, partie) => stockage.enregistrerPartieQuiz(chapitreCle, partie),
     enregistrerEssai: (cle, reussi) => {
       stockage.enregistrerEssai(cle, reussi);
       rafraichirMenu();
@@ -103,8 +108,8 @@ function afficherVue(ctx, route) {
   if (route.vue === 'exercice') {
     const exercice = chapitre.exercices.find((candidat) => candidat.id === route.exerciceId);
     if (!exercice) throw new Error('Exercice introuvable');
-    return chapitre.domaine === 'rust'
-      ? afficherExerciceRust(ctx, chapitre, exercice)
+    return estDomaineCode(chapitre.domaine)
+      ? afficherExerciceCode(ctx, chapitre, exercice)
       : afficherExerciceMaths(ctx, chapitre, exercice);
   }
   return afficherAccueil(ctx);

@@ -1,0 +1,134 @@
+[
+  {
+    "question": "Que cherche la **recherche opérationnelle** ?",
+    "choix": [
+      "La meilleure façon de faire des choix pour atteindre le meilleur résultat possible",
+      "À imiter le comportement humain",
+      "À stocker de grandes quantités de données",
+      "À prouver des théorèmes de logique"
+    ],
+    "reponse": 0,
+    "explication": "La RO (ou aide à la décision) regroupe les méthodes rationnelles pour trouver la **meilleure décision** selon un objectif chiffré."
+  },
+  {
+    "question": "Dans la définition de l'IA de Marvin Minsky, quelle est la **référence** ?",
+    "choix": [
+      "L'être humain",
+      "Un objectif chiffré",
+      "La vitesse de calcul",
+      "La solution optimale"
+    ],
+    "reponse": 0,
+    "explication": "Une tâche relève de l'IA tant que l'humain la réussit mieux que la machine : l'humain est le point de référence."
+  },
+  {
+    "question": "En IA, l'optimalité de la solution est…",
+    "choix": [
+      "Toujours prouvée",
+      "Souvent pas recherchée : « bon en pratique » suffit",
+      "Interdite",
+      "Garantie par le test de Turing"
+    ],
+    "reponse": 1,
+    "explication": "La RO vise la meilleure décision, souvent prouvée. L'IA cherche un comportement satisfaisant, sans forcément viser l'optimum."
+  },
+  {
+    "question": "Quels sont les trois éléments d'un problème d'optimisation ?",
+    "choix": [
+      "Variables de décision, fonction objectif, contraintes",
+      "Données, algorithme, résultat",
+      "Entrée, sortie, mémoire",
+      "Hypothèse, preuve, conclusion"
+    ],
+    "reponse": 0,
+    "explication": "Tout problème d'optimisation se décrit par ses **variables** (ce qu'on choisit), son **objectif** (ce qu'on minimise ou maximise) et ses **contraintes** (ce qu'on doit respecter)."
+  },
+  {
+    "question": "Une solution est dite **réalisable** quand…",
+    "choix": [
+      "Elle respecte toutes les contraintes",
+      "Elle est optimale",
+      "Elle est trouvée en moins d'une seconde",
+      "Elle minimise l'objectif"
+    ],
+    "reponse": 0,
+    "explication": "Réalisable = toutes les contraintes sont respectées. La solution optimale est la **meilleure** des solutions réalisables."
+  },
+  {
+    "question": "Lequel de ces problèmes est un problème d'optimisation **combinatoire** ?",
+    "choix": [
+      "Régler le thermostat d'une pièce",
+      "Trouver la plus courte tournée entre 15 villes",
+      "Convertir 100 euros en dollars",
+      "Calculer la moyenne d'une classe"
+    ],
+    "reponse": 1,
+    "explication": "La tournée est choisie parmi un ensemble **fini** (mais immense) d'ordres de visite. Le thermostat est une variable continue ; la conversion n'a rien à optimiser."
+  },
+  {
+    "question": "Pourquoi parle-t-on d'optimisation **combinatoire** ?",
+    "choix": [
+      "Parce que l'espace des solutions est discret (permutations, sous-ensembles, affectations)",
+      "Parce qu'on combine plusieurs ordinateurs",
+      "Parce que la fonction objectif est toujours une somme",
+      "Parce que les variables sont continues"
+    ],
+    "reponse": 0,
+    "explication": "Les solutions sont des objets discrets en nombre fini : on ne peut pas dériver pour trouver l'optimum, il faut organiser la recherche."
+  },
+  {
+    "question": "Combien de tournées **distinctes** pour un voyageur de commerce à $n$ villes ?",
+    "choix": [
+      "$n!$",
+      "$\\dfrac{(n-1)!}{2}$",
+      "$2^n$",
+      "$n^2$"
+    ],
+    "reponse": 1,
+    "explication": "Il y a $n!$ ordres de visite. La ville de départ ne compte pas (on divise par $n$) ni le sens de parcours (on divise par 2) : $\\dfrac{n!}{2n} = \\dfrac{(n-1)!}{2}$."
+  },
+  {
+    "question": "Combien de choix possibles pour un sac à dos à $n$ objets ?",
+    "choix": [
+      "$n$",
+      "$n!$",
+      "$2^n$",
+      "$n^2$"
+    ],
+    "reponse": 2,
+    "explication": "Chaque objet est pris ou non : 2 possibilités par objet, donc $2^n$ sous-ensembles."
+  },
+  {
+    "question": "Dans un planning d'examens vu comme une **coloration de graphe**, que représentent les couleurs ?",
+    "choix": [
+      "Les étudiants",
+      "Les salles",
+      "Les créneaux horaires",
+      "Les examens"
+    ],
+    "reponse": 2,
+    "explication": "Sommets = examens, arête = un étudiant passe les deux examens, couleurs = créneaux. Deux examens reliés ne peuvent pas avoir le même créneau."
+  },
+  {
+    "question": "En ordonnancement, que désigne le **makespan** ?",
+    "choix": [
+      "La date de fin de la dernière tâche",
+      "Le nombre de machines",
+      "La durée de la plus courte tâche",
+      "Le nombre de tâches"
+    ],
+    "reponse": 0,
+    "explication": "On cherche à finir le chantier au plus tôt : le makespan est la date de fin de la dernière tâche, à minimiser."
+  },
+  {
+    "question": "Qu'est-ce qu'un **problème de décision** ?",
+    "choix": [
+      "Un problème dont la réponse est oui ou non",
+      "Un problème avec plusieurs objectifs",
+      "Un problème sans contrainte",
+      "Un problème résolu par un humain"
+    ],
+    "reponse": 0,
+    "explication": "Un problème de décision n'a pas de fonction objectif : il demande seulement oui ou non (« existe-t-il une solution de valeur au moins $K$ ? »)."
+  }
+]

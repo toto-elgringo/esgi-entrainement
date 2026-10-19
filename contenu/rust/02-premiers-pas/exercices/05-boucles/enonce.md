@@ -8,4 +8,4 @@
    Exemple : `plus_petit_diviseur(15)` = `3`, `plus_petit_diviseur(13)` = `13`. On suppose `n >= 2`.
 
 > [!tip] Rappel
-> `a % b` donne le reste de la division de `a` par `b`. `n` est divisible par `d` quand `n % d == 0`.
+> `a % b` donne le reste de la division de `a` par `b`. `n` est divisible par `d` quand `n % d == 0`. Clippy te proposera aussi `n.is_multiple_of(d)`, qui veut dire la même chose.

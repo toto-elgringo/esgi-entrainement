@@ -70,5 +70,11 @@
     "choix": ["`WHERE`", "`GROUP BY`", "`ORDER BY`", "`HAVING`"],
     "reponse": 3,
     "explication": "`WHERE` filtre les lignes **avant** l'agrégation ; `HAVING` filtre **après**, sur des valeurs comme `SUM(montant)`."
+  },
+  {
+    "question": "Une sous-requête qui recalcule `SUM(...)` sur toute la table pour **chacune** des $n$ lignes lit environ :",
+    "choix": ["$n$ lignes", "$n^2$ lignes", "$2n$ lignes", "$\\log n$ lignes"],
+    "reponse": 1,
+    "explication": "$n$ exécutions de $n$ lignes chacune : $n \\times n = n^2$. Un seul `GROUP BY` lit la table une fois ($n$ lignes)."
   }
 ]

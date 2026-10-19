@@ -1,0 +1,10 @@
+{
+  "titre": "split, join et formatage",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`phrase.split()` découpe sur les espaces et renvoie une liste de mots.",
+    "Pour les initiales : prends `mot[0].upper()` pour chaque mot, puis relie le tout. `\".\".join(...)` met des points **entre** les lettres : pense au point final.",
+    "Pour le ticket : le total est `quantite * prix`, et le format est `\"%d x %s : %.2f e\" % (quantite, article, total)`."
+  ]
+}

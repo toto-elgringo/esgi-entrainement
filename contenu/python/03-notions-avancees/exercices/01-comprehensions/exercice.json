@@ -1,0 +1,10 @@
+{
+  "titre": "Listes en compréhension",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "La forme générale : `[traitement(e) for e in source if test(e)]`, le `if` est facultatif.",
+    "Les carrés : `[i ** 2 for i in range(n)]`.",
+    "Les opposés des pairs : `[-v for v in range(n) if v % 2 == 0]`."
+  ]
+}

@@ -18,7 +18,7 @@ fn puissance(base: u64, exposant: u32) -> u64 {
 
 fn plus_petit_diviseur(n: u32) -> u32 {
     let mut diviseur = 2;
-    while n % diviseur != 0 {
+    while !n.is_multiple_of(diviseur) {
         diviseur += 1;
     }
     diviseur

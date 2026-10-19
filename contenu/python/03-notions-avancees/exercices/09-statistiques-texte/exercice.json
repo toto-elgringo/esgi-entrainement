@@ -1,0 +1,10 @@
+{
+  "titre": "Statistiques sur un texte",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Lis le nombre de lignes avec `int(input())`, puis rassemble tous les mots dans une seule liste : `mots += input().split()` à chaque tour.",
+    "Le plus long mot : `max(mots, key=len)` (il renvoie le premier en cas d'égalité). Les mots distincts : `set(mots)`.",
+    "L'ordre alphabétique sans doublons : `\", \".join(sorted(set(mots)))`."
+  ]
+}

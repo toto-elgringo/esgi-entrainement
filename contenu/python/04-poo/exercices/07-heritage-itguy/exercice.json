@@ -1,0 +1,10 @@
+{
+  "titre": "Héritage : ITGuy",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`class ITGuy(Employee):` déclare l'héritage.",
+    "Dans `ITGuy.__init__`, appelle d'abord l'initialiseur du parent : `super().__init__(name, salary)` (ou `Employee.__init__(self, name, salary)`), puis `self.computer = computer`.",
+    "Pour redéfinir `description`, réutilise celle du parent : `return super().description() + \", Computer : \" + self.computer`."
+  ]
+}

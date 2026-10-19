@@ -1,0 +1,11 @@
+{
+  "titre": "Surcharge d'opérateurs : Vecteur",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`a + b` appelle `a.__add__(b)`, qui doit renvoyer un **nouveau** vecteur : `return Vecteur(self.x + autre.x, self.y + autre.y)`.",
+    "`v * 3` appelle `v.__mul__(3)` : ici `autre` est un nombre, pas un vecteur.",
+    "`__eq__` compare les deux coordonnées ; `__repr__` renvoie `\"Vecteur(\" + str(self.x) + \", \" + str(self.y) + \")\"`.",
+    "La norme : `math.sqrt(self.x ** 2 + self.y ** 2)`."
+  ]
+}

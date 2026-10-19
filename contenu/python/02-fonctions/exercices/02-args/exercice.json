@@ -1,0 +1,11 @@
+{
+  "titre": "Autant d'arguments qu'on veut : *args",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`def moyenne(*nombres):` range tous les arguments dans le tuple `nombres`.",
+    "Un tuple vide est faux : `if not nombres: return 0`. Sinon `sum(nombres) / len(nombres)`.",
+    "Pour `maximum(premier, *autres)`, pars de `plus_grand = premier` et parcours `autres`.",
+    "Un paramètre placé **après** `*mots` ne peut être donné que par mot-clé : `def concatener(*mots, sep=\" \"):` puis `sep.join(mots)`."
+  ]
+}

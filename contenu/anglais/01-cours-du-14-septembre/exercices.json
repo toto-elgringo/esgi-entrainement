@@ -1,0 +1,1329 @@
+[
+  {
+    "id": "format-du-toeic",
+    "titre": "Le TOEIC en chiffres",
+    "difficulte": 1,
+    "enonce": "Réponds par un nombre.",
+    "questions": [
+      {
+        "intitule": "Combien de questions compte la section Listening ?",
+        "type": "nombre",
+        "reponse": 100
+      },
+      {
+        "intitule": "Combien de minutes dure la section Listening ?",
+        "type": "nombre",
+        "reponse": 45
+      },
+      {
+        "intitule": "Combien de minutes dure la section Reading ?",
+        "type": "nombre",
+        "reponse": 75
+      },
+      {
+        "intitule": "Quel est le score total minimum ?",
+        "type": "nombre",
+        "reponse": 10,
+        "refuses": [
+          "5",
+          "0"
+        ]
+      },
+      {
+        "intitule": "Quel est le score total maximum ?",
+        "type": "nombre",
+        "reponse": 990,
+        "refuses": [
+          "495"
+        ]
+      },
+      {
+        "intitule": "Combien de questions compte la partie 7 ?",
+        "type": "nombre",
+        "reponse": 54
+      }
+    ],
+    "indices": [
+      "Le test dure 2 heures en tout : 45 min d'écoute, le reste pour la lecture.",
+      "Chaque section est notée de 5 à 495."
+    ],
+    "correction": "- Listening : **100** questions en **45** min ; Reading : 100 questions en **75** min.\n- Chaque section va de 5 à 495, donc le total va de **10** à **990**.\n- La partie 7 compte **54** questions (15 séries de documents)."
+  },
+  {
+    "id": "les-sept-parties",
+    "titre": "Les sept parties",
+    "difficulte": 1,
+    "enonce": "Pour chaque description, choisis la partie du TOEIC correspondante.",
+    "questions": [
+      {
+        "intitule": "On regarde une photo et on choisit la phrase qui la décrit.",
+        "type": "choix",
+        "choix": [
+          "Partie 1",
+          "Partie 2",
+          "Partie 4",
+          "Partie 5"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "On complète un e-mail ou une note de service qui contient 4 trous.",
+        "type": "choix",
+        "choix": [
+          "Partie 3",
+          "Partie 5",
+          "Partie 6",
+          "Partie 7"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "On entend une conversation entre 2 ou 3 personnes.",
+        "type": "choix",
+        "choix": [
+          "Partie 2",
+          "Partie 3",
+          "Partie 4",
+          "Partie 6"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "On complète une phrase isolée avec le bon mot.",
+        "type": "choix",
+        "choix": [
+          "Partie 5",
+          "Partie 6",
+          "Partie 7",
+          "Partie 2"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "On entend une annonce ou un message enregistré.",
+        "type": "choix",
+        "choix": [
+          "Partie 1",
+          "Partie 3",
+          "Partie 4",
+          "Partie 7"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "On lit un ou plusieurs documents (publicité, article, formulaire).",
+        "type": "choix",
+        "choix": [
+          "Partie 5",
+          "Partie 6",
+          "Partie 7",
+          "Partie 4"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Les parties 1 à 4 sont à l'écoute, les parties 5 à 7 à la lecture."
+    ],
+    "correction": "Listening : 1 photos, 2 questions-réponses, 3 conversations, 4 annonces. Reading : 5 phrases à compléter, 6 textes à compléter, 7 lecture de documents."
+  },
+  {
+    "id": "partie-1-sur-papier",
+    "titre": "Partie 1 : décrire une photo",
+    "difficulte": 2,
+    "enonce": "Imagine la photo suivante : **dans un entrepôt, un homme en gilet de sécurité pose un carton sur une étagère. Derrière lui, un chariot élévateur est garé.** Voici les phrases qu'on pourrait entendre.",
+    "questions": [
+      {
+        "intitule": "Quelle phrase décrit le mieux la photo ?",
+        "type": "choix",
+        "choix": [
+          "The boxes are being loaded onto a truck.",
+          "The man is leaning against a shelf.",
+          "The man is placing a box on a shelf.",
+          "The man is driving a forklift."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Laquelle décrit correctement un **détail secondaire** ?",
+        "type": "choix",
+        "choix": [
+          "A forklift is lifting some boxes.",
+          "The man is taking off his vest.",
+          "The warehouse is empty.",
+          "A forklift is parked in the background."
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "Pourquoi *The man is leaning against a shelf* est-il un piège ?",
+        "type": "choix",
+        "choix": [
+          "Parce que *leaning* (s'appuyer) ressemble à *cleaning* ou *leaving* à l'oral",
+          "Parce que *shelf* n'est pas un mot anglais",
+          "Parce qu'il n'y a pas d'étagère",
+          "Parce que la phrase est au passé"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Ne retiens que ce qui est **clairement visible**.",
+      "Le chariot élévateur (*forklift*) est garé : il ne fait rien."
+    ],
+    "correction": "- *The man is placing a box on a shelf* : c'est exactement l'action visible.\n- *A forklift is parked in the background* : détail secondaire, mais vrai. Le chariot ne soulève rien.\n- Les mauvaises réponses reprennent des mots de la scène (*shelf, forklift, boxes*) avec une action fausse : c'est le piège classique de la partie 1. *Leaning / cleaning / leaving* se ressemblent à l'oral."
+  },
+  {
+    "id": "partie-2-sur-papier",
+    "titre": "Partie 2 : la bonne réplique",
+    "difficulte": 2,
+    "enonce": "Voici des questions de partie 2, écrites. Choisis la réponse logique (attention aux sons qui se ressemblent).",
+    "questions": [
+      {
+        "intitule": "*Has the client paid the bill yet?*",
+        "type": "choix",
+        "choix": [
+          "I haven't seen Bill this week.",
+          "The pill is on the table.",
+          "Yes, the payment arrived this morning."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*When does the training session start?*",
+        "type": "choix",
+        "choix": [
+          "At nine o'clock tomorrow.",
+          "Because the trainer is ill.",
+          "In the main conference room."
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Why was the meeting postponed?*",
+        "type": "choix",
+        "choix": [
+          "Next Tuesday, I think.",
+          "The director is still abroad.",
+          "Yes, it was."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Would you like some coffee before we begin?*",
+        "type": "choix",
+        "choix": [
+          "The coffee machine is new.",
+          "Yes, please, with a little milk.",
+          "It began at ten."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*You've already sent the contract, haven't you?*",
+        "type": "choix",
+        "choix": [
+          "The contractor is late.",
+          "No, I don't contract.",
+          "I sent it yesterday."
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Repère d'abord le mot interrogatif : *when* = quand, *why* = pourquoi.",
+      "Une réponse qui reprend un mot de la question (*Bill*, *began*, *contractor*) est souvent un piège."
+    ],
+    "correction": "1. *bill* = facture ; *Bill* (prénom) et *pill* (pilule) sont des pièges sonores.\n2. *When* demande un moment : *At nine o'clock tomorrow*.\n3. *Why* demande une raison : *The director is still abroad*. *Next Tuesday* répond à *when*.\n4. Demande polie : on accepte ou on refuse.\n5. Le *question tag* (*haven't you?*) attend une confirmation : *I sent it yesterday*. *Contractor* ressemble à *contract* mais n'a rien à voir."
+  },
+  {
+    "id": "partie-3-conversation",
+    "titre": "Partie 3 : une conversation",
+    "difficulte": 2,
+    "enonce": "Lis la transcription, puis réponds.\n\n> **Woman** : Hello, I'd like to change my train ticket. I was supposed to travel to Leeds at 4 p.m., but my meeting has been moved to the morning.\n> **Man** : No problem. There's a train at 7:15 tomorrow morning. There's a fee of 10 pounds to change the ticket, though.\n> **Woman** : That's fine. Can I pay by card?\n> **Man** : Of course. And if you need a coffee, the café on platform 2 opens at 6:30.",
+    "questions": [
+      {
+        "intitule": "Where does the conversation most likely take place?",
+        "type": "choix",
+        "choix": [
+          "In a bank",
+          "At a train station",
+          "In a hotel",
+          "At an airport"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Why does the woman want to change her ticket?",
+        "type": "choix",
+        "choix": [
+          "The ticket is too expensive.",
+          "Her meeting time has changed.",
+          "Her train was cancelled.",
+          "She missed her train."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "What does the man say about the change?",
+        "type": "choix",
+        "choix": [
+          "It must be paid in cash.",
+          "It is impossible.",
+          "It costs 10 pounds.",
+          "It is free."
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "What does the man suggest?",
+        "type": "choix",
+        "choix": [
+          "Taking a taxi",
+          "Calling her company",
+          "Travelling the next week",
+          "Getting a coffee on platform 2"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "Les mots *train*, *ticket* et *platform* donnent le lieu.",
+      "*a fee* = des frais."
+    ],
+    "correction": "1. *train ticket*, *platform 2* : une **gare**.\n2. *my meeting has been moved to the morning* : sa réunion a changé d'horaire.\n3. *There's a fee of 10 pounds* : le changement coûte 10 livres.\n4. Il lui conseille le café du quai 2 (*the café on platform 2 opens at 6:30*)."
+  },
+  {
+    "id": "partie-4-annonce",
+    "titre": "Partie 4 : une annonce",
+    "difficulte": 2,
+    "enonce": "Lis la transcription de cette publicité radio, puis réponds.\n\n> *Is your old bike making strange noises? Bring it to Fitzroy Cycles for a free check-up! We sell road bikes, electric bikes and all the accessories you need. And until April 15th, all helmets are 15 percent off. Fitzroy Cycles has three shops in the city, including our brand-new store in the Riverside Mall. See you soon!*",
+    "questions": [
+      {
+        "intitule": "What does the business sell?",
+        "type": "choix",
+        "choix": [
+          "Sports clothes",
+          "Cars",
+          "Bicycles",
+          "Books"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "What is available until April 15th?",
+        "type": "choix",
+        "choix": [
+          "A free bike",
+          "Free delivery",
+          "A longer warranty",
+          "A discount on helmets"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "What is said about the store in the Riverside Mall?",
+        "type": "choix",
+        "choix": [
+          "It is closed on Sundays.",
+          "It is the biggest store.",
+          "It has been expanded.",
+          "It has just opened."
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "How many shops does Fitzroy Cycles have? (un nombre)",
+        "type": "nombre",
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*bike* = vélo ; *15 percent off* = 15 % de réduction.",
+      "*brand-new* = tout neuf."
+    ],
+    "correction": "1. *road bikes, electric bikes* : des **vélos**.\n2. *all helmets are 15 percent off* : une réduction sur les casques.\n3. *our brand-new store* : il vient d'ouvrir. *It has been expanded* (agrandi) est un piège qui « sonne bien ».\n4. *three shops in the city*."
+  },
+  {
+    "id": "faux-amis-sens",
+    "titre": "Faux amis : le vrai sens",
+    "difficulte": 1,
+    "enonce": "Choisis la traduction correcte du mot anglais.",
+    "questions": [
+      {
+        "intitule": "*actually*",
+        "type": "choix",
+        "choix": [
+          "activement",
+          "en fait",
+          "actuellement"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*currently*",
+        "type": "choix",
+        "choix": [
+          "en fait",
+          "actuellement",
+          "couramment"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*a delay*",
+        "type": "choix",
+        "choix": [
+          "une livraison",
+          "un délai",
+          "un retard"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*a library*",
+        "type": "choix",
+        "choix": [
+          "une liberté",
+          "une bibliothèque",
+          "une librairie"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*sensible*",
+        "type": "choix",
+        "choix": [
+          "raisonnable",
+          "sensuel",
+          "sensible"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*a location*",
+        "type": "choix",
+        "choix": [
+          "une localité",
+          "une location",
+          "un emplacement"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*to demand*",
+        "type": "choix",
+        "choix": [
+          "demander",
+          "démontrer",
+          "exiger"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*a journey*",
+        "type": "choix",
+        "choix": [
+          "un trajet",
+          "un journal",
+          "une journée"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Méfie-toi de la traduction qui ressemble le plus au mot anglais."
+    ],
+    "correction": "*actually* = en fait ; *currently* = actuellement ; *delay* = retard ; *library* = bibliothèque ; *sensible* = raisonnable ; *location* = emplacement ; *to demand* = exiger ; *journey* = trajet."
+  },
+  {
+    "id": "faux-amis-traduction",
+    "titre": "Faux amis : traduire en anglais",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais (un mot ou une courte expression).",
+    "questions": [
+      {
+        "intitule": "en fait",
+        "type": "texte",
+        "reponse": [
+          "actually",
+          "in fact"
+        ],
+        "refuses": [
+          "currently"
+        ]
+      },
+      {
+        "intitule": "actuellement",
+        "type": "texte",
+        "reponse": [
+          "currently",
+          "at the moment",
+          "at present",
+          "presently",
+          "now"
+        ],
+        "refuses": [
+          "actually"
+        ]
+      },
+      {
+        "intitule": "une librairie",
+        "type": "texte",
+        "reponse": [
+          "a bookshop",
+          "bookshop",
+          "a bookstore",
+          "bookstore"
+        ],
+        "refuses": [
+          "library",
+          "a library"
+        ]
+      },
+      {
+        "intitule": "assister à (une réunion)",
+        "type": "texte",
+        "reponse": [
+          "attend",
+          "to attend"
+        ],
+        "refuses": [
+          "assist",
+          "to assist"
+        ]
+      },
+      {
+        "intitule": "aider",
+        "type": "texte",
+        "reponse": [
+          "help",
+          "to help",
+          "assist",
+          "to assist"
+        ]
+      },
+      {
+        "intitule": "supposer",
+        "type": "texte",
+        "reponse": [
+          "assume",
+          "to assume",
+          "suppose",
+          "to suppose"
+        ]
+      },
+      {
+        "intitule": "tromper (quelqu'un)",
+        "type": "texte",
+        "reponse": [
+          "deceive",
+          "to deceive",
+          "trick",
+          "to trick",
+          "fool",
+          "to fool"
+        ]
+      },
+      {
+        "intitule": "décevoir",
+        "type": "texte",
+        "reponse": [
+          "disappoint",
+          "to disappoint"
+        ],
+        "refuses": [
+          "deceive",
+          "to deceive"
+        ]
+      }
+    ],
+    "indices": [
+      "Un faux ami n'est presque jamais la bonne traduction du mot français qui lui ressemble.",
+      "« décevoir » se dit *to disappoint* ; *to deceive* veut dire tromper."
+    ],
+    "correction": "- en fait = *actually* (ou *in fact*) ; actuellement = *currently*, *at the moment*.\n- une librairie = *a bookshop* (*library* = bibliothèque).\n- assister à = *to attend* ; aider = *to help* ou *to assist*.\n- supposer = *to assume* ; tromper = *to deceive* ; décevoir = *to disappoint*."
+  },
+  {
+    "id": "faux-amis-en-contexte",
+    "titre": "Faux amis en contexte",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*The hotel offers a ...... breakfast to all guests.* (gratuit)",
+        "type": "choix",
+        "choix": [
+          "complementary",
+          "comprehensive",
+          "complimentary"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Over 200 people ...... the conference last week.*",
+        "type": "choix",
+        "choix": [
+          "attended",
+          "waited",
+          "assisted"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The music was so loud that I could ...... hear her.*",
+        "type": "choix",
+        "choix": [
+          "hardly",
+          "harder",
+          "hard"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The report is very ......: it covers every aspect of the project.*",
+        "type": "choix",
+        "choix": [
+          "understanding",
+          "comprehensive",
+          "comprehensible"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*After three hours in traffic, we ...... arrived at the airport.*",
+        "type": "choix",
+        "choix": [
+          "actually",
+          "eventually",
+          "possibly"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*She ...... her exam with a very good mark.* (réussir)",
+        "type": "choix",
+        "choix": [
+          "took",
+          "spent",
+          "passed"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*complimentary* (avec un i) = offert.",
+      "*hardly* = à peine."
+    ],
+    "correction": "1. *complimentary* = gratuit. 2. *attended* = assisté à. 3. *hardly* = à peine. 4. *comprehensive* = complet. 5. *eventually* = finalement. 6. *passed* = réussi (*took an exam* = passer un examen)."
+  },
+  {
+    "id": "mots-de-liaison-fonction",
+    "titre": "À quoi sert ce mot de liaison ?",
+    "difficulte": 1,
+    "enonce": "Pour chaque mot de liaison, choisis sa fonction.",
+    "questions": [
+      {
+        "intitule": "*moreover*",
+        "type": "choix",
+        "choix": [
+          "opposer",
+          "ajouter",
+          "illustrer"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*therefore*",
+        "type": "choix",
+        "choix": [
+          "conséquence",
+          "ordonner",
+          "comparer"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*for instance*",
+        "type": "choix",
+        "choix": [
+          "ajouter",
+          "insister",
+          "illustrer"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*whereas*",
+        "type": "choix",
+        "choix": [
+          "ordonner",
+          "opposer",
+          "ajouter"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*meanwhile*",
+        "type": "choix",
+        "choix": [
+          "cause",
+          "ordonner (pendant ce temps)",
+          "insister"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*likewise*",
+        "type": "choix",
+        "choix": [
+          "comparer",
+          "opposer",
+          "conséquence"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*above all*",
+        "type": "choix",
+        "choix": [
+          "insister",
+          "illustrer",
+          "nuancer"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*moreover* = de plus ; *whereas* = alors que."
+    ],
+    "correction": "*moreover* = de plus (ajout) ; *therefore* = par conséquent ; *for instance* = par exemple ; *whereas* = alors que (opposition) ; *meanwhile* = pendant ce temps ; *likewise* = de même ; *above all* = surtout."
+  },
+  {
+    "id": "mots-de-liaison-phrases",
+    "titre": "Choisir le bon mot de liaison",
+    "difficulte": 2,
+    "enonce": "Complète chaque phrase avec le mot de liaison logique.",
+    "questions": [
+      {
+        "intitule": "*The hotel was fully booked; ......, we stayed somewhere else.*",
+        "type": "choix",
+        "choix": [
+          "therefore",
+          "whereas",
+          "unless",
+          "although"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*...... it was raining, the outdoor event went ahead.*",
+        "type": "choix",
+        "choix": [
+          "Despite",
+          "Instead of",
+          "Although",
+          "Because of"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Sales increased in Europe, ...... they fell in Asia.*",
+        "type": "choix",
+        "choix": [
+          "unless",
+          "whereas",
+          "moreover",
+          "so"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*You cannot enter the building ...... you have a badge.*",
+        "type": "choix",
+        "choix": [
+          "whereas",
+          "therefore",
+          "unless",
+          "moreover"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*...... calling the supplier, please send them an e-mail.*",
+        "type": "choix",
+        "choix": [
+          "Whereas",
+          "Although",
+          "Unless",
+          "Instead of"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*The new software is faster. ......, it is cheaper.*",
+        "type": "choix",
+        "choix": [
+          "Otherwise",
+          "Moreover",
+          "Unless",
+          "Whereas"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Please confirm your booking today; ......, the room will be released.*",
+        "type": "choix",
+        "choix": [
+          "moreover",
+          "otherwise",
+          "likewise",
+          "although"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Cherche la relation entre les deux parties de la phrase : conséquence, opposition, condition, ajout ?",
+      "*Despite* et *instead of* sont suivis d'un nom ou d'un -ing ; *although* d'un sujet + verbe."
+    ],
+    "correction": "1. conséquence : *therefore*. 2. concession + sujet/verbe : *Although*. 3. opposition entre deux faits : *whereas*. 4. condition négative : *unless* (à moins que). 5. + verbe en -ing : *Instead of*. 6. ajout : *Moreover*. 7. *otherwise* = sinon."
+  },
+  {
+    "id": "mots-de-liaison-traduction",
+    "titre": "Mots de liaison : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais. Plusieurs réponses sont souvent possibles.",
+    "questions": [
+      {
+        "intitule": "de plus",
+        "type": "texte",
+        "reponse": [
+          "moreover",
+          "furthermore",
+          "in addition",
+          "additionally",
+          "besides",
+          "what is more",
+          "what's more"
+        ]
+      },
+      {
+        "intitule": "bien que",
+        "type": "texte",
+        "reponse": [
+          "although",
+          "even though",
+          "though"
+        ]
+      },
+      {
+        "intitule": "à moins que",
+        "type": "texte",
+        "reponse": [
+          "unless"
+        ]
+      },
+      {
+        "intitule": "alors que (opposition)",
+        "type": "texte",
+        "reponse": [
+          "whereas",
+          "while",
+          "whilst"
+        ]
+      },
+      {
+        "intitule": "sinon",
+        "type": "texte",
+        "reponse": [
+          "otherwise",
+          "or else"
+        ]
+      },
+      {
+        "intitule": "contrairement à",
+        "type": "texte",
+        "reponse": [
+          "unlike",
+          "contrary to"
+        ]
+      },
+      {
+        "intitule": "par conséquent",
+        "type": "texte",
+        "reponse": [
+          "therefore",
+          "consequently",
+          "as a result",
+          "thus",
+          "hence",
+          "as a consequence"
+        ]
+      }
+    ],
+    "indices": [
+      "Ils sont tous dans le tableau des mots de liaison du cours."
+    ],
+    "correction": "- de plus : *moreover, furthermore, in addition*\n- bien que : *although, even though*\n- à moins que : *unless*\n- alors que : *whereas, while*\n- sinon : *otherwise*\n- contrairement à : *unlike*\n- par conséquent : *therefore, consequently, as a result*"
+  },
+  {
+    "id": "rate-fare-fee",
+    "titre": "Rate, fare ou fee ?",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*The bus ...... has gone up to 2 euros.*",
+        "type": "choix",
+        "choix": [
+          "fare",
+          "fee",
+          "rate"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The hotel's weekend ...... includes breakfast.*",
+        "type": "choix",
+        "choix": [
+          "fee",
+          "fare",
+          "rate"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The lawyer's ...... was very high.*",
+        "type": "choix",
+        "choix": [
+          "rate",
+          "fare",
+          "fee"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The bank has lowered its interest ......*",
+        "type": "choix",
+        "choix": [
+          "fares",
+          "fees",
+          "rates"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*There is a registration ...... of 50 dollars for the conference.*",
+        "type": "choix",
+        "choix": [
+          "rate",
+          "fare",
+          "fee"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The taxi driver asked for the ...... at the end of the ride.*",
+        "type": "choix",
+        "choix": [
+          "fee",
+          "fare",
+          "rate"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*fare* = transport ; *fee* = frais, honoraires, inscription ; *rate* = taux ou tarif (hôtel)."
+    ],
+    "correction": "1. bus → *fare*. 2. hôtel → *rate*. 3. avocat → *fee* (honoraires). 4. taux d'intérêt → *interest rates*. 5. inscription → *fee*. 6. taxi → *fare*."
+  },
+  {
+    "id": "economic-ou-economical",
+    "titre": "Economic, economical, economy, economics",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*The government expects strong ...... growth next year.*",
+        "type": "choix",
+        "choix": [
+          "economics",
+          "economical",
+          "economic"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Buying in bulk is more ...... for small shops.*",
+        "type": "choix",
+        "choix": [
+          "economy",
+          "economic",
+          "economical"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The ...... of the country depends on tourism.*",
+        "type": "choix",
+        "choix": [
+          "economical",
+          "economics",
+          "economy"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*She has a degree in ......*",
+        "type": "choix",
+        "choix": [
+          "economy",
+          "economics",
+          "economical"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*economical* = qui fait économiser de l'argent.",
+      "*economics* = la science économique (la matière)."
+    ],
+    "correction": "1. *economic growth* : lié à l'économie. 2. *economical* : qui fait économiser. 3. *the economy* d'un pays. 4. *economics* : la discipline étudiée."
+  },
+  {
+    "id": "vocabulary-review",
+    "titre": "Vocabulary review",
+    "difficulte": 1,
+    "enonce": "Traduis le mot anglais en français.",
+    "questions": [
+      {
+        "intitule": "*steel*",
+        "type": "texte",
+        "reponse": [
+          "acier",
+          "l'acier"
+        ],
+        "refuses": [
+          "fer"
+        ]
+      },
+      {
+        "intitule": "*iron*",
+        "type": "texte",
+        "reponse": [
+          "fer",
+          "le fer"
+        ]
+      },
+      {
+        "intitule": "*coal*",
+        "type": "texte",
+        "reponse": [
+          "charbon",
+          "le charbon"
+        ]
+      },
+      {
+        "intitule": "*invoice*",
+        "type": "texte",
+        "reponse": [
+          "facture",
+          "une facture"
+        ]
+      },
+      {
+        "intitule": "*lawsuit*",
+        "type": "texte",
+        "reponse": [
+          "procès",
+          "un procès",
+          "poursuite",
+          "poursuite judiciaire",
+          "action en justice"
+        ]
+      },
+      {
+        "intitule": "*thunderstorm*",
+        "type": "texte",
+        "reponse": [
+          "orage",
+          "un orage"
+        ],
+        "refuses": [
+          "tempête"
+        ]
+      },
+      {
+        "intitule": "*weather forecast*",
+        "type": "texte",
+        "reponse": [
+          "météo",
+          "la météo",
+          "prévisions météo",
+          "prévision météo",
+          "bulletin météo",
+          "les prévisions météo"
+        ]
+      },
+      {
+        "intitule": "*to ship*",
+        "type": "texte",
+        "reponse": [
+          "expédier",
+          "envoyer",
+          "livrer"
+        ]
+      }
+    ],
+    "indices": [
+      "*storm* = tempête, *thunderstorm* = orage.",
+      "*a suit* = un costume, mais *a lawsuit* = un procès."
+    ],
+    "correction": "*steel* = acier ; *iron* = fer ; *coal* = charbon ; *invoice* = facture ; *lawsuit* = procès ; *thunderstorm* = orage ; *weather forecast* = météo ; *to ship* = expédier."
+  },
+  {
+    "id": "vocabulary-review-2",
+    "titre": "Vocabulary review : en anglais",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "charger (un camion)",
+        "type": "texte",
+        "reponse": [
+          "load",
+          "to load"
+        ]
+      },
+      {
+        "intitule": "commander (un produit)",
+        "type": "texte",
+        "reponse": [
+          "order",
+          "to order"
+        ]
+      },
+      {
+        "intitule": "prévoir (la météo, les ventes)",
+        "type": "texte",
+        "reponse": [
+          "forecast",
+          "to forecast",
+          "predict",
+          "to predict"
+        ]
+      },
+      {
+        "intitule": "le pétrole",
+        "type": "texte",
+        "reponse": [
+          "oil",
+          "petroleum",
+          "crude oil"
+        ]
+      },
+      {
+        "intitule": "convenir (à quelqu'un)",
+        "type": "texte",
+        "reponse": [
+          "suit",
+          "to suit"
+        ]
+      },
+      {
+        "intitule": "affaiblir",
+        "type": "texte",
+        "reponse": [
+          "weaken",
+          "to weaken"
+        ]
+      },
+      {
+        "intitule": "jusqu'à (dans le temps)",
+        "type": "texte",
+        "reponse": [
+          "until",
+          "till",
+          "up to"
+        ]
+      }
+    ],
+    "indices": [
+      "Ces mots sont dans le tableau « Vocabulary review » du cours."
+    ],
+    "correction": "*to load* ; *to order* ; *to forecast* ; *oil* ; *to suit* (*This date suits me* = cette date me convient) ; *to weaken* ; *until*."
+  },
+  {
+    "id": "partie-5-premiers-pas",
+    "titre": "Partie 5 : premières phrases",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète la phrase.",
+    "questions": [
+      {
+        "intitule": "*Have you replied to the client ......?*",
+        "type": "choix",
+        "choix": [
+          "yet",
+          "still",
+          "yesterday",
+          "already"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Next year, the new factory ...... 300 people.*",
+        "type": "choix",
+        "choix": [
+          "will employ",
+          "employed",
+          "to employ",
+          "had employed"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*I was told that the manager ...... in the Paris office.*",
+        "type": "choix",
+        "choix": [
+          "works",
+          "working",
+          "worked",
+          "work"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Do you know when the train ......?*",
+        "type": "choix",
+        "choix": [
+          "leaves",
+          "does it leave",
+          "is it leaving",
+          "leave"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Neither the CEO ...... the CFO attended the meeting.*",
+        "type": "choix",
+        "choix": [
+          "or",
+          "and",
+          "either",
+          "nor"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "Question indirecte (*Do you know when...*) : pas d'inversion sujet-verbe.",
+      "*neither... nor* = ni... ni."
+    ],
+    "correction": "1. *yet* en fin de question au present perfect.\n2. *Next year* → futur : *will employ*.\n3. Discours indirect : le présent recule au passé (*worked*).\n4. Question indirecte : ordre normal sujet + verbe : *when the train leaves*.\n5. *neither... nor*."
+  },
+  {
+    "id": "partie-7-commande",
+    "titre": "Partie 7 : une commande en ligne",
+    "difficulte": 3,
+    "enonce": "Lis les deux documents, puis réponds.\n\n**Document 1 : facture**\n\n| Green Basket - Online groceries | |\n|---|---|\n| Orange juice, 2 bottles @ $3.10 | $6.20 |\n| Cheddar cheese | $4.50 |\n| Frozen vegetables, 2 bags @ $2.75 | $5.50 |\n| Bananas, 1 kg | $1.80 |\n| Subtotal | $18.00 |\n| Delivery | $4.00 |\n| **Total** | **$22.00** |\n\n**Document 2 : questionnaire de satisfaction**\n\n> Was the delivery on time? **No, about 45 minutes late.**\n> Were the products in good condition? **Mostly. The frozen vegetables had started to thaw.**\n> Overall rating: Very satisfied / Satisfied / **Somewhat dissatisfied** / Very dissatisfied\n> Comments: *The driver was very polite and apologised for the delay. However, frozen items should travel in a cooler bag. The bananas were missing, but the rest of the order was fine.*",
+    "questions": [
+      {
+        "intitule": "What is the purpose of the first document?",
+        "type": "choix",
+        "choix": [
+          "To confirm a booking",
+          "To ask for a review",
+          "To show what the customer paid",
+          "To advertise a product"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "How much did the customer spend on frozen food? (en dollars, sans le symbole)",
+        "type": "nombre",
+        "reponse": 5.5
+      },
+      {
+        "intitule": "Is the delivery free?",
+        "type": "choix",
+        "choix": [
+          "Yes",
+          "No, it costs $4"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "What was NOT a problem?",
+        "type": "choix",
+        "choix": [
+          "The driver's attitude",
+          "A missing item",
+          "The state of the frozen vegetables",
+          "The time of delivery"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "What does the customer suggest?",
+        "type": "choix",
+        "choix": [
+          "Better packaging for frozen products",
+          "Lower delivery prices",
+          "A faster website",
+          "More delivery times"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Overall, is the customer satisfied?",
+        "type": "choix",
+        "choix": [
+          "Not really",
+          "Yes, very",
+          "Completely dissatisfied"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*thaw* = décongeler ; *cooler bag* = sac isotherme.",
+      "Question NOT : trouve ce qui s'est **bien** passé."
+    ],
+    "correction": "1. C'est une facture : elle montre ce que le client a payé.\n2. *Frozen vegetables, 2 bags @ $2.75* = **$5.50**.\n3. *Delivery $4.00* : la livraison n'est pas gratuite.\n4. Le chauffeur était poli (*very polite*) : ce n'était **pas** un problème. Le retard, la décongélation et les bananes manquantes en étaient.\n5. *frozen items should travel in a cooler bag* : un meilleur emballage.\n6. *Somewhat dissatisfied* = plutôt insatisfait."
+  },
+  {
+    "id": "traduction-courte",
+    "titre": "Petites traductions",
+    "difficulte": 3,
+    "enonce": "Traduis en anglais. Compare ensuite avec la réponse modèle.",
+    "questions": [
+      {
+        "intitule": "En fait, la réunion a été annulée.",
+        "type": "auto",
+        "reponse": "*Actually, the meeting has been cancelled.* (ou *was cancelled*)"
+      },
+      {
+        "intitule": "Finalement, nous avons signé le contrat après trois semaines.",
+        "type": "auto",
+        "reponse": "*Eventually, we signed the contract after three weeks.*"
+      },
+      {
+        "intitule": "Bien que le billet de train soit cher, je préfère le train à l'avion.",
+        "type": "auto",
+        "reponse": "*Although the train fare is expensive, I prefer the train to the plane.*"
+      },
+      {
+        "intitule": "Je n'ai pas pu assister à la conférence à cause d'un retard.",
+        "type": "auto",
+        "reponse": "*I couldn't attend the lecture (conference) because of a delay.*"
+      }
+    ],
+    "indices": [
+      "Pense aux faux amis : en fait, finalement, assister à, retard.",
+      "Prix d'un billet de train : *fare*."
+    ],
+    "correction": "- *actually* = en fait ; *eventually* = finalement.\n- *although* + sujet + verbe ; *fare* pour un trajet.\n- *to attend* = assister à ; *a delay* = un retard ; *because of* + nom."
+  }
+]

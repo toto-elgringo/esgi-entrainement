@@ -1,0 +1,11 @@
+{
+  "titre": "Les tranches",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Une tranche s'écrit `sequence[debut:fin:pas]`, le début est inclus et la fin exclue. Chaque partie peut être omise.",
+    "Les `n` premiers : `l[:n]`. À l'envers : `s[::-1]`. Un sur deux : `l[::2]`.",
+    "Piège pour `derniers` : `l[-0:]` vaut `l[0:]`, donc toute la liste ! Utilise plutôt `l[len(l) - n:]`.",
+    "Un palindrome se lit pareil dans les deux sens : compare le mot (en minuscules) avec sa version inversée."
+  ]
+}

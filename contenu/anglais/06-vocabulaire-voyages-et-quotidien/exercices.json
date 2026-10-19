@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "voyage-traduction",
+    "titre": "Voyages : traduire",
+    "difficulte": 1,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "réserver (une chambre, un vol)",
+        "type": "texte",
+        "reponse": [
+          "book",
+          "to book",
+          "reserve",
+          "to reserve"
+        ]
+      },
+      {
+        "intitule": "un vol",
+        "type": "texte",
+        "reponse": [
+          "flight",
+          "a flight"
+        ]
+      },
+      {
+        "intitule": "un bagage à main",
+        "type": "texte",
+        "reponse": [
+          "carry-on baggage",
+          "carry-on luggage",
+          "carry-on",
+          "hand luggage",
+          "carry on baggage",
+          "carry-on bag",
+          "cabin bag"
+        ]
+      },
+      {
+        "intitule": "le décalage horaire (la fatigue)",
+        "type": "texte",
+        "reponse": [
+          "jet lag",
+          "jetlag"
+        ]
+      },
+      {
+        "intitule": "un quai (de gare)",
+        "type": "texte",
+        "reponse": [
+          "platform",
+          "a platform"
+        ]
+      },
+      {
+        "intitule": "une navette",
+        "type": "texte",
+        "reponse": [
+          "shuttle",
+          "a shuttle",
+          "shuttle bus",
+          "a shuttle bus"
+        ]
+      },
+      {
+        "intitule": "la piste (d'aéroport)",
+        "type": "texte",
+        "reponse": [
+          "runway",
+          "the runway"
+        ]
+      },
+      {
+        "intitule": "une voiture de location",
+        "type": "texte",
+        "reponse": [
+          "rental car",
+          "a rental car",
+          "hire car",
+          "a hire car"
+        ]
+      }
+    ],
+    "indices": [
+      "*book* veut dire « livre » mais aussi « réserver »."
+    ],
+    "correction": "*book*, *flight*, *carry-on baggage* (US) ou *hand luggage* (UK), *jet lag*, *platform*, *shuttle*, *runway*, *rental car*."
+  },
+  {
+    "id": "hotel-et-aeroport",
+    "titre": "À l'hôtel et à l'aéroport",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*Please ...... at the front desk when you arrive.*",
+        "type": "choix",
+        "choix": [
+          "check out",
+          "check in",
+          "book",
+          "board"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Guests must ...... before 11 a.m. on the day they leave.*",
+        "type": "choix",
+        "choix": [
+          "check in",
+          "check out",
+          "board",
+          "accommodate"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Passengers can now ...... the plane through gate 12.*",
+        "type": "choix",
+        "choix": [
+          "board",
+          "check out",
+          "land",
+          "book"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*While you wait, you can relax in the business ......*",
+        "type": "choix",
+        "choix": [
+          "platform",
+          "pier",
+          "runway",
+          "lounge"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*The hotel can ...... up to 300 guests.*",
+        "type": "choix",
+        "choix": [
+          "accommodate",
+          "entertain",
+          "accommodation",
+          "commute"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Meet me in the hotel ......, next to the reception.*",
+        "type": "choix",
+        "choix": [
+          "runway",
+          "lane",
+          "pier",
+          "lobby"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*lobby* = hall d'entrée ; *lounge* = salon d'attente."
+    ],
+    "correction": "1. *check in* (s'enregistrer). 2. *check out* (partir). 3. *board* (embarquer). 4. *business lounge* (salon). 5. *accommodate* (loger, accueillir). 6. *lobby* (hall)."
+  },
+  {
+    "id": "us-uk",
+    "titre": "Anglais américain → britannique",
+    "difficulte": 2,
+    "enonce": "Donne le mot **britannique** qui correspond au mot américain.",
+    "questions": [
+      {
+        "intitule": "*elevator*",
+        "type": "texte",
+        "reponse": [
+          "lift"
+        ]
+      },
+      {
+        "intitule": "*subway*",
+        "type": "texte",
+        "reponse": [
+          "underground",
+          "the underground",
+          "tube",
+          "the tube"
+        ]
+      },
+      {
+        "intitule": "*sidewalk*",
+        "type": "texte",
+        "reponse": [
+          "pavement"
+        ]
+      },
+      {
+        "intitule": "*gas* (pour la voiture)",
+        "type": "texte",
+        "reponse": [
+          "petrol"
+        ]
+      },
+      {
+        "intitule": "*vacation*",
+        "type": "texte",
+        "reponse": [
+          "holiday",
+          "holidays"
+        ]
+      },
+      {
+        "intitule": "*round-trip ticket*",
+        "type": "texte",
+        "reponse": [
+          "return ticket",
+          "return",
+          "a return ticket"
+        ]
+      },
+      {
+        "intitule": "*zip code*",
+        "type": "texte",
+        "reponse": [
+          "postcode",
+          "post code"
+        ]
+      },
+      {
+        "intitule": "*fall* (la saison)",
+        "type": "texte",
+        "reponse": [
+          "autumn"
+        ]
+      }
+    ],
+    "indices": [
+      "Le TOEIC utilise surtout l'anglais américain, mais il faut comprendre les deux."
+    ],
+    "correction": "*lift*, *underground* (*tube* à Londres), *pavement*, *petrol*, *holiday*, *return ticket*, *postcode*, *autumn*."
+  },
+  {
+    "id": "voyage-phrases",
+    "titre": "Transports en contexte",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*Our flight had a two-hour ...... because of fog.*",
+        "type": "choix",
+        "choix": [
+          "diversion",
+          "deadline",
+          "runway",
+          "delay"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Because of roadworks, there is a ...... via the north bridge.*",
+        "type": "choix",
+        "choix": [
+          "diversion",
+          "pier",
+          "lane",
+          "delay"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Most ...... take the 7:45 train to the city every morning.*",
+        "type": "choix",
+        "choix": [
+          "commuters",
+          "caterers",
+          "flight attendants",
+          "tenants"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The taxi ...... from the airport was 45 dollars.*",
+        "type": "choix",
+        "choix": [
+          "tip",
+          "rate",
+          "fare",
+          "fee"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*In the US, people usually leave a 15% ...... for the waiter.*",
+        "type": "choix",
+        "choix": [
+          "fare",
+          "voucher",
+          "tip",
+          "fee"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Trucks must use the right-hand ...... on the motorway.*",
+        "type": "choix",
+        "choix": [
+          "lounge",
+          "runway",
+          "lane",
+          "platform"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*delay* = retard ; *diversion* = déviation."
+    ],
+    "correction": "1. *delay* (retard). 2. *diversion* (déviation). 3. *commuters* (navetteurs). 4. *taxi fare* (prix de la course). 5. *tip* (pourboire). 6. *lane* (voie)."
+  },
+  {
+    "id": "evenements-sens",
+    "titre": "Réceptions et événements : le sens",
+    "difficulte": 2,
+    "enonce": "Choisis la traduction.",
+    "questions": [
+      {
+        "intitule": "*a luncheon*",
+        "type": "choix",
+        "choix": [
+          "un déjeuner (officiel)",
+          "un goûter",
+          "une boîte à repas"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*to host a party*",
+        "type": "choix",
+        "choix": [
+          "être invité à une fête",
+          "recevoir, organiser une fête",
+          "héberger un site"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*to entertain clients*",
+        "type": "choix",
+        "choix": [
+          "recevoir, divertir des clients",
+          "entretenir des clients",
+          "attendre des clients"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*to rehearse a speech*",
+        "type": "choix",
+        "choix": [
+          "résumer un discours",
+          "rechercher un discours",
+          "répéter un discours"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*a performance* (au théâtre)",
+        "type": "choix",
+        "choix": [
+          "une représentation",
+          "un rendement",
+          "une performance sportive"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*a workshop*",
+        "type": "choix",
+        "choix": [
+          "un atelier",
+          "un magasin",
+          "une semaine de travail"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*salad dressing*",
+        "type": "choix",
+        "choix": [
+          "sauce pour salade",
+          "pansement",
+          "habillage"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*entertain* ne veut pas dire « entretenir »."
+    ],
+    "correction": "*luncheon* = déjeuner ; *host* = recevoir ; *entertain* = divertir, recevoir ; *rehearse* = répéter ; *performance* = représentation ; *workshop* = atelier ; *dressing* = sauce."
+  },
+  {
+    "id": "ville-traduction",
+    "titre": "Ville et logement : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      {
+        "intitule": "la mairie",
+        "type": "texte",
+        "reponse": [
+          "city hall",
+          "town hall"
+        ]
+      },
+      {
+        "intitule": "le propriétaire (qui loue)",
+        "type": "texte",
+        "reponse": [
+          "landlord",
+          "the landlord",
+          "landlady",
+          "owner",
+          "the owner"
+        ]
+      },
+      {
+        "intitule": "le locataire",
+        "type": "texte",
+        "reponse": [
+          "tenant",
+          "the tenant"
+        ]
+      },
+      {
+        "intitule": "un agent immobilier",
+        "type": "texte",
+        "reponse": [
+          "real estate agent",
+          "a real estate agent",
+          "estate agent",
+          "an estate agent",
+          "realtor",
+          "a realtor"
+        ]
+      },
+      {
+        "intitule": "un quartier",
+        "type": "texte",
+        "reponse": [
+          "neighborhood",
+          "a neighborhood",
+          "neighbourhood",
+          "a neighbourhood",
+          "district",
+          "area"
+        ]
+      },
+      {
+        "intitule": "un médecin (mot de la liste)",
+        "type": "texte",
+        "reponse": [
+          "physician",
+          "a physician",
+          "doctor",
+          "a doctor"
+        ]
+      },
+      {
+        "intitule": "un chirurgien",
+        "type": "texte",
+        "reponse": [
+          "surgeon",
+          "a surgeon"
+        ]
+      },
+      {
+        "intitule": "un membre de la famille",
+        "type": "texte",
+        "reponse": [
+          "relative",
+          "a relative",
+          "family member",
+          "a family member"
+        ]
+      }
+    ],
+    "indices": [
+      "*relative* = un proche, un parent."
+    ],
+    "correction": "*city hall*, *landlord*, *tenant*, *real estate agent*, *neighborhood*, *physician*, *surgeon*, *relative*."
+  },
+  {
+    "id": "ville-phrases",
+    "titre": "La vie quotidienne en contexte",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*The ...... raised the rent, so the tenants complained.*",
+        "type": "choix",
+        "choix": [
+          "relative",
+          "tenant",
+          "landlord",
+          "physician"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The bus offers free rides for ...... people over 70.*",
+        "type": "choix",
+        "choix": [
+          "eldest",
+          "elder",
+          "elderly",
+          "older than"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Close the ...... : the sun is too bright.*",
+        "type": "choix",
+        "choix": [
+          "piers",
+          "blinds",
+          "lockers",
+          "slips"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Washing machines and fridges are ...... appliances.*",
+        "type": "choix",
+        "choix": [
+          "household",
+          "housework",
+          "housing",
+          "homemade"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Let's meet at ...... for lunch.*",
+        "type": "choix",
+        "choix": [
+          "dawn",
+          "fall",
+          "noon",
+          "midnight"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Please don't drop ...... in the park.*",
+        "type": "choix",
+        "choix": [
+          "lane",
+          "refund",
+          "liability",
+          "litter"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*blind* = store (et aussi « aveugle »).",
+      "*elderly* = âgé (poli)."
+    ],
+    "correction": "1. *landlord* (propriétaire). 2. *elderly people* (personnes âgées). 3. *blinds* (stores). 4. *household appliances* (électroménager). 5. *noon* (midi). 6. *litter* (déchets jetés par terre)."
+  },
+  {
+    "id": "planning-sens",
+    "titre": "Planning et délais : le sens",
+    "difficulte": 2,
+    "enonce": "Choisis la traduction.",
+    "questions": [
+      {
+        "intitule": "*the deadline*",
+        "type": "choix",
+        "choix": [
+          "la date limite",
+          "la ligne d'arrivée",
+          "le retard"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*pending*",
+        "type": "choix",
+        "choix": [
+          "en attente, en cours",
+          "pendant",
+          "suspendu au plafond"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*upcoming*",
+        "type": "choix",
+        "choix": [
+          "prochain, à venir",
+          "récent",
+          "montant"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*ahead of time*",
+        "type": "choix",
+        "choix": [
+          "en avance",
+          "à l'heure",
+          "en retard"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*to catch up*",
+        "type": "choix",
+        "choix": [
+          "rattraper son retard",
+          "se rencontrer",
+          "attraper un rhume"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*the outcome*",
+        "type": "choix",
+        "choix": [
+          "le revenu",
+          "la sortie",
+          "le résultat"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*to set up*",
+        "type": "choix",
+        "choix": [
+          "installer un logiciel uniquement",
+          "se lever",
+          "créer, mettre en place"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*the pace*",
+        "type": "choix",
+        "choix": [
+          "la page",
+          "le rythme",
+          "la paix"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*upcoming* = qui arrive bientôt."
+    ],
+    "correction": "*deadline* = date limite ; *pending* = en attente ; *upcoming* = à venir ; *ahead of time* = en avance ; *catch up* = rattraper ; *outcome* = résultat ; *set up* = créer ; *pace* = rythme."
+  },
+  {
+    "id": "planning-phrases",
+    "titre": "Planning et délais en contexte",
+    "difficulte": 2,
+    "enonce": "Complète avec un seul mot.",
+    "questions": [
+      {
+        "intitule": "*The ...... for applications is 15 March. After that date, we won't accept any.* (date limite)",
+        "type": "texte",
+        "reponse": [
+          "deadline"
+        ]
+      },
+      {
+        "intitule": "*I was ill last week, so I have a lot of work to catch ...... on.*",
+        "type": "texte",
+        "reponse": [
+          "up"
+        ]
+      },
+      {
+        "intitule": "*Our call centre is open ...... the clock.* (24 h sur 24)",
+        "type": "texte",
+        "reponse": [
+          "around",
+          "round"
+        ]
+      },
+      {
+        "intitule": "*The director is busy on Monday, so we need to ...... the meeting.* (changer la date)",
+        "type": "texte",
+        "reponse": [
+          "reschedule",
+          "postpone",
+          "move",
+          "rearrange"
+        ]
+      },
+      {
+        "intitule": "*We finished the project two days ...... of schedule.* (en avance)",
+        "type": "texte",
+        "reponse": [
+          "ahead"
+        ]
+      },
+      {
+        "intitule": "*She wants to ...... up her own company next year.* (créer)",
+        "type": "texte",
+        "reponse": [
+          "set"
+        ]
+      }
+    ],
+    "indices": [
+      "*ahead of schedule* = en avance sur le planning."
+    ],
+    "correction": "*deadline* ; *catch up on* ; *around the clock* ; *reschedule* ; *ahead of schedule* ; *set up*."
+  },
+  {
+    "id": "familles-de-mots",
+    "titre": "Familles de mots : voyages et événements",
+    "difficulte": 3,
+    "enonce": "Choisis le mot qui complète la phrase.",
+    "questions": [
+      {
+        "intitule": "*Your ...... number is on the confirmation e-mail.*",
+        "type": "choix",
+        "choix": [
+          "book",
+          "booking",
+          "booker",
+          "booked"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The price includes flights and ...... for five nights.*",
+        "type": "choix",
+        "choix": [
+          "accommodation",
+          "accommodated",
+          "accommodating",
+          "accommodate"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Tonight's ...... starts at 8 p.m. sharp.*",
+        "type": "choix",
+        "choix": [
+          "performance",
+          "performer",
+          "performed",
+          "perform"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The hotel offers live ...... every Friday night.*",
+        "type": "choix",
+        "choix": [
+          "entertaining",
+          "entertain",
+          "entertainment",
+          "entertainer"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The summit was ...... by the city of Geneva.*",
+        "type": "choix",
+        "choix": [
+          "hosting",
+          "hosted",
+          "hostess",
+          "host"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Sales are ...... to rise by 5% next year.*",
+        "type": "choix",
+        "choix": [
+          "forecasting",
+          "forecasts",
+          "forecaster",
+          "forecast"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*Your* + nom ; *Tonight's* + nom.",
+      "*was* + participe passé."
+    ],
+    "correction": "1. *booking number* (numéro de réservation). 2. *accommodation* (hébergement). 3. *Tonight's performance* (la représentation). 4. *live entertainment* (spectacle). 5. *was hosted* (passif). 6. *are forecast to rise* = on prévoit que les ventes augmentent (passif ; *forecast* garde la même forme au participe passé)."
+  },
+  {
+    "id": "faux-amis",
+    "titre": "Les faux amis du voyage et de la ville",
+    "difficulte": 2,
+    "enonce": "Choisis la bonne traduction.",
+    "questions": [
+      {
+        "intitule": "*We waited two hours because of a delay.*",
+        "type": "choix",
+        "choix": [
+          "un délai",
+          "une déviation",
+          "un retard"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*I borrowed this book from the library.*",
+        "type": "choix",
+        "choix": [
+          "la papeterie",
+          "la bibliothèque",
+          "la librairie"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*She went to see her physician.*",
+        "type": "choix",
+        "choix": [
+          "son physicien",
+          "son médecin",
+          "sa physiothérapeute"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The journey took six hours.*",
+        "type": "choix",
+        "choix": [
+          "Le trajet",
+          "Le séjour",
+          "La journée"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The hotel is in a great location.*",
+        "type": "choix",
+        "choix": [
+          "localité",
+          "location",
+          "emplacement"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Méfie-toi du mot qui ressemble le plus au français."
+    ],
+    "correction": "*delay* = retard ; *library* = bibliothèque ; *physician* = médecin ; *journey* = trajet ; *location* = emplacement."
+  },
+  {
+    "id": "lecture-itineraire",
+    "titre": "Lecture : un itinéraire de voyage",
+    "difficulte": 2,
+    "enonce": "Lis l'e-mail, puis réponds.\n\n> **From**: Anna Ruiz, Travel Agent\n> **To**: Mr. Paul Becker\n> **Subject**: Your trip to Toronto\n>\n> Dear Mr. Becker,\n> Your round-trip flight is booked: you leave Frankfurt on 3 May at 10:15 and land in Toronto at 12:40 local time. Expect some jet lag! A shuttle will take you from the airport to the Maple Hotel, where you can check in from 2 p.m. Breakfast is complimentary. You check out on 7 May, and your return flight leaves at 18:30. A rental car is not included, but the hotel is downtown, near the subway.\n> Best regards, Anna Ruiz",
+    "questions": [
+      {
+        "intitule": "Who is Anna Ruiz?",
+        "type": "choix",
+        "choix": [
+          "A travel agent",
+          "A flight attendant",
+          "Mr. Becker's assistant",
+          "A hotel manager"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "How will Mr. Becker get to the hotel?",
+        "type": "choix",
+        "choix": [
+          "By shuttle",
+          "By taxi",
+          "By subway",
+          "By rental car"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "What is free at the hotel?",
+        "type": "choix",
+        "choix": [
+          "Parking",
+          "Dinner",
+          "The minibar",
+          "Breakfast"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "How many nights will he stay at the hotel? (du 3 au 7 mai)",
+        "type": "nombre",
+        "reponse": 4
+      },
+      {
+        "intitule": "What is NOT included in the trip?",
+        "type": "choix",
+        "choix": [
+          "The flights",
+          "The hotel",
+          "The shuttle",
+          "A rental car"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*complimentary* = offert.",
+      "*A rental car is not included*."
+    ],
+    "correction": "1. *Anna Ruiz, Travel Agent*. 2. *A shuttle will take you...* 3. *Breakfast is complimentary* (offert). 4. Du 3 au 7 mai : **4 nuits**. 5. *A rental car is not included*."
+  },
+  {
+    "id": "lecture-annonce-aeroport",
+    "titre": "Lecture : une annonce à l'aéroport",
+    "difficulte": 2,
+    "enonce": "Lis la transcription de l'annonce, puis réponds.\n\n> *Attention please. Passengers on flight SK 482 to Oslo: due to bad weather, this flight has been delayed by 90 minutes. Boarding will now begin at 15:30 at gate 27 instead of gate 21. Passengers in business class are welcome to wait in the Nordic Lounge on the upper floor. Meal vouchers are available at the information desk. We apologise for the inconvenience.*",
+    "questions": [
+      {
+        "intitule": "Why is the flight delayed?",
+        "type": "choix",
+        "choix": [
+          "A strike",
+          "A late crew",
+          "A technical problem",
+          "Bad weather"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "How many minutes is the delay?",
+        "type": "nombre",
+        "reponse": 90
+      },
+      {
+        "intitule": "Where will passengers board?",
+        "type": "choix",
+        "choix": [
+          "The Nordic Lounge",
+          "The information desk",
+          "Gate 27",
+          "Gate 21"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "What can all passengers get at the information desk?",
+        "type": "choix",
+        "choix": [
+          "A meal voucher",
+          "A refund",
+          "A new ticket",
+          "A hotel room"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*instead of* = au lieu de."
+    ],
+    "correction": "1. *due to bad weather*. 2. *delayed by 90 minutes*. 3. *gate 27 instead of gate 21*. 4. *Meal vouchers are available at the information desk* (le salon est réservé à la classe affaires)."
+  },
+  {
+    "id": "traduction-courte",
+    "titre": "Petites traductions",
+    "difficulte": 3,
+    "enonce": "Traduis en anglais puis compare avec la réponse modèle.",
+    "questions": [
+      {
+        "intitule": "J'ai réservé un aller-retour pour Londres.",
+        "type": "auto",
+        "reponse": "*I have booked a round-trip (return) ticket to London.*"
+      },
+      {
+        "intitule": "Notre vol a été retardé, donc nous avons manqué la navette.",
+        "type": "auto",
+        "reponse": "*Our flight was delayed, so we missed the shuttle.*"
+      },
+      {
+        "intitule": "La date limite pour rendre le rapport a été repoussée à lundi.",
+        "type": "auto",
+        "reponse": "*The deadline for the report has been postponed (put off, pushed back) to Monday.*"
+      }
+    ],
+    "indices": [
+      "date limite = *deadline* ; retardé = *delayed*."
+    ],
+    "correction": "Vocabulaire : *book*, *round-trip / return ticket*, *delayed*, *shuttle*, *deadline*, *postpone*."
+  }
+]

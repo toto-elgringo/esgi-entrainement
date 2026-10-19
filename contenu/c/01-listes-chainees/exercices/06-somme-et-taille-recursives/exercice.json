@@ -1,0 +1,10 @@
+{
+  "titre": "Somme et taille récursives",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence chaque fonction par le cas d'arrêt : que renvoyer pour une liste vide (`c == NULL`) ?",
+    "Pour une liste non vide : le résultat pour le premier maillon, combiné avec l'appel de la fonction sur le reste `c->next`.",
+    "`return c->value + sommeRec(c->next);` et `return 1 + tailleRec(c->next);`"
+  ]
+}

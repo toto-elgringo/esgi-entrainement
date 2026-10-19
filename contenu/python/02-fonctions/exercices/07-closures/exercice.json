@@ -1,0 +1,11 @@
+{
+  "titre": "Closures : create_adder et compagnie",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une fonction peut définir une fonction interne et la **renvoyer** (sans parenthèses) : `return adder`.",
+    "La fonction interne peut utiliser les paramètres de la fonction englobante : `def adder(x): return x + n`.",
+    "Pour `composer(f, g)`, la fonction interne renvoie `f(g(x))`.",
+    "Pour `compteur`, la variable `total` doit être modifiée par la fonction interne : écris `nonlocal total` au début de celle-ci."
+  ]
+}

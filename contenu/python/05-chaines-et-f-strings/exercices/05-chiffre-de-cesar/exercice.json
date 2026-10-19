@@ -1,0 +1,11 @@
+{
+  "titre": "Le chiffre de César",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Traite le texte caractère par caractère, et construis le résultat dans une liste que tu relies avec `\"\".join(...)` à la fin.",
+    "Pour une minuscule : sa position dans l'alphabet est `ord(c) - ord(\"a\")` (de 0 à 25). Ajoute le décalage, prends le reste `% 26`, puis reviens à une lettre avec `chr(... + ord(\"a\"))`.",
+    "Même chose pour les majuscules avec `ord(\"A\")`. Les autres caractères (espaces, ponctuation, chiffres) sont recopiés tels quels.",
+    "Déchiffrer, c'est chiffrer avec le décalage opposé : `return chiffrer(texte, -decalage)`."
+  ]
+}

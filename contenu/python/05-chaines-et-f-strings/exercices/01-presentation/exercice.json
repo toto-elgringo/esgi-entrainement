@@ -1,0 +1,10 @@
+{
+  "titre": "Se présenter avec des f-strings",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Une f-string commence par `f` : `f\"{nom} a {age} ans\"`.",
+    "On peut calculer dans les accolades : `{age + 5}`, `{nom.upper()}`.",
+    "Deux décimales : `{taille:.2f}`. Pour l'IMC : `{poids / taille ** 2:.1f}`."
+  ]
+}

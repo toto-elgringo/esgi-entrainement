@@ -30,6 +30,12 @@
     "explication": "`CROSS JOIN` est un produit cartésien : $|A \\times B| = |A| \\times |B| = 6 \\times 9 = 54$."
   },
   {
+    "question": "Que fait `A INNER JOIN B ON condition`, vu avec les ensembles ?",
+    "choix": ["Le produit cartésien $A \\times B$, filtré par la condition", "L'union $A \\cup B$", "L'intersection $A \\cap B$", "La différence $A \\setminus B$"],
+    "reponse": 0,
+    "explication": "Une jointure part (en théorie) de toutes les combinaisons $A \\times B$, puis ne garde que les couples qui vérifient la condition du `ON`."
+  },
+  {
     "question": "Une relation réflexive, symétrique et transitive est :",
     "choix": ["une relation d'ordre", "une fonction injective", "une relation d'équivalence", "une relation antisymétrique"],
     "reponse": 2,

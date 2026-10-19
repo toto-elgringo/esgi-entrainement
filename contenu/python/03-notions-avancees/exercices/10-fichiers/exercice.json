@@ -1,0 +1,11 @@
+{
+  "titre": "Écrire et lire un fichier",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Ouvre toujours avec `with open(chemin, mode, encoding=\"utf-8\") as f:` : le fichier est fermé tout seul.",
+    "Le mode `\"w\"` efface puis écrit, `\"a\"` ajoute à la fin, `\"r\"` (par défaut) lit.",
+    "`write` n'ajoute pas de retour à la ligne : écris `f.write(ligne + \"\\n\")`.",
+    "Pour lire sans les `\\n` : `[ligne.rstrip(\"\\n\") for ligne in f]`."
+  ]
+}

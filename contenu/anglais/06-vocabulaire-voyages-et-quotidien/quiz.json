@@ -1,0 +1,134 @@
+[
+  {
+    "question": "*To check out* d'un hôtel, c'est...",
+    "choix": [
+      "arriver et s'enregistrer",
+      "régler sa note et partir",
+      "vérifier sa chambre",
+      "réserver une chambre"
+    ],
+    "reponse": 1,
+    "explication": "*Check in* = s'enregistrer à l'arrivée ; *check out* = régler et quitter l'hôtel."
+  },
+  {
+    "question": "Que veut dire *jet lag* ?",
+    "choix": [
+      "retard d'avion",
+      "décalage horaire",
+      "mal de l'air",
+      "jet privé"
+    ],
+    "reponse": 1,
+    "explication": "*Jet lag* = la fatigue du décalage horaire après un long vol."
+  },
+  {
+    "question": "Quel est l'équivalent britannique de *elevator* ?",
+    "choix": [
+      "escalator",
+      "lift",
+      "stairs",
+      "subway"
+    ],
+    "reponse": 1,
+    "explication": "*Elevator* (US) = *lift* (UK) = ascenseur."
+  },
+  {
+    "question": "Un *commuter*, c'est...",
+    "choix": [
+      "un ordinateur",
+      "une personne qui fait la navette domicile-travail",
+      "un commutateur",
+      "un employé de mairie"
+    ],
+    "reponse": 1,
+    "explication": "*To commute* = faire le trajet quotidien entre son domicile et son travail."
+  },
+  {
+    "question": "*Domestic flights* sont des vols...",
+    "choix": [
+      "domestiques",
+      "intérieurs (dans le même pays)",
+      "privés",
+      "annulés"
+    ],
+    "reponse": 1,
+    "explication": "*Domestic* = national, intérieur. Le contraire est *international*."
+  },
+  {
+    "question": "Un *caterer*, c'est...",
+    "choix": [
+      "un traiteur",
+      "un serveur",
+      "un cuisinier de cantine",
+      "un organisateur de congrès"
+    ],
+    "reponse": 0,
+    "explication": "*Caterer* (ou *catering firm*) = traiteur."
+  },
+  {
+    "question": "Que veut dire *landlord* ?",
+    "choix": [
+      "propriétaire (qui loue un logement)",
+      "seigneur",
+      "locataire",
+      "agent immobilier"
+    ],
+    "reponse": 0,
+    "explication": "Le *landlord* loue son logement au *tenant* (locataire)."
+  },
+  {
+    "question": "Un *physician*, c'est...",
+    "choix": [
+      "un physicien",
+      "un médecin",
+      "un kiné",
+      "un pharmacien"
+    ],
+    "reponse": 1,
+    "explication": "Faux ami : *physician* = médecin. Un physicien = *a physicist*."
+  },
+  {
+    "question": "La *deadline*, c'est...",
+    "choix": [
+      "la date limite",
+      "le délai de livraison",
+      "la fin de la ligne",
+      "le planning"
+    ],
+    "reponse": 0,
+    "explication": "*Deadline* = heure ou date limite. Attention : *delay* = retard."
+  },
+  {
+    "question": "*Pending* signifie...",
+    "choix": [
+      "pendant",
+      "en attente, en cours",
+      "pendu",
+      "payé"
+    ],
+    "reponse": 1,
+    "explication": "*Your request is pending* = votre demande est en cours de traitement."
+  },
+  {
+    "question": "*The shop is open around the clock* veut dire...",
+    "choix": [
+      "autour de midi",
+      "24 heures sur 24",
+      "à heures fixes",
+      "seulement le matin"
+    ],
+    "reponse": 1,
+    "explication": "*Around the clock* = jour et nuit, sans arrêt."
+  },
+  {
+    "question": "*Noon* désigne...",
+    "choix": [
+      "minuit",
+      "midi",
+      "l'après-midi",
+      "le soir"
+    ],
+    "reponse": 1,
+    "explication": "*Noon* = midi (12 h). Minuit = *midnight*."
+  }
+]

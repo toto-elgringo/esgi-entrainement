@@ -1,0 +1,433 @@
+[
+  {
+    "id": "valeurs-a-n-20",
+    "titre": "Les ordres de grandeur à n = 20",
+    "difficulte": 1,
+    "enonce": "Calcule chaque valeur pour $n = 20$. Tu peux écrire `2^20` ou `20^3`.",
+    "questions": [
+      {
+        "intitule": "$n^2$",
+        "type": "nombre",
+        "reponse": 400,
+        "acceptes": [
+          "20^2"
+        ],
+        "refuses": [
+          "40",
+          "4000"
+        ]
+      },
+      {
+        "intitule": "$n^3$",
+        "type": "nombre",
+        "reponse": 8000,
+        "acceptes": [
+          "20^3",
+          "8 000"
+        ],
+        "refuses": [
+          "6000",
+          "800"
+        ]
+      },
+      {
+        "intitule": "$2^n$",
+        "type": "nombre",
+        "reponse": 1048576,
+        "acceptes": [
+          "2^20",
+          "1 048 576"
+        ],
+        "refuses": [
+          "400",
+          "1000000"
+        ]
+      },
+      {
+        "intitule": "Quel classement est correct (de la plus lente à la plus rapide) ?",
+        "type": "choix",
+        "choix": [
+          "$n^2 \\ll n^3 \\ll 2^n \\ll n!$",
+          "$2^n \\ll n^2 \\ll n^3 \\ll n!$",
+          "$n^2 \\ll 2^n \\ll n^3 \\ll n!$",
+          "$n! \\ll 2^n \\ll n^3 \\ll n^2$"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "$2^{10} = 1\\,024$.",
+      "$2^{20} = 2^{10} \\times 2^{10} = 1\\,024 \\times 1\\,024$."
+    ],
+    "correction": "- $n^2 = 400$ et $n^3 = 8\\,000$ : instantané pour un ordinateur.\n- $2^{20} = 1\\,024 \\times 1\\,024 = 1\\,048\\,576 \\approx 10^6$ : environ 1 ms à $10^9$ opérations/s.\n- $20! \\approx 2{,}4 \\times 10^{18}$ : environ 77 ans.\n- Classement : $n^2 \\ll n^3 \\ll 2^n \\ll n!$ (polynomial, puis exponentiel, puis factoriel)."
+  },
+  {
+    "id": "sentir-l-explosion",
+    "titre": "Sentir l'explosion",
+    "difficulte": 2,
+    "enonce": "Un solveur évalue $10^9$ ordres de visite par seconde. On donne $15! \\approx 1{,}3 \\times 10^{12}$ et $20! \\approx 2{,}4 \\times 10^{18}$. Une année compte environ $3{,}15 \\times 10^7$ secondes. Arrondis à l'unité.",
+    "questions": [
+      {
+        "intitule": "Temps pour énumérer les ordres de 15 villes, en **secondes**.",
+        "type": "nombre",
+        "reponse": 1300,
+        "tolerance": 10,
+        "acceptes": [
+          "1 300",
+          "1308",
+          "15!/10^9"
+        ],
+        "refuses": [
+          "130",
+          "13000"
+        ]
+      },
+      {
+        "intitule": "Le même temps en **minutes**.",
+        "type": "nombre",
+        "reponse": 22,
+        "tolerance": 0.5,
+        "acceptes": [
+          "21.8",
+          "21,8"
+        ],
+        "refuses": [
+          "1300",
+          "2"
+        ]
+      },
+      {
+        "intitule": "Temps pour 20 villes, en **années**.",
+        "type": "nombre",
+        "reponse": 77,
+        "tolerance": 1.5,
+        "acceptes": [
+          "76",
+          "77.1"
+        ],
+        "refuses": [
+          "7",
+          "770"
+        ]
+      },
+      {
+        "intitule": "Par combien le travail est-il multiplié en passant de 15 à 20 villes ? (valeur exacte : $\\dfrac{20!}{15!}$)",
+        "type": "nombre",
+        "reponse": 1860480,
+        "acceptes": [
+          "16*17*18*19*20",
+          "20!/15!",
+          "1 860 480"
+        ],
+        "refuses": [
+          "5",
+          "100"
+        ]
+      }
+    ],
+    "indices": [
+      "Temps = nombre d'ordres ÷ $10^9$.",
+      "Pour 20 villes : $2{,}4 \\times 10^{18} / 10^9 = 2{,}4 \\times 10^9$ s, puis divise par $3{,}15 \\times 10^7$.",
+      "$\\dfrac{20!}{15!} = 16 \\times 17 \\times 18 \\times 19 \\times 20$."
+    ],
+    "correction": "- 15 villes : $\\dfrac{1{,}3 \\times 10^{12}}{10^9} = 1\\,300$ s, soit $\\dfrac{1\\,300}{60} \\approx 22$ minutes : encore faisable.\n- 20 villes : $\\dfrac{2{,}4 \\times 10^{18}}{10^9} = 2{,}4 \\times 10^9$ s, soit $\\dfrac{2{,}4 \\times 10^9}{3{,}15 \\times 10^7} \\approx 77$ ans : hors de portée.\n- Facteur : $\\dfrac{20!}{15!} = 16 \\times 17 \\times 18 \\times 19 \\times 20 = 1\\,860\\,480 \\approx 1{,}9$ million. Ajouter 5 villes multiplie le travail par presque deux millions : l'énumération n'est pas une stratégie."
+  },
+  {
+    "id": "temps-exponentiel",
+    "titre": "Le temps d'un algorithme en 2^n",
+    "difficulte": 2,
+    "enonce": "Un algorithme fait $2^n$ opérations, à $10^9$ opérations par seconde. Donne les résultats arrondis au dixième.",
+    "questions": [
+      {
+        "intitule": "Temps pour $n = 30$, en **secondes**.",
+        "type": "nombre",
+        "reponse": "2^30/10^9",
+        "tolerance": 0.05,
+        "acceptes": [
+          "1.07",
+          "1,1"
+        ],
+        "refuses": [
+          "30",
+          "0.3"
+        ]
+      },
+      {
+        "intitule": "Temps pour $n = 40$, en **minutes**.",
+        "type": "nombre",
+        "reponse": "2^40/10^9/60",
+        "tolerance": 0.1,
+        "acceptes": [
+          "18.3"
+        ],
+        "refuses": [
+          "1100",
+          "40"
+        ]
+      },
+      {
+        "intitule": "Temps pour $n = 50$, en **jours**.",
+        "type": "nombre",
+        "reponse": "2^50/10^9/86400",
+        "tolerance": 0.1,
+        "acceptes": [
+          "13",
+          "13.03"
+        ],
+        "refuses": [
+          "1125899",
+          "50"
+        ]
+      }
+    ],
+    "indices": [
+      "$2^{30} \\approx 1{,}07 \\times 10^9$.",
+      "Chaque fois que $n$ augmente de 10, le temps est multiplié par $2^{10} = 1\\,024$.",
+      "Un jour = $86\\,400$ secondes."
+    ],
+    "correction": "- $n = 30$ : $\\dfrac{2^{30}}{10^9} = \\dfrac{1\\,073\\,741\\,824}{10^9} \\approx 1{,}1$ s.\n- $n = 40$ : $2^{40} \\approx 1{,}1 \\times 10^{12}$, soit $\\approx 1\\,100$ s $\\approx 18{,}3$ minutes.\n- $n = 50$ : $2^{50} \\approx 1{,}13 \\times 10^{15}$, soit $\\approx 1{,}13 \\times 10^6$ s $\\approx 13$ jours.\n\nChaque fois qu'on ajoute 10 à $n$, le temps est multiplié par environ 1 000 : c'est la marque d'une croissance **exponentielle**."
+  },
+  {
+    "id": "budget-d-une-heure",
+    "titre": "Que peut-on traiter en une heure ?",
+    "difficulte": 3,
+    "enonce": "On dispose d'**une heure** de calcul à $10^9$ opérations par seconde, soit $3{,}6 \\times 10^{12}$ opérations. Pour chaque algorithme, donne la plus grande taille $n$ traitable.",
+    "questions": [
+      {
+        "intitule": "Algorithme en $2^n$ opérations : plus grand $n$ ?",
+        "type": "nombre",
+        "reponse": 41,
+        "refuses": [
+          "42",
+          "40",
+          "12"
+        ]
+      },
+      {
+        "intitule": "Algorithme en $n!$ opérations : plus grand $n$ ?",
+        "type": "nombre",
+        "reponse": 15,
+        "refuses": [
+          "16",
+          "14"
+        ]
+      },
+      {
+        "intitule": "Algorithme en $n^2$ opérations : plus grand $n$ ? (un entier)",
+        "type": "nombre",
+        "reponse": 1897366,
+        "acceptes": [
+          "1 897 366"
+        ],
+        "refuses": [
+          "1897367",
+          "3600000"
+        ]
+      }
+    ],
+    "indices": [
+      "Cherche le plus grand $n$ tel que le nombre d'opérations reste $\\le 3{,}6 \\times 10^{12}$.",
+      "$2^{41} \\approx 2{,}2 \\times 10^{12}$ et $2^{42} \\approx 4{,}4 \\times 10^{12}$. $15! \\approx 1{,}3 \\times 10^{12}$ et $16! \\approx 2{,}1 \\times 10^{13}$.",
+      "Pour $n^2$ : $n \\le \\sqrt{3{,}6 \\times 10^{12}}$."
+    ],
+    "correction": "- $2^n$ : $2^{41} \\approx 2{,}2 \\times 10^{12} \\le 3{,}6 \\times 10^{12} < 2^{42} \\approx 4{,}4 \\times 10^{12}$, donc $n = 41$.\n- $n!$ : $15! \\approx 1{,}3 \\times 10^{12} \\le 3{,}6 \\times 10^{12} < 16! \\approx 2{,}1 \\times 10^{13}$, donc $n = 15$.\n- $n^2$ : $n \\le \\sqrt{3{,}6 \\times 10^{12}} \\approx 1\\,897\\,366{,}6$, donc $n = 1\\,897\\,366$.\n\nUne heure de calcul : près de 2 millions d'éléments pour un algorithme polynomial, mais seulement 41 pour $2^n$ et 15 pour $n!$."
+  },
+  {
+    "id": "verifier-ou-trouver",
+    "titre": "Vérifier ou trouver ?",
+    "difficulte": 1,
+    "enonce": "Quatre villes A, B, C, D. Distances : AB = 3, AC = 5, AD = 4, BC = 2, BD = 6, CD = 3. Question de décision : « existe-t-il une tournée de coût au plus $K = 12$ ? ». Quelqu'un propose la tournée A → B → C → D → A.",
+    "questions": [
+      {
+        "intitule": "Coût de la tournée proposée.",
+        "type": "nombre",
+        "reponse": 12,
+        "refuses": [
+          "8",
+          "17"
+        ]
+      },
+      {
+        "intitule": "Cette tournée prouve-t-elle que la réponse est « oui » ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Combien de distances a-t-il fallu additionner pour vérifier ?",
+        "type": "nombre",
+        "reponse": 4,
+        "refuses": [
+          "6",
+          "24"
+        ]
+      },
+      {
+        "intitule": "Que montre cet exemple ?",
+        "type": "choix",
+        "choix": [
+          "Trouver la meilleure tournée est rapide",
+          "Le problème est dans P",
+          "Il n'existe qu'une tournée",
+          "Vérifier une solution proposée est rapide (d'où la classe NP)"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "Additionne AB + BC + CD + DA.",
+      "Une tournée de $n$ villes a $n$ trajets."
+    ],
+    "correction": "- Coût : AB + BC + CD + DA $= 3 + 2 + 3 + 4 = 12 \\le 12$ : la réponse est **oui**, et la tournée en est la preuve (on l'appelle un **certificat**).\n- Pour vérifier, il a suffi de contrôler que chaque ville apparaît une fois et d'additionner **4** distances : c'est rapide (polynomial).\n- C'est l'idée de **NP** : une solution proposée se vérifie vite, même si la trouver peut être très long."
+  },
+  {
+    "id": "pieges-de-vocabulaire",
+    "titre": "Vrai ou faux sur P et NP",
+    "difficulte": 1,
+    "enonce": "Pour chaque affirmation, dis si elle est vraie ou fausse.",
+    "questions": [
+      {
+        "intitule": "« NP veut dire non polynomial. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "« Tout problème de P est aussi dans NP. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "« On a prouvé que P est différent de NP. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "« On ne connaît aucun algorithme polynomial pour le voyageur de commerce. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "« Un problème NP-complet est dans NP. »",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "NP = non **déterministe** polynomial.",
+      "La question « P = NP ? » n'est toujours pas tranchée."
+    ],
+    "correction": "- **Faux** : NP = non **déterministe** polynomial, c'est-à-dire vérifiable en temps polynomial.\n- **Vrai** : si on sait résoudre vite, on sait vérifier vite : $P \\subseteq NP$.\n- **Faux** : personne ne sait si $P = NP$. C'est une question ouverte.\n- **Vrai** : le TSP est NP-difficile, aucun algorithme polynomial n'est connu.\n- **Vrai** : NP-complet = dans NP **et** NP-difficile."
+  },
+  {
+    "id": "exact-ou-approche",
+    "titre": "Exact ou approché ?",
+    "difficulte": 2,
+    "enonce": "Votre direction veut des tournées quotidiennes pour **3 000 points de livraison**, avec capacités des camions et horaires des clients, calculées chaque nuit en **moins d'une heure**.",
+    "questions": [
+      {
+        "intitule": "Quelle méthode choisir ?",
+        "type": "choix",
+        "choix": [
+          "Une méthode exacte (branch & bound…)",
+          "Une méthode approchée (métaheuristique)"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Argumente ton choix en deux ou trois phrases.",
+        "type": "auto",
+        "reponse": "**Approché.** Avec 3 000 clients, des capacités et des fenêtres horaires, aucune méthode exacte ne tient dans le budget d'une heure. Une métaheuristique (recherche locale bien menée, recuit simulé…) donne d'excellentes tournées dans le délai. Attention : sur un TSP pur, les solveurs exacts traitent des milliers de villes ; ce sont les contraintes et le budget de temps qui tranchent, pas la taille seule."
+      },
+      {
+        "intitule": "Sur un voyageur de commerce **pur** de 2 000 villes, sans limite de temps stricte, une méthode exacte est-elle envisageable ?",
+        "type": "choix",
+        "choix": [
+          "Oui, les solveurs exacts modernes y arrivent souvent",
+          "Non, c'est impossible au-delà de 20 villes"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Regarde les contraintes et le temps disponible, pas seulement la taille.",
+      "Les solveurs exacts traitent bien le TSP pur, beaucoup moins les tournées avec capacités et horaires."
+    ],
+    "correction": "**Approché.** Sur un problème de tournées à 3 000 clients avec fenêtres horaires et capacités, aucune méthode exacte ne tient dans une heure ; une métaheuristique donnera d'excellentes tournées dans le délai.\n\nNe pas généraliser : sur un TSP **pur**, les solveurs exacts modernes traitent couramment plusieurs milliers de villes. Ce sont les contraintes et le budget de temps qui tranchent. L'exact reste utile sur de petites sous-instances ou pour mesurer la qualité d'une solution approchée."
+  },
+  {
+    "id": "choisir-la-methode",
+    "titre": "Choisir la méthode",
+    "difficulte": 2,
+    "enonce": "Pour chaque situation, choisis la stratégie la plus adaptée.",
+    "questions": [
+      {
+        "intitule": "Un sac à dos de 12 objets : on veut **la** meilleure solution, prouvée.",
+        "type": "choix",
+        "choix": [
+          "Exacte",
+          "Approchée"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Un emploi du temps de 2 000 cours avec des centaines de contraintes, à produire en quelques minutes.",
+        "type": "choix",
+        "choix": [
+          "Exacte",
+          "Approchée"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "On veut savoir à quel point une solution approchée est proche de l'optimum, sur une petite instance.",
+        "type": "choix",
+        "choix": [
+          "Exacte",
+          "Approchée"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Combien de sous-ensembles faut-il examiner pour énumérer le sac à dos de 12 objets ?",
+        "type": "nombre",
+        "reponse": 4096,
+        "acceptes": [
+          "2^12",
+          "4 096"
+        ],
+        "refuses": [
+          "144",
+          "479001600"
+        ]
+      }
+    ],
+    "indices": [
+      "Petite taille et besoin de preuve : méthode exacte. Grande taille et temps limité : méthode approchée.",
+      "Le sac à dos de $n$ objets a $2^n$ sous-ensembles."
+    ],
+    "correction": "- Sac à dos de 12 objets : $2^{12} = 4\\,096$ sous-ensembles seulement, on peut même tout énumérer : **exacte**.\n- Emploi du temps géant en quelques minutes : **approchée** (métaheuristique).\n- Mesurer la qualité d'une solution approchée : on calcule l'optimum **exact** sur une petite instance et on compare."
+  }
+]

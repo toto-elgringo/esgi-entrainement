@@ -1,0 +1,8 @@
+{
+  "titre": "Algorithmes génétiques",
+  "description": "Population, fitness, sélection par roulette et par tournoi, croisement un point et OX, mutation, gestion des contraintes, diversité, dérive génétique et convergence prématurée.",
+  "source": "Chapitre 2",
+  "matieres": [
+    "combinatoire"
+  ]
+}

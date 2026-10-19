@@ -1,0 +1,672 @@
+{
+  "chapitres": [
+    {
+      "id": "00-rappels-pointeurs-et-memoire",
+      "titre": "Rappels : pointeurs et mémoire",
+      "description": "Adresses et pointeurs, passage par adresse, NULL, structures, malloc et free : les outils du C qu'utilisent les listes chaînées.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-echanger",
+          "titre": "Échanger deux entiers",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "La fonction reçoit les adresses des deux variables : c'est `*a` et `*b` qu'il faut modifier.",
+            "Il faut une variable temporaire, sinon la première valeur est écrasée avant d'être recopiée.",
+            "`int tmp = *a;` puis `*a = *b;` puis `*b = tmp;`"
+          ]
+        },
+        {
+          "id": "02-deplacer-un-point",
+          "titre": "Déplacer un point",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`p` est un pointeur vers un `Point` : on accède à ses champs avec la flèche `->`.",
+            "Il faut ajouter `dx` au champ `x` et `dy` au champ `y`.",
+            "`p->x = p->x + dx;` (ou `p->x += dx;`), et pareil pour `y`."
+          ]
+        },
+        {
+          "id": "03-creer-un-point",
+          "titre": "Créer un point sur le tas",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Une variable locale disparaît à la fin de la fonction : il faut réserver le point avec `malloc`.",
+            "`malloc(sizeof(Point))` renvoie l'adresse d'une zone assez grande pour un `Point`, ou `NULL` si la mémoire manque.",
+            "`Point *p = malloc(sizeof(Point));`, si `p == NULL` alors `exit(EXIT_FAILURE);`, puis `p->x = x; p->y = y; return p;`"
+          ]
+        },
+        {
+          "id": "04-tableau-de-carres",
+          "titre": "Un tableau de carrés",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "La taille `n` n'est connue qu'à l'exécution : le tableau doit être réservé avec `malloc`.",
+            "Pour `n` entiers, il faut `n * sizeof(int)` octets.",
+            "`int *t = malloc(n * sizeof(int));`, vérifier `NULL`, puis `for (int i = 0; i < n; i++) t[i] = i * i;` et `return t;`"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Après `int n = 7; int *p = &n;`, que contient `p` ?",
+          "choix": [
+            "La valeur 7",
+            "L'adresse de `n`",
+            "Une copie de `n`",
+            "`NULL`"
+          ],
+          "reponse": 1,
+          "explication": "`&n` est l'adresse de `n`. Un pointeur contient une adresse, pas la valeur elle-même. Pour lire la valeur, on écrit `*p`."
+        },
+        {
+          "question": "Après `int n = 7; int *p = &n; *p = 3;`, combien vaut `n` ?",
+          "choix": [
+            "7",
+            "3",
+            "L'adresse de `p`",
+            "Le programme plante"
+          ],
+          "reponse": 1,
+          "explication": "`*p` désigne la variable pointée par `p`, c'est-à-dire `n`. Écrire `*p = 3` modifie donc `n`."
+        },
+        {
+          "question": "Une fonction `void plusUn(int x) { x = x + 1; }` est appelée avec `plusUn(n);`. Que devient `n` ?",
+          "choix": [
+            "Il augmente de 1",
+            "Il ne change pas",
+            "Il vaut 0",
+            "Ça ne compile pas"
+          ],
+          "reponse": 1,
+          "explication": "En C, les paramètres sont passés par valeur : `x` est une copie de `n`. Modifier la copie ne change pas l'original. Il faudrait `void plusUn(int *x)` et l'appel `plusUn(&n)`."
+        },
+        {
+          "question": "Comment écrire l'appel pour qu'une fonction `void echanger(int *a, int *b)` échange les variables `x` et `y` ?",
+          "choix": [
+            "`echanger(x, y);`",
+            "`echanger(*x, *y);`",
+            "`echanger(&x, &y);`",
+            "`echanger(x&, y&);`"
+          ],
+          "reponse": 2,
+          "explication": "La fonction attend des adresses (`int *`) : on lui passe `&x` et `&y`."
+        },
+        {
+          "question": "`p` est un pointeur vers une structure `Point`. Comment lire son champ `x` ?",
+          "choix": [
+            "`p.x`",
+            "`p->x`",
+            "`*p.x`",
+            "`&p.x`"
+          ],
+          "reponse": 1,
+          "explication": "Avec un pointeur vers une structure, on utilise la flèche : `p->x`, qui est un raccourci pour `(*p).x`. Le point `.` s'utilise sur une structure, pas sur un pointeur."
+        },
+        {
+          "question": "Que renvoie `malloc` quand il n'y a plus de mémoire disponible ?",
+          "choix": [
+            "0 octet réservé mais une adresse valide",
+            "`NULL`",
+            "Il arrête le programme",
+            "Une adresse au hasard"
+          ],
+          "reponse": 1,
+          "explication": "`malloc` renvoie `NULL` en cas d'échec. C'est pour ça qu'on teste toujours son résultat avant de l'utiliser."
+        },
+        {
+          "question": "Que contient un champ d'une structure qu'on vient de réserver avec `malloc`, sans l'avoir rempli ?",
+          "choix": [
+            "Toujours 0",
+            "Toujours `NULL`",
+            "N'importe quoi",
+            "La valeur du champ précédent"
+          ],
+          "reponse": 2,
+          "explication": "`malloc` ne met pas la mémoire à zéro : la zone contient ce qui traînait là avant. Il faut remplir chaque champ (par exemple `next = NULL`)."
+        },
+        {
+          "question": "Comment s'appelle l'erreur qui consiste à oublier de rendre avec `free` une mémoire réservée par `malloc` ?",
+          "choix": [
+            "Un débordement de pile",
+            "Une fuite mémoire",
+            "Une erreur de segmentation",
+            "Un double free"
+          ],
+          "reponse": 1,
+          "explication": "La mémoire reste réservée alors que plus personne ne s'en sert : c'est une fuite mémoire. Dans un programme qui tourne longtemps, elle s'accumule."
+        },
+        {
+          "question": "Après `free(p);`, que peut-on faire avec `p` sans risque ?",
+          "choix": [
+            "Lire `p->x`",
+            "Appeler `free(p)` une deuxième fois",
+            "Lui donner une nouvelle valeur, par exemple `p = NULL`",
+            "Écrire `p->x = 0`"
+          ],
+          "reponse": 2,
+          "explication": "La zone pointée a été rendue : la lire, y écrire ou la libérer à nouveau est interdit. On peut seulement changer le pointeur lui-même, et `p = NULL` est une bonne habitude."
+        },
+        {
+          "question": "Dans `typedef struct cell { int value; struct cell *next; } Cell;`, pourquoi écrit-on `struct cell *next` et pas `Cell *next` ?",
+          "choix": [
+            "Par habitude, les deux marchent",
+            "Le nom court `Cell` n'existe pas encore à cet endroit",
+            "Parce que `next` est un entier",
+            "Pour que `next` soit `NULL` par défaut"
+          ],
+          "reponse": 1,
+          "explication": "Le nom `Cell` n'est créé qu'à la fin de la déclaration, après l'accolade fermante. À l'intérieur, seul le nom complet `struct cell` est connu."
+        }
+      ]
+    },
+    {
+      "id": "01-listes-chainees",
+      "titre": "Listes chaînées",
+      "description": "Maillons et struct cell, parcours itératif et récursif, somme, taille, affichage, insertion en début, tableau ou liste chaînée ?",
+      "source": "cours",
+      "exercices": [
+        {
+          "id": "01-construire-une-liste",
+          "titre": "Construire une liste à la main",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "Crée le premier maillon avec `creerCell(10)` et range son adresse dans `start`.",
+            "Le deuxième maillon s'accroche au champ `next` du premier : `start->next = ...`.",
+            "`start = creerCell(10);` puis `start->next = creerCell(20);` puis `start->next->next = creerCell(30);`"
+          ]
+        },
+        {
+          "id": "02-somme",
+          "titre": "La somme des éléments",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Parcours la liste avec un pointeur `cur` qui part de `start`, sans modifier `start`.",
+            "Garde un total qui commence à 0 et ajoute `cur->value` à chaque tour.",
+            "`while (cur != NULL) { resultat += cur->value; cur = cur->next; }`"
+          ]
+        },
+        {
+          "id": "03-taille",
+          "titre": "La taille d'une liste",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Une liste ne connaît pas sa taille : il faut compter les maillons en la parcourant.",
+            "Même squelette que la somme, mais on ajoute 1 à chaque maillon au lieu de sa valeur.",
+            "`int n = 0;` puis `while (cur != NULL) { n++; cur = cur->next; }` et `return n;`"
+          ]
+        },
+        {
+          "id": "04-afficher",
+          "titre": "Afficher une liste",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "Parcours la liste avec `cur` et affiche chaque valeur suivie de ` -> `.",
+            "Après la boucle, il reste à afficher `NULL` et un retour à la ligne : ainsi la liste vide affiche juste `NULL`.",
+            "Dans la boucle : `printf(\"%d -> \", cur->value);`. Après la boucle : `printf(\"NULL\\n\");`"
+          ]
+        },
+        {
+          "id": "05-reparer-insertion",
+          "titre": "Réparer l'insertion en début",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Dessine la liste sur papier et exécute les deux dernières lignes de `insererDebut` dans l'ordre où elles sont écrites.",
+            "Après `start = nouveau;`, l'adresse de l'ancien premier maillon est perdue : `nouveau->next = start;` fait pointer le maillon sur lui-même.",
+            "Il suffit d'échanger les deux lignes : `nouveau->next = start;` d'abord, `start = nouveau;` ensuite."
+          ]
+        },
+        {
+          "id": "06-somme-et-taille-recursives",
+          "titre": "Somme et taille récursives",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence chaque fonction par le cas d'arrêt : que renvoyer pour une liste vide (`c == NULL`) ?",
+            "Pour une liste non vide : le résultat pour le premier maillon, combiné avec l'appel de la fonction sur le reste `c->next`.",
+            "`return c->value + sommeRec(c->next);` et `return 1 + tailleRec(c->next);`"
+          ]
+        },
+        {
+          "id": "07-inserer-debut-double-pointeur",
+          "titre": "Insérer en début avec Cell **",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`start` est l'adresse de la variable de l'appelant : `*start` est cette variable, c'est-à-dire l'adresse du premier maillon actuel.",
+            "Même algorithme que d'habitude : créer le maillon, l'accrocher devant l'ancien premier, puis changer le début de la liste.",
+            "`Cell *nouveau = creerCell(valeur);` puis `nouveau->next = *start;` puis `*start = nouveau;`"
+          ]
+        },
+        {
+          "id": "08-depuis-tableau",
+          "titre": "Une liste à partir d'un tableau",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "L'insertion en début met la dernière valeur insérée en premier : elle inverse l'ordre.",
+            "Pour obtenir le même ordre que le tableau, insère les valeurs en partant de la **fin** du tableau.",
+            "`Cell *start = NULL;` puis `for (int i = n - 1; i >= 0; i--) start = insererDebut(start, valeurs[i]);` et `return start;`"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la principale différence entre un tableau et une liste chaînée ?",
+          "choix": [
+            "La liste chaînée ne peut contenir que des entiers",
+            "Les éléments d'une liste chaînée ne sont pas rangés les uns à côté des autres en mémoire",
+            "Un tableau n'a pas d'ordre",
+            "Une liste chaînée ne peut pas changer de taille"
+          ],
+          "reponse": 1,
+          "explication": "Les cases d'un tableau sont contiguës (collées). Les maillons d'une liste chaînée sont éparpillés dans la mémoire, et chacun garde l'adresse du suivant."
+        },
+        {
+          "question": "Comment reconnaît-on une liste vide ?",
+          "choix": [
+            "`start->value == 0`",
+            "`start == NULL`",
+            "`start->next == NULL`",
+            "`taille(start) == 1`"
+          ],
+          "reponse": 1,
+          "explication": "Une liste vide n'a aucun maillon : le pointeur vers le premier maillon vaut `NULL`. Attention, `start->next == NULL` décrit une liste d'**un** maillon."
+        },
+        {
+          "question": "Pourquoi utilise-t-on un pointeur `cur` pour parcourir la liste au lieu d'avancer `start` ?",
+          "choix": [
+            "`start` ne peut pas être modifié en C",
+            "Pour ne pas perdre l'accès au début de la liste",
+            "C'est plus rapide",
+            "Pour éviter une fuite de pile"
+          ],
+          "reponse": 1,
+          "explication": "`start` est le seul moyen d'atteindre la liste. Si on l'avance, les maillons déjà passés ne sont plus accessibles."
+        },
+        {
+          "question": "Quelle condition fait tourner la boucle de parcours sur tous les maillons ?",
+          "choix": [
+            "`while (cur->next != NULL)`",
+            "`while (cur != NULL)`",
+            "`while (cur->value != 0)`",
+            "`while (start != NULL)`"
+          ],
+          "reponse": 1,
+          "explication": "Avec `cur != NULL`, on traite aussi le dernier maillon. `cur->next != NULL` s'arrête **sur** le dernier sans le traiter (et plante sur une liste vide)."
+        },
+        {
+          "question": "Dans `sommeRec`, que se passe-t-il si on oublie le test `if (c == NULL)` ?",
+          "choix": [
+            "La fonction renvoie 0",
+            "La fonction tourne sans fin sans planter",
+            "Le programme lit `c->value` sur `NULL` et plante",
+            "Le compilateur refuse le code"
+          ],
+          "reponse": 2,
+          "explication": "Sans cas d'arrêt, l'appel sur le `next` du dernier maillon reçoit `NULL` et essaie de lire `c->value` : erreur de segmentation."
+        },
+        {
+          "question": "Pourquoi la version récursive du parcours peut-elle planter sur une très longue liste alors que la version avec `while` non ?",
+          "choix": [
+            "Elle visite les maillons deux fois",
+            "Chaque appel attend le suivant sur la pile d'appels, qui peut déborder",
+            "Elle fait des `malloc`",
+            "Elle modifie la liste"
+          ],
+          "reponse": 1,
+          "explication": "Il y a un appel en attente par maillon. Avec des centaines de milliers de maillons, la pile d'appels déborde. La boucle `while` n'utilise que quelques variables."
+        },
+        {
+          "question": "Dans l'insertion en début, quel est le bon ordre ?",
+          "choix": [
+            "`start = nouveau;` puis `nouveau->next = start;`",
+            "`nouveau->next = start;` puis `start = nouveau;`",
+            "L'ordre n'a pas d'importance",
+            "`nouveau->next = NULL;` puis `start = nouveau;`"
+          ],
+          "reponse": 1,
+          "explication": "On accroche d'abord le nouveau maillon à l'ancien premier, puis on déplace la tête. Dans l'autre ordre, le nouveau maillon pointe sur lui-même et l'ancienne liste est perdue."
+        },
+        {
+          "question": "Avec `Cell *insererDebut(Cell *start, int valeur)`, quel appel ajoute vraiment 5 au début de la liste `l` ?",
+          "choix": [
+            "`insererDebut(l, 5);`",
+            "`l = insererDebut(l, 5);`",
+            "`insererDebut(&l, 5);`",
+            "`*l = insererDebut(l, 5);`"
+          ],
+          "reponse": 1,
+          "explication": "La fonction renvoie le nouveau premier maillon : il faut le récupérer dans `l`. Sans le `l =`, le maillon est créé puis perdu."
+        },
+        {
+          "question": "Pourquoi une fonction `void insererDebutPtr(Cell **start, int valeur)` prend-elle un `Cell **` ?",
+          "choix": [
+            "Parce qu'un maillon contient deux pointeurs",
+            "Pour pouvoir modifier la variable `start` de l'appelant",
+            "Pour insérer deux valeurs",
+            "Parce que `malloc` renvoie un `Cell **`"
+          ],
+          "reponse": 1,
+          "explication": "Les paramètres sont copiés. En recevant l'adresse de la variable `start`, la fonction peut écrire `*start = nouveau;` et l'appelant voit le nouveau début."
+        },
+        {
+          "question": "Quelle est la complexité de l'insertion en début dans un tableau et dans une liste chaînée ?",
+          "choix": [
+            "O(1) pour les deux",
+            "Tableau O(N), liste O(1)",
+            "Tableau O(1), liste O(N)",
+            "O(N) pour les deux"
+          ],
+          "reponse": 1,
+          "explication": "Le tableau doit décaler toutes ses cases d'un cran. La liste crée un maillon et change deux pointeurs, quelle que soit sa longueur."
+        },
+        {
+          "question": "Quelle est la complexité de l'accès au i-ème élément (accès aléatoire) ?",
+          "choix": [
+            "Tableau O(1), liste O(N)",
+            "Tableau O(N), liste O(1)",
+            "O(1) pour les deux",
+            "O(log N) pour les deux"
+          ],
+          "reponse": 0,
+          "explication": "Un tableau calcule directement l'adresse de `t[i]`. Une liste doit suivre les `next` un par un depuis le début."
+        },
+        {
+          "question": "Une liste chaînée est triée. Quelle est la complexité de la recherche d'une valeur ?",
+          "choix": [
+            "O(1)",
+            "O(log N) grâce à la dichotomie",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "La dichotomie doit sauter au milieu d'un coup, ce qu'une liste ne sait pas faire. On compare les maillons un par un : O(N). Sur un tableau trié, ce serait O(log N)."
+        }
+      ]
+    },
+    {
+      "id": "02-operations-listes-chainees",
+      "titre": "Opérations sur les listes chaînées",
+      "description": "Recherche, i-ème élément, suppression, insertion en fin, au milieu et dans l'ordre, libération, inversion.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-rechercher",
+          "titre": "Rechercher une valeur",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "C'est un parcours : un pointeur `cur` qui avance de maillon en maillon.",
+            "Dès que `cur->value` vaut la valeur cherchée, on peut renvoyer `cur` tout de suite. Si la boucle se termine, la valeur n'est pas dans la liste.",
+            "Dans la boucle : `if (cur->value == valeur) return cur;` puis `cur = cur->next;`. Après la boucle : `return NULL;`"
+          ]
+        },
+        {
+          "id": "02-compter",
+          "titre": "Compter les apparitions",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Parcours toute la liste (pas d'arrêt anticipé : la valeur peut apparaître plusieurs fois).",
+            "Un compteur qui part de 0 et augmente de 1 chaque fois que `cur->value == valeur`.",
+            "`int n = 0;` puis dans la boucle `if (cur->value == valeur) n++;` et `cur = cur->next;`, enfin `return n;`"
+          ]
+        },
+        {
+          "id": "03-maximum",
+          "titre": "Le maximum",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Garde la plus grande valeur vue jusqu'ici, et compare-la à chaque maillon.",
+            "Ne pars pas de 0 : si toutes les valeurs sont négatives, 0 serait faux. Pars de la valeur du premier maillon.",
+            "`int max = start->value;` puis parcourir à partir de `start->next` avec `if (cur->value > max) max = cur->value;`"
+          ]
+        },
+        {
+          "id": "04-element-position",
+          "titre": "Le maillon en position i",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Avance un pointeur `cur` depuis `start` en comptant les pas.",
+            "Il faut avancer `position` fois, mais s'arrêter aussi si `cur` devient `NULL` (la liste est trop courte).",
+            "`while (cur != NULL && i < position) { cur = cur->next; i++; }` puis `return cur;`"
+          ]
+        },
+        {
+          "id": "05-supprimer-debut",
+          "titre": "Supprimer le premier maillon",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le début de la liste change : c'est pour ça que la fonction reçoit `Cell **start`. Pense d'abord au cas de la liste vide.",
+            "Range le premier maillon dans une variable avant de déplacer le début, sinon tu ne pourras plus le libérer.",
+            "`if (*start == NULL) return;` puis `Cell *ancien = *start;`, `*start = ancien->next;`, `free(ancien);`"
+          ]
+        },
+        {
+          "id": "06-inserer-fin",
+          "titre": "Insérer en fin de liste",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Deux cas : si la liste est vide, le nouveau maillon devient le premier (`*start = nouveau`). Sinon, il faut trouver le dernier maillon.",
+            "Le dernier maillon est celui dont `next` vaut `NULL` : avance `cur` tant que `cur->next != NULL`, pour t'arrêter SUR lui.",
+            "`Cell *cur = *start; while (cur->next != NULL) cur = cur->next;` puis `cur->next = nouveau;`"
+          ]
+        },
+        {
+          "id": "07-inserer-apres",
+          "titre": "Insérer après un maillon",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Deux pointeurs changent : le `next` du nouveau maillon et le `next` de `maillon`.",
+            "L'ordre compte : si tu modifies `maillon->next` en premier, tu perds l'adresse de la suite de la liste.",
+            "`Cell *nouveau = creerCell(valeur);` puis `nouveau->next = maillon->next;` puis `maillon->next = nouveau;`"
+          ]
+        },
+        {
+          "id": "08-vider-liste",
+          "titre": "Vider une liste",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Parcours la liste et appelle `free` sur chaque maillon, en comptant les maillons libérés.",
+            "Après `free(cur)`, `cur->next` est interdit : range `cur->next` dans une variable `suivant` avant le `free`.",
+            "`Cell *suivant = cur->next; free(cur); cur = suivant; n++;` dans la boucle, puis `*start = NULL;` et `return n;`"
+          ]
+        },
+        {
+          "id": "09-liberer-sans-fuite",
+          "titre": "Libérer sans fuite",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Les valeurs sont justes : le problème est la mémoire. Compte les `malloc` (un par maillon) et cherche où les maillons retirés deviennent inaccessibles sans `free`.",
+            "`retirerPremier` oublie de libérer l'ancien premier maillon, et `libererListe` ne libère que le premier maillon de la liste.",
+            "Dans `retirerPremier` : `Cell *suivant = start->next; free(start); return suivant;`. Dans `libererListe` : une boucle `while (start != NULL) { Cell *suivant = start->next; free(start); start = suivant; }`"
+          ]
+        },
+        {
+          "id": "10-afficher-envers",
+          "titre": "Afficher à l'envers (récursif)",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Commence par le cas d'arrêt : pour une liste vide, il n'y a rien à afficher.",
+            "Pour afficher le dernier maillon en premier, il faut d'abord afficher **tout le reste** (`c->next`) à l'envers, et seulement ensuite le maillon courant.",
+            "`if (c == NULL) return;` puis `afficherEnvers(c->next);` puis `printf(\"%d \", c->value);`"
+          ]
+        },
+        {
+          "id": "11-supprimer-valeur",
+          "titre": "Supprimer une valeur",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Sépare les cas : liste vide, valeur dans le premier maillon (le début change), valeur plus loin.",
+            "Pour retirer un maillon au milieu, il faut le maillon d'avant : avance un pointeur `prev` tant que `prev->next` existe et ne contient pas la valeur.",
+            "Si `prev->next != NULL` à la fin : `Cell *cible = prev->next; prev->next = cible->next; free(cible);`"
+          ]
+        },
+        {
+          "id": "12-inserer-trie",
+          "titre": "Insérer dans une liste triée",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Premier cas : si la liste est vide ou si la valeur est plus petite que (ou égale à) la première, on insère en début.",
+            "Sinon, avance un pointeur `prev` tant que `prev->next` existe et contient une valeur plus petite que la nouvelle : il faut insérer juste après `prev`.",
+            "`while (prev->next != NULL && prev->next->value < valeur) prev = prev->next;` puis `nouveau->next = prev->next; prev->next = nouveau;`"
+          ]
+        },
+        {
+          "id": "13-inverser",
+          "titre": "Inverser une liste",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "On ne crée aucun maillon : on retourne les flèches une par une. Il faut trois pointeurs : la partie déjà inversée (`prev`), le maillon traité (`cur`) et la suite (`suivant`).",
+            "À chaque tour : sauver la suite, retourner la flèche de `cur` vers `prev`, puis avancer `prev` et `cur` d'un cran. Au départ, `prev` vaut `NULL`.",
+            "`Cell *suivant = cur->next; cur->next = prev; prev = cur; cur = suivant;` dans la boucle `while (cur != NULL)`, puis `return prev;`"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle fonction doit recevoir un `Cell **start` plutôt qu'un `Cell *start` ?",
+          "choix": [
+            "`int taille(...)`",
+            "`Cell *rechercher(..., int valeur)`",
+            "`void supprimerDebut(...)`",
+            "`void afficherListe(...)`"
+          ],
+          "reponse": 2,
+          "explication": "Supprimer le premier maillon change le début de la liste : la fonction doit pouvoir modifier la variable de l'appelant, donc recevoir son adresse. Les trois autres ne font que lire la liste."
+        },
+        {
+          "question": "Dans `supprimerDebut`, pourquoi range-t-on le premier maillon dans une variable `ancien` avant de faire `*start = ancien->next;` ?",
+          "choix": [
+            "Pour pouvoir le libérer avec `free` ensuite",
+            "Pour le remettre en fin de liste",
+            "Parce que `*start` ne peut pas changer",
+            "Ce n'est pas utile"
+          ],
+          "reponse": 0,
+          "explication": "Une fois `*start` avancé, plus rien ne pointe sur l'ancien premier maillon. Sans `ancien`, on ne pourrait plus le libérer : ce serait une fuite mémoire."
+        },
+        {
+          "question": "Que fait ce code ? `while (cur != NULL) { free(cur); cur = cur->next; }`",
+          "choix": [
+            "Il libère correctement toute la liste",
+            "Il lit `cur->next` dans un maillon déjà libéré",
+            "Il ne libère que le premier maillon",
+            "Il ne compile pas"
+          ],
+          "reponse": 1,
+          "explication": "Après `free(cur)`, le maillon n'appartient plus au programme : lire `cur->next` est interdit. Il faut sauvegarder `suivant = cur->next` avant le `free`."
+        },
+        {
+          "question": "Pour insérer en fin de liste, avec quelle condition fait-on avancer `cur` ?",
+          "choix": [
+            "`while (cur != NULL)`",
+            "`while (cur->next != NULL)`",
+            "`while (cur->value != 0)`",
+            "`while (cur->next->next != NULL)`"
+          ],
+          "reponse": 1,
+          "explication": "On veut s'arrêter **sur** le dernier maillon pour modifier son `next`. Avec `cur != NULL`, on sortirait avec `cur == NULL`, sans accès au dernier maillon."
+        },
+        {
+          "question": "Quelle est la complexité de l'insertion en fin d'une liste chaînée dont on ne connaît que le premier maillon ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "Il faut parcourir toute la liste pour trouver le dernier maillon. Avec un pointeur supplémentaire sur la fin, elle passerait en O(1)."
+        },
+        {
+          "question": "Pour insérer `nouveau` juste après le maillon `m`, quel ordre est correct ?",
+          "choix": [
+            "`m->next = nouveau;` puis `nouveau->next = m->next;`",
+            "`nouveau->next = m->next;` puis `m->next = nouveau;`",
+            "`nouveau->next = m;` puis `m->next = NULL;`",
+            "L'ordre n'a pas d'importance"
+          ],
+          "reponse": 1,
+          "explication": "On accroche d'abord la suite de la liste au nouveau maillon, puis on fait pointer `m` sur lui. Dans l'autre ordre, `nouveau->next` recevrait `nouveau` lui-même et la fin de la liste serait perdue."
+        },
+        {
+          "question": "Pour supprimer un maillon au milieu d'une liste simplement chaînée, de quel maillon a-t-on besoin ?",
+          "choix": [
+            "Du dernier",
+            "De celui d'avant",
+            "De celui d'après seulement",
+            "D'aucun, `free` suffit"
+          ],
+          "reponse": 1,
+          "explication": "Il faut modifier le `next` du maillon précédent pour qu'il saute la cible. Un maillon ne connaît pas son précédent : on avance donc avec un pointeur `prev`."
+        },
+        {
+          "question": "Quelle est la complexité de l'accès au maillon en position i ?",
+          "choix": [
+            "O(1)",
+            "O(i), donc O(N) au pire",
+            "O(log N)",
+            "O(N²)"
+          ],
+          "reponse": 1,
+          "explication": "Il faut suivre i pointeurs `next` depuis le début. Un tableau, lui, calcule directement l'adresse de `t[i]`."
+        },
+        {
+          "question": "Pour calculer le maximum d'une liste non vide, par quelle valeur initialiser le maximum ?",
+          "choix": [
+            "0",
+            "La valeur du premier maillon",
+            "-1",
+            "La taille de la liste"
+          ],
+          "reponse": 1,
+          "explication": "Avec 0, une liste qui ne contient que des nombres négatifs donnerait 0, qui n'est même pas dans la liste. On part du premier maillon."
+        },
+        {
+          "question": "Dans l'inversion d'une liste avec `prev`, `cur` et `suivant`, à quoi sert `suivant` ?",
+          "choix": [
+            "À compter les maillons",
+            "À garder l'accès au reste de la liste avant de modifier `cur->next`",
+            "À mémoriser le premier maillon",
+            "À rien, on peut s'en passer"
+          ],
+          "reponse": 1,
+          "explication": "`cur->next = prev` écrase le lien vers la suite. Il faut donc avoir rangé `cur->next` dans `suivant` juste avant, sinon le reste de la liste est perdu."
+        },
+        {
+          "question": "Que renvoie la fonction d'inversion à la fin ?",
+          "choix": [
+            "`cur`, qui vaut `NULL`",
+            "`prev`, le nouveau premier maillon",
+            "L'ancien `start`",
+            "`suivant`"
+          ],
+          "reponse": 1,
+          "explication": "La boucle s'arrête quand `cur` vaut `NULL`. `prev` est alors l'ancien dernier maillon, devenu le premier. L'ancien `start` est maintenant le dernier."
+        }
+      ]
+    }
+  ]
+}

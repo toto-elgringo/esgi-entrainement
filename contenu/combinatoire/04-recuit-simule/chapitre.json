@@ -1,0 +1,8 @@
+{
+  "titre": "Recuit simulé",
+  "description": "L'idée métallurgique, la règle d'acceptation de Metropolis, les lois de refroidissement, le théorème de Hajek, l'algorithme complet et son réglage.",
+  "source": "Chapitre 2",
+  "matieres": [
+    "combinatoire"
+  ]
+}

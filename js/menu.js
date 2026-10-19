@@ -1,3 +1,4 @@
+import { estDomaineCode } from './domaines.js';
 import { echapper } from './outils.js';
 import { compterProgression, estReussi } from './parcours.js';
 
@@ -8,7 +9,7 @@ export function barreProgression(reussis, total) {
 }
 
 export function etiquetteSource(chapitre) {
-  if (chapitre.domaine === 'rust') {
+  if (estDomaineCode(chapitre.domaine)) {
     return chapitre.source === 'cours'
       ? '<span class="etiquette etiquette-source">Cours ESGI</span>'
       : '<span class="etiquette etiquette-fondamentaux">Fondamental</span>';

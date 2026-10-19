@@ -1,0 +1,11 @@
+{
+  "titre": "Héritage multiple : Employee et Geek",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "La déclaration : `class ITGuy(Employee, Geek):` (dans cet ordre).",
+    "Dans `ITGuy.__init__`, appelle explicitement les deux initialiseurs : `Employee.__init__(self, name, salary)` puis `Geek.__init__(self, name, computer)`.",
+    "Inutile de redéfinir `presentation` : grâce au MRO, celle de `Employee` (premier parent) est trouvée en premier.",
+    "Pour `fiche`, réutilise `self.presentation()` et ajoute `\", salaire \" + str(self.salary) + \", ordinateur \" + self.computer`."
+  ]
+}

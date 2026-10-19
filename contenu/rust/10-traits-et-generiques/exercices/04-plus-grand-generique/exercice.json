@@ -5,6 +5,6 @@
   "indices": [
     "Remplace `i32` par un paramètre de type : `fn plus_grand<T>(a: T, b: T) -> T`.",
     "Le compilateur refuse alors `a > b` : il faut promettre que `T` sait se comparer avec la contrainte `T: PartialOrd`.",
-    "Pour la liste : commence avec le premier élément (`match liste.first()`), puis parcours la liste et garde le plus grand. `Copy` permet de copier les éléments avec `*x`."
+    "Pour la liste : commence avec le premier élément (`*liste.first()?` renvoie `None` tout de suite si la liste est vide), puis parcours la liste et garde le plus grand. `Copy` permet de copier les éléments avec `*x`."
   ]
 }

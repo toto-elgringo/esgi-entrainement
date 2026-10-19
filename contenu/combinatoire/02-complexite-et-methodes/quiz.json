@@ -1,0 +1,123 @@
+[
+  {
+    "question": "Quand $n$ grandit, laquelle de ces fonctions explose le plus vite ?",
+    "choix": [
+      "$n^2$",
+      "$2^n$",
+      "$n!$",
+      "$n^3$"
+    ],
+    "reponse": 2,
+    "explication": "Ordre de croissance : $n^2 \\ll n^3 \\ll 2^n \\ll n!$. À $n = 20$, $n!$ vaut environ $2{,}4 \\times 10^{18}$."
+  },
+  {
+    "question": "Face à un problème NP-difficile de grande taille, une métaheuristique sert à…",
+    "choix": [
+      "obtenir vite une bonne solution, sans garantie d'optimalité",
+      "prouver que le problème est polynomial",
+      "énumérer toutes les solutions",
+      "trouver l'optimum à coup sûr"
+    ],
+    "reponse": 0,
+    "explication": "Une métaheuristique est une méthode approchée : elle donne une bonne solution rapidement, mais ne prouve pas qu'elle est optimale."
+  },
+  {
+    "question": "Que signifie **NP** ?",
+    "choix": [
+      "Non polynomial",
+      "Non déterministe polynomial",
+      "Nombre de problèmes",
+      "Nouvelle programmation"
+    ],
+    "reponse": 1,
+    "explication": "NP = « non déterministe polynomial » : les problèmes dont une solution proposée se **vérifie** en temps polynomial. Ce n'est pas « non polynomial »."
+  },
+  {
+    "question": "Quelle relation entre P et NP est **certaine** ?",
+    "choix": [
+      "$P \\subseteq NP$",
+      "$P = NP$",
+      "$P \\neq NP$",
+      "$NP \\subseteq P$"
+    ],
+    "reponse": 0,
+    "explication": "Un problème qu'on sait résoudre vite, on sait aussi le vérifier vite : $P \\subseteq NP$. En revanche, savoir si $P = NP$ est une question ouverte."
+  },
+  {
+    "question": "Un problème **NP-complet** est un problème…",
+    "choix": [
+      "dans NP et NP-difficile",
+      "qui n'est pas dans NP",
+      "résoluble en temps polynomial",
+      "sans solution"
+    ],
+    "reponse": 0,
+    "explication": "NP-complet = à la fois dans NP (vérifiable vite) et NP-difficile (au moins aussi dur que tout NP) : ce sont les plus durs de NP."
+  },
+  {
+    "question": "Quelle est la version **décision** du voyageur de commerce ?",
+    "choix": [
+      "Existe-t-il une tournée de coût au plus $K$ ?",
+      "Trouver la tournée la plus courte",
+      "Combien y a-t-il de tournées ?",
+      "Quelle ville visiter en premier ?"
+    ],
+    "reponse": 0,
+    "explication": "Un problème de décision attend oui ou non. On ajoute un seuil $K$ à la question d'optimisation."
+  },
+  {
+    "question": "Laquelle de ces méthodes est une méthode **exacte** ?",
+    "choix": [
+      "Le branch & bound",
+      "Le recuit simulé",
+      "Un algorithme génétique",
+      "La recherche locale"
+    ],
+    "reponse": 0,
+    "explication": "Branch & bound, simplexe, programmation dynamique garantissent l'optimum. Les trois autres sont des méthodes approchées."
+  },
+  {
+    "question": "Quel est le principal **défaut** d'une méthode exacte ?",
+    "choix": [
+      "Son temps de calcul peut exploser",
+      "Elle ne donne jamais l'optimum",
+      "Elle utilise le hasard",
+      "Elle ne marche que sur des graphes"
+    ],
+    "reponse": 0,
+    "explication": "Une méthode exacte prouve l'optimum, mais sur un problème NP-difficile son temps de calcul peut devenir exponentiel."
+  },
+  {
+    "question": "Combien vaut environ $2^{20}$ ?",
+    "choix": [
+      "Environ mille",
+      "Environ un million",
+      "Environ un milliard",
+      "Environ $2{,}4 \\times 10^{18}$"
+    ],
+    "reponse": 1,
+    "explication": "$2^{10} = 1\\,024 \\approx 10^3$, donc $2^{20} = (2^{10})^2 \\approx 10^6$, soit environ un million."
+  },
+  {
+    "question": "À $10^9$ ordres par seconde, combien de temps pour énumérer les $20! \\approx 2{,}4 \\times 10^{18}$ ordres de 20 villes ?",
+    "choix": [
+      "Environ 1 seconde",
+      "Environ 22 minutes",
+      "Environ 77 ans",
+      "Environ 1 000 ans"
+    ],
+    "reponse": 2,
+    "explication": "$\\dfrac{2{,}4 \\times 10^{18}}{10^9} = 2{,}4 \\times 10^9$ s, et une année fait environ $3{,}15 \\times 10^7$ s : environ 77 ans."
+  },
+  {
+    "question": "Qu'est-ce qui décide surtout entre méthode exacte et méthode approchée ?",
+    "choix": [
+      "Les contraintes du problème et le budget de temps",
+      "Uniquement le nombre de villes",
+      "Le langage de programmation",
+      "La couleur des graphes"
+    ],
+    "reponse": 0,
+    "explication": "Un TSP pur de milliers de villes se résout encore exactement ; ajouter capacités, horaires et un délai d'une heure change tout."
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "titre": "Décorateurs avec paramètre",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Il faut 3 niveaux : `repeter(n)` renvoie un décorateur `decor(func)`, qui renvoie un `wrapper(*args, **kwargs)`.",
+    "Dans le wrapper de `repeter`, appelle `func(*args, **kwargs)` dans une boucle `for _ in range(n)` et range chaque résultat dans une liste.",
+    "Pour `limiter`, garde le nombre d'appels dans une variable du décorateur (avec `nonlocal`) ou dans un attribut du wrapper.",
+    "Avant d'appeler `func`, si le nombre d'appels a déjà atteint `maximum`, fais `raise RuntimeError(\"trop d'appels\")`."
+  ]
+}

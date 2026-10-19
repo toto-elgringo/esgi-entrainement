@@ -1,0 +1,8 @@
+{
+  "titre": "Complexité et méthodes de résolution",
+  "description": "Explosion combinatoire et calculs de temps, classes P, NP, NP-difficile et NP-complet (version simple), méthodes exactes contre méthodes approchées.",
+  "source": "Chapitre 1",
+  "matieres": [
+    "combinatoire"
+  ]
+}

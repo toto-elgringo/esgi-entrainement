@@ -1,0 +1,5 @@
+{
+  "titre": "Rappels : pointeurs et mémoire",
+  "description": "Adresses et pointeurs, passage par adresse, NULL, structures, malloc et free : les outils du C qu'utilisent les listes chaînées.",
+  "source": "fondamentaux"
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "Tuples et unpacking",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une fonction peut renvoyer plusieurs valeurs : `return a, b` renvoie le tuple `(a, b)`.",
+    "Pour `min_max`, pars de `petit = grand = nombres[0]` et parcours le reste en mettant à jour les deux variables.",
+    "`premier, *reste = sequence` range le premier élément dans `premier` et tous les autres, sous forme de **liste**, dans `reste`.",
+    "Pour `distance`, déballe les points : `x1, y1 = p1`, puis utilise `math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)`."
+  ]
+}

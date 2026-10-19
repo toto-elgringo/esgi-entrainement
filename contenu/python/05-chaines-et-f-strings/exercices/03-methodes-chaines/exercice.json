@@ -1,0 +1,10 @@
+{
+  "titre": "Les méthodes des chaînes",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`texte.count(sous)` compte les occurrences, `texte.replace(a, b)` remplace.",
+    "Pour remplacer toutes les voyelles, fais une boucle sur `\"aeiouy\"` avec un `replace` par voyelle (ou une compréhension sur les caractères).",
+    "Pour `est_entier`, enlève un éventuel `-` au début avec une tranche (`texte[1:]` si `texte.startswith(\"-\")`), puis teste `isdigit()`. Une chaîne vide n'est pas un entier."
+  ]
+}

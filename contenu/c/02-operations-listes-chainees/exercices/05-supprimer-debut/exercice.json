@@ -1,0 +1,10 @@
+{
+  "titre": "Supprimer le premier maillon",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le début de la liste change : c'est pour ça que la fonction reçoit `Cell **start`. Pense d'abord au cas de la liste vide.",
+    "Range le premier maillon dans une variable avant de déplacer le début, sinon tu ne pourras plus le libérer.",
+    "`if (*start == NULL) return;` puis `Cell *ancien = *start;`, `*start = ancien->next;`, `free(ancien);`"
+  ]
+}

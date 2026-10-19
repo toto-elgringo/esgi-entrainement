@@ -1,0 +1,11 @@
+{
+  "titre": "zip et enumerate",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`zip(a, b)` fournit les couples `(a[0], b[0])`, `(a[1], b[1])`... et `dict(zip(cles, valeurs))` construit directement un dictionnaire.",
+    "Pour numéroter : `for i, ligne in enumerate(lignes, start=1)` et le texte `str(i) + \". \" + ligne`.",
+    "Le produit scalaire : `sum(x * y for x, y in zip(u, v))`.",
+    "Les positions : `[i for i, c in enumerate(texte) if c == lettre]`."
+  ]
+}

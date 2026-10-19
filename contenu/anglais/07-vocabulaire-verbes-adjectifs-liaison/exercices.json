@@ -1,0 +1,1076 @@
+[
+  {
+    "id": "verbes-sens",
+    "titre": "Les verbes : le sens",
+    "difficulte": 1,
+    "enonce": "Choisis la traduction.",
+    "questions": [
+      {
+        "intitule": "*to acknowledge receipt of a letter*",
+        "type": "choix",
+        "choix": [
+          "remercier",
+          "accuser réception",
+          "connaître"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*to deem*",
+        "type": "choix",
+        "choix": [
+          "demander",
+          "rêver",
+          "juger, considérer"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*to enhance*",
+        "type": "choix",
+        "choix": [
+          "enchanter",
+          "entourer",
+          "améliorer"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*to foster*",
+        "type": "choix",
+        "choix": [
+          "encourager, favoriser",
+          "forcer",
+          "fournir"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*to handle*",
+        "type": "choix",
+        "choix": [
+          "handicaper",
+          "manipuler seulement",
+          "gérer, s'occuper de"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*to harm*",
+        "type": "choix",
+        "choix": [
+          "armer",
+          "harceler",
+          "faire du tort, nuire"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*to strive*",
+        "type": "choix",
+        "choix": [
+          "faire tout son possible",
+          "faire grève",
+          "rayer"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*to soar*",
+        "type": "choix",
+        "choix": [
+          "monter en flèche",
+          "trier",
+          "souffrir"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Beaucoup de ces verbes ne ressemblent pas au français : il faut les apprendre."
+    ],
+    "correction": "*acknowledge* = accuser réception, reconnaître ; *deem* = juger ; *enhance* = améliorer ; *foster* = favoriser ; *handle* = gérer ; *harm* = nuire ; *strive* = s'efforcer ; *soar* = monter en flèche."
+  },
+  {
+    "id": "verbes-particule",
+    "titre": "Les verbes à particule",
+    "difficulte": 2,
+    "enonce": "Complète avec la bonne particule (un mot).",
+    "questions": [
+      {
+        "intitule": "*We have run ...... of ink: can you order some cartridges?*",
+        "type": "texte",
+        "reponse": [
+          "out"
+        ]
+      },
+      {
+        "intitule": "*Don't give ......! You're almost finished.* (abandonner)",
+        "type": "texte",
+        "reponse": [
+          "up"
+        ]
+      },
+      {
+        "intitule": "*He worked on Saturday to make ...... for the time he lost.* (compenser)",
+        "type": "texte",
+        "reponse": [
+          "up"
+        ]
+      },
+      {
+        "intitule": "*We need to work ...... a solution before the meeting.* (trouver)",
+        "type": "texte",
+        "reponse": [
+          "out"
+        ]
+      },
+      {
+        "intitule": "*She turned ...... the job offer because the salary was too low.* (refuser)",
+        "type": "texte",
+        "reponse": [
+          "down"
+        ]
+      },
+      {
+        "intitule": "*A sales assistant will attend ...... you in a moment.* (s'occuper de)",
+        "type": "texte",
+        "reponse": [
+          "to"
+        ]
+      },
+      {
+        "intitule": "*Things will settle ...... after the busy season.* (se calmer)",
+        "type": "texte",
+        "reponse": [
+          "down"
+        ]
+      },
+      {
+        "intitule": "*I look ...... to your reply.* (attendre avec impatience)",
+        "type": "texte",
+        "reponse": [
+          "forward"
+        ]
+      }
+    ],
+    "indices": [
+      "Le sens change complètement avec la particule : *give* = donner, *give up* = abandonner."
+    ],
+    "correction": "*run out of*, *give up*, *make up for*, *work out*, *turn down*, *attend to*, *settle down*, *look forward to*."
+  },
+  {
+    "id": "verbes-phrases",
+    "titre": "Les verbes en contexte",
+    "difficulte": 2,
+    "enonce": "Choisis le verbe qui convient.",
+    "questions": [
+      {
+        "intitule": "*After the advert on TV, sales ...... by 40%.*",
+        "type": "choix",
+        "choix": [
+          "deemed",
+          "harmed",
+          "strove",
+          "soared"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Many small shops are ...... to survive because of online competition.*",
+        "type": "choix",
+        "choix": [
+          "soaring",
+          "occurring",
+          "struggling",
+          "fostering"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The news ...... quickly across the company.*",
+        "type": "choix",
+        "choix": [
+          "overlooked",
+          "spread",
+          "handled",
+          "stated"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The accident ...... at 6 a.m. on the main road.*",
+        "type": "choix",
+        "choix": [
+          "fulfilled",
+          "deemed",
+          "spread",
+          "occurred"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*The contract clearly ...... that payment is due in 30 days.*",
+        "type": "choix",
+        "choix": [
+          "harms",
+          "states",
+          "soars",
+          "strives"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*We always ...... to answer e-mails within 24 hours.*",
+        "type": "choix",
+        "choix": [
+          "strive",
+          "harm",
+          "struggle with",
+          "soar"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*She has finally ...... her dream of opening a restaurant.*",
+        "type": "choix",
+        "choix": [
+          "spread",
+          "stated",
+          "occurred",
+          "fulfilled"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*soar* = monter en flèche ; *struggle* = avoir du mal."
+    ],
+    "correction": "1. *soared* (ont bondi). 2. *struggling* (ont du mal). 3. *spread* (s'est répandue). 4. *occurred* (a eu lieu). 5. *states* (indique). 6. *strive* (s'efforcer). 7. *fulfilled* (réalisé)."
+  },
+  {
+    "id": "verbes-pieges",
+    "titre": "Overlook, oversee, assist, attend",
+    "difficulte": 3,
+    "enonce": "Choisis le verbe qui convient.",
+    "questions": [
+      {
+        "intitule": "*The new manager will ...... the whole production team.* (superviser)",
+        "type": "choix",
+        "choix": [
+          "overdo",
+          "oversee",
+          "overlook",
+          "overtake"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*I'm afraid we ...... a mistake in the invoice.* (ne pas voir)",
+        "type": "choix",
+        "choix": [
+          "oversaw",
+          "overcharged",
+          "overtook",
+          "overlooked"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Can you ...... me with this report? It's very long.* (aider)",
+        "type": "choix",
+        "choix": [
+          "attend to",
+          "assume",
+          "assist",
+          "attend"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Thirty clients will ...... the product launch.* (assister à)",
+        "type": "choix",
+        "choix": [
+          "attend",
+          "deem",
+          "assist",
+          "attend to"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The project was ...... a success by the board.* (jugé)",
+        "type": "choix",
+        "choix": [
+          "deemed",
+          "doomed",
+          "dreamed",
+          "demanded"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*over-see* = voir d'en haut, superviser ; *over-look* = regarder au-dessus, ne pas voir."
+    ],
+    "correction": "1. *oversee* = superviser. 2. *overlooked* = n'avons pas vu. 3. *assist* = aider (faux ami). 4. *attend* = assister à. 5. *deemed* = jugé, considéré comme."
+  },
+  {
+    "id": "adjectifs-sens",
+    "titre": "Les adjectifs : le sens",
+    "difficulte": 2,
+    "enonce": "Choisis la traduction.",
+    "questions": [
+      {
+        "intitule": "*a thorough inspection*",
+        "type": "choix",
+        "choix": [
+          "rapide",
+          "minutieuse",
+          "traversante"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*relevant experience*",
+        "type": "choix",
+        "choix": [
+          "une expérience relevée",
+          "une expérience pertinente",
+          "une expérience récente"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*outdated software*",
+        "type": "choix",
+        "choix": [
+          "daté du jour",
+          "externe",
+          "dépassé"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*a slight increase*",
+        "type": "choix",
+        "choix": [
+          "légère",
+          "mince",
+          "brusque"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*a stunning view*",
+        "type": "choix",
+        "choix": [
+          "étourdissante (bruit)",
+          "époustouflante",
+          "stupide"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*a stubborn customer*",
+        "type": "choix",
+        "choix": [
+          "timide",
+          "stupide",
+          "têtu"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*a compelling argument*",
+        "type": "choix",
+        "choix": [
+          "compliqué",
+          "obligatoire",
+          "convaincant"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*extensive research*",
+        "type": "choix",
+        "choix": [
+          "coûteuse",
+          "importante, considérable",
+          "extensible"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*through* (à travers) ≠ *thorough* (minutieux)."
+    ],
+    "correction": "*thorough* = minutieux ; *relevant* = pertinent ; *outdated* = dépassé ; *slight* = léger ; *stunning* = époustouflant ; *stubborn* = têtu ; *compelling* = convaincant ; *extensive* = considérable."
+  },
+  {
+    "id": "adjectifs-phrases",
+    "titre": "Les adjectifs en contexte",
+    "difficulte": 2,
+    "enonce": "Complète avec un adjectif de la liste des 400 mots.",
+    "questions": [
+      {
+        "intitule": "*This guide is very ......: it explains every step in detail.* (complet)",
+        "type": "texte",
+        "reponse": [
+          "comprehensive",
+          "thorough",
+          "detailed",
+          "extensive"
+        ]
+      },
+      {
+        "intitule": "*Your previous job in sales is very ...... to this position.* (pertinent)",
+        "type": "texte",
+        "reponse": [
+          "relevant"
+        ]
+      },
+      {
+        "intitule": "*He was ...... to change his habits.* (réticent)",
+        "type": "texte",
+        "reponse": [
+          "reluctant"
+        ]
+      },
+      {
+        "intitule": "*Our computers are ......: we need new ones.* (dépassés)",
+        "type": "texte",
+        "reponse": [
+          "outdated",
+          "obsolete",
+          "old-fashioned"
+        ]
+      },
+      {
+        "intitule": "*Be ...... when you drive in the snow.* (prudent)",
+        "type": "texte",
+        "reponse": [
+          "cautious",
+          "careful"
+        ]
+      },
+      {
+        "intitule": "*Many customers are ...... of the new rules.* (pas au courant)",
+        "type": "texte",
+        "reponse": [
+          "unaware"
+        ]
+      }
+    ],
+    "indices": [
+      "*be unaware of* = ne pas être au courant de."
+    ],
+    "correction": "*comprehensive* (faux ami : complet), *relevant*, *reluctant*, *outdated*, *cautious*, *unaware*."
+  },
+  {
+    "id": "contraires",
+    "titre": "Les contraires",
+    "difficulte": 2,
+    "enonce": "Donne le contraire (un mot).",
+    "questions": [
+      {
+        "intitule": "*accurate* (exact) ↔ ......",
+        "type": "texte",
+        "reponse": [
+          "inaccurate",
+          "wrong",
+          "incorrect"
+        ]
+      },
+      {
+        "intitule": "*relevant* (pertinent) ↔ ......",
+        "type": "texte",
+        "reponse": [
+          "irrelevant"
+        ]
+      },
+      {
+        "intitule": "*aware* (au courant) ↔ ......",
+        "type": "texte",
+        "reponse": [
+          "unaware"
+        ]
+      },
+      {
+        "intitule": "*huge* (énorme) ↔ ......",
+        "type": "texte",
+        "reponse": [
+          "tiny",
+          "small",
+          "little",
+          "minute"
+        ]
+      },
+      {
+        "intitule": "*outdated* (dépassé) ↔ ......",
+        "type": "texte",
+        "reponse": [
+          "up-to-date",
+          "modern",
+          "state-of-the-art",
+          "up to date",
+          "new",
+          "current"
+        ]
+      },
+      {
+        "intitule": "*former* (ancien, précédent) ↔ ...... (actuel)",
+        "type": "texte",
+        "reponse": [
+          "current",
+          "present"
+        ]
+      }
+    ],
+    "indices": [
+      "On forme souvent le contraire avec un préfixe : *in-*, *ir-*, *un-*."
+    ],
+    "correction": "*inaccurate*, *irrelevant*, *unaware*, *tiny*, *up-to-date*, *current*."
+  },
+  {
+    "id": "noms-utiles",
+    "titre": "Des noms utiles",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*The main ...... of the plan is its cost.* (inconvénient)",
+        "type": "choix",
+        "choix": [
+          "outcome",
+          "relief",
+          "drawback",
+          "leap"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Let's list the pros and ...... before we decide.*",
+        "type": "choix",
+        "choix": [
+          "cones",
+          "cents",
+          "contras",
+          "cons"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*It was a great ...... to hear that nobody was hurt.* (soulagement)",
+        "type": "choix",
+        "choix": [
+          "leap",
+          "release",
+          "relief",
+          "relative"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The new engine is a huge ...... forward in technology.* (bond)",
+        "type": "choix",
+        "choix": [
+          "lap",
+          "leak",
+          "loop",
+          "leap"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Maria knows all the ins and ...... of the project.*",
+        "type": "choix",
+        "choix": [
+          "outs",
+          "ups",
+          "downs",
+          "offs"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The ...... of these measurements is very important.* (précision)",
+        "type": "choix",
+        "choix": [
+          "accurately",
+          "accuse",
+          "accurate",
+          "accuracy"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*the pros and cons* = le pour et le contre ; *the ins and outs* = les tenants et les aboutissants."
+    ],
+    "correction": "*drawback* (inconvénient), *pros and cons*, *relief* (soulagement), *leap* (bond), *ins and outs*, *accuracy* (nom de *accurate*)."
+  },
+  {
+    "id": "liaison-sens",
+    "titre": "Mots de liaison : le sens",
+    "difficulte": 2,
+    "enonce": "Choisis la traduction.",
+    "questions": [
+      {
+        "intitule": "*nevertheless*",
+        "type": "choix",
+        "choix": [
+          "néanmoins",
+          "jamais",
+          "de plus"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*therefore*",
+        "type": "choix",
+        "choix": [
+          "pourtant",
+          "donc, par conséquent",
+          "pour cela, là-bas"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*otherwise*",
+        "type": "choix",
+        "choix": [
+          "sinon, autrement",
+          "de même",
+          "de plus"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*namely*",
+        "type": "choix",
+        "choix": [
+          "seulement",
+          "à savoir, c'est-à-dire",
+          "nommément interdit"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*anyway*",
+        "type": "choix",
+        "choix": [
+          "n'importe comment",
+          "de toute façon",
+          "nulle part"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*regardless of*",
+        "type": "choix",
+        "choix": [
+          "en regardant",
+          "sans tenir compte de",
+          "à cause de"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*prior to*",
+        "type": "choix",
+        "choix": [
+          "en priorité",
+          "avant",
+          "après"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*elsewhere*",
+        "type": "choix",
+        "choix": [
+          "ailleurs",
+          "autrement",
+          "partout"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*prior to* = *before*, en plus formel."
+    ],
+    "correction": "*nevertheless* = néanmoins ; *therefore* = donc ; *otherwise* = sinon ; *namely* = à savoir ; *anyway* = de toute façon ; *regardless of* = sans tenir compte de ; *prior to* = avant ; *elsewhere* = ailleurs."
+  },
+  {
+    "id": "liaison-phrases",
+    "titre": "Mots de liaison en contexte",
+    "difficulte": 3,
+    "enonce": "Choisis le mot qui complète la phrase.",
+    "questions": [
+      {
+        "intitule": "*...... the train was late, we arrived on time for the meeting.*",
+        "type": "choix",
+        "choix": [
+          "Even though",
+          "Regardless of",
+          "Despite",
+          "However"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The hotel was expensive. ......, the rooms were small.*",
+        "type": "choix",
+        "choix": [
+          "Although",
+          "Namely",
+          "Otherwise",
+          "Moreover"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*The product is cheap. ......, it is not very reliable.*",
+        "type": "choix",
+        "choix": [
+          "Thus",
+          "Therefore",
+          "However",
+          "Namely"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Orders over $100 ship free, ...... of size.*",
+        "type": "choix",
+        "choix": [
+          "regardless",
+          "despite",
+          "although",
+          "otherwise"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Please read the safety rules ...... using the machine.*",
+        "type": "choix",
+        "choix": [
+          "prior to",
+          "although",
+          "namely",
+          "otherwise"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Book your room now; ......, you may not find one.*",
+        "type": "choix",
+        "choix": [
+          "therefore",
+          "moreover",
+          "thus",
+          "otherwise"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Two people were absent, ...... Tom and Lisa.*",
+        "type": "choix",
+        "choix": [
+          "namely",
+          "nevertheless",
+          "thus",
+          "otherwise"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*I'm calling ...... my manager, who is on holiday.*",
+        "type": "choix",
+        "choix": [
+          "prior to",
+          "regardless of",
+          "in spite",
+          "on behalf of"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*Even though* + sujet + verbe ; *prior to* + -ing.",
+      "*namely* introduit une précision."
+    ],
+    "correction": "1. *Even though* + phrase complète. 2. *Moreover* : ajout négatif. 3. *However* : opposition. 4. *regardless of size* = quelle que soit la taille. 5. *prior to using* = avant d'utiliser. 6. *otherwise* = sinon. 7. *namely* = à savoir. 8. *on behalf of* = au nom de."
+  },
+  {
+    "id": "adverbes",
+    "titre": "Les adverbes utiles",
+    "difficulte": 2,
+    "enonce": "Choisis l'adverbe qui convient.",
+    "questions": [
+      {
+        "intitule": "*I ...... go to the cinema: maybe once a year.* (rarement)",
+        "type": "choix",
+        "choix": [
+          "readily",
+          "seldom",
+          "lately",
+          "often"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*He ...... ever takes a day off: he works all the time.*",
+        "type": "choix",
+        "choix": [
+          "lately",
+          "hard",
+          "hardly",
+          "barely ever"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Have you seen Mark ......? He hasn't been at the office.* (ces derniers temps)",
+        "type": "choix",
+        "choix": [
+          "later",
+          "latest",
+          "lately",
+          "late"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The building was ...... a bank; now it is a hotel.* (autrefois)",
+        "type": "choix",
+        "choix": [
+          "formerly",
+          "further",
+          "formally",
+          "firstly"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Our prices have increased ...... this year: almost 30%!* (énormément)",
+        "type": "choix",
+        "choix": [
+          "dramatically",
+          "readily",
+          "smoothly",
+          "slightly"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The move went ......: there were no problems.* (sans accroc)",
+        "type": "choix",
+        "choix": [
+          "roughly",
+          "hardly",
+          "smoothly",
+          "seldom"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Spare parts are ...... available in all our stores.* (facilement)",
+        "type": "choix",
+        "choix": [
+          "readily",
+          "hardly",
+          "ready",
+          "lately"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*formerly* (autrefois) ≠ *formally* (de façon officielle)."
+    ],
+    "correction": "*seldom* (rarement), *hardly ever* (presque jamais), *lately* (récemment), *formerly* (autrefois), *dramatically* (énormément), *smoothly* (sans accroc), *readily* (facilement)."
+  },
+  {
+    "id": "hard-ou-hardly",
+    "titre": "Hard ou hardly ? Late ou lately ?",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*She works very ...... and often stays until 8 p.m.*",
+        "type": "choix",
+        "choix": [
+          "hard",
+          "hardly"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*It was so noisy that I could ...... hear the speaker.*",
+        "type": "choix",
+        "choix": [
+          "hard",
+          "hardly"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The train arrived 20 minutes ......*",
+        "type": "choix",
+        "choix": [
+          "late",
+          "lately"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Prices have gone up a lot ......*",
+        "type": "choix",
+        "choix": [
+          "late",
+          "lately"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*hardly* = à peine ; *lately* = récemment. Le *-ly* change le sens !"
+    ],
+    "correction": "*work hard* = travailler dur ; *hardly hear* = à peine entendre ; *arrive late* = arriver en retard ; *lately* = ces derniers temps."
+  },
+  {
+    "id": "by-ou-until",
+    "titre": "By ou until ?",
+    "difficulte": 2,
+    "enonce": "Choisis *by* (au plus tard) ou *until* (jusqu'à, action qui dure).",
+    "questions": [
+      {
+        "intitule": "*Please return the signed contract ...... 15 May.*",
+        "type": "choix",
+        "choix": [
+          "by",
+          "until"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The shop is open ...... 9 p.m.*",
+        "type": "choix",
+        "choix": [
+          "by",
+          "until"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*I'll wait for you ...... noon, then I'll leave.*",
+        "type": "choix",
+        "choix": [
+          "by",
+          "until"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The report must be finished ...... Friday.*",
+        "type": "choix",
+        "choix": [
+          "by",
+          "until"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*by* = une limite à ne pas dépasser ; *until* = quelque chose continue jusqu'à ce moment."
+    ],
+    "correction": "*by 15 May* et *by Friday* : date limite. *open until 9 p.m.* et *wait until noon* : une situation qui dure jusqu'à ce moment."
+  },
+  {
+    "id": "lecture-article",
+    "titre": "Lecture : un article",
+    "difficulte": 3,
+    "enonce": "Lis l'article, puis réponds.\n\n> **Local bakery rises to the top**\n> Five years ago, Dana Price set up a small bakery downtown. At first, she struggled to find customers, and she almost gave up. However, she strove to improve her recipes, and lately her sales have soared. Her bread is now sold in 20 shops, namely supermarkets and cafés. The only drawback, she says, is the workload: she seldom takes a day off. \"Nevertheless, I take pride in what we have achieved,\" she says.",
+    "questions": [
+      {
+        "intitule": "What happened at the beginning?",
+        "type": "choix",
+        "choix": [
+          "Dana had difficulty finding customers.",
+          "Dana opened 20 shops.",
+          "Dana had many customers.",
+          "Dana sold her bakery."
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "What does \"her sales have soared\" mean?",
+        "type": "choix",
+        "choix": [
+          "Her sales are secret.",
+          "Her sales have increased a lot.",
+          "Her sales have dropped.",
+          "Her sales are stable."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Where is her bread sold?",
+        "type": "choix",
+        "choix": [
+          "In supermarkets and cafés",
+          "Online only",
+          "Only in her bakery",
+          "Abroad"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "What is the main disadvantage of her success?",
+        "type": "choix",
+        "choix": [
+          "The amount of work",
+          "The price of flour",
+          "The competition",
+          "The location"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "How often does Dana take a day off?",
+        "type": "choix",
+        "choix": [
+          "Never",
+          "Every month",
+          "Every week",
+          "Rarely"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "*struggle* = avoir du mal ; *soar* = monter en flèche ; *seldom* = rarement."
+    ],
+    "correction": "1. *she struggled to find customers*. 2. *soared* = ont explosé. 3. *namely supermarkets and cafés*. 4. *The only drawback... is the workload*. 5. *she seldom takes a day off* = rarement."
+  },
+  {
+    "id": "rediger-paragraphe",
+    "titre": "Rédiger avec des mots de liaison",
+    "difficulte": 3,
+    "enonce": "Écris 3 ou 4 phrases sur un projet (réel ou inventé) en utilisant au moins **although**, **however** et **therefore**.",
+    "questions": [
+      {
+        "intitule": "Ton paragraphe",
+        "type": "auto",
+        "reponse": "Exemple :\n\n*Although our team was small, we managed to launch the new website on time. However, we ran out of budget for the advertising campaign. Therefore, we decided to promote it on social media instead. Overall, the outcome was very positive.*"
+      }
+    ],
+    "indices": [
+      "*Although* + sujet + verbe, puis une virgule.",
+      "*However* et *Therefore* en début de phrase, suivis d'une virgule."
+    ],
+    "correction": "À vérifier : *although* suivi d'une proposition complète ; *However,* et *Therefore,* en début de phrase avec une virgule ; vocabulaire de la liste (*run out of*, *outcome*, *overall*)."
+  }
+]

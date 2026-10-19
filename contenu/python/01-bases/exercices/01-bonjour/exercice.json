@@ -1,0 +1,10 @@
+{
+  "titre": "Bonjour, Python !",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Il faut trois appels à `print`, un par ligne.",
+    "`print` accepte plusieurs valeurs séparées par des virgules : il met un espace entre chacune.",
+    "`print(\"Je m'appelle\", nom, \"et j'ai\", age, \"ans.\")` affiche la deuxième ligne. Pour la troisième, calcule `age + 10` directement dans le `print`."
+  ]
+}

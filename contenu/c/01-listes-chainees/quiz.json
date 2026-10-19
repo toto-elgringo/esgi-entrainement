@@ -1,0 +1,134 @@
+[
+  {
+    "question": "Quelle est la principale différence entre un tableau et une liste chaînée ?",
+    "choix": [
+      "La liste chaînée ne peut contenir que des entiers",
+      "Les éléments d'une liste chaînée ne sont pas rangés les uns à côté des autres en mémoire",
+      "Un tableau n'a pas d'ordre",
+      "Une liste chaînée ne peut pas changer de taille"
+    ],
+    "reponse": 1,
+    "explication": "Les cases d'un tableau sont contiguës (collées). Les maillons d'une liste chaînée sont éparpillés dans la mémoire, et chacun garde l'adresse du suivant."
+  },
+  {
+    "question": "Comment reconnaît-on une liste vide ?",
+    "choix": [
+      "`start->value == 0`",
+      "`start == NULL`",
+      "`start->next == NULL`",
+      "`taille(start) == 1`"
+    ],
+    "reponse": 1,
+    "explication": "Une liste vide n'a aucun maillon : le pointeur vers le premier maillon vaut `NULL`. Attention, `start->next == NULL` décrit une liste d'**un** maillon."
+  },
+  {
+    "question": "Pourquoi utilise-t-on un pointeur `cur` pour parcourir la liste au lieu d'avancer `start` ?",
+    "choix": [
+      "`start` ne peut pas être modifié en C",
+      "Pour ne pas perdre l'accès au début de la liste",
+      "C'est plus rapide",
+      "Pour éviter une fuite de pile"
+    ],
+    "reponse": 1,
+    "explication": "`start` est le seul moyen d'atteindre la liste. Si on l'avance, les maillons déjà passés ne sont plus accessibles."
+  },
+  {
+    "question": "Quelle condition fait tourner la boucle de parcours sur tous les maillons ?",
+    "choix": [
+      "`while (cur->next != NULL)`",
+      "`while (cur != NULL)`",
+      "`while (cur->value != 0)`",
+      "`while (start != NULL)`"
+    ],
+    "reponse": 1,
+    "explication": "Avec `cur != NULL`, on traite aussi le dernier maillon. `cur->next != NULL` s'arrête **sur** le dernier sans le traiter (et plante sur une liste vide)."
+  },
+  {
+    "question": "Dans `sommeRec`, que se passe-t-il si on oublie le test `if (c == NULL)` ?",
+    "choix": [
+      "La fonction renvoie 0",
+      "La fonction tourne sans fin sans planter",
+      "Le programme lit `c->value` sur `NULL` et plante",
+      "Le compilateur refuse le code"
+    ],
+    "reponse": 2,
+    "explication": "Sans cas d'arrêt, l'appel sur le `next` du dernier maillon reçoit `NULL` et essaie de lire `c->value` : erreur de segmentation."
+  },
+  {
+    "question": "Pourquoi la version récursive du parcours peut-elle planter sur une très longue liste alors que la version avec `while` non ?",
+    "choix": [
+      "Elle visite les maillons deux fois",
+      "Chaque appel attend le suivant sur la pile d'appels, qui peut déborder",
+      "Elle fait des `malloc`",
+      "Elle modifie la liste"
+    ],
+    "reponse": 1,
+    "explication": "Il y a un appel en attente par maillon. Avec des centaines de milliers de maillons, la pile d'appels déborde. La boucle `while` n'utilise que quelques variables."
+  },
+  {
+    "question": "Dans l'insertion en début, quel est le bon ordre ?",
+    "choix": [
+      "`start = nouveau;` puis `nouveau->next = start;`",
+      "`nouveau->next = start;` puis `start = nouveau;`",
+      "L'ordre n'a pas d'importance",
+      "`nouveau->next = NULL;` puis `start = nouveau;`"
+    ],
+    "reponse": 1,
+    "explication": "On accroche d'abord le nouveau maillon à l'ancien premier, puis on déplace la tête. Dans l'autre ordre, le nouveau maillon pointe sur lui-même et l'ancienne liste est perdue."
+  },
+  {
+    "question": "Avec `Cell *insererDebut(Cell *start, int valeur)`, quel appel ajoute vraiment 5 au début de la liste `l` ?",
+    "choix": [
+      "`insererDebut(l, 5);`",
+      "`l = insererDebut(l, 5);`",
+      "`insererDebut(&l, 5);`",
+      "`*l = insererDebut(l, 5);`"
+    ],
+    "reponse": 1,
+    "explication": "La fonction renvoie le nouveau premier maillon : il faut le récupérer dans `l`. Sans le `l =`, le maillon est créé puis perdu."
+  },
+  {
+    "question": "Pourquoi une fonction `void insererDebutPtr(Cell **start, int valeur)` prend-elle un `Cell **` ?",
+    "choix": [
+      "Parce qu'un maillon contient deux pointeurs",
+      "Pour pouvoir modifier la variable `start` de l'appelant",
+      "Pour insérer deux valeurs",
+      "Parce que `malloc` renvoie un `Cell **`"
+    ],
+    "reponse": 1,
+    "explication": "Les paramètres sont copiés. En recevant l'adresse de la variable `start`, la fonction peut écrire `*start = nouveau;` et l'appelant voit le nouveau début."
+  },
+  {
+    "question": "Quelle est la complexité de l'insertion en début dans un tableau et dans une liste chaînée ?",
+    "choix": [
+      "O(1) pour les deux",
+      "Tableau O(N), liste O(1)",
+      "Tableau O(1), liste O(N)",
+      "O(N) pour les deux"
+    ],
+    "reponse": 1,
+    "explication": "Le tableau doit décaler toutes ses cases d'un cran. La liste crée un maillon et change deux pointeurs, quelle que soit sa longueur."
+  },
+  {
+    "question": "Quelle est la complexité de l'accès au i-ème élément (accès aléatoire) ?",
+    "choix": [
+      "Tableau O(1), liste O(N)",
+      "Tableau O(N), liste O(1)",
+      "O(1) pour les deux",
+      "O(log N) pour les deux"
+    ],
+    "reponse": 0,
+    "explication": "Un tableau calcule directement l'adresse de `t[i]`. Une liste doit suivre les `next` un par un depuis le début."
+  },
+  {
+    "question": "Une liste chaînée est triée. Quelle est la complexité de la recherche d'une valeur ?",
+    "choix": [
+      "O(1)",
+      "O(log N) grâce à la dichotomie",
+      "O(N)",
+      "O(N²)"
+    ],
+    "reponse": 2,
+    "explication": "La dichotomie doit sauter au milieu d'un coup, ce qu'une liste ne sait pas faire. On compare les maillons un par un : O(N). Sur un tableau trié, ce serait O(log N)."
+  }
+]

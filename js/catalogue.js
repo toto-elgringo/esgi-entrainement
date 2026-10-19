@@ -1,3 +1,5 @@
+import { DOMAINES_CODE, DOMAINES_REPONSES, trierMatieres } from './domaines.js';
+
 async function lire(chemin, format) {
   const reponse = await fetch(chemin, { cache: 'no-cache' });
   if (!reponse.ok) throw new Error(`Impossible de charger ${chemin}`);
@@ -12,42 +14,50 @@ async function lireOuDefaut(chemin, defaut) {
   }
 }
 
-async function chargerChapitreMaths(id) {
+const VIDE = { matieres: [], chapitres: [] };
+
+async function chargerChapitreReponses(domaine, id) {
   const [meta, exercices, quiz] = await Promise.all([
-    lire(`contenu/maths/${id}/chapitre.json`),
-    lireOuDefaut(`contenu/maths/${id}/exercices.json`, []),
-    lireOuDefaut(`contenu/maths/${id}/quiz.json`, []),
+    lire(`contenu/${domaine}/${id}/chapitre.json`),
+    lireOuDefaut(`contenu/${domaine}/${id}/exercices.json`, []),
+    lireOuDefaut(`contenu/${domaine}/${id}/quiz.json`, []),
   ]);
-  return { ...meta, id, cle: `maths/${id}`, domaine: 'maths', matieres: meta.matieres ?? [], exercices, quiz };
+  return { ...meta, id, cle: `${domaine}/${id}`, domaine, matieres: meta.matieres ?? [], exercices, quiz };
 }
 
-async function chargerMaths() {
-  const programme = await lire('contenu/maths/programme.json');
-  const chapitres = await Promise.all(programme.chapitres.map((id) => chargerChapitreMaths(id).catch(() => null)));
+async function chargerDomaineReponses(domaine) {
+  const programme = await lireOuDefaut(`contenu/${domaine}/programme.json`, null);
+  if (!programme) return VIDE;
+  const chapitres = await Promise.all(programme.chapitres.map((id) => chargerChapitreReponses(domaine, id).catch(() => null)));
   return {
-    matieres: programme.matieres.map((matiere) => ({ ...matiere, domaine: 'maths' })),
+    matieres: programme.matieres.map((matiere) => ({ ...matiere, domaine })),
     chapitres: chapitres.filter(Boolean),
   };
 }
 
-async function chargerRust() {
-  const sommaire = await lire('contenu/rust/sommaire.json');
+async function chargerDomaineCode(domaine) {
+  const sommaire = await lireOuDefaut(`contenu/${domaine}/sommaire.json`, null);
+  if (!sommaire || sommaire.chapitres.length === 0) return VIDE;
+  const { matiere } = DOMAINES_CODE[domaine];
   return {
-    matieres: [{ id: 'rust', titre: 'Rust', domaine: 'rust' }],
+    matieres: [{ ...matiere, domaine }],
     chapitres: sommaire.chapitres.map((chapitre) => ({
       ...chapitre,
-      cle: `rust/${chapitre.id}`,
-      domaine: 'rust',
-      matieres: ['rust'],
+      cle: `${domaine}/${chapitre.id}`,
+      domaine,
+      matieres: [matiere.id],
     })),
   };
 }
 
 export async function chargerCatalogue() {
-  const [rust, maths] = await Promise.all([chargerRust(), chargerMaths()]);
+  const domaines = await Promise.all([
+    ...Object.keys(DOMAINES_CODE).map(chargerDomaineCode),
+    ...Object.keys(DOMAINES_REPONSES).map(chargerDomaineReponses),
+  ]);
   return {
-    matieres: [...rust.matieres, ...maths.matieres],
-    chapitres: [...rust.chapitres, ...maths.chapitres],
+    matieres: trierMatieres(domaines.flatMap((domaine) => domaine.matieres)),
+    chapitres: domaines.flatMap((domaine) => domaine.chapitres),
   };
 }
 
@@ -62,6 +72,6 @@ export function chargerCours(chapitre) {
   return lireTexteEnCache(`contenu/${chapitre.domaine}/${chapitre.id}/cours.md`);
 }
 
-export function chargerFichierRust(chapitreId, exerciceId, nom) {
-  return lireTexteEnCache(`contenu/rust/${chapitreId}/exercices/${exerciceId}/${nom}`);
+export function chargerFichierCode(domaine, chapitreId, exerciceId, nom) {
+  return lireTexteEnCache(`contenu/${domaine}/${chapitreId}/exercices/${exerciceId}/${nom}`);
 }

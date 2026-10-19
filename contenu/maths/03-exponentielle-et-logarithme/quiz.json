@@ -48,6 +48,12 @@
     "explication": "Croissances comparées : le logarithme est négligeable devant $x$, qui est lui-même négligeable devant l'exponentielle."
   },
   {
+    "question": "Quand $x \\to +\\infty$, vers quoi tend $\\dfrac{\\ln x}{\\sqrt{x}}$ ?",
+    "choix": ["$0$", "$1$", "$+\\infty$", "$\\dfrac{1}{2}$"],
+    "reponse": 0,
+    "explication": "Le logarithme grandit moins vite que toute puissance de $x$, même $\\sqrt{x}$ : par exemple $\\ln(10^6) \\approx 13{,}8$ contre $\\sqrt{10^6} = 1\\,000$."
+  },
+  {
     "question": "Environ combien de comparaisons fait une recherche dichotomique dans un tableau trié de $1\\,000\\,000$ éléments ?",
     "choix": ["$20$", "$1\\,000$", "$500\\,000$", "$1\\,000\\,000$"],
     "reponse": 0,

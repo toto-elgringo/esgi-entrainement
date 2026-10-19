@@ -1,0 +1,11 @@
+{
+  "titre": "Dictionnaires et ensembles en compréhension",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Un dictionnaire en compréhension s'écrit `{cle: valeur for ...}`, un ensemble `{valeur for ...}`.",
+    "Pour parcourir un dictionnaire avec ses valeurs : `for k, v in d.items()`.",
+    "Pour inverser : `{v: k for k, v in d.items()}`. Pour filtrer : ajoute `if v <= budget` à la fin.",
+    "Les initiales en minuscules : `{m[0].lower() for m in mots if m}` (le `if m` évite les mots vides)."
+  ]
+}

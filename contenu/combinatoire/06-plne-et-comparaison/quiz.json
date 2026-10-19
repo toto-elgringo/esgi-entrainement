@@ -1,0 +1,123 @@
+[
+  {
+    "question": "Qu'est-ce qu'un **PLNE** ?",
+    "choix": [
+      "Un problème à objectif et contraintes linéaires, dont les variables sont entières",
+      "Un problème sans contrainte",
+      "Un programme écrit en langage PLNE",
+      "Un problème à variables continues uniquement"
+    ],
+    "reponse": 0,
+    "explication": "PLNE = programmation linéaire en nombres entiers : tout est linéaire, mais les variables doivent être entières."
+  },
+  {
+    "question": "Qu'est-ce que la **relaxation continue** d'un PLNE ?",
+    "choix": [
+      "Le même problème sans l'obligation d'avoir des variables entières",
+      "Le problème sans objectif",
+      "Le problème sans contraintes",
+      "Une méthode de recuit"
+    ],
+    "reponse": 0,
+    "explication": "On oublie l'intégrité : le problème devient continu, plus facile, et son optimum donne une borne."
+  },
+  {
+    "question": "Pour un problème de **maximisation**, l'optimum de la relaxation continue est…",
+    "choix": [
+      "une borne supérieure de l'optimum entier",
+      "toujours égal à l'optimum entier",
+      "une borne inférieure de l'optimum entier",
+      "sans rapport avec l'optimum entier"
+    ],
+    "reponse": 0,
+    "explication": "En relâchant une contrainte, on ne peut que faire aussi bien ou mieux : ici 46 pour la relaxation, 45 pour l'optimum entier."
+  },
+  {
+    "question": "Arrondir la solution continue d'un PLNE…",
+    "choix": [
+      "peut donner une solution irréalisable ou mauvaise",
+      "donne toujours l'optimum entier",
+      "donne toujours une solution réalisable",
+      "est la méthode exacte de référence"
+    ],
+    "reponse": 0,
+    "explication": "Aucune règle d'arrondi ne garantit l'optimum entier. Ici, l'arrondi vers le bas $(2, 3)$ ne vaut que 39."
+  },
+  {
+    "question": "Sur l'atelier, la descente depuis $(0, 0)$ s'arrête en $(1, 4)$ avec un profit de 42. C'est…",
+    "choix": [
+      "un optimum local",
+      "l'optimum global",
+      "une solution irréalisable",
+      "la relaxation continue"
+    ],
+    "reponse": 0,
+    "explication": "Tous les voisins de $(1, 4)$ sont moins bons ou irréalisables, alors que l'optimum global vaut 45 en $(3, 3)$."
+  },
+  {
+    "question": "Comment un recuit simulé peut-il sortir de $(1, 4)$ ?",
+    "choix": [
+      "En acceptant une dégradation, par exemple vers $(1, 3)$",
+      "En refusant tous les voisins",
+      "En arrondissant la solution",
+      "Il ne peut pas"
+    ],
+    "reponse": 0,
+    "explication": "À température assez haute, le recuit accepte de passer à 33, puis remonte par $(2, 3)$ jusqu'à $(3, 3)$."
+  },
+  {
+    "question": "Comment un algorithme génétique peut-il atteindre $(3, 3)$ ?",
+    "choix": [
+      "En croisant $(2, 3)$ et $(3, 2)$ : le $x$ de l'un, le $y$ de l'autre",
+      "Par une seule mutation de $(0, 0)$",
+      "En gardant uniquement le meilleur individu",
+      "En arrondissant la relaxation"
+    ],
+    "reponse": 0,
+    "explication": "Le croisement combine des morceaux de deux parents : il produit $(3, 3)$, meilleur que chacun d'eux."
+  },
+  {
+    "question": "Quelle méthode manipule une **population** de solutions ?",
+    "choix": [
+      "L'algorithme génétique",
+      "Le recuit simulé",
+      "La recherche locale",
+      "Le plus proche voisin"
+    ],
+    "reponse": 0,
+    "explication": "Recherche locale et recuit suivent une seule solution ; l'AG fait évoluer une population."
+  },
+  {
+    "question": "Avant d'utiliser une méthode sophistiquée, quelle référence (*baseline*) faut-il toujours établir ?",
+    "choix": [
+      "Une descente multi-start",
+      "Un algorithme génétique de 10 000 individus",
+      "Une énumération complète",
+      "Rien du tout"
+    ],
+    "reponse": 0,
+    "explication": "Une descente relancée 10 à 100 fois est simple et souvent meilleure qu'on ne le croit : toute méthode doit faire mieux qu'elle."
+  },
+  {
+    "question": "Pour comparer deux métaheuristiques, il faut…",
+    "choix": [
+      "plusieurs lancements (30 est un standard), avec moyenne et dispersion",
+      "un seul lancement de chaque",
+      "comparer leurs temps sur des instances différentes",
+      "choisir celle dont le code est le plus court"
+    ],
+    "reponse": 0,
+    "explication": "Ces méthodes sont aléatoires : un seul lancement ne prouve rien. Mêmes instances, même budget, plusieurs runs."
+  },
+  {
+    "question": "Quels sont les paramètres clés du recuit simulé ?",
+    "choix": [
+      "$T_0$, la loi de refroidissement, le nombre d'itérations par palier",
+      "La taille de la population et $p_m$",
+      "Le nombre de redémarrages seulement",
+      "Aucun"
+    ],
+    "reponse": 0,
+    "explication": "La taille de population, $p_c$ et $p_m$ sont les paramètres de l'AG ; le nombre de redémarrages, celui du multi-start."
+  }
+]

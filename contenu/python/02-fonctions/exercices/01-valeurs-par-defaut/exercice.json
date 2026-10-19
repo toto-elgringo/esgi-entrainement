@@ -1,0 +1,10 @@
+{
+  "titre": "Valeurs par défaut et mots-clés",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Une valeur par défaut s'écrit dans la définition : `def saluer(nom, salutation=\"Bonjour\", ponctuation=\"!\"):`.",
+    "Pour assembler le texte : `salutation + \" \" + nom + ponctuation`, ou une f-string.",
+    "Pour le prix TTC : `round(prix_ht * (1 + taux), 2)`, avec `taux=0.2` par défaut."
+  ]
+}

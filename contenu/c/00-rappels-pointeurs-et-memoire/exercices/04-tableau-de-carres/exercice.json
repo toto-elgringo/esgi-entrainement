@@ -1,0 +1,10 @@
+{
+  "titre": "Un tableau de carrés",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "La taille `n` n'est connue qu'à l'exécution : le tableau doit être réservé avec `malloc`.",
+    "Pour `n` entiers, il faut `n * sizeof(int)` octets.",
+    "`int *t = malloc(n * sizeof(int));`, vérifier `NULL`, puis `for (int i = 0; i < n; i++) t[i] = i * i;` et `return t;`"
+  ]
+}

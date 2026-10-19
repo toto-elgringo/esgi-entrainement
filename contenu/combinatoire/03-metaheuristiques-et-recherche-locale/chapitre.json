@@ -1,0 +1,8 @@
+{
+  "titre": "Métaheuristiques et recherche locale",
+  "description": "Pourquoi les métaheuristiques, le casse-tête des 27 cubes, voisinage, descente, minimum local et multi-start, plus proche voisin et descente 2-opt sur le voyageur de commerce.",
+  "source": "Chapitre 2",
+  "matieres": [
+    "combinatoire"
+  ]
+}

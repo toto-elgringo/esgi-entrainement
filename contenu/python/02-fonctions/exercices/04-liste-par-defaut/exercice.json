@@ -1,0 +1,10 @@
+{
+  "titre": "Le piège de la liste par défaut",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lance le programme : le deuxième appel affiche aussi la tâche du premier. La liste par défaut n'est créée qu'une seule fois.",
+    "Remplace la valeur par défaut `[]` par `None`.",
+    "Au début de la fonction : `if taches is None:` puis `taches = []`. Fais pareil pour `compte`."
+  ]
+}

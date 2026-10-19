@@ -1,0 +1,999 @@
+[
+  {
+    "id": "reconnaitre-les-temps",
+    "titre": "Reconnaître les temps",
+    "difficulte": 1,
+    "enonce": "Quel est le temps du verbe en gras ?",
+    "questions": [
+      {
+        "intitule": "*She **has just left** the office.*",
+        "type": "choix",
+        "choix": [
+          "present perfect",
+          "prétérit",
+          "past perfect"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*They **had finished** before we arrived.*",
+        "type": "choix",
+        "choix": [
+          "prétérit",
+          "present perfect",
+          "past perfect"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*I**'ll be working** at 9 tomorrow.*",
+        "type": "choix",
+        "choix": [
+          "future continuous",
+          "future perfect",
+          "present continuous"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*By Friday, we **will have signed** the deal.*",
+        "type": "choix",
+        "choix": [
+          "future continuous",
+          "future perfect",
+          "present perfect"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*We**'ve been waiting** since 8 o'clock.*",
+        "type": "choix",
+        "choix": [
+          "present perfect continuous",
+          "present continuous",
+          "past perfect continuous"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*He **was talking** on the phone when I came in.*",
+        "type": "choix",
+        "choix": [
+          "prétérit",
+          "past continuous",
+          "present continuous"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*have / has* + participe passé = present perfect ; *had* + participe passé = past perfect."
+    ],
+    "correction": "*has just left* = present perfect ; *had finished* = past perfect ; *will be working* = future continuous ; *will have signed* = future perfect ; *have been waiting* = present perfect continuous ; *was talking* = past continuous."
+  },
+  {
+    "id": "participes-passes",
+    "titre": "Les participes passés irréguliers",
+    "difficulte": 1,
+    "enonce": "Écris le participe passé (3e forme) du verbe.",
+    "questions": [
+      {
+        "intitule": "*to go*",
+        "type": "texte",
+        "reponse": [
+          "gone"
+        ],
+        "refuses": [
+          "went"
+        ]
+      },
+      {
+        "intitule": "*to write*",
+        "type": "texte",
+        "reponse": [
+          "written"
+        ],
+        "refuses": [
+          "wrote"
+        ]
+      },
+      {
+        "intitule": "*to take*",
+        "type": "texte",
+        "reponse": [
+          "taken"
+        ],
+        "refuses": [
+          "took"
+        ]
+      },
+      {
+        "intitule": "*to rise*",
+        "type": "texte",
+        "reponse": [
+          "risen"
+        ],
+        "refuses": [
+          "rose"
+        ]
+      },
+      {
+        "intitule": "*to choose*",
+        "type": "texte",
+        "reponse": [
+          "chosen"
+        ],
+        "refuses": [
+          "chose"
+        ]
+      },
+      {
+        "intitule": "*to hang* (up)",
+        "type": "texte",
+        "reponse": [
+          "hung"
+        ],
+        "refuses": [
+          "hanged"
+        ]
+      },
+      {
+        "intitule": "*to know*",
+        "type": "texte",
+        "reponse": [
+          "known"
+        ],
+        "refuses": [
+          "knew"
+        ]
+      },
+      {
+        "intitule": "*to win*",
+        "type": "texte",
+        "reponse": [
+          "won"
+        ]
+      }
+    ],
+    "indices": [
+      "Le participe passé est la **3e** colonne : *go - went - gone*."
+    ],
+    "correction": "*gone, written, taken, risen, chosen, hung, known, won*. Ils servent pour le present perfect (*have gone*), le past perfect (*had written*) et le passif (*was taken*)."
+  },
+  {
+    "id": "preterit-ou-present-perfect",
+    "titre": "Prétérit ou present perfect ?",
+    "difficulte": 2,
+    "enonce": "Choisis la bonne forme.",
+    "questions": [
+      {
+        "intitule": "*I ...... the contract yesterday.*",
+        "type": "choix",
+        "choix": [
+          "have signed",
+          "signed"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*I ...... the contract: here it is.*",
+        "type": "choix",
+        "choix": [
+          "have signed",
+          "signed"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*She ...... in Madrid from 2018 to 2021.*",
+        "type": "choix",
+        "choix": [
+          "has lived",
+          "lived"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*She ...... in Madrid since 2021.*",
+        "type": "choix",
+        "choix": [
+          "has lived",
+          "lived"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*...... you ever ...... a TOEIC test?*",
+        "type": "choix",
+        "choix": [
+          "Did / take",
+          "Have / taken"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*When ...... you ...... the TOEIC?*",
+        "type": "choix",
+        "choix": [
+          "did / take",
+          "have / taken"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Date précise et finie → prétérit. Pas de date ou lien avec maintenant → present perfect.",
+      "*When...?* demande une date : prétérit."
+    ],
+    "correction": "1. *yesterday* → *signed*. 2. résultat visible maintenant → *have signed*. 3. période terminée (2018-2021) → *lived*. 4. *since 2021*, elle y vit encore → *has lived*. 5. expérience avec *ever* → *Have you ever taken*. 6. *When* demande un moment précis → *did you take*."
+  },
+  {
+    "id": "for-ou-since",
+    "titre": "For ou since ?",
+    "difficulte": 1,
+    "enonce": "Choisis *for* (durée) ou *since* (point de départ).",
+    "questions": [
+      {
+        "intitule": "*I have worked here ...... three years.*",
+        "type": "choix",
+        "choix": [
+          "for",
+          "since"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*She has been on holiday ...... Monday.*",
+        "type": "choix",
+        "choix": [
+          "for",
+          "since"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*We have known each other ...... 2015.*",
+        "type": "choix",
+        "choix": [
+          "for",
+          "since"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*They have been in the meeting ...... two hours.*",
+        "type": "choix",
+        "choix": [
+          "for",
+          "since"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*He has been CEO ...... the merger.*",
+        "type": "choix",
+        "choix": [
+          "for",
+          "since"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*I haven't seen her ...... ages.*",
+        "type": "choix",
+        "choix": [
+          "for",
+          "since"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*for* + une durée (*three years*) ; *since* + un moment (*Monday*, *2015*)."
+    ],
+    "correction": "*for three years*, *since Monday*, *since 2015*, *for two hours*, *since the merger* (un événement = point de départ), *for ages* (depuis une éternité)."
+  },
+  {
+    "id": "just-already-yet-ever",
+    "titre": "Just, already, yet, ever, never",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui convient.",
+    "questions": [
+      {
+        "intitule": "*Has the parcel arrived ......?*",
+        "type": "choix",
+        "choix": [
+          "just",
+          "ever",
+          "yet",
+          "already"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*I have ...... finished: you can check it now.* (à l'instant)",
+        "type": "choix",
+        "choix": [
+          "ever",
+          "just",
+          "yet",
+          "since"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Don't send the invoice: I have ...... sent it.* (déjà)",
+        "type": "choix",
+        "choix": [
+          "ever",
+          "already",
+          "yet",
+          "still"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Have you ...... worked abroad?* (déjà, dans ta vie)",
+        "type": "choix",
+        "choix": [
+          "ever",
+          "just",
+          "already",
+          "yet"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*I have ...... met the new CEO. I don't know what she looks like.*",
+        "type": "choix",
+        "choix": [
+          "never",
+          "yet",
+          "ever",
+          "just"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The client hasn't paid ......*",
+        "type": "choix",
+        "choix": [
+          "yet",
+          "already",
+          "never",
+          "just"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*yet* : en fin de question ou de négation. *already* : affirmation.",
+      "*ever* = déjà (dans sa vie), dans une question."
+    ],
+    "correction": "1. question → *yet*. 2. *just* = à l'instant. 3. *already* = déjà (affirmatif). 4. *ever* = déjà, au cours de sa vie. 5. *never* = jamais. 6. négation → *not... yet* (pas encore)."
+  },
+  {
+    "id": "conjuguer-present-perfect",
+    "titre": "Conjuguer au present perfect",
+    "difficulte": 2,
+    "enonce": "Écris le verbe entre parenthèses au present perfect (simple ou continu). N'écris **que le verbe** (et le sujet quand il est entre parenthèses).",
+    "questions": [
+      {
+        "intitule": "*She ...... (just / send) the agenda.*",
+        "type": "texte",
+        "reponse": [
+          "has just sent",
+          "'s just sent"
+        ]
+      },
+      {
+        "intitule": "*...... (you / finish) the report yet?*",
+        "type": "texte",
+        "reponse": [
+          "have you finished"
+        ]
+      },
+      {
+        "intitule": "*We ...... (work) on this project since January.* (action qui dure)",
+        "type": "texte",
+        "reponse": [
+          "have been working",
+          "'ve been working",
+          "have worked",
+          "'ve worked"
+        ]
+      },
+      {
+        "intitule": "*How long ...... (you / know) Mr. Lee?*",
+        "type": "texte",
+        "reponse": [
+          "have you known"
+        ],
+        "refuses": [
+          "do you know",
+          "have you been knowing"
+        ]
+      },
+      {
+        "intitule": "*I ...... (never / be) to Australia.*",
+        "type": "texte",
+        "reponse": [
+          "have never been",
+          "'ve never been"
+        ]
+      },
+      {
+        "intitule": "*Sales ...... (rise) by 10% this year.*",
+        "type": "texte",
+        "reponse": [
+          "have risen",
+          "'ve risen"
+        ],
+        "refuses": [
+          "have rised",
+          "have raised"
+        ]
+      }
+    ],
+    "indices": [
+      "*have / has* + participe passé ; continu : *have / has been* + -ing.",
+      "*know* est un verbe d'état : pas de -ing."
+    ],
+    "correction": "- *has just sent*\n- *Have you finished*\n- *have been working* (action qui dure ; *have worked* est aussi accepté)\n- *have you known* (verbe d'état)\n- *have never been*\n- *have risen* (*rise - rose - risen*)"
+  },
+  {
+    "id": "verbes-d-etat",
+    "titre": "Les verbes d'état",
+    "difficulte": 2,
+    "enonce": "Choisis la forme correcte.",
+    "questions": [
+      {
+        "intitule": "*I ...... what you mean.*",
+        "type": "choix",
+        "choix": [
+          "understand",
+          "am understanding"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*She ...... a new car at the moment.*",
+        "type": "choix",
+        "choix": [
+          "wants",
+          "is wanting"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Look! The technician ...... the printer.*",
+        "type": "choix",
+        "choix": [
+          "repairs",
+          "is repairing"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*This laptop ...... to the company, not to you.*",
+        "type": "choix",
+        "choix": [
+          "belongs",
+          "is belonging"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*We ...... the supplier for ten years.*",
+        "type": "choix",
+        "choix": [
+          "have known",
+          "have been knowing"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*understand, want, belong, know* = verbes d'état.",
+      "*Look!* annonce une action en cours."
+    ],
+    "correction": "*understand*, *wants*, *belongs*, *have known* : verbes d'état, jamais en -ing. *is repairing* : action en cours (*Look!*)."
+  },
+  {
+    "id": "futur-apres-when",
+    "titre": "Le futur après when et as soon as",
+    "difficulte": 2,
+    "enonce": "Choisis la forme correcte.",
+    "questions": [
+      {
+        "intitule": "*I'll send you the file when I ...... back to the office.*",
+        "type": "choix",
+        "choix": [
+          "get",
+          "will get"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*As soon as the contract ......, we will start.*",
+        "type": "choix",
+        "choix": [
+          "is signed",
+          "will be signed"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*We won't leave until the meeting ...... .*",
+        "type": "choix",
+        "choix": [
+          "ends",
+          "will end"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*She ...... you as soon as she lands.*",
+        "type": "choix",
+        "choix": [
+          "calls",
+          "will call"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Once you ...... the form, give it to HR.*",
+        "type": "choix",
+        "choix": [
+          "complete",
+          "will complete"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Dans la partie avec *when / as soon as / until / once* : présent. Dans l'autre partie : *will*."
+    ],
+    "correction": "1. *when I get*. 2. *As soon as the contract is signed* (présent passif). 3. *until the meeting ends*. 4. Partie principale : *She will call you* (le présent est dans *as soon as she lands*). 5. *Once you complete*."
+  },
+  {
+    "id": "past-perfect",
+    "titre": "Le past perfect",
+    "difficulte": 2,
+    "enonce": "Écris le verbe entre parenthèses au **past perfect** (simple ou continu). N'écris que le verbe.",
+    "questions": [
+      {
+        "intitule": "*When I arrived, the meeting ...... (already / start).*",
+        "type": "texte",
+        "reponse": [
+          "had already started"
+        ]
+      },
+      {
+        "intitule": "*She was tired because she ...... (work) all night.* (action qui a duré)",
+        "type": "texte",
+        "reponse": [
+          "had been working",
+          "had worked"
+        ]
+      },
+      {
+        "intitule": "*By the time he was 30, he ...... (set up) three companies.*",
+        "type": "texte",
+        "reponse": [
+          "had set up"
+        ]
+      },
+      {
+        "intitule": "*I realised that I ...... (forget) my badge.*",
+        "type": "texte",
+        "reponse": [
+          "had forgotten"
+        ],
+        "refuses": [
+          "forgot"
+        ]
+      },
+      {
+        "intitule": "*They ...... (wait) for 40 minutes when the taxi arrived.*",
+        "type": "texte",
+        "reponse": [
+          "had been waiting",
+          "had waited"
+        ]
+      }
+    ],
+    "indices": [
+      "*had* + participe passé ; continu : *had been* + -ing."
+    ],
+    "correction": "- *had already started* (avant mon arrivée)\n- *had been working* (toute la nuit, avant d'être fatiguée)\n- *had set up* (avant ses 30 ans)\n- *had forgotten* (avant de s'en rendre compte)\n- *had been waiting* (action qui durait avant l'arrivée du taxi)"
+  },
+  {
+    "id": "les-futurs",
+    "titre": "Choisir le bon futur",
+    "difficulte": 3,
+    "enonce": "Choisis la forme qui convient le mieux.",
+    "questions": [
+      {
+        "intitule": "*\"The phone is ringing.\" \"I ...... it.\"* (décision sur le moment)",
+        "type": "choix",
+        "choix": [
+          "'ll have got",
+          "'ll be getting",
+          "'ll get",
+          "'m going to get"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*We ...... a new office in Lyon next year: we signed the lease last week.* (projet décidé)",
+        "type": "choix",
+        "choix": [
+          "will have opened",
+          "opened",
+          "have opened",
+          "are going to open"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*I ...... the sales team at 10 a.m. tomorrow; it's in my diary.* (rendez-vous)",
+        "type": "choix",
+        "choix": [
+          "was meeting",
+          "'ll have met",
+          "'m meeting",
+          "met"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Don't call at 3: I ...... a presentation then.* (en cours à ce moment-là)",
+        "type": "choix",
+        "choix": [
+          "'ll be giving",
+          "give",
+          "'ll have given",
+          "'ll give"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "*By the end of the year, we ...... 1,000 customers.* (terminé avant)",
+        "type": "choix",
+        "choix": [
+          "are reaching",
+          "will have reached",
+          "will be reaching",
+          "will reach"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Look at those clouds! It ...... rain.* (signe visible)",
+        "type": "choix",
+        "choix": [
+          "is going to",
+          "is",
+          "will be",
+          "has"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Décision immédiate → *will* ; projet décidé → *going to* ; rendez-vous → présent continu.",
+      "*then / at 3* → action en cours ; *by...* → action terminée."
+    ],
+    "correction": "1. *I'll get it* : décision prise en parlant. 2. *are going to open* : projet déjà décidé. 3. *I'm meeting* : rendez-vous organisé. 4. *I'll be giving* : en cours à 15 h (future continuous). 5. *will have reached* : terminé avant la fin de l'année (future perfect). 6. *is going to rain* : prédiction avec un signe visible."
+  },
+  {
+    "id": "conjuguer-tous-les-temps",
+    "titre": "Conjuguer : tous les temps",
+    "difficulte": 3,
+    "enonce": "Écris le verbe au bon temps. N'écris que le verbe (avec le sujet s'il est entre parenthèses). Les formes contractées (*'ve*, *'ll*, *'m*) sont acceptées.",
+    "questions": [
+      {
+        "intitule": "*\"Where's Sophie?\" \"She ...... (go) to the bank. She'll be back soon.\"*",
+        "type": "texte",
+        "reponse": [
+          "has gone",
+          "'s gone"
+        ]
+      },
+      {
+        "intitule": "*I ...... (meet) her at a conference in 2019.*",
+        "type": "texte",
+        "reponse": [
+          "met"
+        ]
+      },
+      {
+        "intitule": "*Quick, we're late! The film ...... (start) in five minutes.*",
+        "type": "texte",
+        "reponse": [
+          "starts",
+          "is starting",
+          "will start",
+          "'s starting"
+        ]
+      },
+      {
+        "intitule": "*What ...... (you / do) right now? Can you help me?*",
+        "type": "texte",
+        "reponse": [
+          "are you doing"
+        ]
+      },
+      {
+        "intitule": "*When I opened the door, I saw that someone ...... (take) my laptop.*",
+        "type": "texte",
+        "reponse": [
+          "had taken"
+        ]
+      },
+      {
+        "intitule": "*This time next week, we ...... (fly) to New York.*",
+        "type": "texte",
+        "reponse": [
+          "will be flying",
+          "'ll be flying",
+          "are flying",
+          "'re flying"
+        ]
+      },
+      {
+        "intitule": "*By 2030, prices ...... (double).*",
+        "type": "texte",
+        "reponse": [
+          "will have doubled",
+          "'ll have doubled"
+        ]
+      },
+      {
+        "intitule": "*Text me when you ...... (arrive).*",
+        "type": "texte",
+        "reponse": [
+          "arrive"
+        ],
+        "refuses": [
+          "will arrive"
+        ]
+      }
+    ],
+    "indices": [
+      "Cherche le mot-repère de chaque phrase : *in 2019*, *right now*, *when I opened*, *this time next week*, *by 2030*."
+    ],
+    "correction": "1. *has gone* (elle est partie et n'est pas encore revenue). 2. *met* (*in 2019*). 3. *starts* (horaire) ou *is starting*. 4. *are you doing* (en ce moment). 5. *had taken* (avant que j'ouvre). 6. *will be flying* (en cours dans une semaine). 7. *will have doubled* (terminé avant 2030). 8. *arrive* (présent après *when*)."
+  },
+  {
+    "id": "corriger-l-erreur",
+    "titre": "Trouver la phrase correcte",
+    "difficulte": 2,
+    "enonce": "Choisis la phrase **correcte**.",
+    "questions": [
+      {
+        "intitule": "Laquelle est correcte ?",
+        "type": "choix",
+        "choix": [
+          "I saw him yesterday.",
+          "I have seen him yesterday.",
+          "I have saw him yesterday."
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Laquelle est correcte ?",
+        "type": "choix",
+        "choix": [
+          "I work here since 2020.",
+          "I have worked here since 2020.",
+          "I am working here since 2020."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Laquelle est correcte ?",
+        "type": "choix",
+        "choix": [
+          "I tell him when he will come.",
+          "I'll tell him when he comes.",
+          "I'll tell him when he will come."
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Laquelle est correcte ?",
+        "type": "choix",
+        "choix": [
+          "I know the answer.",
+          "I am knowing the answer.",
+          "I have been knowing the answer."
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Laquelle est correcte ?",
+        "type": "choix",
+        "choix": [
+          "I've just arrived, so I'm a bit lost.",
+          "I just arrived, so I'm a bit lost.",
+          "I'm just arriving, so I'm a bit lost."
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Ce sont les erreurs les plus fréquentes des francophones."
+    ],
+    "correction": "1. *yesterday* → prétérit. 2. *since 2020* → present perfect. 3. Après *when* (futur) → présent. 4. *know* : verbe d'état. 5. *just* + événement récent → present perfect (en anglais britannique ; *I just arrived* se dit en américain familier, mais le TOEIC attend le present perfect)."
+  },
+  {
+    "id": "partie-5-les-temps",
+    "titre": "Partie 5 : les temps",
+    "difficulte": 3,
+    "enonce": "Choisis le mot qui complète la phrase (style TOEIC).",
+    "questions": [
+      {
+        "intitule": "*Ms. Rivera ...... for the company since it opened in 2012.*",
+        "type": "choix",
+        "choix": [
+          "works",
+          "will work",
+          "worked",
+          "has worked"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*The shipment ...... yesterday afternoon.*",
+        "type": "choix",
+        "choix": [
+          "has arrived",
+          "had been arriving",
+          "arrives",
+          "arrived"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*By the time the CEO arrived, the presentation ...... .*",
+        "type": "choix",
+        "choix": [
+          "already begins",
+          "had already begun",
+          "already began",
+          "has already begun"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*We will contact you as soon as your order ...... .*",
+        "type": "choix",
+        "choix": [
+          "was ready",
+          "has been readied",
+          "will be ready",
+          "is ready"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "*At the moment, the technicians ...... the network.*",
+        "type": "choix",
+        "choix": [
+          "upgrade",
+          "are upgrading",
+          "have upgraded",
+          "upgraded"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The new branch ...... next spring.*",
+        "type": "choix",
+        "choix": [
+          "opened",
+          "has opened",
+          "will open",
+          "had opened"
+        ],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Repère le mot-repère : *since*, *yesterday*, *By the time... arrived*, *as soon as*, *At the moment*, *next spring*."
+    ],
+    "correction": "1. *since 2012* → *has worked*. 2. *yesterday* → *arrived*. 3. avant un autre moment passé → *had already begun*. 4. *as soon as* → présent. 5. *At the moment* → présent continu. 6. *next spring* → *will open*."
+  },
+  {
+    "id": "partie-6-email",
+    "titre": "Partie 6 : un e-mail",
+    "difficulte": 3,
+    "enonce": "Lis l'e-mail, puis choisis la bonne forme pour chaque trou.\n\n> Dear team,\n>\n> As you know, our sales figures (1) ...... steadily since January. Last month alone, we (2) ...... over 300 new contracts. To celebrate, we (3) ...... a dinner next Friday at La Terrazza: the restaurant is already booked. Please let Amy know if you can come before she (4) ...... the final list on Wednesday.\n>\n> Thank you all,\n> Paul",
+    "questions": [
+      {
+        "intitule": "(1)",
+        "type": "choix",
+        "choix": [
+          "have been rising",
+          "rise",
+          "will rise",
+          "rose"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "(2)",
+        "type": "choix",
+        "choix": [
+          "had been signing",
+          "signed",
+          "have signed",
+          "sign"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "(3)",
+        "type": "choix",
+        "choix": [
+          "have had",
+          "were having",
+          "had",
+          "are having"
+        ],
+        "reponse": 3
+      },
+      {
+        "intitule": "(4)",
+        "type": "choix",
+        "choix": [
+          "will send",
+          "sends",
+          "sent",
+          "has sent"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*since January* → present perfect ; *Last month* → prétérit.",
+      "Le restaurant est déjà réservé : c'est un rendez-vous organisé."
+    ],
+    "correction": "(1) *have been rising* : depuis janvier et ça continue. (2) *signed* : *Last month* est terminé. (3) *are having* : événement organisé (présent continu). (4) *before she sends* : présent après *before* pour un futur."
+  },
+  {
+    "id": "traduction-courte",
+    "titre": "Petites traductions",
+    "difficulte": 3,
+    "enonce": "Traduis en anglais puis compare avec la réponse modèle.",
+    "questions": [
+      {
+        "intitule": "Je travaille ici depuis deux ans.",
+        "type": "auto",
+        "reponse": "*I have worked (have been working) here for two years.*"
+      },
+      {
+        "intitule": "Je viens d'envoyer la facture.",
+        "type": "auto",
+        "reponse": "*I have just sent the invoice.*"
+      },
+      {
+        "intitule": "Quand je suis arrivé, la réunion avait déjà commencé.",
+        "type": "auto",
+        "reponse": "*When I arrived, the meeting had already started.*"
+      },
+      {
+        "intitule": "Je t'appellerai dès que j'aurai les résultats.",
+        "type": "auto",
+        "reponse": "*I will call you as soon as I have (get) the results.*"
+      }
+    ],
+    "indices": [
+      "depuis + durée → present perfect + *for*.",
+      "venir de = *have just* + participe passé."
+    ],
+    "correction": "- « depuis » + situation qui dure → present perfect avec *for*.\n- « venir de » → *have just done*.\n- « avait déjà commencé » → past perfect.\n- « dès que j'aurai » → *as soon as* + présent (*I have*), jamais *will*."
+  }
+]

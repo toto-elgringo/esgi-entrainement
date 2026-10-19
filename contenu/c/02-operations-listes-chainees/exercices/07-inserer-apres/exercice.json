@@ -1,0 +1,10 @@
+{
+  "titre": "Insérer après un maillon",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Deux pointeurs changent : le `next` du nouveau maillon et le `next` de `maillon`.",
+    "L'ordre compte : si tu modifies `maillon->next` en premier, tu perds l'adresse de la suite de la liste.",
+    "`Cell *nouveau = creerCell(valeur);` puis `nouveau->next = maillon->next;` puis `maillon->next = nouveau;`"
+  ]
+}

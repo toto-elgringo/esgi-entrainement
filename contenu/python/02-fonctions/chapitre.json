@@ -1,0 +1,5 @@
+{
+  "titre": "Fonctions avancées",
+  "description": "Valeurs par défaut, mots-clés, *args et **kwargs, fonctions internes, closures, décorateurs, générateurs avec yield et exceptions.",
+  "source": "cours"
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Premiers décorateurs",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Un décorateur reçoit `func`, définit un `wrapper(*args, **kwargs)` et renvoie `wrapper`.",
+    "Dans `en_majuscules`, le wrapper appelle `func(*args, **kwargs)` et renvoie le résultat passé par `.upper()`.",
+    "Pour compter : une fonction est un objet, on peut lui ajouter un attribut. Écris `wrapper.appels = 0` avant `return wrapper`, et `wrapper.appels += 1` dans le wrapper."
+  ]
+}

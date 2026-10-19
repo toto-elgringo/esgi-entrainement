@@ -1,0 +1,79 @@
+[
+  {
+    "question": "Comment Python délimite-t-il un bloc de code (corps d'un `if`, d'une boucle...) ?",
+    "choix": ["Avec des accolades `{ }`", "Avec l'indentation", "Avec `begin` et `end`", "Avec des points-virgules"],
+    "reponse": 1,
+    "explication": "Les blocs sont définis par l'indentation (4 espaces par niveau). La ligne qui ouvre le bloc se termine par `:`."
+  },
+  {
+    "question": "Que vaut `10 // 2.5` ?",
+    "choix": ["`4`", "`4.0`", "`4.5`", "`2.5`"],
+    "reponse": 1,
+    "explication": "`//` est le quotient de la division entière, mais dès qu'un des nombres est un `float`, le résultat est un `float` : `4.0`."
+  },
+  {
+    "question": "Que vaut `10 / 2` ?",
+    "choix": ["`5`", "`5.0`", "`2`", "Une erreur"],
+    "reponse": 1,
+    "explication": "La division `/` renvoie toujours un `float`, même quand le résultat tombe juste."
+  },
+  {
+    "question": "Laquelle de ces valeurs est considérée comme **vraie** dans un `if` ?",
+    "choix": ["`0`", "`\"\"`", "`[0]`", "`None`"],
+    "reponse": 2,
+    "explication": "`[0]` est une liste qui contient un élément : elle n'est pas vide, donc vraie. `0`, `\"\"` et `None` sont faux."
+  },
+  {
+    "question": "Quelles valeurs produit `range(2, 6)` ?",
+    "choix": ["2, 3, 4, 5, 6", "2, 3, 4, 5", "3, 4, 5, 6", "0, 1, 2, 3, 4, 5"],
+    "reponse": 1,
+    "explication": "Le début est inclus et la fin est exclue : 2, 3, 4, 5."
+  },
+  {
+    "question": "Avec `l = [1, 2, 3, 4, 5]`, que vaut `l[1:4]` ?",
+    "choix": ["`[1, 2, 3, 4]`", "`[2, 3, 4, 5]`", "`[2, 3, 4]`", "`[1, 2, 3]`"],
+    "reponse": 2,
+    "explication": "On part de l'indice 1 (la valeur 2) et on s'arrête **avant** l'indice 4 : `[2, 3, 4]`."
+  },
+  {
+    "question": "Que donne `s = \"Hello\"` puis `s[0] = \"J\"` ?",
+    "choix": ["`s` vaut `\"Jello\"`", "Une `TypeError`", "Une `IndexError`", "`s` vaut `\"J\"`"],
+    "reponse": 1,
+    "explication": "Une `str` n'est pas modifiable. Il faut créer une nouvelle chaîne : `s = \"J\" + s[1:]`."
+  },
+  {
+    "question": "Quel est le type de `(\"one\")` ?",
+    "choix": ["`tuple`", "`str`", "`list`", "`set`"],
+    "reponse": 1,
+    "explication": "Les parenthèses seules ne font pas un tuple : c'est la virgule. Le tuple à un élément s'écrit `(\"one\",)`."
+  },
+  {
+    "question": "Comment crée-t-on un ensemble **vide** ?",
+    "choix": ["`{}`", "`set()`", "`[]`", "`()`"],
+    "reponse": 1,
+    "explication": "`{}` crée un dictionnaire vide. L'ensemble vide s'écrit `set()`."
+  },
+  {
+    "question": "Que vaut `len({1, 45, 8, 45})` ?",
+    "choix": ["4", "3", "2", "Une erreur"],
+    "reponse": 1,
+    "explication": "Un ensemble ne garde pas les doublons : il contient 1, 45 et 8, donc 3 éléments."
+  },
+  {
+    "question": "Avec `d = {\"a\": 1}`, que renvoie `d.get(\"z\", 0)` ?",
+    "choix": ["`None`", "Une `KeyError`", "`0`", "`\"z\"`"],
+    "reponse": 2,
+    "explication": "`get` renvoie la valeur par défaut donnée (ici `0`) quand la clé est absente, sans erreur. `d[\"z\"]` lèverait une `KeyError`."
+  },
+  {
+    "question": "À quoi sert `if __name__ == \"__main__\":` ?",
+    "choix": [
+      "À déclarer la fonction principale obligatoire",
+      "À n'exécuter un bloc que si le fichier est lancé directement, pas importé",
+      "À importer le module `main`",
+      "À accélérer le programme"
+    ],
+    "reponse": 1,
+    "explication": "`__name__` vaut `\"__main__\"` seulement quand le fichier est lancé directement. Quand il est importé (comme par les tests du site), le bloc n'est pas exécuté."
+  }
+]

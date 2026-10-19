@@ -1,0 +1,10 @@
+{
+  "titre": "Échanger deux entiers",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "La fonction reçoit les adresses des deux variables : c'est `*a` et `*b` qu'il faut modifier.",
+    "Il faut une variable temporaire, sinon la première valeur est écrasée avant d'être recopiée.",
+    "`int tmp = *a;` puis `*a = *b;` puis `*b = tmp;`"
+  ]
+}

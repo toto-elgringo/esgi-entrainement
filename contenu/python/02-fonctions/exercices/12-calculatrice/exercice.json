@@ -1,0 +1,11 @@
+{
+  "titre": "Mini-projet : calculatrice",
+  "difficulte": 3,
+  "type": "sortie",
+  "indices": [
+    "Découpe la ligne avec `ligne.split()` : il doit y avoir exactement 3 morceaux, sinon c'est une erreur de format.",
+    "Vérifie l'opérateur avec `if op not in OPERATIONS:` avant de convertir les nombres.",
+    "Convertis les nombres dans un `try` / `except ValueError` pour l'erreur « nombre invalide ».",
+    "Le calcul se fait avec `OPERATIONS[op](a, b)` : le dictionnaire contient des fonctions. Intercepte `ZeroDivisionError` autour de cet appel, et dans le `else`, renvoie `\"%d %s %d = %s\" % (a, op, b, resultat)` (ou une f-string)."
+  ]
+}

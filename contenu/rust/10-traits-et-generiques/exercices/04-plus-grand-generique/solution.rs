@@ -3,10 +3,7 @@ fn plus_grand<T: PartialOrd>(a: T, b: T) -> T {
 }
 
 fn plus_grand_de_la_liste<T: PartialOrd + Copy>(liste: &[T]) -> Option<T> {
-    let mut resultat = match liste.first() {
-        Some(premier) => *premier,
-        None => return None,
-    };
+    let mut resultat = *liste.first()?;
     for &element in liste {
         if element > resultat {
             resultat = element;

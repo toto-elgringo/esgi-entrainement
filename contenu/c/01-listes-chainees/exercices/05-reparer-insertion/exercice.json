@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer l'insertion en début",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Dessine la liste sur papier et exécute les deux dernières lignes de `insererDebut` dans l'ordre où elles sont écrites.",
+    "Après `start = nouveau;`, l'adresse de l'ancien premier maillon est perdue : `nouveau->next = start;` fait pointer le maillon sur lui-même.",
+    "Il suffit d'échanger les deux lignes : `nouveau->next = start;` d'abord, `start = nouveau;` ensuite."
+  ]
+}

@@ -1,0 +1,666 @@
+[
+  {
+    "id": "erreur-des-cubes",
+    "titre": "L'erreur du casse-tête",
+    "difficulte": 1,
+    "enonce": "27 cubes (9 de chaque couleur) en 3 lignes de 9. L'erreur est la somme des écarts de ligne entre cubes de même couleur, **chaque paire comptée dans les deux sens**. Le seul mouvement : échanger deux cubes voisins (sur la même ligne ou l'un au-dessus de l'autre).",
+    "questions": [
+      {
+        "intitule": "Erreur de l'état résolu (une couleur par ligne).",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": [
+          "1",
+          "27"
+        ]
+      },
+      {
+        "intitule": "On part de l'état résolu et on échange deux cubes de deux lignes voisines. Nouvelle erreur ?",
+        "type": "nombre",
+        "reponse": 32,
+        "acceptes": [
+          "2*8*2"
+        ],
+        "refuses": [
+          "16",
+          "2",
+          "8"
+        ]
+      },
+      {
+        "intitule": "Nombre d'échanges horizontaux possibles (deux cubes voisins sur une même ligne).",
+        "type": "nombre",
+        "reponse": 24,
+        "acceptes": [
+          "3*8"
+        ],
+        "refuses": [
+          "27",
+          "9"
+        ]
+      },
+      {
+        "intitule": "Nombre d'échanges verticaux possibles.",
+        "type": "nombre",
+        "reponse": 18,
+        "acceptes": [
+          "2*9"
+        ],
+        "refuses": [
+          "27",
+          "9"
+        ]
+      },
+      {
+        "intitule": "Combien un échange horizontal change-t-il l'erreur ?",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": [
+          "32",
+          "1"
+        ]
+      }
+    ],
+    "indices": [
+      "Chaque cube déplacé est à 1 ligne de chacun de ses 8 partenaires de couleur.",
+      "Sur une ligne de 9 cubes, il y a 8 paires de voisins. Entre deux lignes, il y a 9 paires de voisins."
+    ],
+    "correction": "- État résolu : tous les cubes d'une couleur sont sur la même ligne, tous les écarts valent 0 : erreur **0**.\n- Après un échange vertical : 2 cubes déplacés, chacun à 1 ligne de ses 8 partenaires, chaque paire comptée 2 fois : $2 \\times 8 \\times 2 = 32$.\n- Échanges horizontaux : 8 par ligne, $3 \\times 8 = 24$. Verticaux : 9 entre deux lignes voisines, $2 \\times 9 = 18$. Total **42** mouvements.\n- Un échange horizontal ne change aucune ligne : l'erreur ne bouge pas (**plateau**)."
+  },
+  {
+    "id": "taille-de-l-espace",
+    "titre": "Combien d'états énumérer ?",
+    "difficulte": 2,
+    "enonce": "On énumère $10^9$ états par seconde. On donne $27! \\approx 1{,}09 \\times 10^{28}$, $3^{27} \\approx 7{,}6 \\times 10^{12}$ et $\\dfrac{27!}{(9!)^3} \\approx 2{,}28 \\times 10^{11}$. Arrondis au dixième.",
+    "questions": [
+      {
+        "intitule": "Temps pour énumérer les $\\dfrac{27!}{(9!)^3}$ configurations visibles, en **minutes**.",
+        "type": "nombre",
+        "reponse": "27!/(9!)^3/10^9/60",
+        "tolerance": 0.3,
+        "acceptes": [
+          "3.8",
+          "4"
+        ],
+        "refuses": [
+          "228",
+          "38"
+        ]
+      },
+      {
+        "intitule": "Temps pour énumérer les $3^{27}$ coloriages libres, en **heures**.",
+        "type": "nombre",
+        "reponse": "3^27/10^9/3600",
+        "tolerance": 0.15,
+        "acceptes": [
+          "2.1",
+          "2"
+        ],
+        "refuses": [
+          "7625",
+          "21"
+        ]
+      },
+      {
+        "intitule": "Pourquoi rejette-t-on la modélisation « coloriages libres » ?",
+        "type": "choix",
+        "choix": [
+          "Elle donne une erreur négative",
+          "Elle compte des états impossibles, comme 27 cubes rouges",
+          "Elle est trop grande",
+          "Elle oublie des états"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Pourquoi la force brute est-elle « hors de propos » sur ce casse-tête, même si 4 minutes suffiraient ?",
+        "type": "choix",
+        "choix": [
+          "L'erreur ne peut pas être calculée",
+          "Le joueur est aveugle (il ne peut pas décrire l'état) et la taille explose dès que le casse-tête grandit",
+          "Les ordinateurs ne savent pas compter",
+          "Il n'existe pas de solution"
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Temps (s) = nombre d'états ÷ $10^9$. Puis divise par 60 (minutes) ou 3 600 (heures).",
+      "$\\dfrac{2{,}28 \\times 10^{11}}{10^9} = 228$ s."
+    ],
+    "correction": "- Configurations visibles : $\\dfrac{2{,}28 \\times 10^{11}}{10^9} = 228$ s $\\approx 3{,}8$ minutes.\n- Coloriages libres : $\\dfrac{7{,}6 \\times 10^{12}}{10^9} = 7\\,600$ s $\\approx 2{,}1$ heures, mais ce modèle compte des états impossibles (27 cubes rouges) : il décrit un autre problème.\n- Cubes uniques : $27! \\approx 1{,}1 \\times 10^{28}$ états, des centaines de milliards d'années.\n- La force brute est hors de propos : le joueur ne voit pas les couleurs (il ne connaît que l'erreur et un mouvement), et le facteur $27!$ explose dès qu'on agrandit le casse-tête."
+  },
+  {
+    "id": "compter-les-voisins-2opt",
+    "titre": "Compter les voisins 2-opt",
+    "difficulte": 1,
+    "enonce": "Une tournée de $n$ villes a $\\dfrac{n(n-3)}{2}$ voisins 2-opt, et il existe $\\dfrac{(n-1)!}{2}$ tournées distinctes.",
+    "questions": [
+      {
+        "intitule": "Nombre de voisins 2-opt d'une tournée de 6 villes.",
+        "type": "nombre",
+        "reponse": 9,
+        "acceptes": [
+          "6*3/2"
+        ],
+        "refuses": [
+          "15",
+          "18"
+        ]
+      },
+      {
+        "intitule": "Pour 12 villes.",
+        "type": "nombre",
+        "reponse": 54,
+        "acceptes": [
+          "12*9/2"
+        ],
+        "refuses": [
+          "66",
+          "108"
+        ]
+      },
+      {
+        "intitule": "Pour 100 villes.",
+        "type": "nombre",
+        "reponse": 4850,
+        "acceptes": [
+          "100*97/2",
+          "4 850"
+        ],
+        "refuses": [
+          "4950",
+          "9700"
+        ]
+      },
+      {
+        "intitule": "Nombre de tournées distinctes de 6 villes.",
+        "type": "nombre",
+        "reponse": 60,
+        "acceptes": [
+          "5!/2"
+        ],
+        "refuses": [
+          "720",
+          "120"
+        ]
+      }
+    ],
+    "indices": [
+      "Applique la formule $\\dfrac{n(n-3)}{2}$.",
+      "Pour 6 villes : $\\dfrac{6 \\times 3}{2}$."
+    ],
+    "correction": "- 6 villes : $\\dfrac{6 \\times 3}{2} = 9$ voisins.\n- 12 villes : $\\dfrac{12 \\times 9}{2} = 54$ voisins.\n- 100 villes : $\\dfrac{100 \\times 97}{2} = 4\\,850$ voisins : le voisinage reste petit (polynomial), alors que le nombre de tournées est astronomique.\n- Tournées de 6 villes : $\\dfrac{5!}{2} = 60$."
+  },
+  {
+    "id": "plus-proche-voisin",
+    "titre": "Construire une tournée gloutonne",
+    "difficulte": 1,
+    "enonce": "Six villes, distances arrondies au centième :\n\n| | A | B | C | D | E | F |\n|---|---|---|---|---|---|---|\n| **A** | — | 3,16 | 2,24 | 1,00 | 3,00 | 4,00 |\n| **B** | 3,16 | — | 1,00 | 3,00 | 1,00 | 4,24 |\n| **C** | 2,24 | 1,00 | — | 2,00 | 1,41 | 3,61 |\n| **D** | 1,00 | 3,00 | 2,00 | — | 3,16 | 3,00 |\n| **E** | 3,00 | 1,00 | 1,41 | 3,16 | — | 5,00 |\n| **F** | 4,00 | 4,24 | 3,61 | 3,00 | 5,00 | — |\n\nOn construit une tournée au **plus proche voisin** : depuis la ville courante, on va toujours à la ville non visitée la plus proche, puis on revient au départ.",
+    "questions": [
+      {
+        "intitule": "En partant de A, quelle ville visite-t-on en premier ?",
+        "type": "choix",
+        "choix": [
+          "D",
+          "F",
+          "B",
+          "C"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "En partant de A, quelle ville est visitée en **dernier** (avant le retour en A) ?",
+        "type": "texte",
+        "reponse": [
+          "F"
+        ],
+        "refuses": [
+          "B",
+          "D"
+        ]
+      },
+      {
+        "intitule": "Longueur de la tournée gloutonne partant de A.",
+        "type": "nombre",
+        "reponse": 14,
+        "tolerance": 0.001,
+        "acceptes": [
+          "14,00"
+        ],
+        "refuses": [
+          "12.61",
+          "13.77"
+        ]
+      },
+      {
+        "intitule": "Longueur de la tournée gloutonne partant de **F** (F → D → A → C → B → E → F).",
+        "type": "nombre",
+        "reponse": 13.24,
+        "tolerance": 0.001,
+        "acceptes": [
+          "13,24"
+        ],
+        "refuses": [
+          "14",
+          "12.61"
+        ]
+      }
+    ],
+    "indices": [
+      "Depuis A, regarde la ligne A du tableau : quelle est la plus petite distance ?",
+      "Depuis A : A → D → C → B → E → F → A."
+    ],
+    "correction": "**Depuis A** : A → D (1,00) → C (2,00, parmi B, C, E, F) → B (1,00) → E (1,00) → F (5,00, seule restante) → A (4,00). Longueur $1 + 2 + 1 + 1 + 5 + 4 = 14{,}00$. F, laissée pour la fin, coûte très cher.\n\n**Depuis F** : F → D (3,00) → A (1,00) → C (2,24) → B (1,00) → E (1,00) → F (5,00). Longueur $3 + 1 + 2{,}24 + 1 + 1 + 5 = 13{,}24$.\n\nLe résultat du glouton dépend de la ville de départ, et aucun des deux n'atteint l'optimum (12,61)."
+  },
+  {
+    "id": "gain-d-un-echange",
+    "titre": "Le gain d'un échange 2-opt",
+    "difficulte": 2,
+    "enonce": "Même tableau de distances :\n\n| | A | B | C | D | E | F |\n|---|---|---|---|---|---|---|\n| **A** | — | 3,16 | 2,24 | 1,00 | 3,00 | 4,00 |\n| **B** | 3,16 | — | 1,00 | 3,00 | 1,00 | 4,24 |\n| **C** | 2,24 | 1,00 | — | 2,00 | 1,41 | 3,61 |\n| **D** | 1,00 | 3,00 | 2,00 | — | 3,16 | 3,00 |\n| **E** | 3,00 | 1,00 | 1,41 | 3,16 | — | 5,00 |\n| **F** | 4,00 | 4,24 | 3,61 | 3,00 | 5,00 | — |\n\nOn part de la tournée A → D → C → B → E → F → A (longueur 14,00) et on inverse le segment C…E : on obtient A → D → E → B → C → F → A. Les arêtes (D,C) et (E,F) sont remplacées par (D,E) et (C,F).",
+    "questions": [
+      {
+        "intitule": "$d(D,C) + d(E,F)$",
+        "type": "nombre",
+        "reponse": 7,
+        "tolerance": 0.001,
+        "refuses": [
+          "6.77"
+        ]
+      },
+      {
+        "intitule": "$d(D,E) + d(C,F)$",
+        "type": "nombre",
+        "reponse": 6.77,
+        "tolerance": 0.001,
+        "acceptes": [
+          "6,77"
+        ],
+        "refuses": [
+          "7"
+        ]
+      },
+      {
+        "intitule": "Gain de l'échange.",
+        "type": "nombre",
+        "reponse": 0.23,
+        "tolerance": 0.001,
+        "acceptes": [
+          "0,23"
+        ],
+        "refuses": [
+          "-0.23",
+          "1.16"
+        ]
+      },
+      {
+        "intitule": "Longueur de la nouvelle tournée.",
+        "type": "nombre",
+        "reponse": 13.77,
+        "tolerance": 0.001,
+        "acceptes": [
+          "13,77"
+        ],
+        "refuses": [
+          "14.23",
+          "12.61"
+        ]
+      },
+      {
+        "intitule": "Cet échange est-il améliorant ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Gain = (somme des arêtes retirées) − (somme des arêtes ajoutées).",
+      "$d(D,C) = 2{,}00$, $d(E,F) = 5{,}00$, $d(D,E) = 3{,}16$, $d(C,F) = 3{,}61$."
+    ],
+    "correction": "- Arêtes retirées : $d(D,C) + d(E,F) = 2{,}00 + 5{,}00 = 7{,}00$.\n- Arêtes ajoutées : $d(D,E) + d(C,F) = 3{,}16 + 3{,}61 = 6{,}77$.\n- Gain $= 7{,}00 - 6{,}77 = 0{,}23 > 0$ : l'échange est **améliorant** ($6{,}77 < 7{,}00$).\n- Nouvelle longueur : $14{,}00 - 0{,}23 = 13{,}77$."
+  },
+  {
+    "id": "deuxieme-pas-2opt",
+    "titre": "Le deuxième pas de la descente",
+    "difficulte": 2,
+    "enonce": "Même tableau :\n\n| | A | B | C | D | E | F |\n|---|---|---|---|---|---|---|\n| **A** | — | 3,16 | 2,24 | 1,00 | 3,00 | 4,00 |\n| **B** | 3,16 | — | 1,00 | 3,00 | 1,00 | 4,24 |\n| **C** | 2,24 | 1,00 | — | 2,00 | 1,41 | 3,61 |\n| **D** | 1,00 | 3,00 | 2,00 | — | 3,16 | 3,00 |\n| **E** | 3,00 | 1,00 | 1,41 | 3,16 | — | 5,00 |\n| **F** | 4,00 | 4,24 | 3,61 | 3,00 | 5,00 | — |\n\nTournée courante : A → D → E → B → C → F → A (13,77). On inverse le segment E…F : on obtient A → D → F → C → B → E → A.",
+    "questions": [
+      {
+        "intitule": "Quelles arêtes sont supprimées ?",
+        "type": "choix",
+        "choix": [
+          "(D,E) et (F,A)",
+          "(D,C) et (E,F)",
+          "(E,B) et (C,F)",
+          "(A,D) et (B,C)"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "Gain de l'échange.",
+        "type": "nombre",
+        "reponse": 1.16,
+        "tolerance": 0.001,
+        "acceptes": [
+          "1,16"
+        ],
+        "refuses": [
+          "0.23",
+          "-1.16"
+        ]
+      },
+      {
+        "intitule": "Longueur de la nouvelle tournée.",
+        "type": "nombre",
+        "reponse": 12.61,
+        "tolerance": 0.001,
+        "acceptes": [
+          "12,61"
+        ],
+        "refuses": [
+          "13.77",
+          "14"
+        ]
+      },
+      {
+        "intitule": "Ensuite, plus aucun échange 2-opt n'améliore la tournée. Elle est donc…",
+        "type": "choix",
+        "choix": [
+          "un optimum local (2-optimale)",
+          "forcément la pire tournée",
+          "irréalisable"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Compare les arêtes avant (A-D, D-E, E-B, B-C, C-F, F-A) et après (A-D, D-F, F-C, C-B, B-E, E-A).",
+      "Arêtes ajoutées : (D,F) et (E,A)."
+    ],
+    "correction": "- Arêtes supprimées : (D,E) = 3,16 et (F,A) = 4,00, soit 7,16.\n- Arêtes ajoutées : (D,F) = 3,00 et (E,A) = 3,00, soit 6,00.\n- Gain : $7{,}16 - 6{,}00 = 1{,}16$ ; nouvelle longueur $13{,}77 - 1{,}16 = 12{,}61$.\n- Plus aucun échange n'améliore : c'est un **optimum local** (tournée 2-optimale). Ici c'est aussi l'optimum global des 60 tournées, mais rien ne le garantissait."
+  },
+  {
+    "id": "descente-2opt-a-la-main",
+    "titre": "Descente 2-opt à la main",
+    "difficulte": 2,
+    "enonce": "Même tableau :\n\n| | A | B | C | D | E | F |\n|---|---|---|---|---|---|---|\n| **A** | — | 3,16 | 2,24 | 1,00 | 3,00 | 4,00 |\n| **B** | 3,16 | — | 1,00 | 3,00 | 1,00 | 4,24 |\n| **C** | 2,24 | 1,00 | — | 2,00 | 1,41 | 3,61 |\n| **D** | 1,00 | 3,00 | 2,00 | — | 3,16 | 3,00 |\n| **E** | 3,00 | 1,00 | 1,41 | 3,16 | — | 5,00 |\n| **F** | 4,00 | 4,24 | 3,61 | 3,00 | 5,00 | — |\n\nOn part cette fois de la tournée tirée au hasard A → E → B → C → D → F → A, et on applique une descente 2-opt en première amélioration.",
+    "questions": [
+      {
+        "intitule": "Longueur de la tournée de départ.",
+        "type": "nombre",
+        "reponse": 14,
+        "tolerance": 0.001,
+        "acceptes": [
+          "14,00"
+        ],
+        "refuses": [
+          "12.61"
+        ]
+      },
+      {
+        "intitule": "Un seul échange améliore : supprimer (C,D) et (F,A), inverser le segment D…F. Longueur obtenue ?",
+        "type": "nombre",
+        "reponse": 12.61,
+        "tolerance": 0.001,
+        "acceptes": [
+          "12,61"
+        ],
+        "refuses": [
+          "13.77",
+          "14"
+        ]
+      },
+      {
+        "intitule": "Gain de cet échange.",
+        "type": "nombre",
+        "reponse": 1.39,
+        "tolerance": 0.001,
+        "acceptes": [
+          "1,39"
+        ],
+        "refuses": [
+          "1.16",
+          "0.23"
+        ]
+      },
+      {
+        "intitule": "La tournée obtenue, A → E → B → C → F → D → A, est-elle la même que la tournée A → D → F → C → B → E → A trouvée depuis le glouton ?",
+        "type": "choix",
+        "choix": [
+          "Non, elle est différente et plus longue",
+          "Non, elle est différente et plus courte",
+          "Oui, c'est la même parcourue en sens inverse"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Quelle leçon tires-tu de cet exercice sur la descente et le multi-start ?",
+        "type": "auto",
+        "reponse": "Deux départs différents donnent deux chemins de descente différents (un pas ici, deux depuis le glouton) mais ici le même optimum local, qui est l'optimum global. Rien ne le garantissait : c'est en multipliant les départs (**multi-start**) qu'on gagne en confiance."
+      }
+    ],
+    "indices": [
+      "Longueur de départ : AE + EB + BC + CD + DF + FA.",
+      "Arêtes retirées (C,D) et (F,A) ; arêtes ajoutées (C,F) et (D,A)."
+    ],
+    "correction": "- Départ : $3{,}00 + 1{,}00 + 1{,}00 + 2{,}00 + 3{,}00 + 4{,}00 = 14{,}00$, la même longueur que la tournée gloutonne, alors que ce n'est pas la même tournée.\n- Échange : on retire (C,D) et (F,A) $= 2{,}00 + 4{,}00 = 6{,}00$, on ajoute (C,F) et (D,A) $= 3{,}61 + 1{,}00 = 4{,}61$. Gain $1{,}39$, longueur **12,61**. Plus rien n'améliore ensuite.\n- C'est la tournée A D F C B E parcourue en sens inverse : même optimum local, atteint par un autre chemin. Le multi-start donne confiance dans un tel résultat, sans jamais le prouver."
+  },
+  {
+    "id": "critere-2opt",
+    "titre": "Le critère d'amélioration",
+    "difficulte": 1,
+    "enonce": "On envisage de remplacer les arêtes $(a,b)$ et $(c,d)$ d'une tournée par $(a,c)$ et $(b,d)$. L'échange est améliorant si $d(a,c) + d(b,d) < d(a,b) + d(c,d)$.",
+    "questions": [
+      {
+        "intitule": "Cas 1 : $d(a,b) = 5$, $d(c,d) = 4$, $d(a,c) = 3$, $d(b,d) = 7$. Gain de l'échange ?",
+        "type": "nombre",
+        "reponse": -1,
+        "refuses": [
+          "1",
+          "9"
+        ]
+      },
+      {
+        "intitule": "Cas 1 : l'échange est-il améliorant ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Cas 2 : $d(a,b) = 6$, $d(c,d) = 5$, $d(a,c) = 3$, $d(b,d) = 4$. Gain ?",
+        "type": "nombre",
+        "reponse": 4,
+        "refuses": [
+          "-4",
+          "7"
+        ]
+      },
+      {
+        "intitule": "Cas 2 : l'échange est-il améliorant ?",
+        "type": "choix",
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Gain = $\\big(d(a,b) + d(c,d)\\big) - \\big(d(a,c) + d(b,d)\\big)$.",
+      "Un gain positif = la tournée raccourcit."
+    ],
+    "correction": "- Cas 1 : gain $= (5 + 4) - (3 + 7) = 9 - 10 = -1 < 0$ : l'échange **allongerait** la tournée, on le refuse.\n- Cas 2 : gain $= (6 + 5) - (3 + 4) = 11 - 7 = 4 > 0$ : échange **améliorant**, la tournée raccourcit de 4."
+  },
+  {
+    "id": "paysage-et-minima-locaux",
+    "titre": "Un paysage et ses minima locaux",
+    "difficulte": 2,
+    "enonce": "Huit solutions numérotées de 1 à 8 sont alignées ; les voisines d'une solution sont celle de gauche et celle de droite. Leurs coûts (à minimiser) sont :\n\n| Solution | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n|---|---|---|---|---|---|---|---|---|\n| Coût | 5 | 3 | 4 | 6 | 2 | 1 | 3 | 7 |\n\nOn applique une descente **stricte** en **meilleure amélioration** (on va au meilleur voisin s'il est strictement meilleur, sinon on s'arrête).",
+    "questions": [
+      {
+        "intitule": "Ensemble des minima locaux (numéros des solutions).",
+        "type": "ensemble",
+        "reponse": [
+          2,
+          6
+        ],
+        "acceptes": [
+          "{6, 2}",
+          "2; 6"
+        ],
+        "refuses": [
+          "{6}",
+          "{2, 5, 6}"
+        ]
+      },
+      {
+        "intitule": "Partant de la solution 1, sur quelle solution la descente s'arrête-t-elle ?",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": [
+          "6",
+          "1"
+        ]
+      },
+      {
+        "intitule": "Partant de la solution 4 ?",
+        "type": "nombre",
+        "reponse": 6,
+        "refuses": [
+          "2",
+          "5"
+        ]
+      },
+      {
+        "intitule": "Partant de la solution 3 ?",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": [
+          "6",
+          "4"
+        ]
+      },
+      {
+        "intitule": "Meilleur coût trouvé par un multi-start qui part de 1 et de 8.",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": [
+          "3",
+          "2"
+        ]
+      }
+    ],
+    "indices": [
+      "Un minimum local a un coût inférieur ou égal à celui de ses deux voisines.",
+      "Depuis 4 (coût 6) : voisines 3 (coût 4) et 5 (coût 2). On va en 5, puis on regarde 4 et 6."
+    ],
+    "correction": "- Minima locaux : la solution 2 (coût 3, voisines 5 et 4) et la solution 6 (coût 1, voisines 2 et 3). La 6 est aussi le **minimum global**.\n- Depuis 1 : seule voisine 2 (3 < 5), on y va ; de 2, les voisines coûtent 5 et 4 : arrêt en **2**.\n- Depuis 4 : meilleure voisine 5 (coût 2), puis 6 (coût 1), puis arrêt en **6**.\n- Depuis 3 : voisines 2 (coût 3) et 4 (coût 6) : on va en 2, arrêt en **2**.\n- Multi-start depuis 1 et 8 : 1 mène en 2 (coût 3), 8 mène en 7 puis 6 (coût 1). Meilleur coût **1**. Le résultat d'une descente dépend du départ, d'où l'intérêt de relancer."
+  },
+  {
+    "id": "multi-start-en-chiffres",
+    "titre": "Le multi-start en chiffres",
+    "difficulte": 3,
+    "enonce": "On suppose qu'une descente lancée depuis un état initial au hasard atteint le minimum global avec une probabilité $p = 0{,}2$, et que les lancements sont indépendants.",
+    "questions": [
+      {
+        "intitule": "Probabilité qu'**au moins un** des 10 lancements atteigne le minimum global (arrondie au millième).",
+        "type": "nombre",
+        "reponse": "1-0.8^10",
+        "tolerance": 0.001,
+        "acceptes": [
+          "0.893",
+          "0,893"
+        ],
+        "refuses": [
+          "2",
+          "0.2",
+          "0.8^10"
+        ]
+      },
+      {
+        "intitule": "Nombre **minimal** de lancements pour que cette probabilité dépasse 95 %.",
+        "type": "nombre",
+        "reponse": 14,
+        "refuses": [
+          "13",
+          "5",
+          "20"
+        ]
+      },
+      {
+        "intitule": "Ce calcul garantit-il qu'on a trouvé le minimum global après 14 lancements ?",
+        "type": "choix",
+        "choix": [
+          "Non, ce n'est qu'une probabilité (et en pratique on ne connaît pas $p$)",
+          "Oui, à coup sûr"
+        ],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "La probabilité que les 10 lancements échouent tous est $0{,}8^{10}$.",
+      "On cherche le plus petit $k$ tel que $1 - 0{,}8^k \\ge 0{,}95$, c'est-à-dire $0{,}8^k \\le 0{,}05$, soit $k \\ge \\dfrac{\\ln 0{,}05}{\\ln 0{,}8}$."
+    ],
+    "correction": "- Tous les lancements échouent avec la probabilité $0{,}8^{10} \\approx 0{,}107$, donc au moins un réussit avec $1 - 0{,}8^{10} \\approx 0{,}893$.\n- On veut $0{,}8^k \\le 0{,}05$ : $k \\ge \\dfrac{\\ln 0{,}05}{\\ln 0{,}8} \\approx 13{,}4$, donc **14** lancements.\n- Ce n'est qu'une probabilité, et dans la réalité on ne connaît pas $p$ : le multi-start est bon marché et souvent efficace, mais **sans garantie**."
+  },
+  {
+    "id": "construction-ou-amelioration",
+    "titre": "Construction, amélioration ou métaheuristique ?",
+    "difficulte": 1,
+    "enonce": "Classe chaque méthode.",
+    "questions": [
+      {
+        "intitule": "Le plus proche voisin (TSP).",
+        "type": "choix",
+        "choix": [
+          "Heuristique de construction",
+          "Heuristique d'amélioration",
+          "Métaheuristique"
+        ],
+        "reponse": 0
+      },
+      {
+        "intitule": "La descente 2-opt.",
+        "type": "choix",
+        "choix": [
+          "Heuristique de construction",
+          "Heuristique d'amélioration",
+          "Métaheuristique"
+        ],
+        "reponse": 1
+      },
+      {
+        "intitule": "Le recuit simulé, qui pilote un voisinage et accepte parfois des dégradations.",
+        "type": "choix",
+        "choix": [
+          "Heuristique de construction",
+          "Heuristique d'amélioration",
+          "Métaheuristique"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Une méthode gloutonne…",
+        "type": "choix",
+        "choix": [
+          "essaie toutes les solutions",
+          "garantit l'optimum",
+          "utilise une population",
+          "fait à chaque étape le meilleur choix du moment, sans revenir en arrière"
+        ],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "Construction = crée une solution ; amélioration = répare une solution existante.",
+      "Une métaheuristique est un cadre qui pilote ces briques."
+    ],
+    "correction": "- Plus proche voisin : **construction** (il crée une tournée), c'est une méthode **gloutonne**.\n- Descente 2-opt : **amélioration** (elle répare une tournée existante).\n- Recuit simulé : **métaheuristique**, un cadre qui pilote un voisinage pour mieux explorer l'espace."
+  }
+]

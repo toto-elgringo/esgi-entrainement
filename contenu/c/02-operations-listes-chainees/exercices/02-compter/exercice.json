@@ -1,0 +1,10 @@
+{
+  "titre": "Compter les apparitions",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Parcours toute la liste (pas d'arrêt anticipé : la valeur peut apparaître plusieurs fois).",
+    "Un compteur qui part de 0 et augmente de 1 chaque fois que `cur->value == valeur`.",
+    "`int n = 0;` puis dans la boucle `if (cur->value == valeur) n++;` et `cur = cur->next;`, enfin `return n;`"
+  ]
+}

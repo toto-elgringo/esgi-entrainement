@@ -1,0 +1,10 @@
+{
+  "titre": "any et all",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`all(condition for x in l)` est vrai si la condition est vraie pour **tous** les éléments ; `any(...)` si elle l'est pour **au moins un**.",
+    "Pour `au_moins_un_pair` : `any(x % 2 == 0 for x in l)`.",
+    "Pour le mot de passe : `len(mdp) >= 8 and any(c.isdigit() for c in mdp) and any(c.isupper() for c in mdp) and any(c.islower() for c in mdp)`."
+  ]
+}
