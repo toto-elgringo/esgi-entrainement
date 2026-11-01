@@ -1856,3 +1856,44 @@ body[data-domaine="electif"] {
     grid-template-columns: 1fr;
   }
 }
+
+.sauvegarde {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  padding: 16px 20px;
+  border: 1px solid var(--bordure);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--rayon);
+  background: var(--panneau);
+}
+
+.sauvegarde-texte {
+  display: flex;
+  flex: 1 1 280px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sauvegarde-texte span {
+  color: var(--texte-doux);
+  font-size: 14px;
+}
+
+.sauvegarde-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sauvegarde-actions .bouton:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.sauvegarde + .pied-accueil {
+  margin-top: 16px;
+}

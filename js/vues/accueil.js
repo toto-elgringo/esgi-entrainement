@@ -113,8 +113,11 @@ function afficherChoix(ctx) {
       <h1>ESGI Entraînement</h1>
       <p class="accueil-intro">Cours résumés, quiz et exercices corrigés automatiquement pour réviser les cours de l’ESGI. Choisis ta matière :</p>
       <div class="choix-matieres">${cartes}</div>
+      ${BLOC_SAUVEGARDE}
       <p class="pied-accueil">Ta progression est enregistrée dans ce navigateur. Tu peux changer de matière à tout moment en haut de la page.</p>
     </section>`;
+
+  brancherSauvegarde(ctx);
 
   ctx.conteneur.querySelector('.choix-matieres').addEventListener('click', (evenement) => {
     const carte = evenement.target.closest('[data-matiere]');
@@ -194,13 +197,11 @@ export async function afficherAccueil(ctx) {
       <h2>Comment ça marche</h2>
       <div class="etapes">${etapes}</div>
       ${avecFormules(matiere.domaine) ? blocAideMaths() : ''}
+      ${BLOC_SAUVEGARDE}
       <p class="pied-accueil">
         Ta progression est enregistrée dans ce navigateur.
         <button class="lien-discret" data-changer>Changer de matière</button> ·
-        <button class="lien-discret" data-reinitialiser>Remettre ma progression à zéro</button> ·
-        <button class="lien-discret" data-exporter>Exporter ma progression</button> ·
-        <button class="lien-discret" data-importer>Importer une progression</button>
-        <input type="file" accept=".json,application/json" data-fichier hidden>
+        <button class="lien-discret" data-reinitialiser>Remettre ma progression à zéro</button>
       </p>
     </section>`;
 
@@ -208,21 +209,38 @@ export async function afficherAccueil(ctx) {
   ctx.conteneur.querySelector('[data-reinitialiser]').addEventListener('click', () => {
     if (confirm('Effacer toute ta progression (exercices, quiz, réponses et code) ?')) ctx.reinitialiser();
   });
-  ctx.conteneur.querySelector('[data-exporter]').addEventListener('click', () => telecharger(ctx.exporter()));
+  brancherSauvegarde(ctx);
+
+  if (estCode) await afficherEtatOutils(ctx, matiere.domaine);
+}
+
+const BLOC_SAUVEGARDE = `
+  <div class="sauvegarde">
+    <div class="sauvegarde-texte">
+      <strong>Sauvegarde</strong>
+      <span>Toutes les matières dans un seul fichier : exporte-le ici, importe-le sur un autre ordinateur ou navigateur.</span>
+    </div>
+    <div class="sauvegarde-actions">
+      <button class="bouton" data-exporter>⬇ Tout exporter</button>
+      <button class="bouton" data-importer>⬆ Tout importer</button>
+      <input type="file" accept=".json,application/json" data-fichier hidden>
+    </div>
+  </div>`;
+
+function brancherSauvegarde(ctx) {
   const choixFichier = ctx.conteneur.querySelector('[data-fichier]');
+  ctx.conteneur.querySelector('[data-exporter]').addEventListener('click', () => telecharger(ctx.exporter()));
   ctx.conteneur.querySelector('[data-importer]').addEventListener('click', () => choixFichier.click());
   choixFichier.addEventListener('change', async () => {
     const fichier = choixFichier.files[0];
     choixFichier.value = '';
-    if (!fichier || !confirm('Remplacer ta progression actuelle par celle du fichier ?')) return;
+    if (!fichier || !confirm('Remplacer toute ta progression actuelle par celle du fichier ?')) return;
     try {
       ctx.importer(await fichier.text());
     } catch (erreur) {
       alert(erreur.message);
     }
   });
-
-  if (estCode) await afficherEtatOutils(ctx, matiere.domaine);
 }
 
 function telecharger(contenu) {
