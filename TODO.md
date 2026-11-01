@@ -14,14 +14,16 @@
 - [ ] Algorithmique avancée : listes doublement chaînées et circulaires, piles et files en C
 - [ ] Anglais : séances 2 et 4 du semestre (absentes des sources), partie écoute du TOEIC (audios non fournis)
 - [ ] Cours électif : remplacer le chapitre provisoire par le vrai contenu quand les supports arrivent
-- [ ] Plus d'exercices de type Advent of Code
+- [ ] Rust Advent of Code : ajouter d'autres énigmes (PGCD/PPCM 2023 J8, Dijkstra avec contraintes 2023 J17, formule du lacet 2023 J18, graphes 2024 J23…)
 
 ## Site
 
-- [ ] Exporter / importer sa progression (pour changer d'ordinateur)
+- [x] Exporter / importer sa progression (pour changer d'ordinateur)
 - [ ] Héberger CodeMirror, KaTeX, marked et highlight.js dans le dépôt pour fonctionner sans internet
 - [ ] Clavier de symboles pour les maths sur téléphone (`^`, `√`, `π`)
 - [ ] Anglais : partie écoute avec la synthèse vocale du navigateur (avant le CC Listening du 9/11)
 - [ ] Anglais : mode « TOEIC blanc » chronométré qui pioche dans tous les chapitres
 - [ ] Anglais : cartes de vocabulaire avec révision espacée pour les 397 mots
 - [ ] Mélanger l'ordre des choix dans les exercices (aujourd'hui seulement dans les quiz)
+- [ ] C : `VERIFIER_LISTE` pour comparer deux tableaux et afficher les valeurs (aujourd'hui `aide_egale` n'affiche que la condition)
+- [ ] C : transformer les `VERIFIER` avec `&&` en plusieurs `VERIFIER_EGAL` pour avoir les valeurs de chaque côté

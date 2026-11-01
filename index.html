@@ -6,9 +6,13 @@
   <title>ESGI Entraînement</title>
   <meta name="description" content="Cours, quiz et exercices corrigés automatiquement pour tous les cours de l'ESGI.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>
+    try {
+      if (JSON.parse(localStorage.getItem('esgi-entrainement'))?.theme === 'clair') document.documentElement.dataset.theme = 'clair';
+    } catch {}
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
@@ -27,13 +31,14 @@
 </head>
 <body>
   <header class="entete">
-    <button class="bouton-menu" id="bouton-menu" aria-label="Afficher le menu">☰</button>
+    <button class="bouton-menu" id="bouton-menu" aria-label="Ranger ou afficher le menu" title="Ranger ou afficher le menu (Ctrl+B)" aria-controls="menu">☰</button>
     <a class="logo" href="#/">
       <span class="logo-icone">E</span>
       <span>ESGI Entraînement</span>
     </a>
     <select class="choix-matiere" id="choix-matiere" aria-label="Matière"></select>
     <div class="progression-globale" id="progression-globale"></div>
+    <button class="bouton-theme" id="bouton-theme" type="button"></button>
   </header>
   <div class="disposition">
     <nav class="menu" id="menu" aria-label="Chapitres"></nav>

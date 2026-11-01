@@ -197,7 +197,10 @@ export async function afficherAccueil(ctx) {
       <p class="pied-accueil">
         Ta progression est enregistrée dans ce navigateur.
         <button class="lien-discret" data-changer>Changer de matière</button> ·
-        <button class="lien-discret" data-reinitialiser>Remettre ma progression à zéro</button>
+        <button class="lien-discret" data-reinitialiser>Remettre ma progression à zéro</button> ·
+        <button class="lien-discret" data-exporter>Exporter ma progression</button> ·
+        <button class="lien-discret" data-importer>Importer une progression</button>
+        <input type="file" accept=".json,application/json" data-fichier hidden>
       </p>
     </section>`;
 
@@ -205,6 +208,27 @@ export async function afficherAccueil(ctx) {
   ctx.conteneur.querySelector('[data-reinitialiser]').addEventListener('click', () => {
     if (confirm('Effacer toute ta progression (exercices, quiz, réponses et code) ?')) ctx.reinitialiser();
   });
+  ctx.conteneur.querySelector('[data-exporter]').addEventListener('click', () => telecharger(ctx.exporter()));
+  const choixFichier = ctx.conteneur.querySelector('[data-fichier]');
+  ctx.conteneur.querySelector('[data-importer]').addEventListener('click', () => choixFichier.click());
+  choixFichier.addEventListener('change', async () => {
+    const fichier = choixFichier.files[0];
+    choixFichier.value = '';
+    if (!fichier || !confirm('Remplacer ta progression actuelle par celle du fichier ?')) return;
+    try {
+      ctx.importer(await fichier.text());
+    } catch (erreur) {
+      alert(erreur.message);
+    }
+  });
 
   if (estCode) await afficherEtatOutils(ctx, matiere.domaine);
+}
+
+function telecharger(contenu) {
+  const lien = document.createElement('a');
+  lien.href = URL.createObjectURL(new Blob([contenu], { type: 'application/json' }));
+  lien.download = `esgi-entrainement-${new Date().toISOString().slice(0, 10)}.json`;
+  lien.click();
+  URL.revokeObjectURL(lien.href);
 }

@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 2 : pierre, feuille, ciseaux",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Découpe chaque ligne en deux lettres avec `split_whitespace()` (ou `split_once(' ')`), puis additionne le score de chaque manche.",
+    "Le plus simple : un `match` sur la ligne entière (`\"A X\" => 4`, `\"A Y\" => 8`…). Il n'y a que 9 manches possibles par partie : écris le tableau des scores à la main.",
+    "Plus court : transforme A/B/C et X/Y/Z en 0, 1, 2. La forme rapporte `moi + 1` points. Si `moi == adversaire`, c'est nul ; si `moi == (adversaire + 1) % 3`, tu gagnes (feuille bat pierre, ciseaux battent feuille, pierre bat ciseaux).",
+    "Partie 2 : pour gagner il faut jouer `(adversaire + 1) % 3`, pour perdre `(adversaire + 2) % 3`, et pour un nul la même forme que l'adversaire. Ensuite, réutilise le calcul du score de la partie 1."
+  ]
+}

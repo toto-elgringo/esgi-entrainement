@@ -96,6 +96,11 @@ function creerContexte(numeroNavigation) {
       stockage.reinitialiser();
       afficherRoute();
     },
+    exporter: () => stockage.exporter(),
+    importer: (texte) => {
+      stockage.importer(texte);
+      location.reload();
+    },
   };
 }
 
@@ -124,6 +129,7 @@ async function afficherRoute() {
   }
 
   document.body.classList.remove('menu-visible');
+  appliquerMenuRange();
   const route = lireRoute();
   const chapitre = etat.chapitres.find((candidat) => candidat.cle === route.chapitreCle);
   if (chapitre && !chapitre.matieres.includes(matiereCourante())) stockage.choisirMatiere(chapitre.matieres[0]);
@@ -152,9 +158,54 @@ menu.addEventListener('click', (evenement) => {
   bouton.parentElement.classList.toggle('ouvert');
 });
 
-document.getElementById('bouton-menu').addEventListener('click', () => {
-  document.body.classList.toggle('menu-visible');
+const boutonMenu = document.getElementById('bouton-menu');
+const ecranEtroit = window.matchMedia('(max-width: 800px)');
+
+function appliquerMenuRange() {
+  const range = stockage.menuRange();
+  document.body.classList.toggle('menu-range', range);
+  boutonMenu.setAttribute('aria-expanded', String(ecranEtroit.matches ? document.body.classList.contains('menu-visible') : !range));
+}
+
+function basculerMenu() {
+  if (ecranEtroit.matches) document.body.classList.toggle('menu-visible');
+  else stockage.rangerMenu(!stockage.menuRange());
+  appliquerMenuRange();
+}
+
+boutonMenu.addEventListener('click', basculerMenu);
+
+document.addEventListener('keydown', (evenement) => {
+  const controle = evenement.ctrlKey || evenement.metaKey;
+  if (evenement.defaultPrevented || !controle || evenement.shiftKey || evenement.altKey || evenement.key.toLowerCase() !== 'b') return;
+  evenement.preventDefault();
+  basculerMenu();
 });
+
+const boutonTheme = document.getElementById('bouton-theme');
+
+function appliquerTheme() {
+  const clair = stockage.theme() === 'clair';
+  if (clair) document.documentElement.dataset.theme = 'clair';
+  else delete document.documentElement.dataset.theme;
+  const libelle = clair ? 'Passer en mode sombre' : 'Passer en mode clair';
+  boutonTheme.textContent = clair ? '☾' : '☀';
+  boutonTheme.title = libelle;
+  boutonTheme.setAttribute('aria-label', libelle);
+}
+
+boutonTheme.addEventListener('click', () => {
+  stockage.choisirTheme(stockage.theme() === 'clair' ? 'sombre' : 'clair');
+  appliquerTheme();
+});
+
+appliquerTheme();
+
+document.querySelector('.disposition').addEventListener('transitionend', (evenement) => {
+  if (evenement.target === evenement.currentTarget) window.dispatchEvent(new Event('resize'));
+});
+
+appliquerMenuRange();
 
 window.addEventListener('hashchange', afficherRoute);
 window.addEventListener('beforeunload', () => etat.nettoyage?.());

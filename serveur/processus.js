@@ -27,6 +27,21 @@ export function retirerBilan(sortie) {
   return sortie.replace(/^RESULTAT \d+ \d+\s*$/m, '').trimEnd();
 }
 
+export function extraireTests(sortie) {
+  const tests = [];
+  const lignes = [];
+  for (const ligne of sortie.split('\n')) {
+    if (ligne.startsWith('@TEST ')) {
+      try {
+        tests.push(JSON.parse(ligne.slice(6)));
+        continue;
+      } catch {}
+    }
+    lignes.push(ligne);
+  }
+  return { sortie: lignes.join('\n'), tests };
+}
+
 export function creerReserve(dossiers) {
   const libres = [...dossiers];
   const enAttente = [];

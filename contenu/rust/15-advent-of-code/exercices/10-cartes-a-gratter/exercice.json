@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2023 jour 4 : les cartes à gratter",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Pour chaque carte, il te suffit de savoir combien de tes numéros sont gagnants. Écris d'abord une fonction qui renvoie ce nombre pour chaque carte, dans l'ordre.",
+    "Coupe chaque ligne avec `split_once(':')` puis `split_once('|')`. `split_whitespace()` découpe les nombres en ignorant les espaces en trop.",
+    "Partie 1 : 2 puissance (n - 1) s'écrit `1 << (n - 1)` (décalage de bits) ou `2u32.pow(n - 1)`. Attention à n = 0 : la carte vaut 0.",
+    "Partie 2 : garde un tableau `exemplaires` rempli de 1. Parcours les cartes dans l'ordre : la carte i (qui a `exemplaires[i]` exemplaires) ajoute `exemplaires[i]` aux n cartes suivantes. La réponse est la somme du tableau."
+  ]
+}

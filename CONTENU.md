@@ -134,12 +134,24 @@ mod tests {
 
 Mettre un message en français dans chaque `assert` : c'est ce que l'élève verra quand le test échoue.
 
+Quand un test rate, la page affiche une carte « Appel (valeur lue) / Sortie obtenue / Attendu » avant la sortie complète de cargo. Pour que ce soit juste : écrire la valeur calculée **en premier** (`assert_eq!(tarif(8), 5, …)`) ; une valeur littérale seule à gauche est remise à droite automatiquement.
+
+#### Énigmes Advent of Code (`contenu/rust/15-advent-of-code/`)
+
+Modèle : `exercices/01-sonar/`. Chaque exercice reprend une vraie énigme, partie 1 et partie 2 dans le même exercice :
+
+- **Réécrite, jamais recopiée** : histoire et données d'exemple à nous (l'auteur d'AoC interdit de redistribuer ses textes et ses entrées), mais règles exactement identiques pour que la vraie entrée donne la bonne réponse.
+- `enonce.md` : encart `> [!info] Advent of Code AAAA, jour N` avec le lien, `## Partie 1`, `## Partie 2` (exemple expliqué et réponses), éventuellement `## L'idée` (algorithme), puis l'encart `> [!tip] Ta vraie énigme`.
+- `depart.rs` / `solution.rs` : constante `EXEMPLE`, fonctions `partie1(entree: &str)` et `partie2(entree: &str)`, et le même `main` qui lit l'entrée standard (l'élève colle son entrée dans « Entrée du programme ») ou utilise `EXEMPLE` si elle est vide.
+- La solution doit répondre en moins de 2 secondes **en debug** sur une entrée de taille réelle.
+
 ### Python
 
 - Lancé avec Python 3 (3.8 minimum), en UTF-8. Écrire du code compatible 3.8 (pas de `match`, pas de `list[int]` dans les annotations).
 - Le code qui affiche ou lit quelque chose se met sous `if __name__ == "__main__":` : pour les tests, le code de l'élève est **importé** (`from exercice import *`), et ce bloc n'est alors pas exécuté.
 - Une erreur de syntaxe est signalée avant de lancer le programme.
 - `tests.py` : des fonctions `test_…` sans argument, avec un message en français dans chaque `assert`. Elles sont lancées une par une ; une exception est comptée comme un échec. Les noms qui commencent par `_` ne sont pas importés depuis le code de l'élève.
+- Pour la carte « Appel (valeur lue) / Sortie obtenue / Attendu », le lanceur relit chaque `assert a == b` et garde les deux valeurs : écrire la valeur calculée en premier (`assert tarif(8) == 5`). Les autres `assert` (`<`, `in`, …) affichent leur condition.
 
 ```python
 def test_enfant():
@@ -155,7 +167,8 @@ def test_adulte():
 - Compilé par `gcc -std=c17 -Wall -Wextra -O0 … -lm` : la solution ne doit produire **aucun avertissement**.
 - `depart.c` et `solution.c` contiennent **toujours** `int main(void)` (le bouton « Exécuter » le lance) et leurs propres `#include`.
 - Pour les tests, le `main` de l'élève est renommé, puis `tests.c` est ajouté à la fin du même fichier : il a donc accès à toutes les fonctions et structures de l'élève. Il contient son propre `int main(void)` qui utilise deux macros fournies :
-  - `VERIFIER(condition, "message")` : compte une vérification réussie ou ratée (le message est affiché dans les deux cas).
+  - `VERIFIER_EGAL(obtenu, attendu, "message")` : comme `VERIFIER`, mais pour comparer deux valeurs (entiers, réels, caractères, textes comparés comme avec `strcmp`, pointeurs). Quand elle rate, la page affiche l'appel, la valeur obtenue et la valeur attendue. À préférer dès qu'on écrit `a == b` : mettre la valeur calculée en premier.
+  - `VERIFIER(condition, "message")` : compte une vérification réussie ou ratée (le message est affiché dans les deux cas). Quand elle rate, la page affiche la condition telle qu'elle est écrite. Pour les conditions composées (`&&`) ou les comparaisons de tableaux (`aide_egale`).
   - `VERIFIER_SANS_FUITE()` : vérifie que chaque `malloc` / `calloc` a eu son `free` depuis le début du programme (les appels sont comptés, dans le code de l'élève comme dans les tests). À placer après avoir libéré toutes les listes.
   - `return BILAN();` à la fin du `main`.
 - `-Wno-unused-parameter` : un paramètre pas encore utilisé dans le code de départ ne produit pas d'avertissement.
@@ -164,9 +177,9 @@ def test_adulte():
 ```c
 int main(void) {
     Cell *liste = NULL;
-    VERIFIER(somme(liste) == 0, "la somme d'une liste vide vaut 0");
+    VERIFIER_EGAL(somme(liste), 0, "la somme d'une liste vide vaut 0");
     ajouter_debut(&liste, 4);
-    VERIFIER(somme(liste) == 4, "après avoir ajouté 4, la somme vaut 4");
+    VERIFIER_EGAL(somme(liste), 4, "après avoir ajouté 4, la somme vaut 4");
     liberer(liste);
     return BILAN();
 }
@@ -182,6 +195,7 @@ Le texte exact attendu. Les espaces en fin de ligne et les lignes vides au débu
 npm run sommaire                          # met à jour la liste des exercices (les trois langages)
 npm run verifier-contenu -- python        # tout le contenu Python
 npm run verifier-contenu -- c/01          # seulement les chapitres C qui commencent par 01
+npm run verifier-contenu -- rust/15/03    # seulement l'exercice 03 du chapitre Rust 15
 ```
 
 Pour chaque exercice, le script vérifie que les fichiers sont bien formés, que la solution réussit (sans avertissement) et que le code de départ **ne** réussit **pas**.

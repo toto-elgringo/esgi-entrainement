@@ -23,14 +23,14 @@ static void aide_liberer(Cell *start) {
 }
 
 int main(void) {
-    VERIFIER(obtenirElement(NULL, 0) == NULL, "dans une liste vide, la position 0 n'existe pas (NULL)");
+    VERIFIER_EGAL(obtenirElement(NULL, 0), NULL, "dans une liste vide, la position 0 n'existe pas (NULL)");
 
     Cell *l = aide_liste((int[]){10, 20, 30}, 3);
-    VERIFIER(obtenirElement(l, 0) == l, "la position 0 est le premier maillon");
-    VERIFIER(obtenirElement(l, 1) == l->next, "la position 1 est le deuxième maillon (valeur 20)");
-    VERIFIER(obtenirElement(l, 2) == l->next->next, "la position 2 est le troisième maillon (valeur 30)");
-    VERIFIER(obtenirElement(l, 3) == NULL, "la position 3 n'existe pas dans une liste de 3 maillons");
-    VERIFIER(obtenirElement(l, 50) == NULL, "la position 50 n'existe pas non plus (et ne fait pas planter)");
+    VERIFIER_EGAL(obtenirElement(l, 0), l, "la position 0 est le premier maillon");
+    VERIFIER_EGAL(obtenirElement(l, 1), l->next, "la position 1 est le deuxième maillon (valeur 20)");
+    VERIFIER_EGAL(obtenirElement(l, 2), l->next->next, "la position 2 est le troisième maillon (valeur 30)");
+    VERIFIER_EGAL(obtenirElement(l, 3), NULL, "la position 3 n'existe pas dans une liste de 3 maillons");
+    VERIFIER_EGAL(obtenirElement(l, 50), NULL, "la position 50 n'existe pas non plus (et ne fait pas planter)");
     aide_liberer(l);
     return BILAN();
 }

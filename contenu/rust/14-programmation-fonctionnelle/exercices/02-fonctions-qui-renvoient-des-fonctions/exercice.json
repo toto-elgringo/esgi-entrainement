@@ -1,0 +1,11 @@
+{
+  "titre": "Des fonctions qui fabriquent des fonctions",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une fonction qui renvoie une closure contient simplement la closure : `move |x| x + n` pour `additionneur`.",
+    "Sans `move`, la closure emprunterait `n`, qui disparaît à la fin de la fonction : le compilateur refuse (erreur E0373). `move` donne à la closure sa propre copie.",
+    "`composer` : `move |x| g(f(x))`. Les fonctions `f` et `g` sont déplacées dans la closure.",
+    "`operation` : un `match` sur le symbole, chaque branche renvoie `Box::new(|a, b| ...)`. `enchainer` : `move |x| etapes.iter().fold(x, |acc, etape| etape(acc))`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "AoC 2021 jour 1 : le sonar",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Commence par transformer le texte en `Vec<u32>` : `entree.lines()`, puis `parse` sur chaque ligne (pense à `trim`).",
+    "`windows(2)` donne toutes les paires de mesures qui se suivent : `[a, b]`. Compte celles où `b > a`.",
+    "Partie 2 : comparer la fenêtre `a + b + c` à la fenêtre `b + c + d` revient à comparer `d` à `a`. Donc `windows(4)` et `w[3] > w[0]`."
+  ]
+}

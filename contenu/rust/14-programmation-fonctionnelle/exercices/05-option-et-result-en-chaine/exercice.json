@@ -1,0 +1,11 @@
+{
+  "titre": "Option et Result en chaîne",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`ligne.split_once(':')` renvoie `Some((avant, après))`, ou `None` s'il n'y a pas de `:`. Pense aussi à `trim()` pour enlever les espaces.",
+    "`extraire_age` : `ligne.split_once(':').and_then(|(_, age)| age.trim().parse().ok())`. `and_then`, car la closure renvoie elle-même une `Option`.",
+    "`lire_personne` : `.ok_or(ErreurLecture::SeparateurManquant)?` change le `None` en erreur et sort tout de suite. Pour le nom : `Some(nom.trim()).filter(|nom| !nom.is_empty()).ok_or(...)?`. Pour l'âge : `.parse().map_err(|_| ErreurLecture::AgeInvalide)?`.",
+    "`lire_toutes` : `lignes.iter().map(|ligne| lire_personne(ligne)).collect()`, le type de retour suffit. `noms_des_majeurs` : `filter_map(|ligne| lire_personne(ligne).ok())`, puis `filter` sur l'âge et `map` vers le nom."
+  ]
+}

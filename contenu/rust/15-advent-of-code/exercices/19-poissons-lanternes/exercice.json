@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2021 jour 6 : les poissons-lanternes",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Ne garde pas un nombre par poisson : deux poissons qui ont le même minuteur font exactement la même chose. Compte seulement combien il y en a pour chaque minuteur.",
+    "Lecture : `entree.trim().split(',')`, puis `parse::<usize>()` sur chaque morceau. Range chaque minuteur dans un tableau `[u64; 9]` : `compteurs[minuteur] += 1`.",
+    "Un jour : ceux de la case 0 vont en case 8 (les bébés), toutes les autres cases descendent d'une place. `compteurs.rotate_left(1)` fait exactement ça.",
+    "Après le `rotate_left(1)`, les parents doivent aussi revenir à 6 : `compteurs[6] += compteurs[8]`. La réponse est la somme des 9 cases : `compteurs.iter().sum()`."
+  ]
+}

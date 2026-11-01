@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2024 jour 1 : les deux listes",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Commence par lire les deux colonnes dans deux `Vec<u64>`. `split_whitespace()` découpe une ligne en ignorant tous les espaces, même quand il y en a plusieurs.",
+    "`unzip()` transforme une liste de paires `(gauche, droite)` en deux listes d'un coup.",
+    "Partie 1 : trie les deux listes (`sort()`), puis `gauche.iter().zip(&droite)` parcourt les paires. `a.abs_diff(*b)` donne l'écart sans risque de nombre négatif.",
+    "Partie 2 : compte d'abord les nombres de droite dans une `HashMap<u64, u64>` (`*compte.entry(n).or_default() += 1`), puis cherche chaque nombre de gauche dedans (0 s'il n'y est pas)."
+  ]
+}

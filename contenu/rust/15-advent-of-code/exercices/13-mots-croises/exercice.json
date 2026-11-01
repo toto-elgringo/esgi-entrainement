@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2024 jour 4 : les mots croisés",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Garde la grille sous forme de `Vec<&[u8]>` (une ligne = `ligne.trim().as_bytes()`) : `grille[l][c]` donne alors la lettre en octet (`b'X'`).",
+    "Écris une fonction `lettre(grille, l, c) -> Option<u8>` qui renvoie `None` hors de la grille. Avec des coordonnées `isize`, `usize::try_from(l).ok()?` élimine les négatifs et `grille.get(l)?.get(c)` les trop grands : plus aucune panique au bord.",
+    "Partie 1 : pour chaque case et chacune des 8 directions `(dl, dc)`, vérifie que les cases `(l + k × dl, c + k × dc)` pour k = 0 à 3 contiennent X, M, A, S.",
+    "Partie 2 : pour chaque `A`, regarde les deux coins d'une diagonale (haut-gauche et bas-droite), puis ceux de l'autre (haut-droite et bas-gauche). Chaque paire doit être `M` et `S`, dans un sens ou dans l'autre : `matches!((a, b), (Some(b'M'), Some(b'S')) | (Some(b'S'), Some(b'M')))`."
+  ]
+}

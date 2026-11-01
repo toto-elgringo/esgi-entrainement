@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2024 jour 5 : l'ordre d'impression",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Range les règles dans un `HashSet<(u32, u32)>` : `regles.contains(&(x, y))` dit alors tout de suite si « x doit être avant y ».",
+    "Une mise à jour est bien rangée si, pour toute page et toute page placée **plus loin** dans la liste, il n'existe pas de règle `(plus_loin, page)`. Deux boucles (ou `enumerate` + `pages[i + 1..]`) suffisent.",
+    "Partie 2 : trie les pages avec `sort_by` et une fonction qui renvoie un `Ordering` : `Less` si la règle `(a, b)` existe, `Greater` si c'est `(b, a)`, `Equal` sinon.",
+    "La page du milieu d'une liste de longueur impaire est `pages[pages.len() / 2]`."
+  ]
+}

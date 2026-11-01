@@ -1,0 +1,99 @@
+[
+  {
+    "question": "Laquelle de ces fonctions est **pure** ?",
+    "choix": [
+      "`fn aire(l: u32, h: u32) -> u32 { println!(\"calcul\"); l * h }`",
+      "`fn aire(l: u32, h: u32) -> u32 { l * h }`",
+      "Une fonction qui renvoie l'heure actuelle",
+      "Une fonction qui ajoute un élément à une liste reçue en `&mut`"
+    ],
+    "reponse": 1,
+    "explication": "Une fonction pure renvoie toujours le même résultat pour les mêmes paramètres et ne fait rien d'autre. Afficher, lire l'heure ou modifier une liste reçue en `&mut` sont des effets de bord."
+  },
+  {
+    "question": "Que vaut `[1, 2, 3].iter().fold(10, |acc, x| acc - x)` ?",
+    "choix": ["`-4`", "`6`", "`4`", "`10`"],
+    "reponse": 2,
+    "explication": "On part de 10, puis on retire chaque élément : 10 - 1 = 9, 9 - 2 = 7, 7 - 3 = 4."
+  },
+  {
+    "question": "Quelle est la différence entre `fold` et `reduce` ?",
+    "choix": [
+      "Aucune, ce sont deux noms pour la même méthode",
+      "`reduce` est plus rapide",
+      "`reduce` ne marche qu'avec des nombres",
+      "`reduce` n'a pas de valeur de départ : il part du premier élément et renvoie une `Option`"
+    ],
+    "reponse": 3,
+    "explication": "`reduce` utilise le premier élément comme accumulateur de départ. Sur une liste vide, il n'y a pas de premier élément : il renvoie alors `None`."
+  },
+  {
+    "question": "Que donne `[1, 2, 3].iter().scan(0, |s, x| { *s += x; Some(*s) }).collect::<Vec<i32>>()` ?",
+    "choix": ["`[1, 3, 6]`", "`[6]`", "`[0, 1, 3]`", "`6`"],
+    "reponse": 0,
+    "explication": "`scan` produit l'état après chaque élément : 1, puis 1 + 2 = 3, puis 3 + 3 = 6. Un `fold` n'aurait donné que le résultat final, 6."
+  },
+  {
+    "question": "Que vaut `[2, 4, 5, 6].iter().take_while(|x| **x % 2 == 0).count()` ?",
+    "choix": ["`3`", "`2`", "`4`", "`1`"],
+    "reponse": 1,
+    "explication": "`take_while` s'arrête pour de bon au premier élément qui ne passe pas (5) : le 6 n'est jamais regardé. Avec `filter`, le résultat aurait été 3."
+  },
+  {
+    "question": "Que donne `[\"4\", \"x\", \"7\"].iter().filter_map(|s| s.parse::<i32>().ok()).collect::<Vec<_>>()` ?",
+    "choix": ["`[Some(4), None, Some(7)]`", "Une panique à cause de `\"x\"`", "`[4, 7]`", "`Err(...)`"],
+    "reponse": 2,
+    "explication": "`parse` échoue sur `\"x\"`, donc `ok()` donne `None` et `filter_map` le jette. Il ne reste que ce qui était dans les `Some` : 4 et 7."
+  },
+  {
+    "question": "Pourquoi utiliser `Box<dyn Fn(i32) -> i32>` plutôt que `impl Fn(i32) -> i32` ?",
+    "choix": [
+      "Parce que `impl Fn` ne peut pas capturer de variable",
+      "Pour renvoyer ou ranger ensemble des closures **différentes** : chaque closure a son propre type",
+      "Pour que la closure soit plus rapide",
+      "Parce que `impl Fn` est interdit comme type de retour"
+    ],
+    "reponse": 1,
+    "explication": "`impl Fn` désigne un seul type précis. Deux closures n'ont jamais le même type : impossible d'en renvoyer une dans le `if` et une autre dans le `else`, ou de les mettre dans le même `Vec`. `Box<dyn Fn>` leur donne un type commun."
+  },
+  {
+    "question": "Combien de morceaux donne `[1, 2, 3, 4].windows(2)` ?",
+    "choix": ["`2` : `[1, 2]` et `[3, 4]`", "`4`", "`1`", "`3` : `[1, 2]`, `[2, 3]` et `[3, 4]`"],
+    "reponse": 3,
+    "explication": "`windows` fait glisser une fenêtre d'une case à la fois. C'est `chunks(2)` qui découpe en paquets séparés `[1, 2]` et `[3, 4]`."
+  },
+  {
+    "question": "Que vaut `[\"1\", \"x\", \"3\"].iter().map(|s| s.parse::<i32>()).collect::<Result<Vec<i32>, _>>()` ?",
+    "choix": ["Un `Err` : l'erreur de lecture de `\"x\"`", "`Ok([1, 3])`", "`Ok([1, 0, 3])`", "`[Ok(1), Err(...), Ok(3)]`"],
+    "reponse": 0,
+    "explication": "Collecter vers un `Result<Vec<_>, _>` donne `Ok(liste)` seulement si **tous** les éléments sont `Ok`. Sinon, on obtient la première erreur rencontrée, et la suite n'est même pas lue."
+  },
+  {
+    "question": "Que vaut `Some(4).map(|x| x * 2).filter(|x| *x > 10)` ?",
+    "choix": ["`Some(8)`", "`Some(4)`", "`false`", "`None`"],
+    "reponse": 3,
+    "explication": "`map` donne `Some(8)`, puis `filter` ne garde la valeur que si elle dépasse 10. Ce n'est pas le cas : on obtient `None`."
+  },
+  {
+    "question": "Que se passe-t-il à la ligne `let carres = (1..).map(|n| n * n);` ?",
+    "choix": [
+      "Le programme calcule des carrés à l'infini",
+      "Rien n'est calculé : l'itérateur attend qu'on lui demande des éléments",
+      "Il calcule tous les carrés jusqu'à la limite des entiers",
+      "Erreur de compilation : `(1..)` n'a pas de fin"
+    ],
+    "reponse": 1,
+    "explication": "Les itérateurs sont paresseux. On peut ensuite écrire `carres.take(5)` pour n'en calculer que 5. Seul un consommateur sans fin, comme `sum()`, tournerait à l'infini."
+  },
+  {
+    "question": "Quelles listes acceptent le motif `[premier, reste @ ..]` ?",
+    "choix": [
+      "Toutes les listes, même vides",
+      "Seulement les listes de 2 éléments",
+      "Toutes les listes d'au moins 1 élément",
+      "Seulement la liste vide"
+    ],
+    "reponse": 2,
+    "explication": "`premier` prend le premier élément (il en faut donc au moins un), et `reste @ ..` nomme la tranche qui suit, qui peut être vide. Pour `[7]`, `premier` vaut 7 et `reste` vaut `[]`."
+  }
+]

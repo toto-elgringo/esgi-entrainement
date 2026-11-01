@@ -1,0 +1,11 @@
+{
+  "titre": "Récursion et motifs de tranche",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence toujours par le cas de base (`[]` pour une liste vide), puis écris le cas `[premier, reste @ ..]`, qui appelle la fonction sur `reste`. `produit` : `[] => 1` et `[premier, reste @ ..] => premier * produit(reste)`.",
+    "`maximum` : `maximum(reste)` donne le plus grand du reste (ou `None` s'il est vide). Compare-le avec `premier` : `Some(maximum(reste).map_or(*premier, |m| m.max(*premier)))`.",
+    "`est_croissante` : `[a, b, ..] => a <= b && est_croissante(&liste[1..])`, et `_ => true` pour 0 ou 1 élément. `inverser` : avec `[debut @ .., dernier]`, le dernier passe devant : `[vec![*dernier], inverser(debut)].concat()`.",
+    "`puissance` : un `match` sur l'exposant. `0 => 1` ; si `e % 2 == 0`, calcule `moitie = puissance(base, e / 2)` et renvoie `moitie * moitie` ; sinon `base * puissance(base, e - 1)`."
+  ]
+}

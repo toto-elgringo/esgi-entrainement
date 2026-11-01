@@ -1,0 +1,11 @@
+{
+  "titre": "Tout avec fold",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Chaque fonction a la forme `....fold(depart, |acc, element| nouvel_acc)`. Demande-toi : quelle est la valeur de départ ? Que devient `acc` à chaque élément ?",
+    "`somme_des_carres` part de `0` et ajoute `x * x`. `compter_voyelles` part de `0` et ajoute 1 seulement si `\"aeiouy\".contains(c)`.",
+    "`inverser` : `texte.chars().fold(String::new(), |envers, c| format!(\"{c}{envers}\"))` place chaque lettre **devant** le texte déjà construit.",
+    "`maximum` part de `None` : `match acc { None => Some(x), Some(m) => Some(m.max(x)) }`. `moyenne` part de `(0.0, 0)` et renvoie `(somme + note, nombre + 1)` ; il reste à diviser, si `nombre` n'est pas 0."
+  ]
+}

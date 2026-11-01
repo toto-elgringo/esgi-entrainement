@@ -19,7 +19,7 @@ static void aide_liberer(Cell *start) {
 }
 
 int main(void) {
-    VERIFIER(depuisTableau(NULL, 0) == NULL, "un tableau de 0 valeur donne une liste vide (NULL)");
+    VERIFIER_EGAL(depuisTableau(NULL, 0), NULL, "un tableau de 0 valeur donne une liste vide (NULL)");
 
     int un[] = {5};
     Cell *a = depuisTableau(un, 1);

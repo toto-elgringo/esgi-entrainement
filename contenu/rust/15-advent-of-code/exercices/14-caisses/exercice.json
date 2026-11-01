@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 5 : les piles de caisses",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Sépare l'entrée en deux : les lignes du dessin (jusqu'à la première ligne vide), puis les mouvements. `lines().by_ref().take_while(...)` lit le début et laisse la suite dans l'itérateur.",
+    "Les piles sont des `Vec<char>` (le haut de la pile = la fin du `Vec`). La lettre de la pile i est au caractère 1 + 4 × i de la ligne : `ligne.chars().skip(1).step_by(4)`. Ne fais pas de `trim()` sur ces lignes, mais pense qu'elles peuvent être plus courtes. Lis le dessin de bas en haut (`rev()`), sans la ligne des numéros.",
+    "Pour un mouvement, le motif de tranche `[\"move\", n, \"from\", a, \"to\", b]` sur les mots de la ligne récupère les trois nombres d'un coup. Attention : les piles sont numérotées à partir de 1.",
+    "`split_off(len - n)` détache les n caisses du haut d'un coup. Partie 1 : retourne ce bloc (`reverse()`) avant de l'ajouter (`extend`) à l'autre pile, car les caisses passent une par une. Partie 2 : ajoute-le tel quel. La réponse : `piles.iter().filter_map(|p| p.last()).collect::<String>()`."
+  ]
+}

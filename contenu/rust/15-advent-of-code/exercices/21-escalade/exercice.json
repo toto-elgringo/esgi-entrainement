@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 12 : l'escalade",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Lis la carte dans un `Vec<Vec<u8>>` (avec `texte.bytes()`) en notant la position de `S` et de `E`, puis remplace-les par `b'a'` et `b'z'`.",
+    "Parcours en largeur : une `VecDeque` contient des cases à visiter avec leur distance, `(ligne, colonne, distance)`. Tu retires au début (`pop_front`) et tu ajoutes à la fin (`push_back`). Un tableau `distances` (`Vec<Vec<Option<usize>>>`) note les cases déjà atteintes pour ne jamais les ajouter deux fois.",
+    "Les voisins d'une case : haut, bas, gauche, droite, sans sortir de la grille (attention à `ligne - 1` quand `ligne == 0` : vérifie `ligne > 0` avant). Un pas de la case `h` vers la case `v` est permis si `v <= h + 1`.",
+    "Astuce pour les deux parties : fais le parcours à l'envers, depuis `E`. On peut alors aller de la case `h` vers la case `v` si `h <= v + 1`. Tu obtiens d'un coup la distance de chaque case jusqu'à `E` : la partie 1 lit celle de `S`, la partie 2 prend la plus petite parmi les cases de hauteur `a`."
+  ]
+}

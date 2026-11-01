@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2021 jour 10 : les erreurs de syntaxe",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "C'est le travail typique d'une **pile** (un `Vec` où on ajoute et retire toujours à la fin) : la dernière parenthèse ouverte doit être la première fermée.",
+    "Parcours la ligne caractère par caractère. Pour un ouvrant, empile le fermant attendu (`(` → `)`). Pour un fermant, dépile avec `pop()` : si ce n'est pas lui, la ligne est corrompue.",
+    "Écris une fonction qui renvoie soit le premier fermant incorrect, soit la pile restante (un `enum` à deux variantes est parfait). Une ligne non corrompue dont la pile n'est pas vide est incomplète.",
+    "Partie 2 : la suite qui manque, c'est la pile lue à l'envers (`iter().rev()`). Le score se calcule avec `fold(0, |score, c| score * 5 + valeur(c))` en `u64` (les nombres deviennent vite grands). Trie les scores et prends `scores[scores.len() / 2]`."
+  ]
+}

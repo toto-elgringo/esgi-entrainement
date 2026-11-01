@@ -1,0 +1,11 @@
+{
+  "titre": "Un pipeline de données",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`totaliser_par` : un `fold` qui part de `BTreeMap::new()`. À chaque achat : `*totaux.entry(cle(achat)).or_insert(0) += achat.montant;`, puis on rend `totaux`. Écris `|mut totaux, achat|` pour avoir le droit de modifier l'accumulateur.",
+    "`total_par_client` et `total_par_categorie` tiennent en une ligne : `totaliser_par(achats, |achat| achat.client.clone())`.",
+    "`meilleurs_clients` : `total_par_client(achats).into_iter().collect::<Vec<_>>()`, trie par total décroissant avec `sort_by_key(|&(_, total)| std::cmp::Reverse(total))`, puis `into_iter().take(n).collect()`. Le tri est stable : les noms, déjà rangés dans l'ordre alphabétique, le restent en cas d'égalité.",
+    "`categorie_phare` : `min_by_key` renvoie le **premier** en cas d'égalité ; avec `Reverse(total)`, le plus petit `Reverse` est le plus grand total. `avec_remise` : un `map` qui renvoie `Achat { montant: ..., ..achat.clone() }` pour la bonne catégorie, et `achat.clone()` sinon."
+  ]
+}

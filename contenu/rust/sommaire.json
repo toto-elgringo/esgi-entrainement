@@ -2874,6 +2874,721 @@
           "explication": "`totaux.sort_unstable_by(|a, b| b.cmp(a));` puis `totaux.iter().take(3).sum()`."
         }
       ]
+    },
+    {
+      "id": "14-programmation-fonctionnelle",
+      "titre": "Programmation fonctionnelle",
+      "description": "Fonctions pures, fonctions en paramètre ou en résultat, fold, scan, Option et Result en chaîne, récursion et itérateurs maison : coder sans boucles ni variables modifiables.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-fonctions-en-parametre",
+          "titre": "Des fonctions en paramètre",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Le paramètre `f` s'appelle comme une fonction normale : `f(x)`. Pour l'appliquer deux fois, on appelle `f` sur le résultat de `f`.",
+            "`appliquer_a_tous` : `nombres.iter().map(...)` puis `collect()`. Les éléments sont des `&i32` : écris `|&n| f(n)`.",
+            "`compter_si` : `filter` puis `count`. `filter` donne des `&&i32` : `|&&n| condition(n)`.",
+            "`appliquer_n_fois` : `(0..n).fold(x, |acc, _| f(acc))` part de `x` et applique `f` une fois par tour. Le `_` ignore le numéro du tour."
+          ]
+        },
+        {
+          "id": "02-fonctions-qui-renvoient-des-fonctions",
+          "titre": "Des fonctions qui fabriquent des fonctions",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Une fonction qui renvoie une closure contient simplement la closure : `move |x| x + n` pour `additionneur`.",
+            "Sans `move`, la closure emprunterait `n`, qui disparaît à la fin de la fonction : le compilateur refuse (erreur E0373). `move` donne à la closure sa propre copie.",
+            "`composer` : `move |x| g(f(x))`. Les fonctions `f` et `g` sont déplacées dans la closure.",
+            "`operation` : un `match` sur le symbole, chaque branche renvoie `Box::new(|a, b| ...)`. `enchainer` : `move |x| etapes.iter().fold(x, |acc, etape| etape(acc))`."
+          ]
+        },
+        {
+          "id": "03-tout-avec-fold",
+          "titre": "Tout avec fold",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Chaque fonction a la forme `....fold(depart, |acc, element| nouvel_acc)`. Demande-toi : quelle est la valeur de départ ? Que devient `acc` à chaque élément ?",
+            "`somme_des_carres` part de `0` et ajoute `x * x`. `compter_voyelles` part de `0` et ajoute 1 seulement si `\"aeiouy\".contains(c)`.",
+            "`inverser` : `texte.chars().fold(String::new(), |envers, c| format!(\"{c}{envers}\"))` place chaque lettre **devant** le texte déjà construit.",
+            "`maximum` part de `None` : `match acc { None => Some(x), Some(m) => Some(m.max(x)) }`. `moyenne` part de `(0.0, 0)` et renvoie `(somme + note, nombre + 1)` ; il reste à diviser, si `nombre` n'est pas 0."
+          ]
+        },
+        {
+          "id": "04-de-l-imperatif-au-fonctionnel",
+          "titre": "De l'impératif au fonctionnel",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Pour chaque boucle, demande-toi ce qu'elle produit (une liste ? un indice ? un nombre ?) : c'est le consommateur à la fin de la chaîne (`collect`, `position`, `max`, `fold`...).",
+            "`mots_longs_en_majuscules` : `split_whitespace()`, puis `filter`, puis `map(str::to_uppercase)`, puis `collect()`. `indice_du_premier_negatif` : une boucle qui s'arrête au premier trouvé, c'est `position`.",
+            "`plus_forte_hausse` : la variable « précédente » se remplace par `windows(2)`, qui donne des paires `[avant, après]`. `fold(0, i32::max)` garde le plus grand en partant de 0.",
+            "`paires_de_somme` : deux boucles imbriquées, c'est `flat_map`. `nombres.iter().enumerate().flat_map(|(i, &a)| nombres[i + 1..].iter().map(move |&b| (a, b)))`, puis un `filter` sur la somme."
+          ]
+        },
+        {
+          "id": "05-option-et-result-en-chaine",
+          "titre": "Option et Result en chaîne",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`ligne.split_once(':')` renvoie `Some((avant, après))`, ou `None` s'il n'y a pas de `:`. Pense aussi à `trim()` pour enlever les espaces.",
+            "`extraire_age` : `ligne.split_once(':').and_then(|(_, age)| age.trim().parse().ok())`. `and_then`, car la closure renvoie elle-même une `Option`.",
+            "`lire_personne` : `.ok_or(ErreurLecture::SeparateurManquant)?` change le `None` en erreur et sort tout de suite. Pour le nom : `Some(nom.trim()).filter(|nom| !nom.is_empty()).ok_or(...)?`. Pour l'âge : `.parse().map_err(|_| ErreurLecture::AgeInvalide)?`.",
+            "`lire_toutes` : `lignes.iter().map(|ligne| lire_personne(ligne)).collect()`, le type de retour suffit. `noms_des_majeurs` : `filter_map(|ligne| lire_personne(ligne).ok())`, puis `filter` sur l'âge et `map` vers le nom."
+          ]
+        },
+        {
+          "id": "06-filter-map-et-flat-map",
+          "titre": "filter_map et flat_map",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`filter_map` : la closure renvoie une `Option`, seuls les `Some` sont gardés. `flat_map` : la closure renvoie un itérateur, et tous les éléments sont mis bout à bout.",
+            "`extraire_nombres` : `split_whitespace()` puis `filter_map(|mot| mot.parse().ok())`. `domaines` : `split_once('@')` renvoie déjà une `Option` ; enchaîne `.map(|(_, domaine)| domaine)` et `.filter(|domaine| !domaine.is_empty())`.",
+            "`tous_les_mots` : `phrases.iter().flat_map(|phrase| phrase.split_whitespace())`, puis `map(str::to_lowercase)`.",
+            "`cases` : un `flat_map` sur `colonnes.chars()`, et dedans un `map` sur `1..=lignes` : `(1..=lignes).map(move |ligne| format!(\"{colonne}{ligne}\"))`. Le `move` donne une copie de `colonne` à la closure intérieure."
+          ]
+        },
+        {
+          "id": "07-scan-take-while-successors",
+          "titre": "scan, take_while et successors",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`soldes` : `mouvements.iter().scan(depart, |solde, &m| { *solde += m; Some(*solde) })`. L'état `solde` est un `&mut i32` : on le modifie avec `*solde`.",
+            "`soldes_avant_decouvert` : réutilise `soldes(...)`, puis `into_iter().take_while(|&s| s >= 0)`. `sans_zeros_au_debut` : `skip_while(|&c| c == 0)` saute les zéros du début, puis garde **tout** le reste.",
+            "`collatz` : `successors(Some(n), |&x| ...)`. La closure renvoie `None` quand `x` vaut 1 (fin de la suite), sinon `Some(x / 2)` ou `Some(3 * x + 1)`.",
+            "`puissances_jusqu_a` : `successors(Some(1_u64), |&x| x.checked_mul(base))`, puis `take_while(|&x| x <= limite)`. `checked_mul` renvoie `None` au lieu de déborder : la suite s'arrête toute seule avant de planter."
+          ]
+        },
+        {
+          "id": "08-recursion-et-motifs",
+          "titre": "Récursion et motifs de tranche",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence toujours par le cas de base (`[]` pour une liste vide), puis écris le cas `[premier, reste @ ..]`, qui appelle la fonction sur `reste`. `produit` : `[] => 1` et `[premier, reste @ ..] => premier * produit(reste)`.",
+            "`maximum` : `maximum(reste)` donne le plus grand du reste (ou `None` s'il est vide). Compare-le avec `premier` : `Some(maximum(reste).map_or(*premier, |m| m.max(*premier)))`.",
+            "`est_croissante` : `[a, b, ..] => a <= b && est_croissante(&liste[1..])`, et `_ => true` pour 0 ou 1 élément. `inverser` : avec `[debut @ .., dernier]`, le dernier passe devant : `[vec![*dernier], inverser(debut)].concat()`.",
+            "`puissance` : un `match` sur l'exposant. `0 => 1` ; si `e % 2 == 0`, calcule `moitie = puissance(base, e / 2)` et renvoie `moitie * moitie` ; sinon `base * puissance(base, e - 1)`."
+          ]
+        },
+        {
+          "id": "09-mon-propre-iterateur",
+          "titre": "Mon propre itérateur",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Dans `next` : garde la valeur à renvoyer (`self.actuel`), fais avancer l'état (`actuel` prend la valeur de `suivant`, `suivant` devient la somme des deux), puis renvoie `Some(valeur)`. On peut tout avancer d'un coup : `(self.actuel, self.suivant) = (self.suivant, self.actuel + self.suivant);`.",
+            "Une fois `Iterator` implémenté, `Fibonacci::new()` a toutes les méthodes des itérateurs : `Fibonacci::new().take(n).collect()`.",
+            "`fibonacci_pairs` : `filter` **avant** `take` (on veut les n premiers pairs). `fibonacci_sous` : `take_while(|&f| f < limite)`. Sur une suite infinie, un `filter` sans `take` ne s'arrêterait jamais.",
+            "`chiffres` : `successors(Some(n), |&x| (x >= 10).then_some(x / 10))` donne n, n / 10, n / 100... jusqu'à un nombre d'un seul chiffre. Il reste à garder le dernier chiffre de chacun : `.map(|x| x % 10)`."
+          ]
+        },
+        {
+          "id": "10-pipeline-de-donnees",
+          "titre": "Un pipeline de données",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`totaliser_par` : un `fold` qui part de `BTreeMap::new()`. À chaque achat : `*totaux.entry(cle(achat)).or_insert(0) += achat.montant;`, puis on rend `totaux`. Écris `|mut totaux, achat|` pour avoir le droit de modifier l'accumulateur.",
+            "`total_par_client` et `total_par_categorie` tiennent en une ligne : `totaliser_par(achats, |achat| achat.client.clone())`.",
+            "`meilleurs_clients` : `total_par_client(achats).into_iter().collect::<Vec<_>>()`, trie par total décroissant avec `sort_by_key(|&(_, total)| std::cmp::Reverse(total))`, puis `into_iter().take(n).collect()`. Le tri est stable : les noms, déjà rangés dans l'ordre alphabétique, le restent en cas d'égalité.",
+            "`categorie_phare` : `min_by_key` renvoie le **premier** en cas d'égalité ; avec `Reverse(total)`, le plus petit `Reverse` est le plus grand total. `avec_remise` : un `map` qui renvoie `Achat { montant: ..., ..achat.clone() }` pour la bonne catégorie, et `achat.clone()` sinon."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Laquelle de ces fonctions est **pure** ?",
+          "choix": [
+            "`fn aire(l: u32, h: u32) -> u32 { println!(\"calcul\"); l * h }`",
+            "`fn aire(l: u32, h: u32) -> u32 { l * h }`",
+            "Une fonction qui renvoie l'heure actuelle",
+            "Une fonction qui ajoute un élément à une liste reçue en `&mut`"
+          ],
+          "reponse": 1,
+          "explication": "Une fonction pure renvoie toujours le même résultat pour les mêmes paramètres et ne fait rien d'autre. Afficher, lire l'heure ou modifier une liste reçue en `&mut` sont des effets de bord."
+        },
+        {
+          "question": "Que vaut `[1, 2, 3].iter().fold(10, |acc, x| acc - x)` ?",
+          "choix": [
+            "`-4`",
+            "`6`",
+            "`4`",
+            "`10`"
+          ],
+          "reponse": 2,
+          "explication": "On part de 10, puis on retire chaque élément : 10 - 1 = 9, 9 - 2 = 7, 7 - 3 = 4."
+        },
+        {
+          "question": "Quelle est la différence entre `fold` et `reduce` ?",
+          "choix": [
+            "Aucune, ce sont deux noms pour la même méthode",
+            "`reduce` est plus rapide",
+            "`reduce` ne marche qu'avec des nombres",
+            "`reduce` n'a pas de valeur de départ : il part du premier élément et renvoie une `Option`"
+          ],
+          "reponse": 3,
+          "explication": "`reduce` utilise le premier élément comme accumulateur de départ. Sur une liste vide, il n'y a pas de premier élément : il renvoie alors `None`."
+        },
+        {
+          "question": "Que donne `[1, 2, 3].iter().scan(0, |s, x| { *s += x; Some(*s) }).collect::<Vec<i32>>()` ?",
+          "choix": [
+            "`[1, 3, 6]`",
+            "`[6]`",
+            "`[0, 1, 3]`",
+            "`6`"
+          ],
+          "reponse": 0,
+          "explication": "`scan` produit l'état après chaque élément : 1, puis 1 + 2 = 3, puis 3 + 3 = 6. Un `fold` n'aurait donné que le résultat final, 6."
+        },
+        {
+          "question": "Que vaut `[2, 4, 5, 6].iter().take_while(|x| **x % 2 == 0).count()` ?",
+          "choix": [
+            "`3`",
+            "`2`",
+            "`4`",
+            "`1`"
+          ],
+          "reponse": 1,
+          "explication": "`take_while` s'arrête pour de bon au premier élément qui ne passe pas (5) : le 6 n'est jamais regardé. Avec `filter`, le résultat aurait été 3."
+        },
+        {
+          "question": "Que donne `[\"4\", \"x\", \"7\"].iter().filter_map(|s| s.parse::<i32>().ok()).collect::<Vec<_>>()` ?",
+          "choix": [
+            "`[Some(4), None, Some(7)]`",
+            "Une panique à cause de `\"x\"`",
+            "`[4, 7]`",
+            "`Err(...)`"
+          ],
+          "reponse": 2,
+          "explication": "`parse` échoue sur `\"x\"`, donc `ok()` donne `None` et `filter_map` le jette. Il ne reste que ce qui était dans les `Some` : 4 et 7."
+        },
+        {
+          "question": "Pourquoi utiliser `Box<dyn Fn(i32) -> i32>` plutôt que `impl Fn(i32) -> i32` ?",
+          "choix": [
+            "Parce que `impl Fn` ne peut pas capturer de variable",
+            "Pour renvoyer ou ranger ensemble des closures **différentes** : chaque closure a son propre type",
+            "Pour que la closure soit plus rapide",
+            "Parce que `impl Fn` est interdit comme type de retour"
+          ],
+          "reponse": 1,
+          "explication": "`impl Fn` désigne un seul type précis. Deux closures n'ont jamais le même type : impossible d'en renvoyer une dans le `if` et une autre dans le `else`, ou de les mettre dans le même `Vec`. `Box<dyn Fn>` leur donne un type commun."
+        },
+        {
+          "question": "Combien de morceaux donne `[1, 2, 3, 4].windows(2)` ?",
+          "choix": [
+            "`2` : `[1, 2]` et `[3, 4]`",
+            "`4`",
+            "`1`",
+            "`3` : `[1, 2]`, `[2, 3]` et `[3, 4]`"
+          ],
+          "reponse": 3,
+          "explication": "`windows` fait glisser une fenêtre d'une case à la fois. C'est `chunks(2)` qui découpe en paquets séparés `[1, 2]` et `[3, 4]`."
+        },
+        {
+          "question": "Que vaut `[\"1\", \"x\", \"3\"].iter().map(|s| s.parse::<i32>()).collect::<Result<Vec<i32>, _>>()` ?",
+          "choix": [
+            "Un `Err` : l'erreur de lecture de `\"x\"`",
+            "`Ok([1, 3])`",
+            "`Ok([1, 0, 3])`",
+            "`[Ok(1), Err(...), Ok(3)]`"
+          ],
+          "reponse": 0,
+          "explication": "Collecter vers un `Result<Vec<_>, _>` donne `Ok(liste)` seulement si **tous** les éléments sont `Ok`. Sinon, on obtient la première erreur rencontrée, et la suite n'est même pas lue."
+        },
+        {
+          "question": "Que vaut `Some(4).map(|x| x * 2).filter(|x| *x > 10)` ?",
+          "choix": [
+            "`Some(8)`",
+            "`Some(4)`",
+            "`false`",
+            "`None`"
+          ],
+          "reponse": 3,
+          "explication": "`map` donne `Some(8)`, puis `filter` ne garde la valeur que si elle dépasse 10. Ce n'est pas le cas : on obtient `None`."
+        },
+        {
+          "question": "Que se passe-t-il à la ligne `let carres = (1..).map(|n| n * n);` ?",
+          "choix": [
+            "Le programme calcule des carrés à l'infini",
+            "Rien n'est calculé : l'itérateur attend qu'on lui demande des éléments",
+            "Il calcule tous les carrés jusqu'à la limite des entiers",
+            "Erreur de compilation : `(1..)` n'a pas de fin"
+          ],
+          "reponse": 1,
+          "explication": "Les itérateurs sont paresseux. On peut ensuite écrire `carres.take(5)` pour n'en calculer que 5. Seul un consommateur sans fin, comme `sum()`, tournerait à l'infini."
+        },
+        {
+          "question": "Quelles listes acceptent le motif `[premier, reste @ ..]` ?",
+          "choix": [
+            "Toutes les listes, même vides",
+            "Seulement les listes de 2 éléments",
+            "Toutes les listes d'au moins 1 élément",
+            "Seulement la liste vide"
+          ],
+          "reponse": 2,
+          "explication": "`premier` prend le premier élément (il en faut donc au moins un), et `reste @ ..` nomme la tranche qui suit, qui peut être vide. Pour `[7]`, `premier` vaut 7 et `reste` vaut `[]`."
+        }
+      ]
+    },
+    {
+      "id": "15-advent-of-code",
+      "titre": "Algorithmique : Advent of Code",
+      "description": "De vraies énigmes de l'Advent of Code réécrites : lecture des données, grilles, simulations, piles, parcours en largeur, Dijkstra, mémoïsation et programmation dynamique. Colle ta vraie entrée pour obtenir tes réponses.",
+      "source": "fondamentaux",
+      "exercices": [
+        {
+          "id": "01-sonar",
+          "titre": "AoC 2021 jour 1 : le sonar",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Commence par transformer le texte en `Vec<u32>` : `entree.lines()`, puis `parse` sur chaque ligne (pense à `trim`).",
+            "`windows(2)` donne toutes les paires de mesures qui se suivent : `[a, b]`. Compte celles où `b > a`.",
+            "Partie 2 : comparer la fenêtre `a + b + c` à la fenêtre `b + c + d` revient à comparer `d` à `a`. Donc `windows(4)` et `w[3] > w[0]`."
+          ]
+        },
+        {
+          "id": "02-deux-listes",
+          "titre": "AoC 2024 jour 1 : les deux listes",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Commence par lire les deux colonnes dans deux `Vec<u64>`. `split_whitespace()` découpe une ligne en ignorant tous les espaces, même quand il y en a plusieurs.",
+            "`unzip()` transforme une liste de paires `(gauche, droite)` en deux listes d'un coup.",
+            "Partie 1 : trie les deux listes (`sort()`), puis `gauche.iter().zip(&droite)` parcourt les paires. `a.abs_diff(*b)` donne l'écart sans risque de nombre négatif.",
+            "Partie 2 : compte d'abord les nombres de droite dans une `HashMap<u64, u64>` (`*compte.entry(n).or_default() += 1`), puis cherche chaque nombre de gauche dedans (0 s'il n'y est pas)."
+          ]
+        },
+        {
+          "id": "03-pierre-feuille-ciseaux",
+          "titre": "AoC 2022 jour 2 : pierre, feuille, ciseaux",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Découpe chaque ligne en deux lettres avec `split_whitespace()` (ou `split_once(' ')`), puis additionne le score de chaque manche.",
+            "Le plus simple : un `match` sur la ligne entière (`\"A X\" => 4`, `\"A Y\" => 8`…). Il n'y a que 9 manches possibles par partie : écris le tableau des scores à la main.",
+            "Plus court : transforme A/B/C et X/Y/Z en 0, 1, 2. La forme rapporte `moi + 1` points. Si `moi == adversaire`, c'est nul ; si `moi == (adversaire + 1) % 3`, tu gagnes (feuille bat pierre, ciseaux battent feuille, pierre bat ciseaux).",
+            "Partie 2 : pour gagner il faut jouer `(adversaire + 1) % 3`, pour perdre `(adversaire + 2) % 3`, et pour un nul la même forme que l'adversaire. Ensuite, réutilise le calcul du score de la partie 1."
+          ]
+        },
+        {
+          "id": "04-rapports",
+          "titre": "AoC 2024 jour 2 : les rapports",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Écris une fonction d'aide `est_sur(niveaux: &[i32]) -> bool`, puis compte les rapports pour lesquels elle renvoie `true`. Utilise `i32` : les écarts peuvent être négatifs.",
+            "`niveaux.windows(2)` donne chaque paire de voisins `[a, b]` : calcule tous les écarts `b - a`.",
+            "Sûr = tous les écarts sont entre 1 et 3 (`(1..=3).contains(&ecart)`), **ou** tous les écarts sont entre -3 et -1. `iter().all(…)` vérifie une condition sur tous les éléments.",
+            "Partie 2 : pas besoin d'être malin. Pour chaque position `i`, copie le rapport (`to_vec()`), retire le niveau `i` (`remove(i)`) et teste la copie avec `est_sur`. `any(…)` s'arrête dès qu'une copie est sûre."
+          ]
+        },
+        {
+          "id": "05-nettoyage-du-camp",
+          "titre": "AoC 2022 jour 4 : le nettoyage du camp",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Lis chaque ligne en quatre nombres : `split_once(',')` coupe en deux plages, puis `split_once('-')` coupe chaque plage en début et fin. Pense à `trim()` sur le dernier morceau.",
+            "Fais un petit dessin sur une droite avec deux plages `a-b` et `c-d` : quelles comparaisons entre `a`, `b`, `c` et `d` suffisent ?",
+            "Partie 1 : `a-b` contient `c-d` si `a <= c` et `d <= b`. N'oublie pas le cas inverse : `c-d` contient `a-b`.",
+            "Partie 2 : deux plages ont un point commun si `a <= d` et `c <= b`. (Elles sont séparées seulement si l'une finit avant que l'autre commence.)"
+          ]
+        },
+        {
+          "id": "06-signal",
+          "titre": "AoC 2022 jour 6 : le signal",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Travaille sur les octets : `entree.trim().as_bytes()` donne un `&[u8]` (ici, une lettre = un octet). `trim()` enlève le retour à la ligne final.",
+            "`windows(4)` donne tous les groupes de 4 caractères qui se suivent, et `position(…)` renvoie l'indice du premier groupe qui vérifie une condition (ou `None`).",
+            "Pour savoir si un groupe n'a que des lettres différentes, mets-les dans un `HashSet` (un ensemble : il ne garde pas les doublons) et compare sa taille à celle du groupe.",
+            "La réponse vaut l'indice du début du groupe + sa taille. Écris une seule fonction `fin_du_marqueur(entree, taille)` et appelle-la avec 4, puis avec 14."
+          ]
+        },
+        {
+          "id": "07-sacs-a-dos",
+          "titre": "AoC 2022 jour 3 : les sacs à dos",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Commence par une fonction d'aide `priorite(objet: u8) -> u32`. Sur les octets (`b'a'`, `b'Z'`…), `objet - b'a' + 1` donne 1 pour `a`, 2 pour `b`, etc.",
+            "Partie 1 : `ligne.as_bytes().split_at(longueur / 2)` coupe le sac en deux poches. Cherche ensuite dans la première poche l'objet que la seconde contient : `iter().find(|o| poche2.contains(o))`.",
+            "Partie 2 : range toutes les lignes dans un `Vec` (sans les lignes vides), puis `chunks(3)` les donne trois par trois.",
+            "Dans un groupe `[a, b, c]`, le badge est l'objet de `a` qui est à la fois dans `b` et dans `c`."
+          ]
+        },
+        {
+          "id": "08-trebuchet",
+          "titre": "AoC 2023 jour 1 : le trébuchet",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Écris une fonction d'aide `valeur(ligne) -> u32` qui renvoie le nombre à deux chiffres d'une ligne (0 si elle n'a aucun chiffre), puis additionne les valeurs de toutes les lignes.",
+            "Partie 1 : `ligne.chars().filter_map(|c| c.to_digit(10))` donne tous les chiffres de la ligne, dans l'ordre. Garde le premier et le dernier : `10 * premier + dernier`.",
+            "Partie 2 : remplacer simplement les mots par des chiffres avec `replace` est un piège, à cause des mots qui se chevauchent (`eightwo`). Regarde plutôt chaque **position** de la ligne : à partir de là, y a-t-il un chiffre, ou un mot ?",
+            "Avec `let octets = ligne.as_bytes();`, `octets[i..].starts_with(b\"one\")` teste si le mot `one` commence à la position `i`. Mets les neuf mots dans un tableau `[\"one\", \"two\", …]` : la position du mot dans le tableau + 1 donne sa valeur."
+          ]
+        },
+        {
+          "id": "09-multiplications-corrompues",
+          "titre": "AoC 2024 jour 3 : les multiplications corrompues",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Pas de regex : parcours la mémoire **position par position**. Avec `let memoire = entree.as_bytes();`, le morceau `&memoire[i..]` est « tout ce qui reste à partir de la position i ». Les retours à la ligne n'ont rien de spécial : traite tout le texte d'un coup.",
+            "À chaque position, `reste.strip_prefix(b\"mul(\")` renvoie `Some(suite)` si le reste commence par `mul(` (avec `suite` = ce qui vient après), sinon `None`. Enchaîne les étapes avec `?` dans une fonction qui renvoie un `Option<u64>` : `mul(`, un nombre, `,`, un nombre, `)`.",
+            "Pour lire un nombre de 1 à 3 chiffres : `reste.iter().take(3).take_while(|o| o.is_ascii_digit()).count()` donne le nombre de chiffres (0 = pas de nombre). Calcule sa valeur avec `valeur * 10 + (o - b'0')` pour chaque chiffre, et renvoie aussi la suite du texte.",
+            "Partie 2 : à chaque position, teste aussi `starts_with(b\"do()\")` et `starts_with(b\"don't()\")`, et garde un booléen `actif` (vrai au début) : une multiplication ne s'ajoute à la somme que si `actif` est vrai."
+          ]
+        },
+        {
+          "id": "10-cartes-a-gratter",
+          "titre": "AoC 2023 jour 4 : les cartes à gratter",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Pour chaque carte, il te suffit de savoir combien de tes numéros sont gagnants. Écris d'abord une fonction qui renvoie ce nombre pour chaque carte, dans l'ordre.",
+            "Coupe chaque ligne avec `split_once(':')` puis `split_once('|')`. `split_whitespace()` découpe les nombres en ignorant les espaces en trop.",
+            "Partie 1 : 2 puissance (n - 1) s'écrit `1 << (n - 1)` (décalage de bits) ou `2u32.pow(n - 1)`. Attention à n = 0 : la carte vaut 0.",
+            "Partie 2 : garde un tableau `exemplaires` rempli de 1. Parcours les cartes dans l'ordre : la carte i (qui a `exemplaires[i]` exemplaires) ajoute `exemplaires[i]` aux n cartes suivantes. La réponse est la somme du tableau."
+          ]
+        },
+        {
+          "id": "11-syntaxe",
+          "titre": "AoC 2021 jour 10 : les erreurs de syntaxe",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "C'est le travail typique d'une **pile** (un `Vec` où on ajoute et retire toujours à la fin) : la dernière parenthèse ouverte doit être la première fermée.",
+            "Parcours la ligne caractère par caractère. Pour un ouvrant, empile le fermant attendu (`(` → `)`). Pour un fermant, dépile avec `pop()` : si ce n'est pas lui, la ligne est corrompue.",
+            "Écris une fonction qui renvoie soit le premier fermant incorrect, soit la pile restante (un `enum` à deux variantes est parfait). Une ligne non corrompue dont la pile n'est pas vide est incomplète.",
+            "Partie 2 : la suite qui manque, c'est la pile lue à l'envers (`iter().rev()`). Le score se calcule avec `fold(0, |score, c| score * 5 + valeur(c))` en `u64` (les nombres deviennent vite grands). Trie les scores et prends `scores[scores.len() / 2]`."
+          ]
+        },
+        {
+          "id": "12-extrapolation",
+          "titre": "AoC 2023 jour 9 : prédire la suite",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lis chaque ligne comme un `Vec<i64>` : `split_whitespace()` puis `parse()`. Les nombres négatifs (`-7`) se lisent sans rien faire de spécial.",
+            "La ligne des écarts s'obtient avec `windows(2)` : chaque paire `[a, b]` donne `b - a`.",
+            "Pense récursif : la valeur suivante d'une suite = son dernier nombre + la valeur suivante de la suite de ses écarts. On s'arrête quand la suite n'a que des zéros (`iter().all(|&n| n == 0)`) : la suivante vaut alors 0.",
+            "Partie 2 : la valeur d'avant = premier nombre − valeur d'avant des écarts. Encore plus court : retourne la suite (`reverse()`) et réutilise la fonction de la partie 1."
+          ]
+        },
+        {
+          "id": "13-mots-croises",
+          "titre": "AoC 2024 jour 4 : les mots croisés",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Garde la grille sous forme de `Vec<&[u8]>` (une ligne = `ligne.trim().as_bytes()`) : `grille[l][c]` donne alors la lettre en octet (`b'X'`).",
+            "Écris une fonction `lettre(grille, l, c) -> Option<u8>` qui renvoie `None` hors de la grille. Avec des coordonnées `isize`, `usize::try_from(l).ok()?` élimine les négatifs et `grille.get(l)?.get(c)` les trop grands : plus aucune panique au bord.",
+            "Partie 1 : pour chaque case et chacune des 8 directions `(dl, dc)`, vérifie que les cases `(l + k × dl, c + k × dc)` pour k = 0 à 3 contiennent X, M, A, S.",
+            "Partie 2 : pour chaque `A`, regarde les deux coins d'une diagonale (haut-gauche et bas-droite), puis ceux de l'autre (haut-droite et bas-gauche). Chaque paire doit être `M` et `S`, dans un sens ou dans l'autre : `matches!((a, b), (Some(b'M'), Some(b'S')) | (Some(b'S'), Some(b'M')))`."
+          ]
+        },
+        {
+          "id": "14-caisses",
+          "titre": "AoC 2022 jour 5 : les piles de caisses",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Sépare l'entrée en deux : les lignes du dessin (jusqu'à la première ligne vide), puis les mouvements. `lines().by_ref().take_while(...)` lit le début et laisse la suite dans l'itérateur.",
+            "Les piles sont des `Vec<char>` (le haut de la pile = la fin du `Vec`). La lettre de la pile i est au caractère 1 + 4 × i de la ligne : `ligne.chars().skip(1).step_by(4)`. Ne fais pas de `trim()` sur ces lignes, mais pense qu'elles peuvent être plus courtes. Lis le dessin de bas en haut (`rev()`), sans la ligne des numéros.",
+            "Pour un mouvement, le motif de tranche `[\"move\", n, \"from\", a, \"to\", b]` sur les mots de la ligne récupère les trois nombres d'un coup. Attention : les piles sont numérotées à partir de 1.",
+            "`split_off(len - n)` détache les n caisses du haut d'un coup. Partie 1 : retourne ce bloc (`reverse()`) avant de l'ajouter (`extend`) à l'autre pile, car les caisses passent une par une. Partie 2 : ajoute-le tel quel. La réponse : `piles.iter().filter_map(|p| p.last()).collect::<String>()`."
+          ]
+        },
+        {
+          "id": "15-ordre-d-impression",
+          "titre": "AoC 2024 jour 5 : l'ordre d'impression",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Range les règles dans un `HashSet<(u32, u32)>` : `regles.contains(&(x, y))` dit alors tout de suite si « x doit être avant y ».",
+            "Une mise à jour est bien rangée si, pour toute page et toute page placée **plus loin** dans la liste, il n'existe pas de règle `(plus_loin, page)`. Deux boucles (ou `enumerate` + `pages[i + 1..]`) suffisent.",
+            "Partie 2 : trie les pages avec `sort_by` et une fonction qui renvoie un `Ordering` : `Less` si la règle `(a, b)` existe, `Greater` si c'est `(b, a)`, `Equal` sinon.",
+            "La page du milieu d'une liste de longueur impaire est `pages[pages.len() / 2]`."
+          ]
+        },
+        {
+          "id": "16-poker-chameau",
+          "titre": "AoC 2023 jour 7 : le poker à dos de chameau",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le plus simple est de calculer pour chaque main une **clé** qu'on peut comparer, puis de trier les mains par clé : `(type, valeurs des 5 cartes)`. Rust compare les tuples et les `Vec` élément par élément, dans l'ordre.",
+            "Valeur d'une carte : sa position dans `\"23456789TJQKA\"` (`find(carte)`). Pour la partie 2, utilise `\"J23456789TQKA\"` : le J passe en dernier.",
+            "Pour le type, compte combien de fois chaque carte apparaît, garde les nombres non nuls et trie-les du plus grand au plus petit : `[5]`, `[4, 1]`, `[3, 2]`, `[3, 1, 1]`, `[2, 2, 1]`, `[2, 1, 1, 1]`, `[1, 1, 1, 1, 1]`. Ce `Vec` se compare déjà dans le bon ordre : il peut servir de type tel quel !",
+            "Partie 2 : compte les jokers à part (sans les mettre dans les groupes), puis ajoute-les au plus grand groupe. Attention à `JJJJJ` : aucun groupe, il faut alors créer le groupe `[5]`. Gain : après le tri, `mise × (position + 1)`."
+          ]
+        },
+        {
+          "id": "17-corde",
+          "titre": "AoC 2022 jour 9 : la corde",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Représente chaque nœud par un couple `(x, y)` d'entiers signés (`i32`) : la corde peut partir dans les négatifs. Les cases visitées vont dans un `HashSet<(i32, i32)>`, qui garde chaque case une seule fois.",
+            "Fais avancer la tête **un pas à la fois** (une boucle de `pas` tours), et mets à jour le reste de la corde après chaque pas.",
+            "Règle de suivi : avec `dx` et `dy` l'écart entre le nœud de devant et le nœud, rien ne bouge si `dx.abs() <= 1 && dy.abs() <= 1`. Sinon, le nœud avance de `dx.signum()` et `dy.signum()` (−1, 0 ou 1) : ça gère à la fois les lignes droites et les diagonales.",
+            "Pour la partie 2, garde la corde dans un `Vec` de 10 positions et écris une seule fonction `cases_visitees(entree, longueur)`. Chaque nœud suit celui qui le précède dans le `Vec`."
+          ]
+        },
+        {
+          "id": "18-ecran",
+          "titre": "AoC 2022 jour 10 : l'écran cathodique",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le plus simple : calcule d'abord la liste des valeurs de X **pendant** chaque cycle (`Vec<i32>`, la case 0 = le cycle 1). Les deux parties n'ont plus qu'à lire cette liste.",
+            "`noop` ajoute une fois X à la liste. `addx v` l'ajoute **deux fois**, et c'est seulement **après** que X augmente de v. Un `match` sur `ligne.split_whitespace().collect::<Vec<_>>().as_slice()` avec les motifs `[\"noop\"]` et `[\"addx\", v]` lit chaque ligne proprement.",
+            "Partie 1 : `zip(1..)` numérote les cycles. Garde ceux où `cycle % 40 == 20` (jusqu'à 220) et additionne `cycle * x`.",
+            "Partie 2 : `chunks(40)` découpe la liste en 6 lignes d'écran. Dans une ligne, le pixel à la position p (de 0 à 39) est `#` si `(x - p).abs() <= 1`. Assemble les lignes avec `join(\"\n\")`."
+          ]
+        },
+        {
+          "id": "19-poissons-lanternes",
+          "titre": "AoC 2021 jour 6 : les poissons-lanternes",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Ne garde pas un nombre par poisson : deux poissons qui ont le même minuteur font exactement la même chose. Compte seulement combien il y en a pour chaque minuteur.",
+            "Lecture : `entree.trim().split(',')`, puis `parse::<usize>()` sur chaque morceau. Range chaque minuteur dans un tableau `[u64; 9]` : `compteurs[minuteur] += 1`.",
+            "Un jour : ceux de la case 0 vont en case 8 (les bébés), toutes les autres cases descendent d'une place. `compteurs.rotate_left(1)` fait exactement ça.",
+            "Après le `rotate_left(1)`, les parents doivent aussi revenir à 6 : `compteurs[6] += compteurs[8]`. La réponse est la somme des 9 cases : `compteurs.iter().sum()`."
+          ]
+        },
+        {
+          "id": "20-cailloux",
+          "titre": "AoC 2024 jour 11 : les cailloux qui se divisent",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Pour la partie 1, une liste `Vec<u64>` reconstruite à chaque clignement suffit. Pour la partie 2, elle deviendrait gigantesque : remarque que beaucoup de cailloux portent le même nombre.",
+            "Écris d'abord `transformer(caillou: u64) -> Vec<u64>` qui applique les trois règles à un seul caillou. Nombre de chiffres : `caillou.ilog10() + 1` (pour `caillou > 0`). Les deux moitiés : `caillou / 10u64.pow(chiffres / 2)` et `caillou % 10u64.pow(chiffres / 2)` (les zéros de tête disparaissent tout seuls).",
+            "Garde un `HashMap<u64, u64>` : nombre gravé → combien de cailloux le portent. À chaque clignement, construis un nouveau dictionnaire : pour chaque `(caillou, nombre)`, ajoute `nombre` à chaque résultat de `transformer(caillou)` avec `*suivants.entry(nouveau).or_default() += nombre`.",
+            "La réponse est la somme des valeurs : `compteurs.values().sum()`. Une seule fonction `cailloux_apres(entree, clignements)` sert pour les deux parties (25 et 75)."
+          ]
+        },
+        {
+          "id": "21-escalade",
+          "titre": "AoC 2022 jour 12 : l'escalade",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Lis la carte dans un `Vec<Vec<u8>>` (avec `texte.bytes()`) en notant la position de `S` et de `E`, puis remplace-les par `b'a'` et `b'z'`.",
+            "Parcours en largeur : une `VecDeque` contient des cases à visiter avec leur distance, `(ligne, colonne, distance)`. Tu retires au début (`pop_front`) et tu ajoutes à la fin (`push_back`). Un tableau `distances` (`Vec<Vec<Option<usize>>>`) note les cases déjà atteintes pour ne jamais les ajouter deux fois.",
+            "Les voisins d'une case : haut, bas, gauche, droite, sans sortir de la grille (attention à `ligne - 1` quand `ligne == 0` : vérifie `ligne > 0` avant). Un pas de la case `h` vers la case `v` est permis si `v <= h + 1`.",
+            "Astuce pour les deux parties : fais le parcours à l'envers, depuis `E`. On peut alors aller de la case `h` vers la case `v` si `h <= v + 1`. Tu obtiens d'un coup la distance de chaque case jusqu'à `E` : la partie 1 lit celle de `S`, la partie 2 prend la plus petite parmi les cases de hauteur `a`."
+          ]
+        },
+        {
+          "id": "22-systeme-de-fichiers",
+          "titre": "AoC 2022 jour 7 : le disque plein",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Pas besoin de construire tout l'arbre : il suffit de savoir, à chaque ligne, dans quel dossier tu te trouves. Garde le chemin actuel dans une pile `Vec<&str>` : `cd nom` empile, `cd ..` dépile, `cd /` vide la pile.",
+            "Découpe chaque ligne avec `split_whitespace()` puis `match mots.as_slice()` : `[\"$\", \"cd\", \"..\"]`, `[\"$\", \"cd\", nom]`, `[taille, _]`… Les lignes `$ ls` et `dir nom` ne servent à rien pour le calcul.",
+            "Quand tu lis un fichier, ajoute sa taille à **tous** les dossiers du chemin : `/`, puis `/docs`, puis `/docs/archives`… Range les tailles dans un `HashMap<String, u64>` avec le **chemin complet** comme clé : deux dossiers peuvent avoir le même nom à deux endroits différents.",
+            "Partie 2 : la place occupée est la taille de `/`. Il faut libérer `30_000_000 - (70_000_000 - occupe)`. Garde les tailles `>=` à ce nombre et prends la plus petite avec `min()`."
+          ]
+        },
+        {
+          "id": "23-serviettes",
+          "titre": "AoC 2024 jour 19 : les serviettes",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Lecture : la première ligne non vide donne les motifs (`split(',')` puis `trim`), toutes les lignes non vides suivantes sont les dessins.",
+            "Essayer toutes les combinaisons une par une est beaucoup trop long sur les vrais dessins : le nombre de façons peut dépasser des milliers de milliards. Il faut réutiliser les calculs déjà faits.",
+            "Programmation dynamique : un tableau `facons` de taille `dessin.len() + 1`, où `facons[i]` est le nombre de façons de fabriquer la fin du dessin à partir de la position `i`. La fin vide se fait d'une seule façon : `facons[dessin.len()] = 1`.",
+            "Remplis le tableau de la droite vers la gauche (`(0..taille).rev()`) : pour chaque motif qui colle au dessin à la position `i` (`dessin[i..].starts_with(motif)`), ajoute `facons[i + motif.len()]`. La réponse d'un dessin est `facons[0]` : partie 1, compte ceux qui sont `> 0` ; partie 2, additionne-les."
+          ]
+        },
+        {
+          "id": "24-chiton",
+          "titre": "AoC 2021 jour 15 : la grotte aux chitons",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Lis la carte dans un `Vec<Vec<u32>>` avec `chiffre.to_digit(10)`. Attention : le meilleur chemin peut aller à gauche ou vers le haut, aller seulement à droite et en bas ne suffit pas.",
+            "Algorithme de Dijkstra : un tableau `meilleurs` (`vec![vec![u32::MAX; colonnes]; lignes]`) garde le plus petit risque connu pour chaque case, et un tas `BinaryHeap` contient les cases à traiter. `BinaryHeap` sort toujours le plus **grand** : enveloppe tes éléments dans `Reverse((risque, ligne, colonne))` pour sortir le plus petit risque d'abord.",
+            "Boucle : `while let Some(Reverse((risque, ligne, colonne))) = tas.pop()`. Si c'est l'arrivée, renvoie `risque`. Si `risque > meilleurs[ligne][colonne]`, c'est une vieille entrée : `continue`. Sinon, pour chaque voisin, `nouveau = risque + grille[voisin]` ; s'il bat `meilleurs[voisin]`, mets-le à jour et ajoute-le dans le tas.",
+            "Partie 2 : construis la grande grille, puis relance la même fonction. La case `(ligne, colonne)` vaut l'original `grille[ligne % lignes][colonne % colonnes]` plus le décalage `ligne / lignes + colonne / colonnes`, ramené entre 1 et 9 avec `(valeur + decalage - 1) % 9 + 1`."
+          ]
+        },
+        {
+          "id": "25-graines",
+          "titre": "AoC 2023 jour 5 : le carnet des graines",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Lecture ligne par ligne : la ligne qui commence par `seeds:` (`strip_prefix`) donne les graines ; une ligne qui finit par `map:` commence une nouvelle carte (`Vec<Regle>`) ; une ligne de trois nombres est une règle de la dernière carte. Les nombres dépassent `u32` une fois additionnés : utilise `u64`.",
+            "Partie 1 : pour convertir un nombre avec une carte, cherche la règle où `source <= n && n < source + longueur` et renvoie `destination + (n - source)`, sinon renvoie `n`. Enchaîne les cartes dans l'ordre (une boucle ou `fold`), puis prends le `min()`.",
+            "Partie 2 : il y a des milliards de graines, n'essaie pas chacune. Travaille avec des intervalles `(debut, fin)` (fin exclue). Pour un intervalle et une règle `[source, source + longueur)`, la partie commune va de `debut.max(source)` à `fin.min(source + longueur)` ; elle existe si `debut_commun < fin_commune`.",
+            "Garde une liste `a_traiter`. Tant qu'elle n'est pas vide, retire un intervalle et cherche la première règle qui le touche : la partie commune est décalée (`destination + (debut_commun - source)`) et rangée dans le résultat, les morceaux qui dépassent à gauche et à droite retournent dans `a_traiter`. Si aucune règle ne touche l'intervalle, il passe tel quel. La réponse est le plus petit début d'intervalle après la dernière carte."
+          ]
+        },
+        {
+          "id": "26-sources-chaudes",
+          "titre": "AoC 2023 jour 12 : les sources chaudes",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Lecture : `ligne.trim().split_once(' ')` sépare le motif et les groupes ; les groupes se lisent avec `split(',')` et `parse::<usize>()`. Pour la partie 1, essayer toutes les façons de remplacer les `?` marche, mais pas pour la partie 2 : il faut compter sans tout essayer.",
+            "Écris une fonction récursive `compter(motif: &[u8], groupes: &[usize]) -> u64` qui regarde seulement le **premier** caractère. Cas de fin : plus de groupe → 1 s'il ne reste aucun `#`, sinon 0 ; plus de motif mais encore des groupes → 0.",
+            "Deux choix pour le premier caractère. S'il peut être `.` (c'est `.` ou `?`) : `compter(&motif[1..], groupes)`. S'il peut commencer le premier groupe de taille `t` : il faut `motif.len() >= t`, aucun `.` dans `motif[..t]`, et pas de `#` juste après (`motif.get(t) != Some(&b'#')`) ; on saute alors le groupe et la case qui le suit : `compter(motif.get(t + 1..).unwrap_or(&[]), &groupes[1..])`. Additionne les deux.",
+            "Mémoïsation : le résultat ne dépend que de `motif.len()` et `groupes.len()` (on avance toujours au début). Range-le dans un cache `vec![vec![None; groupes.len() + 1]; motif.len() + 1]` créé pour chaque ligne, et regarde le cache avant de calculer. Partie 2 : `[motif; 5].join(\"?\")` et `groupes.repeat(5)`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que renvoie `\"a  b c\".split(' ').count()` ?",
+          "choix": [
+            "`3`",
+            "`4`",
+            "`2`",
+            "`5`"
+          ],
+          "reponse": 1,
+          "explication": "Les deux espaces qui se suivent créent un morceau vide : `[\"a\", \"\", \"b\", \"c\"]`. `split_whitespace()` aurait donné 3."
+        },
+        {
+          "question": "Ton entrée a été copiée depuis Windows (`\\r\\n`). Pourquoi `texte.split(\"\\n\\n\")` ne trouve-t-il aucun bloc ?",
+          "choix": [
+            "Parce que `split` ne marche pas sur un `String`",
+            "Parce qu'une ligne vide s'écrit `\\r\\n\\r\\n` : il n'y a jamais deux `\\n` collés",
+            "Parce qu'il faut écrire `split('\\n\\n')`",
+            "Parce que `lines()` doit être appelé avant"
+          ],
+          "reponse": 1,
+          "explication": "Entre les deux `\\n` il y a un `\\r`. On remplace d'abord : `texte.replace(\"\\r\\n\", \"\\n\")`."
+        },
+        {
+          "question": "Quelle structure choisir pour savoir rapidement si une position a **déjà été visitée** ?",
+          "choix": [
+            "`Vec<(i32, i32)>`",
+            "`HashSet<(i32, i32)>`",
+            "`VecDeque<(i32, i32)>`",
+            "`BinaryHeap<(i32, i32)>`"
+          ],
+          "reponse": 1,
+          "explication": "`HashSet::contains` est quasi instantané. Chercher dans un `Vec` oblige à parcourir toute la liste."
+        },
+        {
+          "question": "Que vaut `0usize.checked_add_signed(-1)` ?",
+          "choix": [
+            "`-1`",
+            "`Some(usize::MAX)`",
+            "`None`",
+            "Le programme panique"
+          ],
+          "reponse": 2,
+          "explication": "Un `usize` ne peut pas être négatif : `checked_add_signed` renvoie `None` au lieu de paniquer. Pratique pour les bords d'une grille."
+        },
+        {
+          "question": "Pour trouver le chemin le plus court dans un labyrinthe où **chaque pas coûte 1**, on utilise :",
+          "choix": [
+            "Un parcours en largeur (BFS) avec une `VecDeque`",
+            "Un tri des cases par distance",
+            "Une récursion qui essaie tous les chemins",
+            "Un `BinaryHeap` obligatoirement"
+          ],
+          "reponse": 0,
+          "explication": "Le BFS explore les cases par distance croissante : la première fois qu'il atteint l'arrivée, c'est par le plus court chemin. Essayer tous les chemins exploserait."
+        },
+        {
+          "question": "Pourquoi Dijkstra met-il les coûts dans `Reverse(...)` avant de les ranger dans un `BinaryHeap` ?",
+          "choix": [
+            "Pour parcourir la grille à l'envers",
+            "Parce que `BinaryHeap` ne sait pas ranger des nombres",
+            "Parce que `BinaryHeap` sort toujours le plus grand, et Dijkstra veut le plus petit",
+            "Pour éviter les débordements"
+          ],
+          "reponse": 2,
+          "explication": "`Reverse` inverse la comparaison : le plus petit coût devient « le plus grand » pour le tas, qui le sort en premier."
+        },
+        {
+          "question": "Une population double chaque jour. Combien d'individus après 60 jours, en partant d'un seul ?",
+          "choix": [
+            "Environ 120",
+            "Environ 3 600",
+            "Environ un million",
+            "Plus d'un milliard de milliards"
+          ],
+          "reponse": 3,
+          "explication": "2^60 ≈ 1,15 × 10^18. Impossible de garder chaque individu : on compte combien il y en a de chaque sorte."
+        },
+        {
+          "question": "Ta réponse vaut environ 5 milliards. Quel type choisir ?",
+          "choix": [
+            "`u32`",
+            "`i32`",
+            "`u64`",
+            "`u8`"
+          ],
+          "reponse": 2,
+          "explication": "Un `u32` s'arrête à environ 4,29 milliards et un `i32` à 2,1 milliards. En debug, un débordement fait paniquer le programme."
+        },
+        {
+          "question": "Qu'est-ce que la **mémoïsation** ?",
+          "choix": [
+            "Écrire les résultats intermédiaires dans un fichier",
+            "Retenir le résultat d'un calcul déjà fait pour ne pas le refaire",
+            "Libérer la mémoire après chaque calcul",
+            "Lire toute l'entrée en mémoire d'un coup"
+          ],
+          "reponse": 1,
+          "explication": "On range chaque résultat dans un cache (souvent une `HashMap`) : un même sous-calcul n'est fait qu'une fois."
+        },
+        {
+          "question": "Les intervalles `(2, 4)` et `(4, 7)` (bornes comprises) se chevauchent-ils ?",
+          "choix": [
+            "Oui, ils partagent le 4",
+            "Non, ils se touchent seulement",
+            "Ça dépend de l'ordre",
+            "Non, car 4 < 7"
+          ],
+          "reponse": 0,
+          "explication": "Avec des bornes comprises, la condition `a.0 <= b.1 && b.0 <= a.1` est vraie : 2 ≤ 7 et 4 ≤ 4. Le nombre 4 est dans les deux."
+        },
+        {
+          "question": "Ton programme passe l'exemple mais donne une mauvaise réponse sur ta vraie entrée. Le plus probable ?",
+          "choix": [
+            "Le site d'AoC s'est trompé",
+            "Un cas absent de l'exemple : nombre à plusieurs chiffres, valeur négative, débordement…",
+            "Il faut compiler en release",
+            "L'exemple est faux"
+          ],
+          "reponse": 1,
+          "explication": "L'exemple est petit et ne montre pas tout. Relis l'énoncé mot par mot et cherche ce que ta vraie entrée contient de différent."
+        },
+        {
+          "question": "Une double boucle sur 100 000 éléments (chaque élément comparé à tous les autres) fait environ combien d'opérations ?",
+          "choix": [
+            "200 000",
+            "100 millions",
+            "10 milliards",
+            "1 million"
+          ],
+          "reponse": 2,
+          "explication": "100 000 × 100 000 = 10^10. Bien trop long : il faut une meilleure méthode (tri, `HashMap`, intervalles…)."
+        }
+      ]
     }
   ]
 }

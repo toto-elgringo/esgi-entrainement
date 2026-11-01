@@ -49,13 +49,51 @@ function statutPour(resultat, langage) {
   return { ...commun, ...(PAR_LANGAGE[langage]?.[resultat.statut] ?? {}) };
 }
 
-function rendreResultat(resultat, { langage, suivant }) {
+function rendreLigne(libelle, valeur, classe = '') {
+  return `<dt>${libelle}</dt><dd class="${classe}"><code>${echapper(valeur)}</code></dd>`;
+}
+
+function lignesEchec(test) {
+  if (test.obtenu !== undefined) {
+    return [
+      test.appel ? rendreLigne('Appel (valeur lue)', test.appel) : '',
+      rendreLigne('Sortie obtenue', test.obtenu, 'obtenu'),
+      rendreLigne(test.different ? 'Ne devait pas valoir' : 'Attendu', test.attendu, 'attendu'),
+    ].join('');
+  }
+  if (test.condition) return rendreLigne('Condition non vérifiée', test.condition);
+  if (test.erreur) return rendreLigne('Erreur', test.erreur);
+  return '';
+}
+
+function rendreTest(test) {
+  if (test.reussi) return `<li class="test reussi"><span class="test-etat">✓</span>${echapper(test.nom)}</li>`;
+  const lignes = lignesEchec(test);
+  return `<li class="test echec">
+      <div class="test-titre"><span class="test-etat">✗</span>${echapper(test.nom)}</div>
+      ${test.indice ? `<p class="test-indice">${echapper(test.indice)}</p>` : ''}
+      ${lignes ? `<dl class="test-valeurs">${lignes}</dl>` : ''}
+    </li>`;
+}
+
+function rendreTests(tests, resultat) {
+  const sortie = resultat.sortie;
+  const ouvert = resultat.statut === 'echec' && tests.every((test) => test.reussi) ? ' open' : '';
+  return `<ul class="tests">${tests.map(rendreTest).join('')}</ul>
+    <details class="sortie-complete"${ouvert}><summary>Sortie complète</summary><pre>${terminalVersHtml(sortie?.trim() || '(aucune sortie)')}</pre></details>`;
+}
+
+export function rendreResultat(resultat, { langage, suivant }) {
   const statut = statutPour(resultat, langage);
   const resume = resultat.resume;
   const detail = resume ? `${resume.reussis} / ${resume.reussis + resume.echoues} vérifications réussies` : '';
   const comparer = resultat.statut === 'echec' && typeof resultat.attendu === 'string';
 
-  const corps = comparer
+  const avecTests = Array.isArray(resultat.tests) && resultat.tests.length > 0 && (resultat.statut === 'echec' || resultat.statut === 'reussi');
+
+  const corps = avecTests
+    ? rendreTests(resultat.tests, resultat)
+    : comparer
     ? `<div class="comparaison">
         <div><h4>Ton programme affiche</h4><pre>${terminalVersHtml(resultat.sortie?.trim() || '(rien)')}</pre></div>
         <div><h4>Attendu</h4><pre>${echapper(resultat.attendu.trim())}</pre></div>

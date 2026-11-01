@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 7 : le disque plein",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Pas besoin de construire tout l'arbre : il suffit de savoir, à chaque ligne, dans quel dossier tu te trouves. Garde le chemin actuel dans une pile `Vec<&str>` : `cd nom` empile, `cd ..` dépile, `cd /` vide la pile.",
+    "Découpe chaque ligne avec `split_whitespace()` puis `match mots.as_slice()` : `[\"$\", \"cd\", \"..\"]`, `[\"$\", \"cd\", nom]`, `[taille, _]`… Les lignes `$ ls` et `dir nom` ne servent à rien pour le calcul.",
+    "Quand tu lis un fichier, ajoute sa taille à **tous** les dossiers du chemin : `/`, puis `/docs`, puis `/docs/archives`… Range les tailles dans un `HashMap<String, u64>` avec le **chemin complet** comme clé : deux dossiers peuvent avoir le même nom à deux endroits différents.",
+    "Partie 2 : la place occupée est la taille de `/`. Il faut libérer `30_000_000 - (70_000_000 - occupe)`. Garde les tailles `>=` à ce nombre et prends la plus petite avec `min()`."
+  ]
+}

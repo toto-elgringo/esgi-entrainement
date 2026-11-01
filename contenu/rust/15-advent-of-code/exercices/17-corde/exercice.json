@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 9 : la corde",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Représente chaque nœud par un couple `(x, y)` d'entiers signés (`i32`) : la corde peut partir dans les négatifs. Les cases visitées vont dans un `HashSet<(i32, i32)>`, qui garde chaque case une seule fois.",
+    "Fais avancer la tête **un pas à la fois** (une boucle de `pas` tours), et mets à jour le reste de la corde après chaque pas.",
+    "Règle de suivi : avec `dx` et `dy` l'écart entre le nœud de devant et le nœud, rien ne bouge si `dx.abs() <= 1 && dy.abs() <= 1`. Sinon, le nœud avance de `dx.signum()` et `dy.signum()` (−1, 0 ou 1) : ça gère à la fois les lignes droites et les diagonales.",
+    "Pour la partie 2, garde la corde dans un `Vec` de 10 positions et écris une seule fonction `cases_visitees(entree, longueur)`. Chaque nœud suit celui qui le précède dans le `Vec`."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2024 jour 11 : les cailloux qui se divisent",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Pour la partie 1, une liste `Vec<u64>` reconstruite à chaque clignement suffit. Pour la partie 2, elle deviendrait gigantesque : remarque que beaucoup de cailloux portent le même nombre.",
+    "Écris d'abord `transformer(caillou: u64) -> Vec<u64>` qui applique les trois règles à un seul caillou. Nombre de chiffres : `caillou.ilog10() + 1` (pour `caillou > 0`). Les deux moitiés : `caillou / 10u64.pow(chiffres / 2)` et `caillou % 10u64.pow(chiffres / 2)` (les zéros de tête disparaissent tout seuls).",
+    "Garde un `HashMap<u64, u64>` : nombre gravé → combien de cailloux le portent. À chaque clignement, construis un nouveau dictionnaire : pour chaque `(caillou, nombre)`, ajoute `nombre` à chaque résultat de `transformer(caillou)` avec `*suivants.entry(nouveau).or_default() += nombre`.",
+    "La réponse est la somme des valeurs : `compteurs.values().sum()`. Une seule fonction `cailloux_apres(entree, clignements)` sert pour les deux parties (25 et 75)."
+  ]
+}

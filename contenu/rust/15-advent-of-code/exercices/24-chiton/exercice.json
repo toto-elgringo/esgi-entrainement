@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2021 jour 15 : la grotte aux chitons",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Lis la carte dans un `Vec<Vec<u32>>` avec `chiffre.to_digit(10)`. Attention : le meilleur chemin peut aller à gauche ou vers le haut, aller seulement à droite et en bas ne suffit pas.",
+    "Algorithme de Dijkstra : un tableau `meilleurs` (`vec![vec![u32::MAX; colonnes]; lignes]`) garde le plus petit risque connu pour chaque case, et un tas `BinaryHeap` contient les cases à traiter. `BinaryHeap` sort toujours le plus **grand** : enveloppe tes éléments dans `Reverse((risque, ligne, colonne))` pour sortir le plus petit risque d'abord.",
+    "Boucle : `while let Some(Reverse((risque, ligne, colonne))) = tas.pop()`. Si c'est l'arrivée, renvoie `risque`. Si `risque > meilleurs[ligne][colonne]`, c'est une vieille entrée : `continue`. Sinon, pour chaque voisin, `nouveau = risque + grille[voisin]` ; s'il bat `meilleurs[voisin]`, mets-le à jour et ajoute-le dans le tas.",
+    "Partie 2 : construis la grande grille, puis relance la même fonction. La case `(ligne, colonne)` vaut l'original `grille[ligne % lignes][colonne % colonnes]` plus le décalage `ligne / lignes + colonne / colonnes`, ramené entre 1 et 9 avec `(valeur + decalage - 1) % 9 + 1`."
+  ]
+}

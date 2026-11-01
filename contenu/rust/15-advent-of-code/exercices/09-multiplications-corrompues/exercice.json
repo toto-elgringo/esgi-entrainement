@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2024 jour 3 : les multiplications corrompues",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Pas de regex : parcours la mémoire **position par position**. Avec `let memoire = entree.as_bytes();`, le morceau `&memoire[i..]` est « tout ce qui reste à partir de la position i ». Les retours à la ligne n'ont rien de spécial : traite tout le texte d'un coup.",
+    "À chaque position, `reste.strip_prefix(b\"mul(\")` renvoie `Some(suite)` si le reste commence par `mul(` (avec `suite` = ce qui vient après), sinon `None`. Enchaîne les étapes avec `?` dans une fonction qui renvoie un `Option<u64>` : `mul(`, un nombre, `,`, un nombre, `)`.",
+    "Pour lire un nombre de 1 à 3 chiffres : `reste.iter().take(3).take_while(|o| o.is_ascii_digit()).count()` donne le nombre de chiffres (0 = pas de nombre). Calcule sa valeur avec `valeur * 10 + (o - b'0')` pour chaque chiffre, et renvoie aussi la suite du texte.",
+    "Partie 2 : à chaque position, teste aussi `starts_with(b\"do()\")` et `starts_with(b\"don't()\")`, et garde un booléen `actif` (vrai au début) : une multiplication ne s'ajoute à la somme que si `actif` est vrai."
+  ]
+}

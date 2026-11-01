@@ -1,0 +1,5 @@
+{
+  "titre": "Programmation fonctionnelle",
+  "description": "Fonctions pures, fonctions en paramètre ou en résultat, fold, scan, Option et Result en chaîne, récursion et itérateurs maison : coder sans boucles ni variables modifiables.",
+  "source": "fondamentaux"
+}

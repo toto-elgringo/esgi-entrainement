@@ -12,7 +12,7 @@ import { validerExercice, validerMetaChapitre, validerQuiz as validerQuizCode } 
 const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dossierContenu = path.join(racine, 'contenu');
 const EXECUTEURS = { rust, python, c };
-const [domaineDemande, prefixe = ''] = (process.argv[2] ?? '').split('/');
+const [domaineDemande, prefixe = '', prefixeExercice = ''] = (process.argv[2] ?? '').split('/');
 const EN_PARALLELE = 4;
 
 async function lireTexte(fichier) {
@@ -159,7 +159,7 @@ async function verifierDomaineCode(langage) {
     for (const probleme of problemesChapitre) console.log(`  ✗ ${probleme}`);
     if (problemesChapitre.length > 0) enErreur++;
 
-    const idsExercices = await contenuCode.listerIdsExercices(dossier, chapitreId);
+    const idsExercices = (await contenuCode.listerIdsExercices(dossier, chapitreId)).filter((id) => id.startsWith(prefixeExercice));
     const resultats = await enParallele(
       idsExercices.map((exerciceId) => () => verifierExerciceCode(langage, dossier, chapitreId, exerciceId)),
       EN_PARALLELE,
@@ -182,7 +182,7 @@ async function principal() {
   };
   const domaines = domaineDemande ? [domaineDemande] : Object.keys(verificateurs);
   if (!domaines.every((domaine) => domaine in verificateurs)) {
-    console.error(`Usage : npm run verifier-contenu [-- <domaine> | <domaine>/<début du chapitre>]\nDomaines : ${Object.keys(verificateurs).join(', ')}`);
+    console.error(`Usage : npm run verifier-contenu [-- <domaine> | <domaine>/<début du chapitre>[/<début de l'exercice>]]\nDomaines : ${Object.keys(verificateurs).join(', ')}`);
     process.exitCode = 1;
     return;
   }

@@ -1,0 +1,11 @@
+{
+  "titre": "Des fonctions en paramètre",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Le paramètre `f` s'appelle comme une fonction normale : `f(x)`. Pour l'appliquer deux fois, on appelle `f` sur le résultat de `f`.",
+    "`appliquer_a_tous` : `nombres.iter().map(...)` puis `collect()`. Les éléments sont des `&i32` : écris `|&n| f(n)`.",
+    "`compter_si` : `filter` puis `count`. `filter` donne des `&&i32` : `|&&n| condition(n)`.",
+    "`appliquer_n_fois` : `(0..n).fold(x, |acc, _| f(acc))` part de `x` et applique `f` une fois par tour. Le `_` ignore le numéro du tour."
+  ]
+}

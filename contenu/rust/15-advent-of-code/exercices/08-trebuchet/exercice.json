@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2023 jour 1 : le trébuchet",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Écris une fonction d'aide `valeur(ligne) -> u32` qui renvoie le nombre à deux chiffres d'une ligne (0 si elle n'a aucun chiffre), puis additionne les valeurs de toutes les lignes.",
+    "Partie 1 : `ligne.chars().filter_map(|c| c.to_digit(10))` donne tous les chiffres de la ligne, dans l'ordre. Garde le premier et le dernier : `10 * premier + dernier`.",
+    "Partie 2 : remplacer simplement les mots par des chiffres avec `replace` est un piège, à cause des mots qui se chevauchent (`eightwo`). Regarde plutôt chaque **position** de la ligne : à partir de là, y a-t-il un chiffre, ou un mot ?",
+    "Avec `let octets = ligne.as_bytes();`, `octets[i..].starts_with(b\"one\")` teste si le mot `one` commence à la position `i`. Mets les neuf mots dans un tableau `[\"one\", \"two\", …]` : la position du mot dans le tableau + 1 donne sa valeur."
+  ]
+}

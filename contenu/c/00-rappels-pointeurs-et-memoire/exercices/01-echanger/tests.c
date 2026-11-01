@@ -2,8 +2,8 @@ int main(void) {
     int x = 1;
     int y = 2;
     echanger(&x, &y);
-    VERIFIER(x == 2, "après l'échange, x vaut 2");
-    VERIFIER(y == 1, "après l'échange, y vaut 1");
+    VERIFIER_EGAL(x, 2, "après l'échange, x vaut 2");
+    VERIFIER_EGAL(y, 1, "après l'échange, y vaut 1");
 
     int a = -5;
     int b = 40;

@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2023 jour 12 : les sources chaudes",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Lecture : `ligne.trim().split_once(' ')` sépare le motif et les groupes ; les groupes se lisent avec `split(',')` et `parse::<usize>()`. Pour la partie 1, essayer toutes les façons de remplacer les `?` marche, mais pas pour la partie 2 : il faut compter sans tout essayer.",
+    "Écris une fonction récursive `compter(motif: &[u8], groupes: &[usize]) -> u64` qui regarde seulement le **premier** caractère. Cas de fin : plus de groupe → 1 s'il ne reste aucun `#`, sinon 0 ; plus de motif mais encore des groupes → 0.",
+    "Deux choix pour le premier caractère. S'il peut être `.` (c'est `.` ou `?`) : `compter(&motif[1..], groupes)`. S'il peut commencer le premier groupe de taille `t` : il faut `motif.len() >= t`, aucun `.` dans `motif[..t]`, et pas de `#` juste après (`motif.get(t) != Some(&b'#')`) ; on saute alors le groupe et la case qui le suit : `compter(motif.get(t + 1..).unwrap_or(&[]), &groupes[1..])`. Additionne les deux.",
+    "Mémoïsation : le résultat ne dépend que de `motif.len()` et `groupes.len()` (on avance toujours au début). Range-le dans un cache `vec![vec![None; groupes.len() + 1]; motif.len() + 1]` créé pour chaque ligne, et regarde le cache avant de calculer. Partie 2 : `[motif; 5].join(\"?\")` et `groupes.repeat(5)`."
+  ]
+}

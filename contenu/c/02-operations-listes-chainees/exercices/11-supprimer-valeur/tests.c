@@ -47,10 +47,10 @@ int main(void) {
     VERIFIER(aide_egale(l, (int[]){4}, 1), "supprimer 5 (le dernier maillon) donne la liste 4");
 
     supprimerValeur(&l, 4);
-    VERIFIER(l == NULL, "supprimer le seul maillon donne une liste vide (NULL)");
+    VERIFIER_EGAL(l, NULL, "supprimer le seul maillon donne une liste vide (NULL)");
 
     supprimerValeur(&l, 4);
-    VERIFIER(l == NULL, "supprimer dans une liste vide ne fait rien et ne plante pas");
+    VERIFIER_EGAL(l, NULL, "supprimer dans une liste vide ne fait rien et ne plante pas");
     aide_liberer(l);
 
     Cell *d = aide_liste((int[]){7, 3, 7}, 3);

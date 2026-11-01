@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 6 : le signal",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Travaille sur les octets : `entree.trim().as_bytes()` donne un `&[u8]` (ici, une lettre = un octet). `trim()` enlève le retour à la ligne final.",
+    "`windows(4)` donne tous les groupes de 4 caractères qui se suivent, et `position(…)` renvoie l'indice du premier groupe qui vérifie une condition (ou `None`).",
+    "Pour savoir si un groupe n'a que des lettres différentes, mets-les dans un `HashSet` (un ensemble : il ne garde pas les doublons) et compare sa taille à celle du groupe.",
+    "La réponse vaut l'indice du début du groupe + sa taille. Écris une seule fonction `fin_du_marqueur(entree, taille)` et appelle-la avec 4, puis avec 14."
+  ]
+}

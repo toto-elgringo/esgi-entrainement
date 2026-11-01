@@ -1,0 +1,11 @@
+{
+  "titre": "filter_map et flat_map",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`filter_map` : la closure renvoie une `Option`, seuls les `Some` sont gardés. `flat_map` : la closure renvoie un itérateur, et tous les éléments sont mis bout à bout.",
+    "`extraire_nombres` : `split_whitespace()` puis `filter_map(|mot| mot.parse().ok())`. `domaines` : `split_once('@')` renvoie déjà une `Option` ; enchaîne `.map(|(_, domaine)| domaine)` et `.filter(|domaine| !domaine.is_empty())`.",
+    "`tous_les_mots` : `phrases.iter().flat_map(|phrase| phrase.split_whitespace())`, puis `map(str::to_lowercase)`.",
+    "`cases` : un `flat_map` sur `colonnes.chars()`, et dedans un `map` sur `1..=lignes` : `(1..=lignes).map(move |ligne| format!(\"{colonne}{ligne}\"))`. Le `move` donne une copie de `colonne` à la closure intérieure."
+  ]
+}

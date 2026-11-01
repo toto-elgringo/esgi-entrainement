@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2024 jour 19 : les serviettes",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Lecture : la première ligne non vide donne les motifs (`split(',')` puis `trim`), toutes les lignes non vides suivantes sont les dessins.",
+    "Essayer toutes les combinaisons une par une est beaucoup trop long sur les vrais dessins : le nombre de façons peut dépasser des milliers de milliards. Il faut réutiliser les calculs déjà faits.",
+    "Programmation dynamique : un tableau `facons` de taille `dessin.len() + 1`, où `facons[i]` est le nombre de façons de fabriquer la fin du dessin à partir de la position `i`. La fin vide se fait d'une seule façon : `facons[dessin.len()] = 1`.",
+    "Remplis le tableau de la droite vers la gauche (`(0..taille).rev()`) : pour chaque motif qui colle au dessin à la position `i` (`dessin[i..].starts_with(motif)`), ajoute `facons[i + motif.len()]`. La réponse d'un dessin est `facons[0]` : partie 1, compte ceux qui sont `> 0` ; partie 2, additionne-les."
+  ]
+}

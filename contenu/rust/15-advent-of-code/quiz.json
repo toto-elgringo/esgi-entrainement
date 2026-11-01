@@ -1,0 +1,99 @@
+[
+  {
+    "question": "Que renvoie `\"a  b c\".split(' ').count()` ?",
+    "choix": ["`3`", "`4`", "`2`", "`5`"],
+    "reponse": 1,
+    "explication": "Les deux espaces qui se suivent créent un morceau vide : `[\"a\", \"\", \"b\", \"c\"]`. `split_whitespace()` aurait donné 3."
+  },
+  {
+    "question": "Ton entrée a été copiée depuis Windows (`\\r\\n`). Pourquoi `texte.split(\"\\n\\n\")` ne trouve-t-il aucun bloc ?",
+    "choix": [
+      "Parce que `split` ne marche pas sur un `String`",
+      "Parce qu'une ligne vide s'écrit `\\r\\n\\r\\n` : il n'y a jamais deux `\\n` collés",
+      "Parce qu'il faut écrire `split('\\n\\n')`",
+      "Parce que `lines()` doit être appelé avant"
+    ],
+    "reponse": 1,
+    "explication": "Entre les deux `\\n` il y a un `\\r`. On remplace d'abord : `texte.replace(\"\\r\\n\", \"\\n\")`."
+  },
+  {
+    "question": "Quelle structure choisir pour savoir rapidement si une position a **déjà été visitée** ?",
+    "choix": ["`Vec<(i32, i32)>`", "`HashSet<(i32, i32)>`", "`VecDeque<(i32, i32)>`", "`BinaryHeap<(i32, i32)>`"],
+    "reponse": 1,
+    "explication": "`HashSet::contains` est quasi instantané. Chercher dans un `Vec` oblige à parcourir toute la liste."
+  },
+  {
+    "question": "Que vaut `0usize.checked_add_signed(-1)` ?",
+    "choix": ["`-1`", "`Some(usize::MAX)`", "`None`", "Le programme panique"],
+    "reponse": 2,
+    "explication": "Un `usize` ne peut pas être négatif : `checked_add_signed` renvoie `None` au lieu de paniquer. Pratique pour les bords d'une grille."
+  },
+  {
+    "question": "Pour trouver le chemin le plus court dans un labyrinthe où **chaque pas coûte 1**, on utilise :",
+    "choix": [
+      "Un parcours en largeur (BFS) avec une `VecDeque`",
+      "Un tri des cases par distance",
+      "Une récursion qui essaie tous les chemins",
+      "Un `BinaryHeap` obligatoirement"
+    ],
+    "reponse": 0,
+    "explication": "Le BFS explore les cases par distance croissante : la première fois qu'il atteint l'arrivée, c'est par le plus court chemin. Essayer tous les chemins exploserait."
+  },
+  {
+    "question": "Pourquoi Dijkstra met-il les coûts dans `Reverse(...)` avant de les ranger dans un `BinaryHeap` ?",
+    "choix": [
+      "Pour parcourir la grille à l'envers",
+      "Parce que `BinaryHeap` ne sait pas ranger des nombres",
+      "Parce que `BinaryHeap` sort toujours le plus grand, et Dijkstra veut le plus petit",
+      "Pour éviter les débordements"
+    ],
+    "reponse": 2,
+    "explication": "`Reverse` inverse la comparaison : le plus petit coût devient « le plus grand » pour le tas, qui le sort en premier."
+  },
+  {
+    "question": "Une population double chaque jour. Combien d'individus après 60 jours, en partant d'un seul ?",
+    "choix": ["Environ 120", "Environ 3 600", "Environ un million", "Plus d'un milliard de milliards"],
+    "reponse": 3,
+    "explication": "2^60 ≈ 1,15 × 10^18. Impossible de garder chaque individu : on compte combien il y en a de chaque sorte."
+  },
+  {
+    "question": "Ta réponse vaut environ 5 milliards. Quel type choisir ?",
+    "choix": ["`u32`", "`i32`", "`u64`", "`u8`"],
+    "reponse": 2,
+    "explication": "Un `u32` s'arrête à environ 4,29 milliards et un `i32` à 2,1 milliards. En debug, un débordement fait paniquer le programme."
+  },
+  {
+    "question": "Qu'est-ce que la **mémoïsation** ?",
+    "choix": [
+      "Écrire les résultats intermédiaires dans un fichier",
+      "Retenir le résultat d'un calcul déjà fait pour ne pas le refaire",
+      "Libérer la mémoire après chaque calcul",
+      "Lire toute l'entrée en mémoire d'un coup"
+    ],
+    "reponse": 1,
+    "explication": "On range chaque résultat dans un cache (souvent une `HashMap`) : un même sous-calcul n'est fait qu'une fois."
+  },
+  {
+    "question": "Les intervalles `(2, 4)` et `(4, 7)` (bornes comprises) se chevauchent-ils ?",
+    "choix": ["Oui, ils partagent le 4", "Non, ils se touchent seulement", "Ça dépend de l'ordre", "Non, car 4 < 7"],
+    "reponse": 0,
+    "explication": "Avec des bornes comprises, la condition `a.0 <= b.1 && b.0 <= a.1` est vraie : 2 ≤ 7 et 4 ≤ 4. Le nombre 4 est dans les deux."
+  },
+  {
+    "question": "Ton programme passe l'exemple mais donne une mauvaise réponse sur ta vraie entrée. Le plus probable ?",
+    "choix": [
+      "Le site d'AoC s'est trompé",
+      "Un cas absent de l'exemple : nombre à plusieurs chiffres, valeur négative, débordement…",
+      "Il faut compiler en release",
+      "L'exemple est faux"
+    ],
+    "reponse": 1,
+    "explication": "L'exemple est petit et ne montre pas tout. Relis l'énoncé mot par mot et cherche ce que ta vraie entrée contient de différent."
+  },
+  {
+    "question": "Une double boucle sur 100 000 éléments (chaque élément comparé à tous les autres) fait environ combien d'opérations ?",
+    "choix": ["200 000", "100 millions", "10 milliards", "1 million"],
+    "reponse": 2,
+    "explication": "100 000 × 100 000 = 10^10. Bien trop long : il faut une meilleure méthode (tri, `HashMap`, intervalles…)."
+  }
+]

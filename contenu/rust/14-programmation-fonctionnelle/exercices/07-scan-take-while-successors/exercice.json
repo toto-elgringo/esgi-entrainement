@@ -1,0 +1,11 @@
+{
+  "titre": "scan, take_while et successors",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`soldes` : `mouvements.iter().scan(depart, |solde, &m| { *solde += m; Some(*solde) })`. L'état `solde` est un `&mut i32` : on le modifie avec `*solde`.",
+    "`soldes_avant_decouvert` : réutilise `soldes(...)`, puis `into_iter().take_while(|&s| s >= 0)`. `sans_zeros_au_debut` : `skip_while(|&c| c == 0)` saute les zéros du début, puis garde **tout** le reste.",
+    "`collatz` : `successors(Some(n), |&x| ...)`. La closure renvoie `None` quand `x` vaut 1 (fin de la suite), sinon `Some(x / 2)` ou `Some(3 * x + 1)`.",
+    "`puissances_jusqu_a` : `successors(Some(1_u64), |&x| x.checked_mul(base))`, puis `take_while(|&x| x <= limite)`. `checked_mul` renvoie `None` au lieu de déborder : la suite s'arrête toute seule avant de planter."
+  ]
+}

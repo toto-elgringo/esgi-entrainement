@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2023 jour 5 : le carnet des graines",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Lecture ligne par ligne : la ligne qui commence par `seeds:` (`strip_prefix`) donne les graines ; une ligne qui finit par `map:` commence une nouvelle carte (`Vec<Regle>`) ; une ligne de trois nombres est une règle de la dernière carte. Les nombres dépassent `u32` une fois additionnés : utilise `u64`.",
+    "Partie 1 : pour convertir un nombre avec une carte, cherche la règle où `source <= n && n < source + longueur` et renvoie `destination + (n - source)`, sinon renvoie `n`. Enchaîne les cartes dans l'ordre (une boucle ou `fold`), puis prends le `min()`.",
+    "Partie 2 : il y a des milliards de graines, n'essaie pas chacune. Travaille avec des intervalles `(debut, fin)` (fin exclue). Pour un intervalle et une règle `[source, source + longueur)`, la partie commune va de `debut.max(source)` à `fin.min(source + longueur)` ; elle existe si `debut_commun < fin_commune`.",
+    "Garde une liste `a_traiter`. Tant qu'elle n'est pas vide, retire un intervalle et cherche la première règle qui le touche : la partie commune est décalée (`destination + (debut_commun - source)`) et rangée dans le résultat, les morceaux qui dépassent à gauche et à droite retournent dans `a_traiter`. Si aucune règle ne touche l'intervalle, il passe tel quel. La réponse est le plus petit début d'intervalle après la dernière carte."
+  ]
+}

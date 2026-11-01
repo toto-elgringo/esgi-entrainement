@@ -14,10 +14,10 @@ describe('python : fonctions pures', () => {
     assert.equal(python.versionPython('introuvable'), null);
   });
 
-  it('importe le code de l’élève avant les tests', () => {
-    const script = python.assemblerVerification('def test_a():\n    assert True\n');
+  it('importe le code de l’élève avant de charger les tests', () => {
+    const script = python.assemblerVerification();
     assert.match(script, /from exercice import \*/);
-    assert.ok(script.indexOf('from exercice import *') < script.indexOf('def test_a'));
+    assert.ok(script.indexOf('from exercice import *') < script.indexOf('_charger_tests()'));
     assert.match(script, /RESULTAT/);
   });
 });

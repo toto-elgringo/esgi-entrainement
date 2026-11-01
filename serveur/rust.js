@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { creerAteliers, creerVerificateurs, DELAI_EXECUTION, lancer, problemeExecution } from './processus.js';
+import { analyserTestsRust } from './tests-rust.js';
 
 export { creerReserve, normaliserSortie } from './processus.js';
 
@@ -123,7 +124,8 @@ export function executerProgramme(code, entree = '') {
 
 export function verifierAvecTests(code, tests) {
   return avecAtelier(async (dossier) => {
-    const { probleme, executable, avertissements } = await compiler(dossier, assemblerCodeTest(code, tests), { test: true });
+    const source = assemblerCodeTest(code, tests);
+    const { probleme, executable, avertissements } = await compiler(dossier, source, { test: true });
     if (probleme) return probleme;
 
     const execution = await executerBinaire(executable, dossier, { args: ['--test-threads=1', '--color', 'never'] });
@@ -137,6 +139,7 @@ export function verifierAvecTests(code, tests) {
       sortie: `${execution.stdout}${execution.stderr}`,
       avertissements,
       resume,
+      tests: analyserTestsRust(execution.stdout, source),
     };
   });
 }

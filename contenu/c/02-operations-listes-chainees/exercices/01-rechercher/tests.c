@@ -23,17 +23,17 @@ static void aide_liberer(Cell *start) {
 }
 
 int main(void) {
-    VERIFIER(rechercher(NULL, 3) == NULL, "chercher dans une liste vide renvoie NULL");
+    VERIFIER_EGAL(rechercher(NULL, 3), NULL, "chercher dans une liste vide renvoie NULL");
 
     Cell *l = aide_liste((int[]){4, 8, 15, 16}, 4);
-    VERIFIER(rechercher(l, 4) == l, "chercher 4 renvoie le premier maillon");
-    VERIFIER(rechercher(l, 15) == l->next->next, "chercher 15 renvoie le troisième maillon");
-    VERIFIER(rechercher(l, 16) == l->next->next->next, "chercher 16 renvoie le dernier maillon");
-    VERIFIER(rechercher(l, 42) == NULL, "chercher 42, absent, renvoie NULL");
+    VERIFIER_EGAL(rechercher(l, 4), l, "chercher 4 renvoie le premier maillon");
+    VERIFIER_EGAL(rechercher(l, 15), l->next->next, "chercher 15 renvoie le troisième maillon");
+    VERIFIER_EGAL(rechercher(l, 16), l->next->next->next, "chercher 16 renvoie le dernier maillon");
+    VERIFIER_EGAL(rechercher(l, 42), NULL, "chercher 42, absent, renvoie NULL");
     aide_liberer(l);
 
     Cell *d = aide_liste((int[]){1, 2, 1}, 3);
-    VERIFIER(rechercher(d, 1) == d, "si la valeur apparaît deux fois, on renvoie le premier maillon qui la contient");
+    VERIFIER_EGAL(rechercher(d, 1), d, "si la valeur apparaît deux fois, on renvoie le premier maillon qui la contient");
     aide_liberer(d);
     return BILAN();
 }

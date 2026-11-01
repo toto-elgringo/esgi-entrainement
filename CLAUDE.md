@@ -11,12 +11,15 @@ Site d'entraînement pour **tous les cours de l'ESGI** : Maths pour l'informatiq
 
 - Site : HTML / CSS / JavaScript pur (modules ES), **aucune dépendance npm**, pas de build.
 - CDN : CodeMirror 5.65.16 (éditeur Rust, Python, C ; addons searchcursor, comment, keymap sublime pour les raccourcis), KaTeX 0.16.9 (formules), marked 12.0.2 (Markdown), highlight.js 11.9.0.
-- Progression : `localStorage` (clé `esgi-entrainement`) : exercices réussis, meilleurs scores et parties de quiz en cours (`partiesQuiz`), saisies, code, affichage de chaque exercice (`affichages` : indices, solution ouverte, dernier résultat, entrée du programme). Tout est repris quand on revient sur la page.
+- Progression : `localStorage` (clé `esgi-entrainement`) : exercices réussis, meilleurs scores et parties de quiz en cours (`partiesQuiz`), saisies, code, affichage de chaque exercice (`affichages` : indices, solution ouverte, dernier résultat, entrée du programme). Tout est repris quand on revient sur la page. Export / import dans un fichier JSON (`{ format, version, progression }`) depuis le bas de l'accueil d'une matière, pour changer d'ordinateur.
+- Menu latéral rangeable (☰ ou Ctrl+B, état gardé dans `menuRange`) ; sur téléphone, ☰ le fait glisser par-dessus.
+- Thème sombre par défaut, mode clair avec le bouton ☀/☾ (`theme` dans le stockage, appliqué avant l'affichage par un petit script dans `index.html`). Toutes les couleurs sont des variables CSS redéfinies sous `:root[data-theme="clair"]` (y compris éditeur, couleurs du code highlight.js écrites dans `style.css`, sortie du terminal et accents par matière).
 - Exercices de code : Ctrl+S enregistre puis vérifie (dans les exemples du cours : exécute). Raccourcis d'édition façon VS Code dans `js/code/raccourcis.js` (commandes de `keymap/sublime.js` + copie de lignes maison), Alt+clic pour déposer des curseurs, curseurs affichés sur chaque sélection.
 - Serveur local : Node.js 20+ sans dépendance (`http`, `child_process`).
   - Rust : `cargo clippy` (ou `cargo check`) puis `cargo build` / `cargo test --no-run`, édition 2024, debug.
   - Python : Python 3.8+ (`python`, `py -3` ou `python3`), `-X utf8 -B`, vérification de syntaxe puis exécution ; tests = code importé + fonctions `test_…`.
-  - C : `gcc -std=c17 -Wall -Wextra -O0`, sortie non tamponnée, plantages expliqués (segmentation, pile, division par zéro) ; tests = `main` de l'élève renommé + `tests.c` avec `VERIFIER` / `BILAN`.
+  - C : `gcc -std=c17 -Wall -Wextra -O0`, sortie non tamponnée, plantages expliqués (segmentation, pile, division par zéro) ; tests = `main` de l'élève renommé + `tests.c` avec `VERIFIER_EGAL` / `VERIFIER` / `BILAN`.
+  - Résultat des tests : le serveur renvoie `tests` (un enregistrement par test : nom, appel, obtenu, attendu, condition ou erreur) ; la page affiche une carte « Appel (valeur lue) / Sortie obtenue / Attendu » par test raté, puis la sortie complète repliée. Rust : lu dans la panique + le code source ; Python : `assert` relus par le lanceur (`tests.py`) ; C : lignes `@TEST` écrites par les macros.
   - Exécution 10 s max, entrée standard possible (`entree.txt`).
 - Tests : `node:test`.
 
@@ -45,6 +48,7 @@ serveur/
   serveur.js        fichiers statiques + API /api/etat, /api/<langage>/executer, /api/<langage>/verifier
   processus.js      lancement des programmes, réserve de dossiers de travail, bilans de tests communs
   rust.js, python.js, c.js      compilation / exécution par langage
+  tests-rust.js     relit les paniques de `cargo test` et le code source pour donner appel / obtenu / attendu
   contenu-code.js   lecture du contenu de code, construireSommaire()
   validation-code.js
 scripts/
@@ -77,7 +81,7 @@ CONTENU.md          format exact du contenu (code et réponses)
 | `npm start` | site local avec compilation (http://localhost:3000) |
 | `npm test` | tests unitaires |
 | `npm run sommaire` | régénère les `sommaire.json` des domaines de code |
-| `npm run verifier-contenu [-- <domaine> \| <domaine>/<chapitre>]` | valide le contenu |
+| `npm run verifier-contenu [-- <domaine> \| <domaine>/<chapitre>[/<exercice>]]` | valide le contenu (préfixes acceptés) |
 
 ## Installation des outils (Windows)
 

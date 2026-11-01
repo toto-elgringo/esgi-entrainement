@@ -1,8 +1,8 @@
 int main(void) {
     Point a = {3, 4};
     deplacer(&a, 1, -2);
-    VERIFIER(a.x == 4, "(3, 4) déplacé de (1, -2) : x vaut 4");
-    VERIFIER(a.y == 2, "(3, 4) déplacé de (1, -2) : y vaut 2");
+    VERIFIER_EGAL(a.x, 4, "(3, 4) déplacé de (1, -2) : x vaut 4");
+    VERIFIER_EGAL(a.y, 2, "(3, 4) déplacé de (1, -2) : y vaut 2");
 
     Point b = {0, 0};
     deplacer(&b, 0, 0);

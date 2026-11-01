@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2023 jour 7 : le poker à dos de chameau",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le plus simple est de calculer pour chaque main une **clé** qu'on peut comparer, puis de trier les mains par clé : `(type, valeurs des 5 cartes)`. Rust compare les tuples et les `Vec` élément par élément, dans l'ordre.",
+    "Valeur d'une carte : sa position dans `\"23456789TJQKA\"` (`find(carte)`). Pour la partie 2, utilise `\"J23456789TQKA\"` : le J passe en dernier.",
+    "Pour le type, compte combien de fois chaque carte apparaît, garde les nombres non nuls et trie-les du plus grand au plus petit : `[5]`, `[4, 1]`, `[3, 2]`, `[3, 1, 1]`, `[2, 2, 1]`, `[2, 1, 1, 1]`, `[1, 1, 1, 1, 1]`. Ce `Vec` se compare déjà dans le bon ordre : il peut servir de type tel quel !",
+    "Partie 2 : compte les jokers à part (sans les mettre dans les groupes), puis ajoute-les au plus grand groupe. Attention à `JJJJJ` : aucun groupe, il faut alors créer le groupe `[5]`. Gain : après le tri, `mise × (position + 1)`."
+  ]
+}

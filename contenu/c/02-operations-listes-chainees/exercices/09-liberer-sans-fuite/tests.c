@@ -23,7 +23,7 @@ static int aide_egale(Cell *start, const int *valeurs, int n) {
 }
 
 int main(void) {
-    VERIFIER(retirerPremier(NULL) == NULL, "retirer le premier maillon d'une liste vide renvoie NULL");
+    VERIFIER_EGAL(retirerPremier(NULL), NULL, "retirer le premier maillon d'une liste vide renvoie NULL");
     libererListe(NULL);
     VERIFIER(1, "libérer une liste vide ne plante pas");
 

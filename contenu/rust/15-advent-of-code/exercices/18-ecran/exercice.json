@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 10 : l'écran cathodique",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le plus simple : calcule d'abord la liste des valeurs de X **pendant** chaque cycle (`Vec<i32>`, la case 0 = le cycle 1). Les deux parties n'ont plus qu'à lire cette liste.",
+    "`noop` ajoute une fois X à la liste. `addx v` l'ajoute **deux fois**, et c'est seulement **après** que X augmente de v. Un `match` sur `ligne.split_whitespace().collect::<Vec<_>>().as_slice()` avec les motifs `[\"noop\"]` et `[\"addx\", v]` lit chaque ligne proprement.",
+    "Partie 1 : `zip(1..)` numérote les cycles. Garde ceux où `cycle % 40 == 20` (jusqu'à 220) et additionne `cycle * x`.",
+    "Partie 2 : `chunks(40)` découpe la liste en 6 lignes d'écran. Dans une ligne, le pixel à la position p (de 0 à 39) est `#` si `(x - p).abs() <= 1`. Assemble les lignes avec `join(\"\n\")`."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2024 jour 2 : les rapports",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Écris une fonction d'aide `est_sur(niveaux: &[i32]) -> bool`, puis compte les rapports pour lesquels elle renvoie `true`. Utilise `i32` : les écarts peuvent être négatifs.",
+    "`niveaux.windows(2)` donne chaque paire de voisins `[a, b]` : calcule tous les écarts `b - a`.",
+    "Sûr = tous les écarts sont entre 1 et 3 (`(1..=3).contains(&ecart)`), **ou** tous les écarts sont entre -3 et -1. `iter().all(…)` vérifie une condition sur tous les éléments.",
+    "Partie 2 : pas besoin d'être malin. Pour chaque position `i`, copie le rapport (`to_vec()`), retire le niveau `i` (`remove(i)`) et teste la copie avec `est_sur`. `any(…)` s'arrête dès qu'une copie est sûre."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 3 : les sacs à dos",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Commence par une fonction d'aide `priorite(objet: u8) -> u32`. Sur les octets (`b'a'`, `b'Z'`…), `objet - b'a' + 1` donne 1 pour `a`, 2 pour `b`, etc.",
+    "Partie 1 : `ligne.as_bytes().split_at(longueur / 2)` coupe le sac en deux poches. Cherche ensuite dans la première poche l'objet que la seconde contient : `iter().find(|o| poche2.contains(o))`.",
+    "Partie 2 : range toutes les lignes dans un `Vec` (sans les lignes vides), puis `chunks(3)` les donne trois par trois.",
+    "Dans un groupe `[a, b, c]`, le badge est l'objet de `a` qui est à la fois dans `b` et dans `c`."
+  ]
+}

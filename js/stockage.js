@@ -1,7 +1,7 @@
 const CLE = 'esgi-entrainement';
 
 function etatVide() {
-  return { exercices: {}, quiz: {}, saisies: {}, codes: {}, partiesQuiz: {}, affichages: {}, matiere: null };
+  return { exercices: {}, quiz: {}, saisies: {}, codes: {}, partiesQuiz: {}, affichages: {}, matiere: null, menuRange: false, theme: 'sombre' };
 }
 
 function charger() {
@@ -11,6 +11,22 @@ function charger() {
   } catch {
     return etatVide();
   }
+}
+
+const FORMAT = 'esgi-entrainement';
+const VERSION = 1;
+
+const estObjet = (valeur) => typeof valeur === 'object' && valeur !== null && !Array.isArray(valeur);
+
+function nettoyer(progression) {
+  const propre = etatVide();
+  for (const cle of ['exercices', 'quiz', 'saisies', 'codes', 'partiesQuiz', 'affichages']) {
+    if (estObjet(progression[cle])) propre[cle] = progression[cle];
+  }
+  if (typeof progression.matiere === 'string') propre.matiere = progression.matiere;
+  if (typeof progression.menuRange === 'boolean') propre.menuRange = progression.menuRange;
+  if (progression.theme === 'clair' || progression.theme === 'sombre') propre.theme = progression.theme;
+  return propre;
 }
 
 let etat = charger();
@@ -71,8 +87,40 @@ export const stockage = {
     sauvegarder();
   },
 
+  menuRange: () => etat.menuRange,
+
+  rangerMenu(range) {
+    etat.menuRange = range;
+    sauvegarder();
+  },
+
+  theme: () => etat.theme,
+
+  choisirTheme(theme) {
+    etat.theme = theme;
+    sauvegarder();
+  },
+
+  exporter() {
+    return JSON.stringify({ format: FORMAT, version: VERSION, exporteLe: new Date().toISOString(), progression: etat }, null, 2);
+  },
+
+  importer(texte) {
+    let fichier;
+    try {
+      fichier = JSON.parse(texte);
+    } catch {
+      throw new Error('Fichier illisible : ce n’est pas une sauvegarde valide.');
+    }
+    if (!estObjet(fichier) || fichier.format !== FORMAT || !estObjet(fichier.progression)) {
+      throw new Error('Ce fichier ne vient pas d’ESGI Entraînement.');
+    }
+    etat = nettoyer(fichier.progression);
+    sauvegarder();
+  },
+
   reinitialiser() {
-    etat = { ...etatVide(), matiere: etat.matiere };
+    etat = { ...etatVide(), matiere: etat.matiere, menuRange: etat.menuRange, theme: etat.theme };
     sauvegarder();
   },
 };

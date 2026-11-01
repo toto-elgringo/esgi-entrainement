@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2022 jour 4 : le nettoyage du camp",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Lis chaque ligne en quatre nombres : `split_once(',')` coupe en deux plages, puis `split_once('-')` coupe chaque plage en début et fin. Pense à `trim()` sur le dernier morceau.",
+    "Fais un petit dessin sur une droite avec deux plages `a-b` et `c-d` : quelles comparaisons entre `a`, `b`, `c` et `d` suffisent ?",
+    "Partie 1 : `a-b` contient `c-d` si `a <= c` et `d <= b`. N'oublie pas le cas inverse : `c-d` contient `a-b`.",
+    "Partie 2 : deux plages ont un point commun si `a <= d` et `c <= b`. (Elles sont séparées seulement si l'une finit avant que l'autre commence.)"
+  ]
+}

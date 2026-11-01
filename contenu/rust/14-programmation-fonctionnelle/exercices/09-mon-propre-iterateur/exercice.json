@@ -1,0 +1,11 @@
+{
+  "titre": "Mon propre itérateur",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Dans `next` : garde la valeur à renvoyer (`self.actuel`), fais avancer l'état (`actuel` prend la valeur de `suivant`, `suivant` devient la somme des deux), puis renvoie `Some(valeur)`. On peut tout avancer d'un coup : `(self.actuel, self.suivant) = (self.suivant, self.actuel + self.suivant);`.",
+    "Une fois `Iterator` implémenté, `Fibonacci::new()` a toutes les méthodes des itérateurs : `Fibonacci::new().take(n).collect()`.",
+    "`fibonacci_pairs` : `filter` **avant** `take` (on veut les n premiers pairs). `fibonacci_sous` : `take_while(|&f| f < limite)`. Sur une suite infinie, un `filter` sans `take` ne s'arrêterait jamais.",
+    "`chiffres` : `successors(Some(n), |&x| (x >= 10).then_some(x / 10))` donne n, n / 10, n / 100... jusqu'à un nombre d'un seul chiffre. Il reste à garder le dernier chiffre de chacun : `.map(|x| x % 10)`."
+  ]
+}

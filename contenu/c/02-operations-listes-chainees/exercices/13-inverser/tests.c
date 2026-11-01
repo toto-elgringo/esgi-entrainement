@@ -33,7 +33,7 @@ static void aide_liberer(Cell *start) {
 }
 
 int main(void) {
-    VERIFIER(inverser(NULL) == NULL, "inverser une liste vide donne une liste vide");
+    VERIFIER_EGAL(inverser(NULL), NULL, "inverser une liste vide donne une liste vide");
 
     Cell *seul = aide_liste((int[]){7}, 1);
     Cell *r1 = inverser(seul);
@@ -46,8 +46,8 @@ int main(void) {
     Cell *r = inverser(l);
     int ok = aide_egale(r, (int[]){4, 3, 2, 1}, 4);
     VERIFIER(ok, "1 -> 2 -> 3 -> 4 devient 4 -> 3 -> 2 -> 1");
-    VERIFIER(r == dernier, "le nouveau premier maillon est l'ancien dernier (aucun maillon créé)");
-    VERIFIER(premier->next == NULL, "l'ancien premier maillon est maintenant le dernier (next vaut NULL)");
+    VERIFIER_EGAL(r, dernier, "le nouveau premier maillon est l'ancien dernier (aucun maillon créé)");
+    VERIFIER_EGAL(premier->next, NULL, "l'ancien premier maillon est maintenant le dernier (next vaut NULL)");
     if (ok) {
         aide_liberer(r);
     }

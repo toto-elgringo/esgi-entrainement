@@ -1,0 +1,11 @@
+{
+  "titre": "AoC 2023 jour 9 : prédire la suite",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lis chaque ligne comme un `Vec<i64>` : `split_whitespace()` puis `parse()`. Les nombres négatifs (`-7`) se lisent sans rien faire de spécial.",
+    "La ligne des écarts s'obtient avec `windows(2)` : chaque paire `[a, b]` donne `b - a`.",
+    "Pense récursif : la valeur suivante d'une suite = son dernier nombre + la valeur suivante de la suite de ses écarts. On s'arrête quand la suite n'a que des zéros (`iter().all(|&n| n == 0)`) : la suivante vaut alors 0.",
+    "Partie 2 : la valeur d'avant = premier nombre − valeur d'avant des écarts. Encore plus court : retourne la suite (`reverse()`) et réutilise la fonction de la partie 1."
+  ]
+}

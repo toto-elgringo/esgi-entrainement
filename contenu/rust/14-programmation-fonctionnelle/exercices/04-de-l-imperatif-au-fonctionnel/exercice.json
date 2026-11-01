@@ -1,0 +1,11 @@
+{
+  "titre": "De l'impératif au fonctionnel",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Pour chaque boucle, demande-toi ce qu'elle produit (une liste ? un indice ? un nombre ?) : c'est le consommateur à la fin de la chaîne (`collect`, `position`, `max`, `fold`...).",
+    "`mots_longs_en_majuscules` : `split_whitespace()`, puis `filter`, puis `map(str::to_uppercase)`, puis `collect()`. `indice_du_premier_negatif` : une boucle qui s'arrête au premier trouvé, c'est `position`.",
+    "`plus_forte_hausse` : la variable « précédente » se remplace par `windows(2)`, qui donne des paires `[avant, après]`. `fold(0, i32::max)` garde le plus grand en partant de 0.",
+    "`paires_de_somme` : deux boucles imbriquées, c'est `flat_map`. `nombres.iter().enumerate().flat_map(|(i, &a)| nombres[i + 1..].iter().map(move |&b| (a, b)))`, puis un `filter` sur la somme."
+  ]
+}
