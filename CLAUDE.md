@@ -10,11 +10,11 @@ Site d'entraînement pour **tous les cours de l'ESGI** : Maths pour l'informatiq
 ## Stack technique
 
 - Site : HTML / CSS / JavaScript pur (modules ES), **aucune dépendance npm**, pas de build.
-- CDN : CodeMirror 5.65.16 (éditeur Rust, Python, C ; addons searchcursor, comment, keymap sublime pour les raccourcis), KaTeX 0.16.9 (formules), marked 12.0.2 (Markdown), highlight.js 11.9.0.
+- CDN : CodeMirror 5.65.16 (éditeur Rust, Python, C ; addons searchcursor, match-highlighter, comment, keymap sublime pour les raccourcis), KaTeX 0.16.9 (formules), marked 12.0.2 (Markdown), highlight.js 11.9.0.
 - Progression : `localStorage` (clé `esgi-entrainement`) : exercices réussis, meilleurs scores et parties de quiz en cours (`partiesQuiz`), saisies, code, affichage de chaque exercice (`affichages` : indices, solution ouverte, dernier résultat, entrée du programme). Tout est repris quand on revient sur la page. Export / import dans un fichier JSON (`{ format, version, progression }`) depuis l'encadré « Sauvegarde » (page de choix de la matière et accueil de chaque matière), pour changer d'ordinateur.
 - Menu latéral rangeable (☰ ou Ctrl+B, état gardé dans `menuRange`) ; sur téléphone, ☰ le fait glisser par-dessus.
 - Thème sombre par défaut, mode clair avec le bouton ☀/☾ (`theme` dans le stockage, appliqué avant l'affichage par un petit script dans `index.html`). Toutes les couleurs sont des variables CSS redéfinies sous `:root[data-theme="clair"]` (y compris éditeur, couleurs du code highlight.js écrites dans `style.css`, sortie du terminal et accents par matière).
-- Exercices de code : Ctrl+S enregistre puis vérifie (dans les exemples du cours : exécute). Raccourcis d'édition façon VS Code dans `js/code/raccourcis.js` (commandes de `keymap/sublime.js` + copie de lignes maison), Alt+clic pour déposer des curseurs, curseurs affichés sur chaque sélection.
+- Exercices de code : Ctrl+S enregistre puis vérifie (dans les exemples du cours : exécute). Raccourcis d'édition façon VS Code dans `js/code/raccourcis.js` (commandes de `keymap/sublime.js` + copie de lignes maison), Alt+clic pour déposer des curseurs, curseurs affichés sur chaque sélection. Toutes les occurrences du texte sélectionné (mot ou plus long, sur une ligne) sont surlignées (addon `match-highlighter`, réglages `SURBRILLANCE_OCCURRENCES` dans `editeur.js`, couleurs `--code-occurrence`).
 - Serveur local : Node.js 20+ sans dépendance (`http`, `child_process`).
   - Rust : `cargo clippy` (ou `cargo check`) puis `cargo build` / `cargo test --no-run`, édition 2024, debug.
   - Python : Python 3.8+ (`python`, `py -3` ou `python3`), `-X utf8 -B`, vérification de syntaxe puis exécution ; tests = code importé + fonctions `test_…`.
