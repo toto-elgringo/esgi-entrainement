@@ -2,6 +2,8 @@ import { configurerSouris, RACCOURCIS_EDITION } from './raccourcis.js';
 
 const INDENTATION = '    ';
 
+export const SURBRILLANCE_OCCURRENCES = { minChars: 1, trim: true, showToken: false, delay: 50 };
+
 function creerCodeMirror(conteneur, code, { auChangement, auRaccourci, hauteurAuto = false, mode = 'rust' }) {
   const editeur = window.CodeMirror(conteneur, {
     value: code,
@@ -15,6 +17,7 @@ function creerCodeMirror(conteneur, code, { auChangement, auRaccourci, hauteurAu
     autoCloseBrackets: true,
     viewportMargin: hauteurAuto ? Infinity : 10,
     showCursorWhenSelecting: true,
+    highlightSelectionMatches: SURBRILLANCE_OCCURRENCES,
     configureMouse: configurerSouris,
     extraKeys: {
       ...RACCOURCIS_EDITION,
