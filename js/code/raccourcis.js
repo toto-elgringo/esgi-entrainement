@@ -51,8 +51,34 @@ function dupliquerLignes(cm, versLeBas) {
 
 const UNITES_CLIC = { single: 'char', double: 'word', triple: 'line' };
 
+const memesPositions = (a, b) => comparer(a.anchor, b.anchor) === 0 && comparer(a.head, b.head) === 0;
+
+function garderCurseurPrincipal(cm, principale) {
+  const page = cm.getWrapperElement().ownerDocument;
+  const relacher = () => {
+    page.removeEventListener('mouseup', relacher);
+    setTimeout(() => {
+      const selections = cm.listSelections();
+      const index = selections.findIndex((selection) => memesPositions(selection, principale));
+      if (index >= 0) cm.setSelections(selections, index, { scroll: false });
+    });
+  };
+  page.addEventListener('mouseup', relacher);
+}
+
 export function configurerSouris(cm, repetition, evenement) {
-  return evenement.altKey && !evenement.shiftKey ? { addNew: true, unit: UNITES_CLIC[repetition] } : {};
+  if (!evenement.altKey || evenement.shiftKey) {
+    cm.state.serieCurseurs = false;
+    return {};
+  }
+  const unit = UNITES_CLIC[repetition];
+  if (!cm.state.serieCurseurs && cm.listSelections().length === 1) {
+    cm.state.serieCurseurs = true;
+    return { addNew: false, unit };
+  }
+  cm.state.serieCurseurs = true;
+  garderCurseurPrincipal(cm, { anchor: cm.getCursor('anchor'), head: cm.getCursor('head') });
+  return { addNew: true, unit };
 }
 
 const copierVersLeHaut = (cm) => dupliquerLignes(cm, false);

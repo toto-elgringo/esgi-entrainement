@@ -1572,6 +1572,10 @@ pre code.hljs {
   line-height: 1.55;
 }
 
+.CodeMirror .CodeMirror-crosshair {
+  cursor: text;
+}
+
 .cm-s-rustique.CodeMirror {
   background: var(--code-fond);
   color: var(--code-texte);

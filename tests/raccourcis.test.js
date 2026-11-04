@@ -43,14 +43,72 @@ describe('duplication de lignes', () => {
   });
 });
 
+function editeurFactice(selections) {
+  const ecouteurs = [];
+  const editeur = {
+    state: {},
+    selections,
+    principale: 0,
+    listSelections: () => editeur.selections,
+    getCursor: (cote) => editeur.selections[editeur.principale][cote],
+    setSelections: (nouvelles, principale) => {
+      editeur.selections = nouvelles;
+      editeur.principale = principale;
+    },
+    getWrapperElement: () => ({
+      ownerDocument: {
+        addEventListener: (_, ecouteur) => ecouteurs.push(ecouteur),
+        removeEventListener: (_, ecouteur) => ecouteurs.splice(ecouteurs.indexOf(ecouteur), 1),
+      },
+    }),
+    relacherSouris: async () => {
+      [...ecouteurs].forEach((ecouteur) => ecouteur());
+      await new Promise((fin) => setTimeout(fin));
+    },
+  };
+  return editeur;
+}
+
+const alt = { altKey: true, shiftKey: false };
+
 describe('souris', () => {
-  it('Alt + clic dépose un nouveau curseur', () => {
-    assert.deepEqual(configurerSouris(null, 'single', { altKey: true, shiftKey: false }), { addNew: true, unit: 'char' });
-    assert.deepEqual(configurerSouris(null, 'double', { altKey: true, shiftKey: false }), { addNew: true, unit: 'word' });
+  it('le premier Alt + clic remplace le curseur actuel', () => {
+    const cm = editeurFactice([curseur(0, 0)]);
+    assert.deepEqual(configurerSouris(cm, 'single', alt), { addNew: false, unit: 'char' });
+  });
+
+  it('les Alt + clic suivants ajoutent des curseurs', () => {
+    const cm = editeurFactice([curseur(0, 0)]);
+    configurerSouris(cm, 'single', alt);
+    assert.deepEqual(configurerSouris(cm, 'single', alt), { addNew: true, unit: 'char' });
+    assert.deepEqual(configurerSouris(cm, 'double', alt), { addNew: true, unit: 'word' });
+  });
+
+  it('ajoute des curseurs à une sélection multiple déjà en place', () => {
+    const cm = editeurFactice([curseur(0, 0), curseur(1, 0)]);
+    assert.deepEqual(configurerSouris(cm, 'single', alt), { addNew: true, unit: 'char' });
+  });
+
+  it('un clic sans Alt recommence une nouvelle série', () => {
+    const cm = editeurFactice([curseur(0, 0)]);
+    configurerSouris(cm, 'single', alt);
+    configurerSouris(cm, 'single', { altKey: false, shiftKey: false });
+    assert.deepEqual(configurerSouris(cm, 'single', alt), { addNew: false, unit: 'char' });
+  });
+
+  it('le premier curseur posé reste le curseur principal', async () => {
+    const cm = editeurFactice([curseur(0, 0)]);
+    configurerSouris(cm, 'single', alt);
+    configurerSouris(cm, 'single', alt);
+    cm.selections = [curseur(0, 0), curseur(2, 3)];
+    cm.principale = 1;
+    await cm.relacherSouris();
+    assert.equal(cm.principale, 0);
   });
 
   it('laisse le comportement normal sans Alt, et la sélection en colonne avec Maj + Alt', () => {
-    assert.deepEqual(configurerSouris(null, 'single', { altKey: false, shiftKey: false }), {});
-    assert.deepEqual(configurerSouris(null, 'single', { altKey: true, shiftKey: true }), {});
+    const cm = editeurFactice([curseur(0, 0)]);
+    assert.deepEqual(configurerSouris(cm, 'single', { altKey: false, shiftKey: false }), {});
+    assert.deepEqual(configurerSouris(cm, 'single', { altKey: true, shiftKey: true }), {});
   });
 });
