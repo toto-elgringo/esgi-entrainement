@@ -3,6 +3,7 @@ import { echapper, rendreLatex } from '../outils.js';
 import { chapitresDeMatiere, compterProgression, lienExercice, prochainExercice } from '../parcours.js';
 import { etatOutils } from '../code/compilateur.js';
 import { avecFormules, estDomaineCode } from '../domaines.js';
+import { supportsDeChapitre } from '../supports.js';
 
 const PRESENTATIONS = {
   informatique: {
@@ -71,8 +72,9 @@ const ETAPES = {
   ],
 };
 
-function carteChapitre(chapitre, numero, progression) {
+function carteChapitre(chapitre, numero, progression, matiere) {
   const { reussis, total } = compterProgression([chapitre], progression);
+  const supports = supportsDeChapitre(chapitre, matiere);
   const quiz = progression.quiz[chapitre.cle];
   const premier = chapitre.exercices[0];
   return `
@@ -85,6 +87,7 @@ function carteChapitre(chapitre, numero, progression) {
         <span>${reussis} / ${total} exercices${quiz ? ` · quiz ${quiz.score}/${quiz.total}` : ''}</span>
         <div class="carte-liens">
           <a href="#/cours/${chapitre.cle}">Cours</a>
+          ${supports.length ? `<a href="#/supports/${chapitre.cle}">Supports</a>` : ''}
           ${chapitre.quiz.length ? `<a href="#/quiz/${chapitre.cle}">Quiz</a>` : ''}
           ${premier ? `<a href="#/exercice/${chapitre.cle}/${premier.id}">Exercices</a>` : ''}
         </div>
@@ -193,7 +196,7 @@ export async function afficherAccueil(ctx) {
       </div>
       ${boutonSuivant}
       <h2>Chapitres</h2>
-      <div class="grille-chapitres">${chapitres.map((chapitre, index) => carteChapitre(chapitre, index + 1, progression)).join('')}</div>
+      <div class="grille-chapitres">${chapitres.map((chapitre, index) => carteChapitre(chapitre, index + 1, progression, matiere.id)).join('')}</div>
       <h2>Comment ça marche</h2>
       <div class="etapes">${etapes}</div>
       ${avecFormules(matiere.domaine) ? blocAideMaths() : ''}

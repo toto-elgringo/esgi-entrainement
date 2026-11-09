@@ -4,5 +4,9 @@
   "source": "Fiche « TOEIC tips » et cours du 14 septembre 2026",
   "matieres": [
     "anglais"
+  ],
+  "supports": [
+    {"titre": "TOEIC tips", "fichier": "Anglais professionnel/Sources/TOIEC tips.pdf"},
+    {"titre": "Ressources d'entraînement", "fichier": "Anglais professionnel/Sources/Ressources pour entrainement TOEIC.pdf"}
   ]
 }

@@ -63,6 +63,7 @@ CONTENU.md          format exact du contenu (code et réponses)
 - Matières : une par domaine de code (`rust`, `python`, `algo-avancee` pour le domaine `c`), et celles déclarées dans les `programme.json` (`informatique`, `big-data`, `combinatoire`, `anglais`, `electif`). Les chapitres maths 04 et 05 sont communs à l'informatique et au big data. Un domaine sans contenu est masqué.
 - `GET api/etat` renvoie les versions de cargo, clippy, Python et gcc : l'accueil d'une matière de code prévient si l'outil manque ou si le serveur ne répond plus.
 - Dossiers de travail dans `<tmp>/esgi-entrainement-<outil>/<pid>/atelier-N`, réutilisés et supprimés à l'arrêt du processus.
+- Supports originaux (PDF, HTML des profs) : jamais copiés dans le dépôt public. Déclarés dans `chapitre.json` (`supports`), servis par `/supports/<chemin>` depuis `DOSSIER_SUPPORTS` (par défaut le vault Obsidian `Cours - ESGI`), affichés dans la vue `#/supports/<domaine>/<chapitre>` (`js/vues/supports.js`, `js/supports.js`).
 - Formules KaTeX actives pour `maths` et `combinatoire` seulement (l'anglais contient des prix en `$`).
 - `body[data-domaine]` change la couleur d'accent de chaque domaine.
 - Correction des maths : expressions comparées en plusieurs points, `aUneConstantePres` pour les primitives, aperçu « Lu comme » en LaTeX.

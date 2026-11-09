@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import http from 'node:http';
 import path from 'node:path';
 import { LANGAGES } from '../js/domaines.js';
+import { typeSupport } from '../js/supports.js';
 import * as c from './c.js';
 import { ContenuIntrouvable, lireExercice } from './contenu-code.js';
 import * as python from './python.js';
@@ -20,6 +21,7 @@ const TYPES_MIME = {
   '.c': 'text/plain; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
   '.svg': 'image/svg+xml',
+  '.pdf': 'application/pdf',
 };
 
 export class ErreurHttp extends Error {
@@ -61,28 +63,51 @@ async function etatOutils() {
   return { ...outilsRust, ...outilsPython, ...outilsC };
 }
 
-async function servirFichier(racine, chemin, reponse) {
+function cheminDansDossier(racine, chemin) {
   let relatif;
   try {
-    relatif = chemin === '/' ? 'index.html' : decodeURIComponent(chemin).replace(/^\/+/, '');
+    relatif = decodeURIComponent(chemin).replace(/^\/+/, '');
   } catch {
-    throw new ErreurHttp(404, 'Fichier introuvable');
+    return null;
   }
   const base = path.resolve(racine);
   const fichier = path.resolve(base, relatif);
-  if (!fichier.startsWith(base + path.sep)) throw new ErreurHttp(404, 'Fichier introuvable');
+  return fichier.startsWith(base + path.sep) ? fichier : null;
+}
 
+async function envoyerFichier(fichier, reponse) {
   let donnees;
   try {
     donnees = await fs.readFile(fichier);
   } catch {
-    throw new ErreurHttp(404, 'Fichier introuvable');
+    return false;
   }
   reponse.writeHead(200, {
-    'Content-Type': TYPES_MIME[path.extname(fichier)] ?? 'application/octet-stream',
+    'Content-Type': TYPES_MIME[path.extname(fichier).toLowerCase()] ?? 'application/octet-stream',
     'Cache-Control': 'no-cache',
   });
   reponse.end(donnees);
+  return true;
+}
+
+async function servirFichier(racine, chemin, reponse) {
+  const fichier = cheminDansDossier(racine, chemin === '/' ? 'index.html' : chemin);
+  if (!fichier || !(await envoyerFichier(fichier, reponse))) throw new ErreurHttp(404, 'Fichier introuvable');
+}
+
+const PAGE_SUPPORT_ABSENT = `<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><title>Support introuvable</title>
+<style>body{font-family:system-ui,sans-serif;margin:0;display:grid;place-items:center;min-height:100vh;background:#14171f;color:#e6e9f0}
+div{max-width:520px;padding:24px;line-height:1.5}code{background:#262b38;padding:2px 6px;border-radius:4px}</style></head>
+<body><div><h2>Support introuvable sur cet ordinateur</h2>
+<p>Les supports originaux ne sont pas dans le dépôt : le site les lit dans ton dossier de cours.</p>
+<p>Indique ce dossier en lançant <code>DOSSIER_SUPPORTS="chemin/du/dossier" npm start</code>.</p></div></body></html>`;
+
+async function servirSupport(dossierSupports, chemin, reponse) {
+  const fichier = dossierSupports ? cheminDansDossier(dossierSupports, chemin) : null;
+  if (fichier && typeSupport(fichier) && (await envoyerFichier(fichier, reponse))) return;
+  reponse.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
+  reponse.end(PAGE_SUPPORT_ABSENT);
 }
 
 function creerRoutes({ dossierContenu }) {
@@ -118,7 +143,7 @@ function statutErreur(erreur) {
   return 500;
 }
 
-export function creerServeur({ racine, dossierContenu }) {
+export function creerServeur({ racine, dossierContenu, dossierSupports }) {
   const routes = creerRoutes({ dossierContenu });
   return http.createServer(async (requete, reponse) => {
     try {
@@ -127,6 +152,8 @@ export function creerServeur({ racine, dossierContenu }) {
         const route = routes.find((candidate) => candidate.methode === requete.method && candidate.chemin === pathname);
         if (!route) throw new ErreurHttp(404, 'Route inconnue');
         envoyerJson(reponse, 200, await route.action(requete));
+      } else if (pathname.startsWith('/supports/')) {
+        await servirSupport(dossierSupports, pathname.slice('/supports/'.length), reponse);
       } else {
         await servirFichier(racine, pathname, reponse);
       }

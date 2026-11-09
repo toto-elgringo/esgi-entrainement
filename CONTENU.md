@@ -51,6 +51,19 @@ Les noms de dossiers : minuscules, chiffres et tirets uniquement (`04-tarif`, pa
 
 `source` vaut `"cours"` (vu en cours à l'ESGI) ou `"fondamentaux"` (pas encore vu en cours).
 
+### Supports originaux (`supports`, facultatif)
+
+Les PDF et pages HTML des profs ne sont **pas** dans le dépôt : le serveur les lit dans le dossier des cours (`DOSSIER_SUPPORTS`, par défaut `~/Obsidian/Claude Note/Cours - ESGI`) et les sert sous `/supports/…`. Chaque chapitre liste les siens, avec un chemin relatif à ce dossier (des `/`, uniquement `.pdf` ou `.html`) :
+
+```json
+"supports": [
+  {"titre": "Slides", "fichier": "Rust/Sources/Slides - Ownership.pdf"},
+  {"titre": "Correction", "fichier": "Maths pour le big data/Sources/Séance 1 - Correction.pdf", "matieres": ["big-data"]}
+]
+```
+
+`matieres` (facultatif) réserve un support à certaines matières. Le cours affiche un bandeau « Supports originaux », le menu et l'accueil un lien vers la page `#/supports/<domaine>/<chapitre>` (onglets + aperçu).
+
 ### `cours.md`
 
 Du Markdown classique. Les encarts façon Obsidian sont reconnus :
@@ -250,7 +263,7 @@ Un nouveau chapitre doit être ajouté dans la liste `chapitres` de `programme.j
 }
 ```
 
-`source` est le nom de la séance ou du cours d'origine. `matieres` liste les matières concernées (un chapitre peut être dans les deux).
+`source` est le nom de la séance ou du cours d'origine. `matieres` liste les matières concernées (un chapitre peut être dans les deux). `supports` : voir « Supports originaux » plus haut.
 
 ### Les formules (maths et combinatoire)
 

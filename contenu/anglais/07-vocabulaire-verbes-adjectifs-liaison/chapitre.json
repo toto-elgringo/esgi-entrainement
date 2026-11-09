@@ -4,5 +4,8 @@
   "source": "Fiche « Les 400 mots du TOEIC »",
   "matieres": [
     "anglais"
+  ],
+  "supports": [
+    {"titre": "Les 400 mots du TOEIC", "fichier": "Anglais professionnel/Sources/Les 400 mots TOEIC.pdf"}
   ]
 }

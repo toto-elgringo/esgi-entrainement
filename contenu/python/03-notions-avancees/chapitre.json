@@ -1,5 +1,8 @@
 {
   "titre": "Notions avancées",
   "description": "Compréhensions, expressions génératrices, zip, map, filter, enumerate, sorted, any, all, lambdas, fichiers et with.",
-  "source": "cours"
+  "source": "cours",
+  "supports": [
+    {"titre": "Slides", "fichier": "Scripting Python/Sources/slides 3 - notions avancées.pdf"}
+  ]
 }

@@ -18,6 +18,8 @@
 
 ## Site
 
+- [ ] Supports : ajouter ceux des nouveaux chapitres dans `chapitre.json` (`supports`) au fil du cours
+
 - [x] Exporter / importer sa progression (pour changer d'ordinateur)
 - [ ] Héberger CodeMirror, KaTeX, marked et highlight.js dans le dépôt pour fonctionner sans internet
 - [ ] Clavier de symboles pour les maths sur téléphone (`^`, `√`, `π`)

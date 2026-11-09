@@ -1,4 +1,5 @@
 import { exec } from 'node:child_process';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creerServeur } from './serveur.js';
@@ -11,7 +12,8 @@ function ouvrirNavigateur(adresse) {
   exec(commandes[process.platform] ?? `xdg-open "${adresse}"`, () => {});
 }
 
-const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu') });
+const dossierSupports = process.env.DOSSIER_SUPPORTS || path.join(os.homedir(), 'Obsidian', 'Claude Note', 'Cours - ESGI');
+const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports });
 
 process.on('SIGINT', () => process.exit(0));
 

@@ -1,5 +1,8 @@
 {
   "titre": "Fonctions avancées",
   "description": "Valeurs par défaut, mots-clés, *args et **kwargs, fonctions internes, closures, décorateurs, générateurs avec yield et exceptions.",
-  "source": "cours"
+  "source": "cours",
+  "supports": [
+    {"titre": "Slides", "fichier": "Scripting Python/Sources/slides 2 - fonctions.pdf"}
+  ]
 }

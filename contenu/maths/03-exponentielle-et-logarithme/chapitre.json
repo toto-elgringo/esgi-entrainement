@@ -2,5 +2,10 @@
   "titre": "Exponentielle et logarithme",
   "description": "Propriétés de exp et ln, logarithme en base a, équations, croissances comparées, convexité et applications (complexité, volumes de données, log-loss).",
   "source": "Séance 3",
-  "matieres": ["informatique"]
+  "matieres": ["informatique"],
+  "supports": [
+    {"titre": "Cours", "fichier": "Maths pour l'informatique/Sources/Séance 3 - Exponentielle et logarithme.pdf"},
+    {"titre": "Exercices", "fichier": "Maths pour l'informatique/Sources/Séance 3 - Exercices.pdf"},
+    {"titre": "Correction", "fichier": "Maths pour l'informatique/Sources/Séance 3 - correction exercices.pdf"}
+  ]
 }

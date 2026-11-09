@@ -5,6 +5,24 @@
       "titre": "Découvrir Rust",
       "description": "Installation, outils, histoire du langage et ses trois priorités.",
       "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides",
+          "fichier": "Rust/Sources/Slides - Découvrir Rust et historique.pdf"
+        },
+        {
+          "titre": "Support",
+          "fichier": "Rust/Sources/Support - Découvrir Rust et historique.pdf"
+        },
+        {
+          "titre": "Slides interactives",
+          "fichier": "Rust/Sources/[Slides] Découvrir Rust et historique.html"
+        },
+        {
+          "titre": "Support interactif",
+          "fichier": "Rust/Sources/[Support] Découvrir Rust et historique.html"
+        }
+      ],
       "exercices": [
         {
           "id": "01-hello-world",
@@ -167,6 +185,24 @@
       "titre": "Premiers pas",
       "description": "Cargo, fonctions, expressions, types numériques, conversions, débordement, match et mutabilité.",
       "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides",
+          "fichier": "Rust/Sources/Slides - Premiers pas.pdf"
+        },
+        {
+          "titre": "Support",
+          "fichier": "Rust/Sources/Support - Premiers pas.pdf"
+        },
+        {
+          "titre": "Slides interactives",
+          "fichier": "Rust/Sources/[Slides] Premiers pas.html"
+        },
+        {
+          "titre": "Support interactif",
+          "fichier": "Rust/Sources/[Support] Premiers pas.html"
+        }
+      ],
       "exercices": [
         {
           "id": "01-bonjour",
@@ -424,6 +460,24 @@
       "titre": "Strings et mémoire",
       "description": "&str et String, UTF-8, octets et caractères, couper un texte, la pile et le tas, Box, mesurer.",
       "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides",
+          "fichier": "Rust/Sources/Slides - Strings et Mémoire.pdf"
+        },
+        {
+          "titre": "Support",
+          "fichier": "Rust/Sources/Support - Strings et Mémoire.pdf"
+        },
+        {
+          "titre": "Slides interactives",
+          "fichier": "Rust/Sources/[Slides] Strings et Mémoire.html"
+        },
+        {
+          "titre": "Support interactif",
+          "fichier": "Rust/Sources/[Support] Strings et Mémoire.html"
+        }
+      ],
       "exercices": [
         {
           "id": "01-compter-juste",
@@ -663,6 +717,24 @@
       "titre": "Ownership",
       "description": "Portée, drop et RAII, masquage, move, Copy et Clone, emprunts & et &mut.",
       "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides",
+          "fichier": "Rust/Sources/Slides - Ownership.pdf"
+        },
+        {
+          "titre": "Support",
+          "fichier": "Rust/Sources/Support - Ownership.pdf"
+        },
+        {
+          "titre": "Slides interactives",
+          "fichier": "Rust/Sources/[Sllides] Ownership.html"
+        },
+        {
+          "titre": "Support interactif",
+          "fichier": "Rust/Sources/[Support] Ownership.html"
+        }
+      ],
       "exercices": [
         {
           "id": "01-portee",

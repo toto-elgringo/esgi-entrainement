@@ -9,6 +9,7 @@ import { stockage } from './stockage.js';
 import { afficherAccueil } from './vues/accueil.js';
 import { afficherCours } from './vues/cours.js';
 import { afficherQuiz } from './vues/quiz.js';
+import { afficherSupports } from './vues/supports.js';
 
 const menu = document.getElementById('menu');
 const contenu = document.getElementById('contenu');
@@ -48,7 +49,7 @@ function remplirChoixMatiere() {
 }
 
 function rafraichirMenu() {
-  dessinerMenu(menu, chapitresVisibles(), stockage.progression(), etat.ouverts, location.hash);
+  dessinerMenu(menu, chapitresVisibles(), stockage.progression(), etat.ouverts, location.hash, matiereCourante());
   dessinerProgressionGlobale(progressionGlobale, chapitresVisibles(), stockage.progression());
 }
 
@@ -110,6 +111,7 @@ function afficherVue(ctx, route) {
   if (!chapitre) throw new Error('Chapitre introuvable');
   if (route.vue === 'cours') return afficherCours(ctx, chapitre);
   if (route.vue === 'quiz') return afficherQuiz(ctx, chapitre);
+  if (route.vue === 'supports') return afficherSupports(ctx, chapitre, route.exerciceId);
   if (route.vue === 'exercice') {
     const exercice = chapitre.exercices.find((candidat) => candidat.id === route.exerciceId);
     if (!exercice) throw new Error('Exercice introuvable');

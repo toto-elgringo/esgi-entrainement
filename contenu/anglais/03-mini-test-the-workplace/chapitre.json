@@ -4,5 +4,9 @@
   "source": "Cours du 12 octobre 2026 (mini test)",
   "matieres": [
     "anglais"
+  ],
+  "supports": [
+    {"titre": "Mini test", "fichier": "Anglais professionnel/Sources/Mini test The workplace.pdf"},
+    {"titre": "Textes des audios", "fichier": "Anglais professionnel/Sources/Audios mini test The Workplace.pdf"}
   ]
 }

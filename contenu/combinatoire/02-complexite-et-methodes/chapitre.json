@@ -4,5 +4,11 @@
   "source": "Chapitre 1",
   "matieres": [
     "combinatoire"
+  ],
+  "supports": [
+    {"titre": "Slides", "fichier": "Combinatoire et complexité/Sources/Slides - Introduction.pdf"},
+    {"titre": "Support", "fichier": "Combinatoire et complexité/Sources/Support - Introduction.pdf"},
+    {"titre": "Slides interactives", "fichier": "Combinatoire et complexité/Sources/[Slides] Introduction.html"},
+    {"titre": "Support interactif", "fichier": "Combinatoire et complexité/Sources/[Support] Introduction.html"}
   ]
 }

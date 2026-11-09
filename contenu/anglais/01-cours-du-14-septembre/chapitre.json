@@ -4,5 +4,8 @@
   "source": "Cours du 14 septembre 2026",
   "matieres": [
     "anglais"
+  ],
+  "supports": [
+    {"titre": "Cours du 14 septembre", "fichier": "Anglais professionnel/Sources/cours du 14 sep 2026.pdf"}
   ]
 }

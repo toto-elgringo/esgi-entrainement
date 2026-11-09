@@ -1,5 +1,11 @@
 {
   "titre": "Premiers pas",
   "description": "Cargo, fonctions, expressions, types numériques, conversions, débordement, match et mutabilité.",
-  "source": "cours"
+  "source": "cours",
+  "supports": [
+    {"titre": "Slides", "fichier": "Rust/Sources/Slides - Premiers pas.pdf"},
+    {"titre": "Support", "fichier": "Rust/Sources/Support - Premiers pas.pdf"},
+    {"titre": "Slides interactives", "fichier": "Rust/Sources/[Slides] Premiers pas.html"},
+    {"titre": "Support interactif", "fichier": "Rust/Sources/[Support] Premiers pas.html"}
+  ]
 }

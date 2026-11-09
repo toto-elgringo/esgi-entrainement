@@ -4,5 +4,11 @@
   "source": "Chapitre 2",
   "matieres": [
     "combinatoire"
+  ],
+  "supports": [
+    {"titre": "Slides", "fichier": "Combinatoire et complexité/Sources/Slides - Métaheuristiques.pdf"},
+    {"titre": "Support", "fichier": "Combinatoire et complexité/Sources/Support - Métaheuristiques.pdf"},
+    {"titre": "Slides interactives", "fichier": "Combinatoire et complexité/Sources/[Slides] Métaheuristiques.html"},
+    {"titre": "Support interactif", "fichier": "Combinatoire et complexité/Sources/[Support] Métaheuristiques.html"}
   ]
 }

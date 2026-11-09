@@ -1,3 +1,4 @@
+import { validerSupports } from '../js/supports.js';
 import { fichiersExercice } from './contenu-code.js';
 
 const TYPES = ['tests', 'sortie'];
@@ -17,6 +18,7 @@ export function validerMetaChapitre(meta) {
   const problemes = [];
   if (!texteRempli(meta.titre)) problemes.push('chapitre.json : « titre » manquant');
   if (!SOURCES.includes(meta.source)) problemes.push(`chapitre.json : « source » doit valoir ${SOURCES.join(' ou ')}`);
+  problemes.push(...validerSupports(meta.supports));
   return problemes;
 }
 

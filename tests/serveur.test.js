@@ -36,7 +36,11 @@ describe('serveur local', () => {
     racine = await creerDossierTemporaire();
     await fs.writeFile(path.join(racine, 'index.html'), '<h1>Accueil</h1>');
     await creerContenuExemple(racine);
-    serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu') });
+    const dossierSupports = path.join(racine, 'cours');
+    await fs.mkdir(path.join(dossierSupports, 'Rust'), { recursive: true });
+    await fs.writeFile(path.join(dossierSupports, 'Rust', 'Slides 1.pdf'), '%PDF-1.4 exemple');
+    await fs.writeFile(path.join(dossierSupports, 'Rust', 'notes.md'), 'privé');
+    serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports });
     await new Promise((resoudre) => serveur.listen(0, '127.0.0.1', resoudre));
     adresse = `http://127.0.0.1:${serveur.address().port}`;
   });
@@ -50,6 +54,21 @@ describe('serveur local', () => {
     assert.match((await appeler('GET', '/')).donnees, /Accueil/);
     const depart = await appeler('GET', '/contenu/rust/01-bases/exercices/01-double/depart.rs');
     assert.equal(depart.donnees, CODE_DEPART);
+  });
+
+  it('sert les supports originaux depuis le dossier des cours', async () => {
+    const reponse = await fetch(`${adresse}/supports/Rust/Slides%201.pdf`);
+    assert.equal(reponse.status, 200);
+    assert.equal(reponse.headers.get('content-type'), 'application/pdf');
+    assert.equal(await reponse.text(), '%PDF-1.4 exemple');
+  });
+
+  it('refuse les supports absents, hors dossier ou d’un autre type', async () => {
+    const absent = await appeler('GET', '/supports/Rust/absent.pdf');
+    assert.equal(absent.statut, 404);
+    assert.match(absent.donnees, /Support introuvable/);
+    assert.equal((await appeler('GET', '/supports/Rust/notes.md')).statut, 404);
+    assert.equal((await appeler('GET', '/supports/Rust/%2e%2e%2f%2e%2e%2findex.html')).statut, 404);
   });
 
   it('refuse de sortir du dossier du site', async () => {
