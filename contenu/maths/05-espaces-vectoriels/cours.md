@@ -106,6 +106,10 @@ Exemple : $u = (1, 1)$ et $v = (1, -1)$. Si $\lambda u + \mu v = 0$, alors $\lam
 > - **moins de $n$ vecteurs** : la famille ne peut pas être **génératrice** ;
 > - **exactement $n$ vecteurs** : libre $\Leftrightarrow$ base.
 
+```anim
+vecteurs
+```
+
 ## 5. Sous-espace vectoriel
 
 Une partie $F$ de $E$ est un **sous-espace vectoriel** si :

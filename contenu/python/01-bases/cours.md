@@ -210,6 +210,10 @@ print(l[::-1])
 print(l[-3:])
 ```
 
+```anim
+decoupage
+```
+
 > [!warning] `l2 = l` ne copie pas
 > Les deux noms désignent **la même** liste : modifier l'une modifie « l'autre ». Pour une vraie copie : `l[:]`, `list(l)` ou `l.copy()`.
 
@@ -221,6 +225,12 @@ print(a)
 c = a[:]
 c.append(4)
 print(a, c)
+```
+
+```anim
+references
+scenario: alias
+titre: Deux noms, une seule liste
 ```
 
 ## 9. Les chaînes

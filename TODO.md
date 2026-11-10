@@ -7,7 +7,8 @@
 - [ ] Maths : séance 4 (séries), séance 5 (Lagrange), séance 6 (PCA), uniquement le contenu des cours
 - [ ] Combinatoire : chapitre 3 (théorie des graphes) et trimestre 2 (programmation linéaire, simplexe, PLNE) quand les supports arrivent
 - [ ] Combinatoire : transformer en exercices Rust le code de la descente, du recuit et de l'algorithme génétique quand il sera distribué
-- [ ] Combinatoire : petites animations (recuit, roulette, tournoi) comme dans les slides
+- [x] Combinatoire : petites animations (recuit, roulette, tournoi) comme dans les slides
+- [ ] Animations : en ajouter aux chapitres qui n'en ont pas (maths séries / Lagrange / PCA, Rust structs / enums / collections, Python chaînes, anglais 01-03)
 - [ ] Algorithmique avancée : nouvelles fiches (piles, files, arbres…) au fil du cours
 - [ ] Scripting Python : nouveaux diaporamas au fil du cours
 - [ ] Scripting Python : chapitre « fondamentaux » sur les scripts système (`sys.argv`, `pathlib`, `json`, `csv`, `re`, `subprocess`)

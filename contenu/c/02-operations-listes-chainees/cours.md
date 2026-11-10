@@ -310,6 +310,11 @@ En échangeant les deux dernières lignes, on obtient l'affichage dans l'ordre n
 | Suppression d'une valeur | O(N) | O(N) |
 | Inversion | O(N) | O(N) |
 
+```anim
+liste-chainee
+liste: 1, 4, 2, 5
+```
+
 ## 12. Programme complet
 
 ```c

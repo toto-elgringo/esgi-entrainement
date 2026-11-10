@@ -1,0 +1,571 @@
+.anim-info .combi-ok {
+  color: var(--succes);
+}
+
+.anim-info .combi-non {
+  color: var(--erreur);
+}
+
+.combi-voyageur .combi-arete {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.combi-arete-retiree {
+  stroke: var(--erreur);
+  stroke-width: 4;
+  stroke-dasharray: 7 5;
+  stroke-linecap: round;
+}
+
+.combi-arete-ajoutee {
+  stroke: var(--succes);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.combi-ville {
+  touch-action: none;
+}
+
+.combi-ville-zone {
+  fill: transparent;
+}
+
+.combi-ville-point {
+  fill: var(--panneau-clair);
+  stroke: var(--texte);
+  stroke-width: 2;
+  transition: fill 0.2s;
+}
+
+.combi-ville-point.depart {
+  fill: var(--accent);
+}
+
+.combi-ville-point.segment {
+  fill: var(--ansi-jaune);
+}
+
+.anim-svg .combi-ville-nom {
+  fill: var(--texte);
+  font-size: 13px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.anim-tableau .combi-tournee {
+  font-family: var(--police-code);
+  white-space: nowrap;
+}
+
+.combi-paysage-fond {
+  fill: var(--accent-doux);
+}
+
+.combi-paysage {
+  fill: none;
+  stroke: var(--texte-doux);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.combi-bille {
+  fill: var(--accent);
+  stroke: var(--panneau);
+  stroke-width: 2;
+}
+
+.combi-meilleur {
+  fill: none;
+  stroke: var(--succes);
+  stroke-width: 2.5;
+  stroke-dasharray: 4 3;
+}
+
+.combi-essai {
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.combi-essai.accepte {
+  stroke: var(--succes);
+}
+
+.combi-essai.refuse {
+  stroke: var(--erreur);
+}
+
+.combi-essai-lien {
+  stroke: var(--texte-tres-doux);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+
+.combi-thermo-tube {
+  fill: var(--panneau-clair);
+  stroke: var(--bordure);
+  stroke-width: 1.5;
+}
+
+.combi-thermo-mercure.chaud {
+  fill: var(--ansi-rouge);
+}
+
+.combi-thermo-mercure.tiede {
+  fill: var(--ansi-jaune);
+}
+
+.combi-thermo-mercure.froid {
+  fill: var(--ansi-bleu);
+}
+
+.anim-svg .combi-thermo-texte {
+  fill: var(--texte);
+  font-family: var(--police-code);
+  font-size: 11px;
+}
+
+.combi-courbe-fine {
+  stroke-width: 1.5;
+  opacity: 0.8;
+}
+
+.combi-secteur {
+  stroke: var(--panneau);
+  stroke-width: 2;
+  fill-opacity: 0.4;
+  transition: fill-opacity 0.3s;
+}
+
+.combi-secteur.gagnant {
+  fill-opacity: 0.95;
+}
+
+.anim-svg .combi-secteur-texte {
+  fill: var(--texte);
+  font-size: 13px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.anim-svg .combi-secteur-texte.doux {
+  font-weight: 500;
+}
+
+.combi-pointeur {
+  fill: var(--texte);
+  stroke: var(--panneau);
+  stroke-width: 2;
+}
+
+.combi-moyeu {
+  fill: var(--panneau);
+  stroke: var(--bordure);
+  stroke-width: 2;
+}
+
+.anim-svg .combi-barre-titre {
+  fill: var(--texte);
+  font-weight: 600;
+}
+
+.anim-svg .combi-barre-nom {
+  fill: var(--texte-doux);
+}
+
+.anim-svg .combi-barre-nom.gagnant {
+  fill: var(--texte);
+  font-weight: 700;
+}
+
+.combi-barre-observee {
+  fill-opacity: 0.85;
+  transition: width 0.3s;
+}
+
+.combi-barre-theorie {
+  fill: none;
+  stroke: var(--texte-tres-doux);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.combi-population {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.anim-case.combi-individu {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 56px;
+  height: auto;
+  padding: 6px 8px;
+}
+
+.anim-case.combi-individu.meilleur {
+  border-style: dashed;
+}
+
+.combi-individu-nom {
+  color: var(--texte-tres-doux);
+  font-size: 11px;
+}
+
+.combi-individu-fitness {
+  font-size: 16px;
+}
+
+.combi-individu[data-tirages]::after {
+  content: attr(data-tirages);
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  line-height: 18px;
+}
+
+.combi-victoires {
+  display: block;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bordure);
+  overflow: hidden;
+}
+
+.combi-victoires > span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.combi-croisement {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.combi-rangee {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+}
+
+.combi-rangee-nom {
+  min-width: 72px;
+  color: var(--texte-doux);
+  font-size: 13px;
+}
+
+.combi-genes {
+  display: flex;
+  gap: 5px;
+}
+
+.anim-case.combi-gene {
+  min-width: 34px;
+  height: 36px;
+}
+
+.anim-case.combi-origine-1 {
+  box-shadow: inset 0 -4px 0 var(--ansi-bleu);
+}
+
+.anim-case.combi-origine-2 {
+  box-shadow: inset 0 -4px 0 var(--ansi-magenta);
+}
+
+.anim-case.combi-coupe {
+  position: relative;
+  margin-left: 12px;
+}
+
+.anim-case.combi-coupe::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  left: -11px;
+  border-left: 2px dashed var(--erreur);
+}
+
+.anim-case.combi-vide {
+  color: var(--texte-tres-doux);
+}
+
+.anim-case.combi-saute {
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+
+@keyframes combi-clignote {
+  50% {
+    border-color: var(--attention);
+    background: var(--attention-doux);
+    transform: scale(1.12);
+  }
+}
+
+.anim-case.combi-mute {
+  border-color: var(--attention);
+  animation: combi-clignote 0.45s ease-in-out 4;
+}
+
+.combi-polygone {
+  fill: var(--accent-doux);
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.combi-zone-atteinte {
+  fill: var(--succes-doux);
+  stroke: var(--succes);
+  stroke-width: 1;
+}
+
+.combi-contrainte {
+  stroke: var(--texte-doux);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+
+.anim-svg .combi-contrainte-texte {
+  fill: var(--texte-doux);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.combi-objectif {
+  stroke: var(--ansi-jaune);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.anim-svg .combi-objectif-texte {
+  fill: var(--ansi-jaune);
+  font-family: var(--police-code);
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.combi-entier-groupe {
+  cursor: pointer;
+}
+
+.combi-entier-zone {
+  fill: transparent;
+}
+
+.combi-entier {
+  transition: fill 0.2s, r 0.2s;
+}
+
+.combi-entier.realisable {
+  fill: var(--texte);
+}
+
+.combi-entier.interdit {
+  fill: none;
+  stroke: var(--texte-tres-doux);
+  stroke-width: 1.5;
+  opacity: 0.6;
+}
+
+.combi-entier.atteint {
+  fill: var(--succes);
+  r: 7.5px;
+}
+
+.combi-relaxation {
+  fill: var(--ansi-magenta);
+  stroke: var(--panneau);
+  stroke-width: 1.5;
+}
+
+.anim-svg .combi-relaxation-texte {
+  fill: var(--ansi-magenta);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.combi-chemin {
+  stroke: var(--ansi-cyan);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.combi-chemin.degradation {
+  stroke: var(--erreur);
+  stroke-dasharray: 6 4;
+}
+
+.combi-chemin.croisement {
+  stroke: var(--ansi-bleu);
+  stroke-dasharray: 2 5;
+}
+
+.combi-etape {
+  fill: var(--ansi-cyan);
+  stroke: var(--panneau);
+  stroke-width: 2;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: anim-apparition 0.35s ease-out;
+}
+
+.combi-etape.degradation {
+  fill: var(--erreur);
+}
+
+.combi-etape.parent {
+  fill: var(--ansi-bleu);
+}
+
+.combi-etape.enfant {
+  fill: var(--succes);
+}
+
+.anim-svg .combi-etape-texte {
+  fill: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.combi-classes {
+  cursor: pointer;
+}
+
+.combi-ensemble {
+  fill-opacity: 0.13;
+  stroke-width: 2;
+}
+
+.combi-ensemble.opaque {
+  fill-opacity: 0.3;
+}
+
+.anim-svg .combi-ensemble-nom {
+  fill: var(--texte);
+  font-size: 15px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.anim-svg .combi-ensemble-nom.petit {
+  fill: var(--texte-doux);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.combi-jeton circle {
+  fill: var(--panneau);
+  stroke: var(--texte);
+  stroke-width: 2;
+}
+
+.combi-jeton.actif circle {
+  stroke: var(--accent);
+  stroke-width: 3.5;
+}
+
+.combi-jeton.bon circle {
+  fill: var(--succes);
+  stroke: var(--succes);
+}
+
+.combi-jeton.mauvais circle {
+  fill: var(--erreur);
+  stroke: var(--erreur);
+}
+
+.anim-svg .combi-jeton-texte {
+  fill: var(--texte);
+  font-size: 11px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.anim-svg .combi-jeton.bon .combi-jeton-texte,
+.anim-svg .combi-jeton.mauvais .combi-jeton-texte {
+  fill: #fff;
+}
+
+.combi-problemes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.combi-probleme {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 4px;
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  background: var(--panneau-clair);
+  color: var(--texte);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.combi-probleme.place {
+  opacity: 0.6;
+}
+
+.combi-probleme.actif {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-doux);
+  opacity: 1;
+}
+
+.combi-probleme.bon {
+  border-color: var(--succes);
+  background: var(--succes-doux);
+}
+
+.combi-probleme.mauvais {
+  border-color: var(--erreur);
+  background: var(--erreur-doux);
+}
+
+.combi-numero {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .combi-rangee-nom {
+    min-width: 100%;
+  }
+
+  .anim-case.combi-gene {
+    min-width: 28px;
+    height: 32px;
+  }
+}

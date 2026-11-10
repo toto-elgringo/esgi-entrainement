@@ -19,6 +19,12 @@ Ce chapitre contient **106 mots**. Conseil : un thème par jour, en cachant la c
 > [!info] Au téléphone
 > *Can I have extension 214?* (le poste 214) - *The line is busy* (c'est occupé) - *Please hold* / *You are on hold* (restez en ligne) - *I couldn't get through* (je n'ai pas réussi à joindre) - *She hung up* (elle a raccroché) - *Dial 0 for the operator* (composez le 0).
 
+```anim
+cartes-vocabulaire
+titre: 18 mots clés du chapitre
+mots: Board of directors = Conseil d'administration ; Subsidiary = Filiale ; Merger = Fusion (d'entreprises) ; Shareholder = Actionnaire ; Premises = Locaux (toujours au pluriel) ; Executive = Cadre (pas « exécutant ») ; Applicant = Candidat ; Résumé = CV (en américain) ; Vacancy = Poste vacant ou chambre libre ; Workload = Charge de travail ; Overtime = Heures supplémentaires ; Sick leave = Congé maladie ; Lay off = Licencier (motif économique) ; Resign = Démissionner ; Memo = Note de service ; Spreadsheet = Tableur ; Enclose = Joindre (à une lettre) ; Hang up = Raccrocher
+```
+
 ## Les mots par thème
 
 ### Entreprise, direction et organisation

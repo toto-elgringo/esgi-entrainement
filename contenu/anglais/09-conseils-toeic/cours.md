@@ -53,6 +53,10 @@ Ce chapitre regroupe les **conseils donnés en cours** et le document **« TOEIC
 
 Total : 75 minutes. Si les parties 5 et 6 prennent plus de 25 minutes, on manquera de temps pour la partie 7.
 
+```anim
+chrono-toeic
+```
+
 ## 5. Check-list du jour J
 
 > [!tip] À retenir

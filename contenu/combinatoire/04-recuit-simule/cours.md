@@ -76,6 +76,10 @@ retourner meilleure
 
 Par rapport à la descente, **une seule chose change** : la décision de garder ou non le voisin. L'état, l'erreur et le voisinage (par exemple le 2-opt pour le TSP) restent les mêmes.
 
+```anim
+recuit
+```
+
 ## 5. Bilan et réglages
 
 | Avantages | Inconvénients |

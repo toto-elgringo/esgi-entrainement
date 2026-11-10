@@ -56,6 +56,10 @@ Exemples :
 
 En SQL, nier « tout client a une commande » revient à chercher un client pour lequel il n'existe pas de commande : c'est le rôle de `NOT EXISTS`.
 
+```anim
+quantificateurs
+```
+
 ### Écrire les contraintes d'une base de données
 
 - **Clé étrangère** (chaque commande référence un client qui existe) :
@@ -96,6 +100,11 @@ $$\sum_{k=1}^{n} (2k + 3) = 2 \sum_{k=1}^{n} k + \sum_{k=1}^{n} 3 = n(n+1) + 3n 
 
 > [!info] Coût d'une double boucle
 > Comparer chaque ligne d'une table avec toutes les suivantes demande $1 + 2 + \dots + (n-1) = \frac{(n-1)n}{2}$ comparaisons, soit environ $\frac{n^2}{2}$. C'est pour cela qu'une double boucle devient lente sur une grosse table.
+
+```anim
+somme-gauss
+n: 6
+```
 
 ### Le changement d'indice
 

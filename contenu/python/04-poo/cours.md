@@ -78,6 +78,10 @@ print(Employee.emp_count, emp1.emp_count, emp2.emp_count)
 > [!warning] Variable de classe masquée
 > **Lire** `emp1.emp_count` remonte à la classe si l'objet n'a pas cet attribut. Mais **écrire** `emp1.emp_count = 100` crée une variable d'instance sur `emp1` seulement : la variable de classe ne change pas.
 
+```anim
+classes-objets
+```
+
 ## 3. Encapsulation et attributs privés
 
 Python n'a **pas d'encapsulation stricte** : tout attribut est accessible de l'extérieur. Il y a des conventions :

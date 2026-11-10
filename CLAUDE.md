@@ -34,6 +34,9 @@ js/
   stockage.js       localStorage
   parcours.js       filtrage par matière, voisins, progression (clés « domaine/chapitre/exercice »)
   menu.js, outils.js (Markdown, formules KaTeX, encarts Obsidian)
+  animations/       blocs ```anim``` des cours (graphiques, schémas, pas à pas) : index.js (registre, lireBloc,
+                    lancement quand le cadre devient visible), outils.js (SVG, curseurs, boucle), maths.js,
+                    combinatoire.js, code.js (C, Rust, Python), anglais.js (anglais + SIG) ; styles dans css/animations*.css
   vues/             accueil (choix de la matière, état des outils), cours, quiz
   maths/            exercices à réponses (tous les domaines à réponses) : expression.js, verification.js, validation.js, exercice.js
   code/             exercices de code (tous les langages) : compilateur.js (API locale), editeur.js (CodeMirror),

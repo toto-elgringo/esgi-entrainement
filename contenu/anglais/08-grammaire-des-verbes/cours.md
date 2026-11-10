@@ -68,6 +68,10 @@ Révision de **tous les temps** de l'anglais (niveau B2), à partir de l'exercic
 | *by 2030, by then, by the end of the year* | future perfect |
 | *when, as soon as, once, until* + futur | présent simple |
 
+```anim
+frise-des-temps
+```
+
 ## 7. Ce que le corrigé du cours a montré
 
 Les deux erreurs de la copie corrigée portaient sur le **present perfect** :

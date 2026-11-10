@@ -155,6 +155,11 @@ Pour un tableau de `n` entiers : `int *t = malloc(n * sizeof(int));`, puis on l'
 > [!info] Les fuites sont vérifiées
 > Dans les exercices, la plateforme compte chaque `malloc`, `calloc` et `free` pendant les tests. S'il reste de la mémoire réservée à la fin, la vérification « toute la mémoire allouée a été libérée » échoue : une fuite mémoire fait donc rater l'exercice, même si les valeurs sont justes.
 
+```anim
+memoire-pointeurs
+scenarios: pointeurs, adresse
+```
+
 ## 6. Programme complet
 
 ```c

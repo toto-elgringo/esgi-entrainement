@@ -28,6 +28,12 @@ Ce chapitre contient **89 mots**. Conseil : un thème par jour, en cachant la co
 > - **agenda** = ordre du jour.
 > - **to attend** = assister à ; **to postpone** = reporter.
 
+```anim
+cartes-vocabulaire
+titre: 18 mots clés du chapitre
+mots: Delay = Retard ; Deadline = Date limite ; Agenda = Ordre du jour ; Attend = Assister à ; Postpone = Reporter ; Library = Bibliothèque ; Physician = Médecin ; Fare = Prix d'un billet ; Board = Monter à bord de ; Jet lag = Décalage horaire ; Front desk = Réception ; Round-trip ticket = Aller-retour ; Landlord = Propriétaire (d'un logement loué) ; Tenant = Locataire ; Elevator = Ascenseur ; Pending = En attente ; Upcoming = À venir ; Tip = Pourboire, conseil
+```
+
 ## Les mots par thème
 
 ### Voyages, transports et hôtellerie

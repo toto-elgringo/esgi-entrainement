@@ -14,6 +14,31 @@ Le site a deux sortes de domaines :
 
 La liste des domaines est dans `js/domaines.js`. `npm run verifier-contenu` sans argument vérifie tout (compte quelques minutes : chaque solution est compilée ou lancée).
 
+## Animations dans les cours (tous les domaines)
+
+Dans n'importe quel `cours.md`, un bloc ` ```anim ` est remplacé par une animation interactive (graphique, schéma, pas à pas). Première ligne : le nom ; lignes suivantes : options `clé: valeur` (nombres, `oui` / `non`, texte). `titre:` et `consigne:` remplacent ceux par défaut.
+
+````markdown
+```anim
+croissance
+n: 15
+```
+````
+
+Pas de `$` dans un bloc `anim`. Le code est dans `js/animations/` (`maths.js`, `combinatoire.js`, `code.js` pour C / Rust / Python, `anglais.js` pour l'anglais et le SIG, aides communes dans `outils.js`), les styles dans `css/animations*.css`. Un nom inconnu affiche un avertissement dans la page.
+
+| Domaine | Animations |
+|---|---|
+| maths | `venn`, `quantificateurs`, `somme-gauss`, `exp-ln`, `tangente`, `integrale`, `vecteurs` |
+| combinatoire | `croissance`, `recuit`, `voyageur`, `roulette`, `tournoi`, `croisement`, `plne`, `classes` |
+| c | `memoire-pointeurs`, `liste-chainee` |
+| rust | `ownership`, `durees-de-vie`, `iterateurs` |
+| python | `decoupage`, `references`, `classes-objets` |
+| anglais | `frise-des-temps`, `cartes-vocabulaire` (option `mots: anglais = français ; …`), `chrono-toeic` |
+| electif | `couches`, `shapefile`, `coordonnees` |
+
+Certaines acceptent un `mode:` ou `scenario:` pour choisir l'exemple montré : voir la fonction `creer…` correspondante.
+
 ## Domaines de code (Rust, Python, C)
 
 Les trois langages ont **le même format**, seule l'extension des fichiers change : `.rs` (Rust), `.py` (Python), `.c` (C). Les exemples ci-dessous sont en Rust. **Après chaque ajout ou modification, lance `npm run sommaire`** : le site lit la liste des chapitres et des exercices dans `contenu/<langage>/sommaire.json`.

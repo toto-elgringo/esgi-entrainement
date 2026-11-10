@@ -16,6 +16,12 @@ Ce chapitre contient **77 mots**. Conseil : un thème par jour, en cachant la co
 > [!info] Adjectifs fréquents au TOEIC
 > **thorough** (minutieux), **comprehensive** (complet, faux ami), **relevant** (pertinent), **reluctant** (réticent), **outdated** (dépassé), **upcoming** (à venir), **state-of-the-art** (dernier cri).
 
+```anim
+cartes-vocabulaire
+titre: 18 mots clés du chapitre
+mots: Although = Bien que ; However = Cependant, toutefois ; Therefore = Donc, par conséquent ; Regardless of = Sans se soucier de ; Prior to = Avant ; Seldom = Rarement ; Hardly ever = Presque jamais ; Lately = Récemment ; Comprehensive = Complet (faux ami) ; Relevant = Pertinent ; Reluctant = Réticent ; Thorough = Minutieux ; Outdated = Dépassé ; Drawback = Inconvénient ; Enhance = Améliorer ; Look forward to = Attendre avec impatience ; Turn down = Refuser ; Handle = Gérer, s'occuper de
+```
+
 ## Les mots par thème
 
 ### Verbes et verbes à particule utiles

@@ -66,6 +66,10 @@ NP-difficile **déborde** de NP : les problèmes d'**optimisation** (12) et les 
 > [!warning] Laquelle des deux figures est la bonne ?
 > Personne ne le sait. La question est posée depuis 1971 ; c'est l'un des sept **problèmes du millénaire** (un million de dollars de prix depuis 2000).
 
+```anim
+classes
+```
+
 ## 4. Un seul algorithme suffirait à trancher
 
 **Propriété** : si $A \le_p B$ et $B \in P$, alors $A \in P$.

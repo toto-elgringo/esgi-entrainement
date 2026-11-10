@@ -56,6 +56,10 @@ $$\overline{A \cup B} = \overline{A} \cap \overline{B} \qquad \overline{A \cap B
 
 En SQL, c'est la règle pour nier une condition : `NOT (age < 18 OR pays = 'FR')` devient `age >= 18 AND pays <> 'FR'`. Le `OR` devient `AND` et chaque comparaison est inversée.
 
+```anim
+venn
+```
+
 ## 3. Le produit cartésien
 
 Le **produit cartésien** de $A$ et $B$ est l'ensemble de tous les **couples** $(a, b)$ avec $a \in A$ et $b \in B$ :
