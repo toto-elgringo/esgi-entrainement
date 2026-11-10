@@ -7,7 +7,8 @@
 - [ ] Maths : séance 4 (séries), séance 5 (Lagrange), séance 6 (PCA), uniquement le contenu des cours
 - [ ] Combinatoire : chapitre 3 (théorie des graphes) et trimestre 2 (programmation linéaire, simplexe, PLNE) quand les supports arrivent
 - [ ] Combinatoire : transformer en exercices Rust le code de la descente, du recuit et de l'algorithme génétique quand il sera distribué
-- [ ] Combinatoire : petites animations (recuit, roulette, tournoi) comme dans les slides
+- [x] Combinatoire : petites animations (recuit, roulette, tournoi) comme dans les slides
+- [ ] Animations : en ajouter aux chapitres qui n'en ont pas (maths séries / Lagrange / PCA, Rust structs / enums / collections, Python chaînes, anglais 01-03)
 - [ ] Algorithmique avancée : nouvelles fiches (piles, files, arbres…) au fil du cours
 - [ ] Scripting Python : nouveaux diaporamas au fil du cours
 - [ ] Scripting Python : chapitre « fondamentaux » sur les scripts système (`sys.argv`, `pathlib`, `json`, `csv`, `re`, `subprocess`)
@@ -18,6 +19,8 @@
 
 ## Site
 
+- [ ] Supports : ajouter ceux des nouveaux chapitres dans `chapitre.json` (`supports`) au fil du cours
+
 - [x] Exporter / importer sa progression (pour changer d'ordinateur)
 - [ ] Héberger CodeMirror, KaTeX, marked et highlight.js dans le dépôt pour fonctionner sans internet
 - [ ] Clavier de symboles pour les maths sur téléphone (`^`, `√`, `π`)
@@ -27,3 +30,6 @@
 - [ ] Mélanger l'ordre des choix dans les exercices (aujourd'hui seulement dans les quiz)
 - [ ] C : `VERIFIER_LISTE` pour comparer deux tableaux et afficher les valeurs (aujourd'hui `aide_egale` n'affiche que la condition)
 - [ ] C : transformer les `VERIFIER` avec `&&` en plusieurs `VERIFIER_EGAL` pour avoir les valeurs de chaque côté
+- [ ] MyGES : `/obsidian -esgi` utilise `~/.claude/scripts/esgi-sources.mjs`, qui n'existe plus sur l'ordinateur (la synchro donne quand même la liste des fichiers à Claude)
+- [ ] MyGES : retélécharger un support remplacé par le prof (aujourd'hui seul un nouvel identifiant MyGES est vu comme nouveau)
+- [ ] MyGES : créer `.env.exemple` (bloqué par les réglages de Claude Code : `MYGES_IDENTIFIANT=` et `MYGES_MOT_DE_PASSE=`)

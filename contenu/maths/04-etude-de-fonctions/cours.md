@@ -55,6 +55,10 @@ Exemples :
 > [!tip] Lien avec l'IA
 > La **descente de gradient** calcule la dérivée (le gradient) de la fonction de perte pour savoir dans quel sens corriger le modèle. Si la fonction n'est pas dérivable en un point, le gradient n'y existe pas. C'est pour ça que ReLU ($\max(0, x)$) utilise une convention en 0.
 
+```anim
+tangente
+```
+
 ## 3. Trigonométrie
 
 - $\sin$ et $\cos$ sont définies et continues sur $\mathbb{R}$, à valeurs dans $[-1, 1]$, et **périodiques** de période $2\pi$ (elles se répètent tous les $2\pi$).
@@ -102,6 +106,10 @@ L'intégrale est l'**aire algébrique** entre la courbe et l'axe horizontal : le
 Exemple : $\displaystyle\int_1^3 (2x + 1)\,dx$. Une primitive est $F(x) = x^2 + x$, donc $F(3) - F(1) = 12 - 2 = 10$.
 
 Exemple d'aire : $\displaystyle\int_0^4 x\,dx = \left[\frac{x^2}{2}\right]_0^4 = 8$, c'est l'aire du triangle rectangle de base 4 et de hauteur 4 : $\dfrac{4 \times 4}{2} = 8$.
+
+```anim
+integrale
+```
 
 > [!tip] Lien avec l'IA
 > L'intégrale mesure une **quantité accumulée** : un coût cumulé dans le temps, un revenu total à partir d'un revenu par jour, l'aire sous une courbe ROC (AUC), une probabilité (aire sous une densité).

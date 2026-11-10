@@ -66,6 +66,10 @@ Depuis $(1, 4)$, tous les voisins sont moins bons ou irréalisables : la descent
 - **Recuit simulé** : il faudrait accepter la dégradation $(1, 4) \to (1, 3)$ (profit 42 → 33), puis remonter $(2, 3)$ (39) puis $(3, 3)$ (45). C'est exactement ce qu'un recuit accepte quand la température est assez haute.
 - **Algorithme génétique** : en croisant $(2, 3)$ (profit 39) et $(3, 2)$ (profit 36), en prenant le $x$ de l'un et le $y$ de l'autre, on obtient directement $(3, 3)$, l'optimum, qu'aucun parent n'atteignait.
 
+```anim
+plne
+```
+
 ## 4. Comparaison des trois méthodes
 
 | | Recherche locale | Recuit simulé | Algorithme génétique |

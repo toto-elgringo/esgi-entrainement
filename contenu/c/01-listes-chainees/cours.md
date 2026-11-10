@@ -234,6 +234,12 @@ Cell *insererDebut(Cell *start, int valeur) {
 
 Appel : `start = insererDebut(start, 3);` (sans le `start =`, le maillon est créé mais perdu).
 
+```anim
+memoire-pointeurs
+scenario: liste
+titre: Le piège de la copie, en mémoire
+```
+
 **Passer l'adresse de `start`** (un pointeur de pointeur, `Cell **`) :
 
 ```c
@@ -251,6 +257,11 @@ Appel : `insererDebutPtr(&start, 3);`
 | `Cell **start` | l'adresse de la variable qui contient l'adresse du premier maillon |
 | `*start` | cette variable elle-même : on peut la changer |
 | `&start` | côté appelant : l'adresse de la variable `start` |
+
+```anim
+liste-chainee
+operations: parcourir, tete
+```
 
 ## 5. Tableau ou liste chaînée ?
 

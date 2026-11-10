@@ -15,6 +15,10 @@ Première idée devant un problème combinatoire : **tout énumérer** et garder
 
 Ordre de croissance : $n^2 \ll n^3 \ll 2^n \ll n!$. Les fonctions **polynomiales** ($n^2$, $n^3$) restent raisonnables ; les fonctions **exponentielles** ($2^n$) et **factorielles** ($n!$) explosent.
 
+```anim
+croissance
+```
+
 ### Calculer un temps
 
 $$\text{temps (s)} = \frac{\text{nombre d'opérations}}{\text{opérations par seconde}}$$

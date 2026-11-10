@@ -15,6 +15,11 @@ Une **référence** (`&x`) est un emprunt : elle regarde une valeur qui appartie
 
 Le **borrow checker** (le vérificateur d'emprunts du compilateur) compare la durée de vie de chaque référence avec celle de la valeur empruntée, et refuse le code dangereux.
 
+```anim
+durees-de-vie
+scenario: pendante
+```
+
 ## 2. Qu'est-ce qu'une durée de vie ?
 
 C'est la portion du code pendant laquelle une référence est valable. Le compilateur la calcule tout seul presque tout le temps. Quand il faut l'écrire, on utilise une apostrophe suivie d'un nom : `'a` (on lit « durée de vie a »).
@@ -51,6 +56,12 @@ fn plus_long<'a>(a: &'a str, b: &'a str) -> &'a str {
 ```
 
 Se lit : « pour une durée de vie `'a`, `a` et `b` vivent au moins `'a`, et le résultat aussi ». En pratique, `'a` devient la **plus courte** des deux : le résultat est utilisable tant que **les deux** textes existent.
+
+```anim
+durees-de-vie
+scenario: plus-long
+titre: La plus courte des deux durées de vie
+```
 
 ## 4. Les règles d'élision : quand on n'a rien à écrire
 

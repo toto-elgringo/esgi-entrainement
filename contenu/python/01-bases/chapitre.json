@@ -1,5 +1,8 @@
 {
   "titre": "Les bases",
   "description": "Syntaxe et indentation, types, opérateurs, conditions, boucles, console, listes, chaînes, tuples, ensembles, dictionnaires et modules.",
-  "source": "cours"
+  "source": "cours",
+  "supports": [
+    {"titre": "Slides", "fichier": "Scripting Python/Sources/slides 1 - Bases.pdf"}
+  ]
 }

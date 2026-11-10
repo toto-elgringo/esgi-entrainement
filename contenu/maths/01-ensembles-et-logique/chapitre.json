@@ -2,5 +2,10 @@
   "titre": "Ensembles et logique",
   "description": "Opérations sur les ensembles, produit cartésien, relations, fonctions, logique, méthodes de preuve et lien avec SQL.",
   "source": "Séance 1",
-  "matieres": ["informatique"]
+  "matieres": ["informatique"],
+  "supports": [
+    {"titre": "Cours", "fichier": "Maths pour l'informatique/Sources/Séance 1 - Opérations sur les ensembles et logique.pdf"},
+    {"titre": "Exercices", "fichier": "Maths pour l'informatique/Sources/Séance 1 - Fiche d'exercices.pdf"},
+    {"titre": "Correction", "fichier": "Maths pour l'informatique/Sources/Séance 1 - correction exercices.pdf"}
+  ]
 }

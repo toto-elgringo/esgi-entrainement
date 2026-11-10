@@ -65,6 +65,10 @@ $$P(i) = \frac{f_i}{\sum_j f_j}$$
 
 La meilleure est favorite, mais la pire garde presque une chance sur cinq : la **diversité** est préservée.
 
+```anim
+roulette
+```
+
 ### Le tournoi
 
 On tire **$k$ individus au hasard** (avec remise) et on garde le meilleur des $k$. Le paramètre $k$ règle la **pression de sélection** (à quel point on favorise les meilleurs) :
@@ -80,6 +84,10 @@ $$P(\text{le meilleur gagne}) = 1 - \left(\frac{N-1}{N}\right)^k$$
 | $k$ (avec $N = 10$) | 1 | 2 | 4 | 8 |
 |---|---|---|---|---|
 | P(le meilleur gagne) | 10 % | 19 % | 34 % | 57 % |
+
+```anim
+tournoi
+```
 
 > [!tip] La fitness règle aussi la pression
 > Avec $f = 10^4 / L^2$ au lieu de $1000/L$, les tournées longues sont plus pénalisées : la meilleure passe de 31,5 % à 38,5 %. Changer la fonction de fitness, c'est changer la pression de sélection.
@@ -97,6 +105,10 @@ $$P(\text{le meilleur gagne}) = 1 - \left(\frac{N-1}{N}\right)^k$$
 > - On remplit les positions 6, 7, 8 puis 1, 2 : enfant `4 8 | 6 1 5 | 3 7 2`.
 
 **Mutation** : petite perturbation **rare** (environ 1 % des individus) : inverser un bit, échanger deux villes. Exemple : échanger les positions 2 et 7 de `4 8 6 1 5 3 7 2` donne `4 7 6 1 5 3 8 2`. Son rôle : **maintenir la diversité** et réintroduire des gènes perdus.
+
+```anim
+croisement
+```
 
 ## 6. Diversité et convergence prématurée
 

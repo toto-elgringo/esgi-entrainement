@@ -27,6 +27,11 @@ print(x)
 > [!info] La règle
 > **Modifier** l'objet reçu (`l.append(...)`, `d[cle] = ...`) se voit dehors. **Réaffecter** le paramètre (`n = ...`) ne change que la variable locale. Les `int`, `str` et `tuple` ne sont pas modifiables : une fonction ne peut pas les changer.
 
+```anim
+references
+scenario: fonctions
+```
+
 ### Valeurs par défaut et mots-clés
 
 ```python
@@ -62,6 +67,12 @@ def ajoute(x, l=None):
 
 print(ajoute_mauvais(1), ajoute_mauvais(2))
 print(ajoute(1), ajoute(2))
+```
+
+```anim
+references
+scenario: defaut
+titre: La liste par défaut partagée
 ```
 
 ## 2. Nombre variable d'arguments

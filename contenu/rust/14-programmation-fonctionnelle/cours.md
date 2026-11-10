@@ -643,6 +643,11 @@ let carres_impairs: Vec<u64> = (1..).map(|n| n * n).filter(|c| c % 2 == 1).take(
 assert_eq!(carres_impairs, vec![1, 9, 25, 49]);
 ```
 
+```anim
+iterateurs
+scenarios: paresse, infini
+```
+
 > [!warning] Suite infinie + consommateur sans fin = boucle infinie
 > `(1..).map(|n| n * n).sum::<u64>()` ne s'arrête jamais (ou plante quand le nombre devient trop grand). Sur une suite infinie, place toujours un `take`, un `take_while`, ou un consommateur qui s'arrête tout seul (`find`, `any`, `position`).
 

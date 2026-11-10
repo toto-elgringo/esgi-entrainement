@@ -2,5 +2,10 @@
   "titre": "Quantificateurs, prédicats et sommes",
   "description": "Prédicats, quantificateurs imbriqués et leur négation, contraintes de base de données, sommes, télescopage, produits et lien avec les agrégats SQL.",
   "source": "Séance 2",
-  "matieres": ["informatique"]
+  "matieres": ["informatique"],
+  "supports": [
+    {"titre": "Cours", "fichier": "Maths pour l'informatique/Sources/Séance 2 - Quantificateurs_ prédicats et sommes.pdf"},
+    {"titre": "Exercices", "fichier": "Maths pour l'informatique/Sources/Séance 2 - Exercices.pdf"},
+    {"titre": "Correction", "fichier": "Maths pour l'informatique/Sources/Séance 2 - correction exercices.pdf"}
+  ]
 }

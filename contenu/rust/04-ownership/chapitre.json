@@ -1,5 +1,11 @@
 {
   "titre": "Ownership",
   "description": "Portée, drop et RAII, masquage, move, Copy et Clone, emprunts & et &mut.",
-  "source": "cours"
+  "source": "cours",
+  "supports": [
+    {"titre": "Slides", "fichier": "Rust/Sources/Slides - Ownership.pdf"},
+    {"titre": "Support", "fichier": "Rust/Sources/Support - Ownership.pdf"},
+    {"titre": "Slides interactives", "fichier": "Rust/Sources/[Sllides] Ownership.html"},
+    {"titre": "Support interactif", "fichier": "Rust/Sources/[Support] Ownership.html"}
+  ]
 }

@@ -1,6 +1,8 @@
 import { exec } from 'node:child_process';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { creerSynchro } from './myges/synchro.js';
 import { creerServeur } from './serveur.js';
 
 const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -11,7 +13,24 @@ function ouvrirNavigateur(adresse) {
   exec(commandes[process.platform] ?? `xdg-open "${adresse}"`, () => {});
 }
 
-const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu') });
+const dossierSupports = process.env.DOSSIER_SUPPORTS || path.join(os.homedir(), 'Obsidian', 'Claude Note', 'Cours - ESGI');
+
+function commandeClaude() {
+  const commande = process.env.ESGI_CLAUDE;
+  if (!commande) return { commande: 'claude', args: [] };
+  if (/\.m?js$/i.test(commande)) return { commande: process.execPath, args: [path.resolve(racine, commande)] };
+  return { commande, args: [] };
+}
+
+const synchro = creerSynchro({
+  vault: dossierSupports,
+  fichierEnv: path.join(racine, '.env'),
+  fichierSuivi: path.join(racine, 'myges-suivi.json'),
+  fichierMatieres: path.join(racine, 'myges-matieres.json'),
+  dossierProjet: racine,
+  claude: commandeClaude(),
+});
+const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchro });
 
 process.on('SIGINT', () => process.exit(0));
 

@@ -16,6 +16,12 @@ Ce chapitre contient **125 mots**. Conseil : un thème par jour, en cachant la c
 > [!info] Commerce
 > **wholesale** = vente en gros ; **retailer** = détaillant ; **in bulk** = en grande quantité. **Upmarket** = haut de gamme ; **downmarket** = bas de gamme. **Sold out** = épuisé ou complet.
 
+```anim
+cartes-vocabulaire
+titre: 18 mots clés du chapitre
+mots: Invoice = Facture ; Refund = Rembourser, remboursement ; Billion = Milliard ; Fee = Frais, honoraires ; Overdraft = Découvert (bancaire) ; Loan = Prêt, emprunt ; Mortgage = Prêt immobilier ; Estimate = Devis, estimation ; Complimentary = Offert, gratuit ; Retailer = Détaillant ; Wholesale = En gros (vente) ; Sold out = Épuisé, complet ; Warranty = Garantie ; Shipment = Expédition, cargaison ; Warehouse = Entrepôt ; Failure = Panne, échec ; Mandatory = Obligatoire ; Sue = Poursuivre en justice
+```
+
 ## Les mots par thème
 
 ### Finance, banque, comptabilité et assurance

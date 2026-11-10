@@ -1,0 +1,701 @@
+.anim-pas {
+  display: grid;
+  gap: 14px;
+  align-items: start;
+}
+
+.anim-pas-cote {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+.anim-pas-dessus {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.anim-pas-scene {
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: var(--panneau-clair);
+}
+
+.anim .anim-pas-code {
+  margin: 0;
+  padding: 8px 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  counter-reset: none;
+}
+
+.anim-pas-code .anim-code-ligne {
+  padding-left: 8px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.anim-pas-code .anim-code-ligne::before {
+  content: attr(data-numero);
+  display: inline-block;
+  width: 2.2em;
+  margin-right: 10px;
+  color: var(--code-numero-ligne);
+  text-align: right;
+}
+
+.anim-pas-code .anim-code-ligne.actif::before {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.anim-jeton-mot {
+  color: var(--code-mot-cle);
+}
+
+.anim-jeton-chaine {
+  color: var(--code-chaine);
+}
+
+.anim-jeton-nombre {
+  color: var(--code-nombre);
+}
+
+.anim-jeton-type {
+  color: var(--code-type);
+}
+
+.anim-jeton-fonction {
+  color: var(--code-fonction);
+}
+
+.anim-jeton-commentaire {
+  color: var(--code-commentaire);
+  font-style: italic;
+}
+
+.anim .anim-pas-texte {
+  min-height: 2.8em;
+  padding: 9px 12px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+  background: var(--accent-doux);
+  color: var(--texte);
+  line-height: 1.5;
+}
+
+.anim .anim-erreur-compil {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid var(--erreur);
+  border-radius: var(--rayon);
+  background: var(--erreur-doux);
+  color: var(--texte);
+  font-family: var(--police-code);
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.anim .anim-erreur-compil::first-line {
+  color: var(--erreur);
+  font-weight: 700;
+}
+
+.anim-erreur-compil[hidden],
+.anim-console[hidden] {
+  display: none;
+}
+
+.anim-console {
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: var(--code-fond);
+  overflow: hidden;
+}
+
+.anim-console-titre {
+  display: block;
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--bordure);
+  color: var(--texte-tres-doux);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.anim .anim-console pre {
+  min-height: 1.5em;
+  margin: 0;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: var(--ansi-vert);
+  font-family: var(--police-code);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.anim-pas-pilotes {
+  padding-top: 4px;
+  border-top: 1px dashed var(--bordure);
+}
+
+.anim-pas-compteur {
+  margin-left: auto;
+  color: var(--texte-tres-doux);
+  font-family: var(--police-code);
+  font-size: 12px;
+}
+
+.anim-commandes .bouton:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.anim-svg .mem-colonne {
+  fill: var(--texte-tres-doux);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.anim-svg .mem-vide {
+  fill: var(--texte-tres-doux);
+  font-size: 11px;
+  font-style: italic;
+}
+
+.mem-cadre > rect,
+.mem-bloc > rect {
+  fill: var(--panneau);
+  stroke: var(--bordure);
+  stroke-width: 1.2;
+  transition: stroke 0.25s, fill 0.25s;
+}
+
+.mem-cadre.actif > rect {
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+
+.mem-cadre.ferme > rect {
+  stroke: var(--erreur);
+  stroke-dasharray: 5 4;
+}
+
+.anim-svg .mem-cadre-titre,
+.anim-svg .mem-bloc-titre {
+  fill: var(--texte-tres-doux);
+  font-family: var(--police-code);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.mem-cadre.actif .mem-cadre-titre {
+  fill: var(--accent);
+}
+
+.anim-svg .mem-nom {
+  fill: var(--texte);
+  font-family: var(--police-code);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.anim-svg .mem-adresse {
+  fill: var(--texte-tres-doux);
+  font-family: var(--police-code);
+  font-size: 9.5px;
+}
+
+.anim-svg .mem-note {
+  fill: var(--attention);
+  font-size: 9.5px;
+  font-style: italic;
+}
+
+.mem-boite,
+.mem-case {
+  fill: var(--code-fond);
+  stroke: var(--bordure);
+  stroke-width: 1;
+  transition: fill 0.25s, stroke 0.25s;
+}
+
+.anim-svg .mem-valeur {
+  fill: var(--code-texte);
+  font-family: var(--police-code);
+  font-size: 11.5px;
+}
+
+.mem-point {
+  fill: var(--accent);
+}
+
+.mem-variable.nouveau .mem-boite,
+.mem-bloc.nouveau > rect {
+  fill: var(--accent-doux);
+  stroke: var(--accent);
+}
+
+.mem-variable.modifie .mem-boite,
+.mem-bloc.modifie .mem-case {
+  fill: var(--attention-doux);
+  stroke: var(--attention);
+}
+
+.mem-variable.lu .mem-boite,
+.mem-bloc.lu > rect {
+  fill: var(--info-doux);
+  stroke: var(--info);
+  stroke-width: 2;
+}
+
+.mem-variable.invalide {
+  opacity: 0.42;
+}
+
+.mem-variable.invalide .mem-nom {
+  text-decoration: line-through;
+}
+
+.mem-variable.danger .mem-boite,
+.mem-bloc.danger > rect {
+  fill: var(--erreur-doux);
+  stroke: var(--erreur);
+  stroke-width: 1.6;
+}
+
+.mem-variable.danger .mem-note,
+.mem-bloc.danger .mem-note,
+.mem-bloc.libere .mem-note {
+  fill: var(--erreur);
+  font-weight: 700;
+}
+
+.mem-bloc.libere > rect {
+  fill: var(--erreur-doux);
+  stroke: var(--erreur);
+  stroke-dasharray: 5 4;
+}
+
+.mem-bloc.libere .mem-valeur,
+.mem-bloc.libere .mem-nom {
+  opacity: 0.5;
+}
+
+.mem-fleche path,
+.lc-fleche path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.8;
+}
+
+.mem-fleche polygon,
+.lc-fleche polygon {
+  fill: var(--accent);
+}
+
+.mem-fleche.lecture path {
+  stroke: var(--ansi-cyan);
+}
+
+.mem-fleche.lecture polygon {
+  fill: var(--ansi-cyan);
+}
+
+.mem-fleche.ecriture path {
+  stroke: var(--ansi-magenta);
+  stroke-width: 2.4;
+}
+
+.mem-fleche.ecriture polygon {
+  fill: var(--ansi-magenta);
+}
+
+.mem-fleche.danger path,
+.lc-fleche.danger path {
+  stroke: var(--erreur);
+  stroke-dasharray: 5 4;
+}
+
+.mem-fleche.danger polygon,
+.lc-fleche.danger polygon {
+  fill: var(--erreur);
+}
+
+.anim-svg .anim-apparait {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.anim-svg .lc-variable {
+  fill: var(--texte);
+  font-family: var(--police-code);
+  font-size: 12px;
+}
+
+.anim-svg .lc-etiquette {
+  fill: var(--accent);
+  font-family: var(--police-code);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lc-tete rect {
+  fill: var(--code-fond);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+.anim-svg .lc-null {
+  fill: var(--texte-tres-doux);
+  font-family: var(--police-code);
+  font-size: 9.5px;
+}
+
+.anim-svg .lc-null-fin {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lc-point {
+  fill: var(--accent);
+}
+
+.lc-cadre {
+  fill: var(--panneau);
+  stroke: var(--texte-tres-doux);
+  stroke-width: 1.3;
+  transition: fill 0.25s, stroke 0.25s;
+}
+
+.lc-separation {
+  stroke: var(--texte-tres-doux);
+  stroke-width: 1;
+}
+
+.anim-svg .lc-valeur {
+  fill: var(--texte);
+  font-family: var(--police-code);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.lc-maillon.nouveau .lc-cadre {
+  fill: var(--succes-doux);
+  stroke: var(--succes);
+}
+
+.lc-maillon.modifie .lc-cadre {
+  fill: var(--attention-doux);
+  stroke: var(--attention);
+}
+
+.lc-maillon.lu .lc-cadre {
+  fill: var(--info-doux);
+  stroke: var(--info);
+  stroke-width: 2;
+}
+
+.lc-maillon.libere .lc-cadre {
+  fill: var(--erreur-doux);
+  stroke: var(--erreur);
+  stroke-dasharray: 5 4;
+}
+
+.lc-maillon.libere .lc-valeur {
+  opacity: 0.5;
+}
+
+.anim-svg .lc-libere {
+  fill: var(--erreur);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.lc-cliquable {
+  cursor: pointer;
+}
+
+.lc-cliquable:hover .lc-cadre {
+  stroke: var(--erreur);
+  stroke-width: 2;
+}
+
+.lc-pointeur line {
+  stroke: var(--pointeur);
+  stroke-width: 1.6;
+}
+
+.anim-svg .lc-pointeur text {
+  fill: var(--pointeur);
+  font-family: var(--police-code);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.lc-saisie input {
+  width: 64px;
+  padding: 4px 6px;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+  background: var(--code-fond);
+  color: var(--texte);
+  font-family: var(--police-code);
+}
+
+.it-tuyau {
+  stroke: var(--bordure);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.anim-svg .it-file {
+  fill: var(--texte-doux);
+  font-family: var(--police-code);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.anim-svg .it-file.consomme {
+  fill: var(--texte-tres-doux);
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+.anim-svg .it-file.prochain {
+  fill: var(--accent);
+  font-weight: 800;
+}
+
+.it-station rect {
+  fill: var(--panneau);
+  stroke: var(--bordure);
+  stroke-width: 1.4;
+  transition: stroke 0.25s, fill 0.25s;
+}
+
+.it-station.active rect {
+  fill: var(--accent-doux);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.it-station.stop rect {
+  fill: var(--erreur-doux);
+  stroke: var(--erreur);
+}
+
+.anim-svg .it-libelle {
+  fill: var(--code-fonction);
+  font-family: var(--police-code);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.anim-svg .it-detail {
+  fill: var(--texte-doux);
+  font-family: var(--police-code);
+  font-size: 10.5px;
+}
+
+.anim-svg .it-compteur {
+  fill: var(--texte-tres-doux);
+  font-size: 11px;
+}
+
+.anim-svg .it-resultat {
+  fill: var(--succes);
+  font-family: var(--police-code);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.anim-svg .it-rejets {
+  fill: var(--erreur);
+  font-family: var(--police-code);
+  font-size: 11px;
+}
+
+.anim-svg .it-none {
+  fill: var(--erreur);
+  font-family: var(--police-code);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.it-jeton {
+  transition: transform 0.45s ease-in-out, opacity 0.3s;
+}
+
+.it-jeton.cache {
+  opacity: 0;
+}
+
+.it-jeton circle {
+  fill: var(--accent);
+  stroke: var(--panneau);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: fill 0.25s;
+}
+
+.it-jeton.garde circle {
+  fill: var(--succes);
+}
+
+.it-jeton.rejete circle {
+  fill: var(--erreur);
+}
+
+.anim-svg .it-jeton text {
+  fill: #fff;
+  font-family: var(--police-code);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dc-exemples {
+  gap: 6px;
+}
+
+.dc-exemple {
+  border: 1px solid var(--bordure);
+  font-family: var(--police-code);
+}
+
+.dc-reglages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+
+.dc-parametre {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dc-omis {
+  opacity: 0.45;
+}
+
+.dc-vide {
+  border: 1px dashed var(--bordure);
+  font-size: 12px;
+}
+
+.dc-fantome {
+  fill: none;
+  stroke: var(--texte-tres-doux);
+  stroke-dasharray: 4 4;
+}
+
+.dc-case rect {
+  fill: var(--panneau-clair);
+  stroke: var(--bordure);
+  stroke-width: 1.2;
+  transition: fill 0.25s, stroke 0.25s;
+}
+
+.dc-case.pris rect {
+  fill: var(--accent-doux);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.anim-svg .dc-valeur {
+  fill: var(--texte);
+  font-family: var(--police-code);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.anim-svg .dc-indice {
+  fill: var(--ansi-bleu);
+  font-family: var(--police-code);
+  font-size: 11px;
+}
+
+.anim-svg .dc-indice.negatif {
+  fill: var(--ansi-magenta);
+}
+
+.anim-svg .dc-ordre {
+  fill: var(--accent);
+  font-size: 9.5px;
+  font-weight: 800;
+}
+
+.anim-svg .dc-marque {
+  font-family: var(--police-code);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.anim-svg .dc-marque.debut {
+  fill: var(--accent);
+}
+
+.anim-svg .dc-marque.fin {
+  fill: var(--texte-tres-doux);
+}
+
+.dc-sens {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.dc-sens-pointe {
+  fill: var(--accent);
+}
+
+.anim .dc-expression {
+  margin: 0;
+  color: var(--texte);
+  font-size: 16px;
+}
+
+.markdown .dc-expression code {
+  font-size: 1em;
+}
+
+.markdown .dc-expression .dc-resultat {
+  color: var(--succes);
+  font-weight: 700;
+}
+
+.dc-erreur {
+  color: var(--erreur);
+  font-family: var(--police-code);
+  font-weight: 700;
+}
+
+.anim .dc-details {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--texte-doux);
+  font-size: 13.5px;
+}
+
+.markdown .dc-details li {
+  color: var(--texte-doux);
+}
+
+@media (max-width: 640px) {
+  .anim-pas-cote {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .anim .anim-pas-code {
+    font-size: 11.5px;
+  }
+
+  .anim-pas-compteur {
+    margin-left: 0;
+  }
+}

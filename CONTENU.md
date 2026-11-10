@@ -14,6 +14,31 @@ Le site a deux sortes de domaines :
 
 La liste des domaines est dans `js/domaines.js`. `npm run verifier-contenu` sans argument vérifie tout (compte quelques minutes : chaque solution est compilée ou lancée).
 
+## Animations dans les cours (tous les domaines)
+
+Dans n'importe quel `cours.md`, un bloc ` ```anim ` est remplacé par une animation interactive (graphique, schéma, pas à pas). Première ligne : le nom ; lignes suivantes : options `clé: valeur` (nombres, `oui` / `non`, texte). `titre:` et `consigne:` remplacent ceux par défaut.
+
+````markdown
+```anim
+croissance
+n: 15
+```
+````
+
+Pas de `$` dans un bloc `anim`. Le code est dans `js/animations/` (`maths.js`, `combinatoire.js`, `code.js` pour C / Rust / Python, `anglais.js` pour l'anglais et le SIG, aides communes dans `outils.js`), les styles dans `css/animations*.css`. Un nom inconnu affiche un avertissement dans la page.
+
+| Domaine | Animations |
+|---|---|
+| maths | `venn`, `quantificateurs`, `somme-gauss`, `exp-ln`, `tangente`, `integrale`, `vecteurs` |
+| combinatoire | `croissance`, `recuit`, `voyageur`, `roulette`, `tournoi`, `croisement`, `plne`, `classes` |
+| c | `memoire-pointeurs`, `liste-chainee` |
+| rust | `ownership`, `durees-de-vie`, `iterateurs` |
+| python | `decoupage`, `references`, `classes-objets` |
+| anglais | `frise-des-temps`, `cartes-vocabulaire` (option `mots: anglais = français ; …`), `chrono-toeic` |
+| electif | `couches`, `shapefile`, `coordonnees` |
+
+Certaines acceptent un `mode:` ou `scenario:` pour choisir l'exemple montré : voir la fonction `creer…` correspondante.
+
 ## Domaines de code (Rust, Python, C)
 
 Les trois langages ont **le même format**, seule l'extension des fichiers change : `.rs` (Rust), `.py` (Python), `.c` (C). Les exemples ci-dessous sont en Rust. **Après chaque ajout ou modification, lance `npm run sommaire`** : le site lit la liste des chapitres et des exercices dans `contenu/<langage>/sommaire.json`.
@@ -50,6 +75,19 @@ Les noms de dossiers : minuscules, chiffres et tirets uniquement (`04-tarif`, pa
 ```
 
 `source` vaut `"cours"` (vu en cours à l'ESGI) ou `"fondamentaux"` (pas encore vu en cours).
+
+### Supports originaux (`supports`, facultatif)
+
+Les PDF et pages HTML des profs ne sont **pas** dans le dépôt : le serveur les lit dans le dossier des cours (`DOSSIER_SUPPORTS`, par défaut `~/Obsidian/Claude Note/Cours - ESGI`) et les sert sous `/supports/…`. Chaque chapitre liste les siens, avec un chemin relatif à ce dossier (des `/`, uniquement `.pdf` ou `.html`) :
+
+```json
+"supports": [
+  {"titre": "Slides", "fichier": "Rust/Sources/Slides - Ownership.pdf"},
+  {"titre": "Correction", "fichier": "Maths pour le big data/Sources/Séance 1 - Correction.pdf", "matieres": ["big-data"]}
+]
+```
+
+`matieres` (facultatif) réserve un support à certaines matières. Le cours affiche un bandeau « Supports originaux », le menu et l'accueil un lien vers la page `#/supports/<domaine>/<chapitre>` (onglets + aperçu).
 
 ### `cours.md`
 
@@ -250,7 +288,7 @@ Un nouveau chapitre doit être ajouté dans la liste `chapitres` de `programme.j
 }
 ```
 
-`source` est le nom de la séance ou du cours d'origine. `matieres` liste les matières concernées (un chapitre peut être dans les deux).
+`source` est le nom de la séance ou du cours d'origine. `matieres` liste les matières concernées (un chapitre peut être dans les deux). `supports` : voir « Supports originaux » plus haut.
 
 ### Les formules (maths et combinatoire)
 

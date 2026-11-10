@@ -147,6 +147,7 @@ export async function construireSommaire(dossierContenu, langage) {
       titre: meta.titre,
       description: meta.description ?? '',
       source: meta.source ?? 'fondamentaux',
+      ...(meta.supports ? { supports: meta.supports } : {}),
       exercices,
       quiz: await lireQuiz(dossierContenu, id),
     });

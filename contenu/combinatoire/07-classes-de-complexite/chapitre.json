@@ -4,5 +4,9 @@
   "source": "Annexe",
   "matieres": [
     "combinatoire"
+  ],
+  "supports": [
+    {"titre": "Annexe", "fichier": "Combinatoire et complexité/Sources/Extra - Annexes classes de complexité.pdf"},
+    {"titre": "Annexe interactive", "fichier": "Combinatoire et complexité/Sources/[Extra] Annexes classes de complexité.html"}
   ]
 }

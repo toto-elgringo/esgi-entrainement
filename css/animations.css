@@ -1,0 +1,326 @@
+.anim {
+  margin: 22px 0;
+  padding: 0;
+  border: 1px solid var(--bordure);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 100% 0%, var(--accent-doux), transparent 45%),
+    var(--panneau);
+  overflow: hidden;
+}
+
+.anim-entete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.anim-badge {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.anim-titre {
+  color: var(--texte);
+  font-weight: 650;
+}
+
+.anim-corps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  min-height: 60px;
+}
+
+.anim-consigne {
+  margin: 0;
+  padding: 9px 16px 12px;
+  color: var(--texte-tres-doux) !important;
+  font-size: 13px;
+}
+
+.anim-inconnue {
+  padding: 12px 16px;
+  border-color: var(--attention);
+}
+
+.anim .anim-info {
+  margin: 0;
+  color: var(--texte-doux);
+  font-size: 14px;
+}
+
+.anim-info strong {
+  color: var(--texte);
+}
+
+.anim-commandes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.anim-commandes .bouton {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.anim-curseur {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--texte-doux);
+  font-size: 13px;
+}
+
+.anim-curseur input[type="range"] {
+  width: 140px;
+  accent-color: var(--accent);
+}
+
+.anim-curseur-large input[type="range"] {
+  width: 220px;
+}
+
+.anim-curseur-valeur {
+  min-width: 2.5em;
+  color: var(--texte);
+  font-family: var(--police-code);
+  font-weight: 600;
+}
+
+.anim-choix {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  background: var(--panneau-clair);
+}
+
+.anim-puce {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  color: var(--texte-doux);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.anim-puce:hover {
+  color: var(--texte);
+}
+
+.anim-puce.actif {
+  background: var(--accent);
+  color: #fff;
+}
+
+.anim-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--police);
+  user-select: none;
+}
+
+.anim-svg text {
+  fill: var(--texte-doux);
+  font-size: 12px;
+}
+
+.anim-grille {
+  stroke: var(--bordure);
+  stroke-width: 1;
+}
+
+.anim-axe {
+  stroke: var(--texte-tres-doux);
+  stroke-width: 1.2;
+}
+
+.anim-svg .anim-graduation {
+  fill: var(--texte-tres-doux);
+  font-size: 11px;
+}
+
+.anim-courbe {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.anim-point {
+  fill: var(--accent);
+  stroke: var(--panneau);
+  stroke-width: 2;
+}
+
+.anim-poignee {
+  fill: var(--accent);
+  stroke: #fff;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+}
+
+.anim-repere {
+  stroke: var(--texte-tres-doux);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.anim-zone-active {
+  fill: var(--accent-doux);
+}
+
+.anim-legende-series {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.anim-serie {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  background: none;
+  color: var(--texte-tres-doux);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0.55;
+}
+
+.anim-serie.actif {
+  color: var(--texte);
+  opacity: 1;
+}
+
+.anim-serie-pastille {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--serie, var(--accent));
+}
+
+.markdown .anim-tableau {
+  width: 100%;
+  margin: 0;
+  font-size: 13px;
+}
+
+.anim-tableau td,
+.anim-tableau th {
+  padding: 5px 10px;
+}
+
+.anim-alerte {
+  color: var(--erreur) !important;
+  font-weight: 600;
+}
+
+.anim-case {
+  display: inline-grid;
+  place-items: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 6px;
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+  background: var(--panneau-clair);
+  color: var(--texte);
+  font-family: var(--police-code);
+  font-weight: 600;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, color 0.25s;
+}
+
+.anim-case.surligne {
+  border-color: var(--accent);
+  background: var(--accent-doux);
+  transform: translateY(-3px);
+}
+
+.anim-case.bon {
+  border-color: var(--succes);
+  background: var(--succes-doux);
+}
+
+.anim-case.mauvais {
+  border-color: var(--erreur);
+  background: var(--erreur-doux);
+}
+
+.anim-code {
+  margin: 0;
+  padding: 10px 0;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: var(--code-fond);
+  font-family: var(--police-code);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.anim-code-ligne {
+  display: block;
+  padding: 0 14px;
+  border-left: 3px solid transparent;
+  color: var(--code-texte);
+  white-space: pre;
+}
+
+.anim-code-ligne.actif {
+  border-left-color: var(--accent);
+  background: var(--accent-doux);
+}
+
+@keyframes anim-apparition {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+.anim-apparait {
+  animation: anim-apparition 0.35s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim *,
+  .anim *::before,
+  .anim *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .anim-corps {
+    padding: 12px;
+  }
+
+  .anim-curseur-large input[type="range"] {
+    width: 150px;
+  }
+}

@@ -94,6 +94,13 @@ Image : une bille qui roule dans un paysage de collines. Elle s'arrête au fond 
 > [!tip] La rustine : le multi-start
 > Relancer la descente depuis **plusieurs états initiaux au hasard** et garder la meilleure solution. Bon marché, souvent efficace, mais **sans garantie**.
 
+```anim
+recuit
+mode: descente
+titre: La bille coincée dans un minimum local
+consigne: La descente refuse toute remontée et s’arrête au fond du premier creux. Essaie « Départ au hasard » (multi-start), puis passe au recuit.
+```
+
 ## 4. Le voyageur de commerce : glouton puis 2-opt
 
 ### Construire : le plus proche voisin
@@ -137,6 +144,11 @@ Il y a $\dfrac{5!}{2} = 60$ tournées distinctes.
 | 2 | A D F C B E | inverser E…F | **12,61** |
 
 Ensuite plus aucun échange n'améliore : optimum local, qui est ici aussi l'optimum global (on le vérifie en énumérant les 60 tournées). Ce n'est pas le cas en général : sur quelques dizaines de villes, glouton + descente finissent souvent quelques pourcents au-dessus de l'optimum.
+
+```anim
+voyageur
+villes: cours
+```
 
 > [!info] Construction, amélioration, métaheuristique
 > Le plus proche voisin est une heuristique de **construction** (il crée une solution). Le 2-opt est une heuristique d'**amélioration** (il répare une solution). Une **métaheuristique** est un cadre qui pilote ces briques.

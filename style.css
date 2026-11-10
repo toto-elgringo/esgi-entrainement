@@ -1572,6 +1572,10 @@ pre code.hljs {
   line-height: 1.55;
 }
 
+.CodeMirror .CodeMirror-crosshair {
+  cursor: text;
+}
+
 .cm-s-rustique.CodeMirror {
   background: var(--code-fond);
   color: var(--code-texte);
@@ -1906,4 +1910,179 @@ body[data-domaine="electif"] {
 
 .sauvegarde + .pied-accueil {
   margin-top: 16px;
+}
+
+.myges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  padding: 16px 20px;
+  border: 1px solid var(--bordure);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--rayon);
+  background: var(--panneau);
+}
+
+.myges-actif {
+  border-left-color: var(--attention);
+}
+
+.myges-erreur {
+  border-left-color: var(--erreur);
+}
+
+.myges-texte {
+  display: flex;
+  flex: 1 1 280px;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.myges-texte > span,
+.myges-note {
+  color: var(--texte-doux);
+  font-size: 14px;
+}
+
+.myges-note {
+  margin: 4px 0 0;
+}
+
+.myges-liste {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.myges-liste ul {
+  margin: 4px 0 0;
+  padding-left: 20px;
+  overflow-wrap: anywhere;
+}
+
+.myges-journal,
+.myges-bilan {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: var(--rayon);
+  background: var(--fond);
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.myges-journal p {
+  margin: 0 0 4px;
+  color: var(--texte-doux);
+}
+
+.myges-bilan {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.myges-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.myges-actions .bouton:not(.principal):hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+[data-myges] + .sauvegarde {
+  margin-top: 16px;
+}
+
+.bandeau-supports {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  max-width: 820px;
+  margin: 4px 0 20px;
+  padding: 10px 14px;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: var(--panneau);
+  font-size: 14px;
+}
+
+.bandeau-supports strong {
+  margin-right: 4px;
+  color: var(--texte-doux);
+  font-weight: 500;
+}
+
+.puce-support,
+.onglet-support {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  background: var(--panneau-clair);
+  color: var(--texte);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.puce-support:hover,
+.onglet-support:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.puce-support span,
+.onglet-support span {
+  color: var(--texte-doux);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.onglet-support.actif {
+  border-color: var(--accent);
+  background: var(--accent-doux);
+  color: var(--accent);
+}
+
+.supports-entete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0 14px;
+}
+
+.onglets-supports,
+.supports-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cadre-visionneuse {
+  height: calc(100vh - 190px);
+  min-height: 420px;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  overflow: hidden;
+  background: var(--panneau);
+}
+
+.visionneuse {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
 }

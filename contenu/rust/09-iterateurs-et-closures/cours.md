@@ -142,6 +142,11 @@ let somme: i32 = v.iter().filter(|x| **x % 2 == 0).map(|x| x * x).sum();
 
 Même vitesse (le compilateur produit la même boucle : c'est une *zero cost abstraction*), mais on lit directement l'intention : « garder les pairs, les mettre au carré, additionner ».
 
+```anim
+iterateurs
+scenario: boucle
+```
+
 ## À retenir
 
 - Closure : `|params| expression`. Elle peut utiliser les variables autour (capture).

@@ -5,6 +5,12 @@
       "titre": "Les bases",
       "description": "Syntaxe et indentation, types, opérateurs, conditions, boucles, console, listes, chaînes, tuples, ensembles, dictionnaires et modules.",
       "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides",
+          "fichier": "Scripting Python/Sources/slides 1 - Bases.pdf"
+        }
+      ],
       "exercices": [
         {
           "id": "01-bonjour",
@@ -286,6 +292,12 @@
       "titre": "Fonctions avancées",
       "description": "Valeurs par défaut, mots-clés, *args et **kwargs, fonctions internes, closures, décorateurs, générateurs avec yield et exceptions.",
       "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides",
+          "fichier": "Scripting Python/Sources/slides 2 - fonctions.pdf"
+        }
+      ],
       "exercices": [
         {
           "id": "01-valeurs-par-defaut",
@@ -567,6 +579,12 @@
       "titre": "Notions avancées",
       "description": "Compréhensions, expressions génératrices, zip, map, filter, enumerate, sorted, any, all, lambdas, fichiers et with.",
       "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides",
+          "fichier": "Scripting Python/Sources/slides 3 - notions avancées.pdf"
+        }
+      ],
       "exercices": [
         {
           "id": "01-comprehensions",
@@ -850,6 +868,12 @@
       "titre": "Programmation orientée objet",
       "description": "Classes, instances, self, __init__, variables de classe, attributs privés, propriétés, surcharge d'opérateurs, héritage simple et multiple.",
       "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides",
+          "fichier": "Scripting Python/Sources/Slides 4 - POO.pdf"
+        }
+      ],
       "exercices": [
         {
           "id": "01-classe-point",

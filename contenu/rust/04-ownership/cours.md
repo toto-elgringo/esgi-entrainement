@@ -123,6 +123,11 @@ changer(&mut s);
 > [!tip] Lequel choisir ?
 > La fonction modifie la valeur et rend la main : `&mut`. Elle a juste besoin de lire : `&`. Elle « consomme » la valeur pour en produire une autre : par valeur.
 
+```anim
+ownership
+scenario: move
+```
+
 ## 6. Copy et Clone
 
 ```rust
@@ -135,6 +140,12 @@ println!("{a} {b}");   // ok : les entiers sont Copy
 - Un type ne peut être `Copy` que s'il n'a **rien à libérer**. `String`, `Vec<T>`, `Box<T>` ne le sont pas.
 - On rend son propre type `Copy` avec `#[derive(Clone, Copy)]`.
 - **`.clone()`** fait une vraie copie (y compris ce qui est sur le tas). C'est explicite, et ça coûte.
+
+```anim
+ownership
+scenario: clone
+titre: Copy, clone ou move ?
+```
 
 > [!warning] Le `.clone()` réflexe
 > Ajouter `.clone()` juste pour faire taire le compilateur est un signal d'alarme : demande-toi plutôt **qui doit posséder quoi**, et si un emprunt ne suffit pas.
@@ -166,6 +177,12 @@ v.push(4);               // ok : plus aucun lecteur
 ```
 
 Depuis 2018, l'emprunt ne dure pas jusqu'à la fin du bloc, mais jusqu'à sa **dernière utilisation** (*non-lexical lifetimes*). Beaucoup de vieux tutoriels sont faux sur ce point.
+
+```anim
+ownership
+scenario: emprunts
+titre: Plusieurs lecteurs ou un seul écrivain
+```
 
 ### Modifier ce qu'on parcourt
 

@@ -4,5 +4,9 @@
   "source": "Cours du 12 octobre 2026 (chapitre The Workplace)",
   "matieres": [
     "anglais"
+  ],
+  "supports": [
+    {"titre": "Chapitre The Workplace", "fichier": "Anglais professionnel/Sources/Chapter The Workplace.pdf"},
+    {"titre": "Cours du 12 octobre", "fichier": "Anglais professionnel/Sources/cours du 12 octobre 2026.pdf"}
   ]
 }

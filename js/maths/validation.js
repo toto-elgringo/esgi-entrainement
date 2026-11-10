@@ -1,3 +1,4 @@
+import { validerSupports } from '../supports.js';
 import { TYPES_QUESTION, valeurNumerique, verifierQuestion } from './verification.js';
 
 const FORMAT_ID = /^[a-z0-9][a-z0-9-]*$/;
@@ -49,6 +50,7 @@ export function validerChapitre(meta, idsMatieres) {
   if (!texteRempli(meta.titre)) problemes.push('chapitre.json : « titre » manquant');
   if (!Array.isArray(meta.matieres) || meta.matieres.length === 0) problemes.push('chapitre.json : « matieres » manquant');
   else if (!meta.matieres.every((id) => idsMatieres.includes(id))) problemes.push(`chapitre.json : matière inconnue (connues : ${idsMatieres.join(', ')})`);
+  problemes.push(...validerSupports(meta.supports));
   return problemes;
 }
 

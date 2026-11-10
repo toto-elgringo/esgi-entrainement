@@ -27,6 +27,10 @@ Chaque objet a deux parties :
 
 Pour ouvrir une couche : menu **Couche > Ajouter une couche > Ajouter une couche vecteur** (ou glisser-déposer le fichier). Pour voir les informations de chaque objet : clic droit sur la couche, **Ouvrir la table d'attributs**.
 
+```anim
+couches
+```
+
 ## Le format Shapefile
 
 Le **Shapefile** (SHP) est un format très répandu. Une couche n'est pas un seul fichier mais **plusieurs fichiers de même nom** qui vont ensemble :
@@ -41,6 +45,10 @@ Le **Shapefile** (SHP) est un format très répandu. Une couche n'est pas un seu
 
 > [!warning] Piège
 > Ne sépare jamais les fichiers d'une même couche : un `.shp` seul est inutilisable sans son `.shx` et son `.dbf`.
+
+```anim
+shapefile
+```
 
 ## La BD TOPO de l'IGN
 
@@ -74,3 +82,7 @@ Le **Lambert 93** (RGF93 / Lambert-93, code **EPSG:2154**) est la projection off
 
 > [!warning] Piège
 > Vérifie le système du projet (en bas à droite dans QGIS) : il doit être **EPSG:2154** pour les données de la BD TOPO. Mélanger deux systèmes sans conversion décale les couches.
+
+```anim
+coordonnees
+```

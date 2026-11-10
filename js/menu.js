@@ -1,6 +1,7 @@
 import { estDomaineCode } from './domaines.js';
 import { echapper } from './outils.js';
 import { compterProgression, estReussi } from './parcours.js';
+import { supportsDeChapitre } from './supports.js';
 
 export function barreProgression(reussis, total) {
   const pourcentage = total === 0 ? 0 : Math.round((reussis / total) * 100);
@@ -18,15 +19,17 @@ export function etiquetteSource(chapitre) {
 }
 
 function lien(href, texte, { classes = '', detail = '', actif }) {
-  const classeActif = href === actif ? ' actif' : '';
+  const classeActif = href === actif || actif?.startsWith(`${href}/`) ? ' actif' : '';
   return `<a class="lien-menu ${classes}${classeActif}" href="${href}">${texte}${detail ? `<span class="detail">${detail}</span>` : ''}</a>`;
 }
 
-function dessinerChapitre(chapitre, numero, progression, ouvert, actif) {
+function dessinerChapitre(chapitre, numero, progression, ouvert, actif, matiere) {
   const { reussis, total } = compterProgression([chapitre], progression);
   const quiz = progression.quiz[chapitre.cle];
+  const supports = supportsDeChapitre(chapitre, matiere);
   const liens = [
     lien(`#/cours/${chapitre.cle}`, 'Cours', { classes: 'special', actif }),
+    supports.length > 0 ? lien(`#/supports/${chapitre.cle}`, 'Supports originaux', { classes: 'special', detail: String(supports.length), actif }) : '',
     chapitre.quiz.length > 0
       ? lien(`#/quiz/${chapitre.cle}`, 'Quiz', { classes: 'special', detail: quiz ? `${quiz.score}/${quiz.total}` : '', actif })
       : '',
@@ -49,13 +52,13 @@ function dessinerChapitre(chapitre, numero, progression, ouvert, actif) {
     </div>`;
 }
 
-export function dessinerMenu(conteneur, chapitres, progression, ouverts, actif) {
+export function dessinerMenu(conteneur, chapitres, progression, ouverts, actif, matiere) {
   if (chapitres.length === 0) {
     conteneur.innerHTML = '<p class="menu-vide">Choisis une matière pour voir ses chapitres.</p>';
     return;
   }
   conteneur.innerHTML = chapitres
-    .map((chapitre, index) => dessinerChapitre(chapitre, index + 1, progression, ouverts.has(chapitre.cle), actif))
+    .map((chapitre, index) => dessinerChapitre(chapitre, index + 1, progression, ouverts.has(chapitre.cle), actif, matiere))
     .join('');
 }
 

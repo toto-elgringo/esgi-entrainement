@@ -53,6 +53,10 @@ $$\ln 1 = 0 \qquad \ln e = 1 \qquad \ln\frac{1}{a} = -\ln a$$
 - Sa dérivée : $(\ln x)' = \dfrac{1}{x}$. Pour une composée : $\left(\ln u(x)\right)' = \dfrac{u'(x)}{u(x)}$.
 - Signe : $\ln x < 0$ si $0 < x < 1$, $\ln x = 0$ si $x = 1$, $\ln x > 0$ si $x > 1$.
 
+```anim
+exp-ln
+```
+
 ## 3. Le logarithme en base $a$
 
 Pour $a > 0$ et $a \neq 1$ :
