@@ -1,0 +1,10 @@
+{
+  "titre": "Déterminants et systèmes linéaires",
+  "description": "Déterminant (cofacteurs, Sarrus), matrice inverse, résolution de systèmes par le pivot de Gauss et la règle de Cramer.",
+  "source": "Séance 4",
+  "matieres": ["big-data"],
+  "supports": [
+    {"titre": "Cours", "fichier": "Maths pour le big data/Sources/Séance 4 - cours.pdf"},
+    {"titre": "Exercices", "fichier": "Maths pour le big data/Sources/Séance 4 - exercices.pdf"}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "titre": "Sales : vendre, commander, facturer, livrer",
+  "description": "Vente au détail, commande, facturation et livraison : vocabulaire, verbes à particule, prépositions, mots à plusieurs sens et familles de mots.",
+  "source": "Cours du 9 novembre 2026 (chapitre Sales)",
+  "matieres": [
+    "anglais"
+  ],
+  "supports": [
+    {"titre": "Chapitre Sales", "fichier": "Anglais professionnel/Sources/Sales.pdf"},
+    {"titre": "Cours du 9 novembre", "fichier": "Anglais professionnel/Sources/cours du 9 novembre 2026.pdf"}
+  ]
+}

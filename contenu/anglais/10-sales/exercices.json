@@ -1,0 +1,670 @@
+[
+  {
+    "id": "retail-traduction",
+    "titre": "Le magasin : traduire",
+    "difficulte": 1,
+    "enonce": "Traduis en anglais (un mot ou une expression courte).",
+    "questions": [
+      { "intitule": "le ticket de caisse", "type": "texte", "reponse": ["receipt", "a receipt", "the receipt"], "refuses": ["recipe", "recipient"] },
+      { "intitule": "l'allée (d'un magasin)", "type": "texte", "reponse": ["aisle", "an aisle", "the aisle"] },
+      { "intitule": "le caissier", "type": "texte", "reponse": ["cashier", "a cashier", "the cashier"] },
+      { "intitule": "le centre commercial", "type": "texte", "reponse": ["mall", "a mall", "the mall", "shopping centre", "shopping center", "a shopping centre", "a shopping center"] },
+      { "intitule": "la monnaie (qu'on rend)", "type": "texte", "reponse": ["change", "the change", "some change"] },
+      { "intitule": "le bon de réduction", "type": "texte", "reponse": ["coupon", "a coupon", "voucher", "a voucher"] },
+      { "intitule": "les produits laitiers", "type": "texte", "reponse": ["dairy products", "dairy"] },
+      { "intitule": "le chariot (de supermarché)", "type": "texte", "reponse": ["cart", "a cart", "shopping cart", "a shopping cart", "trolley", "a trolley"] }
+    ],
+    "indices": ["Ils sont tous dans le tableau « Retail » du cours."],
+    "correction": "ticket de caisse = *receipt* ; allée = *aisle* ; caissier = *cashier* ; centre commercial = *mall* (*shopping centre*) ; monnaie = *change* ; bon de réduction = *coupon* ; produits laitiers = *dairy products* ; chariot = *cart*."
+  },
+  {
+    "id": "retail-phrases",
+    "titre": "Au magasin",
+    "difficulte": 1,
+    "enonce": "Choisis le mot qui complète chaque phrase.",
+    "questions": [
+      {
+        "intitule": "*You can find the yoghurts and the butter in the ...... section.*",
+        "type": "choix",
+        "choix": ["produce", "dairy", "appliance", "checkout"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Our greengrocer sells the freshest ...... in the neighbourhood.*",
+        "type": "choix",
+        "choix": ["products", "production", "produce", "producers"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*A ...... refills the shelves every morning before the store opens.*",
+        "type": "choix",
+        "choix": ["shelf stocker", "cashier", "store", "supplier"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Fridges, washing machines and ovens are all household ......*",
+        "type": "choix",
+        "choix": ["produce", "displays", "outlets", "appliances"],
+        "reponse": 3
+      },
+      {
+        "intitule": "*All winter coats have a 40% ...... this week.*",
+        "type": "choix",
+        "choix": ["markdown", "receipt", "custom", "aisle"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*\"Can I help you?\" - \"No thanks, I'm just ......\"*",
+        "type": "choix",
+        "choix": ["browse", "browsed", "browsing", "browser"],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*produce* = fruits et légumes ; *appliances* = appareils électroménagers.",
+      "*I'm just* + verbe en -ing (présent continu)."
+    ],
+    "correction": "1. *dairy* (produits laitiers). 2. *produce* (fruits et légumes frais). 3. *shelf stocker* (il remplit les rayons). 4. *appliances* (électroménager). 5. *markdown* (réduction de prix). 6. *I'm just browsing* = je regarde seulement."
+  },
+  {
+    "id": "retail-particules",
+    "titre": "Les verbes à particule du magasin",
+    "difficulte": 2,
+    "enonce": "Complète avec la bonne particule (*down, on, around, off, out*).",
+    "questions": [
+      { "intitule": "*Can I try ...... these jeans in a bigger size?*", "type": "texte", "reponse": ["on"] },
+      { "intitule": "*The bookshop on the corner is closing ...... after 40 years.*", "type": "texte", "reponse": ["down"] },
+      { "intitule": "*Before buying a new TV, it's worth shopping ...... for the best price.*", "type": "texte", "reponse": ["around"] },
+      { "intitule": "*The new smartphone sold ...... on the first day: there are none left.*", "type": "texte", "reponse": ["out"], "refuses": ["off"] },
+      { "intitule": "*We are selling ...... last season's shoes to make room for the new collection.*", "type": "texte", "reponse": ["off"], "refuses": ["out"] },
+      { "intitule": "*All the summer dresses have been marked ...... by 30%.*", "type": "texte", "reponse": ["down"] }
+    ],
+    "indices": [
+      "Fermer définitivement = *close down* ; baisser un prix = *mark down*.",
+      "*sell out* = il n'en reste plus ; *sell off* = brader pour vider le stock."
+    ],
+    "correction": "*try on* (essayer), *close down* (fermer définitivement), *shop around* (comparer les magasins), *sold out* (tout vendu), *selling off* (brader), *marked down* (démarqué)."
+  },
+  {
+    "id": "retail-synonymes",
+    "titre": "Les synonymes du magasin",
+    "difficulte": 2,
+    "enonce": "Donne un synonyme du mot en gras (vu dans le cours).",
+    "questions": [
+      { "intitule": "*We don't **carry** that brand.* (un verbe)", "type": "texte", "reponse": ["stock", "sell"] },
+      { "intitule": "*a new **mall*** (deux mots)", "type": "texte", "reponse": ["shopping centre", "shopping center"] },
+      { "intitule": "*kitchen **appliances*** (deux mots)", "type": "texte", "reponse": ["white goods"] },
+      { "intitule": "*a 20% **markdown***", "type": "texte", "reponse": ["reduction", "discount"] },
+      { "intitule": "*a retail **store***", "type": "texte", "reponse": ["outlet", "shop"] },
+      { "intitule": "*Please pay at the **cash register**.*", "type": "texte", "reponse": ["checkout", "till"] }
+    ],
+    "indices": ["L'électroménager est souvent blanc."],
+    "correction": "*carry* = *stock* ; *mall* = *shopping centre* ; *appliances* = *white goods* ; *markdown* = *reduction* ; *store* = *outlet* ; *cash register* = *checkout*."
+  },
+  {
+    "id": "ordering-traduction",
+    "titre": "La commande : traduire",
+    "difficulte": 1,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      { "intitule": "le fournisseur", "type": "texte", "reponse": ["supplier", "a supplier", "the supplier", "provider", "a provider"] },
+      { "intitule": "le grossiste", "type": "texte", "reponse": ["wholesaler", "a wholesaler", "the wholesaler"], "refuses": ["retailer"] },
+      { "intitule": "le détaillant", "type": "texte", "reponse": ["retailer", "a retailer", "the retailer"], "refuses": ["wholesaler"] },
+      { "intitule": "le devis", "type": "texte", "reponse": ["quote", "a quote", "the quote", "quotation", "a quotation", "estimate", "an estimate"] },
+      { "intitule": "la garantie", "type": "texte", "reponse": ["warranty", "a warranty", "the warranty", "guarantee", "a guarantee"] },
+      { "intitule": "le SAV", "type": "texte", "reponse": ["after-sales service", "the after-sales service", "after sales service", "customer service"] },
+      { "intitule": "passer commande", "type": "texte", "reponse": ["place an order", "to place an order", "order", "to order"] },
+      { "intitule": "le remboursement", "type": "texte", "reponse": ["refund", "a refund", "the refund"] }
+    ],
+    "indices": ["Ils sont dans le tableau « Ordering » du cours."],
+    "correction": "fournisseur = *supplier* ; grossiste = *wholesaler* ; détaillant = *retailer* ; devis = *quote* ; garantie = *warranty* ; SAV = *after-sales service* ; passer commande = *place an order* ; remboursement = *refund*."
+  },
+  {
+    "id": "ordering-phrases",
+    "titre": "Passer une commande",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète chaque phrase.",
+    "questions": [
+      {
+        "intitule": "*If the blender stops working within two years, it is covered by the ......*",
+        "type": "choix",
+        "choix": ["warranty", "quote", "batch", "deadline"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*All the printers from ...... number 4411 have the same fault.*",
+        "type": "choix",
+        "choix": ["item", "batch", "stock", "rebate"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Order online today, then ...... your parcel from any of our shops.*",
+        "type": "choix",
+        "choix": ["place", "return", "click and collect", "deliver"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Before we sign, could you send us a ...... for the whole project?*",
+        "type": "choix",
+        "choix": ["refund", "quote", "warranty", "supplier"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Mail us the coupon with your receipt and get a $30 ......*",
+        "type": "choix",
+        "choix": ["discount", "deadline", "rebate", "purchaser"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The ...... for sending your order form is Friday at noon.*",
+        "type": "choix",
+        "choix": ["deadline", "batch", "item", "goods"],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*batch* = un lot de produits fabriqués ensemble.",
+      "Envoyer un bon et un ticket **après** l'achat pour récupérer de l'argent : c'est un *rebate*."
+    ],
+    "correction": "1. *warranty* (garantie). 2. *batch* (lot). 3. *click and collect* : on retire en magasin ce qu'on a commandé en ligne. 4. *quote* (devis). 5. *rebate* : on récupère 30 $ après l'achat ; un *discount* réduit le prix à la caisse. 6. *deadline* (date limite)."
+  },
+  {
+    "id": "ordering-prepositions",
+    "titre": "Les prépositions de la commande",
+    "difficulte": 2,
+    "enonce": "Complète avec *in*, *on* ou *out of*.",
+    "questions": [
+      { "intitule": "*Sorry, the blue model is ...... stock. We'll have more next week.*", "type": "texte", "reponse": ["out of"], "refuses": ["in"] },
+      { "intitule": "*Good news: we have three of them ...... stock.*", "type": "texte", "reponse": ["in"] },
+      { "intitule": "*Restaurants usually buy flour and sugar ...... bulk.*", "type": "texte", "reponse": ["in"] },
+      { "intitule": "*You can use the software ...... a trial basis for 30 days.*", "type": "texte", "reponse": ["on"] }
+    ],
+    "indices": ["en stock = *in stock* ; en rupture = *out of stock*.", "à l'essai = *on a trial basis* ; en gros = *in bulk*."],
+    "correction": "*out of stock* (en rupture), *in stock* (en stock), *in bulk* (en gros), *on a trial basis* (à l'essai)."
+  },
+  {
+    "id": "ordering-synonymes",
+    "titre": "Les synonymes de la commande",
+    "difficulte": 2,
+    "enonce": "Remplace le mot en gras par un synonyme du cours (un mot).",
+    "questions": [
+      { "intitule": "*a 10% **reduction***", "type": "texte", "reponse": ["discount"] },
+      { "intitule": "*our main **provider***", "type": "texte", "reponse": ["supplier"] },
+      { "intitule": "*five **articles** in your basket*", "type": "texte", "reponse": ["items"] },
+      { "intitule": "*the builder's **estimate***", "type": "texte", "reponse": ["quote", "quotation"] },
+      { "intitule": "*a **faulty** cable*", "type": "texte", "reponse": ["defective"] },
+      { "intitule": "*a **free** bottle of water*", "type": "texte", "reponse": ["complimentary"], "refuses": ["complementary"] }
+    ],
+    "indices": ["Attention à l'orthographe de « offert » : avec un *i*."],
+    "correction": "*discount*, *supplier*, *items*, *quote*, *defective*, *complimentary* (et non *complementary*, complémentaire)."
+  },
+  {
+    "id": "invoicing-traduction",
+    "titre": "La facture : traduire",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      { "intitule": "la facture", "type": "texte", "reponse": ["invoice", "an invoice", "the invoice", "bill", "a bill", "the bill"] },
+      { "intitule": "les modalités de paiement", "type": "texte", "reponse": ["terms of payment", "payment terms", "the terms of payment"] },
+      { "intitule": "le papier à en-tête", "type": "texte", "reponse": ["letterhead", "headed paper", "the letterhead"] },
+      { "intitule": "la somme due", "type": "texte", "reponse": ["amount due", "the amount due"] },
+      { "intitule": "les frais de port et de manutention", "type": "texte", "reponse": ["shipping and handling", "postage and packing", "p&p"] },
+      { "intitule": "les petits caractères (d'un contrat)", "type": "texte", "reponse": ["fine print", "the fine print", "small print", "the small print"] },
+      { "intitule": "la relance (de paiement)", "type": "texte", "reponse": ["reminder", "a reminder", "the reminder"] },
+      { "intitule": "le créancier", "type": "texte", "reponse": ["creditor", "a creditor", "the creditor"] }
+    ],
+    "indices": ["Ils sont dans le tableau « Invoicing » du cours.", "petits caractères : *fine* ou *small* + *print*."],
+    "correction": "facture = *invoice* ou *bill* ; modalités de paiement = *terms of payment* ; papier à en-tête = *letterhead* ; somme due = *amount due* ; frais de port = *shipping and handling* ; petits caractères = *fine print* ; relance = *reminder* ; créancier = *creditor*."
+  },
+  {
+    "id": "invoicing-phrases",
+    "titre": "Lire une facture",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète chaque phrase.",
+    "questions": [
+      {
+        "intitule": "*Your payment is ......: we are waiting for confirmation from your bank.*",
+        "type": "choix",
+        "choix": ["void", "pending", "payable", "outstanding"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Please make all cheques ...... to Brightwell Ltd.*",
+        "type": "choix",
+        "choix": ["payable", "paid", "payment", "paying"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*This coupon is ...... after 31 December.*",
+        "type": "choix",
+        "choix": ["pending", "due", "void", "issued"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*We will ...... a new invoice with the correct address.*",
+        "type": "choix",
+        "choix": ["disregard", "issue", "fine", "charge"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*There is a $5 ...... for orders of fewer than ten units.*",
+        "type": "choix",
+        "choix": ["fine", "fee", "reminder", "creditor"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The ...... is printed at the top of every page of the invoice, with our logo and address.*",
+        "type": "choix",
+        "choix": ["fine print", "amount due", "letterhead", "reminder"],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "*pending* = en attente ; *void* = nul, plus valable.",
+      "Un frais normal (pas une punition) = *fee*."
+    ],
+    "correction": "1. *pending* (en attente). 2. *payable to* (à l'ordre de). 3. *void* (plus valable). 4. *issue an invoice* (émettre une facture). 5. *fee* (des frais) : ce n'est pas une amende. 6. *letterhead* (l'en-tête avec le logo)."
+  },
+  {
+    "id": "plusieurs-sens",
+    "titre": "Les mots à plusieurs sens",
+    "difficulte": 3,
+    "enonce": "Le même mot change de sens selon la phrase. Choisis la bonne traduction du mot en gras.",
+    "questions": [
+      {
+        "intitule": "*The latest **issue** of the magazine is about online shopping.*",
+        "type": "choix",
+        "choix": ["un problème", "un numéro", "une émission"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*We have a technical **issue** with the payment page.*",
+        "type": "choix",
+        "choix": ["un problème", "un numéro", "une sortie"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Our sales team did an **outstanding** job this year.*",
+        "type": "choix",
+        "choix": ["impayé", "en retard", "excellent"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Two invoices are still **outstanding**.*",
+        "type": "choix",
+        "choix": ["impayées", "excellentes", "annulées"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Don't forget to **charge** your phone before the trip.*",
+        "type": "choix",
+        "choix": ["facturer", "recharger", "inculper"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The hotel will **charge** you $20 for parking.*",
+        "type": "choix",
+        "choix": ["facturer", "recharger", "charger"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*If you are late with your tax return, you will pay a **fine**.*",
+        "type": "choix",
+        "choix": ["des frais", "une amende", "un beau temps"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The contract is **void** because it was never signed.*",
+        "type": "choix",
+        "choix": ["vide", "nul, sans valeur", "en attente"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Lis toute la phrase : le sujet et le contexte donnent le sens.",
+      "*issue* : problème / numéro / émettre ; *charge* : facturer / recharger / inculper ; *outstanding* : impayé / excellent."
+    ],
+    "correction": "1. *issue* = un numéro (de magazine). 2. *issue* = un problème. 3. *outstanding* = excellent. 4. *outstanding* = impayé. 5. *charge* = recharger. 6. *charge* = facturer. 7. *fine* = une amende. 8. *void* = nul, sans valeur."
+  },
+  {
+    "id": "invoicing-synonymes",
+    "titre": "Les paires de synonymes",
+    "difficulte": 2,
+    "enonce": "Donne le synonyme vu en cours (un mot).",
+    "questions": [
+      { "intitule": "**bill** (une facture)", "type": "texte", "reponse": ["invoice"] },
+      { "intitule": "**charge** (le nom : des frais)", "type": "texte", "reponse": ["fee", "fees"] },
+      { "intitule": "**overdue** (en retard)", "type": "texte", "reponse": ["outstanding", "late"] },
+      { "intitule": "**invalid**", "type": "texte", "reponse": ["void"] },
+      { "intitule": "**ignore**", "type": "texte", "reponse": ["disregard"] }
+    ],
+    "indices": ["Ils sont tous dans le tableau « Invoicing »."],
+    "correction": "*bill* = *invoice* ; *charge* = *fee* ; *overdue* = *outstanding* ; *invalid* = *void* ; *ignore* = *disregard*."
+  },
+  {
+    "id": "delivery-traduction",
+    "titre": "La livraison : traduire",
+    "difficulte": 1,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      { "intitule": "l'entrepôt", "type": "texte", "reponse": ["warehouse", "a warehouse", "the warehouse"] },
+      { "intitule": "le transporteur (l'entreprise)", "type": "texte", "reponse": ["carrier", "a carrier", "the carrier"], "refuses": ["courier"] },
+      { "intitule": "le destinataire", "type": "texte", "reponse": ["recipient", "a recipient", "the recipient", "addressee"], "refuses": ["receipt"] },
+      { "intitule": "le colis", "type": "texte", "reponse": ["package", "a package", "the package", "parcel", "a parcel", "the parcel"] },
+      { "intitule": "le chariot élévateur", "type": "texte", "reponse": ["forklift truck", "a forklift truck", "forklift", "a forklift"] },
+      { "intitule": "peser", "type": "texte", "reponse": ["weigh", "to weigh"], "refuses": ["weight"] },
+      { "intitule": "expédier", "type": "texte", "reponse": ["dispatch", "to dispatch", "ship", "to ship", "send", "to send"] },
+      { "intitule": "une caisse en bois", "type": "texte", "reponse": ["crate", "a crate", "wooden crate", "a wooden crate"] }
+    ],
+    "indices": ["Ils sont dans le tableau « Delivery » du cours.", "Le verbe « peser » n'a pas de *t* final."],
+    "correction": "entrepôt = *warehouse* ; transporteur = *carrier* ; destinataire = *recipient* ; colis = *package* (*parcel*) ; chariot élévateur = *forklift truck* ; peser = *weigh* (*weight* = le poids) ; expédier = *dispatch* ; caisse en bois = *crate*."
+  },
+  {
+    "id": "delivery-phrases",
+    "titre": "Suivre une livraison",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète chaque phrase.",
+    "questions": [
+      {
+        "intitule": "*For ...... delivery, the parcel must be ordered before 3 p.m.*",
+        "type": "choix",
+        "choix": ["overnight", "overweight", "overdue", "overall"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Express delivery is possible if you pay a ......*",
+        "type": "choix",
+        "choix": ["rush fee", "freight", "load", "storage"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*In the city centre, a bike ...... is often faster than a van.*",
+        "type": "choix",
+        "choix": ["carrier", "courier", "recipient", "warehouse"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The driver checked that the truck's ...... was not too heavy.*",
+        "type": "choix",
+        "choix": ["load", "loaded", "loader", "loading"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The ...... of 200 laptops left the factory this morning.*",
+        "type": "choix",
+        "choix": ["shipment", "ship", "shipper", "shipped"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Please don't ...... heavy boxes on top of the glasses.*",
+        "type": "choix",
+        "choix": ["weigh", "stack", "dispatch", "drop off"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*overnight* = du jour au lendemain ; *overdue* = en retard.",
+      "*the* + nom : *the load*, *the shipment*."
+    ],
+    "correction": "1. *overnight delivery* (livraison en 24 h). 2. *rush fee* (frais d'express). 3. *courier* (le coursier, pas l'entreprise). 4. *the truck's load* (le chargement). 5. *the shipment* (l'envoi). 6. *stack* (empiler)."
+  },
+  {
+    "id": "delivery-prepositions",
+    "titre": "Les prépositions de la livraison",
+    "difficulte": 2,
+    "enonce": "Complète avec *by*, *in* ou *up*.",
+    "questions": [
+      { "intitule": "*We sent the signed contract ...... courier.*", "type": "texte", "reponse": ["by"] },
+      { "intitule": "*Your order will arrive ...... Friday at the latest.*", "type": "texte", "reponse": ["by"] },
+      { "intitule": "*While the shop is being renovated, the furniture is ...... storage.*", "type": "texte", "reponse": ["in"] },
+      { "intitule": "*You can pick ...... your parcel at the post office after 2 p.m.*", "type": "texte", "reponse": ["up"] },
+      { "intitule": "*Leave the empty boxes ...... a pile near the door.*", "type": "texte", "reponse": ["in"] }
+    ],
+    "indices": ["*by* + moyen de transport ; *by* + date = au plus tard.", "au garde-meuble = *in storage* ; passer prendre = *pick up*."],
+    "correction": "*by courier* (par coursier), *by Friday* (d'ici vendredi, au plus tard), *in storage* (au garde-meuble), *pick up* (récupérer), *in a pile* (en pile)."
+  },
+  {
+    "id": "delivery-synonymes",
+    "titre": "Les synonymes de la livraison",
+    "difficulte": 2,
+    "enonce": "Donne le synonyme vu en cours (un mot).",
+    "questions": [
+      { "intitule": "**wrap** (emballer)", "type": "texte", "reponse": ["pack", "package"] },
+      { "intitule": "**consignment**", "type": "texte", "reponse": ["shipment"] },
+      { "intitule": "**parcel**", "type": "texte", "reponse": ["package"] },
+      { "intitule": "**transporter**", "type": "texte", "reponse": ["carrier"], "refuses": ["courier"] },
+      { "intitule": "**send**", "type": "texte", "reponse": ["dispatch", "ship"] }
+    ],
+    "indices": ["Ils sont dans le tableau « Delivery »."],
+    "correction": "*wrap* = *pack* ; *consignment* = *shipment* ; *parcel* = *package* ; *transporter* = *carrier* ; *send* = *dispatch*."
+  },
+  {
+    "id": "familles-vente-commande",
+    "titre": "Familles de mots : vente et commande",
+    "difficulte": 2,
+    "enonce": "Choisis la forme qui convient (nom, verbe, adjectif...).",
+    "questions": [
+      {
+        "intitule": "*Our shop is hiring a part-time ...... for the weekends.*",
+        "type": "choix",
+        "choix": ["cash", "cashing", "cashier", "cashed"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Winter boots are on ...... until the end of January.*",
+        "type": "choix",
+        "choix": ["sale", "sell", "sold", "seller"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*A well-...... pharmacy should never run out of basic medicine.*",
+        "type": "choix",
+        "choix": ["stock", "stocks", "stocking", "stocked"],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Too many ...... were found in the last batch of chairs.*",
+        "type": "choix",
+        "choix": ["defective", "defects", "defectively", "defect"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Ms. Ward has just joined the ...... department as a buyer.*",
+        "type": "choix",
+        "choix": ["purchase", "purchaser", "purchased", "purchasing"],
+        "reponse": 3
+      },
+      {
+        "intitule": "*This new vacuum cleaner ...... at $149.*",
+        "type": "choix",
+        "choix": ["retail", "retails", "retailer", "retailing"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The price they ...... us last month was much lower.*",
+        "type": "choix",
+        "choix": ["quote", "quotes", "quoted", "quotation"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*If the service is bad, customers will take their ...... elsewhere.*",
+        "type": "choix",
+        "choix": ["busy", "business", "busily", "businesses"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*a part-time* + une personne ; *too many* + nom pluriel.",
+      "*well-* + participe passé ; sujet singulier au présent → verbe en *-s* ; *last month* → passé."
+    ],
+    "correction": "1. *cashier* (une personne). 2. *on sale* (en promotion). 3. *well-stocked* (bien approvisionnée). 4. *too many defects* (nom pluriel). 5. *the purchasing department* (service achats). 6. *retails at $149* (se vend à). 7. *quoted* (passé : le prix indiqué). 8. *take their business elsewhere* (aller chez un concurrent)."
+  },
+  {
+    "id": "familles-facture-livraison",
+    "titre": "Familles de mots : facture et livraison",
+    "difficulte": 3,
+    "enonce": "Choisis la forme qui convient. Attention au sens autant qu'à la grammaire.",
+    "questions": [
+      {
+        "intitule": "*The ...... of the cheque must sign it before giving it to the supplier.*",
+        "type": "choix",
+        "choix": ["issue", "issued", "issuer", "issuing"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*...... customers is a problem: the store loses money on every sale.*",
+        "type": "choix",
+        "choix": ["Overcharging", "Undercharging", "Charged", "Charges"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*I'm calling ...... the invoice you sent on Monday.*",
+        "type": "choix",
+        "choix": ["regard", "regards", "regarding", "regarded"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*...... on the size of your order, delivery takes two to five days.*",
+        "type": "choix",
+        "choix": ["Depend", "Depending", "Dependent", "Dependence"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Frozen food must be kept in cold ......*",
+        "type": "choix",
+        "choix": ["store", "stored", "storage", "storing"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*These plastic boxes are designed to be ......, so they take less space.*",
+        "type": "choix",
+        "choix": ["stack", "stacking", "stackable", "stacks"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The ...... of the box is printed on the label: 12 kg.*",
+        "type": "choix",
+        "choix": ["weigh", "weighed", "weighing", "weight"],
+        "reponse": 3
+      },
+      {
+        "intitule": "*Trucks unload at the ...... bay behind the warehouse.*",
+        "type": "choix",
+        "choix": ["load", "loaded", "loading", "loads"],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Le magasin **perd** de l'argent : il a facturé trop ou trop peu ?",
+      "*to be* + adjectif (*-able*) ; *the* + nom ; *cold storage*, *loading bay* sont des expressions toutes faites."
+    ],
+    "correction": "1. *issuer* (la personne qui émet). 2. *Undercharging* : facturer trop peu fait perdre de l'argent. 3. *regarding* (au sujet de). 4. *Depending on* (selon). 5. *cold storage* (chambre froide). 6. *stackable* (empilable). 7. *the weight* (le poids). 8. *loading bay* (quai de chargement)."
+  },
+  {
+    "id": "personne-activite-chose",
+    "titre": "La personne, l'activité ou la chose ?",
+    "difficulte": 3,
+    "enonce": "Écris le mot demandé (un seul mot, formé à partir du verbe donné).",
+    "questions": [
+      { "intitule": "La **personne** qui achète pour une entreprise (*to purchase*)", "type": "texte", "reponse": ["purchaser", "buyer"] },
+      { "intitule": "La **personne** qui expédie les commandes (*to dispatch*)", "type": "texte", "reponse": ["dispatcher"] },
+      { "intitule": "La **personne** à qui l'on doit de l'argent (*credit*)", "type": "texte", "reponse": ["creditor"], "refuses": ["debtor"] },
+      { "intitule": "L'**activité** : la facturation (*to invoice*)", "type": "texte", "reponse": ["invoicing", "billing"] },
+      { "intitule": "L'**activité** : l'emballage (*to package*)", "type": "texte", "reponse": ["packaging", "packing"] },
+      { "intitule": "La **chose** : l'envoi, la cargaison (*to ship*)", "type": "texte", "reponse": ["shipment", "consignment"] },
+      { "intitule": "La **chose** : l'abonnement (*to subscribe*)", "type": "texte", "reponse": ["subscription"] }
+    ],
+    "indices": [
+      "*-er* / *-or* = la personne ; *-ing* = l'activité.",
+      "*-ment* et *-tion* forment des noms de choses."
+    ],
+    "correction": "*purchaser*, *dispatcher*, *creditor* (le *debtor* est celui qui doit), *invoicing*, *packaging*, *shipment*, *subscription*."
+  },
+  {
+    "id": "faux-amis-ventes",
+    "titre": "Les mots qui se ressemblent",
+    "difficulte": 3,
+    "enonce": "Choisis le mot qui convient : ils se ressemblent, mais n'ont pas le même sens.",
+    "questions": [
+      {
+        "intitule": "*Keep your ...... : you'll need it to return the item.*",
+        "type": "choix",
+        "choix": ["recipe", "receipt", "recipient"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Every guest receives a ...... breakfast.*",
+        "type": "choix",
+        "choix": ["complimentary", "complementary", "compliment"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Our two products are ......: one works best with the other.*",
+        "type": "choix",
+        "choix": ["complimentary", "complementary", "compliments"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*All parcels sent abroad must go through ......*",
+        "type": "choix",
+        "choix": ["custom", "customs", "customers"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Could you ...... this letter? I think it's over 100 g.*",
+        "type": "choix",
+        "choix": ["weight", "weigh", "wait"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The ...... is broken: please return it to the shop.*",
+        "type": "choix",
+        "choix": ["goods", "merchandise", "items"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*I couldn't decide, so the shop assistant helped me ...... a gift.*",
+        "type": "choix",
+        "choix": ["pick up", "pick out", "drop off"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*receipt* = ticket ; *recipe* = recette ; *recipient* = destinataire. *customs* = la douane.",
+      "*is broken* : il faut un mot singulier (indénombrable). *pick out* = choisir."
+    ],
+    "correction": "1. *receipt* (ticket de caisse). 2. *complimentary* (offert). 3. *complementary* (complémentaires). 4. *customs* (la douane). 5. *weigh* (peser, verbe). 6. *merchandise* (indénombrable, verbe au singulier) ; *goods* et *items* sont pluriels. 7. *pick out* (choisir)."
+  },
+  {
+    "id": "traduction-courte",
+    "titre": "Petites traductions",
+    "difficulte": 3,
+    "enonce": "Traduis en anglais puis compare avec la réponse modèle.",
+    "questions": [
+      { "intitule": "Ce modèle est en rupture de stock, mais nous pouvons le commander.", "type": "auto", "reponse": "*This model is out of stock, but we can order it for you.*" },
+      { "intitule": "Si vous avez déjà payé, ne tenez pas compte de cette relance.", "type": "auto", "reponse": "*If you have already paid, please disregard this reminder.*" },
+      { "intitule": "La facture doit être réglée sous 30 jours.", "type": "auto", "reponse": "*The invoice must be paid within 30 days.* (ou *Payment is due within 30 days.*)" },
+      { "intitule": "Le transporteur passera prendre le colis demain matin.", "type": "auto", "reponse": "*The carrier will pick up the package (parcel) tomorrow morning.*" }
+    ],
+    "indices": ["en rupture = *out of stock* ; relance = *reminder* ; sous 30 jours = *within 30 days* ; passer prendre = *pick up*."],
+    "correction": "Vérifie surtout : *out of stock*, *disregard this reminder*, *within 30 days*, *carrier* (et non *courier*), *pick up*."
+  },
+  {
+    "id": "rediger-reclamation",
+    "titre": "Écrire une réclamation",
+    "difficulte": 3,
+    "enonce": "Tu as reçu une commande de 20 chaises de bureau, mais 3 sont abîmées et la facture compte des frais d'express que tu n'as pas demandés. Écris un e-mail de 4 ou 5 phrases au fournisseur. Utilise au moins : *order*, *damaged* ou *defective*, *invoice*, *charge*, *refund* ou *replacement*.",
+    "questions": [
+      {
+        "intitule": "Ton e-mail",
+        "type": "auto",
+        "reponse": "Exemple :\n\n*Dear Sir or Madam,*\n\n*I am writing about our order no. 5832 of 20 office chairs, which was delivered yesterday. Unfortunately, three of the chairs were damaged during transport. In addition, the invoice includes a rush fee, although we chose standard delivery. Could you please send us three replacement chairs and a corrected invoice? We look forward to hearing from you.*\n\n*Kind regards,*\n*Sam Leroy, Purchasing Department*"
+      }
+    ],
+    "indices": [
+      "Ouverture classique : *I am writing about / regarding our order...*",
+      "Pour l'erreur : *the invoice includes a fee that...* ; demande polie : *Could you please...?*"
+    ],
+    "correction": "À vérifier : numéro de commande, description du problème (*damaged*, *defective*), erreur sur la facture (*you charged us a rush fee*), demande claire (*replacement*, *refund*, *corrected invoice*), ton poli et formule finale (*We look forward to hearing from you*)."
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "titre": "Polynômes, interpolation et développements limités",
+  "description": "Racines réelles et complexes, factorisation à partir d'une racine, interpolation de Lagrange et de Newton, développements limités, reste de Taylor, régression et sur-ajustement.",
+  "source": "Séance 5",
+  "matieres": ["informatique"],
+  "supports": [
+    {"titre": "Cours", "fichier": "Maths pour l'informatique/Sources/Séance 5 - cours.pdf"},
+    {"titre": "Exercices", "fichier": "Maths pour l'informatique/Sources/Séance 5 - exercices.pdf"}
+  ]
+}

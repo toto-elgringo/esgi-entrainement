@@ -27,12 +27,19 @@ const synchro = creerSynchro({
   fichierEnv: path.join(racine, '.env'),
   fichierSuivi: path.join(racine, 'myges-suivi.json'),
   fichierMatieres: path.join(racine, 'myges-matieres.json'),
+  fichierAttente: path.join(racine, 'myges-a-integrer.json'),
   dossierProjet: racine,
   claude: commandeClaude(),
 });
 const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchro });
 
-process.on('SIGINT', () => process.exit(0));
+function quitter() {
+  synchro.couper();
+  process.exit(0);
+}
+
+process.on('SIGINT', quitter);
+process.on('SIGTERM', quitter);
 
 serveur.on('error', (erreur) => {
   if (erreur.code === 'EADDRINUSE') {
@@ -46,4 +53,7 @@ serveur.listen(port, '127.0.0.1', () => {
   const adresse = `http://localhost:${port}`;
   console.log(`ESGI Entraînement lancé sur ${adresse} (Ctrl + C pour arrêter)`);
   if (!process.argv.includes('--sans-navigateur')) ouvrirNavigateur(adresse);
+  synchro.reprendreAuDemarrage().then((etat) => {
+    if (etat.etape === 'claude') console.log(`Reprise de l’intégration des cours MyGES (${etat.enAttente.length} fichier(s)).`);
+  }).catch((erreur) => console.error(`Reprise de la synchro MyGES impossible : ${erreur.message}`));
 });

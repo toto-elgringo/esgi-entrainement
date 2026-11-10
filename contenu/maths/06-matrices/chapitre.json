@@ -1,0 +1,10 @@
+{
+  "titre": "Matrices et produit matriciel",
+  "description": "Taille, addition, produit ligne × colonne, identité, transposée, matrice d'une application linéaire. L'outil central de tout le module.",
+  "source": "Séance 3",
+  "matieres": ["big-data"],
+  "supports": [
+    {"titre": "Cours", "fichier": "Maths pour le big data/Sources/Séance 3 - cours.pdf"},
+    {"titre": "Exercices", "fichier": "Maths pour le big data/Sources/Séance 3 - exercices.pdf"}
+  ]
+}

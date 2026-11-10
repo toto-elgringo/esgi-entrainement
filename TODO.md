@@ -4,7 +4,7 @@
 
 - [ ] Rust : ajouter les nouveaux chapitres du cours ESGI au fil de l'eau (passer leur `source` à `"cours"`)
 - [ ] Rust : pointeurs intelligents (`Box` récursif, `Rc`, `RefCell`), concurrence, async
-- [ ] Maths : séance 4 (séries), séance 5 (Lagrange), séance 6 (PCA), uniquement le contenu des cours
+- [ ] Maths : séance 6 (PCA) et suivantes, uniquement le contenu des cours
 - [ ] Combinatoire : chapitre 3 (théorie des graphes) et trimestre 2 (programmation linéaire, simplexe, PLNE) quand les supports arrivent
 - [ ] Combinatoire : transformer en exercices Rust le code de la descente, du recuit et de l'algorithme génétique quand il sera distribué
 - [x] Combinatoire : petites animations (recuit, roulette, tournoi) comme dans les slides
@@ -13,7 +13,7 @@
 - [ ] Scripting Python : nouveaux diaporamas au fil du cours
 - [ ] Scripting Python : chapitre « fondamentaux » sur les scripts système (`sys.argv`, `pathlib`, `json`, `csv`, `re`, `subprocess`)
 - [ ] Algorithmique avancée : listes doublement chaînées et circulaires, piles et files en C
-- [ ] Anglais : séances 2 et 4 du semestre (absentes des sources), partie écoute du TOEIC (audios non fournis)
+- [ ] Anglais : séances 2 et 4 du semestre (absentes des sources), partie écoute du TOEIC et du mini test Sales (audios non fournis)
 - [ ] Cours électif : remplacer le chapitre provisoire par le vrai contenu quand les supports arrivent
 - [ ] Rust Advent of Code : ajouter d'autres énigmes (PGCD/PPCM 2023 J8, Dijkstra avec contraintes 2023 J17, formule du lacet 2023 J18, graphes 2024 J23…)
 

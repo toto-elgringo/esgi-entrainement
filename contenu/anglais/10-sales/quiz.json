@@ -1,0 +1,178 @@
+[
+  {
+    "question": "Que veut dire *Thank you for your custom* sur un ticket de caisse ?",
+    "choix": [
+      "Merci pour votre coutume",
+      "Merci d'être passé à la douane",
+      "Merci de votre fidélité",
+      "Merci pour votre commande sur mesure"
+    ],
+    "reponse": 2,
+    "explication": "*custom* = la clientèle, la fidélité du client. La douane se dit *customs*, avec un *s*."
+  },
+  {
+    "question": "Au rayon *produce* d'un supermarché, on trouve...",
+    "choix": [
+      "les produits d'entretien",
+      "les fruits et légumes",
+      "les nouveaux produits",
+      "les produits laitiers"
+    ],
+    "reponse": 1,
+    "explication": "*produce* (nom) = fruits et légumes. Un produit = *a product* ; les produits laitiers = *dairy products*."
+  },
+  {
+    "question": "*Sorry, we don't ...... that brand.*",
+    "choix": [
+      "wear",
+      "bring",
+      "carry",
+      "hold"
+    ],
+    "reponse": 2,
+    "explication": "*carry* = avoir en rayon, vendre. Synonyme : *stock*."
+  },
+  {
+    "question": "Quelle est la différence entre *rebate* et *discount* ?",
+    "choix": [
+      "Aucune, ce sont des synonymes parfaits",
+      "*rebate* : on récupère une partie de l'argent après l'achat ; *discount* : le prix est réduit au moment de l'achat",
+      "*rebate* : une hausse de prix ; *discount* : une baisse de prix",
+      "*rebate* : un remboursement complet ; *discount* : un avoir"
+    ],
+    "reponse": 1,
+    "explication": "Avec un *rebate*, on paie le prix complet puis on reçoit une partie en retour (souvent avec un bon et une preuve d'achat)."
+  },
+  {
+    "question": "*A ...... desk lamp is included with every order over $200.*",
+    "choix": [
+      "complementary",
+      "compliment",
+      "complimenting",
+      "complimentary"
+    ],
+    "reponse": 3,
+    "explication": "*complimentary* = offert, gratuit. *complementary* = complémentaire ; *a compliment* = un compliment."
+  },
+  {
+    "question": "Qui vend en gros aux magasins ?",
+    "choix": [
+      "a wholesaler",
+      "a retailer",
+      "a cashier",
+      "a purchaser"
+    ],
+    "reponse": 0,
+    "explication": "Le *wholesaler* (grossiste) vend aux magasins ; le *retailer* (détaillant) vend au public ; le *purchaser* achète pour son entreprise."
+  },
+  {
+    "question": "*The goods ...... damaged during transport.*",
+    "choix": [
+      "was",
+      "were",
+      "is",
+      "has been"
+    ],
+    "reponse": 1,
+    "explication": "*goods* est toujours pluriel : *the goods were*. Avec *merchandise* (indénombrable), on dirait *the merchandise was*."
+  },
+  {
+    "question": "Dans *Your account is still outstanding*, *outstanding* veut dire...",
+    "choix": [
+      "excellent",
+      "impayé",
+      "fermé",
+      "remarquable"
+    ],
+    "reponse": 1,
+    "explication": "Sur une facture, *outstanding* = impayé, en retard. Dans *an outstanding result*, il veut dire excellent : le contexte décide."
+  },
+  {
+    "question": "Un automobiliste mal garé doit payer...",
+    "choix": [
+      "a fee",
+      "a charge",
+      "a fine",
+      "a rebate"
+    ],
+    "reponse": 2,
+    "explication": "Une amende (une punition) = *a fine*. Un *fee* est un frais normal (frais de dossier, de livraison)."
+  },
+  {
+    "question": "*If you have already paid, please ...... this reminder.*",
+    "choix": [
+      "disregard",
+      "regard",
+      "discharge",
+      "remind"
+    ],
+    "reponse": 0,
+    "explication": "*disregard* = ne pas tenir compte de (synonyme : *ignore*). Formule très fréquente dans les relances de facture."
+  },
+  {
+    "question": "*Payment is due ...... 30 days of the invoice date.*",
+    "choix": [
+      "since",
+      "during",
+      "within",
+      "until"
+    ],
+    "reponse": 2,
+    "explication": "*within 30 days* = dans un délai de 30 jours, au plus tard 30 jours après."
+  },
+  {
+    "question": "Quelle est la différence entre *carrier* et *courier* ?",
+    "choix": [
+      "*carrier* = l'entreprise de transport ; *courier* = le coursier",
+      "*carrier* = le destinataire ; *courier* = l'expéditeur",
+      "*carrier* = un chariot ; *courier* = une lettre",
+      "Aucune"
+    ],
+    "reponse": 0,
+    "explication": "Le *carrier* (transporteur) est une société ; le *courier* livre lui-même, souvent à vélo ou à moto en ville."
+  },
+  {
+    "question": "*Please sign here: the ...... must sign for registered parcels.*",
+    "choix": [
+      "receipt",
+      "recipe",
+      "recipient",
+      "receiver"
+    ],
+    "reponse": 2,
+    "explication": "*recipient* = le destinataire. *receipt* = ticket de caisse, *recipe* = recette de cuisine."
+  },
+  {
+    "question": "*I'll ...... the package at the post office on my way to work.*",
+    "choix": [
+      "pick out",
+      "drop off",
+      "sell out",
+      "try on"
+    ],
+    "reponse": 1,
+    "explication": "*drop off* = déposer. *pick up* = passer prendre ; *pick out* = choisir."
+  },
+  {
+    "question": "*The concert tickets sold ...... in two hours.*",
+    "choix": [
+      "off",
+      "down",
+      "out",
+      "around"
+    ],
+    "reponse": 2,
+    "explication": "*sell out* = tout vendre (*sold out* = épuisé). *sell off* = brader pour vider le stock."
+  },
+  {
+    "question": "*Please contact our ...... department about the missing invoice.*",
+    "choix": [
+      "invoice",
+      "invoiced",
+      "invoicer",
+      "invoicing"
+    ],
+    "reponse": 3,
+    "explication": "Devant *department*, on met le nom de l'activité en *-ing* : *the invoicing department*, *the purchasing department*."
+  }
+]

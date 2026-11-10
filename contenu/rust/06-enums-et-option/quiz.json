@@ -70,5 +70,77 @@
     "choix": ["Renvoie 0", "Renvoie `None`", "Fait paniquer le programme", "Ne compile pas"],
     "reponse": 2,
     "explication": "`unwrap()` suppose qu'il y a une valeur : s'il n'y en a pas, le programme s'arrête avec une panique."
+  },
+  {
+    "question": "`enum Couleur { Rouge, Vert, Bleu }`. Combien de valeurs différentes peut prendre `struct Lampe { allumee: bool, couleur: Couleur }` ?",
+    "choix": ["4", "5", "6", "8"],
+    "reponse": 2,
+    "explication": "Une struct est un type **produit** : 2 valeurs pour `bool` × 3 pour `Couleur` = 6 combinaisons."
+  },
+  {
+    "question": "Et combien pour `enum EtatLampe { Eteinte, Allumee(Couleur) }` ?",
+    "choix": ["3", "4", "6", "7"],
+    "reponse": 1,
+    "explication": "Une enum est un type **somme** : 1 (`Eteinte`) + 3 (`Allumee` avec chaque couleur) = 4, exactement les états réels. « Éteinte mais rouge » n'existe plus."
+  },
+  {
+    "question": "Combien de valeurs a `Option<bool>` ?",
+    "choix": ["2", "3", "4", "Une infinité"],
+    "reponse": 1,
+    "explication": "Les valeurs de `bool` plus `None` : `Some(true)`, `Some(false)` et `None`."
+  },
+  {
+    "question": "Pourquoi préférer `enum Connexion { Deconnecte, EnCours { depuis_ms: u64 }, Connecte { session: u64, pseudo: String } }` à une struct avec deux `bool` et deux `Option` ?",
+    "choix": ["Elle est plus rapide à afficher", "Les états incohérents (connecté sans session…) deviennent impossibles à écrire", "Une struct ne peut pas contenir de `String`", "Les enums prennent toujours moins de mémoire"],
+    "reponse": 1,
+    "explication": "La version struct a 16 combinaisons dont la plupart n'ont aucun sens ; l'enum en a exactement 3. « Make illegal states unrepresentable »."
+  },
+  {
+    "question": "Dans `match objet { Objet::Arme(Arme::Arc { degats, portee }) => …, Objet::Arme(_) => …, … }`, que fait le premier bras ?",
+    "choix": ["Il attrape toutes les armes", "Il ouvre deux niveaux d'enum d'un coup et sort `degats` et `portee` d'un arc", "Il ne compile pas : on ne peut pas imbriquer les motifs", "Il crée un nouvel arc"],
+    "reponse": 1,
+    "explication": "Les motifs vont en profondeur. Les bras sont testés dans l'ordre : l'arc est pris avant le `Objet::Arme(_)` qui récupère les autres armes."
+  },
+  {
+    "question": "Combien d'octets occupe `Option<&u8>` sur une machine 64 bits ?",
+    "choix": ["8, comme `&u8`", "9", "16", "1"],
+    "reponse": 0,
+    "explication": "Une référence n'est jamais nulle : la valeur 0 sert à coder `None` (niche filling). L'absence ne coûte rien."
+  },
+  {
+    "question": "Et `Option<u8>` ?",
+    "choix": ["1 octet", "2 octets", "4 octets", "8 octets"],
+    "reponse": 1,
+    "explication": "Un `u8` utilise ses 256 valeurs : aucune niche libre, il faut un octet d'étiquette en plus."
+  },
+  {
+    "question": "Que fait `let f = File::open(chemin)?;` si l'ouverture échoue ?",
+    "choix": ["Le programme panique", "`f` vaut `None`", "La fonction s'arrête et renvoie tout de suite le `Err` à l'appelant", "L'erreur est ignorée"],
+    "reponse": 2,
+    "explication": "`?` déballe le `Ok`, ou renvoie immédiatement le `Err` (en convertissant le type d'erreur si possible)."
+  },
+  {
+    "question": "Pourquoi `?` est-il refusé dans un `fn main()` qui ne renvoie rien ?",
+    "choix": ["`?` est interdit dans `main`", "`?` doit pouvoir renvoyer l'erreur : la fonction doit renvoyer un `Result` (ou un `Option`)", "Il faut importer `std::question`", "Ce n'est pas refusé"],
+    "reponse": 1,
+    "explication": "Sans type de retour `Result`, `?` n'a nulle part où renvoyer l'erreur. D'où `fn main() -> std::io::Result<()>`."
+  },
+  {
+    "question": "Une fonction renvoie un `Result` et l'appelant écrit `lire(\"a.txt\");` sans rien en faire. Que se passe-t-il ?",
+    "choix": ["Rien du tout", "Un avertissement : `Result` est marqué `#[must_use]`", "Une erreur de compilation", "Le programme panique"],
+    "reponse": 1,
+    "explication": "On ne peut pas ignorer une erreur par distraction : le compilateur avertit (`unused_must_use`)."
+  },
+  {
+    "question": "Quelle taille a `enum Arme { Epee { degats: u8 }, Hache { degats: u8 }, Arc { degats: u8, portee: u32 } }` ?",
+    "choix": ["1 octet", "5 octets", "8 octets", "12 octets"],
+    "reponse": 2,
+    "explication": "La plus grosse variante (`u8` + `u32`) plus l'étiquette, alignée sur 4 : 8 octets, quelle que soit la variante. En C, avec une étiquette `int`, on obtient 12."
+  },
+  {
+    "question": "Quelle est la grande différence entre une `union` du C et une enum Rust ?",
+    "choix": ["L'union est plus sûre", "Dans l'union, rien n'indique le membre valide ; en Rust l'étiquette fait partie de la valeur et le `match` l'examine", "L'enum Rust alloue sur le tas", "Il n'y en a aucune"],
+    "reponse": 1,
+    "explication": "En C, lire le mauvais membre compile sans avertissement. En Rust, lire la mauvaise variante est impossible ; les `union` de Rust, elles, demandent `unsafe`."
   }
 ]

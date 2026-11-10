@@ -1,0 +1,11 @@
+{
+  "titre": "L'inventaire (match en profondeur)",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Un motif peut ouvrir deux enums d'un coup : `Objet::Arme(Arme::Arc { degats, portee }) => ...`.",
+    "Pour `degats`, toutes les armes ont un champ `degats` : `Objet::Arme(Arme::Epee { degats } | Arme::Hache { degats } | Arme::Arc { degats, .. }) => *degats`, et `_ => 0` pour le reste. `..` ignore les autres champs.",
+    "`portee` : `Objet::Arme(Arme::Arc { portee, .. }) => Some(*portee)`, et `None` sinon.",
+    "Dans `decrire`, place le bras de l'arc **avant** celui qui attrape les autres armes : les bras sont testés dans l'ordre."
+  ]
+}

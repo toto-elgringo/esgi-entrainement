@@ -1,0 +1,384 @@
+[
+  {
+    "id": "determinants-2x2",
+    "titre": "Déterminants 2 × 2",
+    "difficulte": 1,
+    "enonce": "Calcule chaque déterminant avec la formule $ad - bc$.",
+    "questions": [
+      { "intitule": "$\\det \\begin{pmatrix} 5 & 2 \\\\ 3 & 4 \\end{pmatrix}$", "type": "nombre", "reponse": 14, "refuses": ["26", "-14"] },
+      { "intitule": "$\\det \\begin{pmatrix} -1 & 3 \\\\ 2 & 6 \\end{pmatrix}$", "type": "nombre", "reponse": -12, "refuses": ["0", "12"] },
+      { "intitule": "$\\det \\begin{pmatrix} 2 & -4 \\\\ -1 & 2 \\end{pmatrix}$", "type": "nombre", "reponse": 0, "refuses": ["8"] },
+      { "intitule": "$\\det \\begin{pmatrix} 0 & 7 \\\\ 1 & 5 \\end{pmatrix}$", "type": "nombre", "reponse": -7, "refuses": ["7"] }
+    ],
+    "indices": [
+      "$a$ et $d$ sont sur la diagonale qui descend, $b$ et $c$ sur l'autre.",
+      "Attention aux signes : $(-1) \\times 6 - 3 \\times 2 = -6 - 6$."
+    ],
+    "correction": "- $5 \\times 4 - 2 \\times 3 = 20 - 6 = 14$\n- $(-1) \\times 6 - 3 \\times 2 = -6 - 6 = -12$\n- $2 \\times 2 - (-4) \\times (-1) = 4 - 4 = 0$ : les colonnes sont liées ($(-4, 2) = -2 \\times (2, -1)$).\n- $0 \\times 5 - 7 \\times 1 = -7$"
+  },
+  {
+    "id": "determinant-3x3",
+    "titre": "Un déterminant 3 × 3, deux méthodes",
+    "difficulte": 2,
+    "enonce": "Soit $A = \\begin{pmatrix} 2 & 1 & 0 \\\\ 1 & 3 & -1 \\\\ 0 & 2 & 4 \\end{pmatrix}$.",
+    "questions": [
+      {
+        "intitule": "Le mineur $M_{11}$ (barre la ligne 1 et la colonne 1)",
+        "type": "nombre",
+        "reponse": 14,
+        "refuses": ["10"]
+      },
+      {
+        "intitule": "Le **cofacteur** $C_{12} = (-1)^{1+2} M_{12}$",
+        "type": "nombre",
+        "reponse": -4,
+        "refuses": ["4"]
+      },
+      {
+        "intitule": "$\\det(A)$",
+        "type": "nombre",
+        "reponse": 24,
+        "refuses": ["32", "28"]
+      }
+    ],
+    "indices": [
+      "$M_{11} = \\begin{vmatrix} 3 & -1 \\\\ 2 & 4 \\end{vmatrix}$.",
+      "$M_{12} = \\begin{vmatrix} 1 & -1 \\\\ 0 & 4 \\end{vmatrix} = 4$, et le signe de la case (1, 2) est $-$.",
+      "Ligne 1 : $\\det(A) = 2\\,C_{11} + 1\\,C_{12} + 0\\,C_{13}$. Vérifie ensuite avec Sarrus."
+    ],
+    "correction": "**Cofacteurs, ligne 1.**\n\n- $M_{11} = \\begin{vmatrix} 3 & -1 \\\\ 2 & 4 \\end{vmatrix} = 12 + 2 = 14$, donc $C_{11} = 14$.\n- $M_{12} = \\begin{vmatrix} 1 & -1 \\\\ 0 & 4 \\end{vmatrix} = 4$, donc $C_{12} = -4$.\n- $a_{13} = 0$ : pas besoin de calculer $C_{13}$.\n\n$$\\det(A) = 2 \\times 14 + 1 \\times (-4) + 0 = 24$$\n\n**Sarrus**, avec $a = 2, b = 1, c = 0, d = 1, e = 3, f = -1, g = 0, h = 2, i = 4$ :\n\n$$aei + bfg + cdh - ceg - bdi - afh = 24 + 0 + 0 - 0 - 4 - (-4) = 24$$"
+  },
+  {
+    "id": "proprietes-determinant",
+    "titre": "Utiliser les propriétés",
+    "difficulte": 1,
+    "enonce": "Réponds sans développer par cofacteurs.",
+    "questions": [
+      {
+        "intitule": "$\\det \\begin{pmatrix} 3 & 5 & -1 \\\\ 0 & -2 & 4 \\\\ 0 & 0 & 5 \\end{pmatrix}$",
+        "type": "nombre",
+        "reponse": -30,
+        "refuses": ["30", "6"]
+      },
+      {
+        "intitule": "$\\det \\begin{pmatrix} 1 & 0 & 0 \\\\ 4 & 2 & 0 \\\\ -3 & 9 & 3 \\end{pmatrix}$",
+        "type": "nombre",
+        "reponse": 6
+      },
+      {
+        "intitule": "$\\det(A) = 3$ et $\\det(B) = -2$. Que vaut $\\det(AB)$ ?",
+        "type": "nombre",
+        "reponse": -6,
+        "refuses": ["1"]
+      },
+      {
+        "intitule": "Avec le même $A$, que vaut $\\det(A^T)$ ?",
+        "type": "nombre",
+        "reponse": 3,
+        "refuses": ["-3", "1/3"]
+      },
+      {
+        "intitule": "On échange deux lignes de $A$. Que vaut le déterminant de la nouvelle matrice ?",
+        "type": "nombre",
+        "reponse": -3,
+        "refuses": ["3"]
+      }
+    ],
+    "indices": [
+      "Matrice triangulaire (des zéros d'un côté de la diagonale) : produit de la diagonale.",
+      "$\\det(AB) = \\det(A)\\det(B)$, $\\det(A^T) = \\det(A)$, et un échange de lignes change le signe."
+    ],
+    "correction": "- Triangulaire : $3 \\times (-2) \\times 5 = -30$.\n- Triangulaire aussi (zéros au-dessus de la diagonale) : $1 \\times 2 \\times 3 = 6$.\n- $\\det(AB) = 3 \\times (-2) = -6$.\n- $\\det(A^T) = \\det(A) = 3$.\n- Échanger deux lignes change le signe : $-3$."
+  },
+  {
+    "id": "determinant-4x4",
+    "titre": "Un déterminant 4 × 4",
+    "difficulte": 3,
+    "enonce": "Soit $C = \\begin{pmatrix} 1 & 0 & 2 & 0 \\\\ 0 & 3 & 0 & 1 \\\\ 2 & 0 & 1 & 0 \\\\ 0 & 1 & 0 & 2 \\end{pmatrix}$. On développe selon la 1re ligne.",
+    "questions": [
+      {
+        "intitule": "Combien de mineurs $3 \\times 3$ faut-il vraiment calculer avec la 1re ligne ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": ["4"]
+      },
+      {
+        "intitule": "Le mineur $M_{11}$",
+        "type": "nombre",
+        "reponse": 5,
+        "refuses": ["6"]
+      },
+      {
+        "intitule": "Le mineur $M_{13}$",
+        "type": "nombre",
+        "reponse": -10,
+        "refuses": ["10"]
+      },
+      {
+        "intitule": "$\\det(C)$",
+        "type": "nombre",
+        "reponse": -15,
+        "refuses": ["25", "15"]
+      }
+    ],
+    "indices": [
+      "Sur la 1re ligne, seuls $a_{11} = 1$ et $a_{13} = 2$ ne sont pas nuls. Leurs signes : $(-1)^{1+1} = +$ et $(-1)^{1+3} = +$.",
+      "$M_{11} = \\begin{vmatrix} 3 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 1 & 0 & 2 \\end{vmatrix}$ et $M_{13} = \\begin{vmatrix} 0 & 3 & 1 \\\\ 2 & 0 & 0 \\\\ 0 & 1 & 2 \\end{vmatrix}$ (lignes 2 à 4, colonnes 1, 2 et 4).",
+      "Calcule chaque mineur par Sarrus ou par cofacteurs (la ligne du milieu de $M_{11}$ a deux zéros)."
+    ],
+    "correction": "Sur la 1re ligne, seuls $a_{11} = 1$ et $a_{13} = 2$ comptent : **2 mineurs** à calculer, tous deux avec le signe $+$.\n\n- $M_{11} = \\begin{vmatrix} 3 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 1 & 0 & 2 \\end{vmatrix}$ : selon la 2e ligne, $1 \\times \\begin{vmatrix} 3 & 1 \\\\ 1 & 2 \\end{vmatrix} = 6 - 1 = 5$.\n- $M_{13} = \\begin{vmatrix} 0 & 3 & 1 \\\\ 2 & 0 & 0 \\\\ 0 & 1 & 2 \\end{vmatrix}$ : selon la 2e ligne (signe $-$ pour la case (2, 1)), $-2 \\times \\begin{vmatrix} 3 & 1 \\\\ 1 & 2 \\end{vmatrix} = -2 \\times 5 = -10$.\n\n$$\\det(C) = 1 \\times 5 + 2 \\times (-10) = -15$$\n\nVérification par la 1re colonne : seuls $a_{11} = 1$ et $a_{31} = 2$ (signe $+$) comptent, avec $M_{31} = \\begin{vmatrix} 0 & 2 & 0 \\\\ 3 & 0 & 1 \\\\ 1 & 0 & 2 \\end{vmatrix} = -2 \\times (6 - 1) = -10$. On retrouve $5 + 2 \\times (-10) = -15$."
+  },
+  {
+    "id": "inversible-ou-pas",
+    "titre": "Inversible ou pas ?",
+    "difficulte": 2,
+    "enonce": "Soit $A = \\begin{pmatrix} 3 & 6 \\\\ 1 & 2 \\end{pmatrix}$ et $B = \\begin{pmatrix} 4 & 3 \\\\ 1 & 1 \\end{pmatrix}$.",
+    "questions": [
+      { "intitule": "$\\det(A)$", "type": "nombre", "reponse": 0 },
+      {
+        "intitule": "Que peut-on dire de $A$ ?",
+        "type": "choix",
+        "choix": [
+          "Inversible, ses colonnes forment une base",
+          "Pas inversible : sa 2e colonne vaut 2 fois la 1re",
+          "Pas inversible car elle contient un 1",
+          "Inversible car ses coefficients sont positifs"
+        ],
+        "reponse": 1
+      },
+      { "intitule": "$\\det(B)$", "type": "nombre", "reponse": 1 },
+      {
+        "intitule": "$B^{-1}$, ligne par ligne au format `(a, b, c, d)`",
+        "type": "vecteur",
+        "reponse": [1, -3, -1, 4],
+        "refuses": ["(4, -3, -1, 1)", "(1, 3, 1, 4)"]
+      }
+    ],
+    "indices": [
+      "$\\det = 0$ si et seulement si la matrice n'est pas inversible (colonnes liées).",
+      "Pour $B^{-1}$ : échange $4$ et $1$ sur la diagonale, change le signe de $3$ et de $1$, puis divise par $\\det(B)$."
+    ],
+    "correction": "- $\\det(A) = 3 \\times 2 - 6 \\times 1 = 0$ : $A$ **n'est pas inversible**. Ses colonnes sont liées : $(6, 2) = 2 \\times (3, 1)$.\n- $\\det(B) = 4 \\times 1 - 3 \\times 1 = 1 \\neq 0$ : $B$ est inversible.\n\n$$B^{-1} = \\frac{1}{1}\\begin{pmatrix} 1 & -3 \\\\ -1 & 4 \\end{pmatrix}$$\n\nVérification : $\\begin{pmatrix} 4 & 3 \\\\ 1 & 1 \\end{pmatrix}\\begin{pmatrix} 1 & -3 \\\\ -1 & 4 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$."
+  },
+  {
+    "id": "inverse-et-systeme",
+    "titre": "Résoudre avec l'inverse",
+    "difficulte": 2,
+    "enonce": "Soit $C = \\begin{pmatrix} 2 & 1 \\\\ 4 & 3 \\end{pmatrix}$ et le système $C\\vec x = \\begin{pmatrix} 1 \\\\ 5 \\end{pmatrix}$, c'est-à-dire $2x + y = 1$ et $4x + 3y = 5$.",
+    "questions": [
+      { "intitule": "$\\det(C)$", "type": "nombre", "reponse": 2, "refuses": ["10"] },
+      {
+        "intitule": "$C^{-1}$, ligne par ligne au format `(a, b, c, d)` (fractions acceptées)",
+        "type": "vecteur",
+        "reponse": ["3/2", "-1/2", -2, 1],
+        "acceptes": ["(1.5, -0.5, -2, 1)", "(1,5; -0,5; -2; 1)"],
+        "refuses": ["(3, -1, -4, 2)"]
+      },
+      {
+        "intitule": "La solution $(x, y) = C^{-1}\\begin{pmatrix} 1 \\\\ 5 \\end{pmatrix}$",
+        "type": "vecteur",
+        "reponse": [-1, 3],
+        "refuses": ["(3, -1)"]
+      }
+    ],
+    "indices": [
+      "$C^{-1} = \\dfrac{1}{\\det(C)}\\begin{pmatrix} 3 & -1 \\\\ -4 & 2 \\end{pmatrix}$ : n'oublie pas de diviser chaque case.",
+      "$A\\vec x = \\vec b$ donne $\\vec x = A^{-1}\\vec b$ (on multiplie à gauche par $A^{-1}$)."
+    ],
+    "correction": "$\\det(C) = 2 \\times 3 - 1 \\times 4 = 2$.\n\n$$C^{-1} = \\frac{1}{2}\\begin{pmatrix} 3 & -1 \\\\ -4 & 2 \\end{pmatrix} = \\begin{pmatrix} 3/2 & -1/2 \\\\ -2 & 1 \\end{pmatrix}$$\n\n$$\\vec x = C^{-1}\\begin{pmatrix} 1 \\\\ 5 \\end{pmatrix} = \\begin{pmatrix} 3/2 - 5/2 \\\\ -2 + 5 \\end{pmatrix} = \\begin{pmatrix} -1 \\\\ 3 \\end{pmatrix}$$\n\nVérification : $2 \\times (-1) + 3 = 1$ et $4 \\times (-1) + 3 \\times 3 = 5$."
+  },
+  {
+    "id": "cramer-2x2",
+    "titre": "La règle de Cramer",
+    "difficulte": 2,
+    "enonce": "Résous par la règle de Cramer :\n\n$$\\begin{cases} 2x + 3y = 8 \\\\ x - 2y = -3 \\end{cases}$$",
+    "questions": [
+      { "intitule": "$\\Delta$", "type": "nombre", "reponse": -7, "refuses": ["-1", "7"] },
+      { "intitule": "$\\Delta_x$", "type": "nombre", "reponse": -7, "refuses": ["-25"] },
+      { "intitule": "$\\Delta_y$", "type": "nombre", "reponse": -14, "refuses": ["-2"] },
+      { "intitule": "La solution, au format `(x, y)`", "type": "vecteur", "reponse": [1, 2], "refuses": ["(2, 1)"] }
+    ],
+    "indices": [
+      "$\\Delta = \\begin{vmatrix} 2 & 3 \\\\ 1 & -2 \\end{vmatrix}$ : les coefficients de $x$ et $y$.",
+      "$\\Delta_x$ : remplace la **colonne de $x$** par $(8, -3)$. $\\Delta_y$ : remplace la colonne de $y$.",
+      "Puis $x = \\Delta_x / \\Delta$ et $y = \\Delta_y / \\Delta$."
+    ],
+    "correction": "$$\\Delta = \\begin{vmatrix} 2 & 3 \\\\ 1 & -2 \\end{vmatrix} = -4 - 3 = -7$$\n\n$$\\Delta_x = \\begin{vmatrix} 8 & 3 \\\\ -3 & -2 \\end{vmatrix} = -16 + 9 = -7 \\qquad \\Delta_y = \\begin{vmatrix} 2 & 8 \\\\ 1 & -3 \\end{vmatrix} = -6 - 8 = -14$$\n\nDonc $x = \\dfrac{-7}{-7} = 1$ et $y = \\dfrac{-14}{-7} = 2$. Vérification : $2 + 6 = 8$ et $1 - 4 = -3$."
+  },
+  {
+    "id": "pivot-solution-unique",
+    "titre": "Pivot de Gauss : une seule solution",
+    "difficulte": 2,
+    "enonce": "Résous par le pivot de Gauss :\n\n$$\\begin{cases} x + y + z = 2 \\quad (L_1) \\\\ 2x + y - z = 2 \\quad (L_2) \\\\ x - 2y + 2z = 6 \\quad (L_3) \\end{cases}$$",
+    "questions": [
+      {
+        "intitule": "Après $L_2 \\leftarrow L_2 - 2L_1$, la ligne 2 devient $-y - 3z = c$. Que vaut $c$ ?",
+        "type": "nombre",
+        "reponse": -2,
+        "refuses": ["2", "-6"]
+      },
+      {
+        "intitule": "Après $L_3 \\leftarrow L_3 - L_1$ puis $L_3 \\leftarrow L_3 - 3L_2$, la ligne 3 devient $10z = c$. Que vaut $c$ ?",
+        "type": "nombre",
+        "reponse": 10
+      },
+      {
+        "intitule": "La solution, au format `(x, y, z)`",
+        "type": "vecteur",
+        "reponse": [2, -1, 1],
+        "refuses": ["(1, -1, 2)", "(2, 1, 1)"]
+      }
+    ],
+    "indices": [
+      "$L_2 - 2L_1$ : $(2 - 2)x + (1 - 2)y + (-1 - 2)z = 2 - 4$.",
+      "$L_3 - L_1$ donne $-3y + z = 4$. Retire ensuite $3$ fois la nouvelle $L_2$.",
+      "Remontée : $z$ d'abord, puis $y$ avec la ligne 2, puis $x$ avec la ligne 1."
+    ],
+    "correction": "**Étape 1.** $L_2 \\leftarrow L_2 - 2L_1$ : $-y - 3z = -2$. $L_3 \\leftarrow L_3 - L_1$ : $-3y + z = 4$.\n\n**Étape 2.** $L_3 \\leftarrow L_3 - 3L_2$ : $(-3y + z) - 3(-y - 3z) = 4 - 3 \\times (-2)$, soit $10z = 10$.\n\n$$\\begin{cases} x + y + z = 2 \\\\ -y - 3z = -2 \\\\ 10z = 10 \\end{cases}$$\n\n**Remontée.** $z = 1$ ; $-y - 3 = -2$ donc $y = -1$ ; $x - 1 + 1 = 2$ donc $x = 2$.\n\nSolution unique $(2, -1, 1)$. Vérification dans $L_3$ : $2 + 2 + 2 = 6$."
+  },
+  {
+    "id": "pivot-trois-cas",
+    "titre": "Une, une infinité ou aucune ?",
+    "difficulte": 1,
+    "enonce": "Pour chaque système, fais une étape de pivot ($L_2 \\leftarrow L_2 - k L_1$) et donne le nombre de solutions.",
+    "questions": [
+      {
+        "intitule": "$x + y = 3$ et $2x + 2y = 6$",
+        "type": "choix",
+        "choix": ["Une seule solution", "Une infinité de solutions", "Aucune solution"],
+        "reponse": 1
+      },
+      {
+        "intitule": "$x - y = 1$ et $3x - 3y = 4$",
+        "type": "choix",
+        "choix": ["Une seule solution", "Une infinité de solutions", "Aucune solution"],
+        "reponse": 2
+      },
+      {
+        "intitule": "$x + y = 3$ et $x - y = 1$",
+        "type": "choix",
+        "choix": ["Une seule solution", "Une infinité de solutions", "Aucune solution"],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Regarde si la 2e équation est un multiple de la 1re… y compris le second membre.",
+      "$0 = 0$ : infinité. $0 = c$ avec $c \\neq 0$ : aucune. Sinon : une seule."
+    ],
+    "correction": "- $L_2 - 2L_1$ : $0 = 0$. La 2e équation est le double de la 1re : **infinité** de solutions ($y = 3 - x$, $x$ libre).\n- $L_2 - 3L_1$ : $0 = 1$. Contradiction : **aucune** solution.\n- $L_2 - L_1$ : $-2y = -2$, donc $y = 1$ puis $x = 2$ : **une seule** solution."
+  },
+  {
+    "id": "pivot-infinite",
+    "titre": "Pivot de Gauss : une infinité de solutions",
+    "difficulte": 3,
+    "enonce": "Résous par le pivot de Gauss :\n\n$$\\begin{cases} x - y + z = 1 \\quad (L_1) \\\\ 2x - 2y + 2z = 2 \\quad (L_2) \\\\ x + y + 3z = 5 \\quad (L_3) \\end{cases}$$\n\nOn pose $z = t$ (paramètre libre).",
+    "questions": [
+      {
+        "intitule": "Quelle ligne devient $0 = 0$ pendant le pivot ?",
+        "type": "choix",
+        "choix": ["$L_1$", "$L_2$", "$L_3$", "Aucune"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Exprime $y$ en fonction de $t$.",
+        "type": "expression",
+        "variable": "t",
+        "reponse": "2-t",
+        "acceptes": ["-t+2"],
+        "refuses": ["2+t", "4-2t"]
+      },
+      {
+        "intitule": "Exprime $x$ en fonction de $t$.",
+        "type": "expression",
+        "variable": "t",
+        "reponse": "3-2t",
+        "acceptes": ["1+(2-t)-t"],
+        "refuses": ["3+2t", "1-2t"]
+      },
+      {
+        "intitule": "La solution obtenue pour $t = 0$, au format `(x, y, z)`",
+        "type": "vecteur",
+        "reponse": [3, 2, 0],
+        "refuses": ["(1, 0, 0)"]
+      }
+    ],
+    "indices": [
+      "Compare $L_2$ et $L_1$ avant même de commencer.",
+      "$L_3 \\leftarrow L_3 - L_1$ donne $2y + 2z = 4$, donc $y = 2 - z$.",
+      "Remplace ensuite $y$ et $z$ dans $L_1$ : $x = 1 + y - z$."
+    ],
+    "correction": "$L_2 \\leftarrow L_2 - 2L_1$ donne $0 = 0$ : $L_2$ était le double de $L_1$. $L_3 \\leftarrow L_3 - L_1$ donne $2y + 2z = 4$, soit $y + z = 2$.\n\nAvec $z = t$ :\n\n- $y = 2 - t$ ;\n- $x = 1 + y - z = 1 + (2 - t) - t = 3 - 2t$.\n\nLes solutions sont les $(3 - 2t,\\ 2 - t,\\ t)$ pour tout réel $t$ : une **infinité**. Pour $t = 0$ : $(3, 2, 0)$. Vérification dans $L_3$ : $3 + 2 + 0 = 5$."
+  },
+  {
+    "id": "contraintes-metier",
+    "titre": "Diagnostiquer des contraintes",
+    "difficulte": 2,
+    "enonce": "Pour un abonnement, $x$ est le prix de l'offre de base et $y$ celui de l'option. Le service marketing impose :\n\n$$\\begin{cases} x + y = 50 \\\\ 3x + 3y = 160 \\end{cases}$$",
+    "questions": [
+      {
+        "intitule": "Après $L_2 \\leftarrow L_2 - 3L_1$, on obtient $0 = c$. Que vaut $c$ ?",
+        "type": "nombre",
+        "reponse": 10,
+        "refuses": ["0", "-10"]
+      },
+      {
+        "intitule": "Que conclure ?",
+        "type": "choix",
+        "choix": [
+          "Une seule solution",
+          "Une infinité de solutions",
+          "Aucune solution : les deux contraintes se contredisent"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Si la 2e contrainte devenait $3x + 3y = 150$, combien y aurait-il de solutions ?",
+        "type": "choix",
+        "choix": ["Une seule", "Une infinité : la 2e contrainte serait redondante", "Aucune"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "$3 \\times (x + y) = 150$, pas $160$."
+    ],
+    "correction": "$L_2 - 3L_1$ : $0 = 160 - 150 = 10$. C'est impossible : **aucune solution**. Les deux règles demandent à la fois $x + y = 50$ et $x + y = 160 / 3 \\approx 53{,}3$ : elles sont **incompatibles**, il faut en changer une.\n\nAvec $3x + 3y = 150$, on obtiendrait $0 = 0$ : la 2e règle répète la 1re (redondance), et tous les couples avec $x + y = 50$ conviennent, soit une **infinité** de solutions."
+  },
+  {
+    "id": "synthese-determinant-nul",
+    "titre": "Synthèse : déterminant nul et systèmes",
+    "difficulte": 3,
+    "enonce": "Soit $A = \\begin{pmatrix} 2 & -6 \\\\ -1 & 3 \\end{pmatrix}$ et, pour un réel $k$, $M_k = \\begin{pmatrix} 1 & k \\\\ 2 & 6 \\end{pmatrix}$.",
+    "questions": [
+      { "intitule": "$\\det(A)$", "type": "nombre", "reponse": 0, "refuses": ["12"] },
+      {
+        "intitule": "Les colonnes de $A$ sont :",
+        "type": "choix",
+        "choix": ["libres", "liées"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Pour un second membre $\\vec b$ quelconque, le système $A\\vec x = \\vec b$ :",
+        "type": "choix",
+        "choix": [
+          "a toujours une seule solution",
+          "n'a jamais de solution",
+          "a soit aucune solution, soit une infinité, selon $\\vec b$",
+          "a toujours exactement deux solutions"
+        ],
+        "reponse": 2
+      },
+      {
+        "intitule": "Pour quelle valeur de $k$ la matrice $M_k$ n'est-elle **pas** inversible ?",
+        "type": "nombre",
+        "reponse": 3,
+        "refuses": ["-3", "12"]
+      }
+    ],
+    "indices": [
+      "La 2e colonne de $A$ est $-3$ fois la 1re.",
+      "Avec $\\det = 0$, le pivot finit forcément par $0 = 0$ ou $0 = c$ : jamais une solution unique.",
+      "$\\det(M_k) = 6 - 2k$ : cherche quand il s'annule."
+    ],
+    "correction": "- $\\det(A) = 2 \\times 3 - (-6) \\times (-1) = 6 - 6 = 0$.\n- Les colonnes sont **liées** : $(-6, 3) = -3 \\times (2, -1)$.\n- $A$ n'est pas inversible : pas de solution unique. Le pivot laisse une ligne $0 = 0$ (infinité de solutions) ou $0 = c$ avec $c \\neq 0$ (aucune), selon $\\vec b$. Par exemple $\\vec b = (2, -1)$ donne une infinité, $\\vec b = (1, 1)$ n'en donne aucune.\n- $\\det(M_k) = 1 \\times 6 - k \\times 2 = 6 - 2k$, nul pour $k = 3$. On vérifie : avec $k = 3$, la 2e colonne $(3, 6)$ vaut 3 fois la 1re."
+  }
+]

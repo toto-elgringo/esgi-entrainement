@@ -33,6 +33,7 @@ describe('routes MyGES du serveur', () => {
   const appels = [];
   const synchro = {
     demarrer: () => { appels.push('demarrer'); return { etape: 'connexion' }; },
+    reprendre: () => { appels.push('reprendre'); return { etape: 'claude' }; },
     arreter: () => { appels.push('arreter'); return { etape: 'terminee' }; },
     etat: () => { appels.push('etat'); return { etape: 'repos' }; },
   };
@@ -44,6 +45,7 @@ describe('routes MyGES du serveur', () => {
     await fs.writeFile(path.join(racine, 'index.html'), '<html></html>', 'utf8');
     await fs.writeFile(path.join(racine, '.env'), 'MYGES_MOT_DE_PASSE=secret', 'utf8');
     await fs.writeFile(path.join(racine, 'myges-suivi.json'), '{}', 'utf8');
+    await fs.writeFile(path.join(racine, 'myges-a-integrer.json'), '{"fichiers":["secret"]}', 'utf8');
     await fs.mkdir(path.join(racine, '.git'));
     await fs.writeFile(path.join(racine, '.git', 'config'), '[core]', 'utf8');
     ({ serveur, port } = await demarrer({ racine, dossierContenu: path.join(racine, 'contenu'), synchro }));
@@ -55,7 +57,7 @@ describe('routes MyGES du serveur', () => {
   });
 
   it('ne sert jamais les fichiers cachés ni le suivi', async () => {
-    for (const chemin of ['/.env', '/.git/config', '/myges-suivi.json', '/%2Eenv']) {
+    for (const chemin of ['/.env', '/.git/config', '/myges-suivi.json', '/myges-a-integrer.json', '/%2Eenv']) {
       const { statut, texte } = await requete(port, { chemin });
       assert.equal(statut, 404, chemin);
       assert.ok(!texte.includes('secret'));
@@ -69,6 +71,12 @@ describe('routes MyGES du serveur', () => {
     assert.deepEqual(JSON.parse(texte), { etape: 'connexion' });
     assert.equal((await requete(port, { chemin: '/api/myges/etat', entetes: { Host: `127.0.0.1:${port}` } })).statut, 200);
     assert.equal((await requete(port, { methode: 'POST', chemin: '/api/myges/arreter', entetes: json(), corps: '{}' })).statut, 200);
+  });
+
+  it('reprend l’intégration depuis la page locale', async () => {
+    const { statut, texte } = await requete(port, { methode: 'POST', chemin: '/api/myges/reprendre', entetes: json(), corps: '{}' });
+    assert.equal(statut, 200);
+    assert.deepEqual(JSON.parse(texte), { etape: 'claude' });
   });
 
   it('refuse un autre site, un autre hôte ou un corps qui n’est pas du JSON', async () => {

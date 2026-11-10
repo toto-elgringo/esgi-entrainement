@@ -1,0 +1,11 @@
+{
+  "titre": "Combien d'octets ? (taille des enums)",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une enum occupe sa plus grosse variante plus une étiquette, arrondie à l'alignement du plus gros champ. `Potion` : une étiquette d'1 octet + 1 octet de donnée.",
+    "`Arme` : la variante `Arc` contient un `u8` et un `u32` ; avec l'étiquette et l'alignement sur 4, on arrive à 8.",
+    "Les **niches** : une référence et un `NonZeroU32` ne valent jamais 0, et un `bool` n'utilise que 0 et 1. Leur `Option` ne coûte donc aucun octet de plus. Un `u8` et un `u32` utilisent toutes leurs valeurs : il faut une étiquette.",
+    "Réponses : 2, 8, 8, 2, 8, 4, 8, 1."
+  ]
+}

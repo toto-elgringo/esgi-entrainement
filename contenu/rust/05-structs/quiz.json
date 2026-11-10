@@ -70,5 +70,77 @@
     "choix": ["Une erreur de syntaxe", "Un raccourci pour `Eleve { nom: nom, age: age }`", "Une copie d'un autre élève", "Un tuple"],
     "reponse": 1,
     "explication": "Quand la variable a le même nom que le champ, on peut l'écrire une seule fois."
+  },
+  {
+    "question": "Dans la version « tableau + compteur » du cours (`empiler(cases, valeur, &mut taille)`), quel est le principal défaut ?",
+    "choix": ["Elle alloue sur le tas", "Le tableau et sa longueur voyagent séparément : rien n'empêche de passer la longueur d'un autre tableau", "Elle ne compile pas", "Elle est forcément plus lente qu'un `Vec`"],
+    "reponse": 1,
+    "explication": "Tout est bien sur la pile, mais deux données qui vont ensemble sont passées séparément et l'idée n'a pas de nom. Une struct les réunit."
+  },
+  {
+    "question": "`pile.depiler()` où `depiler` prend `&mut self` est le même appel que…",
+    "choix": ["`PileFixe3::depiler(pile)`", "`PileFixe3::depiler(&mut pile)`", "`depiler(&pile)`", "`pile::depiler()`"],
+    "reponse": 1,
+    "explication": "Une méthode est une fonction dont le premier paramètre est la valeur. Le point passe automatiquement `&mut pile`."
+  },
+  {
+    "question": "À quoi sert `#[must_use]` au-dessus de `fn empiler(&mut self, v: u8) -> bool` ?",
+    "choix": ["À rendre la méthode plus rapide", "À avertir si on ignore le `bool` renvoyé", "À interdire d'appeler la méthode deux fois", "À rendre le résultat obligatoirement `true`"],
+    "reponse": 1,
+    "explication": "Ignorer le résultat déclenche l'avertissement `unused_must_use`. Pour le jeter volontairement : `let _ = pile.empiler(v);`."
+  },
+  {
+    "question": "Une boucle de 100 millions de tours passe de 66 ms à 0,73 ms quand on retire son `black_box`. Que s'est-il passé ?",
+    "choix": ["La struct est devenue plus efficace", "Le compilateur a supprimé toute la boucle, car personne ne lisait le résultat", "Le processeur a mis le résultat en cache", "Le programme a planté sans rien dire"],
+    "reponse": 1,
+    "explication": "0,73 ms, c'est le temps de lancer un programme vide : `main` ne contient plus qu'un `ret`. Rien n'était observable, donc rien n'avait besoin d'exister."
+  },
+  {
+    "question": "Dans `struct PileFixe<T, const N: usize>`, qu'est-ce que `N` ?",
+    "choix": ["Un type", "Une valeur connue à la compilation (un const générique)", "Une variable modifiable", "Le nombre d'éléments actuellement dans la pile"],
+    "reponse": 1,
+    "explication": "`const N: usize` est un paramètre de valeur. `PileFixe<u8, 3>` et `PileFixe<u8, 4>` sont deux types différents."
+  },
+  {
+    "question": "Que fait le compilateur avec `PileFixe<u8, 3>` et `PileFixe<f64, 8>` dans le même programme ?",
+    "choix": ["Il partage un seul code avec une indirection, comme Java", "Il écrit une version spécialisée de chaque méthode pour chacun (monomorphisation)", "Il refuse : un générique ne peut être utilisé qu'une fois", "Il choisit à l'exécution"],
+    "reponse": 1,
+    "explication": "La monomorphisation ne coûte rien à l'exécution, mais grossit le binaire et allonge la compilation."
+  },
+  {
+    "question": "Pourquoi le `depiler` générique du cours renvoie-t-il `Option<&T>` et pas `Option<T>` ?",
+    "choix": ["Parce qu'une référence est plus rapide à copier", "Sortir la valeur laisserait un trou que `[T; N]` ne sait pas représenter", "Parce que `Option<T>` n'existe pas pour les génériques", "Pour pouvoir modifier l'élément"],
+    "reponse": 1,
+    "explication": "Renvoyer `T` demanderait `T: Copy`, ou un tableau `[Option<T>; N]` avec `.take()`. La référence marche pour tous les types."
+  },
+  {
+    "question": "Que fait `case.take()` quand `case` vaut `Some(\"crabe\".to_string())` ?",
+    "choix": ["Renvoie une copie et laisse `case` intact", "Renvoie `Some(\"crabe\")` et laisse `None` dans `case`", "Panique", "Renvoie `\"crabe\"` sans `Some`"],
+    "reponse": 1,
+    "explication": "`take` retire la valeur et laisse `None` à sa place : le trou est représentable."
+  },
+  {
+    "question": "Un programme met un tableau de 40 Go dans une struct sur la pile. Que se passe-t-il à l'exécution ?",
+    "choix": ["Une panique qu'on peut rattraper avec `catch_unwind`", "`stack overflow` : le processus est arrêté net (abort), sans trace", "Rust le déplace tout seul sur le tas", "Une erreur de compilation"],
+    "reponse": 1,
+    "explication": "Un débordement de pile n'est pas une panique : le runtime affiche deux lignes puis abandonne. Ce qui est gros va sur le tas (`Box`, `Vec`)."
+  },
+  {
+    "question": "Avec `let texte = include_str!(\"../entree.txt\");`, quand le fichier est-il lu ?",
+    "choix": ["À chaque lancement du programme", "À la compilation : son contenu est copié dans le binaire", "Au premier appel de `texte.len()`", "Jamais, c'est seulement un chemin"],
+    "reponse": 1,
+    "explication": "Le fichier n'a plus besoin d'exister à l'exécution. `texte` est un `&'static str` : les données ne sont jamais libérées."
+  },
+  {
+    "question": "Quelle taille occupe `#[repr(C)] struct S { a: u8, b: u32, c: u8 }` ?",
+    "choix": ["6 octets", "8 octets", "12 octets", "16 octets"],
+    "reponse": 2,
+    "explication": "`b` doit commencer à un multiple de 4 (octet 4), et la taille doit être un multiple de 4 : 1 + 3 vides + 4 + 1 + 3 vides = 12. Sans `repr(C)`, Rust réordonne et obtient 8."
+  },
+  {
+    "question": "Pourquoi `let r = &p.b;` est-il refusé quand `p` est une struct `#[repr(C, packed)]` ?",
+    "choix": ["Les structs packed sont immuables", "Le champ peut être mal aligné, et créer une référence non alignée est un comportement indéfini", "Il faut écrire `&mut p.b`", "Les champs packed sont privés"],
+    "reponse": 1,
+    "explication": "Erreur E0793. La solution : copier le champ, `let b = p.b;`."
   }
 ]

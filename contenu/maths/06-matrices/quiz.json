@@ -1,0 +1,85 @@
+[
+  {
+    "question": "Une matrice de taille $3 \\times 5$ a :",
+    "choix": ["3 lignes et 5 colonnes", "5 lignes et 3 colonnes", "15 lignes", "3 colonnes et 5 lignes"],
+    "reponse": 0,
+    "explication": "On donne toujours le nombre de **lignes** d'abord, puis le nombre de **colonnes**."
+  },
+  {
+    "question": "Dans $M = \\begin{pmatrix} 4 & -2 & 7 \\\\ 0 & 1 & 3 \\end{pmatrix}$, que vaut $a_{12}$ ?",
+    "choix": ["$0$", "$-2$", "$7$", "$1$"],
+    "reponse": 1,
+    "explication": "$a_{12}$ est à la ligne 1, colonne 2 : c'est $-2$. Le coefficient $0$ est $a_{21}$ (ligne 2, colonne 1)."
+  },
+  {
+    "question": "$A$ est de taille $2 \\times 3$ et $B$ de taille $3 \\times 4$. Quelle est la taille de $AB$ ?",
+    "choix": ["$3 \\times 3$", "$2 \\times 4$", "$4 \\times 2$", "Le produit n'existe pas"],
+    "reponse": 1,
+    "explication": "Les tailles du milieu sont égales ($3 = 3$), donc $AB$ existe. Les tailles du bord donnent le résultat : $2 \\times 4$."
+  },
+  {
+    "question": "Avec les mêmes tailles ($A$ : $2 \\times 3$, $B$ : $3 \\times 4$), le produit $BA$ :",
+    "choix": ["existe et vaut $AB$", "existe, de taille $4 \\times 3$", "n'existe pas", "existe, de taille $3 \\times 3$"],
+    "reponse": 2,
+    "explication": "$B$ a 4 colonnes et $A$ a 2 lignes : $4 \\neq 2$, le produit $BA$ n'est pas défini."
+  },
+  {
+    "question": "Pour deux matrices carrées $A$ et $B$ de même taille, on a en général :",
+    "choix": ["$AB = BA$", "$AB \\neq BA$", "$AB = -BA$", "$AB = I$"],
+    "reponse": 1,
+    "explication": "Le produit matriciel n'est **pas commutatif** : l'ordre compte, comme l'ordre des couches d'un réseau de neurones."
+  },
+  {
+    "question": "Comment calcule-t-on le coefficient $(AB)_{21}$ ?",
+    "choix": [
+      "Avec la ligne 2 de $A$ et la colonne 1 de $B$",
+      "Avec la colonne 2 de $A$ et la ligne 1 de $B$",
+      "En multipliant $a_{21}$ par $b_{21}$",
+      "Avec la ligne 1 de $A$ et la colonne 2 de $B$"
+    ],
+    "reponse": 0,
+    "explication": "Règle ligne × colonne : $(AB)_{ij}$ utilise la ligne $i$ de $A$ et la colonne $j$ de $B$. On multiplie terme à terme puis on additionne."
+  },
+  {
+    "question": "Que vaut $A I_n$ (avec $A$ de taille $n \\times n$) ?",
+    "choix": ["$I_n$", "$0$", "$A$", "$A^T$"],
+    "reponse": 2,
+    "explication": "La matrice identité est l'élément neutre du produit : $A I_n = I_n A = A$, comme $x \\times 1 = x$ pour les nombres."
+  },
+  {
+    "question": "La transposée d'une matrice $2 \\times 3$ est de taille :",
+    "choix": ["$2 \\times 3$", "$3 \\times 2$", "$3 \\times 3$", "$2 \\times 2$"],
+    "reponse": 1,
+    "explication": "Transposer échange lignes et colonnes : une matrice $2 \\times 3$ devient $3 \\times 2$."
+  },
+  {
+    "question": "Laquelle de ces applications est **linéaire** ?",
+    "choix": ["$f(x) = x + 1$", "$f(x) = x^2$", "$f(x, y) = (2x - y,\\ 5y)$", "$f(x, y) = (xy,\\ x)$"],
+    "reponse": 2,
+    "explication": "$(2x - y,\\ 5y)$ n'utilise que des sommes de termes « nombre × variable » : elle respecte les combinaisons linéaires. $x + 1$ n'envoie pas $0$ sur $0$, et $x^2$ ou $xy$ ne sont pas linéaires."
+  },
+  {
+    "question": "Les **colonnes** de la matrice d'une application linéaire $f$ (dans la base canonique) sont :",
+    "choix": ["les vecteurs de base", "les images des vecteurs de base par $f$", "les valeurs de $f(0)$", "les lignes de $f$"],
+    "reponse": 1,
+    "explication": "La $j$-ième colonne est $f(e_j)$. Par exemple, pour $f(x, y) = (x + 2y,\\ 3x - y)$ : $f(e_1) = (1, 3)$ et $f(e_2) = (2, -1)$."
+  },
+  {
+    "question": "$f$ a pour matrice $A$ et $g$ a pour matrice $B$. Quelle est la matrice de « $f$ puis $g$ » ($g \\circ f$) ?",
+    "choix": ["$AB$", "$BA$", "$A + B$", "$A^T B$"],
+    "reponse": 1,
+    "explication": "On applique d'abord $f$, donc $A$ est à droite (au contact du vecteur) : $g(f(\\vec x)) = B(A\\vec x) = (BA)\\vec x$."
+  },
+  {
+    "question": "Une couche de réseau de neurones calcule $\\vec y = W\\vec x + \\vec b$ avec $W$ de taille $4 \\times 3$. Combien de valeurs la couche reçoit-elle en entrée ?",
+    "choix": ["$4$", "$3$", "$12$", "$7$"],
+    "reponse": 1,
+    "explication": "$W\\vec x$ n'existe que si $\\vec x$ a autant de coordonnées que $W$ a de colonnes : 3 en entrée. La sortie a autant de coordonnées que $W$ a de lignes : 4."
+  },
+  {
+    "question": "Dans une matrice de confusion (ligne = classe réelle, colonne = classe prédite), où lit-on les exemples **bien classés** ?",
+    "choix": ["Sur la première ligne", "Sur la dernière colonne", "Sur la diagonale", "Hors de la diagonale"],
+    "reponse": 2,
+    "explication": "Sur la diagonale, la classe prédite est égale à la classe réelle : ce sont les bonnes réponses du classifieur."
+  }
+]
