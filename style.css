@@ -1912,6 +1912,93 @@ body[data-domaine="electif"] {
   margin-top: 16px;
 }
 
+.myges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  padding: 16px 20px;
+  border: 1px solid var(--bordure);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--rayon);
+  background: var(--panneau);
+}
+
+.myges-actif {
+  border-left-color: var(--attention);
+}
+
+.myges-erreur {
+  border-left-color: var(--erreur);
+}
+
+.myges-texte {
+  display: flex;
+  flex: 1 1 280px;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.myges-texte > span,
+.myges-note {
+  color: var(--texte-doux);
+  font-size: 14px;
+}
+
+.myges-note {
+  margin: 4px 0 0;
+}
+
+.myges-liste {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.myges-liste ul {
+  margin: 4px 0 0;
+  padding-left: 20px;
+  overflow-wrap: anywhere;
+}
+
+.myges-journal,
+.myges-bilan {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: var(--rayon);
+  background: var(--fond);
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.myges-journal p {
+  margin: 0 0 4px;
+  color: var(--texte-doux);
+}
+
+.myges-bilan {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.myges-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.myges-actions .bouton:not(.principal):hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+[data-myges] + .sauvegarde {
+  margin-top: 16px;
+}
+
 .bandeau-supports {
   display: flex;
   flex-wrap: wrap;

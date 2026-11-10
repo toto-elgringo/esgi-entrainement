@@ -5,11 +5,14 @@ import { LANGAGES } from '../js/domaines.js';
 import { typeSupport } from '../js/supports.js';
 import * as c from './c.js';
 import { ContenuIntrouvable, lireExercice } from './contenu-code.js';
+import { ErreurMyges } from './myges/erreurs.js';
 import * as python from './python.js';
 import * as rust from './rust.js';
 
 const TAILLE_MAX_CORPS = 512 * 1024;
 const EXECUTEURS = { rust, python, c };
+const FICHIERS_PRIVES = new Set(['myges-suivi.json', 'synchro-obsidian.json']);
+const STATUTS_MYGES = { deja_en_cours: 409 };
 const TYPES_MIME = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -90,9 +93,43 @@ async function envoyerFichier(fichier, reponse) {
   return true;
 }
 
+function estPrive(racine, fichier) {
+  const morceaux = path.relative(path.resolve(racine), fichier).split(path.sep);
+  return morceaux.some((morceau) => morceau.startsWith('.')) || FICHIERS_PRIVES.has(morceaux.at(-1).toLowerCase());
+}
+
 async function servirFichier(racine, chemin, reponse) {
   const fichier = cheminDansDossier(racine, chemin === '/' ? 'index.html' : chemin);
-  if (!fichier || !(await envoyerFichier(fichier, reponse))) throw new ErreurHttp(404, 'Fichier introuvable');
+  if (!fichier || estPrive(racine, fichier) || !(await envoyerFichier(fichier, reponse))) throw new ErreurHttp(404, 'Fichier introuvable');
+}
+
+export function origineLocale(requete) {
+  const port = requete.socket.localPort;
+  const hotes = [`localhost:${port}`, `127.0.0.1:${port}`];
+  if (!hotes.includes(requete.headers.host)) return false;
+  const origine = requete.headers.origin;
+  if (origine !== undefined && !hotes.some((hote) => origine === `http://${hote}`)) return false;
+  if (requete.method === 'POST' && !(requete.headers['content-type'] ?? '').startsWith('application/json')) return false;
+  return true;
+}
+
+async function actionMyges(synchro, requete, pathname) {
+  if (!origineLocale(requete)) throw new ErreurHttp(403, 'Requête refusée');
+  const actions = {
+    'POST /api/myges/synchroniser': () => synchro.demarrer(),
+    'POST /api/myges/arreter': () => synchro.arreter(),
+    'GET /api/myges/etat': () => synchro.etat(),
+  };
+  const action = actions[`${requete.method} ${pathname}`];
+  if (!action) throw new ErreurHttp(404, 'Route inconnue');
+  if (!synchro) throw new ErreurHttp(503, 'La synchro MyGES n’est pas disponible');
+  if (requete.method === 'POST') await lireCorpsJson(requete);
+  try {
+    return action();
+  } catch (erreur) {
+    if (erreur instanceof ErreurMyges) throw new ErreurHttp(STATUTS_MYGES[erreur.code] ?? 400, erreur.message);
+    throw erreur;
+  }
 }
 
 const PAGE_SUPPORT_ABSENT = `<!DOCTYPE html>
@@ -143,12 +180,14 @@ function statutErreur(erreur) {
   return 500;
 }
 
-export function creerServeur({ racine, dossierContenu, dossierSupports }) {
+export function creerServeur({ racine, dossierContenu, dossierSupports, synchro }) {
   const routes = creerRoutes({ dossierContenu });
   return http.createServer(async (requete, reponse) => {
     try {
       const { pathname } = new URL(requete.url, 'http://localhost');
-      if (pathname.startsWith('/api/')) {
+      if (pathname.startsWith('/api/myges/')) {
+        envoyerJson(reponse, 200, await actionMyges(synchro, requete, pathname));
+      } else if (pathname.startsWith('/api/')) {
         const route = routes.find((candidate) => candidate.methode === requete.method && candidate.chemin === pathname);
         if (!route) throw new ErreurHttp(404, 'Route inconnue');
         envoyerJson(reponse, 200, await route.action(requete));

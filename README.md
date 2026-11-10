@@ -16,6 +16,20 @@ npm start
 
 Le site s'ouvre sur http://localhost:3000. Ta progression est enregistrée dans ton navigateur.
 
+## Récupérer les nouveaux cours sur MyGES
+
+1. Crée un fichier `.env` à la racine du projet (il n'est jamais envoyé sur GitHub) :
+
+   ```
+   MYGES_IDENTIFIANT=ton_identifiant_myges
+   MYGES_MOT_DE_PASSE=ton_mot_de_passe
+   ```
+
+   L'identifiant est celui de la page de connexion MyGES, pas ton adresse e-mail.
+2. Lance le site, puis clique sur « Télécharger les nouveaux cours » sur la page de choix de la matière.
+
+Les supports déjà téléchargés sont ignorés. Les nouveaux sont rangés dans le dossier `Sources` de chaque matière du vault Obsidian, puis Claude Code crée en arrière-plan les notes et les exercices. S'il n'y a rien de nouveau, le site affiche « Aucun nouveau cours ».
+
 ## Outils pour les exercices de code
 
 | Matière | Outil | Installation |

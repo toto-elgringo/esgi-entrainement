@@ -54,6 +54,8 @@ serveur/
   tests-rust.js     relit les paniques de `cargo test` et le code source pour donner appel / obtenu / attendu
   contenu-code.js   lecture du contenu de code, construireSommaire()
   validation-code.js
+  myges/            synchro MyGES : session (cookies), connexion (CAS), source (page des supports, téléchargement),
+                    noms, matieres, tri (doublons), archives (.zip via tar), claude (lancement en arrière-plan), synchro (enchaînement)
 scripts/
   sommaire.js           régénère contenu/{rust,python,c}/sommaire.json
   verifier-contenu.js   valide tous les domaines (lance chaque solution, vérifie que le départ échoue, contrôle les sommaires)
@@ -67,6 +69,11 @@ CONTENU.md          format exact du contenu (code et réponses)
 - `GET api/etat` renvoie les versions de cargo, clippy, Python et gcc : l'accueil d'une matière de code prévient si l'outil manque ou si le serveur ne répond plus.
 - Dossiers de travail dans `<tmp>/esgi-entrainement-<outil>/<pid>/atelier-N`, réutilisés et supprimés à l'arrêt du processus.
 - Supports originaux (PDF, HTML des profs) : jamais copiés dans le dépôt public. Déclarés dans `chapitre.json` (`supports`), servis par `/supports/<chemin>` depuis `DOSSIER_SUPPORTS` (par défaut le vault Obsidian `Cours - ESGI`), affichés dans la vue `#/supports/<domaine>/<chapitre>` (`js/vues/supports.js`, `js/supports.js`).
+- Synchro MyGES (bouton « Télécharger les nouveaux cours » sur la page de choix de la matière, `js/vues/myges.js`) : connexion au site myges.fr avec `.env` (`MYGES_IDENTIFIANT` = identifiant MyGES, pas l'e-mail, et `MYGES_MOT_DE_PASSE`), lecture de `student/courses-files`, téléchargement des nouveaux supports dans `<vault>/<Matière>/Sources/` (`.zip` extraits), puis `claude -p "/obsidian -esgi …"` en arrière-plan avec la liste des fichiers. Rien de nouveau : « Aucun nouveau cours », Claude n'est pas lancé. Méthode détaillée : `docs/myges-api.md`.
+  - Doublons : `myges-suivi.json` (non versionné, identifiant MyGES → chemin) et comparaison des noms déjà présents dans `Sources\` (casse, accents, ponctuation et `[Mot] X` / `Mot - X` ignorés).
+  - `myges-matieres.json` (versionné) : matière MyGES sans préfixe `T1 - ` → dossier du vault. Matière inconnue : dossier créé et ajouté.
+  - Routes `POST api/myges/synchroniser`, `POST api/myges/arreter`, `GET api/myges/etat` : `Host` et `Origin` locaux obligatoires, JSON obligatoire. Le serveur ne sert jamais les fichiers commençant par `.` (`.env`, `.git`) ni `myges-suivi.json` / `synchro-obsidian.json`.
+  - `ESGI_CLAUDE=tests/faux-claude.js` remplace Claude pour essayer sans lancer le vrai. Journal de Claude : `<tmp>/esgi-entrainement-myges/`.
 - Formules KaTeX actives pour `maths` et `combinatoire` seulement (l'anglais contient des prix en `$`).
 - `body[data-domaine]` change la couleur d'accent de chaque domaine.
 - Correction des maths : expressions comparées en plusieurs points, `aUneConstantePres` pour les primitives, aperçu « Lu comme » en LaTeX.

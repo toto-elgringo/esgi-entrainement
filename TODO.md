@@ -30,3 +30,6 @@
 - [ ] Mélanger l'ordre des choix dans les exercices (aujourd'hui seulement dans les quiz)
 - [ ] C : `VERIFIER_LISTE` pour comparer deux tableaux et afficher les valeurs (aujourd'hui `aide_egale` n'affiche que la condition)
 - [ ] C : transformer les `VERIFIER` avec `&&` en plusieurs `VERIFIER_EGAL` pour avoir les valeurs de chaque côté
+- [ ] MyGES : `/obsidian -esgi` utilise `~/.claude/scripts/esgi-sources.mjs`, qui n'existe plus sur l'ordinateur (la synchro donne quand même la liste des fichiers à Claude)
+- [ ] MyGES : retélécharger un support remplacé par le prof (aujourd'hui seul un nouvel identifiant MyGES est vu comme nouveau)
+- [ ] MyGES : créer `.env.exemple` (bloqué par les réglages de Claude Code : `MYGES_IDENTIFIANT=` et `MYGES_MOT_DE_PASSE=`)
