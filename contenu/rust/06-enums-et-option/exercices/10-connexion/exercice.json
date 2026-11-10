@@ -1,0 +1,11 @@
+{
+  "titre": "La connexion sans état impossible",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Chaque méthode qui prend `self` fait un `match self { ... }` et renvoie une nouvelle `Connexion`. Pour « ne rien changer », le bras renvoie la valeur elle-même : `autre => autre`.",
+    "`demarrer` : `Connexion::Deconnecte => Connexion::EnCours { depuis_ms: maintenant_ms }`. `accepter` : `Connexion::EnCours { .. } => Connexion::Connecte { session, pseudo: pseudo.to_string() }`.",
+    "`pseudo(&self)` : `Connexion::Connecte { pseudo, .. } => Some(pseudo.as_str())`, `None` sinon.",
+    "`trop_longue` : `Connexion::EnCours { depuis_ms } => maintenant_ms - depuis_ms > limite_ms` (avec `&self`, écris `*depuis_ms`), et `false` pour les autres états."
+  ]
+}

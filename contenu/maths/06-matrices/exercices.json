@@ -1,0 +1,384 @@
+[
+  {
+    "id": "lire-coefficients",
+    "titre": "Lire une matrice",
+    "difficulte": 1,
+    "enonce": "Soit la matrice\n\n$$M = \\begin{pmatrix} 5 & 0 & -3 \\\\ 2 & 7 & 1 \\end{pmatrix}$$",
+    "questions": [
+      { "intitule": "Combien $M$ a-t-elle de lignes ? (un nombre)", "type": "nombre", "reponse": 2, "refuses": ["3"] },
+      { "intitule": "Combien $M$ a-t-elle de colonnes ? (un nombre)", "type": "nombre", "reponse": 3, "refuses": ["2"] },
+      { "intitule": "Que vaut $a_{13}$ ? (un nombre)", "type": "nombre", "reponse": -3, "refuses": ["0", "3"] },
+      { "intitule": "Que vaut $a_{21}$ ? (un nombre)", "type": "nombre", "reponse": 2, "refuses": ["0"] }
+    ],
+    "indices": [
+      "La taille s'écrit toujours « lignes × colonnes ».",
+      "$a_{ij}$ : $i$ est le numéro de la **ligne**, $j$ celui de la **colonne**. $a_{21}$ est donc à la 2e ligne, 1re colonne."
+    ],
+    "correction": "$M$ a **2 lignes** et **3 colonnes** : c'est une matrice $2 \\times 3$.\n\n- $a_{13}$ : ligne 1, colonne 3, donc $-3$.\n- $a_{21}$ : ligne 2, colonne 1, donc $2$.\n\nAttention à ne pas inverser : $a_{12} = 0$ n'est pas $a_{21} = 2$."
+  },
+  {
+    "id": "addition-scalaire",
+    "titre": "Addition et multiplication par un nombre",
+    "difficulte": 1,
+    "enonce": "Soit $A = \\begin{pmatrix} 3 & -1 \\\\ 2 & 0 \\end{pmatrix}$ et $B = \\begin{pmatrix} 1 & 4 \\\\ -2 & 5 \\end{pmatrix}$.\n\nÉcris chaque matrice ligne par ligne : $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ s'écrit `(a, b, c, d)`.",
+    "questions": [
+      {
+        "intitule": "$A + B$",
+        "type": "vecteur",
+        "reponse": [4, 3, 0, 5],
+        "acceptes": ["(4; 3; 0; 5)"],
+        "refuses": ["(4, 0, 3, 5)", "(2, -5, 4, -5)"]
+      },
+      {
+        "intitule": "$2A$",
+        "type": "vecteur",
+        "reponse": [6, -2, 4, 0],
+        "refuses": ["(6, -1, 2, 0)", "(5, 1, 4, 2)"]
+      },
+      {
+        "intitule": "$2A - B$",
+        "type": "vecteur",
+        "reponse": [5, -6, 6, -5],
+        "refuses": ["(5, 2, 2, -5)", "(2, -5, 4, -5)"]
+      }
+    ],
+    "indices": [
+      "On additionne case par case : la case (1, 1) de $A$ avec la case (1, 1) de $B$, etc.",
+      "Pour $2A - B$ : calcule d'abord $2A = \\begin{pmatrix} 6 & -2 \\\\ 4 & 0 \\end{pmatrix}$, puis retire $B$ case par case."
+    ],
+    "correction": "Tout se fait **case par case**.\n\n$$A + B = \\begin{pmatrix} 3 + 1 & -1 + 4 \\\\ 2 - 2 & 0 + 5 \\end{pmatrix} = \\begin{pmatrix} 4 & 3 \\\\ 0 & 5 \\end{pmatrix}$$\n\n$$2A = \\begin{pmatrix} 6 & -2 \\\\ 4 & 0 \\end{pmatrix} \\qquad 2A - B = \\begin{pmatrix} 6 - 1 & -2 - 4 \\\\ 4 + 2 & 0 - 5 \\end{pmatrix} = \\begin{pmatrix} 5 & -6 \\\\ 6 & -5 \\end{pmatrix}$$"
+  },
+  {
+    "id": "tailles-compatibles",
+    "titre": "Quels produits existent ?",
+    "difficulte": 1,
+    "enonce": "$A$ est une matrice $3 \\times 2$, $B$ une matrice $2 \\times 4$ et $C$ une matrice $4 \\times 3$.",
+    "questions": [
+      {
+        "intitule": "Le produit $AB$ :",
+        "type": "choix",
+        "choix": ["existe, de taille $3 \\times 4$", "existe, de taille $2 \\times 2$", "existe, de taille $4 \\times 3$", "n'existe pas"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Le produit $BA$ :",
+        "type": "choix",
+        "choix": ["existe, de taille $2 \\times 2$", "existe, de taille $4 \\times 3$", "n'existe pas"],
+        "reponse": 2
+      },
+      {
+        "intitule": "Le produit $ABC$ :",
+        "type": "choix",
+        "choix": ["existe, de taille $3 \\times 3$", "existe, de taille $4 \\times 4$", "existe, de taille $2 \\times 3$", "n'existe pas"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Le produit $CA$ :",
+        "type": "choix",
+        "choix": ["existe, de taille $4 \\times 2$", "existe, de taille $3 \\times 3$", "existe, de taille $2 \\times 4$", "n'existe pas"],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "$(m \\times n)(n \\times p)$ : les deux tailles du **milieu** doivent être égales, celles du **bord** donnent le résultat.",
+      "Pour $ABC$, calcule d'abord la taille de $AB$, puis multiplie par $C$."
+    ],
+    "correction": "On regarde les tailles du milieu.\n\n- $AB$ : $(3 \\times \\underline{2})(\\underline{2} \\times 4)$, le milieu concorde : $3 \\times 4$.\n- $BA$ : $(2 \\times \\underline{4})(\\underline{3} \\times 2)$, $4 \\neq 3$ : **n'existe pas**.\n- $ABC$ : $AB$ est $3 \\times 4$, puis $(3 \\times 4)(4 \\times 3)$ donne $3 \\times 3$.\n- $CA$ : $(4 \\times 3)(3 \\times 2)$ donne $4 \\times 2$.\n\n$AB$ existe mais pas $BA$ : l'ordre compte vraiment."
+  },
+  {
+    "id": "produit-2x2",
+    "titre": "Produit de deux matrices 2 × 2",
+    "difficulte": 2,
+    "enonce": "Soit $A = \\begin{pmatrix} 2 & 1 \\\\ -1 & 3 \\end{pmatrix}$ et $B = \\begin{pmatrix} 0 & 2 \\\\ 4 & 1 \\end{pmatrix}$.\n\nÉcris chaque matrice ligne par ligne : `(a, b, c, d)`.",
+    "questions": [
+      {
+        "intitule": "$AB$",
+        "type": "vecteur",
+        "reponse": [4, 5, 12, 1],
+        "refuses": ["(0, 2, -4, 3)", "(-2, 6, 7, 7)"]
+      },
+      {
+        "intitule": "$BA$",
+        "type": "vecteur",
+        "reponse": [-2, 6, 7, 7],
+        "refuses": ["(4, 5, 12, 1)"]
+      },
+      {
+        "intitule": "Que montre la comparaison de $AB$ et $BA$ ?",
+        "type": "choix",
+        "choix": ["Le produit est commutatif", "Le produit n'est pas commutatif", "$B$ est l'inverse de $A$"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Case $(i, j)$ du produit : ligne $i$ de la première matrice, colonne $j$ de la seconde. On multiplie terme à terme, puis on additionne.",
+      "Case $(1, 1)$ de $AB$ : ligne $(2, 1)$ et colonne $(0, 4)$, donc $2 \\times 0 + 1 \\times 4 = 4$.",
+      "On ne multiplie **pas** case par case : $2 \\times 0$, $1 \\times 2$… donnerait une fausse réponse."
+    ],
+    "correction": "Règle ligne × colonne :\n\n$$AB = \\begin{pmatrix} 2 \\times 0 + 1 \\times 4 & 2 \\times 2 + 1 \\times 1 \\\\ -1 \\times 0 + 3 \\times 4 & -1 \\times 2 + 3 \\times 1 \\end{pmatrix} = \\begin{pmatrix} 4 & 5 \\\\ 12 & 1 \\end{pmatrix}$$\n\n$$BA = \\begin{pmatrix} 0 \\times 2 + 2 \\times (-1) & 0 \\times 1 + 2 \\times 3 \\\\ 4 \\times 2 + 1 \\times (-1) & 4 \\times 1 + 1 \\times 3 \\end{pmatrix} = \\begin{pmatrix} -2 & 6 \\\\ 7 & 7 \\end{pmatrix}$$\n\n$AB \\neq BA$ : le produit matriciel **n'est pas commutatif**."
+  },
+  {
+    "id": "produit-rectangulaire",
+    "titre": "Produit de matrices rectangulaires",
+    "difficulte": 2,
+    "enonce": "Soit $A = \\begin{pmatrix} 1 & 0 & 2 \\\\ -1 & 3 & 1 \\end{pmatrix}$ (taille $2 \\times 3$) et $B = \\begin{pmatrix} 2 & 1 \\\\ 0 & -1 \\\\ 1 & 4 \\end{pmatrix}$ (taille $3 \\times 2$).",
+    "questions": [
+      {
+        "intitule": "Calcule $AB$, ligne par ligne au format `(a, b, c, d)`.",
+        "type": "vecteur",
+        "reponse": [4, 9, -1, 0],
+        "refuses": ["(4, -1, 9, 0)"]
+      },
+      {
+        "intitule": "Quelle est la taille de $BA$ ?",
+        "type": "choix",
+        "choix": ["$2 \\times 2$", "$3 \\times 3$", "$2 \\times 3$", "$BA$ n'existe pas"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Que vaut le coefficient $(BA)_{11}$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 1
+      },
+      {
+        "intitule": "Que vaut le coefficient $(BA)_{32}$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 12,
+        "refuses": ["4"]
+      }
+    ],
+    "indices": [
+      "$AB$ est $(2 \\times 3)(3 \\times 2) = 2 \\times 2$ ; chaque case est une somme de **trois** produits.",
+      "$(BA)_{32}$ : ligne 3 de $B$, soit $(1, 4)$, et colonne 2 de $A$, soit $(0, 3)$."
+    ],
+    "correction": "**$AB$** ($2 \\times 2$) :\n\n- case $(1,1)$ : $1 \\times 2 + 0 \\times 0 + 2 \\times 1 = 4$ ;\n- case $(1,2)$ : $1 \\times 1 + 0 \\times (-1) + 2 \\times 4 = 9$ ;\n- case $(2,1)$ : $-1 \\times 2 + 3 \\times 0 + 1 \\times 1 = -1$ ;\n- case $(2,2)$ : $-1 \\times 1 + 3 \\times (-1) + 1 \\times 4 = 0$.\n\n$$AB = \\begin{pmatrix} 4 & 9 \\\\ -1 & 0 \\end{pmatrix}$$\n\n**$BA$** est $(3 \\times 2)(2 \\times 3) = 3 \\times 3$ : ce n'est même pas la même taille que $AB$.\n\n- $(BA)_{11}$ : ligne $(2, 1)$ et colonne $(1, -1)$, donc $2 - 1 = 1$.\n- $(BA)_{32}$ : ligne $(1, 4)$ et colonne $(0, 3)$, donc $0 + 12 = 12$."
+  },
+  {
+    "id": "transposee",
+    "titre": "Transposée et produit par la transposée",
+    "difficulte": 2,
+    "enonce": "Soit $A = \\begin{pmatrix} 2 & -1 & 0 \\\\ 3 & 4 & 5 \\end{pmatrix}$.",
+    "questions": [
+      {
+        "intitule": "Écris $A^T$ ligne par ligne (6 nombres).",
+        "type": "vecteur",
+        "reponse": [2, 3, -1, 4, 0, 5],
+        "refuses": ["(2, -1, 0, 3, 4, 5)"]
+      },
+      {
+        "intitule": "Quelle est la taille de $A^T A$ ?",
+        "type": "choix",
+        "choix": ["$2 \\times 2$", "$3 \\times 3$", "$2 \\times 3$", "$A^T A$ n'existe pas"],
+        "reponse": 1
+      },
+      {
+        "intitule": "Calcule $A A^T$, ligne par ligne au format `(a, b, c, d)`.",
+        "type": "vecteur",
+        "reponse": [5, 2, 2, 50],
+        "refuses": ["(4, -3, 0, 20)"]
+      }
+    ],
+    "indices": [
+      "Transposer : la 1re ligne devient la 1re colonne, la 2e ligne devient la 2e colonne.",
+      "$A A^T$ est $(2 \\times 3)(3 \\times 2) = 2 \\times 2$. Sa case $(i, j)$ multiplie la ligne $i$ de $A$ par la ligne $j$ de $A$."
+    ],
+    "correction": "$$A^T = \\begin{pmatrix} 2 & 3 \\\\ -1 & 4 \\\\ 0 & 5 \\end{pmatrix}$$\n\n$A^T A$ est $(3 \\times 2)(2 \\times 3)$, donc $3 \\times 3$.\n\n$A A^T$ est $2 \\times 2$ :\n\n- case $(1,1)$ : $2^2 + (-1)^2 + 0^2 = 5$ ;\n- case $(1,2)$ : $2 \\times 3 + (-1) \\times 4 + 0 \\times 5 = 2$ ;\n- case $(2,1)$ : la même, $2$ ;\n- case $(2,2)$ : $3^2 + 4^2 + 5^2 = 50$.\n\n$$A A^T = \\begin{pmatrix} 5 & 2 \\\\ 2 & 50 \\end{pmatrix}$$\n\nElle est **symétrique**, comme toujours pour $A A^T$ et $A^T A$."
+  },
+  {
+    "id": "lineaire-ou-pas",
+    "titre": "Linéaire ou pas ?",
+    "difficulte": 1,
+    "enonce": "Pour chaque application de $\\mathbb{R}^2$ dans $\\mathbb{R}^2$, dis si elle est linéaire.",
+    "questions": [
+      { "intitule": "$f(x, y) = (2y,\\ -x)$", "type": "choix", "choix": ["Linéaire", "Pas linéaire"], "reponse": 0 },
+      { "intitule": "$g(x, y) = (x + y,\\ 2)$", "type": "choix", "choix": ["Linéaire", "Pas linéaire"], "reponse": 1 },
+      { "intitule": "$h(x, y) = (xy,\\ x)$", "type": "choix", "choix": ["Linéaire", "Pas linéaire"], "reponse": 1 },
+      { "intitule": "$k(x, y) = (x - 3y,\\ 4x + y)$", "type": "choix", "choix": ["Linéaire", "Pas linéaire"], "reponse": 0 }
+    ],
+    "indices": [
+      "Test rapide : une application linéaire envoie toujours $(0, 0)$ sur $(0, 0)$.",
+      "Une application linéaire n'a que des termes « nombre × variable » : ni constante ajoutée, ni produit de variables, ni carré."
+    ],
+    "correction": "- $f$ : seulement des termes « nombre × variable » : **linéaire**.\n- $g$ : $g(0, 0) = (0, 2) \\neq (0, 0)$ : **pas linéaire**.\n- $h$ : $h(2x, 2y) = (4xy,\\ 2x) \\neq 2h(x, y)$ à cause du produit $xy$ : **pas linéaire**.\n- $k$ : **linéaire**, de matrice $\\begin{pmatrix} 1 & -3 \\\\ 4 & 1 \\end{pmatrix}$."
+  },
+  {
+    "id": "matrice-application",
+    "titre": "La matrice d'une application linéaire",
+    "difficulte": 2,
+    "enonce": "Soit l'application linéaire $f(x, y) = (3x - y,\\ x + 2y)$, avec la base canonique $e_1 = (1, 0)$ et $e_2 = (0, 1)$.",
+    "questions": [
+      {
+        "intitule": "$f(e_1)$, au format `(a, b)`",
+        "type": "vecteur",
+        "reponse": [3, 1],
+        "refuses": ["(3, -1)"]
+      },
+      {
+        "intitule": "$f(e_2)$, au format `(a, b)`",
+        "type": "vecteur",
+        "reponse": [-1, 2],
+        "refuses": ["(1, 2)", "(3, -1)"]
+      },
+      {
+        "intitule": "La matrice $A$ de $f$, ligne par ligne au format `(a, b, c, d)`",
+        "type": "vecteur",
+        "reponse": [3, -1, 1, 2],
+        "refuses": ["(3, 1, -1, 2)"]
+      },
+      {
+        "intitule": "L'image $f(2, -1)$, au format `(a, b)`",
+        "type": "vecteur",
+        "reponse": [7, 0],
+        "refuses": ["(5, 0)", "(7, 4)"]
+      }
+    ],
+    "indices": [
+      "Les **colonnes** de la matrice sont $f(e_1)$ et $f(e_2)$.",
+      "$f(e_1) = f(1, 0) = (3, 1)$ : c'est la 1re **colonne**, donc la 1re ligne de la matrice commence par $3$ puis le 1er nombre de $f(e_2)$."
+    ],
+    "correction": "- $f(e_1) = f(1, 0) = (3, 1)$ ;\n- $f(e_2) = f(0, 1) = (-1, 2)$.\n\nCe sont les **colonnes** de la matrice :\n\n$$A = \\begin{pmatrix} 3 & -1 \\\\ 1 & 2 \\end{pmatrix}$$\n\nPour l'image : $A\\begin{pmatrix} 2 \\\\ -1 \\end{pmatrix} = \\begin{pmatrix} 6 + 1 \\\\ 2 - 2 \\end{pmatrix} = \\begin{pmatrix} 7 \\\\ 0 \\end{pmatrix}$. On vérifie avec la formule : $f(2, -1) = (6 + 1,\\ 2 - 2) = (7, 0)$."
+  },
+  {
+    "id": "couche-neurones",
+    "titre": "Une couche de réseau de neurones",
+    "difficulte": 2,
+    "enonce": "Une couche dense calcule $\\vec y = W\\vec x + \\vec b$ avec\n\n$$W = \\begin{pmatrix} 1 & -2 \\\\ 0 & 3 \\\\ 2 & 1 \\end{pmatrix}, \\qquad \\vec b = \\begin{pmatrix} 1 \\\\ -1 \\\\ 0 \\end{pmatrix}, \\qquad \\vec x = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$$",
+    "questions": [
+      {
+        "intitule": "$W\\vec x$, au format `(a, b, c)`",
+        "type": "vecteur",
+        "reponse": [0, 3, 5],
+        "refuses": ["(4, 3, 5)", "(1, 2, 5)"]
+      },
+      {
+        "intitule": "$\\vec y = W\\vec x + \\vec b$, au format `(a, b, c)`",
+        "type": "vecteur",
+        "reponse": [1, 2, 5],
+        "refuses": ["(0, 3, 5)"]
+      },
+      {
+        "intitule": "Combien de valeurs la couche reçoit-elle en entrée ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": ["3"]
+      },
+      {
+        "intitule": "Combien de valeurs sort-elle ? (un nombre)",
+        "type": "nombre",
+        "reponse": 3,
+        "refuses": ["2"]
+      }
+    ],
+    "indices": [
+      "$W\\vec x$ : chaque ligne de $W$ multipliée par $\\vec x$. 1re coordonnée : $1 \\times 2 + (-2) \\times 1$.",
+      "$W$ est $3 \\times 2$ : le nombre de **colonnes** donne l'entrée, le nombre de **lignes** donne la sortie."
+    ],
+    "correction": "$$W\\vec x = \\begin{pmatrix} 1 \\times 2 - 2 \\times 1 \\\\ 0 \\times 2 + 3 \\times 1 \\\\ 2 \\times 2 + 1 \\times 1 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 3 \\\\ 5 \\end{pmatrix} \\qquad \\vec y = \\begin{pmatrix} 0 + 1 \\\\ 3 - 1 \\\\ 5 + 0 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 5 \\end{pmatrix}$$\n\n$W$ est de taille $3 \\times 2$ : la couche prend **2** valeurs (les colonnes de $W$) et en sort **3** (les lignes de $W$)."
+  },
+  {
+    "id": "composition",
+    "titre": "Composer deux applications",
+    "difficulte": 3,
+    "enonce": "$f$ a pour matrice $A = \\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$ et $g$ a pour matrice $B = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$ ($g$ est la rotation d'un quart de tour).\n\nÉcris les matrices ligne par ligne : `(a, b, c, d)`.",
+    "questions": [
+      {
+        "intitule": "La matrice de $g \\circ f$ (« $f$ puis $g$ »)",
+        "type": "vecteur",
+        "reponse": [0, -1, 1, 2],
+        "refuses": ["(2, -1, 1, 0)"]
+      },
+      {
+        "intitule": "La matrice de $f \\circ g$ (« $g$ puis $f$ »)",
+        "type": "vecteur",
+        "reponse": [2, -1, 1, 0],
+        "refuses": ["(0, -1, 1, 2)"]
+      },
+      {
+        "intitule": "L'image de $(1, 1)$ par $g \\circ f$, au format `(a, b)`",
+        "type": "vecteur",
+        "reponse": [-1, 3],
+        "refuses": ["(1, 1)", "(-1, 1)"]
+      }
+    ],
+    "indices": [
+      "La première application faite est **à droite** : « $f$ puis $g$ » a pour matrice $BA$.",
+      "Pour l'image de $(1, 1)$, tu peux aussi calculer $f(1, 1)$, puis appliquer $g$ au résultat."
+    ],
+    "correction": "« $f$ puis $g$ » : $g(f(\\vec x)) = B(A\\vec x)$, donc la matrice est $BA$.\n\n$$BA = \\begin{pmatrix} 0 \\times 1 + (-1) \\times 0 & 0 \\times 2 + (-1) \\times 1 \\\\ 1 \\times 1 + 0 \\times 0 & 1 \\times 2 + 0 \\times 1 \\end{pmatrix} = \\begin{pmatrix} 0 & -1 \\\\ 1 & 2 \\end{pmatrix}$$\n\n$$AB = \\begin{pmatrix} 1 \\times 0 + 2 \\times 1 & 1 \\times (-1) + 2 \\times 0 \\\\ 0 \\times 0 + 1 \\times 1 & 0 \\times (-1) + 1 \\times 0 \\end{pmatrix} = \\begin{pmatrix} 2 & -1 \\\\ 1 & 0 \\end{pmatrix}$$\n\nLes deux sont différentes : faire $f$ puis $g$ n'est pas faire $g$ puis $f$.\n\nImage de $(1, 1)$ : $f(1, 1) = (1 + 2,\\ 1) = (3, 1)$, puis la rotation donne $g(3, 1) = (-1, 3)$. On retrouve bien $BA\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} -1 \\\\ 3 \\end{pmatrix}$."
+  },
+  {
+    "id": "matrice-adjacence",
+    "titre": "Compter des chemins dans un graphe",
+    "difficulte": 3,
+    "enonce": "Un petit réseau a 3 sommets : **1** est relié à **2**, et **2** est relié à **3** (1 et 3 ne sont pas reliés directement).\n\nLa matrice d'adjacence $A$ vaut $A_{ij} = 1$ si $i$ et $j$ sont reliés, $0$ sinon.",
+    "questions": [
+      {
+        "intitule": "Écris $A$ ligne par ligne (9 nombres).",
+        "type": "vecteur",
+        "reponse": [0, 1, 0, 1, 0, 1, 0, 1, 0],
+        "refuses": ["(0, 1, 1, 1, 0, 1, 1, 1, 0)"]
+      },
+      {
+        "intitule": "Que vaut $(A^2)_{13}$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": ["0"]
+      },
+      {
+        "intitule": "Que vaut $(A^2)_{22}$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": ["0"]
+      },
+      {
+        "intitule": "Que vaut $(A^2)_{12}$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": ["1"]
+      }
+    ],
+    "indices": [
+      "Le graphe est non orienté : $A$ est symétrique et sa diagonale est nulle.",
+      "$(A^2)_{ij}$ = ligne $i$ de $A$ × colonne $j$ de $A$ : c'est le nombre de chemins de longueur 2 entre $i$ et $j$.",
+      "$(A^2)_{22}$ : depuis 2, on peut aller en 1 puis revenir, ou aller en 3 puis revenir."
+    ],
+    "correction": "$$A = \\begin{pmatrix} 0 & 1 & 0 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{pmatrix} \\qquad A^2 = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 2 & 0 \\\\ 1 & 0 & 1 \\end{pmatrix}$$\n\n- $(A^2)_{13} = 0 \\times 0 + 1 \\times 1 + 0 \\times 0 = 1$ : un seul chemin de longueur 2, $1 \\to 2 \\to 3$.\n- $(A^2)_{22} = 1 + 0 + 1 = 2$ : les allers-retours $2 \\to 1 \\to 2$ et $2 \\to 3 \\to 2$.\n- $(A^2)_{12} = 0$ : impossible d'aller de 1 à 2 en exactement deux pas."
+  },
+  {
+    "id": "matrice-confusion",
+    "titre": "Lire une matrice de confusion",
+    "difficulte": 2,
+    "enonce": "Un classifieur trie des images en 3 classes (chat, chien, oiseau). Sa matrice de confusion (ligne = classe réelle, colonne = classe prédite) est :\n\n$$M = \\begin{pmatrix} 38 & 2 & 0 \\\\ 4 & 41 & 5 \\\\ 1 & 3 & 46 \\end{pmatrix}$$",
+    "questions": [
+      {
+        "intitule": "Combien d'images sont bien classées ? (un nombre)",
+        "type": "nombre",
+        "reponse": 125
+      },
+      {
+        "intitule": "Combien d'images sont réellement des chiens ? (un nombre)",
+        "type": "nombre",
+        "reponse": 50,
+        "refuses": ["46"]
+      },
+      {
+        "intitule": "Combien d'images ont été prédites « oiseau » ? (un nombre)",
+        "type": "nombre",
+        "reponse": 51,
+        "refuses": ["50"]
+      },
+      {
+        "intitule": "Dans la transposée $M^T$, une **ligne** correspond à :",
+        "type": "choix",
+        "choix": ["une classe réelle", "une classe prédite", "une image", "une erreur"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Les bonnes réponses sont sur la **diagonale** (classe prédite = classe réelle).",
+      "Les chiens réels sont sur la **ligne** 2 ; les prédictions « oiseau » sont dans la **colonne** 3.",
+      "Transposer échange les lignes et les colonnes, donc aussi leur sens."
+    ],
+    "correction": "- Bien classées : la diagonale, $38 + 41 + 46 = 125$.\n- Chiens réels : la ligne 2, $4 + 41 + 5 = 50$.\n- Prédits « oiseau » : la colonne 3, $0 + 5 + 46 = 51$.\n- Dans $M^T$, les lignes et les colonnes sont échangées : une ligne de $M^T$ est une colonne de $M$, c'est-à-dire une **classe prédite**. Les nombres sont les mêmes, seule la lecture change."
+  }
+]

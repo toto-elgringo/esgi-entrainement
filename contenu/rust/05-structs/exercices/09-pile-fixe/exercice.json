@@ -1,0 +1,10 @@
+{
+  "titre": "La pile fixe, en struct",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le compteur `taille` dit combien de cases sont occupées : la prochaine case libre est `self.cases[self.taille]`.",
+    "`empiler` : si `self.taille == 3`, renvoie `false` ; sinon range la valeur, ajoute 1 à `taille` et renvoie `true`. `depiler` fait l'inverse : recule `taille`, puis renvoie `Some(self.cases[self.taille])`.",
+    "`sommet` ne modifie rien : `if self.taille == 0 { None } else { Some(&self.cases[self.taille - 1]) }`."
+  ]
+}

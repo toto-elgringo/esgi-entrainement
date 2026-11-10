@@ -30,6 +30,8 @@ Le site s'ouvre sur http://localhost:3000. Ta progression est enregistrée dans 
 
 Les supports déjà téléchargés sont ignorés. Les nouveaux sont rangés dans le dossier `Sources` de chaque matière du vault Obsidian, puis Claude Code crée en arrière-plan les notes et les exercices. S'il n'y a rien de nouveau, le site affiche « Aucun nouveau cours ».
 
+Si l'ordinateur s'éteint (ou si Claude s'arrête) avant la fin, les cours téléchargés restent notés comme « pas encore intégrés » : au prochain `npm start`, Claude reprend tout seul là où il en était. Après 3 essais ratés, ou si tu as cliqué sur « Arrêter », il attend que tu cliques sur « Reprendre l'intégration ».
+
 ## Outils pour les exercices de code
 
 | Matière | Outil | Installation |

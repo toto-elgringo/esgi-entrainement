@@ -1,0 +1,10 @@
+{
+  "titre": "Suites et séries",
+  "description": "Convergence d'une suite, critère monotone borné, suites arithmétiques, géométriques et arithmético-géométriques, séries géométriques, critère grossier et convergence des algorithmes itératifs.",
+  "source": "Séance 4",
+  "matieres": ["informatique"],
+  "supports": [
+    {"titre": "Cours", "fichier": "Maths pour l'informatique/Sources/Séance 4 - cours.pdf"},
+    {"titre": "Exercices", "fichier": "Maths pour l'informatique/Sources/Séance 4 - exercices.pdf"}
+  ]
+}

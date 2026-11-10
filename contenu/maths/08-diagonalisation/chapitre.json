@@ -1,0 +1,10 @@
+{
+  "titre": "Valeurs propres et diagonalisation",
+  "description": "Valeurs et vecteurs propres, équation caractéristique, diagonalisation A = PDP⁻¹, puissances de matrices, matrices par blocs. La préparation directe de la PCA.",
+  "source": "Séance 5",
+  "matieres": ["big-data"],
+  "supports": [
+    {"titre": "Cours", "fichier": "Maths pour le big data/Sources/Séance 5 - cours.pdf"},
+    {"titre": "Exercices", "fichier": "Maths pour le big data/Sources/Séance 5 - exercices.pdf"}
+  ]
+}

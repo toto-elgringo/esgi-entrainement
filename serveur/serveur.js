@@ -11,7 +11,7 @@ import * as rust from './rust.js';
 
 const TAILLE_MAX_CORPS = 512 * 1024;
 const EXECUTEURS = { rust, python, c };
-const FICHIERS_PRIVES = new Set(['myges-suivi.json', 'synchro-obsidian.json']);
+const FICHIERS_PRIVES = new Set(['myges-suivi.json', 'myges-a-integrer.json', 'synchro-obsidian.json']);
 const STATUTS_MYGES = { deja_en_cours: 409 };
 const TYPES_MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -117,6 +117,7 @@ async function actionMyges(synchro, requete, pathname) {
   if (!origineLocale(requete)) throw new ErreurHttp(403, 'Requête refusée');
   const actions = {
     'POST /api/myges/synchroniser': () => synchro.demarrer(),
+    'POST /api/myges/reprendre': () => synchro.reprendre(),
     'POST /api/myges/arreter': () => synchro.arreter(),
     'GET /api/myges/etat': () => synchro.etat(),
   };

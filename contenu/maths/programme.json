@@ -1,13 +1,24 @@
 {
   "matieres": [
-    { "id": "informatique", "titre": "Maths pour l'informatique" },
-    { "id": "big-data", "titre": "Maths pour le big data" }
+    {
+      "id": "informatique",
+      "titre": "Maths pour l'informatique"
+    },
+    {
+      "id": "big-data",
+      "titre": "Maths pour le big data"
+    }
   ],
   "chapitres": [
     "01-ensembles-et-logique",
     "02-quantificateurs-et-sommes",
     "03-exponentielle-et-logarithme",
     "04-etude-de-fonctions",
-    "05-espaces-vectoriels"
+    "05-espaces-vectoriels",
+    "06-matrices",
+    "07-determinants-et-systemes",
+    "08-diagonalisation",
+    "09-suites-et-series",
+    "10-polynomes-et-developpements-limites"
   ]
 }

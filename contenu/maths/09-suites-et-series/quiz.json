@@ -1,0 +1,86 @@
+[
+  {
+    "question": "Vers quoi tend la suite $u_n = \\dfrac{7}{n+3}$ ?",
+    "choix": ["$0$", "$7$", "$\\dfrac{7}{3}$", "Elle diverge"],
+    "reponse": 0,
+    "explication": "Le numérateur reste fixe et le dénominateur devient immense : la fraction se rapproche de $0$."
+  },
+  {
+    "question": "Que fait la suite $u_n = (-1)^n$ ?",
+    "choix": ["Elle converge vers $0$", "Elle converge vers $1$", "Elle diverge en oscillant", "Elle diverge vers $+\\infty$"],
+    "reponse": 2,
+    "explication": "Elle vaut $1, -1, 1, -1, \\dots$ : elle ne se rapproche d'aucune valeur, donc elle diverge sans partir à l'infini."
+  },
+  {
+    "question": "Une suite est croissante et majorée par $5$. Que peut-on affirmer ?",
+    "choix": ["Elle converge vers $5$", "Elle converge (vers une limite inférieure ou égale à $5$)", "Elle diverge", "On ne peut rien dire"],
+    "reponse": 1,
+    "explication": "Croissante + majorée $\\Rightarrow$ convergente. Mais la limite n'est pas forcément le majorant donné : elle est seulement $\\le 5$."
+  },
+  {
+    "question": "Une suite géométrique de raison $q = -0{,}7$ :",
+    "choix": ["converge vers $0$", "diverge, car la raison est négative", "est constante", "diverge vers $-\\infty$"],
+    "reponse": 0,
+    "explication": "C'est $\\lvert q \\rvert$ qui compte : $\\lvert -0{,}7 \\rvert < 1$, donc $q^n \\to 0$. Les termes changent de signe mais se rapprochent de $0$."
+  },
+  {
+    "question": "Quel est le point fixe de $u_{n+1} = 0{,}5\\,u_n + 4$ ?",
+    "choix": ["$4$", "$2$", "$8$", "$0{,}5$"],
+    "reponse": 2,
+    "explication": "$\\ell = 0{,}5\\,\\ell + 4 \\iff 0{,}5\\,\\ell = 4 \\iff \\ell = 8$."
+  },
+  {
+    "question": "Pour $u_{n+1} = a\\,u_n + b$ de point fixe $\\ell$, la suite $v_n = u_n - \\ell$ est :",
+    "choix": ["arithmétique de raison $b$", "géométrique de raison $a$", "géométrique de raison $b$", "constante"],
+    "reponse": 1,
+    "explication": "$v_{n+1} = a u_n + b - \\ell = a u_n - a\\ell = a\\,v_n$, car $b = \\ell - a\\ell$."
+  },
+  {
+    "question": "Que vaut $\\displaystyle\\sum_{n=0}^{N} q^n$ pour $q \\neq 1$ ?",
+    "choix": ["$\\dfrac{1 - q^{N+1}}{1 - q}$", "$\\dfrac{1 - q^{N}}{1 - q}$", "$\\dfrac{1}{1 - q}$", "$N\\,q$"],
+    "reponse": 0,
+    "explication": "Il y a $N + 1$ termes (de $q^0$ à $q^N$), d'où l'exposant $N + 1$. La forme $\\dfrac{1}{1-q}$ est la limite quand $N \\to +\\infty$ (si $\\lvert q \\rvert < 1$)."
+  },
+  {
+    "question": "Que vaut $\\displaystyle\\sum_{n=0}^{+\\infty} \\left(\\frac{1}{4}\\right)^n$ ?",
+    "choix": ["$\\dfrac{1}{4}$", "$\\dfrac{4}{3}$", "$\\dfrac{3}{4}$", "La série diverge"],
+    "reponse": 1,
+    "explication": "$\\lvert q \\rvert = \\dfrac14 < 1$, donc la somme vaut $\\dfrac{1}{1 - \\frac14} = \\dfrac{4}{3}$."
+  },
+  {
+    "question": "La série $\\displaystyle\\sum_{n=0}^{+\\infty} 1{,}1^n$ :",
+    "choix": ["converge vers $\\dfrac{1}{1 - 1{,}1}$", "converge vers $11$", "diverge", "converge vers $0$"],
+    "reponse": 2,
+    "explication": "$\\lvert q \\rvert = 1{,}1 \\ge 1$ : les termes grandissent, la série diverge. La formule $\\dfrac{1}{1-q}$ n'est valable que si $\\lvert q \\rvert < 1$."
+  },
+  {
+    "question": "Le terme général $u_n$ tend vers $0$. Que peut-on dire de la série $\\sum u_n$ ?",
+    "choix": ["Elle converge forcément", "Elle diverge forcément", "On ne peut pas conclure avec ce seul renseignement", "Sa somme vaut $0$"],
+    "reponse": 2,
+    "explication": "La réciproque du critère grossier est fausse : $\\sum \\frac1n$ diverge alors que $\\frac1n \\to 0$."
+  },
+  {
+    "question": "Pourquoi la série $\\displaystyle\\sum \\frac{n+2}{n}$ diverge-t-elle ?",
+    "choix": ["Car son terme général tend vers $1$, pas vers $0$", "Car c'est une série géométrique de raison $2$", "Car $n + 2 > n$", "Elle converge vers $2$"],
+    "reponse": 0,
+    "explication": "Critère grossier : $\\frac{n+2}{n} = 1 + \\frac{2}{n} \\to 1 \\neq 0$, donc on ajoute presque $1$ à chaque fois."
+  },
+  {
+    "question": "Quelle série entière donne $e^x$ ?",
+    "choix": ["$\\displaystyle\\sum_{n=0}^{+\\infty} x^n$", "$\\displaystyle\\sum_{n=0}^{+\\infty} \\frac{x^n}{n!}$", "$\\displaystyle\\sum_{n=0}^{+\\infty} n!\\,x^n$", "$\\displaystyle\\sum_{n=1}^{+\\infty} \\frac{x^n}{n}$"],
+    "reponse": 1,
+    "explication": "$e^x = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\dots = \\sum \\frac{x^n}{n!}$, et elle converge pour tout réel $x$."
+  },
+  {
+    "question": "Descente de gradient simplifiée $\\theta_{n+1} = (1 - \\eta)\\,\\theta_n$. Pour quels $\\eta$ converge-t-elle vers $0$ ?",
+    "choix": ["$0 < \\eta < 1$ uniquement", "$0 < \\eta < 2$", "$\\eta > 2$", "Pour tout $\\eta > 0$"],
+    "reponse": 1,
+    "explication": "C'est une suite géométrique de raison $1 - \\eta$ : elle converge vers $0$ si $\\lvert 1 - \\eta \\rvert < 1$, soit $0 < \\eta < 2$. Entre $1$ et $2$, elle oscille mais converge quand même."
+  },
+  {
+    "question": "Sur un diagramme en escalier, la trajectoire tourne en spirale autour du point fixe. Qu'en déduit-on pour $u_{n+1} = a\\,u_n + b$ ?",
+    "choix": ["$a > 1$", "$0 < a < 1$", "$a < 0$", "$b < 0$"],
+    "reponse": 2,
+    "explication": "Avec $a$ négatif, l'écart au point fixe change de signe à chaque pas : la suite passe alternativement au-dessus et en dessous, d'où la spirale."
+  }
+]

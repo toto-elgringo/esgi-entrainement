@@ -1,0 +1,86 @@
+[
+  {
+    "question": "Combien de racines réelles un polynôme de degré $5$ peut-il avoir, au maximum ?",
+    "choix": ["$5$", "$4$", "$6$", "Une infinité"],
+    "reponse": 0,
+    "explication": "Un polynôme de degré $n$ a au plus $n$ racines réelles."
+  },
+  {
+    "question": "L'équation $x^2 + x + 3 = 0$ a un discriminant $\\Delta = -11$. Que peut-on dire ?",
+    "choix": ["Elle n'a aucune solution, même complexe", "Elle a deux solutions complexes conjuguées", "Elle a une racine double", "Elle a deux solutions réelles"],
+    "reponse": 1,
+    "explication": "$\\Delta < 0$ : pas de solution **réelle**, mais deux solutions complexes $\\dfrac{-b \\pm i\\sqrt{-\\Delta}}{2a}$."
+  },
+  {
+    "question": "Que vaut $i^2$ ?",
+    "choix": ["$1$", "$-1$", "$i$", "$0$"],
+    "reponse": 1,
+    "explication": "Le nombre $i$ est justement défini pour que $i^2 = -1$ : il permet d'écrire la racine carrée d'un nombre négatif."
+  },
+  {
+    "question": "En comptant les racines complexes, combien de racines a un polynôme de degré $3$ ?",
+    "choix": ["Au plus $3$", "Exactement $3$", "Exactement $2$", "Au moins $4$"],
+    "reponse": 1,
+    "explication": "En comptant les complexes (et les racines multiples), un polynôme de degré $n$ a toujours exactement $n$ racines."
+  },
+  {
+    "question": "On sait que $P(2) = 0$, avec $P$ de degré $4$. Que peut-on écrire ?",
+    "choix": ["$P(x) = (x + 2)\\,Q(x)$ avec $Q$ de degré $3$", "$P(x) = (x - 2)\\,Q(x)$ avec $Q$ de degré $3$", "$P(x) = (x - 2)\\,Q(x)$ avec $Q$ de degré $4$", "$P(x) = 2\\,Q(x)$"],
+    "reponse": 1,
+    "explication": "Si $x_0$ est racine, $P(x) = (x - x_0)\\,Q(x)$ et le degré baisse de $1$. Ici $x_0 = 2$, donc le facteur est $(x - 2)$."
+  },
+  {
+    "question": "Par $4$ points d'abscisses toutes différentes, combien passe-t-il de polynômes de degré au plus $3$ ?",
+    "choix": ["Aucun en général", "Exactement un", "Deux", "Une infinité"],
+    "reponse": 1,
+    "explication": "$n + 1$ points d'abscisses distinctes déterminent un **unique** polynôme de degré au plus $n$. Ici $n = 3$."
+  },
+  {
+    "question": "Dans la méthode de Lagrange, que vaut $L_i(x_j)$ pour $j \\neq i$ ?",
+    "choix": ["$1$", "$0$", "$y_i$", "$x_i - x_j$"],
+    "reponse": 1,
+    "explication": "$L_i$ vaut $1$ en $x_i$ et $0$ en tous les autres points : il « allume » seulement le point $i$."
+  },
+  {
+    "question": "Quel est l'avantage principal de la méthode de Newton sur celle de Lagrange ?",
+    "choix": ["Elle donne un polynôme de degré plus petit", "Elle permet d'ajouter un point sans tout recalculer", "Elle n'exige pas des abscisses différentes", "Elle donne un polynôme différent, plus précis"],
+    "reponse": 1,
+    "explication": "Les deux méthodes donnent le **même** polynôme. Mais avec Newton, un nouveau point ajoute seulement une ligne au tableau des différences divisées."
+  },
+  {
+    "question": "Que vaut la différence divisée d'ordre 1 $f[x_0, x_1]$ pour les points $(1, 4)$ et $(3, 10)$ ?",
+    "choix": ["$6$", "$3$", "$\\dfrac{1}{3}$", "$2$"],
+    "reponse": 1,
+    "explication": "C'est la pente : $\\dfrac{10 - 4}{3 - 1} = \\dfrac{6}{2} = 3$."
+  },
+  {
+    "question": "Quel est le développement limité de $e^x$ à l'ordre 2 en $0$ ?",
+    "choix": ["$1 + x + x^2$", "$1 + x + \\dfrac{x^2}{2}$", "$x - \\dfrac{x^2}{2}$", "$1 + x^2$"],
+    "reponse": 1,
+    "explication": "$f(0) = f'(0) = f''(0) = 1$, donc $f(0) + f'(0)\\,x + \\dfrac{f''(0)}{2}\\,x^2 = 1 + x + \\dfrac{x^2}{2}$."
+  },
+  {
+    "question": "Quel est le développement limité de $\\ln(1 + x)$ à l'ordre 2 en $0$ ?",
+    "choix": ["$1 + x + \\dfrac{x^2}{2}$", "$x + \\dfrac{x^2}{2}$", "$x - \\dfrac{x^2}{2}$", "$1 - x + x^2$"],
+    "reponse": 2,
+    "explication": "$\\ln(1 + x) \\approx x - \\dfrac{x^2}{2}$ : le terme constant est nul car $\\ln 1 = 0$."
+  },
+  {
+    "question": "Le DL d'ordre 1 de $f$ en $0$, $f(0) + f'(0)\\,x$, correspond à :",
+    "choix": ["la tangente à la courbe en $0$", "la droite $y = x$", "l'axe horizontal", "la corde entre $0$ et $1$"],
+    "reponse": 0,
+    "explication": "$y = f(0) + f'(0)\\,x$ est l'équation de la tangente en $0$. L'ordre 2 ajoute une correction de courbure."
+  },
+  {
+    "question": "Pourquoi le DL $1 + x + \\frac{x^2}{2}$ approche-t-il mal $e^{3}$ ?",
+    "choix": ["Car la formule est fausse", "Car un DL n'est valable que près de $0$ : le reste, en $O(x^3)$, devient énorme pour $x = 3$", "Car il faudrait diviser par $3$", "Car $e^3$ n'existe pas"],
+    "reponse": 1,
+    "explication": "Le DL donne $8{,}5$ contre $e^3 \\approx 20{,}1$. L'erreur est de l'ordre de $x^3$ : minuscule près de $0$, énorme pour $x = 3$."
+  },
+  {
+    "question": "On a $500$ mesures bruitées. Pourquoi ne pas les interpoler par un polynôme de degré $499$ ?",
+    "choix": ["C'est impossible mathématiquement", "Il collerait au bruit et oscillerait entre les points : c'est du sur-ajustement", "Il serait forcément constant", "Il ne passerait pas par les points"],
+    "reponse": 1,
+    "explication": "Il passerait bien par les $500$ points, mais en apprenant le bruit par cœur : ses prédictions entre les points seraient mauvaises. On préfère une régression de petit degré."
+  }
+]

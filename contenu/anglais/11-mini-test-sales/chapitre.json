@@ -1,0 +1,11 @@
+{
+  "titre": "Mini test TOEIC : Sales",
+  "description": "Parties 5, 6 et 7 du TOEIC sur le thème des ventes : phrases à compléter, lettre à trous, publicité et FAQ de livraison.",
+  "source": "Cours du 9 novembre 2026 (mini test du chapitre Sales)",
+  "matieres": [
+    "anglais"
+  ],
+  "supports": [
+    {"titre": "Chapitre Sales (mini test p. 56 à 60)", "fichier": "Anglais professionnel/Sources/Sales.pdf"}
+  ]
+}

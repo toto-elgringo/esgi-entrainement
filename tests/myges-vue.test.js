@@ -43,6 +43,23 @@ describe('encadré MyGES', () => {
     assert.match(html, /Recharger le site/);
   });
 
+  it('propose de reprendre les cours pas encore intégrés', () => {
+    const html = rendreEtatMyges({ ...base, enAttente: ['Rust/Sources/a.pdf', 'Rust/Sources/b.pdf'] });
+    assert.match(html, /2 cours téléchargés pas encore intégrés/);
+    assert.match(html, /data-myges-action="reprendre"/);
+    assert.match(html, /data-myges-action="lancer"/);
+    assert.doesNotMatch(rendreEtatMyges(base), /data-myges-action="reprendre"/);
+    const erreur = rendreEtatMyges({ ...base, etape: 'erreur', erreur: { code: 'claude_incomplet', message: 'x' }, enAttente: ['a'] });
+    assert.match(erreur, /avant d’avoir tout intégré/);
+    assert.match(erreur, /data-myges-action="reprendre"/);
+  });
+
+  it('signale une reprise en cours', () => {
+    const html = rendreEtatMyges({ ...base, etape: 'claude', reprise: true, enAttente: ['Rust/Sources/a.pdf'] });
+    assert.match(html, /Reprise : Claude termine/);
+    assert.match(html, /Rust\/Sources\/a\.pdf/);
+  });
+
   it('explique les erreurs', () => {
     assert.match(rendreEtatMyges({ ...base, etape: 'erreur', erreur: { code: 'identifiants_manquants', message: 'x' } }), /MYGES_IDENTIFIANT/);
     assert.match(rendreEtatMyges({ ...base, etape: 'erreur', erreur: { code: 'identifiants_refuses', message: 'x' } }), /identifiant MyGES/);

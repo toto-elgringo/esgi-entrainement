@@ -1,0 +1,105 @@
+[
+  {
+    "question": "Que vaut $\\det \\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$ ?",
+    "choix": ["$1$", "$11$", "$-1$", "$6$"],
+    "reponse": 0,
+    "explication": "$ad - bc = 2 \\times 3 - 5 \\times 1 = 6 - 5 = 1$."
+  },
+  {
+    "question": "Le mineur $M_{ij}$ d'une matrice est :",
+    "choix": [
+      "le coefficient à la ligne $i$, colonne $j$",
+      "le déterminant de la matrice obtenue en barrant la ligne $i$ et la colonne $j$",
+      "le produit des coefficients de la ligne $i$",
+      "la somme de la ligne $i$ et de la colonne $j$"
+    ],
+    "reponse": 1,
+    "explication": "On supprime la ligne $i$ et la colonne $j$, puis on calcule le déterminant de ce qui reste. Le cofacteur ajoute le signe : $C_{ij} = (-1)^{i+j} M_{ij}$."
+  },
+  {
+    "question": "Quel est le signe du cofacteur de $a_{23}$ dans une matrice $3 \\times 3$ ?",
+    "choix": ["$+$", "$-$", "Ça dépend de $a_{23}$", "Il n'y a pas de signe"],
+    "reponse": 1,
+    "explication": "$(-1)^{2+3} = (-1)^5 = -1$. Dans le damier des signes, la case (2, 3) est un $-$."
+  },
+  {
+    "question": "Pour développer un déterminant par cofacteurs, quelle ligne vaut-il mieux choisir ?",
+    "choix": ["Toujours la première", "Celle qui contient le plus de zéros", "Celle qui a les plus grands nombres", "La dernière"],
+    "reponse": 1,
+    "explication": "Le résultat est le même quelle que soit la ligne, mais chaque $0$ supprime un mineur à calculer : on gagne du temps."
+  },
+  {
+    "question": "La règle de Sarrus s'applique aux matrices de taille :",
+    "choix": ["$2 \\times 2$ seulement", "$3 \\times 3$ seulement", "toutes les tailles", "$4 \\times 4$ et plus"],
+    "reponse": 1,
+    "explication": "Sarrus est le développement par cofacteurs écrit en entier, mais **uniquement** pour une matrice $3 \\times 3$. En $4 \\times 4$, on revient aux cofacteurs."
+  },
+  {
+    "question": "Que vaut $\\det \\begin{pmatrix} 3 & 8 & -1 \\\\ 0 & 2 & 5 \\\\ 0 & 0 & -1 \\end{pmatrix}$ ?",
+    "choix": ["$-6$", "$6$", "$4$", "$0$"],
+    "reponse": 0,
+    "explication": "La matrice est triangulaire : le déterminant est le produit de la diagonale, $3 \\times 2 \\times (-1) = -6$."
+  },
+  {
+    "question": "$\\det(A) = 4$ et $\\det(B) = -3$. Que vaut $\\det(AB)$ ?",
+    "choix": ["$1$", "$-12$", "$12$", "$7$"],
+    "reponse": 1,
+    "explication": "$\\det(AB) = \\det(A) \\times \\det(B) = 4 \\times (-3) = -12$."
+  },
+  {
+    "question": "Si $\\det(A) = 0$, alors :",
+    "choix": [
+      "$A$ est inversible",
+      "$A$ n'est pas inversible et ses colonnes sont liées",
+      "$A$ est la matrice nulle",
+      "$A$ est la matrice identité"
+    ],
+    "reponse": 1,
+    "explication": "$\\det(A) \\neq 0 \\iff A$ inversible $\\iff$ colonnes libres. Un déterminant nul signifie que la matrice écrase l'espace : pas de retour possible."
+  },
+  {
+    "question": "Quelle est l'inverse de $A = \\begin{pmatrix} 2 & 1 \\\\ 3 & 2 \\end{pmatrix}$ ?",
+    "choix": [
+      "$\\begin{pmatrix} 2 & -1 \\\\ -3 & 2 \\end{pmatrix}$",
+      "$\\begin{pmatrix} 2 & 1 \\\\ 3 & 2 \\end{pmatrix}$",
+      "$\\begin{pmatrix} -2 & 1 \\\\ 3 & -2 \\end{pmatrix}$",
+      "$\\begin{pmatrix} 1/2 & 1 \\\\ 1/3 & 1/2 \\end{pmatrix}$"
+    ],
+    "reponse": 0,
+    "explication": "$\\det(A) = 4 - 3 = 1$. On échange la diagonale ($2$ et $2$), on change le signe des deux autres, et on divise par $1$ : $\\begin{pmatrix} 2 & -1 \\\\ -3 & 2 \\end{pmatrix}$."
+  },
+  {
+    "question": "Pendant le pivot de Gauss, une ligne devient $0 = 0$. Le système a :",
+    "choix": ["aucune solution", "une seule solution", "une infinité de solutions", "deux solutions"],
+    "reponse": 2,
+    "explication": "Une équation a disparu : elle était une combinaison des autres. Il reste moins d'équations que d'inconnues, d'où un paramètre libre et une infinité de solutions."
+  },
+  {
+    "question": "Pendant le pivot de Gauss, une ligne devient $0 = 4$. Le système a :",
+    "choix": ["aucune solution", "une seule solution", "une infinité de solutions", "la solution $x = 4$"],
+    "reponse": 0,
+    "explication": "$0 = 4$ est impossible : les équations se contredisent, le système n'a **aucune** solution."
+  },
+  {
+    "question": "Dans la règle de Cramer, comment obtient-on $\\Delta_x$ ?",
+    "choix": [
+      "En remplaçant la colonne de $x$ par le second membre",
+      "En remplaçant la ligne 1 par le second membre",
+      "En barrant la colonne de $x$",
+      "En multipliant $\\Delta$ par $x$"
+    ],
+    "reponse": 0,
+    "explication": "$\\Delta_x$ est le déterminant de la matrice où la colonne des coefficients de $x$ est remplacée par le second membre. Ensuite, $x = \\Delta_x / \\Delta$."
+  },
+  {
+    "question": "Pourquoi les bibliothèques de calcul utilisent-elles le pivot de Gauss plutôt que Cramer pour les grands systèmes ?",
+    "choix": [
+      "Cramer donne des résultats faux",
+      "Cramer demande beaucoup trop de déterminants quand le système grandit",
+      "Le pivot ne marche que pour les petits systèmes",
+      "Cramer ne marche qu'avec des nombres entiers"
+    ],
+    "reponse": 1,
+    "explication": "Cramer est pratique pour 2 ou 3 inconnues, mais le nombre de déterminants à calculer explose ensuite. Le pivot marche pour toutes les tailles, et il détecte aussi les cas « infinité » et « aucune solution »."
+  }
+]

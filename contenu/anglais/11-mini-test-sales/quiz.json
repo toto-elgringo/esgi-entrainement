@@ -1,0 +1,112 @@
+[
+  {
+    "question": "*We need to call the ...... to change the colour of the chairs we ordered.*",
+    "choix": [
+      "supply",
+      "supplied",
+      "supplier",
+      "supplies"
+    ],
+    "reponse": 2,
+    "explication": "*the* + celui qui fournit la commande : *supplier* (le fournisseur)."
+  },
+  {
+    "question": "*All the jackets were ...... down to $25.*",
+    "choix": [
+      "sold",
+      "marked",
+      "closed",
+      "shopped"
+    ],
+    "reponse": 1,
+    "explication": "*mark down* = baisser un prix ; au passif : *were marked down*."
+  },
+  {
+    "question": "*The bakery thanked its regular customers for their ......*",
+    "choix": [
+      "patron",
+      "patronize",
+      "patronage",
+      "patronizing"
+    ],
+    "reponse": 2,
+    "explication": "*their* + nom ; *patronage* = la fidélité des clients (synonyme de *custom*)."
+  },
+  {
+    "question": "*If you drive in the bus lane, you will get a ......*",
+    "choix": [
+      "fee",
+      "fine",
+      "rebate",
+      "charge"
+    ],
+    "reponse": 1,
+    "explication": "Une punition = une amende = *a fine*. Un *fee* est un frais normal."
+  },
+  {
+    "question": "*Thank you for ...... to deliver our goods at such short notice.*",
+    "choix": [
+      "agree",
+      "agreed",
+      "to agree",
+      "agreeing"
+    ],
+    "reponse": 3,
+    "explication": "*thank you for* + verbe en -ing."
+  },
+  {
+    "question": "*Our clients expect fast delivery; ......, they will go to our competitors.*",
+    "choix": [
+      "otherwise",
+      "therefore",
+      "moreover",
+      "meanwhile"
+    ],
+    "reponse": 0,
+    "explication": "*otherwise* = sinon. *therefore* = donc, *moreover* = de plus, *meanwhile* = pendant ce temps."
+  },
+  {
+    "question": "Une boutique est ouverte jusqu'à 21 h *every weeknight*. Quels jours ?",
+    "choix": [
+      "Le samedi et le dimanche",
+      "Du lundi au vendredi",
+      "Tous les jours",
+      "Une fois par semaine"
+    ],
+    "reponse": 1,
+    "explication": "*weeknight* = un soir de semaine, du lundi au vendredi. Le week-end se dit *weekend*."
+  },
+  {
+    "question": "Dans une question *What is NOT mentioned?*, la bonne réponse est...",
+    "choix": [
+      "la première information du texte",
+      "l'information qu'on ne trouve nulle part dans le texte",
+      "l'information répétée deux fois",
+      "la réponse la plus longue"
+    ],
+    "reponse": 1,
+    "explication": "On cherche chaque proposition dans le texte et on élimine celles qu'on trouve."
+  },
+  {
+    "question": "Pour placer une phrase dans un texte (*In which position does the sentence best belong?*), il faut d'abord...",
+    "choix": [
+      "la mettre toujours à la fin",
+      "repérer un mot qui la relie au texte (*this, these, the time window...*)",
+      "compter les mots de chaque paragraphe",
+      "choisir la place la plus proche du titre"
+    ],
+    "reponse": 1,
+    "explication": "La phrase reprend ou annonce une idée : son mot de lien indique où elle se place."
+  },
+  {
+    "question": "*I tried to assemble it for two hours, but I had to give up in the end.* Que veut dire *give up* ?",
+    "choix": [
+      "offrir",
+      "abandonner",
+      "rendre",
+      "recommencer"
+    ],
+    "reponse": 1,
+    "explication": "*give up* = abandonner, arrêter d'essayer. *give back* = rendre."
+  }
+]

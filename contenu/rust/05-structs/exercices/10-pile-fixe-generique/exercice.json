@@ -1,0 +1,10 @@
+{
+  "titre": "La pile fixe générique (const générique)",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Commence par l'en-tête : `struct PileFixe<T, const N: usize> { cases: [T; N], taille: usize }`, puis `impl<T, const N: usize> PileFixe<T, N> { ... }`.",
+    "Partout où le code dit `u8`, mets `T` ; partout où il dit `3`, mets `N`. `depuis_tableau(cases: [T; N]) -> Self` renvoie `Self { cases, taille: 0 }`, et `capacite` renvoie simplement `N`.",
+    "`depiler` renvoie `Option<&T>` : `self.taille -= 1; Some(&self.cases[self.taille])`. Avec `Some(self.cases[self.taille])` (sans `&`), le compilateur refuse de sortir un `T` du tableau (E0507)."
+  ]
+}

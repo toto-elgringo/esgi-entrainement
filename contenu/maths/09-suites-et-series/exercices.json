@@ -1,0 +1,455 @@
+[
+  {
+    "id": "convergence-ou-divergence",
+    "titre": "Converge ou diverge ?",
+    "difficulte": 1,
+    "enonce": "Pour chaque suite, dis ce qu'elle fait quand $n$ devient grand. Pour une limite, donne un nombre. Un raisonnement rapide suffit.",
+    "questions": [
+      {
+        "intitule": "Limite de $a_n = \\dfrac{4}{n+2}$",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": ["2", "4"]
+      },
+      {
+        "intitule": "Limite de $b_n = 5 - \\dfrac{3}{n}$",
+        "type": "nombre",
+        "reponse": 5,
+        "refuses": ["2", "0", "-3"]
+      },
+      {
+        "intitule": "$c_n = 2 \\times (-1)^n$",
+        "type": "choix",
+        "choix": ["Converge vers $0$", "Converge vers $2$", "Diverge en oscillant", "Diverge vers $+\\infty$"],
+        "reponse": 2
+      },
+      {
+        "intitule": "$d_n = 3n - 2$",
+        "type": "choix",
+        "choix": ["Converge vers $3$", "Converge vers $-2$", "Diverge en oscillant", "Diverge vers $+\\infty$"],
+        "reponse": 3
+      },
+      {
+        "intitule": "Limite de $e_n = 0{,}3^n$",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": ["0.3", "1"]
+      }
+    ],
+    "indices": [
+      "Une fraction dont le numérateur reste fixe et dont le dénominateur grandit sans fin se rapproche de $0$.",
+      "$(-1)^n$ vaut $1, -1, 1, -1, \\dots$ ; une puissance $q^n$ avec $\\lvert q \\rvert < 1$ tend vers $0$."
+    ],
+    "correction": "- $\\dfrac{4}{n+2} \\to 0$ : le dénominateur devient immense.\n- $\\dfrac{3}{n} \\to 0$, donc $5 - \\dfrac{3}{n} \\to 5$.\n- $2 \\times (-1)^n$ vaut $2, -2, 2, -2, \\dots$ : elle ne se pose sur aucune valeur, elle **diverge en oscillant**.\n- $3n - 2$ augmente de $3$ à chaque rang : elle **diverge vers $+\\infty$**.\n- $0{,}3^n$ est géométrique de raison $0{,}3$, et $\\lvert 0{,}3 \\rvert < 1$ : elle tend vers $0$."
+  },
+  {
+    "id": "formules-explicites",
+    "titre": "Suites arithmétiques et géométriques",
+    "difficulte": 1,
+    "enonce": "On considère deux suites :\n\n- $(u_n)$ arithmétique, avec $u_0 = 7$ et $u_{n+1} = u_n + 3$ ;\n- $(w_n)$ géométrique, avec $w_0 = 5$ et $w_{n+1} = 2\\,w_n$.\n\nPour les formules, écris une expression en `n` (par exemple `7 + 3n` ou `5*2^n`).",
+    "questions": [
+      {
+        "intitule": "Formule explicite de $u_n$",
+        "type": "expression",
+        "variable": "n",
+        "reponse": "7 + 3n",
+        "acceptes": ["3n+7", "3(n+1)+4"],
+        "refuses": ["7n + 3", "7 + 3(n-1)", "7*3^n"]
+      },
+      {
+        "intitule": "Valeur de $u_{20}$",
+        "type": "nombre",
+        "reponse": 67,
+        "refuses": ["64", "143"]
+      },
+      {
+        "intitule": "Formule explicite de $w_n$",
+        "type": "expression",
+        "variable": "n",
+        "reponse": "5*2^n",
+        "acceptes": ["5×2^n", "5(2^n)"],
+        "refuses": ["10^n", "5 + 2n", "5*2^(n-1)"]
+      },
+      {
+        "intitule": "Valeur de $w_6$",
+        "type": "nombre",
+        "reponse": 320,
+        "refuses": ["160", "64", "17"]
+      },
+      {
+        "intitule": "Laquelle des deux suites converge ?",
+        "type": "choix",
+        "choix": ["$(u_n)$", "$(w_n)$", "Les deux", "Aucune des deux"],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "Arithmétique : on ajoute la raison $r$ à chaque rang, donc $u_n = u_0 + n\\,r$. Géométrique : on multiplie par $q$, donc $w_n = w_0 \\times q^n$.",
+      "Une suite arithmétique de raison non nulle diverge. Une suite géométrique de raison $q$ avec $\\lvert q \\rvert > 1$ diverge aussi."
+    ],
+    "correction": "- $u_n = u_0 + n\\,r = 7 + 3n$, donc $u_{20} = 7 + 60 = 67$.\n- $w_n = w_0 \\times q^n = 5 \\times 2^n$, donc $w_6 = 5 \\times 64 = 320$.\n- $(u_n)$ a une raison $r = 3 \\neq 0$ : elle part vers $+\\infty$. $(w_n)$ a une raison $q = 2$, avec $\\lvert q \\rvert > 1$ : elle part aussi vers $+\\infty$. **Aucune des deux ne converge.**"
+  },
+  {
+    "id": "monotone-et-bornee",
+    "titre": "Le critère monotone et bornée",
+    "difficulte": 1,
+    "enonce": "Soit $u_n = 4 - \\dfrac{3}{n+1}$ pour $n \\ge 0$.\n\nPour la première question, donne les trois valeurs séparées par des virgules (point pour les décimales), par exemple `(1, 2.5, 3)`.",
+    "questions": [
+      {
+        "intitule": "$(u_0, u_1, u_2)$",
+        "type": "vecteur",
+        "reponse": [1, 2.5, 3],
+        "acceptes": ["(1; 2,5; 3)", "1, 5/2, 3"],
+        "refuses": ["(4, 2.5, 3)", "(1, 3, 2.5)"]
+      },
+      {
+        "intitule": "Quand $n$ augmente, la suite semble :",
+        "type": "choix",
+        "choix": ["croissante", "décroissante", "constante", "ni croissante ni décroissante"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Pourquoi a-t-on $u_n < 4$ pour tout $n$ ?",
+        "type": "choix",
+        "choix": ["Car $\\dfrac{3}{n+1} > 0$, donc on retire toujours quelque chose de positif à $4$", "Car $u_0 = 1$", "Car la suite est croissante", "Car $n + 1 > 3$"],
+        "reponse": 0
+      },
+      {
+        "intitule": "Vers quelle valeur la suite converge-t-elle ?",
+        "type": "nombre",
+        "reponse": 4,
+        "refuses": ["3", "1", "0"]
+      }
+    ],
+    "indices": [
+      "Remplace $n$ par $0$, $1$ puis $2$ : $u_1 = 4 - \\dfrac{3}{2}$.",
+      "On retire à $4$ un nombre positif qui rétrécit quand $n$ grandit : la suite monte, sans jamais atteindre $4$. Croissante + majorée, donc convergente."
+    ],
+    "correction": "- $u_0 = 4 - 3 = 1$, $u_1 = 4 - 1{,}5 = 2{,}5$, $u_2 = 4 - 1 = 3$.\n- Quand $n$ augmente, $\\dfrac{3}{n+1}$ diminue : on retire de moins en moins, la suite est **croissante**.\n- Comme $\\dfrac{3}{n+1} > 0$, on a toujours $u_n < 4$ : la suite est **majorée** par $4$.\n- Croissante et majorée, elle **converge** (critère admis). Et puisque $\\dfrac{3}{n+1} \\to 0$, sa limite est $4$."
+  },
+  {
+    "id": "arithmetico-geometrique",
+    "titre": "Suite arithmético-géométrique",
+    "difficulte": 2,
+    "enonce": "Soit $u_{n+1} = 0{,}75\\,u_n + 5$ avec $u_0 = 2$. On applique la méthode en trois étapes : point fixe, suite auxiliaire $v_n = u_n - \\ell$, retour à $u_n$.",
+    "questions": [
+      {
+        "intitule": "Point fixe $\\ell$ (solution de $\\ell = 0{,}75\\,\\ell + 5$)",
+        "type": "nombre",
+        "reponse": 20,
+        "refuses": ["5", "6.666667", "-20"]
+      },
+      {
+        "intitule": "$(v_n)$ est géométrique. Quelle est sa raison ?",
+        "type": "nombre",
+        "reponse": 0.75,
+        "acceptes": ["3/4", "0,75"],
+        "refuses": ["5", "0.25", "20"]
+      },
+      {
+        "intitule": "Valeur de $v_0$",
+        "type": "nombre",
+        "reponse": -18,
+        "refuses": ["18", "2", "-20"]
+      },
+      {
+        "intitule": "Expression de $u_n$ en fonction de `n`",
+        "type": "expression",
+        "variable": "n",
+        "reponse": "20 - 18*0.75^n",
+        "acceptes": ["20 + (2 - 20)*0.75^n", "20-18(3/4)^n"],
+        "refuses": ["20 - 18*0.25^n", "2*0.75^n + 5", "20 + 18*0.75^n"]
+      },
+      {
+        "intitule": "Limite de $(u_n)$",
+        "type": "nombre",
+        "reponse": 20,
+        "refuses": ["2", "0", "5"]
+      }
+    ],
+    "indices": [
+      "$\\ell = 0{,}75\\,\\ell + 5 \\iff 0{,}25\\,\\ell = 5$.",
+      "$v_{n+1} = u_{n+1} - \\ell = 0{,}75\\,u_n + 5 - 20 = 0{,}75\\,(u_n - 20)$ : la raison est le coefficient devant $u_n$.",
+      "$u_n = \\ell + (u_0 - \\ell)\\,a^n$, et $0{,}75^n \\to 0$."
+    ],
+    "correction": "1. **Point fixe.** $\\ell = 0{,}75\\,\\ell + 5 \\iff 0{,}25\\,\\ell = 5 \\iff \\ell = 20$ (ou directement $\\ell = \\dfrac{b}{1-a} = \\dfrac{5}{0{,}25}$).\n2. **Suite auxiliaire.** $v_{n+1} = u_{n+1} - 20 = 0{,}75\\,u_n - 15 = 0{,}75\\,(u_n - 20) = 0{,}75\\,v_n$ : $(v_n)$ est géométrique de raison $0{,}75$, avec $v_0 = 2 - 20 = -18$.\n3. **Retour à $u$.** $v_n = -18 \\times 0{,}75^n$, donc $u_n = 20 - 18 \\times 0{,}75^n$.\n\nComme $\\lvert 0{,}75 \\rvert < 1$, $0{,}75^n \\to 0$ et $u_n \\to 20$."
+  },
+  {
+    "id": "serie-geometrique-finie",
+    "titre": "Sommes géométriques finies",
+    "difficulte": 2,
+    "enonce": "Utilise la formule $\\displaystyle\\sum_{n=0}^{N} q^n = \\frac{1 - q^{N+1}}{1 - q}$ (pour $q \\neq 1$). Tu peux répondre par une fraction (`121/81`).",
+    "questions": [
+      {
+        "intitule": "$\\displaystyle\\sum_{n=0}^{5} 2^n$",
+        "type": "nombre",
+        "reponse": 63,
+        "refuses": ["31", "64", "127"]
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{n=0}^{4} \\left(\\frac{1}{3}\\right)^n$",
+        "type": "nombre",
+        "reponse": "121/81",
+        "acceptes": ["(1-(1/3)^5)/(1-1/3)", "1 + 1/3 + 1/9 + 1/27 + 1/81"],
+        "refuses": ["3/2", "40/27", "1.5"]
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{n=0}^{3} (-2)^n$",
+        "type": "nombre",
+        "reponse": -5,
+        "refuses": ["5", "15", "11"]
+      }
+    ],
+    "indices": [
+      "Compte les termes : de $n = 0$ à $n = N$, il y en a $N + 1$, d'où l'exposant $N + 1$.",
+      "Pour $q = 2$ et $N = 5$ : $\\dfrac{1 - 2^6}{1 - 2} = \\dfrac{1 - 64}{-1}$."
+    ],
+    "correction": "- $\\displaystyle\\sum_{n=0}^{5} 2^n = \\frac{1 - 2^6}{1 - 2} = \\frac{-63}{-1} = 63$ (vérification : $1 + 2 + 4 + 8 + 16 + 32 = 63$).\n- $\\displaystyle\\sum_{n=0}^{4} \\left(\\tfrac13\\right)^n = \\frac{1 - \\left(\\frac13\\right)^5}{1 - \\frac13} = \\frac{\\frac{242}{243}}{\\frac23} = \\frac{242 \\times 3}{243 \\times 2} = \\frac{121}{81} \\approx 1{,}494$.\n- $\\displaystyle\\sum_{n=0}^{3} (-2)^n = \\frac{1 - (-2)^4}{1 - (-2)} = \\frac{1 - 16}{3} = -5$ (vérification : $1 - 2 + 4 - 8 = -5$)."
+  },
+  {
+    "id": "serie-geometrique-infinie",
+    "titre": "Séries géométriques infinies",
+    "difficulte": 2,
+    "enonce": "Pour chaque série, dis si elle converge et, si oui, donne sa somme (une fraction suffit).",
+    "questions": [
+      {
+        "intitule": "$\\displaystyle\\sum_{n=0}^{+\\infty} \\left(\\frac{2}{5}\\right)^n$",
+        "type": "nombre",
+        "reponse": "5/3",
+        "acceptes": ["1/(1-2/5)", "1/(3/5)"],
+        "refuses": ["2/5", "3/5", "5/2"]
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{n=0}^{+\\infty} \\left(-\\frac{1}{2}\\right)^n$",
+        "type": "nombre",
+        "reponse": "2/3",
+        "acceptes": ["1/(1+1/2)", "1/1.5"],
+        "refuses": ["2", "-2", "1/2"]
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{n=1}^{+\\infty} \\left(\\frac{1}{3}\\right)^n$ (attention au premier indice)",
+        "type": "nombre",
+        "reponse": "1/2",
+        "acceptes": ["3/2 - 1", "0.5"],
+        "refuses": ["3/2", "1/3"]
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{n=0}^{+\\infty} 1{,}5^n$",
+        "type": "choix",
+        "choix": ["Converge vers $\\dfrac{1}{1 - 1{,}5} = -2$", "Converge vers $3$", "Diverge", "Converge vers $0$"],
+        "reponse": 2
+      }
+    ],
+    "indices": [
+      "Si $\\lvert q \\rvert < 1$ : $\\displaystyle\\sum_{n=0}^{+\\infty} q^n = \\frac{1}{1-q}$. Si $\\lvert q \\rvert \\ge 1$ : la série diverge.",
+      "Quand la somme commence à $n = 1$, il manque le terme $q^0 = 1$ : on le retire du résultat."
+    ],
+    "correction": "- $\\lvert \\tfrac25 \\rvert < 1$ : la somme vaut $\\dfrac{1}{1 - \\frac25} = \\dfrac{1}{\\frac35} = \\dfrac{5}{3}$.\n- $\\lvert -\\tfrac12 \\rvert < 1$ : la somme vaut $\\dfrac{1}{1 - \\left(-\\frac12\\right)} = \\dfrac{1}{\\frac32} = \\dfrac{2}{3}$. Une raison négative n'empêche pas la convergence.\n- À partir de $n = 0$, on aurait $\\dfrac{1}{1 - \\frac13} = \\dfrac32$. Il faut retirer le terme $n = 0$, qui vaut $1$ : $\\dfrac32 - 1 = \\dfrac12$.\n- $1{,}5 \\ge 1$ : les termes grandissent, la série **diverge**. La formule $\\dfrac{1}{1-q}$ n'a aucun sens ici (elle donnerait même un nombre négatif pour une somme de nombres positifs)."
+  },
+  {
+    "id": "critere-grossier",
+    "titre": "Le critère grossier",
+    "difficulte": 2,
+    "enonce": "Pour chaque série, dis si le critère grossier permet de conclure à la divergence, ou s'il ne permet pas de conclure.",
+    "questions": [
+      {
+        "intitule": "Limite du terme général $\\dfrac{3n - 1}{n}$ quand $n \\to +\\infty$",
+        "type": "nombre",
+        "reponse": 3,
+        "refuses": ["0", "-1"]
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{n=1}^{+\\infty} \\frac{3n - 1}{n}$",
+        "type": "choix",
+        "choix": ["Diverge : le terme général ne tend pas vers $0$", "Le critère grossier ne permet pas de conclure"],
+        "reponse": 0
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{n=1}^{+\\infty} \\frac{1}{n^2}$",
+        "type": "choix",
+        "choix": ["Diverge : le terme général ne tend pas vers $0$", "Le critère grossier ne permet pas de conclure"],
+        "reponse": 1
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{n=0}^{+\\infty} (-1)^n$",
+        "type": "choix",
+        "choix": ["Diverge : le terme général ne tend pas vers $0$", "Le critère grossier ne permet pas de conclure"],
+        "reponse": 0
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{n=1}^{+\\infty} \\frac{1}{n}$",
+        "type": "choix",
+        "choix": ["Diverge : le terme général ne tend pas vers $0$", "Le critère grossier ne permet pas de conclure"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "Le critère grossier ne regarde qu'une chose : est-ce que le terme général tend vers $0$ ?",
+      "S'il ne tend **pas** vers $0$ : divergence. S'il tend vers $0$ : le critère se tait, il ne dit ni « converge » ni « diverge »."
+    ],
+    "correction": "- $\\dfrac{3n - 1}{n} = 3 - \\dfrac1n \\to 3 \\neq 0$ : la série **diverge** (on ajoute presque $3$ à chaque fois).\n- $\\dfrac{1}{n^2} \\to 0$ : le critère grossier **ne permet pas de conclure** (il faut un autre outil).\n- $(-1)^n$ vaut $1, -1, 1, \\dots$ et ne tend vers aucune limite, donc pas vers $0$ : la série **diverge**.\n- $\\dfrac1n \\to 0$ : le critère **ne permet pas de conclure**. (On sait par ailleurs que cette série diverge : c'est l'exemple qui montre que la réciproque du critère est fausse.)"
+  },
+  {
+    "id": "exponentielle-en-serie",
+    "titre": "L'exponentielle comme une somme infinie",
+    "difficulte": 2,
+    "enonce": "On rappelle que $e^x = \\displaystyle\\sum_{n=0}^{+\\infty} \\frac{x^n}{n!} = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\dots$ On ne garde que les premiers termes pour obtenir une valeur approchée. Réponds au millième près (ou par une fraction).",
+    "questions": [
+      {
+        "intitule": "Pour $x = 1$, somme des termes de $n = 0$ à $n = 3$",
+        "type": "nombre",
+        "reponse": "8/3",
+        "tolerance": 0.001,
+        "acceptes": ["2.667", "1 + 1 + 1/2 + 1/6"],
+        "refuses": ["2.5", "2.718"]
+      },
+      {
+        "intitule": "Valeur du terme suivant ($n = 4$) pour $x = 1$",
+        "type": "nombre",
+        "reponse": "1/24",
+        "tolerance": 0.001,
+        "acceptes": ["0.042", "1/4!"],
+        "refuses": ["1/4", "1/12"]
+      },
+      {
+        "intitule": "Pour $x = 0{,}5$, somme des termes de $n = 0$ à $n = 3$",
+        "type": "nombre",
+        "reponse": "1 + 0.5 + 0.5^2/2 + 0.5^3/6",
+        "tolerance": 0.001,
+        "acceptes": ["1.646", "79/48"],
+        "refuses": ["1.5", "1.625"]
+      },
+      {
+        "intitule": "Explique en une phrase pourquoi ajouter des termes rapproche l'estimation de la vraie valeur.",
+        "type": "auto",
+        "reponse": "Chaque terme ajouté est **positif** (pour $x > 0$) et **de plus en plus petit**, car $n!$ grandit très vite : la somme partielle monte vers $e^x$ par petits pas qui fondent, sans jamais la dépasser."
+      }
+    ],
+    "indices": [
+      "$0! = 1$, $1! = 1$, $2! = 2$, $3! = 6$, $4! = 24$.",
+      "Pour $x = 0{,}5$ : $1 + 0{,}5 + \\dfrac{0{,}25}{2} + \\dfrac{0{,}125}{6}$."
+    ],
+    "correction": "- Pour $x = 1$ : $1 + 1 + \\dfrac12 + \\dfrac16 = \\dfrac{8}{3} \\approx 2{,}667$, contre $e \\approx 2{,}718$ : l'écart est d'environ $0{,}05$ avec seulement 4 termes.\n- Le terme suivant vaut $\\dfrac{1}{4!} = \\dfrac{1}{24} \\approx 0{,}042$ : en l'ajoutant, on obtient $\\approx 2{,}708$.\n- Pour $x = 0{,}5$ : $1 + 0{,}5 + 0{,}125 + 0{,}0208 \\approx 1{,}646$, contre $e^{0{,}5} \\approx 1{,}649$. Plus $x$ est proche de $0$, plus quelques termes suffisent.\n- Les termes $\\dfrac{x^n}{n!}$ sont positifs et rétrécissent très vite : chacun rapproche un peu plus la somme de $e^x$."
+  },
+  {
+    "id": "iteration-point-fixe",
+    "titre": "Une boucle qui se stabilise",
+    "difficulte": 2,
+    "enonce": "Un algorithme part de $u_0 = 0$ et répète la mise à jour $u_{n+1} = 0{,}4\\,u_n + 3$. Donne les valeurs séparées par des virgules (point pour les décimales).",
+    "questions": [
+      {
+        "intitule": "$(u_1, u_2, u_3)$",
+        "type": "vecteur",
+        "reponse": [3, 4.2, 4.68],
+        "acceptes": ["(3; 4,2; 4,68)"],
+        "refuses": ["(3, 4.2, 4.8)", "(0, 3, 4.2)"]
+      },
+      {
+        "intitule": "Point fixe $\\ell$ (solution de $\\ell = 0{,}4\\,\\ell + 3$)",
+        "type": "nombre",
+        "reponse": 5,
+        "refuses": ["3", "7.5", "4.68"]
+      },
+      {
+        "intitule": "Expression de $u_n$ en fonction de `n`",
+        "type": "expression",
+        "variable": "n",
+        "reponse": "5 - 5*0.4^n",
+        "acceptes": ["5(1 - 0.4^n)", "5 + (0-5)*0.4^n"],
+        "refuses": ["5*0.4^n", "3 - 3*0.4^n", "5 - 5*0.6^n"]
+      }
+    ],
+    "indices": [
+      "$u_1 = 0{,}4 \\times 0 + 3$, puis $u_2 = 0{,}4 \\times 3 + 3$.",
+      "$0{,}6\\,\\ell = 3$. Ensuite, $u_n = \\ell + (u_0 - \\ell)\\,a^n$."
+    ],
+    "correction": "- $u_1 = 3$, $u_2 = 0{,}4 \\times 3 + 3 = 4{,}2$, $u_3 = 0{,}4 \\times 4{,}2 + 3 = 4{,}68$ : les valeurs se rapprochent de $5$.\n- $\\ell = 0{,}4\\,\\ell + 3 \\iff 0{,}6\\,\\ell = 3 \\iff \\ell = 5$ : c'est bien la valeur vers laquelle la boucle se dirige.\n- $u_n = 5 + (0 - 5) \\times 0{,}4^n = 5 - 5 \\times 0{,}4^n$. Comme $0{,}4^n \\to 0$, la boucle se stabilise sur $5$."
+  },
+  {
+    "id": "diagramme-en-escalier",
+    "titre": "Escalier ou spirale ?",
+    "difficulte": 3,
+    "enonce": "On considère $u_{n+1} = -0{,}5\\,u_n + 9$ avec $u_0 = 0$, soit $f(x) = -0{,}5\\,x + 9$. Donne les valeurs séparées par des virgules (point pour les décimales).",
+    "questions": [
+      {
+        "intitule": "$(u_1, u_2, u_3, u_4)$",
+        "type": "vecteur",
+        "reponse": [9, 4.5, 6.75, 5.625],
+        "acceptes": ["(9; 4,5; 6,75; 5,625)"],
+        "refuses": ["(9, 13.5, 2.25, 7.875)", "(9, 4.5, 6.75, 5.5)"]
+      },
+      {
+        "intitule": "Point fixe $\\ell$",
+        "type": "nombre",
+        "reponse": 6,
+        "refuses": ["18", "9", "-18"]
+      },
+      {
+        "intitule": "Que font les écarts $u_n - \\ell$ ?",
+        "type": "choix",
+        "choix": ["Ils sont tous positifs", "Ils sont tous négatifs", "Ils changent de signe à chaque rang", "Ils sont nuls à partir de $u_2$"],
+        "reponse": 2
+      },
+      {
+        "intitule": "Sur un diagramme en escalier, la trajectoire ressemble à :",
+        "type": "choix",
+        "choix": ["un escalier qui monte sans revenir en arrière", "une spirale qui s'enroule vers le point fixe", "une spirale qui s'éloigne du point fixe", "une droite"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "$u_1 = 9$, puis $u_2 = -0{,}5 \\times 9 + 9$.",
+      "$\\ell = -0{,}5\\,\\ell + 9 \\iff 1{,}5\\,\\ell = 9$.",
+      "$u_n - \\ell$ est géométrique de raison $a = -0{,}5$ : négative, mais de valeur absolue inférieure à $1$."
+    ],
+    "correction": "- $u_1 = 9$, $u_2 = -4{,}5 + 9 = 4{,}5$, $u_3 = -2{,}25 + 9 = 6{,}75$, $u_4 = -3{,}375 + 9 = 5{,}625$.\n- $\\ell = -0{,}5\\,\\ell + 9 \\iff 1{,}5\\,\\ell = 9 \\iff \\ell = 6$.\n- Écarts : $-6$, $+3$, $-1{,}5$, $+0{,}75$, $-0{,}375$ : ils **changent de signe** à chaque rang et sont divisés par $2$ en valeur absolue.\n- La raison $a = -0{,}5$ est **négative** : la suite passe alternativement au-dessus et en dessous de $6$. Comme $\\lvert a \\rvert < 1$, les écarts fondent : c'est une **spirale qui rentre** vers le point fixe $(6, 6)$. (Avec une raison positive, on aurait un escalier.)"
+  },
+  {
+    "id": "taux-apprentissage",
+    "titre": "Taux d'apprentissage et convergence",
+    "difficulte": 3,
+    "enonce": "Une descente de gradient très simplifiée met à jour un paramètre par $\\theta_{n+1} = \\theta_n - \\eta\\,\\theta_n = (1 - \\eta)\\,\\theta_n$, avec $\\theta_0 = 20$. Le réel $\\eta > 0$ est le taux d'apprentissage. Donne les valeurs séparées par des virgules (point pour les décimales).",
+    "questions": [
+      {
+        "intitule": "Pour $\\eta = 0{,}25$ : $(\\theta_1, \\theta_2, \\theta_3)$",
+        "type": "vecteur",
+        "reponse": [15, 11.25, 8.4375],
+        "acceptes": ["(15; 11,25; 8,4375)"],
+        "refuses": ["(5, 1.25, 0.3125)", "(15, 10, 5)"]
+      },
+      {
+        "intitule": "Pour $\\eta = 0{,}25$, expression de $\\theta_n$ en fonction de `n`",
+        "type": "expression",
+        "variable": "n",
+        "reponse": "20*0.75^n",
+        "acceptes": ["20(3/4)^n"],
+        "refuses": ["20*0.25^n", "20 - 5n", "15^n"]
+      },
+      {
+        "intitule": "Pour $\\eta = 2{,}2$ : $(\\theta_1, \\theta_2)$",
+        "type": "vecteur",
+        "reponse": [-24, 28.8],
+        "acceptes": ["(-24; 28,8)"],
+        "refuses": ["(24, 28.8)", "(-24, -28.8)"]
+      },
+      {
+        "intitule": "Pour $\\eta = 2{,}2$, que fait l'algorithme ?",
+        "type": "choix",
+        "choix": ["Il converge vers $0$ en décroissant", "Il converge vers $0$ en oscillant", "Il oscille de plus en plus fort : il diverge", "Il reste bloqué sur $20$"],
+        "reponse": 2
+      },
+      {
+        "intitule": "Condition sur $\\eta$ pour que $(\\theta_n)$ converge vers $0$",
+        "type": "choix",
+        "choix": ["$0 < \\eta < 1$", "$0 < \\eta < 2$", "$\\eta > 1$", "$\\eta = 1$ uniquement"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "C'est une suite géométrique de raison $q = 1 - \\eta$ : $\\theta_n = 20 \\times (1 - \\eta)^n$.",
+      "Pour $\\eta = 2{,}2$, la raison vaut $-1{,}2$ : $\\lvert q \\rvert > 1$.",
+      "La suite converge vers $0$ si et seulement si $\\lvert 1 - \\eta \\rvert < 1$, c'est-à-dire $-1 < 1 - \\eta < 1$."
+    ],
+    "correction": "- $\\eta = 0{,}25$ : raison $1 - 0{,}25 = 0{,}75$. $\\theta_1 = 15$, $\\theta_2 = 11{,}25$, $\\theta_3 = 8{,}4375$, et $\\theta_n = 20 \\times 0{,}75^n \\to 0$ : l'algorithme converge.\n- $\\eta = 2{,}2$ : raison $1 - 2{,}2 = -1{,}2$. $\\theta_1 = -24$, $\\theta_2 = 28{,}8$ : le signe change et la taille grandit. Le pas est trop grand, l'algorithme « saute » par-dessus la solution de plus en plus loin : il **diverge**.\n- $\\theta_n = 20\\,(1 - \\eta)^n \\to 0 \\iff \\lvert 1 - \\eta \\rvert < 1 \\iff -1 < 1 - \\eta < 1 \\iff 0 < \\eta < 2$."
+  }
+]

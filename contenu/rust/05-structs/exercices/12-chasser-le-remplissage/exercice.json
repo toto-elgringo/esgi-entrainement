@@ -1,0 +1,10 @@
+{
+  "titre": "Chasser le remplissage (#[repr(C)])",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Avec `#[repr(C)]`, les champs sont rangés **dans l'ordre où tu les écris**, et chacun doit commencer à un multiple de son alignement (`u64` : 8, `u32` : 4, `u16` : 2, `u8` et `bool` : 1).",
+    "Range les champs du plus grand alignement au plus petit : d'abord le `u64`, puis le `u32`, le `u16`, et enfin les deux champs d'un octet.",
+    "Ordre gagnant : `horodatage`, `valeur`, `numero`, puis `niveau` et `actif`. 8 + 4 + 2 + 1 + 1 = 16 octets, sans aucun trou."
+  ]
+}

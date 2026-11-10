@@ -1,0 +1,10 @@
+{
+  "titre": "Compter les lignes d'un fichier (Result et ?)",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`std::fs::read_to_string(chemin)` renvoie un `std::io::Result<String>` : `Ok(contenu)` ou `Err(erreur)`.",
+    "`compter_lignes` tient en deux lignes : `let contenu = std::fs::read_to_string(chemin)?;` puis `Ok(contenu.lines().count())`.",
+    "`resume` fait un `match compter_lignes(chemin) { Ok(n) => format!(\"{n} lignes\"), Err(e) => format!(\"impossible de lire {chemin} : {e}\") }`."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "Reprendre la valeur (Option et take)",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Chaque case est un `Option<T>` : `None` pour une case libre, `Some(valeur)` pour une case occupée. Une pile neuve se fabrique avec `std::array::from_fn(|_| None)`, qui marche pour n'importe quel `T`.",
+    "`empiler` : si `self.taille == N`, renvoie `false` ; sinon `self.cases[self.taille] = Some(valeur);`, puis `self.taille += 1;` et `true`.",
+    "`depiler` : `self.taille -= 1;` puis `self.cases[self.taille].take()`. `take` sort la valeur et laisse `None` dans la case : le trou est permis par le type.",
+    "`sommet` : `self.cases[self.taille - 1].as_ref()` transforme un `&Option<T>` en `Option<&T>` (pense d'abord au cas `taille == 0`)."
+  ]
+}

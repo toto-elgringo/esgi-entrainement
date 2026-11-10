@@ -974,8 +974,18 @@
     {
       "id": "05-structs",
       "titre": "Structures (struct)",
-      "description": "Regrouper des données : struct, struct tuple, impl, méthodes &self / &mut self / self, new et derive.",
-      "source": "fondamentaux",
+      "description": "Du tableau nu à la struct, impl et les trois self, derive, newtype, génériques et const génériques, monomorphisation, pile qui déborde, include_str!, alignement et #[repr].",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides interactives",
+          "fichier": "Rust/Sources/[Slides] Structures et Enums.html"
+        },
+        {
+          "titre": "Support interactif",
+          "fichier": "Rust/Sources/[Support] Structures et Enums.html"
+        }
+      ],
       "exercices": [
         {
           "id": "01-premiere-struct",
@@ -1063,6 +1073,51 @@
             "Pour pouvoir modifier `self` dans `ajouter`, écris le paramètre `mut self`.",
             "`ajouter` : `self.plats += 1; self.total += prix; self` (on renvoie `self` à la fin, sans `;`).",
             "`payer` : `Ticket { numero, montant: self.total }`."
+          ]
+        },
+        {
+          "id": "09-pile-fixe",
+          "titre": "La pile fixe, en struct",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le compteur `taille` dit combien de cases sont occupées : la prochaine case libre est `self.cases[self.taille]`.",
+            "`empiler` : si `self.taille == 3`, renvoie `false` ; sinon range la valeur, ajoute 1 à `taille` et renvoie `true`. `depiler` fait l'inverse : recule `taille`, puis renvoie `Some(self.cases[self.taille])`.",
+            "`sommet` ne modifie rien : `if self.taille == 0 { None } else { Some(&self.cases[self.taille - 1]) }`."
+          ]
+        },
+        {
+          "id": "10-pile-fixe-generique",
+          "titre": "La pile fixe générique (const générique)",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Commence par l'en-tête : `struct PileFixe<T, const N: usize> { cases: [T; N], taille: usize }`, puis `impl<T, const N: usize> PileFixe<T, N> { ... }`.",
+            "Partout où le code dit `u8`, mets `T` ; partout où il dit `3`, mets `N`. `depuis_tableau(cases: [T; N]) -> Self` renvoie `Self { cases, taille: 0 }`, et `capacite` renvoie simplement `N`.",
+            "`depiler` renvoie `Option<&T>` : `self.taille -= 1; Some(&self.cases[self.taille])`. Avec `Some(self.cases[self.taille])` (sans `&`), le compilateur refuse de sortir un `T` du tableau (E0507)."
+          ]
+        },
+        {
+          "id": "11-reprendre-la-valeur",
+          "titre": "Reprendre la valeur (Option et take)",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Chaque case est un `Option<T>` : `None` pour une case libre, `Some(valeur)` pour une case occupée. Une pile neuve se fabrique avec `std::array::from_fn(|_| None)`, qui marche pour n'importe quel `T`.",
+            "`empiler` : si `self.taille == N`, renvoie `false` ; sinon `self.cases[self.taille] = Some(valeur);`, puis `self.taille += 1;` et `true`.",
+            "`depiler` : `self.taille -= 1;` puis `self.cases[self.taille].take()`. `take` sort la valeur et laisse `None` dans la case : le trou est permis par le type.",
+            "`sommet` : `self.cases[self.taille - 1].as_ref()` transforme un `&Option<T>` en `Option<&T>` (pense d'abord au cas `taille == 0`)."
+          ]
+        },
+        {
+          "id": "12-chasser-le-remplissage",
+          "titre": "Chasser le remplissage (#[repr(C)])",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Avec `#[repr(C)]`, les champs sont rangés **dans l'ordre où tu les écris**, et chacun doit commencer à un multiple de son alignement (`u64` : 8, `u32` : 4, `u16` : 2, `u8` et `bool` : 1).",
+            "Range les champs du plus grand alignement au plus petit : d'abord le `u64`, puis le `u32`, le `u16`, et enfin les deux champs d'un octet.",
+            "Ordre gagnant : `horodatage`, `valeur`, `numero`, puis `niveau` et `actif`. 8 + 4 + 2 + 1 + 1 = 16 octets, sans aucun trou."
           ]
         }
       ],
@@ -1198,14 +1253,156 @@
           ],
           "reponse": 1,
           "explication": "Quand la variable a le même nom que le champ, on peut l'écrire une seule fois."
+        },
+        {
+          "question": "Dans la version « tableau + compteur » du cours (`empiler(cases, valeur, &mut taille)`), quel est le principal défaut ?",
+          "choix": [
+            "Elle alloue sur le tas",
+            "Le tableau et sa longueur voyagent séparément : rien n'empêche de passer la longueur d'un autre tableau",
+            "Elle ne compile pas",
+            "Elle est forcément plus lente qu'un `Vec`"
+          ],
+          "reponse": 1,
+          "explication": "Tout est bien sur la pile, mais deux données qui vont ensemble sont passées séparément et l'idée n'a pas de nom. Une struct les réunit."
+        },
+        {
+          "question": "`pile.depiler()` où `depiler` prend `&mut self` est le même appel que…",
+          "choix": [
+            "`PileFixe3::depiler(pile)`",
+            "`PileFixe3::depiler(&mut pile)`",
+            "`depiler(&pile)`",
+            "`pile::depiler()`"
+          ],
+          "reponse": 1,
+          "explication": "Une méthode est une fonction dont le premier paramètre est la valeur. Le point passe automatiquement `&mut pile`."
+        },
+        {
+          "question": "À quoi sert `#[must_use]` au-dessus de `fn empiler(&mut self, v: u8) -> bool` ?",
+          "choix": [
+            "À rendre la méthode plus rapide",
+            "À avertir si on ignore le `bool` renvoyé",
+            "À interdire d'appeler la méthode deux fois",
+            "À rendre le résultat obligatoirement `true`"
+          ],
+          "reponse": 1,
+          "explication": "Ignorer le résultat déclenche l'avertissement `unused_must_use`. Pour le jeter volontairement : `let _ = pile.empiler(v);`."
+        },
+        {
+          "question": "Une boucle de 100 millions de tours passe de 66 ms à 0,73 ms quand on retire son `black_box`. Que s'est-il passé ?",
+          "choix": [
+            "La struct est devenue plus efficace",
+            "Le compilateur a supprimé toute la boucle, car personne ne lisait le résultat",
+            "Le processeur a mis le résultat en cache",
+            "Le programme a planté sans rien dire"
+          ],
+          "reponse": 1,
+          "explication": "0,73 ms, c'est le temps de lancer un programme vide : `main` ne contient plus qu'un `ret`. Rien n'était observable, donc rien n'avait besoin d'exister."
+        },
+        {
+          "question": "Dans `struct PileFixe<T, const N: usize>`, qu'est-ce que `N` ?",
+          "choix": [
+            "Un type",
+            "Une valeur connue à la compilation (un const générique)",
+            "Une variable modifiable",
+            "Le nombre d'éléments actuellement dans la pile"
+          ],
+          "reponse": 1,
+          "explication": "`const N: usize` est un paramètre de valeur. `PileFixe<u8, 3>` et `PileFixe<u8, 4>` sont deux types différents."
+        },
+        {
+          "question": "Que fait le compilateur avec `PileFixe<u8, 3>` et `PileFixe<f64, 8>` dans le même programme ?",
+          "choix": [
+            "Il partage un seul code avec une indirection, comme Java",
+            "Il écrit une version spécialisée de chaque méthode pour chacun (monomorphisation)",
+            "Il refuse : un générique ne peut être utilisé qu'une fois",
+            "Il choisit à l'exécution"
+          ],
+          "reponse": 1,
+          "explication": "La monomorphisation ne coûte rien à l'exécution, mais grossit le binaire et allonge la compilation."
+        },
+        {
+          "question": "Pourquoi le `depiler` générique du cours renvoie-t-il `Option<&T>` et pas `Option<T>` ?",
+          "choix": [
+            "Parce qu'une référence est plus rapide à copier",
+            "Sortir la valeur laisserait un trou que `[T; N]` ne sait pas représenter",
+            "Parce que `Option<T>` n'existe pas pour les génériques",
+            "Pour pouvoir modifier l'élément"
+          ],
+          "reponse": 1,
+          "explication": "Renvoyer `T` demanderait `T: Copy`, ou un tableau `[Option<T>; N]` avec `.take()`. La référence marche pour tous les types."
+        },
+        {
+          "question": "Que fait `case.take()` quand `case` vaut `Some(\"crabe\".to_string())` ?",
+          "choix": [
+            "Renvoie une copie et laisse `case` intact",
+            "Renvoie `Some(\"crabe\")` et laisse `None` dans `case`",
+            "Panique",
+            "Renvoie `\"crabe\"` sans `Some`"
+          ],
+          "reponse": 1,
+          "explication": "`take` retire la valeur et laisse `None` à sa place : le trou est représentable."
+        },
+        {
+          "question": "Un programme met un tableau de 40 Go dans une struct sur la pile. Que se passe-t-il à l'exécution ?",
+          "choix": [
+            "Une panique qu'on peut rattraper avec `catch_unwind`",
+            "`stack overflow` : le processus est arrêté net (abort), sans trace",
+            "Rust le déplace tout seul sur le tas",
+            "Une erreur de compilation"
+          ],
+          "reponse": 1,
+          "explication": "Un débordement de pile n'est pas une panique : le runtime affiche deux lignes puis abandonne. Ce qui est gros va sur le tas (`Box`, `Vec`)."
+        },
+        {
+          "question": "Avec `let texte = include_str!(\"../entree.txt\");`, quand le fichier est-il lu ?",
+          "choix": [
+            "À chaque lancement du programme",
+            "À la compilation : son contenu est copié dans le binaire",
+            "Au premier appel de `texte.len()`",
+            "Jamais, c'est seulement un chemin"
+          ],
+          "reponse": 1,
+          "explication": "Le fichier n'a plus besoin d'exister à l'exécution. `texte` est un `&'static str` : les données ne sont jamais libérées."
+        },
+        {
+          "question": "Quelle taille occupe `#[repr(C)] struct S { a: u8, b: u32, c: u8 }` ?",
+          "choix": [
+            "6 octets",
+            "8 octets",
+            "12 octets",
+            "16 octets"
+          ],
+          "reponse": 2,
+          "explication": "`b` doit commencer à un multiple de 4 (octet 4), et la taille doit être un multiple de 4 : 1 + 3 vides + 4 + 1 + 3 vides = 12. Sans `repr(C)`, Rust réordonne et obtient 8."
+        },
+        {
+          "question": "Pourquoi `let r = &p.b;` est-il refusé quand `p` est une struct `#[repr(C, packed)]` ?",
+          "choix": [
+            "Les structs packed sont immuables",
+            "Le champ peut être mal aligné, et créer une référence non alignée est un comportement indéfini",
+            "Il faut écrire `&mut p.b`",
+            "Les champs packed sont privés"
+          ],
+          "reponse": 1,
+          "explication": "Erreur E0793. La solution : copier le champ, `let b = p.b;`."
         }
       ]
     },
     {
       "id": "06-enums-et-option",
       "titre": "Enums et Option",
-      "description": "Enum simple et avec données, match sur enum, Option<T> à la place de null, if let, unwrap_or et map.",
-      "source": "fondamentaux",
+      "description": "Types somme et types produit, variantes avec données, match exhaustif et en profondeur, Option<T> à la place de null, Result et ?, taille des enums, niche filling, union.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Slides interactives",
+          "fichier": "Rust/Sources/[Slides] Structures et Enums.html"
+        },
+        {
+          "titre": "Support interactif",
+          "fichier": "Rust/Sources/[Support] Structures et Enums.html"
+        }
+      ],
       "exercices": [
         {
           "id": "01-feu-tricolore",
@@ -1292,6 +1489,53 @@
             "Commence `traiter` par `if !self.actif { return; }` pour ignorer les messages d'un robot arrêté.",
             "`Message::Avancer { x, y } => { self.position.0 += x; self.position.1 += y; }`",
             "`Message::Ecrire(texte) => self.texte.push_str(&texte)` ajoute le texte à la fin."
+          ]
+        },
+        {
+          "id": "09-inventaire",
+          "titre": "L'inventaire (match en profondeur)",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Un motif peut ouvrir deux enums d'un coup : `Objet::Arme(Arme::Arc { degats, portee }) => ...`.",
+            "Pour `degats`, toutes les armes ont un champ `degats` : `Objet::Arme(Arme::Epee { degats } | Arme::Hache { degats } | Arme::Arc { degats, .. }) => *degats`, et `_ => 0` pour le reste. `..` ignore les autres champs.",
+            "`portee` : `Objet::Arme(Arme::Arc { portee, .. }) => Some(*portee)`, et `None` sinon.",
+            "Dans `decrire`, place le bras de l'arc **avant** celui qui attrape les autres armes : les bras sont testés dans l'ordre."
+          ]
+        },
+        {
+          "id": "10-connexion",
+          "titre": "La connexion sans état impossible",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Chaque méthode qui prend `self` fait un `match self { ... }` et renvoie une nouvelle `Connexion`. Pour « ne rien changer », le bras renvoie la valeur elle-même : `autre => autre`.",
+            "`demarrer` : `Connexion::Deconnecte => Connexion::EnCours { depuis_ms: maintenant_ms }`. `accepter` : `Connexion::EnCours { .. } => Connexion::Connecte { session, pseudo: pseudo.to_string() }`.",
+            "`pseudo(&self)` : `Connexion::Connecte { pseudo, .. } => Some(pseudo.as_str())`, `None` sinon.",
+            "`trop_longue` : `Connexion::EnCours { depuis_ms } => maintenant_ms - depuis_ms > limite_ms` (avec `&self`, écris `*depuis_ms`), et `false` pour les autres états."
+          ]
+        },
+        {
+          "id": "11-combien-d-octets",
+          "titre": "Combien d'octets ? (taille des enums)",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Une enum occupe sa plus grosse variante plus une étiquette, arrondie à l'alignement du plus gros champ. `Potion` : une étiquette d'1 octet + 1 octet de donnée.",
+            "`Arme` : la variante `Arc` contient un `u8` et un `u32` ; avec l'étiquette et l'alignement sur 4, on arrive à 8.",
+            "Les **niches** : une référence et un `NonZeroU32` ne valent jamais 0, et un `bool` n'utilise que 0 et 1. Leur `Option` ne coûte donc aucun octet de plus. Un `u8` et un `u32` utilisent toutes leurs valeurs : il faut une étiquette.",
+            "Réponses : 2, 8, 8, 2, 8, 4, 8, 1."
+          ]
+        },
+        {
+          "id": "12-compter-les-lignes",
+          "titre": "Compter les lignes d'un fichier (Result et ?)",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`std::fs::read_to_string(chemin)` renvoie un `std::io::Result<String>` : `Ok(contenu)` ou `Err(erreur)`.",
+            "`compter_lignes` tient en deux lignes : `let contenu = std::fs::read_to_string(chemin)?;` puis `Ok(contenu.lines().count())`.",
+            "`resume` fait un `match compter_lignes(chemin) { Ok(n) => format!(\"{n} lignes\"), Err(e) => format!(\"impossible de lire {chemin} : {e}\") }`."
           ]
         }
       ],
@@ -1427,6 +1671,138 @@
           ],
           "reponse": 2,
           "explication": "`unwrap()` suppose qu'il y a une valeur : s'il n'y en a pas, le programme s'arrête avec une panique."
+        },
+        {
+          "question": "`enum Couleur { Rouge, Vert, Bleu }`. Combien de valeurs différentes peut prendre `struct Lampe { allumee: bool, couleur: Couleur }` ?",
+          "choix": [
+            "4",
+            "5",
+            "6",
+            "8"
+          ],
+          "reponse": 2,
+          "explication": "Une struct est un type **produit** : 2 valeurs pour `bool` × 3 pour `Couleur` = 6 combinaisons."
+        },
+        {
+          "question": "Et combien pour `enum EtatLampe { Eteinte, Allumee(Couleur) }` ?",
+          "choix": [
+            "3",
+            "4",
+            "6",
+            "7"
+          ],
+          "reponse": 1,
+          "explication": "Une enum est un type **somme** : 1 (`Eteinte`) + 3 (`Allumee` avec chaque couleur) = 4, exactement les états réels. « Éteinte mais rouge » n'existe plus."
+        },
+        {
+          "question": "Combien de valeurs a `Option<bool>` ?",
+          "choix": [
+            "2",
+            "3",
+            "4",
+            "Une infinité"
+          ],
+          "reponse": 1,
+          "explication": "Les valeurs de `bool` plus `None` : `Some(true)`, `Some(false)` et `None`."
+        },
+        {
+          "question": "Pourquoi préférer `enum Connexion { Deconnecte, EnCours { depuis_ms: u64 }, Connecte { session: u64, pseudo: String } }` à une struct avec deux `bool` et deux `Option` ?",
+          "choix": [
+            "Elle est plus rapide à afficher",
+            "Les états incohérents (connecté sans session…) deviennent impossibles à écrire",
+            "Une struct ne peut pas contenir de `String`",
+            "Les enums prennent toujours moins de mémoire"
+          ],
+          "reponse": 1,
+          "explication": "La version struct a 16 combinaisons dont la plupart n'ont aucun sens ; l'enum en a exactement 3. « Make illegal states unrepresentable »."
+        },
+        {
+          "question": "Dans `match objet { Objet::Arme(Arme::Arc { degats, portee }) => …, Objet::Arme(_) => …, … }`, que fait le premier bras ?",
+          "choix": [
+            "Il attrape toutes les armes",
+            "Il ouvre deux niveaux d'enum d'un coup et sort `degats` et `portee` d'un arc",
+            "Il ne compile pas : on ne peut pas imbriquer les motifs",
+            "Il crée un nouvel arc"
+          ],
+          "reponse": 1,
+          "explication": "Les motifs vont en profondeur. Les bras sont testés dans l'ordre : l'arc est pris avant le `Objet::Arme(_)` qui récupère les autres armes."
+        },
+        {
+          "question": "Combien d'octets occupe `Option<&u8>` sur une machine 64 bits ?",
+          "choix": [
+            "8, comme `&u8`",
+            "9",
+            "16",
+            "1"
+          ],
+          "reponse": 0,
+          "explication": "Une référence n'est jamais nulle : la valeur 0 sert à coder `None` (niche filling). L'absence ne coûte rien."
+        },
+        {
+          "question": "Et `Option<u8>` ?",
+          "choix": [
+            "1 octet",
+            "2 octets",
+            "4 octets",
+            "8 octets"
+          ],
+          "reponse": 1,
+          "explication": "Un `u8` utilise ses 256 valeurs : aucune niche libre, il faut un octet d'étiquette en plus."
+        },
+        {
+          "question": "Que fait `let f = File::open(chemin)?;` si l'ouverture échoue ?",
+          "choix": [
+            "Le programme panique",
+            "`f` vaut `None`",
+            "La fonction s'arrête et renvoie tout de suite le `Err` à l'appelant",
+            "L'erreur est ignorée"
+          ],
+          "reponse": 2,
+          "explication": "`?` déballe le `Ok`, ou renvoie immédiatement le `Err` (en convertissant le type d'erreur si possible)."
+        },
+        {
+          "question": "Pourquoi `?` est-il refusé dans un `fn main()` qui ne renvoie rien ?",
+          "choix": [
+            "`?` est interdit dans `main`",
+            "`?` doit pouvoir renvoyer l'erreur : la fonction doit renvoyer un `Result` (ou un `Option`)",
+            "Il faut importer `std::question`",
+            "Ce n'est pas refusé"
+          ],
+          "reponse": 1,
+          "explication": "Sans type de retour `Result`, `?` n'a nulle part où renvoyer l'erreur. D'où `fn main() -> std::io::Result<()>`."
+        },
+        {
+          "question": "Une fonction renvoie un `Result` et l'appelant écrit `lire(\"a.txt\");` sans rien en faire. Que se passe-t-il ?",
+          "choix": [
+            "Rien du tout",
+            "Un avertissement : `Result` est marqué `#[must_use]`",
+            "Une erreur de compilation",
+            "Le programme panique"
+          ],
+          "reponse": 1,
+          "explication": "On ne peut pas ignorer une erreur par distraction : le compilateur avertit (`unused_must_use`)."
+        },
+        {
+          "question": "Quelle taille a `enum Arme { Epee { degats: u8 }, Hache { degats: u8 }, Arc { degats: u8, portee: u32 } }` ?",
+          "choix": [
+            "1 octet",
+            "5 octets",
+            "8 octets",
+            "12 octets"
+          ],
+          "reponse": 2,
+          "explication": "La plus grosse variante (`u8` + `u32`) plus l'étiquette, alignée sur 4 : 8 octets, quelle que soit la variante. En C, avec une étiquette `int`, on obtient 12."
+        },
+        {
+          "question": "Quelle est la grande différence entre une `union` du C et une enum Rust ?",
+          "choix": [
+            "L'union est plus sûre",
+            "Dans l'union, rien n'indique le membre valide ; en Rust l'étiquette fait partie de la valeur et le `match` l'examine",
+            "L'enum Rust alloue sur le tas",
+            "Il n'y en a aucune"
+          ],
+          "reponse": 1,
+          "explication": "En C, lire le mauvais membre compile sans avertissement. En Rust, lire la mauvaise variante est impossible ; les `union` de Rust, elles, demandent `unsafe`."
         }
       ]
     },

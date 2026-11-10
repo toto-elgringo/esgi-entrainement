@@ -1,0 +1,488 @@
+[
+  {
+    "id": "partie-5-serie-1",
+    "titre": "Partie 5 : série 1",
+    "difficulte": 1,
+    "enonce": "Choisis le mot qui complète chaque phrase.",
+    "questions": [
+      {
+        "intitule": "*Could you ask the ...... if they can deliver the paper on Monday instead?*",
+        "type": "choix",
+        "choix": ["supply", "supplier", "supplied", "supplying"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The old sofas were ...... down from $900 to $450.*",
+        "type": "choix",
+        "choix": ["sold", "closed", "marked", "tried"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*The garden centre thanked its customers for their ...... over the past 20 years.*",
+        "type": "choix",
+        "choix": ["patron", "patronage", "patronize", "patronized"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Anyone who leaves their car in the delivery area will have to pay a ......*",
+        "type": "choix",
+        "choix": ["fee", "rebate", "fine", "refund"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*I set an alarm on my phone as a ...... to pay the electricity bill.*",
+        "type": "choix",
+        "choix": ["remind", "reminded", "reminding", "reminder"],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "Regarde d'abord la nature du mot attendu (après *the*, *their*, *a* : un nom).",
+      "Une punition pour mauvais stationnement : amende."
+    ],
+    "correction": "1. *the supplier* (le fournisseur). 2. *were marked down* (prix baissé). 3. *their patronage* (leur fidélité). 4. *a fine* (une amende, pas un frais). 5. *as a reminder* (comme pense-bête)."
+  },
+  {
+    "id": "partie-5-serie-2",
+    "titre": "Partie 5 : série 2",
+    "difficulte": 2,
+    "enonce": "Choisis le mot qui complète chaque phrase.",
+    "questions": [
+      {
+        "intitule": "*The new store will be ...... a wide range of kitchen appliances.*",
+        "type": "choix",
+        "choix": ["carry", "carrying", "carried", "carrier"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Customers who are not satisfied can ...... the item within 14 days.*",
+        "type": "choix",
+        "choix": ["return", "returned", "returning", "returns"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Your order has been ...... and should arrive tomorrow.*",
+        "type": "choix",
+        "choix": ["dispatch", "dispatcher", "dispatching", "dispatched"],
+        "reponse": 3
+      },
+      {
+        "intitule": "*The full amount is payable ...... ten days of receipt of the invoice.*",
+        "type": "choix",
+        "choix": ["since", "within", "during", "before of"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*This offer cannot be combined with any other ......*",
+        "type": "choix",
+        "choix": ["discount", "discounted", "discounting", "discountable"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*If you have already settled your account, please ...... this letter.*",
+        "type": "choix",
+        "choix": ["regard", "disregard", "remind", "discharge"],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*will be* + -ing (futur continu) ; *can* + verbe de base ; *has been* + participe passé.",
+      "*any other* + nom."
+    ],
+    "correction": "1. *will be carrying* (vendra). 2. *can return*. 3. *has been dispatched* (passif). 4. *within ten days*. 5. *any other discount* (nom). 6. *disregard this letter* (n'en tenez pas compte)."
+  },
+  {
+    "id": "partie-5-serie-3",
+    "titre": "Partie 5 : série 3",
+    "difficulte": 3,
+    "enonce": "Choisis le mot qui complète chaque phrase. Les pièges sont plus fins.",
+    "questions": [
+      {
+        "intitule": "*The ...... of this invoice must be made by bank transfer.*",
+        "type": "choix",
+        "choix": ["pay", "payable", "payment", "payee"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Ms. Ortiz was ...... for the delivery, so she signed the form herself.*",
+        "type": "choix",
+        "choix": ["recipient", "receipt", "present", "presence"],
+        "reponse": 2
+      },
+      {
+        "intitule": "*...... the delay, the customer was happy with the quality of the goods.*",
+        "type": "choix",
+        "choix": ["Although", "Despite", "Because", "Unless"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Prices are subject to change ...... notice.*",
+        "type": "choix",
+        "choix": ["without", "unless", "except", "beside"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The goods ...... yesterday, but the invoice hasn't arrived yet.*",
+        "type": "choix",
+        "choix": ["was delivered", "were delivered", "has delivered", "delivering"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*We offer a 10% discount on orders placed ...... the end of the month.*",
+        "type": "choix",
+        "choix": ["by", "until to", "since", "for"],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "*The ... of* : il faut un nom de chose. *goods* est toujours pluriel.",
+      "*Despite* + nom ; *Although* + sujet + verbe. *by* + date = au plus tard."
+    ],
+    "correction": "1. *The payment of* (le paiement) ; *payee* = le bénéficiaire. 2. *was present* (était là) : *recipient* et *receipt* sont des noms, ils demandent *the* ou *a*. 3. *Despite the delay* (nom). 4. *without notice* (sans préavis). 5. *the goods were delivered* (pluriel). 6. *by the end of the month* (au plus tard à la fin du mois)."
+  },
+  {
+    "id": "partie-6-lettre-transporteur",
+    "titre": "Partie 6 : une lettre à un transporteur",
+    "difficulte": 2,
+    "enonce": "Lis la lettre, puis complète chaque trou.\n\n> **Dear Ms. Novak,**\n>\n> On behalf of Linwood Garden Supplies, thank you for (1) ...... to take over our deliveries at such short notice when our usual carrier went out of business last month.\n> As you know, our garden centres sell plants, which cannot wait in a warehouse for days. Your team has understood our (2) ...... needs perfectly. Our customers expect their orders within 48 hours; (3) ......, they simply buy from another shop.\n> To thank you, we would like to offer you 15% off all our outdoor furniture for the next six months. (4) ......\n>\n> Yours sincerely,\n> Paul Hendricks, Logistics Manager",
+    "questions": [
+      {
+        "intitule": "(1)",
+        "type": "choix",
+        "choix": ["agree", "agreed", "to agree", "agreeing"],
+        "reponse": 3
+      },
+      {
+        "intitule": "(2)",
+        "type": "choix",
+        "choix": ["freight", "freighted", "freighter", "freighting"],
+        "reponse": 0
+      },
+      {
+        "intitule": "(3)",
+        "type": "choix",
+        "choix": ["therefore", "otherwise", "moreover", "as a result"],
+        "reponse": 1
+      },
+      {
+        "intitule": "(4)",
+        "type": "choix",
+        "choix": [
+          "We regret that we can no longer use your services.",
+          "To use this offer, simply give your name at the checkout of any of our garden centres.",
+          "Please pay the outstanding invoice within 30 days.",
+          "Our new carrier will start on Monday."
+        ],
+        "reponse": 1
+      }
+    ],
+    "indices": [
+      "*thank you for* + -ing ; un nom peut se placer devant *needs*.",
+      "La phrase (4) doit suivre l'offre de réduction."
+    ],
+    "correction": "(1) *thank you for agreeing*. (2) *our freight needs* (nos besoins en transport de marchandises). (3) *otherwise* = sinon : si la livraison est lente, les clients vont ailleurs. (4) La phrase explique comment profiter de l'offre ; les autres contredisent le ton de remerciement."
+  },
+  {
+    "id": "partie-6-relance",
+    "titre": "Partie 6 : une relance de facture",
+    "difficulte": 2,
+    "enonce": "Lis la lettre, puis complète chaque trou.\n\n> **REMINDER - Invoice no. 2217**\n>\n> Dear Mr. Chen,\n>\n> According to our records, the (1) ...... of $640 for the printing services we provided in March is still (2) ....... As stated in our terms of payment, all invoices must be paid within 30 days.\n> A late (3) ...... of 2% will be added if we do not receive your payment by 15 May. If you have already sent the payment, please (4) ...... this reminder.\n> (5) ......, please contact our invoicing department at 555-0142.\n>\n> Best regards,\n> Accounts team, Pressline Ltd.",
+    "questions": [
+      {
+        "intitule": "(1)",
+        "type": "choix",
+        "choix": ["amount due", "due amount of", "amounting", "account"],
+        "reponse": 0
+      },
+      {
+        "intitule": "(2)",
+        "type": "choix",
+        "choix": ["pending", "outstanding", "void", "payable"],
+        "reponse": 1
+      },
+      {
+        "intitule": "(3)",
+        "type": "choix",
+        "choix": ["fine", "fee", "rebate", "refund"],
+        "reponse": 1
+      },
+      {
+        "intitule": "(4)",
+        "type": "choix",
+        "choix": ["disregard", "regard", "reply", "issue"],
+        "reponse": 0
+      },
+      {
+        "intitule": "(5)",
+        "type": "choix",
+        "choix": ["For any questions regarding this invoice", "Despite this invoice", "Unless you have questions", "Otherwise the invoice"],
+        "reponse": 0
+      }
+    ],
+    "indices": [
+      "Une facture non payée après la date : *outstanding*. *pending* = en attente d'une action en cours.",
+      "Des frais de retard prévus dans les conditions : *a late fee*."
+    ],
+    "correction": "(1) *the amount due* (la somme due). (2) *still outstanding* (toujours impayée). (3) *a late fee* : des frais prévus par le contrat (une *fine* est une amende infligée, par exemple par la police). (4) *disregard this reminder*. (5) *For any questions regarding...* (pour toute question au sujet de...)."
+  },
+  {
+    "id": "partie-7-publicite",
+    "titre": "Partie 7 : une publicité",
+    "difficulte": 1,
+    "enonce": "Lis la publicité, puis réponds.\n\n> **Fresh look for spring at Marlow & Rose!**\n> Tired of the same old outfits? This week only, our style advisers will help you find the colours, cuts and sizes that suit you best, free of charge.\n> Bring a friend and you will both get 10% off your first purchase.\n> Open 10 a.m. to 9 p.m. every weeknight, and 10 a.m. to 6 p.m. on Saturdays. Closed on Sundays.",
+    "questions": [
+      {
+        "intitule": "What kind of business is Marlow & Rose?",
+        "type": "choix",
+        "choix": ["A hair salon", "A paint shop", "A clothing store", "A garden centre"],
+        "reponse": 2
+      },
+      {
+        "intitule": "When can customers shop until 9 p.m.?",
+        "type": "choix",
+        "choix": ["Every day", "Monday to Friday", "On Saturdays", "At weekends"],
+        "reponse": 1
+      },
+      {
+        "intitule": "How much does the advice from the style advisers cost?",
+        "type": "choix",
+        "choix": ["Nothing", "10% of the purchase", "It depends on the size", "It is not mentioned"],
+        "reponse": 0
+      },
+      {
+        "intitule": "What percentage discount do customers get if they come with a friend?",
+        "type": "nombre",
+        "reponse": 10
+      }
+    ],
+    "indices": ["*outfits*, *cuts*, *sizes* : on parle de vêtements. *weeknight* = soir de semaine."],
+    "correction": "1. *outfits, cuts and sizes* → un magasin de vêtements. 2. *every weeknight* = du lundi au vendredi (le samedi ferme à 18 h). 3. *free of charge* = gratuit. 4. *10% off*."
+  },
+  {
+    "id": "partie-7-faq-livraison",
+    "titre": "Partie 7 : une FAQ sur la livraison",
+    "difficulte": 2,
+    "enonce": "Lis la FAQ, puis réponds.\n\n> **Home delivery - Frequently asked questions**\n>\n> **Is the delivery date on my order confirmation guaranteed?**\n> No. It is an estimate only. – [1] –\n>\n> **Why does delivery take longer for some orders?**\n> Delivery times depend on your area, on how long it takes us to process your order, and on the time needed to wrap the items and take them to our transport partner. – [2] –\n>\n> **How do I choose my delivery day?**\n> As soon as our transport partner receives your goods, they will phone you to suggest possible days. – [3] –\n>\n> **At what time will I be delivered?**\n> Deliveries are made between 8 a.m. and 8 p.m., Monday to Saturday. – [4] – Please make sure someone is at home within the time slot you are given.",
+    "questions": [
+      {
+        "intitule": "What is NOT mentioned as a factor affecting delivery times?",
+        "type": "choix",
+        "choix": ["The choice of transport company", "The customer's area", "The processing of the order", "The packing of the items"],
+        "reponse": 0
+      },
+      {
+        "intitule": "When does the customer choose the delivery day?",
+        "type": "choix",
+        "choix": ["When placing the order", "When the order confirmation arrives", "After the transport partner has received the goods", "On the morning of the delivery"],
+        "reponse": 2
+      },
+      {
+        "intitule": "In which position does this sentence best belong? *\"On the day of delivery, the driver will text you a two-hour time slot.\"*",
+        "type": "choix",
+        "choix": ["[1]", "[2]", "[3]", "[4]"],
+        "reponse": 3
+      },
+      {
+        "intitule": "On which day are there no deliveries?",
+        "type": "choix",
+        "choix": ["Monday", "Friday", "Saturday", "Sunday"],
+        "reponse": 3
+      }
+    ],
+    "indices": [
+      "Cherche chaque proposition dans la deuxième réponse : celle qu'on ne trouve pas est la bonne.",
+      "La phrase parle d'un *time slot* : la dernière phrase de la FAQ reprend *the time slot you are given*."
+    ],
+    "correction": "1. La zone, le traitement et l'emballage sont cités ; on parle d'**envoyer** les articles au transporteur, pas de **choisir** le transporteur. 2. *As soon as our transport partner receives your goods, they will phone you*. 3. Position [4] : la phrase annonce le créneau que la suite appelle *the time slot you are given*. 4. *Monday to Saturday* : pas de livraison le dimanche."
+  },
+  {
+    "id": "partie-7-deux-documents",
+    "titre": "Partie 7 : une facture et un e-mail",
+    "difficulte": 3,
+    "enonce": "Lis les deux documents, puis réponds.\n\n**Document 1 : facture**\n\n> **OFFICEWISE - Invoice no. 8841** - Date: 3 June\n> Customer: Hilltop Dental Clinic\n>\n> | Item | Units | Unit price | Total |\n> |---|---|---|---|\n> | Ergonomic chair | 4 | $120 | $480 |\n> | Desk lamp | 4 | $35 | $140 |\n> | Rush fee (overnight delivery) | 1 | $40 | $40 |\n> | **Amount due** | | | **$660** |\n>\n> Terms of payment: within 30 days. Cheques payable to Officewise Ltd.\n\n**Document 2 : e-mail**\n\n> **To**: accounts@officewise.com\n> **From**: Dana Price, Hilltop Dental Clinic\n> **Date**: 5 June\n> Hello, we received invoice no. 8841 yesterday. The chairs and lamps arrived in perfect condition, thank you. However, we chose standard delivery when we placed the order, and the goods arrived after four days, not overnight. Could you please issue a corrected invoice? We will pay as soon as we receive it.",
+    "questions": [
+      {
+        "intitule": "Why did Ms. Price write the e-mail?",
+        "type": "choix",
+        "choix": ["Some items were damaged.", "She was charged for a service she did not ask for.", "She wants to order more chairs.", "The invoice was sent to the wrong address."],
+        "reponse": 1
+      },
+      {
+        "intitule": "When did the clinic receive the invoice?",
+        "type": "choix",
+        "choix": ["On 3 June", "On 4 June", "On 5 June", "Four days after the order"],
+        "reponse": 1
+      },
+      {
+        "intitule": "What will the clinic do after receiving the new invoice?",
+        "type": "choix",
+        "choix": ["Return the lamps", "Pay the bill", "Change carrier", "Place a new order"],
+        "reponse": 1
+      },
+      {
+        "intitule": "The word *issue* in the e-mail is closest in meaning to...",
+        "type": "choix",
+        "choix": ["problem", "send out", "magazine", "discuss"],
+        "reponse": 1
+      },
+      {
+        "intitule": "What should the corrected amount due be, in dollars?",
+        "type": "nombre",
+        "reponse": 620
+      }
+    ],
+    "indices": [
+      "Compare la ligne *Rush fee (overnight delivery)* avec ce que dit l'e-mail.",
+      "E-mail du 5 juin : *we received invoice no. 8841 yesterday*. Nouveau total = total sans les frais d'express."
+    ],
+    "correction": "1. Elle a choisi la livraison standard mais paie un *rush fee*. 2. E-mail du 5 juin + *yesterday* = le **4 juin**. 3. *We will pay as soon as we receive it*. 4. *issue a corrected invoice* = émettre, envoyer. 5. 660 - 40 = **620** $ (480 + 140)."
+  },
+  {
+    "id": "partie-2-sur-papier",
+    "titre": "Partie 2 sur papier : au magasin et au téléphone",
+    "difficulte": 2,
+    "enonce": "Voici des questions de partie 2, écrites. Choisis la réponse logique.",
+    "questions": [
+      {
+        "intitule": "*Do you have these shoes in a size 40?*",
+        "type": "choix",
+        "choix": ["Yes, they're very comfortable.", "Let me check in the stockroom.", "They cost $40."],
+        "reponse": 1
+      },
+      {
+        "intitule": "*When will my order be delivered?*",
+        "type": "choix",
+        "choix": ["By courier.", "To your home address.", "Probably on Thursday."],
+        "reponse": 2
+      },
+      {
+        "intitule": "*Why hasn't the invoice been paid yet?*",
+        "type": "choix",
+        "choix": ["We're still waiting for the corrected version.", "Yes, it was paid.", "By bank transfer."],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Would you like a bag for that?*",
+        "type": "choix",
+        "choix": ["It's in the bag.", "No thanks, I'll carry it.", "I'd like a receipt, please give it to me later."],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The printer we ordered arrived damaged, didn't it?*",
+        "type": "choix",
+        "choix": ["Yes, I've already called the supplier.", "We print every day.", "It arrived from Germany."],
+        "reponse": 0
+      }
+    ],
+    "indices": ["*When* → un moment ; *Why* → une raison.", "Méfie-toi des réponses qui répètent un mot de la question (*bag*, *print*, *arrived*)."],
+    "correction": "1. On va vérifier en réserve. 2. *When* → *on Thursday*. 3. *Why* → la raison : on attend la facture corrigée. 4. Proposition refusée poliment. 5. *didn't it?* attend une confirmation : oui, et on a déjà appelé le fournisseur."
+  },
+  {
+    "id": "partie-3-sur-papier",
+    "titre": "Partie 3 sur papier : un article manquant",
+    "difficulte": 2,
+    "enonce": "Lis la transcription, puis réponds.\n\n> **Man** : Hello, I'm calling about the delivery we got this morning. We ordered six boxes of printer paper and two toner cartridges, but there are no cartridges in the boxes.\n> **Woman** : I'm sorry about that. Let me look... Yes, the cartridges were out of stock when your order was packed. They came in this afternoon.\n> **Man** : Will we have to wait another week?\n> **Woman** : No, our driver can drop them off tomorrow morning. And since the invoice already includes them, just ignore the reminder you'll receive next week: it was sent automatically.",
+    "questions": [
+      {
+        "intitule": "What problem does the man have?",
+        "type": "choix",
+        "choix": ["He was charged twice.", "Part of his order is missing.", "The paper is the wrong size.", "The driver was late."],
+        "reponse": 1
+      },
+      {
+        "intitule": "Why were the cartridges not delivered?",
+        "type": "choix",
+        "choix": ["They were out of stock.", "The man forgot to order them.", "They were damaged.", "The driver lost them."],
+        "reponse": 0
+      },
+      {
+        "intitule": "When will the driver come?",
+        "type": "choix",
+        "choix": ["This afternoon", "Tomorrow morning", "Next week", "In two weeks"],
+        "reponse": 1
+      },
+      {
+        "intitule": "What does the woman tell the man to do?",
+        "type": "choix",
+        "choix": ["Pay a new invoice", "Return the paper", "Disregard a reminder", "Pick up the cartridges"],
+        "reponse": 2
+      }
+    ],
+    "indices": ["*ignore* = *disregard*.", "*drop off* = déposer : c'est le chauffeur qui vient."],
+    "correction": "1. *there are no cartridges in the boxes* : une partie manque. 2. *out of stock when your order was packed*. 3. *our driver can drop them off tomorrow morning*. 4. *just ignore the reminder* = *disregard* la relance."
+  },
+  {
+    "id": "reperer-le-piege",
+    "titre": "Repérer le piège",
+    "difficulte": 3,
+    "enonce": "Pour chaque phrase, choisis pourquoi elle est **fausse** ou **bizarre**.",
+    "questions": [
+      {
+        "intitule": "*Thank you for your fast delivery. Please find enclosed a fine of $20 to thank you.* Pourquoi est-ce bizarre ?",
+        "type": "choix",
+        "choix": ["Une *fine* est une amende, pas un cadeau", "Il faut *delivering*", "*enclosed* veut dire fermé"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*The goods was delivered on Monday.* Pourquoi est-ce faux ?",
+        "type": "choix",
+        "choix": ["Il faut *in Monday*", "*goods* est toujours pluriel : *were*", "*delivered* doit être *delivering*"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*The shop is open every weeknight, so I'll go on Sunday evening.* Pourquoi est-ce illogique ?",
+        "type": "choix",
+        "choix": ["*weeknight* = du lundi au vendredi", "*evening* et *night* sont différents", "Il faut *every weeknights*"],
+        "reponse": 0
+      },
+      {
+        "intitule": "*Thank you for offer to help us.* Pourquoi est-ce faux ?",
+        "type": "choix",
+        "choix": ["Il faut *Thanks*", "Après *thank you for*, il faut un verbe en -ing", "*help* doit être au passé"],
+        "reponse": 1
+      },
+      {
+        "intitule": "*Please keep your recipe: you'll need it for a refund.* Pourquoi est-ce faux ?",
+        "type": "choix",
+        "choix": ["*recipe* = recette de cuisine, il faut *receipt*", "*refund* est un verbe seulement", "Il faut *keeping*"],
+        "reponse": 0
+      }
+    ],
+    "indices": ["Ce sont les pièges du chapitre et du mini test."],
+    "correction": "1. Une *fine* punit ; pour remercier, on offre une réduction (*a discount*). 2. *The goods were delivered*. 3. *weeknight* exclut le week-end : le dimanche, c'est fermé (ou pas précisé). 4. *Thank you for offering*. 5. Le ticket de caisse = *receipt* (le *p* est muet)."
+  },
+  {
+    "id": "vocabulaire-mini-test",
+    "titre": "Le vocabulaire du mini test",
+    "difficulte": 2,
+    "enonce": "Traduis en anglais.",
+    "questions": [
+      { "intitule": "modifier (une commande)", "type": "texte", "reponse": ["alter", "to alter", "change", "to change", "modify", "to modify", "amend", "to amend"] },
+      { "intitule": "la fidélité des clients (un mot en *-age*)", "type": "texte", "reponse": ["patronage"] },
+      { "intitule": "sinon (mot de liaison)", "type": "texte", "reponse": ["otherwise", "or else"] },
+      { "intitule": "un soir de semaine", "type": "texte", "reponse": ["weeknight", "a weeknight", "week night", "a week night"] },
+      { "intitule": "un créneau horaire (deux mots : *time ...*)", "type": "texte", "reponse": ["time window", "a time window", "time slot", "a time slot"] },
+      { "intitule": "abandonner (verbe à particule)", "type": "texte", "reponse": ["give up", "to give up"] }
+    ],
+    "indices": ["*otherwise* = sinon ; *give up* = abandonner."],
+    "correction": "*alter*, *patronage*, *otherwise*, *weeknight*, *time window* (ou *time slot*), *give up*."
+  },
+  {
+    "id": "rediger-reponse",
+    "titre": "Répondre à un client mécontent",
+    "difficulte": 3,
+    "enonce": "Un client a laissé un message : son canapé-lit devait être livré lundi, il est arrivé jeudi, et il manque des pièces pour le monter. Tu travailles au service client : écris un e-mail de 4 ou 5 phrases pour t'excuser et proposer une solution. Utilise au moins : *apologize* (ou *sorry*), *delivery*, *missing*, *dispatch* ou *send*, *refund* ou *discount*.",
+    "questions": [
+      {
+        "intitule": "Ton e-mail",
+        "type": "auto",
+        "reponse": "Exemple :\n\n*Dear Mr. Lewis,*\n\n*Thank you for your message, and please accept our apologies for the late delivery of your sofa bed. I have checked your order, and two parts were indeed missing from the package. We dispatched them this morning by courier, so they should arrive by tomorrow afternoon. To make up for the inconvenience, we will refund the delivery fee. Please do not hesitate to contact me if you have any other questions.*\n\n*Kind regards,*\n*Julia Moss, Customer Service*"
+      }
+    ],
+    "indices": [
+      "Commence par remercier et t'excuser : *Please accept our apologies for...*",
+      "Donne une solution précise (date, moyen d'envoi) et un geste commercial (*refund*, *discount*)."
+    ],
+    "correction": "À vérifier : excuses (*apologies for the late delivery*), reconnaissance du problème (*parts were missing*), solution datée (*dispatched... by courier... by tomorrow*), geste commercial (*refund the delivery fee*, *a 10% discount*), formule finale polie."
+  }
+]

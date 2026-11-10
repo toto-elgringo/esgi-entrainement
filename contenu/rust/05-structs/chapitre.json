@@ -1,5 +1,9 @@
 {
   "titre": "Structures (struct)",
-  "description": "Regrouper des données : struct, struct tuple, impl, méthodes &self / &mut self / self, new et derive.",
-  "source": "fondamentaux"
+  "description": "Du tableau nu à la struct, impl et les trois self, derive, newtype, génériques et const génériques, monomorphisation, pile qui déborde, include_str!, alignement et #[repr].",
+  "source": "cours",
+  "supports": [
+    {"titre": "Slides interactives", "fichier": "Rust/Sources/[Slides] Structures et Enums.html"},
+    {"titre": "Support interactif", "fichier": "Rust/Sources/[Support] Structures et Enums.html"}
+  ]
 }
