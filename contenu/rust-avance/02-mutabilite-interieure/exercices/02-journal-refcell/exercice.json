@@ -1,0 +1,10 @@
+{
+  "titre": "Un journal avec RefCell",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Pour modifier le `Vec` caché dans le `RefCell` : `self.lignes.borrow_mut().push(...)`.",
+    "Pour lire : `self.lignes.borrow().len()`.",
+    "`derniere` renvoie une copie : `self.lignes.borrow().last().cloned()`."
+  ]
+}

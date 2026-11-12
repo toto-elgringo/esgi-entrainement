@@ -1,0 +1,47 @@
+use std::cell::RefCell;
+use std::rc::Rc;
+
+#[derive(Debug, PartialEq)]
+struct Reponse {
+    statut: u16,
+    corps: String,
+}
+
+impl Reponse {
+    fn new(statut: u16, corps: &str) -> Self {
+        Reponse {
+            statut,
+            corps: corps.to_string(),
+        }
+    }
+}
+
+struct Requete {
+    chemin: String,
+    jeton: Option<String>,
+}
+
+type Gestionnaire = Box<dyn Fn(&Requete) -> Reponse>;
+type Journal = Rc<RefCell<Vec<String>>>;
+
+fn journaliser(suivant: Gestionnaire, journal: Journal) -> Gestionnaire {
+    todo!()
+}
+
+fn exiger_jeton(suivant: Gestionnaire, attendu: &str) -> Gestionnaire {
+    todo!()
+}
+
+fn main() {
+    let journal: Journal = Rc::new(RefCell::new(Vec::new()));
+    let page: Gestionnaire = Box::new(|_| Reponse::new(200, "contenu"));
+    let protegee = journaliser(exiger_jeton(page, "secret"), Rc::clone(&journal));
+    let sans = Requete {
+        chemin: "/prive".to_string(),
+        jeton: None,
+    };
+    println!("{:?}", protegee(&sans));
+    for ligne in journal.borrow().iter() {
+        println!("{ligne}");
+    }
+}

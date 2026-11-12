@@ -1,0 +1,10 @@
+{
+  "titre": "Un pipe pour toutes les valeurs",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`pipe` prend `self` et une fonction : il renvoie simplement le résultat de la fonction appliquée à `self`.",
+    "Le corps du trait est `f(self)`. Le `impl<T> Pipe for T {}` donne `pipe` à tous les types.",
+    "Pour `etiquette`, enchaîne : `.pipe(str::trim).pipe(str::to_uppercase).pipe(|s| format!(\"<{s}>\"))`."
+  ]
+}

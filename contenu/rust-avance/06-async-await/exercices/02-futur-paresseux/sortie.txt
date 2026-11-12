@@ -1,0 +1,6 @@
+futur créé
+préparation de Ada
+Bonjour Ada
+bloc créé
+bloc async lancé
+réponse : 42

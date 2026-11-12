@@ -1,0 +1,10 @@
+{
+  "titre": "Mètres et kilomètres",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`impl From<Kilometres> for Metres { fn from(km: Kilometres) -> Metres { Metres(km.0 * 1000.0) } }`, et l'inverse pour `Kilometres`.",
+    "Pour `Add` : `fn add(self, autre: Metres) -> Metres { Metres(self.0 + autre.0) }`.",
+    "`Display` : `write!(f, \"{} m\", self.0)`. Pour la somme : `etapes.iter().fold(Metres(0.0), |total, etape| total + *etape)`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Le panier asynchrone",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Dans une boucle `for` d'une `async fn`, tu peux écrire `.await` : `total += prix(article).await;`.",
+    "`total_panier` : une variable `total` qui s'incrémente avec le prix de chaque article.",
+    "`plus_cher` : garde une variable `meilleur` et remplace-la quand `prix(article).await` est plus grand. Pour une liste vide, renvoie `0`."
+  ]
+}

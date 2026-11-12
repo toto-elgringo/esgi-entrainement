@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Quel est l'intérêt principal d'un framework comme Loco par rapport à Axum seul ?",
+    "choix": ["Il est plus rapide à l'exécution", "Tout est déjà branché (config, base, auth, tests) avec des conventions", "Il remplace Tokio", "Il n'a pas besoin de Rust"],
+    "reponse": 1,
+    "explication": "Avec Axum seul, il faut choisir et brancher soi-même l'ORM, l'auth, les tests... Loco fournit tout cela et des générateurs de code."
+  },
+  {
+    "question": "Avec quels frameworks d'autres langages compare-t-on Loco ?",
+    "choix": ["Rails, Django, Laravel, NestJS", "React et Vue", "Docker et Kubernetes", "Pandas et NumPy"],
+    "reponse": 0,
+    "explication": "Loco est « le Rails de Rust » : un framework complet qui impose des conventions."
+  },
+  {
+    "question": "Sur quoi Loco est-il construit pour le HTTP et la base de données ?",
+    "choix": ["Actix et Diesel", "Axum et SeaORM", "Rocket et sqlx", "Hyper seul"],
+    "reponse": 1,
+    "explication": "Les gestionnaires Loco sont des gestionnaires Axum, et l'accès aux données passe par SeaORM. On peut toujours « redescendre » dans Axum."
+  },
+  {
+    "question": "Où se règle le port du serveur et l'adresse de la base dans un projet Loco ?",
+    "choix": ["Dans `Cargo.toml`", "Dans `config/development.yaml` (un fichier par environnement)", "Dans `src/main.rs` uniquement", "Dans les migrations"],
+    "reponse": 1,
+    "explication": "Il y a un fichier YAML par environnement : development, test, production."
+  },
+  {
+    "question": "Que fait la commande `cargo loco generate scaffold` ?",
+    "choix": ["Elle lance le serveur", "Elle génère table, modèle, contrôleur CRUD et test", "Elle supprime la base", "Elle déploie en production"],
+    "reponse": 1,
+    "explication": "Un scaffold écrit le code répétitif d'une ressource complète : migration, modèle, contrôleur avec ses routes, et un test."
+  },
+  {
+    "question": "Comment protège-t-on une route avec l'authentification JWT dans Loco ?",
+    "choix": ["En l'écrivant dans le YAML", "En ajoutant un argument `auth: auth::JWT` au gestionnaire", "En la mettant dans un autre dossier", "Impossible sans crate externe"],
+    "reponse": 1,
+    "explication": "`auth::JWT` est un extracteur : si le jeton est absent ou faux, la requête est refusée (401) avant même d'entrer dans le gestionnaire."
+  },
+  {
+    "question": "Quel type représente un gestionnaire stocké dans un routeur écrit à la main en std ?",
+    "choix": ["`Box<dyn Fn(&Requete) -> Reponse>`", "`&str`", "`Vec<u8>`", "`Option<Requete>`"],
+    "reponse": 0,
+    "explication": "Chaque gestionnaire est une fonction ou une closure de type différent : on les range derrière un pointeur `Box<dyn Fn...>`."
+  },
+  {
+    "question": "Un middleware, en Rust simple, c'est :",
+    "choix": ["Une base de données", "Une fonction qui prend un gestionnaire et en renvoie un nouveau qui l'enveloppe", "Un type de macro", "Un fichier de configuration"],
+    "reponse": 1,
+    "explication": "Le middleware agit avant et/ou après le gestionnaire (journal, vérification du jeton...) puis appelle le suivant."
+  },
+  {
+    "question": "À quoi sert `impl From<ParseIntError> for MonErreur` quand on utilise `?` ?",
+    "choix": ["À afficher l'erreur", "À convertir automatiquement l'erreur dans le type d'erreur de la fonction", "À ignorer l'erreur", "À créer une macro"],
+    "reponse": 1,
+    "explication": "Le `?` appelle `From::from` sur l'erreur : on peut mélanger plusieurs sortes d'erreurs dans une même fonction."
+  },
+  {
+    "question": "Quelle différence entre `From` et `TryFrom` ?",
+    "choix": ["Aucune", "`TryFrom` peut échouer et renvoie un `Result`", "`From` est plus lent", "`TryFrom` ne marche qu'avec les nombres"],
+    "reponse": 1,
+    "explication": "`From` est une conversion qui réussit toujours. `TryFrom` renvoie `Result` : c'est l'idée d'un extracteur qui peut refuser une requête."
+  }
+]

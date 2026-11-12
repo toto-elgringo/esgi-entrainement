@@ -1,0 +1,10 @@
+{
+  "titre": "Le builder de requête",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Chaque méthode a la forme `fn url(mut self, url: &str) -> RequeteBuilder { self.url = Some(url.to_string()); self }`.",
+    "`en_tete` ajoute un couple dans le vecteur : `self.en_tetes.push((nom.to_string(), valeur.to_string()));`.",
+    "`construire` : `let url = self.url.ok_or(\"l'adresse est obligatoire\")?;` puis refuse un délai à 0 avec `\"le délai doit être positif\"`."
+  ]
+}

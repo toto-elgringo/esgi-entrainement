@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Que se passe-t-il quand on appelle une `async fn` sans `.await` ?",
+    "choix": ["Elle s'exécute en entier", "Elle renvoie un futur, mais son code ne démarre pas", "Elle panique", "Elle lance un nouveau thread"],
+    "reponse": 1,
+    "explication": "Une `async fn` renvoie une valeur de type futur. Son code ne démarre que lorsque quelqu'un appelle `poll` (via `.await` ou un exécuteur)."
+  },
+  {
+    "question": "Quelles sont les deux valeurs de l'enum `Poll<T>` ?",
+    "choix": ["`Some` et `None`", "`Ok` et `Err`", "`Ready(T)` et `Pending`", "`Start` et `Stop`"],
+    "reponse": 2,
+    "explication": "`Ready(valeur)` : le futur est terminé. `Pending` : pas encore, il faudra rappeler `poll`."
+  },
+  {
+    "question": "Où peut-on écrire `.await` ?",
+    "choix": ["Partout", "Seulement dans `main`", "Dans une fonction ou un bloc `async`", "Seulement dans un thread"],
+    "reponse": 2,
+    "explication": "`.await` doit être dans un contexte `async` (une `async fn` ou un bloc `async { }`), sinon erreur de compilation."
+  },
+  {
+    "question": "Pourquoi `fn main` ne peut-elle pas être `async` avec la bibliothèque standard seule ?",
+    "choix": ["C'est interdit par la syntaxe", "La std ne fournit pas d'exécuteur pour faire avancer les futures", "`main` est trop lente", "Il faut Rust 2015"],
+    "reponse": 1,
+    "explication": "Il faut un exécuteur qui appelle `poll`. La std n'en contient pas : on utilise une bibliothèque comme tokio, ou son propre `block_on`."
+  },
+  {
+    "question": "Que garantit `Pin<&mut Self>` ?",
+    "choix": ["Que la valeur est immuable", "Que la valeur ne sera pas déplacée en mémoire", "Que la valeur est copiée", "Que la valeur est partagée entre threads"],
+    "reponse": 1,
+    "explication": "`Pin` interdit de déplacer la valeur, car un futur généré par le compilateur peut contenir des références vers lui-même."
+  },
+  {
+    "question": "À quoi sert le `Waker` du `Context` ?",
+    "choix": ["À afficher des messages", "À prévenir l'exécuteur qu'un futur en attente peut avancer", "À arrêter le programme", "À créer un thread"],
+    "reponse": 1,
+    "explication": "Un futur `Pending` appelle `wake` quand il peut avancer, pour que l'exécuteur le poll de nouveau."
+  },
+  {
+    "question": "Que fait le compilateur d'une `async fn` ?",
+    "choix": ["Une machine à états qui implémente `Future`", "Un thread caché", "Une macro qui copie le code", "Rien de spécial"],
+    "reponse": 0,
+    "explication": "Chaque `.await` devient un point de pause : le compilateur écrit un `enum` d'états avec une méthode `poll`."
+  },
+  {
+    "question": "Avec `let a = f(); let b = g(); a.await; b.await;` (dans une fonction async), que se passe-t-il ?",
+    "choix": ["`f` et `g` avancent en même temps", "`f` finit, puis `g` commence à avancer", "Rien ne s'exécute jamais", "`g` finit toujours avant `f`"],
+    "reponse": 1,
+    "explication": "Les futures sont paresseuses : `g` ne démarre qu'à son `.await`, après la fin de `f`. Pour les faire avancer ensemble, il faut un `join`."
+  },
+  {
+    "question": "Quel est le meilleur choix pour 10 000 connexions réseau qui attendent surtout des données ?",
+    "choix": ["10 000 threads", "De l'async avec un exécuteur", "Une boucle `loop` sans pause", "Un seul `Mutex`"],
+    "reponse": 1,
+    "explication": "Une tâche async est très légère et ne consomme presque rien pendant l'attente. 10 000 threads coûteraient beaucoup de mémoire."
+  },
+  {
+    "question": "Pourquoi éviter `std::thread::sleep` dans une tâche async ?",
+    "choix": ["Il ne compile pas", "Il bloque le fil et fige toutes les autres tâches du même exécuteur", "Il est trop précis", "Il est réservé à `main`"],
+    "reponse": 1,
+    "explication": "Un exécuteur fait tourner plusieurs tâches dans un même fil. Bloquer ce fil bloque tout. Il faut un sommeil asynchrone (par exemple `tokio::time::sleep`)."
+  }
+]

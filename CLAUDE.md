@@ -2,7 +2,7 @@
 
 ## Description
 
-Site d'entraînement pour **tous les cours de l'ESGI** : Maths pour l'informatique, Maths pour le big data, Combinatoire et complexité, Algorithmique avancée (C), Scripting Python, Rust, Anglais professionnel (TOEIC) et Cours électif (SIG). Chaque chapitre propose un cours résumé, un quiz et des exercices corrigés automatiquement. Dépôt public partagé avec la classe.
+Site d'entraînement pour **tous les cours de l'ESGI** : Maths pour l'informatique, Maths pour le big data, Combinatoire et complexité, Algorithmique avancée (C), Scripting Python, Rust, Rust avancé, Anglais professionnel (TOEIC) et Cours électif (SIG). Chaque chapitre propose un cours résumé, un quiz et des exercices corrigés automatiquement. Dépôt public partagé avec la classe.
 
 - Uniquement en local (`npm start`) : plus de GitHub Pages. Le code des exercices et des exemples du cours est compilé ou lancé par les outils de la machine (cargo, Python 3, gcc), et les erreurs s'affichent en couleur dans la page.
 - Les notes sources sont dans le vault Obsidian : `C:\Users\totoa\Obsidian\Claude Note\Cours - ESGI\<matière>\`.
@@ -44,7 +44,7 @@ js/
                     exemples.js (bouton « Essayer » sur les blocs de code du cours),
                     raccourcis.js (raccourcis façon VS Code, Alt+clic multi-curseurs)
 contenu/
-  rust/, python/, c/            chapitres (dossier par exercice) + sommaire.json GÉNÉRÉ
+  rust/, rust-avance/, python/, c/   chapitres (dossier par exercice) + sommaire.json GÉNÉRÉ
   maths/, combinatoire/, anglais/, electif/   programme.json + chapitres (chapitre.json, cours.md, quiz.json, exercices.json)
 serveur/
   index.js          npm start (port 3000, 127.0.0.1)
@@ -65,7 +65,9 @@ CONTENU.md          format exact du contenu (code et réponses)
 
 ## Architecture
 
-- Matières : une par domaine de code (`rust`, `python`, `algo-avancee` pour le domaine `c`), et celles déclarées dans les `programme.json` (`informatique`, `big-data`, `combinatoire`, `anglais`, `electif`). Les chapitres maths 04 et 05 sont communs à l'informatique et au big data. Un domaine sans contenu est masqué.
+- Matières : une par domaine de code (`rust`, `rust-avance`, `python`, `algo-avancee` pour le domaine `c`), et celles déclarées dans les `programme.json` (`informatique`, `big-data`, `combinatoire`, `anglais`, `electif`). Les chapitres maths 04 et 05 sont communs à l'informatique et au big data. Un domaine sans contenu est masqué.
+- `rust-avance` est un domaine distinct qui utilise le langage Rust : `DOMAINES_CODE` donne un `langage` par domaine (`langageDe(domaine)`), les routes `api/<langage>/verifier` reçoivent aussi le `domaine` pour trouver le dossier. Contenu en Rust std seule (aucune crate : tokio, rayon, axum, Loco, PyO3 sont seulement décrits en blocs `text`/`toml`). 10 chapitres : pointeurs intelligents, mutabilité intérieure, traits avancés, programmation par les types, concurrence, async, macros, unsafe et FFI, web et Loco, concepts fonctionnels.
+- Supports : fichiers locaux (`fichier`, PDF/HTML du vault) ou liens web (`url` en https, `integrer: true` pour afficher la page dans le site, sinon bouton « Ouvrir »).
 - `GET api/etat` renvoie les versions de cargo, clippy, Python et gcc : l'accueil d'une matière de code prévient si l'outil manque ou si le serveur ne répond plus.
 - Dossiers de travail dans `<tmp>/esgi-entrainement-<outil>/<pid>/atelier-N`, réutilisés et supprimés à l'arrêt du processus.
 - Supports originaux (PDF, HTML des profs) : jamais copiés dans le dépôt public. Déclarés dans `chapitre.json` (`supports`), servis par `/supports/<chemin>` depuis `DOSSIER_SUPPORTS` (par défaut le vault Obsidian `Cours - ESGI`), affichés dans la vue `#/supports/<domaine>/<chapitre>` (`js/vues/supports.js`, `js/supports.js`).

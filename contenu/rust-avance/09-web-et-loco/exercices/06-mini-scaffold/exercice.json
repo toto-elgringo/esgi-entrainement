@@ -1,0 +1,10 @@
+{
+  "titre": "Un mini scaffold",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Construis un `Vec<String>` de lignes puis `lignes.join(\"\\n\")`.",
+    "Met la première lettre du nom en majuscule avec `chars()`, `next()` et `to_uppercase()`. Le pluriel est simplement le nom suivi de `s`.",
+    "Pour chaque champ, `match` sur le type : `\"string\"` donne `String`, `\"double\"` donne `f64`, `\"int\"` donne `i64`."
+  ]
+}

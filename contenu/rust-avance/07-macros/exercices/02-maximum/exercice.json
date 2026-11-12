@@ -1,0 +1,10 @@
+{
+  "titre": "maximum! : une macro récursive",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Deux bras : un pour une seule valeur (cas de base), un pour une valeur suivie d'une ou plusieurs autres : `($x:expr, $($reste:expr),+)`.",
+    "Dans le deuxième bras, calcule le maximum du reste en rappelant `maximum!($($reste),+)`.",
+    "Compare ensuite : `let a = $x; let b = maximum!($($reste),+); if a > b { a } else { b }`. N'oublie pas les doubles accolades."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Indexer une grille avec [ligne, colonne]",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`Index<(usize, usize)>` : le type d'index est un couple. Dans `index`, tu reçois `(ligne, colonne)` : écris `fn index(&self, (ligne, colonne): (usize, usize)) -> &i32`.",
+    "Les cases sont rangées ligne après ligne dans un seul `Vec` : la case `(ligne, colonne)` est à la position `ligne * self.largeur + colonne`.",
+    "Avant de calculer la position, vérifie avec `assert!(ligne < self.hauteur && colonne < self.largeur, \"hors de la grille\")`. `index_mut` fait pareil mais renvoie `&mut self.cases[...]`."
+  ]
+}

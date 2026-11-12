@@ -1,0 +1,10 @@
+{
+  "titre": "voir! : afficher le code et sa valeur",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "`stringify!($e)` transforme l'expression en texte, sans la calculer.",
+    "Répète pour chaque expression avec `$( ... )+` : une ligne `println!` par expression.",
+    "`println!(\"{} = {:?}\", stringify!($e), $e);` à l'intérieur de `$( ... )+`, avec le motif `($($e:expr),+ $(,)?)`."
+  ]
+}

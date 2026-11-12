@@ -1,0 +1,10 @@
+{
+  "titre": "Du texte au type validé",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`texte.trim().parse::<u8>()` donne un `Result<u8, _>`. Change son erreur avec `.map_err(|_| format!(...))`.",
+    "Enchaîne avec `.and_then(Pourcentage::new)` : `Pourcentage::new` prend un `u8` et renvoie un `Result`, ce qui convient à `and_then`.",
+    "`somme_pourcentages` : `textes.iter().map(|texte| lire_pourcentage(texte).map(|p| u32::from(p.valeur()))).sum()` : `sum` marche aussi sur des `Result`. Pour `premier_valide` : `.find_map(|texte| lire_pourcentage(texte).ok())`."
+  ]
+}

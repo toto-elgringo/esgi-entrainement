@@ -1,0 +1,11 @@
+{
+  "titre": "Compter les libérations avec Drop",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Écris `impl Drop for Jeton { fn drop(&mut self) { ... } }`. Dedans, ajoute 1 au compteur partagé.",
+    "Un `Cell` se lit et s'écrit même à travers une référence non mutable : `self.compteur.set(self.compteur.get() + 1);`.",
+    "`creer_et_perdre` : une boucle `for _ in 0..n` qui fait `let _jeton = Jeton::nouveau(compteur);`. Le jeton est libéré à la fin de chaque tour.",
+    "Attention : `let _ = Jeton::nouveau(compteur);` marche aussi, mais `_jeton` rend le moment de la libération plus clair."
+  ]
+}

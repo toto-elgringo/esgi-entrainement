@@ -1,0 +1,10 @@
+{
+  "titre": "Mon premier thread",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Lance le calcul avec `thread::spawn(move || { ... })`. La closure renvoie la somme.",
+    "La somme de 1 à n s'écrit `(1..=n).sum::<u64>()`.",
+    "`spawn` renvoie un `JoinHandle`. Appelle `.join().unwrap()` dessus pour récupérer la valeur."
+  ]
+}

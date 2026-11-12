@@ -1,5 +1,5 @@
 import { echapper } from '../outils.js';
-import { lienSupport, supportsDeChapitre, typeSupport } from '../supports.js';
+import { adresseSupport, estLienWeb, supportsDeChapitre, typeDeSupport, typeSupport } from '../supports.js';
 
 function cleAffichage(chapitre) {
   return `${chapitre.cle}/supports`;
@@ -11,8 +11,12 @@ function indiceDepart(ctx, chapitre, supports, demande) {
 }
 
 function visionneuse(support) {
-  const lien = lienSupport(support.fichier);
+  const lien = echapper(adresseSupport(support));
   const titre = echapper(support.titre);
+  if (estLienWeb(support) && !support.integrer) {
+    return `<div class="carte-lien-support"><p>Ce support est un site web : il s’ouvre dans un nouvel onglet.</p><a class="bouton" href="${lien}" target="_blank" rel="noopener">Ouvrir ${titre} ↗</a></div>`;
+  }
+  if (estLienWeb(support)) return `<iframe class="visionneuse" src="${lien}" title="${titre}" allowfullscreen></iframe>`;
   return typeSupport(support.fichier) === 'PDF'
     ? `<iframe class="visionneuse" src="${lien}#view=FitH" title="${titre}"></iframe>`
     : `<iframe class="visionneuse" src="${lien}" title="${titre}" sandbox="allow-scripts"></iframe>`;
@@ -22,7 +26,7 @@ export function bandeauSupports(chapitre, matiere) {
   const supports = supportsDeChapitre(chapitre, matiere);
   if (supports.length === 0) return '';
   const liens = supports
-    .map((support, indice) => `<a class="puce-support" href="#/supports/${chapitre.cle}/${indice}">${echapper(support.titre)} <span>${typeSupport(support.fichier)}</span></a>`)
+    .map((support, indice) => `<a class="puce-support" href="#/supports/${chapitre.cle}/${indice}">${echapper(support.titre)} <span>${typeDeSupport(support)}</span></a>`)
     .join('');
   return `<div class="bandeau-supports"><strong>Supports originaux</strong>${liens}</div>`;
 }
@@ -39,7 +43,7 @@ export function afficherSupports(ctx, chapitre, demande) {
 
   let indice = indiceDepart(ctx, chapitre, supports, demande);
   const onglets = supports
-    .map((support, position) => `<button class="onglet-support" data-support="${position}">${echapper(support.titre)} <span>${typeSupport(support.fichier)}</span></button>`)
+    .map((support, position) => `<button class="onglet-support" data-support="${position}">${echapper(support.titre)} <span>${typeDeSupport(support)}</span></button>`)
     .join('');
 
   ctx.conteneur.innerHTML = `
@@ -60,7 +64,7 @@ export function afficherSupports(ctx, chapitre, demande) {
   function montrer(position) {
     indice = position;
     cadre.innerHTML = visionneuse(supports[indice]);
-    nouvelOnglet.href = lienSupport(supports[indice].fichier);
+    nouvelOnglet.href = adresseSupport(supports[indice]);
     boutons.forEach((bouton, rang) => {
       bouton.classList.toggle('actif', rang === indice);
       bouton.setAttribute('aria-selected', String(rang === indice));

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Où est stockée la valeur dans `let x = Box::new(5);` ?",
+    "choix": ["Sur la pile", "Sur le tas", "Dans un fichier", "Dans un registre du processeur"],
+    "reponse": 1,
+    "explication": "`Box::new` place la valeur sur le tas. La variable `x` (sur la pile) ne contient que l'adresse."
+  },
+  {
+    "question": "Pourquoi `enum Liste { Cons(i32, Liste), Vide }` ne compile-t-il pas ?",
+    "choix": ["`Vide` est interdit", "La taille du type serait infinie", "`i32` n'est pas autorisé dans un enum", "Il manque `#[derive(Debug)]`"],
+    "reponse": 1,
+    "explication": "Une liste contiendrait une liste, qui contiendrait une liste... Avec `Box<Liste>`, la taille est fixe (un `i32` et une adresse)."
+  },
+  {
+    "question": "À quoi sert `Vec<Box<dyn Forme>>` ?",
+    "choix": ["À stocker des types différents qui implémentent le trait `Forme`", "À stocker uniquement des `Box`", "À copier les formes plus vite", "À rendre les formes mutables"],
+    "reponse": 0,
+    "explication": "Chaque `Box<dyn Forme>` a la même taille (une adresse), donc on peut mélanger cercles, carrés, etc. La bonne méthode est choisie à l'exécution."
+  },
+  {
+    "question": "Quel trait permet d'écrire `*ma_valeur` sur son propre type ?",
+    "choix": ["`Drop`", "`Deref`", "`Clone`", "`Display`"],
+    "reponse": 1,
+    "explication": "`Deref` décrit comment obtenir une référence vers le contenu. `*x` devient `*(x.deref())`."
+  },
+  {
+    "question": "Une fonction attend un `&str`. Que peut-on lui passer grâce à la coercion deref ?",
+    "choix": ["Un `&String` seulement", "Un `&Box<String>` aussi", "Un `String` sans `&`", "Rien d'autre qu'un `&str`"],
+    "reponse": 1,
+    "explication": "Rust enchaîne les `deref` : `&Box<String>` devient `&String` puis `&str`. Il faut quand même le `&` devant."
+  },
+  {
+    "question": "Dans quel ordre les variables locales sont-elles libérées (`Drop`) ?",
+    "choix": ["Dans l'ordre de création", "Dans l'ordre inverse de création", "Dans un ordre aléatoire", "Par ordre alphabétique"],
+    "reponse": 1,
+    "explication": "La dernière variable créée est libérée la première, comme une pile d'assiettes."
+  },
+  {
+    "question": "Comment libérer une valeur avant la fin de sa portée ?",
+    "choix": ["`valeur.drop()`", "`drop(valeur)`", "`valeur = None`", "`free(valeur)`"],
+    "reponse": 1,
+    "explication": "Appeler la méthode `drop` soi-même est interdit par le compilateur. La fonction `drop(valeur)` prend la valeur et la laisse disparaître."
+  },
+  {
+    "question": "Que fait `Rc::clone(&a)` ?",
+    "choix": ["Copie toute la donnée sur le tas", "Ajoute 1 au compteur de références", "Déplace `a`", "Crée une référence mutable"],
+    "reponse": 1,
+    "explication": "La donnée n'est pas copiée : on ajoute juste un propriétaire. La valeur est libérée quand le compteur tombe à 0."
+  },
+  {
+    "question": "Deux `Rc` qui se pointent mutuellement, que se passe-t-il ?",
+    "choix": ["Erreur de compilation", "Panique à l'exécution", "Fuite mémoire : les compteurs ne tombent jamais à 0", "Rust libère automatiquement les deux"],
+    "reponse": 2,
+    "explication": "Chacun garde l'autre en vie. On casse le cycle en utilisant `Weak` pour un des deux liens."
+  },
+  {
+    "question": "Que renvoie `weak.upgrade()` ?",
+    "choix": ["Un `Rc<T>`", "Un `Option<Rc<T>>`, `None` si la valeur a disparu", "Un `Arc<T>`", "Une référence mutable"],
+    "reponse": 1,
+    "explication": "Un `Weak` ne garde pas la valeur en vie : elle a pu être libérée entre-temps, d'où l'`Option`."
+  }
+]

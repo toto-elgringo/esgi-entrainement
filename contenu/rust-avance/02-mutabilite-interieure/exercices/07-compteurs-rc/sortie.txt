@@ -1,0 +1,5 @@
+forts : 1, faibles : 0
+forts : 2, faibles : 1
+forts : 1, faibles : 1
+valeur : Some(5)
+valeur : None

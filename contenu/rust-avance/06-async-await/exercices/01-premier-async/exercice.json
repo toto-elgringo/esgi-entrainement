@@ -1,0 +1,10 @@
+{
+  "titre": "Mes premières async fn",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Dans une `async fn`, on récupère le résultat d'une autre `async fn` avec `.await` : `addition(a, b).await`.",
+    "`double_somme` : calcule `addition(a, b).await`, puis multiplie le résultat par 2.",
+    "`bonjour` : `format!(\"{} {} !\", formule().await, nom)`."
+  ]
+}

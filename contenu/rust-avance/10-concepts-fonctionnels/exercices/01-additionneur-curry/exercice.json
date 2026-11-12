@@ -1,0 +1,10 @@
+{
+  "titre": "Un additionneur curryfié",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "La fonction renvoie une closure : le type de retour est `impl Fn(i32) -> i32`.",
+    "La closure doit posséder `x` : écris `move |y| ...`.",
+    "`fn additionneur(x: i32) -> impl Fn(i32) -> i32 { move |y| x + y }`, et `multiplieur` est identique avec `*`."
+  ]
+}

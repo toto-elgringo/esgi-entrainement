@@ -1,0 +1,10 @@
+{
+  "titre": "Les premières boîtes",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`Box::new(valeur)` crée une boîte. `*boite` récupère la valeur qu'elle contient.",
+    "`envelopper(n)` : `Box::new(n)`. `incrementer(boite)` : `*boite += 1;`. `additionner` : `Box::new(a + b)`.",
+    "`choisir_operation` : dans chaque bras du `match`, renvoie `Some(Box::new(|x| ...))`. Le cas inconnu renvoie `None`."
+  ]
+}

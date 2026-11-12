@@ -1,0 +1,10 @@
+{
+  "titre": "Des états, pas des booléens",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Un `match paiement { ... }` avec un cas par variante. Pour lire les champs : `Paiement::Paye { montant } => ...`.",
+    "`montant_encaisse` : seul `Paye` rend son montant, les autres cas rendent `0` (tu peux écrire `_ => 0`).",
+    "`rembourser` consomme le paiement : `Paiement::Paye { montant } => Ok(Paiement::Rembourse { montant, motif: motif.to_string() })`, et `_ => Err(...)` pour le reste."
+  ]
+}

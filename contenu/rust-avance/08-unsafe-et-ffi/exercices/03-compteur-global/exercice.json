@@ -1,0 +1,10 @@
+{
+  "titre": "Un compteur global",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Lire ou modifier un `static mut` demande un bloc `unsafe`.",
+    "`COMPTEUR += 1;` augmente la variable globale.",
+    "Termine le bloc `unsafe` par `COMPTEUR` pour renvoyer la nouvelle valeur."
+  ]
+}

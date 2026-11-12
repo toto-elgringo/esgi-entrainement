@@ -1,0 +1,107 @@
+[
+  {
+    "question": "Que veut dire « rendre les états illégaux impossibles à représenter » ?",
+    "choix": [
+      "Écrire plus de tests",
+      "Choisir des types où une valeur invalide ne peut tout simplement pas exister",
+      "Utiliser `unsafe` pour aller plus vite",
+      "Attraper toutes les erreurs avec `panic!`"
+    ],
+    "reponse": 1,
+    "explication": "On construit les types pour que les valeurs absurdes (pourcentage de 250, connexion fermée qui envoie) ne compilent pas ou ne puissent pas être créées."
+  },
+  {
+    "question": "Qu'est-ce qu'un newtype ?",
+    "choix": [
+      "Un alias créé avec `type`",
+      "Une structure à un seul champ qui enveloppe un type existant",
+      "Une nouvelle version de Rust",
+      "Un trait générique"
+    ],
+    "reponse": 1,
+    "explication": "`struct Metres(f64);` est un type distinct de `f64` pour le compilateur, sans coût à l'exécution. Un alias `type` ne crée pas un type différent."
+  },
+  {
+    "question": "Quelle différence y a-t-il entre `type Metres = f64;` et `struct Metres(f64);` ?",
+    "choix": [
+      "Aucune",
+      "L'alias est un vrai nouveau type, pas la structure",
+      "La structure est un vrai nouveau type, l'alias reste un `f64`",
+      "La structure est plus lente"
+    ],
+    "reponse": 2,
+    "explication": "Un alias est juste un autre nom : on peut mélanger `Metres` et `f64`. Une structure est un type distinct que le compilateur refuse de mélanger."
+  },
+  {
+    "question": "Pourquoi le champ d'un newtype validé (comme `Pourcentage`) doit-il rester privé ?",
+    "choix": [
+      "Pour que le code soit plus rapide",
+      "Pour que personne ne puisse le construire sans passer par `new`",
+      "Parce que Rust l'impose",
+      "Pour économiser de la mémoire"
+    ],
+    "reponse": 1,
+    "explication": "Avec un champ `pub`, on peut écrire `Pourcentage(250)` directement : la validation du constructeur est contournée."
+  },
+  {
+    "question": "Quel type de retour est le plus adapté pour un constructeur qui peut refuser une valeur, avec la raison du refus ?",
+    "choix": ["`Option<Self>`", "`Result<Self, E>`", "`bool`", "`Self` avec un `panic!`"],
+    "reponse": 1,
+    "explication": "`Result<Self, E>` dit pourquoi la valeur est refusée. `Option` ne donne pas la raison, `bool` ne rend pas la valeur."
+  },
+  {
+    "question": "Pourquoi préférer une `enum` à plusieurs booléens (`paye`, `rembourse`) ?",
+    "choix": [
+      "Une enum est plus courte à écrire",
+      "Les booléens sont interdits en Rust",
+      "L'enum interdit les combinaisons absurdes et peut porter des données par état",
+      "Les enums sont toujours plus rapides"
+    ],
+    "reponse": 2,
+    "explication": "Deux booléens autorisent 4 combinaisons dont certaines n'ont pas de sens. Une enum n'a que les variantes voulues, et chacune peut avoir ses champs."
+  },
+  {
+    "question": "Dans le pattern builder, pourquoi les méthodes prennent-elles `mut self` et renvoient-elles `Self` ?",
+    "choix": [
+      "Pour pouvoir enchaîner les appels avec des points",
+      "Pour copier la structure à chaque étape",
+      "Pour éviter les erreurs de compilation",
+      "Parce que `&self` est interdit dans un builder"
+    ],
+    "reponse": 0,
+    "explication": "En recevant et rendant `self`, chaque appel donne le builder suivant : `Builder::nouveau().url(..).delai(..).construire()`."
+  },
+  {
+    "question": "À quoi sert `PhantomData<Etat>` dans `struct Connexion<Etat> { ... }` ?",
+    "choix": [
+      "À stocker un `Etat` en mémoire",
+      "À utiliser le paramètre générique sans occuper de mémoire",
+      "À rendre la structure thread-safe",
+      "À cacher la structure"
+    ],
+    "reponse": 1,
+    "explication": "Rust refuse un paramètre générique inutilisé. `PhantomData` le « consomme » sans prendre de place : il n'existe qu'à la compilation."
+  },
+  {
+    "question": "Dans un typestate, pourquoi une transition comme `ouvrir` prend-elle `self` et non `&self` ?",
+    "choix": [
+      "Pour consommer l'ancien état et empêcher de le réutiliser",
+      "Parce que `&self` ne marche pas avec les génériques",
+      "Pour copier la connexion",
+      "Pour appeler `drop` manuellement"
+    ],
+    "reponse": 0,
+    "explication": "`self` déplace la valeur : la connexion fermée disparaît et on ne garde que la connexion ouverte. On ne peut plus rouvrir deux fois."
+  },
+  {
+    "question": "Que fait `and_then` sur un `Result` ?",
+    "choix": [
+      "Il transforme l'erreur",
+      "Il applique une fonction qui renvoie elle-même un `Result`, si le premier est `Ok`",
+      "Il ignore les erreurs",
+      "Il fait paniquer en cas d'erreur"
+    ],
+    "reponse": 1,
+    "explication": "`and_then(f)` appelle `f` sur la valeur `Ok` et rend directement son `Result`, sans double boîte. Une erreur passe sans appeler `f`. Pour transformer l'erreur, on utilise `map_err`."
+  }
+]

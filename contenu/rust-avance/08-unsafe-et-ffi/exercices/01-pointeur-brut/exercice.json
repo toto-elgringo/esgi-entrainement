@@ -1,0 +1,10 @@
+{
+  "titre": "Lire et écrire par un pointeur brut",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Une référence se convertit en pointeur brut avec `as` : `x as *const i32` pour lire, `x as *mut i32` pour écrire.",
+    "Créer le pointeur est sûr, mais le déréférencer (`*p`) doit être dans un bloc `unsafe { ... }`.",
+    "Pour écrire : `unsafe { *p = valeur; }`."
+  ]
+}

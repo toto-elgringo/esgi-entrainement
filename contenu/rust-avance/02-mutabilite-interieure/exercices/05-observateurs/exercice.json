@@ -1,0 +1,10 @@
+{
+  "titre": "Les observateurs",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le trait impose `&self` : un `Historique` doit donc ranger ses messages dans le `RefCell` : `self.vus.borrow_mut().push(...)`.",
+    "`abonner` ajoute l'observateur dans le `Vec` : `self.observateurs.push(observateur);`.",
+    "`emettre` parcourt les observateurs : `for o in &self.observateurs { o.notifier(evenement); }`."
+  ]
+}

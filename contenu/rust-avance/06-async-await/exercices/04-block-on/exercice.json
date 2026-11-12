@@ -1,0 +1,10 @@
+{
+  "titre": "Écrire block_on",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence par `let mut futur = pin!(futur);` puis `let mut contexte = Context::from_waker(Waker::noop());`.",
+    "Fais une `loop` : à chaque tour, appelle `futur.as_mut().poll(&mut contexte)`.",
+    "Si le résultat est `Poll::Ready(valeur)`, fais `return valeur;`. Sinon, la boucle recommence."
+  ]
+}

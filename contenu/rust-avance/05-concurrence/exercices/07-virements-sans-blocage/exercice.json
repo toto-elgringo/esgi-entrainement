@@ -1,0 +1,10 @@
+{
+  "titre": "Virements sans interblocage",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`ordre_verrous(de, vers)` renvoie les deux numéros rangés du plus petit au plus grand : `if de < vers { (de, vers) } else { (vers, de) }`.",
+    "Dans `transferer`, prends d'abord le verrou du plus petit numéro, puis celui du plus grand : `let mut petit = comptes[premier].lock().unwrap();` puis `let mut grand = comptes[second].lock().unwrap();`.",
+    "Ensuite, retire `montant` du compte `de` et ajoute-le au compte `vers`. Si `de < vers`, `de` est le `petit`, sinon c'est le `grand`."
+  ]
+}

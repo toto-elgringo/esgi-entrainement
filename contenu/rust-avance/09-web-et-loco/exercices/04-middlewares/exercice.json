@@ -1,0 +1,10 @@
+{
+  "titre": "Middlewares : journal et jeton",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Un middleware renvoie `Box::new(move |r: &Requete| { ... })` : la closure prend possession de `suivant` (et du journal) grâce à `move`.",
+    "`journaliser` : ajoute `début <chemin>`, appelle `suivant(r)`, puis ajoute `fin <chemin> <statut>` avec `journal.borrow_mut().push(...)`.",
+    "`exiger_jeton` : compare `r.jeton.as_deref()` à `Some(attendu.as_str())`. Si c'est faux, ne touche pas à `suivant` et renvoie le statut 401."
+  ]
+}

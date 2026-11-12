@@ -1,5 +1,5 @@
 import { chargerFichierCode } from '../catalogue.js';
-import { LANGAGES } from '../domaines.js';
+import { langageDe, LANGAGES } from '../domaines.js';
 import { colorerCode, echapper, rendreMarkdown, rendreMarkdownEnLigne } from '../outils.js';
 import { cleExercice, estReussi, lienExercice, voisins } from '../parcours.js';
 import { compilateur } from './compilateur.js';
@@ -62,9 +62,9 @@ function gabarit(chapitre, exercice, { enonce, sortieAttendue, entree, entreeSai
 }
 
 export async function afficherExerciceCode(ctx, chapitre, exercice) {
-  const langage = chapitre.domaine;
+  const langage = langageDe(chapitre.domaine);
   const { extension, modeEditeur, surligneur } = LANGAGES[langage];
-  const fichier = (nom) => chargerFichierCode(langage, chapitre.id, exercice.id, nom);
+  const fichier = (nom) => chargerFichierCode(chapitre.domaine, chapitre.id, exercice.id, nom);
   const fichiers = await Promise.all([
     fichier('enonce.md'),
     fichier(`depart.${extension}`),
@@ -129,7 +129,7 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
     try {
       const code = editeur.lire();
       const resultat = action === 'verifier'
-        ? await compilateur.verifier(langage, chapitre.id, exercice.id, code)
+        ? await compilateur.verifier(langage, chapitre.domaine, chapitre.id, exercice.id, code)
         : await compilateur.executer(langage, code, zoneEntree.value);
       afficherResultat(zoneResultat, resultat, { langage, suivant });
       ctx.enregistrerAffichage(cle, { resultat: resultatAEnregistrer(resultat) });

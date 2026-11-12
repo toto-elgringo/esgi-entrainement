@@ -1,0 +1,10 @@
+{
+  "titre": "Un vecteur avec des opérateurs",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Chaque opérateur a son trait : `Add` pour `+`, `Sub` pour `-`, `Neg` pour le `-` unaire, `Mul<f64>` pour `*`. Dans chaque `impl`, il faut écrire `type Output = Vecteur;`.",
+    "Pour `Add` : `Vecteur { x: self.x + autre.x, y: self.y + autre.y }`. `Sub` est pareil avec `-`.",
+    "Pour `Neg` : on change le signe des deux champs. Pour `Mul<f64>` : on multiplie les deux champs par `k`."
+  ]
+}

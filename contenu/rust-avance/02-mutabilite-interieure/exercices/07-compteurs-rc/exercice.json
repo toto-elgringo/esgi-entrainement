@@ -1,0 +1,10 @@
+{
+  "titre": "Forts et faibles",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "`Rc::strong_count(rc)` donne le nombre de propriétaires, `Rc::weak_count(rc)` le nombre de références faibles.",
+    "`comptes` doit renvoyer un couple : `(Rc::strong_count(rc), Rc::weak_count(rc))`.",
+    "Le reste du programme est déjà écrit : une fois `comptes` écrite, la sortie doit correspondre."
+  ]
+}

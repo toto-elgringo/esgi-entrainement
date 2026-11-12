@@ -1,0 +1,10 @@
+{
+  "titre": "Plusieurs producteurs",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Crée le canal avec `let (tx, rx) = mpsc::channel();`. Pour chaque producteur, clone l'émetteur : `let tx = tx.clone();` puis `move ||` dans le thread.",
+    "Chaque producteur `id` envoie `id * 100 + i` pour `i` de 0 à `par_producteur`.",
+    "Après la boucle, fais `drop(tx)` : sinon `rx.iter()` n'a jamais de fin. Puis collecte, fais les `join`, et trie avec `sort()`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "calculer! : plusieurs bras et mots-clés",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Un bras par opération. Les mots `plus`, `moins`, `fois` s'écrivent tels quels dans le motif : `($a:tt plus $b:tt)`.",
+    "On utilise `tt` et non `expr` : un `expr` ne peut pas être suivi d'un mot comme `plus`.",
+    "Chaque bras renvoie l'opération : `$a + $b`, `$a - $b`, `$a * $b`. Ajoute un bras `($a:tt diviser $b:tt)` qui renvoie un `Option` (`None` si le diviseur est 0)."
+  ]
+}

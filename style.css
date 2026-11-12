@@ -1669,6 +1669,12 @@ body[data-domaine="rust"] {
   --texte-code: #ffb38a;
 }
 
+body[data-domaine="rust-avance"] {
+  --accent: #d6455d;
+  --accent-doux: rgba(214, 69, 93, 0.14);
+  --texte-code: #ff9aa9;
+}
+
 body[data-domaine="python"] {
   --accent: #e0b13a;
   --accent-doux: rgba(224, 177, 58, 0.14);
@@ -1700,6 +1706,12 @@ body[data-domaine="electif"] {
   --accent: #c2501c;
   --accent-doux: rgba(194, 80, 28, 0.11);
   --texte-code: #a8431a;
+}
+
+:root[data-theme="clair"] body[data-domaine="rust-avance"] {
+  --accent: #b02a42;
+  --accent-doux: rgba(176, 42, 66, 0.11);
+  --texte-code: #9a2338;
 }
 
 :root[data-theme="clair"] body[data-domaine="python"] {
@@ -2085,4 +2097,14 @@ body[data-domaine="electif"] {
   height: 100%;
   border: 0;
   background: #fff;
+}
+
+.carte-lien-support {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  padding: 24px;
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+  background: var(--fond-menu);
 }

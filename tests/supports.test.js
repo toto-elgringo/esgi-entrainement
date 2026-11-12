@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { cheminSupportSur, lienSupport, supportsDeChapitre, typeSupport, validerSupports } from '../js/supports.js';
+import { adresseSupport, cheminSupportSur, typeDeSupport, lienSupport, supportsDeChapitre, typeSupport, validerSupports } from '../js/supports.js';
 
 describe('supports originaux', () => {
   it('reconnaît les PDF et les pages HTML', () => {
@@ -41,5 +41,13 @@ describe('supports originaux', () => {
     assert.equal(validerSupports('a.pdf').length, 1);
     const problemes = validerSupports([{ fichier: '../a.pdf' }, { titre: 'Word', fichier: 'a.docx', matieres: 'rust' }]);
     assert.equal(problemes.length, 4);
+  });
+
+  it('accepte les liens web en https', () => {
+    assert.deepEqual(validerSupports([{ titre: 'Livre', url: 'https://doc.rust-lang.org/book/' }]), []);
+    assert.equal(validerSupports([{ titre: 'Livre', url: 'http://exemple.fr' }]).length, 1);
+    assert.equal(typeDeSupport({ url: 'https://a.fr' }), 'Lien');
+    assert.equal(typeDeSupport({ url: 'https://a.fr', integrer: true }), 'Diapo');
+    assert.equal(adresseSupport({ url: 'https://a.fr' }), 'https://a.fr');
   });
 });

@@ -1,0 +1,10 @@
+{
+  "titre": "Application partielle générique",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le résultat est une closure `move |b| ...` qui appelle `f` avec `a` et `b`.",
+    "`f` attend `a` par valeur à chaque appel : comme la closure peut être appelée plusieurs fois, utilise `a.clone()`.",
+    "`move |b| f(a.clone(), b)`"
+  ]
+}

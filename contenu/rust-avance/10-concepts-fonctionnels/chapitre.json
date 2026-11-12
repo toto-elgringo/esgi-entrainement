@@ -1,0 +1,25 @@
+{
+  "titre": "Concepts fonctionnels",
+  "description": "Pourquoi et d'où vient la programmation fonctionnelle, déclaratif contre impératif, closures capturantes, curryfication, application partielle, point-free, pipe, pattern matching sur slices, Option comme « Maybe », aperçu de la théorie des catégories.",
+  "source": "fondamentaux",
+  "supports": [
+    {
+      "titre": "Diapos complètes : Rust avancé et programmation fonctionnelle",
+      "fichier": "Rust/Sources/Slides - Rust avancé et programmation fonctionnelle.pdf"
+    },
+    {
+      "titre": "Diapos : Initiation à Rust et à la programmation fonctionnelle",
+      "fichier": "Rust/Sources/Slides - Initiation à Rust et à la programmation fonctionnelle.pdf"
+    },
+    {
+      "titre": "Diapos : Rust et programmation fonctionnelle (1)",
+      "url": "https://docs.google.com/presentation/d/1Lww5ntAIIWQicP-FnS6pp_qGr_NZyIpIlGjqYH0b92M/embed?start=false&loop=false",
+      "integrer": true
+    },
+    {
+      "titre": "Diapos : Rust et programmation fonctionnelle (2)",
+      "url": "https://docs.google.com/presentation/d/1aZzwMQEwEEwhl08tjsM9JF6HTXk9e3-0cOKNdsJon7k/embed?start=false&loop=false",
+      "integrer": true
+    }
+  ]
+}

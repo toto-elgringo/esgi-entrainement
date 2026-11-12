@@ -1,0 +1,11 @@
+{
+  "titre": "Un split_at_mut maison",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Récupère le pointeur du début avec `t.as_mut_ptr()` et la longueur avec `t.len()` avant d'entrer dans `unsafe`.",
+    "`std::slice::from_raw_parts_mut(pointeur, longueur)` reconstruit un `&mut [i32]` à partir d'un pointeur et d'une longueur.",
+    "Premier morceau : `from_raw_parts_mut(p, milieu)`. Second : `from_raw_parts_mut(p.add(milieu), longueur - milieu)`.",
+    "N'oublie pas `assert!(milieu <= longueur)` : c'est elle qui rend la fonction sûre."
+  ]
+}

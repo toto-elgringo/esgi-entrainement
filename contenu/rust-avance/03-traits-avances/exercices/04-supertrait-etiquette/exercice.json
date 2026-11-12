@@ -1,0 +1,10 @@
+{
+  "titre": "Un supertrait pour les étiquettes",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`trait Article: fmt::Display` impose que chaque article sache s'afficher. Il faut donc écrire `impl fmt::Display` pour `Livre` et pour `Stylo`.",
+    "`Livre` s'affiche `Livre <titre>` et `Stylo` s'affiche `Stylo <couleur>` : `write!(f, \"Livre {}\", self.titre)`.",
+    "Dans `etiquette`, utilise `self` directement dans `format!` (grâce au supertrait) : `format!(\"{} : {:.2} €\", self, self.prix_centimes() as f64 / 100.0)`."
+  ]
+}

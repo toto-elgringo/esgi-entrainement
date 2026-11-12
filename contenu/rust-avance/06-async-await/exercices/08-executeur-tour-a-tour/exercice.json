@@ -1,0 +1,10 @@
+{
+  "titre": "Un exécuteur tour à tour",
+  "difficulte": 3,
+  "type": "sortie",
+  "indices": [
+    "Crée un contexte une seule fois : `let mut contexte = Context::from_waker(Waker::noop());`, puis boucle tant que `futurs` n'est pas vide.",
+    "À chaque tour, interroge chaque futur dans l'ordre : `futur.as_mut().poll(&mut contexte)`.",
+    "`futurs.retain_mut(|f| f.as_mut().poll(&mut contexte).is_pending());` interroge chaque futur et ne garde que ceux qui sont encore `Pending`."
+  ]
+}

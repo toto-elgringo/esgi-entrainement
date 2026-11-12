@@ -1,0 +1,10 @@
+A : étape 1/2
+B : étape 1/1
+C : étape 1/3
+A : étape 2/2
+B terminée
+C : étape 2/3
+A terminée
+C : étape 3/3
+C terminée
+toutes les tâches sont terminées

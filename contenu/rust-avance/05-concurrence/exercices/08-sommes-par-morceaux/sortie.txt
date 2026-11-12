@@ -1,0 +1,4 @@
+Morceau 1 : 10
+Morceau 2 : 26
+Morceau 3 : 42
+Total : 78

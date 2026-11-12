@@ -1,0 +1,10 @@
+{
+  "titre": "Composer des fonctions en point-free",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`composer(f, g)` renvoie une closure qui applique `f` puis `g` : `move |x| g(f(x))`.",
+    "Pour `abs_puis_double`, passe des **noms de fonctions** sans les appeler : `composer(i32::abs, double)`.",
+    "`fn abs_puis_double() -> impl Fn(i32) -> i32 { composer(i32::abs, double) }`"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Lire une ligne de requête",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`split_whitespace()` découpe le texte en mots ; `next()?` renvoie `None` tout de suite s'il n'y a plus de mot.",
+    "Après la méthode et le chemin, vérifie qu'il ne reste plus rien (`next().is_some()` doit être faux).",
+    "Le chemin doit commencer par `/` : `chemin.starts_with('/')`."
+  ]
+}

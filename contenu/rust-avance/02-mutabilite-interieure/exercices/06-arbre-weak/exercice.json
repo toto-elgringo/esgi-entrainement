@@ -1,0 +1,10 @@
+{
+  "titre": "Un arbre avec parents faibles",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`ajouter_enfant` fait deux choses : `parent.enfants.borrow_mut().push(Rc::clone(enfant));` et `*enfant.parent.borrow_mut() = Rc::downgrade(parent);`.",
+    "`chemin` : pars du noeud, note son nom, puis remonte avec `courant.parent.borrow().upgrade()` jusqu'à obtenir `None`. Inverse la liste à la fin.",
+    "`compter_descendants` : pour chaque enfant, ajoute `1 + compter_descendants(enfant)`."
+  ]
+}

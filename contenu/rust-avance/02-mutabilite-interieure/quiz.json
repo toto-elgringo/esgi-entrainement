@@ -1,0 +1,72 @@
+[
+  {
+    "question": "Quand `RefCell` vérifie-t-il les règles d'emprunt ?",
+    "choix": ["À la compilation", "À l'exécution", "Jamais", "Au lancement de `cargo build` seulement"],
+    "reponse": 1,
+    "explication": "`RefCell` compte les emprunts pendant que le programme tourne. Une violation ne se voit donc pas à la compilation."
+  },
+  {
+    "question": "Que se passe-t-il si on appelle `borrow_mut()` alors qu'un `borrow()` est encore actif ?",
+    "choix": ["Le code ne compile pas", "Le programme panique", "La valeur est copiée", "L'emprunt en lecture est annulé"],
+    "reponse": 1,
+    "explication": "La règle « une écriture OU plusieurs lectures » est vérifiée à l'exécution : la violation provoque une panique (`already borrowed: BorrowMutError`)."
+  },
+  {
+    "question": "Quelle méthode permet d'essayer d'emprunter en écriture sans risquer de panique ?",
+    "choix": ["`safe_borrow_mut()`", "`try_borrow_mut()`", "`borrow_mut().ok()`", "`get_mut()`"],
+    "reponse": 1,
+    "explication": "`try_borrow_mut()` renvoie un `Result` : `Ok(garde)` si l'emprunt est possible, `Err` sinon."
+  },
+  {
+    "question": "Quelle est la grande différence entre `Cell<T>` et `RefCell<T>` ?",
+    "choix": [
+      "`Cell` est plus lent",
+      "`Cell` donne des références vers son contenu, pas `RefCell`",
+      "`Cell` copie les valeurs dedans et dehors (`get`/`set`), sans références ni panique",
+      "`Cell` marche sur plusieurs threads"
+    ],
+    "reponse": 2,
+    "explication": "`Cell` ne donne jamais de référence vers son contenu : on lit une copie avec `get` ou on remplace avec `set`. Pas d'emprunt donc pas de panique."
+  },
+  {
+    "question": "Pourquoi `Cell::get()` n'est-il disponible que pour certains types ?",
+    "choix": ["Le type doit être `Copy`", "Le type doit être `Clone` seulement", "Le type doit être `Send`", "Le type doit être `String`"],
+    "reponse": 0,
+    "explication": "`get` renvoie une copie de la valeur : le type doit implémenter `Copy`. Pour les autres types, on utilise `replace` ou `take`."
+  },
+  {
+    "question": "Que permet `Rc<RefCell<T>>` ?",
+    "choix": [
+      "Plusieurs propriétaires qui peuvent modifier la même valeur, dans un seul thread",
+      "Partager une valeur entre plusieurs threads",
+      "Éviter toute panique",
+      "Rendre la valeur immuable"
+    ],
+    "reponse": 0,
+    "explication": "`Rc` donne plusieurs propriétaires, `RefCell` donne la modification. Ni l'un ni l'autre ne sont sûrs entre threads (il faut `Arc<Mutex<T>>`)."
+  },
+  {
+    "question": "Deux `Rc` qui se pointent l'un l'autre provoquent...",
+    "choix": ["Une erreur de compilation", "Une panique immédiate", "Une fuite mémoire (les compteurs ne tombent jamais à 0)", "Rien de spécial"],
+    "reponse": 2,
+    "explication": "Chaque valeur garde l'autre en vie, donc leur compteur fort ne tombe jamais à 0 et la mémoire n'est jamais libérée."
+  },
+  {
+    "question": "Que renvoie `weak.upgrade()` ?",
+    "choix": ["Un `Rc<T>` toujours", "Un `Option<Rc<T>>`", "Un `Result<T, String>`", "Un `Weak<T>` plus fort"],
+    "reponse": 1,
+    "explication": "`Some(rc)` si la valeur existe encore, `None` si elle a déjà été libérée."
+  },
+  {
+    "question": "Dans un arbre, quel lien doit être un `Weak` ?",
+    "choix": ["Parent vers enfants", "Enfant vers parent", "Les deux", "Aucun"],
+    "reponse": 1,
+    "explication": "Le parent possède ses enfants (`Rc`). L'enfant pointe vers son parent avec un `Weak`, pour ne pas créer de cycle."
+  },
+  {
+    "question": "Que fait `OnceCell::set` si la case est déjà remplie ?",
+    "choix": ["Il écrase la valeur", "Il panique", "Il renvoie `Err(valeur)` et ne change rien", "Il attend"],
+    "reponse": 2,
+    "explication": "Une `OnceCell` ne se remplit qu'une seule fois. Un second `set` échoue en rendant la valeur proposée."
+  }
+]

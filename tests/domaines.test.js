@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { avecFormules, DOMAINES_CODE, estDomaineCode, LANGAGES, trierMatieres } from '../js/domaines.js';
+import { avecFormules, DOMAINES_CODE, estDomaineCode, langageDe, LANGAGES, trierMatieres } from '../js/domaines.js';
 
 describe('domaines', () => {
   it('chaque domaine de code a un langage', () => {
-    for (const domaine of Object.keys(DOMAINES_CODE)) assert.ok(LANGAGES[domaine], domaine);
+    for (const domaine of Object.keys(DOMAINES_CODE)) assert.ok(LANGAGES[langageDe(domaine)], domaine);
   });
 
   it('distingue les domaines de code des domaines à réponses', () => {
@@ -22,5 +22,10 @@ describe('domaines', () => {
   it('range les matières dans l’ordre prévu, les inconnues à la fin', () => {
     const triees = trierMatieres([{ id: 'inconnue' }, { id: 'rust' }, { id: 'informatique' }]);
     assert.deepEqual(triees.map((matiere) => matiere.id), ['informatique', 'rust', 'inconnue']);
+  });
+
+  it('Rust avancé utilise le langage Rust', () => {
+    assert.equal(langageDe('rust-avance'), 'rust');
+    assert.equal(langageDe('c'), 'c');
   });
 });

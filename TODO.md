@@ -3,7 +3,8 @@
 ## Contenu
 
 - [ ] Rust : ajouter les nouveaux chapitres du cours ESGI au fil de l'eau (passer leur `source` à `"cours"`)
-- [ ] Rust : pointeurs intelligents (`Box` récursif, `Rc`, `RefCell`), concurrence, async
+- [x] Rust avancé : pointeurs intelligents, concurrence, async, macros, unsafe, Loco (matière `rust-avance`)
+- [ ] Rust avancé : exercices avec tokio / rayon si les dépendances externes sont un jour acceptées
 - [ ] Maths : séance 6 (PCA) et suivantes, uniquement le contenu des cours
 - [ ] Combinatoire : chapitre 3 (théorie des graphes) et trimestre 2 (programmation linéaire, simplexe, PLNE) quand les supports arrivent
 - [ ] Combinatoire : transformer en exercices Rust le code de la descente, du recuit et de l'algorithme génétique quand il sera distribué

@@ -1,0 +1,11 @@
+{
+  "titre": "Des listes qui partagent leur fin",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`Rc::new(valeur)` crée un `Rc`. `Rc::clone(&rc)` ajoute un propriétaire sans copier la donnée.",
+    "`somme` : comme pour la liste avec `Box`. Dans `Cons(valeur, suite)`, `suite` est un `&Rc<ListeRc>` qui se comporte comme `&ListeRc`.",
+    "`prolonger` : `Rc::new(Cons(valeur, Rc::clone(suite)))`.",
+    "`nombre_de_liens` : `Rc::strong_count(liste)`."
+  ]
+}

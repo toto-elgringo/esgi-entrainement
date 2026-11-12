@@ -1,0 +1,10 @@
+{
+  "titre": "Compteur partagé",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Crée le compteur avec `Arc::new(Mutex::new(0))`. Pour chaque thread, fais `let compteur = Arc::clone(&compteur);` avant le `move`.",
+    "Dans le thread : `*compteur.lock().unwrap() += 1;`, répété `increments` fois.",
+    "Pour récupérer la valeur finale, une fois les threads `join` : `*compteur.lock().unwrap()` fonctionne. Avec `Arc::try_unwrap(compteur).unwrap().into_inner().unwrap()`, on reprend la valeur sans verrou."
+  ]
+}

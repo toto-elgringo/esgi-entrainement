@@ -1,0 +1,10 @@
+{
+  "titre": "Un routeur de gestionnaires",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`ajouter` range un triplet (méthode, modèle, `Box::new(gestionnaire)`) dans `self.routes`. Le paramètre générique porte déjà `+ 'static`.",
+    "Dans `traiter`, parcours `&self.routes`. Passe au suivant (`continue`) si la méthode diffère ou si `correspond` renvoie `None`.",
+    "Une fois la route trouvée, construis une `Requete` avec les paramètres et appelle `gestionnaire(&requete)`. Sans route : `Reponse::new(404, \"introuvable\")`."
+  ]
+}
