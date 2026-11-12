@@ -1,0 +1,11 @@
+{
+  "titre": "Une liste chaînée",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une liste est soit `Vide` (somme 0), soit `Cons(valeur, suite)` : la somme est `valeur + somme(suite)`. Le `match` a deux bras.",
+    "Dans `Cons(valeur, suite)`, `suite` est un `&Box<Liste>` : tu peux l'envoyer directement à la fonction récursive.",
+    "`contient` : `Cons(v, suite) => *v == cherche || contient(suite, cherche)`.",
+    "`depuis_tranche` : `valeurs.iter().rev().fold(Vide, |reste, &v| Cons(v, Box::new(reste)))` construit la liste en partant de la fin."
+  ]
+}

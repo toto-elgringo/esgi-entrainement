@@ -1,0 +1,10 @@
+{
+  "titre": "Annuaire partagé (RwLock)",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Les trois méthodes prennent `&self` : c'est le `RwLock` qui permet de modifier à l'intérieur d'une référence partagée.",
+    "Pour écrire : `self.noms.write().unwrap().push(nom.to_string());`. Pour lire : `self.noms.read().unwrap()`.",
+    "`nombre` renvoie `self.noms.read().unwrap().len()`, et `contient` utilise `.iter().any(|n| n == nom)`."
+  ]
+}

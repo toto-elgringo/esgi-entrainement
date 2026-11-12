@@ -37,6 +37,11 @@ const PRESENTATIONS = {
     couleur: '#f46623',
     texte: 'Le cours de Rust de l’ESGI, puis les fondamentaux du langage. Exercices de code vérifiés par le compilateur.',
   },
+  'rust-avance': {
+    icone: 'R+',
+    couleur: '#d6455d',
+    texte: 'Rust avancé : pointeurs intelligents, traits, concurrence, async, macros et unsafe. Exercices de code vérifiés par le compilateur.',
+  },
   anglais: {
     icone: 'En',
     couleur: '#d65c7a',
@@ -142,16 +147,19 @@ function blocAideMaths() {
 
 const SERVEUR_ARRETE = '<div class="alerte"><strong>Le serveur local ne répond pas.</strong> Relance <code>npm start</code> dans le dossier du projet.</div>';
 
+function alerteRust(etat) {
+  if (!etat.cargo) {
+    return '<div class="alerte"><strong>cargo est introuvable sur ton ordinateur.</strong> Installe Rust avec <a href="https://rustup.rs" target="_blank" rel="noopener">rustup</a>, puis relance le site.</div>';
+  }
+  if (!etat.clippy) {
+    return '<div class="alerte info"><strong>clippy n’est pas installé.</strong> Lance <code>rustup component add clippy</code> pour avoir ses conseils en plus des erreurs de cargo.</div>';
+  }
+  return '';
+}
+
 const ALERTES_OUTILS = {
-  rust: (etat) => {
-    if (!etat.cargo) {
-      return '<div class="alerte"><strong>cargo est introuvable sur ton ordinateur.</strong> Installe Rust avec <a href="https://rustup.rs" target="_blank" rel="noopener">rustup</a>, puis relance le site.</div>';
-    }
-    if (!etat.clippy) {
-      return '<div class="alerte info"><strong>clippy n’est pas installé.</strong> Lance <code>rustup component add clippy</code> pour avoir ses conseils en plus des erreurs de cargo.</div>';
-    }
-    return '';
-  },
+  rust: alerteRust,
+  'rust-avance': alerteRust,
   python: (etat) => (etat.python
     ? ''
     : '<div class="alerte"><strong>Python 3 est introuvable sur ton ordinateur.</strong> Installe-le depuis <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a> (coche « Add python.exe to PATH »), puis relance le site.</div>'),

@@ -1,0 +1,10 @@
+{
+  "titre": "hashmap! : une syntaxe sur mesure",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le motif d'une paire est `$cle:expr => $valeur:expr`, répété avec des virgules : `$($cle:expr => $valeur:expr),*`.",
+    "Autorise une virgule finale avec `$(,)?` après la répétition.",
+    "`HashMap::from([ $( ($cle, $valeur) ),* ])` construit la table depuis un tableau de paires."
+  ]
+}

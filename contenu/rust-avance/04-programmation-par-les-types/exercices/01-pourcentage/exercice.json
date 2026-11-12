@@ -1,0 +1,10 @@
+{
+  "titre": "Un pourcentage toujours valide",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Le constructeur compare la valeur à 100 : `if valeur <= 100 { Ok(...) } else { Err(...) }`.",
+    "Le message d'erreur se fabrique avec `format!(\"{valeur} dépasse 100\")`.",
+    "Pour la remise : `prix - prix * remise.valeur() as u32 / 100`."
+  ]
+}

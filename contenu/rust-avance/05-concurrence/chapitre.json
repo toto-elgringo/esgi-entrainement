@@ -1,0 +1,23 @@
+{
+  "titre": "Concurrence",
+  "description": "Threads, canaux, Mutex, Arc, RwLock, atomiques, Send et Sync, interblocage.",
+  "source": "fondamentaux",
+  "supports": [
+    {
+      "titre": "Diapos du cours : Rust avancé",
+      "fichier": "Rust/Sources/Slides - Rust avancé.pdf"
+    },
+    {
+      "titre": "Le Rust Book : concurrence sans peur",
+      "url": "https://doc.rust-lang.org/book/ch16-00-concurrency.html"
+    },
+    {
+      "titre": "Rust by Example : threads",
+      "url": "https://doc.rust-lang.org/rust-by-example/std_misc/threads.html"
+    },
+    {
+      "titre": "100 exercices Rust : threads",
+      "url": "https://rust-exercises.com/100-exercises/07_threads/00_intro"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Écrire un Iterator avec un type associé",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Dans `impl Iterator for X`, il faut `type Item = u64;` puis `fn next(&mut self) -> Option<u64>`. `None` signale la fin.",
+    "Pour `Decompte` : si `self.reste == 0`, renvoie `None` ; sinon garde la valeur, retire 1 à `self.reste` et renvoie `Some(valeur)`.",
+    "Pour `Fibonacci` : garde `let courant = self.a;`, puis `self.a = self.b;` et `self.b += courant;`, et renvoie `Some(courant)`. Ce flux ne s'arrête jamais : on le limite avec `take`."
+  ]
+}

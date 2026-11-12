@@ -5,6 +5,7 @@ Le site a deux sortes de domaines :
 | Domaine | Dossier | Matière | Exercices |
 |---|---|---|---|
 | `rust` | `contenu/rust/` | Rust | code Rust compilé par cargo |
+| `rust-avance` | `contenu/rust-avance/` | Rust avancé | code Rust compilé par cargo (même format que `rust`) |
 | `python` | `contenu/python/` | Scripting Python | code Python lancé par Python 3 |
 | `c` | `contenu/c/` | Algorithmique avancée | code C compilé par gcc |
 | `maths` | `contenu/maths/` | Maths pour l'informatique, Maths pour le big data | réponses (nombres, expressions…) |
@@ -86,6 +87,8 @@ Les PDF et pages HTML des profs ne sont **pas** dans le dépôt : le serveur les
   {"titre": "Correction", "fichier": "Maths pour le big data/Sources/Séance 1 - Correction.pdf", "matieres": ["big-data"]}
 ]
 ```
+
+Un support peut aussi être un site web : `{"titre": "Le livre", "url": "https://doc.rust-lang.org/book/"}` (https obligatoire, ouvert dans un nouvel onglet). Avec `"integrer": true` (diapos Google en `/embed`), la page s'affiche dans le site.
 
 `matieres` (facultatif) réserve un support à certaines matières. Le cours affiche un bandeau « Supports originaux », le menu et l'accueil un lien vers la page `#/supports/<domaine>/<chapitre>` (onglets + aperçu).
 

@@ -1,0 +1,10 @@
+{
+  "titre": "Sommes par morceaux",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Utilise `thread::scope(|s| { ... })` : il renvoie la valeur de son bloc, donc tu peux écrire `let sommes: Vec<u32> = thread::scope(|s| { ... });`.",
+    "Dans le scope : `nombres.chunks(4).map(|m| s.spawn(move || m.iter().sum::<u32>())).collect::<Vec<_>>()` donne les `handles`.",
+    "Termine le bloc avec `handles.into_iter().map(|h| h.join().unwrap()).collect()`. L'affichage se fait ensuite dans `main`, dans l'ordre des morceaux."
+  ]
+}

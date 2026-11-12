@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qu'est-ce qu'une macro ?",
+    "choix": ["Une fonction plus rapide", "Du code qui écrit du code, déplié à la compilation", "Un type de donnée", "Un commentaire spécial"],
+    "reponse": 1,
+    "explication": "Le compilateur remplace l'appel de la macro par le code qu'elle produit, avant même de vérifier les types."
+  },
+  {
+    "question": "Comment reconnaît-on l'appel d'une macro déclarative ?",
+    "choix": ["Un `!` après le nom (`vec!`)", "Un `$` devant le nom", "Un `@` après le nom", "Des doubles deux-points"],
+    "reponse": 0,
+    "explication": "Les macros s'appellent avec un `!` : `println!`, `vec!`, `carre!`. Les `$` servent seulement à l'intérieur de la définition."
+  },
+  {
+    "question": "Que capture le fragment `$x:expr` ?",
+    "choix": ["Un seul mot", "Un type", "Une expression complète", "Un bloc d'instructions"],
+    "reponse": 2,
+    "explication": "`expr` capture une expression entière, par exemple `1 + 2`, et la garde en un seul morceau."
+  },
+  {
+    "question": "Avec `macro_rules! carre { ($x:expr) => { $x * $x }; }`, que vaut `carre!(1 + 2)` ?",
+    "choix": ["5", "9", "3", "Erreur de compilation"],
+    "reponse": 1,
+    "explication": "`$x` est une expression entière, donc le calcul est `(1 + 2) * (1 + 2)` = 9. En C, une macro de texte donnerait 5."
+  },
+  {
+    "question": "Quel fragment permet de recevoir un nom (de fonction, de champ...) ?",
+    "choix": ["`expr`", "`ty`", "`ident`", "`lit`"],
+    "reponse": 2,
+    "explication": "`ident` capture un identifiant. Grâce à lui, une macro peut générer des fonctions ou des champs avec le nom voulu."
+  },
+  {
+    "question": "Que signifie `$( $x:expr ),*` dans un motif ?",
+    "choix": ["Exactement une expression", "Zéro, une ou plusieurs expressions séparées par des virgules", "Au moins une expression", "Un tableau de taille fixe"],
+    "reponse": 1,
+    "explication": "`*` veut dire zéro ou plus, `+` un ou plus, `?` zéro ou un. La virgule est le séparateur."
+  },
+  {
+    "question": "Pourquoi une macro peut-elle faire ce qu'une fonction ne peut pas, comme `vec![1, 2, 3]` ?",
+    "choix": ["Elle est plus rapide", "Elle accepte un nombre variable d'arguments", "Elle n'est jamais vérifiée", "Elle s'exécute en parallèle"],
+    "reponse": 1,
+    "explication": "Une fonction a un nombre fixe de paramètres. Une macro peut accepter autant d'éléments qu'on veut grâce aux répétitions."
+  },
+  {
+    "question": "Que fait `#[derive(Debug)]` ?",
+    "choix": ["Lance le programme en mode debug", "Génère automatiquement l'implémentation du trait `Debug`", "Désactive les avertissements", "Copie la structure"],
+    "reponse": 1,
+    "explication": "`derive` est une macro procédurale : elle lit la structure et écrit l'`impl` du trait à notre place."
+  },
+  {
+    "question": "Que veut dire « hygiène » des macros ?",
+    "choix": ["Le code est formaté automatiquement", "Les variables créées dans la macro ne se mélangent pas avec celles de l'appelant", "La macro supprime le code inutile", "La macro vérifie les noms de fonctions"],
+    "reponse": 1,
+    "explication": "Un `let x` écrit dans la macro n'est pas le même `x` que celui de l'appelant : pas de collision de noms par accident."
+  },
+  {
+    "question": "Quand vaut-il mieux écrire une fonction plutôt qu'une macro ?",
+    "choix": ["Quand le nombre d'arguments est variable", "Quand on veut générer des noms de fonctions", "Quand une fonction (éventuellement générique) suffit", "Jamais"],
+    "reponse": 2,
+    "explication": "Une fonction est plus simple à lire, à déboguer et donne de meilleurs messages d'erreur. On passe à la macro seulement quand la fonction ne peut pas faire le travail."
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "titre": "Un compteur avec Cell",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Un `Cell<u32>` se lit avec `get()` et s'écrit avec `set(...)`, même à travers `&self`.",
+    "`incrementer` : `self.n.set(self.n.get() + 1);`",
+    "`remettre_a_zero` renvoie l'ancienne valeur : `self.n.replace(0)`."
+  ]
+}

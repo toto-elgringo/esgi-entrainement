@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import http from 'node:http';
 import path from 'node:path';
-import { LANGAGES } from '../js/domaines.js';
+import { DOMAINES_CODE, LANGAGES } from '../js/domaines.js';
 import { typeSupport } from '../js/supports.js';
 import * as c from './c.js';
 import { ContenuIntrouvable, lireExercice } from './contenu-code.js';
@@ -52,6 +52,10 @@ async function lireCorpsJson(requete) {
   } catch {
     throw new ErreurHttp(400, 'JSON invalide');
   }
+}
+
+function domaineAutorise(domaine, langage) {
+  return typeof domaine === 'string' && Object.hasOwn(DOMAINES_CODE, domaine) && DOMAINES_CODE[domaine].langage === langage;
 }
 
 async function lireCode(requete) {
@@ -165,8 +169,9 @@ function creerRoutes({ dossierContenu }) {
         methode: 'POST',
         chemin: `/api/${langage}/verifier`,
         action: async (requete) => {
-          const { chapitreId, exerciceId, code } = await lireCode(requete);
-          const exercice = await lireExercice(path.join(dossierContenu, langage), langage, chapitreId, exerciceId);
+          const { domaine = langage, chapitreId, exerciceId, code } = await lireCode(requete);
+          if (!domaineAutorise(domaine, langage)) throw new ErreurHttp(400, 'Domaine inconnu');
+          const exercice = await lireExercice(path.join(dossierContenu, domaine), langage, chapitreId, exerciceId);
           return executeur.verifierExercice(exercice, code);
         },
       },

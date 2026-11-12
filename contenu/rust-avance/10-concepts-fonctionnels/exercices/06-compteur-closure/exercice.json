@@ -1,0 +1,10 @@
+{
+  "titre": "Un compteur avec une closure",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Crée la variable d'état dans la fonction, puis renvoie une closure `move || { ... }` qui la modifie.",
+    "Le type de retour est `impl FnMut() -> i32` : la closure change son état à chaque appel.",
+    "Garde le prochain nombre à renvoyer : `let mut courant = depart;` puis dans la closure `let valeur = courant; courant += pas; valeur`."
+  ]
+}

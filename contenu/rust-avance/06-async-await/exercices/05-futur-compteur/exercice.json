@@ -1,0 +1,10 @@
+{
+  "titre": "Un futur prêt au 3e poll",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`PretApres` contient `restant` : le nombre de fois où il doit répondre `Pending`.",
+    "Si `self.restant == 0`, renvoie `Poll::Ready(\"prêt\")`.",
+    "Sinon, fais `self.restant -= 1;`, préviens l'exécuteur avec `cx.waker().wake_by_ref();`, puis renvoie `Poll::Pending`."
+  ]
+}

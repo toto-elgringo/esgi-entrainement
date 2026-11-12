@@ -1,0 +1,10 @@
+{
+  "titre": "Un e-mail validé",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`texte.split_once('@')` renvoie une `Option<(&str, &str)>` : transforme-la en erreur avec `.ok_or(ErreurEmail::SansArobase)?`.",
+    "Après le découpage, teste `local.is_empty() || domaine.is_empty()` pour `PartieVide`, puis `!domaine.contains('.')` pour `DomaineSansPoint`.",
+    "Pour `domaine()`, redécoupe l'adresse : `self.0.split_once('@').map_or(\"\", |(_, domaine)| domaine)`."
+  ]
+}

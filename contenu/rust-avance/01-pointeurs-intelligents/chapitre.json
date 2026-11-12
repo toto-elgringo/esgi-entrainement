@@ -1,0 +1,11 @@
+{
+  "titre": "Pointeurs intelligents",
+  "description": "Box, types récursifs, Box<dyn Trait>, Deref, Drop, Rc, Weak et un aperçu d'Arc.",
+  "source": "fondamentaux",
+  "supports": [
+    {"titre": "Le Rust Book : pointeurs intelligents", "url": "https://doc.rust-lang.org/book/ch15-00-smart-pointers.html"},
+    {"titre": "Rust by Example : Box, pile et tas", "url": "https://doc.rust-lang.org/rust-by-example/std/box.html"},
+    {"titre": "Rust by Example : Rc", "url": "https://doc.rust-lang.org/rust-by-example/std/rc.html"},
+    {"titre": "100 exercices Rust", "url": "https://rust-exercises.com/100-exercises/"}
+  ]
+}

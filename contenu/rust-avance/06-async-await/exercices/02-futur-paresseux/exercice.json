@@ -1,0 +1,10 @@
+{
+  "titre": "Les futures sont paresseuses",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Créer un futur n'exécute rien. Il faut le passer à `block_on` pour qu'il tourne.",
+    "Remplace `String::new()` par `block_on(futur)`.",
+    "Remplace aussi `0` par `block_on(double)`. Les messages « préparation » et « bloc async lancé » apparaissent alors au bon moment."
+  ]
+}

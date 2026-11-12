@@ -1,0 +1,10 @@
+{
+  "titre": "Un thread par valeur",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Crée un thread par valeur avec `valeurs.into_iter().map(|v| thread::spawn(move || ...))`, et range les `JoinHandle` dans un `Vec` avec `collect()`.",
+    "Il faut lancer **tous** les threads avant d'en attendre un seul : fais deux passes (une pour `spawn`, une pour `join`).",
+    "Deuxième passe : `handles.into_iter().map(|h| h.join().unwrap()).collect()`. L'ordre du `Vec` garde l'ordre des valeurs."
+  ]
+}

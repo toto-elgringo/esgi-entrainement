@@ -1,0 +1,10 @@
+{
+  "titre": "structure! : générer un type et ses accesseurs",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Motif : `($nom:ident { $($champ:ident : $type:ty),* $(,)? })`. `ident` pour les noms, `ty` pour les types.",
+    "Produis `struct $nom { $($champ: $type),* }` puis un bloc `impl $nom { ... }`.",
+    "Dans l'`impl`, répète une méthode par champ : `$( fn $champ(&self) -> &$type { &self.$champ } )*`."
+  ]
+}

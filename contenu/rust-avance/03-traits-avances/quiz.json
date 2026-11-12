@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Dans `trait Iterator { type Item; ... }`, que représente `Item` ?",
+    "choix": ["Un paramètre générique choisi à chaque appel", "Un type associé : le type fixé une seule fois par chaque implémentation", "Une constante", "Un champ de la structure"],
+    "reponse": 1,
+    "explication": "Un type associé est un type « rempli » par l'implémentation. Un type donné n'implémente `Iterator` qu'une fois, donc `Item` est unique."
+  },
+  {
+    "question": "Quelle est la différence principale entre `trait Convertir<T>` et `trait Convertir { type Sortie; }` ?",
+    "choix": ["Aucune", "Avec le générique, un même type peut implémenter le trait plusieurs fois (avec des `T` différents) ; avec le type associé, une seule fois", "Le type associé est plus lent", "Le générique ne marche qu'avec les nombres"],
+    "reponse": 1,
+    "explication": "`From<i32>` et `From<f64>` peuvent coexister sur un même type. Avec un type associé, il n'y a qu'un seul choix possible, donc moins d'annotations."
+  },
+  {
+    "question": "Quel trait faut-il implémenter pour que `a + b` marche sur ton type ?",
+    "choix": ["`std::ops::Add`", "`std::fmt::Add`", "`Plus`", "`Sum`"],
+    "reponse": 0,
+    "explication": "Chaque opérateur a son trait dans `std::ops` : `Add` pour `+`, `Sub` pour `-`, `Mul` pour `*`, `Neg` pour le `-` unaire, `Index` pour `[]`."
+  },
+  {
+    "question": "Que signifie `trait Article: Display` ?",
+    "choix": ["`Article` hérite des champs de `Display`", "Tout type qui implémente `Article` doit aussi implémenter `Display` (supertrait)", "`Display` implémente automatiquement `Article`", "C'est une erreur de syntaxe"],
+    "reponse": 1,
+    "explication": "`Display` est un supertrait : c'est une condition. Les méthodes par défaut de `Article` peuvent donc utiliser `{}` sur `self`."
+  },
+  {
+    "question": "Pourquoi `Box<dyn Clonable>` ne compile-t-il pas avec `trait Clonable { fn copie(&self) -> Self; }` ?",
+    "choix": ["`Box` est interdit avec les traits", "Le trait n'est pas « sûr pour les objets » : une méthode qui renvoie `Self` ne peut pas être appelée via `dyn`", "Il manque `pub`", "Il faut `unsafe`"],
+    "reponse": 1,
+    "explication": "Avec `dyn`, le type concret est oublié. Une méthode qui renvoie `Self` ou qui est générique empêche de créer un objet-trait."
+  },
+  {
+    "question": "Quelle est la différence entre `fn f(x: impl Trait)` et `fn f(x: &dyn Trait)` ?",
+    "choix": ["Aucune", "`impl Trait` est résolu à la compilation (un code par type) ; `dyn Trait` est résolu à l'exécution (appel via une table)", "`dyn` est toujours plus rapide", "`impl` ne marche qu'en retour"],
+    "reponse": 1,
+    "explication": "`impl Trait` en argument est du générique (monomorphisation). `dyn Trait` permet de mélanger plusieurs types dans une même collection, au prix d'un appel indirect."
+  },
+  {
+    "question": "Que permet `fn pairs() -> impl Iterator<Item = u32>` ?",
+    "choix": ["Renvoyer n'importe quel type, choisi par l'appelant", "Cacher le type exact renvoyé (une chaîne d'itérateurs par exemple) tout en promettant qu'il est un itérateur de `u32`", "Renvoyer plusieurs types différents selon un `if`", "Rien, c'est interdit"],
+    "reponse": 1,
+    "explication": "Le type est choisi par la fonction, pas l'appelant. Un seul type concret possible : deux branches de types différents ne compilent pas (il faudrait `Box<dyn Iterator>`)."
+  },
+  {
+    "question": "Si tu implémentes `From<A> for B`, que reçois-tu gratuitement ?",
+    "choix": ["`TryFrom<A> for B` seulement", "`Into<B> for A` : tu peux écrire `a.into()`", "`Display` pour `B`", "Rien"],
+    "reponse": 1,
+    "explication": "Il existe une implémentation générale `impl<T, U: From<T>> Into<U> for T`. On implémente `From`, et `Into` suit."
+  },
+  {
+    "question": "Qu'est-ce que la règle des orphelins interdit ?",
+    "choix": ["Utiliser un type sans trait", "Implémenter un trait étranger sur un type étranger (ex. `Display` pour `Vec<String>`)", "Écrire deux `impl` du même trait", "Utiliser `dyn` sans `Box`"],
+    "reponse": 1,
+    "explication": "Au moins le trait ou le type doit être défini dans ta crate. Le newtype (`struct Liste(Vec<String>);`) rend le type local et contourne la règle."
+  },
+  {
+    "question": "Que fait `impl<T: Display> Resumer for T { ... }` ?",
+    "choix": ["Implémente `Resumer` pour un seul type `T`", "Implémente `Resumer` pour tous les types qui implémentent `Display` (blanket impl)", "Crée un nouveau type `T`", "Supprime `Display`"],
+    "reponse": 1,
+    "explication": "C'est une implémentation générale. La bibliothèque standard l'utilise : tout type `Display` a `.to_string()` grâce à `ToString`."
+  }
+]

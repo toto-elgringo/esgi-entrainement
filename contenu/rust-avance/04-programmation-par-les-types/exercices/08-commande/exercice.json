@@ -1,0 +1,10 @@
+{
+  "titre": "La commande en trois étapes",
+  "difficulte": 3,
+  "type": "sortie",
+  "indices": [
+    "`ajouter` est sur `Commande<Brouillon>` : `self.articles.push(article.to_string());`.",
+    "`valider(self)` rend `Err(format!(\"Commande {} refusée : aucun article\", self.numero))` si `self.articles.is_empty()`, sinon `Ok(Commande { numero: self.numero, articles: self.articles, etat: Validee })`.",
+    "`expedier(self)` fabrique le suivi avec `format!(\"SUIVI-{}\", self.numero)` et le range dans `Expediee { suivi }`. Ne touche pas aux `decrire` ni à `main`."
+  ]
+}

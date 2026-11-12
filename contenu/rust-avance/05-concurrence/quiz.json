@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Que fait `handle.join()` ?",
+    "choix": ["Il arrête le thread", "Il attend la fin du thread et renvoie son résultat", "Il crée un nouveau thread", "Il copie le thread"],
+    "reponse": 1,
+    "explication": "`join` bloque jusqu'à la fin du thread et renvoie un `Result` : `Ok(valeur)`, ou `Err` si le thread a paniqué."
+  },
+  {
+    "question": "Pourquoi `thread::spawn` demande-t-il souvent une closure `move` ?",
+    "choix": ["Pour aller plus vite", "Parce que le thread peut vivre plus longtemps que la fonction : il doit posséder ses données", "Pour désactiver le compilateur", "Pour partager la mémoire sans règle"],
+    "reponse": 1,
+    "explication": "Le thread peut continuer après la fin de la fonction. Il ne peut donc pas emprunter ses variables locales : `move` lui en donne la propriété."
+  },
+  {
+    "question": "Qu'est-ce qui rend `thread::scope` différent de `thread::spawn` ?",
+    "choix": ["Il est plus lent", "Les threads sont terminés à la sortie du bloc, donc ils peuvent emprunter des variables locales", "Il n'a pas besoin de compilateur", "Il ne marche qu'avec des canaux"],
+    "reponse": 1,
+    "explication": "Le bloc attend tous ses threads avant de se terminer. Les emprunts restent donc valides, sans `move` ni `Arc`."
+  },
+  {
+    "question": "Que veut dire `mpsc` ?",
+    "choix": ["Multiple producers, single consumer", "Mutex per shared channel", "Message passing safe channel", "Multi-thread process scheduler"],
+    "reponse": 0,
+    "explication": "Plusieurs producteurs (on clone le `Sender`), un seul consommateur (un seul `Receiver`)."
+  },
+  {
+    "question": "Pourquoi `for m in rx` peut-il ne jamais se terminer ?",
+    "choix": ["Le `Receiver` est cassé", "Un `Sender` existe encore (par exemple oublié dans le thread principal)", "Il faut utiliser `join`", "`for` ne marche pas avec les canaux"],
+    "reponse": 1,
+    "explication": "Le canal se ferme quand tous les `Sender` sont détruits. Il faut penser à faire `drop(tx)` sur l'émetteur d'origine."
+  },
+  {
+    "question": "Quel type permet de partager un `Mutex` entre plusieurs threads ?",
+    "choix": ["`Rc<Mutex<T>>`", "`Box<Mutex<T>>`", "`Arc<Mutex<T>>`", "`&mut Mutex<T>`"],
+    "reponse": 2,
+    "explication": "`Arc` est un compteur de références atomique, sûr entre threads. `Rc` n'est pas `Send` et le compilateur le refuse."
+  },
+  {
+    "question": "Quand le verrou d'un `Mutex` est-il libéré ?",
+    "choix": ["Quand on appelle `unlock()`", "Quand le garde renvoyé par `lock()` est détruit", "À la fin du programme seulement", "Au prochain `lock()`"],
+    "reponse": 1,
+    "explication": "Il n'y a pas de méthode `unlock` : le garde (`MutexGuard`) libère le verrou en sortant de sa portée ou avec `drop`."
+  },
+  {
+    "question": "Dans quel cas un `RwLock` est-il plus intéressant qu'un `Mutex` ?",
+    "choix": ["Quand il y a beaucoup de lectures et peu d'écritures", "Quand il n'y a qu'un seul thread", "Quand on veut éviter `Arc`", "Quand on écrit tout le temps"],
+    "reponse": 0,
+    "explication": "`RwLock` laisse plusieurs lecteurs travailler en même temps. Un `Mutex` les ferait passer un par un."
+  },
+  {
+    "question": "Quelle opération est correcte pour incrémenter un `AtomicUsize` depuis plusieurs threads ?",
+    "choix": ["`x.store(x.load(Ordering::SeqCst) + 1, Ordering::SeqCst)`", "`x.fetch_add(1, Ordering::SeqCst)`", "`x += 1`", "`*x += 1`"],
+    "reponse": 1,
+    "explication": "`fetch_add` fait la lecture et l'écriture en une seule opération indivisible. Lire puis écrire séparément peut perdre des incréments."
+  },
+  {
+    "question": "Quelle est la meilleure façon d'éviter un interblocage entre deux `Mutex` ?",
+    "choix": ["Ajouter un `sleep`", "Prendre toujours les verrous dans le même ordre", "Prendre les verrous au hasard", "Utiliser `unwrap` partout"],
+    "reponse": 1,
+    "explication": "Si tous les threads prennent les verrous dans le même ordre, aucun cycle d'attente ne peut se former."
+  }
+]

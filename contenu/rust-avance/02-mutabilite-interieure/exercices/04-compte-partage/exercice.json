@@ -1,0 +1,10 @@
+{
+  "titre": "Un compte partagé",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le solde est un `Rc<RefCell<i32>>` : on le modifie avec `*solde.borrow_mut() += montant;`.",
+    "`retirer` : lis d'abord `*solde.borrow()`, compare avec `montant`, puis modifie. Ne garde pas la lecture pendant l'écriture.",
+    "`virement` : `retirer(source, montant)?;` puis `deposer(cible, montant);` puis `Ok(())`."
+  ]
+}

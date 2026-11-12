@@ -1,0 +1,10 @@
+{
+  "titre": "De la boucle au pipeline",
+  "difficulte": 3,
+  "type": "sortie",
+  "indices": [
+    "Découpe avec `phrase.split_whitespace()`, garde les mots d'au moins 5 lettres avec `filter`, mets en majuscules avec `map(str::to_uppercase)`.",
+    "Utilise `collect::<Vec<String>>()` pour la liste, et `map(str::len).sum::<usize>()` sur les mots gardés pour le total (compte en octets, les mots du programme n'ont pas d'accent).",
+    "`mots_longs` : `phrase.split_whitespace().filter(|m| m.len() >= 5).map(str::to_uppercase).collect()`. `total_lettres` : `.filter(...).map(str::len).sum()`."
+  ]
+}

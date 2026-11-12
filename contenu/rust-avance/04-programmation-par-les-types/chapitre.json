@@ -1,0 +1,29 @@
+{
+  "titre": "Programmation par les types",
+  "description": "Newtype, états illégaux impossibles à représenter, enums plutôt que booléens, builder, typestate avec PhantomData, Option et Result en chaîne.",
+  "source": "fondamentaux",
+  "supports": [
+    {
+      "titre": "Diapos complètes : Rust avancé et programmation fonctionnelle",
+      "fichier": "Rust/Sources/Slides - Rust avancé et programmation fonctionnelle.pdf"
+    },
+    {
+      "titre": "Diapos : Rust et programmation fonctionnelle (1)",
+      "url": "https://docs.google.com/presentation/d/1Lww5ntAIIWQicP-FnS6pp_qGr_NZyIpIlGjqYH0b92M/embed?start=false&loop=false",
+      "integrer": true
+    },
+    {
+      "titre": "Diapos : Rust et programmation fonctionnelle (2)",
+      "url": "https://docs.google.com/presentation/d/1aZzwMQEwEEwhl08tjsM9JF6HTXk9e3-0cOKNdsJon7k/embed?start=false&loop=false",
+      "integrer": true
+    },
+    {
+      "titre": "Rust by Example : génériques et PhantomData",
+      "url": "https://doc.rust-lang.org/rust-by-example/generics/phantom.html"
+    },
+    {
+      "titre": "100 exercices Rust",
+      "url": "https://rust-exercises.com/100-exercises/"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Compter les nombres pairs",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Crée `let total = AtomicUsize::new(0);` puis `thread::scope(|s| { ... })`. Dans un scope, les threads peuvent emprunter `nombres` et `total`.",
+    "Découpe avec `nombres.chunks(taille)` et lance un `s.spawn(move || ...)` par morceau. Pour que `move` ne déplace pas `total`, prépare avant `let total_ref = &total;` et utilise-le dans le thread.",
+    "Dans chaque thread : compte les pairs du morceau avec `morceau.iter().filter(|&&x| x % 2 == 0).count()`, puis `total_ref.fetch_add(n, Ordering::Relaxed);`. À la fin : `total.into_inner()`."
+  ]
+}

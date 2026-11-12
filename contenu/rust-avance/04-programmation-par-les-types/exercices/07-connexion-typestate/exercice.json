@@ -1,0 +1,10 @@
+{
+  "titre": "La connexion typestate",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`nouvelle` crée la structure avec `envoyes: Vec::new()` et `etat: PhantomData`.",
+    "`ouvrir(self)` reconstruit une `Connexion` en déplaçant les champs : `Connexion { adresse: self.adresse, envoyes: self.envoyes, etat: PhantomData }`. Le type de retour `Connexion<Ouverte>` fixe l'état.",
+    "`envoyer(&mut self, message)` ajoute le message à `self.envoyes` et renvoie `self.envoyes.len()`. `adresse` et `nombre_envoyes` vont dans un `impl<Etat> Connexion<Etat>` qui sert à tous les états."
+  ]
+}

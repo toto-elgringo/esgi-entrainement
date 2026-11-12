@@ -31,5 +31,5 @@ async function envoyer(chemin, corps) {
 
 export const compilateur = {
   executer: (langage, code, entree = '') => envoyer(`api/${langage}/executer`, { code, entree }),
-  verifier: (langage, chapitreId, exerciceId, code) => envoyer(`api/${langage}/verifier`, { chapitreId, exerciceId, code }),
+  verifier: (langage, domaine, chapitreId, exerciceId, code) => envoyer(`api/${langage}/verifier`, { domaine, chapitreId, exerciceId, code }),
 };

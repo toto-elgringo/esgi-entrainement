@@ -1,0 +1,10 @@
+{
+  "titre": "Ma première macro : carre!",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Le motif est `($x:expr)` : `expr` capture une expression entière.",
+    "Le code produit multiplie `$x` par lui-même : `$x * $x`.",
+    "Solution : `macro_rules! carre { ($x:expr) => { $x * $x }; }`."
+  ]
+}

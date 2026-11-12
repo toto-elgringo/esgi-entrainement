@@ -1,0 +1,11 @@
+{
+  "titre": "Ma propre boîte avec Deref",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`new` : `MaBoite(valeur)`. Le contenu est dans `self.0`.",
+    "Dans `impl<T> Deref for MaBoite<T>`, écris `type Target = T;` puis `fn deref(&self) -> &T { &self.0 }`.",
+    "Une fois `Deref` écrit, `*boite` et la coercion `&MaBoite<String>` vers `&str` marchent toutes seules : il n'y a rien d'autre à faire dans `saluer` et `nombre_de_lettres`.",
+    "`saluer(nom)` : `format!(\"Bonjour {nom} !\")`. `nombre_de_lettres(texte)` : `texte.chars().count()`."
+  ]
+}

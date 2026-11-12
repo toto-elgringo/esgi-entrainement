@@ -1,0 +1,10 @@
+{
+  "titre": "Union et trait unsafe",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Un trait `unsafe` s'implémente avec `unsafe impl Trait for Type { ... }`.",
+    "Lire un champ d'union se fait dans `unsafe { n.entier }`.",
+    "Complète `bits_du_flottant` et les deux `unsafe impl`, puis compare ta sortie à celle attendue."
+  ]
+}

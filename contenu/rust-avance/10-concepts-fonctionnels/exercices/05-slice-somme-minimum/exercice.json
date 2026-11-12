@@ -1,0 +1,10 @@
+{
+  "titre": "Somme et minimum par motifs de slice",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Pas de boucle : un `match` sur la slice avec `[]` et `[premier, reste @ ..]`.",
+    "`somme(&[])` vaut 0, sinon `premier + somme(reste)`. Pour `minimum`, une slice vide donne `None` et un seul élément `[x]` donne `Some(*x)`.",
+    "Pour `minimum`, cas `[premier, reste @ ..]` : `minimum(reste).map_or(*premier, |m| m.min(*premier))` enveloppé dans `Some`."
+  ]
+}

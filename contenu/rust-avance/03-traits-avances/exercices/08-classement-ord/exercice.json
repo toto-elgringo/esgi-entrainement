@@ -1,0 +1,10 @@
+{
+  "titre": "Classer des joueurs avec Ord",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "`cmp` doit renvoyer un `Ordering`. Pour trier du plus grand score au plus petit, compare **à l'envers** : `autre.score.cmp(&self.score)`.",
+    "En cas d'égalité de score, on départage par le nom dans l'ordre alphabétique : `.then_with(|| self.nom.cmp(&autre.nom))`.",
+    "`partial_cmp` est déjà écrit : il appelle `cmp`. Une fois `cmp` correct, `sort()` et `min()` donnent le bon résultat."
+  ]
+}

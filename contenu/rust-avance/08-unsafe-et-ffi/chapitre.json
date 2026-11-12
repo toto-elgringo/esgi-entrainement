@@ -1,0 +1,28 @@
+{
+  "titre": "Unsafe et FFI",
+  "description": "Les cinq super-pouvoirs d'unsafe, pointeurs bruts, API sûre autour d'unsafe, appeler du C depuis Rust, exposer du Rust à C et à Python.",
+  "source": "fondamentaux",
+  "supports": [
+    {
+      "titre": "Diapos complètes : Rust avancé et programmation fonctionnelle",
+      "fichier": "Rust/Sources/Slides - Rust avancé et programmation fonctionnelle.pdf"
+    },
+    {
+      "titre": "Diapos : Rust et programmation fonctionnelle (1)",
+      "url": "https://docs.google.com/presentation/d/1Lww5ntAIIWQicP-FnS6pp_qGr_NZyIpIlGjqYH0b92M/embed?start=false&loop=false",
+      "integrer": true
+    },
+    {
+      "titre": "Diapos du cours : Rust avancé",
+      "fichier": "Rust/Sources/Slides - Rust avancé.pdf"
+    },
+    {
+      "titre": "Le Rust Book : Rust unsafe",
+      "url": "https://doc.rust-lang.org/book/ch20-01-unsafe-rust.html"
+    },
+    {
+      "titre": "Rust by Example : unsafe",
+      "url": "https://doc.rust-lang.org/rust-by-example/unsafe.html"
+    }
+  ]
+}

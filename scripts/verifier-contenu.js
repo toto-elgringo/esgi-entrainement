@@ -134,20 +134,21 @@ async function problemesChapitreCode(dossier, chapitreId) {
   return problemes;
 }
 
-async function verifierSommaire(langage, dossier) {
+async function verifierSommaire(domaine, langage, dossier) {
   const attendu = JSON.stringify(await contenuCode.construireSommaire(dossier, langage));
   const actuel = await lireJson(path.join(dossier, 'sommaire.json'));
-  return JSON.stringify(actuel) === attendu ? [] : [`contenu/${langage}/sommaire.json n'est pas à jour : lance « npm run sommaire »`];
+  return JSON.stringify(actuel) === attendu ? [] : [`contenu/${domaine}/sommaire.json n'est pas à jour : lance « npm run sommaire »`];
 }
 
-async function verifierDomaineCode(langage) {
-  console.log(`\n=== ${langage} ===`);
-  const dossier = path.join(dossierContenu, langage);
+async function verifierDomaineCode(domaine) {
+  const langage = DOMAINES_CODE[domaine].langage;
+  console.log(`\n=== ${domaine} ===`);
+  const dossier = path.join(dossierContenu, domaine);
   let total = 0;
   let enErreur = 0;
 
   if (!prefixe) {
-    const problemes = await verifierSommaire(langage, dossier);
+    const problemes = await verifierSommaire(domaine, langage, dossier);
     for (const probleme of problemes) console.log(`✗ ${probleme}`);
     enErreur += problemes.length;
   }
@@ -178,7 +179,7 @@ async function verifierDomaineCode(langage) {
 async function principal() {
   const verificateurs = {
     ...Object.fromEntries(Object.keys(DOMAINES_REPONSES).map((domaine) => [domaine, () => verifierDomaineReponses(domaine)])),
-    ...Object.fromEntries(Object.keys(DOMAINES_CODE).map((langage) => [langage, () => verifierDomaineCode(langage)])),
+    ...Object.fromEntries(Object.keys(DOMAINES_CODE).map((domaine) => [domaine, () => verifierDomaineCode(domaine)])),
   };
   const domaines = domaineDemande ? [domaineDemande] : Object.keys(verificateurs);
   if (!domaines.every((domaine) => domaine in verificateurs)) {

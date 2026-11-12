@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Quelle est la différence entre impératif et déclaratif ?",
+    "choix": [
+      "L'impératif décrit le comment, le déclaratif décrit le quoi",
+      "L'impératif est toujours plus rapide",
+      "Le déclaratif interdit les fonctions",
+      "Il n'y en a aucune"
+    ],
+    "reponse": 0,
+    "explication": "Impératif : on détaille les étapes (boucles, variables modifiées). Déclaratif : on dit ce qu'on veut (`filter`, `map`, `sum`)."
+  },
+  {
+    "question": "Qui a inventé le calcul lambda, base théorique de la PF ?",
+    "choix": [
+      "Alan Turing en 1950",
+      "Alonzo Church dans les années 1930",
+      "Linus Torvalds en 1991",
+      "Graydon Hoare en 2010"
+    ],
+    "reponse": 1,
+    "explication": "Alonzo Church a proposé le calcul lambda dans les années 1930 : calculer avec des fonctions, sans état qui change."
+  },
+  {
+    "question": "Pourquoi la closure de `creer_compteur` est-elle déclarée `move` ?",
+    "choix": [
+      "Pour aller plus vite",
+      "Pour qu'elle garde sa propre copie de `compte` après la fin de la fonction",
+      "Pour interdire de la modifier",
+      "Pour l'envoyer sur le réseau"
+    ],
+    "reponse": 1,
+    "explication": "Sans `move`, la closure emprunterait `compte`, qui disparaît à la fin de la fonction. Avec `move`, elle en devient propriétaire."
+  },
+  {
+    "question": "Que renvoie `[3, 8, 5].iter().position(|n| *n > 4)` ?",
+    "choix": [
+      "`Some(8)`",
+      "`Some(1)`",
+      "`1`",
+      "`Some(2)`"
+    ],
+    "reponse": 1,
+    "explication": "`position` renvoie l'**index** du premier élément qui valide la condition, dans un `Option`. Ici 8 est à l'index 1."
+  },
+  {
+    "question": "Qu'est-ce que l'application partielle ?",
+    "choix": [
+      "Compiler seulement une partie du programme",
+      "Fixer certains arguments d'une fonction pour obtenir une fonction plus simple",
+      "Appeler une fonction deux fois",
+      "Ignorer une erreur"
+    ],
+    "reponse": 1,
+    "explication": "`multiplier(2)` fixe le premier argument et renvoie une fonction qui attend le second."
+  },
+  {
+    "question": "Comment simule-t-on une fonction curryfiée en Rust ?",
+    "choix": [
+      "Avec une macro `curry!`",
+      "Avec une fonction qui renvoie une closure (`impl Fn`)",
+      "Rust la fournit nativement",
+      "Avec `unsafe`"
+    ],
+    "reponse": 1,
+    "explication": "`fn multiplier(x: i32) -> impl Fn(i32) -> i32 { move |y| x * y }` : appeler `multiplier(2)` donne une closure qui attend `y`."
+  },
+  {
+    "question": "Quelle écriture est en style point-free ?",
+    "choix": [
+      "`.map(|x| double(x))`",
+      "`.map(double)`",
+      "`.map(|x| x * 2)`",
+      "`for x in v { double(x); }`"
+    ],
+    "reponse": 1,
+    "explication": "Point-free : on ne nomme pas l'argument, on passe directement la fonction."
+  },
+  {
+    "question": "Que fait le motif `[premier, reste @ ..]` sur une slice ?",
+    "choix": [
+      "Il accepte une slice vide",
+      "Il lie le premier élément et le reste de la slice à deux noms",
+      "Il copie la slice",
+      "Il trie la slice"
+    ],
+    "reponse": 1,
+    "explication": "Il ne correspond qu'à une slice d'au moins un élément : `premier` est le premier, `reste` la sous-slice du reste (éventuellement vide)."
+  },
+  {
+    "question": "Pourquoi `Option<T>` vaut-il mieux qu'un `panic!` pour une valeur absente ?",
+    "choix": [
+      "Parce que l'absence est visible dans le type et le compilateur force à la traiter",
+      "Parce que `panic!` est interdit en Rust",
+      "Parce qu'`Option` est plus lent",
+      "Parce qu'`Option` remplace les boucles"
+    ],
+    "reponse": 0,
+    "explication": "Une fonction qui panique a une signature qui ment. Avec `Option`, l'appelant voit le cas possible et doit le gérer."
+  },
+  {
+    "question": "Dans la comparaison avec les interfaces, à quoi ressemble un foncteur en Rust ?",
+    "choix": [
+      "À un type sur lequel on peut appliquer `map`",
+      "À une boucle `for`",
+      "À un pointeur brut",
+      "À une macro"
+    ],
+    "reponse": 0,
+    "explication": "Un foncteur promet « je sais appliquer une fonction à ce que je contiens » : `Option::map`, `Iterator::map`. C'est une interface, comme un trait."
+  }
+]

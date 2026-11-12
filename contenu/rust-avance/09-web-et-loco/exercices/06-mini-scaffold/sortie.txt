@@ -1,0 +1,21 @@
+struct Capteur {
+    id: i64,
+    nom: String,
+    valeur: f64,
+}
+GET /capteurs
+POST /capteurs
+GET /capteurs/:id
+PUT /capteurs/:id
+DELETE /capteurs/:id
+
+struct Mesure {
+    id: i64,
+    valeur: f64,
+    capteur: i64,
+}
+GET /mesures
+POST /mesures
+GET /mesures/:id
+PUT /mesures/:id
+DELETE /mesures/:id

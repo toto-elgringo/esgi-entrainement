@@ -1,0 +1,10 @@
+{
+  "titre": "Option en chaîne plutôt que panic!",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`mots.get(position)` renvoie un `Option<&&str>` au lieu de paniquer si l'index est trop grand.",
+    "Enchaîne avec `and_then(|mot| mot.chars().next())` pour la première lettre (absente si le mot est vide), puis `map` pour la mettre en majuscule.",
+    "Termine avec `unwrap_or_else(|| \"?\".to_string())`. Pour `inverse`, `if x == 0.0 { None } else { Some(1.0 / x) }`."
+  ]
+}

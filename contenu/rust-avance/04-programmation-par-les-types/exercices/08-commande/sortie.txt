@@ -1,0 +1,5 @@
+Commande 42 : brouillon, 0 article(s)
+Commande 42 : brouillon, 2 article(s)
+Commande 42 : validée, 2 article(s)
+Commande 42 : expédiée, 2 article(s), suivi SUIVI-42
+Commande 7 refusée : aucun article

@@ -1,0 +1,10 @@
+{
+  "titre": "Lire un texte venu de C",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`CStr::from_ptr(p)` construit un `&CStr` à partir d'un pointeur ; c'est `unsafe`.",
+    "Convertis ensuite en texte Rust avec `.to_string_lossy().into_owned()`.",
+    "Pour l'autre sens, `CString::new(texte)` renvoie un `Result` : `.ok()` le transforme en `Option`."
+  ]
+}

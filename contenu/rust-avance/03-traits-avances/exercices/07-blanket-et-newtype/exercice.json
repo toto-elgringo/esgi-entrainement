@@ -1,0 +1,10 @@
+{
+  "titre": "Blanket impl et newtype",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "On ne peut pas écrire `impl Display for Vec<String>` (règle des orphelins). Le newtype `Liste(Vec<String>)` est un type à toi : tu peux lui implémenter `Display`.",
+    "Pour `Liste` : `write!(f, \"[{}]\", self.0.join(\", \"))`. Une liste vide s'affiche `[]`.",
+    "Le blanket impl s'écrit `impl<T: Display> Resumer for T { ... }` et la méthode renvoie `format!(\"<{}>\", self)`. Comme `Liste` est `Display`, elle a `resume()` aussi."
+  ]
+}

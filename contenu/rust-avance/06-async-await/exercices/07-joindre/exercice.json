@@ -1,0 +1,10 @@
+{
+  "titre": "Écrire un join",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Commence par `let this = self.get_mut();` : `Joindre` ne contient que des types déplaçables, on peut donc récupérer un `&mut Joindre`.",
+    "Pour chaque futur : si son résultat est encore `None`, fais `if let Poll::Ready(v) = this.a.as_mut().poll(cx) { this.resultat_a = Some(v); }`. Idem pour `b`.",
+    "À la fin : si les deux résultats sont `Some`, renvoie `Poll::Ready((a, b))`, sinon `Poll::Pending`. Ne relance jamais `poll` sur un futur déjà terminé (le test le détecte)."
+  ]
+}

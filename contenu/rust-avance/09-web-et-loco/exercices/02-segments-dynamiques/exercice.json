@@ -1,0 +1,10 @@
+{
+  "titre": "Segments dynamiques",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Découpe le modèle et le chemin en segments avec `trim_matches('/').split('/')`, puis compare les nombres de segments.",
+    "Parcours les deux listes ensemble avec `zip`. Un segment de modèle qui commence par `:` capture la valeur.",
+    "`segment.strip_prefix(':')` renvoie `Some(nom)` si le segment est dynamique ; sinon les deux segments doivent être égaux."
+  ]
+}

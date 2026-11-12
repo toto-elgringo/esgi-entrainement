@@ -1,0 +1,10 @@
+{
+  "titre": "Mutabilité intérieure",
+  "description": "Cell, RefCell, Rc<RefCell<T>>, Weak pour les arbres et les graphes : la règle d'emprunt vérifiée à l'exécution.",
+  "source": "fondamentaux",
+  "supports": [
+    {"titre": "Le Rust Book : RefCell et mutabilité intérieure", "url": "https://doc.rust-lang.org/book/ch15-05-interior-mutability.html"},
+    {"titre": "Le Rust Book : cycles de références", "url": "https://doc.rust-lang.org/book/ch15-06-reference-cycles.html"},
+    {"titre": "100 exercices Rust", "url": "https://rust-exercises.com/100-exercises/"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Une chaîne de Box<dyn Transformation>",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`Majuscules` est donné en exemple. `Repeter(n)` renvoie `texte.repeat(self.0)` et `Entourer(c)` renvoie `format!(\"{}{}{}\", self.0, texte, self.0)`.",
+    "`enchainer` applique les étapes l'une après l'autre : `etapes.iter().fold(texte.to_string(), |acc, etape| etape.appliquer(&acc))`.",
+    "`construire` : un `match nom` qui renvoie `Some(Box::new(Majuscules))`, `Some(Box::new(Repeter(2)))`, `Some(Box::new(Entourer('*')))`, et `None` pour tout le reste. Le type de retour `Option<Box<dyn Transformation>>` accepte les trois types différents."
+  ]
+}

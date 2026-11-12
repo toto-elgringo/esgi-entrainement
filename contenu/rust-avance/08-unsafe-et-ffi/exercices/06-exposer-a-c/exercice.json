@@ -1,0 +1,10 @@
+{
+  "titre": "Exposer du Rust à C",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une fonction visible par C s'écrit `pub extern \"C\" fn nom(...)`, précédée de `#[unsafe(no_mangle)]`.",
+    "`additionner` renvoie simplement `a + b`.",
+    "Pour `distance_carree`, `p.x * p.x + p.y * p.y`. N'oublie pas `#[repr(C)]` sur `Point`."
+  ]
+}

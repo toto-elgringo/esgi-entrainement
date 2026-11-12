@@ -1,0 +1,2248 @@
+{
+  "chapitres": [
+    {
+      "id": "01-pointeurs-intelligents",
+      "titre": "Pointeurs intelligents",
+      "description": "Box, types récursifs, Box<dyn Trait>, Deref, Drop, Rc, Weak et un aperçu d'Arc.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Le Rust Book : pointeurs intelligents",
+          "url": "https://doc.rust-lang.org/book/ch15-00-smart-pointers.html"
+        },
+        {
+          "titre": "Rust by Example : Box, pile et tas",
+          "url": "https://doc.rust-lang.org/rust-by-example/std/box.html"
+        },
+        {
+          "titre": "Rust by Example : Rc",
+          "url": "https://doc.rust-lang.org/rust-by-example/std/rc.html"
+        },
+        {
+          "titre": "100 exercices Rust",
+          "url": "https://rust-exercises.com/100-exercises/"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-boites",
+          "titre": "Les premières boîtes",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`Box::new(valeur)` crée une boîte. `*boite` récupère la valeur qu'elle contient.",
+            "`envelopper(n)` : `Box::new(n)`. `incrementer(boite)` : `*boite += 1;`. `additionner` : `Box::new(a + b)`.",
+            "`choisir_operation` : dans chaque bras du `match`, renvoie `Some(Box::new(|x| ...))`. Le cas inconnu renvoie `None`."
+          ]
+        },
+        {
+          "id": "02-liste-chainee",
+          "titre": "Une liste chaînée",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Une liste est soit `Vide` (somme 0), soit `Cons(valeur, suite)` : la somme est `valeur + somme(suite)`. Le `match` a deux bras.",
+            "Dans `Cons(valeur, suite)`, `suite` est un `&Box<Liste>` : tu peux l'envoyer directement à la fonction récursive.",
+            "`contient` : `Cons(v, suite) => *v == cherche || contient(suite, cherche)`.",
+            "`depuis_tranche` : `valeurs.iter().rev().fold(Vide, |reste, &v| Cons(v, Box::new(reste)))` construit la liste en partant de la fin."
+          ]
+        },
+        {
+          "id": "03-arbre-binaire",
+          "titre": "Un arbre binaire de recherche",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Un arbre vide est `None`. Sinon `Some(noeud)` avec `noeud.gauche` et `noeud.droite`.",
+            "`inserer` : sur `None`, crée `Some(Box::new(Noeud { valeur, gauche: None, droite: None }))`. Sur `Some(mut noeud)`, descend à gauche si la valeur est plus petite, à droite si elle est plus grande, sinon ne change rien, puis renvoie `Some(noeud)`.",
+            "Pour descendre : `noeud.gauche = inserer(noeud.gauche.take(), valeur);` (`take()` sort l'enfant en laissant `None`).",
+            "`en_ordre` : récupère `en_ordre(&noeud.gauche)`, ajoute `noeud.valeur` avec `push`, puis `extend` avec `en_ordre(&noeud.droite)`."
+          ]
+        },
+        {
+          "id": "04-deref-perso",
+          "titre": "Ma propre boîte avec Deref",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`new` : `MaBoite(valeur)`. Le contenu est dans `self.0`.",
+            "Dans `impl<T> Deref for MaBoite<T>`, écris `type Target = T;` puis `fn deref(&self) -> &T { &self.0 }`.",
+            "Une fois `Deref` écrit, `*boite` et la coercion `&MaBoite<String>` vers `&str` marchent toutes seules : il n'y a rien d'autre à faire dans `saluer` et `nombre_de_lettres`.",
+            "`saluer(nom)` : `format!(\"Bonjour {nom} !\")`. `nombre_de_lettres(texte)` : `texte.chars().count()`."
+          ]
+        },
+        {
+          "id": "05-drop-compteur",
+          "titre": "Compter les libérations avec Drop",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Écris `impl Drop for Jeton { fn drop(&mut self) { ... } }`. Dedans, ajoute 1 au compteur partagé.",
+            "Un `Cell` se lit et s'écrit même à travers une référence non mutable : `self.compteur.set(self.compteur.get() + 1);`.",
+            "`creer_et_perdre` : une boucle `for _ in 0..n` qui fait `let _jeton = Jeton::nouveau(compteur);`. Le jeton est libéré à la fin de chaque tour.",
+            "Attention : `let _ = Jeton::nouveau(compteur);` marche aussi, mais `_jeton` rend le moment de la libération plus clair."
+          ]
+        },
+        {
+          "id": "06-rc-partage",
+          "titre": "Des listes qui partagent leur fin",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`Rc::new(valeur)` crée un `Rc`. `Rc::clone(&rc)` ajoute un propriétaire sans copier la donnée.",
+            "`somme` : comme pour la liste avec `Box`. Dans `Cons(valeur, suite)`, `suite` est un `&Rc<ListeRc>` qui se comporte comme `&ListeRc`.",
+            "`prolonger` : `Rc::new(Cons(valeur, Rc::clone(suite)))`.",
+            "`nombre_de_liens` : `Rc::strong_count(liste)`."
+          ]
+        },
+        {
+          "id": "07-arbre-weak",
+          "titre": "Un arbre avec parent faible",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Le parent possède ses enfants avec des `Rc` ; l'enfant retient son parent avec un `Weak`. `Rc::downgrade(&rc)` crée un `Weak`.",
+            "`ajouter_enfant` : `*enfant.parent.borrow_mut() = Rc::downgrade(parent);` puis `parent.enfants.borrow_mut().push(Rc::clone(enfant));`.",
+            "`nom_du_parent` : `noeud.parent.borrow().upgrade()` donne un `Option<Rc<Noeud>>`. Utilise `.map(|p| p.nom.clone())`.",
+            "`chemin` : `match noeud.parent.borrow().upgrade() { Some(parent) => format!(\"{}/{}\", chemin(&parent), noeud.nom), None => noeud.nom.clone() }`."
+          ]
+        },
+        {
+          "id": "08-ordre-de-liberation",
+          "titre": "L'ordre de libération",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Ajoute `impl Drop for Etiquette { fn drop(&mut self) { ... } }` et affiche `Libération de <nom>` avec `println!`.",
+            "Le texte exact est `Libération de a` (avec le nom de l'étiquette). Le reste du programme est déjà bon.",
+            "Les étiquettes sont libérées à la fin de leur portée, dans l'ordre inverse de leur création, et `drop(c)` libère `c` tout de suite. Tu n'as pas à gérer cet ordre : Rust s'en charge."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Où est stockée la valeur dans `let x = Box::new(5);` ?",
+          "choix": [
+            "Sur la pile",
+            "Sur le tas",
+            "Dans un fichier",
+            "Dans un registre du processeur"
+          ],
+          "reponse": 1,
+          "explication": "`Box::new` place la valeur sur le tas. La variable `x` (sur la pile) ne contient que l'adresse."
+        },
+        {
+          "question": "Pourquoi `enum Liste { Cons(i32, Liste), Vide }` ne compile-t-il pas ?",
+          "choix": [
+            "`Vide` est interdit",
+            "La taille du type serait infinie",
+            "`i32` n'est pas autorisé dans un enum",
+            "Il manque `#[derive(Debug)]`"
+          ],
+          "reponse": 1,
+          "explication": "Une liste contiendrait une liste, qui contiendrait une liste... Avec `Box<Liste>`, la taille est fixe (un `i32` et une adresse)."
+        },
+        {
+          "question": "À quoi sert `Vec<Box<dyn Forme>>` ?",
+          "choix": [
+            "À stocker des types différents qui implémentent le trait `Forme`",
+            "À stocker uniquement des `Box`",
+            "À copier les formes plus vite",
+            "À rendre les formes mutables"
+          ],
+          "reponse": 0,
+          "explication": "Chaque `Box<dyn Forme>` a la même taille (une adresse), donc on peut mélanger cercles, carrés, etc. La bonne méthode est choisie à l'exécution."
+        },
+        {
+          "question": "Quel trait permet d'écrire `*ma_valeur` sur son propre type ?",
+          "choix": [
+            "`Drop`",
+            "`Deref`",
+            "`Clone`",
+            "`Display`"
+          ],
+          "reponse": 1,
+          "explication": "`Deref` décrit comment obtenir une référence vers le contenu. `*x` devient `*(x.deref())`."
+        },
+        {
+          "question": "Une fonction attend un `&str`. Que peut-on lui passer grâce à la coercion deref ?",
+          "choix": [
+            "Un `&String` seulement",
+            "Un `&Box<String>` aussi",
+            "Un `String` sans `&`",
+            "Rien d'autre qu'un `&str`"
+          ],
+          "reponse": 1,
+          "explication": "Rust enchaîne les `deref` : `&Box<String>` devient `&String` puis `&str`. Il faut quand même le `&` devant."
+        },
+        {
+          "question": "Dans quel ordre les variables locales sont-elles libérées (`Drop`) ?",
+          "choix": [
+            "Dans l'ordre de création",
+            "Dans l'ordre inverse de création",
+            "Dans un ordre aléatoire",
+            "Par ordre alphabétique"
+          ],
+          "reponse": 1,
+          "explication": "La dernière variable créée est libérée la première, comme une pile d'assiettes."
+        },
+        {
+          "question": "Comment libérer une valeur avant la fin de sa portée ?",
+          "choix": [
+            "`valeur.drop()`",
+            "`drop(valeur)`",
+            "`valeur = None`",
+            "`free(valeur)`"
+          ],
+          "reponse": 1,
+          "explication": "Appeler la méthode `drop` soi-même est interdit par le compilateur. La fonction `drop(valeur)` prend la valeur et la laisse disparaître."
+        },
+        {
+          "question": "Que fait `Rc::clone(&a)` ?",
+          "choix": [
+            "Copie toute la donnée sur le tas",
+            "Ajoute 1 au compteur de références",
+            "Déplace `a`",
+            "Crée une référence mutable"
+          ],
+          "reponse": 1,
+          "explication": "La donnée n'est pas copiée : on ajoute juste un propriétaire. La valeur est libérée quand le compteur tombe à 0."
+        },
+        {
+          "question": "Deux `Rc` qui se pointent mutuellement, que se passe-t-il ?",
+          "choix": [
+            "Erreur de compilation",
+            "Panique à l'exécution",
+            "Fuite mémoire : les compteurs ne tombent jamais à 0",
+            "Rust libère automatiquement les deux"
+          ],
+          "reponse": 2,
+          "explication": "Chacun garde l'autre en vie. On casse le cycle en utilisant `Weak` pour un des deux liens."
+        },
+        {
+          "question": "Que renvoie `weak.upgrade()` ?",
+          "choix": [
+            "Un `Rc<T>`",
+            "Un `Option<Rc<T>>`, `None` si la valeur a disparu",
+            "Un `Arc<T>`",
+            "Une référence mutable"
+          ],
+          "reponse": 1,
+          "explication": "Un `Weak` ne garde pas la valeur en vie : elle a pu être libérée entre-temps, d'où l'`Option`."
+        }
+      ]
+    },
+    {
+      "id": "02-mutabilite-interieure",
+      "titre": "Mutabilité intérieure",
+      "description": "Cell, RefCell, Rc<RefCell<T>>, Weak pour les arbres et les graphes : la règle d'emprunt vérifiée à l'exécution.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Le Rust Book : RefCell et mutabilité intérieure",
+          "url": "https://doc.rust-lang.org/book/ch15-05-interior-mutability.html"
+        },
+        {
+          "titre": "Le Rust Book : cycles de références",
+          "url": "https://doc.rust-lang.org/book/ch15-06-reference-cycles.html"
+        },
+        {
+          "titre": "100 exercices Rust",
+          "url": "https://rust-exercises.com/100-exercises/"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-compteur-cell",
+          "titre": "Un compteur avec Cell",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Un `Cell<u32>` se lit avec `get()` et s'écrit avec `set(...)`, même à travers `&self`.",
+            "`incrementer` : `self.n.set(self.n.get() + 1);`",
+            "`remettre_a_zero` renvoie l'ancienne valeur : `self.n.replace(0)`."
+          ]
+        },
+        {
+          "id": "02-journal-refcell",
+          "titre": "Un journal avec RefCell",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Pour modifier le `Vec` caché dans le `RefCell` : `self.lignes.borrow_mut().push(...)`.",
+            "Pour lire : `self.lignes.borrow().len()`.",
+            "`derniere` renvoie une copie : `self.lignes.borrow().last().cloned()`."
+          ]
+        },
+        {
+          "id": "03-emprunt-sans-panique",
+          "titre": "Emprunter sans paniquer",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`try_borrow_mut()` renvoie un `Result` : `Ok(garde)` si l'emprunt est libre, `Err(_)` sinon.",
+            "`ajouter_si_libre` : `match liste.try_borrow_mut() { Ok(mut v) => { v.push(valeur); true } Err(_) => false }`.",
+            "`lire_premier` : `let v = liste.try_borrow().ok()?;` puis `v.first().copied()`."
+          ]
+        },
+        {
+          "id": "04-compte-partage",
+          "titre": "Un compte partagé",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le solde est un `Rc<RefCell<i32>>` : on le modifie avec `*solde.borrow_mut() += montant;`.",
+            "`retirer` : lis d'abord `*solde.borrow()`, compare avec `montant`, puis modifie. Ne garde pas la lecture pendant l'écriture.",
+            "`virement` : `retirer(source, montant)?;` puis `deposer(cible, montant);` puis `Ok(())`."
+          ]
+        },
+        {
+          "id": "05-observateurs",
+          "titre": "Les observateurs",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le trait impose `&self` : un `Historique` doit donc ranger ses messages dans le `RefCell` : `self.vus.borrow_mut().push(...)`.",
+            "`abonner` ajoute l'observateur dans le `Vec` : `self.observateurs.push(observateur);`.",
+            "`emettre` parcourt les observateurs : `for o in &self.observateurs { o.notifier(evenement); }`."
+          ]
+        },
+        {
+          "id": "06-arbre-weak",
+          "titre": "Un arbre avec parents faibles",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`ajouter_enfant` fait deux choses : `parent.enfants.borrow_mut().push(Rc::clone(enfant));` et `*enfant.parent.borrow_mut() = Rc::downgrade(parent);`.",
+            "`chemin` : pars du noeud, note son nom, puis remonte avec `courant.parent.borrow().upgrade()` jusqu'à obtenir `None`. Inverse la liste à la fin.",
+            "`compter_descendants` : pour chaque enfant, ajoute `1 + compter_descendants(enfant)`."
+          ]
+        },
+        {
+          "id": "07-compteurs-rc",
+          "titre": "Forts et faibles",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "`Rc::strong_count(rc)` donne le nombre de propriétaires, `Rc::weak_count(rc)` le nombre de références faibles.",
+            "`comptes` doit renvoyer un couple : `(Rc::strong_count(rc), Rc::weak_count(rc))`.",
+            "Le reste du programme est déjà écrit : une fois `comptes` écrite, la sortie doit correspondre."
+          ]
+        },
+        {
+          "id": "08-cache-memoire",
+          "titre": "Un cache avec &self",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Commence par chercher dans le cache : `if let Some(&v) = self.cache.borrow().get(&n) { return v; }`.",
+            "Si la valeur n'y est pas : incrémente `calculs` avec `self.calculs.set(self.calculs.get() + 1)`, calcule `n * n`, puis `self.cache.borrow_mut().insert(n, resultat)`.",
+            "N'oublie pas de renvoyer le résultat à la fin de la fonction."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quand `RefCell` vérifie-t-il les règles d'emprunt ?",
+          "choix": [
+            "À la compilation",
+            "À l'exécution",
+            "Jamais",
+            "Au lancement de `cargo build` seulement"
+          ],
+          "reponse": 1,
+          "explication": "`RefCell` compte les emprunts pendant que le programme tourne. Une violation ne se voit donc pas à la compilation."
+        },
+        {
+          "question": "Que se passe-t-il si on appelle `borrow_mut()` alors qu'un `borrow()` est encore actif ?",
+          "choix": [
+            "Le code ne compile pas",
+            "Le programme panique",
+            "La valeur est copiée",
+            "L'emprunt en lecture est annulé"
+          ],
+          "reponse": 1,
+          "explication": "La règle « une écriture OU plusieurs lectures » est vérifiée à l'exécution : la violation provoque une panique (`already borrowed: BorrowMutError`)."
+        },
+        {
+          "question": "Quelle méthode permet d'essayer d'emprunter en écriture sans risquer de panique ?",
+          "choix": [
+            "`safe_borrow_mut()`",
+            "`try_borrow_mut()`",
+            "`borrow_mut().ok()`",
+            "`get_mut()`"
+          ],
+          "reponse": 1,
+          "explication": "`try_borrow_mut()` renvoie un `Result` : `Ok(garde)` si l'emprunt est possible, `Err` sinon."
+        },
+        {
+          "question": "Quelle est la grande différence entre `Cell<T>` et `RefCell<T>` ?",
+          "choix": [
+            "`Cell` est plus lent",
+            "`Cell` donne des références vers son contenu, pas `RefCell`",
+            "`Cell` copie les valeurs dedans et dehors (`get`/`set`), sans références ni panique",
+            "`Cell` marche sur plusieurs threads"
+          ],
+          "reponse": 2,
+          "explication": "`Cell` ne donne jamais de référence vers son contenu : on lit une copie avec `get` ou on remplace avec `set`. Pas d'emprunt donc pas de panique."
+        },
+        {
+          "question": "Pourquoi `Cell::get()` n'est-il disponible que pour certains types ?",
+          "choix": [
+            "Le type doit être `Copy`",
+            "Le type doit être `Clone` seulement",
+            "Le type doit être `Send`",
+            "Le type doit être `String`"
+          ],
+          "reponse": 0,
+          "explication": "`get` renvoie une copie de la valeur : le type doit implémenter `Copy`. Pour les autres types, on utilise `replace` ou `take`."
+        },
+        {
+          "question": "Que permet `Rc<RefCell<T>>` ?",
+          "choix": [
+            "Plusieurs propriétaires qui peuvent modifier la même valeur, dans un seul thread",
+            "Partager une valeur entre plusieurs threads",
+            "Éviter toute panique",
+            "Rendre la valeur immuable"
+          ],
+          "reponse": 0,
+          "explication": "`Rc` donne plusieurs propriétaires, `RefCell` donne la modification. Ni l'un ni l'autre ne sont sûrs entre threads (il faut `Arc<Mutex<T>>`)."
+        },
+        {
+          "question": "Deux `Rc` qui se pointent l'un l'autre provoquent...",
+          "choix": [
+            "Une erreur de compilation",
+            "Une panique immédiate",
+            "Une fuite mémoire (les compteurs ne tombent jamais à 0)",
+            "Rien de spécial"
+          ],
+          "reponse": 2,
+          "explication": "Chaque valeur garde l'autre en vie, donc leur compteur fort ne tombe jamais à 0 et la mémoire n'est jamais libérée."
+        },
+        {
+          "question": "Que renvoie `weak.upgrade()` ?",
+          "choix": [
+            "Un `Rc<T>` toujours",
+            "Un `Option<Rc<T>>`",
+            "Un `Result<T, String>`",
+            "Un `Weak<T>` plus fort"
+          ],
+          "reponse": 1,
+          "explication": "`Some(rc)` si la valeur existe encore, `None` si elle a déjà été libérée."
+        },
+        {
+          "question": "Dans un arbre, quel lien doit être un `Weak` ?",
+          "choix": [
+            "Parent vers enfants",
+            "Enfant vers parent",
+            "Les deux",
+            "Aucun"
+          ],
+          "reponse": 1,
+          "explication": "Le parent possède ses enfants (`Rc`). L'enfant pointe vers son parent avec un `Weak`, pour ne pas créer de cycle."
+        },
+        {
+          "question": "Que fait `OnceCell::set` si la case est déjà remplie ?",
+          "choix": [
+            "Il écrase la valeur",
+            "Il panique",
+            "Il renvoie `Err(valeur)` et ne change rien",
+            "Il attend"
+          ],
+          "reponse": 2,
+          "explication": "Une `OnceCell` ne se remplit qu'une seule fois. Un second `set` échoue en rendant la valeur proposée."
+        }
+      ]
+    },
+    {
+      "id": "03-traits-avances",
+      "titre": "Traits avancés",
+      "description": "Types associés, surcharge d'opérateurs, supertraits, dyn Trait, impl Trait, From / TryFrom, implémentation générale et newtype.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Diapos du cours : Rust avancé",
+          "fichier": "Rust/Sources/Slides - Rust avancé.pdf"
+        },
+        {
+          "titre": "Le Rust Book : traits avancés",
+          "url": "https://doc.rust-lang.org/book/ch20-02-advanced-traits.html"
+        },
+        {
+          "titre": "Le Rust Book : objets-traits (dyn)",
+          "url": "https://doc.rust-lang.org/book/ch18-02-trait-objects.html"
+        },
+        {
+          "titre": "Rust by Example : traits",
+          "url": "https://doc.rust-lang.org/rust-by-example/trait.html"
+        },
+        {
+          "titre": "100 exercices Rust : traits",
+          "url": "https://rust-exercises.com/100-exercises/04_traits/00_intro"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-vecteur-operateurs",
+          "titre": "Un vecteur avec des opérateurs",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Chaque opérateur a son trait : `Add` pour `+`, `Sub` pour `-`, `Neg` pour le `-` unaire, `Mul<f64>` pour `*`. Dans chaque `impl`, il faut écrire `type Output = Vecteur;`.",
+            "Pour `Add` : `Vecteur { x: self.x + autre.x, y: self.y + autre.y }`. `Sub` est pareil avec `-`.",
+            "Pour `Neg` : on change le signe des deux champs. Pour `Mul<f64>` : on multiplie les deux champs par `k`."
+          ]
+        },
+        {
+          "id": "02-index-grille",
+          "titre": "Indexer une grille avec [ligne, colonne]",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`Index<(usize, usize)>` : le type d'index est un couple. Dans `index`, tu reçois `(ligne, colonne)` : écris `fn index(&self, (ligne, colonne): (usize, usize)) -> &i32`.",
+            "Les cases sont rangées ligne après ligne dans un seul `Vec` : la case `(ligne, colonne)` est à la position `ligne * self.largeur + colonne`.",
+            "Avant de calculer la position, vérifie avec `assert!(ligne < self.hauteur && colonne < self.largeur, \"hors de la grille\")`. `index_mut` fait pareil mais renvoie `&mut self.cases[...]`."
+          ]
+        },
+        {
+          "id": "03-iterateur-associe",
+          "titre": "Écrire un Iterator avec un type associé",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Dans `impl Iterator for X`, il faut `type Item = u64;` puis `fn next(&mut self) -> Option<u64>`. `None` signale la fin.",
+            "Pour `Decompte` : si `self.reste == 0`, renvoie `None` ; sinon garde la valeur, retire 1 à `self.reste` et renvoie `Some(valeur)`.",
+            "Pour `Fibonacci` : garde `let courant = self.a;`, puis `self.a = self.b;` et `self.b += courant;`, et renvoie `Some(courant)`. Ce flux ne s'arrête jamais : on le limite avec `take`."
+          ]
+        },
+        {
+          "id": "04-supertrait-etiquette",
+          "titre": "Un supertrait pour les étiquettes",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`trait Article: fmt::Display` impose que chaque article sache s'afficher. Il faut donc écrire `impl fmt::Display` pour `Livre` et pour `Stylo`.",
+            "`Livre` s'affiche `Livre <titre>` et `Stylo` s'affiche `Stylo <couleur>` : `write!(f, \"Livre {}\", self.titre)`.",
+            "Dans `etiquette`, utilise `self` directement dans `format!` (grâce au supertrait) : `format!(\"{} : {:.2} €\", self, self.prix_centimes() as f64 / 100.0)`."
+          ]
+        },
+        {
+          "id": "05-from-et-tryfrom",
+          "titre": "From, Into et TryFrom",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`impl From<Celsius> for Fahrenheit` : écris `fn from(c: Celsius) -> Fahrenheit` et renvoie `Fahrenheit(c.0 * 9.0 / 5.0 + 32.0)`.",
+            "`en_fahrenheit` : `let f: Fahrenheit = c.into();` marche grâce au `From` que tu viens d'écrire. Renvoie ensuite `f.0`.",
+            "`TryFrom<i32> for Note` : si `(0..=20).contains(&n)`, renvoie `Ok(Note(n as u8))`, sinon `Err(format!(\"note invalide : {}\", n))`."
+          ]
+        },
+        {
+          "id": "06-transformations-dyn",
+          "titre": "Une chaîne de Box<dyn Transformation>",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`Majuscules` est donné en exemple. `Repeter(n)` renvoie `texte.repeat(self.0)` et `Entourer(c)` renvoie `format!(\"{}{}{}\", self.0, texte, self.0)`.",
+            "`enchainer` applique les étapes l'une après l'autre : `etapes.iter().fold(texte.to_string(), |acc, etape| etape.appliquer(&acc))`.",
+            "`construire` : un `match nom` qui renvoie `Some(Box::new(Majuscules))`, `Some(Box::new(Repeter(2)))`, `Some(Box::new(Entourer('*')))`, et `None` pour tout le reste. Le type de retour `Option<Box<dyn Transformation>>` accepte les trois types différents."
+          ]
+        },
+        {
+          "id": "07-blanket-et-newtype",
+          "titre": "Blanket impl et newtype",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "On ne peut pas écrire `impl Display for Vec<String>` (règle des orphelins). Le newtype `Liste(Vec<String>)` est un type à toi : tu peux lui implémenter `Display`.",
+            "Pour `Liste` : `write!(f, \"[{}]\", self.0.join(\", \"))`. Une liste vide s'affiche `[]`.",
+            "Le blanket impl s'écrit `impl<T: Display> Resumer for T { ... }` et la méthode renvoie `format!(\"<{}>\", self)`. Comme `Liste` est `Display`, elle a `resume()` aussi."
+          ]
+        },
+        {
+          "id": "08-classement-ord",
+          "titre": "Classer des joueurs avec Ord",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "`cmp` doit renvoyer un `Ordering`. Pour trier du plus grand score au plus petit, compare **à l'envers** : `autre.score.cmp(&self.score)`.",
+            "En cas d'égalité de score, on départage par le nom dans l'ordre alphabétique : `.then_with(|| self.nom.cmp(&autre.nom))`.",
+            "`partial_cmp` est déjà écrit : il appelle `cmp`. Une fois `cmp` correct, `sort()` et `min()` donnent le bon résultat."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Dans `trait Iterator { type Item; ... }`, que représente `Item` ?",
+          "choix": [
+            "Un paramètre générique choisi à chaque appel",
+            "Un type associé : le type fixé une seule fois par chaque implémentation",
+            "Une constante",
+            "Un champ de la structure"
+          ],
+          "reponse": 1,
+          "explication": "Un type associé est un type « rempli » par l'implémentation. Un type donné n'implémente `Iterator` qu'une fois, donc `Item` est unique."
+        },
+        {
+          "question": "Quelle est la différence principale entre `trait Convertir<T>` et `trait Convertir { type Sortie; }` ?",
+          "choix": [
+            "Aucune",
+            "Avec le générique, un même type peut implémenter le trait plusieurs fois (avec des `T` différents) ; avec le type associé, une seule fois",
+            "Le type associé est plus lent",
+            "Le générique ne marche qu'avec les nombres"
+          ],
+          "reponse": 1,
+          "explication": "`From<i32>` et `From<f64>` peuvent coexister sur un même type. Avec un type associé, il n'y a qu'un seul choix possible, donc moins d'annotations."
+        },
+        {
+          "question": "Quel trait faut-il implémenter pour que `a + b` marche sur ton type ?",
+          "choix": [
+            "`std::ops::Add`",
+            "`std::fmt::Add`",
+            "`Plus`",
+            "`Sum`"
+          ],
+          "reponse": 0,
+          "explication": "Chaque opérateur a son trait dans `std::ops` : `Add` pour `+`, `Sub` pour `-`, `Mul` pour `*`, `Neg` pour le `-` unaire, `Index` pour `[]`."
+        },
+        {
+          "question": "Que signifie `trait Article: Display` ?",
+          "choix": [
+            "`Article` hérite des champs de `Display`",
+            "Tout type qui implémente `Article` doit aussi implémenter `Display` (supertrait)",
+            "`Display` implémente automatiquement `Article`",
+            "C'est une erreur de syntaxe"
+          ],
+          "reponse": 1,
+          "explication": "`Display` est un supertrait : c'est une condition. Les méthodes par défaut de `Article` peuvent donc utiliser `{}` sur `self`."
+        },
+        {
+          "question": "Pourquoi `Box<dyn Clonable>` ne compile-t-il pas avec `trait Clonable { fn copie(&self) -> Self; }` ?",
+          "choix": [
+            "`Box` est interdit avec les traits",
+            "Le trait n'est pas « sûr pour les objets » : une méthode qui renvoie `Self` ne peut pas être appelée via `dyn`",
+            "Il manque `pub`",
+            "Il faut `unsafe`"
+          ],
+          "reponse": 1,
+          "explication": "Avec `dyn`, le type concret est oublié. Une méthode qui renvoie `Self` ou qui est générique empêche de créer un objet-trait."
+        },
+        {
+          "question": "Quelle est la différence entre `fn f(x: impl Trait)` et `fn f(x: &dyn Trait)` ?",
+          "choix": [
+            "Aucune",
+            "`impl Trait` est résolu à la compilation (un code par type) ; `dyn Trait` est résolu à l'exécution (appel via une table)",
+            "`dyn` est toujours plus rapide",
+            "`impl` ne marche qu'en retour"
+          ],
+          "reponse": 1,
+          "explication": "`impl Trait` en argument est du générique (monomorphisation). `dyn Trait` permet de mélanger plusieurs types dans une même collection, au prix d'un appel indirect."
+        },
+        {
+          "question": "Que permet `fn pairs() -> impl Iterator<Item = u32>` ?",
+          "choix": [
+            "Renvoyer n'importe quel type, choisi par l'appelant",
+            "Cacher le type exact renvoyé (une chaîne d'itérateurs par exemple) tout en promettant qu'il est un itérateur de `u32`",
+            "Renvoyer plusieurs types différents selon un `if`",
+            "Rien, c'est interdit"
+          ],
+          "reponse": 1,
+          "explication": "Le type est choisi par la fonction, pas l'appelant. Un seul type concret possible : deux branches de types différents ne compilent pas (il faudrait `Box<dyn Iterator>`)."
+        },
+        {
+          "question": "Si tu implémentes `From<A> for B`, que reçois-tu gratuitement ?",
+          "choix": [
+            "`TryFrom<A> for B` seulement",
+            "`Into<B> for A` : tu peux écrire `a.into()`",
+            "`Display` pour `B`",
+            "Rien"
+          ],
+          "reponse": 1,
+          "explication": "Il existe une implémentation générale `impl<T, U: From<T>> Into<U> for T`. On implémente `From`, et `Into` suit."
+        },
+        {
+          "question": "Qu'est-ce que la règle des orphelins interdit ?",
+          "choix": [
+            "Utiliser un type sans trait",
+            "Implémenter un trait étranger sur un type étranger (ex. `Display` pour `Vec<String>`)",
+            "Écrire deux `impl` du même trait",
+            "Utiliser `dyn` sans `Box`"
+          ],
+          "reponse": 1,
+          "explication": "Au moins le trait ou le type doit être défini dans ta crate. Le newtype (`struct Liste(Vec<String>);`) rend le type local et contourne la règle."
+        },
+        {
+          "question": "Que fait `impl<T: Display> Resumer for T { ... }` ?",
+          "choix": [
+            "Implémente `Resumer` pour un seul type `T`",
+            "Implémente `Resumer` pour tous les types qui implémentent `Display` (blanket impl)",
+            "Crée un nouveau type `T`",
+            "Supprime `Display`"
+          ],
+          "reponse": 1,
+          "explication": "C'est une implémentation générale. La bibliothèque standard l'utilise : tout type `Display` a `.to_string()` grâce à `ToString`."
+        }
+      ]
+    },
+    {
+      "id": "04-programmation-par-les-types",
+      "titre": "Programmation par les types",
+      "description": "Newtype, états illégaux impossibles à représenter, enums plutôt que booléens, builder, typestate avec PhantomData, Option et Result en chaîne.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Diapos complètes : Rust avancé et programmation fonctionnelle",
+          "fichier": "Rust/Sources/Slides - Rust avancé et programmation fonctionnelle.pdf"
+        },
+        {
+          "titre": "Diapos : Rust et programmation fonctionnelle (1)",
+          "url": "https://docs.google.com/presentation/d/1Lww5ntAIIWQicP-FnS6pp_qGr_NZyIpIlGjqYH0b92M/embed?start=false&loop=false",
+          "integrer": true
+        },
+        {
+          "titre": "Diapos : Rust et programmation fonctionnelle (2)",
+          "url": "https://docs.google.com/presentation/d/1aZzwMQEwEEwhl08tjsM9JF6HTXk9e3-0cOKNdsJon7k/embed?start=false&loop=false",
+          "integrer": true
+        },
+        {
+          "titre": "Rust by Example : génériques et PhantomData",
+          "url": "https://doc.rust-lang.org/rust-by-example/generics/phantom.html"
+        },
+        {
+          "titre": "100 exercices Rust",
+          "url": "https://rust-exercises.com/100-exercises/"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-pourcentage",
+          "titre": "Un pourcentage toujours valide",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Le constructeur compare la valeur à 100 : `if valeur <= 100 { Ok(...) } else { Err(...) }`.",
+            "Le message d'erreur se fabrique avec `format!(\"{valeur} dépasse 100\")`.",
+            "Pour la remise : `prix - prix * remise.valeur() as u32 / 100`."
+          ]
+        },
+        {
+          "id": "02-paiement",
+          "titre": "Des états, pas des booléens",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Un `match paiement { ... }` avec un cas par variante. Pour lire les champs : `Paiement::Paye { montant } => ...`.",
+            "`montant_encaisse` : seul `Paye` rend son montant, les autres cas rendent `0` (tu peux écrire `_ => 0`).",
+            "`rembourser` consomme le paiement : `Paiement::Paye { montant } => Ok(Paiement::Rembourse { montant, motif: motif.to_string() })`, et `_ => Err(...)` pour le reste."
+          ]
+        },
+        {
+          "id": "03-unites",
+          "titre": "Mètres et kilomètres",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`impl From<Kilometres> for Metres { fn from(km: Kilometres) -> Metres { Metres(km.0 * 1000.0) } }`, et l'inverse pour `Kilometres`.",
+            "Pour `Add` : `fn add(self, autre: Metres) -> Metres { Metres(self.0 + autre.0) }`.",
+            "`Display` : `write!(f, \"{} m\", self.0)`. Pour la somme : `etapes.iter().fold(Metres(0.0), |total, etape| total + *etape)`."
+          ]
+        },
+        {
+          "id": "04-email",
+          "titre": "Un e-mail validé",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`texte.split_once('@')` renvoie une `Option<(&str, &str)>` : transforme-la en erreur avec `.ok_or(ErreurEmail::SansArobase)?`.",
+            "Après le découpage, teste `local.is_empty() || domaine.is_empty()` pour `PartieVide`, puis `!domaine.contains('.')` pour `DomaineSansPoint`.",
+            "Pour `domaine()`, redécoupe l'adresse : `self.0.split_once('@').map_or(\"\", |(_, domaine)| domaine)`."
+          ]
+        },
+        {
+          "id": "05-chaine-de-types",
+          "titre": "Du texte au type validé",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`texte.trim().parse::<u8>()` donne un `Result<u8, _>`. Change son erreur avec `.map_err(|_| format!(...))`.",
+            "Enchaîne avec `.and_then(Pourcentage::new)` : `Pourcentage::new` prend un `u8` et renvoie un `Result`, ce qui convient à `and_then`.",
+            "`somme_pourcentages` : `textes.iter().map(|texte| lire_pourcentage(texte).map(|p| u32::from(p.valeur()))).sum()` : `sum` marche aussi sur des `Result`. Pour `premier_valide` : `.find_map(|texte| lire_pourcentage(texte).ok())`."
+          ]
+        },
+        {
+          "id": "06-builder",
+          "titre": "Le builder de requête",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Chaque méthode a la forme `fn url(mut self, url: &str) -> RequeteBuilder { self.url = Some(url.to_string()); self }`.",
+            "`en_tete` ajoute un couple dans le vecteur : `self.en_tetes.push((nom.to_string(), valeur.to_string()));`.",
+            "`construire` : `let url = self.url.ok_or(\"l'adresse est obligatoire\")?;` puis refuse un délai à 0 avec `\"le délai doit être positif\"`."
+          ]
+        },
+        {
+          "id": "07-connexion-typestate",
+          "titre": "La connexion typestate",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`nouvelle` crée la structure avec `envoyes: Vec::new()` et `etat: PhantomData`.",
+            "`ouvrir(self)` reconstruit une `Connexion` en déplaçant les champs : `Connexion { adresse: self.adresse, envoyes: self.envoyes, etat: PhantomData }`. Le type de retour `Connexion<Ouverte>` fixe l'état.",
+            "`envoyer(&mut self, message)` ajoute le message à `self.envoyes` et renvoie `self.envoyes.len()`. `adresse` et `nombre_envoyes` vont dans un `impl<Etat> Connexion<Etat>` qui sert à tous les états."
+          ]
+        },
+        {
+          "id": "08-commande",
+          "titre": "La commande en trois étapes",
+          "difficulte": 3,
+          "type": "sortie",
+          "indices": [
+            "`ajouter` est sur `Commande<Brouillon>` : `self.articles.push(article.to_string());`.",
+            "`valider(self)` rend `Err(format!(\"Commande {} refusée : aucun article\", self.numero))` si `self.articles.is_empty()`, sinon `Ok(Commande { numero: self.numero, articles: self.articles, etat: Validee })`.",
+            "`expedier(self)` fabrique le suivi avec `format!(\"SUIVI-{}\", self.numero)` et le range dans `Expediee { suivi }`. Ne touche pas aux `decrire` ni à `main`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que veut dire « rendre les états illégaux impossibles à représenter » ?",
+          "choix": [
+            "Écrire plus de tests",
+            "Choisir des types où une valeur invalide ne peut tout simplement pas exister",
+            "Utiliser `unsafe` pour aller plus vite",
+            "Attraper toutes les erreurs avec `panic!`"
+          ],
+          "reponse": 1,
+          "explication": "On construit les types pour que les valeurs absurdes (pourcentage de 250, connexion fermée qui envoie) ne compilent pas ou ne puissent pas être créées."
+        },
+        {
+          "question": "Qu'est-ce qu'un newtype ?",
+          "choix": [
+            "Un alias créé avec `type`",
+            "Une structure à un seul champ qui enveloppe un type existant",
+            "Une nouvelle version de Rust",
+            "Un trait générique"
+          ],
+          "reponse": 1,
+          "explication": "`struct Metres(f64);` est un type distinct de `f64` pour le compilateur, sans coût à l'exécution. Un alias `type` ne crée pas un type différent."
+        },
+        {
+          "question": "Quelle différence y a-t-il entre `type Metres = f64;` et `struct Metres(f64);` ?",
+          "choix": [
+            "Aucune",
+            "L'alias est un vrai nouveau type, pas la structure",
+            "La structure est un vrai nouveau type, l'alias reste un `f64`",
+            "La structure est plus lente"
+          ],
+          "reponse": 2,
+          "explication": "Un alias est juste un autre nom : on peut mélanger `Metres` et `f64`. Une structure est un type distinct que le compilateur refuse de mélanger."
+        },
+        {
+          "question": "Pourquoi le champ d'un newtype validé (comme `Pourcentage`) doit-il rester privé ?",
+          "choix": [
+            "Pour que le code soit plus rapide",
+            "Pour que personne ne puisse le construire sans passer par `new`",
+            "Parce que Rust l'impose",
+            "Pour économiser de la mémoire"
+          ],
+          "reponse": 1,
+          "explication": "Avec un champ `pub`, on peut écrire `Pourcentage(250)` directement : la validation du constructeur est contournée."
+        },
+        {
+          "question": "Quel type de retour est le plus adapté pour un constructeur qui peut refuser une valeur, avec la raison du refus ?",
+          "choix": [
+            "`Option<Self>`",
+            "`Result<Self, E>`",
+            "`bool`",
+            "`Self` avec un `panic!`"
+          ],
+          "reponse": 1,
+          "explication": "`Result<Self, E>` dit pourquoi la valeur est refusée. `Option` ne donne pas la raison, `bool` ne rend pas la valeur."
+        },
+        {
+          "question": "Pourquoi préférer une `enum` à plusieurs booléens (`paye`, `rembourse`) ?",
+          "choix": [
+            "Une enum est plus courte à écrire",
+            "Les booléens sont interdits en Rust",
+            "L'enum interdit les combinaisons absurdes et peut porter des données par état",
+            "Les enums sont toujours plus rapides"
+          ],
+          "reponse": 2,
+          "explication": "Deux booléens autorisent 4 combinaisons dont certaines n'ont pas de sens. Une enum n'a que les variantes voulues, et chacune peut avoir ses champs."
+        },
+        {
+          "question": "Dans le pattern builder, pourquoi les méthodes prennent-elles `mut self` et renvoient-elles `Self` ?",
+          "choix": [
+            "Pour pouvoir enchaîner les appels avec des points",
+            "Pour copier la structure à chaque étape",
+            "Pour éviter les erreurs de compilation",
+            "Parce que `&self` est interdit dans un builder"
+          ],
+          "reponse": 0,
+          "explication": "En recevant et rendant `self`, chaque appel donne le builder suivant : `Builder::nouveau().url(..).delai(..).construire()`."
+        },
+        {
+          "question": "À quoi sert `PhantomData<Etat>` dans `struct Connexion<Etat> { ... }` ?",
+          "choix": [
+            "À stocker un `Etat` en mémoire",
+            "À utiliser le paramètre générique sans occuper de mémoire",
+            "À rendre la structure thread-safe",
+            "À cacher la structure"
+          ],
+          "reponse": 1,
+          "explication": "Rust refuse un paramètre générique inutilisé. `PhantomData` le « consomme » sans prendre de place : il n'existe qu'à la compilation."
+        },
+        {
+          "question": "Dans un typestate, pourquoi une transition comme `ouvrir` prend-elle `self` et non `&self` ?",
+          "choix": [
+            "Pour consommer l'ancien état et empêcher de le réutiliser",
+            "Parce que `&self` ne marche pas avec les génériques",
+            "Pour copier la connexion",
+            "Pour appeler `drop` manuellement"
+          ],
+          "reponse": 0,
+          "explication": "`self` déplace la valeur : la connexion fermée disparaît et on ne garde que la connexion ouverte. On ne peut plus rouvrir deux fois."
+        },
+        {
+          "question": "Que fait `and_then` sur un `Result` ?",
+          "choix": [
+            "Il transforme l'erreur",
+            "Il applique une fonction qui renvoie elle-même un `Result`, si le premier est `Ok`",
+            "Il ignore les erreurs",
+            "Il fait paniquer en cas d'erreur"
+          ],
+          "reponse": 1,
+          "explication": "`and_then(f)` appelle `f` sur la valeur `Ok` et rend directement son `Result`, sans double boîte. Une erreur passe sans appeler `f`. Pour transformer l'erreur, on utilise `map_err`."
+        }
+      ]
+    },
+    {
+      "id": "05-concurrence",
+      "titre": "Concurrence",
+      "description": "Threads, canaux, Mutex, Arc, RwLock, atomiques, Send et Sync, interblocage.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Diapos du cours : Rust avancé",
+          "fichier": "Rust/Sources/Slides - Rust avancé.pdf"
+        },
+        {
+          "titre": "Le Rust Book : concurrence sans peur",
+          "url": "https://doc.rust-lang.org/book/ch16-00-concurrency.html"
+        },
+        {
+          "titre": "Rust by Example : threads",
+          "url": "https://doc.rust-lang.org/rust-by-example/std_misc/threads.html"
+        },
+        {
+          "titre": "100 exercices Rust : threads",
+          "url": "https://rust-exercises.com/100-exercises/07_threads/00_intro"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-premier-thread",
+          "titre": "Mon premier thread",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Lance le calcul avec `thread::spawn(move || { ... })`. La closure renvoie la somme.",
+            "La somme de 1 à n s'écrit `(1..=n).sum::<u64>()`.",
+            "`spawn` renvoie un `JoinHandle`. Appelle `.join().unwrap()` dessus pour récupérer la valeur."
+          ]
+        },
+        {
+          "id": "02-un-thread-par-valeur",
+          "titre": "Un thread par valeur",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Crée un thread par valeur avec `valeurs.into_iter().map(|v| thread::spawn(move || ...))`, et range les `JoinHandle` dans un `Vec` avec `collect()`.",
+            "Il faut lancer **tous** les threads avant d'en attendre un seul : fais deux passes (une pour `spawn`, une pour `join`).",
+            "Deuxième passe : `handles.into_iter().map(|h| h.join().unwrap()).collect()`. L'ordre du `Vec` garde l'ordre des valeurs."
+          ]
+        },
+        {
+          "id": "03-producteurs",
+          "titre": "Plusieurs producteurs",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Crée le canal avec `let (tx, rx) = mpsc::channel();`. Pour chaque producteur, clone l'émetteur : `let tx = tx.clone();` puis `move ||` dans le thread.",
+            "Chaque producteur `id` envoie `id * 100 + i` pour `i` de 0 à `par_producteur`.",
+            "Après la boucle, fais `drop(tx)` : sinon `rx.iter()` n'a jamais de fin. Puis collecte, fais les `join`, et trie avec `sort()`."
+          ]
+        },
+        {
+          "id": "04-compteur-partage",
+          "titre": "Compteur partagé",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Crée le compteur avec `Arc::new(Mutex::new(0))`. Pour chaque thread, fais `let compteur = Arc::clone(&compteur);` avant le `move`.",
+            "Dans le thread : `*compteur.lock().unwrap() += 1;`, répété `increments` fois.",
+            "Pour récupérer la valeur finale, une fois les threads `join` : `*compteur.lock().unwrap()` fonctionne. Avec `Arc::try_unwrap(compteur).unwrap().into_inner().unwrap()`, on reprend la valeur sans verrou."
+          ]
+        },
+        {
+          "id": "05-pairs-atomiques",
+          "titre": "Compter les nombres pairs",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Crée `let total = AtomicUsize::new(0);` puis `thread::scope(|s| { ... })`. Dans un scope, les threads peuvent emprunter `nombres` et `total`.",
+            "Découpe avec `nombres.chunks(taille)` et lance un `s.spawn(move || ...)` par morceau. Pour que `move` ne déplace pas `total`, prépare avant `let total_ref = &total;` et utilise-le dans le thread.",
+            "Dans chaque thread : compte les pairs du morceau avec `morceau.iter().filter(|&&x| x % 2 == 0).count()`, puis `total_ref.fetch_add(n, Ordering::Relaxed);`. À la fin : `total.into_inner()`."
+          ]
+        },
+        {
+          "id": "06-annuaire-rwlock",
+          "titre": "Annuaire partagé (RwLock)",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Les trois méthodes prennent `&self` : c'est le `RwLock` qui permet de modifier à l'intérieur d'une référence partagée.",
+            "Pour écrire : `self.noms.write().unwrap().push(nom.to_string());`. Pour lire : `self.noms.read().unwrap()`.",
+            "`nombre` renvoie `self.noms.read().unwrap().len()`, et `contient` utilise `.iter().any(|n| n == nom)`."
+          ]
+        },
+        {
+          "id": "07-virements-sans-blocage",
+          "titre": "Virements sans interblocage",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`ordre_verrous(de, vers)` renvoie les deux numéros rangés du plus petit au plus grand : `if de < vers { (de, vers) } else { (vers, de) }`.",
+            "Dans `transferer`, prends d'abord le verrou du plus petit numéro, puis celui du plus grand : `let mut petit = comptes[premier].lock().unwrap();` puis `let mut grand = comptes[second].lock().unwrap();`.",
+            "Ensuite, retire `montant` du compte `de` et ajoute-le au compte `vers`. Si `de < vers`, `de` est le `petit`, sinon c'est le `grand`."
+          ]
+        },
+        {
+          "id": "08-sommes-par-morceaux",
+          "titre": "Sommes par morceaux",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Utilise `thread::scope(|s| { ... })` : il renvoie la valeur de son bloc, donc tu peux écrire `let sommes: Vec<u32> = thread::scope(|s| { ... });`.",
+            "Dans le scope : `nombres.chunks(4).map(|m| s.spawn(move || m.iter().sum::<u32>())).collect::<Vec<_>>()` donne les `handles`.",
+            "Termine le bloc avec `handles.into_iter().map(|h| h.join().unwrap()).collect()`. L'affichage se fait ensuite dans `main`, dans l'ordre des morceaux."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que fait `handle.join()` ?",
+          "choix": [
+            "Il arrête le thread",
+            "Il attend la fin du thread et renvoie son résultat",
+            "Il crée un nouveau thread",
+            "Il copie le thread"
+          ],
+          "reponse": 1,
+          "explication": "`join` bloque jusqu'à la fin du thread et renvoie un `Result` : `Ok(valeur)`, ou `Err` si le thread a paniqué."
+        },
+        {
+          "question": "Pourquoi `thread::spawn` demande-t-il souvent une closure `move` ?",
+          "choix": [
+            "Pour aller plus vite",
+            "Parce que le thread peut vivre plus longtemps que la fonction : il doit posséder ses données",
+            "Pour désactiver le compilateur",
+            "Pour partager la mémoire sans règle"
+          ],
+          "reponse": 1,
+          "explication": "Le thread peut continuer après la fin de la fonction. Il ne peut donc pas emprunter ses variables locales : `move` lui en donne la propriété."
+        },
+        {
+          "question": "Qu'est-ce qui rend `thread::scope` différent de `thread::spawn` ?",
+          "choix": [
+            "Il est plus lent",
+            "Les threads sont terminés à la sortie du bloc, donc ils peuvent emprunter des variables locales",
+            "Il n'a pas besoin de compilateur",
+            "Il ne marche qu'avec des canaux"
+          ],
+          "reponse": 1,
+          "explication": "Le bloc attend tous ses threads avant de se terminer. Les emprunts restent donc valides, sans `move` ni `Arc`."
+        },
+        {
+          "question": "Que veut dire `mpsc` ?",
+          "choix": [
+            "Multiple producers, single consumer",
+            "Mutex per shared channel",
+            "Message passing safe channel",
+            "Multi-thread process scheduler"
+          ],
+          "reponse": 0,
+          "explication": "Plusieurs producteurs (on clone le `Sender`), un seul consommateur (un seul `Receiver`)."
+        },
+        {
+          "question": "Pourquoi `for m in rx` peut-il ne jamais se terminer ?",
+          "choix": [
+            "Le `Receiver` est cassé",
+            "Un `Sender` existe encore (par exemple oublié dans le thread principal)",
+            "Il faut utiliser `join`",
+            "`for` ne marche pas avec les canaux"
+          ],
+          "reponse": 1,
+          "explication": "Le canal se ferme quand tous les `Sender` sont détruits. Il faut penser à faire `drop(tx)` sur l'émetteur d'origine."
+        },
+        {
+          "question": "Quel type permet de partager un `Mutex` entre plusieurs threads ?",
+          "choix": [
+            "`Rc<Mutex<T>>`",
+            "`Box<Mutex<T>>`",
+            "`Arc<Mutex<T>>`",
+            "`&mut Mutex<T>`"
+          ],
+          "reponse": 2,
+          "explication": "`Arc` est un compteur de références atomique, sûr entre threads. `Rc` n'est pas `Send` et le compilateur le refuse."
+        },
+        {
+          "question": "Quand le verrou d'un `Mutex` est-il libéré ?",
+          "choix": [
+            "Quand on appelle `unlock()`",
+            "Quand le garde renvoyé par `lock()` est détruit",
+            "À la fin du programme seulement",
+            "Au prochain `lock()`"
+          ],
+          "reponse": 1,
+          "explication": "Il n'y a pas de méthode `unlock` : le garde (`MutexGuard`) libère le verrou en sortant de sa portée ou avec `drop`."
+        },
+        {
+          "question": "Dans quel cas un `RwLock` est-il plus intéressant qu'un `Mutex` ?",
+          "choix": [
+            "Quand il y a beaucoup de lectures et peu d'écritures",
+            "Quand il n'y a qu'un seul thread",
+            "Quand on veut éviter `Arc`",
+            "Quand on écrit tout le temps"
+          ],
+          "reponse": 0,
+          "explication": "`RwLock` laisse plusieurs lecteurs travailler en même temps. Un `Mutex` les ferait passer un par un."
+        },
+        {
+          "question": "Quelle opération est correcte pour incrémenter un `AtomicUsize` depuis plusieurs threads ?",
+          "choix": [
+            "`x.store(x.load(Ordering::SeqCst) + 1, Ordering::SeqCst)`",
+            "`x.fetch_add(1, Ordering::SeqCst)`",
+            "`x += 1`",
+            "`*x += 1`"
+          ],
+          "reponse": 1,
+          "explication": "`fetch_add` fait la lecture et l'écriture en une seule opération indivisible. Lire puis écrire séparément peut perdre des incréments."
+        },
+        {
+          "question": "Quelle est la meilleure façon d'éviter un interblocage entre deux `Mutex` ?",
+          "choix": [
+            "Ajouter un `sleep`",
+            "Prendre toujours les verrous dans le même ordre",
+            "Prendre les verrous au hasard",
+            "Utiliser `unwrap` partout"
+          ],
+          "reponse": 1,
+          "explication": "Si tous les threads prennent les verrous dans le même ordre, aucun cycle d'attente ne peut se former."
+        }
+      ]
+    },
+    {
+      "id": "06-async-await",
+      "titre": "Async / await",
+      "description": "Futures, async fn et .await, Poll et Pin, mini exécuteur block_on écrit à la main, threads contre async, aperçu de tokio.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Diapos du cours : Rust avancé",
+          "fichier": "Rust/Sources/Slides - Rust avancé.pdf"
+        },
+        {
+          "titre": "Le Rust Book : async et await",
+          "url": "https://doc.rust-lang.org/book/ch17-00-async-await.html"
+        },
+        {
+          "titre": "100 exercices Rust : futures",
+          "url": "https://rust-exercises.com/100-exercises/08_futures/00_intro"
+        },
+        {
+          "titre": "Async Book (Rust)",
+          "url": "https://rust-lang.github.io/async-book/"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-premier-async",
+          "titre": "Mes premières async fn",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Dans une `async fn`, on récupère le résultat d'une autre `async fn` avec `.await` : `addition(a, b).await`.",
+            "`double_somme` : calcule `addition(a, b).await`, puis multiplie le résultat par 2.",
+            "`bonjour` : `format!(\"{} {} !\", formule().await, nom)`."
+          ]
+        },
+        {
+          "id": "02-futur-paresseux",
+          "titre": "Les futures sont paresseuses",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "Créer un futur n'exécute rien. Il faut le passer à `block_on` pour qu'il tourne.",
+            "Remplace `String::new()` par `block_on(futur)`.",
+            "Remplace aussi `0` par `block_on(double)`. Les messages « préparation » et « bloc async lancé » apparaissent alors au bon moment."
+          ]
+        },
+        {
+          "id": "03-panier-async",
+          "titre": "Le panier asynchrone",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Dans une boucle `for` d'une `async fn`, tu peux écrire `.await` : `total += prix(article).await;`.",
+            "`total_panier` : une variable `total` qui s'incrémente avec le prix de chaque article.",
+            "`plus_cher` : garde une variable `meilleur` et remplace-la quand `prix(article).await` est plus grand. Pour une liste vide, renvoie `0`."
+          ]
+        },
+        {
+          "id": "04-block-on",
+          "titre": "Écrire block_on",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence par `let mut futur = pin!(futur);` puis `let mut contexte = Context::from_waker(Waker::noop());`.",
+            "Fais une `loop` : à chaque tour, appelle `futur.as_mut().poll(&mut contexte)`.",
+            "Si le résultat est `Poll::Ready(valeur)`, fais `return valeur;`. Sinon, la boucle recommence."
+          ]
+        },
+        {
+          "id": "05-futur-compteur",
+          "titre": "Un futur prêt au 3e poll",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`PretApres` contient `restant` : le nombre de fois où il doit répondre `Pending`.",
+            "Si `self.restant == 0`, renvoie `Poll::Ready(\"prêt\")`.",
+            "Sinon, fais `self.restant -= 1;`, préviens l'exécuteur avec `cx.waker().wake_by_ref();`, puis renvoie `Poll::Pending`."
+          ]
+        },
+        {
+          "id": "06-attente-partagee",
+          "titre": "Attendre une valeur partagée",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Récupère la valeur avec `let valeur = self.boite.borrow_mut().take();` : `take()` vide la boîte et rend son ancien contenu (`Option`).",
+            "`match valeur { Some(v) => Poll::Ready(v), None => ... }`.",
+            "Dans le cas `None`, appelle `cx.waker().wake_by_ref();` puis renvoie `Poll::Pending`. Pour `doubler`, `attente.await * 2` suffit."
+          ]
+        },
+        {
+          "id": "07-joindre",
+          "titre": "Écrire un join",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Commence par `let this = self.get_mut();` : `Joindre` ne contient que des types déplaçables, on peut donc récupérer un `&mut Joindre`.",
+            "Pour chaque futur : si son résultat est encore `None`, fais `if let Poll::Ready(v) = this.a.as_mut().poll(cx) { this.resultat_a = Some(v); }`. Idem pour `b`.",
+            "À la fin : si les deux résultats sont `Some`, renvoie `Poll::Ready((a, b))`, sinon `Poll::Pending`. Ne relance jamais `poll` sur un futur déjà terminé (le test le détecte)."
+          ]
+        },
+        {
+          "id": "08-executeur-tour-a-tour",
+          "titre": "Un exécuteur tour à tour",
+          "difficulte": 3,
+          "type": "sortie",
+          "indices": [
+            "Crée un contexte une seule fois : `let mut contexte = Context::from_waker(Waker::noop());`, puis boucle tant que `futurs` n'est pas vide.",
+            "À chaque tour, interroge chaque futur dans l'ordre : `futur.as_mut().poll(&mut contexte)`.",
+            "`futurs.retain_mut(|f| f.as_mut().poll(&mut contexte).is_pending());` interroge chaque futur et ne garde que ceux qui sont encore `Pending`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que se passe-t-il quand on appelle une `async fn` sans `.await` ?",
+          "choix": [
+            "Elle s'exécute en entier",
+            "Elle renvoie un futur, mais son code ne démarre pas",
+            "Elle panique",
+            "Elle lance un nouveau thread"
+          ],
+          "reponse": 1,
+          "explication": "Une `async fn` renvoie une valeur de type futur. Son code ne démarre que lorsque quelqu'un appelle `poll` (via `.await` ou un exécuteur)."
+        },
+        {
+          "question": "Quelles sont les deux valeurs de l'enum `Poll<T>` ?",
+          "choix": [
+            "`Some` et `None`",
+            "`Ok` et `Err`",
+            "`Ready(T)` et `Pending`",
+            "`Start` et `Stop`"
+          ],
+          "reponse": 2,
+          "explication": "`Ready(valeur)` : le futur est terminé. `Pending` : pas encore, il faudra rappeler `poll`."
+        },
+        {
+          "question": "Où peut-on écrire `.await` ?",
+          "choix": [
+            "Partout",
+            "Seulement dans `main`",
+            "Dans une fonction ou un bloc `async`",
+            "Seulement dans un thread"
+          ],
+          "reponse": 2,
+          "explication": "`.await` doit être dans un contexte `async` (une `async fn` ou un bloc `async { }`), sinon erreur de compilation."
+        },
+        {
+          "question": "Pourquoi `fn main` ne peut-elle pas être `async` avec la bibliothèque standard seule ?",
+          "choix": [
+            "C'est interdit par la syntaxe",
+            "La std ne fournit pas d'exécuteur pour faire avancer les futures",
+            "`main` est trop lente",
+            "Il faut Rust 2015"
+          ],
+          "reponse": 1,
+          "explication": "Il faut un exécuteur qui appelle `poll`. La std n'en contient pas : on utilise une bibliothèque comme tokio, ou son propre `block_on`."
+        },
+        {
+          "question": "Que garantit `Pin<&mut Self>` ?",
+          "choix": [
+            "Que la valeur est immuable",
+            "Que la valeur ne sera pas déplacée en mémoire",
+            "Que la valeur est copiée",
+            "Que la valeur est partagée entre threads"
+          ],
+          "reponse": 1,
+          "explication": "`Pin` interdit de déplacer la valeur, car un futur généré par le compilateur peut contenir des références vers lui-même."
+        },
+        {
+          "question": "À quoi sert le `Waker` du `Context` ?",
+          "choix": [
+            "À afficher des messages",
+            "À prévenir l'exécuteur qu'un futur en attente peut avancer",
+            "À arrêter le programme",
+            "À créer un thread"
+          ],
+          "reponse": 1,
+          "explication": "Un futur `Pending` appelle `wake` quand il peut avancer, pour que l'exécuteur le poll de nouveau."
+        },
+        {
+          "question": "Que fait le compilateur d'une `async fn` ?",
+          "choix": [
+            "Une machine à états qui implémente `Future`",
+            "Un thread caché",
+            "Une macro qui copie le code",
+            "Rien de spécial"
+          ],
+          "reponse": 0,
+          "explication": "Chaque `.await` devient un point de pause : le compilateur écrit un `enum` d'états avec une méthode `poll`."
+        },
+        {
+          "question": "Avec `let a = f(); let b = g(); a.await; b.await;` (dans une fonction async), que se passe-t-il ?",
+          "choix": [
+            "`f` et `g` avancent en même temps",
+            "`f` finit, puis `g` commence à avancer",
+            "Rien ne s'exécute jamais",
+            "`g` finit toujours avant `f`"
+          ],
+          "reponse": 1,
+          "explication": "Les futures sont paresseuses : `g` ne démarre qu'à son `.await`, après la fin de `f`. Pour les faire avancer ensemble, il faut un `join`."
+        },
+        {
+          "question": "Quel est le meilleur choix pour 10 000 connexions réseau qui attendent surtout des données ?",
+          "choix": [
+            "10 000 threads",
+            "De l'async avec un exécuteur",
+            "Une boucle `loop` sans pause",
+            "Un seul `Mutex`"
+          ],
+          "reponse": 1,
+          "explication": "Une tâche async est très légère et ne consomme presque rien pendant l'attente. 10 000 threads coûteraient beaucoup de mémoire."
+        },
+        {
+          "question": "Pourquoi éviter `std::thread::sleep` dans une tâche async ?",
+          "choix": [
+            "Il ne compile pas",
+            "Il bloque le fil et fige toutes les autres tâches du même exécuteur",
+            "Il est trop précis",
+            "Il est réservé à `main`"
+          ],
+          "reponse": 1,
+          "explication": "Un exécuteur fait tourner plusieurs tâches dans un même fil. Bloquer ce fil bloque tout. Il faut un sommeil asynchrone (par exemple `tokio::time::sleep`)."
+        }
+      ]
+    },
+    {
+      "id": "07-macros",
+      "titre": "Macros",
+      "description": "macro_rules! (fragments, répétitions, récursion), macros de la std, derive, macros procédurales, hygiène.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Diapos complètes : Rust avancé et programmation fonctionnelle",
+          "fichier": "Rust/Sources/Slides - Rust avancé et programmation fonctionnelle.pdf"
+        },
+        {
+          "titre": "Diapos : Rust et programmation fonctionnelle (1)",
+          "url": "https://docs.google.com/presentation/d/1Lww5ntAIIWQicP-FnS6pp_qGr_NZyIpIlGjqYH0b92M/embed?start=false&loop=false",
+          "integrer": true
+        },
+        {
+          "titre": "Le Rust Book : macros",
+          "url": "https://doc.rust-lang.org/book/ch20-05-macros.html"
+        },
+        {
+          "titre": "Rust by Example : macro_rules!",
+          "url": "https://doc.rust-lang.org/rust-by-example/macros.html"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-carre",
+          "titre": "Ma première macro : carre!",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Le motif est `($x:expr)` : `expr` capture une expression entière.",
+            "Le code produit multiplie `$x` par lui-même : `$x * $x`.",
+            "Solution : `macro_rules! carre { ($x:expr) => { $x * $x }; }`."
+          ]
+        },
+        {
+          "id": "02-maximum",
+          "titre": "maximum! : une macro récursive",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Deux bras : un pour une seule valeur (cas de base), un pour une valeur suivie d'une ou plusieurs autres : `($x:expr, $($reste:expr),+)`.",
+            "Dans le deuxième bras, calcule le maximum du reste en rappelant `maximum!($($reste),+)`.",
+            "Compare ensuite : `let a = $x; let b = maximum!($($reste),+); if a > b { a } else { b }`. N'oublie pas les doubles accolades."
+          ]
+        },
+        {
+          "id": "03-compter",
+          "titre": "compter! : parcourir des tt",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Deux bras : un vide `()` qui vaut 0, et un qui prend un premier `tt` puis le reste : `($premier:tt $($reste:tt)*)`.",
+            "Le deuxième bras compte 1 pour le premier élément, plus le nombre d'éléments restants : `1 + compter!($($reste)*)`.",
+            "Écris `0usize` et `1usize + ...` pour que le résultat soit un `usize`."
+          ]
+        },
+        {
+          "id": "04-hashmap",
+          "titre": "hashmap! : une syntaxe sur mesure",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le motif d'une paire est `$cle:expr => $valeur:expr`, répété avec des virgules : `$($cle:expr => $valeur:expr),*`.",
+            "Autorise une virgule finale avec `$(,)?` après la répétition.",
+            "`HashMap::from([ $( ($cle, $valeur) ),* ])` construit la table depuis un tableau de paires."
+          ]
+        },
+        {
+          "id": "05-voir",
+          "titre": "voir! : afficher le code et sa valeur",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "`stringify!($e)` transforme l'expression en texte, sans la calculer.",
+            "Répète pour chaque expression avec `$( ... )+` : une ligne `println!` par expression.",
+            "`println!(\"{} = {:?}\", stringify!($e), $e);` à l'intérieur de `$( ... )+`, avec le motif `($($e:expr),+ $(,)?)`."
+          ]
+        },
+        {
+          "id": "06-structure",
+          "titre": "structure! : générer un type et ses accesseurs",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Motif : `($nom:ident { $($champ:ident : $type:ty),* $(,)? })`. `ident` pour les noms, `ty` pour les types.",
+            "Produis `struct $nom { $($champ: $type),* }` puis un bloc `impl $nom { ... }`.",
+            "Dans l'`impl`, répète une méthode par champ : `$( fn $champ(&self) -> &$type { &self.$champ } )*`."
+          ]
+        },
+        {
+          "id": "07-calculer",
+          "titre": "calculer! : plusieurs bras et mots-clés",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Un bras par opération. Les mots `plus`, `moins`, `fois` s'écrivent tels quels dans le motif : `($a:tt plus $b:tt)`.",
+            "On utilise `tt` et non `expr` : un `expr` ne peut pas être suivi d'un mot comme `plus`.",
+            "Chaque bras renvoie l'opération : `$a + $b`, `$a - $b`, `$a * $b`. Ajoute un bras `($a:tt diviser $b:tt)` qui renvoie un `Option` (`None` si le diviseur est 0)."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Qu'est-ce qu'une macro ?",
+          "choix": [
+            "Une fonction plus rapide",
+            "Du code qui écrit du code, déplié à la compilation",
+            "Un type de donnée",
+            "Un commentaire spécial"
+          ],
+          "reponse": 1,
+          "explication": "Le compilateur remplace l'appel de la macro par le code qu'elle produit, avant même de vérifier les types."
+        },
+        {
+          "question": "Comment reconnaît-on l'appel d'une macro déclarative ?",
+          "choix": [
+            "Un `!` après le nom (`vec!`)",
+            "Un `$` devant le nom",
+            "Un `@` après le nom",
+            "Des doubles deux-points"
+          ],
+          "reponse": 0,
+          "explication": "Les macros s'appellent avec un `!` : `println!`, `vec!`, `carre!`. Les `$` servent seulement à l'intérieur de la définition."
+        },
+        {
+          "question": "Que capture le fragment `$x:expr` ?",
+          "choix": [
+            "Un seul mot",
+            "Un type",
+            "Une expression complète",
+            "Un bloc d'instructions"
+          ],
+          "reponse": 2,
+          "explication": "`expr` capture une expression entière, par exemple `1 + 2`, et la garde en un seul morceau."
+        },
+        {
+          "question": "Avec `macro_rules! carre { ($x:expr) => { $x * $x }; }`, que vaut `carre!(1 + 2)` ?",
+          "choix": [
+            "5",
+            "9",
+            "3",
+            "Erreur de compilation"
+          ],
+          "reponse": 1,
+          "explication": "`$x` est une expression entière, donc le calcul est `(1 + 2) * (1 + 2)` = 9. En C, une macro de texte donnerait 5."
+        },
+        {
+          "question": "Quel fragment permet de recevoir un nom (de fonction, de champ...) ?",
+          "choix": [
+            "`expr`",
+            "`ty`",
+            "`ident`",
+            "`lit`"
+          ],
+          "reponse": 2,
+          "explication": "`ident` capture un identifiant. Grâce à lui, une macro peut générer des fonctions ou des champs avec le nom voulu."
+        },
+        {
+          "question": "Que signifie `$( $x:expr ),*` dans un motif ?",
+          "choix": [
+            "Exactement une expression",
+            "Zéro, une ou plusieurs expressions séparées par des virgules",
+            "Au moins une expression",
+            "Un tableau de taille fixe"
+          ],
+          "reponse": 1,
+          "explication": "`*` veut dire zéro ou plus, `+` un ou plus, `?` zéro ou un. La virgule est le séparateur."
+        },
+        {
+          "question": "Pourquoi une macro peut-elle faire ce qu'une fonction ne peut pas, comme `vec![1, 2, 3]` ?",
+          "choix": [
+            "Elle est plus rapide",
+            "Elle accepte un nombre variable d'arguments",
+            "Elle n'est jamais vérifiée",
+            "Elle s'exécute en parallèle"
+          ],
+          "reponse": 1,
+          "explication": "Une fonction a un nombre fixe de paramètres. Une macro peut accepter autant d'éléments qu'on veut grâce aux répétitions."
+        },
+        {
+          "question": "Que fait `#[derive(Debug)]` ?",
+          "choix": [
+            "Lance le programme en mode debug",
+            "Génère automatiquement l'implémentation du trait `Debug`",
+            "Désactive les avertissements",
+            "Copie la structure"
+          ],
+          "reponse": 1,
+          "explication": "`derive` est une macro procédurale : elle lit la structure et écrit l'`impl` du trait à notre place."
+        },
+        {
+          "question": "Que veut dire « hygiène » des macros ?",
+          "choix": [
+            "Le code est formaté automatiquement",
+            "Les variables créées dans la macro ne se mélangent pas avec celles de l'appelant",
+            "La macro supprime le code inutile",
+            "La macro vérifie les noms de fonctions"
+          ],
+          "reponse": 1,
+          "explication": "Un `let x` écrit dans la macro n'est pas le même `x` que celui de l'appelant : pas de collision de noms par accident."
+        },
+        {
+          "question": "Quand vaut-il mieux écrire une fonction plutôt qu'une macro ?",
+          "choix": [
+            "Quand le nombre d'arguments est variable",
+            "Quand on veut générer des noms de fonctions",
+            "Quand une fonction (éventuellement générique) suffit",
+            "Jamais"
+          ],
+          "reponse": 2,
+          "explication": "Une fonction est plus simple à lire, à déboguer et donne de meilleurs messages d'erreur. On passe à la macro seulement quand la fonction ne peut pas faire le travail."
+        }
+      ]
+    },
+    {
+      "id": "08-unsafe-et-ffi",
+      "titre": "Unsafe et FFI",
+      "description": "Les cinq super-pouvoirs d'unsafe, pointeurs bruts, API sûre autour d'unsafe, appeler du C depuis Rust, exposer du Rust à C et à Python.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Diapos complètes : Rust avancé et programmation fonctionnelle",
+          "fichier": "Rust/Sources/Slides - Rust avancé et programmation fonctionnelle.pdf"
+        },
+        {
+          "titre": "Diapos : Rust et programmation fonctionnelle (1)",
+          "url": "https://docs.google.com/presentation/d/1Lww5ntAIIWQicP-FnS6pp_qGr_NZyIpIlGjqYH0b92M/embed?start=false&loop=false",
+          "integrer": true
+        },
+        {
+          "titre": "Diapos du cours : Rust avancé",
+          "fichier": "Rust/Sources/Slides - Rust avancé.pdf"
+        },
+        {
+          "titre": "Le Rust Book : Rust unsafe",
+          "url": "https://doc.rust-lang.org/book/ch20-01-unsafe-rust.html"
+        },
+        {
+          "titre": "Rust by Example : unsafe",
+          "url": "https://doc.rust-lang.org/rust-by-example/unsafe.html"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-pointeur-brut",
+          "titre": "Lire et écrire par un pointeur brut",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Une référence se convertit en pointeur brut avec `as` : `x as *const i32` pour lire, `x as *mut i32` pour écrire.",
+            "Créer le pointeur est sûr, mais le déréférencer (`*p`) doit être dans un bloc `unsafe { ... }`.",
+            "Pour écrire : `unsafe { *p = valeur; }`."
+          ]
+        },
+        {
+          "id": "02-echanger",
+          "titre": "Échanger deux valeurs",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Une fonction `unsafe fn` reçoit des pointeurs bruts : `a: *mut i32, b: *mut i32`.",
+            "Garde la valeur de `a` dans une variable temporaire : `let temporaire = std::ptr::read(a);`.",
+            "Puis `std::ptr::write(a, std::ptr::read(b));` et `std::ptr::write(b, temporaire);`, le tout dans un bloc `unsafe`."
+          ]
+        },
+        {
+          "id": "03-compteur-global",
+          "titre": "Un compteur global",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Lire ou modifier un `static mut` demande un bloc `unsafe`.",
+            "`COMPTEUR += 1;` augmente la variable globale.",
+            "Termine le bloc `unsafe` par `COMPTEUR` pour renvoyer la nouvelle valeur."
+          ]
+        },
+        {
+          "id": "04-couper-en-deux",
+          "titre": "Un split_at_mut maison",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Récupère le pointeur du début avec `t.as_mut_ptr()` et la longueur avec `t.len()` avant d'entrer dans `unsafe`.",
+            "`std::slice::from_raw_parts_mut(pointeur, longueur)` reconstruit un `&mut [i32]` à partir d'un pointeur et d'une longueur.",
+            "Premier morceau : `from_raw_parts_mut(p, milieu)`. Second : `from_raw_parts_mut(p.add(milieu), longueur - milieu)`.",
+            "N'oublie pas `assert!(milieu <= longueur)` : c'est elle qui rend la fonction sûre."
+          ]
+        },
+        {
+          "id": "05-appeler-du-c",
+          "titre": "Appeler la libc",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`abs` est déclarée `safe fn` : tu peux l'appeler directement, sans `unsafe`.",
+            "`strlen` attend un texte C : crée un `CString::new(texte)` et garde-le dans une variable.",
+            "Appelle `unsafe { strlen(c.as_ptr()) }` ; `CString::new` renvoie un `Result`, utilise `.expect(\"...\")`."
+          ]
+        },
+        {
+          "id": "06-exposer-a-c",
+          "titre": "Exposer du Rust à C",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Une fonction visible par C s'écrit `pub extern \"C\" fn nom(...)`, précédée de `#[unsafe(no_mangle)]`.",
+            "`additionner` renvoie simplement `a + b`.",
+            "Pour `distance_carree`, `p.x * p.x + p.y * p.y`. N'oublie pas `#[repr(C)]` sur `Point`."
+          ]
+        },
+        {
+          "id": "07-unions-et-traits-unsafe",
+          "titre": "Union et trait unsafe",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Un trait `unsafe` s'implémente avec `unsafe impl Trait for Type { ... }`.",
+            "Lire un champ d'union se fait dans `unsafe { n.entier }`.",
+            "Complète `bits_du_flottant` et les deux `unsafe impl`, puis compare ta sortie à celle attendue."
+          ]
+        },
+        {
+          "id": "08-lire-un-texte-c",
+          "titre": "Lire un texte venu de C",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`CStr::from_ptr(p)` construit un `&CStr` à partir d'un pointeur ; c'est `unsafe`.",
+            "Convertis ensuite en texte Rust avec `.to_string_lossy().into_owned()`.",
+            "Pour l'autre sens, `CString::new(texte)` renvoie un `Result` : `.ok()` le transforme en `Option`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que change un bloc `unsafe` ?",
+          "choix": [
+            "Il désactive le vérificateur d'emprunts",
+            "Il autorise cinq opérations que le compilateur ne peut pas vérifier",
+            "Il rend le code plus rapide",
+            "Il permet d'ignorer les erreurs de type"
+          ],
+          "reponse": 1,
+          "explication": "`unsafe` ne coupe aucune vérification : les types et les emprunts restent contrôlés. Il débloque seulement cinq opérations, et c'est à toi de garantir qu'elles sont correctes."
+        },
+        {
+          "question": "Laquelle de ces opérations est possible SANS `unsafe` ?",
+          "choix": [
+            "Déréférencer un `*const i32`",
+            "Créer un `*const i32` à partir d'une référence",
+            "Lire un `static mut`",
+            "Lire un champ d'une `union`"
+          ],
+          "reponse": 1,
+          "explication": "Créer un pointeur brut est sûr : il ne fait de mal que si on le lit ou l'écrit. Le déréférencer, lire un `static mut` ou un champ d'union demande `unsafe`."
+        },
+        {
+          "question": "Quelle est la différence entre une référence `&T` et un pointeur brut `*const T` ?",
+          "choix": [
+            "Aucune",
+            "Le pointeur brut peut être nul, dangler ou aliasé : le compilateur ne garantit rien",
+            "Le pointeur brut est plus lent",
+            "Le pointeur brut ne peut pas être copié"
+          ],
+          "reponse": 1,
+          "explication": "Une référence est toujours valide et respecte les règles d'emprunt. Un pointeur brut n'a aucune garantie (nul, périmé, plusieurs `*mut` sur la même donnée...)."
+        },
+        {
+          "question": "À quoi sert le commentaire `// SAFETY:` ?",
+          "choix": [
+            "À faire compiler le bloc `unsafe`",
+            "À expliquer pourquoi le bloc `unsafe` est correct",
+            "À désactiver un avertissement",
+            "À marquer une fonction comme sûre"
+          ],
+          "reponse": 1,
+          "explication": "C'est une convention : on écrit au-dessus du bloc la raison pour laquelle les conditions sont respectées. Le compilateur l'ignore, mais les relecteurs (et clippy) l'attendent."
+        },
+        {
+          "question": "Pourquoi `split_at_mut` de la bibliothèque standard utilise-t-il `unsafe` en interne ?",
+          "choix": [
+            "Parce qu'il est lent",
+            "Parce que le compilateur ne sait pas prouver que les deux morceaux ne se chevauchent pas",
+            "Parce qu'il modifie la mémoire du système",
+            "Il n'en utilise pas"
+          ],
+          "reponse": 1,
+          "explication": "Deux `&mut` sur le même tableau sont refusés par le compilateur. Ici les morceaux sont disjoints, mais seul un humain peut le garantir : d'où `unsafe` à l'intérieur, et une API sûre à l'extérieur."
+        },
+        {
+          "question": "Comment s'écrit un bloc de déclarations de fonctions C en édition 2024 ?",
+          "choix": [
+            "`extern \"C\" { ... }`",
+            "`unsafe extern \"C\" { ... }`",
+            "`#[extern(C)] { ... }`",
+            "`import \"C\" { ... }`"
+          ],
+          "reponse": 1,
+          "explication": "Depuis l'édition 2024, le mot `unsafe` est obligatoire devant `extern`, car Rust ne peut pas vérifier que la déclaration correspond à la vraie fonction C."
+        },
+        {
+          "question": "Que fait `safe fn abs(x: c_int) -> c_int;` dans un bloc `unsafe extern \"C\"` ?",
+          "choix": [
+            "Rien de spécial",
+            "Elle déclare que l'appel est sûr : on peut l'appeler sans `unsafe`",
+            "Elle empêche d'appeler la fonction",
+            "Elle convertit `x` en entier sûr"
+          ],
+          "reponse": 1,
+          "explication": "`safe fn` est une promesse du programmeur : aucune valeur d'argument ne peut causer de comportement indéfini. Les fonctions sans `safe` demandent `unsafe` à l'appel."
+        },
+        {
+          "question": "Pourquoi utiliser `CString` pour passer un texte à une fonction C ?",
+          "choix": [
+            "Pour le rendre plus rapide",
+            "Parce que C attend un texte terminé par un octet nul `\\0`, ce qu'un `String` ne garantit pas",
+            "Parce que C n'accepte que l'ASCII",
+            "Pour éviter de copier le texte"
+          ],
+          "reponse": 1,
+          "explication": "Un texte C se termine par `\\0`.`CString::new` ajoute ce zéro et refuse les textes qui en contiennent déjà un au milieu."
+        },
+        {
+          "question": "Que fait `#[unsafe(no_mangle)]` sur une fonction ?",
+          "choix": [
+            "Elle la rend plus rapide",
+            "Elle garde son nom tel quel dans le binaire pour que C ou Python puisse la trouver",
+            "Elle la rend privée",
+            "Elle supprime ses vérifications"
+          ],
+          "reponse": 1,
+          "explication": "Normalement le compilateur change les noms des fonctions (« mangling »). `no_mangle` garde `add` sous le nom `add`. Il s'écrit `#[unsafe(no_mangle)]` en édition 2024."
+        },
+        {
+          "question": "À quoi sert `#[repr(C)]` sur une structure ?",
+          "choix": [
+            "À la rendre copiable",
+            "À imposer la même disposition mémoire qu'en C, pour l'échanger avec du code C",
+            "À l'afficher avec `{:?}`",
+            "À la rendre immuable"
+          ],
+          "reponse": 1,
+          "explication": "Par défaut Rust peut réordonner les champs. Avec `#[repr(C)]`, ils sont rangés dans l'ordre écrit, comme le ferait un compilateur C."
+        }
+      ]
+    },
+    {
+      "id": "09-web-et-loco",
+      "titre": "Web et Loco",
+      "description": "Pourquoi un framework web, Axum et Loco (le « Rails » de Rust), structure d'un projet, modèles, auth, scaffolds, tests ; et les idées Rust derrière : routeur, gestionnaires, middlewares, From/TryFrom, Result et `?`.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Diapos complètes : Rust avancé et programmation fonctionnelle",
+          "fichier": "Rust/Sources/Slides - Rust avancé et programmation fonctionnelle.pdf"
+        },
+        {
+          "titre": "Diapos du cours : Rust avancé",
+          "fichier": "Rust/Sources/Slides - Rust avancé.pdf"
+        },
+        {
+          "titre": "Loco",
+          "url": "https://loco.rs"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-ligne-de-requete",
+          "titre": "Lire une ligne de requête",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`split_whitespace()` découpe le texte en mots ; `next()?` renvoie `None` tout de suite s'il n'y a plus de mot.",
+            "Après la méthode et le chemin, vérifie qu'il ne reste plus rien (`next().is_some()` doit être faux).",
+            "Le chemin doit commencer par `/` : `chemin.starts_with('/')`."
+          ]
+        },
+        {
+          "id": "02-segments-dynamiques",
+          "titre": "Segments dynamiques",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Découpe le modèle et le chemin en segments avec `trim_matches('/').split('/')`, puis compare les nombres de segments.",
+            "Parcours les deux listes ensemble avec `zip`. Un segment de modèle qui commence par `:` capture la valeur.",
+            "`segment.strip_prefix(':')` renvoie `Some(nom)` si le segment est dynamique ; sinon les deux segments doivent être égaux."
+          ]
+        },
+        {
+          "id": "03-routeur",
+          "titre": "Un routeur de gestionnaires",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`ajouter` range un triplet (méthode, modèle, `Box::new(gestionnaire)`) dans `self.routes`. Le paramètre générique porte déjà `+ 'static`.",
+            "Dans `traiter`, parcours `&self.routes`. Passe au suivant (`continue`) si la méthode diffère ou si `correspond` renvoie `None`.",
+            "Une fois la route trouvée, construis une `Requete` avec les paramètres et appelle `gestionnaire(&requete)`. Sans route : `Reponse::new(404, \"introuvable\")`."
+          ]
+        },
+        {
+          "id": "04-middlewares",
+          "titre": "Middlewares : journal et jeton",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Un middleware renvoie `Box::new(move |r: &Requete| { ... })` : la closure prend possession de `suivant` (et du journal) grâce à `move`.",
+            "`journaliser` : ajoute `début <chemin>`, appelle `suivant(r)`, puis ajoute `fin <chemin> <statut>` avec `journal.borrow_mut().push(...)`.",
+            "`exiger_jeton` : compare `r.jeton.as_deref()` à `Some(attendu.as_str())`. Si c'est faux, ne touche pas à `suivant` et renvoie le statut 401."
+          ]
+        },
+        {
+          "id": "05-erreurs-et-extracteurs",
+          "titre": "Erreurs, extracteurs et `?`",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`From<ParseIntError> for ErreurWeb` renvoie `ErreurWeb::Invalide(\"identifiant invalide\".to_string())`. `TryFrom<&str>` utilise `texte.parse::<u32>()?` : le `?` appelle ce `From`.",
+            "`From<ErreurWeb> for Reponse` : `match` sur l'erreur. Introuvable donne 404 et le corps `introuvable` ; Invalide(m) donne 400 et le corps `m`.",
+            "`afficher_utilisateur` : `let id = IdUtilisateur::try_from(texte)?;`, puis `base.iter().find(...)` avec `.ok_or(ErreurWeb::Introuvable)?`. `repondre` : `resultat.unwrap_or_else(Reponse::from)`."
+          ]
+        },
+        {
+          "id": "06-mini-scaffold",
+          "titre": "Un mini scaffold",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Construis un `Vec<String>` de lignes puis `lignes.join(\"\\n\")`.",
+            "Met la première lettre du nom en majuscule avec `chars()`, `next()` et `to_uppercase()`. Le pluriel est simplement le nom suivi de `s`.",
+            "Pour chaque champ, `match` sur le type : `\"string\"` donne `String`, `\"double\"` donne `f64`, `\"int\"` donne `i64`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quel est l'intérêt principal d'un framework comme Loco par rapport à Axum seul ?",
+          "choix": [
+            "Il est plus rapide à l'exécution",
+            "Tout est déjà branché (config, base, auth, tests) avec des conventions",
+            "Il remplace Tokio",
+            "Il n'a pas besoin de Rust"
+          ],
+          "reponse": 1,
+          "explication": "Avec Axum seul, il faut choisir et brancher soi-même l'ORM, l'auth, les tests... Loco fournit tout cela et des générateurs de code."
+        },
+        {
+          "question": "Avec quels frameworks d'autres langages compare-t-on Loco ?",
+          "choix": [
+            "Rails, Django, Laravel, NestJS",
+            "React et Vue",
+            "Docker et Kubernetes",
+            "Pandas et NumPy"
+          ],
+          "reponse": 0,
+          "explication": "Loco est « le Rails de Rust » : un framework complet qui impose des conventions."
+        },
+        {
+          "question": "Sur quoi Loco est-il construit pour le HTTP et la base de données ?",
+          "choix": [
+            "Actix et Diesel",
+            "Axum et SeaORM",
+            "Rocket et sqlx",
+            "Hyper seul"
+          ],
+          "reponse": 1,
+          "explication": "Les gestionnaires Loco sont des gestionnaires Axum, et l'accès aux données passe par SeaORM. On peut toujours « redescendre » dans Axum."
+        },
+        {
+          "question": "Où se règle le port du serveur et l'adresse de la base dans un projet Loco ?",
+          "choix": [
+            "Dans `Cargo.toml`",
+            "Dans `config/development.yaml` (un fichier par environnement)",
+            "Dans `src/main.rs` uniquement",
+            "Dans les migrations"
+          ],
+          "reponse": 1,
+          "explication": "Il y a un fichier YAML par environnement : development, test, production."
+        },
+        {
+          "question": "Que fait la commande `cargo loco generate scaffold` ?",
+          "choix": [
+            "Elle lance le serveur",
+            "Elle génère table, modèle, contrôleur CRUD et test",
+            "Elle supprime la base",
+            "Elle déploie en production"
+          ],
+          "reponse": 1,
+          "explication": "Un scaffold écrit le code répétitif d'une ressource complète : migration, modèle, contrôleur avec ses routes, et un test."
+        },
+        {
+          "question": "Comment protège-t-on une route avec l'authentification JWT dans Loco ?",
+          "choix": [
+            "En l'écrivant dans le YAML",
+            "En ajoutant un argument `auth: auth::JWT` au gestionnaire",
+            "En la mettant dans un autre dossier",
+            "Impossible sans crate externe"
+          ],
+          "reponse": 1,
+          "explication": "`auth::JWT` est un extracteur : si le jeton est absent ou faux, la requête est refusée (401) avant même d'entrer dans le gestionnaire."
+        },
+        {
+          "question": "Quel type représente un gestionnaire stocké dans un routeur écrit à la main en std ?",
+          "choix": [
+            "`Box<dyn Fn(&Requete) -> Reponse>`",
+            "`&str`",
+            "`Vec<u8>`",
+            "`Option<Requete>`"
+          ],
+          "reponse": 0,
+          "explication": "Chaque gestionnaire est une fonction ou une closure de type différent : on les range derrière un pointeur `Box<dyn Fn...>`."
+        },
+        {
+          "question": "Un middleware, en Rust simple, c'est :",
+          "choix": [
+            "Une base de données",
+            "Une fonction qui prend un gestionnaire et en renvoie un nouveau qui l'enveloppe",
+            "Un type de macro",
+            "Un fichier de configuration"
+          ],
+          "reponse": 1,
+          "explication": "Le middleware agit avant et/ou après le gestionnaire (journal, vérification du jeton...) puis appelle le suivant."
+        },
+        {
+          "question": "À quoi sert `impl From<ParseIntError> for MonErreur` quand on utilise `?` ?",
+          "choix": [
+            "À afficher l'erreur",
+            "À convertir automatiquement l'erreur dans le type d'erreur de la fonction",
+            "À ignorer l'erreur",
+            "À créer une macro"
+          ],
+          "reponse": 1,
+          "explication": "Le `?` appelle `From::from` sur l'erreur : on peut mélanger plusieurs sortes d'erreurs dans une même fonction."
+        },
+        {
+          "question": "Quelle différence entre `From` et `TryFrom` ?",
+          "choix": [
+            "Aucune",
+            "`TryFrom` peut échouer et renvoie un `Result`",
+            "`From` est plus lent",
+            "`TryFrom` ne marche qu'avec les nombres"
+          ],
+          "reponse": 1,
+          "explication": "`From` est une conversion qui réussit toujours. `TryFrom` renvoie `Result` : c'est l'idée d'un extracteur qui peut refuser une requête."
+        }
+      ]
+    },
+    {
+      "id": "10-concepts-fonctionnels",
+      "titre": "Concepts fonctionnels",
+      "description": "Pourquoi et d'où vient la programmation fonctionnelle, déclaratif contre impératif, closures capturantes, curryfication, application partielle, point-free, pipe, pattern matching sur slices, Option comme « Maybe », aperçu de la théorie des catégories.",
+      "source": "fondamentaux",
+      "supports": [
+        {
+          "titre": "Diapos complètes : Rust avancé et programmation fonctionnelle",
+          "fichier": "Rust/Sources/Slides - Rust avancé et programmation fonctionnelle.pdf"
+        },
+        {
+          "titre": "Diapos : Initiation à Rust et à la programmation fonctionnelle",
+          "fichier": "Rust/Sources/Slides - Initiation à Rust et à la programmation fonctionnelle.pdf"
+        },
+        {
+          "titre": "Diapos : Rust et programmation fonctionnelle (1)",
+          "url": "https://docs.google.com/presentation/d/1Lww5ntAIIWQicP-FnS6pp_qGr_NZyIpIlGjqYH0b92M/embed?start=false&loop=false",
+          "integrer": true
+        },
+        {
+          "titre": "Diapos : Rust et programmation fonctionnelle (2)",
+          "url": "https://docs.google.com/presentation/d/1aZzwMQEwEEwhl08tjsM9JF6HTXk9e3-0cOKNdsJon7k/embed?start=false&loop=false",
+          "integrer": true
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-additionneur-curry",
+          "titre": "Un additionneur curryfié",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "La fonction renvoie une closure : le type de retour est `impl Fn(i32) -> i32`.",
+            "La closure doit posséder `x` : écris `move |y| ...`.",
+            "`fn additionneur(x: i32) -> impl Fn(i32) -> i32 { move |y| x + y }`, et `multiplieur` est identique avec `*`."
+          ]
+        },
+        {
+          "id": "02-application-partielle",
+          "titre": "Application partielle générique",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le résultat est une closure `move |b| ...` qui appelle `f` avec `a` et `b`.",
+            "`f` attend `a` par valeur à chaque appel : comme la closure peut être appelée plusieurs fois, utilise `a.clone()`.",
+            "`move |b| f(a.clone(), b)`"
+          ]
+        },
+        {
+          "id": "03-composition-point-free",
+          "titre": "Composer des fonctions en point-free",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`composer(f, g)` renvoie une closure qui applique `f` puis `g` : `move |x| g(f(x))`.",
+            "Pour `abs_puis_double`, passe des **noms de fonctions** sans les appeler : `composer(i32::abs, double)`.",
+            "`fn abs_puis_double() -> impl Fn(i32) -> i32 { composer(i32::abs, double) }`"
+          ]
+        },
+        {
+          "id": "04-pipe",
+          "titre": "Un pipe pour toutes les valeurs",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`pipe` prend `self` et une fonction : il renvoie simplement le résultat de la fonction appliquée à `self`.",
+            "Le corps du trait est `f(self)`. Le `impl<T> Pipe for T {}` donne `pipe` à tous les types.",
+            "Pour `etiquette`, enchaîne : `.pipe(str::trim).pipe(str::to_uppercase).pipe(|s| format!(\"<{s}>\"))`."
+          ]
+        },
+        {
+          "id": "05-slice-somme-minimum",
+          "titre": "Somme et minimum par motifs de slice",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Pas de boucle : un `match` sur la slice avec `[]` et `[premier, reste @ ..]`.",
+            "`somme(&[])` vaut 0, sinon `premier + somme(reste)`. Pour `minimum`, une slice vide donne `None` et un seul élément `[x]` donne `Some(*x)`.",
+            "Pour `minimum`, cas `[premier, reste @ ..]` : `minimum(reste).map_or(*premier, |m| m.min(*premier))` enveloppé dans `Some`."
+          ]
+        },
+        {
+          "id": "06-compteur-closure",
+          "titre": "Un compteur avec une closure",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Crée la variable d'état dans la fonction, puis renvoie une closure `move || { ... }` qui la modifie.",
+            "Le type de retour est `impl FnMut() -> i32` : la closure change son état à chaque appel.",
+            "Garde le prochain nombre à renvoyer : `let mut courant = depart;` puis dans la closure `let valeur = courant; courant += pas; valeur`."
+          ]
+        },
+        {
+          "id": "07-option-sans-panique",
+          "titre": "Option en chaîne plutôt que panic!",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`mots.get(position)` renvoie un `Option<&&str>` au lieu de paniquer si l'index est trop grand.",
+            "Enchaîne avec `and_then(|mot| mot.chars().next())` pour la première lettre (absente si le mot est vide), puis `map` pour la mettre en majuscule.",
+            "Termine avec `unwrap_or_else(|| \"?\".to_string())`. Pour `inverse`, `if x == 0.0 { None } else { Some(1.0 / x) }`."
+          ]
+        },
+        {
+          "id": "08-pipeline",
+          "titre": "De la boucle au pipeline",
+          "difficulte": 3,
+          "type": "sortie",
+          "indices": [
+            "Découpe avec `phrase.split_whitespace()`, garde les mots d'au moins 5 lettres avec `filter`, mets en majuscules avec `map(str::to_uppercase)`.",
+            "Utilise `collect::<Vec<String>>()` pour la liste, et `map(str::len).sum::<usize>()` sur les mots gardés pour le total (compte en octets, les mots du programme n'ont pas d'accent).",
+            "`mots_longs` : `phrase.split_whitespace().filter(|m| m.len() >= 5).map(str::to_uppercase).collect()`. `total_lettres` : `.filter(...).map(str::len).sum()`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la différence entre impératif et déclaratif ?",
+          "choix": [
+            "L'impératif décrit le comment, le déclaratif décrit le quoi",
+            "L'impératif est toujours plus rapide",
+            "Le déclaratif interdit les fonctions",
+            "Il n'y en a aucune"
+          ],
+          "reponse": 0,
+          "explication": "Impératif : on détaille les étapes (boucles, variables modifiées). Déclaratif : on dit ce qu'on veut (`filter`, `map`, `sum`)."
+        },
+        {
+          "question": "Qui a inventé le calcul lambda, base théorique de la PF ?",
+          "choix": [
+            "Alan Turing en 1950",
+            "Alonzo Church dans les années 1930",
+            "Linus Torvalds en 1991",
+            "Graydon Hoare en 2010"
+          ],
+          "reponse": 1,
+          "explication": "Alonzo Church a proposé le calcul lambda dans les années 1930 : calculer avec des fonctions, sans état qui change."
+        },
+        {
+          "question": "Pourquoi la closure de `creer_compteur` est-elle déclarée `move` ?",
+          "choix": [
+            "Pour aller plus vite",
+            "Pour qu'elle garde sa propre copie de `compte` après la fin de la fonction",
+            "Pour interdire de la modifier",
+            "Pour l'envoyer sur le réseau"
+          ],
+          "reponse": 1,
+          "explication": "Sans `move`, la closure emprunterait `compte`, qui disparaît à la fin de la fonction. Avec `move`, elle en devient propriétaire."
+        },
+        {
+          "question": "Que renvoie `[3, 8, 5].iter().position(|n| *n > 4)` ?",
+          "choix": [
+            "`Some(8)`",
+            "`Some(1)`",
+            "`1`",
+            "`Some(2)`"
+          ],
+          "reponse": 1,
+          "explication": "`position` renvoie l'**index** du premier élément qui valide la condition, dans un `Option`. Ici 8 est à l'index 1."
+        },
+        {
+          "question": "Qu'est-ce que l'application partielle ?",
+          "choix": [
+            "Compiler seulement une partie du programme",
+            "Fixer certains arguments d'une fonction pour obtenir une fonction plus simple",
+            "Appeler une fonction deux fois",
+            "Ignorer une erreur"
+          ],
+          "reponse": 1,
+          "explication": "`multiplier(2)` fixe le premier argument et renvoie une fonction qui attend le second."
+        },
+        {
+          "question": "Comment simule-t-on une fonction curryfiée en Rust ?",
+          "choix": [
+            "Avec une macro `curry!`",
+            "Avec une fonction qui renvoie une closure (`impl Fn`)",
+            "Rust la fournit nativement",
+            "Avec `unsafe`"
+          ],
+          "reponse": 1,
+          "explication": "`fn multiplier(x: i32) -> impl Fn(i32) -> i32 { move |y| x * y }` : appeler `multiplier(2)` donne une closure qui attend `y`."
+        },
+        {
+          "question": "Quelle écriture est en style point-free ?",
+          "choix": [
+            "`.map(|x| double(x))`",
+            "`.map(double)`",
+            "`.map(|x| x * 2)`",
+            "`for x in v { double(x); }`"
+          ],
+          "reponse": 1,
+          "explication": "Point-free : on ne nomme pas l'argument, on passe directement la fonction."
+        },
+        {
+          "question": "Que fait le motif `[premier, reste @ ..]` sur une slice ?",
+          "choix": [
+            "Il accepte une slice vide",
+            "Il lie le premier élément et le reste de la slice à deux noms",
+            "Il copie la slice",
+            "Il trie la slice"
+          ],
+          "reponse": 1,
+          "explication": "Il ne correspond qu'à une slice d'au moins un élément : `premier` est le premier, `reste` la sous-slice du reste (éventuellement vide)."
+        },
+        {
+          "question": "Pourquoi `Option<T>` vaut-il mieux qu'un `panic!` pour une valeur absente ?",
+          "choix": [
+            "Parce que l'absence est visible dans le type et le compilateur force à la traiter",
+            "Parce que `panic!` est interdit en Rust",
+            "Parce qu'`Option` est plus lent",
+            "Parce qu'`Option` remplace les boucles"
+          ],
+          "reponse": 0,
+          "explication": "Une fonction qui panique a une signature qui ment. Avec `Option`, l'appelant voit le cas possible et doit le gérer."
+        },
+        {
+          "question": "Dans la comparaison avec les interfaces, à quoi ressemble un foncteur en Rust ?",
+          "choix": [
+            "À un type sur lequel on peut appliquer `map`",
+            "À une boucle `for`",
+            "À un pointeur brut",
+            "À une macro"
+          ],
+          "reponse": 0,
+          "explication": "Un foncteur promet « je sais appliquer une fonction à ce que je contiens » : `Option::map`, `Iterator::map`. C'est une interface, comme un trait."
+        }
+      ]
+    }
+  ]
+}

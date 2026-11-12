@@ -1,0 +1,10 @@
+{
+  "titre": "Emprunter sans paniquer",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`try_borrow_mut()` renvoie un `Result` : `Ok(garde)` si l'emprunt est libre, `Err(_)` sinon.",
+    "`ajouter_si_libre` : `match liste.try_borrow_mut() { Ok(mut v) => { v.push(valeur); true } Err(_) => false }`.",
+    "`lire_premier` : `let v = liste.try_borrow().ok()?;` puis `v.first().copied()`."
+  ]
+}

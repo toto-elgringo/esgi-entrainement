@@ -1,0 +1,10 @@
+{
+  "titre": "Échanger deux valeurs",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Une fonction `unsafe fn` reçoit des pointeurs bruts : `a: *mut i32, b: *mut i32`.",
+    "Garde la valeur de `a` dans une variable temporaire : `let temporaire = std::ptr::read(a);`.",
+    "Puis `std::ptr::write(a, std::ptr::read(b));` et `std::ptr::write(b, temporaire);`, le tout dans un bloc `unsafe`."
+  ]
+}

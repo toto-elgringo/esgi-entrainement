@@ -1,0 +1,10 @@
+{
+  "titre": "Appeler la libc",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`abs` est déclarée `safe fn` : tu peux l'appeler directement, sans `unsafe`.",
+    "`strlen` attend un texte C : crée un `CString::new(texte)` et garde-le dans une variable.",
+    "Appelle `unsafe { strlen(c.as_ptr()) }` ; `CString::new` renvoie un `Result`, utilise `.expect(\"...\")`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "From, Into et TryFrom",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`impl From<Celsius> for Fahrenheit` : écris `fn from(c: Celsius) -> Fahrenheit` et renvoie `Fahrenheit(c.0 * 9.0 / 5.0 + 32.0)`.",
+    "`en_fahrenheit` : `let f: Fahrenheit = c.into();` marche grâce au `From` que tu viens d'écrire. Renvoie ensuite `f.0`.",
+    "`TryFrom<i32> for Note` : si `(0..=20).contains(&n)`, renvoie `Ok(Note(n as u8))`, sinon `Err(format!(\"note invalide : {}\", n))`."
+  ]
+}

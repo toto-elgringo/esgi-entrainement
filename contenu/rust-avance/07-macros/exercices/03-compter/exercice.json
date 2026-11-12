@@ -1,0 +1,10 @@
+{
+  "titre": "compter! : parcourir des tt",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Deux bras : un vide `()` qui vaut 0, et un qui prend un premier `tt` puis le reste : `($premier:tt $($reste:tt)*)`.",
+    "Le deuxième bras compte 1 pour le premier élément, plus le nombre d'éléments restants : `1 + compter!($($reste)*)`.",
+    "Écris `0usize` et `1usize + ...` pour que le résultat soit un `usize`."
+  ]
+}

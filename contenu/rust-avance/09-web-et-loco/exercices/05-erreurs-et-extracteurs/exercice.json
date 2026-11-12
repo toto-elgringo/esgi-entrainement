@@ -1,0 +1,10 @@
+{
+  "titre": "Erreurs, extracteurs et `?`",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`From<ParseIntError> for ErreurWeb` renvoie `ErreurWeb::Invalide(\"identifiant invalide\".to_string())`. `TryFrom<&str>` utilise `texte.parse::<u32>()?` : le `?` appelle ce `From`.",
+    "`From<ErreurWeb> for Reponse` : `match` sur l'erreur. Introuvable donne 404 et le corps `introuvable` ; Invalide(m) donne 400 et le corps `m`.",
+    "`afficher_utilisateur` : `let id = IdUtilisateur::try_from(texte)?;`, puis `base.iter().find(...)` avec `.ok_or(ErreurWeb::Introuvable)?`. `repondre` : `resultat.unwrap_or_else(Reponse::from)`."
+  ]
+}

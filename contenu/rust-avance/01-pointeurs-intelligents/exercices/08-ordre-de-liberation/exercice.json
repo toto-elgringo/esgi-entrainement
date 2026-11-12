@@ -1,0 +1,10 @@
+{
+  "titre": "L'ordre de libération",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Ajoute `impl Drop for Etiquette { fn drop(&mut self) { ... } }` et affiche `Libération de <nom>` avec `println!`.",
+    "Le texte exact est `Libération de a` (avec le nom de l'étiquette). Le reste du programme est déjà bon.",
+    "Les étiquettes sont libérées à la fin de leur portée, dans l'ordre inverse de leur création, et `drop(c)` libère `c` tout de suite. Tu n'as pas à gérer cet ordre : Rust s'en charge."
+  ]
+}

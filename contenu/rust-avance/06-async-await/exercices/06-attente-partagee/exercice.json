@@ -1,0 +1,10 @@
+{
+  "titre": "Attendre une valeur partagée",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Récupère la valeur avec `let valeur = self.boite.borrow_mut().take();` : `take()` vide la boîte et rend son ancien contenu (`Option`).",
+    "`match valeur { Some(v) => Poll::Ready(v), None => ... }`.",
+    "Dans le cas `None`, appelle `cx.waker().wake_by_ref();` puis renvoie `Poll::Pending`. Pour `doubler`, `attente.await * 2` suffit."
+  ]
+}

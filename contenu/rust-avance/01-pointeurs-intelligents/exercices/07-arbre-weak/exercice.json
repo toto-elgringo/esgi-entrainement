@@ -1,0 +1,11 @@
+{
+  "titre": "Un arbre avec parent faible",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Le parent possède ses enfants avec des `Rc` ; l'enfant retient son parent avec un `Weak`. `Rc::downgrade(&rc)` crée un `Weak`.",
+    "`ajouter_enfant` : `*enfant.parent.borrow_mut() = Rc::downgrade(parent);` puis `parent.enfants.borrow_mut().push(Rc::clone(enfant));`.",
+    "`nom_du_parent` : `noeud.parent.borrow().upgrade()` donne un `Option<Rc<Noeud>>`. Utilise `.map(|p| p.nom.clone())`.",
+    "`chemin` : `match noeud.parent.borrow().upgrade() { Some(parent) => format!(\"{}/{}\", chemin(&parent), noeud.nom), None => noeud.nom.clone() }`."
+  ]
+}

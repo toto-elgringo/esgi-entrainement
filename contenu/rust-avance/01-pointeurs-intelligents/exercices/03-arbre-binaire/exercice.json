@@ -1,0 +1,11 @@
+{
+  "titre": "Un arbre binaire de recherche",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Un arbre vide est `None`. Sinon `Some(noeud)` avec `noeud.gauche` et `noeud.droite`.",
+    "`inserer` : sur `None`, crée `Some(Box::new(Noeud { valeur, gauche: None, droite: None }))`. Sur `Some(mut noeud)`, descend à gauche si la valeur est plus petite, à droite si elle est plus grande, sinon ne change rien, puis renvoie `Some(noeud)`.",
+    "Pour descendre : `noeud.gauche = inserer(noeud.gauche.take(), valeur);` (`take()` sort l'enfant en laissant `None`).",
+    "`en_ordre` : récupère `en_ordre(&noeud.gauche)`, ajoute `noeud.valeur` avec `push`, puis `extend` avec `en_ordre(&noeud.droite)`."
+  ]
+}

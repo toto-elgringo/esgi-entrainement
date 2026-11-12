@@ -5,9 +5,10 @@ export const LANGAGES = {
 };
 
 export const DOMAINES_CODE = {
-  rust: { matiere: { id: 'rust', titre: 'Rust' } },
-  python: { matiere: { id: 'python', titre: 'Scripting Python' } },
-  c: { matiere: { id: 'algo-avancee', titre: 'Algorithmique avancée' } },
+  rust: { langage: 'rust', matiere: { id: 'rust', titre: 'Rust' } },
+  'rust-avance': { langage: 'rust', matiere: { id: 'rust-avance', titre: 'Rust avancé' } },
+  python: { langage: 'python', matiere: { id: 'python', titre: 'Scripting Python' } },
+  c: { langage: 'c', matiere: { id: 'algo-avancee', titre: 'Algorithmique avancée' } },
 };
 
 export const DOMAINES_REPONSES = {
@@ -24,12 +25,17 @@ export const ORDRE_MATIERES = [
   'algo-avancee',
   'python',
   'rust',
+  'rust-avance',
   'anglais',
   'electif',
 ];
 
 export function estDomaineCode(domaine) {
   return Object.hasOwn(DOMAINES_CODE, domaine);
+}
+
+export function langageDe(domaine) {
+  return DOMAINES_CODE[domaine].langage;
 }
 
 export function avecFormules(domaine) {

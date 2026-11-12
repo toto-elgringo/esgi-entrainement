@@ -1,0 +1,7 @@
+dans le bloc
+Libération de b
+Libération de c
+après drop de c
+fin du main
+Libération de d
+Libération de a

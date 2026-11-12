@@ -1,0 +1,10 @@
+{
+  "titre": "Un cache avec &self",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Commence par chercher dans le cache : `if let Some(&v) = self.cache.borrow().get(&n) { return v; }`.",
+    "Si la valeur n'y est pas : incrémente `calculs` avec `self.calculs.set(self.calculs.get() + 1)`, calcule `n * n`, puis `self.cache.borrow_mut().insert(n, resultat)`.",
+    "N'oublie pas de renvoyer le résultat à la fin de la fonction."
+  ]
+}
