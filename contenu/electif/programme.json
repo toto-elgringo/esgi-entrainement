@@ -3,6 +3,12 @@
     { "id": "electif", "titre": "Cours électif" }
   ],
   "chapitres": [
-    "01-sig-qgis-et-bd-topo"
+    "01-sig-qgis-et-bd-topo",
+    "02-trouver-des-donnees",
+    "03-prise-en-main-qgis",
+    "04-requetes-attributaires",
+    "05-analyse-spatiale-et-osm",
+    "06-jointures-et-export",
+    "07-cas-d-usage-et-amenagement"
   ]
 }

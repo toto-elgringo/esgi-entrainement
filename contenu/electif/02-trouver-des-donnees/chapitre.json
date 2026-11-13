@@ -1,0 +1,14 @@
+{
+  "titre": "Trouver et télécharger des données",
+  "description": "Géoportail, cartes.gouv.fr, BD TOPO, Institut Paris Region, MOS, SCoT et OpenStreetMap.",
+  "source": "Séances de l'électif",
+  "matieres": ["electif"],
+  "supports": [
+    { "titre": "Géoportail", "url": "https://www.geoportail.gouv.fr/" },
+    { "titre": "cartes.gouv.fr : catalogue BD TOPO", "url": "https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_BD-TOPO" },
+    { "titre": "Occupation du sol (MOS) 2025", "url": "https://www.institutparisregion.fr/nos-travaux/publications/occupation-du-sol-en-ile-de-france-2025/" },
+    { "titre": "Réseau cyclable structurant", "url": "https://www.institutparisregion.fr/nos-travaux/publications/le-reseau-cyclable-structurant/" },
+    { "titre": "Réseaux routiers en Île-de-France", "url": "https://www.institutparisregion.fr/nos-travaux/publications/reseaux-routiers-en-ile-de-france" },
+    { "titre": "Logements pour les étudiants en Île-de-France", "url": "https://www.institutparisregion.fr/nos-travaux/publications/les-logements-pour-les-etudiants-en-ile-de-france/" }
+  ]
+}

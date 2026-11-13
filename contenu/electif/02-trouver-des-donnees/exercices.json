@@ -1,0 +1,53 @@
+[
+  {
+    "id": "lire-nom-fichier",
+    "titre": "Lire le nom d'un fichier BD TOPO",
+    "difficulte": 1,
+    "enonce": "Fichier : `BDTOPO_3-5_TOUSTHEMES_SHP_LAMB93_D075_2026-06-15.7z`",
+    "questions": [
+      { "intitule": "Quel est le format des couches ?", "type": "choix", "choix": ["Shapefile", "GeoPackage", "CSV", "GeoJSON"], "reponse": 0 },
+      { "intitule": "Quelle est la projection ?", "type": "choix", "choix": ["Lambert 93", "WGS 84", "Mercator web", "Aucune"], "reponse": 0 },
+      { "intitule": "Quel est le jour du mois de l'édition ?", "type": "nombre", "reponse": 15 },
+      { "intitule": "Quel est le numéro du département ?", "type": "nombre", "reponse": 75 }
+    ],
+    "indices": ["SHP = Shapefile, LAMB93 = Lambert 93, D075 = département 75."],
+    "correction": "Format **Shapefile**, projection **Lambert 93**, édition du **15** juin 2026, département **75**."
+  },
+  {
+    "id": "bonne-source",
+    "titre": "Quelle source utiliser ?",
+    "difficulte": 1,
+    "enonce": "Associe chaque besoin à la source la plus adaptée.",
+    "questions": [
+      { "intitule": "Télécharger les bâtiments de Paris", "type": "choix", "choix": ["Catalogue cartes.gouv.fr (BD TOPO)", "OpenStreetMap", "Institut Paris Region", "SCoT"], "reponse": 0 },
+      { "intitule": "Connaître l'évolution de l'occupation du sol en Île-de-France", "type": "choix", "choix": ["MOS (Institut Paris Region)", "BD TOPO", "QGIS.org", "Géoportail photo aérienne"], "reponse": 0 },
+      { "intitule": "Trouver les restaurants italiens", "type": "choix", "choix": ["OpenStreetMap", "BD TOPO", "MOS", "SCoT"], "reponse": 0 },
+      { "intitule": "Connaître les orientations d'aménagement d'une intercommunalité", "type": "choix", "choix": ["Le SCoT", "Le Shapefile", "Le MOS", "Le Lambert 93"], "reponse": 0 }
+    ],
+    "indices": ["Les commerces ne sont pas dans la BD TOPO : pense à la carte collaborative."],
+    "correction": "Bâtiments → **BD TOPO** ; occupation du sol → **MOS** ; restaurants → **OpenStreetMap** ; orientations d'aménagement → **SCoT**."
+  },
+  {
+    "id": "reseau-cyclable",
+    "titre": "Le réseau cyclable structurant",
+    "difficulte": 1,
+    "enonce": "Le réseau cyclable structurant (RCS) de l'Institut Paris Region est un schéma d'itinéraires continus et maillés.",
+    "questions": [
+      { "intitule": "Longueur minimale du schéma, en km ?", "type": "nombre", "reponse": 4500 },
+      { "intitule": "Quel type de géométrie représente un itinéraire ?", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 1 }
+    ],
+    "indices": ["Un itinéraire est un tracé."],
+    "correction": "Plus de **4 500 km**. Un itinéraire est une **ligne**."
+  },
+  {
+    "id": "fiabilite-osm",
+    "titre": "Faire confiance aux données ?",
+    "difficulte": 2,
+    "enonce": "Tu veux compter les restaurants d'un quartier avec OpenStreetMap. Explique en une ou deux phrases pourquoi le résultat peut être faux et comment le vérifier.",
+    "questions": [
+      { "intitule": "Ta réponse", "type": "auto", "reponse": "OSM est alimentée par des contributeurs bénévoles : des restaurants peuvent manquer, être fermés ou mal étiquetés (type de cuisine absent). On vérifie en comparant avec une autre source (Géoportail, sites d'avis, repérage terrain) et en regardant la date de dernière mise à jour." }
+    ],
+    "indices": ["Qui saisit les données d'OSM ?"],
+    "correction": "OSM est collaborative : données possiblement **incomplètes ou périmées**. On recoupe avec une autre source et on note la date des données."
+  }
+]

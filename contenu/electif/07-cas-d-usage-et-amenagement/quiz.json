@@ -1,0 +1,32 @@
+[
+  {
+    "question": "Quel est le point commun des usages pompiers, police et livraisons ?",
+    "choix": ["Croiser des données de lieux pour optimiser des déplacements", "Dessiner des logos", "Stocker des mots de passe", "Compresser des fichiers"],
+    "reponse": 0,
+    "explication": "Routes, positions et adresses sont croisées pour mieux décider."
+  },
+  {
+    "question": "Qu'est-ce que le **recyclage urbain** ?",
+    "choix": ["Reconstruire sur des terrains déjà urbanisés", "Trier les déchets", "Supprimer des routes", "Recycler des cartes papier"],
+    "reponse": 0,
+    "explication": "Il limite la consommation d'espaces agricoles et naturels."
+  },
+  {
+    "question": "Quelle donnée pour étudier l'évolution du bâti par rapport aux espaces naturels ?",
+    "choix": ["Le MOS", "Le réseau cyclable", "Les logements étudiants", "Une photo de la gare"],
+    "reponse": 0,
+    "explication": "Le MOS décrit l'occupation du sol sur 11 millésimes."
+  },
+  {
+    "question": "Quelle est la première étape d'un projet SIG ?",
+    "choix": ["Poser la question à traiter", "Exporter la carte", "Choisir les couleurs", "Installer une extension"],
+    "reponse": 0,
+    "explication": "La question détermine les données et les outils."
+  },
+  {
+    "question": "Le réseau cyclable structurant est représenté par…",
+    "choix": ["des lignes", "des points", "des surfaces", "un tableau seul"],
+    "reponse": 0,
+    "explication": "Un itinéraire est un tracé : une ligne."
+  }
+]

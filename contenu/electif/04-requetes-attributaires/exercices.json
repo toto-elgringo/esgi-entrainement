@@ -1,0 +1,61 @@
+[
+  {
+    "id": "choisir-couche-champ",
+    "titre": "Couche et champ à utiliser",
+    "difficulte": 1,
+    "enonce": "Pour chaque sélection du cours, choisis la couche de la BD TOPO.",
+    "questions": [
+      { "intitule": "Sélectionner uniquement les autoroutes", "type": "choix", "choix": ["TRONCON_DE_ROUTE", "COMMUNE", "BATIMENT", "ADRESSE_BAN"], "reponse": 0 },
+      { "intitule": "Sélectionner les communes de plus de 10 000 habitants", "type": "choix", "choix": ["COMMUNE", "TRONCON_DE_ROUTE", "BATIMENT", "COURS_D_EAU"], "reponse": 0 },
+      { "intitule": "Sélectionner les bâtiments résidentiels de plus de 4 m", "type": "choix", "choix": ["BATIMENT", "COMMUNE", "TRONCON_DE_ROUTE", "TOPONYMIE"], "reponse": 0 }
+    ],
+    "indices": ["Un objet routier est dans TRANSPORT, un bâtiment dans BATI, une commune dans ADMINISTRATIF."],
+    "correction": "**TRONCON_DE_ROUTE**, **COMMUNE**, **BATIMENT**."
+  },
+  {
+    "id": "expression-autoroutes",
+    "titre": "Écrire l'expression des autoroutes",
+    "difficulte": 2,
+    "enonce": "Dans TRONCON_DE_ROUTE, le champ `NATURE` vaut `Type autoroutier` pour les autoroutes.",
+    "questions": [
+      { "intitule": "Écris l'expression de sélection", "type": "auto", "reponse": "\"NATURE\" = 'Type autoroutier'" }
+    ],
+    "indices": ["Champ entre guillemets doubles, valeur entre apostrophes."],
+    "correction": "`\"NATURE\" = 'Type autoroutier'`"
+  },
+  {
+    "id": "expression-grandes-communes",
+    "titre": "Grandes communes",
+    "difficulte": 1,
+    "enonce": "Dans COMMUNE, le champ `POPULATION` contient le nombre d'habitants.",
+    "questions": [
+      { "intitule": "Écris l'expression pour les communes de plus de 10 000 habitants", "type": "auto", "reponse": "\"POPULATION\" > 10000" },
+      { "intitule": "Quel opérateur faut-il changer pour avoir « au moins 10 000 » ?", "type": "choix", "choix": [">=", "<", "=", "<>"], "reponse": 0 }
+    ],
+    "indices": ["Plus de = strictement supérieur."],
+    "correction": "`\"POPULATION\" > 10000` ; pour « au moins », on utilise `>=`."
+  },
+  {
+    "id": "expression-batiments-hauts",
+    "titre": "Bâtiments résidentiels hauts",
+    "difficulte": 2,
+    "enonce": "Dans BATIMENT, `USAGE1` donne l'usage principal et `HAUTEUR` la hauteur en mètres.",
+    "questions": [
+      { "intitule": "Écris l'expression pour les bâtiments résidentiels de plus de 4 m", "type": "auto", "reponse": "\"USAGE1\" = 'Résidentiel' AND \"HAUTEUR\" > 4" },
+      { "intitule": "Quel mot relie les deux conditions ?", "type": "texte", "reponse": ["AND", "ET"] }
+    ],
+    "indices": ["Deux conditions qui doivent être vraies en même temps."],
+    "correction": "`\"USAGE1\" = 'Résidentiel' AND \"HAUTEUR\" > 4`"
+  },
+  {
+    "id": "limites-batiments",
+    "titre": "Les limites de USAGE1",
+    "difficulte": 2,
+    "enonce": "Un camarade n'arrive pas à trouver les écoles dans la couche BATIMENT : il ne voit que commercial, résidentiel et sportif.",
+    "questions": [
+      { "intitule": "Que lui répondre ?", "type": "auto", "reponse": "Le champ USAGE1 ne distingue que de grandes catégories : on ne peut pas filtrer par fonction précise. Il faut une autre source, par exemple OpenStreetMap (QuickOSM) qui étiquette les écoles." }
+    ],
+    "indices": ["Le même problème que pour les restaurants italiens."],
+    "correction": "Les catégories de la BD TOPO sont larges. Pour une fonction précise (école, restaurant italien…), il faut **OpenStreetMap**."
+  }
+]

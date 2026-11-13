@@ -1,0 +1,38 @@
+[
+  {
+    "question": "À quoi sert une **extension** QGIS ?",
+    "choix": ["Ajouter des fonctions au logiciel", "Changer le format d'un fichier", "Sauvegarder les données", "Supprimer une couche"],
+    "reponse": 0,
+    "explication": "Menu Extensions > Installer/Gérer les extensions."
+  },
+  {
+    "question": "Que fait **QuickOSM** ?",
+    "choix": ["Télécharge des données OpenStreetMap dans QGIS", "Convertit en Lambert 93", "Imprime la carte", "Crée des tampons"],
+    "reponse": 0,
+    "explication": "QuickOSM interroge OpenStreetMap par type d'objet (restaurant, gare…)."
+  },
+  {
+    "question": "Un message **API key required** apparaît sur la carte. Que faire ?",
+    "choix": ["Choisir un fond libre comme OpenStreetMap standard", "Réinstaller QGIS", "Supprimer le projet", "Changer de projection"],
+    "reponse": 0,
+    "explication": "Le fond choisi demande une clé d'accès. Un fond libre n'en demande pas."
+  },
+  {
+    "question": "Le fichier `.qgz` contient…",
+    "choix": ["Le projet (couches, ordre, styles) mais pas les données", "Toutes les données", "Seulement le fond de carte", "Uniquement les attributs"],
+    "reponse": 0,
+    "explication": "Le projet garde les chemins vers les données : ne les déplace pas."
+  },
+  {
+    "question": "Pour mesurer des distances en mètres sur Paris, quel système choisir ?",
+    "choix": ["EPSG:2154 (Lambert 93)", "EPSG:4326 (WGS 84)", "Aucun", "N'importe lequel"],
+    "reponse": 0,
+    "explication": "Le Lambert 93 est en mètres. Le WGS 84 est en degrés."
+  },
+  {
+    "question": "Quelle couleur représente habituellement l'eau sur une carte ?",
+    "choix": ["Bleu", "Rouge", "Jaune", "Noir"],
+    "reponse": 0,
+    "explication": "Bleu pour l'eau, vert pour la végétation, gris pour le bâti."
+  }
+]

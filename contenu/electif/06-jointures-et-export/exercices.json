@@ -1,0 +1,50 @@
+[
+  {
+    "id": "etapes-jointure",
+    "titre": "Les champs d'une jointure",
+    "difficulte": 1,
+    "enonce": "Tu joins un CSV de statistiques à la couche COMMUNE. Les deux contiennent le code INSEE.",
+    "questions": [
+      { "intitule": "Quel champ sert de champ commun ?", "type": "choix", "choix": ["Le code INSEE", "La géométrie", "La couleur", "Le nom du fichier"], "reponse": 0 },
+      { "intitule": "Dans quel onglet ajoutes-tu la jointure ?", "type": "choix", "choix": ["Jointures", "Symbologie", "Diagrammes", "Variables"], "reponse": 0 },
+      { "intitule": "Que fais-tu pour vérifier la jointure ?", "type": "choix", "choix": ["J'ouvre la table d'attributs de COMMUNE", "Je zoome sur la carte", "J'exporte en PNG", "Je ferme QGIS"], "reponse": 0 }
+    ],
+    "indices": ["Il faut une colonne identique dans les deux tables."],
+    "correction": "**Code INSEE**, onglet **Jointures**, puis **table d'attributs**."
+  },
+  {
+    "id": "jointure-qui-rate",
+    "titre": "La jointure ne marche pas",
+    "difficulte": 2,
+    "enonce": "Après la jointure, toutes les colonnes du CSV sont vides (NULL).",
+    "questions": [
+      { "intitule": "Quelle est la cause la plus probable ?", "type": "choix", "choix": ["Les valeurs des champs communs ne sont pas identiques (format, espaces, zéros)", "Le CSV est trop petit", "La couche est en Lambert 93", "Le projet n'est pas enregistré"], "reponse": 0 },
+      { "intitule": "Que vérifies-tu en premier ?", "type": "auto", "reponse": "Je compare les deux colonnes de jointure (CSV et couche) : type (texte ou nombre), zéros de début, espaces et majuscules. Si besoin, je réimporte le CSV en forçant le champ en texte." }
+    ],
+    "indices": ["01001 n'est pas égal à 1001."],
+    "correction": "Les deux champs doivent contenir **exactement les mêmes valeurs** et le **même type**. Réimporter le code en **texte** règle souvent le problème."
+  },
+  {
+    "id": "jointure-temporaire",
+    "titre": "Garder les colonnes jointes",
+    "difficulte": 2,
+    "enonce": "Tu as joint un CSV à COMMUNE et tu veux fournir une couche contenant ces colonnes à un camarade.",
+    "questions": [
+      { "intitule": "Que fais-tu ?", "type": "choix", "choix": ["J'exporte la couche sous un nouveau fichier", "J'envoie seulement le projet", "Je supprime le CSV", "Je change le fond de carte"], "reponse": 0 }
+    ],
+    "indices": ["La jointure vit dans le projet."],
+    "correction": "On **exporte** la couche (Exporter > Sauvegarder les objets sous…) pour que les colonnes soient écrites dans le fichier."
+  },
+  {
+    "id": "carte-complete",
+    "titre": "Les éléments d'une carte",
+    "difficulte": 1,
+    "enonce": "Tu prépares l'export `Issy les moulineaux.png`.",
+    "questions": [
+      { "intitule": "Quel menu ouvre la mise en page ?", "type": "choix", "choix": ["Projet > Nouvelle mise en page", "Couche > Ajouter", "Vecteur > Tampon", "Extensions"], "reponse": 0 },
+      { "intitule": "Combien d'éléments minimum parmi titre, légende, échelle, source ? (nombre)", "type": "nombre", "reponse": 4 }
+    ],
+    "indices": ["Une carte doit être lisible sans explication."],
+    "correction": "**Projet > Nouvelle mise en page**, avec les **4** éléments : titre, légende, échelle, source."
+  }
+]

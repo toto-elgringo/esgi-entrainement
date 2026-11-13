@@ -1,0 +1,38 @@
+[
+  {
+    "question": "Une requête **attributaire** sélectionne les objets d'après…",
+    "choix": ["Les valeurs de leur table d'attributs", "Leur position sur la carte", "Leur couleur", "Leur projection"],
+    "reponse": 0,
+    "explication": "Elle lit les champs de la table. La position relève de l'analyse spatiale."
+  },
+  {
+    "question": "Comment écrit-on un nom de champ dans une expression QGIS ?",
+    "choix": ["Entre guillemets doubles : \"POPULATION\"", "Entre apostrophes : 'POPULATION'", "Sans rien", "Entre crochets"],
+    "reponse": 0,
+    "explication": "Champ entre guillemets doubles, texte entre apostrophes."
+  },
+  {
+    "question": "Quelle expression sélectionne les communes de plus de 10 000 habitants ?",
+    "choix": ["\"POPULATION\" > 10000", "\"POPULATION\" = 10000", "'POPULATION' > 10000", "POPULATION < 10000"],
+    "reponse": 0,
+    "explication": "Champ entre guillemets doubles, opérateur > et nombre sans guillemets."
+  },
+  {
+    "question": "Quelle différence entre **sélectionner** et **filtrer** ?",
+    "choix": ["Filtrer masque tous les autres objets de la couche", "Sélectionner supprime les autres objets", "Aucune", "Filtrer change la projection"],
+    "reponse": 0,
+    "explication": "La sélection surligne ; le filtre ne garde dans la couche que les objets qui répondent à la condition."
+  },
+  {
+    "question": "Pour garder les bâtiments résidentiels ET hauts, quel opérateur relie les deux conditions ?",
+    "choix": ["AND", "OR", "NOT", "LIKE"],
+    "reponse": 0,
+    "explication": "AND demande que les deux conditions soient vraies."
+  },
+  {
+    "question": "Pourquoi une seule commune apparaît dans la couche COMMUNE de la BD TOPO 75 ?",
+    "choix": ["Le département 75 ne contient que la commune de Paris", "La couche est cassée", "Le filtre est actif", "La projection est mauvaise"],
+    "reponse": 0,
+    "explication": "Paris est à la fois une commune et un département."
+  }
+]

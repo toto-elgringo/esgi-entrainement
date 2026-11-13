@@ -1,0 +1,52 @@
+[
+  {
+    "id": "extensions-qgis",
+    "titre": "Choisir la bonne extension",
+    "difficulte": 1,
+    "enonce": "Quelle extension utiliser ?",
+    "questions": [
+      { "intitule": "Afficher un fond de carte OpenStreetMap", "type": "choix", "choix": ["QuickMapServices", "QuickOSM"], "reponse": 0 },
+      { "intitule": "Récupérer tous les restaurants d'une ville", "type": "choix", "choix": ["QuickMapServices", "QuickOSM"], "reponse": 1 }
+    ],
+    "indices": ["Une extension affiche une carte, l'autre télécharge des données."],
+    "correction": "**QuickMapServices** pour le fond de carte, **QuickOSM** pour télécharger des données OSM."
+  },
+  {
+    "id": "depannage",
+    "titre": "Dépanner QGIS",
+    "difficulte": 1,
+    "enonce": "Que faire dans chaque situation ?",
+    "questions": [
+      { "intitule": "Un message « API key required » apparaît sur la carte", "type": "choix", "choix": ["Changer de fond de carte", "Désinstaller QGIS", "Supprimer la couche", "Changer le nom du projet"], "reponse": 0 },
+      { "intitule": "La couche BATIMENT ne répond plus", "type": "choix", "choix": ["Fermer les couches inutiles et attendre ou filtrer", "Renommer le fichier", "Changer de couleur", "Passer en WGS 84"], "reponse": 0 },
+      { "intitule": "Les couches ne se superposent pas bien", "type": "choix", "choix": ["Vérifier le système de coordonnées du projet", "Redémarrer l'ordinateur", "Supprimer le .prj", "Agrandir la fenêtre"], "reponse": 0 }
+    ],
+    "indices": ["Pense à la clé d'accès, à la taille des couches et aux projections."],
+    "correction": "Fond libre ; moins de couches ou filtre ; vérifier l'EPSG du projet."
+  },
+  {
+    "id": "choisir-projection",
+    "titre": "Quel système pour mesurer ?",
+    "difficulte": 2,
+    "enonce": "Tu veux créer une zone tampon de 200 m autour de gares à Paris.",
+    "questions": [
+      { "intitule": "Quel code EPSG utiliser pour les couches ?", "type": "nombre", "reponse": 2154 },
+      { "intitule": "Pourquoi pas EPSG:4326 ?", "type": "choix", "choix": ["Il est en degrés, pas en mètres", "Il n'existe plus", "Il est trop précis", "Il est réservé aux cartes papier"], "reponse": 0 }
+    ],
+    "indices": ["200 m : il faut une unité en mètres."],
+    "correction": "**2154** (Lambert 93, en mètres). Le 4326 est en degrés : « 200 » voudrait dire 200 degrés."
+  },
+  {
+    "id": "convention-couleurs",
+    "titre": "Colorer une carte",
+    "difficulte": 1,
+    "enonce": "Choisis la couleur la plus conventionnelle.",
+    "questions": [
+      { "intitule": "Les cours d'eau", "type": "choix", "choix": ["Bleu", "Rouge", "Marron", "Rose"], "reponse": 0 },
+      { "intitule": "Les parcs et forêts", "type": "choix", "choix": ["Vert", "Bleu", "Orange", "Violet"], "reponse": 0 },
+      { "intitule": "Les bâtiments", "type": "choix", "choix": ["Gris", "Vert vif", "Bleu", "Jaune fluo"], "reponse": 0 }
+    ],
+    "indices": ["Une carte doit se lire sans légende pour les éléments évidents."],
+    "correction": "Eau **bleu**, végétation **vert**, bâti **gris**."
+  }
+]

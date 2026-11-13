@@ -15,7 +15,7 @@
 - [ ] Scripting Python : chapitre « fondamentaux » sur les scripts système (`sys.argv`, `pathlib`, `json`, `csv`, `re`, `subprocess`)
 - [ ] Algorithmique avancée : listes doublement chaînées et circulaires, piles et files en C
 - [ ] Anglais : séances 2 et 4 du semestre (absentes des sources), partie écoute du TOEIC et du mini test Sales (audios non fournis)
-- [ ] Cours électif : remplacer le chapitre provisoire par le vrai contenu quand les supports arrivent
+- [ ] Cours électif : compléter avec les vrais supports (chapitres 02 à 07 faits d après le chat ; vérifier les noms des champs BD TOPO et des extensions QGIS)
 - [ ] Rust Advent of Code : ajouter d'autres énigmes (PGCD/PPCM 2023 J8, Dijkstra avec contraintes 2023 J17, formule du lacet 2023 J18, graphes 2024 J23…)
 
 ## Site

@@ -1,0 +1,10 @@
+{
+  "titre": "Prise en main de QGIS",
+  "description": "Installer QGIS, extensions, fond de carte OpenStreetMap, couleurs et problèmes fréquents.",
+  "source": "Séances de l'électif",
+  "matieres": ["electif"],
+  "supports": [
+    { "titre": "QGIS", "url": "https://qgis.org/" },
+    { "titre": "Télécharger QGIS", "url": "https://qgis.org/download/" }
+  ]
+}

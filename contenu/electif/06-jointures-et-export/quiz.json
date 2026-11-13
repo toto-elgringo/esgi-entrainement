@@ -1,0 +1,38 @@
+[
+  {
+    "question": "Qu'est-ce qu'une **jointure attributaire** ?",
+    "choix": ["Rattacher les colonnes d'un tableau à une couche grâce à un champ commun", "Fusionner deux géométries", "Découper une couche", "Changer de projection"],
+    "reponse": 0,
+    "explication": "On relie deux tables par un champ qui contient les mêmes valeurs, par exemple le code INSEE."
+  },
+  {
+    "question": "Dans quel onglet des propriétés de la couche crée-t-on une jointure ?",
+    "choix": ["Jointures", "Symbologie", "Étiquettes", "Source"],
+    "reponse": 0,
+    "explication": "Propriétés de la couche > Jointures > bouton +."
+  },
+  {
+    "question": "Comment vérifier qu'une jointure a fonctionné ?",
+    "choix": ["Ouvrir la table d'attributs et regarder les colonnes jointes", "Regarder la couleur de la carte", "Relancer QGIS", "Compter les fichiers du dossier"],
+    "reponse": 0,
+    "explication": "Les colonnes du CSV doivent apparaître, remplies, dans la table de la couche."
+  },
+  {
+    "question": "Le code INSEE `01001` devient `1001` dans le CSV. Pourquoi ?",
+    "choix": ["Le champ a été lu comme un nombre", "Le fichier est trop gros", "QGIS ne gère pas les zéros", "La projection est mauvaise"],
+    "reponse": 0,
+    "explication": "Un code doit être importé en texte, sinon le zéro de début disparaît."
+  },
+  {
+    "question": "Une jointure est-elle permanente dans la couche ?",
+    "choix": ["Non, elle est stockée dans le projet", "Oui, toujours", "Seulement en GeoPackage", "Seulement en CSV"],
+    "reponse": 0,
+    "explication": "Pour garder les colonnes, il faut exporter la couche."
+  },
+  {
+    "question": "Quels éléments d'une bonne carte ?",
+    "choix": ["Titre, légende, échelle, source", "Seulement la carte", "Seulement le titre", "Une photo du logiciel"],
+    "reponse": 0,
+    "explication": "Titre, légende, échelle, flèche du nord, source et date."
+  }
+]
