@@ -1,0 +1,38 @@
+[
+  {
+    "question": "Qu'est-ce qu'une **zone tampon** ?",
+    "choix": ["Une surface à une distance donnée autour d'un objet", "Un fichier de sauvegarde", "Une couche de fond de carte", "Un champ de la table d'attributs"],
+    "reponse": 0,
+    "explication": "Le tampon (buffer) entoure un objet d'une zone de rayon choisi."
+  },
+  {
+    "question": "Dans quelle unité est la distance d'un tampon sur une couche en EPSG:4326 ?",
+    "choix": ["En degrés", "En mètres", "En kilomètres", "En pixels"],
+    "reponse": 0,
+    "explication": "Le WGS 84 est en degrés : il faut reprojeter en Lambert 93 pour parler en mètres."
+  },
+  {
+    "question": "Pour trouver les restaurants à moins de 200 m d'une gare, quelle suite d'étapes ?",
+    "choix": ["Tampon de 200 m autour des gares, puis sélection des restaurants qui intersectent le tampon", "Filtrer par attribut « distance »", "Exporter en CSV", "Changer de fond de carte"],
+    "reponse": 0,
+    "explication": "Tampon puis Sélectionner par localisation."
+  },
+  {
+    "question": "Quelle extension récupère les restaurants italiens d'une ville ?",
+    "choix": ["QuickOSM", "QuickMapServices", "Aucune, c'est dans la BD TOPO", "7-Zip"],
+    "reponse": 0,
+    "explication": "QuickOSM interroge OpenStreetMap avec une clé et une valeur (cuisine = italian)."
+  },
+  {
+    "question": "Quel format d'export est à préférer pour un seul fichier ?",
+    "choix": ["GeoPackage (.gpkg)", "Shapefile (.shp)", "Texte brut", "Image PNG"],
+    "reponse": 0,
+    "explication": "Le GeoPackage tient dans un seul fichier, sans la limite de 10 caractères par nom de champ."
+  },
+  {
+    "question": "Quelle différence avec une requête attributaire ?",
+    "choix": ["L'analyse spatiale utilise la position des objets", "Elle utilise seulement les noms", "Elle ne marche que sur des points", "Aucune"],
+    "reponse": 0,
+    "explication": "Attributaire = valeurs de la table ; spatiale = position et relations entre objets."
+  }
+]

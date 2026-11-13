@@ -1,0 +1,38 @@
+[
+  {
+    "question": "Où télécharge-t-on la BD TOPO ?",
+    "choix": ["Dans le catalogue de cartes.gouv.fr", "Sur QGIS.org", "Sur OpenStreetMap", "Sur MyGES"],
+    "reponse": 0,
+    "explication": "Le catalogue de cartes.gouv.fr (jeu de données IGNF_BD-TOPO) donne accès aux téléchargements, hébergés sur data.geopf.fr."
+  },
+  {
+    "question": "Dans `BDTOPO_3-5_TOUSTHEMES_SHP_LAMB93_D075_2026-06-15.7z`, que veut dire `D075` ?",
+    "choix": ["Le département de Paris", "La version du logiciel", "Le format du fichier", "Le thème des données"],
+    "reponse": 0,
+    "explication": "D075 = département 75, Paris."
+  },
+  {
+    "question": "Qu'est-ce que le MOS ?",
+    "choix": ["Le mode d'occupation du sol de l'Île-de-France", "Un format de fichier de QGIS", "Une extension de navigation", "Un système de coordonnées"],
+    "reponse": 0,
+    "explication": "Le MOS est une base de données d'occupation du sol (11 millésimes) publiée par l'Institut Paris Region."
+  },
+  {
+    "question": "Que fixe un **SCoT** ?",
+    "choix": ["Les grandes orientations d'aménagement d'un territoire", "La projection d'une carte", "Le prix des logements", "Le nom des communes"],
+    "reponse": 0,
+    "explication": "Le Schéma de cohérence territoriale cadre le logement, les transports et les espaces naturels d'un territoire."
+  },
+  {
+    "question": "Pourquoi faut-il vérifier les données d'OpenStreetMap ?",
+    "choix": ["Elles sont saisies par des contributeurs et peuvent être incomplètes", "Elles sont payantes", "Elles sont toujours en degrés", "Elles ne marchent pas dans QGIS"],
+    "reponse": 0,
+    "explication": "OSM est collaborative : la qualité dépend des contributeurs."
+  },
+  {
+    "question": "Quel outil ouvre une archive `.7z` ?",
+    "choix": ["7-Zip (ou équivalent)", "Un navigateur web", "Excel", "Notepad"],
+    "reponse": 0,
+    "explication": "Le format 7z demande un logiciel de décompression comme 7-Zip."
+  }
+]

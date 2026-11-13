@@ -1,0 +1,6 @@
+{
+  "titre": "Requêtes attributaires",
+  "description": "Sélectionner des objets d'après leurs attributs : autoroutes, grandes communes, bâtiments hauts.",
+  "source": "Séances de l'électif",
+  "matieres": ["electif"]
+}

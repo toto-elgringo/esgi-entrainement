@@ -1,0 +1,6 @@
+{
+  "titre": "Analyse spatiale et OpenStreetMap",
+  "description": "Zones tampons, sélection par localisation, restaurants près d'une gare, export en GeoPackage.",
+  "source": "Séances de l'électif",
+  "matieres": ["electif"]
+}

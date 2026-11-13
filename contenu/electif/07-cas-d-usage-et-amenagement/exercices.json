@@ -1,0 +1,39 @@
+[
+  {
+    "id": "geometrie-par-donnee",
+    "titre": "Quelle géométrie ?",
+    "difficulte": 1,
+    "enonce": "Choisis la géométrie la plus adaptée.",
+    "questions": [
+      { "intitule": "Les résidences étudiantes (localisation)", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 0 },
+      { "intitule": "Un itinéraire cyclable", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 1 },
+      { "intitule": "Une zone du MOS (forêt, habitat…)", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 2 },
+      { "intitule": "Un tronçon d'autoroute", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 1 }
+    ],
+    "indices": ["Position seule, tracé, ou zone avec une aire ?"],
+    "correction": "Résidence : **point** ; itinéraire et autoroute : **ligne** ; zone du MOS : **surface**."
+  },
+  {
+    "id": "plan-d-analyse",
+    "titre": "Planifier une analyse",
+    "difficulte": 2,
+    "enonce": "Question : « Quelles résidences étudiantes sont à moins de 500 m d'une gare ? »",
+    "questions": [
+      { "intitule": "Donne les couches nécessaires et les étapes principales", "type": "auto", "reponse": "Couches : résidences étudiantes (points) et gares (points, BD TOPO ou OSM). Étapes : mettre les couches en EPSG:2154, créer un tampon de 500 m autour des gares, sélectionner par localisation les résidences qui intersectent le tampon, puis exporter la sélection en GeoPackage." }
+    ],
+    "indices": ["C'est le même schéma que « restaurants à moins de 200 m d'une gare »."],
+    "correction": "**EPSG:2154** → **tampon 500 m** sur les gares → **sélection par localisation** des résidences → **export**."
+  },
+  {
+    "id": "idee-d-usage",
+    "titre": "Un SIG pour quel métier ?",
+    "difficulte": 1,
+    "enonce": "Relie chaque besoin à un métier ou secteur.",
+    "questions": [
+      { "intitule": "Optimiser les patrouilles", "type": "choix", "choix": ["Police nationale", "Pompiers", "Banque", "Restauration"], "reponse": 0 },
+      { "intitule": "Gérer les véhicules d'intervention", "type": "choix", "choix": ["Pompiers", "Police municipale seulement", "Hôtellerie", "Édition"], "reponse": 0 }
+    ],
+    "indices": ["Pense au cours : les deux usages étaient cités."],
+    "correction": "**Police nationale** pour les patrouilles, **pompiers** pour leurs véhicules."
+  }
+]

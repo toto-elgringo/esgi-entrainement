@@ -1,0 +1,6 @@
+{
+  "titre": "Jointures et rendu final",
+  "description": "Jointure attributaire entre une couche et un CSV, vérification, mise en page et export d'une carte.",
+  "source": "Séances de l'électif",
+  "matieres": ["electif"]
+}
