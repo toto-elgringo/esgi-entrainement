@@ -3,7 +3,9 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creerSynchro } from './myges/synchro.js';
+import { creerSynchroSchooding } from './schooding/synchro.js';
 import { creerServeur } from './serveur.js';
+import { creerVerrou } from './synchro.js';
 
 const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const port = Number(process.env.PORT) || 3000;
@@ -22,6 +24,7 @@ function commandeClaude() {
   return { commande, args: [] };
 }
 
+const verrou = creerVerrou();
 const synchro = creerSynchro({
   vault: dossierSupports,
   fichierEnv: path.join(racine, '.env'),
@@ -30,11 +33,23 @@ const synchro = creerSynchro({
   fichierAttente: path.join(racine, 'myges-a-integrer.json'),
   dossierProjet: racine,
   claude: commandeClaude(),
+  verrou,
 });
-const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchro });
+const schooding = creerSynchroSchooding({
+  vault: dossierSupports,
+  fichierEnv: path.join(racine, '.env'),
+  fichierSuivi: path.join(racine, 'schooding-suivi.json'),
+  fichierMatieres: path.join(racine, 'schooding-matieres.json'),
+  fichierAttente: path.join(racine, 'schooding-a-integrer.json'),
+  dossierProjet: racine,
+  claude: commandeClaude(),
+  verrou,
+});
+const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchro, synchros: { schooding } });
 
 function quitter() {
   synchro.couper();
+  schooding.couper();
   process.exit(0);
 }
 
@@ -56,4 +71,7 @@ serveur.listen(port, '127.0.0.1', () => {
   synchro.reprendreAuDemarrage().then((etat) => {
     if (etat.etape === 'claude') console.log(`Reprise de l’intégration des cours MyGES (${etat.enAttente.length} fichier(s)).`);
   }).catch((erreur) => console.error(`Reprise de la synchro MyGES impossible : ${erreur.message}`));
+  schooding.reprendreAuDemarrage().then((etat) => {
+    if (etat.etape === 'claude') console.log(`Reprise de l’intégration des éléments Schooding (${etat.enAttente.length} fichier(s)).`);
+  }).catch((erreur) => console.error(`Reprise de la synchro Schooding impossible : ${erreur.message}`));
 });

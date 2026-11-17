@@ -115,4 +115,40 @@ describe('routes MyGES du serveur', () => {
       autre.serveur.close();
     }
   });
+
+  it('sert la synchro Schooding sur ses propres routes', async () => {
+    const actions = [];
+    const schooding = {
+      demarrer: () => { actions.push('demarrer'); return { etape: 'connexion', source: 'schooding' }; },
+      reprendre: () => ({ etape: 'claude' }),
+      arreter: () => ({ etape: 'terminee' }),
+      etat: () => ({ etape: 'repos', source: 'schooding' }),
+    };
+    await fs.writeFile(path.join(racine, 'schooding-suivi.json'), '{"secret":1}', 'utf8');
+    await fs.writeFile(path.join(racine, 'schooding-a-integrer.json'), '{"fichiers":["secret"]}', 'utf8');
+    const autre = await demarrer({ racine, dossierContenu: path.join(racine, 'contenu'), synchro, synchros: { schooding } });
+    const hote = { Host: `127.0.0.1:${autre.port}` };
+    try {
+      const lance = await requete(autre.port, { methode: 'POST', chemin: '/api/schooding/synchroniser', entetes: { ...hote, 'Content-Type': 'application/json' }, corps: '{}' });
+      assert.deepEqual(JSON.parse(lance.texte), { etape: 'connexion', source: 'schooding' });
+      assert.deepEqual(actions, ['demarrer']);
+      assert.equal(JSON.parse((await requete(autre.port, { chemin: '/api/schooding/etat', entetes: hote })).texte).source, 'schooding');
+      assert.equal((await requete(autre.port, { methode: 'POST', chemin: '/api/schooding/synchroniser', entetes: { ...hote, Origin: 'http://exemple.com', 'Content-Type': 'application/json' }, corps: '{}' })).statut, 403);
+      for (const chemin of ['/schooding-suivi.json', '/schooding-a-integrer.json']) {
+        const { statut, texte } = await requete(autre.port, { chemin });
+        assert.equal(statut, 404, chemin);
+        assert.ok(!texte.includes('secret'));
+      }
+    } finally {
+      autre.serveur.close();
+    }
+    const sans = await demarrer({ racine, dossierContenu: path.join(racine, 'contenu'), synchro });
+    try {
+      const { statut, texte } = await requete(sans.port, { chemin: '/api/schooding/etat', entetes: { Host: `127.0.0.1:${sans.port}` } });
+      assert.equal(statut, 503);
+      assert.match(JSON.parse(texte).erreur, /Schooding/);
+    } finally {
+      sans.serveur.close();
+    }
+  });
 });

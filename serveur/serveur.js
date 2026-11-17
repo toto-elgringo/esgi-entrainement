@@ -11,7 +11,8 @@ import * as rust from './rust.js';
 
 const TAILLE_MAX_CORPS = 512 * 1024;
 const EXECUTEURS = { rust, python, c };
-const FICHIERS_PRIVES = new Set(['myges-suivi.json', 'myges-a-integrer.json', 'synchro-obsidian.json']);
+const FICHIERS_PRIVES = new Set(['myges-suivi.json', 'myges-a-integrer.json', 'schooding-suivi.json', 'schooding-a-integrer.json', 'synchro-obsidian.json']);
+const NOMS_SYNCHROS = { myges: 'MyGES', schooding: 'Schooding' };
 const STATUTS_MYGES = { deja_en_cours: 409 };
 const TYPES_MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -117,17 +118,18 @@ export function origineLocale(requete) {
   return true;
 }
 
-async function actionMyges(synchro, requete, pathname) {
+async function actionSynchro(synchros, requete, cle, nomAction) {
   if (!origineLocale(requete)) throw new ErreurHttp(403, 'Requête refusée');
+  const synchro = synchros[cle];
   const actions = {
-    'POST /api/myges/synchroniser': () => synchro.demarrer(),
-    'POST /api/myges/reprendre': () => synchro.reprendre(),
-    'POST /api/myges/arreter': () => synchro.arreter(),
-    'GET /api/myges/etat': () => synchro.etat(),
+    'POST synchroniser': () => synchro.demarrer(),
+    'POST reprendre': () => synchro.reprendre(),
+    'POST arreter': () => synchro.arreter(),
+    'GET etat': () => synchro.etat(),
   };
-  const action = actions[`${requete.method} ${pathname}`];
+  const action = actions[`${requete.method} ${nomAction}`];
   if (!action) throw new ErreurHttp(404, 'Route inconnue');
-  if (!synchro) throw new ErreurHttp(503, 'La synchro MyGES n’est pas disponible');
+  if (!synchro) throw new ErreurHttp(503, `La synchro ${NOMS_SYNCHROS[cle]} n’est pas disponible`);
   if (requete.method === 'POST') await lireCorpsJson(requete);
   try {
     return action();
@@ -186,13 +188,15 @@ function statutErreur(erreur) {
   return 500;
 }
 
-export function creerServeur({ racine, dossierContenu, dossierSupports, synchro }) {
+export function creerServeur({ racine, dossierContenu, dossierSupports, synchro, synchros = {} }) {
   const routes = creerRoutes({ dossierContenu });
+  const toutes = { myges: synchro, ...synchros };
   return http.createServer(async (requete, reponse) => {
     try {
       const { pathname } = new URL(requete.url, 'http://localhost');
-      if (pathname.startsWith('/api/myges/')) {
-        envoyerJson(reponse, 200, await actionMyges(synchro, requete, pathname));
+      const routeSynchro = /^\/api\/(myges|schooding)\/([a-z]+)$/.exec(pathname);
+      if (routeSynchro) {
+        envoyerJson(reponse, 200, await actionSynchro(toutes, requete, routeSynchro[1], routeSynchro[2]));
       } else if (pathname.startsWith('/api/')) {
         const route = routes.find((candidate) => candidate.methode === requete.method && candidate.chemin === pathname);
         if (!route) throw new ErreurHttp(404, 'Route inconnue');

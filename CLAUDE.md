@@ -54,6 +54,8 @@ serveur/
   tests-rust.js     relit les paniques de `cargo test` et le code source pour donner appel / obtenu / attendu
   contenu-code.js   lecture du contenu de code, construireSommaire()
   validation-code.js
+  synchro.js        tronc commun des synchros : file d'attente, lancement de Claude, reprise, une seule intégration à la fois (creerVerrou)
+  schooding/        synchro Schooding : connexion (CSRF, pauses, 429), pages (lecture des pages), markdown, source (récolte), videos (yt-dlp), synchro
   myges/            synchro MyGES : session (cookies), connexion (CAS), source (page des supports, téléchargement),
                     noms, matieres, tri (doublons), archives (.zip via tar), claude (lancement en arrière-plan), synchro (enchaînement)
 scripts/
@@ -76,7 +78,8 @@ CONTENU.md          format exact du contenu (code et réponses)
   - Reprise après coupure : `myges-a-integrer.json` (non versionné, jamais servi) liste les fichiers téléchargés pas encore intégrés (ajout après chaque téléchargement, `tentatives`, `arretee`). Il n'est vidé que si Claude finit sans erreur, écrit `SYNCHRO TERMINÉE` dans sa réponse finale et n'a aucun sous-agent coupé (`subagent_stats.killed`). Sinon : reprise automatique au `npm start` suivant (`reprendreAuDemarrage`, consigne « Reprise : … » dans le prompt), sauf après « Arrêter » ou 3 tentatives ; bouton « Reprendre l'intégration » (`POST api/myges/reprendre`). Un « Télécharger » sans nouveau cours intègre aussi les fichiers en attente. Ctrl+C sur le serveur coupe Claude sans le marquer arrêté.
   - `myges-matieres.json` (versionné) : matière MyGES sans préfixe `T1 - ` → dossier du vault. Matière inconnue : dossier créé et ajouté.
   - Routes `POST api/myges/synchroniser`, `POST api/myges/reprendre`, `POST api/myges/arreter`, `GET api/myges/etat` : `Host` et `Origin` locaux obligatoires, JSON obligatoire. Le serveur ne sert jamais les fichiers commençant par `.` (`.env`, `.git`) ni `myges-suivi.json` / `myges-a-integrer.json` / `synchro-obsidian.json`.
-  - `ESGI_CLAUDE=tests/faux-claude.js` remplace Claude pour essayer sans lancer le vrai. Journal de Claude : `<tmp>/esgi-entrainement-myges/`.
+  - `ESGI_CLAUDE=tests/faux-claude.js` remplace Claude pour essayer sans lancer le vrai. Journal de Claude : `<tmp>/esgi-entrainement-myges/` (et `-schooding/`).
+- Synchro Schooding (bouton séparé « Télécharger depuis Schooding », même vue `js/vues/myges.js` avec `SOURCES`) : `.env` (`SCHOODING_IDENTIFIANT` = login, pas l'e-mail, et `SCHOODING_MOT_DE_PASSE`). Lit cours, séances, documents (Markdown, slides Google en SVG + texte, vidéos YouTube), exercices (énoncé, mon code, solution officielle) et QCM corrigés des examens passés, écrits dans `<vault>/<Matière>/Sources/Schooding/`. Suivi `schooding-suivi.json` et attente `schooding-a-integrer.json` (non versionnés, jamais servis), `schooding-matieres.json` versionné. Vidéos `.mp4` seulement si `yt-dlp` est installé (sinon lien, retéléchargé plus tard). Routes `api/schooding/…` comme MyGES. Une seule intégration Claude à la fois entre les deux synchros. Méthode détaillée : `docs/schooding.md`.
 - Formules KaTeX actives pour `maths` et `combinatoire` seulement (l'anglais contient des prix en `$`).
 - `body[data-domaine]` change la couleur d'accent de chaque domaine.
 - Correction des maths : expressions comparées en plusieurs points, `aUneConstantePres` pour les primitives, aperçu « Lu comme » en LaTeX.

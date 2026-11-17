@@ -1970,8 +1970,10 @@ body[data-domaine="electif"] {
 }
 
 .myges-liste ul {
+  max-height: 240px;
   margin: 4px 0 0;
   padding-left: 20px;
+  overflow: auto;
   overflow-wrap: anywhere;
 }
 
@@ -2007,7 +2009,9 @@ body[data-domaine="electif"] {
   color: var(--accent);
 }
 
-[data-myges] + .sauvegarde {
+[data-myges] + [data-schooding] .myges,
+[data-myges] + .sauvegarde,
+[data-schooding] + .sauvegarde {
   margin-top: 16px;
 }
 
