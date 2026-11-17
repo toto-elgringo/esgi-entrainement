@@ -4,7 +4,7 @@ import { chapitresDeMatiere, compterProgression, lienExercice, prochainExercice 
 import { etatOutils } from '../code/compilateur.js';
 import { avecFormules, estDomaineCode } from '../domaines.js';
 import { supportsDeChapitre } from '../supports.js';
-import { brancherMyges } from './myges.js';
+import { brancherMyges, brancherSchooding } from './myges.js';
 
 const PRESENTATIONS = {
   informatique: {
@@ -123,12 +123,14 @@ function afficherChoix(ctx) {
       <p class="accueil-intro">Cours résumés, quiz et exercices corrigés automatiquement pour réviser les cours de l’ESGI. Choisis ta matière :</p>
       <div class="choix-matieres">${cartes}</div>
       <div data-myges></div>
+      <div data-schooding></div>
       ${BLOC_SAUVEGARDE}
       <p class="pied-accueil">Ta progression est enregistrée dans ce navigateur. Tu peux changer de matière à tout moment en haut de la page.</p>
     </section>`;
 
   brancherSauvegarde(ctx);
   brancherMyges(ctx.conteneur.querySelector('[data-myges]'));
+  brancherSchooding(ctx.conteneur.querySelector('[data-schooding]'));
 
   ctx.conteneur.querySelector('.choix-matieres').addEventListener('click', (evenement) => {
     const carte = evenement.target.closest('[data-matiere]');

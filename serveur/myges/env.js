@@ -30,3 +30,10 @@ export function identifiantsMyges(env) {
   if (!identifiant || !motDePasse) return null;
   return { identifiant, motDePasse };
 }
+
+export function identifiantsSchooding(env) {
+  const identifiant = env.SCHOODING_IDENTIFIANT ?? '';
+  const motDePasse = env.SCHOODING_MOT_DE_PASSE ?? '';
+  if (!identifiant || !motDePasse) return null;
+  return { identifiant, motDePasse };
+}

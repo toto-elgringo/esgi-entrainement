@@ -33,4 +33,7 @@
 - [ ] C : transformer les `VERIFIER` avec `&&` en plusieurs `VERIFIER_EGAL` pour avoir les valeurs de chaque côté
 - [ ] MyGES : `/obsidian -esgi` utilise `~/.claude/scripts/esgi-sources.mjs`, qui n'existe plus sur l'ordinateur (la synchro donne quand même la liste des fichiers à Claude)
 - [ ] MyGES : retélécharger un support remplacé par le prof (aujourd'hui seul un nouvel identifiant MyGES est vu comme nouveau)
-- [ ] MyGES : créer `.env.exemple` (bloqué par les réglages de Claude Code : `MYGES_IDENTIFIANT=` et `MYGES_MOT_DE_PASSE=`)
+- [ ] MyGES / Schooding : créer `.env.exemple` (bloqué par les réglages de Claude Code : `MYGES_IDENTIFIANT=`, `MYGES_MOT_DE_PASSE=`, `SCHOODING_IDENTIFIANT=` et `SCHOODING_MOT_DE_PASSE=`)
+- [x] Schooding : installer `yt-dlp` (`py -m pip install --user "yt-dlp[default]"`, installé le 17/11/2026) pour télécharger les vidéos YouTube des séances
+- [ ] Schooding : installer `ffmpeg` (`scoop install ffmpeg`) pour avoir les vidéos en 720p au lieu de 360p
+- [ ] Schooding : retélécharger un document modifié par le prof (aujourd'hui un document n'est lu qu'une fois)

@@ -3,7 +3,7 @@ import { ErreurMyges } from './erreurs.js';
 const REDIRECTIONS_MAX = 15;
 const NAVIGATEUR = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) esgi-entrainement';
 
-export function creerSession() {
+export function creerSession({ nomSite = 'MyGES' } = {}) {
   const cookies = new Map();
 
   function cookiesDe(adresse) {
@@ -21,7 +21,7 @@ export function creerSession() {
     }
   }
 
-  async function obtenir(adresse, { method = 'GET', headers = {}, body, signal } = {}) {
+  async function obtenir(adresse, { method = 'GET', headers = {}, body, signal, arreterSur } = {}) {
     let actuelle = adresse;
     let requete = { method, headers, body };
     for (let etape = 0; etape < REDIRECTIONS_MAX; etape += 1) {
@@ -36,16 +36,17 @@ export function creerSession() {
         });
       } catch (erreur) {
         if (signal?.aborted) throw erreur;
-        throw new ErreurMyges('injoignable', 'MyGES ne répond pas.');
+        throw new ErreurMyges('injoignable', `${nomSite} ne répond pas.`);
       }
       garderCookies(actuelle, reponse);
       const destination = reponse.headers.get('location');
       if (reponse.status < 300 || reponse.status >= 400 || !destination) return { reponse, adresse: actuelle };
       await reponse.body?.cancel();
       actuelle = new URL(destination, actuelle).href;
+      if (arreterSur?.(actuelle)) return { reponse, adresse: actuelle, arrete: true };
       requete = { method: 'GET', headers: {} };
     }
-    throw new ErreurMyges('reponse_inattendue', 'MyGES redirige sans fin.');
+    throw new ErreurMyges('reponse_inattendue', `${nomSite} redirige sans fin.`);
   }
 
   return { obtenir };
