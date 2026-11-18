@@ -26,7 +26,7 @@ Site d'entraînement pour **tous les cours de l'ESGI** : Maths pour l'informatiq
 ## Structure du projet
 
 ```
-index.html, style.css, favicon.svg
+index.html, style.css, favicon.svg, favicon.ico (icône du raccourci du bureau)
 js/
   app.js            routeur par hash : #/cours/<domaine>/<chapitre>, #/quiz/..., #/exercice/<domaine>/<chapitre>/<id>
   domaines.js       liste des domaines (code : rust, python, c ; réponses : maths, combinatoire, anglais, electif), langages, ordre des matières
@@ -61,6 +61,7 @@ serveur/
 scripts/
   sommaire.js           régénère contenu/{rust,python,c}/sommaire.json
   verifier-contenu.js   valide tous les domaines (lance chaque solution, vérifie que le départ échoue, contrôle les sommaires)
+  lancer.bat            lance le site (raccourci « ESGI Entrainement » du bureau, ouvert dans Windows Terminal avec un titre fixe)
 tests/
 CONTENU.md          format exact du contenu (code et réponses)
 ```
