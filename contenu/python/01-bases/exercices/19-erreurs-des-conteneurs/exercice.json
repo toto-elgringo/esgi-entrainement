@@ -1,0 +1,11 @@
+{
+  "titre": "Quand la valeur n'est pas là : ValueError et KeyError",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`l.remove(x)` et `l.index(x)` lèvent une `ValueError` si `x` n'est pas dans la liste. `d[cle]` et `d.pop(cle)` lèvent une `KeyError` si la clé n'existe pas.",
+    "On attrape l'erreur avec `try:` puis `except ValueError:` (ou `except KeyError:`) : le code du `except` ne tourne que si l'erreur arrive.",
+    "`l.index(x)` donne une position qui commence à 0 : le rang « humain » vaut `l.index(x) + 1`. `l.index(x, debut)` cherche à partir de l'indice `debut`.",
+    "`liste.clear()`, `ensemble.clear()` et `dico.clear()` vident le conteneur **reçu**. Compte les éléments avec `len` **avant** de vider."
+  ]
+}

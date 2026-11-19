@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer la file chaînée",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lance le programme et regarde l'état de la file juste après avoir défilé le dernier maillon : `premier` et `dernier` devraient valoir `NULL` tous les deux.",
+    "Premier bug : `defilerListe` oublie un cas. Quand la file devient vide, `dernier` pointe encore vers le maillon qu'on vient de libérer. Deuxième bug : `viderFile` remet les pointeurs à `NULL`... mais que deviennent les maillons ?",
+    "Dans `defilerListe`, après `f->premier = ancien->next;`, ajoute `if (f->premier == NULL) f->dernier = NULL;`. `viderFile` doit libérer chaque maillon : `while (f->premier != NULL) defilerListe(f);`."
+  ]
+}

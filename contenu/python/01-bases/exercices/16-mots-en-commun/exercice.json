@@ -1,0 +1,11 @@
+{
+  "titre": "Mots en commun, sans double boucle",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Pour ne pas tenir compte des majuscules, mets tout en minuscules **avant** de comparer : `texte.lower().split()`.",
+    "Un ensemble enlève les doublons : `len(set(mots))` compte les mots différents, `set(a) & set(b)` donne les mots communs.",
+    "Pour `surligner`, prépare d'abord l'ensemble des mots-clés en minuscules, puis parcours **une seule fois** les mots du texte : `m.upper() if m in cles else m` (une expression conditionnelle).",
+    "Deux boucles imbriquées qui modifient les mots au fur et à mesure se trompent quand un mot apparaît deux fois : une fois mis en majuscules, il n'est plus égal à sa version en minuscules."
+  ]
+}

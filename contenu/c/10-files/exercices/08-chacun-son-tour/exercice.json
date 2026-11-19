@@ -1,0 +1,10 @@
+{
+  "titre": "Chacun son tour : le jeu de l'élimination",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Mets d'abord les personnes 1 à n dans une file de capacité n (réserve le tableau avec `malloc`). Celui qui compte est toujours la **tête** de la file.",
+    "Tant qu'il reste plus d'une personne : `k - 1` fois, défiler la tête et la renfiler aussitôt à la fin (elle a dit un nombre et reste en jeu). Puis défiler une fois de plus **sans** renfiler : c'est la personne éliminée, range-la dans `ordre[j++]`.",
+    "À la fin, la survivante est la seule valeur de la file : `int survivant = defiler(&file);`. N'oublie pas `free` sur le tableau avant le `return`."
+  ]
+}

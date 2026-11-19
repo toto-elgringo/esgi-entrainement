@@ -1,0 +1,12 @@
+{
+  "titre": "Extraire les infos d'une page HTML",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`HTMLParser` appelle tes méthodes au fil de la page : `handle_starttag(\"div\", [(\"class\", \"reponse acceptee\"), ...])` pour chaque balise ouvrante, `handle_data(texte)` pour le texte, `handle_endtag(\"h1\")` pour chaque balise fermante. Les noms de balises et d'attributs arrivent déjà en minuscules.",
+    "Dans `handle_starttag`, commence par `attributs = dict(attributs)` et `classes = (attributs.get(\"class\") or \"\").split()` : on teste ensuite `\"reponse\" in classes`, ce qui marche même avec plusieurs classes.",
+    "Le texte d'une balise n'est connu que dans `handle_data`, appelé **après** `handle_starttag` : garde un drapeau (`self.dans_titre = True`) et remets-le à `False` dans `handle_endtag`.",
+    "Le titre peut arriver en plusieurs morceaux (texte, puis `<code>`, puis texte) : ajoute-les dans une liste tant que tu es dans le `<h1>`, puis à la fermeture `\" \".join(\"\".join(morceaux).split())` nettoie les blancs.",
+    "`lire_question` : `lecteur = LecteurQuestion()`, `lecteur.feed(html)`, `return lecteur.infos`. `fiche` assemble les cinq lignes avec `\"\n\".join(...)`."
+  ]
+}

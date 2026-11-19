@@ -1,0 +1,10 @@
+{
+  "titre": "Le tri par sélection",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "À l'étape `i`, les cases `0` à `i - 1` sont triées et définitives. Cherche la **position** du minimum parmi les cases `i` à `n - 1`.",
+    "Garde `pos_min` (une position, pas une valeur) : `size_t pos_min = i;` puis `for (size_t j = i + 1; j < n; j++) if (tab[j] < tab[pos_min]) pos_min = j;`",
+    "Échange seulement si `pos_min != i` : `echanger(&tab[i], &tab[pos_min]);`. La boucle extérieure s'écrit `for (size_t i = 0; i + 1 < n; i++)` pour supporter `n == 0`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Parent et enfants dans le tableau",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Relis le tableau du cours : la case 1 a ses enfants en 3 et 4, la case 2 en 5 et 6.",
+    "Enfant gauche : `2 * i + 1`, enfant droit : `2 * i + 2`, parent : `(i - 1) / 2` (division entière).",
+    "Pour `valeurDuParent`, combine : `return t[parent(i)];`."
+  ]
+}

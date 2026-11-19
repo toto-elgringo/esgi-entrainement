@@ -1,0 +1,11 @@
+{
+  "titre": "Les premières et les dernières lignes",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Un journal peut être énorme : parcours le fichier avec `for ligne in f:` au lieu de tout charger avec `readlines()`.",
+    "Pour les premières lignes, `itertools.islice(f, n)` s'arrête tout seul après `n` lignes, sans lire la suite du fichier.",
+    "Pour les dernières, `collections.deque(maxlen=n)` est une file qui ne garde que les `n` derniers éléments ajoutés : `deque(f, maxlen=n)` fait tout le travail.",
+    "Commence chaque fonction par `if n <= 0: return []` : `deque` et `islice` refusent une taille négative. N'oublie pas d'enlever les `\"\n\"` avec `rstrip(\"\n\")`."
+  ]
+}

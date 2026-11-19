@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer une file qui écrase sa tête",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Les trois fonctions marchent quand on les appelle au bon moment. Que vaut `(start + size) % capacity` quand la file est pleine ? Et que devient `size` si on défile une file vide ?",
+    "Ajoute un test au tout début de chaque fonction : si l'opération est impossible, renvoie 0 **sans rien modifier** (ni `start`, ni `size`, ni le tableau, ni `*valeur`).",
+    "`if (q->size >= q->capacity) return 0;` au début d'`enfiler`, `if (q->size == 0) return 0;` au début de `defiler` et de `lireTete`."
+  ]
+}

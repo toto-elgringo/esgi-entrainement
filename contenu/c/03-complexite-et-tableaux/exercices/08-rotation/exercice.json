@@ -1,0 +1,10 @@
+{
+  "titre": "Rotation en trois inversions",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Une rotation de `n` crans ne change rien : commence par remplacer `k` par `k % n` (et ne fais rien si `n == 0`).",
+    "Regarde `1 2 | 3 4 5` (k = 2). Inverse chaque morceau séparément : `2 1 | 5 4 3`. Que se passe-t-il si tu inverses ensuite le tout ?",
+    "`k %= n; inverser_portion(tab, 0, k); inverser_portion(tab, k, n); inverser_portion(tab, 0, n);`"
+  ]
+}

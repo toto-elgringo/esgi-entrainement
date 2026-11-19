@@ -1,0 +1,10 @@
+{
+  "titre": "Une file en liste chaînée",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "On enfile **derrière** `dernier` et on défile `premier` : les deux opérations se font sans parcourir la liste.",
+    "Enfiler : nouveau maillon (`malloc`, `next = NULL`). Si la file est vide, il devient `premier` ; sinon on l'accroche à `dernier->next`. Dans les deux cas, il devient `dernier`. Défiler : garder le premier maillon et sa valeur, avancer `premier`, puis `free`.",
+    "Quand `premier` devient `NULL` en défilant, remets aussi `dernier` à `NULL`, sinon il pointe vers un maillon libéré. Pour vider : `while (f->premier != NULL) defilerListe(f);`."
+  ]
+}

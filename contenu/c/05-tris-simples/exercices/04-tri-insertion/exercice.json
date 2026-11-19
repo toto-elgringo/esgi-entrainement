@@ -1,0 +1,10 @@
+{
+  "titre": "Le tri par insertion en décalant",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Pour chaque `i` de 1 à `n - 1` : mets `tab[i]` de côté dans `valeur`, puis cherche sa place dans la partie triée **en partant de sa droite** (de la case `i - 1` vers la case 0).",
+    "Tant que la case de gauche est plus grande que `valeur`, recopie-la une case plus à droite : `tab[j] = tab[j - 1]; j--;`. Quand ça s'arrête, `j` est la place de `valeur` : `tab[j] = valeur;`.",
+    "`size_t j = i; while (j > 0 && plus_grand(tab[j - 1], valeur)) { tab[j] = tab[j - 1]; j--; }`. `j > 0` doit être testé **avant** : sinon `tab[j - 1]` est lu quand `j` vaut 0."
+  ]
+}

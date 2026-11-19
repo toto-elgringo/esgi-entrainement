@@ -1,0 +1,8 @@
+{
+  "titre": "Files",
+  "description": "Structure abstraite FIFO : file dans un tableau circulaire (tête, taille, modulo), vide, pleine, enfiler, défiler, afficher, file en liste chaînée avec pointeur de fin, applications.",
+  "source": "cours",
+  "supports": [
+    {"titre": "Vidéo : la file", "url": "https://www.youtube.com/watch?v=vWxyDDQPSy8"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Complexité et tableaux",
+  "description": "Qu'est-ce qu'un algorithme, mesurer son coût avec la notation grand O, tableaux en C : taille, parcours, insertion et suppression avec décalage, inversion.",
+  "source": "cours",
+  "supports": [
+    {"titre": "Vidéo : l'algorithmique", "url": "https://www.youtube.com/watch?v=AvfdQ3r3RIs"},
+    {"titre": "Vidéo : la complexité", "url": "https://www.youtube.com/watch?v=wjQIAdaCMoY"},
+    {"titre": "Vidéo : les tableaux", "url": "https://www.youtube.com/watch?v=J-sVoSOoP90"}
+  ]
+}

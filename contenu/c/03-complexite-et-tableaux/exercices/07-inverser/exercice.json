@@ -1,0 +1,10 @@
+{
+  "titre": "Inverser une portion",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Garde deux indices : `gauche` part de `debut`, `droite` part de `fin - 1` (la dernière case de la portion). Échange les deux cases, puis rapproche-les.",
+    "On s'arrête quand les deux indices se croisent ou se rejoignent. Attention, avec une portion vide (`debut == fin`), `fin - 1` serait plus petit que `debut` : teste `debut + 1 < fin` plutôt.",
+    "`while (debut + 1 < fin) { echanger(&tab[debut], &tab[fin - 1]); debut++; fin--; }` puis `inverser(tab, n)` appelle simplement `inverser_portion(tab, 0, n)`."
+  ]
+}

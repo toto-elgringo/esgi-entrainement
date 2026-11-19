@@ -1,0 +1,11 @@
+{
+  "titre": "Tester le contenu d'une chaîne",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`isupper()` et `islower()` ne regardent **que les lettres** : `\"a1\".islower()` vaut `True` et `\"14-18\".islower()` vaut `False`. Combine-les avec `isalpha()` pour être sûr qu'il n'y a que des lettres.",
+    "L'ordre des tests compte : vérifie `isdigit()` d'abord, puis les cas « que des lettres », puis `isalnum()`. Une chaîne vide répond `False` à tous ces tests.",
+    "`texte.find(repere)` renvoie la position du repère, ou `-1`. Le texte qui suit commence à `position + len(repere)`.",
+    "`endswith` accepte un tuple : `nom.lower().endswith((\".png\", \".jpg\", \".jpeg\"))`."
+  ]
+}

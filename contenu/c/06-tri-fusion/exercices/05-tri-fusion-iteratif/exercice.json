@@ -1,0 +1,10 @@
+{
+  "titre": "Le tri fusion sans récursivité",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Au premier passage, on fusionne des blocs de 1 case deux par deux (blocs de 2 triés), puis des blocs de 2 (blocs de 4 triés), puis de 4... La largeur double à chaque passage.",
+    "Pour une largeur donnée, les paires de blocs commencent à `debut = 0, 2 * largeur, 4 * largeur...`. Le bloc de gauche est `[debut, debut + largeur)`, celui de droite `[debut + largeur, debut + 2 * largeur)`.",
+    "Le dernier bloc de droite peut dépasser : `fin = debut + 2 * largeur`, puis `if (fin > n) fin = n;`. Et s'il n'y a pas de bloc de droite du tout (`debut + largeur >= n`), il n'y a rien à fusionner."
+  ]
+}

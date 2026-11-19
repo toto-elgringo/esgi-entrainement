@@ -1,0 +1,10 @@
+{
+  "titre": "Le pas des tranches, + et *",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Aucune boucle ni `range(len(...))` : une tranche `[début:fin:pas]` choisit déjà les bons indices. `l[::3]` prend les indices 0, 3, 6...",
+    "`+` colle deux listes, `*` répète une liste : `[1, 2] * 3` vaut `[1, 2, 1, 2, 1, 2]`. Des deux côtés de `+`, il faut des listes : `l + [x]`, pas `l + x`.",
+    "Pour `impairs_a_l_envers`, enchaîne deux tranches : `l[1::2]` puis `[::-1]`. Pour `sauf_bouts`, `l[1:-1]` enlève le premier et le dernier élément. Pour `zeros`, pense à `[0] * n`."
+  ]
+}

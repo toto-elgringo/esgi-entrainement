@@ -1,0 +1,10 @@
+{
+  "titre": "Afficher une pile dans les deux sens",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Le fond est en `tab[0]`, le sommet en `tab[size - 1]`. Les cases à partir de `size` sont libres : on ne les affiche pas.",
+    "Depuis le dessus, la boucle descend : elle part de `size - 1` et s'arrête après 0. Comme `size` est un `int`, `i >= 0` fonctionne.",
+    "Teste `if (s->size == 0)` d'abord pour afficher `(vide)`. Sinon, la boucle avec `printf(\"%d \", ...)`, et **toujours** un `printf(\"\\n\")` à la fin."
+  ]
+}

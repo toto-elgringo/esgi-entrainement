@@ -1,0 +1,68 @@
+[
+  {
+    "question": "Quelle est la seule opération que le tri fusion sait faire « directement » ?",
+    "choix": ["Trier un tableau de 10 cases", "Fusionner deux tableaux déjà triés", "Trouver le minimum", "Échanger deux cases voisines"],
+    "reponse": 1,
+    "explication": "Le tri fusion ne sait trier que des morceaux de 0 ou 1 case (déjà triés). Tout le travail se fait en fusionnant des morceaux triés."
+  },
+  {
+    "question": "On fusionne `a = 1 4 8` et `b = 2 3 9`. Quelles sont les trois premières valeurs du résultat ?",
+    "choix": ["`1 4 8`", "`1 2 3`", "`1 2 4`", "`2 3 9`"],
+    "reponse": 1,
+    "explication": "On compare à chaque fois les deux premières valeurs restantes : 1 < 2 (on prend 1), puis 4 > 2 (on prend 2), puis 4 > 3 (on prend 3)."
+  },
+  {
+    "question": "Quelle est la complexité de la fusion de deux tableaux triés de tailles `na` et `nb` ?",
+    "choix": ["O(1)", "O(log(na + nb))", "O(na + nb)", "O(na × nb)"],
+    "reponse": 2,
+    "explication": "À chaque tour de boucle, une valeur passe dans le résultat : il y a na + nb tours en tout, donc un temps linéaire."
+  },
+  {
+    "question": "Quel est le cas de base de la fonction récursive du tri fusion ?",
+    "choix": ["Le tableau est vide ou n'a qu'une case", "Le tableau a deux cases", "Le tableau est trié à l'envers", "Il n'y en a pas, la fonction s'arrête toute seule"],
+    "reponse": 0,
+    "explication": "Un tableau de 0 ou 1 case est forcément trié : la fonction s'arrête sans s'appeler. Sans ce cas, les appels ne s'arrêteraient jamais."
+  },
+  {
+    "question": "Combien de niveaux de découpage pour un tableau de 1024 cases ?",
+    "choix": ["2", "10", "512", "1024"],
+    "reponse": 1,
+    "explication": "On coupe en deux à chaque niveau : 1024, 512, 256, ..., 2, 1. Cela fait log₂(1024) = 10 niveaux."
+  },
+  {
+    "question": "Quelle est la complexité du tri fusion dans le **pire** cas ?",
+    "choix": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+    "reponse": 1,
+    "explication": "Le tri fusion coupe toujours exactement en deux, quel que soit le contenu du tableau : log n niveaux de O(n) chacun, donc O(n log n) dans tous les cas."
+  },
+  {
+    "question": "Quel est le principal défaut du tri fusion ?",
+    "choix": ["Il est en O(n²) sur un tableau déjà trié", "Il a besoin d'un tableau auxiliaire de n cases", "Il n'est pas stable", "Il ne marche pas avec des valeurs égales"],
+    "reponse": 1,
+    "explication": "Pour fusionner, il faut un brouillon de la taille du tableau : O(n) de mémoire en plus. Le tri fusion n'est pas en place."
+  },
+  {
+    "question": "Dans la fusion, on écrit `if (t[i] < t[j])` au lieu de `if (t[i] <= t[j])`. Que se passe-t-il ?",
+    "choix": ["Le tableau n'est plus trié", "Le programme plante sur les valeurs égales", "Le tableau est trié, mais le tri n'est plus stable", "Rien du tout, c'est équivalent"],
+    "reponse": 2,
+    "explication": "En cas d'égalité, la valeur de droite passe d'abord : deux valeurs égales échangent leur ordre de départ. Le résultat reste trié, mais la stabilité est perdue."
+  },
+  {
+    "question": "Pourquoi le tri fusion se parallélise-t-il bien ?",
+    "choix": ["Parce qu'il est récursif", "Parce que les deux moitiés se trient indépendamment l'une de l'autre", "Parce qu'il utilise un tableau auxiliaire", "Parce qu'il ne fait pas d'échanges"],
+    "reponse": 1,
+    "explication": "Trier la gauche n'a pas besoin de la droite : deux cœurs peuvent travailler en même temps. Seule la fusion finale attend les deux résultats."
+  },
+  {
+    "question": "Dans `trierPartie(t, aux, debut, fin)` qui trie la portion `[debut, fin)`, où se trouve le milieu ?",
+    "choix": ["`fin / 2`", "`(fin - debut) / 2`", "`debut + (fin - debut) / 2`", "`debut + fin`"],
+    "reponse": 2,
+    "explication": "La portion commence à `debut` : on avance de la moitié de sa taille (`fin - debut`). Pour `[4, 8)`, cela donne 6."
+  },
+  {
+    "question": "Comment s'appelle la méthode qui découpe un problème en sous-problèmes du même type, les résout, puis combine les réponses ?",
+    "choix": ["Glouton", "Force brute", "Diviser pour régner", "Programmation linéaire"],
+    "reponse": 2,
+    "explication": "Diviser (couper en deux), régner (trier chaque moitié de la même façon), combiner (fusionner) : c'est le schéma « diviser pour régner »."
+  }
+]

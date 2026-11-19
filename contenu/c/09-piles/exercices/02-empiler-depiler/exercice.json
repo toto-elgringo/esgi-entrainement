@@ -1,0 +1,10 @@
+{
+  "titre": "Empiler, dépiler, lire le sommet",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`size` est le nombre de valeurs, mais aussi l'indice de la première case libre. Le sommet est juste en dessous.",
+    "Empiler : écrire dans `tab[size]` puis augmenter `size`. Dépiler : diminuer `size`, puis renvoyer `tab[size]`.",
+    "`s->tab[s->size] = valeur; s->size++;`, puis `s->size--; return s->tab[s->size];`, et `return s->tab[s->size - 1];` pour le sommet."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer une file qui ne tourne pas",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Fais tourner le scénario du tableau à la main en notant `start` et `size`. Les trois fonctions ont chacune **un** bug, et deux d'entre eux ne se voient qu'une fois que la file a fait le tour du tableau.",
+    "Dans `enfiler` et `valeurA`, l'indice calculé peut dépasser `capacity - 1` : il lui manque un `% q->capacity`. Dans `defiler`, regarde **quand** la valeur est lue par rapport au moment où `start` avance.",
+    "`q->tab[(q->start + q->size) % q->capacity] = valeur;`, `return q->tab[(q->start + i) % q->capacity];`, et dans `defiler` : `int valeur = q->tab[q->start];` **en premier**, puis on avance `start`, puis `return valeur;`."
+  ]
+}

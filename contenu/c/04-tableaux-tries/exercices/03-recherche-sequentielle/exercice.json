@@ -1,0 +1,10 @@
+{
+  "titre": "Recherche séquentielle",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Parcours les cases une par une, de la première à la dernière.",
+    "Dès que `tab[i] == valeur`, renvoie `i` : c'est forcément la première apparition. Si la boucle se termine, la valeur n'est nulle part.",
+    "`for (size_t i = 0; i < n; i++) if (tab[i] == valeur) return (int)i;` puis, **après** la boucle, `return -1;`"
+  ]
+}

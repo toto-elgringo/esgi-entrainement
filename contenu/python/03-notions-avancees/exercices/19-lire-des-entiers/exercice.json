@@ -1,0 +1,10 @@
+{
+  "titre": "Lire une ligne de nombres au clavier",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "`input()` renvoie **une seule** chaîne, `\"4 -7 abc ...\"`. `input().split()` la découpe en une liste de morceaux, encore des chaînes.",
+    "Pour ne garder que les entiers, filtre dans la compréhension : un morceau est un entier si `m.lstrip(\"-\").isdigit()` (on enlève le signe moins avant de tester). Puis convertis avec `int(m)`.",
+    "Ensuite, une compréhension par ligne d'affichage : `[x for x in entiers if x > 0]`, `[abs(x) for x in entiers]`, `[abs(x) for x in entiers if x % 2 == 0]`."
+  ]
+}

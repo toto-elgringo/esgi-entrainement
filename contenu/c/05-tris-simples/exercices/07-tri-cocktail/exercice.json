@@ -1,0 +1,10 @@
+{
+  "titre": "Le tri cocktail contre les tortues",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Garde deux bornes : `debut` (première case pas encore placée) et `fin` (dernière). L'aller fait remonter le maximum en `fin`, le retour fait descendre le minimum en `debut`. Après chaque passage, la borne concernée se resserre d'une case.",
+    "L'aller va de `debut` à `fin - 1` (compare `tab[i]` et `tab[i + 1]`), le retour va de `fin` jusqu'à `debut + 1` en reculant (compare `tab[i - 1]` et `tab[i]`). Commence l'aller à `debut`, pas à 0 : les cases avant `debut` sont déjà placées.",
+    "Si `n < 2`, il n'y a rien à faire (et `n - 1` déborderait). Sinon : `while (echange) { echange = 0; aller; if (!echange) return; fin--; echange = 0; retour; debut++; }`."
+  ]
+}

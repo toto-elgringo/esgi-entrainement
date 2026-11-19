@@ -1,0 +1,11 @@
+{
+  "titre": "Fenêtre glissante et erreurs immédiates",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Le corps d'une fonction qui contient `yield` ne démarre qu'au premier `next()`. Le `raise` du code de départ n'arrive donc qu'au moment du parcours, pas à l'appel.",
+    "Sépare en deux : `fenetres(iterable, n)` est une fonction **normale** qui vérifie `n`, puis `return _fenetres(iterable, n)` ; `_fenetres` est le générateur.",
+    "`from collections import deque` : `deque(maxlen=n)` jette tout seul l'élément le plus ancien quand elle est pleine (alors que `liste.pop(0)` décale tous les éléments).",
+    "Pour `moyennes_mobiles`, garde la somme de la fenêtre : ajoute le nouvel élément, retire celui qui sort (`fenetre.popleft()`), et fournis `total / n` dès que la fenêtre contient `n` éléments."
+  ]
+}

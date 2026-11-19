@@ -1,0 +1,5 @@
+Entiers : [4, -7, 12, 0, -2, 9]
+Positifs : [4, 12, 9]
+Valeurs absolues : [4, 7, 12, 0, 2, 9]
+Pairs en valeur absolue : [4, 12, 0, 2]
+Somme : 16

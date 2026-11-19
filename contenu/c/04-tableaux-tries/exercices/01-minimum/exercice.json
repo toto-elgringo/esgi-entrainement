@@ -1,0 +1,10 @@
+{
+  "titre": "Le minimum d'un tableau",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Garde dans une variable `min` la plus petite valeur vue jusqu'ici, et compare-la à chaque case.",
+    "`min` doit partir d'une vraie valeur du tableau : `tab[0]`. Partir de `0` donne un faux résultat si toutes les valeurs sont positives.",
+    "`int min = tab[0];` puis `for (size_t i = 1; i < n; i++) if (tab[i] < min) min = tab[i];` et enfin `return min;`"
+  ]
+}

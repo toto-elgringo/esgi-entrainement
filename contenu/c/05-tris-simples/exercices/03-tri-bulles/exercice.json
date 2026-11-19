@@ -1,0 +1,10 @@
+{
+  "titre": "Le tri à bulles avec arrêt anticipé",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Deux boucles : la boucle extérieure fait les passages, la boucle intérieure compare chaque case à sa voisine de droite. Après chaque passage, la plus grande valeur restante est au bout : le passage suivant peut s'arrêter une case plus tôt.",
+    "Pour l'arrêt anticipé : un indicateur `int echange = 0;` remis à 0 **au début de chaque passage**, mis à 1 quand on échange. Si un passage se termine avec `echange == 0`, le tableau est trié : `return;`.",
+    "`for (size_t fin = n; fin > 1; fin--)` puis `for (size_t j = 0; j + 1 < fin; j++)` avec `if (plus_grand(tab[j], tab[j + 1])) { echanger(&tab[j], &tab[j + 1]); echange = 1; }`."
+  ]
+}

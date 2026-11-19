@@ -1,8 +1,11 @@
 {
   "titre": "Listes chaînées",
-  "description": "Maillons et struct cell, parcours itératif et récursif, somme, taille, affichage, insertion en début, tableau ou liste chaînée ?",
+  "description": "Maillons et struct cell, parcours itératif et récursif, somme, taille, affichage, insertion en début, variantes (pointeur de fin, doublement chaînée, circulaire), tableau ou liste chaînée ?",
   "source": "cours",
   "supports": [
-    {"titre": "Fiche listes chaînées", "fichier": "Algorithmique avancée/Sources/fiche listes chainées.pdf"}
+    {
+      "titre": "Fiche listes chaînées",
+      "fichier": "Algorithmique avancée/Sources/fiche listes chainées.pdf"
+    }
   ]
 }

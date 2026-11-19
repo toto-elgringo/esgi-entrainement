@@ -1,0 +1,10 @@
+{
+  "titre": "La sélection rapide : la k-ième plus petite",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Après `p = partition(t, debut, fin, milieu)`, le pivot est à sa place définitive : si `p == k`, la réponse est `t[p]`.",
+    "Sinon, la valeur cherchée n'est que d'un côté : si `k < p`, garde `[debut, p)` (`fin = p`) ; sinon garde `[p + 1, fin)` (`debut = p + 1`). Le pivot est toujours la case du milieu.",
+    "Une boucle suffit : `int debut = 0, fin = n; while (fin - debut > 1) { ... }`, puis `return t[debut];` quand il ne reste qu'une case (c'est forcément la case `k`)."
+  ]
+}

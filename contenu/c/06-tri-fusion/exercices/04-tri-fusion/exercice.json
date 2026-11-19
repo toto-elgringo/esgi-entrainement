@@ -1,0 +1,10 @@
+{
+  "titre": "Le tri fusion en C",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence par `fusionnerParties` : c'est la fusion du cours, mais les deux moitiés sont `[debut, milieu)` et `[milieu, fin)` du même tableau, et on écrit dans `aux` avant de tout recopier dans `t`.",
+    "`trierPartie` : si la portion a 1 case ou moins (`fin - debut <= 1`), on s'arrête. Sinon on calcule `milieu = debut + (fin - debut) / 2`, on trie `[debut, milieu)`, puis `[milieu, fin)`, puis on fusionne.",
+    "`triFusion` : si `n < 2`, rien à faire. Sinon `int *aux = malloc(n * sizeof(int));`, vérifie `NULL`, appelle `trierPartie(t, aux, 0, n)`, puis `free(aux)`."
+  ]
+}

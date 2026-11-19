@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer : la recherche qui abandonne trop tôt",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Déroule la boucle à la main avec `{42, -4, 6, 3}` et la valeur `6` : combien de cases sont regardées avant que la fonction se termine ?",
+    "Au premier tour, `tab[0]` vaut 42 : on passe dans le `else` et `return 0` quitte la fonction. Les autres cases ne sont jamais vues.",
+    "Supprime le `else` : dans la boucle, on ne renvoie que `1` (trouvé). Le `return 0` (absent) se place **après** la boucle, une fois toutes les cases regardées."
+  ]
+}

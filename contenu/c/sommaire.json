@@ -161,13 +161,68 @@
           ],
           "reponse": 1,
           "explication": "Le nom `Cell` n'est créé qu'à la fin de la déclaration, après l'accolade fermante. À l'intérieur, seul le nom complet `struct cell` est connu."
+        },
+        {
+          "question": "En C, un pointeur est :",
+          "choix": [
+            "une variable qui contient une adresse mémoire",
+            "une fonction qui réserve de la mémoire",
+            "un tableau dont la taille change toute seule",
+            "une boucle qui parcourt la mémoire"
+          ],
+          "reponse": 0,
+          "explication": "Un pointeur range l'adresse d'une autre donnée (`int *p = &n;`). On lit ou on modifie cette donnée avec `*p`."
+        },
+        {
+          "question": "Quelle est la complexité de la lecture d'une valeur à travers un pointeur (`*p`) ?",
+          "choix": [
+            "O(N log N)",
+            "O(log N)",
+            "O(1)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "L'adresse est déjà connue : on va directement à la bonne case de la mémoire, sans rien parcourir."
+        },
+        {
+          "question": "Où `malloc` réserve-t-il la mémoire qu'il renvoie ?",
+          "choix": [
+            "Sur la pile d'exécution",
+            "Sur le tas",
+            "Dans le disque dur",
+            "Dans le code du programme"
+          ],
+          "reponse": 1,
+          "explication": "Les variables locales vivent sur la pile et disparaissent à la fin de la fonction. La mémoire du tas reste réservée jusqu'au `free`."
+        },
+        {
+          "question": "Sur une machine où un `int` fait 4 octets, combien d'octets réserve `malloc(10 * sizeof(int))` ?",
+          "choix": [
+            "10",
+            "14",
+            "40",
+            "4"
+          ],
+          "reponse": 2,
+          "explication": "`sizeof(int)` vaut 4, donc 10 entiers prennent 40 octets. C'est pour cela qu'on multiplie toujours par `sizeof`."
+        },
+        {
+          "question": "Que fait `free(p)` ?",
+          "choix": [
+            "Il met `p` à `NULL`",
+            "Il rend au système la mémoire réservée par `malloc` à l'adresse contenue dans `p`",
+            "Il remet à 0 toutes les cases pointées par `p`",
+            "Il supprime la variable `p`"
+          ],
+          "reponse": 1,
+          "explication": "`p` garde la même adresse, mais cette mémoire n'est plus à nous. C'est à nous de remettre `p` à `NULL` si on veut s'en souvenir."
         }
       ]
     },
     {
       "id": "01-listes-chainees",
       "titre": "Listes chaînées",
-      "description": "Maillons et struct cell, parcours itératif et récursif, somme, taille, affichage, insertion en début, tableau ou liste chaînée ?",
+      "description": "Maillons et struct cell, parcours itératif et récursif, somme, taille, affichage, insertion en début, variantes (pointeur de fin, doublement chaînée, circulaire), tableau ou liste chaînée ?",
       "source": "cours",
       "supports": [
         {
@@ -262,6 +317,17 @@
             "L'insertion en début met la dernière valeur insérée en premier : elle inverse l'ordre.",
             "Pour obtenir le même ordre que le tableau, insère les valeurs en partant de la **fin** du tableau.",
             "`Cell *start = NULL;` puis `for (int i = n - 1; i >= 0; i--) start = insererDebut(start, valeurs[i]);` et `return start;`"
+          ]
+        },
+        {
+          "id": "09-avant-dernier",
+          "titre": "Trouver l'avant-dernier maillon",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Avec moins de deux maillons, il n'y a pas d'avant-dernier : vérifie `start == NULL` puis `start->next == NULL` avant tout.",
+            "L'avant-dernier est le maillon dont le **suivant** n'a pas de suivant : regarde deux crans plus loin.",
+            "`Cell *cur = start; while (cur->next->next != NULL) cur = cur->next; return cur;`"
           ]
         }
       ],
@@ -397,14 +463,124 @@
           ],
           "reponse": 2,
           "explication": "La dichotomie doit sauter au milieu d'un coup, ce qu'une liste ne sait pas faire. On compare les maillons un par un : O(N). Sur un tableau trié, ce serait O(log N)."
+        },
+        {
+          "question": "On programme quand même une recherche par dichotomie sur une liste chaînée triée de N maillons. Quelle complexité obtient-on ?",
+          "choix": [
+            "O(log N), comme sur un tableau",
+            "O(N log N) : chaque saut au milieu coûte déjà O(N)",
+            "O(1)",
+            "O(N²)"
+          ],
+          "reponse": 1,
+          "explication": "Atteindre le maillon du milieu oblige à suivre les flèches une par une (O(N)), et on fait log N sauts : O(N log N), pire que la recherche maillon par maillon en O(N)."
+        },
+        {
+          "question": "Avec `while (cur->next != NULL) cur = cur->next;`, où s'arrête `cur` ?",
+          "choix": [
+            "Sur `NULL`, après le dernier maillon",
+            "Sur le dernier maillon",
+            "Sur l'avant-dernier maillon",
+            "Sur le premier maillon"
+          ],
+          "reponse": 1,
+          "explication": "La boucle s'arrête dès que le suivant est `NULL` : `cur` est alors **sur** le dernier maillon. C'est la condition qu'on utilise pour insérer en fin. Attention, sur une liste vide, `cur->next` plante."
+        },
+        {
+          "question": "Qu'apporte un pointeur vers le **dernier** maillon, gardé à côté de `start` ?",
+          "choix": [
+            "La suppression en fin devient O(1)",
+            "L'insertion en fin devient O(1)",
+            "La recherche devient O(log N)",
+            "L'accès à la position i devient O(1)"
+          ],
+          "reponse": 1,
+          "explication": "On accroche directement le nouveau maillon derrière le dernier. Mais pour supprimer en fin, il faudrait l'avant-dernier : cela reste O(N)."
+        },
+        {
+          "question": "Dans une liste **doublement chaînée**, chaque maillon contient...",
+          "choix": [
+            "Deux valeurs",
+            "Un pointeur vers le suivant et un pointeur vers le précédent",
+            "Deux pointeurs vers le suivant",
+            "L'adresse du premier et du dernier maillon"
+          ],
+          "reponse": 1,
+          "explication": "Le pointeur vers le précédent permet de reculer. On peut alors supprimer le dernier maillon en O(1) quand on connaît la fin."
+        },
+        {
+          "question": "Dans une liste chaînée **circulaire**, que contient le `next` du dernier maillon ?",
+          "choix": [
+            "`NULL`",
+            "L'adresse du premier maillon",
+            "L'adresse de l'avant-dernier",
+            "Sa propre adresse"
+          ],
+          "reponse": 1,
+          "explication": "La chaîne se referme sur elle-même. Attention : un parcours `while (cur != NULL)` ne s'arrête alors jamais, il faut s'arrêter en revenant au premier."
+        },
+        {
+          "question": "Pourquoi double-t-on la **capacité** d'un tableau quand il est plein, au lieu d'ajouter une seule case ?",
+          "choix": [
+            "Pour que la recherche soit plus rapide",
+            "Pour que les recopies, qui coûtent O(N), deviennent de plus en plus rares",
+            "Parce qu'un tableau doit avoir une taille paire",
+            "Pour pouvoir insérer en début en O(1)"
+          ],
+          "reponse": 1,
+          "explication": "Agrandir oblige à tout recopier. En doublant, on recopie à 8, 16, 32, 64... éléments : la plupart des ajouts en fin se font alors sans recopie."
+        },
+        {
+          "question": "Quelle est la complexité de la recherche du minimum dans une liste chaînée **non triée** ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "Le minimum peut être n'importe où : il faut regarder chaque maillon une fois. Triée dans l'ordre croissant, il serait sur le premier maillon : O(1)."
+        },
+        {
+          "question": "Une liste chaînée est triée dans l'ordre croissant, sans pointeur de fin. Quelle est la complexité de la recherche du **maximum** ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "Le maximum est sur le dernier maillon, et pour y arriver il faut parcourir toute la liste. Dans un tableau trié, il serait en `tab[n - 1]` : O(1)."
+        },
+        {
+          "question": "Pour quelle opération une liste chaînée est-elle plus performante qu'un tableau ?",
+          "choix": [
+            "L'accès à une case au hasard",
+            "L'ajout d'un élément au début",
+            "La recherche dichotomique",
+            "La lecture de la i-ème valeur"
+          ],
+          "reponse": 1,
+          "explication": "Dans une liste, on crée un maillon et on change un pointeur : O(1). Dans un tableau, il faut décaler toutes les cases : O(N). Les trois autres opérations sont meilleures avec un tableau."
+        },
+        {
+          "question": "Quelle est la complexité du parcours de toutes les valeurs, dans un tableau de N cases et dans une liste chaînée de N maillons ?",
+          "choix": [
+            "O(1) pour les deux",
+            "O(N) pour le tableau, O(N²) pour la liste",
+            "O(N) pour les deux",
+            "O(log N) pour le tableau, O(N) pour la liste"
+          ],
+          "reponse": 2,
+          "explication": "Dans les deux cas, on passe une fois sur chaque valeur. C'est une des rares opérations qui coûtent pareil dans les deux structures."
         }
       ]
     },
     {
       "id": "02-operations-listes-chainees",
       "titre": "Opérations sur les listes chaînées",
-      "description": "Recherche, i-ème élément, suppression, insertion en fin, au milieu et dans l'ordre, libération, inversion.",
-      "source": "fondamentaux",
+      "description": "Recherche, i-ème élément, insertion et suppression aux deux bouts, insertion à une position et dans l'ordre, fusion de listes triées, libération, inversion.",
+      "source": "cours",
       "exercices": [
         {
           "id": "01-rechercher",
@@ -548,6 +724,50 @@
             "À chaque tour : sauver la suite, retourner la flèche de `cur` vers `prev`, puis avancer `prev` et `cur` d'un cran. Au départ, `prev` vaut `NULL`.",
             "`Cell *suivant = cur->next; cur->next = prev; prev = cur; cur = suivant;` dans la boucle `while (cur != NULL)`, puis `return prev;`"
           ]
+        },
+        {
+          "id": "14-supprimer-fin",
+          "titre": "Supprimer le dernier maillon",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Trois cas : liste vide (rien à faire), un seul maillon (le début devient `NULL`), deux maillons ou plus.",
+            "Pour couper la chaîne, il faut l'**avant-dernier** : avance `prev` tant que `prev->next->next != NULL`.",
+            "Liste d'un maillon : `free(*start); *start = NULL;`. Sinon, après la boucle : `free(prev->next); prev->next = NULL;`"
+          ]
+        },
+        {
+          "id": "15-reparer-suppressions",
+          "titre": "Réparer deux suppressions qui fuient",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lance les tests : la liste obtenue est juste, c'est la vérification de la mémoire qui échoue. Quels maillons ne sont jamais rendus ?",
+            "Dans `supprimerPremier`, range `start->next` dans une variable, libère `start`, puis renvoie la variable. Dans `supprimerDernier`, libère le dernier avant de couper.",
+            "Cas d'un seul maillon : `free(start); return NULL;`. Cas général : `free(prev->next); prev->next = NULL;`"
+          ]
+        },
+        {
+          "id": "16-inserer-position",
+          "titre": "Insérer à une position",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Commence par le cas où le début change : `position <= 0` ou liste vide. C'est une insertion en début.",
+            "Sinon, avance `prev` depuis le premier maillon jusqu'à la position `position - 1`, mais arrête-toi aussi si `prev->next` vaut `NULL` (on est au bout).",
+            "`Cell *prev = *start; for (int i = 1; i < position && prev->next != NULL; i++) prev = prev->next;` puis `nouveau->next = prev->next; prev->next = nouveau;`"
+          ]
+        },
+        {
+          "id": "17-fusionner-triees",
+          "titre": "Fusionner deux listes triées",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Tant que les deux listes ont encore des maillons, compare leurs premiers maillons et accroche le plus petit à la fin du résultat.",
+            "Un maillon bidon local (`Cell bidon; bidon.next = NULL;`) et un pointeur `fin = &bidon` évitent de traiter à part le premier maillon. Le résultat est `bidon.next`.",
+            "Dans la boucle : `fin->next = a; a = a->next;` (ou pareil avec `b`), puis `fin = fin->next;`. Après la boucle : `fin->next = (a != NULL) ? a : b;`"
+          ]
         }
       ],
       "quiz": [
@@ -671,6 +891,2496 @@
           ],
           "reponse": 1,
           "explication": "La boucle s'arrête quand `cur` vaut `NULL`. `prev` est alors l'ancien dernier maillon, devenu le premier. L'ancien `start` est maintenant le dernier."
+        },
+        {
+          "question": "Pour supprimer le **dernier** maillon d'une liste simplement chaînée, sur quel maillon faut-il s'arrêter ?",
+          "choix": [
+            "Sur le dernier",
+            "Sur l'avant-dernier",
+            "Sur le premier",
+            "Sur `NULL`"
+          ],
+          "reponse": 1,
+          "explication": "C'est le `next` de l'avant-dernier qui doit passer à `NULL`. Le dernier, lui, ne sait pas qui le précède : on ne peut pas reculer dans une liste simplement chaînée."
+        },
+        {
+          "question": "`supprimerFin` est appelée sur une liste d'**un seul** maillon. Que doit-il se passer ?",
+          "choix": [
+            "Rien, il faut au moins deux maillons",
+            "Le maillon est libéré et le début de la liste devient `NULL`",
+            "Le maillon est libéré, le début ne change pas",
+            "Le programme doit s'arrêter"
+          ],
+          "reponse": 1,
+          "explication": "Le seul maillon est aussi le dernier : on le libère et la liste devient vide. Comme le début change, la fonction a besoin de `Cell **` (ou doit renvoyer le nouveau début)."
+        },
+        {
+          "question": "Quelle est la complexité de la suppression en fin, même si l'on garde un pointeur sur le dernier maillon ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "Le pointeur de fin donne le dernier, pas l'avant-dernier. Il faut toujours le chercher depuis le début. Seule une liste doublement chaînée permet O(1)."
+        },
+        {
+          "question": "Que fait ce code ? `Cell *deleteFirst(Cell *c) { if (!c) return c; return c->next; }`",
+          "choix": [
+            "Il supprime correctement le premier maillon",
+            "Il retire le premier maillon de la liste mais ne le libère pas : fuite mémoire",
+            "Il plante sur une liste vide",
+            "Il supprime le deuxième maillon"
+          ],
+          "reponse": 1,
+          "explication": "Le résultat a l'air juste (la liste commence au deuxième maillon), mais l'ancien premier reste réservé et plus personne ne connaît son adresse. Il faut garder `c->next`, faire `free(c)`, puis renvoyer le suivant."
+        },
+        {
+          "question": "Pour insérer une valeur en **position 3** (0 = premier), sur quel maillon `prev` doit-il s'arrêter ?",
+          "choix": [
+            "Celui en position 2",
+            "Celui en position 3",
+            "Celui en position 4",
+            "Le dernier"
+          ],
+          "reponse": 0,
+          "explication": "On insère **après** `prev` : pour que le nouveau maillon soit en position 3, `prev` doit être en position 2."
+        },
+        {
+          "question": "Lors de la fusion de deux listes triées, que fait-on quand l'une des deux listes est terminée ?",
+          "choix": [
+            "On s'arrête : les maillons restants sont perdus",
+            "On recopie le reste de l'autre maillon par maillon avec `malloc`",
+            "On accroche le reste de l'autre liste d'un seul coup",
+            "On trie à nouveau le résultat"
+          ],
+          "reponse": 2,
+          "explication": "Le reste de l'autre liste est déjà trié et chaîné : un seul `fin->next = reste;` suffit."
+        },
+        {
+          "question": "Après `Cell *r = fusionner(a, b);`, que faut-il libérer à la fin ?",
+          "choix": [
+            "`a`, `b` et `r`",
+            "Seulement `r`",
+            "Seulement `a` et `b`",
+            "Rien, la fusion libère tout"
+          ],
+          "reponse": 1,
+          "explication": "La fusion réutilise les maillons de `a` et de `b` : ils font tous partie de `r`. Libérer aussi `a` ou `b` reviendrait à libérer deux fois les mêmes maillons."
+        },
+        {
+          "question": "Pourquoi utiliser un **maillon bidon** (variable locale) au début de la fusion ?",
+          "choix": [
+            "Pour gagner de la mémoire",
+            "Pour ne pas traiter à part le choix du tout premier maillon du résultat",
+            "Parce que `malloc` est interdit",
+            "Pour trier la liste"
+          ],
+          "reponse": 1,
+          "explication": "Avec le bidon, il y a toujours un maillon « d'avant » où accrocher le suivant. Le résultat est `bidon.next`. Le bidon n'a pas été réservé avec `malloc` : on ne le libère pas."
+        }
+      ]
+    },
+    {
+      "id": "03-complexite-et-tableaux",
+      "titre": "Complexité et tableaux",
+      "description": "Qu'est-ce qu'un algorithme, mesurer son coût avec la notation grand O, tableaux en C : taille, parcours, insertion et suppression avec décalage, inversion.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Vidéo : l'algorithmique",
+          "url": "https://www.youtube.com/watch?v=AvfdQ3r3RIs"
+        },
+        {
+          "titre": "Vidéo : la complexité",
+          "url": "https://www.youtube.com/watch?v=wjQIAdaCMoY"
+        },
+        {
+          "titre": "Vidéo : les tableaux",
+          "url": "https://www.youtube.com/watch?v=J-sVoSOoP90"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-afficher-tableau",
+          "titre": "Afficher un tableau proprement",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "Le crochet ouvrant s'affiche avant la boucle, le crochet fermant et le retour à la ligne après.",
+            "Le séparateur `, ` doit s'écrire **entre** deux valeurs : avant chaque valeur, sauf la première (`i > 0`).",
+            "`printf(\"[\");` puis dans la boucle `if (i > 0) printf(\", \"); printf(\"%d\", tab[i]);` et enfin `printf(\"]\n\");`"
+          ]
+        },
+        {
+          "id": "02-etapes-par-moitie",
+          "titre": "Combien de fois couper en deux ?",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Tant que `n` est plus grand que 1, divise-le par deux (division entière) et compte un tour.",
+            "Une boucle `while (n > 1)` avec un compteur qui part de 0.",
+            "`int etapes = 0; while (n > 1) { n = n / 2; etapes++; } return etapes;`"
+          ]
+        },
+        {
+          "id": "03-moyenne",
+          "titre": "La moyenne",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Additionne toutes les cases dans une variable, puis divise par `n`. Pense d'abord au cas `n == 0`.",
+            "Deux pièges : `int / int` fait une division **entière** (3 / 2 vaut 1), et une somme de grands `int` dépasse la limite des `int`. Prends une somme en `long long`, et convertis en `double` avant de diviser.",
+            "`if (n == 0) return 0.0; long long somme = 0; for (...) somme += tab[i]; return (double)somme / (double)n;`"
+          ]
+        },
+        {
+          "id": "04-supprimer-position",
+          "titre": "Supprimer une case",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Vérifie d'abord que `position` désigne une case existante : sinon, renvoie 0 sans rien toucher.",
+            "Décale vers la gauche : chaque case à partir de `position` reçoit la valeur de sa voisine de droite. Puis diminue la taille avec `(*n)--`.",
+            "`if (position >= *n) return 0; for (size_t i = position; i + 1 < *n; i++) tab[i] = tab[i + 1]; (*n)--; return 1;`"
+          ]
+        },
+        {
+          "id": "05-inserer-position",
+          "titre": "Insérer une case",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Deux cas où l'on renvoie 0 sans rien faire : le tableau est plein (`*n == capacite`), ou `position` est plus grande que `*n`.",
+            "Décale vers la droite **en partant de la fin** : la case `*n` reçoit la case `*n - 1`, puis la case `*n - 1` reçoit `*n - 2`... jusqu'à libérer `position`.",
+            "`for (size_t i = *n; i > position; i--) tab[i] = tab[i - 1];` puis `tab[position] = valeur; (*n)++; return 1;`"
+          ]
+        },
+        {
+          "id": "06-reparer-insertion-debut",
+          "titre": "Réparer l'insertion en position 0",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le bug n'apparaît que pour `position == 0`. Calcule `position - 1` quand `position` est un `size_t` qui vaut 0.",
+            "`0 - 1` en `size_t` donne le plus grand nombre possible : la condition `i > position - 1` est fausse dès le départ, la boucle ne décale rien et la valeur écrase la première case.",
+            "Écris la condition sans soustraction : `i > position`. La boucle fait alors exactement les décalages utiles, y compris pour la position 0."
+          ]
+        },
+        {
+          "id": "07-inverser",
+          "titre": "Inverser une portion",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Garde deux indices : `gauche` part de `debut`, `droite` part de `fin - 1` (la dernière case de la portion). Échange les deux cases, puis rapproche-les.",
+            "On s'arrête quand les deux indices se croisent ou se rejoignent. Attention, avec une portion vide (`debut == fin`), `fin - 1` serait plus petit que `debut` : teste `debut + 1 < fin` plutôt.",
+            "`while (debut + 1 < fin) { echanger(&tab[debut], &tab[fin - 1]); debut++; fin--; }` puis `inverser(tab, n)` appelle simplement `inverser_portion(tab, 0, n)`."
+          ]
+        },
+        {
+          "id": "08-rotation",
+          "titre": "Rotation en trois inversions",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Une rotation de `n` crans ne change rien : commence par remplacer `k` par `k % n` (et ne fais rien si `n == 0`).",
+            "Regarde `1 2 | 3 4 5` (k = 2). Inverse chaque morceau séparément : `2 1 | 5 4 3`. Que se passe-t-il si tu inverses ensuite le tout ?",
+            "`k %= n; inverser_portion(tab, 0, k); inverser_portion(tab, k, n); inverser_portion(tab, 0, n);`"
+          ]
+        },
+        {
+          "id": "09-retirer-une-valeur",
+          "titre": "Retirer une valeur partout, en une passe",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Appeler une suppression à chaque valeur trouvée décale tout le reste à chaque fois : O(n²), beaucoup trop lent sur 400 000 cases.",
+            "Utilise deux indices : `lecture` parcourt toutes les cases, `ecriture` indique où ranger la prochaine valeur gardée. Chaque valeur différente de `valeur` est recopiée en `tab[ecriture]`, puis `ecriture` avance.",
+            "`size_t ecriture = 0; for (size_t lecture = 0; lecture < n; lecture++) if (tab[lecture] != valeur) tab[ecriture++] = tab[lecture]; return ecriture;`"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Pourquoi compte-t-on les opérations plutôt que de chronométrer un algorithme ?",
+          "choix": [
+            "Parce qu'un chronomètre n'est pas assez précis",
+            "Pour ne mesurer que l'algorithme, pas la vitesse de la machine ou de la personne",
+            "Parce que le C ne sait pas mesurer le temps",
+            "Pour obtenir un résultat en secondes"
+          ],
+          "reponse": 1,
+          "explication": "Le temps dépend de la machine (ou de la vitesse de lecture dans l'exemple du dictionnaire). Le nombre d'opérations élémentaires en fonction de `n` ne dépend que de l'algorithme."
+        },
+        {
+          "question": "Un algorithme fait `4n + 100` opérations. Quelle est sa complexité ?",
+          "choix": [
+            "O(1)",
+            "O(n)",
+            "O(4n + 100)",
+            "O(n²)"
+          ],
+          "reponse": 1,
+          "explication": "On garde le terme qui grandit le plus vite (`4n`) et on enlève la constante : O(n)."
+        },
+        {
+          "question": "Quelle est la complexité de deux boucles `for` imbriquées qui font chacune `n` tours, avec une opération simple à l'intérieur ?",
+          "choix": [
+            "O(n)",
+            "O(2n)",
+            "O(n²)",
+            "O(log n)"
+          ],
+          "reponse": 2,
+          "explication": "Pour chacun des `n` tours de la boucle extérieure, la boucle intérieure fait `n` tours : `n × n` opérations, donc O(n²)."
+        },
+        {
+          "question": "Une boucle divise par deux la quantité de données restante à chaque tour. Avec un million de données, combien de tours environ ?",
+          "choix": [
+            "20",
+            "1 000",
+            "500 000",
+            "1 000 000"
+          ],
+          "reponse": 0,
+          "explication": "2²⁰ vaut environ un million : après 20 divisions par deux, il ne reste plus qu'une donnée. C'est une complexité en O(log n)."
+        },
+        {
+          "question": "Pourquoi accéder à `tab[i]` coûte-t-il O(1) ?",
+          "choix": [
+            "Parce que le C parcourt le tableau très vite",
+            "Parce que les cases sont collées et de même taille : l'adresse de la case `i` se calcule directement",
+            "Parce que le tableau est trié",
+            "Ça coûte O(i), pas O(1)"
+          ],
+          "reponse": 1,
+          "explication": "Adresse de `tab[i]` = adresse de `tab[0]` + `i` × taille d'une case. Un seul calcul, quelle que soit la valeur de `i`."
+        },
+        {
+          "question": "Dans une fonction `void f(int *tab)`, que vaut `sizeof tab` ?",
+          "choix": [
+            "Le nombre de cases du tableau",
+            "Le nombre d'octets du tableau",
+            "La taille d'un pointeur (8 octets sur une machine 64 bits)",
+            "Une erreur de compilation"
+          ],
+          "reponse": 2,
+          "explication": "Un tableau passé à une fonction devient un pointeur vers sa première case. La taille est perdue : il faut la passer en paramètre."
+        },
+        {
+          "question": "Pour insérer une valeur à la position `p`, dans quel sens décale-t-on les cases ?",
+          "choix": [
+            "De `p` vers la fin",
+            "De la fin vers `p`",
+            "Peu importe",
+            "On ne décale pas, on écrase `tab[p]`"
+          ],
+          "reponse": 1,
+          "explication": "En partant de `p`, chaque copie écrase la valeur suivante avant qu'elle soit déplacée. En partant de la fin, la dernière valeur va dans la case libre, puis chaque case libère la place pour la précédente."
+        },
+        {
+          "question": "Avec `size_t n = 0;`, que vaut `n - 1` ?",
+          "choix": [
+            "-1",
+            "0",
+            "Un très grand nombre positif",
+            "Une erreur à la compilation"
+          ],
+          "reponse": 2,
+          "explication": "`size_t` est non signé : il ne peut pas être négatif. `0 - 1` « fait le tour » et donne la plus grande valeur possible. Une boucle `i < n - 1` déborderait alors du tableau."
+        },
+        {
+          "question": "Quelle boucle inverse correctement un tableau de taille `n` ?",
+          "choix": [
+            "`for (i = 0; i < n; i++) echanger(&t[i], &t[n - 1 - i]);`",
+            "`for (i = 0; i < n / 2; i++) echanger(&t[i], &t[n - 1 - i]);`",
+            "`for (i = 0; i < n / 2; i++) echanger(&t[i], &t[n - i]);`",
+            "`for (i = 1; i < n / 2; i++) echanger(&t[i], &t[n - 1 - i]);`"
+          ],
+          "reponse": 1,
+          "explication": "On s'arrête au milieu (sinon chaque paire est échangée deux fois et rien ne change). La case symétrique de `i` est `n - 1 - i` : `n - i` sort du tableau quand `i == 0`."
+        },
+        {
+          "question": "Quelle est la complexité d'une suppression au **début** d'un tableau de `n` cases ?",
+          "choix": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n²)"
+          ],
+          "reponse": 2,
+          "explication": "Il faut décaler les `n - 1` cases suivantes d'un cran vers la gauche : O(n). Seule la suppression à la fin est en O(1)."
+        },
+        {
+          "question": "On veut retirer toutes les cases qui valent 0 d'un tableau. Quelle méthode est en O(n) ?",
+          "choix": [
+            "Appeler `supprimer(tab, &n, i)` chaque fois qu'on trouve un 0",
+            "Parcourir avec un indice de lecture et un indice d'écriture, et recopier seulement les cases à garder",
+            "Trier le tableau puis enlever le début",
+            "Aucune, c'est forcément O(n²)"
+          ],
+          "reponse": 1,
+          "explication": "Chaque appel à `supprimer` décale tout le reste (O(n)), donc O(n²) au total. Avec deux indices, chaque case est lue une fois et écrite au plus une fois : O(n)."
+        },
+        {
+          "question": "En algorithmique, la complexité d'un algorithme mesure :",
+          "choix": [
+            "le nombre de lignes de son code",
+            "comment son nombre d'opérations grandit quand la taille des données augmente",
+            "le nombre d'ordinateurs nécessaires pour le lancer",
+            "le temps qu'il a fallu pour l'écrire"
+          ],
+          "reponse": 1,
+          "explication": "La complexité décrit la vitesse d'un algorithme **en fonction de la taille des données**, sans dépendre de la machine."
+        },
+        {
+          "question": "Quelle est la complexité de la recherche du maximum dans un tableau **non trié** ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "Le maximum peut être dans n'importe quelle case : il faut toutes les regarder une fois."
+        },
+        {
+          "question": "Quelle est la complexité de la recherche d'une valeur quelconque dans un tableau non trié ?",
+          "choix": [
+            "O(N log N)",
+            "O(log N)",
+            "O(1)",
+            "O(N)"
+          ],
+          "reponse": 3,
+          "explication": "Sans ordre, on ne peut rien éliminer d'avance : dans le pire cas, on regarde toutes les cases. La recherche dichotomique, en O(log N), demande un tableau trié."
+        },
+        {
+          "question": "Quelle est la complexité de l'ajout d'une valeur **à la fin** d'un tableau qui a encore de la place, quand on connaît sa taille ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 0,
+          "explication": "On écrit dans `tab[n]` et on augmente `n` : rien à décaler. C'est l'ajout au **début** qui coûte O(N)."
+        },
+        {
+          "question": "Pour de très grandes données, laquelle de ces complexités est la plus rapide ?",
+          "choix": [
+            "O(N)",
+            "O(N log N)",
+            "O(log N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "O(1) < O(log N) < O(N) < O(N log N) < O(N²). Pour un million de données, log N vaut environ 20."
+        }
+      ]
+    },
+    {
+      "id": "04-tableaux-tries",
+      "titre": "Tableaux triés et recherche",
+      "description": "Minimum, recherche séquentielle ou dichotomique, égalité de deux tableaux, fusion de deux tableaux triés : ce que gagne un tableau trié.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Vidéo : recherche du minimum",
+          "url": "https://www.youtube.com/watch?v=cN8v5lpFOXA"
+        },
+        {
+          "titre": "Vidéo : recherche d'un élément",
+          "url": "https://www.youtube.com/watch?v=KwZfelrKcSw"
+        },
+        {
+          "titre": "Vidéo : égalité de deux tableaux",
+          "url": "https://www.youtube.com/watch?v=SzKqUhrtheU"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-minimum",
+          "titre": "Le minimum d'un tableau",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Garde dans une variable `min` la plus petite valeur vue jusqu'ici, et compare-la à chaque case.",
+            "`min` doit partir d'une vraie valeur du tableau : `tab[0]`. Partir de `0` donne un faux résultat si toutes les valeurs sont positives.",
+            "`int min = tab[0];` puis `for (size_t i = 1; i < n; i++) if (tab[i] < min) min = tab[i];` et enfin `return min;`"
+          ]
+        },
+        {
+          "id": "02-minimum-maximum-trie",
+          "titre": "Minimum et maximum d'un tableau trié",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Le tableau est trié dans l'ordre croissant : où se trouve forcément la plus petite valeur ? Et la plus grande ?",
+            "Aucune boucle n'est nécessaire : la plus petite valeur est dans la première case, la plus grande dans la dernière.",
+            "`return tab[0];` pour le minimum et `return tab[n - 1];` pour le maximum."
+          ]
+        },
+        {
+          "id": "03-recherche-sequentielle",
+          "titre": "Recherche séquentielle",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Parcours les cases une par une, de la première à la dernière.",
+            "Dès que `tab[i] == valeur`, renvoie `i` : c'est forcément la première apparition. Si la boucle se termine, la valeur n'est nulle part.",
+            "`for (size_t i = 0; i < n; i++) if (tab[i] == valeur) return (int)i;` puis, **après** la boucle, `return -1;`"
+          ]
+        },
+        {
+          "id": "04-reparer-contient",
+          "titre": "Réparer : la recherche qui abandonne trop tôt",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Déroule la boucle à la main avec `{42, -4, 6, 3}` et la valeur `6` : combien de cases sont regardées avant que la fonction se termine ?",
+            "Au premier tour, `tab[0]` vaut 42 : on passe dans le `else` et `return 0` quitte la fonction. Les autres cases ne sont jamais vues.",
+            "Supprime le `else` : dans la boucle, on ne renvoie que `1` (trouvé). Le `return 0` (absent) se place **après** la boucle, une fois toutes les cases regardées."
+          ]
+        },
+        {
+          "id": "05-reparer-egalite-triee",
+          "titre": "Réparer : l'égalité de deux tableaux triés",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Il y a deux problèmes. Le premier : quelles positions `i` la boucle parcourt-elle vraiment quand `na` vaut 3 ?",
+            "Avec `i < na - 1`, la dernière case n'est jamais comparée. Et quand `na` vaut 0, `na - 1` en `size_t` donne un nombre énorme : la boucle lit hors du tableau.",
+            "Deuxième problème : deux tableaux de tailles différentes ne sont jamais égaux. Commence par `if (na != nb) return 0;`, puis boucle avec `i < na`."
+          ]
+        },
+        {
+          "id": "06-egalite-non-triee",
+          "titre": "Égalité de deux tableaux non triés, sans les abîmer",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Deux tableaux triés égaux sont identiques case par case. Il suffit donc de trier… mais pas les tableaux reçus : ils sont `const`, et l'appelant veut les retrouver dans leur ordre.",
+            "Fais une copie de chaque tableau (`malloc` puis `memcpy`), trie les copies avec `qsort`, compare-les case par case, puis libère les deux copies avec `free`, quelle que soit la réponse.",
+            "Pour `qsort`, écris une fonction `static int comparer(const void *x, const void *y)` qui lit les deux entiers (`*(const int *)x`) et renvoie `(a > b) - (a < b)`. Pense au cas `n == 0` : renvoie 1 sans rien allouer."
+          ]
+        },
+        {
+          "id": "07-dichotomie",
+          "titre": "La recherche dichotomique",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Garde deux bornes qui encadrent la zone où la valeur peut encore être. Regarde la case du milieu : soit c'est la bonne, soit la valeur est à gauche, soit à droite.",
+            "Avec des `size_t`, prends une zone semi-ouverte : `debut = 0`, `fin = n` (première case exclue), et boucle `while (debut < fin)`. Ainsi aucune soustraction ne peut passer sous zéro.",
+            "`size_t milieu = debut + (fin - debut) / 2;` Si `tab[milieu] == valeur`, renvoie `(int)milieu`. Si `valeur < tab[milieu]`, alors `fin = milieu;` sinon `debut = milieu + 1;`. Après la boucle : `return -1;`"
+          ]
+        },
+        {
+          "id": "08-reparer-dichotomie",
+          "titre": "Réparer : trois pièges de la dichotomie",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Premier piège, dans `milieu` : avec des bornes énormes, `debut + fin` dépasse la plus grande valeur d'un `size_t` et repart de zéro. Calcule le milieu sans additionner les deux bornes : `debut + (fin - debut) / 2`.",
+            "Deuxième piège : la zone est **semi-ouverte**, `fin` est la première case exclue. Quand la valeur est à gauche de `m`, la case `m` est exclue en écrivant `fin = m` (et pas `m - 1`, qui jette une case de trop et vaut un nombre énorme quand `m` vaut 0).",
+            "Troisième piège : `debut = m` peut laisser la zone identique (quand `fin == debut + 1`, `m` vaut `debut`) et la boucle ne s'arrête plus. La case `m` a déjà été regardée : `debut = m + 1`."
+          ]
+        },
+        {
+          "id": "09-fusion-allouee",
+          "titre": "Fusionner deux tableaux triés dans un nouveau tableau",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence par le cas `na + nb == 0` (renvoie `NULL`), puis alloue `na + nb` cases avec `malloc` et vérifie que l'allocation a réussi.",
+            "Trois indices : `i` dans `a`, `j` dans `b`, `k` dans le résultat. Tant que `i < na && j < nb`, copie la plus petite des deux têtes (`a[i] <= b[j]` : on prend `a` en cas d'égalité) et avance l'indice correspondant.",
+            "Après la boucle, un des deux tableaux n'est pas fini : `while (i < na) res[k++] = a[i++];` puis `while (j < nb) res[k++] = b[j++];`, et enfin `return res;`"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la complexité de la recherche du minimum dans un tableau **non trié** de `n` valeurs, avec la bonne méthode ?",
+          "choix": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n²)"
+          ],
+          "reponse": 2,
+          "explication": "On garde le plus petit vu jusque-là et on le compare à chaque case : un seul passage. On ne peut pas faire mieux, car une case non regardée pourrait être le minimum."
+        },
+        {
+          "question": "Et dans un tableau trié dans l'ordre croissant ?",
+          "choix": [
+            "O(1) : c'est `tab[0]`",
+            "O(log n) : par dichotomie",
+            "O(n)",
+            "O(n log n)"
+          ],
+          "reponse": 0,
+          "explication": "Les valeurs vont de la plus petite à la plus grande : le minimum est toujours dans la première case, le maximum dans la dernière."
+        },
+        {
+          "question": "Pourquoi écrire `int min = tab[0];` plutôt que `int min = 0;` ?",
+          "choix": [
+            "Pour aller plus vite",
+            "Parce que si toutes les valeurs sont positives, `0` serait renvoyé alors qu'il n'est pas dans le tableau",
+            "Parce que `0` est interdit en C",
+            "Il n'y a aucune différence"
+          ],
+          "reponse": 1,
+          "explication": "Le minimum de départ doit être une vraie valeur du tableau. Avec `{5, 8, 3}`, partir de `0` donnerait `0`."
+        },
+        {
+          "question": "Que fait la boucle `for (size_t i = 0; i < n; i++) { if (tab[i] == v) return 1; else return 0; }` ?",
+          "choix": [
+            "Il cherche `v` dans tout le tableau",
+            "Il ne regarde que la première case",
+            "Il ne regarde que la dernière case",
+            "Il ne compile pas"
+          ],
+          "reponse": 1,
+          "explication": "Au premier tour, l'un des deux `return` quitte la fonction. Le `return 0` « absent » doit être placé **après** la boucle."
+        },
+        {
+          "question": "Quelle condition est indispensable pour utiliser la recherche dichotomique ?",
+          "choix": [
+            "Le tableau doit être trié",
+            "La taille doit être une puissance de 2",
+            "Les valeurs doivent être positives",
+            "Le tableau doit être alloué avec `malloc`"
+          ],
+          "reponse": 0,
+          "explication": "Elle décide de jeter la moitié gauche ou droite en comparant avec le milieu. Ce n'est juste que si les valeurs sont rangées dans l'ordre."
+        },
+        {
+          "question": "Avec la recherche dichotomique, combien de tours au maximum pour un tableau trié d'un million de valeurs ?",
+          "choix": [
+            "Environ 20",
+            "Environ 1 000",
+            "Environ 500 000",
+            "Un million"
+          ],
+          "reponse": 0,
+          "explication": "La zone est divisée par deux à chaque tour, et 2²⁰ vaut environ un million : environ 20 tours, c'est du O(log n)."
+        },
+        {
+          "question": "Dans la version fermée `[debut, fin]` de la dichotomie, quand s'arrête-t-on si la valeur est absente ?",
+          "choix": [
+            "Quand `debut > fin`",
+            "Quand `debut == fin`",
+            "Quand `milieu == 0`",
+            "Après `n` tours"
+          ],
+          "reponse": 0,
+          "explication": "Tant que `debut <= fin`, la zone contient au moins une case. Quand `debut` dépasse `fin`, il ne reste plus rien à regarder."
+        },
+        {
+          "question": "Avec des indices `size_t`, pourquoi `fin = milieu - 1;` est-il dangereux ?",
+          "choix": [
+            "Parce que la soustraction est lente",
+            "Parce que si `milieu` vaut 0, `fin` devient le plus grand nombre possible au lieu de -1",
+            "Parce que `size_t` ne permet pas la division",
+            "Ce n'est pas dangereux"
+          ],
+          "reponse": 1,
+          "explication": "`size_t` est non signé. La version sûre utilise une zone semi-ouverte `[debut, fin[` : `fin = milieu` et la condition `debut < fin`."
+        },
+        {
+          "question": "Pourquoi calculer le milieu avec `debut + (fin - debut) / 2` ?",
+          "choix": [
+            "Ça donne un milieu différent",
+            "Pour éviter que `debut + fin` dépasse le plus grand entier sur de très grands tableaux",
+            "Parce que `(debut + fin) / 2` ne compile pas",
+            "Pour arrondir au supérieur"
+          ],
+          "reponse": 1,
+          "explication": "Le résultat est le même, mais `fin - debut` reste petit : aucun débordement possible."
+        },
+        {
+          "question": "On compare deux tableaux triés de taille `n` avec `for (size_t i = 0; i < n - 1; i++)`. Quel est le problème ?",
+          "choix": [
+            "Aucun, la dernière case est forcément égale",
+            "La dernière case n'est pas comparée, et `n - 1` déborde quand `n` vaut 0",
+            "La première case n'est pas comparée",
+            "La boucle fait un tour de trop"
+          ],
+          "reponse": 1,
+          "explication": "`1 2 3` et `1 2 4` seraient déclarés égaux. La bonne borne est `i < n`."
+        },
+        {
+          "question": "`[1, 2, 2, 3]` et `[1, 2, 3, 3]` sont-ils égaux au sens « mêmes valeurs, même nombre de fois » ?",
+          "choix": [
+            "Oui, ils contiennent tous les deux 1, 2 et 3",
+            "Non, 2 et 3 n'apparaissent pas le même nombre de fois",
+            "Oui, ils ont la même taille",
+            "Ça dépend de l'ordre"
+          ],
+          "reponse": 1,
+          "explication": "Le premier a deux 2 et un 3, le second un 2 et deux 3. Il faut comparer les **quantités**, pas seulement la présence."
+        },
+        {
+          "question": "Quelle est la meilleure méthode pour tester l'égalité de deux tableaux **non triés** ?",
+          "choix": [
+            "Pour chaque valeur de `a`, chercher une case égale non utilisée dans `b` : O(n²)",
+            "Trier des copies des deux tableaux, puis comparer case par case : O(n log n)",
+            "Comparer case par case directement : O(n)",
+            "Comparer les sommes des deux tableaux : O(n)"
+          ],
+          "reponse": 1,
+          "explication": "Un bon tri coûte O(n log n), la comparaison O(n) : O(n log n) au total. Comparer les sommes ne suffit pas : `1 + 4` = `2 + 3`."
+        },
+        {
+          "question": "Une fonction `egaux(int *a, int *b, size_t n)` trie `a` et `b` directement avant de les comparer. Qu'est-ce qui ne va pas ?",
+          "choix": [
+            "Rien, la réponse est juste",
+            "Elle modifie les tableaux de l'appelant, qui demandait seulement s'ils étaient égaux",
+            "Elle ne compile pas",
+            "Elle est en O(n³)"
+          ],
+          "reponse": 1,
+          "explication": "La réponse est juste, mais c'est un effet de bord caché. On trie des copies, et on écrit `const int *` pour promettre qu'on ne touche pas aux tableaux reçus."
+        },
+        {
+          "question": "Quelle est la complexité de la fusion de deux tableaux triés de tailles `na` et `nb` ?",
+          "choix": [
+            "O(na × nb)",
+            "O(na + nb)",
+            "O(log(na + nb))",
+            "O((na + nb)²)"
+          ],
+          "reponse": 1,
+          "explication": "À chaque tour, une valeur est copiée dans le résultat et un indice avance : `na + nb` copies en tout."
+        },
+        {
+          "question": "Pendant la fusion, `a` est épuisé alors qu'il reste des valeurs dans `b`. Que faire ?",
+          "choix": [
+            "Rien, la fusion est terminée",
+            "Recopier telles quelles les valeurs restantes de `b`, déjà triées et toutes plus grandes",
+            "Trier les valeurs restantes de `b`",
+            "Recommencer la fusion depuis le début"
+          ],
+          "reponse": 1,
+          "explication": "Elles sont triées et plus grandes que tout ce qui a été copié : on les ajoute à la fin, dans l'ordre."
+        },
+        {
+          "question": "On insère une valeur à sa place dans un tableau trié, en trouvant la position par dichotomie. Quelle est la complexité totale ?",
+          "choix": [
+            "O(log n)",
+            "O(n)",
+            "O(1)",
+            "O(n log n)"
+          ],
+          "reponse": 1,
+          "explication": "Trouver la position coûte O(log n), mais décaler les cases suivantes coûte O(n). On garde le plus gros : O(n)."
+        }
+      ]
+    },
+    {
+      "id": "05-tris-simples",
+      "titre": "Tris simples",
+      "description": "Tris par sélection, à bulles, par insertion, pair-impair, à peigne et cocktail : principe, code C, complexité, meilleur et pire cas, stabilité.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Vidéo : tri par insertion",
+          "url": "https://www.youtube.com/watch?v=gkORwcjHfOk"
+        },
+        {
+          "titre": "Vidéo : tri par sélection",
+          "url": "https://www.youtube.com/watch?v=qYZywjqkrCs"
+        },
+        {
+          "titre": "Vidéo : tri à bulles",
+          "url": "https://www.youtube.com/watch?v=cPdlMcv2pYE"
+        },
+        {
+          "titre": "Visualisation : tri à bulles",
+          "url": "https://www.youtube.com/watch?v=Cq7SMsQBEUw"
+        },
+        {
+          "titre": "Visualisation : tri par sélection",
+          "url": "https://www.youtube.com/watch?v=92BfuxHn2XE"
+        },
+        {
+          "titre": "Visualisation : tri par insertion",
+          "url": "https://www.youtube.com/watch?v=8oJS1BMKE64"
+        },
+        {
+          "titre": "Visualisation : tri à peigne",
+          "url": "https://www.youtube.com/watch?v=ob49RukGnAw"
+        },
+        {
+          "titre": "Visualisation : tri pair-impair",
+          "url": "https://www.youtube.com/watch?v=AYehFa-oKCA"
+        },
+        {
+          "titre": "Visualisation : tri cocktail",
+          "url": "https://www.youtube.com/watch?v=njClLBoEbfI"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-echanger",
+          "titre": "Échanger deux cases",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`a` et `b` sont des adresses : `*a` est la variable pointée par `a`. C'est elle qu'il faut modifier.",
+            "Écrire `*a = *b;` puis `*b = *a;` ne marche pas : après la première ligne, l'ancienne valeur de `*a` est perdue. Mets-la d'abord de côté.",
+            "`int temp = *a; *a = *b; *b = temp;`"
+          ]
+        },
+        {
+          "id": "02-tri-selection",
+          "titre": "Le tri par sélection",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "À l'étape `i`, les cases `0` à `i - 1` sont triées et définitives. Cherche la **position** du minimum parmi les cases `i` à `n - 1`.",
+            "Garde `pos_min` (une position, pas une valeur) : `size_t pos_min = i;` puis `for (size_t j = i + 1; j < n; j++) if (tab[j] < tab[pos_min]) pos_min = j;`",
+            "Échange seulement si `pos_min != i` : `echanger(&tab[i], &tab[pos_min]);`. La boucle extérieure s'écrit `for (size_t i = 0; i + 1 < n; i++)` pour supporter `n == 0`."
+          ]
+        },
+        {
+          "id": "03-tri-bulles",
+          "titre": "Le tri à bulles avec arrêt anticipé",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Deux boucles : la boucle extérieure fait les passages, la boucle intérieure compare chaque case à sa voisine de droite. Après chaque passage, la plus grande valeur restante est au bout : le passage suivant peut s'arrêter une case plus tôt.",
+            "Pour l'arrêt anticipé : un indicateur `int echange = 0;` remis à 0 **au début de chaque passage**, mis à 1 quand on échange. Si un passage se termine avec `echange == 0`, le tableau est trié : `return;`.",
+            "`for (size_t fin = n; fin > 1; fin--)` puis `for (size_t j = 0; j + 1 < fin; j++)` avec `if (plus_grand(tab[j], tab[j + 1])) { echanger(&tab[j], &tab[j + 1]); echange = 1; }`."
+          ]
+        },
+        {
+          "id": "04-tri-insertion",
+          "titre": "Le tri par insertion en décalant",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Pour chaque `i` de 1 à `n - 1` : mets `tab[i]` de côté dans `valeur`, puis cherche sa place dans la partie triée **en partant de sa droite** (de la case `i - 1` vers la case 0).",
+            "Tant que la case de gauche est plus grande que `valeur`, recopie-la une case plus à droite : `tab[j] = tab[j - 1]; j--;`. Quand ça s'arrête, `j` est la place de `valeur` : `tab[j] = valeur;`.",
+            "`size_t j = i; while (j > 0 && plus_grand(tab[j - 1], valeur)) { tab[j] = tab[j - 1]; j--; }`. `j > 0` doit être testé **avant** : sinon `tab[j - 1]` est lu quand `j` vaut 0."
+          ]
+        },
+        {
+          "id": "05-compter-le-travail",
+          "titre": "Compter comparaisons, échanges et inversions",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`compter_inversions` : deux boucles imbriquées, `i` de 0 à `n - 1` et `j` de `i + 1` à `n - 1`. On compte les paires où `tab[i] > tab[j]` (strictement : deux valeurs égales ne sont pas une inversion).",
+            "`tri_bulles_compte` reçoit les **adresses** de deux compteurs. Commence par `*comparaisons = 0; *echanges = 0;`, puis fais `(*comparaisons)++` à chaque comparaison et `(*echanges)++` à chaque échange. Les parenthèses comptent : `*comparaisons++` avance le pointeur au lieu d'augmenter le compteur.",
+            "Le tri lui-même : `for (size_t fin = n; fin > 1; fin--)`, un indicateur `echange` remis à 0 au début de chaque passage, `for (size_t j = 0; j + 1 < fin; j++)`, et `if (!echange) return;` à la fin du passage."
+          ]
+        },
+        {
+          "id": "06-reparer-pair-impair",
+          "titre": "Réparer : le tri pair-impair qui ne s'arrête pas à temps",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Premier problème, la borne : pour la dernière paire regardée, `i + 1` doit encore être une case du tableau. Avec `i < n`, quand `i` vaut `n - 1`, on compare `tab[n - 1]` à `tab[n]`, qui n'existe pas.",
+            "Deuxième problème : les `n` tours sont toujours faits, même quand le tableau est trié depuis longtemps. Il faut s'arrêter après un tour (phase paire **et** phase impaire) sans aucun échange.",
+            "Remplace la boucle `for (tour…)` par `int echange = 1; while (echange) { echange = 0; … }`, avec deux boucles `for (size_t i = 0; i + 1 < n; i += 2)` et `for (size_t i = 1; i + 1 < n; i += 2)` qui mettent `echange = 1` quand elles échangent."
+          ]
+        },
+        {
+          "id": "07-tri-cocktail",
+          "titre": "Le tri cocktail contre les tortues",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Garde deux bornes : `debut` (première case pas encore placée) et `fin` (dernière). L'aller fait remonter le maximum en `fin`, le retour fait descendre le minimum en `debut`. Après chaque passage, la borne concernée se resserre d'une case.",
+            "L'aller va de `debut` à `fin - 1` (compare `tab[i]` et `tab[i + 1]`), le retour va de `fin` jusqu'à `debut + 1` en reculant (compare `tab[i - 1]` et `tab[i]`). Commence l'aller à `debut`, pas à 0 : les cases avant `debut` sont déjà placées.",
+            "Si `n < 2`, il n'y a rien à faire (et `n - 1` déborderait). Sinon : `while (echange) { echange = 0; aller; if (!echange) return; fin--; echange = 0; retour; debut++; }`."
+          ]
+        },
+        {
+          "id": "08-tri-peigne",
+          "titre": "Le tri à peigne",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "C'est un tri à bulles où l'on compare `tab[i]` et `tab[i + ecart]` au lieu de deux voisins. Au début de chaque passage, l'écart est divisé par 1,3 : `ecart = ecart * 10 / 13;`, sans descendre sous 1.",
+            "La condition d'arrêt a deux parties : on continue **tant que** l'écart est plus grand que 1 **ou** que le dernier passage a fait un échange. Remets l'indicateur `echange` à 0 au début de chaque passage.",
+            "`size_t ecart = n; int echange = 1; while (ecart > 1 || echange) { ecart = ecart * 10 / 13; if (ecart < 1) ecart = 1; echange = 0; for (size_t i = 0; i + ecart < n; i++) … }`"
+          ]
+        },
+        {
+          "id": "09-reparer-peigne",
+          "titre": "Réparer : le tri à peigne qui s'arrête trop tôt",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence par ce que dit le compilateur : la fonction est déclarée `void`, elle ne peut rien renvoyer. Le tableau est modifié sur place, il n'y a rien à renvoyer : supprime la ligne.",
+            "Ensuite : la boucle s'arrête dès que l'écart vaut 1, donc après **un seul** passage de tri à bulles. Un passage ne suffit pas toujours : il faut recommencer tant que le passage à l'écart 1 trouve des voisins dans le désordre.",
+            "Ajoute un indicateur `int echange = 1;`, écris `while (ecart > 1 || echange)`, remets `echange = 0;` au début de chaque passage, mets-le à 1 quand tu échanges, et garde l'écart à au moins 1 (`if (ecart < 1) ecart = 1;`)."
+          ]
+        },
+        {
+          "id": "10-classement-stable",
+          "titre": "Un classement stable",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Le tri par sélection fourni trie bien par note, mais il n'est pas stable : l'échange envoie une fiche loin, par-dessus d'autres fiches de même note. Il faut un tri qui ne fait bouger une fiche que par-dessus des fiches **strictement** moins bonnes.",
+            "Le tri par insertion convient : on met la fiche `fiches[i]` de côté, puis on décale vers la droite les fiches de gauche tant qu'elles ont une note **strictement plus petite** (classement du meilleur au moins bon). Une fiche de même note arrête le décalage : l'ordre de départ est gardé.",
+            "`Fiche f = fiches[i]; size_t j = i; while (j > 0 && fiches[j - 1].note < f.note) { fiches[j] = fiches[j - 1]; j--; } fiches[j] = f;` : une structure se copie en entier avec `=`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que veut dire qu'un tri est **stable** ?",
+          "choix": [
+            "Il donne toujours le même temps d'exécution",
+            "Deux valeurs égales gardent leur ordre de départ",
+            "Il n'utilise pas de deuxième tableau",
+            "Il ne plante jamais"
+          ],
+          "reponse": 1,
+          "explication": "La stabilité compte quand on trie des fiches selon un seul champ : pour une même note, l'ordre d'avant (par exemple alphabétique) est conservé. « Sans deuxième tableau », c'est un tri **en place**."
+        },
+        {
+          "question": "On applique le tri par sélection à `4 1 3 2`. Quel est le tableau après la **première** étape ?",
+          "choix": [
+            "`1 4 3 2`",
+            "`1 2 3 4`",
+            "`1 3 2 4`",
+            "`4 1 2 3`"
+          ],
+          "reponse": 0,
+          "explication": "Le minimum de tout le tableau (1, en position 1) est échangé avec la case 0. Le reste ne bouge pas."
+        },
+        {
+          "question": "Combien de comparaisons fait le tri par sélection sur un tableau **déjà trié** de `n` valeurs ?",
+          "choix": [
+            "`n - 1`",
+            "`n(n - 1) / 2`",
+            "0",
+            "`n log n`"
+          ],
+          "reponse": 1,
+          "explication": "Il cherche le minimum du reste à chaque étape sans savoir que le tableau est trié : `(n - 1) + (n - 2) + … + 1` comparaisons. Son meilleur cas est aussi en O(n²)."
+        },
+        {
+          "question": "Quel tri simple fait **le moins d'échanges** dans le pire cas ?",
+          "choix": [
+            "Le tri à bulles",
+            "Le tri par sélection, avec au plus `n - 1` échanges",
+            "Le tri cocktail",
+            "Le tri pair-impair"
+          ],
+          "reponse": 1,
+          "explication": "Il fait un seul échange par étape (le minimum va à sa place). Les tris par voisins font autant d'échanges que d'inversions, jusqu'à `n(n - 1) / 2`."
+        },
+        {
+          "question": "Pourquoi le tri par sélection n'est-il **pas** stable ?",
+          "choix": [
+            "Parce qu'il compare avec `<`",
+            "Parce que l'échange peut envoyer une valeur loin, par-dessus une valeur égale",
+            "Parce qu'il est en O(n²)",
+            "Il est stable"
+          ],
+          "reponse": 1,
+          "explication": "Avec `2a 2b 1`, le minimum 1 est échangé avec la case 0 : on obtient `1 2b 2a`. Les deux 2 ont changé d'ordre."
+        },
+        {
+          "question": "Après le premier passage du tri à bulles (du début vers la fin), que sait-on ?",
+          "choix": [
+            "La plus petite valeur est dans la première case",
+            "La plus grande valeur est dans la dernière case",
+            "Le tableau est trié",
+            "La moitié du tableau est triée"
+          ],
+          "reponse": 1,
+          "explication": "La plus grande valeur gagne toutes ses comparaisons et remonte jusqu'au bout, comme une bulle. Le passage suivant peut s'arrêter une case plus tôt."
+        },
+        {
+          "question": "Avec l'arrêt anticipé, quelle est la complexité du tri à bulles sur un tableau **déjà trié** ?",
+          "choix": [
+            "O(1)",
+            "O(n)",
+            "O(n log n)",
+            "O(n²)"
+          ],
+          "reponse": 1,
+          "explication": "Le premier passage compare les `n - 1` paires de voisins sans faire d'échange : on s'arrête aussitôt. Sans l'arrêt anticipé, on ferait tous les passages : O(n²)."
+        },
+        {
+          "question": "Dans un tri à bulles, la boucle intérieure s'écrit `for (size_t j = 0; j < fin; j++)` et compare `tab[j]` à `tab[j + 1]`. Quel est le problème ?",
+          "choix": [
+            "Aucun",
+            "Le dernier tour lit `tab[fin]`, une case hors de la zone (hors du tableau au premier passage)",
+            "La première case n'est jamais comparée",
+            "La boucle ne s'arrête jamais"
+          ],
+          "reponse": 1,
+          "explication": "`j + 1` doit rester une vraie case de la zone : la condition est `j + 1 < fin`."
+        },
+        {
+          "question": "Qu'est-ce qu'une « tortue » pour le tri à bulles ?",
+          "choix": [
+            "Une grande valeur placée au début",
+            "Une petite valeur placée à la fin, qui ne recule que d'une case par passage",
+            "Une valeur qui apparaît deux fois",
+            "Un tableau déjà trié"
+          ],
+          "reponse": 1,
+          "explication": "Sur `2 3 4 5 6 1`, le 1 met 5 passages à arriver au début. Le tri cocktail (passages retour) et le tri à peigne (grands écarts) règlent ce problème."
+        },
+        {
+          "question": "Dans le tri par insertion, pourquoi met-on `tab[i]` de côté dans une variable `valeur` avant la boucle de décalage ?",
+          "choix": [
+            "Pour aller plus vite",
+            "Parce que le premier décalage écrase `tab[i]`",
+            "Parce que `tab[i]` est `const`",
+            "Ce n'est pas nécessaire"
+          ],
+          "reponse": 1,
+          "explication": "Le premier décalage fait `tab[i] = tab[i - 1]` : sans copie, la valeur à insérer serait perdue."
+        },
+        {
+          "question": "Quelle est la complexité du tri par insertion (décalage depuis la droite) sur un tableau **presque trié** ?",
+          "choix": [
+            "Proche de O(n) : chaque valeur se déplace très peu",
+            "Toujours O(n²)",
+            "O(log n)",
+            "O(n log n)"
+          ],
+          "reponse": 0,
+          "explication": "La boucle de décalage s'arrête dès qu'elle trouve une valeur plus petite. Sur un tableau déjà trié, elle ne tourne jamais : O(n)."
+        },
+        {
+          "question": "Un tri par insertion cherche la place depuis le début avec `while (pos < i && tab[pos] < valeur) pos++;`. Que perd-on ?",
+          "choix": [
+            "Rien, c'est la même chose",
+            "La stabilité (la valeur passe devant ses égales) et le meilleur cas en O(n)",
+            "Seulement la stabilité",
+            "Le tableau n'est plus trié"
+          ],
+          "reponse": 1,
+          "explication": "Avec `<`, on s'arrête devant la première valeur égale : il faudrait `<=`. Et même sur un tableau trié, on parcourt toute la partie triée à chaque fois : O(n²)."
+        },
+        {
+          "question": "Dans le tri pair-impair, que fait la phase **impaire** ?",
+          "choix": [
+            "Elle trie les valeurs impaires",
+            "Elle compare les paires de voisins `(1, 2)`, `(3, 4)`, `(5, 6)`…",
+            "Elle compare les cases d'indices impairs entre elles",
+            "Elle échange toutes les cases impaires"
+          ],
+          "reponse": 1,
+          "explication": "La phase paire compare `(0, 1)`, `(2, 3)`… et la phase impaire `(1, 2)`, `(3, 4)`… Les paires d'une même phase ne se touchent pas : on peut les traiter en même temps."
+        },
+        {
+          "question": "Qu'apporte le tri cocktail par rapport au tri à bulles ?",
+          "choix": [
+            "Il passe en O(n log n)",
+            "Ses passages retour font descendre les petites valeurs d'un coup : les tortues ne sont plus un problème",
+            "Il devient stable",
+            "Il utilise moins de mémoire"
+          ],
+          "reponse": 1,
+          "explication": "Le passage aller monte le maximum au bout, le passage retour descend le minimum au début. Le pire cas reste en O(n²)."
+        },
+        {
+          "question": "Dans le tri à peigne, que vaut le nouvel écart après un écart de 10, avec `ecart = ecart * 10 / 13` ?",
+          "choix": [
+            "7",
+            "8",
+            "13",
+            "1"
+          ],
+          "reponse": 0,
+          "explication": "`100 / 13` vaut 7 en division entière : c'est 10 divisé par 1,3, arrondi vers le bas. Ensuite viennent 5, 3, 2, 1."
+        },
+        {
+          "question": "Quand le tri à peigne s'arrête-t-il ?",
+          "choix": [
+            "Dès que l'écart vaut 1",
+            "Quand l'écart vaut 1 **et** qu'un passage n'a fait aucun échange",
+            "Après `n` passages",
+            "Quand l'écart vaut 0"
+          ],
+          "reponse": 1,
+          "explication": "Arrivé à l'écart 1, c'est un tri à bulles sur un tableau presque trié : il faut continuer jusqu'à un passage sans échange."
+        }
+      ]
+    },
+    {
+      "id": "06-tri-fusion",
+      "titre": "Tri fusion",
+      "description": "Diviser pour régner, récursivité, fusion de deux tableaux triés, tableau auxiliaire, O(n log n), stabilité et parallélisation.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Vidéo : le tri fusion",
+          "url": "https://www.youtube.com/watch?v=2LFmgTZ3WPQ"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-fusionner-deux-tableaux",
+          "titre": "Fusionner deux tableaux triés",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Garde un indice par tableau (`i` dans `a`, `j` dans `b`) et un troisième (`k`) pour la prochaine case libre de `resultat`.",
+            "Tant que les deux tableaux ont encore des valeurs, recopie la plus petite des deux valeurs `a[i]` et `b[j]`, puis avance l'indice de celle que tu as prise.",
+            "Quand la boucle s'arrête, un des deux tableaux n'est pas fini : ajoute deux boucles `while (i < na)` et `while (j < nb)` qui recopient la fin."
+          ]
+        },
+        {
+          "id": "02-fusion-stable",
+          "titre": "Réparer une fusion qui n'est pas stable",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le résultat est bien trié par note : le problème vient des copies qui ont la **même** note.",
+            "Regarde la comparaison de la boucle principale : quand les deux notes sont égales, de quel paquet vient la copie recopiée ?",
+            "Pour garder l'ordre d'origine, en cas d'égalité il faut prendre la copie de `a` : remplace `<` par `<=`."
+          ]
+        },
+        {
+          "id": "03-nombre-de-niveaux",
+          "titre": "Combien de découpages ?",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Cas de base : un morceau de 0 ou 1 case ne se coupe plus, il a 0 niveau.",
+            "Sinon, il y a un découpage, plus les niveaux de la **plus grande** des deux moitiés.",
+            "La plus grande moitié a `n - n / 2` cases (pour 5 : 5 - 2 = 3). D'où `return 1 + nombreNiveaux(n - n / 2);`"
+          ]
+        },
+        {
+          "id": "04-tri-fusion",
+          "titre": "Le tri fusion en C",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence par `fusionnerParties` : c'est la fusion du cours, mais les deux moitiés sont `[debut, milieu)` et `[milieu, fin)` du même tableau, et on écrit dans `aux` avant de tout recopier dans `t`.",
+            "`trierPartie` : si la portion a 1 case ou moins (`fin - debut <= 1`), on s'arrête. Sinon on calcule `milieu = debut + (fin - debut) / 2`, on trie `[debut, milieu)`, puis `[milieu, fin)`, puis on fusionne.",
+            "`triFusion` : si `n < 2`, rien à faire. Sinon `int *aux = malloc(n * sizeof(int));`, vérifie `NULL`, appelle `trierPartie(t, aux, 0, n)`, puis `free(aux)`."
+          ]
+        },
+        {
+          "id": "05-tri-fusion-iteratif",
+          "titre": "Le tri fusion sans récursivité",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Au premier passage, on fusionne des blocs de 1 case deux par deux (blocs de 2 triés), puis des blocs de 2 (blocs de 4 triés), puis de 4... La largeur double à chaque passage.",
+            "Pour une largeur donnée, les paires de blocs commencent à `debut = 0, 2 * largeur, 4 * largeur...`. Le bloc de gauche est `[debut, debut + largeur)`, celui de droite `[debut + largeur, debut + 2 * largeur)`.",
+            "Le dernier bloc de droite peut dépasser : `fin = debut + 2 * largeur`, puis `if (fin > n) fin = n;`. Et s'il n'y a pas de bloc de droite du tout (`debut + largeur >= n`), il n'y a rien à fusionner."
+          ]
+        },
+        {
+          "id": "06-compter-les-inversions",
+          "titre": "Compter les inversions",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Compter toutes les paires avec deux boucles imbriquées est en O(n²) : trop lent pour 200 000 valeurs. Il faut trier une copie avec le tri fusion et compter pendant les fusions.",
+            "Pendant la fusion de `[debut, milieu)` et `[milieu, fin)`, quand on prend `t[j]` à droite alors que `t[i]` est encore à gauche, `t[j]` est plus petit que **toutes** les valeurs restantes à gauche : cela fait `milieu - i` inversions d'un coup.",
+            "En cas d'égalité, prends la valeur de gauche (`<=`), sinon deux valeurs égales seraient comptées comme une inversion. Le total est un `long long` : la somme des inversions de la gauche, de la droite et de la fusion. Copie `t` dans un tableau réservé avec `malloc` pour ne pas le modifier, et libère tout."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la seule opération que le tri fusion sait faire « directement » ?",
+          "choix": [
+            "Trier un tableau de 10 cases",
+            "Fusionner deux tableaux déjà triés",
+            "Trouver le minimum",
+            "Échanger deux cases voisines"
+          ],
+          "reponse": 1,
+          "explication": "Le tri fusion ne sait trier que des morceaux de 0 ou 1 case (déjà triés). Tout le travail se fait en fusionnant des morceaux triés."
+        },
+        {
+          "question": "On fusionne `a = 1 4 8` et `b = 2 3 9`. Quelles sont les trois premières valeurs du résultat ?",
+          "choix": [
+            "`1 4 8`",
+            "`1 2 3`",
+            "`1 2 4`",
+            "`2 3 9`"
+          ],
+          "reponse": 1,
+          "explication": "On compare à chaque fois les deux premières valeurs restantes : 1 < 2 (on prend 1), puis 4 > 2 (on prend 2), puis 4 > 3 (on prend 3)."
+        },
+        {
+          "question": "Quelle est la complexité de la fusion de deux tableaux triés de tailles `na` et `nb` ?",
+          "choix": [
+            "O(1)",
+            "O(log(na + nb))",
+            "O(na + nb)",
+            "O(na × nb)"
+          ],
+          "reponse": 2,
+          "explication": "À chaque tour de boucle, une valeur passe dans le résultat : il y a na + nb tours en tout, donc un temps linéaire."
+        },
+        {
+          "question": "Quel est le cas de base de la fonction récursive du tri fusion ?",
+          "choix": [
+            "Le tableau est vide ou n'a qu'une case",
+            "Le tableau a deux cases",
+            "Le tableau est trié à l'envers",
+            "Il n'y en a pas, la fonction s'arrête toute seule"
+          ],
+          "reponse": 0,
+          "explication": "Un tableau de 0 ou 1 case est forcément trié : la fonction s'arrête sans s'appeler. Sans ce cas, les appels ne s'arrêteraient jamais."
+        },
+        {
+          "question": "Combien de niveaux de découpage pour un tableau de 1024 cases ?",
+          "choix": [
+            "2",
+            "10",
+            "512",
+            "1024"
+          ],
+          "reponse": 1,
+          "explication": "On coupe en deux à chaque niveau : 1024, 512, 256, ..., 2, 1. Cela fait log₂(1024) = 10 niveaux."
+        },
+        {
+          "question": "Quelle est la complexité du tri fusion dans le **pire** cas ?",
+          "choix": [
+            "O(n)",
+            "O(n log n)",
+            "O(n²)",
+            "O(log n)"
+          ],
+          "reponse": 1,
+          "explication": "Le tri fusion coupe toujours exactement en deux, quel que soit le contenu du tableau : log n niveaux de O(n) chacun, donc O(n log n) dans tous les cas."
+        },
+        {
+          "question": "Quel est le principal défaut du tri fusion ?",
+          "choix": [
+            "Il est en O(n²) sur un tableau déjà trié",
+            "Il a besoin d'un tableau auxiliaire de n cases",
+            "Il n'est pas stable",
+            "Il ne marche pas avec des valeurs égales"
+          ],
+          "reponse": 1,
+          "explication": "Pour fusionner, il faut un brouillon de la taille du tableau : O(n) de mémoire en plus. Le tri fusion n'est pas en place."
+        },
+        {
+          "question": "Dans la fusion, on écrit `if (t[i] < t[j])` au lieu de `if (t[i] <= t[j])`. Que se passe-t-il ?",
+          "choix": [
+            "Le tableau n'est plus trié",
+            "Le programme plante sur les valeurs égales",
+            "Le tableau est trié, mais le tri n'est plus stable",
+            "Rien du tout, c'est équivalent"
+          ],
+          "reponse": 2,
+          "explication": "En cas d'égalité, la valeur de droite passe d'abord : deux valeurs égales échangent leur ordre de départ. Le résultat reste trié, mais la stabilité est perdue."
+        },
+        {
+          "question": "Pourquoi le tri fusion se parallélise-t-il bien ?",
+          "choix": [
+            "Parce qu'il est récursif",
+            "Parce que les deux moitiés se trient indépendamment l'une de l'autre",
+            "Parce qu'il utilise un tableau auxiliaire",
+            "Parce qu'il ne fait pas d'échanges"
+          ],
+          "reponse": 1,
+          "explication": "Trier la gauche n'a pas besoin de la droite : deux cœurs peuvent travailler en même temps. Seule la fusion finale attend les deux résultats."
+        },
+        {
+          "question": "Dans `trierPartie(t, aux, debut, fin)` qui trie la portion `[debut, fin)`, où se trouve le milieu ?",
+          "choix": [
+            "`fin / 2`",
+            "`(fin - debut) / 2`",
+            "`debut + (fin - debut) / 2`",
+            "`debut + fin`"
+          ],
+          "reponse": 2,
+          "explication": "La portion commence à `debut` : on avance de la moitié de sa taille (`fin - debut`). Pour `[4, 8)`, cela donne 6."
+        },
+        {
+          "question": "Comment s'appelle la méthode qui découpe un problème en sous-problèmes du même type, les résout, puis combine les réponses ?",
+          "choix": [
+            "Glouton",
+            "Force brute",
+            "Diviser pour régner",
+            "Programmation linéaire"
+          ],
+          "reponse": 2,
+          "explication": "Diviser (couper en deux), régner (trier chaque moitié de la même façon), combiner (fusionner) : c'est le schéma « diviser pour régner »."
+        }
+      ]
+    },
+    {
+      "id": "07-tri-rapide",
+      "titre": "Tri rapide",
+      "description": "Partition autour d'un pivot, tri rapide récursif et en place, choix du pivot, O(n log n) en moyenne mais O(n²) dans le pire cas, partition en trois zones et sélection rapide.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Vidéo : l'opération de partition",
+          "url": "https://www.youtube.com/watch?v=ipZ84EjHb1s"
+        },
+        {
+          "titre": "Vidéo : le tri rapide",
+          "url": "https://www.youtube.com/watch?v=oWAo9MMiLu8"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-position-du-pivot",
+          "titre": "Où finira le pivot ?",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Après la partition, le pivot a à sa gauche toutes les valeurs plus petites que lui, et seulement elles.",
+            "Sa position finale est donc le **nombre** de valeurs strictement plus petites que lui.",
+            "Garde `int pivot = t[indicePivot];`, puis parcours tout le tableau et compte les `t[i] < pivot`."
+          ]
+        },
+        {
+          "id": "02-partition",
+          "titre": "La partition autour d'un pivot",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Suis les quatre étapes du cours : pivot à la fin, `position = 0`, parcours de toutes les cases sauf la dernière, pivot remis à `position`.",
+            "Dans la boucle `for (int i = 0; i < n - 1; i++)`, compare `t[i]` avec `t[n - 1]` (le pivot y est rangé). Si c'est plus petit : `echanger(t, i, position); position++;`.",
+            "Après la boucle : `echanger(t, position, n - 1); return position;`. Commence par `echanger(t, indicePivot, n - 1);`."
+          ]
+        },
+        {
+          "id": "03-reparer-partition-portion",
+          "titre": "Réparer une partition sur une portion",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Sur le tableau entier (`debut = 0`), la fonction marche. Le problème n'apparaît que quand la portion commence plus loin.",
+            "Regarde les deux endroits où le code écrit `0` : la valeur de départ de `position` et celle de `i`. Les cases avant `debut` ne font pas partie de la portion.",
+            "Remplace `int position = 0;` par `int position = debut;` et `for (int i = 0; ...)` par `for (int i = debut; ...)`."
+          ]
+        },
+        {
+          "id": "04-tri-rapide",
+          "titre": "Le tri rapide en C",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`trierRapidePartie` est récursive : si la portion a 1 case ou moins (`fin - debut <= 1`), il n'y a rien à faire.",
+            "Sinon : `int milieu = debut + (fin - debut) / 2;`, puis `int p = partition(t, debut, fin, milieu);`. Le pivot est maintenant à sa place définitive.",
+            "Trie `[debut, p)` puis `[p + 1, fin)` (sans la case `p`). `triRapide(t, n)` appelle simplement `trierRapidePartie(t, 0, n)`."
+          ]
+        },
+        {
+          "id": "05-reparer-tri-rapide",
+          "titre": "Réparer un tri rapide",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Il y a deux erreurs : une qui fait planter le programme (la pile d'appels déborde), une qui donne un tableau mal trié.",
+            "Le plantage : regarde les bornes du premier appel récursif. La case `p` (le pivot) est-elle encore dedans ? Si le pivot est la plus grande valeur, la portion ne rétrécit plus jamais.",
+            "Le mauvais tri : `(fin - debut) / 2` est la moitié de la **taille**, pas un indice de la portion. Pour la portion `[50, 60)`, ça donne 5. Écris `debut + (fin - debut) / 2`, et `trierRapidePartie(t, debut, p)`."
+          ]
+        },
+        {
+          "id": "06-mediane-de-trois",
+          "titre": "Le pivot médiane de trois",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Calcule d'abord les trois indices : `debut`, `milieu = debut + (fin - debut) / 2` et `dernier = fin - 1`, puis lis les trois valeurs `a`, `b`, `c`.",
+            "La médiane de trois valeurs est celle qui n'est ni la plus petite ni la plus grande : `b` est la médiane si `(a <= b && b <= c) || (c <= b && b <= a)`.",
+            "Teste de la même façon si `a` est la médiane ; sinon c'est `c`. Renvoie l'**indice** (`milieu`, `debut` ou `dernier`), pas la valeur."
+          ]
+        },
+        {
+          "id": "07-partition-trois-zones",
+          "titre": "La partition en trois zones",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Trois indices : `petits = debut` (fin de la zone des plus petites), `i = debut` (la case regardée) et `grands = fin` (début de la zone des plus grandes). On boucle tant que `i < grands`.",
+            "Plus petite : échange `t[i]` et `t[petits]`, puis avance les deux. Égale : avance seulement `i`. Plus grande : recule `grands`, échange `t[i]` et `t[grands]`, et **n'avance pas** `i` (la valeur qui arrive n'a pas encore été regardée).",
+            "À la fin : `*finPetits = petits;` et `*debutGrands = grands;`. Les cases `[petits, grands)` valent toutes `pivot`."
+          ]
+        },
+        {
+          "id": "08-selection-rapide",
+          "titre": "La sélection rapide : la k-ième plus petite",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Après `p = partition(t, debut, fin, milieu)`, le pivot est à sa place définitive : si `p == k`, la réponse est `t[p]`.",
+            "Sinon, la valeur cherchée n'est que d'un côté : si `k < p`, garde `[debut, p)` (`fin = p`) ; sinon garde `[p + 1, fin)` (`debut = p + 1`). Le pivot est toujours la case du milieu.",
+            "Une boucle suffit : `int debut = 0, fin = n; while (fin - debut > 1) { ... }`, puis `return t[debut];` quand il ne reste qu'une case (c'est forcément la case `k`)."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que garantit une partition autour d'un pivot ?",
+          "choix": [
+            "Le tableau entier est trié",
+            "Les valeurs plus petites que le pivot sont à sa gauche, les plus grandes à sa droite",
+            "Le pivot se retrouve dans la première case",
+            "Les deux moitiés ont exactement la même taille"
+          ],
+          "reponse": 1,
+          "explication": "La partition ne trie pas les deux côtés : elle sépare seulement les petites valeurs (à gauche) des grandes (à droite)."
+        },
+        {
+          "question": "Après une partition, pourquoi le pivot ne bougera-t-il plus jamais ?",
+          "choix": [
+            "Parce qu'on le marque comme « bloqué »",
+            "Parce qu'il a exactement le bon nombre de valeurs plus petites avant lui : c'est sa place dans le tableau trié",
+            "Parce qu'il est toujours au milieu",
+            "Il peut encore bouger lors des appels suivants"
+          ],
+          "reponse": 1,
+          "explication": "Toutes les valeurs plus petites sont avant lui et toutes les plus grandes après : dans le tableau trié, il sera exactement à cet indice."
+        },
+        {
+          "question": "Dans la partition du cours, que fait-on en tout premier ?",
+          "choix": [
+            "On trie les deux moitiés",
+            "On échange le pivot avec la dernière case",
+            "On cherche le minimum",
+            "On copie le tableau dans un tableau auxiliaire"
+          ],
+          "reponse": 1,
+          "explication": "Le pivot est mis à l'abri en dernière case pendant le parcours, puis replacé à `position` à la fin."
+        },
+        {
+          "question": "On partitionne `4 9 1 6 8 2 7` avec le pivot 6. Quelle position la fonction renvoie-t-elle ?",
+          "choix": [
+            "`0`",
+            "`3`",
+            "`4`",
+            "`6`"
+          ],
+          "reponse": 1,
+          "explication": "Trois valeurs sont plus petites que 6 (4, 1 et 2) : le pivot finit à l'indice 3."
+        },
+        {
+          "question": "Quelle est la complexité d'une partition sur une portion de `n` cases ?",
+          "choix": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n²)"
+          ],
+          "reponse": 2,
+          "explication": "Chaque case est regardée une seule fois, avec au plus un échange : un temps linéaire, sans tableau en plus."
+        },
+        {
+          "question": "En C, on partitionne la portion `[debut, fin)` d'un tableau. Quelle valeur de départ faut-il donner à `position` ?",
+          "choix": [
+            "`0`",
+            "`debut`",
+            "`fin - 1`",
+            "`(fin - debut) / 2`"
+          ],
+          "reponse": 1,
+          "explication": "Les petites valeurs se rangent au début de la **portion**. Avec `0`, on écrirait dans des cases qui n'en font pas partie (le réflexe pris avec `subArray` sur Schooding)."
+        },
+        {
+          "question": "Après `p = partition(t, debut, fin, milieu)`, quels sont les deux appels récursifs corrects ?",
+          "choix": [
+            "`[debut, p)` et `[p + 1, fin)`",
+            "`[debut, p + 1)` et `[p + 1, fin)`",
+            "`[debut, p)` et `[p, fin)`",
+            "`[0, p)` et `[p + 1, n)`"
+          ],
+          "reponse": 0,
+          "explication": "La case `p` est déjà à sa place : on la saute. Si on la garde dans un appel, la portion peut ne plus rétrécir et les appels ne s'arrêtent plus."
+        },
+        {
+          "question": "Quelle est la complexité du tri rapide en moyenne ?",
+          "choix": [
+            "O(n)",
+            "O(n log n)",
+            "O(n²)",
+            "O(log n)"
+          ],
+          "reponse": 1,
+          "explication": "Le pivot coupe à peu près au milieu : environ log n niveaux, et chaque niveau coûte O(n) de partitions."
+        },
+        {
+          "question": "Le pivot est toujours la dernière case. Quel tableau provoque le pire cas O(n²) ?",
+          "choix": [
+            "Un tableau au hasard",
+            "Un tableau déjà trié",
+            "Un tableau de 2 cases",
+            "Aucun : le tri rapide est toujours en O(n log n)"
+          ],
+          "reponse": 1,
+          "explication": "Sur un tableau trié, la dernière case est le maximum : la partie droite est vide et la gauche n'a qu'une case de moins. n niveaux, n(n - 1)/2 comparaisons."
+        },
+        {
+          "question": "Combien de comparaisons fait le tri rapide (pivot en dernière case) sur `1 2 3 4 5` ?",
+          "choix": [
+            "5",
+            "8",
+            "10",
+            "25"
+          ],
+          "reponse": 2,
+          "explication": "4 + 3 + 2 + 1 = 10 = 5 × 4 / 2 : c'est le pire cas."
+        },
+        {
+          "question": "À quoi sert le pivot « médiane de trois » ?",
+          "choix": [
+            "À rendre le tri stable",
+            "À éviter le pire cas sur les tableaux déjà triés ou triés à l'envers",
+            "À supprimer la récursivité",
+            "À trier sans aucune comparaison"
+          ],
+          "reponse": 1,
+          "explication": "En prenant la valeur du milieu entre la première, la case du milieu et la dernière, on évite les pivots extrêmes sur les tableaux triés, pour presque rien."
+        },
+        {
+          "question": "Quelle est la mémoire utilisée par le tri rapide en plus du tableau ?",
+          "choix": [
+            "Un tableau auxiliaire de n cases",
+            "Rien d'autre que la pile des appels récursifs (environ log n en moyenne)",
+            "Deux tableaux de n / 2 cases",
+            "Une liste chaînée"
+          ],
+          "reponse": 1,
+          "explication": "Le tri rapide est **en place** : seuls des échanges. Seule la pile d'appels grandit, jusqu'à n appels dans le pire cas."
+        },
+        {
+          "question": "Le tri rapide est-il stable ?",
+          "choix": [
+            "Oui, toujours",
+            "Non : les échanges à longue distance peuvent inverser deux valeurs égales",
+            "Oui, si on utilise `<=`",
+            "Seulement sur les tableaux de moins de 10 cases"
+          ],
+          "reponse": 1,
+          "explication": "Exemple : `2a 2b 1` avec le pivot 1 donne `1 2b 2a`. Le tri fusion, lui, est stable."
+        },
+        {
+          "question": "Pourquoi la partition en **trois zones** (plus petites, égales, plus grandes) ?",
+          "choix": [
+            "Pour trier plus vite les tableaux au hasard",
+            "Pour éviter le pire cas O(n²) quand il y a beaucoup de valeurs égales",
+            "Pour rendre le tri rapide stable",
+            "Pour ne plus avoir besoin de pivot"
+          ],
+          "reponse": 1,
+          "explication": "Toutes les valeurs égales au pivot sont placées d'un coup et ne sont plus jamais retouchées : un tableau d'une seule valeur est trié en une partition."
+        },
+        {
+          "question": "Dans la partition en trois zones, que fait-on quand `t[i]` est plus grand que le pivot ?",
+          "choix": [
+            "On avance `i`",
+            "On recule `grands`, on échange `t[i]` et `t[grands]`, sans avancer `i`",
+            "On échange `t[i]` et `t[petits]`",
+            "On arrête la boucle"
+          ],
+          "reponse": 1,
+          "explication": "La valeur qui arrive de la droite n'a pas encore été regardée : il faut la tester au tour suivant, donc `i` ne bouge pas."
+        },
+        {
+          "question": "La sélection rapide cherche la valeur de rang `k`. Après une partition qui renvoie `p` avec `k < p`, que fait-elle ?",
+          "choix": [
+            "Elle trie les deux côtés",
+            "Elle continue seulement sur `[debut, p)`",
+            "Elle continue seulement sur `[p + 1, fin)`",
+            "Elle renvoie `t[p]`"
+          ],
+          "reponse": 1,
+          "explication": "La valeur de rang k est forcément à gauche du pivot. Ne traiter qu'un côté donne O(n) en moyenne au lieu de O(n log n)."
+        }
+      ]
+    },
+    {
+      "id": "08-tri-par-tas",
+      "titre": "Tri par tas",
+      "description": "Tas binaire (arbre complet rangé dans un tableau), indices du parent et des enfants, tas max et tas min, insertion avec remontée, retrait de la racine avec descente, construction du tas, tri par tas en O(n log n), en place et non stable.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Vidéo : la structure de tas",
+          "url": "https://www.youtube.com/watch?v=3IDTPU43C8U"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-parent-et-enfants",
+          "titre": "Parent et enfants dans le tableau",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Relis le tableau du cours : la case 1 a ses enfants en 3 et 4, la case 2 en 5 et 6.",
+            "Enfant gauche : `2 * i + 1`, enfant droit : `2 * i + 2`, parent : `(i - 1) / 2` (division entière).",
+            "Pour `valeurDuParent`, combine : `return t[parent(i)];`."
+          ]
+        },
+        {
+          "id": "02-est-un-tas",
+          "titre": "Est-ce un tas ?",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Un tableau est un tas max quand **chaque case** (sauf la racine) est plus petite ou égale à **son parent**.",
+            "Parcours `i` de 1 à `n - 1` et compare `t[i]` avec `t[(i - 1) / 2]` : dès qu'une case est plus grande que son parent, renvoie 0.",
+            "Pour le tas min, c'est le même parcours avec la comparaison inversée : une case plus **petite** que son parent casse le tas. Un tableau de 0 ou 1 case est toujours un tas."
+          ]
+        },
+        {
+          "id": "03-inserer-dans-tas",
+          "titre": "Insérer dans un tas",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence par ranger la valeur dans la première case libre : `t[*taille] = valeur;`, puis augmente la taille.",
+            "Ensuite, la nouvelle valeur **remonte** : tant qu'elle n'est pas à la racine (`i > 0`) et qu'elle est plus grande que son parent `t[(i - 1) / 2]`, échange-les.",
+            "`int i = *taille - 1; while (i > 0 && t[i] > t[(i - 1) / 2]) { echanger(t, i, (i - 1) / 2); i = (i - 1) / 2; }`"
+          ]
+        },
+        {
+          "id": "04-reparer-retirer-racine",
+          "titre": "Réparer le retrait de la racine",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Fais l'exemple de l'énoncé à la main. À quel moment l'ancien maximum (la dernière case) revient-il dans le tas ?",
+            "Après l'échange, le tas n'a plus que `n - 1` cases : la case `n - 1` (l'ancien maximum) n'en fait plus partie. Les tests `gauche < n` et `droite < n` la laissent pourtant passer.",
+            "La descente doit utiliser la **nouvelle** taille : remplace `n` par `*taille` (ou `n - 1`) dans les deux tests d'enfant."
+          ]
+        },
+        {
+          "id": "05-ecrire-descente",
+          "titre": "Écrire la descente",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Tant que la case `i` a au moins un enfant **dans le tas** (`2 * i + 1 < taille`), regarde ses enfants.",
+            "Choisis le plus grand des deux enfants : l'enfant gauche, ou le droit s'il existe (`enfant + 1 < taille`) et qu'il est plus grand. S'il n'est pas plus grand que `t[i]`, la descente est finie.",
+            "`int enfant = 2 * i + 1; if (enfant + 1 < taille && t[enfant + 1] > t[enfant]) enfant++; if (t[enfant] <= t[i]) return; echanger(t, i, enfant); i = enfant;` dans une boucle `while (2 * i + 1 < taille)`."
+          ]
+        },
+        {
+          "id": "06-construire-tas",
+          "titre": "Construire un tas en partant du bas",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Les feuilles (les cases à partir de `n / 2`) sont déjà de petits tas : il ne faut faire descendre que les cases qui ont au moins un enfant.",
+            "La dernière case qui a un enfant est `n / 2 - 1`. Il faut aller **de cette case jusqu'à la racine**, à rebours : quand on fait descendre une case, ses deux sous-arbres doivent déjà être des tas.",
+            "`for (int i = n / 2 - 1; i >= 0; i--) { descendre(t, n, i); }` (le `>= 0` compte : la racine aussi doit descendre)."
+          ]
+        },
+        {
+          "id": "07-reparer-bornes-tri",
+          "titre": "Réparer les bornes d'un tri par tas",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Fais le tri à la main sur `{3, 1, 2}` : la valeur 2 entre-t-elle un jour dans le tas ? Et combien de retraits sont faits ?",
+            "Dans `insererDernier(t, taille)`, `taille` est la taille du tas **après** l'ajout : la dernière valeur à ajouter est la case `n - 1`, donc le dernier appel doit être `insererDernier(t, n)`.",
+            "Le tas de 2 cases doit lui aussi perdre sa racine (sinon ses deux cases restent dans l'ordre du tas, la plus grande devant). Écris `taille <= n` dans la première boucle et `taille >= 2` dans la seconde."
+          ]
+        },
+        {
+          "id": "08-tri-par-tas-complet",
+          "titre": "Le tri par tas en entier",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Deux étapes : construire un tas max avec tout le tableau (descentes de `n / 2 - 1` à 0), puis ranger les maximums un par un à la fin.",
+            "Pour la deuxième étape, `fin` part de `n - 1` et descend jusqu'à 1 : échange la racine avec la case `fin`, puis fais descendre la nouvelle racine dans un tas de `fin` cases (pas `fin + 1` : la case `fin` est rangée).",
+            "`for (int i = n / 2 - 1; i >= 0; i--) descendre(t, n, i);` puis `for (int fin = n - 1; fin > 0; fin--) { echanger(t, 0, fin); descendre(t, fin, 0); }`."
+          ]
+        },
+        {
+          "id": "09-k-plus-petits",
+          "titre": "Tas min : les k plus petites valeurs",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`descendreMin` est la descente du cours avec les comparaisons inversées : on cherche le **plus petit** des enfants, et on échange s'il est plus petit que la case.",
+            "Dans `kPlusPetits` : construis le tas min (descentes de `n / 2 - 1` à 0), puis fais `k` retraits de la racine. Garde la taille du tas dans une variable qui diminue de 1 à chaque retrait.",
+            "Un retrait : `resultat[j] = t[0]; taille--; echanger(t, 0, taille); descendreMin(t, taille, 0);`. Après `k` retraits, il reste un tas min de `n - k` cases."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelles sont les deux règles d'un tas max ?",
+          "choix": [
+            "L'arbre est complet, et chaque nœud est plus grand ou égal à ses enfants",
+            "L'arbre est trié de gauche à droite, et la racine est le minimum",
+            "Chaque nœud a exactement deux enfants, et le fils gauche est plus petit que le fils droit",
+            "Les valeurs sont toutes différentes, et la racine est au milieu du tableau"
+          ],
+          "reponse": 0,
+          "explication": "Un tas est un arbre **complet** (rempli niveau par niveau, de gauche à droite) et **ordonné** : dans un tas max, un parent est toujours plus grand ou égal à ses enfants."
+        },
+        {
+          "question": "Dans un tas max, que peut-on dire de deux frères (les deux enfants d'un même nœud) ?",
+          "choix": [
+            "Le gauche est toujours plus grand",
+            "Le droit est toujours plus grand",
+            "Aucun ordre n'est imposé entre eux",
+            "Ils sont toujours égaux"
+          ],
+          "reponse": 2,
+          "explication": "La règle ne compare qu'un parent à ses enfants. Entre frères, tout est possible : c'est pour ça qu'un tas n'est pas un tableau trié."
+        },
+        {
+          "question": "Le tas est rangé dans un tableau à partir de l'indice 0. Où sont les enfants de la case `i` ?",
+          "choix": [
+            "`2 * i` et `2 * i + 1`",
+            "`2 * i + 1` et `2 * i + 2`",
+            "`i + 1` et `i + 2`",
+            "`i / 2` et `i / 2 + 1`"
+          ],
+          "reponse": 1,
+          "explication": "En comptant à partir de 0 : enfant gauche `2 * i + 1`, enfant droit `2 * i + 2`. Les formules `2 * i` et `2 * i + 1` sont celles d'un tableau qui commence à 1."
+        },
+        {
+          "question": "Quel est l'indice du parent de la case 10 ?",
+          "choix": [
+            "`4`",
+            "`5`",
+            "`9`",
+            "`20`"
+          ],
+          "reponse": 0,
+          "explication": "`(10 - 1) / 2 = 9 / 2 = 4` en division entière. Vérification : les enfants de 4 sont 9 et 10."
+        },
+        {
+          "question": "Le tableau `20 5 18 6 4` est-il un tas max ?",
+          "choix": [
+            "Oui, la racine 20 est le maximum",
+            "Non : 6 (case 3) est plus grand que son parent 5 (case 1)",
+            "Non : 18 est plus grand que 5",
+            "Oui, car chaque case est plus petite que 20"
+          ],
+          "reponse": 1,
+          "explication": "Avoir le maximum à la racine ne suffit pas : **chaque** case doit être plus petite ou égale à son parent. Le parent de la case 3 est la case 1, et 6 > 5."
+        },
+        {
+          "question": "Pour insérer une valeur dans un tas max, où la place-t-on d'abord ?",
+          "choix": [
+            "À la racine",
+            "Dans la première case libre, à la fin du tableau",
+            "À sa place dans l'ordre trié",
+            "À la place de la plus petite valeur"
+          ],
+          "reponse": 1,
+          "explication": "En la mettant à la fin, l'arbre reste complet. Il ne reste plus qu'à la faire **remonter** tant qu'elle est plus grande que son parent."
+        },
+        {
+          "question": "On insère 30 dans le tas `54 28 12 5 3`. Que devient le tableau ?",
+          "choix": [
+            "`54 30 28 12 5 3`",
+            "`54 28 30 5 3 12`",
+            "`30 54 28 12 5 3`",
+            "`54 28 12 5 3 30`"
+          ],
+          "reponse": 1,
+          "explication": "30 arrive en case 5, son parent est la case 2 (12) : échange. Son nouveau parent est 54, plus grand : on s'arrête."
+        },
+        {
+          "question": "Pour retirer la racine d'un tas max de `taille` cases, que fait-on en premier ?",
+          "choix": [
+            "On décale toutes les cases d'un cran vers la gauche",
+            "On échange la racine avec la dernière case du tas, puis le tas perd une case",
+            "On met 0 dans la racine",
+            "On reconstruit tout le tas"
+          ],
+          "reponse": 1,
+          "explication": "L'ancien maximum part à la fin, juste après le tas. La nouvelle racine (l'ancienne dernière case) est sans doute trop petite : on la fait descendre."
+        },
+        {
+          "question": "Pendant la descente, avec quel enfant échange-t-on la case ?",
+          "choix": [
+            "Toujours l'enfant gauche",
+            "Le plus grand des deux enfants, s'il est plus grand qu'elle",
+            "Le plus petit des deux enfants",
+            "Celui qui est le plus près de la fin du tableau"
+          ],
+          "reponse": 1,
+          "explication": "L'enfant qui monte devient le parent de son frère : il doit être plus grand que lui. Si même le plus grand enfant n'est pas plus grand que la case, la descente s'arrête."
+        },
+        {
+          "question": "Après l'échange de la racine avec la case `taille - 1`, on fait la descente avec l'**ancienne** taille. Que se passe-t-il ?",
+          "choix": [
+            "Rien, le résultat est le même",
+            "L'ancien maximum, toujours visible comme enfant, peut remonter dans le tas",
+            "Le programme plante toujours",
+            "La descente s'arrête tout de suite"
+          ],
+          "reponse": 1,
+          "explication": "La case `taille - 1` contient l'ancien maximum, plus grand que tout. Si elle est encore considérée comme un enfant, elle est échangée et revient dans le tas : il faut descendre avec la **nouvelle** taille."
+        },
+        {
+          "question": "Pour construire un tas « en partant du bas », quelles cases fait-on descendre, et dans quel ordre ?",
+          "choix": [
+            "De 0 à `n - 1`",
+            "De `n / 2 - 1` jusqu'à 0",
+            "De `n - 1` jusqu'à `n / 2`",
+            "Seulement la racine"
+          ],
+          "reponse": 1,
+          "explication": "Les cases à partir de `n / 2` sont des feuilles, déjà des tas. On fait descendre les autres en remontant vers la racine : quand une case descend, ses deux sous-arbres sont déjà des tas."
+        },
+        {
+          "question": "Quel est le coût de la construction d'un tas en partant du bas ?",
+          "choix": [
+            "O(log n)",
+            "O(n)",
+            "O(n log n)",
+            "O(n²)"
+          ],
+          "reponse": 1,
+          "explication": "La moitié des cases ne descend pas, un quart descend d'un niveau au plus, un huitième de deux... Le total reste proportionnel à n. Par insertions successives, on paierait O(n log n)."
+        },
+        {
+          "question": "Dans la deuxième étape du tri par tas, à chaque tour `fin` va de `n - 1` à 1. Quel appel suit `echanger(t, 0, fin)` ?",
+          "choix": [
+            "`descendre(t, fin, 0)`",
+            "`descendre(t, fin + 1, 0)`",
+            "`descendre(t, n, 0)`",
+            "`descendre(t, fin, fin)`"
+          ],
+          "reponse": 0,
+          "explication": "Après l'échange, la case `fin` est rangée : le tas ne garde que les cases `[0, fin)`, donc une taille de `fin`."
+        },
+        {
+          "question": "On trie par tas avec les deux opérations « insérer la case `taille - 1` dans le tas » et « retirer la racine d'un tas de `taille` cases ». Pour `n` cases, quelles valeurs doit prendre `taille` ?",
+          "choix": [
+            "Insertions de 2 à `n`, retraits de `n` à 2",
+            "Insertions de 2 à `n - 1`, retraits de `n` à 3",
+            "Insertions de 1 à `n - 1`, retraits de `n - 1` à 1",
+            "Insertions de 0 à `n`, retraits de `n` à 0"
+          ],
+          "reponse": 0,
+          "explication": "La dernière insertion ajoute la case `n - 1`, avec un tas de `n` cases. Le dernier retrait utile se fait sur 2 cases : il range la plus grande des deux derrière l'autre (le retrait sur 1 case ne change rien)."
+        },
+        {
+          "question": "Avec un tas max, le tri par tas range le tableau dans quel ordre ?",
+          "choix": [
+            "Croissant",
+            "Décroissant",
+            "Ça dépend des valeurs",
+            "Aucun : il faut ensuite inverser le tableau"
+          ],
+          "reponse": 0,
+          "explication": "Chaque maximum est envoyé à la fin du tas, devant les valeurs déjà rangées : les plus grandes finissent à droite. Un tas min donnerait l'ordre décroissant."
+        },
+        {
+          "question": "Quelle phrase sur le tri par tas est vraie ?",
+          "choix": [
+            "Il est stable et utilise O(n) de mémoire en plus",
+            "Il est en O(n log n) même dans le pire cas, en place, mais pas stable",
+            "Il est en O(n²) dans le pire cas, comme le tri rapide",
+            "Il a besoin de la récursivité"
+          ],
+          "reponse": 1,
+          "explication": "Construction O(n) puis n - 1 descentes en O(log n) : O(n log n) toujours. Tout se fait par échanges dans le tableau, mais ces grands sauts peuvent inverser deux valeurs égales."
+        }
+      ]
+    },
+    {
+      "id": "09-piles",
+      "titre": "Piles",
+      "description": "Structure abstraite LIFO : pile dans un tableau (vide, pleine, empiler, dépiler, sommet, affichage), pile en liste chaînée, calculette en notation polonaise inverse, parenthèses équilibrées.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Vidéo : la pile",
+          "url": "https://www.youtube.com/watch?v=nFgLXQ-v14M"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-vide-pleine",
+          "titre": "Pile vide, pile pleine",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Tout se lit dans `size` (le nombre de valeurs) et `capacity` (le nombre de cases).",
+            "Vide : aucune valeur. Pleine : autant de valeurs (ou plus) que de cases.",
+            "`return s->size == 0;` et `return s->size >= s->capacity;` : une comparaison vaut déjà 1 ou 0."
+          ]
+        },
+        {
+          "id": "02-empiler-depiler",
+          "titre": "Empiler, dépiler, lire le sommet",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`size` est le nombre de valeurs, mais aussi l'indice de la première case libre. Le sommet est juste en dessous.",
+            "Empiler : écrire dans `tab[size]` puis augmenter `size`. Dépiler : diminuer `size`, puis renvoyer `tab[size]`.",
+            "`s->tab[s->size] = valeur; s->size++;`, puis `s->size--; return s->tab[s->size];`, et `return s->tab[s->size - 1];` pour le sommet."
+          ]
+        },
+        {
+          "id": "03-afficher-deux-sens",
+          "titre": "Afficher une pile dans les deux sens",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "Le fond est en `tab[0]`, le sommet en `tab[size - 1]`. Les cases à partir de `size` sont libres : on ne les affiche pas.",
+            "Depuis le dessus, la boucle descend : elle part de `size - 1` et s'arrête après 0. Comme `size` est un `int`, `i >= 0` fonctionne.",
+            "Teste `if (s->size == 0)` d'abord pour afficher `(vide)`. Sinon, la boucle avec `printf(\"%d \", ...)`, et **toujours** un `printf(\"\\n\")` à la fin."
+          ]
+        },
+        {
+          "id": "04-reparer-garde-fous",
+          "titre": "Réparer une pile sans garde-fou",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Les deux fonctions marchent quand on les appelle au bon moment. Que se passe-t-il si la pile est pleine pour `empiler`, vide pour `depiler` ?",
+            "Ajoute un test au tout début de chaque fonction : si l'opération est impossible, renvoie 0 **sans rien modifier** (ni `size`, ni le tableau, ni `*valeur`).",
+            "`if (s->size >= s->capacity) return 0;` au début d'`empiler`, `if (s->size == 0) return 0;` au début de `depiler`."
+          ]
+        },
+        {
+          "id": "05-pile-chainee",
+          "titre": "Une pile en liste chaînée",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le sommet est le **premier** maillon : empiler, c'est insérer en début ; dépiler, c'est supprimer en début (chapitre 2).",
+            "Empiler : nouveau maillon avec `malloc`, son `next` pointe vers l'ancien sommet, puis `*sommet` devient le nouveau maillon. Dépiler : garder le maillon et sa valeur, avancer `*sommet`, puis `free`.",
+            "Vider : `while (*sommet != NULL) depilerListe(sommet);` suffit, puisque `depilerListe` libère chaque maillon."
+          ]
+        },
+        {
+          "id": "06-inverser-texte",
+          "titre": "Inverser un texte avec une pile",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Une pile rend les valeurs dans l'ordre inverse de leur arrivée : c'est exactement ce qu'on veut ici.",
+            "Première boucle : empiler chaque caractère du texte jusqu'au `'\\0'`. Deuxième boucle : tant que la pile n'est pas vide, dépiler dans `resultat[j++]`.",
+            "N'oublie pas de terminer le résultat : `resultat[j] = '\\0';` après la deuxième boucle, même pour un texte vide."
+          ]
+        },
+        {
+          "id": "07-parentheses",
+          "titre": "Parenthèses équilibrées",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Une ouvrante (`(`, `[`, `{`) est empilée. Une fermante doit correspondre à l'ouvrante **la plus récente** encore ouverte : c'est le sommet de la pile.",
+            "Sur une fermante : si la pile est vide, ou si le sommet n'est pas l'ouvrante qui va avec, c'est raté (renvoie 0). Sinon, on dépile. Les autres caractères sont ignorés.",
+            "À la fin du texte, il ne doit plus rien rester dans la pile : `return estVide(&pile);`. Une petite fonction `ouvranteDe(fermante)` qui renvoie `'('` pour `')'` simplifie les tests."
+          ]
+        },
+        {
+          "id": "08-reparer-calculette",
+          "titre": "Réparer la calculette polonaise",
+          "difficulte": 2,
+          "type": "sortie",
+          "indices": [
+            "Lance le programme : les calculs justes affichent leur résultat... puis un message d'erreur en plus. Regarde la fin de la fonction : que vaut `pile.size` juste **après** le `depiler` du résultat ?",
+            "Les trois cas de la fin (vide, un nombre, trop de nombres) s'excluent : il faut une seule chaîne `if / else if / else`, testée **avant** de dépiler. Pour `4 2 /`, que fait la boucle quand le caractère n'est ni un chiffre, ni `+`, ni `-`, ni `x` ?",
+            "Ajoute un test du symbole avant `if (pile.size < 2)` : `if (c != '+' && c != '-' && c != 'x') { printf(\"SYMBOLE INCONNU\\n\"); return; }`. À la fin : `if (pile.size == 0) ... else if (pile.size == 1) ... else ...`."
+          ]
+        },
+        {
+          "id": "09-calculette-codes",
+          "titre": "Une calculette polonaise complète",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Même algorithme que la calculette précédente, avec deux changements : on **renvoie** un code au lieu d'afficher, et un nombre peut avoir plusieurs chiffres.",
+            "Pour lire un nombre : tant que `calcul[i]` est un chiffre, `nombre = nombre * 10 + (calcul[i] - '0'); i++;`. Attention à ne pas sauter le caractère qui suit le nombre dans la boucle principale.",
+            "Avec une boucle `while (calcul[i] != '\\0')` et un `i` que tu avances toi-même, c'est plus simple. Ne touche à `*resultat` que dans le cas `CALCUL_OK`, juste avant `return CALCUL_OK;`."
+          ]
+        },
+        {
+          "id": "10-pile-qui-grandit",
+          "titre": "Une pile qui grandit toute seule",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Avant d'écrire dans `tab[size]`, regarde si la pile est pleine. Si oui, il faut d'abord un tableau deux fois plus grand.",
+            "`realloc(s->tab, nouvelleCapacite * sizeof(int))` renvoie l'adresse du nouveau tableau (les anciennes valeurs sont recopiées). Range-la dans une variable à part et teste `NULL` avant de remplacer `s->tab`.",
+            "Libérer : deux `malloc` dans `creerPile`, donc deux `free`, le tableau **d'abord** (`free(s->tab)`), la structure ensuite (`free(s)`)."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que veut dire LIFO ?",
+          "choix": [
+            "Last In, First Out",
+            "List In, File Out",
+            "Last Input, Final Output",
+            "Linked Items For Ordering"
+          ],
+          "reponse": 0,
+          "explication": "Dernier entré, premier sorti : c'est le comportement d'une pile, comme une pile d'assiettes."
+        },
+        {
+          "question": "Quel est l'autre nom d'une pile ?",
+          "choix": [
+            "queue",
+            "stack",
+            "FIFO",
+            "liste circulaire"
+          ],
+          "reponse": 1,
+          "explication": "Une pile se dit *stack* en anglais (d'où *Stack Overflow*). *Queue* et FIFO désignent la **file**."
+        },
+        {
+          "question": "Pourquoi dit-on que la pile est une structure de données **abstraite** ?",
+          "choix": [
+            "Parce qu'elle n'existe pas en C",
+            "Parce qu'on la définit par ses opérations et leur comportement, pas par sa construction",
+            "Parce qu'elle ne contient que des pointeurs",
+            "Parce qu'on ne peut pas l'afficher"
+          ],
+          "reponse": 1,
+          "explication": "Peu importe qu'elle soit faite avec un tableau ou une liste chaînée : si `empiler`, `depiler`, `sommet` et `estVide` se comportent comme prévu, c'est une pile."
+        },
+        {
+          "question": "On empile 4, puis 7, puis 1, puis on dépile une fois. Que renvoie `sommet` ?",
+          "choix": [
+            "4",
+            "7",
+            "1",
+            "La pile est vide"
+          ],
+          "reponse": 1,
+          "explication": "Le dépilement retire 1 (le dernier arrivé). Le nouveau sommet est 7."
+        },
+        {
+          "question": "Quelle est la complexité de `empiler` et `depiler` dans une pile faite avec un tableau (sans agrandissement) ?",
+          "choix": [
+            "O(1) pour les deux",
+            "O(N) pour les deux",
+            "empiler O(1), depiler O(N)",
+            "O(log N) pour les deux"
+          ],
+          "reponse": 0,
+          "explication": "On écrit ou on lit une seule case, `tab[size]` ou `tab[size - 1]`, et on change `size` : rien ne dépend du nombre de valeurs."
+        },
+        {
+          "question": "Dans `typedef struct { int *tab; int size; int capacity; } Stack;`, où se trouve le sommet d'une pile non vide ?",
+          "choix": [
+            "`tab[0]`",
+            "`tab[size]`",
+            "`tab[size - 1]`",
+            "`tab[capacity - 1]`"
+          ],
+          "reponse": 2,
+          "explication": "`size` est le nombre de valeurs, donc aussi l'indice de la première case libre. La dernière valeur posée est juste en dessous : `tab[size - 1]`."
+        },
+        {
+          "question": "Que se passe-t-il si on appelle `void empiler(Stack *s, int v) { s->tab[s->size] = v; s->size++; }` sur une pile **pleine** ?",
+          "choix": [
+            "La valeur est ignorée",
+            "Le programme affiche une erreur claire",
+            "On écrit en dehors du tableau : de la mémoire est écrasée sans prévenir",
+            "La pile s'agrandit toute seule"
+          ],
+          "reponse": 2,
+          "explication": "En C, rien ne vérifie les indices : `tab[capacity]` est la case après la fin. Il faut tester `estPleine` avant, ou renvoyer un code d'erreur."
+        },
+        {
+          "question": "Après `depiler`, la valeur retirée est-elle effacée du tableau ?",
+          "choix": [
+            "Oui, sa case est remise à 0",
+            "Non, elle reste dans la case, mais `size` dit que la case est libre",
+            "Oui, la case est libérée avec `free`",
+            "Non, et elle est encore comptée dans la pile"
+          ],
+          "reponse": 1,
+          "explication": "Seul `size` compte. La vieille valeur sera écrasée au prochain `empiler`."
+        },
+        {
+          "question": "Ce code affiche une pile depuis le fond : `for (int i = 0; i < s->size; i++) printf(\"%d \", s->tab[i]);`. Que lui manque-t-il pour afficher « sur une seule ligne » ?",
+          "choix": [
+            "Un `printf(\"\\n\")` après la boucle",
+            "Rien du tout",
+            "Un `i <= s->size`",
+            "Commencer à `i = 1`"
+          ],
+          "reponse": 0,
+          "explication": "Sans retour à la ligne final, l'affichage suivant se colle derrière. Une correction automatique compte alors la sortie fausse."
+        },
+        {
+          "question": "Pour faire une pile avec une liste chaînée, où place-t-on le sommet ?",
+          "choix": [
+            "Sur le premier maillon, pour empiler et dépiler en O(1)",
+            "Sur le dernier maillon, pour empiler en O(1)",
+            "Au milieu de la liste",
+            "N'importe où, cela ne change rien"
+          ],
+          "reponse": 0,
+          "explication": "Insérer et supprimer en début de liste coûtent O(1). Supprimer en fin demande l'avant-dernier : O(N)."
+        },
+        {
+          "question": "Quelle opération n'a **pas** de sens pour une pile faite avec une liste chaînée ?",
+          "choix": [
+            "estVide",
+            "sommet",
+            "estPleine",
+            "depiler"
+          ],
+          "reponse": 2,
+          "explication": "Une liste chaînée n'a pas de capacité fixe : on peut empiler tant qu'il reste de la mémoire."
+        },
+        {
+          "question": "Lequel de ces usages repose sur une **pile** ?",
+          "choix": [
+            "Servir les clients d'un guichet dans l'ordre d'arrivée",
+            "Le bouton « Retour » d'un navigateur",
+            "Envoyer les documents à une imprimante dans l'ordre",
+            "Distribuer des tâches à des serveurs dans l'ordre"
+          ],
+          "reponse": 1,
+          "explication": "« Retour » ramène à la **dernière** page visitée : dernier entré, premier sorti. Les trois autres sont des files (premier arrivé, premier servi)."
+        },
+        {
+          "question": "Que vaut le calcul en notation polonaise inverse `2 3 4 x +` ?",
+          "choix": [
+            "20",
+            "14",
+            "24",
+            "9"
+          ],
+          "reponse": 1,
+          "explication": "On empile 2, 3, 4. `x` dépile 4 et 3, empile 12. `+` dépile 12 et 2, empile 14."
+        },
+        {
+          "question": "En notation polonaise inverse, on lit `-` et on dépile d'abord `a`, puis `b`. Que faut-il empiler ?",
+          "choix": [
+            "`a - b`",
+            "`b - a`",
+            "`a + b`",
+            "Cela dépend de la taille de la pile"
+          ],
+          "reponse": 1,
+          "explication": "Le premier nombre dépilé est celui de **droite**. Pour `8 3 -`, on dépile 3 puis 8 et on calcule `8 - 3`."
+        },
+        {
+          "question": "Quel résultat doit donner la calculette pour `1 2 3 +` ?",
+          "choix": [
+            "6",
+            "5",
+            "Pas assez de nombres",
+            "Trop de nombres"
+          ],
+          "reponse": 3,
+          "explication": "Après `+`, la pile contient `1 5` : il reste deux nombres au lieu d'un seul à la fin."
+        },
+        {
+          "question": "Une fonction récursive plante sur une entrée très grande avec « débordement de pile ». De quelle pile parle-t-on ?",
+          "choix": [
+            "D'une pile créée avec `malloc`",
+            "De la pile d'exécution, où chaque appel en cours garde ses variables",
+            "Du tas",
+            "D'une pile d'entiers déclarée dans `main`"
+          ],
+          "reponse": 1,
+          "explication": "Chaque appel ajoute un cadre sur la pile d'exécution, retiré quand l'appel se termine. Trop d'appels imbriqués la font déborder : c'est le *stack overflow*."
+        },
+        {
+          "question": "En algorithmique, une pile est :",
+          "choix": [
+            "une structure où la dernière valeur ajoutée est la première retirée",
+            "une structure où la première valeur ajoutée est la première retirée",
+            "un tableau toujours trié",
+            "une batterie qui alimente le processeur"
+          ],
+          "reponse": 0,
+          "explication": "Une pile est LIFO : on ajoute et on retire du même côté, le sommet. La deuxième réponse décrit une file."
+        },
+        {
+          "question": "Quelle est la complexité de la lecture du sommet d'une pile ?",
+          "choix": [
+            "O(N log N)",
+            "O(log N)",
+            "O(1)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "Le sommet est en `tab[size - 1]` (tableau) ou sur le premier maillon (liste chaînée) : on y accède directement."
+        },
+        {
+          "question": "Quelle est la complexité de la recherche d'une valeur quelconque dans une pile de N valeurs ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "Une pile ne range pas ses valeurs dans l'ordre : il faut toutes les regarder dans le pire cas. Ce n'est d'ailleurs pas une opération de pile."
+        },
+        {
+          "question": "Quelle est la complexité de `depiler` dans une pile faite avec une liste chaînée dont le sommet est le premier maillon ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 0,
+          "explication": "C'est une suppression en début de liste : on avance le pointeur de tête et on libère l'ancien maillon."
+        },
+        {
+          "question": "Pour quelle opération une pile en tableau et une pile en liste chaînée ont-elles la même complexité ?",
+          "choix": [
+            "Empiler (sans agrandissement du tableau)",
+            "Lire la i-ème valeur depuis le fond",
+            "Tester si la pile est pleine",
+            "Recopier la pile dans un tableau deux fois plus grand"
+          ],
+          "reponse": 0,
+          "explication": "Empiler coûte O(1) dans les deux cas. Lire la i-ème valeur depuis le fond est O(1) dans un tableau mais O(N) dans une liste, et `estPleine` n'existe pas pour une liste."
+        }
+      ]
+    },
+    {
+      "id": "10-files",
+      "titre": "Files",
+      "description": "Structure abstraite FIFO : file dans un tableau circulaire (tête, taille, modulo), vide, pleine, enfiler, défiler, afficher, file en liste chaînée avec pointeur de fin, applications.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Vidéo : la file",
+          "url": "https://www.youtube.com/watch?v=vWxyDDQPSy8"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-vide-pleine",
+          "titre": "File vide, file pleine",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Tout se lit dans `size` (le nombre de valeurs) et `capacity` (le nombre de cases). `start` ne sert à rien ici.",
+            "Vide : aucune valeur. Pleine : autant de valeurs (ou plus) que de cases. Avec `==`, une file qui a dépassé sa capacité à cause d'un bug ne serait plus « pleine ».",
+            "`return q->size == 0;` et `return q->size >= q->capacity;` : une comparaison vaut déjà 1 ou 0."
+          ]
+        },
+        {
+          "id": "02-enfiler-defiler",
+          "titre": "Enfiler, défiler, lire la tête",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "On enfile à la **fin**, on défile à la **tête**. La tête est en `tab[start]`, la première case libre en `tab[(start + size) % capacity]`.",
+            "Défiler : garder `tab[start]` dans une variable **avant** de bouger `start`, puis faire avancer `start` en tournant, puis diminuer `size`.",
+            "`q->start = (q->start + 1) % q->capacity;` : avec un simple `q->start++`, la tête finit par sortir du tableau."
+          ]
+        },
+        {
+          "id": "03-afficher-en-tournant",
+          "titre": "Afficher une file qui a fait le tour",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "On ne part pas de la case 0 mais de la tête, et on fait exactement `size` pas. La i-ème valeur depuis la tête est dans `tab[(start + i) % capacity]`.",
+            "Depuis la fin, la i-ème valeur est dans `tab[(start + size - 1 - i) % capacity]` : `start + size - 1` est la case de la dernière valeur, avant le modulo.",
+            "Teste `if (q->size == 0)` d'abord pour afficher `(vide)`. Sinon, la boucle avec `printf(\"%d \", ...)`, et **toujours** un `printf(\"\\n\")` après la boucle, sinon les lignes se collent."
+          ]
+        },
+        {
+          "id": "04-reparer-modulo",
+          "titre": "Réparer une file qui ne tourne pas",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Fais tourner le scénario du tableau à la main en notant `start` et `size`. Les trois fonctions ont chacune **un** bug, et deux d'entre eux ne se voient qu'une fois que la file a fait le tour du tableau.",
+            "Dans `enfiler` et `valeurA`, l'indice calculé peut dépasser `capacity - 1` : il lui manque un `% q->capacity`. Dans `defiler`, regarde **quand** la valeur est lue par rapport au moment où `start` avance.",
+            "`q->tab[(q->start + q->size) % q->capacity] = valeur;`, `return q->tab[(q->start + i) % q->capacity];`, et dans `defiler` : `int valeur = q->tab[q->start];` **en premier**, puis on avance `start`, puis `return valeur;`."
+          ]
+        },
+        {
+          "id": "05-reparer-garde-fous",
+          "titre": "Réparer une file qui écrase sa tête",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Les trois fonctions marchent quand on les appelle au bon moment. Que vaut `(start + size) % capacity` quand la file est pleine ? Et que devient `size` si on défile une file vide ?",
+            "Ajoute un test au tout début de chaque fonction : si l'opération est impossible, renvoie 0 **sans rien modifier** (ni `start`, ni `size`, ni le tableau, ni `*valeur`).",
+            "`if (q->size >= q->capacity) return 0;` au début d'`enfiler`, `if (q->size == 0) return 0;` au début de `defiler` et de `lireTete`."
+          ]
+        },
+        {
+          "id": "06-file-chainee",
+          "titre": "Une file en liste chaînée",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "On enfile **derrière** `dernier` et on défile `premier` : les deux opérations se font sans parcourir la liste.",
+            "Enfiler : nouveau maillon (`malloc`, `next = NULL`). Si la file est vide, il devient `premier` ; sinon on l'accroche à `dernier->next`. Dans les deux cas, il devient `dernier`. Défiler : garder le premier maillon et sa valeur, avancer `premier`, puis `free`.",
+            "Quand `premier` devient `NULL` en défilant, remets aussi `dernier` à `NULL`, sinon il pointe vers un maillon libéré. Pour vider : `while (f->premier != NULL) defilerListe(f);`."
+          ]
+        },
+        {
+          "id": "07-reparer-file-chainee",
+          "titre": "Réparer la file chaînée",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lance le programme et regarde l'état de la file juste après avoir défilé le dernier maillon : `premier` et `dernier` devraient valoir `NULL` tous les deux.",
+            "Premier bug : `defilerListe` oublie un cas. Quand la file devient vide, `dernier` pointe encore vers le maillon qu'on vient de libérer. Deuxième bug : `viderFile` remet les pointeurs à `NULL`... mais que deviennent les maillons ?",
+            "Dans `defilerListe`, après `f->premier = ancien->next;`, ajoute `if (f->premier == NULL) f->dernier = NULL;`. `viderFile` doit libérer chaque maillon : `while (f->premier != NULL) defilerListe(f);`."
+          ]
+        },
+        {
+          "id": "08-chacun-son-tour",
+          "titre": "Chacun son tour : le jeu de l'élimination",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Mets d'abord les personnes 1 à n dans une file de capacité n (réserve le tableau avec `malloc`). Celui qui compte est toujours la **tête** de la file.",
+            "Tant qu'il reste plus d'une personne : `k - 1` fois, défiler la tête et la renfiler aussitôt à la fin (elle a dit un nombre et reste en jeu). Puis défiler une fois de plus **sans** renfiler : c'est la personne éliminée, range-la dans `ordre[j++]`.",
+            "À la fin, la survivante est la seule valeur de la file : `int survivant = defiler(&file);`. N'oublie pas `free` sur le tableau avant le `return`."
+          ]
+        },
+        {
+          "id": "09-tourniquet",
+          "titre": "Le tourniquet : partager le processeur",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "La file contient les **numéros** des tâches (0 à n - 1), pas leurs durées. Il faut un second tableau `reste`, copie de `durees`, qu'on diminue au fur et à mesure. Une file de capacité `n` suffit : une tâche n'y est jamais deux fois.",
+            "Garde l'heure dans une variable `temps`. Tant que la file n'est pas vide : défiler une tâche `i`, la faire travailler `tranche = reste[i] < quantum ? reste[i] : quantum`, ajouter `tranche` à `temps` et l'enlever de `reste[i]`.",
+            "Ensuite : si `reste[i] > 0`, la renfiler ; sinon, `fin[i] = temps`. Deux `malloc` (la file et `reste`), donc deux `free` à la fin. Pour `n == 0`, rien à faire : renvoie tout de suite."
+          ]
+        },
+        {
+          "id": "10-file-qui-grandit",
+          "titre": "Une file circulaire qui grandit",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Si la file a fait le tour, ses valeurs sont en deux morceaux : de `start` à la fin du tableau, puis du début du tableau jusqu'à la fin de la file. Un `realloc` seul ajoute des cases **après** le second morceau... qui se retrouve au mauvais endroit.",
+            "Le plus simple : réserver un nouveau tableau de `2 * capacity` cases, y recopier les valeurs **dans l'ordre de la file**, de la tête à la fin : `nouveau[i] = q->tab[(q->start + i) % q->capacity]` pour `i` de 0 à `size - 1`.",
+            "Après la copie : `free(q->tab)`, puis `q->tab = nouveau; q->start = 0; q->capacity = 2 * q->capacity;`. Ensuite seulement, enfile normalement avec le modulo. `libererFile` : deux `malloc` dans `creerFile`, donc deux `free`, le tableau d'abord."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "On enfile A, puis B, puis C, puis on défile une fois. Que renvoie `tete` ?",
+          "choix": [
+            "A",
+            "B",
+            "C",
+            "La file est vide"
+          ],
+          "reponse": 1,
+          "explication": "Le défilement retire A, le premier arrivé. La nouvelle tête est B, et C reste à la fin."
+        },
+        {
+          "question": "Pourquoi ne range-t-on pas une file dans un tableau en gardant toujours la tête en `tab[0]` ?",
+          "choix": [
+            "Parce que `tab[0]` n'existe pas en C",
+            "Parce qu'il faudrait décaler toutes les valeurs à chaque défilement : O(N)",
+            "Parce qu'on ne pourrait plus enfiler",
+            "Parce que le tableau serait toujours plein"
+          ],
+          "reponse": 1,
+          "explication": "Retirer `tab[0]` oblige à recopier chaque valeur une case plus à gauche. Avec un indice `start` qui avance, défiler ne coûte plus que O(1)."
+        },
+        {
+          "question": "Dans une file de capacité 4, `start` vaut 3. Que vaut `start` après un défilement ?",
+          "choix": [
+            "4",
+            "0",
+            "3",
+            "-1"
+          ],
+          "reponse": 1,
+          "explication": "`start = (3 + 1) % 4 = 0` : la tête revient au début du tableau. Avec un simple `start++`, elle vaudrait 4, une case qui n'existe pas."
+        },
+        {
+          "question": "Une file a `capacity = 5`, `start = 3` et `size = 4`. Dans quelle case le prochain `enfiler` écrit-il ?",
+          "choix": [
+            "`tab[7]`",
+            "`tab[2]`",
+            "`tab[4]`",
+            "`tab[0]`"
+          ],
+          "reponse": 1,
+          "explication": "La première case libre est `(start + size) % capacity = 7 % 5 = 2`. La file occupe les cases 3, 4, 0 et 1."
+        },
+        {
+          "question": "Pourquoi la structure `Queue` garde-t-elle le champ `size` en plus de `start` ?",
+          "choix": [
+            "Pour rien : `start` suffit",
+            "Parce que sans lui, une file vide et une file pleine auraient leur tête et leur fin sur la même case",
+            "Pour connaître la taille du tableau",
+            "Pour pouvoir trier la file"
+          ],
+          "reponse": 1,
+          "explication": "Dans les deux cas, la fin `(start + size) % capacity` retombe sur `start`. `size` dit tout de suite si la file est vide (0) ou pleine (`capacity`). La taille du tableau, c'est `capacity`."
+        },
+        {
+          "question": "Que se passe-t-il si on appelle `enfiler` (avec le modulo, sans aucun test) sur une file **pleine** ?",
+          "choix": [
+            "La valeur est ignorée",
+            "On écrit après la fin du tableau",
+            "La fin tombe sur la tête : la valeur la plus ancienne est écrasée sans prévenir",
+            "La file s'agrandit toute seule"
+          ],
+          "reponse": 2,
+          "explication": "Quand `size == capacity`, `(start + size) % capacity` vaut `start`. Le modulo évite de sortir du tableau, mais on écrase la tête. Il faut tester `estPleine` avant."
+        },
+        {
+          "question": "Ce `defiler` est faux : `q->start = (q->start + 1) % q->capacity; q->size--; return q->tab[q->start];`. Que renvoie-t-il ?",
+          "choix": [
+            "La tête, comme prévu",
+            "La valeur qui suit la tête",
+            "La dernière valeur de la file",
+            "Toujours 0"
+          ],
+          "reponse": 1,
+          "explication": "On lit la case **après** avoir avancé `start` : c'est la nouvelle tête qui est renvoyée. Il faut garder `tab[start]` dans une variable avant de bouger `start`."
+        },
+        {
+          "question": "Que reproche-t-on à cet affichage ? `for (int i = q->start; i < q->start + q->size; i++) printf(\"%d \", q->tab[i]);`",
+          "choix": [
+            "Rien, il est juste",
+            "Il oublie la tête",
+            "Dès que la file a fait le tour, il lit des cases en dehors du tableau",
+            "Il affiche les valeurs à l'envers"
+          ],
+          "reponse": 2,
+          "explication": "Sans modulo, `i` dépasse `capacity - 1`. La bonne boucle va de 0 à `size` et lit `tab[(start + i) % capacity]`. Il manque aussi le `printf(\"\\n\")` final."
+        },
+        {
+          "question": "Dans une file faite avec une liste chaînée, où enfile-t-on et où défile-t-on ?",
+          "choix": [
+            "On enfile derrière le dernier maillon, on défile le premier",
+            "On enfile avant le premier maillon, on défile le dernier",
+            "On enfile et on défile au début",
+            "On enfile et on défile à la fin"
+          ],
+          "reponse": 0,
+          "explication": "Retirer le premier maillon coûte O(1), ajouter derrière le dernier aussi grâce au pointeur `dernier`. Retirer le dernier demanderait l'avant-dernier : O(N). Enfiler et défiler du même côté, c'est une pile."
+        },
+        {
+          "question": "Sans pointeur vers le dernier maillon, quelle est la complexité d'`enfiler` dans une file en liste chaînée ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "Pour accrocher le nouveau maillon, il faut d'abord parcourir toute la liste jusqu'au dernier. Le pointeur `dernier` ramène cette opération à O(1)."
+        },
+        {
+          "question": "On défile le **seul** maillon d'une file chaînée (`premier`, `dernier`). Que faut-il faire en plus de `premier = premier->next` et du `free` ?",
+          "choix": [
+            "Rien de plus",
+            "Remettre `dernier` à `NULL`",
+            "Faire `free(dernier)`",
+            "Mettre `dernier = premier->next`"
+          ],
+          "reponse": 1,
+          "explication": "`dernier` pointe encore vers le maillon qu'on vient de libérer. Au prochain `enfiler`, on écrirait dans cette mémoire rendue, et `premier` resterait `NULL`."
+        },
+        {
+          "question": "Lequel de ces usages repose sur une **file** ?",
+          "choix": [
+            "Le bouton « Annuler » d'un éditeur de texte",
+            "Une imprimante partagée qui imprime les documents dans l'ordre d'envoi",
+            "Vérifier que des parenthèses sont bien fermées",
+            "Revenir à la page précédente d'un navigateur"
+          ],
+          "reponse": 1,
+          "explication": "Premier envoyé, premier imprimé : c'est FIFO. Les trois autres usages reprennent toujours le **dernier** élément ajouté : ce sont des piles."
+        },
+        {
+          "question": "Pour faire jouer des joueurs à tour de rôle avec une file, que fait-on du joueur qui vient de jouer et n'a pas fini ?",
+          "choix": [
+            "On le remet en tête de la file",
+            "On le défile une seconde fois",
+            "On le renfile à la fin de la file",
+            "On le supprime de la file"
+          ],
+          "reponse": 2,
+          "explication": "Il repasse derrière tous ceux qui attendent : chacun joue une fois avant qu'il rejoue. C'est le principe du tourniquet (*round robin*)."
+        },
+        {
+          "question": "Une file dans un tableau circulaire de capacité 4 qui a fait le tour (`start = 2`) est pleine. Pourquoi un simple `realloc` vers 8 cases ne suffit-il pas pour l'agrandir ?",
+          "choix": [
+            "Parce que `realloc` efface les anciennes valeurs",
+            "Parce que les valeurs rangées au début du tableau devraient maintenant se trouver après la case 3",
+            "Parce que `realloc` ne marche que pour les piles",
+            "Il suffit, à condition de remettre `start` à 0"
+          ],
+          "reponse": 1,
+          "explication": "La file lit `tab[2], tab[3]`, puis les cases 4 et 5... qui sont vides : la suite de la file est restée en cases 0 et 1. Il faut recopier les valeurs dans l'ordre de la file."
+        },
+        {
+          "question": "Une structure de données FIFO est :",
+          "choix": [
+            "une pile",
+            "une file",
+            "un tableau trié",
+            "un arbre"
+          ],
+          "reponse": 1,
+          "explication": "FIFO (*First In, First Out*) : le premier entré est le premier sorti. C'est la file, *queue* en anglais. La pile est LIFO."
+        },
+        {
+          "question": "Quelle est la complexité de l'opération `defiler` dans une file en tableau circulaire ?",
+          "choix": [
+            "O(N log N)",
+            "O(log N)",
+            "O(1)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "On lit `tab[start]`, on avance `start` avec le modulo et on diminue `size` : trois opérations, quelle que soit la taille de la file."
+        },
+        {
+          "question": "Quelle est la complexité de l'affichage de toutes les valeurs d'une file qui en contient N ?",
+          "choix": [
+            "O(1)",
+            "O(log N)",
+            "O(N)",
+            "O(N²)"
+          ],
+          "reponse": 2,
+          "explication": "Il faut passer une fois sur chaque valeur : N tours de boucle."
+        },
+        {
+          "question": "Dans une file, la valeur qui sort en premier est :",
+          "choix": [
+            "la plus récente",
+            "la plus ancienne",
+            "la plus petite",
+            "la plus grande"
+          ],
+          "reponse": 1,
+          "explication": "Comme dans une file d'attente : le premier arrivé est le premier servi. Une file ne regarde jamais les valeurs elles-mêmes."
+        },
+        {
+          "question": "Pour quelle opération une file en liste chaînée avec pointeur de fin est-elle plus pratique qu'une file en tableau circulaire ?",
+          "choix": [
+            "Défiler",
+            "Lire la tête",
+            "Enfiler sans connaître à l'avance le nombre maximum de valeurs",
+            "Tester si la file est vide"
+          ],
+          "reponse": 2,
+          "explication": "Les quatre opérations coûtent O(1) dans les deux cas, mais le tableau a une capacité fixe. La liste chaînée n'est jamais pleine : on peut enfiler tant qu'il reste de la mémoire."
         }
       ]
     }

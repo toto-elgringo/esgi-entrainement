@@ -1,0 +1,11 @@
+{
+  "titre": "Numéroter les lignes d'un fichier",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Parcours le fichier avec `for ligne in f:` : pas besoin de tout charger avec `read()`.",
+    "`enumerate(f, start=1)` donne le numéro de chaque ligne, en commençant à 1, sans compteur à gérer à la main.",
+    "Chaque ligne lue garde son `\"\n\"` (sauf parfois la dernière) : `ligne.rstrip(\"\n\")` l'enlève sans toucher aux autres espaces.",
+    "Pour `sauter_vides`, teste `if sauter_vides and not texte.strip(): continue`, **après** avoir calculé le numéro : les numéros restent ceux du fichier."
+  ]
+}

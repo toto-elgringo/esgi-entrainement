@@ -1,0 +1,12 @@
+{
+  "titre": "Réutiliser ses fonctions : calculs d'horaires",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`divmod(a, b)` renvoie le couple `(a // b, a % b)` : `heures, reste = divmod(secondes, 3600)`, puis `minutes, secondes = divmod(reste, 60)`.",
+    "Un horaire est un tuple : `en_secondes(*horaire)` le déballe en trois arguments, c'est la même chose que `en_secondes(horaire[0], horaire[1], horaire[2])`.",
+    "`ecart` ne refait aucun calcul d'heures : convertis les deux horaires en secondes, prends `abs(...)` de la différence, et reconvertis avec `en_horaire`.",
+    "Pour `ajouter`, une journée fait `24 * 3600` secondes : `% (24 * 3600)` ramène le total dans la journée, même si on ajoute une durée négative.",
+    "Pour `duree_totale`, additionne les secondes de chaque horaire avec `sum(en_secondes(*h) for h in horaires)`, puis reconvertis. Ici, pas de modulo : on peut dépasser 24 heures."
+  ]
+}

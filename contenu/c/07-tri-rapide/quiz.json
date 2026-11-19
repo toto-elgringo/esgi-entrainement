@@ -1,0 +1,98 @@
+[
+  {
+    "question": "Que garantit une partition autour d'un pivot ?",
+    "choix": ["Le tableau entier est trié", "Les valeurs plus petites que le pivot sont à sa gauche, les plus grandes à sa droite", "Le pivot se retrouve dans la première case", "Les deux moitiés ont exactement la même taille"],
+    "reponse": 1,
+    "explication": "La partition ne trie pas les deux côtés : elle sépare seulement les petites valeurs (à gauche) des grandes (à droite)."
+  },
+  {
+    "question": "Après une partition, pourquoi le pivot ne bougera-t-il plus jamais ?",
+    "choix": ["Parce qu'on le marque comme « bloqué »", "Parce qu'il a exactement le bon nombre de valeurs plus petites avant lui : c'est sa place dans le tableau trié", "Parce qu'il est toujours au milieu", "Il peut encore bouger lors des appels suivants"],
+    "reponse": 1,
+    "explication": "Toutes les valeurs plus petites sont avant lui et toutes les plus grandes après : dans le tableau trié, il sera exactement à cet indice."
+  },
+  {
+    "question": "Dans la partition du cours, que fait-on en tout premier ?",
+    "choix": ["On trie les deux moitiés", "On échange le pivot avec la dernière case", "On cherche le minimum", "On copie le tableau dans un tableau auxiliaire"],
+    "reponse": 1,
+    "explication": "Le pivot est mis à l'abri en dernière case pendant le parcours, puis replacé à `position` à la fin."
+  },
+  {
+    "question": "On partitionne `4 9 1 6 8 2 7` avec le pivot 6. Quelle position la fonction renvoie-t-elle ?",
+    "choix": ["`0`", "`3`", "`4`", "`6`"],
+    "reponse": 1,
+    "explication": "Trois valeurs sont plus petites que 6 (4, 1 et 2) : le pivot finit à l'indice 3."
+  },
+  {
+    "question": "Quelle est la complexité d'une partition sur une portion de `n` cases ?",
+    "choix": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+    "reponse": 2,
+    "explication": "Chaque case est regardée une seule fois, avec au plus un échange : un temps linéaire, sans tableau en plus."
+  },
+  {
+    "question": "En C, on partitionne la portion `[debut, fin)` d'un tableau. Quelle valeur de départ faut-il donner à `position` ?",
+    "choix": ["`0`", "`debut`", "`fin - 1`", "`(fin - debut) / 2`"],
+    "reponse": 1,
+    "explication": "Les petites valeurs se rangent au début de la **portion**. Avec `0`, on écrirait dans des cases qui n'en font pas partie (le réflexe pris avec `subArray` sur Schooding)."
+  },
+  {
+    "question": "Après `p = partition(t, debut, fin, milieu)`, quels sont les deux appels récursifs corrects ?",
+    "choix": ["`[debut, p)` et `[p + 1, fin)`", "`[debut, p + 1)` et `[p + 1, fin)`", "`[debut, p)` et `[p, fin)`", "`[0, p)` et `[p + 1, n)`"],
+    "reponse": 0,
+    "explication": "La case `p` est déjà à sa place : on la saute. Si on la garde dans un appel, la portion peut ne plus rétrécir et les appels ne s'arrêtent plus."
+  },
+  {
+    "question": "Quelle est la complexité du tri rapide en moyenne ?",
+    "choix": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+    "reponse": 1,
+    "explication": "Le pivot coupe à peu près au milieu : environ log n niveaux, et chaque niveau coûte O(n) de partitions."
+  },
+  {
+    "question": "Le pivot est toujours la dernière case. Quel tableau provoque le pire cas O(n²) ?",
+    "choix": ["Un tableau au hasard", "Un tableau déjà trié", "Un tableau de 2 cases", "Aucun : le tri rapide est toujours en O(n log n)"],
+    "reponse": 1,
+    "explication": "Sur un tableau trié, la dernière case est le maximum : la partie droite est vide et la gauche n'a qu'une case de moins. n niveaux, n(n - 1)/2 comparaisons."
+  },
+  {
+    "question": "Combien de comparaisons fait le tri rapide (pivot en dernière case) sur `1 2 3 4 5` ?",
+    "choix": ["5", "8", "10", "25"],
+    "reponse": 2,
+    "explication": "4 + 3 + 2 + 1 = 10 = 5 × 4 / 2 : c'est le pire cas."
+  },
+  {
+    "question": "À quoi sert le pivot « médiane de trois » ?",
+    "choix": ["À rendre le tri stable", "À éviter le pire cas sur les tableaux déjà triés ou triés à l'envers", "À supprimer la récursivité", "À trier sans aucune comparaison"],
+    "reponse": 1,
+    "explication": "En prenant la valeur du milieu entre la première, la case du milieu et la dernière, on évite les pivots extrêmes sur les tableaux triés, pour presque rien."
+  },
+  {
+    "question": "Quelle est la mémoire utilisée par le tri rapide en plus du tableau ?",
+    "choix": ["Un tableau auxiliaire de n cases", "Rien d'autre que la pile des appels récursifs (environ log n en moyenne)", "Deux tableaux de n / 2 cases", "Une liste chaînée"],
+    "reponse": 1,
+    "explication": "Le tri rapide est **en place** : seuls des échanges. Seule la pile d'appels grandit, jusqu'à n appels dans le pire cas."
+  },
+  {
+    "question": "Le tri rapide est-il stable ?",
+    "choix": ["Oui, toujours", "Non : les échanges à longue distance peuvent inverser deux valeurs égales", "Oui, si on utilise `<=`", "Seulement sur les tableaux de moins de 10 cases"],
+    "reponse": 1,
+    "explication": "Exemple : `2a 2b 1` avec le pivot 1 donne `1 2b 2a`. Le tri fusion, lui, est stable."
+  },
+  {
+    "question": "Pourquoi la partition en **trois zones** (plus petites, égales, plus grandes) ?",
+    "choix": ["Pour trier plus vite les tableaux au hasard", "Pour éviter le pire cas O(n²) quand il y a beaucoup de valeurs égales", "Pour rendre le tri rapide stable", "Pour ne plus avoir besoin de pivot"],
+    "reponse": 1,
+    "explication": "Toutes les valeurs égales au pivot sont placées d'un coup et ne sont plus jamais retouchées : un tableau d'une seule valeur est trié en une partition."
+  },
+  {
+    "question": "Dans la partition en trois zones, que fait-on quand `t[i]` est plus grand que le pivot ?",
+    "choix": ["On avance `i`", "On recule `grands`, on échange `t[i]` et `t[grands]`, sans avancer `i`", "On échange `t[i]` et `t[petits]`", "On arrête la boucle"],
+    "reponse": 1,
+    "explication": "La valeur qui arrive de la droite n'a pas encore été regardée : il faut la tester au tour suivant, donc `i` ne bouge pas."
+  },
+  {
+    "question": "La sélection rapide cherche la valeur de rang `k`. Après une partition qui renvoie `p` avec `k < p`, que fait-elle ?",
+    "choix": ["Elle trie les deux côtés", "Elle continue seulement sur `[debut, p)`", "Elle continue seulement sur `[p + 1, fin)`", "Elle renvoie `t[p]`"],
+    "reponse": 1,
+    "explication": "La valeur de rang k est forcément à gauche du pivot. Ne traiter qu'un côté donne O(n) en moyenne au lieu de O(n log n)."
+  }
+]

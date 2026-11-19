@@ -1,0 +1,10 @@
+{
+  "titre": "Où finira le pivot ?",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Après la partition, le pivot a à sa gauche toutes les valeurs plus petites que lui, et seulement elles.",
+    "Sa position finale est donc le **nombre** de valeurs strictement plus petites que lui.",
+    "Garde `int pivot = t[indicePivot];`, puis parcours tout le tableau et compte les `t[i] < pivot`."
+  ]
+}

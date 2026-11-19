@@ -1,0 +1,10 @@
+{
+  "titre": "Supprimer une case",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Vérifie d'abord que `position` désigne une case existante : sinon, renvoie 0 sans rien toucher.",
+    "Décale vers la gauche : chaque case à partir de `position` reçoit la valeur de sa voisine de droite. Puis diminue la taille avec `(*n)--`.",
+    "`if (position >= *n) return 0; for (size_t i = position; i + 1 < *n; i++) tab[i] = tab[i + 1]; (*n)--; return 1;`"
+  ]
+}

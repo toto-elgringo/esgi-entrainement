@@ -1,0 +1,10 @@
+{
+  "titre": "Un classement stable",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Le tri par sélection fourni trie bien par note, mais il n'est pas stable : l'échange envoie une fiche loin, par-dessus d'autres fiches de même note. Il faut un tri qui ne fait bouger une fiche que par-dessus des fiches **strictement** moins bonnes.",
+    "Le tri par insertion convient : on met la fiche `fiches[i]` de côté, puis on décale vers la droite les fiches de gauche tant qu'elles ont une note **strictement plus petite** (classement du meilleur au moins bon). Une fiche de même note arrête le décalage : l'ordre de départ est gardé.",
+    "`Fiche f = fiches[i]; size_t j = i; while (j > 0 && fiches[j - 1].note < f.note) { fiches[j] = fiches[j - 1]; j--; } fiches[j] = f;` : une structure se copie en entier avec `=`."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "Vérifier les arguments et les cas limites",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lance les exemples de l'énoncé avec le code de départ : chaque fonction marche sur le cas « normal » et se trompe sur un cas limite.",
+    "`range(debut, fin + 1, pas)` n'inclut `fin` que si le pas est positif. Avec un pas négatif, la borne exclue est `fin - 1`.",
+    "`isinstance(True, int)` vaut `True` : écris `if isinstance(n, bool) or not isinstance(n, int): raise TypeError(...)`.",
+    "Dans `convertir_tous`, intercepte `(TypeError, ValueError) as erreur`, puis `raise TypeError(\"valeur invalide : %r\" % (valeur,)) from erreur`."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Compter comparaisons, échanges et inversions",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`compter_inversions` : deux boucles imbriquées, `i` de 0 à `n - 1` et `j` de `i + 1` à `n - 1`. On compte les paires où `tab[i] > tab[j]` (strictement : deux valeurs égales ne sont pas une inversion).",
+    "`tri_bulles_compte` reçoit les **adresses** de deux compteurs. Commence par `*comparaisons = 0; *echanges = 0;`, puis fais `(*comparaisons)++` à chaque comparaison et `(*echanges)++` à chaque échange. Les parenthèses comptent : `*comparaisons++` avance le pointeur au lieu d'augmenter le compteur.",
+    "Le tri lui-même : `for (size_t fin = n; fin > 1; fin--)`, un indicateur `echange` remis à 0 au début de chaque passage, `for (size_t j = 0; j + 1 < fin; j++)`, et `if (!echange) return;` à la fin du passage."
+  ]
+}

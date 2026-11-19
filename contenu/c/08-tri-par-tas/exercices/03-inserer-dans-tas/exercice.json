@@ -1,0 +1,10 @@
+{
+  "titre": "Insérer dans un tas",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence par ranger la valeur dans la première case libre : `t[*taille] = valeur;`, puis augmente la taille.",
+    "Ensuite, la nouvelle valeur **remonte** : tant qu'elle n'est pas à la racine (`i > 0`) et qu'elle est plus grande que son parent `t[(i - 1) / 2]`, échange-les.",
+    "`int i = *taille - 1; while (i > 0 && t[i] > t[(i - 1) / 2]) { echanger(t, i, (i - 1) / 2); i = (i - 1) / 2; }`"
+  ]
+}

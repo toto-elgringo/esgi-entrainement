@@ -1,0 +1,10 @@
+{
+  "titre": "Fusionner deux tableaux triés dans un nouveau tableau",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence par le cas `na + nb == 0` (renvoie `NULL`), puis alloue `na + nb` cases avec `malloc` et vérifie que l'allocation a réussi.",
+    "Trois indices : `i` dans `a`, `j` dans `b`, `k` dans le résultat. Tant que `i < na && j < nb`, copie la plus petite des deux têtes (`a[i] <= b[j]` : on prend `a` en cas d'égalité) et avance l'indice correspondant.",
+    "Après la boucle, un des deux tableaux n'est pas fini : `while (i < na) res[k++] = a[i++];` puis `while (j < nb) res[k++] = b[j++];`, et enfin `return res;`"
+  ]
+}

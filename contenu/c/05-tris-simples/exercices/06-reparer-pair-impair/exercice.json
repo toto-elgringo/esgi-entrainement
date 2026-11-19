@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer : le tri pair-impair qui ne s'arrête pas à temps",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Premier problème, la borne : pour la dernière paire regardée, `i + 1` doit encore être une case du tableau. Avec `i < n`, quand `i` vaut `n - 1`, on compare `tab[n - 1]` à `tab[n]`, qui n'existe pas.",
+    "Deuxième problème : les `n` tours sont toujours faits, même quand le tableau est trié depuis longtemps. Il faut s'arrêter après un tour (phase paire **et** phase impaire) sans aucun échange.",
+    "Remplace la boucle `for (tour…)` par `int echange = 1; while (echange) { echange = 0; … }`, avec deux boucles `for (size_t i = 0; i + 1 < n; i += 2)` et `for (size_t i = 1; i + 1 < n; i += 2)` qui mettent `echange = 1` quand elles échangent."
+  ]
+}

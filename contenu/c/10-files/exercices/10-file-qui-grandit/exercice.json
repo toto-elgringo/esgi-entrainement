@@ -1,0 +1,10 @@
+{
+  "titre": "Une file circulaire qui grandit",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Si la file a fait le tour, ses valeurs sont en deux morceaux : de `start` à la fin du tableau, puis du début du tableau jusqu'à la fin de la file. Un `realloc` seul ajoute des cases **après** le second morceau... qui se retrouve au mauvais endroit.",
+    "Le plus simple : réserver un nouveau tableau de `2 * capacity` cases, y recopier les valeurs **dans l'ordre de la file**, de la tête à la fin : `nouveau[i] = q->tab[(q->start + i) % q->capacity]` pour `i` de 0 à `size - 1`.",
+    "Après la copie : `free(q->tab)`, puis `q->tab = nouveau; q->start = 0; q->capacity = 2 * q->capacity;`. Ensuite seulement, enfile normalement avec le modulo. `libererFile` : deux `malloc` dans `creerFile`, donc deux `free`, le tableau d'abord."
+  ]
+}

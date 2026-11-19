@@ -1,0 +1,10 @@
+{
+  "titre": "Sauvegarder des scores en JSON",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`sauvegarder` : `json.dump(donnees, f, indent=2, ensure_ascii=False)` dans un fichier ouvert en `\"w\"` avec `encoding=\"utf-8\"`.",
+    "`charger` : mets l'ouverture **et** le `json.load` dans un `try`, puis `except (FileNotFoundError, json.JSONDecodeError): return defaut`.",
+    "`ajouter_score` enchaîne les deux : `scores = charger(chemin, {})`, puis `scores[joueur] = scores.get(joueur, 0) + points`, puis `sauvegarder(chemin, scores)`."
+  ]
+}

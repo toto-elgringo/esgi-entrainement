@@ -130,5 +130,93 @@
     ],
     "reponse": 1,
     "explication": "`with` lie la durée de vie du fichier au bloc : il est fermé quoi qu'il arrive (fin normale, `return` ou exception)."
+  },
+  {
+    "question": "Comment crée-t-on la liste des cubes des nombres de 1 à 5 inclus, avec une liste en compréhension ?",
+    "choix": [
+      "`[x**3 for x in range(1, 6)]`",
+      "`[x^3 for x in range(1, 6)]`",
+      "`[x**3 for x in range(5)]`",
+      "`[x**3 in range(1, 6)]`"
+    ],
+    "reponse": 0,
+    "explication": "La puissance s'écrit `**` (`^` est le ou exclusif) et `range(1, 6)` va de 1 à 5 : la fin est exclue. `range(5)` irait de 0 à 4."
+  },
+  {
+    "question": "Comment garde-t-on seulement les mots de plus de 3 lettres d'une liste `mots` ?",
+    "choix": [
+      "`[len(m) > 3 for m in mots]`",
+      "`[m for m in mots if len(m) > 3]`",
+      "`[m if len(m) > 3 for m in mots]`",
+      "`[m for len(m) > 3 in mots]`"
+    ],
+    "reponse": 1,
+    "explication": "Le filtre se met **après** le `for`. La première version renvoie une liste de `True` / `False` ; la troisième est une erreur de syntaxe (un `if` placé avant le `for` exige un `else`)."
+  },
+  {
+    "question": "Comment crée-t-on un tableau 2D de 3 lignes et 4 colonnes rempli de 0, dont les lignes sont **indépendantes** ?",
+    "choix": [
+      "`[[0] * 4] * 3`",
+      "`[[0] * 4 for _ in range(3)]`",
+      "`[0] * 4 * 3`",
+      "`[[0 for _ in range(3)]] * 4`"
+    ],
+    "reponse": 1,
+    "explication": "La compréhension fabrique une **nouvelle** ligne à chaque tour. `[[0] * 4] * 3` répète trois fois la même ligne : changer une case change toute la colonne. `[0] * 4 * 3` donne une liste simple de 12 zéros."
+  },
+  {
+    "question": "Comment obtient-on la transposée d'une matrice `mat` (liste de listes) ?",
+    "choix": [
+      "`zip(mat)`",
+      "`[list(c) for c in zip(*mat)]`",
+      "`mat.transpose()`",
+      "`[list(c) for c in zip(mat)]`"
+    ],
+    "reponse": 1,
+    "explication": "`zip(*mat)` passe chaque ligne comme un argument séparé, puis regroupe les premiers éléments, les deuxièmes... Sans `*`, `zip` reçoit un seul itérable et emballe chaque ligne seule dans un tuple."
+  },
+  {
+    "question": "Comment crée-t-on un dictionnaire à partir d'une liste de clés `k` et d'une liste de valeurs `v` de même longueur ?",
+    "choix": [
+      "`dict(k, v)`",
+      "`{k: v}`",
+      "`dict(zip(k, v))`",
+      "`k.zip(v)`"
+    ],
+    "reponse": 2,
+    "explication": "`zip(k, v)` fournit les couples `(clé, valeur)` rang par rang, et `dict(...)` les transforme en dictionnaire. `{k: v}` essaie d'utiliser la liste `k` comme clé : `TypeError`."
+  },
+  {
+    "question": "Comment vérifie-t-on que **tous** les nombres d'une liste `l` sont strictement positifs ?",
+    "choix": [
+      "`all(x > 0 for x in l)`",
+      "`any(x > 0 for x in l)`",
+      "`l.all(x > 0)`",
+      "`x > 0 for all x in l`"
+    ],
+    "reponse": 0,
+    "explication": "`all` vaut `True` si chaque élément est vrai, `any` si au moins un l'est. Ce sont des fonctions, pas des méthodes de liste."
+  },
+  {
+    "question": "Que contient `input().split()` si l'utilisateur tape `3 7 12` ?",
+    "choix": [
+      "`[3, 7, 12]`",
+      "`[\"3\", \"7\", \"12\"]`",
+      "`\"3 7 12\"`",
+      "`(3, 7, 12)`"
+    ],
+    "reponse": 1,
+    "explication": "`input()` renvoie toujours une chaîne, et `split()` la coupe en une liste de **chaînes**. Pour avoir des entiers : `[int(x) for x in input().split()]`."
+  },
+  {
+    "question": "Que vaut `{p[0]: p for p in [\"Ana\", \"Alex\", \"Bob\"]}` ?",
+    "choix": [
+      "`{\"A\": \"Ana\", \"B\": \"Bob\"}`",
+      "`{\"A\": \"Alex\", \"B\": \"Bob\"}`",
+      "`{\"A\": [\"Ana\", \"Alex\"], \"B\": [\"Bob\"]}`",
+      "Une erreur : la clé `\"A\"` apparaît deux fois"
+    ],
+    "reponse": 1,
+    "explication": "Un dictionnaire ne garde qu'une valeur par clé : la deuxième clé `\"A\"` écrase la première, sans erreur. Il reste la dernière valeur, `\"Alex\"`."
   }
 ]

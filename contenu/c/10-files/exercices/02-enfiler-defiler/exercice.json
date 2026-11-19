@@ -1,0 +1,10 @@
+{
+  "titre": "Enfiler, défiler, lire la tête",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "On enfile à la **fin**, on défile à la **tête**. La tête est en `tab[start]`, la première case libre en `tab[(start + size) % capacity]`.",
+    "Défiler : garder `tab[start]` dans une variable **avant** de bouger `start`, puis faire avancer `start` en tournant, puis diminuer `size`.",
+    "`q->start = (q->start + 1) % q->capacity;` : avec un simple `q->start++`, la tête finit par sortir du tableau."
+  ]
+}

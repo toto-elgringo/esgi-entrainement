@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer : trois pièges de la dichotomie",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Premier piège, dans `milieu` : avec des bornes énormes, `debut + fin` dépasse la plus grande valeur d'un `size_t` et repart de zéro. Calcule le milieu sans additionner les deux bornes : `debut + (fin - debut) / 2`.",
+    "Deuxième piège : la zone est **semi-ouverte**, `fin` est la première case exclue. Quand la valeur est à gauche de `m`, la case `m` est exclue en écrivant `fin = m` (et pas `m - 1`, qui jette une case de trop et vaut un nombre énorme quand `m` vaut 0).",
+    "Troisième piège : `debut = m` peut laisser la zone identique (quand `fin == debut + 1`, `m` vaut `debut`) et la boucle ne s'arrête plus. La case `m` a déjà été regardée : `debut = m + 1`."
+  ]
+}

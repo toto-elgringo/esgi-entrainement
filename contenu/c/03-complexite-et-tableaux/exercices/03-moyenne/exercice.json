@@ -1,0 +1,10 @@
+{
+  "titre": "La moyenne",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Additionne toutes les cases dans une variable, puis divise par `n`. Pense d'abord au cas `n == 0`.",
+    "Deux pièges : `int / int` fait une division **entière** (3 / 2 vaut 1), et une somme de grands `int` dépasse la limite des `int`. Prends une somme en `long long`, et convertis en `double` avant de diviser.",
+    "`if (n == 0) return 0.0; long long somme = 0; for (...) somme += tab[i]; return (double)somme / (double)n;`"
+  ]
+}

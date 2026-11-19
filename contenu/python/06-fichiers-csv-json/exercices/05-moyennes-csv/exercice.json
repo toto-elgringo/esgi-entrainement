@@ -1,0 +1,11 @@
+{
+  "titre": "Moyennes à partir d'un CSV",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Ouvre le fichier avec `newline=\"\"`, puis `lecteur = csv.reader(f, delimiter=\";\")`. La première ligne s'obtient avec `entete = next(lecteur)`.",
+    "Les valeurs lues sont des **textes**, et les décimales sont écrites avec une virgule : `float(note.replace(\",\", \".\"))`.",
+    "Ignore les lignes vides : `csv.reader` les renvoie sous forme de liste vide, `if not ligne: continue` suffit.",
+    "Pour les matières, `zip(*lignes)` transforme la liste des lignes en liste des colonnes. Arrondis à la fin seulement : `round(sum(notes) / len(notes), 1)`."
+  ]
+}

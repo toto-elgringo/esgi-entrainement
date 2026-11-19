@@ -1,0 +1,10 @@
+{
+  "titre": "File vide, file pleine",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Tout se lit dans `size` (le nombre de valeurs) et `capacity` (le nombre de cases). `start` ne sert à rien ici.",
+    "Vide : aucune valeur. Pleine : autant de valeurs (ou plus) que de cases. Avec `==`, une file qui a dépassé sa capacité à cause d'un bug ne serait plus « pleine ».",
+    "`return q->size == 0;` et `return q->size >= q->capacity;` : une comparaison vaut déjà 1 ou 0."
+  ]
+}

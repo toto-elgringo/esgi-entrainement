@@ -1,0 +1,11 @@
+{
+  "titre": "Écrire un bulletin en CSV",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence par lire la source comme dans l'exercice précédent : `csv.reader(f, delimiter=\";\")`, `next(lecteur)` pour sauter l'en-tête, décimales avec `replace(\",\", \".\")`.",
+    "Range chaque élève dans une liste de tuples `(nom, moyenne)`, puis trie : `sorted(eleves, key=lambda e: (-e[1], e[0]))` (moyenne décroissante, puis nom).",
+    "Pour écrire, ouvre la cible avec `\"w\"`, `encoding=\"utf-8\"` **et** `newline=\"\"`, puis `ecrivain = csv.writer(f, delimiter=\";\")` et `ecrivain.writerow([...])` pour chaque ligne.",
+    "Ne fabrique pas les lignes avec `\";\".join(...)` : un nom qui contient `;` casserait le fichier. `csv.writer` ajoute les guillemets tout seul. La moyenne s'écrit `f\"{moyenne:.1f}\"`."
+  ]
+}

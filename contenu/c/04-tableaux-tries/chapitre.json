@@ -1,0 +1,10 @@
+{
+  "titre": "Tableaux triés et recherche",
+  "description": "Minimum, recherche séquentielle ou dichotomique, égalité de deux tableaux, fusion de deux tableaux triés : ce que gagne un tableau trié.",
+  "source": "cours",
+  "supports": [
+    {"titre": "Vidéo : recherche du minimum", "url": "https://www.youtube.com/watch?v=cN8v5lpFOXA"},
+    {"titre": "Vidéo : recherche d'un élément", "url": "https://www.youtube.com/watch?v=KwZfelrKcSw"},
+    {"titre": "Vidéo : égalité de deux tableaux", "url": "https://www.youtube.com/watch?v=SzKqUhrtheU"}
+  ]
+}

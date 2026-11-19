@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer la calculette polonaise",
+  "difficulte": 2,
+  "type": "sortie",
+  "indices": [
+    "Lance le programme : les calculs justes affichent leur résultat... puis un message d'erreur en plus. Regarde la fin de la fonction : que vaut `pile.size` juste **après** le `depiler` du résultat ?",
+    "Les trois cas de la fin (vide, un nombre, trop de nombres) s'excluent : il faut une seule chaîne `if / else if / else`, testée **avant** de dépiler. Pour `4 2 /`, que fait la boucle quand le caractère n'est ni un chiffre, ni `+`, ni `-`, ni `x` ?",
+    "Ajoute un test du symbole avant `if (pile.size < 2)` : `if (c != '+' && c != '-' && c != 'x') { printf(\"SYMBOLE INCONNU\\n\"); return; }`. À la fin : `if (pile.size == 0) ... else if (pile.size == 1) ... else ...`."
+  ]
+}

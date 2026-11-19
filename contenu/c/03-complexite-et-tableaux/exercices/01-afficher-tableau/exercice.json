@@ -1,0 +1,10 @@
+{
+  "titre": "Afficher un tableau proprement",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "Le crochet ouvrant s'affiche avant la boucle, le crochet fermant et le retour à la ligne après.",
+    "Le séparateur `, ` doit s'écrire **entre** deux valeurs : avant chaque valeur, sauf la première (`i > 0`).",
+    "`printf(\"[\");` puis dans la boucle `if (i > 0) printf(\", \"); printf(\"%d\", tab[i]);` et enfin `printf(\"]\n\");`"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Une calculette polonaise complète",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Même algorithme que la calculette précédente, avec deux changements : on **renvoie** un code au lieu d'afficher, et un nombre peut avoir plusieurs chiffres.",
+    "Pour lire un nombre : tant que `calcul[i]` est un chiffre, `nombre = nombre * 10 + (calcul[i] - '0'); i++;`. Attention à ne pas sauter le caractère qui suit le nombre dans la boucle principale.",
+    "Avec une boucle `while (calcul[i] != '\\0')` et un `i` que tu avances toi-même, c'est plus simple. Ne touche à `*resultat` que dans le cas `CALCUL_OK`, juste avant `return CALCUL_OK;`."
+  ]
+}

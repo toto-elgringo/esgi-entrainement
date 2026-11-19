@@ -1,0 +1,10 @@
+{
+  "titre": "La partition autour d'un pivot",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Suis les quatre étapes du cours : pivot à la fin, `position = 0`, parcours de toutes les cases sauf la dernière, pivot remis à `position`.",
+    "Dans la boucle `for (int i = 0; i < n - 1; i++)`, compare `t[i]` avec `t[n - 1]` (le pivot y est rangé). Si c'est plus petit : `echanger(t, i, position); position++;`.",
+    "Après la boucle : `echanger(t, position, n - 1); return position;`. Commence par `echanger(t, indicePivot, n - 1);`."
+  ]
+}

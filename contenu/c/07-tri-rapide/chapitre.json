@@ -1,0 +1,9 @@
+{
+  "titre": "Tri rapide",
+  "description": "Partition autour d'un pivot, tri rapide récursif et en place, choix du pivot, O(n log n) en moyenne mais O(n²) dans le pire cas, partition en trois zones et sélection rapide.",
+  "source": "cours",
+  "supports": [
+    {"titre": "Vidéo : l'opération de partition", "url": "https://www.youtube.com/watch?v=ipZ84EjHb1s"},
+    {"titre": "Vidéo : le tri rapide", "url": "https://www.youtube.com/watch?v=oWAo9MMiLu8"}
+  ]
+}

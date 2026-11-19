@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer les bornes d'un tri par tas",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Fais le tri à la main sur `{3, 1, 2}` : la valeur 2 entre-t-elle un jour dans le tas ? Et combien de retraits sont faits ?",
+    "Dans `insererDernier(t, taille)`, `taille` est la taille du tas **après** l'ajout : la dernière valeur à ajouter est la case `n - 1`, donc le dernier appel doit être `insererDernier(t, n)`.",
+    "Le tas de 2 cases doit lui aussi perdre sa racine (sinon ses deux cases restent dans l'ordre du tas, la plus grande devant). Écris `taille <= n` dans la première boucle et `taille >= 2` dans la seconde."
+  ]
+}

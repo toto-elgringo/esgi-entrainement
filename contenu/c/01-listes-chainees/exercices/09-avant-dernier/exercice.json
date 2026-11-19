@@ -1,0 +1,10 @@
+{
+  "titre": "Trouver l'avant-dernier maillon",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Avec moins de deux maillons, il n'y a pas d'avant-dernier : vérifie `start == NULL` puis `start->next == NULL` avant tout.",
+    "L'avant-dernier est le maillon dont le **suivant** n'a pas de suivant : regarde deux crans plus loin.",
+    "`Cell *cur = start; while (cur->next->next != NULL) cur = cur->next; return cur;`"
+  ]
+}

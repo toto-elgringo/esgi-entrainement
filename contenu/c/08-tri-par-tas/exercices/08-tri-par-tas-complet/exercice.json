@@ -1,0 +1,10 @@
+{
+  "titre": "Le tri par tas en entier",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Deux étapes : construire un tas max avec tout le tableau (descentes de `n / 2 - 1` à 0), puis ranger les maximums un par un à la fin.",
+    "Pour la deuxième étape, `fin` part de `n - 1` et descend jusqu'à 1 : échange la racine avec la case `fin`, puis fais descendre la nouvelle racine dans un tas de `fin` cases (pas `fin + 1` : la case `fin` est rangée).",
+    "`for (int i = n / 2 - 1; i >= 0; i--) descendre(t, n, i);` puis `for (int fin = n - 1; fin > 0; fin--) { echanger(t, 0, fin); descendre(t, fin, 0); }`."
+  ]
+}

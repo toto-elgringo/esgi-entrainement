@@ -1,0 +1,178 @@
+[
+  {
+    "question": "Que veut dire qu'un tri est **stable** ?",
+    "choix": [
+      "Il donne toujours le même temps d'exécution",
+      "Deux valeurs égales gardent leur ordre de départ",
+      "Il n'utilise pas de deuxième tableau",
+      "Il ne plante jamais"
+    ],
+    "reponse": 1,
+    "explication": "La stabilité compte quand on trie des fiches selon un seul champ : pour une même note, l'ordre d'avant (par exemple alphabétique) est conservé. « Sans deuxième tableau », c'est un tri **en place**."
+  },
+  {
+    "question": "On applique le tri par sélection à `4 1 3 2`. Quel est le tableau après la **première** étape ?",
+    "choix": [
+      "`1 4 3 2`",
+      "`1 2 3 4`",
+      "`1 3 2 4`",
+      "`4 1 2 3`"
+    ],
+    "reponse": 0,
+    "explication": "Le minimum de tout le tableau (1, en position 1) est échangé avec la case 0. Le reste ne bouge pas."
+  },
+  {
+    "question": "Combien de comparaisons fait le tri par sélection sur un tableau **déjà trié** de `n` valeurs ?",
+    "choix": [
+      "`n - 1`",
+      "`n(n - 1) / 2`",
+      "0",
+      "`n log n`"
+    ],
+    "reponse": 1,
+    "explication": "Il cherche le minimum du reste à chaque étape sans savoir que le tableau est trié : `(n - 1) + (n - 2) + … + 1` comparaisons. Son meilleur cas est aussi en O(n²)."
+  },
+  {
+    "question": "Quel tri simple fait **le moins d'échanges** dans le pire cas ?",
+    "choix": [
+      "Le tri à bulles",
+      "Le tri par sélection, avec au plus `n - 1` échanges",
+      "Le tri cocktail",
+      "Le tri pair-impair"
+    ],
+    "reponse": 1,
+    "explication": "Il fait un seul échange par étape (le minimum va à sa place). Les tris par voisins font autant d'échanges que d'inversions, jusqu'à `n(n - 1) / 2`."
+  },
+  {
+    "question": "Pourquoi le tri par sélection n'est-il **pas** stable ?",
+    "choix": [
+      "Parce qu'il compare avec `<`",
+      "Parce que l'échange peut envoyer une valeur loin, par-dessus une valeur égale",
+      "Parce qu'il est en O(n²)",
+      "Il est stable"
+    ],
+    "reponse": 1,
+    "explication": "Avec `2a 2b 1`, le minimum 1 est échangé avec la case 0 : on obtient `1 2b 2a`. Les deux 2 ont changé d'ordre."
+  },
+  {
+    "question": "Après le premier passage du tri à bulles (du début vers la fin), que sait-on ?",
+    "choix": [
+      "La plus petite valeur est dans la première case",
+      "La plus grande valeur est dans la dernière case",
+      "Le tableau est trié",
+      "La moitié du tableau est triée"
+    ],
+    "reponse": 1,
+    "explication": "La plus grande valeur gagne toutes ses comparaisons et remonte jusqu'au bout, comme une bulle. Le passage suivant peut s'arrêter une case plus tôt."
+  },
+  {
+    "question": "Avec l'arrêt anticipé, quelle est la complexité du tri à bulles sur un tableau **déjà trié** ?",
+    "choix": [
+      "O(1)",
+      "O(n)",
+      "O(n log n)",
+      "O(n²)"
+    ],
+    "reponse": 1,
+    "explication": "Le premier passage compare les `n - 1` paires de voisins sans faire d'échange : on s'arrête aussitôt. Sans l'arrêt anticipé, on ferait tous les passages : O(n²)."
+  },
+  {
+    "question": "Dans un tri à bulles, la boucle intérieure s'écrit `for (size_t j = 0; j < fin; j++)` et compare `tab[j]` à `tab[j + 1]`. Quel est le problème ?",
+    "choix": [
+      "Aucun",
+      "Le dernier tour lit `tab[fin]`, une case hors de la zone (hors du tableau au premier passage)",
+      "La première case n'est jamais comparée",
+      "La boucle ne s'arrête jamais"
+    ],
+    "reponse": 1,
+    "explication": "`j + 1` doit rester une vraie case de la zone : la condition est `j + 1 < fin`."
+  },
+  {
+    "question": "Qu'est-ce qu'une « tortue » pour le tri à bulles ?",
+    "choix": [
+      "Une grande valeur placée au début",
+      "Une petite valeur placée à la fin, qui ne recule que d'une case par passage",
+      "Une valeur qui apparaît deux fois",
+      "Un tableau déjà trié"
+    ],
+    "reponse": 1,
+    "explication": "Sur `2 3 4 5 6 1`, le 1 met 5 passages à arriver au début. Le tri cocktail (passages retour) et le tri à peigne (grands écarts) règlent ce problème."
+  },
+  {
+    "question": "Dans le tri par insertion, pourquoi met-on `tab[i]` de côté dans une variable `valeur` avant la boucle de décalage ?",
+    "choix": [
+      "Pour aller plus vite",
+      "Parce que le premier décalage écrase `tab[i]`",
+      "Parce que `tab[i]` est `const`",
+      "Ce n'est pas nécessaire"
+    ],
+    "reponse": 1,
+    "explication": "Le premier décalage fait `tab[i] = tab[i - 1]` : sans copie, la valeur à insérer serait perdue."
+  },
+  {
+    "question": "Quelle est la complexité du tri par insertion (décalage depuis la droite) sur un tableau **presque trié** ?",
+    "choix": [
+      "Proche de O(n) : chaque valeur se déplace très peu",
+      "Toujours O(n²)",
+      "O(log n)",
+      "O(n log n)"
+    ],
+    "reponse": 0,
+    "explication": "La boucle de décalage s'arrête dès qu'elle trouve une valeur plus petite. Sur un tableau déjà trié, elle ne tourne jamais : O(n)."
+  },
+  {
+    "question": "Un tri par insertion cherche la place depuis le début avec `while (pos < i && tab[pos] < valeur) pos++;`. Que perd-on ?",
+    "choix": [
+      "Rien, c'est la même chose",
+      "La stabilité (la valeur passe devant ses égales) et le meilleur cas en O(n)",
+      "Seulement la stabilité",
+      "Le tableau n'est plus trié"
+    ],
+    "reponse": 1,
+    "explication": "Avec `<`, on s'arrête devant la première valeur égale : il faudrait `<=`. Et même sur un tableau trié, on parcourt toute la partie triée à chaque fois : O(n²)."
+  },
+  {
+    "question": "Dans le tri pair-impair, que fait la phase **impaire** ?",
+    "choix": [
+      "Elle trie les valeurs impaires",
+      "Elle compare les paires de voisins `(1, 2)`, `(3, 4)`, `(5, 6)`…",
+      "Elle compare les cases d'indices impairs entre elles",
+      "Elle échange toutes les cases impaires"
+    ],
+    "reponse": 1,
+    "explication": "La phase paire compare `(0, 1)`, `(2, 3)`… et la phase impaire `(1, 2)`, `(3, 4)`… Les paires d'une même phase ne se touchent pas : on peut les traiter en même temps."
+  },
+  {
+    "question": "Qu'apporte le tri cocktail par rapport au tri à bulles ?",
+    "choix": [
+      "Il passe en O(n log n)",
+      "Ses passages retour font descendre les petites valeurs d'un coup : les tortues ne sont plus un problème",
+      "Il devient stable",
+      "Il utilise moins de mémoire"
+    ],
+    "reponse": 1,
+    "explication": "Le passage aller monte le maximum au bout, le passage retour descend le minimum au début. Le pire cas reste en O(n²)."
+  },
+  {
+    "question": "Dans le tri à peigne, que vaut le nouvel écart après un écart de 10, avec `ecart = ecart * 10 / 13` ?",
+    "choix": [
+      "7",
+      "8",
+      "13",
+      "1"
+    ],
+    "reponse": 0,
+    "explication": "`100 / 13` vaut 7 en division entière : c'est 10 divisé par 1,3, arrondi vers le bas. Ensuite viennent 5, 3, 2, 1."
+  },
+  {
+    "question": "Quand le tri à peigne s'arrête-t-il ?",
+    "choix": [
+      "Dès que l'écart vaut 1",
+      "Quand l'écart vaut 1 **et** qu'un passage n'a fait aucun échange",
+      "Après `n` passages",
+      "Quand l'écart vaut 0"
+    ],
+    "reponse": 1,
+    "explication": "Arrivé à l'écart 1, c'est un tri à bulles sur un tableau presque trié : il faut continuer jusqu'à un passage sans échange."
+  }
+]

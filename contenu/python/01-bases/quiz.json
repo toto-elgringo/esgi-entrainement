@@ -75,5 +75,41 @@
     ],
     "reponse": 1,
     "explication": "`__name__` vaut `\"__main__\"` seulement quand le fichier est lancé directement. Quand il est importé (comme par les tests du site), le bloc n'est pas exécuté."
+  },
+  {
+    "question": "Comment obtient-on le nombre de clés d'un dictionnaire `d` en Python ?",
+    "choix": ["`d.length`", "`d.size()`", "`len(d)`", "`d.count()`"],
+    "reponse": 2,
+    "explication": "`len()` est une **fonction** qui marche sur tous les conteneurs : liste, chaîne, tuple, ensemble, dictionnaire. `length` et `size()` viennent d'autres langages."
+  },
+  {
+    "question": "Comment teste-t-on si la clé `\"nom\"` existe dans un dictionnaire `d` ?",
+    "choix": ["`d.contains(\"nom\")`", "`d.has(\"nom\")`", "`\"nom\" in d`", "`d.indexOf(\"nom\") != -1`"],
+    "reponse": 2,
+    "explication": "L'opérateur `in` teste l'appartenance : aux clés pour un dictionnaire, aux éléments pour une liste ou un ensemble, aux sous-chaînes pour une chaîne."
+  },
+  {
+    "question": "Laquelle de ces boucles **n'existe pas** en Python ?",
+    "choix": ["`while condition:`", "`for x in liste:`", "`do ... while condition`", "`for i in range(5):`"],
+    "reponse": 2,
+    "explication": "Python n'a que `while` et `for`. Pour exécuter le corps au moins une fois, on écrit `while True:` avec un `break` quand la condition est remplie."
+  },
+  {
+    "question": "Avec `s = \"Bonjour\"`, comment récupère-t-on `\"jour\"` ?",
+    "choix": ["`s[3:7]`", "`s.slice(3, 7)`", "`s(3:7)`", "`s[3, 7]`"],
+    "reponse": 0,
+    "explication": "Une tranche s'écrit entre crochets avec `:` : `s[debut:fin]`, la fin étant exclue. `s[3:]` marche aussi. `s[3, 7]` cherche l'indice `(3, 7)` et lève `TypeError`."
+  },
+  {
+    "question": "Comment calcule-t-on 2 puissance 10 en Python ?",
+    "choix": ["`2 ^ 10`", "`2 ** 10`", "`pow[2, 10]`", "`2 ^^ 10`"],
+    "reponse": 1,
+    "explication": "La puissance s'écrit `**` (ou `pow(2, 10)`). `^` existe mais c'est le « ou exclusif » sur les bits : `2 ^ 10` vaut 8, sans aucune erreur."
+  },
+  {
+    "question": "Laquelle de ces instructions ne crée **pas** une liste vide ?",
+    "choix": ["`l = []`", "`l = list()`", "`l = {}`", "`l = [x for x in \"\"]`"],
+    "reponse": 2,
+    "explication": "`{}` crée un **dictionnaire** vide. `[]` et `list()` créent tous les deux une liste vide, tout comme une compréhension sur une chaîne vide."
   }
 ]

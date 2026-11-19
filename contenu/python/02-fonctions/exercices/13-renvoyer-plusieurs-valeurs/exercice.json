@@ -1,0 +1,11 @@
+{
+  "titre": "Renvoyer plusieurs valeurs",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`return a, b` renvoie le tuple `(a, b)`. À l'appel, on le déballe : `petit, grand = extremes(l)`.",
+    "Pour `extremes`, commence par `if not valeurs: raise ValueError(\"liste vide\")`, puis pars du premier élément et parcours les autres.",
+    "Pour `positions`, parcours `enumerate(valeurs)` et garde les indices où l'élément vaut `cible`, puis renvoie `tuple(...)`.",
+    "Pour `stats_mots`, `mots = phrase.split()`. Si la liste est vide, renvoie `(0, \"\", 0.0)`. Le mot le plus long : le premier mot de longueur maximale."
+  ]
+}

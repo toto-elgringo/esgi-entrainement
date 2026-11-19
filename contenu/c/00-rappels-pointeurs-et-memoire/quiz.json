@@ -58,5 +58,45 @@
     "choix": ["Par habitude, les deux marchent", "Le nom court `Cell` n'existe pas encore à cet endroit", "Parce que `next` est un entier", "Pour que `next` soit `NULL` par défaut"],
     "reponse": 1,
     "explication": "Le nom `Cell` n'est créé qu'à la fin de la déclaration, après l'accolade fermante. À l'intérieur, seul le nom complet `struct cell` est connu."
+  },
+  {
+    "question": "En C, un pointeur est :",
+    "choix": [
+      "une variable qui contient une adresse mémoire",
+      "une fonction qui réserve de la mémoire",
+      "un tableau dont la taille change toute seule",
+      "une boucle qui parcourt la mémoire"
+    ],
+    "reponse": 0,
+    "explication": "Un pointeur range l'adresse d'une autre donnée (`int *p = &n;`). On lit ou on modifie cette donnée avec `*p`."
+  },
+  {
+    "question": "Quelle est la complexité de la lecture d'une valeur à travers un pointeur (`*p`) ?",
+    "choix": ["O(N log N)", "O(log N)", "O(1)", "O(N²)"],
+    "reponse": 2,
+    "explication": "L'adresse est déjà connue : on va directement à la bonne case de la mémoire, sans rien parcourir."
+  },
+  {
+    "question": "Où `malloc` réserve-t-il la mémoire qu'il renvoie ?",
+    "choix": ["Sur la pile d'exécution", "Sur le tas", "Dans le disque dur", "Dans le code du programme"],
+    "reponse": 1,
+    "explication": "Les variables locales vivent sur la pile et disparaissent à la fin de la fonction. La mémoire du tas reste réservée jusqu'au `free`."
+  },
+  {
+    "question": "Sur une machine où un `int` fait 4 octets, combien d'octets réserve `malloc(10 * sizeof(int))` ?",
+    "choix": ["10", "14", "40", "4"],
+    "reponse": 2,
+    "explication": "`sizeof(int)` vaut 4, donc 10 entiers prennent 40 octets. C'est pour cela qu'on multiplie toujours par `sizeof`."
+  },
+  {
+    "question": "Que fait `free(p)` ?",
+    "choix": [
+      "Il met `p` à `NULL`",
+      "Il rend au système la mémoire réservée par `malloc` à l'adresse contenue dans `p`",
+      "Il remet à 0 toutes les cases pointées par `p`",
+      "Il supprime la variable `p`"
+    ],
+    "reponse": 1,
+    "explication": "`p` garde la même adresse, mais cette mémoire n'est plus à nous. C'est à nous de remettre `p` à `NULL` si on veut s'en souvenir."
   }
 ]

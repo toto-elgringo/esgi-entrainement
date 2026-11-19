@@ -1,0 +1,10 @@
+{
+  "titre": "La recherche dichotomique",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Garde deux bornes qui encadrent la zone où la valeur peut encore être. Regarde la case du milieu : soit c'est la bonne, soit la valeur est à gauche, soit à droite.",
+    "Avec des `size_t`, prends une zone semi-ouverte : `debut = 0`, `fin = n` (première case exclue), et boucle `while (debut < fin)`. Ainsi aucune soustraction ne peut passer sous zéro.",
+    "`size_t milieu = debut + (fin - debut) / 2;` Si `tab[milieu] == valeur`, renvoie `(int)milieu`. Si `valeur < tab[milieu]`, alors `fin = milieu;` sinon `debut = milieu + 1;`. Après la boucle : `return -1;`"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Fusionner deux listes triées",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Tant que les deux listes ont encore des maillons, compare leurs premiers maillons et accroche le plus petit à la fin du résultat.",
+    "Un maillon bidon local (`Cell bidon; bidon.next = NULL;`) et un pointeur `fin = &bidon` évitent de traiter à part le premier maillon. Le résultat est `bidon.next`.",
+    "Dans la boucle : `fin->next = a; a = a->next;` (ou pareil avec `b`), puis `fin = fin->next;`. Après la boucle : `fin->next = (a != NULL) ? a : b;`"
+  ]
+}

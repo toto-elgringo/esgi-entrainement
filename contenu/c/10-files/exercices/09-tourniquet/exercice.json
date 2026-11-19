@@ -1,0 +1,10 @@
+{
+  "titre": "Le tourniquet : partager le processeur",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "La file contient les **numéros** des tâches (0 à n - 1), pas leurs durées. Il faut un second tableau `reste`, copie de `durees`, qu'on diminue au fur et à mesure. Une file de capacité `n` suffit : une tâche n'y est jamais deux fois.",
+    "Garde l'heure dans une variable `temps`. Tant que la file n'est pas vide : défiler une tâche `i`, la faire travailler `tranche = reste[i] < quantum ? reste[i] : quantum`, ajouter `tranche` à `temps` et l'enlever de `reste[i]`.",
+    "Ensuite : si `reste[i] > 0`, la renfiler ; sinon, `fin[i] = temps`. Deux `malloc` (la file et `reste`), donc deux `free` à la fin. Pour `n == 0`, rien à faire : renvoie tout de suite."
+  ]
+}

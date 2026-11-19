@@ -1,0 +1,10 @@
+{
+  "titre": "Insérer une case",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Deux cas où l'on renvoie 0 sans rien faire : le tableau est plein (`*n == capacite`), ou `position` est plus grande que `*n`.",
+    "Décale vers la droite **en partant de la fin** : la case `*n` reçoit la case `*n - 1`, puis la case `*n - 1` reçoit `*n - 2`... jusqu'à libérer `position`.",
+    "`for (size_t i = *n; i > position; i--) tab[i] = tab[i - 1];` puis `tab[position] = valeur; (*n)++; return 1;`"
+  ]
+}

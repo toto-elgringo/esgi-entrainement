@@ -1,0 +1,128 @@
+[
+  {
+    "question": "Lequel de ces fichiers est un fichier **binaire** ?",
+    "choix": ["`notes.csv`", "`photo.png`", "`script.py`", "`config.json`"],
+    "reponse": 1,
+    "explication": "Une image contient des octets qu'il faut décoder. CSV, code source et JSON sont des fichiers texte, lisibles par un humain."
+  },
+  {
+    "question": "Que se passe-t-il avec `open(\"absent.txt\")` si le fichier n'existe pas ?",
+    "choix": ["Le fichier est créé vide", "`open` renvoie `None`", "Python lève `FileNotFoundError`", "On obtient un fichier en mode ajout"],
+    "reponse": 2,
+    "explication": "Sans mode, `open` lit (`\"r\"`) : lire un fichier qui n'existe pas lève `FileNotFoundError`. Seuls `\"w\"`, `\"a\"` et `\"x\"` créent le fichier."
+  },
+  {
+    "question": "Quel mode ajoute du texte **à la fin** d'un fichier sans effacer son contenu ?",
+    "choix": ["`\"w\"`", "`\"r\"`", "`\"a\"`", "`\"x\"`"],
+    "reponse": 2,
+    "explication": "`\"a\"` (*append*) écrit à la suite. `\"w\"` vide le fichier dès l'ouverture, `\"x\"` refuse un fichier qui existe déjà."
+  },
+  {
+    "question": "Que renvoie `f.readline()` quand on est arrivé à la fin du fichier ?",
+    "choix": ["`None`", "`\"\\n\"`", "`\"\"` (chaîne vide)", "Une `EOFError`"],
+    "reponse": 2,
+    "explication": "Une ligne vide au milieu du fichier vaut `\"\\n\"`. La chaîne vide `\"\"` signifie qu'il n'y a plus rien à lire."
+  },
+  {
+    "question": "Pourquoi `for ligne in f: print(ligne)` affiche-t-il une ligne vide entre chaque ligne ?",
+    "choix": ["`print` lit deux lignes à la fois", "Chaque ligne lue garde son `\"\\n\"`, et `print` en ajoute un autre", "Le fichier est en mode binaire", "Il faut écrire `f.readlines()`"],
+    "reponse": 1,
+    "explication": "Les lignes lues se terminent par `\"\\n\"`. On l'enlève avec `ligne.rstrip(\"\\n\")`, ou on écrit `print(ligne, end=\"\")`."
+  },
+  {
+    "question": "Quel est l'avantage de `with open(chemin) as f:` sur `f = open(chemin)` suivi de `f.close()` ?",
+    "choix": ["La lecture est plus rapide", "Le fichier est fermé automatiquement, même en cas de `return` ou d'exception", "Le fichier est ouvert en lecture et en écriture", "Il n'y a plus besoin de préciser l'encodage"],
+    "reponse": 1,
+    "explication": "`with` est un gestionnaire de contexte : en sortant du bloc, quelle que soit la façon, il appelle `close()` pour toi."
+  },
+  {
+    "question": "Après `contenu = f.read()`, que renvoie un deuxième `f.read()` ?",
+    "choix": ["Le même contenu", "`\"\"`, car le curseur est déjà à la fin", "`None`", "Une erreur : le fichier est fermé"],
+    "reponse": 1,
+    "explication": "Chaque lecture avance le curseur. Pour relire depuis le début, on fait `f.seek(0)`."
+  },
+  {
+    "question": "Pourquoi écrire `open(chemin, encoding=\"utf-8\")` plutôt que `open(chemin)` ?",
+    "choix": ["Sinon le fichier est ouvert en binaire", "L'encodage par défaut dépend du système : un fichier avec accents peut être mal lu ailleurs", "`utf-8` rend le fichier plus petit", "C'est obligatoire pour écrire"],
+    "reponse": 1,
+    "explication": "Sans encodage, Python prend celui du système (souvent cp1252 sur un vieux Windows) : `été` peut devenir `Ã©tÃ©` ou lever `UnicodeDecodeError`."
+  },
+  {
+    "question": "Que fournit `csv.reader(f, delimiter=\";\")` pour chaque ligne du fichier ?",
+    "choix": ["Une chaîne", "Une liste de chaînes", "Une liste où les nombres sont déjà convertis en `int`", "Un dictionnaire"],
+    "reponse": 1,
+    "explication": "Toutes les valeurs restent du texte : il faut convertir soi-même avec `int(...)` ou `float(...)`. C'est `csv.DictReader` qui donne des dictionnaires."
+  },
+  {
+    "question": "Pourquoi utiliser le module `csv` plutôt que `ligne.split(\";\")` ?",
+    "choix": ["`split` ne marche pas sur les fichiers", "Une valeur entre guillemets peut contenir le délimiteur, et `split` la coupe en deux", "`csv` convertit les nombres", "`split` enlève les accents"],
+    "reponse": 1,
+    "explication": "Avec `\"Brest; Finistère\";31`, `split(\";\")` donne trois morceaux au lieu de deux. Le module `csv` sait lire les valeurs entre guillemets."
+  },
+  {
+    "question": "Avec `csv.DictReader(f)`, d'où viennent les clés des dictionnaires ?",
+    "choix": ["De la première ligne du fichier", "Des numéros de colonnes 0, 1, 2...", "Du paramètre `delimiter`", "Il faut toujours les donner avec `fieldnames`"],
+    "reponse": 0,
+    "explication": "Par défaut, la première ligne est lue comme l'en-tête. On peut aussi donner `fieldnames=[...]` quand le fichier n'a pas d'en-tête."
+  },
+  {
+    "question": "Après `csv.Sniffer().sniff(f.read(1024))`, pourquoi faut-il faire `f.seek(0)` ?",
+    "choix": ["Pour fermer le fichier", "Pour changer de dialecte", "Parce que la lecture de l'extrait a avancé le curseur", "Pour vider le tampon d'écriture"],
+    "reponse": 2,
+    "explication": "Le `Sniffer` a besoin d'un extrait, et le lire a déplacé le curseur. `seek(0)` revient au début avant la vraie lecture."
+  },
+  {
+    "question": "Quelle fonction transforme une **chaîne** JSON en objet Python ?",
+    "choix": ["`json.load`", "`json.loads`", "`json.dump`", "`json.dumps`"],
+    "reponse": 1,
+    "explication": "Le `s` final veut dire *string* : `loads` lit une chaîne, `load` lit un fichier ouvert, `dump` et `dumps` font le chemin inverse."
+  },
+  {
+    "question": "Que vaut `json.loads(json.dumps({1: (2, 3)}))` ?",
+    "choix": ["`{1: (2, 3)}`", "`{\"1\": [2, 3]}`", "`{1: [2, 3]}`", "Une `TypeError`"],
+    "reponse": 1,
+    "explication": "En JSON, les clés sont toujours du texte, et un tuple devient un tableau, relu comme une liste."
+  },
+  {
+    "question": "Quelle valeur Python correspond au `null` de JSON ?",
+    "choix": ["`0`", "`\"\"`", "`None`", "`False`"],
+    "reponse": 2,
+    "explication": "`null` ↔ `None`, `true` / `false` ↔ `True` / `False`, objet ↔ `dict`, tableau ↔ `list`."
+  },
+  {
+    "question": "Que se passe-t-il avec `json.dumps({\"tags\": {\"a\", \"b\"}})` ?",
+    "choix": ["L'ensemble devient une liste", "L'ensemble devient un texte", "Python lève `TypeError` : un `set` ne passe pas en JSON", "Les doublons sont gardés"],
+    "reponse": 2,
+    "explication": "JSON ne connaît pas les ensembles. Il faut d'abord les convertir, par exemple avec `sorted(tags)`."
+  },
+  {
+    "question": "Comment ouvre-t-on en Python le fichier `rapport.txt` pour l'écrire en remplaçant son contenu ?",
+    "choix": ["`open(\"rapport.txt\", \"r\")`", "`open(\"rapport.txt\", \"w\")`", "`fopen(\"rapport.txt\", \"w\")`", "`file.open(\"rapport.txt\")`"],
+    "reponse": 1,
+    "explication": "C'est `open(nom, \"w\")`. `fopen` est la fonction du C, et `\"r\"` ouvre en lecture."
+  },
+  {
+    "question": "Comment récupère-t-on en Python la **liste** des lignes restantes d'un fichier `f` ?",
+    "choix": ["`f.readline()`", "`f.lines()`", "`f.readlines()`", "`f.getLines()`"],
+    "reponse": 2,
+    "explication": "`readlines()` renvoie une liste (chaque ligne garde son `\"\\n\"`). `readline()` ne renvoie qu'**une** ligne."
+  },
+  {
+    "question": "Comment écrit-on le texte `bonjour` suivi d'un retour à la ligne dans un fichier `f` ouvert en écriture ?",
+    "choix": ["`f.write(\"bonjour\")`", "`f.write(\"bonjour\\n\")`", "`f.print(\"bonjour\")`", "`f.writeline(\"bonjour\")`"],
+    "reponse": 1,
+    "explication": "`write` écrit le texte tel quel, sans ajouter de retour à la ligne : il faut mettre le `\"\\n\"` soi-même. `print(\"bonjour\", file=f)` marche aussi."
+  },
+  {
+    "question": "Comment charge-t-on en Python le contenu d'un fichier JSON ouvert dans `f` ?",
+    "choix": ["`json.parse(f)`", "`json.load(f)`", "`JSON.read(f)`", "`json.loads(f)`"],
+    "reponse": 1,
+    "explication": "`json.load` prend un fichier ouvert. `json.parse` et `JSON.read` n'existent pas (`JSON.parse` est du JavaScript), et `loads` attend une chaîne."
+  },
+  {
+    "question": "Comment lit-on en Python un fichier CSV dont les colonnes sont séparées par des points-virgules ?",
+    "choix": ["`csv.reader(f, sep=\";\")`", "`csv.reader(f, delimiter=\";\")`", "`csv.read(f, \";\")`", "`f.csv(\";\")`"],
+    "reponse": 1,
+    "explication": "Le paramètre s'appelle `delimiter`. `sep` est le nom utilisé par la bibliothèque pandas, pas par le module `csv`."
+  }
+]
