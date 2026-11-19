@@ -1,6 +1,6 @@
-import { ErreurMyges } from './erreurs.js';
-import { creerSession } from './session.js';
-import { decoderEntites } from './html.js';
+import { ErreurSynchro } from '../commun/erreurs.js';
+import { decoderEntites } from '../commun/html.js';
+import { creerSession } from '../commun/session.js';
 
 export const ADRESSE_SITE = 'https://myges.fr';
 
@@ -23,12 +23,12 @@ export function lireFormulaireConnexion(html) {
   return null;
 }
 
-export async function connecterSite({ identifiant, motDePasse }, { adresseSite = ADRESSE_SITE, signal } = {}) {
-  const session = creerSession();
+export async function connecterSite({ identifiant, motDePasse }, { adresseSite = ADRESSE_SITE, signal, delai } = {}) {
+  const session = creerSession({ nomSite: 'MyGES', delai });
   const depart = await session.obtenir(`${adresseSite}/student/courses-files`, { signal });
   const formulaire = lireFormulaireConnexion(await depart.reponse.text());
   if (!formulaire) {
-    throw new ErreurMyges('reponse_inattendue', `La page de connexion de MyGES a changé (statut ${depart.reponse.status}).`);
+    throw new ErreurSynchro('reponse_inattendue', `La page de connexion de MyGES a changé (statut ${depart.reponse.status}).`);
   }
   const champs = { ...formulaire.champs, username: identifiant, password: motDePasse };
   const arrivee = await session.obtenir(new URL(formulaire.action, depart.adresse).href, {
@@ -39,10 +39,10 @@ export async function connecterSite({ identifiant, motDePasse }, { adresseSite =
   });
   const page = await arrivee.reponse.text();
   if (arrivee.reponse.status === 401 || lireFormulaireConnexion(page)) {
-    throw new ErreurMyges('identifiants_refuses', 'MyGES refuse l’identifiant ou le mot de passe.');
+    throw new ErreurSynchro('identifiants_refuses', 'MyGES refuse l’identifiant ou le mot de passe.');
   }
   if (!arrivee.reponse.ok) {
-    throw new ErreurMyges('reponse_inattendue', `Réponse inattendue de MyGES à la connexion (statut ${arrivee.reponse.status}).`);
+    throw new ErreurSynchro('reponse_inattendue', `Réponse inattendue de MyGES à la connexion (statut ${arrivee.reponse.status}).`);
   }
   return session;
 }

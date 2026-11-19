@@ -39,7 +39,7 @@ function activerExemple(bloc, langage, prepare) {
   exemple.innerHTML = `
     <div class="exemple-entete"><span class="exemple-langue">${LANGAGES[langage].nom}</span><div class="exemple-actions">${BOUTONS_FERME}</div></div>
     <div class="zone-editeur" data-editeur hidden></div>
-    <div class="resultat" data-resultat hidden></div>`;
+    <div class="resultat" data-resultat role="status" hidden></div>`;
   bloc.replaceWith(exemple);
   exemple.querySelector('.exemple-entete').after(bloc);
 
@@ -67,17 +67,20 @@ function activerExemple(bloc, langage, prepare) {
     }
   }
 
-  function ouvrir() {
+  let creation = null;
+
+  async function ouvrir() {
     bloc.hidden = true;
     zoneEditeur.hidden = false;
     actions.innerHTML = BOUTONS_OUVERT;
-    editeur ??= creerEditeur(zoneEditeur, prepare, {
+    creation ??= creerEditeur(zoneEditeur, prepare, {
       auChangement: () => {},
       auRaccourci: executer,
       hauteurAuto: true,
       mode: LANGAGES[langage].modeEditeur,
     });
-    editeur.rafraichir?.();
+    editeur = await creation;
+    if (!zoneEditeur.hidden) editeur.rafraichir?.();
   }
 
   function fermer() {
@@ -88,7 +91,7 @@ function activerExemple(bloc, langage, prepare) {
   }
 
   function remettre() {
-    editeur.ecrire(prepare);
+    editeur?.ecrire(prepare);
     zoneResultat.hidden = true;
   }
 

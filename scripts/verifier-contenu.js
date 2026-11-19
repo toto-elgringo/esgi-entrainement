@@ -1,38 +1,15 @@
-import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { avecFormules, DOMAINES_CODE, DOMAINES_REPONSES } from '../js/domaines.js';
 import { dollarsEquilibres, validerChapitre, validerExercices, validerProgramme, validerQuiz } from '../js/maths/validation.js';
-import * as c from '../serveur/c.js';
 import * as contenuCode from '../serveur/contenu-code.js';
-import * as python from '../serveur/python.js';
-import * as rust from '../serveur/rust.js';
+import { EXECUTEURS } from '../serveur/serveur.js';
 import { validerExercice, validerMetaChapitre, validerQuiz as validerQuizCode } from '../serveur/validation-code.js';
 
 const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dossierContenu = path.join(racine, 'contenu');
-const EXECUTEURS = { rust, python, c };
 const [domaineDemande, prefixe = '', prefixeExercice = ''] = (process.argv[2] ?? '').split('/');
 const EN_PARALLELE = 4;
-
-async function lireTexte(fichier) {
-  try {
-    return await fs.readFile(fichier, 'utf8');
-  } catch (erreur) {
-    if (erreur.code === 'ENOENT') return null;
-    throw erreur;
-  }
-}
-
-async function lireJson(fichier) {
-  const texte = await lireTexte(fichier);
-  if (texte === null) return null;
-  try {
-    return JSON.parse(texte);
-  } catch (erreur) {
-    throw new Error(`JSON invalide dans ${path.relative(racine, fichier)} : ${erreur.message}`);
-  }
-}
 
 function indenter(texte = '') {
   return texte
@@ -60,12 +37,12 @@ async function verifierChapitreReponses(domaine, chapitreId, idsMatieres) {
   const options = { formules: avecFormules(domaine) };
   const problemes = [];
   try {
-    problemes.push(...validerChapitre(await lireJson(path.join(dossier, 'chapitre.json')), idsMatieres));
-    const cours = await lireTexte(path.join(dossier, 'cours.md'));
+    problemes.push(...validerChapitre(await contenuCode.lireJson(path.join(dossier, 'chapitre.json')), idsMatieres));
+    const cours = await contenuCode.lireTexte(path.join(dossier, 'cours.md'));
     if (cours === null) problemes.push('cours.md manquant');
     else if (options.formules && !dollarsEquilibres(cours)) problemes.push('cours.md : un « $ » n\'est pas fermé');
-    problemes.push(...validerQuiz((await lireJson(path.join(dossier, 'quiz.json'))) ?? [], options));
-    const exercices = await lireJson(path.join(dossier, 'exercices.json'));
+    problemes.push(...validerQuiz((await contenuCode.lireJson(path.join(dossier, 'quiz.json'))) ?? [], options));
+    const exercices = await contenuCode.lireJson(path.join(dossier, 'exercices.json'));
     if (exercices === null) problemes.push('exercices.json manquant');
     else problemes.push(...validerExercices(exercices, options));
     return { problemes, nbExercices: exercices?.length ?? 0 };
@@ -76,7 +53,7 @@ async function verifierChapitreReponses(domaine, chapitreId, idsMatieres) {
 
 async function verifierDomaineReponses(domaine) {
   console.log(`\n=== ${domaine} ===`);
-  const programme = await lireJson(path.join(dossierContenu, domaine, 'programme.json'));
+  const programme = await contenuCode.lireJson(path.join(dossierContenu, domaine, 'programme.json'));
   if (programme === null) {
     console.log('(pas encore de contenu)');
     return { total: 0, enErreur: 0 };
@@ -136,7 +113,7 @@ async function problemesChapitreCode(dossier, chapitreId) {
 
 async function verifierSommaire(domaine, langage, dossier) {
   const attendu = JSON.stringify(await contenuCode.construireSommaire(dossier, langage));
-  const actuel = await lireJson(path.join(dossier, 'sommaire.json'));
+  const actuel = await contenuCode.lireJson(path.join(dossier, 'sommaire.json'));
   return JSON.stringify(actuel) === attendu ? [] : [`contenu/${domaine}/sommaire.json n'est pas à jour : lance « npm run sommaire »`];
 }
 

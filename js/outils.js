@@ -1,3 +1,5 @@
+import { chargerFeuille, chargerScript } from './chargeur.js';
+
 const TITRES_ENCARTS = {
   tip: 'Astuce',
   warning: 'Attention',
@@ -24,12 +26,22 @@ export function echapper(texte = '') {
     .replace(/'/g, '&#39;');
 }
 
+export async function chargerFormules() {
+  if (typeof window === 'undefined' || window.katex) return true;
+  try {
+    await Promise.all([chargerFeuille('vendor/katex/katex.min.css', { avantLeSite: true }), chargerScript('vendor/katex/katex.min.js')]);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function rendreLatex(tex, enBloc = false) {
-  if (!window.katex) return `<code>${echapper(tex)}</code>`;
+  if (typeof window === 'undefined' || !window.katex) return `<code>${echapper(tex)}</code>`;
   return window.katex.renderToString(tex, { displayMode: enBloc, throwOnError: false });
 }
 
-function protegerFormules(texte) {
+export function protegerFormules(texte) {
   const formules = [];
   let resultat = '';
   let i = 0;
@@ -102,7 +114,7 @@ export function rendreMarkdownEnLigne(texte = '', { formules: avecFormules = tru
 
 export function colorerCode(element, langueParDefaut) {
   if (!window.hljs || !element) return;
-  for (const bloc of element.querySelectorAll('pre code')) {
+  for (const bloc of element.querySelectorAll('pre code:not(.language-anim)')) {
     if (!bloc.className && langueParDefaut) bloc.classList.add(`language-${langueParDefaut}`);
     window.hljs.highlightElement(bloc);
   }

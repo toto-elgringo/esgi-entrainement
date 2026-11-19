@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "es2022",
+    "checkJs": true,
+    "allowJs": true,
+    "noEmit": true,
+    "lib": ["es2023", "dom", "dom.iterable"]
+  },
+  "include": ["js/**/*.js", "serveur/**/*.js", "scripts/**/*.js", "tests/**/*.js"],
+  "exclude": ["node_modules", "vendor", "contenu"]
+}

@@ -19,8 +19,10 @@ export function etiquetteSource(chapitre) {
 }
 
 function lien(href, texte, { classes = '', detail = '', actif }) {
-  const classeActif = href === actif || actif?.startsWith(`${href}/`) ? ' actif' : '';
-  return `<a class="lien-menu ${classes}${classeActif}" href="${href}">${texte}${detail ? `<span class="detail">${detail}</span>` : ''}</a>`;
+  const estActif = href === actif || actif?.startsWith(`${href}/`);
+  const classeActif = estActif ? ' actif' : '';
+  const courant = estActif ? ' aria-current="page"' : '';
+  return `<a class="lien-menu ${classes}${classeActif}" href="${href}"${courant}>${texte}${detail ? `<span class="detail">${detail}</span>` : ''}</a>`;
 }
 
 function dessinerChapitre(chapitre, numero, progression, ouvert, actif, matiere) {
@@ -30,7 +32,7 @@ function dessinerChapitre(chapitre, numero, progression, ouvert, actif, matiere)
   const liens = [
     lien(`#/cours/${chapitre.cle}`, 'Cours', { classes: 'special', actif }),
     supports.length > 0 ? lien(`#/supports/${chapitre.cle}`, 'Supports originaux', { classes: 'special', detail: String(supports.length), actif }) : '',
-    chapitre.quiz.length > 0
+    chapitre.nombreQuestions > 0
       ? lien(`#/quiz/${chapitre.cle}`, 'Quiz', { classes: 'special', detail: quiz ? `${quiz.score}/${quiz.total}` : '', actif })
       : '',
     ...chapitre.exercices.map((exercice) =>
@@ -43,7 +45,7 @@ function dessinerChapitre(chapitre, numero, progression, ouvert, actif, matiere)
 
   return `
     <div class="chapitre-menu${ouvert ? ' ouvert' : ''}">
-      <button class="chapitre-titre" data-chapitre="${chapitre.cle}" title="${echapper(chapitre.titre)}">
+      <button class="chapitre-titre" data-chapitre="${chapitre.cle}" title="${echapper(chapitre.titre)}" aria-expanded="${ouvert}">
         <span class="numero">${String(numero).padStart(2, '0')}</span>
         <span class="nom">${echapper(chapitre.titre)}</span>
         <span class="compteur${total > 0 && reussis === total ? ' complet' : ''}">${reussis}/${total}</span>

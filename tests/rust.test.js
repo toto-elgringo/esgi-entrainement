@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import * as rust from '../serveur/rust.js';
-import { CODE_DEPART, CODE_SOLUTION, TESTS } from './aide.js';
+import { CODE_DEPART, CODE_SOLUTION, raisonSansOutil, sansCompilation, TESTS } from './aide.js';
 
-const outils = await rust.outilsRust();
-const sansCargo = outils.cargo ? false : 'cargo n’est pas installé';
-const sansClippy = outils.clippy ? false : 'clippy n’est pas installé';
+const outils = sansCompilation ? {} : await rust.outilsRust();
+const sansCargo = await raisonSansOutil(async () => outils.cargo, 'cargo');
+const sansClippy = await raisonSansOutil(async () => outils.clippy, 'clippy');
 
 describe('rust : fonctions pures', () => {
   it('colle les tests à la fin du code', () => {
@@ -120,11 +120,18 @@ describe('rust : compilation réelle avec cargo', { skip: sansCargo }, () => {
 });
 
 describe('rust : conseils de clippy', { skip: sansCargo || sansClippy }, () => {
-  it('ajoute les conseils de clippy aux avertissements', async () => {
-    const code = 'fn trois() -> i32 {\n    return 3;\n}\n\nfn main() {\n    println!("{}", trois());\n}\n';
+  const code = 'fn trois() -> i32 {\n    return 3;\n}\n\nfn main() {\n    println!("{}", trois());\n}\n';
+
+  it('ajoute les conseils de clippy aux avertissements quand on vérifie un exercice', async () => {
+    const resultat = await rust.verifierSortie(code, '3\n');
+    assert.equal(resultat.statut, 'reussi');
+    assert.match(resultat.avertissements, /needless_return/);
+  });
+
+  it('ne lance pas clippy pour un simple essai', async () => {
     const resultat = await rust.executerProgramme(code);
     assert.equal(resultat.statut, 'execute');
     assert.equal(resultat.sortie.trim(), '3');
-    assert.match(resultat.avertissements, /needless_return/);
+    assert.doesNotMatch(resultat.avertissements, /needless_return/);
   });
 });

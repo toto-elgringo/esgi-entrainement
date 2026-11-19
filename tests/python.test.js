@@ -1,10 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import * as python from '../serveur/python.js';
-import { PYTHON_DEPART, PYTHON_SOLUTION, PYTHON_TESTS } from './aide.js';
+import { PYTHON_DEPART, PYTHON_SOLUTION, PYTHON_TESTS, raisonSansOutil } from './aide.js';
 
-const { python: version } = await python.outilsPython();
-const sansPython = version ? false : 'Python 3 n’est pas installé';
+const sansPython = await raisonSansOutil(async () => (await python.outilsPython()).python, 'Python 3');
 
 describe('python : fonctions pures', () => {
   it('reconnaît une version de Python 3 suffisante', () => {

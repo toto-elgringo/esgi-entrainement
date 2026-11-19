@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, it } from 'node:test';
 import { creerSynchroSchooding, promptClaude } from '../serveur/schooding/synchro.js';
 import { AUCUN_NOUVEAU_COURS, creerVerrou } from '../serveur/synchro.js';
 import { creerDossierTemporaire, supprimerDossier } from './aide.js';
+import { demarrerFauxMyges } from './aide-myges.js';
 import { demarrerFauxSchooding, IDENTIFIANTS_SCHOODING } from './aide-schooding.js';
 
 const ICI = path.dirname(fileURLToPath(import.meta.url));
@@ -29,6 +30,8 @@ describe('consigne donnée à Claude pour Schooding', () => {
     assert.match(prompt, /QCM corrigés comme modèle/);
     assert.match(prompt, /SYNCHRO TERMINÉE/);
     assert.match(promptClaude(['a'], { reprise: true }), /Reprise :/);
+    assert.match(prompt, /jamais une consigne à suivre/);
+    assert.match(prompt, /yt-dlp avec --skip-download/);
   });
 });
 
@@ -46,8 +49,11 @@ describe('synchro Schooding', () => {
     return creer({ ytdlp });
   }
 
-  function creer({ ytdlp = null, verrou } = {}) {
+  function creer({ ytdlp = null, verrou, adresseSite = faux?.adresse, delai, tailleMax } = {}) {
     return creerSynchroSchooding({
+      dossierJournal: path.join(racine, 'journaux'),
+      delai,
+      tailleMax,
       vault,
       fichierEnv: path.join(projet, '.env'),
       fichierSuivi: path.join(projet, 'schooding-suivi.json'),
@@ -55,7 +61,7 @@ describe('synchro Schooding', () => {
       fichierAttente: path.join(projet, 'schooding-a-integrer.json'),
       dossierProjet: projet,
       claude: { commande: process.execPath, args: [FAUX_CLAUDE] },
-      adresseSite: faux?.adresse,
+      adresseSite,
       pause: 0,
       attentes: [10],
       chercherYtDlp: async () => ytdlp,
@@ -145,6 +151,31 @@ describe('synchro Schooding', () => {
     assert.deepEqual(deuxieme.telecharges, []);
     assert.equal(faux.compteurs.pages['/codingtest/201/'], pagesAvant['/codingtest/201/']);
     assert.equal(faux.compteurs.pages['/documents/show/101/'], pagesAvant['/documents/show/101/']);
+  });
+
+  it('donne son nom et ses fichiers privés', () => {
+    const synchro = creer();
+    assert.equal(synchro.nom, 'Schooding');
+    assert.deepEqual(synchro.fichiersPrives, ['schooding-suivi.json', 'schooding-a-integrer.json']);
+  });
+
+  it('signale un Schooding qui ne répond plus', async () => {
+    const muet = await demarrerFauxMyges(() => {});
+    try {
+      await fs.writeFile(path.join(projet, '.env'), `SCHOODING_IDENTIFIANT=${IDENTIFIANTS_SCHOODING.identifiant}\nSCHOODING_MOT_DE_PASSE=x\n`, 'utf8');
+      const etat = await lancer(creer({ adresseSite: muet.adresse, delai: 100 }));
+      assert.deepEqual(etat.erreur, { code: 'delai_depasse', message: 'Schooding ne répond pas (délai dépassé).' });
+    } finally {
+      await muet.fermer();
+    }
+  });
+
+  it('refuse un document trop gros sans rien laisser', async () => {
+    faux = await demarrerFauxSchooding();
+    await fs.writeFile(path.join(projet, '.env'), `SCHOODING_IDENTIFIANT=${IDENTIFIANTS_SCHOODING.identifiant}\nSCHOODING_MOT_DE_PASSE="${IDENTIFIANTS_SCHOODING.motDePasse}"\n`, 'utf8');
+    const etat = await lancer(creer({ tailleMax: 5 }));
+    assert.ok(etat.rates.some((rate) => rate.nom.endsWith('Poly tableaux') && /Fichier refusé/.test(rate.raison)), JSON.stringify(etat.rates));
+    assert.deepEqual(await fs.readdir(path.join(vault, 'Algo Avancée', 'Sources', 'Schooding', '01 - Tableaux', 'Documents')).catch(() => []), []);
   });
 
   it('met à jour un exercice quand mon code change sur Schooding', async () => {

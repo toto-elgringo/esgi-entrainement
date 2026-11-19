@@ -1,4 +1,21 @@
+import { chargerFeuille, chargerScriptsDansLOrdre } from '../chargeur.js';
 import { configurerSouris, RACCOURCIS_EDITION } from './raccourcis.js';
+
+const DOSSIER_CODEMIRROR = 'vendor/codemirror';
+
+export const SCRIPTS_CODEMIRROR = [
+  'codemirror.min.js',
+  'addon/mode/simple.min.js',
+  'mode/rust/rust.min.js',
+  'mode/python/python.min.js',
+  'mode/clike/clike.min.js',
+  'addon/edit/matchbrackets.min.js',
+  'addon/edit/closebrackets.min.js',
+  'addon/search/searchcursor.min.js',
+  'addon/search/match-highlighter.min.js',
+  'addon/comment/comment.min.js',
+  'keymap/sublime.min.js',
+].map((fichier) => `${DOSSIER_CODEMIRROR}/${fichier}`);
 
 const INDENTATION = '    ';
 
@@ -61,6 +78,18 @@ function creerZoneTexte(conteneur, code, { auChangement, auRaccourci }) {
   };
 }
 
-export function creerEditeur(conteneur, code, options) {
-  return window.CodeMirror ? creerCodeMirror(conteneur, code, options) : creerZoneTexte(conteneur, code, options);
+export async function chargerCodeMirror() {
+  try {
+    await Promise.all([
+      chargerFeuille(`${DOSSIER_CODEMIRROR}/codemirror.min.css`, { avantLeSite: true }),
+      chargerScriptsDansLOrdre('codemirror', SCRIPTS_CODEMIRROR),
+    ]);
+    return Boolean(window.CodeMirror);
+  } catch {
+    return false;
+  }
+}
+
+export async function creerEditeur(conteneur, code, options) {
+  return (await chargerCodeMirror()) ? creerCodeMirror(conteneur, code, options) : creerZoneTexte(conteneur, code, options);
 }

@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { dureeLisible, FONCTIONS_CROISSANCE, repereDuree } from '../js/animations/combinatoire.js';
-import { ANIMATIONS, lireBloc } from '../js/animations/index.js';
+import { lireBloc, toutesLesAnimations } from '../js/animations/index.js';
 import { aleatoire, echelle } from '../js/animations/outils.js';
+
+const ANIMATIONS = await toutesLesAnimations();
 
 describe('blocs d’animation du cours', () => {
   it('lit le nom de l’animation', () => {

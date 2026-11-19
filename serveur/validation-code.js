@@ -1,3 +1,4 @@
+import { validerQuiz as validerQuizCommun } from '../js/maths/validation.js';
 import { validerSupports } from '../js/supports.js';
 import { fichiersExercice } from './contenu-code.js';
 
@@ -23,19 +24,7 @@ export function validerMetaChapitre(meta) {
 }
 
 export function validerQuiz(quiz) {
-  if (!Array.isArray(quiz)) return ['quiz.json doit contenir une liste de questions'];
-  const problemes = [];
-  quiz.forEach((question, index) => {
-    const prefixe = `quiz.json, question ${index + 1}`;
-    if (!texteRempli(question.question)) problemes.push(`${prefixe} : « question » manquant`);
-    if (!Array.isArray(question.choix) || question.choix.length < 2) {
-      problemes.push(`${prefixe} : il faut au moins 2 « choix »`);
-    } else if (!Number.isInteger(question.reponse) || question.reponse < 0 || question.reponse >= question.choix.length) {
-      problemes.push(`${prefixe} : « reponse » doit être un indice entre 0 et ${question.choix.length - 1}`);
-    }
-    if (!texteRempli(question.explication)) problemes.push(`${prefixe} : « explication » manquante`);
-  });
-  return problemes;
+  return validerQuizCommun(quiz, { formules: false });
 }
 
 export function validerExercice(exercice, langage) {

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./myges-suivi.json)",
+      "Read(./myges-a-integrer.json)",
+      "Read(./schooding-suivi.json)",
+      "Read(./schooding-a-integrer.json)"
+    ]
+  }
+}

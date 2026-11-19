@@ -1,9 +1,18 @@
-import { ErreurMyges } from './erreurs.js';
+import { ErreurSynchro } from './erreurs.js';
 
+export const DELAI_REQUETE = 60_000;
 const REDIRECTIONS_MAX = 15;
 const NAVIGATEUR = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) esgi-entrainement';
 
-export function creerSession({ nomSite = 'MyGES' } = {}) {
+export function delaiDepasse(erreur) {
+  return erreur?.name === 'TimeoutError';
+}
+
+export function erreurDelai(nomSite) {
+  return new ErreurSynchro('delai_depasse', `${nomSite} ne répond pas (délai dépassé).`);
+}
+
+export function creerSession({ nomSite = 'MyGES', delai: delaiParDefaut = DELAI_REQUETE } = {}) {
   const cookies = new Map();
 
   function cookiesDe(adresse) {
@@ -21,7 +30,9 @@ export function creerSession({ nomSite = 'MyGES' } = {}) {
     }
   }
 
-  async function obtenir(adresse, { method = 'GET', headers = {}, body, signal, arreterSur } = {}) {
+  async function obtenir(adresse, { method = 'GET', headers = {}, body, signal, arreterSur, delai = delaiParDefaut } = {}) {
+    const limite = AbortSignal.timeout(delai);
+    const signalRequete = signal ? AbortSignal.any([signal, limite]) : limite;
     let actuelle = adresse;
     let requete = { method, headers, body };
     for (let etape = 0; etape < REDIRECTIONS_MAX; etape += 1) {
@@ -31,12 +42,13 @@ export function creerSession({ nomSite = 'MyGES' } = {}) {
           method: requete.method,
           body: requete.body,
           redirect: 'manual',
-          signal,
+          signal: signalRequete,
           headers: { ...requete.headers, Cookie: cookiesDe(actuelle), 'User-Agent': NAVIGATEUR },
         });
       } catch (erreur) {
         if (signal?.aborted) throw erreur;
-        throw new ErreurMyges('injoignable', `${nomSite} ne répond pas.`);
+        if (delaiDepasse(erreur)) throw erreurDelai(nomSite);
+        throw new ErreurSynchro('injoignable', `${nomSite} ne répond pas.`);
       }
       garderCookies(actuelle, reponse);
       const destination = reponse.headers.get('location');
@@ -46,8 +58,8 @@ export function creerSession({ nomSite = 'MyGES' } = {}) {
       if (arreterSur?.(actuelle)) return { reponse, adresse: actuelle, arrete: true };
       requete = { method: 'GET', headers: {} };
     }
-    throw new ErreurMyges('reponse_inattendue', `${nomSite} redirige sans fin.`);
+    throw new ErreurSynchro('reponse_inattendue', `${nomSite} redirige sans fin.`);
   }
 
-  return { obtenir };
+  return { obtenir, nomSite };
 }

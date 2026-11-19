@@ -1,10 +1,10 @@
-const SERVEUR_ARRETE = 'Le serveur local ne répond pas : relance « npm start » dans le dossier du projet.';
+import { appelerApi } from '../api.js';
 
 let etat = null;
 
-export function etatOutils() {
-  etat ??= fetch('api/etat', { cache: 'no-store' })
-    .then((reponse) => (reponse.ok ? reponse.json() : null))
+export function etatOutils({ rafraichir = false } = {}) {
+  if (rafraichir) etat = null;
+  etat ??= appelerApi(rafraichir ? 'api/etat?rafraichir=1' : 'api/etat')
     .catch(() => null)
     .then((donnees) => {
       if (!donnees) etat = null;
@@ -13,23 +13,8 @@ export function etatOutils() {
   return etat;
 }
 
-async function envoyer(chemin, corps) {
-  let reponse;
-  try {
-    reponse = await fetch(chemin, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(corps),
-    });
-  } catch {
-    throw new Error(SERVEUR_ARRETE);
-  }
-  const donnees = await reponse.json().catch(() => ({}));
-  if (!reponse.ok) throw new Error(donnees.erreur ?? `Erreur ${reponse.status}`);
-  return donnees;
-}
-
 export const compilateur = {
-  executer: (langage, code, entree = '') => envoyer(`api/${langage}/executer`, { code, entree }),
-  verifier: (langage, domaine, chapitreId, exerciceId, code) => envoyer(`api/${langage}/verifier`, { domaine, chapitreId, exerciceId, code }),
+  executer: (langage, code, entree = '') => appelerApi(`api/${langage}/executer`, { methode: 'POST', corps: { code, entree } }),
+  verifier: (langage, domaine, chapitreId, exerciceId, code) =>
+    appelerApi(`api/${langage}/verifier`, { methode: 'POST', corps: { domaine, chapitreId, exerciceId, code } }),
 };

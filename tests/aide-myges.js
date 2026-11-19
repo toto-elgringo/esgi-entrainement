@@ -124,7 +124,7 @@ export function creerZip(entrees) {
   const locaux = [];
   const centraux = [];
   let position = 0;
-  for (const { nom, contenu } of entrees) {
+  for (const { nom, contenu, mode, tailleAnnoncee } of entrees) {
     const nomOctets = Buffer.from(nom, 'utf8');
     const donnees = Buffer.from(contenu, 'utf8');
     const crc = zlib.crc32(donnees);
@@ -134,17 +134,18 @@ export function creerZip(entrees) {
     local.writeUInt16LE(0x0800, 6);
     local.writeUInt32LE(crc, 14);
     local.writeUInt32LE(donnees.length, 18);
-    local.writeUInt32LE(donnees.length, 22);
+    local.writeUInt32LE(tailleAnnoncee ?? donnees.length, 22);
     local.writeUInt16LE(nomOctets.length, 26);
     const central = Buffer.alloc(46);
     central.writeUInt32LE(0x02014b50, 0);
-    central.writeUInt16LE(20, 4);
+    central.writeUInt16LE(mode ? 0x0314 : 20, 4);
     central.writeUInt16LE(20, 6);
     central.writeUInt16LE(0x0800, 8);
     central.writeUInt32LE(crc, 16);
     central.writeUInt32LE(donnees.length, 20);
-    central.writeUInt32LE(donnees.length, 24);
+    central.writeUInt32LE(tailleAnnoncee ?? donnees.length, 24);
     central.writeUInt16LE(nomOctets.length, 28);
+    if (mode) central.writeUInt32LE((mode << 16) >>> 0, 38);
     central.writeUInt32LE(position, 42);
     locaux.push(local, nomOctets, donnees);
     centraux.push(central, nomOctets);

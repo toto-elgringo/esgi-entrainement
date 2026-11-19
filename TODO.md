@@ -10,10 +10,11 @@
 - [ ] Combinatoire : transformer en exercices Rust le code de la descente, du recuit et de l'algorithme génétique quand il sera distribué
 - [x] Combinatoire : petites animations (recuit, roulette, tournoi) comme dans les slides
 - [ ] Animations : en ajouter aux chapitres qui n'en ont pas (maths séries / Lagrange / PCA, Rust structs / enums / collections, Python chaînes, anglais 01-03)
-- [ ] Algorithmique avancée : nouvelles fiches (piles, files, arbres…) au fil du cours
-- [ ] Scripting Python : nouveaux diaporamas au fil du cours
-- [ ] Scripting Python : chapitre « fondamentaux » sur les scripts système (`sys.argv`, `pathlib`, `json`, `csv`, `re`, `subprocess`)
-- [ ] Algorithmique avancée : listes doublement chaînées et circulaires, piles et files en C
+- [ ] Algorithmique avancée : nouvelles séances (arbres, tables de hachage…) au fil du cours (complexité, tableaux, tris, tas, piles et files faits le 18/11/2026)
+- [ ] Scripting Python : nouveaux diaporamas et séances Schooding au fil du cours
+- [ ] Scripting Python : chapitre « fondamentaux » sur les scripts système (`sys.argv`, `pathlib`, `re`, `subprocess`) ; `csv` et `json` sont dans le chapitre 06
+- [ ] Algorithmique avancée : listes doublement chaînées et circulaires
+- [x] Schooding : transcriptions YouTube des séances (Algo 04 à 09, vidéo Python « listes en compréhension ») relues et intégrées le 18/11/2026 (récupérées avec `py -m yt_dlp --skip-download --write-auto-subs --sub-langs fr`)
 - [ ] Anglais : séances 2 et 4 du semestre (absentes des sources), partie écoute du TOEIC et du mini test Sales (audios non fournis)
 - [ ] Cours électif : compléter avec les vrais supports (chapitres 02 à 07 faits d après le chat ; vérifier les noms des champs BD TOPO et des extensions QGIS)
 - [ ] Rust Advent of Code : ajouter d'autres énigmes (PGCD/PPCM 2023 J8, Dijkstra avec contraintes 2023 J17, formule du lacet 2023 J18, graphes 2024 J23…)
@@ -23,7 +24,11 @@
 - [ ] Supports : ajouter ceux des nouveaux chapitres dans `chapitre.json` (`supports`) au fil du cours
 
 - [x] Exporter / importer sa progression (pour changer d'ordinateur)
-- [ ] Héberger CodeMirror, KaTeX, marked et highlight.js dans le dépôt pour fonctionner sans internet
+- [x] Héberger CodeMirror, KaTeX, marked et highlight.js dans le dépôt (`vendor/`, 19/11/2026)
+- [ ] Synchro : essayer une vraie intégration avec la nouvelle liste d'outils de Claude (`OUTILS_AUTORISES_CLAUDE`) et l'ajuster si un outil manque
+- [ ] Retirer les `sommaire.json` du dépôt et `npm run sommaire` (le serveur calcule le sommaire) en adaptant `verifier-contenu` et `/obsidian -esgi`
+- [ ] Découper les gros fichiers d'animations (`js/animations/code.js` 2 390 lignes…) par chapitre
+- [ ] Rust : signer aussi le bilan des tests avec un marqueur (aujourd'hui lu dans la sortie de `cargo test`)
 - [ ] Clavier de symboles pour les maths sur téléphone (`^`, `√`, `π`)
 - [ ] Anglais : partie écoute avec la synthèse vocale du navigateur (avant le CC Listening du 9/11)
 - [ ] Anglais : mode « TOEIC blanc » chronométré qui pioche dans tous les chapitres

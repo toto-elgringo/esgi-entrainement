@@ -1,4 +1,4 @@
-import { decoderEntites } from '../myges/html.js';
+import { decoderEntites } from '../commun/html.js';
 
 const MARQUE = '\u0000';
 

@@ -1,4 +1,5 @@
 import { avecFormules } from '../domaines.js';
+import { creerBascule, creerIndices, etoiles, navigationExercices } from '../exercice-commun.js';
 import { versLatex } from './expression.js';
 import { colorerCode, echapper, rendreLatex, rendreMarkdown, rendreMarkdownEnLigne } from '../outils.js';
 import { cleExercice, estReussi, lienExercice, voisins } from '../parcours.js';
@@ -18,11 +19,13 @@ function aideSaisie(question) {
   return aides[question.type] ?? '';
 }
 
-function etoiles(difficulte) {
-  return `<span class="difficulte" title="Difficulté ${difficulte} sur 3">${'●'.repeat(difficulte)}${'○'.repeat(3 - difficulte)}</span>`;
+export function etiquettesQuestion(index, total, avecIntitule) {
+  const nom = total > 1 ? `Réponse ${LETTRES[index]}` : 'Réponse';
+  const etiquette = avecIntitule ? `aria-labelledby="intitule-${index}"` : `aria-label="${nom}"`;
+  return `${etiquette} aria-describedby="retour-${index}"`;
 }
 
-function champ(question, index, saisie, rendu) {
+function champ(question, index, saisie, rendu, etiquettes) {
   if (question.type === 'choix') {
     const options = question.choix
       .map((texte, position) => `
@@ -31,36 +34,31 @@ function champ(question, index, saisie, rendu) {
           <span>${rendreMarkdownEnLigne(texte, rendu)}</span>
         </label>`)
       .join('');
-    return `<div class="options">${options}</div>`;
+    return `<div class="options" role="radiogroup" ${etiquettes}>${options}</div>`;
   }
   if (question.type === 'auto') {
     return `
-      <textarea class="saisie saisie-longue" data-saisie="${index}" rows="4" placeholder="Écris ta réponse ici, puis clique sur « Vérifier » pour la comparer à la correction.">${echapper(saisie ?? '')}</textarea>
+      <textarea class="saisie saisie-longue" data-saisie="${index}" ${etiquettes} rows="4" placeholder="Écris ta réponse ici, puis clique sur « Vérifier » pour la comparer à la correction.">${echapper(saisie ?? '')}</textarea>
       <div class="modele" data-modele="${index}" hidden></div>`;
   }
   return `
-    <input class="saisie" data-saisie="${index}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+    <input class="saisie" data-saisie="${index}" ${etiquettes} type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
       placeholder="${echapper(aideSaisie(question))}" value="${echapper(saisie ?? '')}">
     <div class="apercu" data-apercu="${index}"></div>`;
 }
 
 function blocQuestion(question, index, total, saisie, options) {
   const prefixe = total > 1 ? `<span class="lettre">${LETTRES[index]})</span> ` : '';
-  const intitule = question.intitule || total > 1
-    ? `<div class="intitule">${prefixe}${rendreMarkdownEnLigne(question.intitule ?? '', options)}</div>`
+  const avecIntitule = Boolean(question.intitule || total > 1);
+  const intitule = avecIntitule
+    ? `<div class="intitule" id="intitule-${index}">${prefixe}${rendreMarkdownEnLigne(question.intitule ?? '', options)}</div>`
     : '';
   return `
     <div class="question-maths" data-question="${index}">
       ${intitule}
-      ${champ(question, index, saisie, options)}
-      <div class="retour" data-retour="${index}"></div>
+      ${champ(question, index, saisie, options, etiquettesQuestion(index, total, avecIntitule))}
+      <div class="retour" id="retour-${index}" data-retour="${index}" role="status"></div>
     </div>`;
-}
-
-function lienVoisin(exercice, sens) {
-  if (!exercice) return '<span></span>';
-  const texte = sens === 'precedent' ? `← ${echapper(exercice.titre)}` : `${echapper(exercice.titre)} →`;
-  return `<a class="bouton discret" href="${lienExercice(exercice)}">${texte}</a>`;
 }
 
 export function afficherExerciceMaths(ctx, chapitre, exercice) {
@@ -70,7 +68,6 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
   const indices = exercice.indices ?? [];
   const { precedent, suivant } = voisins(ctx.chapitres, chapitre.cle, exercice.id);
   let reussi = estReussi(ctx.progression, chapitre.cle, exercice.id);
-  let indicesAffiches = 0;
   const options = { formules: avecFormules(chapitre.domaine) };
 
   ctx.conteneur.innerHTML = `
@@ -87,10 +84,10 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
           <button type="button" class="bouton discret" data-action="correction">Voir la correction</button>
         </div>
       </form>
-      <div class="resultat" data-resultat hidden></div>
+      <div class="resultat" data-resultat role="status" hidden></div>
       <div class="indices" data-indices></div>
       <div class="correction markdown" data-correction hidden></div>
-      <nav class="navigation-exercices">${lienVoisin(precedent, 'precedent')}${lienVoisin(suivant, 'suivant')}</nav>
+      ${navigationExercices(precedent, suivant)}
     </section>`;
 
   const racine = ctx.conteneur;
@@ -121,9 +118,17 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
       : '<span class="apercu-erreur">Écriture incomplète ou non reconnue</span>';
   }
 
+  function marquerChamps(index, faux) {
+    for (const element of trouver(`[data-question="${index}"]`).querySelectorAll('[data-saisie], [role="radiogroup"]')) {
+      if (faux) element.setAttribute('aria-invalid', 'true');
+      else element.removeAttribute('aria-invalid');
+    }
+  }
+
   function marquer(index, etat, message) {
     const bloc = trouver(`[data-question="${index}"]`);
     bloc.dataset.etat = etat;
+    marquerChamps(index, etat === 'faux');
     const symboles = { juste: '✓ ', faux: '✗ ', illisible: '? ', attente: '' };
     trouver(`[data-retour="${index}"]`).textContent = message ? `${symboles[etat] ?? ''}${message}` : '';
   }
@@ -131,6 +136,7 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
   function effacerMarque(index) {
     const bloc = trouver(`[data-question="${index}"]`);
     delete bloc.dataset.etat;
+    marquerChamps(index, false);
     trouver(`[data-retour="${index}"]`).textContent = '';
   }
 
@@ -227,38 +233,29 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
     afficherBilan(justes, exercice.questions.length, enAttente);
   }
 
-  function majBoutonIndice() {
-    boutonIndice.textContent = `Afficher un indice (${indicesAffiches} / ${indices.length})`;
-    boutonIndice.hidden = indicesAffiches >= indices.length;
-  }
-
-  function afficherIndice() {
-    const indice = indices[indicesAffiches];
-    if (indice === undefined) return;
-    indicesAffiches++;
-    trouver('[data-indices]').insertAdjacentHTML('beforeend', `<div class="indice"><p>${rendreMarkdownEnLigne(indice, options)}</p></div>`);
-    ctx.enregistrerAffichage(cle, { indices: indicesAffiches });
-    majBoutonIndice();
-  }
+  const lesIndices = creerIndices({
+    bouton: boutonIndice,
+    zone: trouver('[data-indices]'),
+    indices,
+    rendre: (indice) => rendreMarkdownEnLigne(indice, options),
+    auChangement: (nombre) => ctx.enregistrerAffichage(cle, { indices: nombre }),
+  });
 
   function montrerCorrection() {
     zoneCorrection.innerHTML = `<h3>Correction</h3>${rendreMarkdown(exercice.correction, options)}`;
-    zoneCorrection.hidden = false;
-    boutonCorrection.textContent = 'Masquer la correction';
     colorerCode(zoneCorrection);
   }
 
-  function basculerCorrection() {
-    if (!zoneCorrection.hidden) {
-      zoneCorrection.hidden = true;
-      boutonCorrection.textContent = 'Voir la correction';
-      ctx.enregistrerAffichage(cle, { correction: false });
-      return;
-    }
-    if (!reussi && !confirm('Essaie encore un peu avant de regarder !\nAfficher quand même la correction ?')) return;
-    montrerCorrection();
-    ctx.enregistrerAffichage(cle, { correction: true });
-  }
+  const correction = creerBascule({
+    bouton: boutonCorrection,
+    zone: zoneCorrection,
+    libelleVoir: 'Voir la correction',
+    libelleMasquer: 'Masquer la correction',
+    confirmation: 'Essaie encore un peu avant de regarder !\nAfficher quand même la correction ?',
+    estReussi: () => reussi,
+    montrer: montrerCorrection,
+    auChangement: (ouverte) => ctx.enregistrerAffichage(cle, { correction: ouverte }),
+  });
 
   formulaire.addEventListener('submit', (evenement) => {
     evenement.preventDefault();
@@ -297,13 +294,12 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
       return;
     }
     const action = evenement.target.closest('[data-action]')?.dataset.action;
-    if (action === 'indice') afficherIndice();
-    if (action === 'correction') basculerCorrection();
+    if (action === 'indice') lesIndices.afficher();
+    if (action === 'correction') correction.basculer();
   });
 
   exercice.questions.forEach((_, index) => majApercu(index));
-  majBoutonIndice();
-  for (let i = 0; i < (affichage.indices ?? 0); i++) afficherIndice();
+  lesIndices.restaurer(affichage.indices);
   if (affichage.corrigees) restaurerVerification(affichage.corrigees);
-  if (affichage.correction) montrerCorrection();
+  if (affichage.correction) correction.ouvrir();
 }

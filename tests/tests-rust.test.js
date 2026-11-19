@@ -167,8 +167,14 @@ describe('rust : analyse des tests', () => {
 
 describe('lignes @TEST', () => {
   it('sépare les enregistrements du reste de la sortie', () => {
-    const { sortie, tests } = extraireTests('✓ a\n@TEST {"nom":"a","reussi":true}\nbonjour\n@TEST pas du json\nRESULTAT 1 0');
+    const { sortie, tests } = extraireTests('✓ a\n@TEST m1 {"nom":"a","reussi":true}\nbonjour\n@TEST m1 pas du json\nRESULTAT m1 1 0', 'm1');
     assert.deepEqual(tests, [{ nom: 'a', reussi: true }]);
-    assert.equal(sortie, '✓ a\nbonjour\n@TEST pas du json\nRESULTAT 1 0');
+    assert.equal(sortie, '✓ a\nbonjour\n@TEST m1 pas du json\nRESULTAT m1 1 0');
+  });
+
+  it('ignore les lignes qui n’ont pas le bon marqueur', () => {
+    const { sortie, tests } = extraireTests('@TEST faux {"nom":"a","reussi":true}\n@TEST {"nom":"b","reussi":true}', 'm1');
+    assert.deepEqual(tests, []);
+    assert.equal(sortie, '@TEST faux {"nom":"a","reussi":true}\n@TEST {"nom":"b","reussi":true}');
   });
 });

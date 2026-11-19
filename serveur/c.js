@@ -1,6 +1,18 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { analyserBilan, creerAteliers, creerVerificateurs, DELAI_EXECUTION, extraireTests, lancer, problemeExecution, retirerBilan } from './processus.js';
+import {
+  analyserBilan,
+  creerAteliers,
+  creerMarqueur,
+  creerVerificateurs,
+  DELAI_EXECUTION,
+  extraireTests,
+  lancer,
+  problemeCompilation,
+  problemeExecution,
+  retirerBilan,
+  VARIABLE_MARQUEUR,
+} from './processus.js';
 
 const DELAI_COMPILATION = 30_000;
 const FICHIER_SOURCE = 'programme.c';
@@ -37,10 +49,17 @@ __attribute__((unused)) static void verification_free(void *bloc) {
 
 const PRELUDE_TESTS = String.raw`#include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
 #define VERIFICATION_OUTIL __attribute__((unused)) static
 static int verification_reussis = 0;
 static int verification_echoues = 0;
+VERIFICATION_OUTIL const char *verification_marqueur(void) {
+    static const char *marqueur = NULL;
+    if (marqueur == NULL) marqueur = getenv("${VARIABLE_MARQUEUR}");
+    if (marqueur == NULL) marqueur = "";
+    return marqueur;
+}
 typedef struct {
     char genre;
     long long entier;
@@ -152,7 +171,7 @@ VERIFICATION_OUTIL void verification_noter(int reussi, const char *message, int 
         verification_echoues++;
         printf("✗ %s (tests.c, ligne %d)\n", message, ligne);
     }
-    printf("@TEST {\"reussi\":%s", reussi ? "true" : "false");
+    printf("@TEST %s {\"reussi\":%s", verification_marqueur(), reussi ? "true" : "false");
     verification_champ("nom", message);
     if (!reussi && appel != NULL && obtenu != NULL && attendu != NULL) {
         verification_valeur a = *obtenu;
@@ -182,7 +201,7 @@ VERIFICATION_OUTIL void verification_noter(int reussi, const char *message, int 
         verification_valeur verification_b = verification_de_entier(0); \
         verification_noter(verification_blocs == 0, "toute la mémoire allouée a été libérée (autant de free que de malloc)", __LINE__, "blocs de mémoire jamais libérés", &verification_a, &verification_b, NULL); \
     } while (0)
-#define BILAN() (printf("RESULTAT %d %d\n", verification_reussis, verification_echoues), verification_echoues == 0 ? 0 : 1)
+#define BILAN() (printf("RESULTAT %s %d %d\n", verification_marqueur(), verification_reussis, verification_echoues), verification_echoues == 0 ? 0 : 1)
 `;
 
 const PLANTAGES = [
@@ -215,35 +234,36 @@ export function expliquerPlantage(execution) {
   return plantage?.texte ?? null;
 }
 
+const INTROUVABLE = 'La commande « gcc » est introuvable. Sous Windows : « winget install BrechtSanders.WinLibs.POSIX.UCRT », puis relance le site dans un nouveau terminal.';
+
 let outils = null;
 
+export function viderCacheOutils() {
+  outils = null;
+}
+
 export function outilsC() {
-  outils ??= lancer('gcc', ['--version'], { delai: 15_000 }).then((gcc) => ({
-    gcc: gcc.code === 0 ? gcc.stdout.split('\n')[0].trim() : null,
-  }));
-  return outils;
+  const enCours = (outils ??= lancer('gcc', ['--version'], { delai: 15_000 }).then((gcc) => ({
+    gcc: gcc.code === 0 ? gcc.stdout.split(/\r?\n/)[0].trim() : null,
+  })));
+  return enCours.then((resultat) => {
+    if (!resultat.gcc && outils === enCours) outils = null;
+    return resultat;
+  });
 }
 
 const avecAtelier = creerAteliers('gcc', (dossier) => fs.writeFile(path.join(dossier, FICHIER_AMORCE), AMORCE, 'utf8'));
 
-async function compiler(dossier, source) {
+async function compiler(dossier, source, signal) {
   await fs.writeFile(path.join(dossier, FICHIER_SOURCE), source, 'utf8');
   await fs.rm(path.join(dossier, NOM_BINAIRE), { force: true });
   const compilation = await lancer(
     'gcc',
     [...OPTIONS_GCC, '-include', FICHIER_AMORCE, '-o', NOM_BINAIRE, FICHIER_SOURCE, '-lm'],
-    { delai: DELAI_COMPILATION, dossier },
+    { delai: DELAI_COMPILATION, dossier, signal },
   );
-  if (compilation.introuvable) {
-    return {
-      probleme: {
-        statut: 'outil_introuvable',
-        sortie: 'La commande « gcc » est introuvable. Sous Windows : « scoop install gcc » (ou MSYS2), puis relance le site dans un nouveau terminal.',
-      },
-    };
-  }
-  if (compilation.delaiDepasse) return { probleme: { statut: 'delai_depasse', sortie: 'La compilation a pris trop de temps.' } };
-  if (compilation.code !== 0) return { probleme: { statut: 'erreur_compilation', sortie: compilation.stderr } };
+  const probleme = problemeCompilation(compilation, INTROUVABLE);
+  if (probleme) return { probleme };
   return { executable: path.join(dossier, NOM_BINAIRE), avertissements: compilation.stderr };
 }
 
@@ -252,12 +272,12 @@ function sortieAvecPlantage(execution) {
   return `${execution.stdout}${execution.stderr}${explication ? `\n${explication}` : ''}`;
 }
 
-export function executerProgramme(code, entree = '') {
+export function executerProgramme(code, entree = '', { signal } = {}) {
   return avecAtelier(async (dossier) => {
-    const { probleme, executable, avertissements } = await compiler(dossier, code);
+    const { probleme, executable, avertissements } = await compiler(dossier, code, signal);
     if (probleme) return probleme;
 
-    const execution = await lancer(executable, [], { delai: DELAI_EXECUTION, dossier, entree });
+    const execution = await lancer(executable, [], { delai: DELAI_EXECUTION, dossier, entree, signal });
     const blocage = problemeExecution(execution);
     if (blocage) return { ...blocage, avertissements };
 
@@ -269,22 +289,23 @@ export function executerProgramme(code, entree = '') {
   });
 }
 
-export function verifierAvecTests(code, tests) {
+export function verifierAvecTests(code, tests, { signal } = {}) {
   return avecAtelier(async (dossier) => {
-    const { probleme, executable, avertissements } = await compiler(dossier, assemblerCodeTest(code, tests));
+    const { probleme, executable, avertissements } = await compiler(dossier, assemblerCodeTest(code, tests), signal);
     if (probleme) return probleme;
 
-    const execution = await lancer(executable, [], { delai: DELAI_EXECUTION, dossier });
+    const marqueur = creerMarqueur();
+    const execution = await lancer(executable, [], { delai: DELAI_EXECUTION, dossier, signal, env: { [VARIABLE_MARQUEUR]: marqueur } });
     const blocage = problemeExecution(execution);
     if (blocage) return { ...blocage, avertissements };
 
-    const { sortie, tests: liste } = extraireTests(execution.stdout);
-    const resume = analyserBilan(sortie);
+    const { sortie, tests: liste } = extraireTests(execution.stdout, marqueur);
+    const resume = analyserBilan(sortie, marqueur);
     const reussi = execution.code === 0 && resume !== null && resume.echoues === 0;
     const explication = resume === null ? expliquerPlantage(execution) : null;
     return {
       statut: reussi ? 'reussi' : 'echec',
-      sortie: `${retirerBilan(sortie)}\n${execution.stderr}${explication ? `\n${explication}` : ''}`.trim(),
+      sortie: `${retirerBilan(sortie, marqueur)}\n${execution.stderr}${explication ? `\n${explication}` : ''}`.trim(),
       avertissements,
       resume,
       tests: liste,

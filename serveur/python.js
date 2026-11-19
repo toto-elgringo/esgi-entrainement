@@ -1,22 +1,24 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { analyserBilan, creerAteliers, creerVerificateurs, DELAI_EXECUTION, extraireTests, lancer, problemeExecution, retirerBilan } from './processus.js';
+import {
+  analyserBilan,
+  creerAteliers,
+  creerMarqueur,
+  creerVerificateurs,
+  DELAI_EXECUTION,
+  extraireTests,
+  lancer,
+  problemeExecution,
+  retirerBilan,
+  VARIABLE_MARQUEUR,
+} from './processus.js';
 
 const VERSION_MINIMALE = 8;
 const OPTIONS_PYTHON = ['-X', 'utf8', '-B'];
 const FICHIER_CODE = 'exercice.py';
 const FICHIER_VERIFICATION = 'verification.py';
 const FICHIER_TESTS = 'tests.py';
-
-const VERIFICATION_SYNTAXE = `import sys, traceback
-with open(${JSON.stringify(FICHIER_CODE)}, encoding="utf-8") as fichier:
-    source = fichier.read()
-try:
-    compile(source, ${JSON.stringify(FICHIER_CODE)}, "exec")
-except (SyntaxError, ValueError) as erreur:
-    print("".join(traceback.format_exception_only(type(erreur), erreur)), end="", file=sys.stderr)
-    sys.exit(1)
-`;
+const MARQUE_SYNTAXE = '@SYNTAXE';
 
 const LANCEUR_TESTS = `
 _dernier = {}
@@ -94,7 +96,7 @@ def _lieu(erreur):
 
 
 def _enregistrer(enregistrement):
-    print("@TEST " + _json.dumps(enregistrement, ensure_ascii=False))
+    print("@TEST " + _MARQUEUR + " " + _json.dumps(enregistrement, ensure_ascii=False))
 
 
 def _charger_tests():
@@ -130,17 +132,48 @@ def _executer_tests():
             reussis += 1
             print(f"✓ {nom}")
             _enregistrer({"nom": court, "reussi": True})
-    print(f"RESULTAT {reussis} {echoues}")
+    print(f"RESULTAT {_MARQUEUR} {reussis} {echoues}")
 
 
 _executer_tests()
 `;
 
+const PREAMBULE = `import os as _os
+import sys as _sys
+import traceback as _traceback
+
+_MARQUEUR = _os.environ.pop(${JSON.stringify(VARIABLE_MARQUEUR)}, "")
+with open(${JSON.stringify(FICHIER_CODE)}, encoding="utf-8") as _fichier:
+    _source = _fichier.read()
+try:
+    _code_eleve = compile(_source, ${JSON.stringify(FICHIER_CODE)}, "exec")
+except (SyntaxError, ValueError) as _erreur:
+    print("${MARQUE_SYNTAXE} " + _MARQUEUR, file=_sys.stderr)
+    print("".join(_traceback.format_exception_only(type(_erreur), _erreur)), end="", file=_sys.stderr)
+    _sys.exit(1)
+`;
+
+const LANCEUR_PROGRAMME = `${PREAMBULE}
+import types as _types
+
+_module = _types.ModuleType("__main__")
+_module.__file__ = ${JSON.stringify(FICHIER_CODE)}
+_module.__builtins__ = __builtins__
+_sys.modules["__main__"] = _module
+_sys.argv = [${JSON.stringify(FICHIER_CODE)}]
+try:
+    exec(_code_eleve, _module.__dict__)
+except SystemExit:
+    raise
+except BaseException as _erreur:
+    _traceback.print_exception(type(_erreur), _erreur, _erreur.__traceback__.tb_next)
+    _sys.exit(1)
+`;
+
 export function assemblerVerification() {
-  return `import sys as _sys
+  return `${PREAMBULE}
 import ast as _ast
 import json as _json
-import traceback as _traceback
 
 try:
     from exercice import *
@@ -173,9 +206,19 @@ async function detecterPython() {
   return null;
 }
 
+async function trouverPython() {
+  const enCours = (detection ??= detecterPython());
+  const trouve = await enCours;
+  if (!trouve && detection === enCours) detection = null;
+  return trouve;
+}
+
+export function viderCacheOutils() {
+  detection = null;
+}
+
 export async function outilsPython() {
-  detection ??= detecterPython();
-  const trouve = await detection;
+  const trouve = await trouverPython();
   return { python: trouve?.version ?? null };
 }
 
@@ -183,17 +226,6 @@ const avecAtelier = creerAteliers('python');
 
 function nettoyerChemins(texte, dossier) {
   return texte.split(`${dossier}${path.sep}`).join('');
-}
-
-async function python(dossier, args, entree = '') {
-  const trouve = await detection;
-  if (!trouve) return null;
-  const execution = await lancer(trouve.commande, [...trouve.prefixe, ...OPTIONS_PYTHON, ...args], {
-    delai: DELAI_EXECUTION,
-    dossier,
-    entree,
-  });
-  return { ...execution, stdout: nettoyerChemins(execution.stdout, dossier), stderr: nettoyerChemins(execution.stderr, dossier) };
 }
 
 const INTROUVABLE = {
@@ -206,24 +238,39 @@ async function viderDossier(dossier) {
   await Promise.all(entrees.map((nom) => fs.rm(path.join(dossier, nom), { recursive: true, force: true, maxRetries: 3 })));
 }
 
-async function preparer(dossier, code) {
-  await outilsPython();
-  await viderDossier(dossier);
-  await fs.writeFile(path.join(dossier, FICHIER_CODE), code, 'utf8');
-  const syntaxe = await python(dossier, ['-c', VERIFICATION_SYNTAXE]);
-  if (!syntaxe) return INTROUVABLE;
-  if (syntaxe.code !== 0) return { statut: 'erreur_compilation', sortie: syntaxe.stderr };
-  return null;
+export function erreurDeSyntaxe(stderr, marqueur) {
+  const entete = `${MARQUE_SYNTAXE} ${marqueur}\n`;
+  const texte = stderr.replace(/\r\n/g, '\n');
+  return texte.startsWith(entete) ? texte.slice(entete.length) : null;
 }
 
-export function executerProgramme(code, entree = '') {
-  return avecAtelier(async (dossier) => {
-    const probleme = await preparer(dossier, code);
-    if (probleme) return probleme;
+async function lancerPython(dossier, code, { args, entree = '', signal, avant = async () => {} }) {
+  const trouve = await trouverPython();
+  if (!trouve) return { probleme: INTROUVABLE };
+  await viderDossier(dossier);
+  await fs.writeFile(path.join(dossier, FICHIER_CODE), code, 'utf8');
+  await avant();
+  const marqueur = creerMarqueur();
+  const execution = await lancer(trouve.commande, [...trouve.prefixe, ...OPTIONS_PYTHON, ...args], {
+    delai: DELAI_EXECUTION,
+    dossier,
+    entree,
+    signal,
+    env: { [VARIABLE_MARQUEUR]: marqueur },
+  });
+  const blocage = problemeExecution(execution);
+  if (blocage) return { probleme: blocage };
+  const stdout = nettoyerChemins(execution.stdout, dossier);
+  const stderr = nettoyerChemins(execution.stderr, dossier);
+  const syntaxe = execution.code === 1 ? erreurDeSyntaxe(stderr, marqueur) : null;
+  if (syntaxe !== null) return { probleme: { statut: 'erreur_compilation', sortie: syntaxe } };
+  return { execution: { ...execution, stdout, stderr }, marqueur };
+}
 
-    const execution = await python(dossier, [FICHIER_CODE], entree);
-    const blocage = problemeExecution(execution);
-    if (blocage) return blocage;
+export function executerProgramme(code, entree = '', { signal } = {}) {
+  return avecAtelier(async (dossier) => {
+    const { probleme, execution } = await lancerPython(dossier, code, { args: ['-c', LANCEUR_PROGRAMME], entree, signal });
+    if (probleme) return probleme;
     return {
       statut: execution.code === 0 ? 'execute' : 'erreur_execution',
       sortie: `${execution.stdout}${execution.stderr}`,
@@ -231,23 +278,21 @@ export function executerProgramme(code, entree = '') {
   });
 }
 
-export function verifierAvecTests(code, tests) {
+export function verifierAvecTests(code, tests, { signal } = {}) {
   return avecAtelier(async (dossier) => {
-    const probleme = await preparer(dossier, code);
+    const ecrireFichiers = async () => {
+      await fs.writeFile(path.join(dossier, FICHIER_TESTS), `${tests.trim()}\n`, 'utf8');
+      await fs.writeFile(path.join(dossier, FICHIER_VERIFICATION), assemblerVerification(), 'utf8');
+    };
+    const { probleme, execution, marqueur } = await lancerPython(dossier, code, { args: [FICHIER_VERIFICATION], signal, avant: ecrireFichiers });
     if (probleme) return probleme;
 
-    await fs.writeFile(path.join(dossier, FICHIER_TESTS), `${tests.trim()}\n`, 'utf8');
-    await fs.writeFile(path.join(dossier, FICHIER_VERIFICATION), assemblerVerification(), 'utf8');
-    const execution = await python(dossier, [FICHIER_VERIFICATION]);
-    const blocage = problemeExecution(execution);
-    if (blocage) return blocage;
-
-    const { sortie, tests: liste } = extraireTests(execution.stdout);
-    const resume = analyserBilan(sortie);
+    const { sortie, tests: liste } = extraireTests(execution.stdout, marqueur);
+    const resume = analyserBilan(sortie, marqueur);
     const reussi = execution.code === 0 && resume !== null && resume.echoues === 0;
     return {
       statut: reussi ? 'reussi' : 'echec',
-      sortie: `${retirerBilan(sortie)}\n${execution.stderr}`.trim(),
+      sortie: `${retirerBilan(sortie, marqueur)}\n${execution.stderr}`.trim(),
       resume,
       tests: liste,
     };

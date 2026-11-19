@@ -1,22 +1,15 @@
-import { chargerFichierCode } from '../catalogue.js';
+import { chargerFichierCode, plusTard, prechargerExercice } from '../catalogue.js';
 import { langageDe, LANGAGES } from '../domaines.js';
+import { creerBascule, creerIndices, etoiles, navigationExercices } from '../exercice-commun.js';
+import { notifier } from '../notification.js';
 import { colorerCode, echapper, rendreMarkdown, rendreMarkdownEnLigne } from '../outils.js';
-import { cleExercice, estReussi, lienExercice, voisins } from '../parcours.js';
+import { cleExercice, estReussi, voisins } from '../parcours.js';
 import { compilateur } from './compilateur.js';
-import { creerEditeur } from './editeur.js';
-import { afficherCompilation, afficherResultat, resultatAEnregistrer } from './resultat.js';
+import { chargerCodeMirror, creerEditeur } from './editeur.js';
+import { afficherCompilation, afficherResultat, resultatAEnregistrer, STATUTS_PASSAGERS } from './resultat.js';
 
 const DELAI_ENREGISTREMENT = 500;
-
-function etoiles(difficulte) {
-  return `<span class="difficulte" title="Difficulté ${difficulte} sur 3">${'●'.repeat(difficulte)}${'○'.repeat(3 - difficulte)}</span>`;
-}
-
-function lienVoisin(exercice, sens) {
-  if (!exercice) return '<span></span>';
-  const texte = sens === 'precedent' ? `← ${echapper(exercice.titre)}` : `${echapper(exercice.titre)} →`;
-  return `<a class="bouton discret" href="${lienExercice(exercice)}">${texte}</a>`;
-}
+export const SOLUTION_INDISPONIBLE = 'Impossible de charger la solution : le serveur ne répond pas.';
 
 function gabarit(chapitre, exercice, { enonce, sortieAttendue, entree, entreeSaisie }, reussi, precedent, suivant) {
   const blocEntree = entree !== null
@@ -52,11 +45,11 @@ function gabarit(chapitre, exercice, { enonce, sortieAttendue, entree, entreeSai
         </div>
         <div class="zone-editeur" data-editeur></div>
         <details class="entree-programme" ${entreeSaisie ? 'open' : ''}>
-          <summary>Entrée du programme (ce que tu taperais au clavier pour « Exécuter »)</summary>
-          <textarea data-entree rows="3" spellcheck="false" placeholder="Une ligne par input() ou scanf">${echapper(entreeSaisie)}</textarea>
+          <summary id="titre-entree">Entrée du programme (ce que tu taperais au clavier pour « Exécuter »)</summary>
+          <textarea data-entree rows="3" spellcheck="false" aria-labelledby="titre-entree" placeholder="Une ligne par input() ou scanf">${echapper(entreeSaisie)}</textarea>
         </details>
-        <div class="resultat" data-resultat hidden></div>
-        <nav class="navigation-exercices">${lienVoisin(precedent, 'precedent')}${lienVoisin(suivant, 'suivant')}</nav>
+        <div class="resultat" data-resultat role="status" hidden></div>
+        ${navigationExercices(precedent, suivant)}
       </section>
     </div>`;
 }
@@ -70,6 +63,7 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
     fichier(`depart.${extension}`),
     exercice.type === 'sortie' ? fichier('sortie.txt') : null,
     exercice.avecEntree ? fichier('entree.txt') : null,
+    chargerCodeMirror(),
   ]);
   if (ctx.obsolete()) return null;
   const [enonce, depart, sortieAttendue, entree] = fichiers;
@@ -94,7 +88,6 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
 
   let minuteur = null;
   let enCours = false;
-  let indicesAffiches = 0;
 
   function afficherEtat(texte) {
     etatEnregistrement.textContent = texte;
@@ -107,7 +100,7 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
     afficherEtat('Enregistré');
   }
 
-  const editeur = creerEditeur(trouver('[data-editeur]'), ctx.code(cle) ?? depart, {
+  const editeur = await creerEditeur(trouver('[data-editeur]'), ctx.code(cle) ?? depart, {
     auChangement: () => {
       afficherEtat('Modifié…');
       clearTimeout(minuteur);
@@ -116,6 +109,7 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
     auRaccourci: () => lancer('verifier'),
     mode: modeEditeur,
   });
+  if (ctx.obsolete()) return null;
 
   async function lancer(action) {
     if (enCours) return;
@@ -133,7 +127,7 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
         : await compilateur.executer(langage, code, zoneEntree.value);
       afficherResultat(zoneResultat, resultat, { langage, suivant });
       ctx.enregistrerAffichage(cle, { resultat: resultatAEnregistrer(resultat) });
-      if (action === 'verifier' && resultat.statut !== 'outil_introuvable') {
+      if (action === 'verifier' && !STATUTS_PASSAGERS.has(resultat.statut)) {
         ctx.enregistrerEssai(cle, resultat.statut === 'reussi');
         if (resultat.statut === 'reussi') {
           reussi = true;
@@ -149,44 +143,51 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
     }
   }
 
-  function majBoutonIndice() {
-    boutonIndice.textContent = `Afficher un indice (${indicesAffiches} / ${exercice.indices.length})`;
-    boutonIndice.hidden = indicesAffiches >= exercice.indices.length;
-  }
+  const indices = creerIndices({
+    bouton: boutonIndice,
+    zone: trouver('[data-indices]'),
+    indices: exercice.indices,
+    rendre: (indice) => rendreMarkdownEnLigne(indice, { formules: false }),
+    auChangement: (nombre) => ctx.enregistrerAffichage(cle, { indices: nombre }),
+  });
 
-  function afficherIndice() {
-    const indice = exercice.indices[indicesAffiches];
-    if (indice === undefined) return;
-    indicesAffiches++;
-    trouver('[data-indices]').insertAdjacentHTML(
-      'beforeend',
-      `<div class="indice"><p>${rendreMarkdownEnLigne(indice, { formules: false })}</p></div>`,
-    );
-    ctx.enregistrerAffichage(cle, { indices: indicesAffiches });
-    majBoutonIndice();
+  async function lireSolution() {
+    try {
+      return await fichier(`solution.${extension}`);
+    } catch {
+      notifier(SOLUTION_INDISPONIBLE);
+      return null;
+    }
   }
 
   async function montrerSolution() {
-    const code = await fichier(`solution.${extension}`);
+    const code = await lireSolution();
+    if (code === null) return false;
     zoneSolution.innerHTML = `
       <h3>Solution</h3>
       <pre><code class="language-${surligneur}">${echapper(code)}</code></pre>
       <button class="bouton" data-action="copier-solution">Copier dans l’éditeur</button>`;
-    zoneSolution.hidden = false;
-    boutonSolution.textContent = 'Masquer la solution';
     colorerCode(zoneSolution, surligneur);
+    return true;
   }
 
-  async function basculerSolution() {
-    if (!zoneSolution.hidden) {
-      zoneSolution.hidden = true;
-      boutonSolution.textContent = 'Voir la solution';
-      ctx.enregistrerAffichage(cle, { solution: false });
-      return;
-    }
-    if (!reussi && !confirm('Essaie encore un peu avant de regarder !\nAfficher quand même la solution ?')) return;
-    await montrerSolution();
-    ctx.enregistrerAffichage(cle, { solution: true });
+  const solution = creerBascule({
+    bouton: boutonSolution,
+    zone: zoneSolution,
+    libelleVoir: 'Voir la solution',
+    libelleMasquer: 'Masquer la solution',
+    confirmation: 'Essaie encore un peu avant de regarder !\nAfficher quand même la solution ?',
+    estReussi: () => reussi,
+    montrer: montrerSolution,
+    auChangement: (ouverte) => ctx.enregistrerAffichage(cle, { solution: ouverte }),
+  });
+
+  async function copierSolution() {
+    if (!confirm('Remplacer ton code par la solution ?')) return;
+    const code = await lireSolution();
+    if (code === null) return;
+    editeur.ecrire(code);
+    enregistrer();
   }
 
   function reinitialiser() {
@@ -202,14 +203,9 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
     executer: () => lancer('executer'),
     verifier: () => lancer('verifier'),
     reinitialiser,
-    indice: afficherIndice,
-    solution: basculerSolution,
-    'copier-solution': async () => {
-      if (confirm('Remplacer ton code par la solution ?')) {
-        editeur.ecrire(await fichier(`solution.${extension}`));
-        enregistrer();
-      }
-    },
+    indice: () => indices.afficher(),
+    solution: () => solution.basculer(),
+    'copier-solution': copierSolution,
   };
 
   racine.querySelector('.exercice').addEventListener('click', (evenement) => {
@@ -227,10 +223,10 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
   zoneEntree.addEventListener('input', () => ctx.enregistrerAffichage(cle, { entree: zoneEntree.value }));
   document.addEventListener('keydown', raccourciClavier);
 
-  majBoutonIndice();
-  for (let i = 0; i < (affichage.indices ?? 0); i++) afficherIndice();
+  indices.restaurer(affichage.indices);
   if (affichage.resultat) afficherResultat(zoneResultat, affichage.resultat, { langage, suivant });
-  if (affichage.solution) montrerSolution();
+  if (affichage.solution) solution.ouvrir();
+  if (suivant) plusTard(() => prechargerExercice(suivant));
 
   return () => {
     document.removeEventListener('keydown', raccourciClavier);

@@ -1,5 +1,5 @@
 import { dossierDeMatiere, sansPrefixe } from './matieres.js';
-import { cleDeComparaison } from './noms.js';
+import { cleDeComparaison } from '../commun/noms.js';
 
 export function trierSupports({ supports, suivi, correspondance, contenuDossiers }) {
   const aTelecharger = [];

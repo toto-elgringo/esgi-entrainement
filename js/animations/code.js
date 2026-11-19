@@ -1,11 +1,8 @@
+import { echapper } from '../outils.js';
 import { aleatoire, attendre, bouton, choix, commandes, creerSvg, curseur, html, info, svg, vider } from './outils.js';
 
 const cloner = (valeur) => structuredClone(valeur);
 const lignes = (texte) => texte.replace(/^\n/, '').replace(/\n$/, '').split('\n');
-
-export function echapper(texte) {
-  return String(texte).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
 
 export function enrichir(texte) {
   return echapper(texte).replace(/`([^`]+)`|\*\*([^*]+)\*\*/g, (_, code, gras) => (code !== undefined ? `<code>${code}</code>` : `<strong>${gras}</strong>`));
@@ -63,7 +60,7 @@ export function colorerLigne(ligne, langage) {
   return resultat;
 }
 
-function creerLecteur(zone, { disposition = 'cote', dessiner, preparer, delai = 1400 }) {
+export function creerLecteur(zone, { disposition = 'cote', dessiner, preparer, delai = 1400 }) {
   const barre = commandes(zone);
   const grille = html('div', { classe: `anim-pas anim-pas-${disposition}` }, zone);
   const blocCode = html('pre', { classe: 'anim-code anim-pas-code' });
@@ -72,6 +69,7 @@ function creerLecteur(zone, { disposition = 'cote', dessiner, preparer, delai = 
   else grille.append(blocCode, scene);
   const texte = info(zone);
   texte.classList.add('anim-pas-texte');
+  texte.setAttribute('aria-live', 'polite');
   const erreur = html('pre', { classe: 'anim-erreur-compil' }, zone);
   const blocSortie = html('div', { classe: 'anim-console' }, zone);
   html('span', { classe: 'anim-console-titre', texte: 'Sortie' }, blocSortie);
@@ -88,6 +86,7 @@ function creerLecteur(zone, { disposition = 'cote', dessiner, preparer, delai = 
   let index = 0;
   let lectureEnCours = null;
   let lignesCode = [];
+  let attente = delai;
 
   function charger(nouveau) {
     arreter();
@@ -134,7 +133,7 @@ function creerLecteur(zone, { disposition = 'cote', dessiner, preparer, delai = 
     if (index >= programme.etapes.length - 1) aller(0);
     try {
       while (lectureEnCours === jetonLecture && index < programme.etapes.length - 1) {
-        await attendre(zone, delai);
+        await attendre(zone, attente);
         if (lectureEnCours !== jetonLecture) return;
         aller(index + 1);
       }
@@ -153,6 +152,9 @@ function creerLecteur(zone, { disposition = 'cote', dessiner, preparer, delai = 
     },
     annoncer(message) {
       texte.innerHTML = enrichir(message);
+    },
+    regler(millisecondes) {
+      attente = millisecondes;
     },
   };
 }
@@ -1712,7 +1714,7 @@ export const OPERATIONS_LISTE = {
   inverser: { texte: 'Inverser', code: CODE_LISTE.inverser, executer: operationInverser },
 };
 
-const LISTE = { largeur: 740, hauteur: 250, x0: 112, pas: 96, l: 64, h: 34, yHaut: 42, yBas: 122, maximum: 6 };
+export const LISTE = { largeur: 740, hauteur: 250, x0: 112, pas: 96, l: 64, h: 34, yHaut: 42, yBas: 122, maximum: 6 };
 const COULEURS_POINTEURS = {
   cur: 'var(--ansi-cyan)',
   prev: 'var(--ansi-magenta)',
@@ -1720,6 +1722,8 @@ const COULEURS_POINTEURS = {
   ancien: 'var(--ansi-jaune)',
   cible: 'var(--ansi-jaune)',
   suivant: 'var(--ansi-bleu)',
+  m: 'var(--ansi-cyan)',
+  queue: 'var(--ansi-magenta)',
 };
 
 function placeMaillon(element) {
@@ -1732,7 +1736,7 @@ function flecheListe(parent, d, bout, direction, classe = '') {
   svg('polygon', { points: pointe(bout, direction) }, groupe);
 }
 
-function dessinerListe(dessin, liste, auClic) {
+export function dessinerListe(dessin, liste, auClic) {
   dessin.replaceChildren();
   const milieu = LISTE.h / 2;
   const derniereRangee = Math.max(-1, ...liste.maillons.map((element) => element.rang));
@@ -1743,7 +1747,7 @@ function dessinerListe(dessin, liste, auClic) {
   });
 
   const tete = svg('g', { classe: 'lc-tete' }, dessin);
-  svg('text', { x: 14, y: LISTE.yBas - 8, classe: 'lc-etiquette', texte: 'start' }, tete);
+  svg('text', { x: 14, y: LISTE.yBas - 8, classe: 'lc-etiquette', texte: liste.nomTete ?? 'start' }, tete);
   svg('rect', { x: 14, y: LISTE.yBas, width: 62, height: LISTE.h, rx: 6 }, tete);
   if (liste.start === null) svg('text', { x: 45, y: LISTE.yBas + milieu + 4, 'text-anchor': 'middle', classe: 'lc-null', texte: 'NULL' }, tete);
   else svg('circle', { cx: 62, cy: LISTE.yBas + milieu, r: 3.5, classe: 'lc-point' }, tete);

@@ -1,7 +1,7 @@
 import { execFile, execFileSync, spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { ErreurMyges } from './erreurs.js';
+import { ErreurSynchro } from './erreurs.js';
 
 export const DELAI_CLAUDE = 4 * 60 * 60 * 1000;
 export const MARQUE_FIN = 'SYNCHRO TERMINÉE';
@@ -62,7 +62,7 @@ export function lancerClaude({ commande, args, dossier, delai = DELAI_CLAUDE, su
     enfant.on('error', (erreur) => {
       clearTimeout(minuteur);
       flux?.end();
-      if (erreur.code === 'ENOENT') rejeter(new ErreurMyges('claude_introuvable', 'La commande claude est introuvable.'));
+      if (erreur.code === 'ENOENT') rejeter(new ErreurSynchro('claude_introuvable', 'La commande claude est introuvable.'));
       else rejeter(erreur);
     });
     enfant.on('close', (code) => {
