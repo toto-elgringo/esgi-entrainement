@@ -1,0 +1,10 @@
+{
+  "titre": "Compter les inversions",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Compter toutes les paires avec deux boucles imbriquées est en O(n²) : trop lent pour 200 000 valeurs. Il faut trier une copie avec le tri fusion et compter pendant les fusions.",
+    "Pendant la fusion de `[debut, milieu)` et `[milieu, fin)`, quand on prend `t[j]` à droite alors que `t[i]` est encore à gauche, `t[j]` est plus petit que **toutes** les valeurs restantes à gauche : cela fait `milieu - i` inversions d'un coup.",
+    "En cas d'égalité, prends la valeur de gauche (`<=`), sinon deux valeurs égales seraient comptées comme une inversion. Le total est un `long long` : la somme des inversions de la gauche, de la droite et de la fusion. Copie `t` dans un tableau réservé avec `malloc` pour ne pas le modifier, et libère tout."
+  ]
+}

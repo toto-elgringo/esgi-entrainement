@@ -1,0 +1,12 @@
+{
+  "titre": "Compréhensions imbriquées et zip(*...)",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le deuxième `for` peut parcourir ce que donne le premier : `[c for mot in mots for c in mot]` prend chaque caractère de chaque mot.",
+    "Pour les allitérations, combine les deux listes avec deux `for` et garde les couples dont les initiales sont égales : `if p[0].lower() == n[0].lower()`.",
+    "`aplatir` suit la même idée que `lettres` : `[x for ligne in matrice for x in ligne]`.",
+    "`zip(*matrice)` passe chaque ligne comme argument séparé de `zip` : il regroupe les premiers éléments, puis les deuxièmes... Chaque groupe est un tuple : convertis-le avec `list(...)`.",
+    "Pour l'annuaire, un dictionnaire en compréhension : `{p[0] + n[0]: p + \" \" + n for p, n in personnes}`."
+  ]
+}

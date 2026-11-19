@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer le retrait de la racine",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Fais l'exemple de l'énoncé à la main. À quel moment l'ancien maximum (la dernière case) revient-il dans le tas ?",
+    "Après l'échange, le tas n'a plus que `n - 1` cases : la case `n - 1` (l'ancien maximum) n'en fait plus partie. Les tests `gauche < n` et `droite < n` la laissent pourtant passer.",
+    "La descente doit utiliser la **nouvelle** taille : remplace `n` par `*taille` (ou `n - 1`) dans les deux tests d'enfant."
+  ]
+}

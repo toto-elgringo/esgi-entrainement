@@ -1,0 +1,10 @@
+{
+  "titre": "Afficher une file qui a fait le tour",
+  "difficulte": 1,
+  "type": "sortie",
+  "indices": [
+    "On ne part pas de la case 0 mais de la tête, et on fait exactement `size` pas. La i-ème valeur depuis la tête est dans `tab[(start + i) % capacity]`.",
+    "Depuis la fin, la i-ème valeur est dans `tab[(start + size - 1 - i) % capacity]` : `start + size - 1` est la case de la dernière valeur, avant le modulo.",
+    "Teste `if (q->size == 0)` d'abord pour afficher `(vide)`. Sinon, la boucle avec `printf(\"%d \", ...)`, et **toujours** un `printf(\"\\n\")` après la boucle, sinon les lignes se collent."
+  ]
+}

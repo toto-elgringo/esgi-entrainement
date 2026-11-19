@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creerSynchro } from './myges/synchro.js';
 import { creerSynchroSchooding } from './schooding/synchro.js';
+import { prechauffer } from './rust.js';
 import { creerServeur } from './serveur.js';
 import { creerVerrou } from './synchro.js';
 
@@ -25,7 +26,7 @@ function commandeClaude() {
 }
 
 const verrou = creerVerrou();
-const synchro = creerSynchro({
+const myges = creerSynchro({
   vault: dossierSupports,
   fichierEnv: path.join(racine, '.env'),
   fichierSuivi: path.join(racine, 'myges-suivi.json'),
@@ -45,10 +46,10 @@ const schooding = creerSynchroSchooding({
   claude: commandeClaude(),
   verrou,
 });
-const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchro, synchros: { schooding } });
+const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchros: { myges, schooding } });
 
 function quitter() {
-  synchro.couper();
+  myges.couper();
   schooding.couper();
   process.exit(0);
 }
@@ -68,7 +69,8 @@ serveur.listen(port, '127.0.0.1', () => {
   const adresse = `http://localhost:${port}`;
   console.log(`ESGI Entraînement lancé sur ${adresse} (Ctrl + C pour arrêter)`);
   if (!process.argv.includes('--sans-navigateur')) ouvrirNavigateur(adresse);
-  synchro.reprendreAuDemarrage().then((etat) => {
+  prechauffer().catch(() => {});
+  myges.reprendreAuDemarrage().then((etat) => {
     if (etat.etape === 'claude') console.log(`Reprise de l’intégration des cours MyGES (${etat.enAttente.length} fichier(s)).`);
   }).catch((erreur) => console.error(`Reprise de la synchro MyGES impossible : ${erreur.message}`));
   schooding.reprendreAuDemarrage().then((etat) => {

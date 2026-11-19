@@ -1,0 +1,10 @@
+{
+  "titre": "Une pile qui grandit toute seule",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Avant d'écrire dans `tab[size]`, regarde si la pile est pleine. Si oui, il faut d'abord un tableau deux fois plus grand.",
+    "`realloc(s->tab, nouvelleCapacite * sizeof(int))` renvoie l'adresse du nouveau tableau (les anciennes valeurs sont recopiées). Range-la dans une variable à part et teste `NULL` avant de remplacer `s->tab`.",
+    "Libérer : deux `malloc` dans `creerPile`, donc deux `free`, le tableau **d'abord** (`free(s->tab)`), la structure ensuite (`free(s)`)."
+  ]
+}

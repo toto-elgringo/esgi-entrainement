@@ -1,0 +1,178 @@
+[
+  {
+    "question": "Quelle est la complexité de la recherche du minimum dans un tableau **non trié** de `n` valeurs, avec la bonne méthode ?",
+    "choix": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n²)"
+    ],
+    "reponse": 2,
+    "explication": "On garde le plus petit vu jusque-là et on le compare à chaque case : un seul passage. On ne peut pas faire mieux, car une case non regardée pourrait être le minimum."
+  },
+  {
+    "question": "Et dans un tableau trié dans l'ordre croissant ?",
+    "choix": [
+      "O(1) : c'est `tab[0]`",
+      "O(log n) : par dichotomie",
+      "O(n)",
+      "O(n log n)"
+    ],
+    "reponse": 0,
+    "explication": "Les valeurs vont de la plus petite à la plus grande : le minimum est toujours dans la première case, le maximum dans la dernière."
+  },
+  {
+    "question": "Pourquoi écrire `int min = tab[0];` plutôt que `int min = 0;` ?",
+    "choix": [
+      "Pour aller plus vite",
+      "Parce que si toutes les valeurs sont positives, `0` serait renvoyé alors qu'il n'est pas dans le tableau",
+      "Parce que `0` est interdit en C",
+      "Il n'y a aucune différence"
+    ],
+    "reponse": 1,
+    "explication": "Le minimum de départ doit être une vraie valeur du tableau. Avec `{5, 8, 3}`, partir de `0` donnerait `0`."
+  },
+  {
+    "question": "Que fait la boucle `for (size_t i = 0; i < n; i++) { if (tab[i] == v) return 1; else return 0; }` ?",
+    "choix": [
+      "Il cherche `v` dans tout le tableau",
+      "Il ne regarde que la première case",
+      "Il ne regarde que la dernière case",
+      "Il ne compile pas"
+    ],
+    "reponse": 1,
+    "explication": "Au premier tour, l'un des deux `return` quitte la fonction. Le `return 0` « absent » doit être placé **après** la boucle."
+  },
+  {
+    "question": "Quelle condition est indispensable pour utiliser la recherche dichotomique ?",
+    "choix": [
+      "Le tableau doit être trié",
+      "La taille doit être une puissance de 2",
+      "Les valeurs doivent être positives",
+      "Le tableau doit être alloué avec `malloc`"
+    ],
+    "reponse": 0,
+    "explication": "Elle décide de jeter la moitié gauche ou droite en comparant avec le milieu. Ce n'est juste que si les valeurs sont rangées dans l'ordre."
+  },
+  {
+    "question": "Avec la recherche dichotomique, combien de tours au maximum pour un tableau trié d'un million de valeurs ?",
+    "choix": [
+      "Environ 20",
+      "Environ 1 000",
+      "Environ 500 000",
+      "Un million"
+    ],
+    "reponse": 0,
+    "explication": "La zone est divisée par deux à chaque tour, et 2²⁰ vaut environ un million : environ 20 tours, c'est du O(log n)."
+  },
+  {
+    "question": "Dans la version fermée `[debut, fin]` de la dichotomie, quand s'arrête-t-on si la valeur est absente ?",
+    "choix": [
+      "Quand `debut > fin`",
+      "Quand `debut == fin`",
+      "Quand `milieu == 0`",
+      "Après `n` tours"
+    ],
+    "reponse": 0,
+    "explication": "Tant que `debut <= fin`, la zone contient au moins une case. Quand `debut` dépasse `fin`, il ne reste plus rien à regarder."
+  },
+  {
+    "question": "Avec des indices `size_t`, pourquoi `fin = milieu - 1;` est-il dangereux ?",
+    "choix": [
+      "Parce que la soustraction est lente",
+      "Parce que si `milieu` vaut 0, `fin` devient le plus grand nombre possible au lieu de -1",
+      "Parce que `size_t` ne permet pas la division",
+      "Ce n'est pas dangereux"
+    ],
+    "reponse": 1,
+    "explication": "`size_t` est non signé. La version sûre utilise une zone semi-ouverte `[debut, fin[` : `fin = milieu` et la condition `debut < fin`."
+  },
+  {
+    "question": "Pourquoi calculer le milieu avec `debut + (fin - debut) / 2` ?",
+    "choix": [
+      "Ça donne un milieu différent",
+      "Pour éviter que `debut + fin` dépasse le plus grand entier sur de très grands tableaux",
+      "Parce que `(debut + fin) / 2` ne compile pas",
+      "Pour arrondir au supérieur"
+    ],
+    "reponse": 1,
+    "explication": "Le résultat est le même, mais `fin - debut` reste petit : aucun débordement possible."
+  },
+  {
+    "question": "On compare deux tableaux triés de taille `n` avec `for (size_t i = 0; i < n - 1; i++)`. Quel est le problème ?",
+    "choix": [
+      "Aucun, la dernière case est forcément égale",
+      "La dernière case n'est pas comparée, et `n - 1` déborde quand `n` vaut 0",
+      "La première case n'est pas comparée",
+      "La boucle fait un tour de trop"
+    ],
+    "reponse": 1,
+    "explication": "`1 2 3` et `1 2 4` seraient déclarés égaux. La bonne borne est `i < n`."
+  },
+  {
+    "question": "`[1, 2, 2, 3]` et `[1, 2, 3, 3]` sont-ils égaux au sens « mêmes valeurs, même nombre de fois » ?",
+    "choix": [
+      "Oui, ils contiennent tous les deux 1, 2 et 3",
+      "Non, 2 et 3 n'apparaissent pas le même nombre de fois",
+      "Oui, ils ont la même taille",
+      "Ça dépend de l'ordre"
+    ],
+    "reponse": 1,
+    "explication": "Le premier a deux 2 et un 3, le second un 2 et deux 3. Il faut comparer les **quantités**, pas seulement la présence."
+  },
+  {
+    "question": "Quelle est la meilleure méthode pour tester l'égalité de deux tableaux **non triés** ?",
+    "choix": [
+      "Pour chaque valeur de `a`, chercher une case égale non utilisée dans `b` : O(n²)",
+      "Trier des copies des deux tableaux, puis comparer case par case : O(n log n)",
+      "Comparer case par case directement : O(n)",
+      "Comparer les sommes des deux tableaux : O(n)"
+    ],
+    "reponse": 1,
+    "explication": "Un bon tri coûte O(n log n), la comparaison O(n) : O(n log n) au total. Comparer les sommes ne suffit pas : `1 + 4` = `2 + 3`."
+  },
+  {
+    "question": "Une fonction `egaux(int *a, int *b, size_t n)` trie `a` et `b` directement avant de les comparer. Qu'est-ce qui ne va pas ?",
+    "choix": [
+      "Rien, la réponse est juste",
+      "Elle modifie les tableaux de l'appelant, qui demandait seulement s'ils étaient égaux",
+      "Elle ne compile pas",
+      "Elle est en O(n³)"
+    ],
+    "reponse": 1,
+    "explication": "La réponse est juste, mais c'est un effet de bord caché. On trie des copies, et on écrit `const int *` pour promettre qu'on ne touche pas aux tableaux reçus."
+  },
+  {
+    "question": "Quelle est la complexité de la fusion de deux tableaux triés de tailles `na` et `nb` ?",
+    "choix": [
+      "O(na × nb)",
+      "O(na + nb)",
+      "O(log(na + nb))",
+      "O((na + nb)²)"
+    ],
+    "reponse": 1,
+    "explication": "À chaque tour, une valeur est copiée dans le résultat et un indice avance : `na + nb` copies en tout."
+  },
+  {
+    "question": "Pendant la fusion, `a` est épuisé alors qu'il reste des valeurs dans `b`. Que faire ?",
+    "choix": [
+      "Rien, la fusion est terminée",
+      "Recopier telles quelles les valeurs restantes de `b`, déjà triées et toutes plus grandes",
+      "Trier les valeurs restantes de `b`",
+      "Recommencer la fusion depuis le début"
+    ],
+    "reponse": 1,
+    "explication": "Elles sont triées et plus grandes que tout ce qui a été copié : on les ajoute à la fin, dans l'ordre."
+  },
+  {
+    "question": "On insère une valeur à sa place dans un tableau trié, en trouvant la position par dichotomie. Quelle est la complexité totale ?",
+    "choix": [
+      "O(log n)",
+      "O(n)",
+      "O(1)",
+      "O(n log n)"
+    ],
+    "reponse": 1,
+    "explication": "Trouver la position coûte O(log n), mais décaler les cases suivantes coûte O(n). On garde le plus gros : O(n)."
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "titre": "Inverser un dictionnaire sans rien perdre",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Dans `{v: k for k, v in d.items()}`, deux clés qui ont la même valeur écrivent au **même** endroit : la seconde écrase la première. Il faut une **liste** de clés par valeur.",
+    "`groupes.setdefault(v, []).append(k)` crée la liste vide la première fois, puis ajoute à la liste existante les fois suivantes. Trie chaque liste à la fin.",
+    "Deux mots sont anagrammes s'ils ont les mêmes lettres une fois triées : `\"\".join(sorted(\"chien\"))` et `\"\".join(sorted(\"chine\"))` valent tous les deux `\"cehin\"`. C'est la clé du groupe.",
+    "Pour ne pas garder deux fois le même mot, parcours `set(texte.split())` au lieu de la liste des mots, ou transforme chaque groupe en ensemble avant de le trier.",
+    "Pour `valeurs_partagees`, réutilise `inverser_groupes(d)` : il suffit de garder les valeurs dont la liste contient au moins deux clés, puis de trier."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "Créer et modifier des ensembles",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Un ensemble s'écrit avec des accolades `{1, 2}` ou `set(iterable)`. `[0, 2, 4]` est une **liste**, pas un ensemble : `set(range(0, 10, 2))` en est un.",
+    "`s.add(x)` ajoute un élément, `s.update(iterable)` en ajoute plusieurs. `s.remove(x)` lève une `KeyError` si `x` est absent, `s.discard(x)` ne dit rien.",
+    "Pour `inscrire`, teste `nom in inscrits` **avant** d'ajouter. Pour `desinscrire`, `inscrits.difference_update(noms)` retire tout d'un coup, sur place.",
+    "Pour `vider`, fais `while s:` et `s.pop()` à chaque tour (il retire un élément quelconque et le renvoie), puis trie la liste obtenue."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Tas min : les k plus petites valeurs",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`descendreMin` est la descente du cours avec les comparaisons inversées : on cherche le **plus petit** des enfants, et on échange s'il est plus petit que la case.",
+    "Dans `kPlusPetits` : construis le tas min (descentes de `n / 2 - 1` à 0), puis fais `k` retraits de la racine. Garde la taille du tas dans une variable qui diminue de 1 à chaque retrait.",
+    "Un retrait : `resultat[j] = t[0]; taille--; echanger(t, 0, taille); descendreMin(t, taille, 0);`. Après `k` retraits, il reste un tas min de `n - k` cases."
+  ]
+}

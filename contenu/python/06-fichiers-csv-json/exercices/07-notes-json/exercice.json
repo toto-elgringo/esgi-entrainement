@@ -1,0 +1,11 @@
+{
+  "titre": "Analyser des notes en JSON",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`json.load(f)` transforme tout le fichier en dictionnaire Python : `donnees[\"eleves\"]` est une liste de dictionnaires.",
+    "Pour un élève : `notes = eleve[\"notes\"]` est un dictionnaire matière → note. Sa moyenne : `sum(notes.values()) / len(notes)`, ou `None` si `notes` est vide.",
+    "`classement` réutilise `moyennes` : garde les couples dont la moyenne n'est pas `None`, puis `sorted(..., key=lambda c: (-c[1], c[0]))`.",
+    "Pour `meilleurs_par_matiere`, parcours les élèves dans l'ordre et, pour chaque `matiere, note` de `notes.items()`, remplace le meilleur seulement si la note est **strictement** plus grande."
+  ]
+}

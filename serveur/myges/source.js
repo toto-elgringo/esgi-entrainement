@@ -1,9 +1,11 @@
 import fs from 'node:fs/promises';
-import { estArchive, extraireZip } from './archives.js';
+import path from 'node:path';
+import { estArchive, extraireZip } from '../commun/archives.js';
+import { ErreurSynchro } from '../commun/erreurs.js';
+import { texteSimple } from '../commun/html.js';
+import { cheminSur, nettoyerNom, nomDepuisDisposition, nomLibre } from '../commun/noms.js';
+import { cheminPartiel, DELAI_TELECHARGEMENT, enregistrerFlux } from '../commun/telechargement.js';
 import { ADRESSE_SITE } from './connexion.js';
-import { ErreurMyges } from './erreurs.js';
-import { texteSimple } from './html.js';
-import { cheminSur, nettoyerNom, nomDepuisDisposition, nomLibre } from './noms.js';
 
 export function lirePeriode(html) {
   const choix = /<select[^>]*periodSelect_input[^>]*>[\s\S]*?<option[^>]*selected[^>]*>([^<]*)<\/option>/i.exec(html);
@@ -12,7 +14,7 @@ export function lirePeriode(html) {
 
 export function lireSupports(html) {
   if (!html.includes('coursesFilesForm')) {
-    throw new ErreurMyges('reponse_inattendue', 'La page des supports de MyGES a changé.');
+    throw new ErreurSynchro('reponse_inattendue', 'La page des supports de MyGES a changé.');
   }
   const supports = [];
   for (const bloc of html.split(/<h3\b[^>]*ui-accordion-header/i).slice(1)) {
@@ -38,42 +40,39 @@ export function lireSupports(html) {
 
 export async function listerSupports(session, { adresseSite = ADRESSE_SITE, signal } = {}) {
   const { reponse } = await session.obtenir(`${adresseSite}/student/courses-files`, { signal });
-  if (!reponse.ok) throw new ErreurMyges('reponse_inattendue', `MyGES répond ${reponse.status} pour la page des supports.`);
+  if (!reponse.ok) throw new ErreurSynchro('reponse_inattendue', `MyGES répond ${reponse.status} pour la page des supports.`);
   return lireSupports(await reponse.text());
 }
 
-function extensionDevinee(type, donnees) {
-  if (estArchive('', donnees)) return '.zip';
-  if (donnees.subarray(0, 5).toString('latin1') === '%PDF-') return '.pdf';
+function extensionDevinee(type, debut) {
+  if (estArchive('', debut)) return '.zip';
+  if (debut.subarray(0, 5).toString('latin1') === '%PDF-') return '.pdf';
   if (/html/i.test(type ?? '')) return '.html';
   return '';
 }
 
-export async function telecharger(session, support, dossier, { signal } = {}) {
-  const { reponse } = await session.obtenir(support.adresse, { signal });
+export async function telecharger(session, support, dossier, { signal, tailleMax } = {}) {
+  const { reponse } = await session.obtenir(support.adresse, { signal, delai: DELAI_TELECHARGEMENT });
   if (!reponse.ok) {
     await reponse.body?.cancel();
-    throw new ErreurMyges('telechargement_rate', `MyGES répond ${reponse.status}.`);
+    throw new ErreurSynchro('telechargement_rate', `MyGES répond ${reponse.status}.`);
   }
-  const donnees = Buffer.from(await reponse.arrayBuffer());
-  const type = reponse.headers.get('content-type');
-  const nom = nettoyerNom(nomDepuisDisposition(reponse.headers.get('content-disposition')) ?? `${support.nom}${extensionDevinee(type, donnees)}`);
   await fs.mkdir(dossier, { recursive: true });
-  const existants = await fs.readdir(dossier);
-  if (estArchive(nom, donnees)) {
-    const nomDossier = nomLibre(nettoyerNom(nom.replace(/\.zip$/i, '')), existants);
-    await extraireZip(donnees, cheminSur(dossier, nomDossier));
-    return nomDossier;
-  }
-  const final = nomLibre(nom, existants);
-  const chemin = cheminSur(dossier, final);
-  const partiel = `${chemin}.partiel`;
+  const partiel = cheminPartiel(dossier);
   try {
-    await fs.writeFile(partiel, donnees);
-    await fs.rename(partiel, chemin);
-  } catch (erreur) {
+    const { debut } = await enregistrerFlux(reponse, partiel, { nomSite: session.nomSite, tailleMax });
+    const type = reponse.headers.get('content-type');
+    const nom = nettoyerNom(nomDepuisDisposition(reponse.headers.get('content-disposition')) ?? `${support.nom}${extensionDevinee(type, debut)}`);
+    const existants = (await fs.readdir(dossier)).filter((existant) => existant !== path.basename(partiel));
+    if (estArchive(nom, debut)) {
+      const nomDossier = nomLibre(nettoyerNom(nom.replace(/\.zip$/i, '')), existants);
+      await extraireZip(partiel, cheminSur(dossier, nomDossier));
+      return nomDossier;
+    }
+    const final = nomLibre(nom, existants);
+    await fs.rename(partiel, cheminSur(dossier, final));
+    return final;
+  } finally {
     await fs.rm(partiel, { force: true });
-    throw erreur;
   }
-  return final;
 }

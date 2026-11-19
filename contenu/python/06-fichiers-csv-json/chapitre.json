@@ -1,0 +1,20 @@
+{
+  "titre": "Fichiers, CSV et JSON",
+  "description": "Fichiers texte et binaires, open et with, modes, encodage, lecture ligne à ligne, écriture, modules csv et json, lecture de HTML.",
+  "source": "cours",
+  "supports": [
+    {
+      "titre": "Diapos : Python, les fichiers",
+      "url": "https://docs.google.com/presentation/d/e/2PACX-1vR3bmnWOro1b2qTrcRSXpQ5fnM9RNde-si2nPbOVx6cPw9bDfKwqaHy9TQaAiWJFaUeP5QPkkUZ9LIT/embed?start=false&loop=false",
+      "integrer": true
+    },
+    {
+      "titre": "Documentation : le module csv",
+      "url": "https://docs.python.org/fr/3/library/csv.html"
+    },
+    {
+      "titre": "Documentation : le module json",
+      "url": "https://docs.python.org/fr/3/library/json.html"
+    }
+  ]
+}

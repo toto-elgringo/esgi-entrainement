@@ -1,0 +1,10 @@
+{
+  "titre": "Une pile en liste chaînée",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le sommet est le **premier** maillon : empiler, c'est insérer en début ; dépiler, c'est supprimer en début (chapitre 2).",
+    "Empiler : nouveau maillon avec `malloc`, son `next` pointe vers l'ancien sommet, puis `*sommet` devient le nouveau maillon. Dépiler : garder le maillon et sa valeur, avancer `*sommet`, puis `free`.",
+    "Vider : `while (*sommet != NULL) depilerListe(sommet);` suffit, puisque `depilerListe` libère chaque maillon."
+  ]
+}

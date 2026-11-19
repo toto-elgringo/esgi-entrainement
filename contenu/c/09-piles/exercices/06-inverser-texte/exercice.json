@@ -1,0 +1,10 @@
+{
+  "titre": "Inverser un texte avec une pile",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une pile rend les valeurs dans l'ordre inverse de leur arrivée : c'est exactement ce qu'on veut ici.",
+    "Première boucle : empiler chaque caractère du texte jusqu'au `'\\0'`. Deuxième boucle : tant que la pile n'est pas vide, dépiler dans `resultat[j++]`.",
+    "N'oublie pas de terminer le résultat : `resultat[j] = '\\0';` après la deuxième boucle, même pour un texte vide."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer une fusion qui n'est pas stable",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le résultat est bien trié par note : le problème vient des copies qui ont la **même** note.",
+    "Regarde la comparaison de la boucle principale : quand les deux notes sont égales, de quel paquet vient la copie recopiée ?",
+    "Pour garder l'ordre d'origine, en cas d'égalité il faut prendre la copie de `a` : remplace `<` par `<=`."
+  ]
+}

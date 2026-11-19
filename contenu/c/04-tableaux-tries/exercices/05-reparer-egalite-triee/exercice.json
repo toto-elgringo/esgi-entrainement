@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer : l'égalité de deux tableaux triés",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Il y a deux problèmes. Le premier : quelles positions `i` la boucle parcourt-elle vraiment quand `na` vaut 3 ?",
+    "Avec `i < na - 1`, la dernière case n'est jamais comparée. Et quand `na` vaut 0, `na - 1` en `size_t` donne un nombre énorme : la boucle lit hors du tableau.",
+    "Deuxième problème : deux tableaux de tailles différentes ne sont jamais égaux. Commence par `if (na != nb) return 0;`, puis boucle avec `i < na`."
+  ]
+}

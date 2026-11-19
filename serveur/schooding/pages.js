@@ -1,5 +1,5 @@
-import { decoderEntites, texteSimple } from '../myges/html.js';
-import { ErreurMyges } from '../myges/erreurs.js';
+import { ErreurSynchro } from '../commun/erreurs.js';
+import { decoderEntites, texteSimple } from '../commun/html.js';
 
 const SEPARATEUR_LANGUE = '$TR$';
 
@@ -41,13 +41,13 @@ export function lireCours(html) {
     if (!cours.has(id)) cours.set(id, { id, nom: texteTraduit(nom) });
   }
   if (!cours.size && !html.includes('navStudentCourseDrop')) {
-    throw new ErreurMyges('reponse_inattendue', 'La page d’accueil de Schooding a changé.');
+    throw new ErreurSynchro('reponse_inattendue', 'La page d’accueil de Schooding a changé.');
   }
   return [...cours.values()];
 }
 
 export function lireSeances(html) {
-  if (!html.includes('session-list-tab')) throw new ErreurMyges('reponse_inattendue', 'La page d’un cours de Schooding a changé.');
+  if (!html.includes('session-list-tab')) throw new ErreurSynchro('reponse_inattendue', 'La page d’un cours de Schooding a changé.');
   const debutExamens = html.search(/Examens pass/i);
   const seances = [];
   for (const trouve of html.matchAll(/<a\b[^>]*class="session\b[^>]*>([\s\S]*?)<\/a>/gi)) {
@@ -132,7 +132,7 @@ function lireOutils(html) {
 
 export function lireExercice(html) {
   const enonce = /id="wording"[^>]*>([\s\S]*?)<div id="specWording">/.exec(html)?.[1];
-  if (enonce === undefined) throw new ErreurMyges('reponse_inattendue', 'La page d’un exercice de Schooding a changé.');
+  if (enonce === undefined) throw new ErreurSynchro('reponse_inattendue', 'La page d’un exercice de Schooding a changé.');
   const morceaux = enonce.split(/<div class="langvarhtml">/).slice(1).map((morceau) => traduire(morceau.replace(/<\/div>\s*$/, '')));
   const titre = texteTraduit(/<h5 class="langvarhtml">([\s\S]*?)<\/h5>/.exec(enonce)?.[1] ?? '');
   const historique = [...html.matchAll(/addHistory\(\s*(\d+)\s*,\s*"([^"]*)"\s*,\s*(\d+)\s*,\s*"([^"]*)"\s*\)/g)]
@@ -166,7 +166,7 @@ export function lireCorrectionQcm(html) {
       });
     questions.push({ intitule: traduire(intitule), choix });
   }
-  if (!questions.length) throw new ErreurMyges('reponse_inattendue', 'La correction d’un QCM de Schooding a changé.');
+  if (!questions.length) throw new ErreurSynchro('reponse_inattendue', 'La correction d’un QCM de Schooding a changé.');
   return { titre, questions };
 }
 

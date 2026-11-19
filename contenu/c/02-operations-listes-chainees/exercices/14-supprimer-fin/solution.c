@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct cell {
+    int value;
+    struct cell *next;
+} Cell;
+
+Cell *creerCell(int valeur) {
+    Cell *c = malloc(sizeof(Cell));
+    if (c == NULL) {
+        exit(EXIT_FAILURE);
+    }
+    c->value = valeur;
+    c->next = NULL;
+    return c;
+}
+
+void libererListe(Cell *start) {
+    while (start != NULL) {
+        Cell *suivant = start->next;
+        free(start);
+        start = suivant;
+    }
+}
+
+void afficherListe(Cell *start) {
+    for (Cell *cur = start; cur != NULL; cur = cur->next) {
+        printf("%d -> ", cur->value);
+    }
+    printf("NULL\n");
+}
+
+void supprimerFin(Cell **start) {
+    if (*start == NULL) {
+        return;
+    }
+    if ((*start)->next == NULL) {
+        free(*start);
+        *start = NULL;
+        return;
+    }
+    Cell *prev = *start;
+    while (prev->next->next != NULL) {
+        prev = prev->next;
+    }
+    free(prev->next);
+    prev->next = NULL;
+}
+
+int main(void) {
+    Cell *liste = creerCell(1);
+    liste->next = creerCell(2);
+    liste->next->next = creerCell(3);
+    afficherListe(liste);
+    supprimerFin(&liste);
+    afficherListe(liste);
+    supprimerFin(&liste);
+    supprimerFin(&liste);
+    afficherListe(liste);
+    libererListe(liste);
+    return 0;
+}

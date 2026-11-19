@@ -1,0 +1,10 @@
+{
+  "titre": "Est-ce un tas ?",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Un tableau est un tas max quand **chaque case** (sauf la racine) est plus petite ou égale à **son parent**.",
+    "Parcours `i` de 1 à `n - 1` et compare `t[i]` avec `t[(i - 1) / 2]` : dès qu'une case est plus grande que son parent, renvoie 0.",
+    "Pour le tas min, c'est le même parcours avec la comparaison inversée : une case plus **petite** que son parent casse le tas. Un tableau de 0 ou 1 case est toujours un tas."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Pile vide, pile pleine",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Tout se lit dans `size` (le nombre de valeurs) et `capacity` (le nombre de cases).",
+    "Vide : aucune valeur. Pleine : autant de valeurs (ou plus) que de cases.",
+    "`return s->size == 0;` et `return s->size >= s->capacity;` : une comparaison vaut déjà 1 ou 0."
+  ]
+}

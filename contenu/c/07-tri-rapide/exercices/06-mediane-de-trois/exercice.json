@@ -1,0 +1,10 @@
+{
+  "titre": "Le pivot médiane de trois",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Calcule d'abord les trois indices : `debut`, `milieu = debut + (fin - debut) / 2` et `dernier = fin - 1`, puis lis les trois valeurs `a`, `b`, `c`.",
+    "La médiane de trois valeurs est celle qui n'est ni la plus petite ni la plus grande : `b` est la médiane si `(a <= b && b <= c) || (c <= b && b <= a)`.",
+    "Teste de la même façon si `a` est la médiane ; sinon c'est `c`. Renvoie l'**indice** (`milieu`, `debut` ou `dernier`), pas la valeur."
+  ]
+}

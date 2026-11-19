@@ -42,6 +42,42 @@ print([(i, j) for i in E for j in E if i < j])
 > [!info] Plusieurs `for`
 > `[... for x in A for y in B]` correspond à deux boucles imbriquées écrites dans le même ordre : `for x in A:` puis, à l'intérieur, `for y in B:`.
 
+### Pourquoi une compréhension ?
+
+Il y a trois façons de créer une liste :
+
+- le **littéral** `[1, 2, 3]` : on écrit les valeurs à la main, pratique pour quelques valeurs seulement ;
+- le **constructeur** `list(range(10))` : il prend tout un itérable d'un coup, mais sans pouvoir filtrer ni transformer ;
+- la **compréhension** : elle filtre et transforme en une ligne.
+
+Pour passer d'une boucle classique à une compréhension : on recopie les `for` et les `if` **dans le même ordre**, et on met ce qu'on ajoute (le traitement) **tout au début**.
+
+Un cas très courant : lire des nombres tapés au clavier. `input()` renvoie **une seule chaîne**, `split()` la coupe en une liste de **chaînes**, et il reste à convertir chacune avec `int` :
+
+```python
+saisie = "4 8 quinze 16"
+print(saisie.split())
+print([int(x) for x in saisie.split() if x.isnumeric()])
+```
+
+Ici, `saisie` remplace `input()` pour que l'exemple tourne seul. Le filtre `isnumeric()` écarte ce qui n'est pas un nombre (mais il refuse aussi `"-3"`).
+
+La deuxième boucle peut parcourir l'élément donné par la première :
+
+```python
+villes = ["Lyon", "Nice"]
+print([c for v in villes for c in v.lower()])
+
+prenoms = ["Lena", "Marc"]
+noms = ["Lopez", "Martin", "Petit"]
+print([p + " " + n for p in prenoms for n in noms if p[0] == n[0]])
+```
+
+> [!tip] Les bons réflexes
+> - Une compréhension sert à rendre le code **plus court et plus clair**, pas plus rapide. Si elle devient difficile à lire, une boucle classique avec `append` est très bien.
+> - Pour un simple filtre, `filter` existe ; pour un simple traitement, `map`.
+> - Si le résultat n'est parcouru **qu'une seule fois**, une expression génératrice (section 2) évite de stocker toute la liste.
+
 ### Dictionnaires et ensembles en compréhension
 
 Même idée avec des accolades : `{cle: valeur for ...}` pour un dictionnaire, `{valeur for ...}` pour un ensemble.
@@ -55,6 +91,50 @@ print({k: v for k, v in prix.items() if v > 3})
 print({v: k for k, v in prix.items()})
 print({m[0] for m in mots})
 ```
+
+Pour associer deux listes rang par rang (la première donne les clés, la seconde les valeurs), on passe par `zip` :
+
+```python
+keys = ["a", "b", "c"]
+values = [1, 2, 3]
+print({k: v for k, v in zip(keys, values)})
+print(dict(zip(keys, values)))
+```
+
+> [!warning] Deux fois la même clé
+> Un dictionnaire ne garde qu'**une** valeur par clé. Si la compréhension produit deux fois la même clé, la **dernière** valeur écrase la précédente :
+> ```python
+> print({p[0]: p for p in ["Ana", "Alex", "Bob"]})
+> ```
+
+### Tableaux 2D
+
+Un tableau 2D est une liste de listes : `mat[i][j]` est la case de la ligne `i`, colonne `j`. Pour le créer, une compréhension qui fabrique **une nouvelle ligne à chaque tour** :
+
+```python
+lignes, colonnes = 2, 3
+bon = [[0] * colonnes for _ in range(lignes)]
+bon[0][0] = 5
+print(bon)
+
+piege = [[0] * colonnes] * lignes
+piege[0][0] = 5
+print(piege)
+```
+
+> [!warning] `[[0] * n] * m`
+> Le `* m` copie `m` fois **la même** liste (la même référence) : modifier une case modifie toute la colonne. Pour une liste de nombres, `[0] * n` ne pose pas ce problème, car les nombres ne se modifient pas.
+
+On parcourt un tableau 2D avec deux `for` : dans le même ordre que deux boucles imbriquées pour l'aplatir, ou une compréhension **dans** une compréhension pour garder les lignes.
+
+```python
+mat = [[1, 2, 3], [4, 5, 6]]
+print([x for ligne in mat for x in ligne])
+print([[x * 10 for x in ligne] for ligne in mat])
+print([list(colonne) for colonne in zip(*mat)])
+```
+
+`zip(*mat)` passe chaque ligne comme un argument séparé (`zip(mat[0], mat[1])`) : il regroupe les premiers éléments de chaque ligne, puis les deuxièmes... C'est la **transposée** (les lignes deviennent les colonnes).
 
 > [!warning] Rester lisible
 > Au-delà de deux `for` ou d'une condition compliquée, une boucle classique est plus claire.
@@ -136,7 +216,18 @@ l = [3, 1, 2]
 print(l.sort(), l)
 ```
 
-`sorted` renvoie une **nouvelle** liste triée. `key` est une fonction qui donne le critère de tri, `reverse=True` trie en ordre décroissant.
+`sorted` renvoie une **nouvelle** liste triée. `key` est une fonction qui donne le critère de tri, `reverse=True` trie en ordre décroissant. Toute fonction qui prend un élément convient comme `key`, même `max` ou `sum` :
+
+```python
+ll = [[1, 0, 5], [1, 2, 3], [8, 5]]
+for liste in sorted(ll, key=max, reverse=True):
+    print(*liste)
+
+phrase = "Bonjour tout le monde"
+print(" ".join(sorted(phrase.split(), key=len)))
+```
+
+`print(*liste)` passe chaque élément comme un argument séparé : ils sont affichés séparés par des espaces, sans crochets. Le tri est **stable** : à longueur égale, les mots gardent leur ordre de départ.
 
 > [!warning] `sorted(l)` ou `l.sort()` ?
 > `l.sort()` trie la liste **sur place** et renvoie `None` : `l = l.sort()` détruit la liste.
@@ -160,6 +251,20 @@ print(min([], default=0))
 
 > [!info] Itérable vide
 > `any([])` vaut `False` et `all([])` vaut `True` : il n'y a aucun élément faux dans une liste vide.
+
+> [!warning] « Au plus » ou « moins de » ?
+> « Tous les mots font au plus 6 lettres » s'écrit `all(len(m) <= 6 for m in mots)`. Avec `< 6`, un mot de 6 lettres pile serait refusé. Teste toujours la valeur limite.
+
+`sum` se combine très bien avec une expression génératrice et `enumerate`. `ord(c)` donne le code d'un caractère (`ord("a")` vaut 97), `chr(n)` fait l'inverse :
+
+```python
+s = "abc"
+print(sum(ord(c) for c in s))
+print(sum(ord(c) * i for i, c in enumerate(s, start=1)))
+print(sum([[1], [2, 3]], []))
+```
+
+Le deuxième argument de `sum` est la valeur de départ (0 par défaut) : avec `[]`, on additionne des listes, donc on les met bout à bout.
 
 ## 4. Les fonctions lambda
 

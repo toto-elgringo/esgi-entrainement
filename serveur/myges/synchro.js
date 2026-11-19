@@ -1,10 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { AUCUN_NOUVEAU_COURS, creerSynchroSource, promptClaude as promptCommun, TENTATIVES_AUTOMATIQUES } from '../synchro.js';
+import { identifiantsMyges, lireEnv } from '../commun/env.js';
+import { ErreurSynchro } from '../commun/erreurs.js';
+import { ecrireJson, lireJson } from '../commun/json.js';
 import { connecterSite } from './connexion.js';
-import { identifiantsMyges, lireEnv } from './env.js';
-import { ErreurMyges } from './erreurs.js';
-import { ajouterMatieres, ecrireJson, lireJson } from './matieres.js';
+import { ajouterMatieres } from './matieres.js';
 import { listerSupports, telecharger } from './source.js';
 import { trierSupports } from './tri.js';
 
@@ -27,11 +28,11 @@ export function promptClaude(fichiers, { reprise = false } = {}) {
   });
 }
 
-export function creerSynchro({ vault, fichierEnv, fichierSuivi, fichierMatieres, fichierAttente, dossierProjet, claude, adresseSite, verrou, horloge }) {
+export function creerSynchro({ vault, fichierEnv, fichierSuivi, fichierMatieres, fichierAttente, dossierProjet, claude, adresseSite, verrou, horloge, dossierJournal, delai }) {
   async function recolter({ signal, etat, maintenant, ajouterEnAttente }) {
     const identifiants = identifiantsMyges(await lireEnv(fichierEnv));
-    if (!identifiants) throw new ErreurMyges('identifiants_manquants', 'Identifiants MyGES absents du fichier .env.');
-    const session = await connecterSite(identifiants, { adresseSite, signal });
+    if (!identifiants) throw new ErreurSynchro('identifiants_manquants', 'Identifiants MyGES absents du fichier .env.');
+    const session = await connecterSite(identifiants, { adresseSite, signal, delai });
     if (signal.aborted) return;
     etat.etape = 'liste';
     const supports = await listerSupports(session, { adresseSite, signal });
@@ -65,5 +66,17 @@ export function creerSynchro({ vault, fichierEnv, fichierSuivi, fichierMatieres,
     }
   }
 
-  return creerSynchroSource({ nom: 'MyGES', vault, fichierAttente, dossierProjet, claude, recolter, prompt: promptClaude, verrou, horloge });
+  return creerSynchroSource({
+    nom: 'MyGES',
+    vault,
+    fichierAttente,
+    fichiersPrives: [path.basename(fichierSuivi), path.basename(fichierAttente)],
+    dossierProjet,
+    claude,
+    recolter,
+    prompt: promptClaude,
+    verrou,
+    horloge,
+    dossierJournal,
+  });
 }

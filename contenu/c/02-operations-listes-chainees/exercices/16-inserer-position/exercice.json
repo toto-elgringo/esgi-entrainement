@@ -1,0 +1,10 @@
+{
+  "titre": "Insérer à une position",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Commence par le cas où le début change : `position <= 0` ou liste vide. C'est une insertion en début.",
+    "Sinon, avance `prev` depuis le premier maillon jusqu'à la position `position - 1`, mais arrête-toi aussi si `prev->next` vaut `NULL` (on est au bout).",
+    "`Cell *prev = *start; for (int i = 1; i < position && prev->next != NULL; i++) prev = prev->next;` puis `nouveau->next = prev->next; prev->next = nouveau;`"
+  ]
+}

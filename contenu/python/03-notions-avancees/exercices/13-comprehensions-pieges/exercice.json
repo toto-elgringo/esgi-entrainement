@@ -1,0 +1,11 @@
+{
+  "titre": "Compréhensions : les pièges classiques",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`split(\" \")` coupe à **chaque** espace : avec deux espaces de suite, on obtient un mot vide `\"\"`. `split()` sans argument ignore les espaces multiples.",
+    "Un mot « en minuscules » doit être fait **uniquement** de lettres (`isalpha()`) et ces lettres doivent être minuscules (`islower()`). `\"14-18\".islower()` vaut `False`, mais `\"a1\".islower()` vaut `True` !",
+    "`abs(x)` donne la valeur absolue. Le filtre se met après le `for` : `[abs(x) for x in l if x % 2 == 0]`.",
+    "`[[valeur] * colonnes] * lignes` répète **la même** ligne : modifier une case change toute la colonne. Fabrique une nouvelle ligne à chaque tour : `[[valeur] * colonnes for _ in range(lignes)]`. Le `_` dit « je n'utilise pas cette variable »."
+  ]
+}

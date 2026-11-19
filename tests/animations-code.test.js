@@ -42,8 +42,8 @@ describe('coloration du code affiché', () => {
   it('reconnaît les macros, les durées de vie et les caractères en Rust', () => {
     const rendu = colorerLigne("fn f<'a>(s: &'a str) { println!(\"{s}\"); s.push('!'); }", 'rust');
     assert.match(rendu, /<span class="anim-jeton-fonction">println!<\/span>/);
-    assert.match(rendu, /<span class="anim-jeton-type">'a<\/span>/);
-    assert.match(rendu, /<span class="anim-jeton-chaine">'!'<\/span>/);
+    assert.match(rendu, /<span class="anim-jeton-type">&#39;a<\/span>/);
+    assert.match(rendu, /<span class="anim-jeton-chaine">&#39;!&#39;<\/span>/);
   });
 
   it('garde le texte intact une fois les balises retirées', () => {

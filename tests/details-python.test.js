@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import * as python from '../serveur/python.js';
+import { raisonSansOutil } from './aide.js';
 
-const { python: version } = await python.outilsPython();
-const sansPython = version ? false : 'Python 3 n’est pas installé';
+const sansPython = await raisonSansOutil(async () => (await python.outilsPython()).python, 'Python 3');
 
 const CODE = 'def double(x):\n    return x + 1\n\n\ndef trier(l):\n    l.sort()\n    return l\n\n\ndef boom():\n    return 1 / 0\n';
 const TESTS = [

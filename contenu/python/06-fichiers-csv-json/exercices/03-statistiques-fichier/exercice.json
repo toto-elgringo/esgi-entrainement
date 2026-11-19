@@ -1,0 +1,11 @@
+{
+  "titre": "Les statistiques d'un fichier",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lis tout le fichier dans une seule chaîne avec `f.read()` : tous les comptes se font ensuite sur cette chaîne.",
+    "Les mots : `contenu.split()` (sans argument, il coupe sur tous les blancs, retours à la ligne compris). Les lignes : `len(contenu.splitlines())`.",
+    "Pour compter sans boucle à rallonge : `sum(1 for c in contenu if c.isalpha())`. Même schéma avec `isdigit`, `islower`, `isupper`, et sur les mots.",
+    "`autres` se déduit des autres comptes : `len(contenu) - lettres - chiffres`. Pour `rapport`, parcours `ORDRE` et assemble avec `\"\n\".join(...)`."
+  ]
+}

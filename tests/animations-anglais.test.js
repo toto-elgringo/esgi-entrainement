@@ -34,8 +34,10 @@ import {
   versLambert93,
   VILLES,
 } from '../js/animations/anglais.js';
-import { ANIMATIONS, lireBloc } from '../js/animations/index.js';
+import { lireBloc, toutesLesAnimations } from '../js/animations/index.js';
 import { aleatoire } from '../js/animations/outils.js';
+
+const ANIMATIONS = await toutesLesAnimations();
 
 describe('animations de l’anglais et du SIG', () => {
   it('sont enregistrées avec un titre, une consigne et une fonction de création', () => {

@@ -1,0 +1,10 @@
+{
+  "titre": "Parenthèses équilibrées",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Une ouvrante (`(`, `[`, `{`) est empilée. Une fermante doit correspondre à l'ouvrante **la plus récente** encore ouverte : c'est le sommet de la pile.",
+    "Sur une fermante : si la pile est vide, ou si le sommet n'est pas l'ouvrante qui va avec, c'est raté (renvoie 0). Sinon, on dépile. Les autres caractères sont ignorés.",
+    "À la fin du texte, il ne doit plus rien rester dans la pile : `return estVide(&pile);`. Une petite fonction `ouvranteDe(fermante)` qui renvoie `'('` pour `')'` simplifie les tests."
+  ]
+}

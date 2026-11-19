@@ -1,0 +1,11 @@
+{
+  "titre": "Trier un dictionnaire, choisir avec key",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`sorted(d)` trie les **clés** d'un dictionnaire. `sorted(d.items())` trie les couples `(clé, valeur)`, d'abord selon la clé.",
+    "`key` reçoit une fonction qui donne le critère. Une fonction déjà écrite marche directement : `key=sum`, `key=len`, `key=str.lower`.",
+    "Pour plusieurs critères, la clé peut renvoyer un tuple : `key=lambda k: (-d[k], k)` trie par valeur décroissante, puis par clé croissante.",
+    "Pour `plus_proche`, `min(nombres, key=lambda n: (abs(n - cible), n), default=None)` : la distance d'abord, puis le plus petit nombre en cas d'égalité, et `None` si la liste est vide."
+  ]
+}

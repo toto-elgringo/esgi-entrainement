@@ -1,10 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import * as c from '../serveur/c.js';
-import { C_DEPART, C_SOLUTION, C_TESTS } from './aide.js';
+import { C_DEPART, C_SOLUTION, C_TESTS, raisonSansOutil } from './aide.js';
 
-const { gcc } = await c.outilsC();
-const sansGcc = gcc ? false : 'gcc n’est pas installé';
+const sansGcc = await raisonSansOutil(async () => (await c.outilsC()).gcc, 'gcc');
 
 describe('c : fonctions pures', () => {
   it('renomme le main de l’élève et ajoute les tests après son code', () => {

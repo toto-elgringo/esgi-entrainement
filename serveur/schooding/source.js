@@ -1,9 +1,11 @@
 import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { estArchive, extraireZip } from '../myges/archives.js';
+import { estArchive, extraireZip } from '../commun/archives.js';
+import { cheminSur, nettoyerNom, nomDepuisDisposition } from '../commun/noms.js';
+import { delaiDepasse, erreurDelai } from '../commun/session.js';
+import { cheminPartiel, DELAI_TELECHARGEMENT, enregistrerFlux } from '../commun/telechargement.js';
 import { dossierDeMatiere } from '../myges/matieres.js';
-import { cheminSur, nettoyerNom, nomDepuisDisposition } from '../myges/noms.js';
 import { blocCode, htmlVersMarkdown } from './markdown.js';
 import { idVideo, lireCorrectionQcm, lireCours, lireDiaporama, lireDocumentMarkdown, lireExercice, lireSeance, lireSeances, lireSolution } from './pages.js';
 import { telechargerVideo } from './videos.js';
@@ -114,9 +116,9 @@ export function markdownQcm({ cours, seance, exercice, correction, adresseSite }
   return `${lignes.join('\n')}\n`;
 }
 
-function extensionDe(type, donnees) {
-  if (estArchive('', donnees)) return '.zip';
-  if (donnees.subarray(0, 5).toString('latin1') === '%PDF-') return '.pdf';
+function extensionDe(type, debut) {
+  if (estArchive('', debut)) return '.zip';
+  if (debut.subarray(0, 5).toString('latin1') === '%PDF-') return '.pdf';
   return EXTENSIONS[(type ?? '').split(';')[0].trim()] ?? '';
 }
 
@@ -128,8 +130,27 @@ function videoDe(adresse) {
   }
 }
 
-async function enregistrerDocument({ client, vault, document, base, ytdlp, signal }) {
-  const { reponse, adresse, arrete } = await client.obtenir(`/documents/show/${document.id}/`, { arreterSur: (suivante) => videoDe(suivante) !== null });
+async function enregistrerFichier({ reponse, vault, dossier, nom, type, tailleMax }) {
+  const dossierDisque = path.join(vault, ...dossier.split('/'));
+  await fs.mkdir(dossierDisque, { recursive: true });
+  const partiel = cheminPartiel(dossierDisque);
+  try {
+    const { debut, empreinte: signature } = await enregistrerFlux(reponse, partiel, { nomSite: 'Schooding', tailleMax });
+    const nomFichier = nomCourt(nomDepuisDisposition(reponse.headers.get('content-disposition')) ?? `${nom}${extensionDe(type, debut)}`);
+    if (estArchive(nomFichier, debut)) {
+      const relatif = `${dossier}/${nomCourt(nomFichier.replace(/\.zip$/i, ''))}`;
+      await extraireZip(partiel, path.join(vault, ...relatif.split('/')));
+      return { chemin: relatif, type: 'archive', empreinte: signature };
+    }
+    await fs.rename(partiel, cheminVault(vault, `${dossier}/${nomFichier}`));
+    return { chemin: `${dossier}/${nomFichier}`, type: 'fichier', empreinte: signature };
+  } finally {
+    await fs.rm(partiel, { force: true });
+  }
+}
+
+async function enregistrerDocument({ client, vault, document, base, ytdlp, signal, tailleMax }) {
+  const { reponse, adresse, arrete } = await client.obtenir(`/documents/show/${document.id}/`, { arreterSur: (suivante) => videoDe(suivante) !== null, delai: DELAI_TELECHARGEMENT });
   if (!reponse.ok && !arrete) {
     await reponse.body?.cancel();
     throw new Error(`Schooding répond ${reponse.status}.`);
@@ -158,17 +179,7 @@ async function enregistrerDocument({ client, vault, document, base, ytdlp, signa
     await ecrireFichier(vault, `${base}.md`, `${lignes.join('\n')}\n`);
     return { chemin: `${base}.md`, type: 'video', empreinte: telechargee ? 'video' : 'lien', probleme };
   }
-  if (!/html/i.test(type)) {
-    const donnees = Buffer.from(await reponse.arrayBuffer());
-    const nomFichier = nomCourt(nomDepuisDisposition(reponse.headers.get('content-disposition')) ?? `${nom}${extensionDe(type, donnees)}`);
-    if (estArchive(nomFichier, donnees)) {
-      const relatif = `${dossier}/${nomCourt(nomFichier.replace(/\.zip$/i, ''))}`;
-      await extraireZip(donnees, path.join(vault, ...relatif.split('/')));
-      return { chemin: relatif, type: 'archive', empreinte: empreinte(donnees) };
-    }
-    await ecrireFichier(vault, `${dossier}/${nomFichier}`, donnees);
-    return { chemin: `${dossier}/${nomFichier}`, type: 'fichier', empreinte: empreinte(donnees) };
-  }
+  if (!/html/i.test(type)) return enregistrerFichier({ reponse, vault, dossier, nom, type, tailleMax });
   const html = await reponse.text();
   if (html.includes('SK_svgData')) {
     const diaporama = lireDiaporama(html);
@@ -244,7 +255,7 @@ async function contenuExercice(client, tache) {
   return markdownExercice({ cours, seance, exercice, page, solution, adresseSite: client.adresseSite });
 }
 
-export async function recolterSchooding({ client, accueil, vault, suivi, correspondance, ytdlp, signal, etat, maintenant, enregistrerSuivi, ajouterEnAttente }) {
+export async function recolterSchooding({ client, accueil, vault, suivi, correspondance, ytdlp, signal, etat, maintenant, enregistrerSuivi, ajouterEnAttente, tailleMax }) {
   const prevues = new Set();
   const taches = [];
   const matieresNouvelles = new Map();
@@ -275,7 +286,7 @@ export async function recolterSchooding({ client, accueil, vault, suivi, corresp
     try {
       let resultat;
       if (tache.document) {
-        resultat = await enregistrerDocument({ client, vault, document: tache.document, base: tache.base, ytdlp, signal });
+        resultat = await enregistrerDocument({ client, vault, document: tache.document, base: tache.base, ytdlp, signal, tailleMax });
         if (resultat.type === 'video' && resultat.empreinte === 'lien') videosEnLien += 1;
         if (resultat.probleme) etat.rates.push({ nom: tache.nom, raison: resultat.probleme });
         suivi[tache.cle] = { chemin: resultat.chemin, base: tache.base, type: resultat.type, empreinte: resultat.empreinte, le: maintenant() };
@@ -297,7 +308,7 @@ export async function recolterSchooding({ client, accueil, vault, suivi, corresp
     } catch (erreur) {
       if (signal.aborted) break;
       if (erreur.code === 'trop_de_requetes') throw erreur;
-      etat.rates.push({ nom: tache.nom, raison: erreur.message });
+      etat.rates.push({ nom: tache.nom, raison: delaiDepasse(erreur) ? erreurDelai('Schooding').message : erreur.message });
     }
     etat.avance += 1;
   }

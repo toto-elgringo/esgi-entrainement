@@ -1,58 +1,12 @@
+import { SERVEUR_ARRETE } from '../api.js';
+import { etatOutils } from '../code/compilateur.js';
+import { avecFormules, estDomaineCode, langageDe, presentationMatiere } from '../domaines.js';
 import { barreProgression, etiquetteSource } from '../menu.js';
+import { notifier } from '../notification.js';
 import { echapper, rendreLatex } from '../outils.js';
 import { chapitresDeMatiere, compterProgression, lienExercice, prochainExercice } from '../parcours.js';
-import { etatOutils } from '../code/compilateur.js';
-import { avecFormules, estDomaineCode } from '../domaines.js';
 import { supportsDeChapitre } from '../supports.js';
 import { brancherMyges, brancherSchooding } from './myges.js';
-
-const PRESENTATIONS = {
-  informatique: {
-    icone: 'Σ',
-    couleur: '#6d7cff',
-    texte: 'Ensembles et logique, sommes, exponentielle et logarithme, étude de fonctions, espaces vectoriels.',
-  },
-  'big-data': {
-    icone: '∫',
-    couleur: '#2f9e8f',
-    texte: 'Étude de fonctions et espaces vectoriels : les bases mathématiques du machine learning.',
-  },
-  combinatoire: {
-    icone: 'n!',
-    couleur: '#b06ad9',
-    texte: 'Optimisation combinatoire, complexité, métaheuristiques : recherche locale, recuit simulé, algorithmes génétiques.',
-  },
-  'algo-avancee': {
-    icone: 'C',
-    couleur: '#5c8dd6',
-    texte: 'Structures de données en C : listes chaînées, pointeurs et mémoire. Code compilé et testé par gcc.',
-  },
-  python: {
-    icone: 'Py',
-    couleur: '#e0b13a',
-    texte: 'Bases, fonctions, notions avancées et programmation objet. Exercices de code lancés par Python.',
-  },
-  rust: {
-    icone: 'R',
-    couleur: '#f46623',
-    texte: 'Le cours de Rust de l’ESGI, puis les fondamentaux du langage. Exercices de code vérifiés par le compilateur.',
-  },
-  'rust-avance': {
-    icone: 'R+',
-    couleur: '#d6455d',
-    texte: 'Rust avancé : pointeurs intelligents, traits, concurrence, async, macros et unsafe. Exercices de code vérifiés par le compilateur.',
-  },
-  anglais: {
-    icone: 'En',
-    couleur: '#d65c7a',
-    texte: 'Préparation au TOEIC : vocabulaire professionnel, grammaire, mots de liaison, faux amis et questions types.',
-  },
-  electif: {
-    icone: 'SIG',
-    couleur: '#4caf7a',
-    texte: 'Systèmes d’information géographique : QGIS, couches, Shapefile, BD TOPO et Lambert 93.',
-  },
-};
 
 const AIDE_SAISIE = [
   ['3x^2 + 2x', '3x^2 + 2x'],
@@ -94,7 +48,7 @@ function carteChapitre(chapitre, numero, progression, matiere) {
         <div class="carte-liens">
           <a href="#/cours/${chapitre.cle}">Cours</a>
           ${supports.length ? `<a href="#/supports/${chapitre.cle}">Supports</a>` : ''}
-          ${chapitre.quiz.length ? `<a href="#/quiz/${chapitre.cle}">Quiz</a>` : ''}
+          ${chapitre.nombreQuestions > 0 ? `<a href="#/quiz/${chapitre.cle}">Quiz</a>` : ''}
           ${premier ? `<a href="#/exercice/${chapitre.cle}/${premier.id}">Exercices</a>` : ''}
         </div>
       </div>
@@ -104,12 +58,12 @@ function carteChapitre(chapitre, numero, progression, matiere) {
 function afficherChoix(ctx) {
   const cartes = ctx.matieres
     .map((matiere) => {
-      const presentation = PRESENTATIONS[matiere.id] ?? { icone: '?', couleur: '#6b7385', texte: '' };
+      const presentation = presentationMatiere(matiere.id);
       const chapitres = chapitresDeMatiere(ctx.tousLesChapitres, matiere.id);
       const { reussis, total } = compterProgression(chapitres, ctx.progression);
       return `
-        <button class="carte-matiere" data-matiere="${matiere.id}">
-          <span class="icone" style="background: ${presentation.couleur}">${presentation.icone}</span>
+        <button class="carte-matiere" data-matiere="${matiere.id}" style="--couleur-matiere: ${presentation.couleur}">
+          <span class="icone" aria-hidden="true">${presentation.icone}</span>
           <h3>${echapper(matiere.titre)}</h3>
           <p>${presentation.texte}</p>
           <span class="detail">${chapitres.length} chapitres · ${reussis} / ${total} exercices réussis</span>
@@ -129,13 +83,16 @@ function afficherChoix(ctx) {
     </section>`;
 
   brancherSauvegarde(ctx);
-  brancherMyges(ctx.conteneur.querySelector('[data-myges]'));
-  brancherSchooding(ctx.conteneur.querySelector('[data-schooding]'));
+  const arrets = [
+    brancherMyges(ctx.conteneur.querySelector('[data-myges]')),
+    brancherSchooding(ctx.conteneur.querySelector('[data-schooding]')),
+  ];
 
   ctx.conteneur.querySelector('.choix-matieres').addEventListener('click', (evenement) => {
     const carte = evenement.target.closest('[data-matiere]');
     if (carte) ctx.choisirMatiere(carte.dataset.matiere);
   });
+  return () => arrets.forEach((arreter) => arreter());
 }
 
 function blocAideMaths() {
@@ -147,47 +104,53 @@ function blocAideMaths() {
     <p class="message-vide">Ensemble : <code>{1, 2, 3}</code> (ordre libre, <code>{}</code> pour l’ensemble vide). Vecteur : <code>(2, -1, 0)</code>. Décimales avec un point, ou avec une virgule si tu sépares par des <code>;</code>.</p>`;
 }
 
-const SERVEUR_ARRETE = '<div class="alerte"><strong>Le serveur local ne répond pas.</strong> Relance <code>npm start</code> dans le dossier du projet.</div>';
+const BOUTON_REVERIFIER = '<button class="bouton" type="button" data-reverifier>⟳ Revérifier les outils</button>';
+
+const alerte = (classe, contenu) => `<div class="alerte${classe}">${contenu}<div class="alerte-actions">${BOUTON_REVERIFIER}</div></div>`;
 
 function alerteRust(etat) {
   if (!etat.cargo) {
-    return '<div class="alerte"><strong>cargo est introuvable sur ton ordinateur.</strong> Installe Rust avec <a href="https://rustup.rs" target="_blank" rel="noopener">rustup</a>, puis relance le site.</div>';
+    return alerte('', '<strong>cargo est introuvable sur ton ordinateur.</strong> Installe Rust avec <a href="https://rustup.rs" target="_blank" rel="noopener">rustup</a>, puis relance le site.');
   }
   if (!etat.clippy) {
-    return '<div class="alerte info"><strong>clippy n’est pas installé.</strong> Lance <code>rustup component add clippy</code> pour avoir ses conseils en plus des erreurs de cargo.</div>';
+    return alerte(' info', '<strong>clippy n’est pas installé.</strong> Lance <code>rustup component add clippy</code> pour avoir ses conseils en plus des erreurs de cargo.');
   }
   return '';
 }
 
-const ALERTES_OUTILS = {
+export const ALERTES_OUTILS = {
   rust: alerteRust,
-  'rust-avance': alerteRust,
   python: (etat) => (etat.python
     ? ''
-    : '<div class="alerte"><strong>Python 3 est introuvable sur ton ordinateur.</strong> Installe-le depuis <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a> (coche « Add python.exe to PATH »), puis relance le site.</div>'),
+    : alerte('', '<strong>Python 3 est introuvable sur ton ordinateur.</strong> Installe-le depuis <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a> (coche « Add python.exe to PATH »), puis relance le site.')),
   c: (etat) => (etat.gcc
     ? ''
-    : '<div class="alerte"><strong>gcc est introuvable sur ton ordinateur.</strong> Sous Windows : <code>scoop install gcc</code> (ou MSYS2), sous macOS : <code>xcode-select --install</code>, sous Linux : <code>sudo apt install gcc</code>. Relance ensuite <code>npm start</code> dans un nouveau terminal.</div>'),
+    : alerte('', '<strong>gcc est introuvable sur ton ordinateur.</strong> Sous Windows : <code>winget install BrechtSanders.WinLibs.POSIX.UCRT</code>, sous macOS : <code>xcode-select --install</code>, sous Linux : <code>sudo apt install gcc</code>. Relance ensuite <code>npm start</code> dans un nouveau terminal.')),
 };
 
-async function afficherEtatOutils(ctx, domaine) {
-  const zone = ctx.conteneur.querySelector('[data-etat-outils]');
-  const etat = await etatOutils();
-  if (ctx.obsolete() || !zone) return;
-  zone.innerHTML = etat ? ALERTES_OUTILS[domaine](etat) : SERVEUR_ARRETE;
+export function rendreEtatOutils(etat, langage) {
+  return etat ? ALERTES_OUTILS[langage](etat) : alerte('', `<strong>${echapper(SERVEUR_ARRETE)}</strong>`);
 }
 
-export async function afficherAccueil(ctx) {
-  if (!ctx.matiere) {
-    afficherChoix(ctx);
-    return;
-  }
+async function afficherEtatOutils(ctx, domaine, options) {
+  const zone = ctx.conteneur.querySelector('[data-etat-outils]');
+  const etat = await etatOutils(options);
+  if (ctx.obsolete() || !zone?.isConnected) return;
+  zone.innerHTML = rendreEtatOutils(etat, langageDe(domaine));
+  zone.querySelector('[data-reverifier]')?.addEventListener('click', (evenement) => {
+    evenement.currentTarget.disabled = true;
+    afficherEtatOutils(ctx, domaine, { rafraichir: true });
+  });
+}
+
+export function afficherAccueil(ctx) {
+  if (!ctx.matiere) return afficherChoix(ctx);
 
   const matiere = ctx.matieres.find((candidate) => candidate.id === ctx.matiere);
   const { chapitres, progression } = ctx;
   const { reussis, total } = compterProgression(chapitres, progression);
   const quizFaits = chapitres.filter((chapitre) => progression.quiz[chapitre.cle]).length;
-  const avecQuiz = chapitres.filter((chapitre) => chapitre.quiz.length > 0).length;
+  const avecQuiz = chapitres.filter((chapitre) => chapitre.nombreQuestions > 0).length;
   const suivant = prochainExercice(chapitres, progression);
   const boutonSuivant = suivant
     ? `<a class="bouton principal" href="${lienExercice(suivant)}">${reussis === 0 ? 'Commencer' : 'Continuer'} : ${echapper(suivant.titre)} →</a>`
@@ -200,8 +163,8 @@ export async function afficherAccueil(ctx) {
   ctx.conteneur.innerHTML = `
     <section class="accueil">
       <h1>${echapper(matiere.titre)}</h1>
-      <p class="accueil-intro">${PRESENTATIONS[matiere.id]?.texte ?? ''}</p>
-      <div data-etat-outils></div>
+      <p class="accueil-intro">${presentationMatiere(matiere.id).texte}</p>
+      <div data-etat-outils role="status"></div>
       <div class="statistiques">
         <div class="statistique"><div class="valeur">${reussis} / ${total}</div><div class="libelle">exercices réussis</div></div>
         <div class="statistique"><div class="valeur">${quizFaits} / ${avecQuiz}</div><div class="libelle">quiz terminés</div></div>
@@ -227,7 +190,7 @@ export async function afficherAccueil(ctx) {
   });
   brancherSauvegarde(ctx);
 
-  if (estCode) await afficherEtatOutils(ctx, matiere.domaine);
+  if (estCode) afficherEtatOutils(ctx, matiere.domaine);
 }
 
 const BLOC_SAUVEGARDE = `
@@ -241,10 +204,31 @@ const BLOC_SAUVEGARDE = `
       <button class="bouton" data-importer>⬆ Tout importer</button>
       <input type="file" accept=".json,application/json" data-fichier hidden>
     </div>
+    <div class="sauvegarde-place">
+      <span data-place></span>
+      <button class="lien-discret" data-effacer-resultats>Effacer les anciens résultats de compilation</button>
+    </div>
   </div>`;
+
+export function texteTaille(octets) {
+  const ko = octets / 1024;
+  if (ko < 1024) return `${Math.max(1, Math.round(ko))} Ko`;
+  return `${(ko / 1024).toFixed(1).replace('.', ',')} Mo`;
+}
 
 function brancherSauvegarde(ctx) {
   const choixFichier = ctx.conteneur.querySelector('[data-fichier]');
+  const place = ctx.conteneur.querySelector('[data-place]');
+  const majPlace = () => {
+    place.textContent = `Place utilisée dans ce navigateur : ${texteTaille(ctx.tailleStockage())} (environ 5 Mo au maximum).`;
+  };
+  majPlace();
+  ctx.conteneur.querySelector('[data-effacer-resultats]').addEventListener('click', () => {
+    if (!confirm('Effacer les résultats de compilation gardés pour chaque exercice ?\nTon code, tes réponses et ta progression sont gardés.')) return;
+    ctx.effacerResultats();
+    majPlace();
+    notifier('Anciens résultats de compilation effacés.', { type: 'succes' });
+  });
   ctx.conteneur.querySelector('[data-exporter]').addEventListener('click', () => telecharger(ctx.exporter()));
   ctx.conteneur.querySelector('[data-importer]').addEventListener('click', () => choixFichier.click());
   choixFichier.addEventListener('change', async () => {
@@ -254,7 +238,7 @@ function brancherSauvegarde(ctx) {
     try {
       ctx.importer(await fichier.text());
     } catch (erreur) {
-      alert(erreur.message);
+      notifier(erreur.message);
     }
   });
 }

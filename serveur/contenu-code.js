@@ -1,6 +1,7 @@
+import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { LANGAGES } from '../js/domaines.js';
+import { DOMAINES_CODE, DOMAINES_REPONSES, LANGAGES } from '../js/domaines.js';
 
 const FORMAT_ID = /^[a-z0-9][a-z0-9-]*$/;
 
@@ -28,7 +29,7 @@ function exigerIds(...ids) {
   if (!ids.every(idValide)) throw new ContenuIntrouvable();
 }
 
-async function lireTexte(fichier) {
+export async function lireTexte(fichier) {
   try {
     return await fs.readFile(fichier, 'utf8');
   } catch (erreur) {
@@ -37,13 +38,13 @@ async function lireTexte(fichier) {
   }
 }
 
-async function lireJson(fichier) {
+export async function lireJson(fichier) {
   const texte = await lireTexte(fichier);
   if (texte === null) return null;
   try {
     return JSON.parse(texte);
   } catch (erreur) {
-    throw new Error(`JSON invalide dans ${fichier} : ${erreur.message}`);
+    throw new Error(`JSON invalide dans ${path.relative(process.cwd(), fichier)} : ${erreur.message}`);
   }
 }
 
@@ -124,7 +125,7 @@ export async function lireExercice(dossierContenu, langage, chapitreId, exercice
   };
 }
 
-export async function construireSommaire(dossierContenu, langage) {
+async function chapitresCode(dossierContenu, langage) {
   const chapitres = [];
   for (const id of await listerIdsChapitres(dossierContenu)) {
     const meta = await lireMetaChapitre(dossierContenu, id);
@@ -152,5 +153,91 @@ export async function construireSommaire(dossierContenu, langage) {
       quiz: await lireQuiz(dossierContenu, id),
     });
   }
-  return { chapitres };
+  return chapitres;
+}
+
+function nombreQuestions(quiz) {
+  return Array.isArray(quiz) ? quiz.length : 0;
+}
+
+export async function construireSommaire(dossierContenu, langage) {
+  return { chapitres: await chapitresCode(dossierContenu, langage) };
+}
+
+export async function sommaireDomaineCode(dossierContenu, langage) {
+  const chapitres = await chapitresCode(dossierContenu, langage);
+  return { chapitres: chapitres.map(({ quiz, ...chapitre }) => ({ ...chapitre, nombreQuestions: nombreQuestions(quiz) })) };
+}
+
+async function chapitreReponses(dossierDomaine, id) {
+  if (!idValide(id)) return null;
+  const dossier = path.join(dossierDomaine, id);
+  try {
+    const meta = await lireJson(path.join(dossier, 'chapitre.json'));
+    if (!meta || typeof meta !== 'object') return null;
+    const [exercices, quiz] = await Promise.all([lireJson(path.join(dossier, 'exercices.json')), lireJson(path.join(dossier, 'quiz.json'))]);
+    return { ...meta, id, exercices: exercices ?? [], nombreQuestions: nombreQuestions(quiz) };
+  } catch {
+    return null;
+  }
+}
+
+export async function sommaireDomaineReponses(dossierDomaine) {
+  const programme = await lireJson(path.join(dossierDomaine, 'programme.json'));
+  if (!programme) return { matieres: [], chapitres: [] };
+  const ids = Array.isArray(programme.chapitres) ? programme.chapitres : [];
+  const chapitres = await Promise.all(ids.map((id) => chapitreReponses(dossierDomaine, id)));
+  return { matieres: Array.isArray(programme.matieres) ? programme.matieres : [], chapitres: chapitres.filter(Boolean) };
+}
+
+export function domaineConnu(domaine) {
+  return typeof domaine === 'string' && (Object.hasOwn(DOMAINES_CODE, domaine) || Object.hasOwn(DOMAINES_REPONSES, domaine));
+}
+
+export async function sommaireDomaine(dossierContenu, domaine) {
+  if (!domaineConnu(domaine)) throw new ContenuIntrouvable(`Domaine inconnu : ${domaine}`);
+  const dossier = path.join(dossierContenu, domaine);
+  return Object.hasOwn(DOMAINES_CODE, domaine)
+    ? sommaireDomaineCode(dossier, DOMAINES_CODE[domaine].langage)
+    : sommaireDomaineReponses(dossier);
+}
+
+function surveiller(dossier, surChangement) {
+  try {
+    const surveillance = fsSync.watch(dossier, { recursive: true }, surChangement);
+    surveillance.unref();
+    return surveillance;
+  } catch {
+    return null;
+  }
+}
+
+export function creerSommaires(dossierContenu, { surveiller: brancher = surveiller } = {}) {
+  const cache = new Map();
+  let surveillance = brancher(dossierContenu, () => cache.clear());
+  surveillance?.on?.('error', () => {
+    surveillance.close();
+    surveillance = null;
+    cache.clear();
+  });
+
+  function lire(domaine) {
+    if (!surveillance) return sommaireDomaine(dossierContenu, domaine);
+    if (!cache.has(domaine)) {
+      const calcul = sommaireDomaine(dossierContenu, domaine);
+      cache.set(domaine, calcul);
+      calcul.catch(() => {
+        if (cache.get(domaine) === calcul) cache.delete(domaine);
+      });
+    }
+    return cache.get(domaine);
+  }
+
+  function fermer() {
+    surveillance?.close();
+    surveillance = null;
+    cache.clear();
+  }
+
+  return { lire, fermer, get enCache() { return surveillance !== null; } };
 }

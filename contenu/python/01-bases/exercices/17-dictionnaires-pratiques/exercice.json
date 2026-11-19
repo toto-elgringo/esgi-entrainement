@@ -1,0 +1,11 @@
+{
+  "titre": "Dictionnaires : get, items et regroupements",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`d.get(cle, defaut)` renvoie `defaut` si la clé est absente. Avec `lexique.get(m, m)`, un mot inconnu se « traduit » par lui-même.",
+    "Pour parcourir clés **et** valeurs, `for cle, valeur in d.items():` évite d'écrire `d[cle]` à chaque fois.",
+    "Pour regrouper, crée la liste la première fois qu'on rencontre une clé : `if cle not in groupes: groupes[cle] = []`, ou en une fois `groupes.setdefault(cle, []).append(mot)`. Trie chaque liste à la fin.",
+    "Pour `retirer_cles`, `d.pop(cle, None)` ne plante pas si la clé est absente, et `del d[cle]` supprime une clé présente. Compte seulement les clés qui étaient là."
+  ]
+}

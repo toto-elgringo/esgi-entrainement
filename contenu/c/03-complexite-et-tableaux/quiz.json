@@ -1,0 +1,133 @@
+[
+  {
+    "question": "Pourquoi compte-t-on les opérations plutôt que de chronométrer un algorithme ?",
+    "choix": [
+      "Parce qu'un chronomètre n'est pas assez précis",
+      "Pour ne mesurer que l'algorithme, pas la vitesse de la machine ou de la personne",
+      "Parce que le C ne sait pas mesurer le temps",
+      "Pour obtenir un résultat en secondes"
+    ],
+    "reponse": 1,
+    "explication": "Le temps dépend de la machine (ou de la vitesse de lecture dans l'exemple du dictionnaire). Le nombre d'opérations élémentaires en fonction de `n` ne dépend que de l'algorithme."
+  },
+  {
+    "question": "Un algorithme fait `4n + 100` opérations. Quelle est sa complexité ?",
+    "choix": ["O(1)", "O(n)", "O(4n + 100)", "O(n²)"],
+    "reponse": 1,
+    "explication": "On garde le terme qui grandit le plus vite (`4n`) et on enlève la constante : O(n)."
+  },
+  {
+    "question": "Quelle est la complexité de deux boucles `for` imbriquées qui font chacune `n` tours, avec une opération simple à l'intérieur ?",
+    "choix": ["O(n)", "O(2n)", "O(n²)", "O(log n)"],
+    "reponse": 2,
+    "explication": "Pour chacun des `n` tours de la boucle extérieure, la boucle intérieure fait `n` tours : `n × n` opérations, donc O(n²)."
+  },
+  {
+    "question": "Une boucle divise par deux la quantité de données restante à chaque tour. Avec un million de données, combien de tours environ ?",
+    "choix": ["20", "1 000", "500 000", "1 000 000"],
+    "reponse": 0,
+    "explication": "2²⁰ vaut environ un million : après 20 divisions par deux, il ne reste plus qu'une donnée. C'est une complexité en O(log n)."
+  },
+  {
+    "question": "Pourquoi accéder à `tab[i]` coûte-t-il O(1) ?",
+    "choix": [
+      "Parce que le C parcourt le tableau très vite",
+      "Parce que les cases sont collées et de même taille : l'adresse de la case `i` se calcule directement",
+      "Parce que le tableau est trié",
+      "Ça coûte O(i), pas O(1)"
+    ],
+    "reponse": 1,
+    "explication": "Adresse de `tab[i]` = adresse de `tab[0]` + `i` × taille d'une case. Un seul calcul, quelle que soit la valeur de `i`."
+  },
+  {
+    "question": "Dans une fonction `void f(int *tab)`, que vaut `sizeof tab` ?",
+    "choix": [
+      "Le nombre de cases du tableau",
+      "Le nombre d'octets du tableau",
+      "La taille d'un pointeur (8 octets sur une machine 64 bits)",
+      "Une erreur de compilation"
+    ],
+    "reponse": 2,
+    "explication": "Un tableau passé à une fonction devient un pointeur vers sa première case. La taille est perdue : il faut la passer en paramètre."
+  },
+  {
+    "question": "Pour insérer une valeur à la position `p`, dans quel sens décale-t-on les cases ?",
+    "choix": [
+      "De `p` vers la fin",
+      "De la fin vers `p`",
+      "Peu importe",
+      "On ne décale pas, on écrase `tab[p]`"
+    ],
+    "reponse": 1,
+    "explication": "En partant de `p`, chaque copie écrase la valeur suivante avant qu'elle soit déplacée. En partant de la fin, la dernière valeur va dans la case libre, puis chaque case libère la place pour la précédente."
+  },
+  {
+    "question": "Avec `size_t n = 0;`, que vaut `n - 1` ?",
+    "choix": ["-1", "0", "Un très grand nombre positif", "Une erreur à la compilation"],
+    "reponse": 2,
+    "explication": "`size_t` est non signé : il ne peut pas être négatif. `0 - 1` « fait le tour » et donne la plus grande valeur possible. Une boucle `i < n - 1` déborderait alors du tableau."
+  },
+  {
+    "question": "Quelle boucle inverse correctement un tableau de taille `n` ?",
+    "choix": [
+      "`for (i = 0; i < n; i++) echanger(&t[i], &t[n - 1 - i]);`",
+      "`for (i = 0; i < n / 2; i++) echanger(&t[i], &t[n - 1 - i]);`",
+      "`for (i = 0; i < n / 2; i++) echanger(&t[i], &t[n - i]);`",
+      "`for (i = 1; i < n / 2; i++) echanger(&t[i], &t[n - 1 - i]);`"
+    ],
+    "reponse": 1,
+    "explication": "On s'arrête au milieu (sinon chaque paire est échangée deux fois et rien ne change). La case symétrique de `i` est `n - 1 - i` : `n - i` sort du tableau quand `i == 0`."
+  },
+  {
+    "question": "Quelle est la complexité d'une suppression au **début** d'un tableau de `n` cases ?",
+    "choix": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+    "reponse": 2,
+    "explication": "Il faut décaler les `n - 1` cases suivantes d'un cran vers la gauche : O(n). Seule la suppression à la fin est en O(1)."
+  },
+  {
+    "question": "On veut retirer toutes les cases qui valent 0 d'un tableau. Quelle méthode est en O(n) ?",
+    "choix": [
+      "Appeler `supprimer(tab, &n, i)` chaque fois qu'on trouve un 0",
+      "Parcourir avec un indice de lecture et un indice d'écriture, et recopier seulement les cases à garder",
+      "Trier le tableau puis enlever le début",
+      "Aucune, c'est forcément O(n²)"
+    ],
+    "reponse": 1,
+    "explication": "Chaque appel à `supprimer` décale tout le reste (O(n)), donc O(n²) au total. Avec deux indices, chaque case est lue une fois et écrite au plus une fois : O(n)."
+  },
+  {
+    "question": "En algorithmique, la complexité d'un algorithme mesure :",
+    "choix": [
+      "le nombre de lignes de son code",
+      "comment son nombre d'opérations grandit quand la taille des données augmente",
+      "le nombre d'ordinateurs nécessaires pour le lancer",
+      "le temps qu'il a fallu pour l'écrire"
+    ],
+    "reponse": 1,
+    "explication": "La complexité décrit la vitesse d'un algorithme **en fonction de la taille des données**, sans dépendre de la machine."
+  },
+  {
+    "question": "Quelle est la complexité de la recherche du maximum dans un tableau **non trié** ?",
+    "choix": ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+    "reponse": 2,
+    "explication": "Le maximum peut être dans n'importe quelle case : il faut toutes les regarder une fois."
+  },
+  {
+    "question": "Quelle est la complexité de la recherche d'une valeur quelconque dans un tableau non trié ?",
+    "choix": ["O(N log N)", "O(log N)", "O(1)", "O(N)"],
+    "reponse": 3,
+    "explication": "Sans ordre, on ne peut rien éliminer d'avance : dans le pire cas, on regarde toutes les cases. La recherche dichotomique, en O(log N), demande un tableau trié."
+  },
+  {
+    "question": "Quelle est la complexité de l'ajout d'une valeur **à la fin** d'un tableau qui a encore de la place, quand on connaît sa taille ?",
+    "choix": ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+    "reponse": 0,
+    "explication": "On écrit dans `tab[n]` et on augmente `n` : rien à décaler. C'est l'ajout au **début** qui coûte O(N)."
+  },
+  {
+    "question": "Pour de très grandes données, laquelle de ces complexités est la plus rapide ?",
+    "choix": ["O(N)", "O(N log N)", "O(log N)", "O(N²)"],
+    "reponse": 2,
+    "explication": "O(1) < O(log N) < O(N) < O(N log N) < O(N²). Pour un million de données, log N vaut environ 20."
+  }
+]

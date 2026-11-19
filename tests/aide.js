@@ -94,3 +94,16 @@ export async function creerContenuExemple(racine) {
   await creerContenuC(dossiers.c);
   return { contenu, ...dossiers };
 }
+
+export async function obtenirCookie(port) {
+  const reponse = await fetch(`http://127.0.0.1:${port}/`);
+  await reponse.arrayBuffer();
+  return (reponse.headers.get('set-cookie') ?? '').split(';')[0];
+}
+
+export const sansCompilation = process.env.ESGI_SANS_COMPILATION === '1';
+
+export async function raisonSansOutil(detecter, nom) {
+  if (sansCompilation) return 'ESGI_SANS_COMPILATION=1 : pas de compilation';
+  return (await detecter()) ? false : `${nom} n’est pas installé`;
+}

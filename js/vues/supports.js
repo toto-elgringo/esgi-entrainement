@@ -43,13 +43,13 @@ export function afficherSupports(ctx, chapitre, demande) {
 
   let indice = indiceDepart(ctx, chapitre, supports, demande);
   const onglets = supports
-    .map((support, position) => `<button class="onglet-support" data-support="${position}">${echapper(support.titre)} <span>${typeDeSupport(support)}</span></button>`)
+    .map((support, position) => `<button type="button" class="onglet-support" data-support="${position}" aria-pressed="false">${echapper(support.titre)} <span>${typeDeSupport(support)}</span></button>`)
     .join('');
 
   ctx.conteneur.innerHTML = `
     <p class="fil">${echapper(chapitre.titre)} · Supports originaux</p>
     <div class="supports-entete">
-      <div class="onglets-supports" role="tablist">${onglets}</div>
+      <div class="onglets-supports" role="group" aria-label="Choix du support">${onglets}</div>
       <div class="supports-actions">
         <a class="bouton discret" data-nouvel-onglet target="_blank" rel="noopener">Ouvrir en grand ↗</a>
         <a class="bouton" href="#/cours/${chapitre.cle}">Cours résumé</a>
@@ -67,7 +67,7 @@ export function afficherSupports(ctx, chapitre, demande) {
     nouvelOnglet.href = adresseSupport(supports[indice]);
     boutons.forEach((bouton, rang) => {
       bouton.classList.toggle('actif', rang === indice);
-      bouton.setAttribute('aria-selected', String(rang === indice));
+      bouton.setAttribute('aria-pressed', String(rang === indice));
     });
     ctx.enregistrerAffichage(cleAffichage(chapitre), { support: indice });
   }

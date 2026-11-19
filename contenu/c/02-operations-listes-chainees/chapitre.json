@@ -1,5 +1,5 @@
 {
   "titre": "Opérations sur les listes chaînées",
-  "description": "Recherche, i-ème élément, suppression, insertion en fin, au milieu et dans l'ordre, libération, inversion.",
-  "source": "fondamentaux"
+  "description": "Recherche, i-ème élément, insertion et suppression aux deux bouts, insertion à une position et dans l'ordre, fusion de listes triées, libération, inversion.",
+  "source": "cours"
 }

@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer un tri rapide",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Il y a deux erreurs : une qui fait planter le programme (la pile d'appels déborde), une qui donne un tableau mal trié.",
+    "Le plantage : regarde les bornes du premier appel récursif. La case `p` (le pivot) est-elle encore dedans ? Si le pivot est la plus grande valeur, la portion ne rétrécit plus jamais.",
+    "Le mauvais tri : `(fin - debut) / 2` est la moitié de la **taille**, pas un indice de la portion. Pour la portion `[50, 60)`, ça donne 5. Écris `debut + (fin - debut) / 2`, et `trierRapidePartie(t, debut, p)`."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "titre": "Tri fusion",
+  "description": "Diviser pour régner, récursivité, fusion de deux tableaux triés, tableau auxiliaire, O(n log n), stabilité et parallélisation.",
+  "source": "cours",
+  "supports": [
+    {"titre": "Vidéo : le tri fusion", "url": "https://www.youtube.com/watch?v=2LFmgTZ3WPQ"}
+  ]
+}

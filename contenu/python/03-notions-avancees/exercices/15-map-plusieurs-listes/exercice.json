@@ -1,0 +1,12 @@
+{
+  "titre": "map : conversions et plusieurs listes",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`map(f, a, b)` appelle `f(a[0], b[0])`, puis `f(a[1], b[1])`... : la fonction doit prendre **autant de paramètres** qu'il y a de listes. Elle s'arrête à la plus courte.",
+    "`map` renvoie un itérable paresseux : entoure-le de `tuple(...)` ou `list(...)` selon ce qui est demandé.",
+    "Une fonction déjà écrite peut servir directement : `map(int, morceaux)`, `map(max, a, b)`. Pas besoin de lambda.",
+    "Dans une lambda, une seule expression, mais l'expression conditionnelle est permise : `lambda n: \"pair\" if n % 2 == 0 else \"impair\"`.",
+    "Pour `lire_entiers`, découpe avec `texte.split(sep)`, puis garde seulement les morceaux non vides : `(m for m in morceaux if m.strip())`. `int(\" 3 \")` accepte les espaces autour."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "titre": "Égalité de deux tableaux non triés, sans les abîmer",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Deux tableaux triés égaux sont identiques case par case. Il suffit donc de trier… mais pas les tableaux reçus : ils sont `const`, et l'appelant veut les retrouver dans leur ordre.",
+    "Fais une copie de chaque tableau (`malloc` puis `memcpy`), trie les copies avec `qsort`, compare-les case par case, puis libère les deux copies avec `free`, quelle que soit la réponse.",
+    "Pour `qsort`, écris une fonction `static int comparer(const void *x, const void *y)` qui lit les deux entiers (`*(const int *)x`) et renvoie `(a > b) - (a < b)`. Pense au cas `n == 0` : renvoie 1 sans rien allouer."
+  ]
+}

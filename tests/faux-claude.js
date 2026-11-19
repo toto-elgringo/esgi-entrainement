@@ -1,4 +1,8 @@
+import fs from 'node:fs';
+
 const args = process.argv.slice(2);
+const noter = args.indexOf('--noter-arguments');
+if (noter !== -1) fs.writeFileSync(args[noter + 1], JSON.stringify(args), 'utf8');
 const prompt = args[args.indexOf('-p') + 1] ?? '';
 const supports = prompt.split('\n').filter((ligne) => ligne.startsWith('- ')).length;
 const reprise = prompt.includes('Reprise :') ? ' (reprise)' : '';

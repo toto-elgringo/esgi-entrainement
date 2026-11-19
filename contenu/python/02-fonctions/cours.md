@@ -75,6 +75,51 @@ scenario: defaut
 titre: La liste par défaut partagée
 ```
 
+### Paramètres nommés obligatoires
+
+Un paramètre placé **après** `*args`, ou après un `*` seul, ne peut être donné **que par mot-clé**. On s'en sert pour les options : l'appel devient lisible, et on ne peut pas les confondre avec les valeurs.
+
+```python
+def puissances(*nombres, exposant=2):
+    return [x ** exposant for x in nombres]
+
+
+def chercher(texte, motif, *, ignorer_casse=False):
+    if ignorer_casse:
+        texte, motif = texte.lower(), motif.lower()
+    return motif in texte
+
+
+print(puissances(1, 2, 3), puissances(1, 2, 3, exposant=3))
+print(chercher("Python", "PY", ignorer_casse=True))
+try:
+    chercher("Python", "PY", True)
+except TypeError as e:
+    print("Refusé :", e)
+```
+
+> [!warning] Le nom d'un paramètre fait partie de la fonction
+> Dès qu'on appelle par mot-clé, une faute de frappe dans la définition (`subtitute` au lieu de `substitute`) fait planter l'appel avec une `TypeError`. Et n'appelle jamais un paramètre `pow`, `sum` ou `max` : dans la fonction, il cache la fonction intégrée du même nom.
+
+### Renvoyer plusieurs valeurs
+
+`return a, b` renvoie le **tuple** `(a, b)`. L'appelant le déballe directement dans plusieurs variables. `divmod(a, b)` fait la même chose : il renvoie le quotient et le reste.
+
+```python
+def vers_hms(total):
+    minutes, secondes = divmod(total, 60)
+    heures, minutes = divmod(minutes, 60)
+    return heures, minutes, secondes
+
+
+h, m, s = vers_hms(4203)
+print(h, m, s)
+print(vers_hms(59))
+```
+
+> [!tip] Penser au cas vide
+> Avant de renvoyer « le plus petit » ou « la position du maximum », demande-toi ce qui se passe avec une liste vide. Renvoyer `(0, 0)` serait faux : mieux vaut lever `ValueError("liste vide")`, comme le fait `min([])`.
+
 ## 2. Nombre variable d'arguments
 
 - `*args` récupère les arguments **par position** en trop, dans un **tuple** ;
@@ -238,6 +283,87 @@ print(carre(4))
 > [!tip] Un décorateur peut garder des informations
 > Une fonction est un objet : on peut lui ajouter des attributs. `wrapper.appels = 0` dans le décorateur, puis `wrapper.appels += 1` à chaque appel, permet de compter les appels.
 
+### Garder le nom : `functools.wraps`
+
+Sans précaution, la fonction décorée **est** le wrapper : elle s'appelle `wrapper` et perd sa docstring (gênant dans les messages d'erreur et dans `help()`). `@functools.wraps(func)` recopie le nom et la docstring de `func` sur le wrapper.
+
+```python
+import functools
+
+
+def bavard(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print("Appel de", func.__name__, args, kwargs)
+        return func(*args, **kwargs)
+    return wrapper
+
+
+@bavard
+def aire(largeur, hauteur=1):
+    """Aire d'un rectangle."""
+    return largeur * hauteur
+
+
+print(aire(3, hauteur=2))
+print(aire.__name__, ":", aire.__doc__)
+```
+
+> [!warning] Un wrapper sans paramètres
+> `def wrapper():` ne marche qu'avec des fonctions **sans** paramètre. Prends l'habitude d'écrire `def wrapper(*args, **kwargs):` et `func(*args, **kwargs)` : ton décorateur marchera partout.
+
+### Empiler des décorateurs
+
+Plusieurs décorateurs s'appliquent **de bas en haut** : le plus proche du `def` enveloppe la fonction en premier.
+
+```python
+def majuscules(func):
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs).upper()
+    return wrapper
+
+
+def entre_crochets(func):
+    def wrapper(*args, **kwargs):
+        return "[" + func(*args, **kwargs) + "]"
+    return wrapper
+
+
+@entre_crochets
+@majuscules
+def saluer(nom):
+    return "salut " + nom
+
+
+print(saluer("ada"))
+```
+
+Ici, `saluer = entre_crochets(majuscules(saluer))` : d'abord les majuscules, ensuite les crochets.
+
+### Un décorateur tout fait : le cache
+
+Une fonction **récursive** s'appelle elle-même. C'est naturel pour Fibonacci, mais la version directe recalcule sans cesse les mêmes valeurs : `fibo(30)` fait plus d'un million d'appels. Un **cache** (mémoïsation) retient chaque résultat déjà calculé ; `functools.lru_cache` le fait pour nous.
+
+```python
+from functools import lru_cache
+
+
+@lru_cache(maxsize=None)
+def fibo(n):
+    if n < 0:
+        raise ValueError("n doit être positif")
+    if n < 2:
+        return n
+    return fibo(n - 1) + fibo(n - 2)
+
+
+print(fibo(100))
+print(fibo.cache_info())
+```
+
+> [!info] Récursif ou boucle ?
+> La récursion est lisible, mais chaque appel s'empile : au-delà d'environ 1000 niveaux, Python lève `RecursionError`. Pour Fibonacci, une boucle `a, b = b, a + b` est aussi simple et sans limite. Le cache ne marche qu'avec des arguments **hachables** (nombres, textes, tuples), pas avec des listes.
+
 ## 6. Les co-routines : `yield`
 
 Une **co-routine** est une fonction qui, au lieu de se terminer quand elle fournit un résultat, se **met en pause**, et reprend plus tard **là où elle s'était arrêtée**. Le mot-clé `yield` remplace `return` : il fournit une valeur et met la fonction en pause.
@@ -288,7 +414,105 @@ for n in entiers():
 > Appeler `pows(3, 2)` n'exécute rien : cela crée un **générateur**. Chaque `next()` avance jusqu'au `yield` suivant ; à la fin, `StopIteration` est levée (la boucle `for` s'en occupe). Les valeurs sont produites **une par une, sans être stockées** : idéal pour de grandes ou d'infinies suites de valeurs.
 
 > [!warning] Un générateur ne sert qu'une fois
-> Une fois parcouru, il est épuisé : un deuxième `for` ne donne plus rien. Rappelle la fonction pour en avoir un nouveau.
+> Une fois parcouru, il est épuisé : un deuxième `for` ne donne plus rien. Rappelle la fonction pour en avoir un nouveau. Si ton générateur reçoit un itérable qu'il doit parcourir **plusieurs fois**, copie-le d'abord : `elements = list(iterable)`.
+
+### Le code ne démarre qu'au premier `next`
+
+Appeler une fonction qui contient `yield` n'exécute **aucune** ligne de son corps, même pas les vérifications du début. Une erreur n'apparaît qu'au moment du parcours, parfois bien plus loin dans le programme. Pour vérifier les paramètres **dès l'appel**, on sépare : une fonction normale vérifie, puis renvoie le générateur.
+
+```python
+def compte(n):
+    if n < 0:
+        raise ValueError("n négatif")
+    yield from range(n)
+
+
+gen = compte(-1)
+print("Aucune erreur pour l'instant")
+
+
+def compte_sur(n):
+    if n < 0:
+        raise ValueError("n négatif")
+    return _compte(n)
+
+
+def _compte(n):
+    yield from range(n)
+
+
+try:
+    compte_sur(-1)
+except ValueError as e:
+    print("Erreur dès l'appel :", e)
+```
+
+### Déléguer : `yield from`
+
+`yield from autre` fournit une par une toutes les valeurs de `autre` (un itérable ou un autre générateur). C'est un raccourci pour `for x in autre: yield x`, très pratique pour les générateurs **récursifs**.
+
+```python
+def aplatir(liste):
+    for element in liste:
+        if isinstance(element, list):
+            yield from aplatir(element)
+        else:
+            yield element
+
+
+print(list(aplatir([1, [2, [3, 4]], 5])))
+```
+
+### Un générateur garde son état
+
+Entre deux `yield`, les variables locales sont conservées : un générateur peut compter, se souvenir de ce qu'il a déjà vu, garder une fenêtre des derniers éléments... tout en marchant sur un flux **infini**.
+
+```python
+from collections import deque
+from itertools import count, islice
+
+
+def derniers(iterable, n):
+    fenetre = deque(maxlen=n)
+    for element in iterable:
+        fenetre.append(element)
+        if len(fenetre) == n:
+            yield tuple(fenetre)
+
+
+print(list(islice(derniers(count(), 3), 4)))
+```
+
+> [!tip] `deque` plutôt que `pop(0)`
+> `liste.pop(0)` décale tous les éléments à chaque fois. Une `deque(maxlen=n)` (file à deux bouts) jette toute seule le plus ancien quand elle est pleine, et `popleft()` est immédiat.
+
+> [!warning] Une boucle infinie qui ne fournit rien
+> `while True: for x in elements: yield x` bloque le programme pour toujours si `elements` est vide : aucun `yield` n'est jamais atteint. Ajoute `if not elements: return` avant la boucle.
+
+### Le module `itertools`
+
+Il contient des générateurs tout faits :
+
+| Outil | Fournit | Exemple |
+|---|---|---|
+| `count(debut)` | `debut`, `debut + 1`, ... sans fin | `count(5)` → 5, 6, 7... |
+| `cycle(it)` | les éléments de `it` en boucle | `cycle("ab")` → a, b, a, b... |
+| `islice(it, n)` | les `n` premiers éléments | `islice(count(), 3)` → 0, 1, 2 |
+| `chain(a, b)` | `a` puis `b` | `chain("ab", [1])` → a, b, 1 |
+| `accumulate(it)` | les sommes cumulées | `accumulate([1, 2, 3])` → 1, 3, 6 |
+| `product(it, repeat=k)` | toutes les suites de `k` éléments | `product("ab", repeat=2)` → aa, ab, ba, bb |
+| `combinations(it, k)` | les groupes de `k` éléments distincts, sans ordre | `combinations("abc", 2)` → ab, ac, bc |
+| `groupby(it, key)` | les paquets d'éléments **consécutifs** de même clé | trier avant ! |
+
+```python
+from itertools import combinations, groupby, islice, product, cycle
+
+print(list(islice(cycle("ab"), 5)))
+print(["".join(p) for p in product("01", repeat=3)])
+print(list(combinations([1, 2, 3], 2)))
+mots = sorted(["bus", "avion", "bateau"], key=lambda m: m[0])
+print({lettre: list(groupe) for lettre, groupe in groupby(mots, key=lambda m: m[0])})
+```
 
 ## 7. Les exceptions
 
@@ -354,3 +578,32 @@ except SoldeInsuffisant as e:
 
 > [!warning] Intercepter précisément
 > Un `except:` sans type attrape **toutes** les erreurs, y compris tes propres fautes de frappe, qui deviennent invisibles. Intercepte seulement les exceptions que tu sais gérer, et garde le `try` le plus court possible.
+
+### Vérifier les arguments et transformer une erreur
+
+Une fonction qui reçoit des données de l'extérieur vérifie souvent leur **type** et leur **valeur** avant de calculer. Deux détails à connaître :
+
+```python
+print(isinstance(True, int))
+print(type(True) is int)
+
+
+def vers_reel(valeur):
+    try:
+        return float(valeur)
+    except (TypeError, ValueError) as erreur:
+        raise TypeError("pas un nombre : %r" % (valeur,)) from erreur
+
+
+try:
+    vers_reel("abc")
+except TypeError as e:
+    print(e, "| cause :", type(e.__cause__).__name__)
+```
+
+- `bool` est une sorte d'`int` : `isinstance(True, int)` vaut `True`. Pour refuser les booléens, teste-les à part : `isinstance(n, bool) or not isinstance(n, int)` ;
+- `raise NouvelleErreur(...) from erreur` lève une exception plus claire **sans perdre** la cause d'origine (rangée dans `__cause__`, affichée dans le message d'erreur) ;
+- `float(None)` lève une `TypeError`, `float("abc")` une `ValueError` : intercepte les deux.
+
+> [!warning] `range` à l'envers
+> Pour inclure la borne de fin, on écrit `range(debut, fin + 1)`... seulement si le pas est **positif**. Avec un pas négatif, on descend : la borne exclue est `fin - 1`, donc `range(debut, fin - 1, pas)`. Et `range(..., 0)` lève une `ValueError`.

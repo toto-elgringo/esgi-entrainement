@@ -63,5 +63,41 @@
     "choix": ["3", "4", "2", "1"],
     "reponse": 1,
     "explication": "Dans une chaîne brute, `\\n` n'est pas un retour à la ligne mais deux caractères : `\\` et `n`. On a donc 4 caractères."
+  },
+  {
+    "question": "Comment obtient-on une chaîne `s` écrite en minuscules ?",
+    "choix": ["`s.toLowerCase()`", "`s.lower()`", "`lower(s)`", "`s.toLower()`"],
+    "reponse": 1,
+    "explication": "`lower()` est une **méthode** des chaînes ; elle renvoie une nouvelle chaîne (`s` ne change pas). Son contraire est `upper()`."
+  },
+  {
+    "question": "Comment teste-t-on si le texte `\"py\"` apparaît dans une chaîne `s` ?",
+    "choix": ["`s.contains(\"py\")`", "`\"py\" in s`", "`s.includes(\"py\")`", "`s.has(\"py\")`"],
+    "reponse": 1,
+    "explication": "`in` cherche une sous-chaîne. `s.find(\"py\")` donne en plus sa position (`-1` si absente). Les chaînes n'ont pas de méthode `contains`."
+  },
+  {
+    "question": "Comment récupère-t-on les **3 derniers** caractères d'une chaîne `s` ?",
+    "choix": ["`s[-3:]`", "`s[:-3]`", "`s.substr(-3)`", "`s[-3]`"],
+    "reponse": 0,
+    "explication": "`s[-3:]` part du 3e caractère avant la fin et va jusqu'au bout. `s[:-3]` donne tout **sauf** les 3 derniers, et `s[-3]` un seul caractère."
+  },
+  {
+    "question": "Comment colle-t-on les mots de la liste `mots` en une seule chaîne, séparés par des virgules ?",
+    "choix": ["`mots.join(\",\")`", "`\",\".join(mots)`", "`join(mots, \",\")`", "`mots + \",\"`"],
+    "reponse": 1,
+    "explication": "`join` est une méthode du **séparateur** : `\",\".join([\"a\", \"b\"])` donne `\"a,b\"`. Tous les éléments doivent être des chaînes."
+  },
+  {
+    "question": "Comment écrit-on une chaîne qui s'étend sur plusieurs lignes du code ?",
+    "choix": ["Entre triples guillemets : `\"\"\"...\"\"\"`", "Entre accents graves, comme en JavaScript", "Entre `<<<` et `>>>`", "C'est impossible, il faut concaténer avec `+`"],
+    "reponse": 0,
+    "explication": "Les triples guillemets (`\"\"\"` ou `'''`) gardent les retours à la ligne. Les accents graves n'ont pas ce rôle en Python."
+  },
+  {
+    "question": "Comment convertit-on le texte `\"42\"` en nombre entier ?",
+    "choix": ["`int(\"42\")`", "`parseInt(\"42\")`", "`\"42\".toInt()`", "`(int) \"42\"`"],
+    "reponse": 0,
+    "explication": "`int(texte)` convertit (et lève `ValueError` si le texte n'est pas un entier). Dans l'autre sens, `str(42)` donne `\"42\"`."
   }
 ]

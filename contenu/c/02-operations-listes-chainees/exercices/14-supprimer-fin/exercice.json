@@ -1,0 +1,10 @@
+{
+  "titre": "Supprimer le dernier maillon",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Trois cas : liste vide (rien à faire), un seul maillon (le début devient `NULL`), deux maillons ou plus.",
+    "Pour couper la chaîne, il faut l'**avant-dernier** : avance `prev` tant que `prev->next->next != NULL`.",
+    "Liste d'un maillon : `free(*start); *start = NULL;`. Sinon, après la boucle : `free(prev->next); prev->next = NULL;`"
+  ]
+}

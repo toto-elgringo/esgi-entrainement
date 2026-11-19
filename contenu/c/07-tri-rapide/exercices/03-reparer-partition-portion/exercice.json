@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer une partition sur une portion",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Sur le tableau entier (`debut = 0`), la fonction marche. Le problème n'apparaît que quand la portion commence plus loin.",
+    "Regarde les deux endroits où le code écrit `0` : la valeur de départ de `position` et celle de `i`. Les cases avant `debut` ne font pas partie de la portion.",
+    "Remplace `int position = 0;` par `int position = debut;` et `for (int i = 0; ...)` par `for (int i = debut; ...)`."
+  ]
+}

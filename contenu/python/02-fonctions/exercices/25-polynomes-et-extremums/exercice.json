@@ -1,0 +1,12 @@
+{
+  "titre": "Polynômes et position des extremums",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "En Python, la puissance s'écrit `**` : `3 ** 2` vaut 9. `^` est un « ou exclusif » sur les bits : `3 ^ 2` vaut 1, sans aucune erreur. C'est le piège du code de départ.",
+    "`enumerate(coefs)` donne les couples `(i, coef)` : la valeur est `sum(coef * x ** i for i, coef in enumerate(coefs))`.",
+    "La dérivée de `c × x^i` est `i × c × x^(i-1)` : le terme de degré 0 disparaît. Avec `enumerate(coefs)`, garde `i * c` pour `i` à partir de 1 (ou parcours `coefs[1:]` avec `start=1`).",
+    "Pour `indices_extremes`, la **première** occurrence ne doit être remplacée que par une valeur **strictement** plus petite (ou plus grande) : `<` et pas `<=`.",
+    "Liste vide : il n'y a pas de bonne réponse, lève `ValueError` avant la boucle."
+  ]
+}

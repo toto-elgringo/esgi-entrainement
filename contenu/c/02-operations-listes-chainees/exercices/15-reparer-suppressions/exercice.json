@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer deux suppressions qui fuient",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lance les tests : la liste obtenue est juste, c'est la vérification de la mémoire qui échoue. Quels maillons ne sont jamais rendus ?",
+    "Dans `supprimerPremier`, range `start->next` dans une variable, libère `start`, puis renvoie la variable. Dans `supprimerDernier`, libère le dernier avant de couper.",
+    "Cas d'un seul maillon : `free(start); return NULL;`. Cas général : `free(prev->next); prev->next = NULL;`"
+  ]
+}

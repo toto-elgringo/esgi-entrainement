@@ -1,10 +1,13 @@
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { after, before, describe, it } from 'node:test';
+import { extraireZip, TAILLE_MAX_EXTRAITE, verifierEntrees } from '../serveur/commun/archives.js';
+import { ecrireJson, lireJson } from '../serveur/commun/json.js';
+import { cheminSur, cleDeComparaison, nettoyerNom, nomLibre, nomDepuisDisposition } from '../serveur/commun/noms.js';
 import { connecterSite } from '../serveur/myges/connexion.js';
 import { dossierDeMatiere, sansPrefixe } from '../serveur/myges/matieres.js';
-import { cheminSur, cleDeComparaison, nettoyerNom, nomLibre, nomDepuisDisposition } from '../serveur/myges/noms.js';
 import { lirePeriode, lireSupports, listerSupports, telecharger } from '../serveur/myges/source.js';
 import { trierSupports } from '../serveur/myges/tri.js';
 import { creerDossierTemporaire, supprimerDossier } from './aide.js';
@@ -65,6 +68,92 @@ describe('matières', () => {
   });
 });
 
+describe('fichiers JSON', () => {
+  let dossier;
+
+  before(async () => {
+    dossier = await creerDossierTemporaire();
+  });
+
+  after(async () => {
+    await supprimerDossier(dossier);
+  });
+
+  it('lit la valeur par défaut si le fichier est absent', async () => {
+    assert.deepEqual(await lireJson(path.join(dossier, 'absent.json'), { vide: true }), { vide: true });
+  });
+
+  it('range les écritures d’un même fichier l’une après l’autre', async () => {
+    const fichier = path.join(dossier, 'suivi.json');
+    const valeur = { compteur: 0 };
+    const ecritures = [];
+    for (let i = 1; i <= 20; i += 1) {
+      valeur.compteur = i;
+      ecritures.push(ecrireJson(fichier, valeur));
+    }
+    await Promise.all(ecritures);
+    assert.deepEqual(await lireJson(fichier, null), { compteur: 20 });
+    assert.deepEqual(await fs.readdir(dossier), ['suivi.json']);
+  });
+});
+
+describe('archives', () => {
+  let dossier;
+  const TAR = path.join(process.env.SystemRoot ?? 'C:\\Windows', 'System32', 'tar.exe');
+
+  before(async () => {
+    dossier = await creerDossierTemporaire();
+  });
+
+  after(async () => {
+    await supprimerDossier(dossier);
+  });
+
+  async function archive(nom, entrees) {
+    const chemin = path.join(dossier, nom);
+    await fs.writeFile(chemin, creerZip(entrees));
+    return chemin;
+  }
+
+  it('extrait une archive créée par tar', { skip: process.platform !== 'win32' }, async () => {
+    const source = path.join(dossier, 'source');
+    await fs.mkdir(path.join(source, 'td'), { recursive: true });
+    await fs.writeFile(path.join(source, 'td', 'main.c'), 'int main(void) { return 0; }', 'utf8');
+    const chemin = path.join(dossier, 'vrai.zip');
+    execFileSync(TAR, ['-a', '-cf', chemin, 'td'], { cwd: source, windowsHide: true });
+    await extraireZip(chemin, path.join(dossier, 'vrai'));
+    assert.equal(await fs.readFile(path.join(dossier, 'vrai', 'td', 'main.c'), 'utf8'), 'int main(void) { return 0; }');
+  });
+
+  it('refuse une archive qui contient un lien', async () => {
+    const chemin = await archive('lien.zip', [{ nom: 'ok.txt', contenu: 'x' }, { nom: 'lien', contenu: '../../secret', mode: 0o120777 }]);
+    await assert.rejects(extraireZip(chemin, path.join(dossier, 'lien')), { code: 'archive_refusee', message: /lien/ });
+    await assert.rejects(fs.access(path.join(dossier, 'lien')));
+  });
+
+  it('refuse une archive trop grosse une fois extraite', async () => {
+    const moitie = TAILLE_MAX_EXTRAITE / 2 + 1;
+    const chemin = await archive('gros.zip', [{ nom: 'a.bin', contenu: 'x', tailleAnnoncee: moitie }, { nom: 'b.bin', contenu: 'y', tailleAnnoncee: moitie }]);
+    await assert.rejects(extraireZip(chemin, path.join(dossier, 'gros')), { code: 'archive_refusee', message: /500 Mo/ });
+    await assert.rejects(fs.access(path.join(dossier, 'gros')));
+  });
+
+  it('refuse les chemins qui sortent du dossier', async () => {
+    const chemin = await archive('sortie.zip', [{ nom: '../evil.txt', contenu: 'non' }]);
+    await assert.rejects(extraireZip(chemin, path.join(dossier, 'sortie')), { code: 'archive_refusee', message: /hors de son dossier/ });
+  });
+
+  it('lit la liste détaillée de tar', () => {
+    const ligne = (type, taille, nom) => `${type}rw-rw-r--  0 0      0   ${taille} nov. 30  1979 ${nom}`;
+    assert.doesNotThrow(() => verifierEntrees(['a  b.txt', 'd/'], [ligne('-', 12, 'a  b.txt'), ligne('d', 0, 'd/')]));
+    assert.throws(() => verifierEntrees(['lien'], [ligne('l', 0, 'lien -> /etc/passwd')]), /lien/);
+    assert.throws(() => verifierEntrees(['dur'], [ligne('h', 0, 'dur link to autre')]), /lien/);
+    assert.throws(() => verifierEntrees(['dur'], [ligne('-', 0, 'dur link to autre')]), /lien/);
+    assert.throws(() => verifierEntrees(['a', 'b'], [ligne('-', 6, 'a'), ligne('-', 6, 'b')], 10), /Mo/);
+    assert.throws(() => verifierEntrees(['/abs'], [ligne('-', 1, '/abs')]), /hors de son dossier/);
+  });
+});
+
 describe('page des supports', () => {
   const html = pageSupports('https://dl.test', [
     { nom: 'T1 - algorithmique avancée', fichiers: [{ id: 'A1', nom: 'fiche listes chainées', date: '13/10/2026 10h17' }] },
@@ -122,6 +211,7 @@ describe('téléchargement', () => {
   let session;
   const zip = creerZip([{ nom: 'listing/main.rs', contenu: 'fn main() {}' }]);
   const piege = creerZip([{ nom: '../evil.txt', contenu: 'non' }]);
+  const gros = Buffer.alloc(64 * 1024, 'a');
 
   before(async () => {
     vault = await creerDossierTemporaire();
@@ -133,12 +223,27 @@ describe('téléchargement', () => {
           { id: 'Z1', nom: '[Listings] 01 - 09', type: 'default', nomFichier: '[Listings] 01 - 09.zip', contenu: zip },
           { id: 'Z2', nom: 'piège', type: 'default', nomFichier: 'piege.zip', contenu: piege },
           { id: 'H1', nom: '[Slides] Intro', type: 'default' },
+          { id: 'G1', nom: 'Gros', nomFichier: 'gros.pdf' },
+          { id: 'G2', nom: 'Gros annoncé', nomFichier: 'gros.pdf' },
         ],
       }],
       surTelechargement: (fichier, reponse) => {
-        if (fichier?.id !== 'H1') return true;
-        reponse.writeHead(200, { 'Content-Type': 'text/html' }).end('<html>slides</html>');
-        return false;
+        if (fichier?.id === 'H1') {
+          reponse.writeHead(200, { 'Content-Type': 'text/html' }).end('<html>slides</html>');
+          return false;
+        }
+        if (fichier?.id === 'G1') {
+          reponse.writeHead(200, { 'Content-Disposition': 'attachment; filename="gros.pdf"' });
+          reponse.write(gros);
+          reponse.write(gros);
+          reponse.end(gros);
+          return false;
+        }
+        if (fichier?.id === 'G2') {
+          reponse.writeHead(200, { 'Content-Length': String(gros.length), 'Content-Disposition': 'attachment; filename="gros.pdf"' }).end(gros);
+          return false;
+        }
+        return true;
       },
     });
     session = await connecterSite(IDENTIFIANTS, { adresseSite: faux.adresse });
@@ -151,7 +256,7 @@ describe('téléchargement', () => {
 
   it('liste les supports du faux MyGES', async () => {
     const supports = await listerSupports(session, { adresseSite: faux.adresse });
-    assert.deepEqual(supports.map((s) => s.id), ['P1', 'Z1', 'Z2', 'H1']);
+    assert.deepEqual(supports.map((s) => s.id), ['P1', 'Z1', 'Z2', 'H1', 'G1', 'G2']);
   });
 
   it('range un fichier sous le nom donné par MyGES', async () => {
@@ -181,6 +286,16 @@ describe('téléchargement', () => {
     await assert.rejects(telecharger(session, { id: 'Z2', nom: 'piège', adresse: `${faux.adresse}/dl/private/Z2` }, dossier), { code: 'archive_refusee' });
     await assert.rejects(fs.access(path.join(vault, 'Piege', 'evil.txt')));
     assert.deepEqual(await fs.readdir(dossier).catch(() => []), []);
+  });
+
+  it('arrête un téléchargement trop gros sans rien laisser', async () => {
+    const dossier = path.join(vault, 'Gros', 'Sources');
+    const support = (id) => ({ id, nom: 'Gros', adresse: `${faux.adresse}/dl/private/${id}` });
+    await assert.rejects(telecharger(session, support('G1'), dossier, { tailleMax: 100 * 1024 }), { code: 'fichier_trop_gros' });
+    await assert.rejects(telecharger(session, support('G2'), dossier, { tailleMax: 1024 }), { code: 'fichier_trop_gros' });
+    assert.deepEqual(await fs.readdir(dossier), []);
+    assert.equal(await telecharger(session, support('G1'), dossier), 'gros.pdf');
+    assert.equal((await fs.stat(path.join(dossier, 'gros.pdf'))).size, gros.length * 3);
   });
 
   it('rejette un fichier absent sans rien laisser', async () => {

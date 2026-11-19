@@ -1,17 +1,23 @@
 import assert from 'node:assert/strict';
-import { describe, it } from 'node:test';
+import { describe, it, mock } from 'node:test';
 
-const memoire = new Map([['esgi-entrainement', JSON.stringify({ codes: { 'rust/01-a/x': 'fn main() {}' } })]]);
-Object.defineProperty(globalThis, 'localStorage', {
-  configurable: true,
-  value: {
-    getItem: (cle) => memoire.get(cle) ?? null,
-    setItem: (cle, valeur) => memoire.set(cle, valeur),
-  },
-});
+function fausseMemoire(depart = {}) {
+  const valeurs = new Map(Object.entries(depart));
+  return {
+    valeurs,
+    getItem: (cle) => valeurs.get(cle) ?? null,
+    setItem: (cle, valeur) => valeurs.set(cle, valeur),
+  };
+}
 
-const { stockage } = await import('../js/stockage.js');
-const enregistre = () => JSON.parse(memoire.get('esgi-entrainement'));
+const memoire = fausseMemoire({ 'esgi-entrainement': JSON.stringify({ codes: { 'rust/01-a/x': 'fn main() {}' } }) });
+Object.defineProperty(globalThis, 'localStorage', { configurable: true, value: memoire });
+
+const { creerStockage, stockage } = await import('../js/stockage.js');
+const enregistre = () => {
+  stockage.ecrireMaintenant();
+  return JSON.parse(memoire.getItem('esgi-entrainement'));
+};
 
 describe('stockage', () => {
   it('relit une ancienne progression et complète ce qui manque', () => {
@@ -91,5 +97,92 @@ describe('stockage', () => {
     assert.equal(stockage.theme(), 'sombre');
     assert.equal(stockage.menuRange(), false);
     assert.equal(stockage.matiere(), null);
+  });
+});
+
+describe('écritures regroupées', () => {
+  it('attend 300 ms avant d’écrire le code, mais écrit tout de suite une réussite', (t) => {
+    t.mock.timers.enable({ apis: ['setTimeout'] });
+    const partagee = fausseMemoire();
+    const onglet = creerStockage({ memoire: partagee });
+    onglet.enregistrerCode('rust/01/a', 'un');
+    onglet.enregistrerCode('rust/01/a', 'deux');
+    assert.equal(partagee.getItem('esgi-entrainement'), null);
+    t.mock.timers.tick(300);
+    assert.equal(JSON.parse(partagee.getItem('esgi-entrainement')).codes['rust/01/a'], 'deux');
+
+    onglet.enregistrerEssai('rust/01/a', true);
+    assert.equal(JSON.parse(partagee.getItem('esgi-entrainement')).exercices['rust/01/a'].reussi, true);
+  });
+
+  it('écrit le score d’un quiz tout de suite', () => {
+    const partagee = fausseMemoire();
+    creerStockage({ memoire: partagee }).enregistrerQuiz('rust/01', 3, 4);
+    assert.deepEqual(JSON.parse(partagee.getItem('esgi-entrainement')).quiz['rust/01'], { score: 3, total: 4 });
+  });
+});
+
+describe('plusieurs onglets', () => {
+  it('ne s’écrasent plus : chaque onglet ne change que sa propre clé', () => {
+    const partagee = fausseMemoire();
+    const premier = creerStockage({ memoire: partagee });
+    const second = creerStockage({ memoire: partagee });
+    premier.enregistrerCode('rust/01/a', 'code A');
+    premier.ecrireMaintenant();
+    second.enregistrerCode('python/01/b', 'code B');
+    second.ecrireMaintenant();
+    const final = JSON.parse(partagee.getItem('esgi-entrainement'));
+    assert.equal(final.codes['rust/01/a'], 'code A');
+    assert.equal(final.codes['python/01/b'], 'code B');
+  });
+
+  it('rechargent l’état écrit par un autre onglet sans perdre ce qui attend d’être écrit', () => {
+    const partagee = fausseMemoire();
+    const premier = creerStockage({ memoire: partagee });
+    const second = creerStockage({ memoire: partagee });
+    const avertir = mock.fn();
+    second.surChangementExterne(avertir);
+    second.enregistrerSaisies('maths/01/a', { 0: '12' });
+    premier.enregistrerEssai('rust/01/a', true);
+    second.recharger();
+    assert.equal(second.progression().exercices['rust/01/a'].reussi, true);
+    assert.deepEqual(second.saisies('maths/01/a'), { 0: '12' });
+    assert.equal(avertir.mock.callCount(), 1);
+  });
+
+  it('additionne les essais des deux onglets', () => {
+    const partagee = fausseMemoire();
+    const premier = creerStockage({ memoire: partagee });
+    const second = creerStockage({ memoire: partagee });
+    premier.enregistrerEssai('c/01/a', false);
+    second.enregistrerEssai('c/01/a', false);
+    assert.equal(JSON.parse(partagee.getItem('esgi-entrainement')).exercices['c/01/a'].essais, 2);
+  });
+});
+
+describe('stockage plein', () => {
+  it('prévient une seule fois tant que l’écriture échoue', () => {
+    const pleine = { getItem: () => null, setItem: () => { throw new Error('QuotaExceededError'); } };
+    const onglet = creerStockage({ memoire: pleine });
+    const avertir = mock.fn();
+    onglet.surErreurEcriture(avertir);
+    onglet.enregistrerEssai('rust/01/a', true);
+    onglet.enregistrerEssai('rust/01/b', true);
+    assert.equal(avertir.mock.callCount(), 1);
+    assert.equal(onglet.progression().exercices['rust/01/b'].reussi, true);
+  });
+});
+
+describe('anciens résultats de compilation', () => {
+  it('efface seulement les résultats et garde le reste de l’affichage', () => {
+    const partagee = fausseMemoire();
+    const onglet = creerStockage({ memoire: partagee });
+    onglet.enregistrerAffichage('rust/01/a', { resultat: { statut: 'echec', sortie: 'x'.repeat(5000) }, indices: 2, entree: 'Ada' });
+    onglet.enregistrerCode('rust/01/a', 'fn main() {}');
+    const avant = onglet.tailleUtilisee();
+    onglet.effacerResultats();
+    assert.deepEqual(onglet.affichage('rust/01/a'), { indices: 2, entree: 'Ada' });
+    assert.equal(onglet.code('rust/01/a'), 'fn main() {}');
+    assert.ok(onglet.tailleUtilisee() < avant);
   });
 });

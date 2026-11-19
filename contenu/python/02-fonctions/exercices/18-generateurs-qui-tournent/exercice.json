@@ -1,0 +1,11 @@
+{
+  "titre": "Des générateurs qui tournent en rond",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lance `list(tourner([]))` dans ta tête : `while True` tourne sans fin, et la boucle `for` sur une liste vide ne fait jamais de `yield`. Le programme reste bloqué.",
+    "Dans `tourner`, après `elements = list(iterable)`, ajoute `if not elements: return` : un `return` dans un générateur le termine.",
+    "`list(iterable)` est indispensable : un générateur reçu en paramètre ne se parcourt qu'une fois.",
+    "Pour `alterner`, transforme chaque itérable en itérateur avec `iter(...)`, puis fais des tours : `next(it)` dans un `try` / `except StopIteration`, et ne garde pour le tour suivant que les itérateurs qui ont encore donné une valeur."
+  ]
+}

@@ -95,5 +95,41 @@
     ],
     "reponse": 1,
     "explication": "Si `Chien` redéfinit `parler`, `animal.parler()` appelle la version de `Chien` quand l'objet est un `Chien`, même dans du code qui ne connaît que `Animal`. C'est le polymorphisme."
+  },
+  {
+    "question": "Comment définit-on une classe `Chat` en Python ?",
+    "choix": ["`Chat = class:`", "`def class Chat:`", "`class Chat:`", "`new class Chat {}`"],
+    "reponse": 2,
+    "explication": "Le mot-clé `class`, le nom (en CamelCase par convention), `:`, puis le corps indenté. Pas d'accolades en Python."
+  },
+  {
+    "question": "Comment accède-t-on à l'attribut `nom` d'un objet `c` ?",
+    "choix": ["`c->nom`", "`c.nom`", "`c[\"nom\"]`", "`c::nom`"],
+    "reponse": 1,
+    "explication": "On utilise le point : `c.nom`, en lecture comme en écriture (`c.nom = \"Félix\"`). Les crochets servent aux dictionnaires et aux listes."
+  },
+  {
+    "question": "Comment indique-t-on que la classe `Chat` hérite de la classe `Animal` ?",
+    "choix": ["`class Chat extends Animal:`", "`class Chat(Animal):`", "`class Chat : Animal`", "`class Chat inherits Animal:`"],
+    "reponse": 1,
+    "explication": "Les classes parentes se mettent entre parenthèses après le nom : `class Chat(Animal):`, ou `class Chat(A, B):` pour un héritage multiple."
+  },
+  {
+    "question": "Dans le `__init__` d'une classe enfant, comment appelle-t-on le constructeur du parent ?",
+    "choix": ["`super.__init__(nom)`", "`super().__init__(nom)`", "`parent(nom)`", "`this.super(nom)`"],
+    "reponse": 1,
+    "explication": "`super()` est un **appel de fonction** qui donne accès aux méthodes du parent. Sans les parenthèses, `super.__init__` désigne le constructeur de la classe `super` elle-même : l'appel lève `TypeError`."
+  },
+  {
+    "question": "Comment écrit-on une méthode `parler` dans une classe ?",
+    "choix": ["`def parler():`", "`def parler(self):`", "`function parler(this):`", "`self.def parler():`"],
+    "reponse": 1,
+    "explication": "Une méthode reçoit toujours l'objet en premier paramètre, nommé `self` par convention. Sans lui, `c.parler()` lève `TypeError` : Python passe l'objet mais la méthode n'attend aucun argument."
+  },
+  {
+    "question": "Comment teste-t-on si `c` est un objet de la classe `Animal` **ou d'une de ses sous-classes** ?",
+    "choix": ["`c instanceof Animal`", "`isinstance(c, Animal)`", "`type(c) is Animal`", "`c.is(Animal)`"],
+    "reponse": 1,
+    "explication": "`isinstance` tient compte de l'héritage : un `Chat` est aussi un `Animal`. `type(c) is Animal` est vrai seulement si `c` a été créé directement avec `Animal(...)`."
   }
 ]

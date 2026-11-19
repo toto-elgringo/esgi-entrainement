@@ -1,0 +1,10 @@
+{
+  "titre": "Le tri rapide en C",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`trierRapidePartie` est récursive : si la portion a 1 case ou moins (`fin - debut <= 1`), il n'y a rien à faire.",
+    "Sinon : `int milieu = debut + (fin - debut) / 2;`, puis `int p = partition(t, debut, fin, milieu);`. Le pivot est maintenant à sa place définitive.",
+    "Trie `[debut, p)` puis `[p + 1, fin)` (sans la case `p`). `triRapide(t, n)` appelle simplement `trierRapidePartie(t, 0, n)`."
+  ]
+}

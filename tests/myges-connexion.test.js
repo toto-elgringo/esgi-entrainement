@@ -3,8 +3,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { after, before, describe, it } from 'node:test';
 import { connecterSite, lireFormulaireConnexion } from '../serveur/myges/connexion.js';
-import { identifiantsMyges, lireEnv } from '../serveur/myges/env.js';
-import { creerSession } from '../serveur/myges/session.js';
+import { identifiantsMyges, lireEnv } from '../serveur/commun/env.js';
+import { creerSession } from '../serveur/commun/session.js';
 import { creerDossierTemporaire, supprimerDossier } from './aide.js';
 import { demarrerFauxMyges, demarrerFauxSiteMyges, IDENTIFIANTS } from './aide-myges.js';
 
@@ -62,6 +62,27 @@ describe('session web', () => {
 
   it('signale un MyGES injoignable', async () => {
     await assert.rejects(creerSession().obtenir('http://127.0.0.1:1/'), { code: 'injoignable' });
+  });
+
+  it('abandonne une requête trop longue avec le nom du site', async () => {
+    const faux = await demarrerFauxMyges(() => {});
+    try {
+      await assert.rejects(creerSession({ delai: 100 }).obtenir(`${faux.adresse}/lent`), { name: 'ErreurSynchro', code: 'delai_depasse', message: 'MyGES ne répond pas (délai dépassé).' });
+      await assert.rejects(creerSession({ nomSite: 'Schooding', delai: 100 }).obtenir(`${faux.adresse}/lent`), { message: 'Schooding ne répond pas (délai dépassé).' });
+    } finally {
+      await faux.fermer();
+    }
+  });
+
+  it('laisse passer un arrêt demandé sans le changer en délai dépassé', async () => {
+    const faux = await demarrerFauxMyges(() => {});
+    try {
+      const controleur = new AbortController();
+      setTimeout(() => controleur.abort(), 50);
+      await assert.rejects(creerSession({ delai: 5000 }).obtenir(`${faux.adresse}/lent`, { signal: controleur.signal }), { name: 'AbortError' });
+    } finally {
+      await faux.fermer();
+    }
   });
 });
 

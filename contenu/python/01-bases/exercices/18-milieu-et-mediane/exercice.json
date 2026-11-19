@@ -1,0 +1,11 @@
+{
+  "titre": "Le milieu d'une liste : médiane et extrêmes",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`sorted(l)` renvoie une **nouvelle** liste triée et laisse `l` intacte. `l.sort()` trie `l` elle-même et renvoie `None` : ici, la liste reçue ne doit pas changer.",
+    "Le milieu d'une liste de `n` éléments est à l'indice `n // 2`. N'utilise pas `round(n / 2)` : `round(1.5)` vaut `2` et `round(2.5)` vaut aussi `2` (Python arrondit au nombre pair le plus proche), ce qui tombe à côté.",
+    "Pour un nombre pair d'éléments, les deux valeurs du milieu sont aux indices `n // 2 - 1` et `n // 2`.",
+    "`min`, `max` et `sum` marchent sur n'importe quel itérable. Pour la moyenne sans extrêmes : `(sum(l) - min(l) - max(l)) / (len(l) - 2)`."
+  ]
+}

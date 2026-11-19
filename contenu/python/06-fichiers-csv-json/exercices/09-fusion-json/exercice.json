@@ -1,0 +1,11 @@
+{
+  "titre": "Fusionner des relevés de prix en JSON",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Commence par `date_en_tuple` : `jour, mois, annee = texte.split(\"-\")`, puis renvoie `(int(annee), int(mois), int(jour))`. Les tuples se comparent élément par élément : l'année d'abord.",
+    "Ne compare **jamais** les dates en texte : `\"3-1-2009\" > \"12-1-2010\"` vaut `True`, car `\"3\"` vient après `\"1\"`.",
+    "Garde un dictionnaire `retenus` nom → article. Pour chaque article de chaque fichier (dans l'ordre), remplace celui qui est retenu si `date_en_tuple(article[\"date\"]) >= date_en_tuple(retenus[nom][\"date\"])` : avec `>=`, à date égale, le fichier le plus tardif gagne.",
+    "Pour finir : `{\"articles\": sorted(retenus.values(), key=lambda a: a[\"nom\"])}`, écrit avec `json.dump(..., indent=2, ensure_ascii=False)`, et `return len(retenus)`."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "La boîte à outils itertools",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`from itertools import islice, combinations, product, accumulate, groupby` : chaque fonction de cet exercice tient en une ou deux lignes.",
+    "`islice(iterable, n)` prend les `n` premiers éléments (même d'un itérable infini). `combinations(elements, 2)` donne les paires sans répétition, `product(symboles, repeat=longueur)` toutes les suites.",
+    "`product` donne des tuples de caractères : relie-les avec `\"\".join(t)`. `accumulate(nombres)` donne les sommes cumulées.",
+    "`groupby` ne regroupe que les éléments **qui se suivent** : trie d'abord avec `sorted(mots, key=cle)`, puis `groupby(..., key=cle)` avec `cle = lambda mot: mot[0]`."
+  ]
+}

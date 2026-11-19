@@ -1,0 +1,10 @@
+{
+  "titre": "Construire un tas en partant du bas",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Les feuilles (les cases à partir de `n / 2`) sont déjà de petits tas : il ne faut faire descendre que les cases qui ont au moins un enfant.",
+    "La dernière case qui a un enfant est `n / 2 - 1`. Il faut aller **de cette case jusqu'à la racine**, à rebours : quand on fait descendre une case, ses deux sous-arbres doivent déjà être des tas.",
+    "`for (int i = n / 2 - 1; i >= 0; i--) { descendre(t, n, i); }` (le `>= 0` compte : la racine aussi doit descendre)."
+  ]
+}

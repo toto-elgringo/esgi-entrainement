@@ -1,0 +1,10 @@
+{
+  "titre": "La partition en trois zones",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Trois indices : `petits = debut` (fin de la zone des plus petites), `i = debut` (la case regardée) et `grands = fin` (début de la zone des plus grandes). On boucle tant que `i < grands`.",
+    "Plus petite : échange `t[i]` et `t[petits]`, puis avance les deux. Égale : avance seulement `i`. Plus grande : recule `grands`, échange `t[i]` et `t[grands]`, et **n'avance pas** `i` (la valeur qui arrive n'a pas encore été regardée).",
+    "À la fin : `*finPetits = petits;` et `*debutGrands = grands;`. Les cases `[petits, grands)` valent toutes `pivot`."
+  ]
+}

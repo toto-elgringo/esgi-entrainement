@@ -1,0 +1,12 @@
+{
+  "titre": "Avis de recherche : options par mot-clé",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence la signature par un `*` seul : `def avis(*, sexe=None, taille=None, ...)`. Tous les paramètres sont alors optionnels **et** nommés obligatoires, et un mot-clé inconnu lève `TypeError` tout seul.",
+    "Une option absente vaut `None` : teste-la avec `is not None`. Construis une liste de lignes, puis renvoie `\"\n\".join(lignes)`.",
+    "`\"(\" + taille + \" cm)\"` plante si `taille` est un entier : un `str` ne s'additionne qu'avec un `str`. Une f-string convertit toute seule : `f\" ({taille} cm)\"`.",
+    "Pour la ligne des cheveux, mets dans une liste les morceaux présents (`couleur`, puis `coiffure`), et écris la ligne seulement si la liste n'est pas vide : `\"- cheveux \" + \" \".join(morceaux)`.",
+    "Un dictionnaire traduit le sexe : `{None: \"personne\", \"h\": \"homme\", \"f\": \"femme\"}`. Si la valeur n'est pas une clé, lève `ValueError`."
+  ]
+}

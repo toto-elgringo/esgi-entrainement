@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer : le tri à peigne qui s'arrête trop tôt",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Commence par ce que dit le compilateur : la fonction est déclarée `void`, elle ne peut rien renvoyer. Le tableau est modifié sur place, il n'y a rien à renvoyer : supprime la ligne.",
+    "Ensuite : la boucle s'arrête dès que l'écart vaut 1, donc après **un seul** passage de tri à bulles. Un passage ne suffit pas toujours : il faut recommencer tant que le passage à l'écart 1 trouve des voisins dans le désordre.",
+    "Ajoute un indicateur `int echange = 1;`, écris `while (ecart > 1 || echange)`, remets `echange = 0;` au début de chaque passage, mets-le à 1 quand tu échanges, et garde l'écart à au moins 1 (`if (ecart < 1) ecart = 1;`)."
+  ]
+}

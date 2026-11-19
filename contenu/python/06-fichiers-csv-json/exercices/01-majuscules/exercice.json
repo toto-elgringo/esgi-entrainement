@@ -1,0 +1,10 @@
+{
+  "titre": "Recopier un fichier en majuscules",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Deux étapes : lire tout le fichier source avec `f.read()`, puis écrire le résultat dans le fichier cible.",
+    "Ouvre la source en lecture (`open(source, encoding=\"utf-8\")`) et la cible en écriture (`open(cible, \"w\", encoding=\"utf-8\")`), chacune dans un `with`.",
+    "`texte.upper()` met en majuscules, accents compris. `f.write(...)` renvoie justement le nombre de caractères écrits : `return f.write(contenu.upper())`."
+  ]
+}

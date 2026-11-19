@@ -1,0 +1,8 @@
+{
+  "titre": "Piles",
+  "description": "Structure abstraite LIFO : pile dans un tableau (vide, pleine, empiler, dépiler, sommet, affichage), pile en liste chaînée, calculette en notation polonaise inverse, parenthèses équilibrées.",
+  "source": "cours",
+  "supports": [
+    {"titre": "Vidéo : la pile", "url": "https://www.youtube.com/watch?v=nFgLXQ-v14M"}
+  ]
+}

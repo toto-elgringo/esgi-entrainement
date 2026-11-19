@@ -1,0 +1,11 @@
+{
+  "titre": "Paramètres nommés obligatoires",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Tout paramètre placé **après** `*args` (ou après un `*` seul) ne peut être donné que par mot-clé.",
+    "`def compter(texte, motif, *, ignorer_casse=False):` : le `*` seul ne récupère rien, il sert juste de séparation.",
+    "Vérifie l'orthographe des noms de paramètres : `caractere`, `visibles`, `decimales`. Une faute de frappe casse tous les appels par mot-clé.",
+    "Pour `masquer`, si `visibles` vaut 0 tout est masqué. Sinon : `caractere * (len(texte) - visibles) + texte[-visibles:]` quand le texte est assez long."
+  ]
+}

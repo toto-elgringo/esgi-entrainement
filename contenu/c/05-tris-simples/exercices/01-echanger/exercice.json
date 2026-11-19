@@ -1,0 +1,10 @@
+{
+  "titre": "Échanger deux cases",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "`a` et `b` sont des adresses : `*a` est la variable pointée par `a`. C'est elle qu'il faut modifier.",
+    "Écrire `*a = *b;` puis `*b = *a;` ne marche pas : après la première ligne, l'ancienne valeur de `*a` est perdue. Mets-la d'abord de côté.",
+    "`int temp = *a; *a = *b; *b = temp;`"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "Empiler des décorateurs",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Plusieurs décorateurs s'appliquent **de bas en haut** : le plus proche du `def` est appliqué en premier.",
+    "`encadrer(gauche, droite)` a un paramètre : 3 niveaux (`encadrer` → `decor(func)` → `wrapper(*args, **kwargs)`), et le wrapper renvoie `gauche + func(*args, **kwargs) + droite`.",
+    "Pour `titre`, on veut d'abord les majuscules, puis l'inversion, puis les crochets : écris de haut en bas `@encadrer(\"[\", \"]\")`, `@inverser`, `@majuscules`.",
+    "Pour `etiquette`, la chaîne est inversée en premier, puis entourée de `[` `]`, puis de `<` `>`."
+  ]
+}

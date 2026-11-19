@@ -1,0 +1,11 @@
+{
+  "titre": "any et all : attention aux limites",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "« Au plus 6 » veut dire « 6 ou moins » : `<= 6`. « Moins de 6 » veut dire `< 6`. Teste toujours la valeur exacte de la limite.",
+    "`all(...)` répond « tous ? », `any(...)` répond « au moins un ? ». « Aucun » s'écrit `not any(...)`.",
+    "Un mot fait uniquement de chiffres : `mot.isdigit()`. Pour des valeurs toutes différentes, compare `len(set(valeurs))` et `len(valeurs)`.",
+    "Pour une matrice rectangulaire, toutes les lignes ont la longueur de la **première** : `all(len(ligne) == len(m[0]) for ligne in m)`. Pour la matrice vide, pas de souci : le générateur n'a aucune ligne à parcourir, il ne calcule donc jamais `m[0]`, et `all` d'un itérable vide vaut `True`."
+  ]
+}

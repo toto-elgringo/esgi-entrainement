@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer une pile sans garde-fou",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Les deux fonctions marchent quand on les appelle au bon moment. Que se passe-t-il si la pile est pleine pour `empiler`, vide pour `depiler` ?",
+    "Ajoute un test au tout début de chaque fonction : si l'opération est impossible, renvoie 0 **sans rien modifier** (ni `size`, ni le tableau, ni `*valeur`).",
+    "`if (s->size >= s->capacity) return 0;` au début d'`empiler`, `if (s->size == 0) return 0;` au début de `depiler`."
+  ]
+}

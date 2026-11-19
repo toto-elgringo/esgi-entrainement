@@ -14,6 +14,11 @@ const STATUTS = {
   execute: { classe: 'info', titre: 'Programme exécuté' },
   erreur_execution: { classe: 'erreur', titre: 'Le programme a planté' },
   outil_introuvable: { classe: 'erreur', titre: 'Outil introuvable sur ton ordinateur' },
+  lancement_bloque: {
+    classe: 'attention',
+    titre: 'Windows a bloqué le lancement du programme',
+    conseil: 'Ce n’est pas ton code : Windows (Smart App Control) a empêché le programme de démarrer. Réessaie dans quelques secondes.',
+  },
   erreur_plateforme: { classe: 'erreur', titre: 'Erreur de la plateforme' },
 };
 
@@ -47,6 +52,14 @@ const PAR_LANGAGE = {
 function statutPour(resultat, langage) {
   const commun = STATUTS[resultat.statut] ?? STATUTS.erreur_plateforme;
   return { ...commun, ...(PAR_LANGAGE[langage]?.[resultat.statut] ?? {}) };
+}
+
+export const TAILLE_MAX_AFFICHEE = 20000;
+
+export function couperSortie(texte) {
+  return typeof texte === 'string' && texte.length > TAILLE_MAX_AFFICHEE
+    ? `${texte.slice(0, TAILLE_MAX_AFFICHEE)}\n… (sortie coupée)`
+    : texte;
 }
 
 function rendreLigne(libelle, valeur, classe = '') {
@@ -83,7 +96,8 @@ function rendreTests(tests, resultat) {
     <details class="sortie-complete"${ouvert}><summary>Sortie complète</summary><pre>${terminalVersHtml(sortie?.trim() || '(aucune sortie)')}</pre></details>`;
 }
 
-export function rendreResultat(resultat, { langage, suivant }) {
+export function rendreResultat(brut, { langage, suivant }) {
+  const resultat = { ...brut, sortie: couperSortie(brut.sortie), attendu: couperSortie(brut.attendu), avertissements: couperSortie(brut.avertissements) };
   const statut = statutPour(resultat, langage);
   const resume = resultat.resume;
   const detail = resume ? `${resume.reussis} / ${resume.reussis + resume.echoues} vérifications réussies` : '';
@@ -119,8 +133,9 @@ export function rendreResultat(resultat, { langage, suivant }) {
   };
 }
 
-const TAILLE_MAX_ENREGISTREE = 20000;
-const STATUTS_PASSAGERS = new Set(['outil_introuvable', 'erreur_plateforme']);
+const TAILLE_MAX_ENREGISTREE = 4000;
+const TESTS_MAX_ENREGISTRES = 20;
+export const STATUTS_PASSAGERS = new Set(['outil_introuvable', 'erreur_plateforme', 'lancement_bloque']);
 
 function couper(texte) {
   return typeof texte === 'string' && texte.length > TAILLE_MAX_ENREGISTREE
@@ -128,13 +143,24 @@ function couper(texte) {
     : texte;
 }
 
+const couperChamps = (objet) => Object.fromEntries(Object.entries(objet).map(([champ, valeur]) => [champ, couper(valeur)]));
+
+function testsAEnregistrer(tests) {
+  const prioritaires = [...new Set([...tests.filter((test) => !test.reussi), ...tests])];
+  const gardes = new Set(prioritaires.slice(0, TESTS_MAX_ENREGISTRES));
+  return tests.filter((test) => gardes.has(test)).map(couperChamps);
+}
+
 export function resultatAEnregistrer(resultat) {
   if (STATUTS_PASSAGERS.has(resultat.statut)) return null;
-  return Object.fromEntries(Object.entries(resultat).map(([champ, valeur]) => [champ, couper(valeur)]));
+  const enregistre = couperChamps(resultat);
+  if (Array.isArray(resultat.tests)) enregistre.tests = testsAEnregistrer(resultat.tests);
+  return enregistre;
 }
 
 function remplir(zone, classe, html) {
   zone.className = `resultat ${classe}`;
+  zone.setAttribute('role', 'status');
   zone.innerHTML = html;
   zone.hidden = false;
 }

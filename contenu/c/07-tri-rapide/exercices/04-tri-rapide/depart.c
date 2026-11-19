@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+void echanger(int *t, int i, int j) {
+    int temporaire = t[i];
+    t[i] = t[j];
+    t[j] = temporaire;
+}
+
+int partition(int *t, int debut, int fin, int indicePivot) {
+    int dernier = fin - 1;
+    echanger(t, indicePivot, dernier);
+    int position = debut;
+    for (int i = debut; i < dernier; i++) {
+        if (t[i] < t[dernier]) {
+            echanger(t, i, position);
+            position++;
+        }
+    }
+    echanger(t, position, dernier);
+    return position;
+}
+
+void trierRapidePartie(int *t, int debut, int fin) {
+}
+
+void triRapide(int *t, int n) {
+}
+
+int main(void) {
+    int t[] = {4, 9, 1, 6, 8, 2, 7};
+    int n = 7;
+    triRapide(t, n);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", t[i]);
+    }
+    printf("\n");
+    return 0;
+}

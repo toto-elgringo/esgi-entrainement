@@ -1,0 +1,11 @@
+{
+  "titre": "sum, enumerate et codes de caractères",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "`sum` accepte directement une expression génératrice : `sum(x * x for x in l)`. Pas besoin de crochets, donc pas de liste intermédiaire.",
+    "`enumerate(l, start=1)` numérote à partir de 1 : plus besoin d'écrire `i + 1`.",
+    "`ord(c) - ord(\"a\") + 1` donne le rang d'une lettre minuscule dans l'alphabet (`a` → 1, `z` → 26). Filtre les lettres avec `if \"a\" <= c <= \"z\"`.",
+    "Pour la clé ISBN, calcule `sum(i * int(c) for i, c in enumerate(code, start=1)) % 11`. Si le reste vaut 10, la clé est `\"X\"`, sinon c'est le chiffre en texte : `str(reste)`."
+  ]
+}

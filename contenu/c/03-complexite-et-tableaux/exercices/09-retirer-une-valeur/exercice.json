@@ -1,0 +1,10 @@
+{
+  "titre": "Retirer une valeur partout, en une passe",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "Appeler une suppression à chaque valeur trouvée décale tout le reste à chaque fois : O(n²), beaucoup trop lent sur 400 000 cases.",
+    "Utilise deux indices : `lecture` parcourt toutes les cases, `ecriture` indique où ranger la prochaine valeur gardée. Chaque valeur différente de `valeur` est recopiée en `tab[ecriture]`, puis `ecriture` avance.",
+    "`size_t ecriture = 0; for (size_t lecture = 0; lecture < n; lecture++) if (tab[lecture] != valeur) tab[ecriture++] = tab[lecture]; return ecriture;`"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "titre": "Générateurs avec mémoire",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Un générateur garde ses variables locales entre deux `yield` : un ensemble `vus = set()` ou un dictionnaire de compteurs créé au début reste disponible pendant tout le parcours.",
+    "`nouveautes` : si l'élément n'est pas dans `vus`, ajoute-le et fais `yield`. `doublons` : compte avec un dictionnaire, et `yield` quand le compteur passe **exactement** à 2.",
+    "`cumuls` : garde un `total`, ajoute chaque nombre puis `yield total`.",
+    "`series` : retiens l'élément courant et sa longueur. Quand l'élément change, fournis le couple de la série terminée. N'oublie pas la **dernière** série, après la boucle (et rien du tout si l'itérable est vide)."
+  ]
+}

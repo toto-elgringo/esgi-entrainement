@@ -1,0 +1,10 @@
+{
+  "titre": "Combien de découpages ?",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Cas de base : un morceau de 0 ou 1 case ne se coupe plus, il a 0 niveau.",
+    "Sinon, il y a un découpage, plus les niveaux de la **plus grande** des deux moitiés.",
+    "La plus grande moitié a `n - n / 2` cases (pour 5 : 5 - 2 = 3). D'où `return 1 + nombreNiveaux(n - n / 2);`"
+  ]
+}

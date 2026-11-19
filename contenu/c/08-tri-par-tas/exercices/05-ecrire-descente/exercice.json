@@ -1,0 +1,10 @@
+{
+  "titre": "Écrire la descente",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Tant que la case `i` a au moins un enfant **dans le tas** (`2 * i + 1 < taille`), regarde ses enfants.",
+    "Choisis le plus grand des deux enfants : l'enfant gauche, ou le droit s'il existe (`enfant + 1 < taille`) et qu'il est plus grand. S'il n'est pas plus grand que `t[i]`, la descente est finie.",
+    "`int enfant = 2 * i + 1; if (enfant + 1 < taille && t[enfant + 1] > t[enfant]) enfant++; if (t[enfant] <= t[i]) return; echanger(t, i, enfant); i = enfant;` dans une boucle `while (2 * i + 1 < taille)`."
+  ]
+}

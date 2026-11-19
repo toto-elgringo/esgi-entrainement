@@ -1,0 +1,11 @@
+{
+  "titre": "Modifier une liste sur place",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Ces fonctions ne fabriquent pas de nouvelle liste : elles appellent des méthodes de `l` (`insert`, `append`, `extend`, `remove`...) et ne renvoient rien. Écrire `l = ...` dans la fonction ne change pas la liste de l'appelant.",
+    "`l.insert(0, x)` ajoute au début, `l.append(x)` à la fin, `l.extend(valeurs)` ajoute chaque élément de `valeurs`.",
+    "`l.remove(x)` n'enlève que la **première** occurrence : répète-le avec `while x in l:`. `l.index(x, debut)` lève une `ValueError` si `x` est absent : intercepte-la avec `try` / `except ValueError`.",
+    "`del l[1::2]` supprime d'un coup tous les éléments d'indice impair, sur place."
+  ]
+}

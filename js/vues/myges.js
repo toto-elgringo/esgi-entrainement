@@ -1,9 +1,9 @@
+import { appelerApi, SERVEUR_ARRETE } from '../api.js';
 import { echapper } from '../outils.js';
+import { AUCUN_NOUVEAU_COURS, ETAPES_ACTIVES } from '../synchro-etats.js';
 
-const ETAPES_ACTIVES = ['connexion', 'liste', 'telechargement', 'claude'];
-const AUCUN_NOUVEAU_COURS = 'Aucun nouveau cours';
 const INTERVALLE = 2000;
-const SERVEUR_ARRETE = 'Le serveur local ne répond pas : relance « npm start » dans le dossier du projet. Si Claude n’avait pas fini d’intégrer les cours, il reprendra tout seul.';
+const REPRISE_CLAUDE = 'Si Claude n’avait pas fini d’intégrer les cours, il reprendra tout seul.';
 const MESSAGES_COMMUNS = {
   claude_introuvable: 'Claude Code est introuvable : la commande « claude » doit être installée sur cet ordinateur.',
   claude_echec: 'Les cours sont téléchargés, mais Claude n’a pas fini de créer les notes et les exercices.',
@@ -128,56 +128,95 @@ export function rendreEtatSynchro(etat, source) {
 export const rendreEtatMyges = (etat) => rendreEtatSynchro(etat, SOURCES.myges);
 export const rendreEtatSchooding = (etat) => rendreEtatSynchro(etat, SOURCES.schooding);
 
-async function appeler(methode, chemin) {
-  let reponse;
-  try {
-    reponse = await fetch(chemin, {
-      method: methode,
-      cache: 'no-store',
-      headers: methode === 'POST' ? { 'Content-Type': 'application/json' } : undefined,
-      body: methode === 'POST' ? '{}' : undefined,
-    });
-  } catch {
-    throw new Error(SERVEUR_ARRETE);
-  }
-  const donnees = await reponse.json().catch(() => ({}));
-  if (!reponse.ok) throw new Error(donnees.erreur ?? `Erreur ${reponse.status}`);
-  return donnees;
-}
+const pageCachee = () => typeof document !== 'undefined' && document.visibilityState === 'hidden';
 
 export function brancherSynchro(zone, source) {
   let minuteur = null;
+  let dernierRendu = null;
+  let dernierEtat = null;
+  let occupe = false;
   const api = `api/${source.cle}`;
   const attribut = `${source.cle}Action`;
 
   const enPlace = () => zone.isConnected;
 
-  function afficher(etat) {
+  function bloquerBoutons(bloques) {
+    zone.querySelectorAll('button').forEach((bouton) => {
+      bouton.disabled = bloques;
+    });
+  }
+
+  function dessiner(html) {
+    if (html === dernierRendu) return;
+    dernierRendu = html;
+    zone.innerHTML = html;
+  }
+
+  function programmer() {
     clearTimeout(minuteur);
-    zone.innerHTML = rendreEtatSynchro(etat, source);
-    if (ETAPES_ACTIVES.includes(etat.etape)) minuteur = setTimeout(rafraichir, INTERVALLE);
+    minuteur = null;
+    if (dernierEtat && ETAPES_ACTIVES.includes(dernierEtat.etape) && !pageCachee()) minuteur = setTimeout(rafraichir, INTERVALLE);
+  }
+
+  function afficher(etat) {
+    dernierEtat = etat;
+    dessiner(rendreEtatSynchro(etat, source));
+    programmer();
   }
 
   function afficherProbleme(message) {
+    dernierEtat = null;
     clearTimeout(minuteur);
-    zone.innerHTML = `
+    dessiner(`
       <div class="myges myges-erreur">
         <div class="myges-texte"><strong>${source.nom}</strong><span>${echapper(message)}</span></div>
         <div class="myges-actions"><button class="bouton" data-${source.cle}-action="rafraichir">Réessayer</button></div>
-      </div>`;
+      </div>`);
   }
 
   async function executer(methode, chemin) {
+    const action = methode === 'POST';
+    if (action && occupe) return;
+    if (action) {
+      occupe = true;
+      bloquerBoutons(true);
+    }
     try {
-      const etat = await appeler(methode, chemin);
+      const etat = await appelerApi(chemin, { methode });
       if (enPlace()) afficher(etat);
     } catch (erreur) {
-      if (enPlace()) afficherProbleme(erreur.message);
+      const message = erreur.message === SERVEUR_ARRETE ? `${SERVEUR_ARRETE} ${REPRISE_CLAUDE}` : erreur.message;
+      if (enPlace()) afficherProbleme(message);
+    } finally {
+      if (action) {
+        occupe = false;
+        bloquerBoutons(false);
+      }
     }
   }
 
   function rafraichir() {
     if (enPlace()) executer('GET', `${api}/etat`);
+    else arreter();
+  }
+
+  function changementVisibilite() {
+    if (!enPlace()) {
+      arreter();
+      return;
+    }
+    if (pageCachee()) {
+      clearTimeout(minuteur);
+      minuteur = null;
+    } else if (dernierEtat && ETAPES_ACTIVES.includes(dernierEtat.etape)) {
+      rafraichir();
+    }
+  }
+
+  function arreter() {
+    clearTimeout(minuteur);
+    minuteur = null;
+    document.removeEventListener('visibilitychange', changementVisibilite);
   }
 
   zone.addEventListener('click', (evenement) => {
@@ -189,7 +228,9 @@ export function brancherSynchro(zone, source) {
     if (action === 'recharger') location.reload();
   });
 
+  document.addEventListener('visibilitychange', changementVisibilite);
   rafraichir();
+  return arreter;
 }
 
 export const brancherMyges = (zone) => brancherSynchro(zone, SOURCES.myges);

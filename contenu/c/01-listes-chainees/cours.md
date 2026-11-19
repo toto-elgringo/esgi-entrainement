@@ -142,6 +142,28 @@ Sur une liste vide, on n'entre jamais dans la boucle : la somme vaut 0. Le même
 
 **Complexité** : chaque maillon est visité une fois, donc **O(N)** pour N maillons.
 
+### Deux conditions de boucle à connaître
+
+| Condition | Où `cur` s'arrête | Sert à |
+|---|---|---|
+| `while (cur != NULL)` | **après** le dernier maillon (`cur` vaut `NULL`) | traiter **tous** les maillons : somme, taille, affichage |
+| `while (cur->next != NULL)` | **sur** le dernier maillon | modifier le dernier : insérer en fin |
+
+La seconde lit `cur->next` dès le premier tour : avant de l'utiliser, il faut vérifier que la liste n'est pas vide (`cur != NULL`).
+
+```c
+Cell *dernier(Cell *start) {
+    if (start == NULL) {
+        return NULL;
+    }
+    Cell *cur = start;
+    while (cur->next != NULL) {
+        cur = cur->next;
+    }
+    return cur;
+}
+```
+
 ### Version récursive
 
 Une liste, c'est **un premier maillon suivi d'une liste plus courte** (le reste). On peut donc traiter le premier maillon, puis laisser la fonction s'appeler elle-même sur le reste.
@@ -267,17 +289,50 @@ operations: parcourir, tete
 
 | Opération | Tableau | Liste chaînée |
 |---|---|---|
+| Créer une structure vide | O(1) (O(N) si on remplit chaque case) | O(1) : `start = NULL` |
+| Accès au premier élément | O(1) | O(1) |
+| Accès au dernier élément | O(1) | O(N) (O(1) avec un pointeur de fin) |
 | Accès à la position i (« accès aléatoire ») | O(1) | O(N) |
 | Insertion en début | O(N) | O(1) |
+| Insertion en fin | O(1) s'il reste de la place, O(N) s'il faut agrandir | O(N) (O(1) avec un pointeur de fin) |
 | Suppression en début | O(N) | O(1) |
+| Suppression en fin | O(1) | O(N) |
+| Parcours | O(N) | O(N) |
 | Recherche d'une valeur | O(log N) si trié, O(N) sinon | O(N) |
 
 - **Accès à la position i** : un tableau calcule directement l'adresse de `t[i]`. Une liste doit suivre i flèches depuis `start`. « Aléatoire » veut dire « n'importe quelle position », pas « au hasard ».
 - **Insertion / suppression en début** : le tableau doit **décaler toutes ses cases** ; la liste change seulement un ou deux pointeurs.
-- **Recherche** : la recherche par dichotomie (couper en deux à chaque étape) a besoin de sauter au milieu d'un coup. C'est impossible sur une liste, même triée : on regarde les maillons un par un.
+- **Recherche** : la recherche par dichotomie (couper en deux à chaque étape) a besoin de sauter au milieu d'un coup. C'est impossible sur une liste, même triée : on regarde les maillons un par un. La forcer serait même pire : chaque saut au milieu coûte déjà O(N) pas, et il en faut log N, soit O(N log N) au lieu de O(N).
+
+- **Insertion en fin d'un tableau** : s'il reste de la place, on écrit dans la case suivante. Sinon, il faut réserver un tableau plus grand ailleurs et tout recopier : O(N). Pour que cela arrive rarement, on prévoit une **capacité** plus grande que la taille utilisée, et on la **double** à chaque agrandissement (8, 16, 32, 64...) : les recopies deviennent de plus en plus espacées.
+- **Suppression en fin d'une liste** : il faut atteindre l'**avant-dernier** maillon pour mettre son `next` à `NULL`, donc tout parcourir (voir le chapitre suivant).
 
 > [!tip] Comment choisir
-> Beaucoup d'accès par position : **tableau**. Beaucoup d'ajouts et de retraits, surtout au début, et une taille qui change tout le temps : **liste chaînée**.
+> Beaucoup d'accès par position ou de recherches : **tableau** (trié si possible). Beaucoup d'ajouts et de retraits aux bouts, et une taille qui change tout le temps : **liste chaînée**.
+
+### Les variantes de liste chaînée
+
+Il n'y a pas une seule façon de faire une liste chaînée. Selon les besoins, on ajoute des informations :
+
+| Variante | Ce qu'on garde en plus | Ce qu'on y gagne |
+|---|---|---|
+| Avec pointeur de fin | l'adresse du **dernier** maillon | accès et insertion en fin en O(1) |
+| Avec taille | un compteur mis à jour à chaque ajout ou retrait | la taille en O(1) au lieu de O(N) |
+| Doublement chaînée | dans chaque maillon, un pointeur vers le **précédent** | on peut reculer : suppression en fin en O(1) |
+| Circulaire | le dernier maillon pointe sur le premier au lieu de `NULL` | on peut tourner en boucle sans revenir au début |
+
+On regroupe souvent ces informations dans une petite structure :
+
+```c
+typedef struct {
+    Cell *premier;
+    Cell *dernier;
+    int taille;
+} Liste;
+```
+
+> [!info] Piles et files
+> Une liste chaînée est idéale pour les deux structures des chapitres suivants. Une **pile** ajoute et retire au **même bout** : insertion et suppression en début, O(1). Une **file** ajoute à un bout et retire à l'autre : insertion en fin (avec un pointeur de fin) et suppression en début, O(1). Et contrairement aux versions dans un tableau, elles n'ont pas de taille maximale.
 
 ## 6. Programme complet
 

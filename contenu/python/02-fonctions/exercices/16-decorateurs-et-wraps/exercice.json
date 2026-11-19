@@ -1,0 +1,11 @@
+{
+  "titre": "Décorateurs génériques et functools.wraps",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le wrapper doit accepter n'importe quels arguments : `def wrapper(*args, **kwargs):` puis `func(*args, **kwargs)`.",
+    "Écris `@functools.wraps(func)` juste au-dessus de `def wrapper` : la fonction décorée garde son `__name__` et sa docstring.",
+    "Pour `memoriser`, crée `cache = {}` dans le décorateur. Dans le wrapper : `if args not in cache: cache[args] = func(*args)` puis `return cache[args]`.",
+    "Pour `refuser_negatifs`, regroupe les valeurs : `list(args) + list(kwargs.values())`, et ne compare que celles qui sont des nombres : `isinstance(v, (int, float)) and v < 0`."
+  ]
+}

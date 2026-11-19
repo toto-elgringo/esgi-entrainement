@@ -1,0 +1,11 @@
+{
+  "titre": "Récursivité et cache",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Lance le programme : `fibo(35)` met des secondes. La version récursive recalcule sans cesse les mêmes valeurs (`fibo(33)` est calculé 2 fois, `fibo(32)` 3 fois...).",
+    "Ajoute `from functools import lru_cache` puis `@lru_cache(maxsize=None)` au-dessus de `def fibo(n):` : chaque résultat n'est calculé qu'une fois.",
+    "Pense au cas `n < 0` : `raise ValueError(...)` au début de la fonction.",
+    "`nb_chemins(lignes, colonnes)` : si `lignes == 1` ou `colonnes == 1`, il n'y a qu'un chemin. Sinon, on arrive par le haut ou par la gauche : `nb_chemins(lignes - 1, colonnes) + nb_chemins(lignes, colonnes - 1)`, avec le même cache."
+  ]
+}

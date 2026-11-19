@@ -1,0 +1,10 @@
+{
+  "titre": "Fusionner deux tableaux triés",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Garde un indice par tableau (`i` dans `a`, `j` dans `b`) et un troisième (`k`) pour la prochaine case libre de `resultat`.",
+    "Tant que les deux tableaux ont encore des valeurs, recopie la plus petite des deux valeurs `a[i]` et `b[j]`, puis avance l'indice de celle que tu as prise.",
+    "Quand la boucle s'arrête, un des deux tableaux n'est pas fini : ajoute deux boucles `while (i < na)` et `while (j < nb)` qui recopient la fin."
+  ]
+}

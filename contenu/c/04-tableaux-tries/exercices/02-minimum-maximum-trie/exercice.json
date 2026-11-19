@@ -1,0 +1,10 @@
+{
+  "titre": "Minimum et maximum d'un tableau trié",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Le tableau est trié dans l'ordre croissant : où se trouve forcément la plus petite valeur ? Et la plus grande ?",
+    "Aucune boucle n'est nécessaire : la plus petite valeur est dans la première case, la plus grande dans la dernière.",
+    "`return tab[0];` pour le minimum et `return tab[n - 1];` pour le maximum."
+  ]
+}

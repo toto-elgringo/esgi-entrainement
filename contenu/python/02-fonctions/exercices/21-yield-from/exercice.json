@@ -1,0 +1,11 @@
+{
+  "titre": "Déléguer avec yield from",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`yield from autre` fournit, une par une, toutes les valeurs de `autre` : c'est un raccourci pour `for x in autre: yield x`.",
+    "`aplatir` est récursif : si l'élément est une liste ou un tuple (`isinstance(element, (list, tuple))`), `yield from aplatir(element)`, sinon `yield element`.",
+    "`mots` : si `longueur == 0`, il y a un seul mot, le mot vide `\"\"`. Sinon, pour chaque lettre de l'alphabet, et pour chaque `fin` de `mots(alphabet, longueur - 1)`, fournis `lettre + fin`.",
+    "`chemins` : pour chaque `nom, contenu` de `arbre.items()`, le chemin est `prefixe + nom`. Si `contenu` est un dictionnaire, `yield from chemins(contenu, chemin + \"/\")`, sinon `yield chemin`."
+  ]
+}

@@ -150,6 +150,102 @@
             "Pour `meilleur_eleve`, parcours les noms **triés** (`sorted(carnet)`) et ne remplace le meilleur que si la moyenne est **strictement** plus grande : en cas d'égalité, le premier dans l'ordre alphabétique reste.",
             "Pour `ajouter_note`, vérifie d'abord `0 <= note <= 20`. Si le nom n'existe pas, crée sa liste : `carnet[nom] = []`."
           ]
+        },
+        {
+          "id": "13-methodes-listes",
+          "titre": "Modifier une liste sur place",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Ces fonctions ne fabriquent pas de nouvelle liste : elles appellent des méthodes de `l` (`insert`, `append`, `extend`, `remove`...) et ne renvoient rien. Écrire `l = ...` dans la fonction ne change pas la liste de l'appelant.",
+            "`l.insert(0, x)` ajoute au début, `l.append(x)` à la fin, `l.extend(valeurs)` ajoute chaque élément de `valeurs`.",
+            "`l.remove(x)` n'enlève que la **première** occurrence : répète-le avec `while x in l:`. `l.index(x, debut)` lève une `ValueError` si `x` est absent : intercepte-la avec `try` / `except ValueError`.",
+            "`del l[1::2]` supprime d'un coup tous les éléments d'indice impair, sur place."
+          ]
+        },
+        {
+          "id": "14-pas-et-repetitions",
+          "titre": "Le pas des tranches, + et *",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Aucune boucle ni `range(len(...))` : une tranche `[début:fin:pas]` choisit déjà les bons indices. `l[::3]` prend les indices 0, 3, 6...",
+            "`+` colle deux listes, `*` répète une liste : `[1, 2] * 3` vaut `[1, 2, 1, 2, 1, 2]`. Des deux côtés de `+`, il faut des listes : `l + [x]`, pas `l + x`.",
+            "Pour `impairs_a_l_envers`, enchaîne deux tranches : `l[1::2]` puis `[::-1]`. Pour `sauf_bouts`, `l[1:-1]` enlève le premier et le dernier élément. Pour `zeros`, pense à `[0] * n`."
+          ]
+        },
+        {
+          "id": "15-modifier-ensembles",
+          "titre": "Créer et modifier des ensembles",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Un ensemble s'écrit avec des accolades `{1, 2}` ou `set(iterable)`. `[0, 2, 4]` est une **liste**, pas un ensemble : `set(range(0, 10, 2))` en est un.",
+            "`s.add(x)` ajoute un élément, `s.update(iterable)` en ajoute plusieurs. `s.remove(x)` lève une `KeyError` si `x` est absent, `s.discard(x)` ne dit rien.",
+            "Pour `inscrire`, teste `nom in inscrits` **avant** d'ajouter. Pour `desinscrire`, `inscrits.difference_update(noms)` retire tout d'un coup, sur place.",
+            "Pour `vider`, fais `while s:` et `s.pop()` à chaque tour (il retire un élément quelconque et le renvoie), puis trie la liste obtenue."
+          ]
+        },
+        {
+          "id": "16-mots-en-commun",
+          "titre": "Mots en commun, sans double boucle",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Pour ne pas tenir compte des majuscules, mets tout en minuscules **avant** de comparer : `texte.lower().split()`.",
+            "Un ensemble enlève les doublons : `len(set(mots))` compte les mots différents, `set(a) & set(b)` donne les mots communs.",
+            "Pour `surligner`, prépare d'abord l'ensemble des mots-clés en minuscules, puis parcours **une seule fois** les mots du texte : `m.upper() if m in cles else m` (une expression conditionnelle).",
+            "Deux boucles imbriquées qui modifient les mots au fur et à mesure se trompent quand un mot apparaît deux fois : une fois mis en majuscules, il n'est plus égal à sa version en minuscules."
+          ]
+        },
+        {
+          "id": "17-dictionnaires-pratiques",
+          "titre": "Dictionnaires : get, items et regroupements",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`d.get(cle, defaut)` renvoie `defaut` si la clé est absente. Avec `lexique.get(m, m)`, un mot inconnu se « traduit » par lui-même.",
+            "Pour parcourir clés **et** valeurs, `for cle, valeur in d.items():` évite d'écrire `d[cle]` à chaque fois.",
+            "Pour regrouper, crée la liste la première fois qu'on rencontre une clé : `if cle not in groupes: groupes[cle] = []`, ou en une fois `groupes.setdefault(cle, []).append(mot)`. Trie chaque liste à la fin.",
+            "Pour `retirer_cles`, `d.pop(cle, None)` ne plante pas si la clé est absente, et `del d[cle]` supprime une clé présente. Compte seulement les clés qui étaient là."
+          ]
+        },
+        {
+          "id": "18-milieu-et-mediane",
+          "titre": "Le milieu d'une liste : médiane et extrêmes",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`sorted(l)` renvoie une **nouvelle** liste triée et laisse `l` intacte. `l.sort()` trie `l` elle-même et renvoie `None` : ici, la liste reçue ne doit pas changer.",
+            "Le milieu d'une liste de `n` éléments est à l'indice `n // 2`. N'utilise pas `round(n / 2)` : `round(1.5)` vaut `2` et `round(2.5)` vaut aussi `2` (Python arrondit au nombre pair le plus proche), ce qui tombe à côté.",
+            "Pour un nombre pair d'éléments, les deux valeurs du milieu sont aux indices `n // 2 - 1` et `n // 2`.",
+            "`min`, `max` et `sum` marchent sur n'importe quel itérable. Pour la moyenne sans extrêmes : `(sum(l) - min(l) - max(l)) / (len(l) - 2)`."
+          ]
+        },
+        {
+          "id": "19-erreurs-des-conteneurs",
+          "titre": "Quand la valeur n'est pas là : ValueError et KeyError",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`l.remove(x)` et `l.index(x)` lèvent une `ValueError` si `x` n'est pas dans la liste. `d[cle]` et `d.pop(cle)` lèvent une `KeyError` si la clé n'existe pas.",
+            "On attrape l'erreur avec `try:` puis `except ValueError:` (ou `except KeyError:`) : le code du `except` ne tourne que si l'erreur arrive.",
+            "`l.index(x)` donne une position qui commence à 0 : le rang « humain » vaut `l.index(x) + 1`. `l.index(x, debut)` cherche à partir de l'indice `debut`.",
+            "`liste.clear()`, `ensemble.clear()` et `dico.clear()` vident le conteneur **reçu**. Compte les éléments avec `len` **avant** de vider."
+          ]
+        },
+        {
+          "id": "20-regrouper-et-inverser",
+          "titre": "Inverser un dictionnaire sans rien perdre",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Dans `{v: k for k, v in d.items()}`, deux clés qui ont la même valeur écrivent au **même** endroit : la seconde écrase la première. Il faut une **liste** de clés par valeur.",
+            "`groupes.setdefault(v, []).append(k)` crée la liste vide la première fois, puis ajoute à la liste existante les fois suivantes. Trie chaque liste à la fin.",
+            "Deux mots sont anagrammes s'ils ont les mêmes lettres une fois triées : `\"\".join(sorted(\"chien\"))` et `\"\".join(sorted(\"chine\"))` valent tous les deux `\"cehin\"`. C'est la clé du groupe.",
+            "Pour ne pas garder deux fois le même mot, parcours `set(texte.split())` au lieu de la liste des mots, ou transforme chaque groupe en ensemble avant de le trier.",
+            "Pour `valeurs_partagees`, réutilise `inverser_groupes(d)` : il suffit de garder les valeurs dont la liste contient au moins deux clés, puis de trier."
+          ]
         }
       ],
       "quiz": [
@@ -284,6 +380,72 @@
           ],
           "reponse": 1,
           "explication": "`__name__` vaut `\"__main__\"` seulement quand le fichier est lancé directement. Quand il est importé (comme par les tests du site), le bloc n'est pas exécuté."
+        },
+        {
+          "question": "Comment obtient-on le nombre de clés d'un dictionnaire `d` en Python ?",
+          "choix": [
+            "`d.length`",
+            "`d.size()`",
+            "`len(d)`",
+            "`d.count()`"
+          ],
+          "reponse": 2,
+          "explication": "`len()` est une **fonction** qui marche sur tous les conteneurs : liste, chaîne, tuple, ensemble, dictionnaire. `length` et `size()` viennent d'autres langages."
+        },
+        {
+          "question": "Comment teste-t-on si la clé `\"nom\"` existe dans un dictionnaire `d` ?",
+          "choix": [
+            "`d.contains(\"nom\")`",
+            "`d.has(\"nom\")`",
+            "`\"nom\" in d`",
+            "`d.indexOf(\"nom\") != -1`"
+          ],
+          "reponse": 2,
+          "explication": "L'opérateur `in` teste l'appartenance : aux clés pour un dictionnaire, aux éléments pour une liste ou un ensemble, aux sous-chaînes pour une chaîne."
+        },
+        {
+          "question": "Laquelle de ces boucles **n'existe pas** en Python ?",
+          "choix": [
+            "`while condition:`",
+            "`for x in liste:`",
+            "`do ... while condition`",
+            "`for i in range(5):`"
+          ],
+          "reponse": 2,
+          "explication": "Python n'a que `while` et `for`. Pour exécuter le corps au moins une fois, on écrit `while True:` avec un `break` quand la condition est remplie."
+        },
+        {
+          "question": "Avec `s = \"Bonjour\"`, comment récupère-t-on `\"jour\"` ?",
+          "choix": [
+            "`s[3:7]`",
+            "`s.slice(3, 7)`",
+            "`s(3:7)`",
+            "`s[3, 7]`"
+          ],
+          "reponse": 0,
+          "explication": "Une tranche s'écrit entre crochets avec `:` : `s[debut:fin]`, la fin étant exclue. `s[3:]` marche aussi. `s[3, 7]` cherche l'indice `(3, 7)` et lève `TypeError`."
+        },
+        {
+          "question": "Comment calcule-t-on 2 puissance 10 en Python ?",
+          "choix": [
+            "`2 ^ 10`",
+            "`2 ** 10`",
+            "`pow[2, 10]`",
+            "`2 ^^ 10`"
+          ],
+          "reponse": 1,
+          "explication": "La puissance s'écrit `**` (ou `pow(2, 10)`). `^` existe mais c'est le « ou exclusif » sur les bits : `2 ^ 10` vaut 8, sans aucune erreur."
+        },
+        {
+          "question": "Laquelle de ces instructions ne crée **pas** une liste vide ?",
+          "choix": [
+            "`l = []`",
+            "`l = list()`",
+            "`l = {}`",
+            "`l = [x for x in \"\"]`"
+          ],
+          "reponse": 2,
+          "explication": "`{}` crée un **dictionnaire** vide. `[]` et `list()` créent tous les deux une liste vide, tout comme une compréhension sur une chaîne vide."
         }
       ]
     },
@@ -437,6 +599,177 @@
             "Le calcul se fait avec `OPERATIONS[op](a, b)` : le dictionnaire contient des fonctions. Intercepte `ZeroDivisionError` autour de cet appel, et dans le `else`, renvoie `\"%d %s %d = %s\" % (a, op, b, resultat)` (ou une f-string)."
           ],
           "avecEntree": true
+        },
+        {
+          "id": "13-renvoyer-plusieurs-valeurs",
+          "titre": "Renvoyer plusieurs valeurs",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`return a, b` renvoie le tuple `(a, b)`. À l'appel, on le déballe : `petit, grand = extremes(l)`.",
+            "Pour `extremes`, commence par `if not valeurs: raise ValueError(\"liste vide\")`, puis pars du premier élément et parcours les autres.",
+            "Pour `positions`, parcours `enumerate(valeurs)` et garde les indices où l'élément vaut `cible`, puis renvoie `tuple(...)`.",
+            "Pour `stats_mots`, `mots = phrase.split()`. Si la liste est vide, renvoie `(0, \"\", 0.0)`. Le mot le plus long : le premier mot de longueur maximale."
+          ]
+        },
+        {
+          "id": "14-parametres-nommes-obligatoires",
+          "titre": "Paramètres nommés obligatoires",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Tout paramètre placé **après** `*args` (ou après un `*` seul) ne peut être donné que par mot-clé.",
+            "`def compter(texte, motif, *, ignorer_casse=False):` : le `*` seul ne récupère rien, il sert juste de séparation.",
+            "Vérifie l'orthographe des noms de paramètres : `caractere`, `visibles`, `decimales`. Une faute de frappe casse tous les appels par mot-clé.",
+            "Pour `masquer`, si `visibles` vaut 0 tout est masqué. Sinon : `caractere * (len(texte) - visibles) + texte[-visibles:]` quand le texte est assez long."
+          ]
+        },
+        {
+          "id": "15-recursivite-et-cache",
+          "titre": "Récursivité et cache",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lance le programme : `fibo(35)` met des secondes. La version récursive recalcule sans cesse les mêmes valeurs (`fibo(33)` est calculé 2 fois, `fibo(32)` 3 fois...).",
+            "Ajoute `from functools import lru_cache` puis `@lru_cache(maxsize=None)` au-dessus de `def fibo(n):` : chaque résultat n'est calculé qu'une fois.",
+            "Pense au cas `n < 0` : `raise ValueError(...)` au début de la fonction.",
+            "`nb_chemins(lignes, colonnes)` : si `lignes == 1` ou `colonnes == 1`, il n'y a qu'un chemin. Sinon, on arrive par le haut ou par la gauche : `nb_chemins(lignes - 1, colonnes) + nb_chemins(lignes, colonnes - 1)`, avec le même cache."
+          ]
+        },
+        {
+          "id": "16-decorateurs-et-wraps",
+          "titre": "Décorateurs génériques et functools.wraps",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le wrapper doit accepter n'importe quels arguments : `def wrapper(*args, **kwargs):` puis `func(*args, **kwargs)`.",
+            "Écris `@functools.wraps(func)` juste au-dessus de `def wrapper` : la fonction décorée garde son `__name__` et sa docstring.",
+            "Pour `memoriser`, crée `cache = {}` dans le décorateur. Dans le wrapper : `if args not in cache: cache[args] = func(*args)` puis `return cache[args]`.",
+            "Pour `refuser_negatifs`, regroupe les valeurs : `list(args) + list(kwargs.values())`, et ne compare que celles qui sont des nombres : `isinstance(v, (int, float)) and v < 0`."
+          ]
+        },
+        {
+          "id": "17-decorateurs-empiles",
+          "titre": "Empiler des décorateurs",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Plusieurs décorateurs s'appliquent **de bas en haut** : le plus proche du `def` est appliqué en premier.",
+            "`encadrer(gauche, droite)` a un paramètre : 3 niveaux (`encadrer` → `decor(func)` → `wrapper(*args, **kwargs)`), et le wrapper renvoie `gauche + func(*args, **kwargs) + droite`.",
+            "Pour `titre`, on veut d'abord les majuscules, puis l'inversion, puis les crochets : écris de haut en bas `@encadrer(\"[\", \"]\")`, `@inverser`, `@majuscules`.",
+            "Pour `etiquette`, la chaîne est inversée en premier, puis entourée de `[` `]`, puis de `<` `>`."
+          ]
+        },
+        {
+          "id": "18-generateurs-qui-tournent",
+          "titre": "Des générateurs qui tournent en rond",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lance `list(tourner([]))` dans ta tête : `while True` tourne sans fin, et la boucle `for` sur une liste vide ne fait jamais de `yield`. Le programme reste bloqué.",
+            "Dans `tourner`, après `elements = list(iterable)`, ajoute `if not elements: return` : un `return` dans un générateur le termine.",
+            "`list(iterable)` est indispensable : un générateur reçu en paramètre ne se parcourt qu'une fois.",
+            "Pour `alterner`, transforme chaque itérable en itérateur avec `iter(...)`, puis fais des tours : `next(it)` dans un `try` / `except StopIteration`, et ne garde pour le tour suivant que les itérateurs qui ont encore donné une valeur."
+          ]
+        },
+        {
+          "id": "19-generateurs-avec-memoire",
+          "titre": "Générateurs avec mémoire",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Un générateur garde ses variables locales entre deux `yield` : un ensemble `vus = set()` ou un dictionnaire de compteurs créé au début reste disponible pendant tout le parcours.",
+            "`nouveautes` : si l'élément n'est pas dans `vus`, ajoute-le et fais `yield`. `doublons` : compte avec un dictionnaire, et `yield` quand le compteur passe **exactement** à 2.",
+            "`cumuls` : garde un `total`, ajoute chaque nombre puis `yield total`.",
+            "`series` : retiens l'élément courant et sa longueur. Quand l'élément change, fournis le couple de la série terminée. N'oublie pas la **dernière** série, après la boucle (et rien du tout si l'itérable est vide)."
+          ]
+        },
+        {
+          "id": "20-fenetre-glissante",
+          "titre": "Fenêtre glissante et erreurs immédiates",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Le corps d'une fonction qui contient `yield` ne démarre qu'au premier `next()`. Le `raise` du code de départ n'arrive donc qu'au moment du parcours, pas à l'appel.",
+            "Sépare en deux : `fenetres(iterable, n)` est une fonction **normale** qui vérifie `n`, puis `return _fenetres(iterable, n)` ; `_fenetres` est le générateur.",
+            "`from collections import deque` : `deque(maxlen=n)` jette tout seul l'élément le plus ancien quand elle est pleine (alors que `liste.pop(0)` décale tous les éléments).",
+            "Pour `moyennes_mobiles`, garde la somme de la fenêtre : ajoute le nouvel élément, retire celui qui sort (`fenetre.popleft()`), et fournis `total / n` dès que la fenêtre contient `n` éléments."
+          ]
+        },
+        {
+          "id": "21-yield-from",
+          "titre": "Déléguer avec yield from",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`yield from autre` fournit, une par une, toutes les valeurs de `autre` : c'est un raccourci pour `for x in autre: yield x`.",
+            "`aplatir` est récursif : si l'élément est une liste ou un tuple (`isinstance(element, (list, tuple))`), `yield from aplatir(element)`, sinon `yield element`.",
+            "`mots` : si `longueur == 0`, il y a un seul mot, le mot vide `\"\"`. Sinon, pour chaque lettre de l'alphabet, et pour chaque `fin` de `mots(alphabet, longueur - 1)`, fournis `lettre + fin`.",
+            "`chemins` : pour chaque `nom, contenu` de `arbre.items()`, le chemin est `prefixe + nom`. Si `contenu` est un dictionnaire, `yield from chemins(contenu, chemin + \"/\")`, sinon `yield chemin`."
+          ]
+        },
+        {
+          "id": "22-itertools",
+          "titre": "La boîte à outils itertools",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`from itertools import islice, combinations, product, accumulate, groupby` : chaque fonction de cet exercice tient en une ou deux lignes.",
+            "`islice(iterable, n)` prend les `n` premiers éléments (même d'un itérable infini). `combinations(elements, 2)` donne les paires sans répétition, `product(symboles, repeat=longueur)` toutes les suites.",
+            "`product` donne des tuples de caractères : relie-les avec `\"\".join(t)`. `accumulate(nombres)` donne les sommes cumulées.",
+            "`groupby` ne regroupe que les éléments **qui se suivent** : trie d'abord avec `sorted(mots, key=cle)`, puis `groupby(..., key=cle)` avec `cle = lambda mot: mot[0]`."
+          ]
+        },
+        {
+          "id": "23-verifier-les-arguments",
+          "titre": "Vérifier les arguments et les cas limites",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lance les exemples de l'énoncé avec le code de départ : chaque fonction marche sur le cas « normal » et se trompe sur un cas limite.",
+            "`range(debut, fin + 1, pas)` n'inclut `fin` que si le pas est positif. Avec un pas négatif, la borne exclue est `fin - 1`.",
+            "`isinstance(True, int)` vaut `True` : écris `if isinstance(n, bool) or not isinstance(n, int): raise TypeError(...)`.",
+            "Dans `convertir_tous`, intercepte `(TypeError, ValueError) as erreur`, puis `raise TypeError(\"valeur invalide : %r\" % (valeur,)) from erreur`."
+          ]
+        },
+        {
+          "id": "24-reutiliser-ses-fonctions",
+          "titre": "Réutiliser ses fonctions : calculs d'horaires",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`divmod(a, b)` renvoie le couple `(a // b, a % b)` : `heures, reste = divmod(secondes, 3600)`, puis `minutes, secondes = divmod(reste, 60)`.",
+            "Un horaire est un tuple : `en_secondes(*horaire)` le déballe en trois arguments, c'est la même chose que `en_secondes(horaire[0], horaire[1], horaire[2])`.",
+            "`ecart` ne refait aucun calcul d'heures : convertis les deux horaires en secondes, prends `abs(...)` de la différence, et reconvertis avec `en_horaire`.",
+            "Pour `ajouter`, une journée fait `24 * 3600` secondes : `% (24 * 3600)` ramène le total dans la journée, même si on ajoute une durée négative.",
+            "Pour `duree_totale`, additionne les secondes de chaque horaire avec `sum(en_secondes(*h) for h in horaires)`, puis reconvertis. Ici, pas de modulo : on peut dépasser 24 heures."
+          ]
+        },
+        {
+          "id": "25-polynomes-et-extremums",
+          "titre": "Polynômes et position des extremums",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "En Python, la puissance s'écrit `**` : `3 ** 2` vaut 9. `^` est un « ou exclusif » sur les bits : `3 ^ 2` vaut 1, sans aucune erreur. C'est le piège du code de départ.",
+            "`enumerate(coefs)` donne les couples `(i, coef)` : la valeur est `sum(coef * x ** i for i, coef in enumerate(coefs))`.",
+            "La dérivée de `c × x^i` est `i × c × x^(i-1)` : le terme de degré 0 disparaît. Avec `enumerate(coefs)`, garde `i * c` pour `i` à partir de 1 (ou parcours `coefs[1:]` avec `start=1`).",
+            "Pour `indices_extremes`, la **première** occurrence ne doit être remplacée que par une valeur **strictement** plus petite (ou plus grande) : `<` et pas `<=`.",
+            "Liste vide : il n'y a pas de bonne réponse, lève `ValueError` avant la boucle."
+          ]
+        },
+        {
+          "id": "26-avis-de-recherche",
+          "titre": "Avis de recherche : options par mot-clé",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence la signature par un `*` seul : `def avis(*, sexe=None, taille=None, ...)`. Tous les paramètres sont alors optionnels **et** nommés obligatoires, et un mot-clé inconnu lève `TypeError` tout seul.",
+            "Une option absente vaut `None` : teste-la avec `is not None`. Construis une liste de lignes, puis renvoie `\"\n\".join(lignes)`.",
+            "`\"(\" + taille + \" cm)\"` plante si `taille` est un entier : un `str` ne s'additionne qu'avec un `str`. Une f-string convertit toute seule : `f\" ({taille} cm)\"`.",
+            "Pour la ligne des cheveux, mets dans une liste les morceaux présents (`couleur`, puis `coiffure`), et écris la ligne seulement si la liste n'est pas vide : `\"- cheveux \" + \" \".join(morceaux)`.",
+            "Un dictionnaire traduit le sexe : `{None: \"personne\", \"h\": \"homme\", \"f\": \"femme\"}`. Si la valeur n'est pas une clé, lève `ValueError`."
+          ]
         }
       ],
       "quiz": [
@@ -571,6 +904,171 @@
           ],
           "reponse": 1,
           "explication": "`raise` lève une exception. `return ValueError` renverrait juste la classe, sans interrompre quoi que ce soit."
+        },
+        {
+          "question": "Avec `def chercher(texte, motif, *, ignorer_casse=False)`, que fait l'appel `chercher(\"Ab\", \"a\", True)` ?",
+          "choix": [
+            "Il renvoie `True`",
+            "Il lève une `TypeError`",
+            "Il ignore le `True`",
+            "Il range `True` dans `motif`"
+          ],
+          "reponse": 1,
+          "explication": "Les paramètres placés après le `*` seul sont nommés obligatoires : il faut écrire `ignorer_casse=True`."
+        },
+        {
+          "question": "Que vaut `h` après `h, m, s = vers_hms(4203)`, si `vers_hms` fait `return heures, minutes, secondes` ?",
+          "choix": [
+            "Le tuple `(1, 10, 3)`",
+            "`1`",
+            "`4203`",
+            "Une erreur : on ne renvoie qu'une valeur"
+          ],
+          "reponse": 1,
+          "explication": "`return a, b, c` renvoie un tuple, que l'affectation multiple déballe : `h` reçoit le premier élément, 1."
+        },
+        {
+          "question": "Sans `functools.wraps`, que vaut `f.__name__` pour une fonction `f` décorée par un décorateur dont l'enveloppe s'appelle `wrapper` ?",
+          "choix": [
+            "`\"f\"`",
+            "`\"wrapper\"`",
+            "`\"decor\"`",
+            "`None`"
+          ],
+          "reponse": 1,
+          "explication": "Le nom `f` désigne maintenant l'enveloppe. `@functools.wraps(func)` recopie le nom et la docstring de la fonction d'origine."
+        },
+        {
+          "question": "Avec `@a` écrit au-dessus de `@b`, lui-même au-dessus de `def f`, à quoi équivaut la décoration ?",
+          "choix": [
+            "`f = a(b(f))`",
+            "`f = b(a(f))`",
+            "`f = a(f)` puis `b` est ignoré",
+            "`f = a(f) + b(f)`"
+          ],
+          "reponse": 0,
+          "explication": "Les décorateurs s'appliquent de bas en haut : `b`, le plus proche du `def`, enveloppe `f` en premier."
+        },
+        {
+          "question": "Pourquoi `fibo(n - 1) + fibo(n - 2)` sans cache est-il très lent pour `n = 40` ?",
+          "choix": [
+            "La récursion est interdite au-delà de 30",
+            "Les mêmes valeurs sont recalculées un nombre énorme de fois",
+            "Les entiers deviennent trop grands",
+            "Python recopie la pile à chaque appel"
+          ],
+          "reponse": 1,
+          "explication": "Le nombre d'appels grandit presque comme Fibonacci lui-même. `@lru_cache(maxsize=None)` retient chaque résultat : chaque valeur n'est calculée qu'une fois."
+        },
+        {
+          "question": "Une fonction contient `if n < 0: raise ValueError()` puis une boucle avec `yield`. Quand l'erreur apparaît-elle pour l'appel `g = f(-1)` ?",
+          "choix": [
+            "Dès la ligne `g = f(-1)`",
+            "Au premier `next(g)` (ou au début du `for`)",
+            "Jamais",
+            "À la fin du programme"
+          ],
+          "reponse": 1,
+          "explication": "Appeler une fonction génératrice n'exécute rien de son corps. Pour vérifier dès l'appel, une fonction normale vérifie puis renvoie le générateur."
+        },
+        {
+          "question": "Que fournit `yield from [1, 2]` dans un générateur ?",
+          "choix": [
+            "La liste `[1, 2]` en une seule valeur",
+            "`1` puis `2`",
+            "Seulement `1`",
+            "Rien, c'est une erreur"
+          ],
+          "reponse": 1,
+          "explication": "`yield from` délègue : il fournit une par une les valeurs de l'itérable, comme `for x in [1, 2]: yield x`."
+        },
+        {
+          "question": "Que se passe-t-il avec `list(islice(g, 3))` si `g` fait `elements = list(it)` puis `while True: for x in elements: yield x`, et que `it` est vide ?",
+          "choix": [
+            "On obtient `[]`",
+            "Le programme reste bloqué",
+            "On obtient `[None, None, None]`",
+            "`StopIteration` est affichée"
+          ],
+          "reponse": 1,
+          "explication": "La boucle `while True` tourne sans fin sans jamais atteindre de `yield`. Il faut `if not elements: return` avant."
+        },
+        {
+          "question": "Pourquoi faut-il trier avant `itertools.groupby` ?",
+          "choix": [
+            "`groupby` ne marche que sur des listes triées, sinon il lève une erreur",
+            "`groupby` ne regroupe que les éléments consécutifs de même clé",
+            "Pour aller plus vite",
+            "Ce n'est pas nécessaire"
+          ],
+          "reponse": 1,
+          "explication": "Sur `a, b, a`, `groupby` fait trois paquets. Après un tri sur la même clé, les éléments égaux se suivent et forment un seul paquet."
+        },
+        {
+          "question": "Que vaut `isinstance(True, int)` ?",
+          "choix": [
+            "`True`",
+            "`False`",
+            "Une `TypeError`",
+            "`None`"
+          ],
+          "reponse": 0,
+          "explication": "`bool` est une sous-classe d'`int` (`True` vaut 1). Pour refuser les booléens, il faut les tester à part : `isinstance(n, bool)`."
+        },
+        {
+          "question": "Dans un `except ValueError as erreur:`, à quoi sert `raise TypeError(\"...\") from erreur` ?",
+          "choix": [
+            "À lever une erreur plus claire en gardant l'erreur d'origine comme cause",
+            "À ignorer l'erreur d'origine",
+            "À relancer exactement la même `ValueError`",
+            "À transformer l'erreur en avertissement"
+          ],
+          "reponse": 0,
+          "explication": "`from erreur` range l'exception d'origine dans `__cause__` : le message final montre les deux, on ne perd pas l'information."
+        },
+        {
+          "question": "Comment écrit-on une fonction `aire` qui renvoie le produit de `largeur` et `hauteur` ?",
+          "choix": [
+            "`function aire(largeur, hauteur) { return largeur * hauteur }`",
+            "`def aire(largeur, hauteur): return largeur * hauteur`",
+            "`def aire(largeur, hauteur) -> largeur * hauteur`",
+            "`aire = def(largeur, hauteur): largeur * hauteur`"
+          ],
+          "reponse": 1,
+          "explication": "`def`, le nom, les paramètres entre parenthèses, `:` puis le corps (sur la même ligne s'il est court, sinon indenté). `->` sert seulement à annoncer le type renvoyé."
+        },
+        {
+          "question": "Comment écrit-on une fonction qui accepte **autant d'arguments par position** qu'on veut ?",
+          "choix": [
+            "`def f(...args):`",
+            "`def f(*args):`",
+            "`def f(args[]):`",
+            "`def f(**args):`"
+          ],
+          "reponse": 1,
+          "explication": "`*args` rassemble les arguments par position dans un **tuple**. `**args` rassemblerait les arguments **par mot-clé** dans un dictionnaire."
+        },
+        {
+          "question": "Comment donne-t-on la valeur par défaut `2` au paramètre `puissance` ?",
+          "choix": [
+            "`def f(x, puissance=2):`",
+            "`def f(x, puissance: 2):`",
+            "`def f(x, puissance == 2):`",
+            "`def f(x, default puissance = 2):`"
+          ],
+          "reponse": 0,
+          "explication": "La valeur par défaut s'écrit avec `=`. `puissance: 2` est accepté par Python, mais c'est une **annotation** (une indication de type), pas une valeur par défaut : le paramètre reste obligatoire."
+        },
+        {
+          "question": "Comment lève-t-on soi-même une `ValueError` avec un message ?",
+          "choix": [
+            "`throw ValueError(\"négatif\")`",
+            "`raise ValueError(\"négatif\")`",
+            "`raise new ValueError(\"négatif\")`",
+            "`error ValueError(\"négatif\")`"
+          ],
+          "reponse": 1,
+          "explication": "Le mot-clé est `raise`, suivi de l'exception créée comme un appel de fonction. Pas de `new` en Python, ni pour les exceptions ni pour les objets."
         }
       ]
     },
@@ -726,6 +1224,92 @@
             "Pour le rapport : parcours `sorted(notes.items())` et écris `\"%s : %.1f/20\\n\" % (nom, note)`.",
             "`moyenne_classe` réutilise `lire_notes` : si le dictionnaire est vide, renvoie `None`, sinon `sum(notes.values()) / len(notes)`."
           ]
+        },
+        {
+          "id": "13-comprehensions-pieges",
+          "titre": "Compréhensions : les pièges classiques",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`split(\" \")` coupe à **chaque** espace : avec deux espaces de suite, on obtient un mot vide `\"\"`. `split()` sans argument ignore les espaces multiples.",
+            "Un mot « en minuscules » doit être fait **uniquement** de lettres (`isalpha()`) et ces lettres doivent être minuscules (`islower()`). `\"14-18\".islower()` vaut `False`, mais `\"a1\".islower()` vaut `True` !",
+            "`abs(x)` donne la valeur absolue. Le filtre se met après le `for` : `[abs(x) for x in l if x % 2 == 0]`.",
+            "`[[valeur] * colonnes] * lignes` répète **la même** ligne : modifier une case change toute la colonne. Fabrique une nouvelle ligne à chaque tour : `[[valeur] * colonnes for _ in range(lignes)]`. Le `_` dit « je n'utilise pas cette variable »."
+          ]
+        },
+        {
+          "id": "14-comprehensions-imbriquees",
+          "titre": "Compréhensions imbriquées et zip(*...)",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Le deuxième `for` peut parcourir ce que donne le premier : `[c for mot in mots for c in mot]` prend chaque caractère de chaque mot.",
+            "Pour les allitérations, combine les deux listes avec deux `for` et garde les couples dont les initiales sont égales : `if p[0].lower() == n[0].lower()`.",
+            "`aplatir` suit la même idée que `lettres` : `[x for ligne in matrice for x in ligne]`.",
+            "`zip(*matrice)` passe chaque ligne comme argument séparé de `zip` : il regroupe les premiers éléments, puis les deuxièmes... Chaque groupe est un tuple : convertis-le avec `list(...)`.",
+            "Pour l'annuaire, un dictionnaire en compréhension : `{p[0] + n[0]: p + \" \" + n for p, n in personnes}`."
+          ]
+        },
+        {
+          "id": "15-map-plusieurs-listes",
+          "titre": "map : conversions et plusieurs listes",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`map(f, a, b)` appelle `f(a[0], b[0])`, puis `f(a[1], b[1])`... : la fonction doit prendre **autant de paramètres** qu'il y a de listes. Elle s'arrête à la plus courte.",
+            "`map` renvoie un itérable paresseux : entoure-le de `tuple(...)` ou `list(...)` selon ce qui est demandé.",
+            "Une fonction déjà écrite peut servir directement : `map(int, morceaux)`, `map(max, a, b)`. Pas besoin de lambda.",
+            "Dans une lambda, une seule expression, mais l'expression conditionnelle est permise : `lambda n: \"pair\" if n % 2 == 0 else \"impair\"`.",
+            "Pour `lire_entiers`, découpe avec `texte.split(sep)`, puis garde seulement les morceaux non vides : `(m for m in morceaux if m.strip())`. `int(\" 3 \")` accepte les espaces autour."
+          ]
+        },
+        {
+          "id": "16-sommes-ponderees",
+          "titre": "sum, enumerate et codes de caractères",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`sum` accepte directement une expression génératrice : `sum(x * x for x in l)`. Pas besoin de crochets, donc pas de liste intermédiaire.",
+            "`enumerate(l, start=1)` numérote à partir de 1 : plus besoin d'écrire `i + 1`.",
+            "`ord(c) - ord(\"a\") + 1` donne le rang d'une lettre minuscule dans l'alphabet (`a` → 1, `z` → 26). Filtre les lettres avec `if \"a\" <= c <= \"z\"`.",
+            "Pour la clé ISBN, calcule `sum(i * int(c) for i, c in enumerate(code, start=1)) % 11`. Si le reste vaut 10, la clé est `\"X\"`, sinon c'est le chiffre en texte : `str(reste)`."
+          ]
+        },
+        {
+          "id": "17-any-all-limites",
+          "titre": "any et all : attention aux limites",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "« Au plus 6 » veut dire « 6 ou moins » : `<= 6`. « Moins de 6 » veut dire `< 6`. Teste toujours la valeur exacte de la limite.",
+            "`all(...)` répond « tous ? », `any(...)` répond « au moins un ? ». « Aucun » s'écrit `not any(...)`.",
+            "Un mot fait uniquement de chiffres : `mot.isdigit()`. Pour des valeurs toutes différentes, compare `len(set(valeurs))` et `len(valeurs)`.",
+            "Pour une matrice rectangulaire, toutes les lignes ont la longueur de la **première** : `all(len(ligne) == len(m[0]) for ligne in m)`. Pour la matrice vide, pas de souci : le générateur n'a aucune ligne à parcourir, il ne calcule donc jamais `m[0]`, et `all` d'un itérable vide vaut `True`."
+          ]
+        },
+        {
+          "id": "18-trier-avec-key",
+          "titre": "Trier un dictionnaire, choisir avec key",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`sorted(d)` trie les **clés** d'un dictionnaire. `sorted(d.items())` trie les couples `(clé, valeur)`, d'abord selon la clé.",
+            "`key` reçoit une fonction qui donne le critère. Une fonction déjà écrite marche directement : `key=sum`, `key=len`, `key=str.lower`.",
+            "Pour plusieurs critères, la clé peut renvoyer un tuple : `key=lambda k: (-d[k], k)` trie par valeur décroissante, puis par clé croissante.",
+            "Pour `plus_proche`, `min(nombres, key=lambda n: (abs(n - cible), n), default=None)` : la distance d'abord, puis le plus petit nombre en cas d'égalité, et `None` si la liste est vide."
+          ]
+        },
+        {
+          "id": "19-lire-des-entiers",
+          "titre": "Lire une ligne de nombres au clavier",
+          "difficulte": 1,
+          "type": "sortie",
+          "indices": [
+            "`input()` renvoie **une seule** chaîne, `\"4 -7 abc ...\"`. `input().split()` la découpe en une liste de morceaux, encore des chaînes.",
+            "Pour ne garder que les entiers, filtre dans la compréhension : un morceau est un entier si `m.lstrip(\"-\").isdigit()` (on enlève le signe moins avant de tester). Puis convertis avec `int(m)`.",
+            "Ensuite, une compréhension par ligne d'affichage : `[x for x in entiers if x > 0]`, `[abs(x) for x in entiers]`, `[abs(x) for x in entiers if x % 2 == 0]`."
+          ],
+          "avecEntree": true
         }
       ],
       "quiz": [
@@ -860,6 +1444,94 @@
           ],
           "reponse": 1,
           "explication": "`with` lie la durée de vie du fichier au bloc : il est fermé quoi qu'il arrive (fin normale, `return` ou exception)."
+        },
+        {
+          "question": "Comment crée-t-on la liste des cubes des nombres de 1 à 5 inclus, avec une liste en compréhension ?",
+          "choix": [
+            "`[x**3 for x in range(1, 6)]`",
+            "`[x^3 for x in range(1, 6)]`",
+            "`[x**3 for x in range(5)]`",
+            "`[x**3 in range(1, 6)]`"
+          ],
+          "reponse": 0,
+          "explication": "La puissance s'écrit `**` (`^` est le ou exclusif) et `range(1, 6)` va de 1 à 5 : la fin est exclue. `range(5)` irait de 0 à 4."
+        },
+        {
+          "question": "Comment garde-t-on seulement les mots de plus de 3 lettres d'une liste `mots` ?",
+          "choix": [
+            "`[len(m) > 3 for m in mots]`",
+            "`[m for m in mots if len(m) > 3]`",
+            "`[m if len(m) > 3 for m in mots]`",
+            "`[m for len(m) > 3 in mots]`"
+          ],
+          "reponse": 1,
+          "explication": "Le filtre se met **après** le `for`. La première version renvoie une liste de `True` / `False` ; la troisième est une erreur de syntaxe (un `if` placé avant le `for` exige un `else`)."
+        },
+        {
+          "question": "Comment crée-t-on un tableau 2D de 3 lignes et 4 colonnes rempli de 0, dont les lignes sont **indépendantes** ?",
+          "choix": [
+            "`[[0] * 4] * 3`",
+            "`[[0] * 4 for _ in range(3)]`",
+            "`[0] * 4 * 3`",
+            "`[[0 for _ in range(3)]] * 4`"
+          ],
+          "reponse": 1,
+          "explication": "La compréhension fabrique une **nouvelle** ligne à chaque tour. `[[0] * 4] * 3` répète trois fois la même ligne : changer une case change toute la colonne. `[0] * 4 * 3` donne une liste simple de 12 zéros."
+        },
+        {
+          "question": "Comment obtient-on la transposée d'une matrice `mat` (liste de listes) ?",
+          "choix": [
+            "`zip(mat)`",
+            "`[list(c) for c in zip(*mat)]`",
+            "`mat.transpose()`",
+            "`[list(c) for c in zip(mat)]`"
+          ],
+          "reponse": 1,
+          "explication": "`zip(*mat)` passe chaque ligne comme un argument séparé, puis regroupe les premiers éléments, les deuxièmes... Sans `*`, `zip` reçoit un seul itérable et emballe chaque ligne seule dans un tuple."
+        },
+        {
+          "question": "Comment crée-t-on un dictionnaire à partir d'une liste de clés `k` et d'une liste de valeurs `v` de même longueur ?",
+          "choix": [
+            "`dict(k, v)`",
+            "`{k: v}`",
+            "`dict(zip(k, v))`",
+            "`k.zip(v)`"
+          ],
+          "reponse": 2,
+          "explication": "`zip(k, v)` fournit les couples `(clé, valeur)` rang par rang, et `dict(...)` les transforme en dictionnaire. `{k: v}` essaie d'utiliser la liste `k` comme clé : `TypeError`."
+        },
+        {
+          "question": "Comment vérifie-t-on que **tous** les nombres d'une liste `l` sont strictement positifs ?",
+          "choix": [
+            "`all(x > 0 for x in l)`",
+            "`any(x > 0 for x in l)`",
+            "`l.all(x > 0)`",
+            "`x > 0 for all x in l`"
+          ],
+          "reponse": 0,
+          "explication": "`all` vaut `True` si chaque élément est vrai, `any` si au moins un l'est. Ce sont des fonctions, pas des méthodes de liste."
+        },
+        {
+          "question": "Que contient `input().split()` si l'utilisateur tape `3 7 12` ?",
+          "choix": [
+            "`[3, 7, 12]`",
+            "`[\"3\", \"7\", \"12\"]`",
+            "`\"3 7 12\"`",
+            "`(3, 7, 12)`"
+          ],
+          "reponse": 1,
+          "explication": "`input()` renvoie toujours une chaîne, et `split()` la coupe en une liste de **chaînes**. Pour avoir des entiers : `[int(x) for x in input().split()]`."
+        },
+        {
+          "question": "Que vaut `{p[0]: p for p in [\"Ana\", \"Alex\", \"Bob\"]}` ?",
+          "choix": [
+            "`{\"A\": \"Ana\", \"B\": \"Bob\"}`",
+            "`{\"A\": \"Alex\", \"B\": \"Bob\"}`",
+            "`{\"A\": [\"Ana\", \"Alex\"], \"B\": [\"Bob\"]}`",
+            "Une erreur : la clé `\"A\"` apparaît deux fois"
+          ],
+          "reponse": 1,
+          "explication": "Un dictionnaire ne garde qu'une valeur par clé : la deuxième clé `\"A\"` écrase la première, sans erreur. Il reste la dernière valeur, `\"Alex\"`."
         }
       ]
     },
@@ -1149,6 +1821,72 @@
           ],
           "reponse": 1,
           "explication": "Si `Chien` redéfinit `parler`, `animal.parler()` appelle la version de `Chien` quand l'objet est un `Chien`, même dans du code qui ne connaît que `Animal`. C'est le polymorphisme."
+        },
+        {
+          "question": "Comment définit-on une classe `Chat` en Python ?",
+          "choix": [
+            "`Chat = class:`",
+            "`def class Chat:`",
+            "`class Chat:`",
+            "`new class Chat {}`"
+          ],
+          "reponse": 2,
+          "explication": "Le mot-clé `class`, le nom (en CamelCase par convention), `:`, puis le corps indenté. Pas d'accolades en Python."
+        },
+        {
+          "question": "Comment accède-t-on à l'attribut `nom` d'un objet `c` ?",
+          "choix": [
+            "`c->nom`",
+            "`c.nom`",
+            "`c[\"nom\"]`",
+            "`c::nom`"
+          ],
+          "reponse": 1,
+          "explication": "On utilise le point : `c.nom`, en lecture comme en écriture (`c.nom = \"Félix\"`). Les crochets servent aux dictionnaires et aux listes."
+        },
+        {
+          "question": "Comment indique-t-on que la classe `Chat` hérite de la classe `Animal` ?",
+          "choix": [
+            "`class Chat extends Animal:`",
+            "`class Chat(Animal):`",
+            "`class Chat : Animal`",
+            "`class Chat inherits Animal:`"
+          ],
+          "reponse": 1,
+          "explication": "Les classes parentes se mettent entre parenthèses après le nom : `class Chat(Animal):`, ou `class Chat(A, B):` pour un héritage multiple."
+        },
+        {
+          "question": "Dans le `__init__` d'une classe enfant, comment appelle-t-on le constructeur du parent ?",
+          "choix": [
+            "`super.__init__(nom)`",
+            "`super().__init__(nom)`",
+            "`parent(nom)`",
+            "`this.super(nom)`"
+          ],
+          "reponse": 1,
+          "explication": "`super()` est un **appel de fonction** qui donne accès aux méthodes du parent. Sans les parenthèses, `super.__init__` désigne le constructeur de la classe `super` elle-même : l'appel lève `TypeError`."
+        },
+        {
+          "question": "Comment écrit-on une méthode `parler` dans une classe ?",
+          "choix": [
+            "`def parler():`",
+            "`def parler(self):`",
+            "`function parler(this):`",
+            "`self.def parler():`"
+          ],
+          "reponse": 1,
+          "explication": "Une méthode reçoit toujours l'objet en premier paramètre, nommé `self` par convention. Sans lui, `c.parler()` lève `TypeError` : Python passe l'objet mais la méthode n'attend aucun argument."
+        },
+        {
+          "question": "Comment teste-t-on si `c` est un objet de la classe `Animal` **ou d'une de ses sous-classes** ?",
+          "choix": [
+            "`c instanceof Animal`",
+            "`isinstance(c, Animal)`",
+            "`type(c) is Animal`",
+            "`c.is(Animal)`"
+          ],
+          "reponse": 1,
+          "explication": "`isinstance` tient compte de l'héritage : un `Chat` est aussi un `Animal`. `type(c) is Animal` est vrai seulement si `c` a été créé directement avec `Animal(...)`."
         }
       ]
     },
@@ -1260,6 +1998,18 @@
             "`proposer` : mets la proposition en minuscules. Si elle n'est pas une seule lettre (`len(...) != 1 or not lettre.isalpha()`), renvoie `\"invalide\"`.",
             "Si la lettre est déjà dans `trouvees` ou `ratees`, renvoie `\"deja\"`. Sinon ajoute-la au bon ensemble avec `add` et renvoie `\"bonne\"` ou `\"mauvaise\"`.",
             "`gagne` : `all(c in trouvees for c in mot)`, ou `set(mot) <= trouvees`."
+          ]
+        },
+        {
+          "id": "10-tester-le-contenu",
+          "titre": "Tester le contenu d'une chaîne",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "`isupper()` et `islower()` ne regardent **que les lettres** : `\"a1\".islower()` vaut `True` et `\"14-18\".islower()` vaut `False`. Combine-les avec `isalpha()` pour être sûr qu'il n'y a que des lettres.",
+            "L'ordre des tests compte : vérifie `isdigit()` d'abord, puis les cas « que des lettres », puis `isalnum()`. Une chaîne vide répond `False` à tous ces tests.",
+            "`texte.find(repere)` renvoie la position du repère, ou `-1`. Le texte qui suit commence à `position + len(repere)`.",
+            "`endswith` accepte un tuple : `nom.lower().endswith((\".png\", \".jpg\", \".jpeg\"))`."
           ]
         }
       ],
@@ -1373,6 +2123,447 @@
           ],
           "reponse": 1,
           "explication": "Dans une chaîne brute, `\\n` n'est pas un retour à la ligne mais deux caractères : `\\` et `n`. On a donc 4 caractères."
+        },
+        {
+          "question": "Comment obtient-on une chaîne `s` écrite en minuscules ?",
+          "choix": [
+            "`s.toLowerCase()`",
+            "`s.lower()`",
+            "`lower(s)`",
+            "`s.toLower()`"
+          ],
+          "reponse": 1,
+          "explication": "`lower()` est une **méthode** des chaînes ; elle renvoie une nouvelle chaîne (`s` ne change pas). Son contraire est `upper()`."
+        },
+        {
+          "question": "Comment teste-t-on si le texte `\"py\"` apparaît dans une chaîne `s` ?",
+          "choix": [
+            "`s.contains(\"py\")`",
+            "`\"py\" in s`",
+            "`s.includes(\"py\")`",
+            "`s.has(\"py\")`"
+          ],
+          "reponse": 1,
+          "explication": "`in` cherche une sous-chaîne. `s.find(\"py\")` donne en plus sa position (`-1` si absente). Les chaînes n'ont pas de méthode `contains`."
+        },
+        {
+          "question": "Comment récupère-t-on les **3 derniers** caractères d'une chaîne `s` ?",
+          "choix": [
+            "`s[-3:]`",
+            "`s[:-3]`",
+            "`s.substr(-3)`",
+            "`s[-3]`"
+          ],
+          "reponse": 0,
+          "explication": "`s[-3:]` part du 3e caractère avant la fin et va jusqu'au bout. `s[:-3]` donne tout **sauf** les 3 derniers, et `s[-3]` un seul caractère."
+        },
+        {
+          "question": "Comment colle-t-on les mots de la liste `mots` en une seule chaîne, séparés par des virgules ?",
+          "choix": [
+            "`mots.join(\",\")`",
+            "`\",\".join(mots)`",
+            "`join(mots, \",\")`",
+            "`mots + \",\"`"
+          ],
+          "reponse": 1,
+          "explication": "`join` est une méthode du **séparateur** : `\",\".join([\"a\", \"b\"])` donne `\"a,b\"`. Tous les éléments doivent être des chaînes."
+        },
+        {
+          "question": "Comment écrit-on une chaîne qui s'étend sur plusieurs lignes du code ?",
+          "choix": [
+            "Entre triples guillemets : `\"\"\"...\"\"\"`",
+            "Entre accents graves, comme en JavaScript",
+            "Entre `<<<` et `>>>`",
+            "C'est impossible, il faut concaténer avec `+`"
+          ],
+          "reponse": 0,
+          "explication": "Les triples guillemets (`\"\"\"` ou `'''`) gardent les retours à la ligne. Les accents graves n'ont pas ce rôle en Python."
+        },
+        {
+          "question": "Comment convertit-on le texte `\"42\"` en nombre entier ?",
+          "choix": [
+            "`int(\"42\")`",
+            "`parseInt(\"42\")`",
+            "`\"42\".toInt()`",
+            "`(int) \"42\"`"
+          ],
+          "reponse": 0,
+          "explication": "`int(texte)` convertit (et lève `ValueError` si le texte n'est pas un entier). Dans l'autre sens, `str(42)` donne `\"42\"`."
+        }
+      ]
+    },
+    {
+      "id": "06-fichiers-csv-json",
+      "titre": "Fichiers, CSV et JSON",
+      "description": "Fichiers texte et binaires, open et with, modes, encodage, lecture ligne à ligne, écriture, modules csv et json, lecture de HTML.",
+      "source": "cours",
+      "supports": [
+        {
+          "titre": "Diapos : Python, les fichiers",
+          "url": "https://docs.google.com/presentation/d/e/2PACX-1vR3bmnWOro1b2qTrcRSXpQ5fnM9RNde-si2nPbOVx6cPw9bDfKwqaHy9TQaAiWJFaUeP5QPkkUZ9LIT/embed?start=false&loop=false",
+          "integrer": true
+        },
+        {
+          "titre": "Documentation : le module csv",
+          "url": "https://docs.python.org/fr/3/library/csv.html"
+        },
+        {
+          "titre": "Documentation : le module json",
+          "url": "https://docs.python.org/fr/3/library/json.html"
+        }
+      ],
+      "exercices": [
+        {
+          "id": "01-majuscules",
+          "titre": "Recopier un fichier en majuscules",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Deux étapes : lire tout le fichier source avec `f.read()`, puis écrire le résultat dans le fichier cible.",
+            "Ouvre la source en lecture (`open(source, encoding=\"utf-8\")`) et la cible en écriture (`open(cible, \"w\", encoding=\"utf-8\")`), chacune dans un `with`.",
+            "`texte.upper()` met en majuscules, accents compris. `f.write(...)` renvoie justement le nombre de caractères écrits : `return f.write(contenu.upper())`."
+          ]
+        },
+        {
+          "id": "02-numeroter-lignes",
+          "titre": "Numéroter les lignes d'un fichier",
+          "difficulte": 1,
+          "type": "tests",
+          "indices": [
+            "Parcours le fichier avec `for ligne in f:` : pas besoin de tout charger avec `read()`.",
+            "`enumerate(f, start=1)` donne le numéro de chaque ligne, en commençant à 1, sans compteur à gérer à la main.",
+            "Chaque ligne lue garde son `\"\n\"` (sauf parfois la dernière) : `ligne.rstrip(\"\n\")` l'enlève sans toucher aux autres espaces.",
+            "Pour `sauter_vides`, teste `if sauter_vides and not texte.strip(): continue`, **après** avoir calculé le numéro : les numéros restent ceux du fichier."
+          ]
+        },
+        {
+          "id": "03-statistiques-fichier",
+          "titre": "Les statistiques d'un fichier",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Lis tout le fichier dans une seule chaîne avec `f.read()` : tous les comptes se font ensuite sur cette chaîne.",
+            "Les mots : `contenu.split()` (sans argument, il coupe sur tous les blancs, retours à la ligne compris). Les lignes : `len(contenu.splitlines())`.",
+            "Pour compter sans boucle à rallonge : `sum(1 for c in contenu if c.isalpha())`. Même schéma avec `isdigit`, `islower`, `isupper`, et sur les mots.",
+            "`autres` se déduit des autres comptes : `len(contenu) - lettres - chiffres`. Pour `rapport`, parcours `ORDRE` et assemble avec `\"\n\".join(...)`."
+          ]
+        },
+        {
+          "id": "04-dernieres-lignes",
+          "titre": "Les premières et les dernières lignes",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Un journal peut être énorme : parcours le fichier avec `for ligne in f:` au lieu de tout charger avec `readlines()`.",
+            "Pour les premières lignes, `itertools.islice(f, n)` s'arrête tout seul après `n` lignes, sans lire la suite du fichier.",
+            "Pour les dernières, `collections.deque(maxlen=n)` est une file qui ne garde que les `n` derniers éléments ajoutés : `deque(f, maxlen=n)` fait tout le travail.",
+            "Commence chaque fonction par `if n <= 0: return []` : `deque` et `islice` refusent une taille négative. N'oublie pas d'enlever les `\"\n\"` avec `rstrip(\"\n\")`."
+          ]
+        },
+        {
+          "id": "05-moyennes-csv",
+          "titre": "Moyennes à partir d'un CSV",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Ouvre le fichier avec `newline=\"\"`, puis `lecteur = csv.reader(f, delimiter=\";\")`. La première ligne s'obtient avec `entete = next(lecteur)`.",
+            "Les valeurs lues sont des **textes**, et les décimales sont écrites avec une virgule : `float(note.replace(\",\", \".\"))`.",
+            "Ignore les lignes vides : `csv.reader` les renvoie sous forme de liste vide, `if not ligne: continue` suffit.",
+            "Pour les matières, `zip(*lignes)` transforme la liste des lignes en liste des colonnes. Arrondis à la fin seulement : `round(sum(notes) / len(notes), 1)`."
+          ]
+        },
+        {
+          "id": "06-ecrire-un-csv",
+          "titre": "Écrire un bulletin en CSV",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Commence par lire la source comme dans l'exercice précédent : `csv.reader(f, delimiter=\";\")`, `next(lecteur)` pour sauter l'en-tête, décimales avec `replace(\",\", \".\")`.",
+            "Range chaque élève dans une liste de tuples `(nom, moyenne)`, puis trie : `sorted(eleves, key=lambda e: (-e[1], e[0]))` (moyenne décroissante, puis nom).",
+            "Pour écrire, ouvre la cible avec `\"w\"`, `encoding=\"utf-8\"` **et** `newline=\"\"`, puis `ecrivain = csv.writer(f, delimiter=\";\")` et `ecrivain.writerow([...])` pour chaque ligne.",
+            "Ne fabrique pas les lignes avec `\";\".join(...)` : un nom qui contient `;` casserait le fichier. `csv.writer` ajoute les guillemets tout seul. La moyenne s'écrit `f\"{moyenne:.1f}\"`."
+          ]
+        },
+        {
+          "id": "07-notes-json",
+          "titre": "Analyser des notes en JSON",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`json.load(f)` transforme tout le fichier en dictionnaire Python : `donnees[\"eleves\"]` est une liste de dictionnaires.",
+            "Pour un élève : `notes = eleve[\"notes\"]` est un dictionnaire matière → note. Sa moyenne : `sum(notes.values()) / len(notes)`, ou `None` si `notes` est vide.",
+            "`classement` réutilise `moyennes` : garde les couples dont la moyenne n'est pas `None`, puis `sorted(..., key=lambda c: (-c[1], c[0]))`.",
+            "Pour `meilleurs_par_matiere`, parcours les élèves dans l'ordre et, pour chaque `matiere, note` de `notes.items()`, remplace le meilleur seulement si la note est **strictement** plus grande."
+          ]
+        },
+        {
+          "id": "08-sauvegarder-en-json",
+          "titre": "Sauvegarder des scores en JSON",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "`sauvegarder` : `json.dump(donnees, f, indent=2, ensure_ascii=False)` dans un fichier ouvert en `\"w\"` avec `encoding=\"utf-8\"`.",
+            "`charger` : mets l'ouverture **et** le `json.load` dans un `try`, puis `except (FileNotFoundError, json.JSONDecodeError): return defaut`.",
+            "`ajouter_score` enchaîne les deux : `scores = charger(chemin, {})`, puis `scores[joueur] = scores.get(joueur, 0) + points`, puis `sauvegarder(chemin, scores)`."
+          ]
+        },
+        {
+          "id": "09-fusion-json",
+          "titre": "Fusionner des relevés de prix en JSON",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "Commence par `date_en_tuple` : `jour, mois, annee = texte.split(\"-\")`, puis renvoie `(int(annee), int(mois), int(jour))`. Les tuples se comparent élément par élément : l'année d'abord.",
+            "Ne compare **jamais** les dates en texte : `\"3-1-2009\" > \"12-1-2010\"` vaut `True`, car `\"3\"` vient après `\"1\"`.",
+            "Garde un dictionnaire `retenus` nom → article. Pour chaque article de chaque fichier (dans l'ordre), remplace celui qui est retenu si `date_en_tuple(article[\"date\"]) >= date_en_tuple(retenus[nom][\"date\"])` : avec `>=`, à date égale, le fichier le plus tardif gagne.",
+            "Pour finir : `{\"articles\": sorted(retenus.values(), key=lambda a: a[\"nom\"])}`, écrit avec `json.dump(..., indent=2, ensure_ascii=False)`, et `return len(retenus)`."
+          ]
+        },
+        {
+          "id": "10-lire-une-page-html",
+          "titre": "Extraire les infos d'une page HTML",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`HTMLParser` appelle tes méthodes au fil de la page : `handle_starttag(\"div\", [(\"class\", \"reponse acceptee\"), ...])` pour chaque balise ouvrante, `handle_data(texte)` pour le texte, `handle_endtag(\"h1\")` pour chaque balise fermante. Les noms de balises et d'attributs arrivent déjà en minuscules.",
+            "Dans `handle_starttag`, commence par `attributs = dict(attributs)` et `classes = (attributs.get(\"class\") or \"\").split()` : on teste ensuite `\"reponse\" in classes`, ce qui marche même avec plusieurs classes.",
+            "Le texte d'une balise n'est connu que dans `handle_data`, appelé **après** `handle_starttag` : garde un drapeau (`self.dans_titre = True`) et remets-le à `False` dans `handle_endtag`.",
+            "Le titre peut arriver en plusieurs morceaux (texte, puis `<code>`, puis texte) : ajoute-les dans une liste tant que tu es dans le `<h1>`, puis à la fermeture `\" \".join(\"\".join(morceaux).split())` nettoie les blancs.",
+            "`lire_question` : `lecteur = LecteurQuestion()`, `lecteur.feed(html)`, `return lecteur.infos`. `fiche` assemble les cinq lignes avec `\"\n\".join(...)`."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Lequel de ces fichiers est un fichier **binaire** ?",
+          "choix": [
+            "`notes.csv`",
+            "`photo.png`",
+            "`script.py`",
+            "`config.json`"
+          ],
+          "reponse": 1,
+          "explication": "Une image contient des octets qu'il faut décoder. CSV, code source et JSON sont des fichiers texte, lisibles par un humain."
+        },
+        {
+          "question": "Que se passe-t-il avec `open(\"absent.txt\")` si le fichier n'existe pas ?",
+          "choix": [
+            "Le fichier est créé vide",
+            "`open` renvoie `None`",
+            "Python lève `FileNotFoundError`",
+            "On obtient un fichier en mode ajout"
+          ],
+          "reponse": 2,
+          "explication": "Sans mode, `open` lit (`\"r\"`) : lire un fichier qui n'existe pas lève `FileNotFoundError`. Seuls `\"w\"`, `\"a\"` et `\"x\"` créent le fichier."
+        },
+        {
+          "question": "Quel mode ajoute du texte **à la fin** d'un fichier sans effacer son contenu ?",
+          "choix": [
+            "`\"w\"`",
+            "`\"r\"`",
+            "`\"a\"`",
+            "`\"x\"`"
+          ],
+          "reponse": 2,
+          "explication": "`\"a\"` (*append*) écrit à la suite. `\"w\"` vide le fichier dès l'ouverture, `\"x\"` refuse un fichier qui existe déjà."
+        },
+        {
+          "question": "Que renvoie `f.readline()` quand on est arrivé à la fin du fichier ?",
+          "choix": [
+            "`None`",
+            "`\"\\n\"`",
+            "`\"\"` (chaîne vide)",
+            "Une `EOFError`"
+          ],
+          "reponse": 2,
+          "explication": "Une ligne vide au milieu du fichier vaut `\"\\n\"`. La chaîne vide `\"\"` signifie qu'il n'y a plus rien à lire."
+        },
+        {
+          "question": "Pourquoi `for ligne in f: print(ligne)` affiche-t-il une ligne vide entre chaque ligne ?",
+          "choix": [
+            "`print` lit deux lignes à la fois",
+            "Chaque ligne lue garde son `\"\\n\"`, et `print` en ajoute un autre",
+            "Le fichier est en mode binaire",
+            "Il faut écrire `f.readlines()`"
+          ],
+          "reponse": 1,
+          "explication": "Les lignes lues se terminent par `\"\\n\"`. On l'enlève avec `ligne.rstrip(\"\\n\")`, ou on écrit `print(ligne, end=\"\")`."
+        },
+        {
+          "question": "Quel est l'avantage de `with open(chemin) as f:` sur `f = open(chemin)` suivi de `f.close()` ?",
+          "choix": [
+            "La lecture est plus rapide",
+            "Le fichier est fermé automatiquement, même en cas de `return` ou d'exception",
+            "Le fichier est ouvert en lecture et en écriture",
+            "Il n'y a plus besoin de préciser l'encodage"
+          ],
+          "reponse": 1,
+          "explication": "`with` est un gestionnaire de contexte : en sortant du bloc, quelle que soit la façon, il appelle `close()` pour toi."
+        },
+        {
+          "question": "Après `contenu = f.read()`, que renvoie un deuxième `f.read()` ?",
+          "choix": [
+            "Le même contenu",
+            "`\"\"`, car le curseur est déjà à la fin",
+            "`None`",
+            "Une erreur : le fichier est fermé"
+          ],
+          "reponse": 1,
+          "explication": "Chaque lecture avance le curseur. Pour relire depuis le début, on fait `f.seek(0)`."
+        },
+        {
+          "question": "Pourquoi écrire `open(chemin, encoding=\"utf-8\")` plutôt que `open(chemin)` ?",
+          "choix": [
+            "Sinon le fichier est ouvert en binaire",
+            "L'encodage par défaut dépend du système : un fichier avec accents peut être mal lu ailleurs",
+            "`utf-8` rend le fichier plus petit",
+            "C'est obligatoire pour écrire"
+          ],
+          "reponse": 1,
+          "explication": "Sans encodage, Python prend celui du système (souvent cp1252 sur un vieux Windows) : `été` peut devenir `Ã©tÃ©` ou lever `UnicodeDecodeError`."
+        },
+        {
+          "question": "Que fournit `csv.reader(f, delimiter=\";\")` pour chaque ligne du fichier ?",
+          "choix": [
+            "Une chaîne",
+            "Une liste de chaînes",
+            "Une liste où les nombres sont déjà convertis en `int`",
+            "Un dictionnaire"
+          ],
+          "reponse": 1,
+          "explication": "Toutes les valeurs restent du texte : il faut convertir soi-même avec `int(...)` ou `float(...)`. C'est `csv.DictReader` qui donne des dictionnaires."
+        },
+        {
+          "question": "Pourquoi utiliser le module `csv` plutôt que `ligne.split(\";\")` ?",
+          "choix": [
+            "`split` ne marche pas sur les fichiers",
+            "Une valeur entre guillemets peut contenir le délimiteur, et `split` la coupe en deux",
+            "`csv` convertit les nombres",
+            "`split` enlève les accents"
+          ],
+          "reponse": 1,
+          "explication": "Avec `\"Brest; Finistère\";31`, `split(\";\")` donne trois morceaux au lieu de deux. Le module `csv` sait lire les valeurs entre guillemets."
+        },
+        {
+          "question": "Avec `csv.DictReader(f)`, d'où viennent les clés des dictionnaires ?",
+          "choix": [
+            "De la première ligne du fichier",
+            "Des numéros de colonnes 0, 1, 2...",
+            "Du paramètre `delimiter`",
+            "Il faut toujours les donner avec `fieldnames`"
+          ],
+          "reponse": 0,
+          "explication": "Par défaut, la première ligne est lue comme l'en-tête. On peut aussi donner `fieldnames=[...]` quand le fichier n'a pas d'en-tête."
+        },
+        {
+          "question": "Après `csv.Sniffer().sniff(f.read(1024))`, pourquoi faut-il faire `f.seek(0)` ?",
+          "choix": [
+            "Pour fermer le fichier",
+            "Pour changer de dialecte",
+            "Parce que la lecture de l'extrait a avancé le curseur",
+            "Pour vider le tampon d'écriture"
+          ],
+          "reponse": 2,
+          "explication": "Le `Sniffer` a besoin d'un extrait, et le lire a déplacé le curseur. `seek(0)` revient au début avant la vraie lecture."
+        },
+        {
+          "question": "Quelle fonction transforme une **chaîne** JSON en objet Python ?",
+          "choix": [
+            "`json.load`",
+            "`json.loads`",
+            "`json.dump`",
+            "`json.dumps`"
+          ],
+          "reponse": 1,
+          "explication": "Le `s` final veut dire *string* : `loads` lit une chaîne, `load` lit un fichier ouvert, `dump` et `dumps` font le chemin inverse."
+        },
+        {
+          "question": "Que vaut `json.loads(json.dumps({1: (2, 3)}))` ?",
+          "choix": [
+            "`{1: (2, 3)}`",
+            "`{\"1\": [2, 3]}`",
+            "`{1: [2, 3]}`",
+            "Une `TypeError`"
+          ],
+          "reponse": 1,
+          "explication": "En JSON, les clés sont toujours du texte, et un tuple devient un tableau, relu comme une liste."
+        },
+        {
+          "question": "Quelle valeur Python correspond au `null` de JSON ?",
+          "choix": [
+            "`0`",
+            "`\"\"`",
+            "`None`",
+            "`False`"
+          ],
+          "reponse": 2,
+          "explication": "`null` ↔ `None`, `true` / `false` ↔ `True` / `False`, objet ↔ `dict`, tableau ↔ `list`."
+        },
+        {
+          "question": "Que se passe-t-il avec `json.dumps({\"tags\": {\"a\", \"b\"}})` ?",
+          "choix": [
+            "L'ensemble devient une liste",
+            "L'ensemble devient un texte",
+            "Python lève `TypeError` : un `set` ne passe pas en JSON",
+            "Les doublons sont gardés"
+          ],
+          "reponse": 2,
+          "explication": "JSON ne connaît pas les ensembles. Il faut d'abord les convertir, par exemple avec `sorted(tags)`."
+        },
+        {
+          "question": "Comment ouvre-t-on en Python le fichier `rapport.txt` pour l'écrire en remplaçant son contenu ?",
+          "choix": [
+            "`open(\"rapport.txt\", \"r\")`",
+            "`open(\"rapport.txt\", \"w\")`",
+            "`fopen(\"rapport.txt\", \"w\")`",
+            "`file.open(\"rapport.txt\")`"
+          ],
+          "reponse": 1,
+          "explication": "C'est `open(nom, \"w\")`. `fopen` est la fonction du C, et `\"r\"` ouvre en lecture."
+        },
+        {
+          "question": "Comment récupère-t-on en Python la **liste** des lignes restantes d'un fichier `f` ?",
+          "choix": [
+            "`f.readline()`",
+            "`f.lines()`",
+            "`f.readlines()`",
+            "`f.getLines()`"
+          ],
+          "reponse": 2,
+          "explication": "`readlines()` renvoie une liste (chaque ligne garde son `\"\\n\"`). `readline()` ne renvoie qu'**une** ligne."
+        },
+        {
+          "question": "Comment écrit-on le texte `bonjour` suivi d'un retour à la ligne dans un fichier `f` ouvert en écriture ?",
+          "choix": [
+            "`f.write(\"bonjour\")`",
+            "`f.write(\"bonjour\\n\")`",
+            "`f.print(\"bonjour\")`",
+            "`f.writeline(\"bonjour\")`"
+          ],
+          "reponse": 1,
+          "explication": "`write` écrit le texte tel quel, sans ajouter de retour à la ligne : il faut mettre le `\"\\n\"` soi-même. `print(\"bonjour\", file=f)` marche aussi."
+        },
+        {
+          "question": "Comment charge-t-on en Python le contenu d'un fichier JSON ouvert dans `f` ?",
+          "choix": [
+            "`json.parse(f)`",
+            "`json.load(f)`",
+            "`JSON.read(f)`",
+            "`json.loads(f)`"
+          ],
+          "reponse": 1,
+          "explication": "`json.load` prend un fichier ouvert. `json.parse` et `JSON.read` n'existent pas (`JSON.parse` est du JavaScript), et `loads` attend une chaîne."
+        },
+        {
+          "question": "Comment lit-on en Python un fichier CSV dont les colonnes sont séparées par des points-virgules ?",
+          "choix": [
+            "`csv.reader(f, sep=\";\")`",
+            "`csv.reader(f, delimiter=\";\")`",
+            "`csv.read(f, \";\")`",
+            "`f.csv(\";\")`"
+          ],
+          "reponse": 1,
+          "explication": "Le paramètre s'appelle `delimiter`. `sep` est le nom utilisé par la bibliothèque pandas, pas par le module `csv`."
         }
       ]
     }

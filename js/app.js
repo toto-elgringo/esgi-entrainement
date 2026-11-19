@@ -1,11 +1,12 @@
 import { chargerCatalogue } from './catalogue.js';
 import { afficherExerciceCode } from './code/exercice.js';
-import { estDomaineCode } from './domaines.js';
+import { avecFormules, estDomaineCode } from './domaines.js';
 import { afficherExerciceMaths } from './maths/exercice.js';
 import { dessinerMenu, dessinerProgressionGlobale } from './menu.js';
-import { echapper } from './outils.js';
+import { notifier } from './notification.js';
+import { chargerFormules, echapper } from './outils.js';
 import { chapitresDeMatiere } from './parcours.js';
-import { stockage } from './stockage.js';
+import { MESSAGE_STOCKAGE_PLEIN, stockage } from './stockage.js';
 import { afficherAccueil } from './vues/accueil.js';
 import { afficherCours } from './vues/cours.js';
 import { afficherQuiz } from './vues/quiz.js';
@@ -15,6 +16,7 @@ const menu = document.getElementById('menu');
 const contenu = document.getElementById('contenu');
 const progressionGlobale = document.getElementById('progression-globale');
 const choixMatiere = document.getElementById('choix-matiere');
+const NOM_SITE = 'ESGI Entraînement';
 
 const etat = {
   matieres: [],
@@ -85,13 +87,17 @@ function creerContexte(numeroNavigation) {
     partieQuiz: (chapitreCle) => stockage.partieQuiz(chapitreCle),
     enregistrerPartieQuiz: (chapitreCle, partie) => stockage.enregistrerPartieQuiz(chapitreCle, partie),
     enregistrerEssai: (cle, reussi) => {
+      const avant = Boolean(stockage.progression().exercices[cle]?.reussi);
       stockage.enregistrerEssai(cle, reussi);
-      rafraichirMenu();
+      if (Boolean(stockage.progression().exercices[cle]?.reussi) !== avant) rafraichirMenu();
     },
     enregistrerQuiz: (chapitreCle, score, total) => {
+      const avant = JSON.stringify(stockage.progression().quiz[chapitreCle] ?? null);
       stockage.enregistrerQuiz(chapitreCle, score, total);
-      rafraichirMenu();
+      if (JSON.stringify(stockage.progression().quiz[chapitreCle]) !== avant) rafraichirMenu();
     },
+    tailleStockage: () => stockage.tailleUtilisee(),
+    effacerResultats: () => stockage.effacerResultats(),
     choisirMatiere,
     reinitialiser: () => {
       stockage.reinitialiser();
@@ -103,6 +109,25 @@ function creerContexte(numeroNavigation) {
       location.reload();
     },
   };
+}
+
+function domaineDeLaRoute(route) {
+  const chapitre = etat.chapitres.find((candidat) => candidat.cle === route.chapitreCle);
+  if (chapitre) return chapitre.domaine;
+  return etat.matieres.find((matiere) => matiere.id === matiereCourante())?.domaine ?? null;
+}
+
+function titrePage(route) {
+  const chapitre = etat.chapitres.find((candidat) => candidat.cle === route.chapitreCle);
+  if (!route.vue || !chapitre) {
+    const matiere = etat.matieres.find((candidate) => candidate.id === matiereCourante());
+    return matiere ? `${matiere.titre} · ${NOM_SITE}` : NOM_SITE;
+  }
+  const pages = { cours: 'Cours', quiz: 'Quiz', supports: 'Supports originaux' };
+  const page = route.vue === 'exercice'
+    ? chapitre.exercices.find((exercice) => exercice.id === route.exerciceId)?.titre ?? 'Exercice'
+    : pages[route.vue] ?? 'Cours';
+  return `${page} – ${chapitre.titre} · ${NOM_SITE}`;
 }
 
 function afficherVue(ctx, route) {
@@ -130,7 +155,7 @@ async function afficherRoute() {
     nettoyage();
   }
 
-  document.body.classList.remove('menu-visible');
+  fermerMenuMobile();
   appliquerMenuRange();
   const route = lireRoute();
   const chapitre = etat.chapitres.find((candidat) => candidat.cle === route.chapitreCle);
@@ -138,15 +163,24 @@ async function afficherRoute() {
   if (chapitre) etat.ouverts.add(chapitre.cle);
   remplirChoixMatiere();
   rafraichirMenu();
-  contenu.scrollTop = 0;
+  document.title = titrePage(route);
+  contenu.setAttribute('aria-busy', 'true');
 
   try {
+    if (avecFormules(domaineDeLaRoute(route))) await chargerFormules();
+    if (numeroNavigation !== etat.navigation) return;
     const nettoyage = await afficherVue(creerContexte(numeroNavigation), route);
-    if (numeroNavigation === etat.navigation && typeof nettoyage === 'function') etat.nettoyage = nettoyage;
+    if (numeroNavigation !== etat.navigation) {
+      if (typeof nettoyage === 'function') nettoyage();
+      return;
+    }
+    if (typeof nettoyage === 'function') etat.nettoyage = nettoyage;
   } catch (erreur) {
     if (numeroNavigation !== etat.navigation) return;
     contenu.innerHTML = `<div class="alerte">${echapper(erreur.message)}</div><p><a href="#/">Retour à l'accueil</a></p>`;
   }
+  contenu.removeAttribute('aria-busy');
+  contenu.scrollTop = 0;
 }
 
 choixMatiere.addEventListener('change', () => choisirMatiere(choixMatiere.value));
@@ -157,7 +191,8 @@ menu.addEventListener('click', (evenement) => {
   const cle = bouton.dataset.chapitre;
   if (etat.ouverts.has(cle)) etat.ouverts.delete(cle);
   else etat.ouverts.add(cle);
-  bouton.parentElement.classList.toggle('ouvert');
+  const ouvert = bouton.parentElement.classList.toggle('ouvert');
+  bouton.setAttribute('aria-expanded', String(ouvert));
 });
 
 const boutonMenu = document.getElementById('bouton-menu');
@@ -169,6 +204,13 @@ function appliquerMenuRange() {
   boutonMenu.setAttribute('aria-expanded', String(ecranEtroit.matches ? document.body.classList.contains('menu-visible') : !range));
 }
 
+function fermerMenuMobile() {
+  if (!document.body.classList.contains('menu-visible')) return false;
+  document.body.classList.remove('menu-visible');
+  appliquerMenuRange();
+  return true;
+}
+
 function basculerMenu() {
   if (ecranEtroit.matches) document.body.classList.toggle('menu-visible');
   else stockage.rangerMenu(!stockage.menuRange());
@@ -176,8 +218,15 @@ function basculerMenu() {
 }
 
 boutonMenu.addEventListener('click', basculerMenu);
+contenu.addEventListener('click', () => {
+  if (ecranEtroit.matches) fermerMenuMobile();
+});
 
 document.addEventListener('keydown', (evenement) => {
+  if (evenement.key === 'Escape' && ecranEtroit.matches && fermerMenuMobile()) {
+    boutonMenu.focus();
+    return;
+  }
   const controle = evenement.ctrlKey || evenement.metaKey;
   if (evenement.defaultPrevented || !controle || evenement.shiftKey || evenement.altKey || evenement.key.toLowerCase() !== 'b') return;
   evenement.preventDefault();
@@ -210,6 +259,12 @@ document.querySelector('.disposition').addEventListener('transitionend', (evenem
 appliquerMenuRange();
 
 window.addEventListener('hashchange', afficherRoute);
+stockage.surErreurEcriture(() => notifier(MESSAGE_STOCKAGE_PLEIN, { duree: 0 }));
+stockage.surChangementExterne(() => {
+  remplirChoixMatiere();
+  rafraichirMenu();
+  appliquerTheme();
+});
 window.addEventListener('beforeunload', () => etat.nettoyage?.());
 
 try {
@@ -218,5 +273,6 @@ try {
   etat.chapitres = catalogue.chapitres;
   await afficherRoute();
 } catch (erreur) {
+  contenu.removeAttribute('aria-busy');
   contenu.innerHTML = `<div class="alerte">Impossible de charger le contenu : ${echapper(erreur.message)}</div>`;
 }

@@ -7,6 +7,8 @@
   "scripts": {
     "start": "node serveur/index.js",
     "test": "node --test",
+    "test:rapide": "node scripts/test-rapide.js",
+    "couverture": "node --test --experimental-test-coverage",
     "sommaire": "node scripts/sommaire.js",
     "verifier-contenu": "node scripts/verifier-contenu.js"
   },

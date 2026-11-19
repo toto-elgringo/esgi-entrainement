@@ -1,0 +1,8 @@
+{
+  "titre": "Tri par tas",
+  "description": "Tas binaire (arbre complet rangé dans un tableau), indices du parent et des enfants, tas max et tas min, insertion avec remontée, retrait de la racine avec descente, construction du tas, tri par tas en O(n log n), en place et non stable.",
+  "source": "cours",
+  "supports": [
+    {"titre": "Vidéo : la structure de tas", "url": "https://www.youtube.com/watch?v=3IDTPU43C8U"}
+  ]
+}

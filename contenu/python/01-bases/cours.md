@@ -196,6 +196,57 @@ print(l, dernier)
 print(30 in l, [1, 2] + [3], [0] * 3)
 ```
 
+On crée une liste de trois façons : en écrivant ses valeurs (`[1, 2, 3]`, un **littéral**), à partir d'un autre itérable (`list(range(5))`, `list("abc")`), ou avec une compréhension (chapitre 3).
+
+### Les méthodes des listes
+
+Elles **modifient la liste** elle-même (on dit « sur place ») et, sauf `pop` et `index`, renvoient `None`.
+
+| Méthode | Effet | Avec `l = [1, 2, 3]` |
+|---|---|---|
+| `l.append(x)` | ajoute **un** élément à la fin | `l.append(4)` → `[1, 2, 3, 4]` |
+| `l.extend(it)` | ajoute **chaque** élément d'un itérable | `l.extend("hi")` → `[1, 2, 3, 'h', 'i']` |
+| `l.insert(i, x)` | insère `x` à l'indice `i` (à la fin si `i` est trop grand) | `l.insert(1, 10)` → `[1, 10, 2, 3]` |
+| `l.pop()`, `l.pop(i)` | retire et **renvoie** le dernier, ou celui d'indice `i` | `l.pop(0)` renvoie `1` |
+| `l.remove(x)` | retire la **première** occurrence de `x` (`ValueError` si absent) | `l.remove(2)` → `[1, 3]` |
+| `l.index(x, debut, fin)` | position de la première occurrence, cherchée entre `debut` et `fin` (`ValueError` si absent) | `l.index(3)` vaut `2` |
+| `l.count(x)` | nombre d'occurrences | `l.count(1)` vaut `1` |
+| `l.sort()` | trie sur place | |
+| `l.clear()` | vide la liste | `[]` |
+
+```python
+l = [1, 2, 3, 4, 5, 6]
+del l[0]
+del l[-1]
+del l[1::2]
+print(l)
+
+try:
+    l.remove(42)
+except ValueError:
+    print("42 n'est pas dans la liste")
+
+notes = [12, 8, 15]
+print(sum(notes), min(notes), max(notes))
+
+grille = [0] * 5
+print(grille)
+```
+
+`del` supprime un élément **ou une tranche entière** : `del l[1::2]` retire tous les éléments d'indice impair en une instruction.
+
+> [!warning] `append` ou `extend` ?
+> `l.append([4, 5])` ajoute **une** case qui contient une liste : `[1, 2, 3, [4, 5]]`. `l.extend([4, 5])` (ou `l += [4, 5]`) ajoute deux cases. Et `+` ne marche qu'entre deux listes : `[1, 2] + 3` lève une `TypeError`, il faut `[1, 2] + [3]`.
+
+Pour parcourir **deux listes en même temps**, rang par rang, on utilise `zip` (détaillé au chapitre 3) :
+
+```python
+noms = ["Ana", "Tom", "Eva"]
+notes = [14, 9, 17]
+for nom, note in zip(noms, notes):
+    print(nom, note)
+```
+
 ### Les tranches `[début:fin:pas]`
 
 Le début est **inclus**, la fin **exclue**.
@@ -277,7 +328,34 @@ print(f"{prix:.2f} euros")
 > [!tip] f-strings
 > `f"{nom} a {age} ans"` écrit les valeurs directement dans le texte : c'est la façon moderne, plus lisible que `%`.
 
-Autres méthodes utiles : `upper()`, `lower()`, `strip()`, `replace(a, b)`, `startswith(...)`, `isdigit()`, `isalpha()`. Elles renvoient une **nouvelle** chaîne.
+### Les méthodes les plus courantes
+
+Elles renvoient une **nouvelle** valeur : la chaîne d'origine ne change jamais.
+
+| Méthode | Rôle | Exemple | Résultat |
+|---|---|---|---|
+| `upper()`, `lower()` | majuscules, minuscules | `"Salut".upper()` | `"SALUT"` |
+| `capitalize()`, `title()` | majuscule à la première lettre / à chaque mot | `"le chat".title()` | `"Le Chat"` |
+| `startswith(p)`, `endswith(s)` | commence / finit par | `"Hello".startswith("He")` | `True` |
+| `find(sous)` | position de la première occurrence, **`-1`** si absente | `"hello".find("l")` | `2` |
+| `replace(a, b)` | remplace toutes les occurrences | `"Mr X et Mr Y".replace("Mr", "Dr")` | `"Dr X et Dr Y"` |
+| `isdigit()`, `isalpha()`, `isalnum()` | que des chiffres / des lettres / les deux | `"Naruto93".isalnum()` | `True` |
+| `isupper()`, `islower()` | toutes les lettres sont en majuscules / minuscules | `"hello world".islower()` | `True` |
+| `strip()` | enlève les espaces aux deux bouts | `"  ok ".strip()` | `"ok"` |
+
+```python
+print("hello world".isalpha())
+print("a1".islower())
+print("hello".find("X"))
+print("Hello World".endswith("world"))
+```
+
+> [!warning] Pièges
+> - `isalpha()` est faux dès qu'il y a un espace : `"hello world".isalpha()` vaut `False`.
+> - `islower()` et `isupper()` ne regardent **que les lettres** : `"a1".islower()` vaut `True`.
+> - Tout est sensible à la casse : `"Hello World".endswith("world")` vaut `False`.
+
+Le chapitre 5 détaille toutes ces méthodes et les f-strings.
 
 ## 10. Les tuples
 
@@ -327,6 +405,33 @@ print(set("01").issuperset("100101"))
 | `x` contient **tous** les éléments de `s` ? | `s.issubset(x)` |
 | `x` ne contient **que** des éléments de `s` ? | `s.issuperset(x)` |
 
+### Modifier un ensemble
+
+| Méthode | Effet |
+|---|---|
+| `s.add(x)` | ajoute **un** élément (rien ne change s'il y est déjà) |
+| `s.update(it)` | ajoute chaque élément d'un itérable |
+| `s.remove(x)` | retire `x`, **`KeyError`** s'il n'y est pas |
+| `s.discard(x)` | retire `x` s'il y est, sinon ne fait rien |
+| `s.pop()` | retire et renvoie un élément **au hasard** |
+| `s.difference_update(it)` | retire tous les éléments d'un itérable |
+| `s.clear()` | vide l'ensemble |
+
+```python
+s = {1, 2, 3}
+s.add(4)
+s.add(1)
+s.update([2, 6])
+s.discard(99)
+s.difference_update([1, 2])
+print(s)
+
+print(sorted({5, 2, 3, 1}))
+print(sum({5, 2, 1}), min({5, 2, 1}), max({5, 2, 1}))
+```
+
+Un ensemble n'a pas d'ordre : pour l'afficher trié, `sorted(s)` renvoie une **liste** triée.
+
 > [!warning] Pièges
 > - `{}` est un **dictionnaire** vide : l'ensemble vide s'écrit `set()`.
 > - `s.update(t)` modifie `s` et renvoie `None` : pour un nouvel ensemble, `s | t` ou `s.union(t)`.
@@ -349,6 +454,12 @@ print(d)
 
 valeur = d.pop("c")
 print(valeur, d.pop("absent", 0))
+del d["x"]
+
+try:
+    d.pop("absent")
+except KeyError:
+    print("pas de clé absent")
 
 for cle, valeur in d.items():
     print(cle, valeur)
@@ -358,10 +469,14 @@ compte = {}
 for mot in "le chat et le chien".split():
     compte[mot] = compte.get(mot, 0) + 1
 print(compte)
+
+d.clear()
+print(d)
 ```
 
 > [!info] À retenir
 > - `in` teste les **clés**, pas les valeurs.
+> - `for cle, valeur in d.items():` est plus clair que `for cle in d:` suivi de `d[cle]`.
 > - `d[cle]` lève une `KeyError` si la clé n'existe pas ; `d.get(cle, defaut)` jamais.
 > - Les clés doivent être non modifiables (`str`, `int`, `tuple`).
 > - Depuis Python 3.7, un dictionnaire garde l'ordre d'insertion.

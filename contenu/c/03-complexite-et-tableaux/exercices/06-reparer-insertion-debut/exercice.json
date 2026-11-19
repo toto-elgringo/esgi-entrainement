@@ -1,0 +1,10 @@
+{
+  "titre": "Réparer l'insertion en position 0",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Le bug n'apparaît que pour `position == 0`. Calcule `position - 1` quand `position` est un `size_t` qui vaut 0.",
+    "`0 - 1` en `size_t` donne le plus grand nombre possible : la condition `i > position - 1` est fausse dès le départ, la boucle ne décale rien et la valeur écrase la première case.",
+    "Écris la condition sans soustraction : `i > position`. La boucle fait alors exactement les décalages utiles, y compris pour la position 0."
+  ]
+}

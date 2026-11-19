@@ -1,0 +1,16 @@
+{
+  "titre": "Tris simples",
+  "description": "Tris par sélection, à bulles, par insertion, pair-impair, à peigne et cocktail : principe, code C, complexité, meilleur et pire cas, stabilité.",
+  "source": "cours",
+  "supports": [
+    {"titre": "Vidéo : tri par insertion", "url": "https://www.youtube.com/watch?v=gkORwcjHfOk"},
+    {"titre": "Vidéo : tri par sélection", "url": "https://www.youtube.com/watch?v=qYZywjqkrCs"},
+    {"titre": "Vidéo : tri à bulles", "url": "https://www.youtube.com/watch?v=cPdlMcv2pYE"},
+    {"titre": "Visualisation : tri à bulles", "url": "https://www.youtube.com/watch?v=Cq7SMsQBEUw"},
+    {"titre": "Visualisation : tri par sélection", "url": "https://www.youtube.com/watch?v=92BfuxHn2XE"},
+    {"titre": "Visualisation : tri par insertion", "url": "https://www.youtube.com/watch?v=8oJS1BMKE64"},
+    {"titre": "Visualisation : tri à peigne", "url": "https://www.youtube.com/watch?v=ob49RukGnAw"},
+    {"titre": "Visualisation : tri pair-impair", "url": "https://www.youtube.com/watch?v=AYehFa-oKCA"},
+    {"titre": "Visualisation : tri cocktail", "url": "https://www.youtube.com/watch?v=njClLBoEbfI"}
+  ]
+}

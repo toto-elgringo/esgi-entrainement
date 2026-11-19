@@ -1,0 +1,10 @@
+{
+  "titre": "Combien de fois couper en deux ?",
+  "difficulte": 1,
+  "type": "tests",
+  "indices": [
+    "Tant que `n` est plus grand que 1, divise-le par deux (division entière) et compte un tour.",
+    "Une boucle `while (n > 1)` avec un compteur qui part de 0.",
+    "`int etapes = 0; while (n > 1) { n = n / 2; etapes++; } return etapes;`"
+  ]
+}

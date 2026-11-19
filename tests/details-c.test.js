@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import * as c from '../serveur/c.js';
+import { raisonSansOutil } from './aide.js';
 
-const { gcc } = await c.outilsC();
-const sansGcc = gcc ? false : 'gcc n’est pas installé';
+const sansGcc = await raisonSansOutil(async () => (await c.outilsC()).gcc, 'gcc');
 
 const CODE = [
   '#include <stdlib.h>',
