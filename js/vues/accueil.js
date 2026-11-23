@@ -55,20 +55,22 @@ function carteChapitre(chapitre, numero, progression, matiere) {
     </article>`;
 }
 
+export function carteMatiere(matiere, chapitres, progression) {
+  const presentation = presentationMatiere(matiere.id);
+  const { reussis, total } = compterProgression(chapitres, progression);
+  return `
+    <button class="carte-matiere" data-matiere="${matiere.id}" style="--couleur-matiere: ${presentation.couleur}">
+      <span class="icone" aria-hidden="true">${presentation.icone}</span>
+      <h3>${echapper(matiere.titre)}</h3>
+      <p>${presentation.texte}</p>
+      <span class="detail">${chapitres.length} chapitres · ${reussis} / ${total} exercices réussis</span>
+      ${barreProgression(reussis, total)}
+    </button>`;
+}
+
 function afficherChoix(ctx) {
   const cartes = ctx.matieres
-    .map((matiere) => {
-      const presentation = presentationMatiere(matiere.id);
-      const chapitres = chapitresDeMatiere(ctx.tousLesChapitres, matiere.id);
-      const { reussis, total } = compterProgression(chapitres, ctx.progression);
-      return `
-        <button class="carte-matiere" data-matiere="${matiere.id}" style="--couleur-matiere: ${presentation.couleur}">
-          <span class="icone" aria-hidden="true">${presentation.icone}</span>
-          <h3>${echapper(matiere.titre)}</h3>
-          <p>${presentation.texte}</p>
-          <span class="detail">${chapitres.length} chapitres · ${reussis} / ${total} exercices réussis</span>
-        </button>`;
-    })
+    .map((matiere) => carteMatiere(matiere, chapitresDeMatiere(ctx.tousLesChapitres, matiere.id), ctx.progression))
     .join('');
 
   ctx.conteneur.innerHTML = `
