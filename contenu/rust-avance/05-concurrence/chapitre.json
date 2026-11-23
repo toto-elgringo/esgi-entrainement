@@ -1,6 +1,6 @@
 {
   "titre": "Concurrence",
-  "description": "Threads, canaux, Mutex, Arc, RwLock, atomiques, Send et Sync, interblocage.",
+  "description": "Threads, canaux (bornés ou non), Mutex, Arc, RwLock, atomiques, Send et Sync, interblocage, aperçu de rayon.",
   "source": "fondamentaux",
   "supports": [
     {

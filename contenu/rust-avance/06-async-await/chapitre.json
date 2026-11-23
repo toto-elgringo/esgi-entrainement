@@ -1,6 +1,6 @@
 {
   "titre": "Async / await",
-  "description": "Futures, async fn et .await, Poll et Pin, mini exécuteur block_on écrit à la main, threads contre async, aperçu de tokio.",
+  "description": "Futures, async fn et .await, Poll et Pin, mini exécuteur block_on écrit à la main, threads contre async, aperçu de tokio (runtime, spawn, spawn_blocking).",
   "source": "fondamentaux",
   "supports": [
     {

@@ -353,5 +353,56 @@ fn main() {
 }
 ```
 
+## 14. Un service générique sur un repository
+
+Le **repository** est un trait : il dit ce dont le service a besoin, rien de plus. Le **service** est générique sur ce trait, il ne sait pas d'où viennent les données. En production, l'implémentation parle à SQLite (SeaORM) ; dans les tests, une simple `BTreeMap` suffit. Dans Loco les méthodes sont `async` (avec `#[async_trait]`) ; ici on garde la même idée en std.
+
+```rust
+use std::collections::BTreeMap;
+
+trait Mesures {
+    fn existe(&self, capteur: u32) -> bool;
+    fn valeurs_de(&self, capteur: u32) -> Vec<f64>;
+}
+
+#[derive(Default)]
+struct EnMemoire {
+    donnees: BTreeMap<u32, Vec<f64>>,
+}
+
+impl Mesures for EnMemoire {
+    fn existe(&self, capteur: u32) -> bool {
+        self.donnees.contains_key(&capteur)
+    }
+
+    fn valeurs_de(&self, capteur: u32) -> Vec<f64> {
+        self.donnees.get(&capteur).cloned().unwrap_or_default()
+    }
+}
+
+fn moyenne_capteur<R: Mesures>(repo: &R, capteur: u32) -> Option<f64> {
+    if !repo.existe(capteur) {
+        return None;
+    }
+    let valeurs = repo.valeurs_de(capteur);
+    if valeurs.is_empty() {
+        return Some(0.0);
+    }
+    Some(valeurs.iter().sum::<f64>() / valeurs.len() as f64)
+}
+
+fn main() {
+    let mut repo = EnMemoire::default();
+    repo.donnees.insert(1, vec![21.5, 22.0, 19.5]);
+    println!("{:?}", moyenne_capteur(&repo, 1));
+    println!("{:?}", moyenne_capteur(&repo, 9));
+}
+```
+
+Le contrôleur ne fait plus que traduire : `None` devient un **404**, `Some(stats)` devient un **200** avec du JSON. Le service se teste en quelques millisecondes, sans serveur ni base.
+
+> [!info] Pourquoi `Clone + Send + Sync + 'static` ?
+> Dans Loco, le trait du repository demande ces bornes : chaque requête est une tâche tokio qui peut changer de thread, donc le repository doit pouvoir être copié et partagé entre threads sans risque.
+
 > [!tip] À retenir
 > Un framework web, c'est surtout : une **table de routes**, des **gestionnaires** rangés derrière `Box<dyn Fn>`, des **middlewares** qui enveloppent, des **extracteurs** (`TryFrom`) et des **erreurs** propagées avec `?` puis converties (`From`) en réponses. Loco range tout ça dans une structure commune et génère le code répétitif.

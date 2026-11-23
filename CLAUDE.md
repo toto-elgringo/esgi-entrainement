@@ -121,5 +121,5 @@ CONTENU.md          format exact du contenu (code et réponses)
 ## État actuel
 
 - Idées : `TODO.md`.
-- Contenu de code (18/11/2026) : Rust 15 chapitres / 142 exercices, Rust avancé 10 / 77, Python 6 / 97, Algo avancée (C) 11 / 101 (tableaux, tris simples, fusion, rapide, tas, piles, files, listes chaînées). Les quiz finissent par des questions de style évaluation, sur le modèle des QCM Schooding.
+- Contenu de code (18/11/2026) : Rust 15 chapitres / 142 exercices, Rust avancé 10 / 79, Python 6 / 97, Algo avancée (C) 11 / 101 (tableaux, tris simples, fusion, rapide, tas, piles, files, listes chaînées). Les quiz finissent par des questions de style évaluation, sur le modèle des QCM Schooding.
 - Problème connu (10/11/2026) : le Smart App Control de Windows est actif et bloque au hasard les programmes compilés (« spawn UNKNOWN », os error 4551) : tests Rust / serveur et `verifier-contenu -- rust` échouent par moments sans que le contenu soit en cause.

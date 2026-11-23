@@ -919,7 +919,7 @@
     {
       "id": "05-concurrence",
       "titre": "Concurrence",
-      "description": "Threads, canaux, Mutex, Arc, RwLock, atomiques, Send et Sync, interblocage.",
+      "description": "Threads, canaux (bornés ou non), Mutex, Arc, RwLock, atomiques, Send et Sync, interblocage, aperçu de rayon.",
       "source": "fondamentaux",
       "supports": [
         {
@@ -1026,6 +1026,17 @@
             "Utilise `thread::scope(|s| { ... })` : il renvoie la valeur de son bloc, donc tu peux écrire `let sommes: Vec<u32> = thread::scope(|s| { ... });`.",
             "Dans le scope : `nombres.chunks(4).map(|m| s.spawn(move || m.iter().sum::<u32>())).collect::<Vec<_>>()` donne les `handles`.",
             "Termine le bloc avec `handles.into_iter().map(|h| h.join().unwrap()).collect()`. L'affichage se fait ensuite dans `main`, dans l'ordre des morceaux."
+          ]
+        },
+        {
+          "id": "09-chaine-bornee",
+          "titre": "Une chaîne à deux étapes",
+          "difficulte": 2,
+          "type": "tests",
+          "indices": [
+            "Crée deux canaux bornés : `let (tx_entree, rx_entree) = mpsc::sync_channel(capacite);` et la même chose pour la sortie.",
+            "Le premier thread envoie chaque valeur dans `tx_entree`. Le second lit `rx_entree` avec une boucle `for`, et envoie `v * 2` dans `tx_sortie`.",
+            "Les deux `tx` sont déplacés dans les threads : quand les threads finissent, les canaux se ferment. Le thread principal fait `rx_sortie.iter().collect()` puis les `join`."
           ]
         }
       ],
@@ -1139,13 +1150,35 @@
           ],
           "reponse": 1,
           "explication": "Si tous les threads prennent les verrous dans le même ordre, aucun cycle d'attente ne peut se former."
+        },
+        {
+          "question": "Que fait `tx.send(v)` sur un canal créé avec `mpsc::sync_channel(2)` quand 2 messages attendent déjà ?",
+          "choix": [
+            "Il perd le message",
+            "Il attend que le consommateur retire un message",
+            "Il agrandit la file automatiquement",
+            "Il renvoie toujours une erreur"
+          ],
+          "reponse": 1,
+          "explication": "Un canal borné garde au plus `n` messages : quand il est plein, `send` attend. Un producteur trop rapide est freiné et la mémoire ne déborde pas."
+        },
+        {
+          "question": "Avec rayon, que change `par_iter()` à la place de `iter()` dans `liste.iter().map(f).collect()` ?",
+          "choix": [
+            "Le résultat est dans un ordre aléatoire",
+            "Le calcul est réparti sur plusieurs cœurs, avec le même résultat",
+            "Le calcul devient asynchrone",
+            "Il faut entourer la liste d'un `Mutex`"
+          ],
+          "reponse": 1,
+          "explication": "rayon découpe le travail entre les cœurs puis `collect` remet les morceaux dans l'ordre : même résultat, plus vite pour un calcul lourd."
         }
       ]
     },
     {
       "id": "06-async-await",
       "titre": "Async / await",
-      "description": "Futures, async fn et .await, Poll et Pin, mini exécuteur block_on écrit à la main, threads contre async, aperçu de tokio.",
+      "description": "Futures, async fn et .await, Poll et Pin, mini exécuteur block_on écrit à la main, threads contre async, aperçu de tokio (runtime, spawn, spawn_blocking).",
       "source": "fondamentaux",
       "supports": [
         {
@@ -1365,6 +1398,28 @@
           ],
           "reponse": 1,
           "explication": "Un exécuteur fait tourner plusieurs tâches dans un même fil. Bloquer ce fil bloque tout. Il faut un sommeil asynchrone (par exemple `tokio::time::sleep`)."
+        },
+        {
+          "question": "Que crée `tokio::spawn(async { ... })` ?",
+          "choix": [
+            "Un nouveau thread du système",
+            "Une tâche légère, exécutée par les workers du runtime",
+            "Un nouveau runtime",
+            "Un processus séparé"
+          ],
+          "reponse": 1,
+          "explication": "`tokio::spawn` ajoute une tâche dans une file : quelques workers font avancer des milliers de tâches, sans un thread chacune."
+        },
+        {
+          "question": "Un gestionnaire async fait un calcul d'une seconde. Que faut-il écrire ?",
+          "choix": [
+            "Rien, `async` rend le calcul parallèle",
+            "Mettre le calcul dans `tokio::task::spawn_blocking` et attendre le résultat avec `.await`",
+            "Ajouter `std::thread::sleep` avant le calcul",
+            "Appeler `tokio::join!` avec le calcul seul"
+          ],
+          "reponse": 1,
+          "explication": "Un calcul long bloque le worker et retarde toutes les autres tâches. `spawn_blocking` l'envoie dans un pool de threads à part."
         }
       ]
     },
@@ -1819,7 +1874,7 @@
     {
       "id": "09-web-et-loco",
       "titre": "Web et Loco",
-      "description": "Pourquoi un framework web, Axum et Loco (le « Rails » de Rust), structure d'un projet, modèles, auth, scaffolds, tests ; et les idées Rust derrière : routeur, gestionnaires, middlewares, From/TryFrom, Result et `?`.",
+      "description": "Pourquoi un framework web, Axum et Loco (le « Rails » de Rust), structure d'un projet, modèles, auth, scaffolds, tests ; et les idées Rust derrière : routeur, gestionnaires, middlewares, From/TryFrom, Result et `?`, service générique sur un repository.",
       "source": "fondamentaux",
       "supports": [
         {
@@ -1900,6 +1955,17 @@
             "Construis un `Vec<String>` de lignes puis `lignes.join(\"\\n\")`.",
             "Met la première lettre du nom en majuscule avec `chars()`, `next()` et `to_uppercase()`. Le pluriel est simplement le nom suivi de `s`.",
             "Pour chaque champ, `match` sur le type : `\"string\"` donne `String`, `\"double\"` donne `f64`, `\"int\"` donne `i64`."
+          ]
+        },
+        {
+          "id": "07-service-et-repository",
+          "titre": "Un service sur un repository",
+          "difficulte": 3,
+          "type": "tests",
+          "indices": [
+            "`existe` : `self.donnees.contains_key(&capteur)`. `valeurs_de` : `self.donnees.get(&capteur).cloned().unwrap_or_default()`.",
+            "`inserer` : `self.donnees.get_mut(&capteur)` donne `Option<&mut Vec<f64>>`. Avec `match`, ajoute les valeurs avec `extend_from_slice` et renvoie leur nombre, sinon `0`.",
+            "`stats_capteur` : si `!repo.existe(capteur)`, renvoie `None`. Sinon calcule la moyenne seulement si la liste n'est pas vide (`if` ou `then`)."
           ]
         }
       ],
@@ -2013,6 +2079,28 @@
           ],
           "reponse": 1,
           "explication": "`From` est une conversion qui réussit toujours. `TryFrom` renvoie `Result` : c'est l'idée d'un extracteur qui peut refuser une requête."
+        },
+        {
+          "question": "Dans l'architecture en couches, pourquoi le service est-il écrit `fn stats<R: MesuresRepository>(repo: &R, ...)` ?",
+          "choix": [
+            "Pour aller plus vite à l'exécution",
+            "Pour qu'il marche avec n'importe quel repository : SQLite en production, une table en mémoire dans les tests",
+            "Parce que Loco l'impose pour les routes",
+            "Pour éviter d'écrire des tests"
+          ],
+          "reponse": 1,
+          "explication": "Le service ne connaît que le trait : on lui donne la vraie base en production et une `BTreeMap` dans les tests, qui tournent alors sans serveur ni base."
+        },
+        {
+          "question": "Quel est le rôle du contrôleur dans cette architecture ?",
+          "choix": [
+            "Écrire les requêtes SQL",
+            "Calculer les statistiques",
+            "Extraire la requête, appeler le service et traduire le résultat en code HTTP et en JSON",
+            "Créer les migrations"
+          ],
+          "reponse": 2,
+          "explication": "Le contrôleur ne fait que du HTTP : par exemple `None` devient un 404 et `Some(stats)` un 200 avec du JSON."
         }
       ]
     },
