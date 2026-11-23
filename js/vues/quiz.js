@@ -62,6 +62,10 @@ export function questionsRatees(partie, questions) {
   return questionsDeLaPartie(partie, questions).filter((index) => partie.reponses[index] !== undefined && partie.reponses[index] !== questions[index].reponse);
 }
 
+export function peutReinitialiser(partie) {
+  return Array.isArray(partie?.selection) || Object.keys(partie?.reponses ?? {}).length > 0;
+}
+
 export function texteCompteur(partie, questions) {
   const total = questionsDeLaPartie(partie, questions).length;
   const repondues = compterRepondues(partie, questions);
@@ -137,15 +141,17 @@ export async function afficherQuiz(ctx, chapitre) {
         <p class="message-vide">${intro}</p>
         ${questions.length === 0
           ? '<p>Pas encore de quiz pour ce chapitre.</p>'
-          : `<p class="compteur-quiz" data-compteur></p>${indices.map((index, rang) => blocQuestion(questions[index], index, rang + 1, partie.ordres[index])).join('')}`}
+          : `<div class="compteur-quiz"><span data-compteur></span><button class="bouton discret" data-recommencer hidden>↺ Réinitialiser le quiz</button></div>${indices.map((index, rang) => blocQuestion(questions[index], index, rang + 1, partie.ordres[index])).join('')}`}
         <div class="score-quiz" hidden></div>
       </section>`;
 
     const section = ctx.conteneur.querySelector('.quiz');
     const compteur = section.querySelector('[data-compteur]');
+    const reinitialiser = section.querySelector('.compteur-quiz [data-recommencer]');
     const blocDe = (index) => section.querySelector(`.question[data-index="${index}"]`);
     const majCompteur = () => {
       if (compteur) compteur.textContent = estTerminee(partie, questions) ? `Terminé · ${compterBonnes(partie, questions)} / ${indices.length} bonnes` : texteCompteur(partie, questions);
+      if (reinitialiser) reinitialiser.hidden = !peutReinitialiser(partie);
     };
     indices.forEach((index) => {
       if (partie.reponses[index] !== undefined) corrigerQuestion(blocDe(index), questions[index], partie.reponses[index]);

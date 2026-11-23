@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { compterBonnes, estTerminee, nouvellePartie, partieValide, questionsDeLaPartie, questionsRatees, texteCompteur } from '../js/vues/quiz.js';
+import { compterBonnes, estTerminee, nouvellePartie, partieValide, peutReinitialiser, questionsDeLaPartie, questionsRatees, texteCompteur } from '../js/vues/quiz.js';
 
 const questions = [
   { choix: ['a', 'b', 'c'], reponse: 2 },
@@ -75,5 +75,14 @@ describe('compteur et questions ratées', () => {
     const partie = nouvellePartie(quatre);
     assert.equal(partieValide({ ...partie, selection: [7] }, quatre), false);
     assert.equal(partieValide({ ...partie, selection: [] }, quatre), false);
+  });
+
+  it('propose de réinitialiser dès qu’une réponse est donnée ou en revue des ratées', () => {
+    const partie = nouvellePartie(questions);
+    assert.equal(peutReinitialiser(partie), false);
+    partie.reponses[0] = 1;
+    assert.equal(peutReinitialiser(partie), true);
+    assert.equal(peutReinitialiser(nouvellePartie(questions, [0])), true);
+    assert.equal(peutReinitialiser(null), false);
   });
 });
