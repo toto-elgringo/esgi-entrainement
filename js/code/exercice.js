@@ -1,6 +1,6 @@
 import { chargerFichierCode, plusTard, prechargerExercice } from '../catalogue.js';
 import { langageDe, LANGAGES } from '../domaines.js';
-import { creerBascule, creerIndices, etoiles, navigationExercices } from '../exercice-commun.js';
+import { CONFIRMATION_RECOMMENCER, creerBascule, creerIndices, etoiles, navigationExercices } from '../exercice-commun.js';
 import { notifier } from '../notification.js';
 import { colorerCode, echapper, rendreMarkdown, rendreMarkdownEnLigne } from '../outils.js';
 import { cleExercice, estReussi, voisins } from '../parcours.js';
@@ -41,7 +41,7 @@ function gabarit(chapitre, exercice, { enonce, sortieAttendue, entree, entreeSai
           <button class="bouton" data-action="executer">Exécuter</button>
           <button class="bouton principal" data-action="verifier" title="Enregistre et vérifie ton code">Vérifier <kbd>Ctrl+S</kbd></button>
           <span class="etat-enregistrement" data-etat></span>
-          <button class="bouton discret" data-action="reinitialiser" title="Remettre le code de départ">Réinitialiser</button>
+          <button class="bouton discret" data-action="reinitialiser" title="Remettre le code de départ et tout recommencer">↺ Recommencer l’exercice</button>
         </div>
         <div class="zone-editeur" data-editeur></div>
         <details class="entree-programme" ${entreeSaisie ? 'open' : ''}>
@@ -191,12 +191,10 @@ export async function afficherExerciceCode(ctx, chapitre, exercice) {
   }
 
   function reinitialiser() {
-    if (!confirm('Remettre le code de départ ?\nTon code actuel sera perdu.')) return;
-    editeur.ecrire(depart);
-    enregistrer();
-    zoneResultat.hidden = true;
-    ctx.enregistrerAffichage(cle, { resultat: null });
-    afficherEtat('Code de départ remis');
+    if (enCours || !confirm(CONFIRMATION_RECOMMENCER.replace('Tes réponses', 'Ton code'))) return;
+    clearTimeout(minuteur);
+    minuteur = null;
+    ctx.reinitialiserExercice(cle);
   }
 
   const actions = {

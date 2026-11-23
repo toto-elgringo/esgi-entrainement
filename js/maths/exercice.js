@@ -1,5 +1,5 @@
 import { avecFormules } from '../domaines.js';
-import { creerBascule, creerIndices, etoiles, navigationExercices } from '../exercice-commun.js';
+import { CONFIRMATION_RECOMMENCER, creerBascule, creerIndices, etoiles, navigationExercices } from '../exercice-commun.js';
 import { versLatex } from './expression.js';
 import { colorerCode, echapper, rendreLatex, rendreMarkdown, rendreMarkdownEnLigne } from '../outils.js';
 import { cleExercice, estReussi, lienExercice, voisins } from '../parcours.js';
@@ -82,6 +82,7 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
           <button type="submit" class="bouton principal">Vérifier <kbd>Entrée</kbd></button>
           <button type="button" class="bouton" data-action="indice" ${indices.length ? '' : 'hidden'}></button>
           <button type="button" class="bouton discret" data-action="correction">Voir la correction</button>
+          <button type="button" class="bouton discret" data-action="recommencer">↺ Recommencer l’exercice</button>
         </div>
       </form>
       <div class="resultat" data-resultat role="status" hidden></div>
@@ -296,6 +297,7 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
     const action = evenement.target.closest('[data-action]')?.dataset.action;
     if (action === 'indice') lesIndices.afficher();
     if (action === 'correction') correction.basculer();
+    if (action === 'recommencer' && confirm(CONFIRMATION_RECOMMENCER)) ctx.reinitialiserExercice(cle);
   });
 
   exercice.questions.forEach((_, index) => majApercu(index));

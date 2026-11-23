@@ -15,6 +15,8 @@ export function navigationExercices(precedent, suivant) {
   return `<nav class="navigation-exercices" aria-label="Exercices voisins">${lienVoisin(precedent, 'precedent')}${lienVoisin(suivant, 'suivant')}</nav>`;
 }
 
+export const CONFIRMATION_RECOMMENCER = 'Recommencer l’exercice à zéro ?\nTes réponses, les indices affichés, la correction et la mention « Réussi » seront effacés.';
+
 export function creerIndices({ bouton, zone, indices, rendre, auChangement }) {
   let affiches = 0;
 

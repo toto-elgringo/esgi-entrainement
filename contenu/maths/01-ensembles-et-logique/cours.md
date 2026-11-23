@@ -48,6 +48,24 @@ Exemple avec $A = \{1, 2, 3, 4\}$ et $B = \{3, 4, 5, 6\}$ :
 > [!warning] La différence n'est pas symétrique
 > $A \setminus B$ et $B \setminus A$ sont en général différents.
 
+### Les définitions avec $\in$
+
+Dans une preuve, on remplace chaque opération par sa définition, écrite avec $\in$ et $\notin$ :
+
+| Si on sait que… | … cela veut dire |
+|---|---|
+| $x \in A \cup B$ | $x \in A$ **ou** $x \in B$ |
+| $x \in A \cap B$ | $x \in A$ **et** $x \in B$ |
+| $x \in A \setminus B$ | $x \in A$ **et** $x \notin B$ |
+| $x \in \overline{A}$ | $x \in E$ et $x \notin A$ |
+
+> [!example] Modèle de preuve : $A \cap B \subset B$
+> Soit $x \in A \cap B$.
+>
+> Par définition de l'intersection, $x \in A$ et $x \in B$.
+>
+> En particulier $x \in B$. Comme $x$ était quelconque, $A \cap B \subset B$.
+
 ### Les lois de De Morgan
 
 Le complémentaire **échange** union et intersection :

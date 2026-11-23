@@ -99,6 +99,10 @@ function creerContexte(numeroNavigation) {
     tailleStockage: () => stockage.tailleUtilisee(),
     effacerResultats: () => stockage.effacerResultats(),
     choisirMatiere,
+    reinitialiserExercice: (cle) => {
+      stockage.reinitialiserExercice(cle);
+      afficherRoute();
+    },
     reinitialiser: () => {
       stockage.reinitialiser();
       afficherRoute();

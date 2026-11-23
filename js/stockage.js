@@ -184,6 +184,12 @@ export function creerStockage({ memoire = globalThis.localStorage, delai = DELAI
       }, { immediat: true });
     },
 
+    reinitialiserExercice(cle) {
+      modifier((e) => {
+        for (const partie of ['exercices', 'saisies', 'codes', 'affichages']) delete e[partie][cle];
+      }, { immediat: true });
+    },
+
     reinitialiser() {
       ecrireMaintenant();
       modifier((e) => {
