@@ -880,6 +880,10 @@ pre code.hljs {
 }
 
 .compteur-quiz {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -891,6 +895,11 @@ pre code.hljs {
   color: var(--texte-doux);
   font-size: 14px;
   font-weight: 600;
+}
+
+.compteur-quiz .bouton {
+  padding: 4px 10px;
+  font-size: 13px;
 }
 
 .choix code,
