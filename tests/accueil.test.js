@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { DOMAINES_CODE, langageDe } from '../js/domaines.js';
-import { ALERTES_OUTILS, rendreEtatOutils, texteTaille } from '../js/vues/accueil.js';
+import { ALERTES_OUTILS, carteMatiere, rendreEtatOutils, texteTaille } from '../js/vues/accueil.js';
 
 describe('état des outils', () => {
   it('chaque domaine de code a une alerte d’outil', () => {
@@ -29,5 +29,20 @@ describe('place utilisée', () => {
     assert.equal(texteTaille(10), '1 Ko');
     assert.equal(texteTaille(200 * 1024), '200 Ko');
     assert.equal(texteTaille(2.5 * 1024 * 1024), '2,5 Mo');
+  });
+});
+
+describe('carte d’une matière', () => {
+  const chapitres = [{ cle: 'rust/01-a', matieres: ['rust'], exercices: [{ id: 'x' }, { id: 'y' }] }];
+
+  it('montre une barre de progression remplie selon les exercices réussis', () => {
+    const html = carteMatiere({ id: 'rust', titre: 'Rust' }, chapitres, { exercices: { 'rust/01-a/x': { reussi: true } }, quiz: {} });
+    assert.match(html, /1 \/ 2 exercices réussis/);
+    assert.match(html, /class="barre-remplie" style="width: 50%"/);
+  });
+
+  it('passe la barre en vert quand tout est réussi', () => {
+    const progression = { exercices: { 'rust/01-a/x': { reussi: true }, 'rust/01-a/y': { reussi: true } }, quiz: {} };
+    assert.match(carteMatiere({ id: 'rust', titre: 'Rust' }, chapitres, progression), /barre-remplie complete" style="width: 100%"/);
   });
 });

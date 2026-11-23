@@ -185,6 +185,11 @@ async function afficherRoute() {
 
 choixMatiere.addEventListener('change', () => choisirMatiere(choixMatiere.value));
 
+document.querySelector('.logo').addEventListener('click', (evenement) => {
+  evenement.preventDefault();
+  choisirMatiere(null);
+});
+
 menu.addEventListener('click', (evenement) => {
   const bouton = evenement.target.closest('.chapitre-titre');
   if (!bouton) return;

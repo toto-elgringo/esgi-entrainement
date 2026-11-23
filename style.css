@@ -1863,6 +1863,14 @@ body[data-domaine="electif"] {
   font-size: 13px;
 }
 
+.carte-matiere .barre {
+  width: 100%;
+}
+
+.carte-matiere .barre-remplie:not(.complete) {
+  background: var(--couleur-matiere, var(--accent));
+}
+
 @media (max-width: 800px) {
   .choix-matiere {
     max-width: 130px;
