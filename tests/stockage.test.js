@@ -54,6 +54,19 @@ describe('stockage', () => {
     assert.equal(enregistre().theme, 'clair');
   });
 
+  it('recommence un seul exercice sans toucher aux autres', () => {
+    stockage.enregistrerEssai('maths/01-a/x', true);
+    stockage.enregistrerSaisies('maths/01-a/x', { 0: '12' });
+    stockage.enregistrerAffichage('maths/01-a/x', { indices: 2, correction: true });
+    stockage.enregistrerCode('rust/01-a/y', 'fn main() {}');
+    stockage.reinitialiserExercice('maths/01-a/x');
+    assert.equal(stockage.progression().exercices['maths/01-a/x'], undefined);
+    assert.deepEqual(stockage.saisies('maths/01-a/x'), {});
+    assert.deepEqual(stockage.affichage('maths/01-a/x'), {});
+    assert.equal(stockage.code('rust/01-a/y'), 'fn main() {}');
+    assert.equal(enregistre().exercices['maths/01-a/x'], undefined);
+  });
+
   it('efface aussi les parties et les affichages quand on réinitialise, mais garde le menu rangé et le thème', () => {
     stockage.reinitialiser();
     assert.equal(stockage.partieQuiz('rust/01-a'), null);
