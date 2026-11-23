@@ -1,6 +1,6 @@
 {
   "titre": "Web et Loco",
-  "description": "Pourquoi un framework web, Axum et Loco (le « Rails » de Rust), structure d'un projet, modèles, auth, scaffolds, tests ; et les idées Rust derrière : routeur, gestionnaires, middlewares, From/TryFrom, Result et `?`.",
+  "description": "Pourquoi un framework web, Axum et Loco (le « Rails » de Rust), structure d'un projet, modèles, auth, scaffolds, tests ; et les idées Rust derrière : routeur, gestionnaires, middlewares, From/TryFrom, Result et `?`, service générique sur un repository.",
   "source": "fondamentaux",
   "supports": [
     {

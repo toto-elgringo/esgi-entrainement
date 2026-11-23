@@ -1,0 +1,10 @@
+{
+  "titre": "Un service sur un repository",
+  "difficulte": 3,
+  "type": "tests",
+  "indices": [
+    "`existe` : `self.donnees.contains_key(&capteur)`. `valeurs_de` : `self.donnees.get(&capteur).cloned().unwrap_or_default()`.",
+    "`inserer` : `self.donnees.get_mut(&capteur)` donne `Option<&mut Vec<f64>>`. Avec `match`, ajoute les valeurs avec `extend_from_slice` et renvoie leur nombre, sinon `0`.",
+    "`stats_capteur` : si `!repo.existe(capteur)`, renvoie `None`. Sinon calcule la moyenne seulement si la liste n'est pas vide (`if` ou `then`)."
+  ]
+}

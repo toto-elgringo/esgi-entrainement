@@ -289,8 +289,49 @@ async fn telecharger(nom: &str) -> String {
 - `tokio::join!` fait avancer plusieurs futures ensemble.
 - `tokio::time::sleep` attend **sans bloquer** le fil (contrairement à `std::thread::sleep`).
 
+### Le runtime tokio
+
+`#[tokio::main]` démarre un **runtime** : quelques threads « workers » (un par cœur) font avancer des milliers de tâches. Un worker sans travail **vole** des tâches aux autres (work stealing). Le runtime surveille aussi les entrées-sorties et les minuteurs, et réveille une tâche (`wake`) quand ce qu'elle attend est prêt.
+
+```text
+#[tokio::main]
+async fn main() {
+    let taches: Vec<_> = (0..10_000)
+        .map(|i| tokio::spawn(async move { i * 2 }))
+        .collect();
+    let mut total = 0;
+    for t in taches {
+        total += t.await.unwrap();
+    }
+    println!("{total}");
+}
+```
+
+- `tokio::spawn(futur)` ajoute **une tâche** dans une file, pas un thread : 10 000 tâches tiennent sur quelques threads.
+- Le `JoinHandle` renvoyé s'attend avec `.await` et donne un `Result` (erreur si la tâche a paniqué).
+- `tokio::task::JoinSet` regroupe plusieurs tâches et rend leurs résultats au fur et à mesure qu'elles finissent.
+
 > [!warning] Ne bloque jamais un exécuteur
-> Un calcul long ou un `std::thread::sleep` dans une tâche async fige toutes les autres tâches du même fil. Pour du calcul lourd, utilise un vrai thread.
+> Un calcul long ou un `std::thread::sleep` dans une tâche async fige le worker qui l'exécute, et toutes les tâches qui attendent ce worker prennent du retard.
+
+### Sortir le calcul : `spawn_blocking`
+
+Pour un calcul lourd (ou une lecture de fichier bloquante) dans un serveur async, on l'envoie dans un **pool de threads à part** avec `spawn_blocking`. Les workers restent libres pour les autres requêtes.
+
+```text
+let stats = tokio::task::spawn_blocking(move || {
+    calculer_tout(&capteurs)
+})
+.await
+.unwrap();
+```
+
+| Situation | Outil |
+|---|---|
+| Beaucoup d'attentes (réseau, base) | `async` + `.await`, `tokio::spawn` |
+| Attendre plusieurs futurs ensemble | `tokio::join!` |
+| Calcul lourd dans du code async | `spawn_blocking` (rayon peut tourner dedans) |
+| Calcul lourd sans async | threads ou rayon |
 
 ## 11. Pièges courants
 

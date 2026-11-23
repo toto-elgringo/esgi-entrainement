@@ -1,0 +1,10 @@
+{
+  "titre": "Une chaîne à deux étapes",
+  "difficulte": 2,
+  "type": "tests",
+  "indices": [
+    "Crée deux canaux bornés : `let (tx_entree, rx_entree) = mpsc::sync_channel(capacite);` et la même chose pour la sortie.",
+    "Le premier thread envoie chaque valeur dans `tx_entree`. Le second lit `rx_entree` avec une boucle `for`, et envoie `v * 2` dans `tx_sortie`.",
+    "Les deux `tx` sont déplacés dans les threads : quand les threads finissent, les canaux se ferment. Le thread principal fait `rx_sortie.iter().collect()` puis les `join`."
+  ]
+}

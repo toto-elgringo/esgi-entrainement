@@ -143,6 +143,31 @@ println!("{recus:?}");
 > [!tip] L'ordre d'arrivée varie
 > Les messages arrivent dans l'ordre où les threads les envoient, donc dans un ordre qui change d'une exécution à l'autre. On trie avant de comparer.
 
+### Canal borné : `sync_channel`
+
+`mpsc::channel` n'a pas de limite : un producteur rapide peut remplir la mémoire si le consommateur est lent. `mpsc::sync_channel(n)` crée un canal qui garde **au plus `n` messages en attente**. Quand la file est pleine, `send` **attend** que le consommateur en retire un.
+
+```rust
+use std::sync::mpsc;
+use std::thread;
+
+let (tx, rx) = mpsc::sync_channel(2);
+
+thread::spawn(move || {
+    for i in 0..5 {
+        tx.send(i).unwrap();
+    }
+});
+
+let recus: Vec<i32> = rx.iter().collect();
+println!("{recus:?}");
+```
+
+Le résultat est toujours `[0, 1, 2, 3, 4]` : avec un seul producteur, l'ordre est garanti. La limite ne change pas ce qui est reçu, elle freine seulement le producteur.
+
+> [!info] `sync_channel(0)`
+> Avec une taille de `0`, chaque `send` attend que le consommateur soit prêt à recevoir : c'est un rendez-vous entre les deux threads.
+
 ## 6. Partager un état : `Mutex` et `Arc`
 
 Un **`Mutex`** (exclusion mutuelle) protège une donnée : un seul thread à la fois peut y accéder. On appelle `lock()` pour obtenir l'accès ; il renvoie un « garde » qui libère le verrou **quand il est détruit** (à la fin de son bloc).
@@ -293,9 +318,32 @@ Sans le `drop(premier)`, le deuxième `lock()` attendrait indéfiniment.
 | Faire un calcul à part et récupérer le résultat | `spawn` + `join` |
 | Utiliser des variables locales dans des threads | `thread::scope` |
 | Envoyer des résultats d'un ou plusieurs threads | `mpsc::channel` |
+| Freiner un producteur trop rapide | `mpsc::sync_channel(n)` |
 | Modifier une donnée partagée | `Arc<Mutex<T>>` |
 | Beaucoup de lectures, peu d'écritures | `Arc<RwLock<T>>` |
 | Un compteur ou un drapeau | `AtomicUsize`, `AtomicBool` |
+| Appliquer le même calcul à beaucoup d'éléments | `rayon` et `par_iter()` |
+
+### Aperçu de rayon (en texte seulement)
+
+**rayon** est une bibliothèque (pas dans la std, donc non exécutable ici) qui partage le travail d'un itérateur entre tous les cœurs. Il suffit souvent de remplacer `iter()` par `par_iter()` :
+
+```text
+use rayon::prelude::*;
+
+let resultats: Vec<f64> = capteurs
+    .par_iter()
+    .map(|c| ecart_type(c))
+    .collect();
+```
+
+- Le résultat est **le même** qu'en séquentiel, et dans le même ordre : `collect` remet les morceaux dans l'ordre.
+- Sur une machine à 8 cœurs, un calcul lourd peut aller environ 7 fois plus vite.
+- Ça n'aide que pour du **calcul** (CPU) : rien ne sert de paralléliser des attentes réseau.
+- La closure ne doit modifier aucune variable partagée sans protection (le compilateur le vérifie avec `Send` et `Sync`).
+
+> [!tip] En std
+> Sans rayon, on fait la même chose à la main avec `thread::scope` : un thread par morceau de la liste (`chunks`), puis on assemble les résultats.
 
 ## 12. Écrire du code concurrent testable
 
