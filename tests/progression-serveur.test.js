@@ -40,6 +40,20 @@ describe('progression sur le serveur', () => {
     assert.equal(etat.dates['exercices/rust/un'], 1000);
   });
 
+  it('renvoie la valeur actuelle du serveur pour un changement refusé', async () => {
+    await progression.appliquer([{ partie: 'saisies', cle: 'refus', valeur: { 0: 'récent' }, faitLe: 2000 }]);
+    const { retenus } = await progression.appliquer([
+      { partie: 'saisies', cle: 'refus', valeur: { 0: 'vieux' }, faitLe: 1000 },
+      { partie: 'exercices', cle: 'efface', valeur: null, faitLe: 3000 },
+      exercice('efface', 2500),
+    ]);
+    assert.deepEqual(retenus, [
+      { partie: 'saisies', cle: 'refus', valeur: { 0: 'récent' } },
+      { partie: 'exercices', cle: 'efface', valeur: null },
+      { partie: 'exercices', cle: 'efface', valeur: null },
+    ]);
+  });
+
   it('deux appels en même temps ne s’écrasent pas', async () => {
     await Promise.all([progression.appliquer([exercice('a')]), progression.appliquer([exercice('b')])]);
     const { progression: etat } = await progression.lire();

@@ -365,6 +365,9 @@ describe('routes de la progression', () => {
     assert.equal(lu.progression.saisies.k, 'v');
     assert.equal(lu.dates['saisies/k'], 5);
 
+    const ancien = await fetch(`${adresse}/api/progression`, { method: 'POST', headers: { 'Content-Type': 'application/json', Cookie: cookie }, body: JSON.stringify({ changements: [{ partie: 'saisies', cle: 'k', valeur: 'ancien', faitLe: 4 }] }) });
+    assert.deepEqual(await ancien.json(), { retenus: [{ partie: 'saisies', cle: 'k', valeur: 'v' }] });
+
     const invalide = await fetch(`${adresse}/api/progression`, { method: 'POST', headers: { 'Content-Type': 'application/json', Cookie: cookie }, body: JSON.stringify({ changements: [{ partie: 'x', cle: 'k', valeur: 1, faitLe: 1 }] }) });
     assert.equal(invalide.status, 400);
   });

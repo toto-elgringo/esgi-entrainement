@@ -305,6 +305,13 @@ describe('signalement des changements', () => {
     assert.equal(nombre, 0);
   });
 
+  it('remplacerParties dit si quelque chose a changé', () => {
+    const { onglet } = espion();
+    const parties = { exercices: {}, quiz: {}, saisies: {}, codes: { a: 'y' }, partiesQuiz: {}, affichages: {} };
+    assert.equal(onglet.remplacerParties(parties), true);
+    assert.equal(onglet.remplacerParties(parties), false);
+  });
+
   it('remplacerParties écrit tout de suite dans la mémoire', () => {
     const memoireLocale = fausseMemoire();
     const onglet = creerStockage({ memoire: memoireLocale, delai: 0 });

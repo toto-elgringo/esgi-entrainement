@@ -29,8 +29,8 @@ export function creerProgression(chemin) {
     const etat = await lire();
     const retenus = [];
     for (const changement of changements) {
-      const { retenu, valeur } = appliquerChangement(etat, changement);
-      if (retenu) retenus.push({ partie: changement.partie, cle: changement.cle, valeur });
+      const { valeur } = appliquerChangement(etat, changement);
+      retenus.push({ partie: changement.partie, cle: changement.cle, valeur });
     }
     await fs.mkdir(path.dirname(chemin), { recursive: true });
     await ecrireJson(chemin, {

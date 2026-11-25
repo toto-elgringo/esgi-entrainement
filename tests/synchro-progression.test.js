@@ -27,15 +27,15 @@ function fauxServeur({ active = true, existe = true, progression = {}, dates = {
     if (statut !== 200) return { statut, donnees: { erreur: 'refusé' } };
     const retenus = [];
     for (const changement of corps.changements) {
-      const { retenu, valeur } = appliquerChangement(etat, changement);
-      if (retenu) retenus.push({ partie: changement.partie, cle: changement.cle, valeur });
+      const { valeur } = appliquerChangement(etat, changement);
+      retenus.push({ partie: changement.partie, cle: changement.cle, valeur });
     }
     return { statut: 200, donnees: structuredClone({ retenus }) };
   }
   return { etat, appels, requete, envois: () => appels.filter((appel) => appel.methode === 'POST') };
 }
 
-function preparer({ serveur, local, attente, synchronise = true, maintenant = () => MAINTENANT }) {
+function preparer({ serveur, local, attente, synchronise = true, maintenant = () => MAINTENANT, apresRelecture }) {
   const memoire = fausseMemoire({
     ...(local ? { 'esgi-entrainement': JSON.stringify(local) } : {}),
     ...(attente ? { [ATTENTE]: JSON.stringify(attente) } : {}),
@@ -44,7 +44,7 @@ function preparer({ serveur, local, attente, synchronise = true, maintenant = ()
   const stockage = creerStockage({ memoire });
   const renouvelerJeton = mock.fn(async () => {});
   const signalerErreur = mock.fn();
-  const synchro = creerSynchroProgression({ stockage, memoire, requete: serveur.requete, renouvelerJeton, maintenant, signalerErreur });
+  const synchro = creerSynchroProgression({ stockage, memoire, requete: serveur.requete, renouvelerJeton, maintenant, signalerErreur, apresRelecture });
   const attenteLue = () => JSON.parse(memoire.getItem(ATTENTE) ?? '[]');
   return { memoire, stockage, synchro, renouvelerJeton, signalerErreur, attenteLue };
 }
@@ -296,6 +296,78 @@ describe('synchronisation de la progression', () => {
     assert.equal(serveur.etat.progression.codes.k, 'v2');
     assert.equal(stockage.code('k'), 'v2');
     assert.deepEqual(stockage.progression().exercices, { a: { essais: 1, reussi: true } });
+  });
+
+  it('découpe les envois pour que chaque corps fasse au plus 256 Kio', async () => {
+    const serveur = fauxServeur();
+    const gros = 'x'.repeat(60 * 1024);
+    const attente = Array.from({ length: 10 }, (_, i) => ({ partie: 'codes', cle: `c${i}`, valeur: gros, faitLe: MAINTENANT }));
+    const { synchro, attenteLue } = preparer({ serveur, attente });
+    await synchro.demarrer();
+    const envois = serveur.envois();
+    assert.ok(envois.length >= 3);
+    for (const envoi of envois) assert.ok(new TextEncoder().encode(JSON.stringify(envoi.corps)).length <= 256 * 1024);
+    assert.equal(envois.flatMap((envoi) => envoi.corps.changements).length, 10);
+    assert.deepEqual(attenteLue(), []);
+  });
+
+  it('un changement trop gros refusé par 413 est retiré et ne bloque pas les suivants', async () => {
+    const serveur = fauxServeur({ surEnvoi: (corps) => (new TextEncoder().encode(JSON.stringify(corps)).length > 512 * 1024 ? 413 : 200) });
+    const attente = [
+      { partie: 'codes', cle: 'avant', valeur: 'a', faitLe: MAINTENANT },
+      { partie: 'codes', cle: 'enorme', valeur: 'x'.repeat(600 * 1024), faitLe: MAINTENANT },
+      { partie: 'codes', cle: 'apres', valeur: 'b', faitLe: MAINTENANT },
+    ];
+    const { synchro, signalerErreur, attenteLue } = preparer({ serveur, attente });
+    await synchro.demarrer();
+    assert.deepEqual(serveur.envois().map((envoi) => envoi.corps.changements.map(({ cle }) => cle)), [['avant'], ['enorme'], ['apres']]);
+    assert.deepEqual(serveur.etat.progression.codes, { avant: 'a', apres: 'b' });
+    assert.deepEqual(attenteLue(), []);
+    assert.equal(signalerErreur.mock.callCount(), 1);
+  });
+
+  it('appelle apresRelecture une fois quand l’état du serveur change l’état local', async () => {
+    const serveur = fauxServeur({ progression: { codes: { x: 'serveur' } }, dates: { 'codes/x': MAINTENANT } });
+    const apresRelecture = mock.fn();
+    const { synchro } = preparer({ serveur, local: { codes: { x: 'local' } }, apresRelecture });
+    await synchro.demarrer();
+    assert.equal(apresRelecture.mock.callCount(), 1);
+  });
+
+  it('n’appelle pas apresRelecture si l’état est le même, ni après la réponse d’un envoi', async () => {
+    const serveur = fauxServeur({ progression: { codes: { x: 'pareil', y: 'serveur' } }, dates: { 'codes/x': MAINTENANT, 'codes/y': MAINTENANT + 10 } });
+    const apresRelecture = mock.fn();
+    const attente = [{ partie: 'codes', cle: 'y', valeur: 'ancien', faitLe: MAINTENANT }];
+    const { synchro, stockage } = preparer({ serveur, local: { codes: { x: 'pareil', y: 'serveur' } }, attente, apresRelecture });
+    await synchro.demarrer();
+    assert.equal(stockage.code('y'), 'serveur');
+    serveur.etat.progression.codes.z = 'autre appareil';
+    serveur.etat.dates['codes/z'] = MAINTENANT + 100;
+    stockage.enregistrerCode('z', 'nouveau');
+    stockage.ecrireMaintenant();
+    await synchro.envoyer();
+    assert.equal(stockage.code('z'), 'autre appareil');
+    assert.equal(apresRelecture.mock.callCount(), 0);
+  });
+
+  it('signale une fois quand un changement local ne peut pas être mis en attente', async () => {
+    const serveur = fauxServeur();
+    const memoire = fausseMemoire({ [SYNCHRONISE]: '1' });
+    const ecrireVraiment = memoire.setItem;
+    let plein = false;
+    memoire.setItem = (cle, valeur) => {
+      if (plein && cle === ATTENTE) throw new Error('stockage plein');
+      ecrireVraiment(cle, valeur);
+    };
+    const stockage = creerStockage({ memoire });
+    const signalerErreur = mock.fn();
+    const synchro = creerSynchroProgression({ stockage, memoire, requete: serveur.requete, maintenant: () => MAINTENANT, signalerErreur });
+    await synchro.demarrer();
+    plein = true;
+    stockage.enregistrerEssai('a', true);
+    stockage.enregistrerEssai('b', true);
+    await laisserFinir();
+    assert.equal(signalerErreur.mock.callCount(), 1);
   });
 
   it('écarte les changements invalides avant de les mettre en attente', async () => {

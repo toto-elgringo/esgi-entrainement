@@ -3,12 +3,33 @@ import { PARTIES, appliquerChangement, changementValide, progressionVide } from 
 const CLE_ATTENTE = 'esgi-entrainement-attente';
 const CLE_SYNCHRONISE = 'esgi-entrainement-synchronise';
 const MAX_PAR_ENVOI = 2000;
+const MAX_OCTETS_PAR_ENVOI = 256 * 1024;
 const DELAI_ENVOI = 300;
 const LIMITE_KEEPALIVE = 64 * 1024;
 const FAIT_LE_PREMIERE_SYNCHRO = 1;
 
 const estObjet = (valeur) => typeof valeur === 'object' && valeur !== null && !Array.isArray(valeur);
 const identifiant = ({ partie, cle }) => JSON.stringify([partie, cle]);
+const taille = (valeur) => new TextEncoder().encode(JSON.stringify(valeur)).length;
+const TAILLE_ENVELOPPE = taille({ changements: [] });
+
+function decouper(attente) {
+  const lots = [];
+  let lot = [];
+  let octets = TAILLE_ENVELOPPE;
+  for (const changement of attente) {
+    const octetsChangement = taille(changement);
+    if (lot.length > 0 && (lot.length >= MAX_PAR_ENVOI || octets + 1 + octetsChangement > MAX_OCTETS_PAR_ENVOI)) {
+      lots.push(lot);
+      lot = [];
+      octets = TAILLE_ENVELOPPE;
+    }
+    octets += octetsChangement + (lot.length > 0 ? 1 : 0);
+    lot.push(changement);
+  }
+  if (lot.length > 0) lots.push(lot);
+  return lots;
+}
 
 export function creerSynchroProgression({
   stockage,
@@ -17,6 +38,7 @@ export function creerSynchroProgression({
   renouvelerJeton = async () => {},
   maintenant = Date.now,
   signalerErreur = () => {},
+  apresRelecture = () => {},
   delai = DELAI_ENVOI,
 }) {
   let mode = 'inconnu';
@@ -134,10 +156,14 @@ export function creerSynchroProgression({
   }
 
   async function envoyerTout() {
-    const attente = lireAttente();
-    for (let debut = 0; debut < attente.length; debut += MAX_PAR_ENVOI) {
-      const lot = attente.slice(debut, debut + MAX_PAR_ENVOI);
-      if (!traiterReponse(lot, await poster(lot))) return;
+    for (const lot of decouper(lireAttente())) {
+      const reponse = await poster(lot);
+      if (reponse?.statut === 413 && lot.length === 1) {
+        retirerEnvoyes(lot);
+        echec();
+        continue;
+      }
+      if (!traiterReponse(lot, reponse)) return;
     }
   }
 
@@ -145,7 +171,7 @@ export function creerSynchroProgression({
     stockage.ecrireMaintenant();
     const lot = lireAttente().slice(0, MAX_PAR_ENVOI);
     if (lot.length === 0) return Promise.resolve();
-    if (new TextEncoder().encode(JSON.stringify({ changements: lot })).length > LIMITE_KEEPALIVE) return Promise.resolve();
+    if (taille({ changements: lot }) > LIMITE_KEEPALIVE) return Promise.resolve();
     const envoi = poster(lot, true).then((reponse) => {
       traiterReponse(lot, reponse);
     }, () => {}).finally(() => {
@@ -194,7 +220,7 @@ export function creerSynchroProgression({
       enMemoire.push(...changements);
       return;
     }
-    mettreEnAttente(changements);
+    if (!mettreEnAttente(changements)) echec();
     if (immediat) envoyer();
     else planifier();
   }
@@ -271,7 +297,11 @@ export function creerSynchroProgression({
     }
     const etat = etatDuServeur(reponse.donnees);
     for (const changement of lireAttente()) appliquerChangement(etat, changement);
-    stockage.remplacerParties(etat.progression);
+    if (stockage.remplacerParties(etat.progression)) {
+      try {
+        apresRelecture();
+      } catch {}
+    }
     await envoyer();
   }
 

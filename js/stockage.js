@@ -103,6 +103,7 @@ export function creerStockage({ memoire = globalThis.localStorage, delai = DELAI
       enErreur = true;
     }
     if (change) surChangement.forEach((ecouteur) => ecouteur());
+    return change;
   }
 
   function recharger() {

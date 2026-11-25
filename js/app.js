@@ -290,6 +290,9 @@ creerSynchroProgression({
   renouvelerJeton: () => fetch('./', { cache: 'no-store' }),
   maintenant: Date.now,
   signalerErreur: () => notifier('Progression non enregistrée sur hermes : elle sera renvoyée au prochain changement.'),
+  apresRelecture: () => {
+    if (etat.chapitres.length > 0) afficherRoute();
+  },
 }).demarrer().catch(() => {});
 stockage.surChangementExterne(() => {
   remplirChoixMatiere();
