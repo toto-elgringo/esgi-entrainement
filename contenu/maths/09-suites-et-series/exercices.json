@@ -9,31 +9,56 @@
         "intitule": "Limite de $a_n = \\dfrac{4}{n+2}$",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["2", "4"]
+        "refuses": [
+          "2",
+          "4"
+        ],
+        "explication": "**Règle :** un nombre fixe divisé par une quantité qui grandit sans fin tend vers $0$.\n\n**Pas à pas :**\n\n1. Numérateur : $4$, il ne bouge pas.\n2. Dénominateur : $n + 2$, il devient immense.\n3. Valeurs : $a_{2} = \\frac44 = 1$, $a_{38} = \\frac{4}{40} = 0{,}1$, $a_{998} = \\frac{4}{1000} = 0{,}004$.\n\nLimite : $0$.\n\n**Erreurs fréquentes :** répondre $4$ (le numérateur) ou $2$ (la valeur de départ $a_0 = \\frac42$) : ni l'un ni l'autre ne décrit ce qui se passe quand $n$ devient grand.\n\n**À retenir :** $\\dfrac{\\text{nombre fixe}}{\\text{quelque chose qui grandit}} \\to 0$."
       },
       {
         "intitule": "Limite de $b_n = 5 - \\dfrac{3}{n}$",
         "type": "nombre",
         "reponse": 5,
-        "refuses": ["2", "0", "-3"]
+        "refuses": [
+          "2",
+          "0",
+          "-3"
+        ],
+        "explication": "**Règle :** dans une somme ou une différence, un morceau qui tend vers $0$ disparaît à la limite ; on regarde ce que devient **chaque** morceau.\n\n**Pas à pas :**\n\n1. $b_n = 5 - \\frac{3}{n}$ a deux morceaux : $5$ (fixe) et $\\frac3n$.\n2. $\\frac3n \\to 0$ (nombre fixe divisé par $n$ qui grandit).\n3. Donc $b_n \\to 5 - 0 = 5$.\n4. Contrôle : $b_{300} = 5 - 0{,}01 = 4{,}99$.\n\n**Erreurs fréquentes :** répondre $0$ en ne regardant que la fraction, $2$ en calculant $5 - 3$ (comme si $n = 1$), ou $-3$ en lisant le numérateur.\n\n**À retenir :** limite d'une somme = somme des limites de chaque morceau."
       },
       {
         "intitule": "$c_n = 2 \\times (-1)^n$",
         "type": "choix",
-        "choix": ["Converge vers $0$", "Converge vers $2$", "Diverge en oscillant", "Diverge vers $+\\infty$"],
-        "reponse": 2
+        "choix": [
+          "Converge vers $0$",
+          "Converge vers $2$",
+          "Diverge en oscillant",
+          "Diverge vers $+\\infty$"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** une suite qui saute sans fin entre deux valeurs différentes ne se rapproche d'aucun nombre : elle **diverge en oscillant**, même si elle reste bornée.\n\n**Pas à pas :**\n\n| $n$ | 0 | 1 | 2 | 3 |\n|---|---|---|---|---|\n| $(-1)^n$ | $1$ | $-1$ | $1$ | $-1$ |\n| $c_n = 2 \\times (-1)^n$ | $2$ | $-2$ | $2$ | $-2$ |\n\nLes termes repassent toujours par $2$ et par $-2$.\n\n**Les autres réponses :** « converge vers $0$ » : les termes restent à distance $2$ de $0$ ; « converge vers $2$ » : un terme sur deux vaut $-2$ ; « diverge vers $+\\infty$ » : la suite reste entre $-2$ et $2$.\n\n**À retenir :** $c \\times (-1)^n$ avec $c \\neq 0$ oscille : elle diverge sans partir à l'infini."
       },
       {
         "intitule": "$d_n = 3n - 2$",
         "type": "choix",
-        "choix": ["Converge vers $3$", "Converge vers $-2$", "Diverge en oscillant", "Diverge vers $+\\infty$"],
-        "reponse": 3
+        "choix": [
+          "Converge vers $3$",
+          "Converge vers $-2$",
+          "Diverge en oscillant",
+          "Diverge vers $+\\infty$"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** une suite qui augmente de la même quantité positive à chaque rang (arithmétique de raison $r > 0$) dépasse n'importe quel nombre : elle **diverge vers $+\\infty$**.\n\n**Pas à pas :**\n\n1. $d_0 = -2$, $d_1 = 1$, $d_2 = 4$, $d_3 = 7$ : on ajoute $3$ à chaque rang.\n2. $d_{100} = 298$, $d_{1000} = 2998$ : aucun plafond.\n\n**Les autres réponses :** « converge vers $3$ » prend la raison pour une limite ; « converge vers $-2$ » prend le premier terme pour une limite ; « diverge en oscillant » est faux, la suite monte toujours sans changer de sens.\n\n**À retenir :** $an + b$ avec $a > 0$ diverge vers $+\\infty$ ; $a$ et $b$ ne sont pas des limites."
       },
       {
         "intitule": "Limite de $e_n = 0{,}3^n$",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["0.3", "1"]
+        "refuses": [
+          "0.3",
+          "1"
+        ],
+        "explication": "**Règle :** une suite géométrique $q^n$ tend vers $0$ quand $\\lvert q \\rvert < 1$.\n\n**Pas à pas :**\n\n1. $q = 0{,}3$, et $0{,}3 < 1$.\n2. Termes : $0{,}3^0 = 1$, $0{,}3^1 = 0{,}3$, $0{,}3^2 = 0{,}09$, $0{,}3^3 = 0{,}027$, …\n3. Chaque terme vaut $30\\,\\%$ du précédent : ça fond vers $0$.\n\nLimite : $0$.\n\n**Erreurs fréquentes :** répondre $0{,}3$ (la raison) ou $1$ (le premier terme $0{,}3^0$).\n\n**À retenir :** $\\lvert q \\rvert < 1$ ⇒ $q^n \\to 0$."
       }
     ],
     "indices": [
@@ -53,34 +78,65 @@
         "type": "expression",
         "variable": "n",
         "reponse": "7 + 3n",
-        "acceptes": ["3n+7", "3(n+1)+4"],
-        "refuses": ["7n + 3", "7 + 3(n-1)", "7*3^n"]
+        "acceptes": [
+          "3n+7",
+          "3(n+1)+4"
+        ],
+        "refuses": [
+          "7n + 3",
+          "7 + 3(n-1)",
+          "7*3^n"
+        ],
+        "explication": "**Règle :** une suite **arithmétique** ajoute la raison $r$ à chaque rang ; après $n$ rangs on a ajouté $n$ fois $r$ : $u_n = u_0 + n\\,r$.\n\n**Pas à pas :**\n\n1. $u_0 = 7$ et on ajoute $r = 3$ à chaque rang.\n2. $u_1 = 7 + 3$, $u_2 = 7 + 3 + 3 = 7 + 2 \\times 3$, $u_3 = 7 + 3 \\times 3$…\n3. Au rang $n$ : $u_n = 7 + 3n$.\n4. Contrôle : $n = 1$ donne $10$ ; la récurrence donne $u_1 = 7 + 3 = 10$ ✓.\n\n**Erreurs fréquentes :** écrire $7n + 3$ (rôles inversés : $n = 0$ donnerait $3$ au lieu de $7$) ; écrire $7 + 3(n - 1)$ (formule pour une suite qui commence à $u_1$) ; écrire $7 \\times 3^n$ (formule géométrique).\n\n**À retenir :** arithmétique : $u_n = u_0 + n\\,r$ ; vérifie avec $n = 0$, tu dois retrouver $u_0$."
       },
       {
         "intitule": "Valeur de $u_{20}$",
         "type": "nombre",
         "reponse": 67,
-        "refuses": ["64", "143"]
+        "refuses": [
+          "64",
+          "143"
+        ],
+        "explication": "**Règle :** pour calculer un terme précis, on remplace $n$ dans la formule explicite.\n\n**Pas à pas :**\n\n1. $u_n = 7 + 3n$.\n2. $n = 20$ : $3 \\times 20 = 60$.\n3. $u_{20} = 7 + 60 = 67$.\n\n**Erreurs fréquentes :** trouver $64$ avec la formule $7 + 3(n - 1)$ (un rang de décalage), ou $143$ avec $7n + 3$.\n\n**À retenir :** remplace $n$ par le rang demandé, multiplication avant addition."
       },
       {
         "intitule": "Formule explicite de $w_n$",
         "type": "expression",
         "variable": "n",
         "reponse": "5*2^n",
-        "acceptes": ["5×2^n", "5(2^n)"],
-        "refuses": ["10^n", "5 + 2n", "5*2^(n-1)"]
+        "acceptes": [
+          "5×2^n",
+          "5(2^n)"
+        ],
+        "refuses": [
+          "10^n",
+          "5 + 2n",
+          "5*2^(n-1)"
+        ],
+        "explication": "**Règle :** une suite **géométrique** multiplie par la raison $q$ à chaque rang ; après $n$ rangs on a multiplié $n$ fois par $q$ : $w_n = w_0 \\times q^n$.\n\n**Pas à pas :**\n\n1. $w_0 = 5$ et on multiplie par $q = 2$ à chaque rang.\n2. $w_1 = 5 \\times 2$, $w_2 = 5 \\times 2 \\times 2 = 5 \\times 2^2$, $w_3 = 5 \\times 2^3$…\n3. Au rang $n$ : $w_n = 5 \\times 2^n$.\n4. Contrôle : $n = 0$ donne $5 \\times 1 = 5$ ✓.\n\n**Erreurs fréquentes :** écrire $5 + 2n$ (on ajouterait au lieu de multiplier) ; $10^n$ (le $5$ n'est pas élevé à la puissance, seul $2$ l'est) ; $5 \\times 2^{n-1}$ (formule pour une suite qui commence à $w_1$).\n\n**À retenir :** géométrique : $w_n = w_0 \\times q^n$ ; seule la raison prend la puissance."
       },
       {
         "intitule": "Valeur de $w_6$",
         "type": "nombre",
         "reponse": 320,
-        "refuses": ["160", "64", "17"]
+        "refuses": [
+          "160",
+          "64",
+          "17"
+        ],
+        "explication": "**Règle :** dans $5 \\times 2^6$, on calcule **d'abord la puissance**, puis la multiplication.\n\n**Pas à pas :**\n\n1. $2^6 = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 64$.\n2. $w_6 = 5 \\times 64 = 320$.\n3. Contrôle par la récurrence : $5, 10, 20, 40, 80, 160, 320$ (on double six fois) ✓.\n\n**Erreurs fréquentes :** $160$ (une multiplication de moins, $5 \\times 2^5$) ; $64$ (on oublie le $5$) ; $17$ ($5 + 2 \\times 6$, formule arithmétique).\n\n**À retenir :** puissance d'abord, multiplication ensuite."
       },
       {
         "intitule": "Laquelle des deux suites converge ?",
         "type": "choix",
-        "choix": ["$(u_n)$", "$(w_n)$", "Les deux", "Aucune des deux"],
-        "reponse": 3
+        "choix": [
+          "$(u_n)$",
+          "$(w_n)$",
+          "Les deux",
+          "Aucune des deux"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** une suite arithmétique de raison $r \\neq 0$ diverge ; une suite géométrique converge (vers $0$) seulement si $\\lvert q \\rvert < 1$.\n\n**Pas à pas :**\n\n| Suite | Type | Raison | Converge ? |\n|---|---|---|---|\n| $(u_n)$ | arithmétique | $r = 3 \\neq 0$ | non, $\\to +\\infty$ |\n| $(w_n)$ | géométrique | $q = 2$, $\\lvert q \\rvert > 1$ | non, $\\to +\\infty$ |\n\n**Les autres réponses :** « $(u_n)$ » ou « $(w_n)$ » seule, ou « les deux » : aucune des deux ne se stabilise, les deux grandissent sans fin. Bonne réponse : **aucune des deux**.\n\n**À retenir :** arithmétique ($r \\neq 0$) : jamais convergente ; géométrique : convergente seulement si $\\lvert q \\rvert < 1$."
       }
     ],
     "indices": [
@@ -98,27 +154,55 @@
       {
         "intitule": "$(u_0, u_1, u_2)$",
         "type": "vecteur",
-        "reponse": [1, 2.5, 3],
-        "acceptes": ["(1; 2,5; 3)", "1, 5/2, 3"],
-        "refuses": ["(4, 2.5, 3)", "(1, 3, 2.5)"]
+        "reponse": [
+          1,
+          2.5,
+          3
+        ],
+        "acceptes": [
+          "(1; 2,5; 3)",
+          "1, 5/2, 3"
+        ],
+        "refuses": [
+          "(4, 2.5, 3)",
+          "(1, 3, 2.5)"
+        ],
+        "explication": "**Règle :** on calcule un terme d'une formule explicite en remplaçant $n$ **partout**, y compris dans le dénominateur.\n\n**Pas à pas :**\n\n| $n$ | $n + 1$ | $\\frac{3}{n+1}$ | $u_n = 4 - \\frac{3}{n+1}$ |\n|---|---|---|---|\n| 0 | 1 | 3 | $4 - 3 = 1$ |\n| 1 | 2 | 1,5 | $4 - 1{,}5 = 2{,}5$ |\n| 2 | 3 | 1 | $4 - 1 = 3$ |\n\nRéponse : `(1, 2.5, 3)`.\n\n**Erreurs fréquentes :** écrire $4$ pour $u_0$ (on oublie de retirer $\\frac31$) ; diviser par $n$ au lieu de $n + 1$ (impossible pour $n = 0$) ; ranger les valeurs dans le désordre `(1, 3, 2.5)`.\n\n**À retenir :** fais un tableau $n$ / dénominateur / fraction / terme pour ne rien oublier."
       },
       {
         "intitule": "Quand $n$ augmente, la suite semble :",
         "type": "choix",
-        "choix": ["croissante", "décroissante", "constante", "ni croissante ni décroissante"],
-        "reponse": 0
+        "choix": [
+          "croissante",
+          "décroissante",
+          "constante",
+          "ni croissante ni décroissante"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** pour le sens de variation de « nombre fixe moins une fraction », on regarde si la fraction **grandit** ou **rétrécit** quand $n$ augmente.\n\n**Pas à pas :**\n\n1. Quand $n$ augmente, $n + 1$ augmente.\n2. Donc $\\frac{3}{n+1}$ diminue (on divise $3$ par un nombre plus grand).\n3. On retire à $4$ une quantité de plus en plus petite : le résultat augmente.\n4. Les valeurs $1$, $2{,}5$, $3$ le confirment : la suite est **croissante**.\n\n**Les autres réponses :** « décroissante » inverse le raisonnement (c'est la fraction qui décroît, pas la suite) ; « constante » et « ni croissante ni décroissante » sont contredits par les valeurs, qui montent toujours.\n\n**À retenir :** « $c$ moins un morceau qui rétrécit » est croissante ; « $c$ plus un morceau qui rétrécit » est décroissante."
       },
       {
         "intitule": "Pourquoi a-t-on $u_n < 4$ pour tout $n$ ?",
         "type": "choix",
-        "choix": ["Car $\\dfrac{3}{n+1} > 0$, donc on retire toujours quelque chose de positif à $4$", "Car $u_0 = 1$", "Car la suite est croissante", "Car $n + 1 > 3$"],
-        "reponse": 0
+        "choix": [
+          "Car $\\dfrac{3}{n+1} > 0$, donc on retire toujours quelque chose de positif à $4$",
+          "Car $u_0 = 1$",
+          "Car la suite est croissante",
+          "Car $n + 1 > 3$"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** pour montrer un plafond ($u_n < 4$), on regarde le **signe** de ce qu'on retire.\n\n**Pas à pas :**\n\n1. $n \\ge 0$, donc $n + 1 > 0$.\n2. $3 > 0$ et $n + 1 > 0$, donc $\\frac{3}{n+1} > 0$.\n3. On retire toujours un nombre strictement positif à $4$ : $u_n < 4$ pour tout $n$.\n\n**Les autres réponses :**\n- « Car $u_0 = 1$ » : un seul terme ne dit rien sur tous les suivants.\n- « Car la suite est croissante » : être croissante ne donne aucun plafond ($u_n = n$ est croissante et dépasse tout).\n- « Car $n + 1 > 3$ » : c'est faux pour $n = 0$, $1$, $2$, et ça ne sert pas à prouver $u_n < 4$.\n\n**À retenir :** une borne se prouve par le signe du morceau ajouté ou retiré, pour **tout** $n$."
       },
       {
         "intitule": "Vers quelle valeur la suite converge-t-elle ?",
         "type": "nombre",
         "reponse": 4,
-        "refuses": ["3", "1", "0"]
+        "refuses": [
+          "3",
+          "1",
+          "0"
+        ],
+        "explication": "**Règle :** une suite croissante et majorée converge (critère monotone borné) ; pour trouver la limite, on fait tendre chaque morceau.\n\n**Pas à pas :**\n\n1. Croissante (question précédente) et majorée par $4$ : la suite converge.\n2. $\\frac{3}{n+1} \\to 0$ quand $n$ devient grand.\n3. Donc $u_n \\to 4 - 0 = 4$.\n\nIci, le majorant $4$ est exactement la limite (ce n'est pas toujours le cas : le critère dit seulement que la limite est $\\le 4$).\n\n**Erreurs fréquentes :** répondre $3$ (la valeur de $u_2$), $1$ (celle de $u_0$) ou $0$ (la limite de la fraction, pas de la suite).\n\n**À retenir :** le critère garantit qu'une limite existe ; on la calcule ensuite en faisant tendre chaque morceau."
       }
     ],
     "indices": [
@@ -137,34 +221,65 @@
         "intitule": "Point fixe $\\ell$ (solution de $\\ell = 0{,}75\\,\\ell + 5$)",
         "type": "nombre",
         "reponse": 20,
-        "refuses": ["5", "6.666667", "-20"]
+        "refuses": [
+          "5",
+          "6.666667",
+          "-20"
+        ],
+        "explication": "**Règle :** le point fixe de $u_{n+1} = a\\,u_n + b$ est la solution de $\\ell = a\\ell + b$, c'est-à-dire $\\ell = \\dfrac{b}{1 - a}$ (si $a \\neq 1$).\n\n**Pas à pas :**\n\n1. $\\ell = 0{,}75\\,\\ell + 5$.\n2. On regroupe les $\\ell$ à gauche : $\\ell - 0{,}75\\,\\ell = 5$, soit $0{,}25\\,\\ell = 5$.\n3. $\\ell = \\frac{5}{0{,}25} = 20$.\n4. Vérification : $0{,}75 \\times 20 + 5 = 15 + 5 = 20$ ✓.\n\n**Erreurs fréquentes :** répondre $5$ (le $b$ seul) ; $6{,}67$ ($\\frac{5}{0{,}75}$, on a divisé par $a$ au lieu de $1 - a$) ; $-20$ (erreur de signe en passant $0{,}75\\,\\ell$ à gauche).\n\n**À retenir :** point fixe = $\\frac{b}{1 - a}$, puis vérifie en remplaçant dans la récurrence."
       },
       {
         "intitule": "$(v_n)$ est géométrique. Quelle est sa raison ?",
         "type": "nombre",
         "reponse": 0.75,
-        "acceptes": ["3/4", "0,75"],
-        "refuses": ["5", "0.25", "20"]
+        "acceptes": [
+          "3/4",
+          "0,75"
+        ],
+        "refuses": [
+          "5",
+          "0.25",
+          "20"
+        ],
+        "explication": "**Règle :** l'écart au point fixe $v_n = u_n - \\ell$ est géométrique, et sa raison est le **coefficient $a$** devant $u_n$.\n\n**Pas à pas :**\n\n1. $v_{n+1} = u_{n+1} - 20 = 0{,}75\\,u_n + 5 - 20 = 0{,}75\\,u_n - 15$.\n2. On factorise par $0{,}75$ : $15 = 0{,}75 \\times 20$, donc $0{,}75\\,u_n - 15 = 0{,}75\\,(u_n - 20)$.\n3. $v_{n+1} = 0{,}75\\,v_n$ : raison $0{,}75$.\n\n**Erreurs fréquentes :** répondre $5$ (le $b$, qui a disparu du calcul) ; $0{,}25$ (c'est $1 - a$, utile pour le point fixe, pas pour la raison) ; $20$ (le point fixe).\n\n**À retenir :** raison de $v_n$ = coefficient devant $u_n$ dans la récurrence."
       },
       {
         "intitule": "Valeur de $v_0$",
         "type": "nombre",
         "reponse": -18,
-        "refuses": ["18", "2", "-20"]
+        "refuses": [
+          "18",
+          "2",
+          "-20"
+        ],
+        "explication": "**Règle :** $v_n = u_n - \\ell$, donc $v_0 = u_0 - \\ell$, **dans cet ordre**.\n\n**Pas à pas :**\n\n1. $u_0 = 2$ et $\\ell = 20$.\n2. $v_0 = 2 - 20 = -18$.\n3. Le signe moins dit que la suite part **sous** le point fixe (elle va monter vers lui).\n\n**Erreurs fréquentes :** $18$ (on a calculé $\\ell - u_0$) ; $2$ (on a recopié $u_0$) ; $-20$ (on a oublié $u_0$).\n\n**À retenir :** écart de départ = $u_0 - \\ell$ ; négatif si on part sous le point fixe."
       },
       {
         "intitule": "Expression de $u_n$ en fonction de `n`",
         "type": "expression",
         "variable": "n",
         "reponse": "20 - 18*0.75^n",
-        "acceptes": ["20 + (2 - 20)*0.75^n", "20-18(3/4)^n"],
-        "refuses": ["20 - 18*0.25^n", "2*0.75^n + 5", "20 + 18*0.75^n"]
+        "acceptes": [
+          "20 + (2 - 20)*0.75^n",
+          "20-18(3/4)^n"
+        ],
+        "refuses": [
+          "20 - 18*0.25^n",
+          "2*0.75^n + 5",
+          "20 + 18*0.75^n"
+        ],
+        "explication": "**Règle :** $(v_n)$ est géométrique, donc $v_n = v_0 \\times a^n$, puis $u_n = \\ell + v_n = \\ell + (u_0 - \\ell)\\,a^n$.\n\n**Pas à pas :**\n\n1. $v_n = -18 \\times 0{,}75^n$.\n2. $u_n = v_n + 20 = 20 - 18 \\times 0{,}75^n$.\n3. Contrôle $n = 0$ : $20 - 18 = 2 = u_0$ ✓.\n4. Contrôle $n = 1$ : $20 - 18 \\times 0{,}75 = 20 - 13{,}5 = 6{,}5$ ; la récurrence donne $0{,}75 \\times 2 + 5 = 6{,}5$ ✓.\n\n**Erreurs fréquentes :** $20 + 18 \\times 0{,}75^n$ (mauvais signe de $v_0$) ; $20 - 18 \\times 0{,}25^n$ (raison $1 - a$ au lieu de $a$) ; $2 \\times 0{,}75^n + 5$ (on mélange la récurrence et la formule).\n\n**À retenir :** $u_n = \\ell + (u_0 - \\ell)\\,a^n$ ; contrôle avec $n = 0$ et $n = 1$."
       },
       {
         "intitule": "Limite de $(u_n)$",
         "type": "nombre",
         "reponse": 20,
-        "refuses": ["2", "0", "5"]
+        "refuses": [
+          "2",
+          "0",
+          "5"
+        ],
+        "explication": "**Règle :** si $\\lvert a \\rvert < 1$, $a^n \\to 0$, donc $u_n = \\ell + (u_0 - \\ell)\\,a^n \\to \\ell$ : la suite converge vers son point fixe.\n\n**Pas à pas :**\n\n1. $\\lvert 0{,}75 \\rvert < 1$, donc $0{,}75^n \\to 0$.\n2. $18 \\times 0{,}75^n \\to 0$.\n3. $u_n = 20 - 18 \\times 0{,}75^n \\to 20 - 0 = 20$.\n\n**Erreurs fréquentes :** répondre $2$ (le point de départ), $0$ (la limite de $0{,}75^n$, pas de $u_n$) ou $5$ (le $b$).\n\n**À retenir :** arithmético-géométrique avec $\\lvert a \\rvert < 1$ : la limite est le point fixe."
       }
     ],
     "indices": [
@@ -184,20 +299,38 @@
         "intitule": "$\\displaystyle\\sum_{n=0}^{5} 2^n$",
         "type": "nombre",
         "reponse": 63,
-        "refuses": ["31", "64", "127"]
+        "refuses": [
+          "31",
+          "64",
+          "127"
+        ],
+        "explication": "**Règle :** pour $q \\neq 1$, $\\displaystyle\\sum_{n=0}^{N} q^n = \\frac{1 - q^{N+1}}{1 - q}$ ; l'exposant est $N + 1$ car il y a $N + 1$ termes.\n\n**Pas à pas :**\n\n1. $q = 2$, $N = 5$, donc $N + 1 = 6$.\n2. $2^6 = 64$.\n3. $\\frac{1 - 64}{1 - 2} = \\frac{-63}{-1} = 63$.\n4. Vérification : $1 + 2 + 4 + 8 + 16 + 32 = 63$ ✓ (6 termes).\n\n**Erreurs fréquentes :** $31$ (exposant $5$ au lieu de $6$, un terme oublié) ; $64$ (on a pris $2^6$ sans finir le calcul) ; $127$ (exposant $7$, un terme de trop).\n\n**À retenir :** de $n = 0$ à $N$ : $N + 1$ termes, exposant $N + 1$."
       },
       {
         "intitule": "$\\displaystyle\\sum_{n=0}^{4} \\left(\\frac{1}{3}\\right)^n$",
         "type": "nombre",
         "reponse": "121/81",
-        "acceptes": ["(1-(1/3)^5)/(1-1/3)", "1 + 1/3 + 1/9 + 1/27 + 1/81"],
-        "refuses": ["3/2", "40/27", "1.5"]
+        "acceptes": [
+          "(1-(1/3)^5)/(1-1/3)",
+          "1 + 1/3 + 1/9 + 1/27 + 1/81"
+        ],
+        "refuses": [
+          "3/2",
+          "40/27",
+          "1.5"
+        ],
+        "explication": "**Règle :** même formule avec une fraction : $\\dfrac{1 - q^{N+1}}{1 - q}$, et diviser par une fraction revient à multiplier par son inverse.\n\n**Pas à pas :**\n\n1. $q = \\frac13$, $N = 4$, donc $N + 1 = 5$ : $(\\frac13)^5 = \\frac{1}{243}$.\n2. Numérateur : $1 - \\frac{1}{243} = \\frac{242}{243}$.\n3. Dénominateur : $1 - \\frac13 = \\frac23$.\n4. $\\frac{242}{243} \\times \\frac32 = \\frac{726}{486} = \\frac{121}{81}$ (on simplifie par $6$).\n5. Vérification : $1 + \\frac13 + \\frac19 + \\frac{1}{27} + \\frac{1}{81} = \\frac{81 + 27 + 9 + 3 + 1}{81} = \\frac{121}{81}$ ✓.\n\n**Erreurs fréquentes :** $\\frac32$ (c'est la somme **infinie**, pas celle des 5 premiers termes) ; $\\frac{40}{27}$ (on s'est arrêté à $n = 3$, un terme oublié).\n\n**À retenir :** somme finie ≠ somme infinie : la finie est toujours un peu plus petite (pour $q > 0$)."
       },
       {
         "intitule": "$\\displaystyle\\sum_{n=0}^{3} (-2)^n$",
         "type": "nombre",
         "reponse": -5,
-        "refuses": ["5", "15", "11"]
+        "refuses": [
+          "5",
+          "15",
+          "11"
+        ],
+        "explication": "**Règle :** même formule ; avec une raison négative, attention aux signes : une puissance paire d'un négatif est positive, et $1 - (-2) = 3$.\n\n**Pas à pas :**\n\n1. $q = -2$, $N = 3$, donc $N + 1 = 4$ : $(-2)^4 = 16$.\n2. Numérateur : $1 - 16 = -15$.\n3. Dénominateur : $1 - (-2) = 1 + 2 = 3$.\n4. $\\frac{-15}{3} = -5$.\n5. Vérification : $1 + (-2) + 4 + (-8) = -5$ ✓.\n\n**Erreurs fréquentes :** $5$ (signe perdu) ; $15$ ($1 + 2 + 4 + 8$, on a ignoré les signes moins) ; $11$ (erreur de signe sur une seule puissance).\n\n**À retenir :** raison négative : écris chaque puissance avec son signe, et vérifie à la main."
       }
     ],
     "indices": [
@@ -216,28 +349,57 @@
         "intitule": "$\\displaystyle\\sum_{n=0}^{+\\infty} \\left(\\frac{2}{5}\\right)^n$",
         "type": "nombre",
         "reponse": "5/3",
-        "acceptes": ["1/(1-2/5)", "1/(3/5)"],
-        "refuses": ["2/5", "3/5", "5/2"]
+        "acceptes": [
+          "1/(1-2/5)",
+          "1/(3/5)"
+        ],
+        "refuses": [
+          "2/5",
+          "3/5",
+          "5/2"
+        ],
+        "explication": "**Règle :** si $\\lvert q \\rvert < 1$, $\\displaystyle\\sum_{n=0}^{+\\infty} q^n = \\frac{1}{1 - q}$.\n\n**Pas à pas :**\n\n1. $q = \\frac25$ et $\\frac25 < 1$ : la série converge.\n2. $1 - \\frac25 = \\frac35$.\n3. $\\frac{1}{\\frac35} = \\frac53$ (inverse de $\\frac35$).\n4. Contrôle : $1 + 0{,}4 + 0{,}16 + 0{,}064 + \\dots \\approx 1{,}62$, on se rapproche de $\\frac53 \\approx 1{,}67$.\n\n**Erreurs fréquentes :** $\\frac25$ (la raison) ; $\\frac35$ ($1 - q$, on a oublié l'inverse) ; $\\frac52$ (inverse de $q$ au lieu de $1 - q$).\n\n**À retenir :** vérifie $\\lvert q \\rvert < 1$, puis calcule $1 - q$, puis prends l'inverse."
       },
       {
         "intitule": "$\\displaystyle\\sum_{n=0}^{+\\infty} \\left(-\\frac{1}{2}\\right)^n$",
         "type": "nombre",
         "reponse": "2/3",
-        "acceptes": ["1/(1+1/2)", "1/1.5"],
-        "refuses": ["2", "-2", "1/2"]
+        "acceptes": [
+          "1/(1+1/2)",
+          "1/1.5"
+        ],
+        "refuses": [
+          "2",
+          "-2",
+          "1/2"
+        ],
+        "explication": "**Règle :** une raison négative ne gêne pas : c'est $\\lvert q \\rvert < 1$ qui compte. La somme vaut $\\frac{1}{1 - q}$, avec $q$ **négatif** dans le calcul.\n\n**Pas à pas :**\n\n1. $q = -\\frac12$, $\\lvert q \\rvert = \\frac12 < 1$ : la série converge.\n2. $1 - q = 1 - (-\\frac12) = 1 + \\frac12 = \\frac32$.\n3. $\\frac{1}{\\frac32} = \\frac23$.\n4. Contrôle : $1 - 0{,}5 + 0{,}25 - 0{,}125 + 0{,}0625 \\approx 0{,}69$, proche de $\\frac23 \\approx 0{,}667$.\n\n**Erreurs fréquentes :** $2$ (on a oublié le signe : $\\frac{1}{1 - \\frac12}$) ; $-2$ ; $\\frac12$.\n\n**À retenir :** $1 - q$ avec $q$ négatif devient $1 + \\lvert q \\rvert$."
       },
       {
         "intitule": "$\\displaystyle\\sum_{n=1}^{+\\infty} \\left(\\frac{1}{3}\\right)^n$ (attention au premier indice)",
         "type": "nombre",
         "reponse": "1/2",
-        "acceptes": ["3/2 - 1", "0.5"],
-        "refuses": ["3/2", "1/3"]
+        "acceptes": [
+          "3/2 - 1",
+          "0.5"
+        ],
+        "refuses": [
+          "3/2",
+          "1/3"
+        ],
+        "explication": "**Règle :** la formule $\\frac{1}{1 - q}$ est la somme à partir de $n = 0$. Si la somme commence à $n = 1$, il manque le terme $q^0 = 1$ : on le retire.\n\n**Pas à pas :**\n\n1. $q = \\frac13$, $\\lvert q \\rvert < 1$.\n2. Depuis $n = 0$ : $\\frac{1}{1 - \\frac13} = \\frac{1}{\\frac23} = \\frac32$.\n3. On retire le terme $n = 0$, qui vaut $(\\frac13)^0 = 1$ : $\\frac32 - 1 = \\frac12$.\n4. Contrôle : $\\frac13 + \\frac19 + \\frac{1}{27} + \\dots \\approx 0{,}33 + 0{,}11 + 0{,}04 \\approx 0{,}48$, proche de $0{,}5$.\n\n**Erreurs fréquentes :** $\\frac32$ (on n'a pas regardé l'indice de départ) ; $\\frac13$ (le premier terme seul).\n\n**À retenir :** regarde toujours l'indice de départ ; depuis $n = 1$, c'est $\\frac{1}{1 - q} - 1$."
       },
       {
         "intitule": "$\\displaystyle\\sum_{n=0}^{+\\infty} 1{,}5^n$",
         "type": "choix",
-        "choix": ["Converge vers $\\dfrac{1}{1 - 1{,}5} = -2$", "Converge vers $3$", "Diverge", "Converge vers $0$"],
-        "reponse": 2
+        "choix": [
+          "Converge vers $\\dfrac{1}{1 - 1{,}5} = -2$",
+          "Converge vers $3$",
+          "Diverge",
+          "Converge vers $0$"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** si $\\lvert q \\rvert \\ge 1$, la série géométrique **diverge**, et la formule $\\frac{1}{1 - q}$ ne s'applique pas.\n\n**Pas à pas :**\n\n1. $q = 1{,}5 \\ge 1$.\n2. Termes : $1;\\ 1{,}5;\\ 2{,}25;\\ 3{,}375;\\ \\dots$ ils grandissent.\n3. Sommes partielles : $1;\\ 2{,}5;\\ 4{,}75;\\ 8{,}125;\\ \\dots$ elles partent vers $+\\infty$.\n\nRéponse : la série **diverge**.\n\n**Les autres réponses :** « converge vers $-2$ » applique la formule interdite, et donne un négatif pour une somme de nombres positifs : absurde ; « converge vers $3$ » est dépassé dès la 3e somme partielle ($4{,}75$) ; « converge vers $0$ » est impossible, le premier terme vaut déjà $1$ et les termes ne tendent même pas vers $0$.\n\n**À retenir :** $\\lvert q \\rvert \\ge 1$ : divergence, pas de formule."
       }
     ],
     "indices": [
@@ -256,31 +418,51 @@
         "intitule": "Limite du terme général $\\dfrac{3n - 1}{n}$ quand $n \\to +\\infty$",
         "type": "nombre",
         "reponse": 3,
-        "refuses": ["0", "-1"]
+        "refuses": [
+          "0",
+          "-1"
+        ],
+        "explication": "**Règle :** une fraction de la forme $\\frac{an + b}{n}$ se coupe en deux : $\\frac{an}{n} + \\frac{b}{n} = a + \\frac{b}{n}$, et $\\frac{b}{n} \\to 0$.\n\n**Pas à pas :**\n\n1. $\\frac{3n - 1}{n} = \\frac{3n}{n} - \\frac{1}{n}$.\n2. $\\frac{3n}{n} = 3$ (on simplifie par $n$).\n3. $\\frac1n \\to 0$.\n4. Donc le terme général tend vers $3 - 0 = 3$.\n\n**Erreurs fréquentes :** répondre $0$ (en croyant qu'une fraction en $n$ tend toujours vers $0$ : ici le haut grandit aussi) ou $-1$ (on n'a gardé que la constante du numérateur).\n\n**À retenir :** coupe la fraction en morceaux, puis fais tendre chaque morceau."
       },
       {
         "intitule": "$\\displaystyle\\sum_{n=1}^{+\\infty} \\frac{3n - 1}{n}$",
         "type": "choix",
-        "choix": ["Diverge : le terme général ne tend pas vers $0$", "Le critère grossier ne permet pas de conclure"],
-        "reponse": 0
+        "choix": [
+          "Diverge : le terme général ne tend pas vers $0$",
+          "Le critère grossier ne permet pas de conclure"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** critère grossier : si le terme général ne tend **pas** vers $0$, la série diverge.\n\n**Pas à pas :**\n\n1. Le terme général tend vers $3$ (question précédente).\n2. $3 \\neq 0$.\n3. À chaque rang, on ajoute presque $3$ : après $N$ termes, la somme vaut environ $3N$, elle grandit sans fin.\n\nLe critère permet de conclure : la série **diverge**.\n\n**Erreur fréquente :** répondre « ne permet pas de conclure » : ce cas-là est réservé aux termes qui tendent vers $0$.\n\n**À retenir :** terme général de limite non nulle ⇒ divergence."
       },
       {
         "intitule": "$\\displaystyle\\sum_{n=1}^{+\\infty} \\frac{1}{n^2}$",
         "type": "choix",
-        "choix": ["Diverge : le terme général ne tend pas vers $0$", "Le critère grossier ne permet pas de conclure"],
-        "reponse": 1
+        "choix": [
+          "Diverge : le terme général ne tend pas vers $0$",
+          "Le critère grossier ne permet pas de conclure"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** le critère grossier ne conclut que si le terme ne tend pas vers $0$. Si le terme tend vers $0$, il **ne permet pas de conclure**.\n\n**Pas à pas :**\n\n1. $\\frac{1}{n^2}$ : $1,\\ \\frac14,\\ \\frac19,\\ \\frac{1}{16},\\ \\dots$ tend vers $0$.\n2. Le critère grossier ne dit donc rien ici.\n\n**Les autres réponses :** « Diverge : le terme général ne tend pas vers $0$ » est faux, il tend bien vers $0$. (Cette série converge en réalité, mais pour le montrer il faut un autre outil que le critère grossier.)\n\n**À retenir :** terme qui tend vers $0$ : le critère grossier se tait."
       },
       {
         "intitule": "$\\displaystyle\\sum_{n=0}^{+\\infty} (-1)^n$",
         "type": "choix",
-        "choix": ["Diverge : le terme général ne tend pas vers $0$", "Le critère grossier ne permet pas de conclure"],
-        "reponse": 0
+        "choix": [
+          "Diverge : le terme général ne tend pas vers $0$",
+          "Le critère grossier ne permet pas de conclure"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** un terme qui n'a **aucune** limite ne tend pas vers $0$ : le critère grossier s'applique et la série diverge.\n\n**Pas à pas :**\n\n1. $(-1)^n$ vaut $1, -1, 1, -1, \\dots$ : pas de limite, donc pas $0$.\n2. Sommes partielles : $S_0 = 1$, $S_1 = 0$, $S_2 = 1$, $S_3 = 0$, … elles ne se stabilisent pas.\n\nLa série **diverge**.\n\n**Erreur fréquente :** croire que, comme les sommes restent petites ($0$ ou $1$), la série converge. Converger, c'est se rapprocher d'**une** valeur, pas rester petit.\n\n**À retenir :** terme sans limite ⇒ il ne tend pas vers $0$ ⇒ divergence."
       },
       {
         "intitule": "$\\displaystyle\\sum_{n=1}^{+\\infty} \\frac{1}{n}$",
         "type": "choix",
-        "choix": ["Diverge : le terme général ne tend pas vers $0$", "Le critère grossier ne permet pas de conclure"],
-        "reponse": 1
+        "choix": [
+          "Diverge : le terme général ne tend pas vers $0$",
+          "Le critère grossier ne permet pas de conclure"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** quand le terme tend vers $0$, le critère grossier ne permet pas de conclure, quelle que soit la série.\n\n**Pas à pas :**\n\n1. $\\frac1n \\to 0$ : le critère grossier se tait.\n2. Remarque : cette série (la série harmonique) **diverge** quand même, mais très lentement ($1 + \\frac12 + \\frac13 + \\dots$ dépasse n'importe quel nombre si on va assez loin). Ce n'est pas le critère grossier qui le montre.\n\nRéponse : « Le critère grossier ne permet pas de conclure ».\n\n**Erreurs fréquentes :** en déduire que la série converge (c'est faux ici), ou choisir « Diverge : le terme général ne tend pas vers $0$ », dont la justification est fausse puisque $\\frac1n \\to 0$.\n\n**À retenir :** $u_n \\to 0$ est nécessaire pour converger, pas suffisant ; $\\sum \\frac1n$ est le contre-exemple à connaître."
       }
     ],
     "indices": [
@@ -300,29 +482,51 @@
         "type": "nombre",
         "reponse": "8/3",
         "tolerance": 0.001,
-        "acceptes": ["2.667", "1 + 1 + 1/2 + 1/6"],
-        "refuses": ["2.5", "2.718"]
+        "acceptes": [
+          "2.667",
+          "1 + 1 + 1/2 + 1/6"
+        ],
+        "refuses": [
+          "2.5",
+          "2.718"
+        ],
+        "explication": "**Règle :** $e^x = \\displaystyle\\sum_{n=0}^{+\\infty} \\frac{x^n}{n!}$, avec $n! = 1 \\times 2 \\times \\dots \\times n$ et $0! = 1$. Pour $x = 1$, $x^n = 1$, donc chaque terme vaut $\\frac{1}{n!}$.\n\n**Pas à pas :**\n\n| $n$ | $n!$ | Terme $\\frac{1}{n!}$ |\n|---|---|---|\n| 0 | 1 | $1$ |\n| 1 | 1 | $1$ |\n| 2 | 2 | $\\frac12$ |\n| 3 | 6 | $\\frac16$ |\n\nSomme : $1 + 1 + \\frac12 + \\frac16 = \\frac{6 + 6 + 3 + 1}{6} = \\frac{16}{6} = \\frac83 \\approx 2{,}667$.\n\n**Erreurs fréquentes :** $2{,}5$ (on s'est arrêté à $n = 2$, sans le terme $\\frac16$) ; $2{,}718$ (c'est $e$ lui-même, la somme **infinie**, pas celle des 4 premiers termes).\n\n**À retenir :** $0! = 1$ ; fais un tableau $n$ / $n!$ / terme."
       },
       {
         "intitule": "Valeur du terme suivant ($n = 4$) pour $x = 1$",
         "type": "nombre",
         "reponse": "1/24",
         "tolerance": 0.001,
-        "acceptes": ["0.042", "1/4!"],
-        "refuses": ["1/4", "1/12"]
+        "acceptes": [
+          "0.042",
+          "1/4!"
+        ],
+        "refuses": [
+          "1/4",
+          "1/12"
+        ],
+        "explication": "**Règle :** le terme de rang $n$ est $\\frac{x^n}{n!}$.\n\n**Pas à pas :**\n\n1. $x = 1$ et $n = 4$ : $x^4 = 1$.\n2. $4! = 4 \\times 3 \\times 2 \\times 1 = 24$.\n3. Terme : $\\frac{1}{24} \\approx 0{,}042$.\n\nEn l'ajoutant à $\\frac83$, on obtient environ $2{,}708$, très proche de $e \\approx 2{,}718$.\n\n**Erreurs fréquentes :** $\\frac14$ (division par $n$ au lieu de $n!$) ; $\\frac{1}{12}$ (on a calculé $4 \\times 3$ seulement).\n\n**À retenir :** $n!$ multiplie **tous** les entiers de $1$ à $n$ : il grandit très vite."
       },
       {
         "intitule": "Pour $x = 0{,}5$, somme des termes de $n = 0$ à $n = 3$",
         "type": "nombre",
         "reponse": "1 + 0.5 + 0.5^2/2 + 0.5^3/6",
         "tolerance": 0.001,
-        "acceptes": ["1.646", "79/48"],
-        "refuses": ["1.5", "1.625"]
+        "acceptes": [
+          "1.646",
+          "79/48"
+        ],
+        "refuses": [
+          "1.5",
+          "1.625"
+        ],
+        "explication": "**Règle :** même somme avec $x = 0{,}5$ : chaque terme vaut $\\frac{0{,}5^n}{n!}$.\n\n**Pas à pas :**\n\n| $n$ | $0{,}5^n$ | $n!$ | Terme |\n|---|---|---|---|\n| 0 | $1$ | 1 | $1$ |\n| 1 | $0{,}5$ | 1 | $0{,}5$ |\n| 2 | $0{,}25$ | 2 | $0{,}125$ |\n| 3 | $0{,}125$ | 6 | $0{,}0208\\dots$ |\n\nSomme : $1 + 0{,}5 + 0{,}125 + 0{,}0208 \\approx 1{,}646$ (en fraction : $\\frac{79}{48}$). La vraie valeur $e^{0{,}5} \\approx 1{,}649$ est très proche.\n\n**Erreurs fréquentes :** $1{,}5$ (on s'est arrêté à $n = 1$) ; $1{,}625$ (on a oublié le terme $n = 3$).\n\n**À retenir :** plus $x$ est proche de $0$, plus les termes rétrécissent vite, et moins il en faut."
       },
       {
         "intitule": "Explique en une phrase pourquoi ajouter des termes rapproche l'estimation de la vraie valeur.",
         "type": "auto",
-        "reponse": "Chaque terme ajouté est **positif** (pour $x > 0$) et **de plus en plus petit**, car $n!$ grandit très vite : la somme partielle monte vers $e^x$ par petits pas qui fondent, sans jamais la dépasser."
+        "reponse": "Chaque terme ajouté est **positif** (pour $x > 0$) et **de plus en plus petit**, car $n!$ grandit très vite : la somme partielle monte vers $e^x$ par petits pas qui fondent, sans jamais la dépasser.",
+        "explication": "**Règle :** une réponse rédigée est comparée à un modèle : il faut dire **pourquoi** chaque terme ajouté rapproche de $e^x$.\n\n**Ce qu'une bonne réponse doit contenir :**\n\n1. **Le signe des termes** : pour $x > 0$, tous les termes $\\frac{x^n}{n!}$ sont positifs, donc chaque ajout fait **monter** la somme partielle vers $e^x$, sans la dépasser.\n2. **La taille des termes** : ils deviennent de plus en plus petits, parce que $n!$ grandit beaucoup plus vite que $x^n$ (on divise par $24$, puis $120$, puis $720$…).\n3. **La conclusion** : ce qu'il reste à ajouter devient minuscule, donc l'écart entre la somme partielle et $e^x$ diminue à chaque terme.\n\n**Erreurs fréquentes :** dire seulement « on ajoute des termes » (sans dire qu'ils sont positifs et qu'ils rétrécissent) ; dire que les termes deviennent nuls (ils deviennent très petits, jamais nuls) ; oublier le rôle de la factorielle.\n\n**À retenir :** une somme partielle se rapproche de sa limite quand les termes ajoutés vont dans le bon sens et deviennent minuscules."
       }
     ],
     "indices": [
@@ -340,23 +544,46 @@
       {
         "intitule": "$(u_1, u_2, u_3)$",
         "type": "vecteur",
-        "reponse": [3, 4.2, 4.68],
-        "acceptes": ["(3; 4,2; 4,68)"],
-        "refuses": ["(3, 4.2, 4.8)", "(0, 3, 4.2)"]
+        "reponse": [
+          3,
+          4.2,
+          4.68
+        ],
+        "acceptes": [
+          "(3; 4,2; 4,68)"
+        ],
+        "refuses": [
+          "(3, 4.2, 4.8)",
+          "(0, 3, 4.2)"
+        ],
+        "explication": "**Règle :** une récurrence se calcule comme une boucle : on part de $u_0$ et on applique la mise à jour une fois par terme.\n\n**Pas à pas :**\n\n1. $u_1 = 0{,}4 \\times u_0 + 3 = 0{,}4 \\times 0 + 3 = 3$.\n2. $u_2 = 0{,}4 \\times 3 + 3 = 1{,}2 + 3 = 4{,}2$.\n3. $u_3 = 0{,}4 \\times 4{,}2 + 3 = 1{,}68 + 3 = 4{,}68$.\n\nRéponse : `(3, 4.2, 4.68)`. Les valeurs montent et semblent se rapprocher de $5$.\n\n**Erreurs fréquentes :** `(0, 3, 4.2)` (on a commencé par $u_0$ alors qu'on demande $u_1$) ; `(3, 4.2, 4.8)` (erreur sur $0{,}4 \\times 4{,}2 = 1{,}68$).\n\n**À retenir :** chaque terme se calcule à partir du **précédent** ; commence au rang demandé."
       },
       {
         "intitule": "Point fixe $\\ell$ (solution de $\\ell = 0{,}4\\,\\ell + 3$)",
         "type": "nombre",
         "reponse": 5,
-        "refuses": ["3", "7.5", "4.68"]
+        "refuses": [
+          "3",
+          "7.5",
+          "4.68"
+        ],
+        "explication": "**Règle :** le point fixe est la valeur qui ne bouge plus : $\\ell = a\\ell + b$, soit $\\ell = \\frac{b}{1 - a}$.\n\n**Pas à pas :**\n\n1. $\\ell = 0{,}4\\,\\ell + 3$.\n2. $\\ell - 0{,}4\\,\\ell = 3$, soit $0{,}6\\,\\ell = 3$.\n3. $\\ell = \\frac{3}{0{,}6} = 5$.\n4. Vérification : $0{,}4 \\times 5 + 3 = 2 + 3 = 5$ ✓. C'est bien la valeur vers laquelle $3$, $4{,}2$, $4{,}68$ se dirigent.\n\n**Erreurs fréquentes :** $3$ (le $b$ seul) ; $7{,}5$ ($\\frac{3}{0{,}4}$, division par $a$ au lieu de $1 - a$) ; $4{,}68$ (le dernier terme calculé, pas la limite).\n\n**À retenir :** point fixe = $\\frac{b}{1 - a}$ ; il doit vérifier la récurrence."
       },
       {
         "intitule": "Expression de $u_n$ en fonction de `n`",
         "type": "expression",
         "variable": "n",
         "reponse": "5 - 5*0.4^n",
-        "acceptes": ["5(1 - 0.4^n)", "5 + (0-5)*0.4^n"],
-        "refuses": ["5*0.4^n", "3 - 3*0.4^n", "5 - 5*0.6^n"]
+        "acceptes": [
+          "5(1 - 0.4^n)",
+          "5 + (0-5)*0.4^n"
+        ],
+        "refuses": [
+          "5*0.4^n",
+          "3 - 3*0.4^n",
+          "5 - 5*0.6^n"
+        ],
+        "explication": "**Règle :** méthode arithmético-géométrique : $u_n = \\ell + (u_0 - \\ell)\\,a^n$.\n\n**Pas à pas :**\n\n1. $\\ell = 5$, $a = 0{,}4$, $u_0 = 0$.\n2. Écart de départ : $v_0 = u_0 - \\ell = 0 - 5 = -5$.\n3. $v_n = -5 \\times 0{,}4^n$, donc $u_n = 5 - 5 \\times 0{,}4^n$.\n4. Contrôle $n = 1$ : $5 - 5 \\times 0{,}4 = 5 - 2 = 3 = u_1$ ✓ ; $n = 2$ : $5 - 5 \\times 0{,}16 = 4{,}2 = u_2$ ✓.\n\n**Erreurs fréquentes :** $5 \\times 0{,}4^n$ (on a oublié le point fixe : ça tendrait vers $0$) ; $3 - 3 \\times 0{,}4^n$ (on a pris $b$ pour le point fixe) ; $5 - 5 \\times 0{,}6^n$ (raison $1 - a$ au lieu de $a$).\n\n**À retenir :** $u_n = \\ell + (u_0 - \\ell)\\,a^n$, puis contrôle avec les termes déjà calculés."
       }
     ],
     "indices": [
@@ -374,27 +601,55 @@
       {
         "intitule": "$(u_1, u_2, u_3, u_4)$",
         "type": "vecteur",
-        "reponse": [9, 4.5, 6.75, 5.625],
-        "acceptes": ["(9; 4,5; 6,75; 5,625)"],
-        "refuses": ["(9, 13.5, 2.25, 7.875)", "(9, 4.5, 6.75, 5.5)"]
+        "reponse": [
+          9,
+          4.5,
+          6.75,
+          5.625
+        ],
+        "acceptes": [
+          "(9; 4,5; 6,75; 5,625)"
+        ],
+        "refuses": [
+          "(9, 13.5, 2.25, 7.875)",
+          "(9, 4.5, 6.75, 5.5)"
+        ],
+        "explication": "**Règle :** on applique $f(x) = -0{,}5\\,x + 9$ un terme après l'autre, en gardant le signe moins.\n\n**Pas à pas :**\n\n1. $u_1 = -0{,}5 \\times 0 + 9 = 9$.\n2. $u_2 = -0{,}5 \\times 9 + 9 = -4{,}5 + 9 = 4{,}5$.\n3. $u_3 = -0{,}5 \\times 4{,}5 + 9 = -2{,}25 + 9 = 6{,}75$.\n4. $u_4 = -0{,}5 \\times 6{,}75 + 9 = -3{,}375 + 9 = 5{,}625$.\n\nRéponse : `(9, 4.5, 6.75, 5.625)`. La suite monte, descend, remonte…\n\n**Erreurs fréquentes :** `(9, 13.5, 2.25, 7.875)` (on a ajouté $0{,}5 \\times u_n$ au lieu de le retirer) ; `(9, 4.5, 6.75, 5.5)` (erreur sur $0{,}5 \\times 6{,}75 = 3{,}375$).\n\n**À retenir :** avec un coefficient négatif, chaque terme retire une part du précédent : la suite fait des allers-retours."
       },
       {
         "intitule": "Point fixe $\\ell$",
         "type": "nombre",
         "reponse": 6,
-        "refuses": ["18", "9", "-18"]
+        "refuses": [
+          "18",
+          "9",
+          "-18"
+        ],
+        "explication": "**Règle :** point fixe : $\\ell = a\\ell + b$, soit $\\ell = \\frac{b}{1 - a}$. Attention : avec $a$ négatif, $1 - a$ est **plus grand** que $1$.\n\n**Pas à pas :**\n\n1. $\\ell = -0{,}5\\,\\ell + 9$.\n2. On passe $-0{,}5\\,\\ell$ à gauche : $\\ell + 0{,}5\\,\\ell = 9$, soit $1{,}5\\,\\ell = 9$.\n3. $\\ell = \\frac{9}{1{,}5} = 6$.\n4. Vérification : $-0{,}5 \\times 6 + 9 = -3 + 9 = 6$ ✓.\n\n**Erreurs fréquentes :** $18$ (on a calculé $1 - 0{,}5 = 0{,}5$ au lieu de $1 - (-0{,}5) = 1{,}5$) ; $9$ (le $b$ seul) ; $-18$.\n\n**À retenir :** $1 - a$ avec $a$ négatif : $1 - (-0{,}5) = 1{,}5$."
       },
       {
         "intitule": "Que font les écarts $u_n - \\ell$ ?",
         "type": "choix",
-        "choix": ["Ils sont tous positifs", "Ils sont tous négatifs", "Ils changent de signe à chaque rang", "Ils sont nuls à partir de $u_2$"],
-        "reponse": 2
+        "choix": [
+          "Ils sont tous positifs",
+          "Ils sont tous négatifs",
+          "Ils changent de signe à chaque rang",
+          "Ils sont nuls à partir de $u_2$"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** l'écart au point fixe est multiplié par $a$ à chaque pas : $u_{n+1} - \\ell = a\\,(u_n - \\ell)$. Avec $a < 0$, son signe change à chaque rang.\n\n**Pas à pas :**\n\n| $n$ | $u_n$ | Écart $u_n - 6$ |\n|---|---|---|\n| 0 | $0$ | $-6$ |\n| 1 | $9$ | $+3$ |\n| 2 | $4{,}5$ | $-1{,}5$ |\n| 3 | $6{,}75$ | $+0{,}75$ |\n| 4 | $5{,}625$ | $-0{,}375$ |\n\nChaque écart est l'opposé de la moitié du précédent : il **change de signe à chaque rang**.\n\n**Les autres réponses :** « tous positifs » ou « tous négatifs » : le tableau montre l'alternance ; « nuls à partir de $u_2$ » : on ne fait que diviser l'écart par $2$, il ne devient jamais nul.\n\n**À retenir :** écart × $a$ à chaque pas : $a < 0$ ⇒ le signe alterne."
       },
       {
         "intitule": "Sur un diagramme en escalier, la trajectoire ressemble à :",
         "type": "choix",
-        "choix": ["un escalier qui monte sans revenir en arrière", "une spirale qui s'enroule vers le point fixe", "une spirale qui s'éloigne du point fixe", "une droite"],
-        "reponse": 1
+        "choix": [
+          "un escalier qui monte sans revenir en arrière",
+          "une spirale qui s'enroule vers le point fixe",
+          "une spirale qui s'éloigne du point fixe",
+          "une droite"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** sur un diagramme en escalier, le **signe** de $a$ donne la forme (positif : escalier, négatif : spirale) et la **taille** $\\lvert a \\rvert$ donne le sens (moins de $1$ : on se rapproche du point fixe, plus de $1$ : on s'en éloigne).\n\n**Pas à pas :**\n\n1. $a = -0{,}5 < 0$ : la suite passe une fois au-dessus, une fois en dessous de $6$ : **spirale**.\n2. $\\lvert a \\rvert = 0{,}5 < 1$ : les écarts sont divisés par $2$ à chaque pas : la spirale **s'enroule vers** le point fixe.\n\n**Les autres réponses :** « un escalier qui monte sans revenir en arrière » correspondrait à $a$ positif ; « une spirale qui s'éloigne » correspondrait à $\\lvert a \\rvert > 1$ ; « une droite » ne décrit pas une trajectoire qui va et vient.\n\n**À retenir :** signe de $a$ = forme ; $\\lvert a \\rvert$ comparé à $1$ = on se rapproche ou on s'éloigne."
       }
     ],
     "indices": [
@@ -413,36 +668,74 @@
       {
         "intitule": "Pour $\\eta = 0{,}25$ : $(\\theta_1, \\theta_2, \\theta_3)$",
         "type": "vecteur",
-        "reponse": [15, 11.25, 8.4375],
-        "acceptes": ["(15; 11,25; 8,4375)"],
-        "refuses": ["(5, 1.25, 0.3125)", "(15, 10, 5)"]
+        "reponse": [
+          15,
+          11.25,
+          8.4375
+        ],
+        "acceptes": [
+          "(15; 11,25; 8,4375)"
+        ],
+        "refuses": [
+          "(5, 1.25, 0.3125)",
+          "(15, 10, 5)"
+        ],
+        "explication": "**Règle :** $\\theta_{n+1} = (1 - \\eta)\\,\\theta_n$ : à chaque pas, on multiplie par $1 - \\eta$.\n\n**Pas à pas :**\n\n1. $\\eta = 0{,}25$, donc on multiplie par $1 - 0{,}25 = 0{,}75$.\n2. $\\theta_1 = 20 \\times 0{,}75 = 15$.\n3. $\\theta_2 = 15 \\times 0{,}75 = 11{,}25$.\n4. $\\theta_3 = 11{,}25 \\times 0{,}75 = 8{,}4375$.\n\nRéponse : `(15, 11.25, 8.4375)`.\n\n**Erreurs fréquentes :** `(5, 1.25, 0.3125)` (on a multiplié par $\\eta = 0{,}25$ au lieu de $1 - \\eta$) ; `(15, 10, 5)` (on a retiré $5$ à chaque fois, au lieu de $25\\,\\%$ de la valeur actuelle).\n\n**À retenir :** « retirer $\\eta\\,\\theta_n$ » = multiplier par $1 - \\eta$."
       },
       {
         "intitule": "Pour $\\eta = 0{,}25$, expression de $\\theta_n$ en fonction de `n`",
         "type": "expression",
         "variable": "n",
         "reponse": "20*0.75^n",
-        "acceptes": ["20(3/4)^n"],
-        "refuses": ["20*0.25^n", "20 - 5n", "15^n"]
+        "acceptes": [
+          "20(3/4)^n"
+        ],
+        "refuses": [
+          "20*0.25^n",
+          "20 - 5n",
+          "15^n"
+        ],
+        "explication": "**Règle :** une suite qui multiplie par $q$ à chaque pas est géométrique : $\\theta_n = \\theta_0 \\times q^n$.\n\n**Pas à pas :**\n\n1. $\\theta_0 = 20$ et $q = 0{,}75$.\n2. $\\theta_n = 20 \\times 0{,}75^n$.\n3. Contrôle : $n = 1$ donne $15$, $n = 2$ donne $20 \\times 0{,}5625 = 11{,}25$ ✓.\n\n**Erreurs fréquentes :** $20 \\times 0{,}25^n$ (raison $\\eta$ au lieu de $1 - \\eta$) ; $20 - 5n$ (comme si on retirait toujours $5$) ; $15^n$ (on a élevé $\\theta_1$ à la puissance).\n\n**À retenir :** mise à jour multiplicative ⇒ formule avec une puissance, $\\theta_0 \\times q^n$."
       },
       {
         "intitule": "Pour $\\eta = 2{,}2$ : $(\\theta_1, \\theta_2)$",
         "type": "vecteur",
-        "reponse": [-24, 28.8],
-        "acceptes": ["(-24; 28,8)"],
-        "refuses": ["(24, 28.8)", "(-24, -28.8)"]
+        "reponse": [
+          -24,
+          28.8
+        ],
+        "acceptes": [
+          "(-24; 28,8)"
+        ],
+        "refuses": [
+          "(24, 28.8)",
+          "(-24, -28.8)"
+        ],
+        "explication": "**Règle :** même mise à jour avec $\\eta = 2{,}2$ : on multiplie par $1 - 2{,}2 = -1{,}2$, un nombre **négatif**.\n\n**Pas à pas :**\n\n1. $q = 1 - 2{,}2 = -1{,}2$.\n2. $\\theta_1 = 20 \\times (-1{,}2) = -24$.\n3. $\\theta_2 = -24 \\times (-1{,}2) = 28{,}8$ (moins fois moins donne plus).\n\nRéponse : `(-24, 28.8)`.\n\n**Erreurs fréquentes :** `(24, 28.8)` (signe oublié au 1er pas) ; `(-24, -28.8)` (on a gardé le signe moins au 2e pas).\n\n**À retenir :** raison négative : le signe change à chaque pas."
       },
       {
         "intitule": "Pour $\\eta = 2{,}2$, que fait l'algorithme ?",
         "type": "choix",
-        "choix": ["Il converge vers $0$ en décroissant", "Il converge vers $0$ en oscillant", "Il oscille de plus en plus fort : il diverge", "Il reste bloqué sur $20$"],
-        "reponse": 2
+        "choix": [
+          "Il converge vers $0$ en décroissant",
+          "Il converge vers $0$ en oscillant",
+          "Il oscille de plus en plus fort : il diverge",
+          "Il reste bloqué sur $20$"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** une suite géométrique de raison $q$ avec $q < 0$ change de signe à chaque pas ; si en plus $\\lvert q \\rvert > 1$, sa taille grandit : elle oscille de plus en plus fort, donc **diverge**.\n\n**Pas à pas :**\n\n1. $q = -1{,}2$ : négatif, donc le signe alterne ($20$, $-24$, $28{,}8$, $-34{,}56$, …).\n2. $\\lvert q \\rvert = 1{,}2 > 1$ : la taille est multipliée par $1{,}2$ à chaque pas.\n3. L'algorithme saute par-dessus la solution $0$, de plus en plus loin : il **diverge**.\n\n**Les autres réponses :** « converge vers $0$ en décroissant » demanderait $0 < q < 1$ ; « converge vers $0$ en oscillant » demanderait $-1 < q < 0$ ; « reste bloqué sur $20$ » est faux, $\\theta_1 = -24$.\n\n**À retenir :** signe de $q$ = oscillation ou non ; $\\lvert q \\rvert$ comparé à $1$ = convergence ou divergence."
       },
       {
         "intitule": "Condition sur $\\eta$ pour que $(\\theta_n)$ converge vers $0$",
         "type": "choix",
-        "choix": ["$0 < \\eta < 1$", "$0 < \\eta < 2$", "$\\eta > 1$", "$\\eta = 1$ uniquement"],
-        "reponse": 1
+        "choix": [
+          "$0 < \\eta < 1$",
+          "$0 < \\eta < 2$",
+          "$\\eta > 1$",
+          "$\\eta = 1$ uniquement"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $\\theta_n = 20\\,(1 - \\eta)^n$ tend vers $0$ si et seulement si $\\lvert 1 - \\eta \\rvert < 1$.\n\n**Pas à pas :**\n\n1. $\\lvert 1 - \\eta \\rvert < 1$ veut dire $-1 < 1 - \\eta < 1$.\n2. Partie droite : $1 - \\eta < 1$ donne $\\eta > 0$.\n3. Partie gauche : $-1 < 1 - \\eta$ donne $\\eta < 2$.\n4. Ensemble : $0 < \\eta < 2$.\n\n**Les autres réponses :** « $0 < \\eta < 1$ » oublie les valeurs entre $1$ et $2$ (par exemple $\\eta = 1{,}5$ : raison $-0{,}5$, ça converge en oscillant) ; « $\\eta > 1$ » inclut $\\eta = 2{,}2$, qui diverge ; « $\\eta = 1$ uniquement » : $\\eta = 1$ donne $0$ dès le 1er pas, mais d'autres valeurs marchent aussi.\n\n**À retenir :** $\\lvert 1 - \\eta \\rvert < 1 \\iff 0 < \\eta < 2$."
       }
     ],
     "indices": [

@@ -15,7 +15,8 @@
         "refuses": [
           "40",
           "4000"
-        ]
+        ],
+        "explication": "**Règle :** $n^2 = n \\times n$ : on multiplie $n$ par lui-même **deux fois**, on ne multiplie pas $n$ par 2.\n\n**Pas à pas :** $n = 20$.\n\n$20^2 = 20 \\times 20 = 400$ (astuce : $2 \\times 2 = 4$, puis on ajoute les deux zéros).\n\n**Erreurs fréquentes :** 40 est $2 \\times 20$ (on a multiplié par l'exposant au lieu d'élever au carré) ; 4 000 a un zéro de trop.\n\n**À retenir :** $n^2 = n \\times n$, jamais $2 \\times n$."
       },
       {
         "intitule": "$n^3$",
@@ -28,7 +29,8 @@
         "refuses": [
           "6000",
           "800"
-        ]
+        ],
+        "explication": "**Règle :** $n^3 = n \\times n \\times n$ : trois fois $n$ dans la multiplication.\n\n**Pas à pas :** $n = 20$.\n\n1. $20 \\times 20 = 400$.\n2. $400 \\times 20 = 8\\,000$.\n\n**Erreurs fréquentes :** 6 000 vient de $3 \\times 2\\,000$ (mélange entre puissance et multiplication) ; 800 oublie un zéro (il y a trois zéros, un par facteur 20).\n\n**À retenir :** $n^3$ = on multiplie $n$ par lui-même, trois facteurs au total."
       },
       {
         "intitule": "$2^n$",
@@ -41,7 +43,8 @@
         "refuses": [
           "400",
           "1000000"
-        ]
+        ],
+        "explication": "**Règle :** $2^{10} = 1\\,024$ et $2^{a+b} = 2^a \\times 2^b$.\n\n**Pas à pas :**\n\n1. $2^{20} = 2^{10} \\times 2^{10} = 1\\,024 \\times 1\\,024$.\n2. $1\\,024 \\times 1\\,024 = 1\\,024 \\times 1\\,000 + 1\\,024 \\times 24 = 1\\,024\\,000 + 24\\,576 = 1\\,048\\,576$.\n\nRéponse : **1 048 576**, environ un million.\n\n**Erreurs fréquentes :** 1 000 000 n'est qu'une **approximation** ($2^{10} \\approx 1\\,000$), la valeur exacte est un peu plus grande ; 400 est $20^2$, on a confondu $2^n$ et $n^2$.\n\n**À retenir :** $2^{20} = 1\\,024^2 = 1\\,048\\,576 \\approx 10^6$."
       },
       {
         "intitule": "Quel classement est correct (de la plus lente à la plus rapide) ?",
@@ -52,7 +55,8 @@
           "$n^2 \\ll 2^n \\ll n^3 \\ll n!$",
           "$n! \\ll 2^n \\ll n^3 \\ll n^2$"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** quand $n$ grandit, les **polynômes** croissent le moins vite ($n^2$ puis $n^3$), puis l'**exponentielle** $2^n$, puis la **factorielle** $n!$.\n\n**Pas à pas :** on range les valeurs à $n = 20$ (questions précédentes) de la plus petite à la plus grande.\n\n| Fonction | Valeur à $n = 20$ |\n|---|---|\n| $n^2$ | 400 |\n| $n^3$ | 8 000 |\n| $2^n$ | $\\approx 10^6$ |\n| $n!$ | $\\approx 2{,}4 \\times 10^{18}$ |\n\nD'où $n^2 \\ll n^3 \\ll 2^n \\ll n!$.\n\n**Les autres classements :** mettre $2^n$ avant $n^2$ ou avant $n^3$ est faux dès que $n$ est assez grand (à $n = 20$, un million contre 400 ou 8 000) ; le dernier classement met tout dans l'ordre inverse.\n\n**À retenir :** polynômes $\\ll$ exponentielle $\\ll$ factorielle."
       }
     ],
     "indices": [
@@ -80,7 +84,8 @@
         "refuses": [
           "130",
           "13000"
-        ]
+        ],
+        "explication": "**Règle :** temps (s) = nombre d'opérations ÷ opérations par seconde. Pour diviser des puissances de 10, on soustrait les exposants : $\\dfrac{10^a}{10^b} = 10^{a-b}$.\n\n**Pas à pas :**\n\n1. Nombre d'ordres : $15! \\approx 1{,}3 \\times 10^{12}$.\n2. Division par la vitesse : $\\dfrac{1{,}3 \\times 10^{12}}{10^9} = 1{,}3 \\times 10^{12 - 9} = 1{,}3 \\times 10^3$.\n3. $1{,}3 \\times 10^3 = 1\\,300$ secondes.\n\n**Erreurs fréquentes :** 130 ou 13 000 viennent d'une erreur d'exposant (un zéro de trop ou de moins).\n\n**À retenir :** opérations ÷ vitesse, en soustrayant les exposants de 10."
       },
       {
         "intitule": "Le même temps en **minutes**.",
@@ -94,7 +99,8 @@
         "refuses": [
           "1300",
           "2"
-        ]
+        ],
+        "explication": "**Règle :** 1 minute = 60 secondes : pour passer des secondes aux minutes, on **divise par 60**.\n\n**Pas à pas :**\n\n1. Temps en secondes : 1 300 s (question précédente).\n2. $\\dfrac{1\\,300}{60} \\approx 21{,}7$.\n3. Arrondi à l'unité : **22 minutes**. Énumérer 15 villes reste faisable.\n\n**Erreurs fréquentes :** laisser 1 300 (on a oublié de convertir) ; diviser par 3 600 et obtenir environ 0,4 (ce seraient des heures).\n\n**À retenir :** secondes → minutes : ÷ 60."
       },
       {
         "intitule": "Temps pour 20 villes, en **années**.",
@@ -108,7 +114,8 @@
         "refuses": [
           "7",
           "770"
-        ]
+        ],
+        "explication": "**Règle :** temps (s) = opérations ÷ vitesse, puis années = secondes ÷ $3{,}15 \\times 10^7$.\n\n**Pas à pas :**\n\n1. En secondes : $\\dfrac{2{,}4 \\times 10^{18}}{10^9} = 2{,}4 \\times 10^9$ s.\n2. En années : $\\dfrac{2{,}4 \\times 10^9}{3{,}15 \\times 10^7} = \\dfrac{2{,}4}{3{,}15} \\times 10^{9 - 7} \\approx 0{,}762 \\times 100 \\approx 76$.\n3. Avec la valeur exacte $20! = 2\\,432\\,902\\,008\\,176\\,640\\,000$, on trouve environ 77 ans.\n\nSeulement 5 villes de plus qu'à la question précédente, et on passe de 22 minutes à une vie entière.\n\n**Erreurs fréquentes :** 7 ou 770 viennent d'une erreur sur l'exposant ($10^{9-7} = 10^2 = 100$).\n\n**À retenir :** pour des années, divise les secondes par $3{,}15 \\times 10^7$."
       },
       {
         "intitule": "Par combien le travail est-il multiplié en passant de 15 à 20 villes ? (valeur exacte : $\\dfrac{20!}{15!}$)",
@@ -122,7 +129,8 @@
         "refuses": [
           "5",
           "100"
-        ]
+        ],
+        "explication": "**Règle :** $\\dfrac{b!}{a!}$ (avec $a < b$) se simplifie : $b! = a! \\times (a+1) \\times \\dots \\times b$, donc il reste le produit des entiers de $a + 1$ à $b$.\n\n**Pas à pas :**\n\n1. $20! = 15! \\times 16 \\times 17 \\times 18 \\times 19 \\times 20$, donc $\\dfrac{20!}{15!} = 16 \\times 17 \\times 18 \\times 19 \\times 20$.\n2. $16 \\times 17 = 272$.\n3. $272 \\times 18 = 4\\,896$.\n4. $4\\,896 \\times 19 = 93\\,024$.\n5. $93\\,024 \\times 20 = 1\\,860\\,480$.\n\nRéponse : **1 860 480**, presque 2 millions.\n\n**Erreurs fréquentes :** 5 (« 5 villes de plus, 5 fois plus de travail ») ou 100 : avec $n!$, chaque ville ajoutée multiplie le travail par le nouveau nombre de villes, pas par une petite constante.\n\n**À retenir :** $\\dfrac{b!}{a!}$ = produit des entiers de $a + 1$ à $b$."
       }
     ],
     "indices": [
@@ -150,7 +158,8 @@
         "refuses": [
           "30",
           "0.3"
-        ]
+        ],
+        "explication": "**Règle :** temps (s) = opérations ÷ vitesse, et $2^{30} = (2^{10})^3 = 1\\,024^3 \\approx 1{,}07 \\times 10^9$.\n\n**Pas à pas :**\n\n1. Opérations : $2^{30} = 1\\,073\\,741\\,824 \\approx 1{,}07 \\times 10^9$.\n2. Temps : $\\dfrac{1{,}07 \\times 10^9}{10^9} = 1{,}07$ s.\n3. Arrondi au dixième : **1,1 s**.\n\n**Erreurs fréquentes :** 30 confond $2^n$ et $n$ ; 0,3 vient d'une erreur d'exposant.\n\n**À retenir :** $2^{30} \\approx 10^9$ : à un milliard d'opérations par seconde, environ 1 seconde."
       },
       {
         "intitule": "Temps pour $n = 40$, en **minutes**.",
@@ -163,7 +172,8 @@
         "refuses": [
           "1100",
           "40"
-        ]
+        ],
+        "explication": "**Règle :** $2^{a+b} = 2^a \\times 2^b$ : augmenter $n$ de 10 multiplie le nombre d'opérations par $2^{10} = 1\\,024$. Puis secondes → minutes : ÷ 60.\n\n**Pas à pas :**\n\n1. $2^{40} = 2^{30} \\times 2^{10} \\approx 1{,}07 \\times 10^9 \\times 1\\,024 \\approx 1{,}1 \\times 10^{12}$ opérations.\n2. En secondes : $\\dfrac{1{,}1 \\times 10^{12}}{10^9} \\approx 1\\,100$ s (plus précisément $1\\,099{,}5$ s).\n3. En minutes : $\\dfrac{1\\,099{,}5}{60} \\approx 18{,}3$ minutes.\n\n**Erreurs fréquentes :** 1 100 est le résultat en **secondes**, il faut encore diviser par 60 ; 40 confond $2^n$ et $n$.\n\n**À retenir :** $+10$ dans l'exposant = $\\times 1\\,024$ sur le temps."
       },
       {
         "intitule": "Temps pour $n = 50$, en **jours**.",
@@ -177,7 +187,8 @@
         "refuses": [
           "1125899",
           "50"
-        ]
+        ],
+        "explication": "**Règle :** même méthode, et un jour compte $86\\,400$ secondes ($24 \\times 3\\,600$).\n\n**Pas à pas :**\n\n1. $2^{50} = 2^{40} \\times 2^{10} \\approx 1{,}1 \\times 10^{12} \\times 1\\,024 \\approx 1{,}13 \\times 10^{15}$ opérations.\n2. En secondes : $\\dfrac{1{,}13 \\times 10^{15}}{10^9} = 1{,}13 \\times 10^6$ s.\n3. En jours : $\\dfrac{1{,}13 \\times 10^6}{86\\,400} \\approx 13{,}0$ jours.\n\nOn voit la croissance exponentielle : 1 seconde ($n = 30$), 18 minutes ($n = 40$), 13 jours ($n = 50$). Chaque fois $\\times 1\\,024$.\n\n**Erreurs fréquentes :** 1 125 899 est le temps en **secondes** (environ $1{,}13 \\times 10^6$), pas en jours ; 50 confond $2^n$ et $n$.\n\n**À retenir :** secondes → jours : ÷ 86 400."
       }
     ],
     "indices": [
@@ -201,7 +212,8 @@
           "42",
           "40",
           "12"
-        ]
+        ],
+        "explication": "**Règle :** le plus grand $n$ traitable est le **dernier** $n$ dont le nombre d'opérations reste $\\le$ budget. On teste $n$ puis $n + 1$.\n\n**Pas à pas :** budget $3{,}6 \\times 10^{12}$ opérations, algorithme en $2^n$.\n\n| $n$ | $2^n$ | Dans le budget ? |\n|---|---|---|\n| 40 | $\\approx 1{,}1 \\times 10^{12}$ | oui |\n| 41 | $\\approx 2{,}2 \\times 10^{12}$ | oui |\n| 42 | $\\approx 4{,}4 \\times 10^{12}$ | **non** |\n\nPlus grand $n$ : **41**.\n\nComparaison : en une seule seconde ($10^9$ opérations), $2^{29} \\approx 5{,}4 \\times 10^8$ passe mais $2^{30} \\approx 1{,}07 \\times 10^9$ dépasse, donc $n = 29$. Avoir 3 600 fois plus de temps ne fait gagner que 12 éléments.\n\n**Erreurs fréquentes :** 42 dépasse le budget ; 40 n'est pas le **plus grand** possible.\n\n**À retenir :** pour $2^n$, chaque $+1$ double le travail : un budget énorme ne fait gagner que quelques éléments."
       },
       {
         "intitule": "Algorithme en $n!$ opérations : plus grand $n$ ?",
@@ -210,7 +222,8 @@
         "refuses": [
           "16",
           "14"
-        ]
+        ],
+        "explication": "**Règle :** même méthode : dernier $n$ avec $n! \\le$ budget. Et $(n+1)! = (n+1) \\times n!$.\n\n**Pas à pas :**\n\n| $n$ | $n!$ | Dans le budget ($3{,}6 \\times 10^{12}$) ? |\n|---|---|---|\n| 14 | $\\approx 8{,}7 \\times 10^{10}$ | oui |\n| 15 | $\\approx 1{,}3 \\times 10^{12}$ | oui |\n| 16 | $16 \\times 15! \\approx 2{,}1 \\times 10^{13}$ | **non** |\n\nPlus grand $n$ : **15**.\n\n**Erreurs fréquentes :** 16 (arrondi vers le haut, alors que $16!$ dépasse le budget presque 6 fois) ; 14 n'est pas le plus grand.\n\n**À retenir :** le bon $n$ est celui juste avant le premier qui dépasse."
       },
       {
         "intitule": "Algorithme en $n^2$ opérations : plus grand $n$ ? (un entier)",
@@ -222,7 +235,8 @@
         "refuses": [
           "1897367",
           "3600000"
-        ]
+        ],
+        "explication": "**Règle :** $n^2 \\le B$ équivaut à $n \\le \\sqrt{B}$ (pour $n \\ge 0$). Le plus grand entier possible est la **partie entière** de $\\sqrt{B}$ (on enlève la partie après la virgule, sans arrondir au-dessus).\n\n**Pas à pas :**\n\n1. $\\sqrt{3{,}6 \\times 10^{12}} = \\sqrt{3{,}6} \\times \\sqrt{10^{12}}$.\n2. $\\sqrt{10^{12}} = 10^6$ (on divise l'exposant par 2).\n3. $\\sqrt{3{,}6} \\approx 1{,}897\\,366\\,6$.\n4. Donc $\\sqrt{3{,}6 \\times 10^{12}} \\approx 1\\,897\\,366{,}6$, partie entière **1 897 366**.\n\nVérification : $1\\,897\\,366^2 = 3\\,599\\,997\\,737\\,956$ reste sous le budget, mais $1\\,897\\,367^2 = 3\\,600\\,001\\,532\\,689$ le dépasse de peu.\n\n**Erreurs fréquentes :** 1 897 367 (arrondi au plus proche, qui dépasse) ; 3 600 000 confond $n^2$ et $n$ (on a oublié la racine).\n\n**À retenir :** pour $n^2$, plus grand $n$ = partie entière de $\\sqrt{\\text{budget}}$. Un algorithme polynomial traite des millions d'éléments, contre 41 pour $2^n$."
       }
     ],
     "indices": [
@@ -245,7 +259,8 @@
         "refuses": [
           "8",
           "17"
-        ]
+        ],
+        "explication": "**Règle :** le coût d'une tournée est la somme des distances de **tous** ses trajets, y compris le **retour** à la ville de départ.\n\n**Pas à pas :** tournée A → B → C → D → A.\n\n| Trajet | Distance |\n|---|---|\n| A → B | 3 |\n| B → C | 2 |\n| C → D | 3 |\n| D → A | 4 |\n\nTotal : $3 + 2 + 3 + 4 = 12$.\n\n**Erreurs fréquentes :** 8 oublie le retour D → A ; 17 additionne autre chose que les trajets de la tournée (par exemple AC à la place de BC).\n\n**À retenir :** une tournée se ferme : n'oublie jamais le trajet retour."
       },
       {
         "intitule": "Cette tournée prouve-t-elle que la réponse est « oui » ?",
@@ -254,7 +269,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour une question de décision « existe-t-il une tournée de coût **au plus** $K$ ? », montrer une tournée de coût $\\le K$ suffit à prouver que la réponse est « oui ». Cette tournée s'appelle un **certificat**.\n\n**Pas à pas :**\n\n1. Coût de la tournée : 12 (question précédente).\n2. Seuil : $K = 12$.\n3. « Au plus 12 » veut dire $\\le 12$ : $12 \\le 12$ est vrai.\n\nRéponse : **oui**, la tournée prouve que la réponse est « oui ».\n\n**Erreur fréquente :** croire qu'il faut être **strictement** en dessous de $K$. « Au plus » accepte l'égalité.\n\n**À retenir :** « au plus $K$ » = $\\le K$, égalité comprise."
       },
       {
         "intitule": "Combien de distances a-t-il fallu additionner pour vérifier ?",
@@ -263,7 +279,8 @@
         "refuses": [
           "6",
           "24"
-        ]
+        ],
+        "explication": "**Règle :** vérifier un certificat de tournée demande d'additionner **ses** trajets : une tournée de $n$ villes a exactement $n$ trajets (retour compris).\n\n**Pas à pas :**\n\n1. 4 villes : A → B, B → C, C → D, D → A.\n2. Soit **4** distances additionnées.\n\n**Erreurs fréquentes :** 6 est le nombre total de distances du graphe (toutes les paires de villes), on n'a pas besoin de toutes ; 24 est $4!$, le nombre d'ordres : c'est ce qu'il faudrait pour **trouver** par énumération, pas pour **vérifier**.\n\n**À retenir :** vérifier une tournée de $n$ villes = $n$ additions."
       },
       {
         "intitule": "Que montre cet exemple ?",
@@ -274,7 +291,8 @@
           "Il n'existe qu'une tournée",
           "Vérifier une solution proposée est rapide (d'où la classe NP)"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** **NP** = les problèmes dont une solution proposée se **vérifie** en temps polynomial. Vérifier est rapide, même quand trouver est difficile.\n\n**Pas à pas :** on regarde ce que l'exemple a réellement montré.\n\n- On nous a **donné** une tournée, et 4 additions ont suffi à conclure : la vérification est rapide.\n- On n'a **pas** cherché la meilleure tournée, ni examiné les autres.\n\nL'exemple montre donc que **vérifier une solution proposée est rapide**, d'où la classe NP.\n\n**Les autres réponses :**\n\n- « trouver la meilleure tournée est rapide » : on n'a rien trouvé, on a seulement vérifié ;\n- « le problème est dans P » : le voyageur de commerce est NP-difficile, on ne connaît aucun algorithme polynomial pour le **résoudre** ;\n- « il n'existe qu'une tournée » : avec 4 villes, il y a 3 tournées distinctes.\n\n**À retenir :** NP = vérifier vite une solution donnée ; ça ne dit rien de la facilité à la trouver."
       }
     ],
     "indices": [
@@ -296,7 +314,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** NP signifie « **non déterministe** polynomial » : les problèmes dont une solution proposée se **vérifie** en temps polynomial.\n\n**Pas à pas :** si NP voulait dire « non polynomial », un problème facile (dans P) ne pourrait pas être dans NP. Or tout problème de P est dans NP ($P \\subseteq NP$). La lecture « non polynomial » est donc incohérente.\n\nRéponse : **faux**.\n\n**Erreur fréquente :** lire les initiales trop vite. Le N vient de « non déterministe », pas de « non ».\n\n**À retenir :** NP = non déterministe polynomial = vérifiable vite."
       },
       {
         "intitule": "« Tout problème de P est aussi dans NP. »",
@@ -305,7 +324,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** si on sait **résoudre** un problème en temps polynomial, on sait aussi **vérifier** une solution proposée en temps polynomial : $P \\subseteq NP$.\n\n**Pas à pas :** on te propose une réponse. Tu résous toi-même le problème (rapide, car il est dans P), puis tu compares ta réponse avec celle proposée. La vérification est rapide, donc le problème est dans NP.\n\nRéponse : **vrai**.\n\n**Erreur fréquente :** croire que P et NP sont deux familles séparées. P est **à l'intérieur** de NP.\n\n**À retenir :** résoudre vite ⇒ vérifier vite, donc $P \\subseteq NP$."
       },
       {
         "intitule": "« On a prouvé que P est différent de NP. »",
@@ -314,7 +334,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** la question « $P = NP$ ? » est une **question ouverte** : personne n'a prouvé que $P = NP$, ni que $P \\neq NP$.\n\n**Pas à pas :** beaucoup de chercheurs **pensent** que $P \\neq NP$, mais une conviction n'est pas une preuve. Tant qu'aucune démonstration n'est acceptée, on ne peut pas dire « on a prouvé ».\n\nRéponse : **faux**.\n\n**Erreur fréquente :** confondre « on n'a trouvé aucun algorithme rapide » avec « on a prouvé qu'il n'en existe pas ».\n\n**À retenir :** $P \\subseteq NP$ est prouvé ; $P = NP$ ou $P \\neq NP$, personne ne sait."
       },
       {
         "intitule": "« On ne connaît aucun algorithme polynomial pour le voyageur de commerce. »",
@@ -323,7 +344,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** le voyageur de commerce est **NP-difficile** : à ce jour, on ne connaît **aucun** algorithme qui le résout en temps polynomial.\n\n**Pas à pas :** la phrase dit « on ne **connaît** aucun algorithme polynomial ». C'est exactement la situation actuelle.\n\nRéponse : **vrai**.\n\n**Erreur fréquente :** répondre « faux » en pensant à la nuance « ce n'est pas prouvé impossible ». C'est vrai que ce n'est pas prouvé impossible (sinon on saurait que $P \\neq NP$), mais la phrase ne prétend pas ça : elle parle de ce qu'on **connaît**.\n\n**À retenir :** « aucun algorithme polynomial connu » ≠ « impossible »."
       },
       {
         "intitule": "« Un problème NP-complet est dans NP. »",
@@ -332,7 +354,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** NP-complet = **dans NP** et **NP-difficile**. Par définition, un problème NP-complet est donc dans NP.\n\n**Pas à pas :** la définition a deux conditions ; la première est justement « être dans NP ». La phrase reprend cette première condition.\n\nRéponse : **vrai**.\n\n**Erreur fréquente :** confondre NP-complet et NP-difficile. Un problème NP-difficile peut ne pas être dans NP (par exemple la version optimisation du voyageur de commerce, qui ne répond pas par oui ou non) ; un NP-complet, lui, l'est toujours.\n\n**À retenir :** NP-complet = NP ∩ NP-difficile."
       }
     ],
     "indices": [
@@ -354,12 +377,14 @@
           "Une méthode exacte (branch & bound…)",
           "Une méthode approchée (métaheuristique)"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une méthode **exacte** garantit l'optimum mais son temps peut exploser ; une méthode **approchée** (métaheuristique) donne vite une bonne solution, sans garantie. Ce sont les **contraintes** et le **budget de temps** qui décident.\n\n**Pas à pas :** on applique les trois questions du cours.\n\n1. **Preuve d'optimalité nécessaire ?** Non : la direction veut de bonnes tournées chaque nuit, pas une preuve.\n2. **Instance petite et simple ?** Non : 3 000 points, avec capacités et fenêtres horaires. C'est un très gros VRP.\n3. **Délai court ?** Oui : moins d'une heure, chaque nuit.\n\nRéponse : **méthode approchée** (métaheuristique).\n\n**Erreur fréquente :** choisir l'exact parce qu'on veut « la meilleure solution ». Aucune méthode exacte ne garantit de finir en une heure sur ce problème : on risquerait de n'avoir aucune tournée le matin.\n\n**À retenir :** gros problème + contraintes + délai court = approché."
       },
       {
         "intitule": "Argumente ton choix en deux ou trois phrases.",
         "type": "auto",
-        "reponse": "**Approché.** Avec 3 000 clients, des capacités et des fenêtres horaires, aucune méthode exacte ne tient dans le budget d'une heure. Une métaheuristique (recherche locale bien menée, recuit simulé…) donne d'excellentes tournées dans le délai. Attention : sur un TSP pur, les solveurs exacts traitent des milliers de villes ; ce sont les contraintes et le budget de temps qui tranchent, pas la taille seule."
+        "reponse": "**Approché.** Avec 3 000 clients, des capacités et des fenêtres horaires, aucune méthode exacte ne tient dans le budget d'une heure. Une métaheuristique (recherche locale bien menée, recuit simulé…) donne d'excellentes tournées dans le délai. Attention : sur un TSP pur, les solveurs exacts traitent des milliers de villes ; ce sont les contraintes et le budget de temps qui tranchent, pas la taille seule.",
+        "explication": "Une bonne réponse :\n\n1. **Annonce le choix** : une méthode approchée (métaheuristique).\n2. **Le justifie avec les deux vrais critères** : la taille combinée aux **contraintes** (capacités des camions, fenêtres horaires des clients) et le **budget de temps** d'une heure, qu'aucune méthode exacte ne peut garantir de tenir.\n3. **Cite un exemple** de méthode adaptée (recherche locale, recuit simulé, algorithme génétique) et ce qu'elle apporte : de très bonnes tournées dans le délai, sans preuve d'optimalité.\n4. **En bonus**, apporte la nuance : ce n'est pas la taille seule qui tranche, car un voyageur de commerce **pur** de plusieurs milliers de villes se résout souvent de façon exacte.\n\n**Erreurs fréquentes :** dire seulement « c'est trop gros » sans parler des contraintes ni du délai ; affirmer qu'une méthode exacte est impossible au-delà de 20 villes (c'est vrai pour l'**énumération**, pas pour les méthodes exactes intelligentes) ; promettre que la métaheuristique trouve l'optimum.\n\n**À retenir :** justifie toujours par contraintes + budget de temps, pas par la taille seule."
       },
       {
         "intitule": "Sur un voyageur de commerce **pur** de 2 000 villes, sans limite de temps stricte, une méthode exacte est-elle envisageable ?",
@@ -368,7 +393,8 @@
           "Oui, les solveurs exacts modernes y arrivent souvent",
           "Non, c'est impossible au-delà de 20 villes"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** sur un voyageur de commerce **pur** (sans capacités, sans horaires), les solveurs exacts modernes (branch & bound et ses améliorations) résolvent couramment des **milliers** de villes.\n\n**Pas à pas :**\n\n1. TSP pur : pas de contraintes en plus.\n2. 2 000 villes : c'est gros, mais dans la portée des solveurs exacts actuels.\n3. Pas de limite de temps stricte : on peut laisser le solveur tourner.\n\nRéponse : **oui, les solveurs exacts modernes y arrivent souvent**.\n\n**Erreur fréquente :** « impossible au-delà de 20 villes ». Cette limite vaut pour l'**énumération** de toutes les tournées ($n!$). Une méthode exacte intelligente élimine d'un coup des paquets entiers de tournées sans les examiner une par une.\n\n**À retenir :** énumération ≠ méthode exacte ; l'exact va bien plus loin que l'énumération."
       }
     ],
     "indices": [
@@ -390,7 +416,8 @@
           "Exacte",
           "Approchée"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** besoin d'une **preuve** d'optimalité et petite instance → méthode **exacte**.\n\n**Pas à pas :**\n\n1. **Preuve nécessaire ?** Oui : on veut **la** meilleure solution, **prouvée**.\n2. **Petite instance ?** Oui : 12 objets, soit $2^{12} = 4\\,096$ sous-ensembles. On pourrait même tous les examiner en une fraction de seconde.\n\nRéponse : **exacte**.\n\n**Erreur fréquente :** choisir « approchée » parce que le sac à dos est NP-difficile. NP-difficile ne veut pas dire « impossible sur une petite instance » : ici, 4 096 cas, c'est très peu.\n\n**À retenir :** « prouvée » dans l'énoncé = méthode exacte."
       },
       {
         "intitule": "Un emploi du temps de 2 000 cours avec des centaines de contraintes, à produire en quelques minutes.",
@@ -399,7 +426,8 @@
           "Exacte",
           "Approchée"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** grosse instance, beaucoup de contraintes, délai court → méthode **approchée**.\n\n**Pas à pas :**\n\n1. **Preuve nécessaire ?** Non, on veut un emploi du temps utilisable.\n2. **Taille et contraintes ?** 2 000 cours et des centaines de contraintes : énorme.\n3. **Délai ?** Quelques minutes : très court.\n\nRéponse : **approchée**. Une métaheuristique donne vite un bon emploi du temps.\n\n**Erreur fréquente :** croire qu'une méthode exacte « finira bien par trouver ». Elle finira peut-être, mais bien après la limite de quelques minutes.\n\n**À retenir :** grand + contraintes + délai court = approché."
       },
       {
         "intitule": "On veut savoir à quel point une solution approchée est proche de l'optimum, sur une petite instance.",
@@ -408,7 +436,8 @@
           "Exacte",
           "Approchée"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour mesurer à quel point une solution approchée est proche de l'optimum, il faut **connaître l'optimum** : on le calcule avec une méthode **exacte**.\n\n**Pas à pas :**\n\n1. On résout une petite instance de façon exacte : on obtient l'optimum, par exemple 200.\n2. On lance la méthode approchée sur la même instance : elle trouve, par exemple, 210.\n3. On calcule l'écart : $\\dfrac{210 - 200}{200} = 5\\,\\%$.\n\nSans l'étape 1, impossible de savoir si 210 est excellent ou médiocre.\n\nRéponse : **exacte**.\n\n**Erreur fréquente :** répondre « approchée » parce qu'on parle d'une solution approchée. C'est elle qu'on évalue, mais l'outil de mesure est l'optimum exact.\n\n**À retenir :** pour évaluer une méthode approchée, compare-la à l'optimum exact sur de petites instances."
       },
       {
         "intitule": "Combien de sous-ensembles faut-il examiner pour énumérer le sac à dos de 12 objets ?",
@@ -421,7 +450,8 @@
         "refuses": [
           "144",
           "479001600"
-        ]
+        ],
+        "explication": "**Règle :** chaque objet est pris ou non : 2 possibilités par objet, donc $2^n$ sous-ensembles pour $n$ objets.\n\n**Pas à pas :**\n\n1. $2^{12} = 2^{10} \\times 2^2 = 1\\,024 \\times 4$.\n2. $1\\,024 \\times 4 = 4\\,096$.\n\nRéponse : **4 096**.\n\n**Erreurs fréquentes :** $12! = 479\\,001\\,600$ compte des **ordres**, alors que l'ordre des objets dans le sac ne compte pas ; $12^2 = 144$ n'a pas de sens ici.\n\n**À retenir :** sous-ensembles de $n$ objets = $2^n$ ; ordres de $n$ objets = $n!$."
       }
     ],
     "indices": [

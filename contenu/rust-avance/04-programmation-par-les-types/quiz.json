@@ -8,7 +8,7 @@
       "Attraper toutes les erreurs avec `panic!`"
     ],
     "reponse": 1,
-    "explication": "On construit les types pour que les valeurs absurdes (pourcentage de 250, connexion fermée qui envoie) ne compilent pas ou ne puissent pas être créées."
+    "explication": "**Règle :** l'idée est de choisir des **types** tels qu'une valeur absurde ne puisse **pas être créée**. Au lieu de détecter l'erreur après coup, on la rend impossible à écrire.\n\n**Pas à pas :** trois exemples du chapitre.\n\n| État illégal | Type qui l'empêche | Pourquoi |\n|---|---|---|\n| un pourcentage de 250 | `Pourcentage` avec champ privé et `new` qui renvoie `Result` | `new(250)` renvoie `Err`, et on ne peut pas écrire `Pourcentage(250)` à la main |\n| `paye: false, rembourse: true` | `enum Paiement { EnAttente, Paye {..}, Rembourse {..} }` | cette combinaison n'a pas de variante |\n| envoyer sur une connexion fermée | `Connexion<Fermee>` sans méthode `envoyer` | le compilateur refuse l'appel |\n\n**Les autres réponses :** écrire plus de tests aide, mais les tests **cherchent** les erreurs, ils ne les rendent pas impossibles ; `unsafe` enlève des garanties au lieu d'en ajouter ; `panic!` arrête le programme quand l'erreur arrive à l'exécution, alors que le but est qu'elle ne puisse même pas exister.\n\n**À retenir :** si une valeur est absurde, cherche un type dans lequel elle ne peut pas s'écrire."
   },
   {
     "question": "Qu'est-ce qu'un newtype ?",
@@ -19,7 +19,7 @@
       "Un trait générique"
     ],
     "reponse": 1,
-    "explication": "`struct Metres(f64);` est un type distinct de `f64` pour le compilateur, sans coût à l'exécution. Un alias `type` ne crée pas un type différent."
+    "explication": "**Règle :** un **newtype** est une structure à un seul champ, sans nom, qui enveloppe un type existant : `struct Metres(f64);`. Pour le compilateur, c'est un type **différent** de `f64`, et il ne coûte rien à l'exécution.\n\n**Pas à pas :**\n\n1. `struct Metres(f64);` : un tuple struct avec un champ, lu avec `.0`.\n2. `fn vitesse(d: Metres, t: Secondes)` refuse `vitesse(Secondes(9.58), Metres(100.0))` : les types ne correspondent pas.\n3. En mémoire, un `Metres` est exactement un `f64` : aucune place ni aucun calcul en plus.\n\n**Les autres réponses :** un alias `type Metres = f64;` n'est **pas** un newtype : c'est un autre nom pour `f64`, qui se mélange librement avec les autres `f64` ; « une nouvelle version de Rust » n'a rien à voir (les versions s'appellent des éditions : 2021, 2024) ; un trait générique est une liste de méthodes avec un paramètre, pas une structure.\n\n**À retenir :** newtype = `struct Nom(TypeExistant);`, un vrai nouveau type sans coût."
   },
   {
     "question": "Quelle différence y a-t-il entre `type Metres = f64;` et `struct Metres(f64);` ?",
@@ -30,7 +30,7 @@
       "La structure est plus lente"
     ],
     "reponse": 2,
-    "explication": "Un alias est juste un autre nom : on peut mélanger `Metres` et `f64`. Une structure est un type distinct que le compilateur refuse de mélanger."
+    "explication": "**Règle :** `type X = Y;` crée un **alias**, un deuxième nom pour le **même** type. `struct X(Y);` crée un **nouveau** type, distinct de `Y`.\n\n**Pas à pas :** avec `type Metres = f64;` puis `struct Metres(f64);`.\n\n| Code | Avec l'alias | Avec la structure |\n|---|---|---|\n| `let d: Metres = 5.0;` | compile : `Metres` est un `f64` | refusé : il faut `Metres(5.0)` |\n| `d + 2.0` | compile, résultat `f64` | refusé : pas de `+` sans `impl Add` |\n| `fn f(d: Metres)` appelé avec un `f64` quelconque | accepté | refusé |\n\nL'alias ne protège donc de rien : on peut passer des secondes là où on attend des mètres. La structure, si.\n\n**Les autres réponses :** il y a une vraie différence (« aucune » est faux) ; c'est l'inverse de « l'alias est un vrai nouveau type » ; la structure n'est pas plus lente, elle a exactement la même taille et le même code machine que le `f64`.\n\n**À retenir :** `type` = un autre nom, `struct X(T);` = un autre type ; seul le second empêche les mélanges."
   },
   {
     "question": "Pourquoi le champ d'un newtype validé (comme `Pourcentage`) doit-il rester privé ?",
@@ -41,13 +41,18 @@
       "Pour économiser de la mémoire"
     ],
     "reponse": 1,
-    "explication": "Avec un champ `pub`, on peut écrire `Pourcentage(250)` directement : la validation du constructeur est contournée."
+    "explication": "**Règle :** un newtype validé n'offre qu'**une** façon d'être créé : `new`, qui vérifie la valeur. Si le champ est privé, le code extérieur au module ne peut pas écrire `Pourcentage(...)` directement.\n\n**Pas à pas :**\n\n1. Avec `struct Pourcentage(u8);` (champ privé), hors du module, `Pourcentage(250)` est refusé : « tuple struct constructor `Pourcentage` is private ». La seule porte d'entrée est `Pourcentage::new(250)`, qui renvoie `Err`.\n2. Avec `struct Pourcentage(pub u8);`, n'importe qui écrit `Pourcentage(250)` : la vérification de `new` est contournée.\n3. Toutes les fonctions qui reçoivent un `Pourcentage` ne peuvent alors plus faire confiance à la valeur, et toute la garantie tombe.\n\n**Les autres réponses :** un champ privé ne rend pas le code plus rapide ni plus petit en mémoire (`pub` ne change que **qui** a le droit d'y accéder) ; Rust n'impose rien ici, `pub` est permis, c'est un choix de conception.\n\n**À retenir :** champ privé + `new` validé = impossible de fabriquer une valeur invalide."
   },
   {
     "question": "Quel type de retour est le plus adapté pour un constructeur qui peut refuser une valeur, avec la raison du refus ?",
-    "choix": ["`Option<Self>`", "`Result<Self, E>`", "`bool`", "`Self` avec un `panic!`"],
+    "choix": [
+      "`Option<Self>`",
+      "`Result<Self, E>`",
+      "`bool`",
+      "`Self` avec un `panic!`"
+    ],
     "reponse": 1,
-    "explication": "`Result<Self, E>` dit pourquoi la valeur est refusée. `Option` ne donne pas la raison, `bool` ne rend pas la valeur."
+    "explication": "**Règle :** `Result<Self, E>` contient soit la valeur (`Ok(valeur)`), soit une erreur `E` qui **explique** le refus (`Err(raison)`).\n\n**Pas à pas :** on compare ce que reçoit l'appelant de `Note::new(25)`.\n\n| Retour | Ce que l'appelant reçoit | Il sait pourquoi ? |\n|---|---|---|\n| `Option<Self>` | `None` | non |\n| `Result<Self, E>` | `Err(\"25 n'est pas une note sur 20\")` | oui |\n| `bool` | `false` (et jamais la valeur, même si elle est valide) | non |\n| `Self` avec `panic!` | le programme s'arrête | il n'a rien à recevoir |\n\nSeul `Result` donne à la fois la valeur en cas de succès et la raison en cas d'échec. `E` peut être un `String` ou une `enum` d'erreurs précises.\n\n**Les autres réponses :** `Option` convient quand il n'y a qu'**une** raison possible d'échec, mais elle ne dit rien ; `bool` oblige à garder la valeur à côté et la vérification est vite oubliée ; `panic!` fait planter le programme pour une simple saisie invalide.\n\n**À retenir :** constructeur qui peut refuser, avec une raison → `Result<Self, E>`."
   },
   {
     "question": "Pourquoi préférer une `enum` à plusieurs booléens (`paye`, `rembourse`) ?",
@@ -58,7 +63,7 @@
       "Les enums sont toujours plus rapides"
     ],
     "reponse": 2,
-    "explication": "Deux booléens autorisent 4 combinaisons dont certaines n'ont pas de sens. Une enum n'a que les variantes voulues, et chacune peut avoir ses champs."
+    "explication": "**Règle :** une `enum` n'a que les variantes qu'on a écrites, et chaque variante peut porter ses **propres** champs.\n\n**Pas à pas :** avec deux booléens `paye` et `rembourse`, on compte les combinaisons.\n\n| `paye` | `rembourse` | Sens |\n|---|---|---|\n| false | false | en attente |\n| true | false | payé |\n| true | true | remboursé |\n| false | true | **absurde** : remboursé sans avoir payé |\n\n2 × 2 = 4 combinaisons pour 3 états réels. Avec `enum Paiement { EnAttente, Paye { montant }, Rembourse { montant, motif } }`, il y a exactement 3 possibilités, et le `motif` n'existe que dans `Rembourse`. Bonus : un `match` qui oublie un état ne compile pas.\n\n**Les autres réponses :** une enum n'est pas forcément plus courte à écrire (souvent plus longue) ; les booléens sont tout à fait permis en Rust ; la vitesse n'est pas l'argument, elle est comparable.\n\n**À retenir :** plusieurs booléens qui décrivent un état → remplace-les par une `enum`, une variante par état réel."
   },
   {
     "question": "Dans le pattern builder, pourquoi les méthodes prennent-elles `mut self` et renvoient-elles `Self` ?",
@@ -69,7 +74,7 @@
       "Parce que `&self` est interdit dans un builder"
     ],
     "reponse": 0,
-    "explication": "En recevant et rendant `self`, chaque appel donne le builder suivant : `Builder::nouveau().url(..).delai(..).construire()`."
+    "explication": "**Règle :** chaque méthode d'un builder a la forme `fn x(mut self, ...) -> Self { ...; self }` : elle reçoit le builder, le modifie, et le **rend**. L'appel suivant s'applique donc à ce qui vient d'être rendu.\n\n**Pas à pas :** `Builder::nouveau().url(\"a\").delai(5).construire()`.\n\n1. `nouveau()` rend un builder.\n2. `.url(\"a\")` reçoit ce builder (`self`), change `url`, rend le builder.\n3. `.delai(5)` reçoit le builder rendu à l'étape 2, change `delai`, le rend.\n4. `.construire()` reçoit le builder final et rend un `Result`.\n\n`mut self` est nécessaire pour avoir le droit de modifier `self` à l'intérieur. La valeur est **déplacée** d'appel en appel, pas copiée.\n\n**Les autres réponses :** il n'y a pas de copie de la structure, c'est un déplacement (aucun `Clone` n'est appelé) ; ce n'est pas pour éviter des erreurs de compilation ; `&self` n'est pas interdit, mais avec `&mut self` qui ne rend rien, on ne pourrait pas écrire la chaîne `a.url(..).delai(..)` en une expression.\n\n**À retenir :** prendre et rendre `self` = des appels qu'on enchaîne avec des points."
   },
   {
     "question": "À quoi sert `PhantomData<Etat>` dans `struct Connexion<Etat> { ... }` ?",
@@ -80,7 +85,7 @@
       "À cacher la structure"
     ],
     "reponse": 1,
-    "explication": "Rust refuse un paramètre générique inutilisé. `PhantomData` le « consomme » sans prendre de place : il n'existe qu'à la compilation."
+    "explication": "**Règle :** Rust refuse un paramètre générique qui n'apparaît dans **aucun** champ (« parameter `Etat` is never used »). `PhantomData<Etat>` est un champ de taille **zéro** qui « utilise » ce paramètre.\n\n**Pas à pas :**\n\n1. `struct Connexion<Etat> { adresse: String }` : `Etat` n'est utilisé nulle part, erreur de compilation.\n2. On ajoute `etat: PhantomData<Etat>` : le paramètre est utilisé, ça compile.\n3. En mémoire, `PhantomData` ne prend aucun octet : `Connexion<Ouverte>` a la même taille qu'une structure avec seulement `adresse`.\n4. Pour le créer : `etat: PhantomData` (sans valeur à donner).\n\nL'état n'existe donc **qu'à la compilation**, pour choisir quelles méthodes sont permises.\n\n**Les autres réponses :** il ne stocke **pas** de valeur `Etat` (c'est justement l'intérêt : il est « fantôme ») ; il ne rend pas la structure utilisable entre threads ; il ne cache rien, la structure reste visible.\n\n**À retenir :** `PhantomData<T>` = utiliser un paramètre de type sans rien stocker."
   },
   {
     "question": "Dans un typestate, pourquoi une transition comme `ouvrir` prend-elle `self` et non `&self` ?",
@@ -91,7 +96,7 @@
       "Pour appeler `drop` manuellement"
     ],
     "reponse": 0,
-    "explication": "`self` déplace la valeur : la connexion fermée disparaît et on ne garde que la connexion ouverte. On ne peut plus rouvrir deux fois."
+    "explication": "**Règle :** une méthode qui prend `self` (par valeur) **consomme** la valeur : après l'appel, l'ancienne variable est déplacée et ne peut plus servir.\n\n**Pas à pas :**\n\n1. `let fermee = Connexion::nouvelle(\"x\");`\n2. `let ouverte = fermee.ouvrir();` : `fermee` est déplacée dans `ouvrir`, qui rend une `Connexion<Ouverte>`.\n3. `fermee.ouvrir();` une deuxième fois : erreur « use of moved value: `fermee` ».\n\nAvec `fn ouvrir(&self)`, `fermee` resterait utilisable : on aurait en même temps une version fermée et une version ouverte de la même connexion, ce que le typestate veut justement empêcher.\n\n**Les autres réponses :** `&self` marche très bien avec les génériques (les méthodes communes comme `adresse(&self)` l'utilisent) ; il n'y a pas de copie, c'est un déplacement ; on n'appelle pas `drop` à la main, l'ancienne valeur est simplement transformée en la nouvelle.\n\n**À retenir :** une transition d'état prend `self` pour que l'ancien état disparaisse."
   },
   {
     "question": "Que fait `and_then` sur un `Result` ?",
@@ -102,6 +107,6 @@
       "Il fait paniquer en cas d'erreur"
     ],
     "reponse": 1,
-    "explication": "`and_then(f)` appelle `f` sur la valeur `Ok` et rend directement son `Result`, sans double boîte. Une erreur passe sans appeler `f`. Pour transformer l'erreur, on utilise `map_err`."
+    "explication": "**Règle :** `resultat.and_then(f)` : si `resultat` est `Ok(v)`, on appelle `f(v)`, qui renvoie **lui-même** un `Result`, et c'est ce `Result` qu'on obtient ; si `resultat` est `Err(e)`, `f` n'est pas appelée et l'erreur passe telle quelle.\n\n**Pas à pas :** avec `lire_age(texte).and_then(verifier_majeur)`.\n\n| `lire_age` donne | `and_then` | Résultat |\n|---|---|---|\n| `Ok(25)` | appelle `verifier_majeur(25)` | `Ok(25)` |\n| `Ok(12)` | appelle `verifier_majeur(12)` | `Err(\"12 ans : trop jeune\")` |\n| `Err(\"« abc » ...\")` | n'appelle rien | `Err(\"« abc » ...\")` |\n\nAvec `map(verifier_majeur)`, on aurait `Ok(Ok(25))` : un `Result` dans un `Result`. `and_then` évite cette double boîte.\n\n**Les autres réponses :** transformer l'erreur, c'est `map_err` ; `and_then` n'ignore pas les erreurs, il les laisse passer jusqu'au bout ; paniquer en cas d'erreur, c'est `unwrap` ou `expect`.\n\n**À retenir :** étape qui peut échouer → `and_then` ; étape qui ne peut pas échouer → `map` ; changer l'erreur → `map_err`."
   }
 ]

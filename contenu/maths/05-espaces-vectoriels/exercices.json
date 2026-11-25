@@ -8,28 +8,65 @@
       {
         "intitule": "$u + v$",
         "type": "vecteur",
-        "reponse": [3, 3, 3],
-        "acceptes": ["(3; 3; 3)", "3, 3, 3"],
-        "refuses": ["(3, 3)", "(2, 3, 3)"]
+        "reponse": [
+          3,
+          3,
+          3
+        ],
+        "acceptes": [
+          "(3; 3; 3)",
+          "3, 3, 3"
+        ],
+        "refuses": [
+          "(3, 3)",
+          "(2, 3, 3)"
+        ],
+        "explication": "**Règle :** on additionne deux vecteurs **coordonnée par coordonnée** : la 1re avec la 1re, la 2e avec la 2e, etc.\n\n**Pas à pas :** $u = (2, -1, 3)$ et $v = (1, 4, 0)$.\n\n| Coordonnée | $u$ | $v$ | Somme |\n|---|---|---|---|\n| 1re | $2$ | $1$ | $2 + 1 = 3$ |\n| 2e | $-1$ | $4$ | $-1 + 4 = 3$ |\n| 3e | $3$ | $0$ | $3 + 0 = 3$ |\n\nDonc $u + v = (3, 3, 3)$.\n\n**Erreurs fréquentes :** écrire seulement deux coordonnées comme $(3, 3)$ (la somme de deux vecteurs de $\\mathbb{R}^3$ garde 3 coordonnées), ou oublier d'ajouter sur la 1re coordonnée et garder le $2$ de $u$.\n\n**À retenir :** une somme de vecteurs = une addition par coordonnée, autant de coordonnées qu'au départ."
       },
       {
         "intitule": "$3u$",
         "type": "vecteur",
-        "reponse": [6, -3, 9],
-        "acceptes": ["(6;-3;9)"],
-        "refuses": ["(6, 3, 9)", "(5, 2, 6)"]
+        "reponse": [
+          6,
+          -3,
+          9
+        ],
+        "acceptes": [
+          "(6;-3;9)"
+        ],
+        "refuses": [
+          "(6, 3, 9)",
+          "(5, 2, 6)"
+        ],
+        "explication": "**Règle :** multiplier un vecteur par un nombre, c'est multiplier **chaque** coordonnée par ce nombre : $\\lambda (u_1, u_2, u_3) = (\\lambda u_1, \\lambda u_2, \\lambda u_3)$.\n\n**Pas à pas :** $u = (2, -1, 3)$.\n\n| Coordonnée | Calcul | Résultat |\n|---|---|---|\n| 1re | $3 \\times 2$ | $6$ |\n| 2e | $3 \\times (-1)$ | $-3$ |\n| 3e | $3 \\times 3$ | $9$ |\n\nDonc $3u = (6, -3, 9)$.\n\n**Erreurs fréquentes :** perdre le signe et écrire $(6, 3, 9)$ (un positif fois un négatif donne un négatif), ou **ajouter** 3 au lieu de multiplier, ce qui donne $(5, 2, 6)$.\n\n**À retenir :** $\\lambda u$ = chaque coordonnée multipliée par $\\lambda$, signe compris."
       },
       {
         "intitule": "$2u - v$",
         "type": "vecteur",
-        "reponse": [3, -6, 6],
-        "refuses": ["(5, 2, 6)", "(3, 6, 6)"]
+        "reponse": [
+          3,
+          -6,
+          6
+        ],
+        "refuses": [
+          "(5, 2, 6)",
+          "(3, 6, 6)"
+        ],
+        "explication": "**Règle :** on calcule d'abord les multiplications ($2u$), puis la soustraction, coordonnée par coordonnée.\n\n**Pas à pas :** $u = (2, -1, 3)$, $v = (1, 4, 0)$.\n\n| Coordonnée | $2u$ | On retire $v$ | Résultat |\n|---|---|---|---|\n| 1re | $2 \\times 2 = 4$ | $4 - 1$ | $3$ |\n| 2e | $2 \\times (-1) = -2$ | $-2 - 4$ | $-6$ |\n| 3e | $2 \\times 3 = 6$ | $6 - 0$ | $6$ |\n\nDonc $2u - v = (3, -6, 6)$.\n\n**Erreurs fréquentes :** ajouter $v$ au lieu de le retirer, ce qui donne $2u + v = (5, 2, 6)$ ; ou se tromper de signe sur la 2e coordonnée : $-2 - 4 = -6$ (on descend encore de 4), pas $+6$.\n\n**À retenir :** multiplie d'abord, soustrais ensuite, et surveille les signes ligne par ligne."
       },
       {
         "intitule": "$u - v + w$",
         "type": "vecteur",
-        "reponse": [1, -3, 1],
-        "refuses": ["(1, -3, -1)", "(3, 5, 1)"]
+        "reponse": [
+          1,
+          -3,
+          1
+        ],
+        "refuses": [
+          "(1, -3, -1)",
+          "(3, 5, 1)"
+        ],
+        "explication": "**Règle :** avec plusieurs vecteurs, on fait le calcul **coordonnée par coordonnée**, en gardant le signe devant chaque vecteur.\n\n**Pas à pas :** $u = (2, -1, 3)$, $v = (1, 4, 0)$, $w = (0, 2, -2)$, et on calcule $u - v + w$.\n\n| Coordonnée | $u$ | $- v$ | $+ w$ | Résultat |\n|---|---|---|---|---|\n| 1re | $2$ | $-1$ | $+0$ | $2 - 1 + 0 = 1$ |\n| 2e | $-1$ | $-4$ | $+2$ | $-1 - 4 + 2 = -3$ |\n| 3e | $3$ | $-0$ | $+(-2)$ | $3 - 0 - 2 = 1$ |\n\nDonc $u - v + w = (1, -3, 1)$.\n\n**Erreurs fréquentes :** une erreur de signe sur la dernière coordonnée (ajouter $-2$, c'est retirer 2), ou ajouter $v$ au lieu de le retirer, ce qui donne $u + v + w = (3, 5, 1)$.\n\n**À retenir :** écris chaque vecteur avec le signe qui le précède, puis additionne colonne par colonne."
       }
     ],
     "indices": [
@@ -47,20 +84,34 @@
       {
         "intitule": "On écrit $(5, -2) = a\\,e_1 + b\\,e_2$. Que vaut $a$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 5
+        "reponse": 5,
+        "explication": "**Règle :** dans la base canonique $e_1 = (1, 0)$, $e_2 = (0, 1)$, on a $a\\,e_1 + b\\,e_2 = (a, b)$ : les coefficients sont les coordonnées elles-mêmes.\n\n**Pas à pas :**\n\n1. $a\\,e_1 = (a, 0)$ et $b\\,e_2 = (0, b)$.\n2. Leur somme vaut $(a, b)$.\n3. On veut $(a, b) = (5, -2)$ : la 1re coordonnée donne $a = 5$.\n\n**Erreur fréquente :** croire qu'il faut résoudre un système compliqué : dans la base canonique, on lit directement.\n\n**À retenir :** dans la base canonique, le coefficient de $e_1$ est la 1re coordonnée."
       },
       {
         "intitule": "Et $b$ ? (un nombre)",
         "type": "nombre",
         "reponse": -2,
-        "refuses": ["2"]
+        "refuses": [
+          "2"
+        ],
+        "explication": "**Règle :** toujours avec $a\\,e_1 + b\\,e_2 = (a, b)$, le coefficient $b$ de $e_2$ est la **2e** coordonnée.\n\n**Pas à pas :** on veut $(a, b) = (5, -2)$. La 2e coordonnée donne $b = -2$. Vérification : $5(1, 0) - 2(0, 1) = (5, 0) + (0, -2) = (5, -2)$.\n\n**Erreur fréquente :** répondre $2$ en oubliant le signe moins. Un coefficient peut être négatif.\n\n**À retenir :** dans la base canonique, chaque coefficient est la coordonnée correspondante, signe compris."
       },
       {
         "intitule": "On écrit $(4, 0, -7) = a\\,f_1 + b\\,f_2 + c\\,f_3$. Donne les coefficients au format `(a, b, c)`.",
         "type": "vecteur",
-        "reponse": [4, 0, -7],
-        "acceptes": ["(4; 0; -7)"],
-        "refuses": ["(4, -7)", "(-7, 0, 4)"]
+        "reponse": [
+          4,
+          0,
+          -7
+        ],
+        "acceptes": [
+          "(4; 0; -7)"
+        ],
+        "refuses": [
+          "(4, -7)",
+          "(-7, 0, 4)"
+        ],
+        "explication": "**Règle :** dans $\\mathbb{R}^3$, $a\\,f_1 + b\\,f_2 + c\\,f_3 = (a, 0, 0) + (0, b, 0) + (0, 0, c) = (a, b, c)$.\n\n**Pas à pas :** on veut $(a, b, c) = (4, 0, -7)$, donc on lit dans l'ordre :\n\n| Vecteur de base | Coefficient |\n|---|---|\n| $f_1$ | $a = 4$ |\n| $f_2$ | $b = 0$ |\n| $f_3$ | $c = -7$ |\n\nLes coefficients sont $(4, 0, -7)$.\n\n**Erreurs fréquentes :** supprimer le $0$ et écrire $(4, -7)$ (il faut un coefficient par vecteur de base, même nul, sinon on ne sait plus lequel va avec quel vecteur), ou inverser l'ordre en $(-7, 0, 4)$.\n\n**À retenir :** un coefficient par vecteur de base, dans l'ordre, zéros compris."
       }
     ],
     "indices": [
@@ -77,13 +128,18 @@
       {
         "intitule": "Que vaut $\\hat{y}$ pour $x = (4, 1, 3)$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** $\\hat{y} = w_1 x_1 + w_2 x_2 + w_3 x_3$ est une somme pondérée : on multiplie chaque variable par son poids, puis on additionne les produits.\n\n**Pas à pas :** $w = (0{,}5;\\ 2;\\ -1)$ et $x = (4, 1, 3)$.\n\n| Variable | Valeur | Poids | Produit |\n|---|---|---|---|\n| $x_1$ | $4$ | $0{,}5$ | $0{,}5 \\times 4 = 2$ |\n| $x_2$ | $1$ | $2$ | $2 \\times 1 = 2$ |\n| $x_3$ | $3$ | $-1$ | $-1 \\times 3 = -3$ |\n\nOn additionne : $\\hat{y} = 2 + 2 - 3 = 1$.\n\n**Erreur fréquente :** oublier que le poids $w_3$ est négatif, ce qui donne $2 + 2 + 3 = 7$.\n\n**À retenir :** chaque variable fois son poids, signe compris, puis on additionne."
       },
       {
         "intitule": "Que vaut $\\hat{y}$ pour $x = (2, 0, 5)$ ? (un nombre)",
         "type": "nombre",
         "reponse": -4,
-        "refuses": ["4", "6"]
+        "refuses": [
+          "4",
+          "6"
+        ],
+        "explication": "**Règle :** même calcul, une ligne par variable : valeur $\\times$ poids, puis somme.\n\n**Pas à pas :** $w = (0{,}5;\\ 2;\\ -1)$ et $x = (2, 0, 5)$.\n\n| Variable | Valeur | Poids | Produit |\n|---|---|---|---|\n| $x_1$ | $2$ | $0{,}5$ | $0{,}5 \\times 2 = 1$ |\n| $x_2$ | $0$ | $2$ | $2 \\times 0 = 0$ |\n| $x_3$ | $5$ | $-1$ | $-1 \\times 5 = -5$ |\n\nOn additionne : $\\hat{y} = 1 + 0 - 5 = -4$.\n\n**Erreurs fréquentes :** oublier le signe du poids $w_3$ et trouver $1 + 0 + 5 = 6$, ou perdre le signe du résultat et répondre $4$. Une prédiction peut être négative.\n\n**À retenir :** un poids négatif retire son produit de la somme."
       },
       {
         "intitule": "La prédiction $\\hat{y}$ est :",
@@ -94,7 +150,8 @@
           "une base de $\\mathbb{R}^3$",
           "un sous-espace vectoriel"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une **combinaison linéaire** est une somme de termes « nombre fixe $\\times$ variable ». Une base et un sous-espace sont des objets d'une autre nature (une famille de vecteurs, un ensemble de vecteurs).\n\n**Pas à pas :** $\\hat{y} = 0{,}5\\,x_1 + 2\\,x_2 - 1\\,x_3$.\n\n1. Chaque variable est multipliée par un nombre fixe (son poids).\n2. On additionne les trois termes.\n3. C'est exactement la définition d'une combinaison linéaire des variables, avec les poids comme coefficients.\n\n**Les autres réponses :** « un produit des variables » serait $x_1 \\times x_2 \\times x_3$, ce qui n'apparaît nulle part ; « une base de $\\mathbb{R}^3$ » et « un sous-espace vectoriel » ne conviennent pas, car $\\hat{y}$ est un simple nombre, pas une famille ni un ensemble de vecteurs.\n\n**À retenir :** « poids $\\times$ variable, puis somme » = combinaison linéaire."
       }
     ],
     "indices": [
@@ -111,26 +168,42 @@
       {
         "intitule": "$(2, 3)$ et $(4, 6)$",
         "type": "choix",
-        "choix": ["Libre", "Liée"],
-        "reponse": 1
+        "choix": [
+          "Libre",
+          "Liée"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** deux vecteurs forment une famille liée si et seulement si l'un est un multiple de l'autre (le **même** nombre multiplie toutes les coordonnées).\n\n**Pas à pas :** on divise les coordonnées de $(4, 6)$ par celles de $(2, 3)$.\n\n| Coordonnée | Calcul | Résultat |\n|---|---|---|\n| 1re | $4 \\div 2$ | $2$ |\n| 2e | $6 \\div 3$ | $2$ |\n\nLe même nombre partout : $(4, 6) = 2 \\times (2, 3)$. La famille est **liée**.\n\n**Erreur fréquente :** répondre « libre » parce que les deux vecteurs sont différents. Différents ne veut pas dire libres.\n\n**À retenir :** même rapport sur toutes les coordonnées = multiples = liée."
       },
       {
         "intitule": "$(1, 2)$ et $(2, 1)$",
         "type": "choix",
-        "choix": ["Libre", "Liée"],
-        "reponse": 0
+        "choix": [
+          "Libre",
+          "Liée"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** deux vecteurs sont liés seulement si un **unique** nombre $k$ permet de passer de l'un à l'autre sur toutes les coordonnées.\n\n**Pas à pas :** de $(1, 2)$ vers $(2, 1)$.\n\n| Coordonnée | Calcul | Résultat |\n|---|---|---|\n| 1re | $2 \\div 1$ | $2$ |\n| 2e | $1 \\div 2$ | $0{,}5$ |\n\nLes deux rapports sont différents ($2 \\neq 0{,}5$) : aucun nombre unique ne marche, aucun vecteur n'est multiple de l'autre. La famille est **libre**.\n\n**Erreur fréquente :** penser que des vecteurs qui ont « les mêmes chiffres » sont liés. L'ordre des coordonnées compte : $(1, 2) \\neq (2, 1)$, et ils ne sont pas proportionnels.\n\n**À retenir :** deux rapports différents = pas multiples = libre."
       },
       {
         "intitule": "$(3, -1)$ et $(-6, 2)$",
         "type": "choix",
-        "choix": ["Libre", "Liée"],
-        "reponse": 1
+        "choix": [
+          "Libre",
+          "Liée"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** un multiple peut avoir un coefficient **négatif** : $(-6, 2)$ est un multiple de $(3, -1)$ s'il existe un même $k$, positif ou négatif, pour toutes les coordonnées.\n\n**Pas à pas :**\n\n| Coordonnée | Calcul | Résultat |\n|---|---|---|\n| 1re | $-6 \\div 3$ | $-2$ |\n| 2e | $2 \\div (-1)$ | $-2$ |\n\nLe même nombre partout : $(-6, 2) = -2 \\times (3, -1)$. La famille est **liée**.\n\n**Erreur fréquente :** croire que les signes différents empêchent d'être multiples. Un coefficient négatif inverse tous les signes à la fois, ça compte comme un multiple.\n\n**À retenir :** cherche le même rapport, signe compris ; un rapport négatif rend aussi la famille liée."
       },
       {
         "intitule": "$(0, 0)$ et $(5, 1)$",
         "type": "choix",
-        "choix": ["Libre", "Liée"],
-        "reponse": 1
+        "choix": [
+          "Libre",
+          "Liée"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une famille qui contient le **vecteur nul** est toujours liée.\n\n**Pas à pas :** on met le coefficient $1$ devant $(0, 0)$ et $0$ devant $(5, 1)$ :\n\n$$1 \\times (0, 0) + 0 \\times (5, 1) = (0, 0)$$\n\nOn obtient le vecteur nul avec un coefficient ($1$) qui n'est pas nul : la famille est **liée**. On peut aussi le dire avec les multiples : $(0, 0) = 0 \\times (5, 1)$.\n\n**Erreur fréquente :** se dire que $(0, 0)$ et $(5, 1)$ sont différents et non proportionnels « à vue d'œil », donc libres. Le vecteur nul est un multiple de n'importe quel vecteur (avec $k = 0$).\n\n**À retenir :** vecteur nul dans la famille = liée, sans calcul."
       }
     ],
     "indices": [
@@ -148,24 +221,35 @@
       {
         "intitule": "Une famille de 3 vecteurs de $\\mathbb{R}^2$ est forcément :",
         "type": "choix",
-        "choix": ["Libre", "Liée", "Une base de $\\mathbb{R}^2$"],
-        "reponse": 1
+        "choix": [
+          "Libre",
+          "Liée",
+          "Une base de $\\mathbb{R}^2$"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** dans $\\mathbb{R}^n$, une famille libre a **au plus** $n$ vecteurs. Plus de $n$ vecteurs = forcément liée.\n\n**Pas à pas :**\n\n1. $\\dim \\mathbb{R}^2 = 2$, donc $n = 2$.\n2. La famille a 3 vecteurs, et $3 > 2$.\n3. Elle est donc **forcément liée** : un des trois vecteurs s'écrit avec les deux autres.\n\n**Les autres réponses :** « libre » contredit la règle ; « une base de $\\mathbb{R}^2$ » est impossible, car une base de $\\mathbb{R}^2$ a exactement 2 vecteurs et doit être libre.\n\n**À retenir :** compte les vecteurs : plus que la dimension, c'est lié."
       },
       {
         "intitule": "Combien de vecteurs, au maximum, peut contenir une famille libre de $\\mathbb{R}^4$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 4
+        "reponse": 4,
+        "explication": "**Règle :** une famille libre de $\\mathbb{R}^n$ a au plus $n$ vecteurs, avec $n = \\dim \\mathbb{R}^n$.\n\n**Pas à pas :**\n\n1. $\\dim \\mathbb{R}^4 = 4$.\n2. Une famille libre de $\\mathbb{R}^4$ a donc au plus 4 vecteurs.\n3. 4 est atteint : la base canonique $(1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1)$ est libre et a 4 vecteurs.\n\nLe maximum est **4**. Avec 5 vecteurs, la famille serait forcément liée.\n\n**Erreur fréquente :** répondre $16$ ($4^2$) ou $3$ : la dimension de $\\mathbb{R}^n$ est simplement $n$.\n\n**À retenir :** au maximum $n$ vecteurs libres dans $\\mathbb{R}^n$."
       },
       {
         "intitule": "Combien de vecteurs contient une base de $\\mathbb{R}^5$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 5
+        "reponse": 5,
+        "explication": "**Règle :** toutes les bases d'un espace ont le même nombre de vecteurs, la dimension, et $\\dim \\mathbb{R}^n = n$.\n\n**Pas à pas :**\n\n1. On est dans $\\mathbb{R}^5$, donc $n = 5$.\n2. La base canonique $e_1, \\dots, e_5$ a 5 vecteurs.\n3. Toute autre base a donc aussi **5** vecteurs.\n\n**Erreur fréquente :** penser qu'une base « bien choisie » peut avoir moins de vecteurs. Avec moins de 5, on ne peut pas tout engendrer ; avec plus, la famille est liée.\n\n**À retenir :** une base de $\\mathbb{R}^n$ a toujours exactement $n$ vecteurs."
       },
       {
         "intitule": "Une famille de 2 vecteurs de $\\mathbb{R}^3$ peut-elle engendrer tout $\\mathbb{R}^3$ ?",
         "type": "choix",
-        "choix": ["Oui, si les vecteurs sont libres", "Non, jamais"],
-        "reponse": 1
+        "choix": [
+          "Oui, si les vecteurs sont libres",
+          "Non, jamais"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** dans $\\mathbb{R}^n$, une famille de **moins** de $n$ vecteurs ne peut **jamais** être génératrice.\n\n**Pas à pas :**\n\n1. On est dans $\\mathbb{R}^3$, donc $n = 3$, et la famille n'a que 2 vecteurs.\n2. Même libres, deux vecteurs n'engendrent qu'un **plan** (dimension 2).\n3. Il manque toujours des vecteurs de $\\mathbb{R}^3$ : par exemple, $(1, 0, 0)$ et $(0, 1, 0)$ n'engendrent que les vecteurs $(a, b, 0)$, jamais $(0, 0, 1)$.\n\n**Erreur fréquente :** choisir « oui, si les vecteurs sont libres ». Être libre veut dire « pas de vecteur en trop », pas « assez de vecteurs » : il en faudrait 3.\n\n**À retenir :** moins de $n$ vecteurs = jamais génératrice de $\\mathbb{R}^n$, libres ou pas."
       }
     ],
     "indices": [
@@ -183,12 +267,14 @@
       {
         "intitule": "Que vaut $\\lambda$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour trouver $\\lambda$ et $\\mu$ dans $\\lambda u + \\mu v = w$, on écrit une équation par coordonnée, puis on résout le système (ici par substitution : on isole une inconnue et on la remplace).\n\n**Pas à pas :** $u = (1, 2)$, $v = (3, -1)$ et $w = (7, 0)$.\n\n1. $\\lambda u + \\mu v = (\\lambda + 3\\mu,\\ 2\\lambda - \\mu)$.\n2. Système : $\\lambda + 3\\mu = 7$ et $2\\lambda - \\mu = 0$.\n3. On isole $\\mu$ dans la 2e équation : $\\mu = 2\\lambda$.\n4. On remplace dans la 1re : $\\lambda + 3 \\times 2\\lambda = 7$, soit $7\\lambda = 7$, donc $\\lambda = 1$.\n\n**Erreur fréquente :** se tromper dans le calcul de $\\lambda u + \\mu v$, par exemple écrire $2\\lambda + \\mu$ au lieu de $2\\lambda - \\mu$ (la 2e coordonnée de $v$ est $-1$).\n\n**À retenir :** une équation par coordonnée, on isole l'inconnue la plus simple, on la remplace dans l'autre."
       },
       {
         "intitule": "Que vaut $\\mu$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** une fois une inconnue trouvée, on revient à l'expression isolée pour trouver l'autre, puis on **vérifie** dans l'énoncé.\n\n**Pas à pas :**\n\n1. On avait isolé $\\mu = 2\\lambda$, et trouvé $\\lambda = 1$.\n2. Donc $\\mu = 2 \\times 1 = 2$.\n3. Vérification : $1 \\times (1, 2) + 2 \\times (3, -1) = (1, 2) + (6, -2) = (7, 0)$. C'est bien $w$.\n\n**Erreur fréquente :** inverser les rôles de $\\lambda$ et $\\mu$ : $\\lambda$ va avec $u$, $\\mu$ va avec $v$. La vérification permet de le repérer.\n\n**À retenir :** remplace la valeur trouvée, puis vérifie le résultat dans l'égalité de départ."
       }
     ],
     "indices": [
@@ -206,23 +292,30 @@
       {
         "intitule": "La 1re coordonnée impose la valeur de $\\lambda$. Laquelle ? (un nombre)",
         "type": "nombre",
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** on écrit $\\lambda u + \\mu v$ coordonnée par coordonnée, puis on compare avec $w$, une coordonnée à la fois.\n\n**Pas à pas :** $u = (1, 0, 2)$, $v = (0, 1, -1)$.\n\n| Coordonnée | $\\lambda u$ | $\\mu v$ | $\\lambda u + \\mu v$ |\n|---|---|---|---|\n| 1re | $\\lambda$ | $0$ | $\\lambda$ |\n| 2e | $0$ | $\\mu$ | $\\mu$ |\n| 3e | $2\\lambda$ | $-\\mu$ | $2\\lambda - \\mu$ |\n\nLa 1re coordonnée de $\\lambda u + \\mu v$ est simplement $\\lambda$, et celle de $w$ vaut 3 : $\\lambda = 3$.\n\n**Erreur fréquente :** croire que $\\mu$ intervient dans la 1re coordonnée. Le 0 en 1re place de $v$ fait disparaître $\\mu$.\n\n**À retenir :** une équation par coordonnée ; un 0 dans un vecteur fait disparaître son coefficient de cette équation."
       },
       {
         "intitule": "La 2e coordonnée impose la valeur de $\\mu$. Laquelle ? (un nombre)",
         "type": "nombre",
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** même méthode : on compare la 2e coordonnée de $\\lambda u + \\mu v$ avec celle de $w$.\n\n**Pas à pas :**\n\n1. La 2e coordonnée de $\\lambda u + \\mu v$ est $0 \\times \\lambda + 1 \\times \\mu = \\mu$ (car $u$ a un 0 en 2e place).\n2. La 2e coordonnée de $w = (3, 2, 5)$ vaut 2.\n3. Donc $\\mu = 2$.\n\n**Erreur fréquente :** prendre la 3e coordonnée de $w$ (5) au lieu de la 2e. Garde bien les coordonnées dans l'ordre.\n\n**À retenir :** chaque coordonnée donne une équation ; les plus simples donnent directement les coefficients."
       },
       {
         "intitule": "Avec ces valeurs, que vaut la 3e coordonnée de $\\lambda u + \\mu v$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 4
+        "reponse": 4,
+        "explication": "**Règle :** quand il y a plus d'équations que d'inconnues, l'équation « en trop » sert de **contrôle** : on y remplace les valeurs trouvées.\n\n**Pas à pas :**\n\n1. La 3e coordonnée de $\\lambda u + \\mu v$ est $2\\lambda - \\mu$ (le $-1$ vient de la 3e coordonnée de $v$).\n2. Avec $\\lambda = 3$ et $\\mu = 2$ : $2 \\times 3 - 2 = 6 - 2 = 4$.\n\n**Erreur fréquente :** calculer $2\\lambda + \\mu = 8$ en oubliant le signe moins de la 3e coordonnée de $v$.\n\n**À retenir :** remplace les valeurs trouvées dans l'équation restante, en gardant chaque signe des vecteurs."
       },
       {
         "intitule": "$w = (3, 2, 5)$ est-il une combinaison linéaire de $u$ et $v$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $w$ est une combinaison linéaire de $u$ et $v$ seulement si **toutes** les équations sont vérifiées par les mêmes $\\lambda$ et $\\mu$.\n\n**Pas à pas :**\n\n| Coordonnée | Équation | Avec $\\lambda = 3$, $\\mu = 2$ | Vérifiée ? |\n|---|---|---|---|\n| 1re | $\\lambda = 3$ | $3 = 3$ | oui |\n| 2e | $\\mu = 2$ | $2 = 2$ | oui |\n| 3e | $2\\lambda - \\mu = 5$ | $4 = 5$ | **non** |\n\nLes deux premières équations **imposent** $\\lambda = 3$ et $\\mu = 2$ : il n'y a pas d'autre choix possible. Avec ces valeurs, la 3e est fausse. Le système n'a aucune solution : $w$ n'est **pas** une combinaison linéaire de $u$ et $v$.\n\n**Erreur fréquente :** répondre « oui » après avoir trouvé $\\lambda$ et $\\mu$ avec les deux premières équations, sans vérifier la troisième.\n\n**À retenir :** trouver des coefficients ne suffit pas, il faut que **toutes** les coordonnées tombent juste."
       }
     ],
     "indices": [
@@ -240,31 +333,52 @@
       {
         "intitule": "On cherche $a$ et $b$ tels que $w = a\\,u + b\\,v$. Que vaut $a$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** on cherche $a$ et $b$ avec $w = a\\,u + b\\,v$ en écrivant une équation par coordonnée.\n\n**Pas à pas :** $u = (1, 2, 0)$, $v = (0, 1, 1)$ et $w = (2, 5, 1)$.\n\n| Coordonnée | $a\\,u + b\\,v$ | Coordonnée de $w$ | Équation |\n|---|---|---|---|\n| 1re | $a + 0 = a$ | $2$ | $a = 2$ |\n| 2e | $2a + b$ | $5$ | $2a + b = 5$ |\n| 3e | $0 + b = b$ | $1$ | $b = 1$ |\n\nLa 1re équation donne directement $a = 2$.\n\n**Erreur fréquente :** partir de la 2e équation, qui a deux inconnues : commence toujours par une équation à une seule inconnue.\n\n**À retenir :** repère l'équation où il ne reste qu'une inconnue et commence par elle."
       },
       {
         "intitule": "Que vaut $b$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** on termine avec l'équation à une seule inconnue restante, puis on **vérifie** l'équation qui reste.\n\n**Pas à pas :**\n\n1. La 3e équation donne directement $b = 1$.\n2. Contrôle avec la 2e : $2a + b = 2 \\times 2 + 1 = 5$. C'est bien la 2e coordonnée de $w$.\n3. Donc $w = 2u + v$. Vérification complète : $2(1, 2, 0) + (0, 1, 1) = (2, 4, 0) + (0, 1, 1) = (2, 5, 1)$.\n\n**Erreur fréquente :** oublier le contrôle sur la 2e équation : si elle était fausse, $w$ ne serait pas une combinaison de $u$ et $v$.\n\n**À retenir :** trois équations pour deux inconnues : deux pour trouver, la troisième pour vérifier."
       },
       {
         "intitule": "Donne les coefficients $(\\alpha, \\beta, \\gamma)$, avec $\\gamma = -1$, tels que $\\alpha u + \\beta v + \\gamma w = 0$. Format : `(α, β, γ)`.",
         "type": "vecteur",
-        "reponse": [2, 1, -1],
-        "acceptes": ["(2; 1; -1)"],
-        "refuses": ["(-2, -1, 1)", "(0, 0, 0)"]
+        "reponse": [
+          2,
+          1,
+          -1
+        ],
+        "acceptes": [
+          "(2; 1; -1)"
+        ],
+        "refuses": [
+          "(-2, -1, 1)",
+          "(0, 0, 0)"
+        ],
+        "explication": "**Règle :** pour passer d'une relation « $w = \\dots$ » à une combinaison nulle, on passe tout du même côté du signe $=$, en changeant les signes de ce qui passe de l'autre côté.\n\n**Pas à pas :**\n\n1. On a trouvé $w = 2u + v$.\n2. On passe $w$ à droite : $0 = 2u + v - w$, soit $2u + 1v - 1w = 0$.\n3. On lit les coefficients dans l'ordre $u$, $v$, $w$ : $(\\alpha, \\beta, \\gamma) = (2, 1, -1)$, et on a bien $\\gamma = -1$.\n\n**Erreurs fréquentes :** donner $(-2, -1, 1)$ : c'est aussi une combinaison nulle (tout multiplié par $-1$), mais elle ne respecte pas $\\gamma = -1$ ; ou donner $(0, 0, 0)$ : c'est la combinaison triviale, vraie pour n'importe quelle famille, elle ne montre rien.\n\n**À retenir :** « $w = \\dots$ » devient « $\\dots - w = 0$ », puis on lit les coefficients dans l'ordre."
       },
       {
         "intitule": "La famille $(u, v, w)$ est :",
         "type": "choix",
-        "choix": ["Libre", "Liée"],
-        "reponse": 1
+        "choix": [
+          "Libre",
+          "Liée"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une famille est **liée** dès qu'il existe une combinaison égale au vecteur nul avec des coefficients **pas tous nuls**.\n\n**Pas à pas :**\n\n1. On a trouvé $2u + 1v - 1w = 0$.\n2. Les coefficients $(2, 1, -1)$ ne sont pas tous nuls.\n3. Donc la famille $(u, v, w)$ est **liée** : $w$ est redondant, il se fabrique avec $u$ et $v$.\n\n**Erreur fréquente :** croire qu'une famille de 3 vecteurs de $\\mathbb{R}^3$ est forcément libre. Le nombre de vecteurs (3, pas plus que la dimension) n'empêche pas d'être liée.\n\n**À retenir :** une combinaison nulle non triviale suffit à prouver « liée »."
       },
       {
         "intitule": "Cette famille est-elle une base de $\\mathbb{R}^3$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non, car elle est liée", "Non, car il faudrait 4 vecteurs"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non, car elle est liée",
+          "Non, car il faudrait 4 vecteurs"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une base doit être **libre** et génératrice. Dans $\\mathbb{R}^3$, elle a exactement 3 vecteurs.\n\n**Pas à pas :**\n\n1. La famille $(u, v, w)$ a 3 vecteurs : le bon nombre pour $\\mathbb{R}^3$.\n2. Mais elle est liée (question précédente) : elle n'est pas libre.\n3. Ce n'est donc **pas** une base. D'ailleurs, toutes ses combinaisons sont des combinaisons de $u$ et $v$ seulement : elles restent dans un plan.\n\n**Les autres réponses :** « oui » est faux puisque la famille est liée ; « il faudrait 4 vecteurs » est faux : une base de $\\mathbb{R}^3$ a 3 vecteurs, et 4 vecteurs dans $\\mathbb{R}^3$ seraient forcément liés.\n\n**À retenir :** le bon nombre de vecteurs ne suffit pas, il faut aussi que la famille soit libre."
       }
     ],
     "indices": [
@@ -282,8 +396,12 @@
       {
         "intitule": "Si $\\lambda u + \\mu v = (0, 0)$, on trouve $\\lambda = \\mu = 0$. La famille $(u, v)$ est donc :",
         "type": "choix",
-        "choix": ["Libre", "Liée"],
-        "reponse": 0
+        "choix": [
+          "Libre",
+          "Liée"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une famille est **libre** si la seule combinaison égale au vecteur nul est celle où tous les coefficients sont nuls.\n\n**Pas à pas :** $u = (2, 1)$ et $v = (1, -1)$.\n\n1. $\\lambda u + \\mu v = (2\\lambda + \\mu,\\ \\lambda - \\mu) = (0, 0)$.\n2. En additionnant les deux équations : $3\\lambda = 0$, donc $\\lambda = 0$, puis $\\mu = 0$.\n3. C'est ce que dit l'énoncé : la seule solution est $\\lambda = \\mu = 0$, donc la famille est **libre**.\n\n**Erreur fréquente :** penser que la famille est liée parce qu'on a trouvé une combinaison nulle. La combinaison avec tous les coefficients nuls marche toujours : elle ne compte pas.\n\n**À retenir :** seule solution « tout à 0 » = libre."
       },
       {
         "intitule": "Pourquoi $(u, v)$ est-elle une base de $\\mathbb{R}^2$ ?",
@@ -293,20 +411,38 @@
           "Parce que les deux vecteurs sont non nuls",
           "Parce que les deux vecteurs sont différents"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle (admise) :** en dimension $n$, une famille libre de $n$ vecteurs est automatiquement une base.\n\n**Pas à pas :**\n\n1. $\\dim \\mathbb{R}^2 = 2$.\n2. La famille $(u, v)$ a 2 vecteurs.\n3. Elle est libre (question précédente).\n4. Donc c'est une base de $\\mathbb{R}^2$.\n\n**Les autres réponses :** « parce que les deux vecteurs sont non nuls » et « parce que les deux vecteurs sont différents » ne suffisent pas : $(1, 2)$ et $(2, 4)$ sont non nuls et différents, mais liés, donc pas une base.\n\n**À retenir :** pour une base de $\\mathbb{R}^n$, il faut $n$ vecteurs **et** qu'ils soient libres."
       },
       {
         "intitule": "Écris $(5, 1) = a\\,u + b\\,v$. Format : `(a, b)`.",
         "type": "vecteur",
-        "reponse": [2, 1],
-        "acceptes": ["(2; 1)", "2, 1"],
-        "refuses": ["(1, 2)", "(5, 1)"]
+        "reponse": [
+          2,
+          1
+        ],
+        "acceptes": [
+          "(2; 1)",
+          "2, 1"
+        ],
+        "refuses": [
+          "(1, 2)",
+          "(5, 1)"
+        ],
+        "explication": "**Règle :** les coordonnées de $X$ dans la base $(u, v)$ sont les nombres $(a, b)$ tels que $a\\,u + b\\,v = X$. On les trouve avec un système.\n\n**Pas à pas :** $u = (2, 1)$, $v = (1, -1)$, $X = (5, 1)$.\n\n1. $a\\,u + b\\,v = (2a + b,\\ a - b)$, donc $2a + b = 5$ et $a - b = 1$.\n2. Les $b$ ont des signes opposés : on additionne les deux équations. $3a = 6$, donc $a = 2$.\n3. Dans la 2e équation : $2 - b = 1$, donc $b = 1$.\n4. Vérification : $2(2, 1) + 1(1, -1) = (4, 2) + (1, -1) = (5, 1)$.\n\n**Erreurs fréquentes :** inverser l'ordre et écrire $(1, 2)$ ($a$ va avec $u$, $b$ avec $v$) ; ou répondre $(5, 1)$, qui sont les coordonnées dans la base canonique, pas dans $(u, v)$.\n\n**À retenir :** coordonnées dans une base = solution de $a\\,u + b\\,v = X$, dans l'ordre des vecteurs de la base."
       },
       {
         "intitule": "Écris $(0, 3) = a\\,u + b\\,v$. Format : `(a, b)`.",
         "type": "vecteur",
-        "reponse": [1, -2],
-        "refuses": ["(-2, 1)", "(1, 2)"]
+        "reponse": [
+          1,
+          -2
+        ],
+        "refuses": [
+          "(-2, 1)",
+          "(1, 2)"
+        ],
+        "explication": "**Règle :** même méthode : on résout $a\\,u + b\\,v = X$, puis on vérifie.\n\n**Pas à pas :** $X = (0, 3)$.\n\n1. $2a + b = 0$ et $a - b = 3$.\n2. On additionne : $3a = 3$, donc $a = 1$.\n3. Dans la 2e équation : $1 - b = 3$, donc $b = 1 - 3 = -2$.\n4. Vérification : $1(2, 1) - 2(1, -1) = (2, 1) + (-2, 2) = (0, 3)$.\n\nLes coordonnées sont $(1, -2)$.\n\n**Erreurs fréquentes :** inverser l'ordre en $(-2, 1)$, ou perdre le signe et écrire $(1, 2)$ : alors $(2, 1) + 2(1, -1) = (4, -1)$, ce n'est pas $X$.\n\n**À retenir :** résous, puis vérifie en recalculant $a\\,u + b\\,v$ : une erreur de signe se voit tout de suite."
       }
     ],
     "indices": [
@@ -324,26 +460,42 @@
       {
         "intitule": "$F = \\{(x, y) \\in \\mathbb{R}^2 \\mid y = 3x\\}$",
         "type": "choix",
-        "choix": ["Oui, c'est un sous-espace", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui, c'est un sous-espace",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** un sous-espace contient le vecteur nul **et** est stable par combinaison linéaire.\n\n**Pas à pas :** $F = \\{(x, y) \\mid y = 3x\\}$.\n\n1. Vecteur nul : $0 = 3 \\times 0$ est vrai, donc $(0, 0) \\in F$.\n2. Stabilité : deux éléments quelconques de $F$ s'écrivent $(a, 3a)$ et $(b, 3b)$. Alors $\\lambda(a, 3a) + \\mu(b, 3b) = (\\lambda a + \\mu b,\\ 3(\\lambda a + \\mu b))$ : la 2e coordonnée vaut encore 3 fois la 1re, le résultat est dans $F$.\n\nDonc $F$ est un sous-espace : c'est une droite qui passe par l'origine.\n\n**Erreur fréquente :** se contenter de vérifier un ou deux points : la stabilité se montre avec des éléments **quelconques**.\n\n**À retenir :** « $y = k x$ » sans terme constant = droite par l'origine = sous-espace."
       },
       {
         "intitule": "$G = \\{(x, y) \\in \\mathbb{R}^2 \\mid y = 3x + 1\\}$",
         "type": "choix",
-        "choix": ["Oui, c'est un sous-espace", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui, c'est un sous-espace",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** un sous-espace contient **toujours** le vecteur nul. Si ce test échoue, c'est fini.\n\n**Pas à pas :** $G = \\{(x, y) \\mid y = 3x + 1\\}$.\n\n1. On remplace par $(0, 0)$ : $0 = 3 \\times 0 + 1$, soit $0 = 1$. C'est faux.\n2. $(0, 0) \\notin G$ : $G$ n'est **pas** un sous-espace.\n\nLe terme constant $+1$ décale la droite : elle ne passe plus par l'origine.\n\n**Erreur fréquente :** croire que toute droite est un sous-espace. Seules celles qui passent par l'origine le sont.\n\n**À retenir :** un terme constant dans l'équation = le vecteur nul n'y est pas = pas un sous-espace."
       },
       {
         "intitule": "$H = \\{(x, y, z) \\in \\mathbb{R}^3 \\mid x - 2y + z = 0\\}$",
         "type": "choix",
-        "choix": ["Oui, c'est un sous-espace", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui, c'est un sous-espace",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une équation $a x + b y + c z = 0$, **sans terme constant**, définit un plan par l'origine : c'est un sous-espace (un hyperplan de $\\mathbb{R}^3$).\n\n**Pas à pas :** $H = \\{(x, y, z) \\mid x - 2y + z = 0\\}$.\n\n1. Vecteur nul : $0 - 2 \\times 0 + 0 = 0$, donc $(0, 0, 0) \\in H$.\n2. Stabilité : si $u = (x_1, y_1, z_1)$ et $v = (x_2, y_2, z_2)$ vérifient l'équation, alors pour $\\lambda u + \\mu v$ : $(\\lambda x_1 + \\mu x_2) - 2(\\lambda y_1 + \\mu y_2) + (\\lambda z_1 + \\mu z_2) = \\lambda(x_1 - 2y_1 + z_1) + \\mu(x_2 - 2y_2 + z_2) = \\lambda \\times 0 + \\mu \\times 0 = 0$.\n\nDonc $H$ est un sous-espace.\n\n**Erreur fréquente :** se laisser impressionner par le $-2$ : les coefficients devant $x$, $y$, $z$ peuvent être n'importe quels nombres, seul compte le $= 0$ sans terme constant.\n\n**À retenir :** équation linéaire « $\\dots = 0$ » sans constante = sous-espace."
       },
       {
         "intitule": "$K = \\{(x, y) \\in \\mathbb{R}^2 \\mid x \\geq 0\\}$",
         "type": "choix",
-        "choix": ["Oui, c'est un sous-espace", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui, c'est un sous-espace",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** contenir le vecteur nul est **nécessaire** mais pas suffisant : il faut aussi la stabilité, y compris par multiplication par un nombre **négatif**.\n\n**Pas à pas :** $K = \\{(x, y) \\mid x \\geq 0\\}$.\n\n1. Vecteur nul : $0 \\geq 0$ est vrai, donc $(0, 0) \\in K$.\n2. Stabilité : $(1, 0) \\in K$ car $1 \\geq 0$. Mais $-1 \\times (1, 0) = (-1, 0)$, et $-1 \\geq 0$ est faux : $(-1, 0) \\notin K$.\n\nUn seul contre-exemple suffit : $K$ n'est pas stable, ce n'est **pas** un sous-espace.\n\n**Erreur fréquente :** s'arrêter au test du vecteur nul et répondre « oui ».\n\n**À retenir :** après le test du 0, essaie de multiplier un élément par $-1$ : une condition avec $\\geq$ ou $\\leq$ ne résiste pas."
       }
     ],
     "indices": [
@@ -361,29 +513,40 @@
       {
         "intitule": "Le vecteur $(2, -1, 0)$ appartient-il à $F$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** un vecteur appartient au plan si ses coordonnées **vérifient l'équation** : on remplace $x$, $y$, $z$ et on regarde si on trouve 0.\n\n**Pas à pas :** $(2, -1, 0)$ dans $x + 2y - z = 0$.\n\n1. $x = 2$, $y = -1$, $z = 0$.\n2. $2 + 2 \\times (-1) - 0 = 2 - 2 - 0 = 0$.\n3. On trouve 0 : le vecteur est dans $F$.\n\n**Erreur fréquente :** oublier le signe de $y$ : $2 \\times (-1) = -2$, pas $+2$.\n\n**À retenir :** remplace chaque coordonnée dans l'équation : 0 = dedans, autre chose = dehors."
       },
       {
         "intitule": "Le vecteur $(1, 1, 1)$ appartient-il à $F$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** même test : on remplace et on calcule.\n\n**Pas à pas :** $(1, 1, 1)$ dans $x + 2y - z = 0$.\n\n1. $1 + 2 \\times 1 - 1 = 1 + 2 - 1 = 2$.\n2. $2 \\neq 0$ : l'équation n'est pas vérifiée, le vecteur n'est **pas** dans $F$.\n\n**Erreur fréquente :** croire que $(1, 1, 1)$ est « dans tous les plans ». Seul le vecteur nul est dans tous les sous-espaces.\n\n**À retenir :** un résultat différent de 0 = le vecteur n'est pas dans le plan."
       },
       {
         "intitule": "Quelle valeur de $c$ met le vecteur $(3, 1, c)$ dans $F$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 5
+        "reponse": 5,
+        "explication": "**Règle :** pour trouver une coordonnée inconnue, on remplace les coordonnées connues dans l'équation et on résout.\n\n**Pas à pas :** $(3, 1, c)$ dans $x + 2y - z = 0$.\n\n1. On remplace : $3 + 2 \\times 1 - c = 0$.\n2. On simplifie : $5 - c = 0$.\n3. On résout : $c = 5$.\n4. Vérification : $3 + 2 - 5 = 0$.\n\n**Erreur fréquente :** oublier le signe moins devant $z$, écrire $5 + c = 0$ et trouver $-5$.\n\n**À retenir :** remplace ce qui est connu, garde le signe devant l'inconnue, résous."
       },
       {
         "intitule": "Les vecteurs $(1, 0, 1)$ et $(0, 1, 2)$ sont dans $F$, sont libres et engendrent $F$. Quelle est la dimension de $F$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** une famille libre et génératrice de $F$ est une **base** de $F$, et la dimension de $F$ est le nombre de vecteurs d'une base.\n\n**Pas à pas :**\n\n1. Les vecteurs $(1, 0, 1)$ et $(0, 1, 2)$ sont dans $F$ ($1 + 0 - 1 = 0$ et $0 + 2 - 2 = 0$).\n2. Ils sont libres et engendrent $F$ (donné par l'énoncé) : ils forment une base de $F$.\n3. On compte : 2 vecteurs, donc $\\dim F = 2$.\n4. Contrôle avec la règle de l'hyperplan : une équation dans $\\mathbb{R}^3$ donne $3 - 1 = 2$.\n\n**Erreur fréquente :** répondre 3 parce qu'on est dans $\\mathbb{R}^3$ : $F$ est un plan, pas tout l'espace.\n\n**À retenir :** dimension = nombre de vecteurs d'une base ; un plan de $\\mathbb{R}^3$ est de dimension 2."
       },
       {
         "intitule": "Quelle est la dimension d'un hyperplan $a_1 x_1 + \\dots + a_6 x_6 = 0$ de $\\mathbb{R}^6$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 5
+        "reponse": 5,
+        "explication": "**Règle :** un hyperplan de $\\mathbb{R}^n$ (une seule équation linéaire sans terme constant) est de dimension $n - 1$.\n\n**Pas à pas :**\n\n1. L'équation porte sur $x_1, \\dots, x_6$ : on est dans $\\mathbb{R}^6$, donc $n = 6$.\n2. Il y a **une** équation : elle enlève une dimension.\n3. $\\dim = 6 - 1 = 5$.\n\n**Erreur fréquente :** répondre 2 parce qu'un plan de $\\mathbb{R}^3$ est de dimension 2 : la règle est $n - 1$, et ici $n = 6$.\n\n**À retenir :** hyperplan de $\\mathbb{R}^n$ = dimension $n - 1$."
       }
     ],
     "indices": [
@@ -401,33 +564,59 @@
       {
         "intitule": "La famille de colonnes $(\\text{brut}, \\text{cotisations}, \\text{net})$ est :",
         "type": "choix",
-        "choix": ["Libre", "Liée"],
-        "reponse": 1
+        "choix": [
+          "Libre",
+          "Liée"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une famille est **liée** si un de ses vecteurs s'écrit comme une combinaison linéaire des autres. Ici, chaque colonne est un vecteur (une coordonnée par salarié).\n\n**Pas à pas :**\n\n1. La relation $\\text{net} = \\text{brut} - \\text{cotisations}$ est vraie sur **toutes** les lignes.\n2. Elle dit que la colonne `net` est la combinaison $1 \\cdot \\text{brut} - 1 \\cdot \\text{cotisations}$.\n3. `net` est donc redondante : la famille $(\\text{brut}, \\text{cotisations}, \\text{net})$ est **liée**.\n\n**Erreur fréquente :** répondre « libre » parce que les trois colonnes ont des valeurs différentes. Ce qui compte, c'est qu'une colonne se calcule avec les autres.\n\n**À retenir :** une colonne qui se calcule linéairement avec les autres = famille liée."
       },
       {
         "intitule": "Donne les coefficients $(a, b, c)$, avec $a = 1$, tels que $a \\cdot \\text{brut} + b \\cdot \\text{cotisations} + c \\cdot \\text{net} = 0$. Format : `(a, b, c)`.",
         "type": "vecteur",
-        "reponse": [1, -1, -1],
-        "acceptes": ["(1; -1; -1)"],
-        "refuses": ["(1, 1, -1)", "(-1, 1, 1)"]
+        "reponse": [
+          1,
+          -1,
+          -1
+        ],
+        "acceptes": [
+          "(1; -1; -1)"
+        ],
+        "refuses": [
+          "(1, 1, -1)",
+          "(-1, 1, 1)"
+        ],
+        "explication": "**Règle :** pour transformer une relation en combinaison nulle, on passe tout du même côté du signe $=$, en changeant le signe de ce qui change de côté.\n\n**Pas à pas :**\n\n1. On part de $\\text{net} = \\text{brut} - \\text{cotisations}$.\n2. On passe `net` à droite : $0 = \\text{brut} - \\text{cotisations} - \\text{net}$.\n3. On lit les coefficients dans l'ordre (brut, cotisations, net) : $(a, b, c) = (1, -1, -1)$, avec bien $a = 1$.\n4. Vérification : $\\text{brut} - \\text{cotisations} - (\\text{brut} - \\text{cotisations}) = 0$.\n\n**Erreurs fréquentes :** écrire $(1, 1, -1)$ en oubliant que `cotisations` a déjà un signe moins ; ou donner $(-1, 1, 1)$, qui est aussi une combinaison nulle mais ne respecte pas $a = 1$.\n\n**À retenir :** « $c = \\dots$ » devient « $\\dots - c = 0$ », chaque terme garde son signe."
       },
       {
         "intitule": "Un autre fichier contient `ht`, `taux` et `ttc` avec $\\text{ttc} = \\text{ht} \\times (1 + \\text{taux})$, le taux changeant selon les produits. Est-ce une relation linéaire entre ces trois colonnes ?",
         "type": "choix",
-        "choix": ["Oui", "Non, c'est un produit de colonnes"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non, c'est un produit de colonnes"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une relation est **linéaire** si chaque colonne est multipliée par un **nombre fixe** (le même sur toutes les lignes). Multiplier une colonne par une autre colonne n'est pas linéaire.\n\n**Pas à pas :**\n\n1. On développe : $\\text{ttc} = \\text{ht} \\times (1 + \\text{taux}) = \\text{ht} + \\text{ht} \\times \\text{taux}$.\n2. $\\text{ht} \\times \\text{taux}$ multiplie la colonne `ht` par la colonne `taux`.\n3. Le taux change d'un produit à l'autre : ce n'est pas un nombre fixe. C'est un **produit de colonnes**, donc **pas** une relation linéaire.\n\n**Erreur fréquente :** répondre « oui » parce que la formule a l'air simple. Il faut regarder ce qui multiplie chaque colonne : ici, une autre colonne.\n\n**À retenir :** colonne $\\times$ nombre fixe = linéaire ; colonne $\\times$ colonne = non linéaire."
       },
       {
         "intitule": "Si le taux vaut toujours 20 %, quel nombre $k$ vérifie $\\text{ttc} = k \\times \\text{ht}$ ? (un nombre)",
         "type": "nombre",
         "reponse": 1.2,
-        "acceptes": ["1,2", "6/5"],
-        "refuses": ["0.2", "20"]
+        "acceptes": [
+          "1,2",
+          "6/5"
+        ],
+        "refuses": [
+          "0.2",
+          "20"
+        ],
+        "explication": "**Règle :** un pourcentage se convertit en nombre en divisant par 100 : $20\\,\\% = \\frac{20}{100} = 0{,}2$. Avec un taux fixe, $\\text{ttc} = \\text{ht} \\times (1 + \\text{taux})$ devient un simple multiple de `ht`.\n\n**Pas à pas :**\n\n1. Taux : $20\\,\\% = 0{,}2$.\n2. $1 + \\text{taux} = 1 + 0{,}2 = 1{,}2$.\n3. Donc $\\text{ttc} = 1{,}2 \\times \\text{ht}$ : $k = 1{,}2$.\n4. Vérification sur un exemple : un produit à 50 € HT coûte $50 + 20\\,\\%$ de 50 $= 50 + 10 = 60$ € TTC, et $1{,}2 \\times 50 = 60$.\n\n**Erreurs fréquentes :** répondre $0{,}2$ (le taux seul, sans le « $1 +$ » qui garde le prix HT) ou $20$ (le pourcentage non converti).\n\n**À retenir :** un taux fixe de $t\\,\\%$ donne $\\text{ttc} = (1 + t / 100) \\times \\text{ht}$ : une relation linéaire."
       },
       {
         "intitule": "Pourquoi faut-il repérer ce genre de colonne avant d'entraîner une régression linéaire ?",
         "type": "auto",
-        "reponse": "Une colonne qui est une combinaison linéaire des autres n'apporte **aucune information nouvelle** : la famille des colonnes est liée (multicolinéarité). Les coefficients de la régression deviennent alors **instables** (plusieurs réglages donnent la même prédiction) et difficiles à interpréter. On supprime la colonne redondante, ce qui réduit aussi la dimension."
+        "reponse": "Une colonne qui est une combinaison linéaire des autres n'apporte **aucune information nouvelle** : la famille des colonnes est liée (multicolinéarité). Les coefficients de la régression deviennent alors **instables** (plusieurs réglages donnent la même prédiction) et difficiles à interpréter. On supprime la colonne redondante, ce qui réduit aussi la dimension.",
+        "explication": "**Ce qu'une bonne réponse doit contenir, étape par étape :**\n\n1. **Le constat** : une colonne qui est une combinaison linéaire des autres (comme `net`) n'apporte **aucune information nouvelle**, puisqu'elle se recalcule.\n2. **Le mot juste** : la famille des colonnes est liée, c'est la **multicolinéarité**.\n3. **La conséquence** : la régression peut écrire la même prédiction avec plusieurs réglages des poids (par exemple utiliser `net`, ou `brut` et `cotisations` à la place). Les poids deviennent **instables** et on ne peut plus les interpréter (on ne sait pas quelle colonne compte vraiment).\n4. **Le remède** : on supprime la colonne redondante, ce qui ne perd rien et réduit aussi la dimension.\n\n**Erreurs fréquentes :** dire seulement « c'est inutile » sans parler des poids instables ; ou croire que la colonne en double améliore la précision.\n\n**À retenir :** colonne redondante = famille liée = poids instables ; on la retire."
       }
     ],
     "indices": [
@@ -445,21 +634,45 @@
       {
         "intitule": "Calcule $a\\,u + b\\,v + c\\,w$ en fonction de $a$, $b$, $c$. Quelle est sa 3e coordonnée ?",
         "type": "choix",
-        "choix": ["$a$", "$c$", "$a + b + c$", "$b + c$"],
-        "reponse": 1
+        "choix": [
+          "$a$",
+          "$c$",
+          "$a + b + c$",
+          "$b + c$"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** pour écrire $a\\,u + b\\,v + c\\,w$, on multiplie chaque vecteur par son coefficient, puis on additionne coordonnée par coordonnée.\n\n**Pas à pas :** $u = (1, 0, 0)$, $v = (1, 1, 0)$, $w = (1, 1, 1)$.\n\n| Coordonnée | $a\\,u$ | $b\\,v$ | $c\\,w$ | Somme |\n|---|---|---|---|---|\n| 1re | $a$ | $b$ | $c$ | $a + b + c$ |\n| 2e | $0$ | $b$ | $c$ | $b + c$ |\n| 3e | $0$ | $0$ | $c$ | $c$ |\n\nDonc $a\\,u + b\\,v + c\\,w = (a + b + c,\\ b + c,\\ c)$ : la 3e coordonnée vaut $c$, car seul $w$ a une 3e coordonnée non nulle.\n\n**Les autres réponses :** $a + b + c$ est la 1re coordonnée, $b + c$ la 2e ; $a$ seul n'apparaît dans aucune coordonnée.\n\n**À retenir :** un tableau « coordonnée par vecteur » donne la combinaison sans erreur."
       },
       {
         "intitule": "Coordonnées de $X = (4, 3, 2)$. Format : `(a, b, c)`.",
         "type": "vecteur",
-        "reponse": [1, 1, 2],
-        "acceptes": ["(1; 1; 2)"],
-        "refuses": ["(4, 3, 2)", "(2, 1, 1)"]
+        "reponse": [
+          1,
+          1,
+          2
+        ],
+        "acceptes": [
+          "(1; 1; 2)"
+        ],
+        "refuses": [
+          "(4, 3, 2)",
+          "(2, 1, 1)"
+        ],
+        "explication": "**Règle :** le système $(a + b + c,\\ b + c,\\ c) = X$ est « en escalier » : on commence par l'équation qui n'a qu'une inconnue, puis on remonte.\n\n**Pas à pas :** $X = (4, 3, 2)$.\n\n1. 3e équation : $c = 2$.\n2. 2e équation : $b + c = 3$, donc $b = 3 - 2 = 1$.\n3. 1re équation : $a + b + c = 4$, donc $a = 4 - 1 - 2 = 1$.\n4. Vérification : $1(1, 0, 0) + 1(1, 1, 0) + 2(1, 1, 1) = (1 + 1 + 2,\\ 1 + 2,\\ 2) = (4, 3, 2)$.\n\nLes coordonnées sont $(1, 1, 2)$.\n\n**Erreurs fréquentes :** répondre $(4, 3, 2)$, qui sont les coordonnées dans la base canonique, pas dans $(u, v, w)$ ; ou lire les valeurs dans l'ordre où on les a trouvées et écrire $(2, 1, 1)$ : le résultat s'écrit dans l'ordre $(a, b, c)$.\n\n**À retenir :** résous de bas en haut, puis écris les coefficients dans l'ordre des vecteurs de la base."
       },
       {
         "intitule": "Coordonnées de $X = (0, 0, 5)$. Format : `(a, b, c)`.",
         "type": "vecteur",
-        "reponse": [0, -5, 5],
-        "refuses": ["(0, 0, 5)", "(5, -5, 0)"]
+        "reponse": [
+          0,
+          -5,
+          5
+        ],
+        "refuses": [
+          "(0, 0, 5)",
+          "(5, -5, 0)"
+        ],
+        "explication": "**Règle :** même système en escalier, de bas en haut.\n\n**Pas à pas :** $X = (0, 0, 5)$.\n\n1. 3e équation : $c = 5$.\n2. 2e équation : $b + 5 = 0$, donc $b = -5$.\n3. 1re équation : $a + b + c = 0$, soit $a - 5 + 5 = 0$, donc $a = 0$.\n4. Vérification : $0(1, 0, 0) - 5(1, 1, 0) + 5(1, 1, 1) = (0 - 5 + 5,\\ -5 + 5,\\ 5) = (0, 0, 5)$.\n\nLes coordonnées sont $(0, -5, 5)$.\n\n**Erreurs fréquentes :** répondre $(0, 0, 5)$ (coordonnées dans la base canonique) ou inverser l'ordre en $(5, -5, 0)$.\n\n**À retenir :** chaque coefficient trouvé se remplace dans l'équation du dessus ; vérifie en recalculant la combinaison."
       }
     ],
     "indices": [
@@ -477,25 +690,42 @@
       {
         "intitule": "Combien de colonnes, au maximum, sont linéairement indépendantes ? (un nombre)",
         "type": "nombre",
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** le nombre maximal de colonnes linéairement indépendantes est la **dimension** de l'espace où vivent les colonnes : on retire toutes celles qui se calculent avec les autres.\n\n**Pas à pas :**\n\n1. $c_3 = c_1 + c_2$ : $c_3$ se calcule avec $c_1$ et $c_2$, elle est redondante.\n2. $c_4 = 2c_1 - c_2$ : $c_4$ aussi.\n3. Il reste $c_1$ et $c_2$, qui ne sont pas proportionnelles : elles sont libres.\n4. Toutes les colonnes s'écrivent avec $c_1$ et $c_2$ : l'espace est de dimension 2. Au maximum **2** colonnes sont indépendantes.\n\n**Erreur fréquente :** répondre 4 (le nombre de colonnes) ou 3. Les colonnes qui se recalculent ne comptent pas.\n\n**À retenir :** vraie dimension = colonnes qui restent une fois retirées celles qui se calculent avec les autres."
       },
       {
         "intitule": "Quelle famille de colonnes peut servir de base pour représenter toutes les données ?",
         "type": "choix",
-        "choix": ["$(c_1, c_2)$", "$(c_3)$ seule", "$(c_1, c_3, c_4)$", "$(c_1, c_2, c_3, c_4)$"],
-        "reponse": 0
+        "choix": [
+          "$(c_1, c_2)$",
+          "$(c_3)$ seule",
+          "$(c_1, c_3, c_4)$",
+          "$(c_1, c_2, c_3, c_4)$"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une base doit être **libre** et **génératrice**. Dans un espace de dimension 2, elle a exactement 2 vecteurs.\n\n**Pas à pas :** on teste chaque proposition.\n\n| Famille | Libre ? | Génératrice ? | Base ? |\n|---|---|---|---|\n| $(c_1, c_2)$ | oui, non proportionnelles | oui, $c_3$ et $c_4$ s'en déduisent | **oui** |\n| $(c_3)$ seule | oui | non, un seul vecteur ne donne qu'une dimension 1 | non |\n| $(c_1, c_3, c_4)$ | non, 3 vecteurs dans un espace de dimension 2 | oui | non |\n| $(c_1, c_2, c_3, c_4)$ | non, 4 vecteurs dans un espace de dimension 2 | oui | non |\n\n**Erreur fréquente :** croire que garder toutes les colonnes est « plus sûr ». Une base ne doit pas avoir de vecteur en trop.\n\n**À retenir :** base = libre + génératrice, avec autant de vecteurs que la dimension."
       },
       {
         "intitule": "Sur une ligne où $c_1 = 3$ et $c_2 = -1$, que valent $c_3$ et $c_4$ ? Format : `(c3, c4)`.",
         "type": "vecteur",
-        "reponse": [2, 7],
-        "acceptes": ["(2; 7)"],
-        "refuses": ["(7, 2)", "(4, 5)"]
+        "reponse": [
+          2,
+          7
+        ],
+        "acceptes": [
+          "(2; 7)"
+        ],
+        "refuses": [
+          "(7, 2)",
+          "(4, 5)"
+        ],
+        "explication": "**Règle :** on remplace $c_1$ et $c_2$ par leurs valeurs dans chaque relation, en faisant attention aux signes.\n\n**Pas à pas :** $c_1 = 3$ et $c_2 = -1$.\n\n1. $c_3 = c_1 + c_2 = 3 + (-1) = 2$.\n2. $c_4 = 2c_1 - c_2 = 2 \\times 3 - (-1) = 6 + 1 = 7$.\n\nOn écrit le résultat dans l'ordre demandé $(c_3, c_4)$ : $(2, 7)$.\n\n**Erreurs fréquentes :** $-(-1)$ donne $+1$, pas $-1$ (sinon on trouve $c_4 = 5$) ; ou inverser l'ordre en $(7, 2)$.\n\n**À retenir :** remplace avec des parenthèses autour des nombres négatifs : moins par moins donne plus."
       },
       {
         "intitule": "Explique en une ou deux phrases pourquoi on préfère garder une base de 2 vecteurs plutôt que les 4 colonnes, et le lien avec la PCA.",
         "type": "auto",
-        "reponse": "Les colonnes $c_3$ et $c_4$ se calculent à partir de $c_1$ et $c_2$ : elles n'apportent **aucune information nouvelle**. Les données vivent dans un sous-espace de **dimension 2**, donc 2 vecteurs suffisent pour tout représenter, sans perte. On gagne en mémoire, en temps de calcul et on évite la multicolinéarité. La **PCA** fait la même chose sur des données réelles : elle cherche une petite base qui garde l'essentiel de l'information."
+        "reponse": "Les colonnes $c_3$ et $c_4$ se calculent à partir de $c_1$ et $c_2$ : elles n'apportent **aucune information nouvelle**. Les données vivent dans un sous-espace de **dimension 2**, donc 2 vecteurs suffisent pour tout représenter, sans perte. On gagne en mémoire, en temps de calcul et on évite la multicolinéarité. La **PCA** fait la même chose sur des données réelles : elle cherche une petite base qui garde l'essentiel de l'information.",
+        "explication": "**Ce qu'une bonne réponse doit contenir, étape par étape :**\n\n1. **Le constat** : $c_3$ et $c_4$ se calculent à partir de $c_1$ et $c_2$, elles n'apportent **aucune information nouvelle**.\n2. **La dimension** : les données vivent dans un sous-espace de **dimension 2**, donc une base de 2 vecteurs ($c_1$, $c_2$) suffit pour tout représenter, **sans perte** (on recalcule $c_3$ et $c_4$ quand on veut).\n3. **L'intérêt** : moins de mémoire, moins de calcul, et plus de multicolinéarité.\n4. **Le lien avec la PCA** : la PCA fait la même chose sur de vraies données, où les relations sont approximatives : elle cherche une petite base qui garde l'essentiel de l'information.\n\n**Erreurs fréquentes :** dire qu'on « perd des données » en retirant $c_3$ et $c_4$ (elles se recalculent exactement) ; ou décrire la PCA comme une suppression de lignes, alors qu'elle réduit le nombre de **colonnes** (la dimension).\n\n**À retenir :** colonnes redondantes = dimension réelle plus petite ; la PCA cherche cette petite base."
       }
     ],
     "indices": [

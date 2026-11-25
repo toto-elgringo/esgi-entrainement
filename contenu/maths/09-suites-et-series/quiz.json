@@ -1,86 +1,156 @@
 [
   {
     "question": "Vers quoi tend la suite $u_n = \\dfrac{7}{n+3}$ ?",
-    "choix": ["$0$", "$7$", "$\\dfrac{7}{3}$", "Elle diverge"],
+    "choix": [
+      "$0$",
+      "$7$",
+      "$\\dfrac{7}{3}$",
+      "Elle diverge"
+    ],
     "reponse": 0,
-    "explication": "Le numérateur reste fixe et le dénominateur devient immense : la fraction se rapproche de $0$."
+    "explication": "**Règle :** un nombre fixe divisé par une quantité qui grandit sans fin devient aussi petit qu'on veut : la fraction tend vers $0$.\n\n**Pas à pas :**\n\n1. Le numérateur reste $7$.\n2. Le dénominateur $n + 3$ grandit sans limite.\n3. Quelques valeurs : $n = 7$ donne $\\frac{7}{10} = 0{,}7$ ; $n = 67$ donne $\\frac{7}{70} = 0{,}1$ ; $n = 697$ donne $\\frac{7}{700} = 0{,}01$. On se rapproche de $0$.\n\n**Les autres réponses :** $7$ est le numérateur, pas la limite ; $\\frac{7}{3}$ est la valeur de départ $u_0$ (pour $n = 0$), pas ce qui se passe quand $n$ devient grand ; « elle diverge » est faux, elle se pose bien sur $0$.\n\n**À retenir :** $\\dfrac{\\text{nombre fixe}}{\\text{quelque chose qui grandit}} \\to 0$."
   },
   {
     "question": "Que fait la suite $u_n = (-1)^n$ ?",
-    "choix": ["Elle converge vers $0$", "Elle converge vers $1$", "Elle diverge en oscillant", "Elle diverge vers $+\\infty$"],
+    "choix": [
+      "Elle converge vers $0$",
+      "Elle converge vers $1$",
+      "Elle diverge en oscillant",
+      "Elle diverge vers $+\\infty$"
+    ],
     "reponse": 2,
-    "explication": "Elle vaut $1, -1, 1, -1, \\dots$ : elle ne se rapproche d'aucune valeur, donc elle diverge sans partir à l'infini."
+    "explication": "**Règle :** une suite converge si elle se rapproche d'**un seul** nombre. Si elle saute sans fin entre plusieurs valeurs, elle **diverge en oscillant** (même si elle reste petite).\n\n**Pas à pas :**\n\n| $n$ | 0 | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|---|\n| $(-1)^n$ | $1$ | $-1$ | $1$ | $-1$ | $1$ |\n\nLes termes repassent toujours par $1$ **et** par $-1$ : ils ne se rapprochent d'aucune valeur.\n\n**Les autres réponses :** « converge vers $0$ » est faux, les termes restent à distance $1$ de $0$ ; « converge vers $1$ » est faux, un terme sur deux vaut $-1$ ; « diverge vers $+\\infty$ » est faux, la suite reste entre $-1$ et $1$.\n\n**À retenir :** une suite qui alterne entre deux valeurs différentes diverge, sans partir à l'infini."
   },
   {
     "question": "Une suite est croissante et majorée par $5$. Que peut-on affirmer ?",
-    "choix": ["Elle converge vers $5$", "Elle converge (vers une limite inférieure ou égale à $5$)", "Elle diverge", "On ne peut rien dire"],
+    "choix": [
+      "Elle converge vers $5$",
+      "Elle converge (vers une limite inférieure ou égale à $5$)",
+      "Elle diverge",
+      "On ne peut rien dire"
+    ],
     "reponse": 1,
-    "explication": "Croissante + majorée $\\Rightarrow$ convergente. Mais la limite n'est pas forcément le majorant donné : elle est seulement $\\le 5$."
+    "explication": "**Règle :** une suite **croissante** et **majorée** converge. Le théorème dit qu'une limite **existe**, et elle est au plus égale au majorant ; il ne dit pas qu'elle vaut le majorant.\n\n**Pas à pas :**\n\n1. Croissante + majorée par $5$ : le critère s'applique, la suite converge.\n2. Tous les termes sont $\\le 5$, donc la limite aussi est $\\le 5$.\n3. Exemple : $u_n = 2 - \\frac{1}{n+1}$ est croissante, majorée par $5$, et converge vers $2$, pas vers $5$.\n\n**Les autres réponses :** « converge vers $5$ » est trop fort (voir l'exemple) ; « diverge » contredit le théorème ; « on ne peut rien dire » oublie le théorème.\n\n**À retenir :** croissante + majorée ⇒ convergente, vers une limite inférieure ou égale au majorant."
   },
   {
     "question": "Une suite géométrique de raison $q = -0{,}7$ :",
-    "choix": ["converge vers $0$", "diverge, car la raison est négative", "est constante", "diverge vers $-\\infty$"],
+    "choix": [
+      "converge vers $0$",
+      "diverge, car la raison est négative",
+      "est constante",
+      "diverge vers $-\\infty$"
+    ],
     "reponse": 0,
-    "explication": "C'est $\\lvert q \\rvert$ qui compte : $\\lvert -0{,}7 \\rvert < 1$, donc $q^n \\to 0$. Les termes changent de signe mais se rapprochent de $0$."
+    "explication": "**Règle :** une suite géométrique $u_0 \\times q^n$ tend vers $0$ quand $\\lvert q \\rvert < 1$, que $q$ soit positif ou négatif. C'est la **taille** de $q$ qui compte.\n\n**Pas à pas :**\n\n1. $\\lvert -0{,}7 \\rvert = 0{,}7 < 1$.\n2. Puissances : $1;\\ -0{,}7;\\ 0{,}49;\\ -0{,}343;\\ 0{,}2401;\\ \\dots$\n3. Le signe change à chaque rang, mais la taille diminue : les termes se rapprochent de $0$.\n\n**Les autres réponses :** « diverge, car la raison est négative » confond signe et taille ; « est constante » est faux, les termes changent à chaque rang ; « diverge vers $-\\infty$ » est faux, les termes sont alternativement positifs et négatifs et de plus en plus petits.\n\n**À retenir :** géométrique : $\\lvert q \\rvert < 1$ ⇒ tend vers $0$, même si $q < 0$."
   },
   {
     "question": "Quel est le point fixe de $u_{n+1} = 0{,}5\\,u_n + 4$ ?",
-    "choix": ["$4$", "$2$", "$8$", "$0{,}5$"],
+    "choix": [
+      "$4$",
+      "$2$",
+      "$8$",
+      "$0{,}5$"
+    ],
     "reponse": 2,
-    "explication": "$\\ell = 0{,}5\\,\\ell + 4 \\iff 0{,}5\\,\\ell = 4 \\iff \\ell = 8$."
+    "explication": "**Règle :** le point fixe de $u_{n+1} = a\\,u_n + b$ est la valeur $\\ell$ qui ne bouge plus : $\\ell = a\\ell + b$, soit $\\ell = \\dfrac{b}{1 - a}$.\n\n**Pas à pas :**\n\n1. $\\ell = 0{,}5\\,\\ell + 4$.\n2. On regroupe les $\\ell$ à gauche : $\\ell - 0{,}5\\,\\ell = 4$, soit $0{,}5\\,\\ell = 4$.\n3. $\\ell = \\frac{4}{0{,}5} = 8$.\n4. Vérification : $0{,}5 \\times 8 + 4 = 4 + 4 = 8$. La valeur ne bouge pas.\n\n**Les autres réponses :** $4$ est le $b$ (on a oublié de diviser par $1 - a$) ; $2$ vient de $4 \\times 0{,}5$ (on a multiplié au lieu de diviser) ; $0{,}5$ est le coefficient $a$.\n\n**À retenir :** point fixe = résous $\\ell = a\\ell + b$, puis vérifie en remplaçant."
   },
   {
     "question": "Pour $u_{n+1} = a\\,u_n + b$ de point fixe $\\ell$, la suite $v_n = u_n - \\ell$ est :",
-    "choix": ["arithmétique de raison $b$", "géométrique de raison $a$", "géométrique de raison $b$", "constante"],
+    "choix": [
+      "arithmétique de raison $b$",
+      "géométrique de raison $a$",
+      "géométrique de raison $b$",
+      "constante"
+    ],
     "reponse": 1,
-    "explication": "$v_{n+1} = a u_n + b - \\ell = a u_n - a\\ell = a\\,v_n$, car $b = \\ell - a\\ell$."
+    "explication": "**Règle :** pour $u_{n+1} = a\\,u_n + b$ de point fixe $\\ell$, l'écart $v_n = u_n - \\ell$ est **géométrique de raison $a$**.\n\n**Pas à pas :**\n\n1. Le point fixe vérifie $\\ell = a\\ell + b$, donc $b = \\ell - a\\ell$.\n2. $v_{n+1} = u_{n+1} - \\ell = a\\,u_n + b - \\ell$.\n3. On remplace $b$ : $a\\,u_n + \\ell - a\\ell - \\ell = a\\,u_n - a\\ell = a\\,(u_n - \\ell) = a\\,v_n$.\n4. Chaque écart est $a$ fois le précédent : géométrique de raison $a$.\n\n**Les autres réponses :** « arithmétique de raison $b$ » et « géométrique de raison $b$ » : le $b$ disparaît justement dans le calcul ; « constante » ne serait vrai que si $a = 1$ (ou si on part du point fixe).\n\n**À retenir :** retirer le point fixe fait disparaître le $+ b$ : il reste une suite géométrique de raison $a$."
   },
   {
     "question": "Que vaut $\\displaystyle\\sum_{n=0}^{N} q^n$ pour $q \\neq 1$ ?",
-    "choix": ["$\\dfrac{1 - q^{N+1}}{1 - q}$", "$\\dfrac{1 - q^{N}}{1 - q}$", "$\\dfrac{1}{1 - q}$", "$N\\,q$"],
+    "choix": [
+      "$\\dfrac{1 - q^{N+1}}{1 - q}$",
+      "$\\dfrac{1 - q^{N}}{1 - q}$",
+      "$\\dfrac{1}{1 - q}$",
+      "$N\\,q$"
+    ],
     "reponse": 0,
-    "explication": "Il y a $N + 1$ termes (de $q^0$ à $q^N$), d'où l'exposant $N + 1$. La forme $\\dfrac{1}{1-q}$ est la limite quand $N \\to +\\infty$ (si $\\lvert q \\rvert < 1$)."
+    "explication": "**Règle :** pour $q \\neq 1$, $\\displaystyle\\sum_{n=0}^{N} q^n = \\frac{1 - q^{N+1}}{1 - q}$. L'exposant est $N + 1$ car il y a $N + 1$ termes, de $q^0$ à $q^N$.\n\n**Pas à pas :** on vérifie avec $q = 2$ et $N = 2$.\n\n1. À la main : $1 + 2 + 4 = 7$.\n2. Formule avec $N + 1 = 3$ : $\\frac{1 - 2^3}{1 - 2} = \\frac{-7}{-1} = 7$. ✓\n3. Formule avec $N$ à la place : $\\frac{1 - 2^2}{1 - 2} = 3$. ✗\n\n**Les autres réponses :** l'exposant $N$ oublie un terme ; $\\frac{1}{1-q}$ est la somme **infinie** (limite quand $N \\to +\\infty$, seulement si $\\lvert q \\rvert < 1$) ; $N\\,q$ n'a rien à voir (on additionne des puissances, pas $N$ fois $q$).\n\n**À retenir :** somme finie de $n = 0$ à $N$ : exposant $N + 1$ ; vérifie sur un petit exemple."
   },
   {
     "question": "Que vaut $\\displaystyle\\sum_{n=0}^{+\\infty} \\left(\\frac{1}{4}\\right)^n$ ?",
-    "choix": ["$\\dfrac{1}{4}$", "$\\dfrac{4}{3}$", "$\\dfrac{3}{4}$", "La série diverge"],
+    "choix": [
+      "$\\dfrac{1}{4}$",
+      "$\\dfrac{4}{3}$",
+      "$\\dfrac{3}{4}$",
+      "La série diverge"
+    ],
     "reponse": 1,
-    "explication": "$\\lvert q \\rvert = \\dfrac14 < 1$, donc la somme vaut $\\dfrac{1}{1 - \\frac14} = \\dfrac{4}{3}$."
+    "explication": "**Règle :** si $\\lvert q \\rvert < 1$, $\\displaystyle\\sum_{n=0}^{+\\infty} q^n = \\frac{1}{1 - q}$.\n\n**Pas à pas :**\n\n1. $q = \\frac14$, et $\\frac14 < 1$ : la série converge.\n2. $1 - \\frac14 = \\frac34$.\n3. $\\frac{1}{\\frac34} = \\frac43$ (diviser par une fraction = multiplier par son inverse).\n4. Contrôle : $1 + 0{,}25 + 0{,}0625 + 0{,}0156 \\approx 1{,}33 \\approx \\frac43$.\n\n**Les autres réponses :** $\\frac14$ est la raison, pas la somme (la somme vaut au moins le premier terme, $1$) ; $\\frac34$ est $1 - q$, on a oublié de prendre l'inverse ; « diverge » est faux puisque $\\lvert q \\rvert < 1$.\n\n**À retenir :** somme infinie géométrique depuis $n = 0$ : $\\frac{1}{1 - q}$, à condition que $\\lvert q \\rvert < 1$."
   },
   {
     "question": "La série $\\displaystyle\\sum_{n=0}^{+\\infty} 1{,}1^n$ :",
-    "choix": ["converge vers $\\dfrac{1}{1 - 1{,}1}$", "converge vers $11$", "diverge", "converge vers $0$"],
+    "choix": [
+      "converge vers $\\dfrac{1}{1 - 1{,}1}$",
+      "converge vers $11$",
+      "diverge",
+      "converge vers $0$"
+    ],
     "reponse": 2,
-    "explication": "$\\lvert q \\rvert = 1{,}1 \\ge 1$ : les termes grandissent, la série diverge. La formule $\\dfrac{1}{1-q}$ n'est valable que si $\\lvert q \\rvert < 1$."
+    "explication": "**Règle :** la série géométrique $\\sum q^n$ converge seulement si $\\lvert q \\rvert < 1$. Si $\\lvert q \\rvert \\ge 1$, elle **diverge** et la formule $\\frac{1}{1-q}$ est interdite.\n\n**Pas à pas :**\n\n1. $q = 1{,}1 \\ge 1$.\n2. Les termes : $1;\\ 1{,}1;\\ 1{,}21;\\ 1{,}331;\\ \\dots$ ils grandissent.\n3. On ajoute des nombres de plus en plus grands : la somme part vers $+\\infty$.\n\n**Les autres réponses :** « converge vers $\\frac{1}{1 - 1{,}1}$ » donnerait $-10$, un nombre **négatif** pour une somme de nombres positifs : absurde ; « converge vers $11$ » invente une limite ; « converge vers $0$ » est impossible, le premier terme vaut déjà $1$ et tous sont positifs.\n\n**À retenir :** avant d'appliquer $\\frac{1}{1-q}$, vérifie que $\\lvert q \\rvert < 1$."
   },
   {
     "question": "Le terme général $u_n$ tend vers $0$. Que peut-on dire de la série $\\sum u_n$ ?",
-    "choix": ["Elle converge forcément", "Elle diverge forcément", "On ne peut pas conclure avec ce seul renseignement", "Sa somme vaut $0$"],
+    "choix": [
+      "Elle converge forcément",
+      "Elle diverge forcément",
+      "On ne peut pas conclure avec ce seul renseignement",
+      "Sa somme vaut $0$"
+    ],
     "reponse": 2,
-    "explication": "La réciproque du critère grossier est fausse : $\\sum \\frac1n$ diverge alors que $\\frac1n \\to 0$."
+    "explication": "**Règle :** le critère grossier dit : si $u_n$ ne tend **pas** vers $0$, la série diverge. La réciproque est **fausse** : $u_n \\to 0$ ne suffit pas pour conclure.\n\n**Pas à pas :** deux séries dont le terme tend vers $0$ :\n\n| Série | Terme | Le terme tend vers $0$ ? | La série… |\n|---|---|---|---|\n| $\\sum \\frac1n$ | $1, \\frac12, \\frac13, \\dots$ | oui | diverge |\n| $\\sum \\frac{1}{2^n}$ | $1, \\frac12, \\frac14, \\dots$ | oui | converge (vers $2$) |\n\nMême renseignement, conclusions opposées : on ne peut pas conclure.\n\n**Les autres réponses :** « converge forcément » est contredit par $\\sum \\frac1n$ ; « diverge forcément » est contredit par $\\sum \\frac{1}{2^n}$ ; « sa somme vaut $0$ » confond la limite du terme et la somme.\n\n**À retenir :** $u_n \\to 0$ est nécessaire pour converger, mais pas suffisant."
   },
   {
     "question": "Pourquoi la série $\\displaystyle\\sum \\frac{n+2}{n}$ diverge-t-elle ?",
-    "choix": ["Car son terme général tend vers $1$, pas vers $0$", "Car c'est une série géométrique de raison $2$", "Car $n + 2 > n$", "Elle converge vers $2$"],
+    "choix": [
+      "Car son terme général tend vers $1$, pas vers $0$",
+      "Car c'est une série géométrique de raison $2$",
+      "Car son terme général tend vers $+\\infty$",
+      "Elle converge vers $2$"
+    ],
     "reponse": 0,
-    "explication": "Critère grossier : $\\frac{n+2}{n} = 1 + \\frac{2}{n} \\to 1 \\neq 0$, donc on ajoute presque $1$ à chaque fois."
+    "explication": "**Règle :** critère grossier : si le terme général ne tend pas vers $0$, la série diverge.\n\n**Pas à pas :**\n\n1. On coupe la fraction : $\\frac{n+2}{n} = \\frac{n}{n} + \\frac{2}{n} = 1 + \\frac2n$.\n2. $\\frac2n \\to 0$, donc le terme tend vers $1$.\n3. $1 \\neq 0$ : à chaque rang on ajoute presque $1$, la somme grandit sans fin. La série diverge.\n\n**Les autres réponses :** « série géométrique de raison $2$ » est faux, le terme n'est pas de la forme $q^n$ ; « son terme général tend vers $+\\infty$ » est faux : on vient de voir qu'il tend vers $1$ (le $+2$ devient négligeable devant $n$) ; « elle converge vers $2$ » est faux, elle diverge.\n\n**À retenir :** calcule la limite du terme général ; si elle n'est pas $0$, la série diverge."
   },
   {
     "question": "Quelle série entière donne $e^x$ ?",
-    "choix": ["$\\displaystyle\\sum_{n=0}^{+\\infty} x^n$", "$\\displaystyle\\sum_{n=0}^{+\\infty} \\frac{x^n}{n!}$", "$\\displaystyle\\sum_{n=0}^{+\\infty} n!\\,x^n$", "$\\displaystyle\\sum_{n=1}^{+\\infty} \\frac{x^n}{n}$"],
+    "choix": [
+      "$\\displaystyle\\sum_{n=0}^{+\\infty} x^n$",
+      "$\\displaystyle\\sum_{n=0}^{+\\infty} \\frac{x^n}{n!}$",
+      "$\\displaystyle\\sum_{n=0}^{+\\infty} n!\\,x^n$",
+      "$\\displaystyle\\sum_{n=1}^{+\\infty} \\frac{x^n}{n}$"
+    ],
     "reponse": 1,
-    "explication": "$e^x = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\dots = \\sum \\frac{x^n}{n!}$, et elle converge pour tout réel $x$."
+    "explication": "**Règle :** l'exponentielle s'écrit comme une somme infinie : $e^x = \\displaystyle\\sum_{n=0}^{+\\infty} \\frac{x^n}{n!} = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\dots$, valable pour **tout** réel $x$.\n\n**Pas à pas :** on reconnaît les premiers termes.\n\n1. $n = 0$ : $\\frac{x^0}{0!} = \\frac11 = 1$.\n2. $n = 1$ : $\\frac{x}{1} = x$.\n3. $n = 2$ : $\\frac{x^2}{2!} = \\frac{x^2}{2}$ ; $n = 3$ : $\\frac{x^3}{3!} = \\frac{x^3}{6}$.\n\n**Les autres réponses :** $\\sum x^n$ est la série géométrique (elle vaut $\\frac{1}{1-x}$ si $\\lvert x \\rvert < 1$) ; $\\sum n!\\,x^n$ multiplie par $n!$ au lieu de diviser, ses termes explosent ; $\\sum \\frac{x^n}{n}$ divise par $n$ au lieu de $n!$ et commence à $n = 1$ (ce n'est pas l'exponentielle).\n\n**À retenir :** $e^x$ = somme des $\\frac{x^n}{n!}$, en divisant par la **factorielle**."
   },
   {
     "question": "Descente de gradient simplifiée $\\theta_{n+1} = (1 - \\eta)\\,\\theta_n$. Pour quels $\\eta$ converge-t-elle vers $0$ ?",
-    "choix": ["$0 < \\eta < 1$ uniquement", "$0 < \\eta < 2$", "$\\eta > 2$", "Pour tout $\\eta > 0$"],
+    "choix": [
+      "$0 < \\eta < 1$ uniquement",
+      "$0 < \\eta < 2$",
+      "$\\eta > 2$",
+      "Pour tout $\\eta > 0$"
+    ],
     "reponse": 1,
-    "explication": "C'est une suite géométrique de raison $1 - \\eta$ : elle converge vers $0$ si $\\lvert 1 - \\eta \\rvert < 1$, soit $0 < \\eta < 2$. Entre $1$ et $2$, elle oscille mais converge quand même."
+    "explication": "**Règle :** $\\theta_{n+1} = (1 - \\eta)\\,\\theta_n$ est une suite géométrique de raison $q = 1 - \\eta$. Elle tend vers $0$ si et seulement si $\\lvert 1 - \\eta \\rvert < 1$.\n\n**Pas à pas :**\n\n1. $\\lvert 1 - \\eta \\rvert < 1$ veut dire $-1 < 1 - \\eta < 1$.\n2. $1 - \\eta < 1$ donne $\\eta > 0$.\n3. $-1 < 1 - \\eta$ donne $\\eta < 2$.\n4. Donc $0 < \\eta < 2$. Exemple $\\eta = 1{,}5$ : raison $-0{,}5$, la suite change de signe mais tend vers $0$.\n\n**Les autres réponses :** « $0 < \\eta < 1$ uniquement » oublie les valeurs entre $1$ et $2$, qui convergent en oscillant ; « $\\eta > 2$ » donne une raison plus petite que $-1$ : ça diverge ; « pour tout $\\eta > 0$ » est faux (avec $\\eta = 3$, la raison $-2$ fait exploser la suite).\n\n**À retenir :** taux d'apprentissage : convergence si et seulement si $0 < \\eta < 2$."
   },
   {
     "question": "Sur un diagramme en escalier, la trajectoire tourne en spirale autour du point fixe. Qu'en déduit-on pour $u_{n+1} = a\\,u_n + b$ ?",
-    "choix": ["$a > 1$", "$0 < a < 1$", "$a < 0$", "$b < 0$"],
+    "choix": [
+      "$a > 1$",
+      "$0 < a < 1$",
+      "$a < 0$",
+      "$b < 0$"
+    ],
     "reponse": 2,
-    "explication": "Avec $a$ négatif, l'écart au point fixe change de signe à chaque pas : la suite passe alternativement au-dessus et en dessous, d'où la spirale."
+    "explication": "**Règle :** pour $u_{n+1} = a\\,u_n + b$, l'écart au point fixe est multiplié par $a$ à chaque pas. Si $a < 0$, cet écart **change de signe** à chaque pas : la suite passe alternativement au-dessus et en dessous du point fixe, ce qui dessine une **spirale**.\n\n**Pas à pas :** exemple $a = -0{,}5$, écart de départ $4$.\n\n1. Écarts successifs : $4$, $-2$, $1$, $-0{,}5$, …\n2. Au-dessus, en dessous, au-dessus… : la trajectoire tourne autour du point fixe.\n3. Avec $a$ positif, l'écart garderait toujours le même signe : on aurait un escalier.\n\n**Les autres réponses :** « $a > 1$ » donne un escalier qui s'éloigne (écart de même signe, qui grandit) ; « $0 < a < 1$ » donne un escalier qui se rapproche ; « $b < 0$ » ne change que la position du point fixe, pas la forme de la trajectoire.\n\n**À retenir :** signe de $a$ = forme (positif : escalier, négatif : spirale)."
   }
 ]

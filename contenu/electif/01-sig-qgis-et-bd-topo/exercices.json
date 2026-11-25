@@ -5,12 +5,54 @@
     "difficulte": 1,
     "enonce": "Pour chaque objet, choisis le type de géométrie le plus courant dans un SIG.",
     "questions": [
-      { "intitule": "Un bâtiment", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 2 },
-      { "intitule": "Un cours d'eau (vu de loin)", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 1 },
-      { "intitule": "Une adresse postale", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 0 },
-      { "intitule": "Un arrondissement de Paris", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 2 }
+      {
+        "intitule": "Un bâtiment",
+        "type": "choix",
+        "choix": [
+          "Point",
+          "Ligne",
+          "Surface"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** un objet qui a une **aire** (on peut mesurer combien de m² il couvre) se dessine en **surface** (polygone).\n\n**Pas à pas :**\n\n1. Un bâtiment a-t-il une aire ? Oui : il occupe une emprise au sol, avec un contour.\n2. Donc c'est une **surface**, pas besoin d'aller plus loin.\n\n**Les autres réponses :** un point donnerait seulement sa position, sans sa forme ni sa taille ; une ligne donnerait un tracé sans aire (au mieux son contour, mais pas la zone).\n\n**À retenir :** une emprise au sol → surface."
+      },
+      {
+        "intitule": "Un cours d'eau (vu de loin)",
+        "type": "choix",
+        "choix": [
+          "Point",
+          "Ligne",
+          "Surface"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** un objet dont on suit surtout le **tracé** (longueur bien plus grande que la largeur) se dessine en **ligne**.\n\n**Pas à pas :**\n\n1. Vu de loin, un cours d'eau a-t-il une aire utile ? Sa largeur est minuscule par rapport à sa longueur : on ne s'en sert pas.\n2. A-t-il surtout une longueur ? Oui, on suit son parcours de la source à l'embouchure.\n3. Donc c'est une **ligne**.\n\n**Les autres réponses :** un point perdrait tout le parcours ; une surface est possible pour un très large fleuve ou un lac vu de près, mais ce n'est pas le cas le plus courant.\n\n**À retenir :** tracé long et fin → ligne ; le choix dépend de l'échelle, on garde le cas habituel."
+      },
+      {
+        "intitule": "Une adresse postale",
+        "type": "choix",
+        "choix": [
+          "Point",
+          "Ligne",
+          "Surface"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** un objet qui n'est qu'un **emplacement**, sans longueur ni aire, se dessine en **point**.\n\n**Pas à pas :**\n\n1. Une adresse a-t-elle une aire ? Non, c'est le bâtiment qui en a une, pas l'adresse.\n2. A-t-elle une longueur ? Non.\n3. C'est donc une simple position : un **point**. Dans la BD TOPO, `ADRESSE_BAN` est d'ailleurs une couche de points.\n\n**Les autres réponses :** une ligne ou une surface décriraient une forme que l'adresse n'a pas.\n\n**À retenir :** juste « où c'est » → point."
+      },
+      {
+        "intitule": "Un arrondissement de Paris",
+        "type": "choix",
+        "choix": [
+          "Point",
+          "Ligne",
+          "Surface"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** un territoire délimité par une frontière a une **aire** : c'est une **surface**.\n\n**Pas à pas :**\n\n1. Un arrondissement a-t-il une aire ? Oui, on peut mesurer sa superficie en km².\n2. Donc c'est une **surface**, comme une commune, un département ou une région.\n\n**Les autres réponses :** une ligne ne représenterait que sa **frontière**, pas la zone à l'intérieur ; un point ne donnerait qu'un endroit (par exemple la mairie), pas le territoire.\n\n**À retenir :** commune, arrondissement, région → surfaces."
+      }
     ],
-    "indices": ["Demande-toi si l'objet a une aire (surface), seulement une longueur (ligne), ou juste une position (point)."],
+    "indices": [
+      "Demande-toi si l'objet a une aire (surface), seulement une longueur (ligne), ou juste une position (point)."
+    ],
     "correction": "Bâtiment et arrondissement ont une aire : **surfaces**. Un cours d'eau est représenté par son tracé : **ligne**. Une adresse est une simple position : **point**."
   },
   {
@@ -19,12 +61,43 @@
     "difficulte": 1,
     "enonce": "Donne l'extension (sans le point) du fichier qui contient…",
     "questions": [
-      { "intitule": "les formes (géométries)", "type": "texte", "reponse": ["shp"] },
-      { "intitule": "la table des attributs", "type": "texte", "reponse": ["dbf"] },
-      { "intitule": "le système de coordonnées", "type": "texte", "reponse": ["prj"] },
-      { "intitule": "l'index des formes", "type": "texte", "reponse": ["shx"] }
+      {
+        "intitule": "les formes (géométries)",
+        "type": "texte",
+        "reponse": [
+          "shp"
+        ],
+        "explication": "**Règle :** dans un Shapefile, le `.shp` (pour *shape*, forme) contient les **géométries** : points, lignes ou surfaces.\n\n**Pas à pas :** « formes » se dit *shapes* en anglais, d'où l'extension **shp**. C'est le fichier qui donne son nom au format.\n\n**Erreurs fréquentes :** répondre `shx`, qui est seulement l'index des formes.\n\n**À retenir :** shp = *shape* = les formes ; mais il ne suffit jamais seul."
+      },
+      {
+        "intitule": "la table des attributs",
+        "type": "texte",
+        "reponse": [
+          "dbf"
+        ],
+        "explication": "**Règle :** le `.dbf` contient la **table des attributs** : une ligne par objet, une colonne par information (nom, hauteur…).\n\n**Pas à pas :** la table des attributs est une petite base de données. Son fichier porte le nom d'un vieux format de base de données (*dBase*) : *database file*, d'où **dbf**.\n\n**Erreurs fréquentes :** répondre `shp` (les formes, pas le tableau) ; confondre les lettres (« bdf », « dfb »).\n\n**À retenir :** dbf = *database file* = les attributs."
+      },
+      {
+        "intitule": "le système de coordonnées",
+        "type": "texte",
+        "reponse": [
+          "prj"
+        ],
+        "explication": "**Règle :** le `.prj` (pour *projection*) décrit le **système de coordonnées** de la couche, par exemple le Lambert 93.\n\n**Pas à pas :** système de coordonnées = projection utilisée pour aplatir la Terre. « Projection » donne **prj**. Sans ce fichier, QGIS ne sait pas où placer la couche sur la Terre.\n\n**Erreurs fréquentes :** répondre `cpg`, qui décrit l'encodage des caractères (les accents), pas la position.\n\n**À retenir :** prj = projection = système de coordonnées."
+      },
+      {
+        "intitule": "l'index des formes",
+        "type": "texte",
+        "reponse": [
+          "shx"
+        ],
+        "explication": "**Règle :** le `.shx` est l'**index des formes** : il permet de retrouver vite chaque géométrie dans le `.shp`, comme le sommaire d'un livre.\n\n**Pas à pas :** « sh » comme *shape*, « x » comme inde**x** : **shx**.\n\n**Erreur fréquente :** répondre `shp`. Le `.shp` contient les formes elles-mêmes ; le `.shx` dit seulement où les trouver dans le `.shp`.\n\n**À retenir :** shx = index des formes ; il est obligatoire, comme le `.shp` et le `.dbf`."
+      }
     ],
-    "indices": ["Les cinq extensions : shp, shx, dbf, prj, cpg.", "« prj » comme projection, « dbf » comme database file."],
+    "indices": [
+      "Les cinq extensions : shp, shx, dbf, prj, cpg.",
+      "« prj » comme projection, « dbf » comme database file."
+    ],
     "correction": "`.shp` = formes, `.shx` = index, `.dbf` = attributs, `.prj` = projection (système de coordonnées), `.cpg` = encodage des caractères."
   },
   {
@@ -33,10 +106,24 @@
     "difficulte": 1,
     "enonce": "La couche `BATIMENT` de la BD TOPO est livrée avec les fichiers `.shp`, `.shx`, `.dbf`, `.prj` et `.cpg`. Tu veux l'envoyer à un camarade.",
     "questions": [
-      { "intitule": "Combien de fichiers dois-tu lui envoyer au minimum pour garder la couche complète ?", "type": "nombre", "reponse": 5 }
+      {
+        "intitule": "Combien de fichiers dois-tu lui envoyer pour qu'il reçoive la couche complète, telle qu'elle a été livrée (formes, attributs, système de coordonnées et encodage) ?",
+        "type": "nombre",
+        "reponse": 5,
+        "explication": "**Règle :** une couche Shapefile complète, c'est **tous les fichiers de même nom** livrés ensemble. Ici, l'énoncé en donne la liste.\n\n**Pas à pas :** on compte les fichiers livrés et ce que chacun apporte.\n\n| Fichier | Apporte |\n|---|---|\n| `BATIMENT.shp` | les formes |\n| `BATIMENT.shx` | l'index des formes |\n| `BATIMENT.dbf` | les attributs |\n| `BATIMENT.prj` | le système de coordonnées |\n| `BATIMENT.cpg` | l'encodage des accents |\n\nPour que ton camarade reçoive la couche **telle qu'elle a été livrée**, avec tout cela, il faut envoyer les **5**.\n\n**Erreurs fréquentes :** répondre 1 (le `.shp` seul est inutilisable) ; répondre 3, qui est le nombre de fichiers **obligatoires** pour ouvrir la couche, pas celui de la couche complète : sans le `.prj`, la couche ne se place plus sur la carte, et sans le `.cpg` les accents peuvent mal s'afficher.\n\n**À retenir :** pour partager une couche, envoie tous les fichiers de même nom (souvent dans un `.zip`)."
+      },
+      {
+        "intitule": "Parmi ces fichiers, combien sont strictement obligatoires pour que QGIS puisse ouvrir la couche ?",
+        "type": "nombre",
+        "reponse": 3,
+        "explication": "**Règle :** trois fichiers sont **strictement obligatoires** pour qu'une couche Shapefile s'ouvre : `.shp` (formes), `.shx` (index des formes) et `.dbf` (attributs).\n\n**Pas à pas :** on passe en revue les 5 fichiers.\n\n| Fichier | Obligatoire ? | Sans lui… |\n|---|---|---|\n| `.shp` | oui | aucune forme à dessiner |\n| `.shx` | oui | QGIS ne retrouve pas les formes |\n| `.dbf` | oui | aucune table d'attributs |\n| `.prj` | non | la couche s'ouvre, mais QGIS ne sait pas où la placer |\n| `.cpg` | non | la couche s'ouvre, mais les accents peuvent être faux |\n\nOn compte les « oui » : **3**.\n\n**Erreurs fréquentes :** répondre 5 (c'est la couche complète, pas le minimum) ; répondre 1 (le `.shp` seul ne s'ouvre pas) ; compter le `.prj` comme obligatoire : il est très utile, mais la couche s'ouvre sans lui.\n\n**À retenir :** minimum = `.shp` + `.shx` + `.dbf` ; complet = ces trois + `.prj` + `.cpg`."
+      }
     ],
-    "indices": ["Tous les fichiers de même nom vont ensemble."],
-    "correction": "Les **5** fichiers : une couche Shapefile est un ensemble de fichiers de même nom. Sans le `.prj`, par exemple, QGIS ne sait plus où placer la couche."
+    "indices": [
+      "Tous les fichiers de même nom vont ensemble.",
+      "Obligatoires : les formes, leur index et la table des attributs."
+    ],
+    "correction": "Pour la couche complète, les **5** fichiers : une couche Shapefile est un ensemble de fichiers de même nom. Parmi eux, **3** sont strictement obligatoires (`.shp`, `.shx`, `.dbf`) ; sans le `.prj`, QGIS ne sait plus où placer la couche, et sans le `.cpg` les accents peuvent mal s'afficher."
   },
   {
     "id": "themes-bd-topo",
@@ -44,12 +131,58 @@
     "difficulte": 2,
     "enonce": "Dans quel thème de la BD TOPO chercher ces couches ?",
     "questions": [
-      { "intitule": "`COMMUNE`", "type": "choix", "choix": ["ADMINISTRATIF", "LIEUX_NOMMES", "BATI", "ADRESSES"], "reponse": 0 },
-      { "intitule": "`ZONE_DE_VEGETATION`", "type": "choix", "choix": ["ZONES_REGLEMENTEES", "OCCUPATION_DU_SOL", "HYDROGRAPHIE", "BATI"], "reponse": 1 },
-      { "intitule": "`TRONCON_HYDROGRAPHIQUE`", "type": "choix", "choix": ["TRANSPORT", "HYDROGRAPHIE", "SERVICES_ET_ACTIVITES", "LIEUX_NOMMES"], "reponse": 1 },
-      { "intitule": "`ADRESSE_BAN`", "type": "choix", "choix": ["ADMINISTRATIF", "ADRESSES", "TRANSPORT", "BATI"], "reponse": 1 }
+      {
+        "intitule": "`COMMUNE`",
+        "type": "choix",
+        "choix": [
+          "ADMINISTRATIF",
+          "LIEUX_NOMMES",
+          "BATI",
+          "ADRESSES"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le thème **ADMINISTRATIF** regroupe les limites officielles du territoire : communes, arrondissements, départements, régions.\n\n**Pas à pas :** une commune est un découpage officiel (avec une mairie, des limites fixées par la loi). C'est une limite administrative : thème **ADMINISTRATIF**.\n\n**Les autres réponses :** LIEUX_NOMMES contient des **noms** de lieux (toponymie), pas des limites ; BATI contient les constructions ; ADRESSES les adresses et les noms de rues.\n\n**À retenir :** limite officielle (commune, département…) → ADMINISTRATIF."
+      },
+      {
+        "intitule": "`ZONE_DE_VEGETATION`",
+        "type": "choix",
+        "choix": [
+          "ZONES_REGLEMENTEES",
+          "OCCUPATION_DU_SOL",
+          "HYDROGRAPHIE",
+          "BATI"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** le thème **OCCUPATION_DU_SOL** décrit ce qui **couvre** le sol : végétation, haies…\n\n**Pas à pas :** une zone de végétation dit « ici, le sol est couvert de bois, de prairie… ». C'est de l'occupation du sol : thème **OCCUPATION_DU_SOL**, avec `HAIE`.\n\n**Les autres réponses :** ZONES_REGLEMENTEES est le piège : il contient des zones **protégées par la loi** (forêts publiques, parcs), pas la végétation elle-même ; HYDROGRAPHIE parle de l'eau ; BATI des constructions.\n\n**À retenir :** ce qui pousse sur le sol → OCCUPATION_DU_SOL ; ce que la loi protège → ZONES_REGLEMENTEES."
+      },
+      {
+        "intitule": "`TRONCON_HYDROGRAPHIQUE`",
+        "type": "choix",
+        "choix": [
+          "TRANSPORT",
+          "HYDROGRAPHIE",
+          "SERVICES_ET_ACTIVITES",
+          "LIEUX_NOMMES"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** le thème **HYDROGRAPHIE** regroupe tout ce qui concerne l'**eau** : cours d'eau, plans d'eau, tronçons hydrographiques.\n\n**Pas à pas :** « hydrographique » vient de *hydro* (eau). Un tronçon hydrographique est un morceau de cours d'eau : thème **HYDROGRAPHIE**.\n\n**Les autres réponses :** TRANSPORT est le piège : il contient aussi des « tronçons » (`TRONCON_DE_ROUTE`), mais c'est un tronçon de route, pas d'eau. Ce n'est pas le mot « tronçon » qui décide, c'est **de quoi** c'est un morceau. SERVICES_ET_ACTIVITES contient les réseaux (lignes électriques, canalisations) ; LIEUX_NOMMES des noms de lieux.\n\n**À retenir :** hydro = eau → HYDROGRAPHIE."
+      },
+      {
+        "intitule": "`ADRESSE_BAN`",
+        "type": "choix",
+        "choix": [
+          "ADMINISTRATIF",
+          "ADRESSES",
+          "TRANSPORT",
+          "BATI"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** le thème **ADRESSES** contient les adresses (`ADRESSE_BAN`, la Base Adresse Nationale) et les noms de rues (`VOIE_NOMMEE`).\n\n**Pas à pas :** `ADRESSE_BAN` = les adresses de la BAN. Le nom de la couche dit déjà le thème : **ADRESSES**.\n\n**Les autres réponses :** BATI est tentant car une adresse est liée à un bâtiment, mais les adresses ont **leur propre** thème ; ADMINISTRATIF contient les limites officielles ; TRANSPORT le tracé des voies de circulation.\n\n**À retenir :** adresse ou nom de rue → ADRESSES."
+      }
     ],
-    "indices": ["Les noms des thèmes sont parlants : l'eau va dans HYDROGRAPHIE, la végétation dans OCCUPATION_DU_SOL."],
+    "indices": [
+      "Les noms des thèmes sont parlants : l'eau va dans HYDROGRAPHIE, la végétation dans OCCUPATION_DU_SOL."
+    ],
     "correction": "COMMUNE → **ADMINISTRATIF** ; ZONE_DE_VEGETATION → **OCCUPATION_DU_SOL** ; TRONCON_HYDROGRAPHIQUE → **HYDROGRAPHIE** ; ADRESSE_BAN → **ADRESSES**."
   },
   {
@@ -58,10 +191,29 @@
     "difficulte": 2,
     "enonce": "En Lambert 93, deux points ont pour coordonnées A = (652 000 ; 6 862 000) et B = (655 000 ; 6 866 000).",
     "questions": [
-      { "intitule": "Dans quelle unité sont ces coordonnées ?", "type": "choix", "choix": ["En mètres", "En degrés", "En kilomètres", "En pixels"], "reponse": 0 },
-      { "intitule": "Quelle est la distance AB, en mètres ?", "type": "nombre", "reponse": 5000 }
+      {
+        "intitule": "Dans quelle unité sont ces coordonnées ?",
+        "type": "choix",
+        "choix": [
+          "En mètres",
+          "En degrés",
+          "En kilomètres",
+          "En pixels"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le Lambert 93 est un système **projeté** : coordonnées en **mètres** sur un plan. Les degrés (latitude, longitude) ne dépassent jamais 90 et 180.\n\n**Pas à pas :**\n\n1. On lit les valeurs : 652 000 et 6 862 000.\n2. Des degrés ? Impossible, c'est bien plus que 90 ou 180.\n3. Ce sont donc des **mètres**, l'unité du Lambert 93.\n\n**Les autres réponses :** les degrés sont l'unité du WGS 84 (GPS) ; les kilomètres et les pixels ne sont pas l'unité de ce système (des kilomètres donneraient des points à des millions de km, plus loin que la Lune).\n\n**À retenir :** grands nombres en Lambert 93 = mètres."
+      },
+      {
+        "intitule": "Quelle est la distance AB, en mètres ?",
+        "type": "nombre",
+        "reponse": 5000,
+        "explication": "**Règle :** en Lambert 93 (mètres, plan), la distance en ligne droite se calcule avec **Pythagore** : distance = √(écart X² + écart Y²).\n\n**Pas à pas :**\n\n1. Écart en X : 655 000 - 652 000 = 3 000 m.\n2. Écart en Y : 6 866 000 - 6 862 000 = 4 000 m.\n3. Carrés : 3 000² = 9 000 000 et 4 000² = 16 000 000.\n4. Somme : 9 000 000 + 16 000 000 = 25 000 000.\n5. Racine : √25 000 000 = **5 000 m** (car 5 000 × 5 000 = 25 000 000).\n\n**Erreurs fréquentes :** additionner les écarts (3 000 + 4 000 = 7 000), ce qui donne le trajet en escalier, pas la ligne droite ; répondre 5 (en km) alors qu'on demande des mètres ; oublier la racine (25 000 000).\n\n**À retenir :** distance = √(écart X² + écart Y²), directement en mètres."
+      }
     ],
-    "indices": ["Le Lambert 93 est une projection plane : on peut utiliser Pythagore.", "Écart en x : 3 000 m, écart en y : 4 000 m."],
+    "indices": [
+      "Le Lambert 93 est une projection plane : on peut utiliser Pythagore.",
+      "Écart en x : 3 000 m, écart en y : 4 000 m."
+    ],
     "correction": "Le Lambert 93 donne des coordonnées en **mètres** sur un plan. Distance : racine de (3 000² + 4 000²) = **5 000 m**, soit 5 km."
   },
   {
@@ -70,10 +222,28 @@
     "difficulte": 2,
     "enonce": "Tu ouvres les couches de la BD TOPO de Paris dans un nouveau projet QGIS.",
     "questions": [
-      { "intitule": "Quel code EPSG doit afficher le projet (en bas à droite) ?", "type": "nombre", "reponse": 2154 },
-      { "intitule": "Le système WGS 84 du GPS (EPSG:4326) donne des coordonnées en…", "type": "choix", "choix": ["degrés (latitude, longitude)", "mètres", "kilomètres", "mètres, mais seulement en France"], "reponse": 0 }
+      {
+        "intitule": "Quel code EPSG doit afficher le projet (en bas à droite) ?",
+        "type": "nombre",
+        "reponse": 2154,
+        "explication": "**Règle :** le projet QGIS doit être dans le **même système** que les données. La BD TOPO est en Lambert 93, dont le code EPSG est **2154**.\n\n**Pas à pas :**\n\n1. Les données reçues sont en « LAMB93 » : c'est le Lambert 93.\n2. Le code EPSG du Lambert 93 (RGF93 / Lambert-93) est **2154**.\n3. En bas à droite de QGIS, le projet doit donc afficher `EPSG:2154`.\n\n**Erreurs fréquentes :** répondre 4326 (le WGS 84 du GPS, en degrés) ou 3857 (le Web Mercator des cartes web) ; répondre 93, qui vient du nom « Lambert 93 » mais n'est pas le code ; répondre 75, le numéro du département de Paris.\n\n**À retenir :** BD TOPO → projet en EPSG:2154."
+      },
+      {
+        "intitule": "Le système WGS 84 du GPS (EPSG:4326) donne des coordonnées en…",
+        "type": "choix",
+        "choix": [
+          "degrés (latitude, longitude)",
+          "mètres",
+          "kilomètres",
+          "mètres, mais seulement en France"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le WGS 84 (EPSG:4326) est un système **géographique** : latitude et longitude, en **degrés**.\n\n**Pas à pas :** un point de Paris en WGS 84 s'écrit environ (48,85 ; 2,35) : une latitude de 48,85 degrés et une longitude de 2,35 degrés. Ce sont des angles, pas des longueurs.\n\n**Les autres réponses :** « mètres » et « kilomètres » sont des longueurs, l'unité des systèmes **projetés** comme le Lambert 93 ; « mètres, mais seulement en France » est un piège : le WGS 84 est en degrés partout, en France comme ailleurs. C'est pour ça qu'on ne l'utilise pas pour mesurer des distances.\n\n**À retenir :** EPSG:4326 = GPS = degrés ; EPSG:2154 = Lambert 93 = mètres."
+      }
     ],
-    "indices": ["Les données reçues sont en « LAMB93 »."],
+    "indices": [
+      "Les données reçues sont en « LAMB93 »."
+    ],
     "correction": "Le projet doit être en **EPSG:2154** (RGF93 / Lambert-93), comme les données. Le WGS 84 (EPSG:4326) utilise des **degrés** : pratique pour le GPS, moins pour mesurer."
   },
   {
@@ -82,10 +252,32 @@
     "difficulte": 1,
     "enonce": "Tu as chargé, dans cet ordre (de haut en bas) : `COMMUNE` (surfaces), `ADRESSE_BAN` (points), `TRONCON_DE_ROUTE` (lignes). On ne voit plus que les communes.",
     "questions": [
-      { "intitule": "Quelle couche faut-il placer tout en haut ?", "type": "choix", "choix": ["ADRESSE_BAN", "TRONCON_DE_ROUTE", "COMMUNE"], "reponse": 0 },
-      { "intitule": "Quelle couche faut-il placer tout en bas ?", "type": "choix", "choix": ["ADRESSE_BAN", "TRONCON_DE_ROUTE", "COMMUNE"], "reponse": 2 }
+      {
+        "intitule": "Quelle couche faut-il placer tout en haut ?",
+        "type": "choix",
+        "choix": [
+          "ADRESSE_BAN",
+          "TRONCON_DE_ROUTE",
+          "COMMUNE"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** la couche du haut est dessinée **par-dessus** les autres. On met tout en haut ce qui cache le moins : les **points**.\n\n**Pas à pas :**\n\n| Couche | Géométrie | Cache beaucoup ? | Place |\n|---|---|---|---|\n| `ADRESSE_BAN` | points | non, tout petits | en haut |\n| `TRONCON_DE_ROUTE` | lignes | un peu | au milieu |\n| `COMMUNE` | surfaces | oui, de grandes zones | en bas |\n\nTout en haut : **ADRESSE_BAN**.\n\n**Les autres réponses :** `TRONCON_DE_ROUTE` va au milieu (les lignes cachent un peu plus que les points) ; `COMMUNE` en haut est justement la cause du problème.\n\n**À retenir :** points en haut, puis lignes, puis surfaces."
+      },
+      {
+        "intitule": "Quelle couche faut-il placer tout en bas ?",
+        "type": "choix",
+        "choix": [
+          "ADRESSE_BAN",
+          "TRONCON_DE_ROUTE",
+          "COMMUNE"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** les **surfaces** couvrent de grandes zones et cachent ce qui est dessous : elles vont **tout en bas**, comme un fond de carte.\n\n**Pas à pas :** dans l'ordre de départ, `COMMUNE` (surfaces) était en haut et recouvrait les routes et les adresses : c'est pour ça qu'on ne voyait que les communes. En la mettant tout en bas, elle sert de fond et le reste apparaît par-dessus.\n\n**Les autres réponses :** `ADRESSE_BAN` (points) va en haut ; `TRONCON_DE_ROUTE` (lignes) au milieu.\n\n**À retenir :** la couche qui cache tout (les surfaces) va en bas."
+      }
     ],
-    "indices": ["Points, puis lignes, puis surfaces."],
+    "indices": [
+      "Points, puis lignes, puis surfaces."
+    ],
     "correction": "De haut en bas : **ADRESSE_BAN** (points), TRONCON_DE_ROUTE (lignes), **COMMUNE** (surfaces). Les surfaces opaques en haut cachaient le reste."
   }
 ]

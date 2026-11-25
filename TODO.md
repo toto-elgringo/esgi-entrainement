@@ -17,6 +17,9 @@
 - [x] Schooding : transcriptions YouTube des séances (Algo 04 à 09, vidéo Python « listes en compréhension ») relues et intégrées le 18/11/2026 (récupérées avec `py -m yt_dlp --skip-download --write-auto-subs --sub-langs fr`)
 - [ ] Anglais : séances 2 et 4 du semestre (absentes des sources), partie écoute du TOEIC et du mini test Sales (audios non fournis)
 - [ ] Cours électif : compléter avec les vrais supports (chapitres 02 à 07 faits d après le chat ; vérifier les noms des champs BD TOPO et des extensions QGIS)
+- [x] Explications « bêtes mais complètes » partout (23/11/2026) : `explication` dans chaque question d'exercice, explications de quiz et cours réécrits pas à pas avec « À retenir » (règle dans `CONTENU.md`, « Style des explications »)
+- [ ] Rust 06 (enums) : plusieurs anciens blocs du cours sont des extraits qui ne compilent pas seuls avec « Essayer » (et l'inventaire du §5 donne des avertissements)
+- [ ] Anglais : réponses acceptées discutables à revoir (`hereunder` au lieu de *hereinafter* dans `02/contrat-vocabulaire`, *in behalf of* dans `03/vocabulaire-mini-test`, *recorded* dans `04/le-courrier`, *up to* pour « jusqu'à » dans `01/vocabulary-review-2`)
 - [ ] Rust Advent of Code : ajouter d'autres énigmes (PGCD/PPCM 2023 J8, Dijkstra avec contraintes 2023 J17, formule du lacet 2023 J18, graphes 2024 J23…)
 
 ## Site
@@ -33,6 +36,7 @@
 - [ ] Anglais : partie écoute avec la synthèse vocale du navigateur (avant le CC Listening du 9/11)
 - [ ] Anglais : mode « TOEIC blanc » chronométré qui pioche dans tous les chapitres
 - [ ] Anglais : cartes de vocabulaire avec révision espacée pour les 397 mots
+- [ ] Bouton « Essayer » du cours : permettre de taper une entrée (`input()`, `scanf`) ; aujourd'hui les exemples Python simulent la saisie avec `io.StringIO`
 - [ ] Mélanger l'ordre des choix dans les exercices (aujourd'hui seulement dans les quiz)
 - [ ] C : `VERIFIER_LISTE` pour comparer deux tableaux et afficher les valeurs (aujourd'hui `aide_egale` n'affiche que la condition)
 - [ ] C : transformer les `VERIFIER` avec `&&` en plusieurs `VERIFIER_EGAL` pour avoir les valeurs de chaque côté

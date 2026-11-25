@@ -1,62 +1,112 @@
 [
   {
     "question": "Où est stockée la valeur dans `let x = Box::new(5);` ?",
-    "choix": ["Sur la pile", "Sur le tas", "Dans un fichier", "Dans un registre du processeur"],
+    "choix": [
+      "Sur la pile",
+      "Sur le tas",
+      "Dans un fichier",
+      "Dans un registre du processeur"
+    ],
     "reponse": 1,
-    "explication": "`Box::new` place la valeur sur le tas. La variable `x` (sur la pile) ne contient que l'adresse."
+    "explication": "**Règle :** `Box::new(valeur)` range la valeur sur le **tas**. La variable elle-même (la `Box`) est sur la **pile** et ne contient qu'une adresse vers le tas.\n\n**Pas à pas :**\n\n1. `Box::new(5)` réserve une place sur le tas et y écrit `5`.\n2. Il renvoie une `Box<i32>` : une adresse, rangée dans la variable `x`.\n3. `x` est une variable locale, donc sur la pile ; le `5` est au bout de l'adresse, sur le tas.\n\n**Les autres réponses :** « sur la pile » confond la variable `x` (l'adresse, sur la pile) et la valeur `5` (sur le tas) : mettre la valeur ailleurs que sur la pile est justement le rôle de `Box`. « Dans un fichier » : rien n'est écrit sur le disque, tout reste en mémoire. « Dans un registre du processeur » : c'est un détail interne que Rust ne promet jamais, et une `Box` force au contraire un passage par la mémoire du tas.\n\n**À retenir :** `Box` = la valeur sur le tas, l'adresse sur la pile."
   },
   {
     "question": "Pourquoi `enum Liste { Cons(i32, Liste), Vide }` ne compile-t-il pas ?",
-    "choix": ["`Vide` est interdit", "La taille du type serait infinie", "`i32` n'est pas autorisé dans un enum", "Il manque `#[derive(Debug)]`"],
+    "choix": [
+      "`Vide` est interdit",
+      "La taille du type serait infinie",
+      "`i32` n'est pas autorisé dans un enum",
+      "Il manque `#[derive(Debug)]`"
+    ],
     "reponse": 1,
-    "explication": "Une liste contiendrait une liste, qui contiendrait une liste... Avec `Box<Liste>`, la taille est fixe (un `i32` et une adresse)."
+    "explication": "**Règle :** pour ranger une valeur, Rust doit connaître sa **taille** à la compilation. Un `enum` a la taille de sa plus grosse variante.\n\n**Pas à pas :** taille de `Liste` avec `Cons(i32, Liste)` :\n\n| Morceau | Taille |\n|---|---|\n| `i32` | 4 octets |\n| `Liste` (à l'intérieur) | taille de `Liste`, qui contient encore un `i32` et une `Liste`... |\n\nOn obtient 4 + 4 + 4 + ... sans fin : la taille serait **infinie**. Le compilateur s'arrête avec « recursive type has infinite size ». Avec `Cons(i32, Box<Liste>)`, la liste intérieure est remplacée par une **adresse** (taille fixe) : la taille devient un nombre fini.\n\n**Les autres réponses :** `Vide` est une variante tout à fait permise (une variante sans données). `i32` est autorisé dans un `enum` comme n'importe quel type. `#[derive(Debug)]` ne sert qu'à afficher avec `{:?}` : son absence n'empêche jamais un type de compiler.\n\n**À retenir :** un type qui se contient lui-même a besoin d'une `Box` (ou d'un `Rc`) à l'endroit de la récursion."
   },
   {
     "question": "À quoi sert `Vec<Box<dyn Forme>>` ?",
-    "choix": ["À stocker des types différents qui implémentent le trait `Forme`", "À stocker uniquement des `Box`", "À copier les formes plus vite", "À rendre les formes mutables"],
+    "choix": [
+      "À stocker des types différents qui implémentent le trait `Forme`",
+      "À stocker uniquement des `Box`",
+      "À copier les formes plus vite",
+      "À rendre les formes mutables"
+    ],
     "reponse": 0,
-    "explication": "Chaque `Box<dyn Forme>` a la même taille (une adresse), donc on peut mélanger cercles, carrés, etc. La bonne méthode est choisie à l'exécution."
+    "explication": "**Règle :** un `Vec<T>` ne contient qu'un seul type `T`. `dyn Forme` veut dire « n'importe quel type qui implémente `Forme` » ; mis dans une `Box`, chaque élément a la même taille (une adresse).\n\n**Pas à pas :**\n\n1. Un `Cercle` et un `Carre` n'ont pas la même taille : un `Vec<Cercle>` refuse un `Carre`.\n2. `Box::new(Cercle { ... })` et `Box::new(Carre { ... })` deviennent tous deux des `Box<dyn Forme>` : même type, même taille.\n3. En parcourant le `Vec`, `forme.aire()` appelle la méthode du vrai type contenu (cercle ou carré), choisie **à l'exécution**.\n\n**Les autres réponses :** « stocker uniquement des `Box` » est vrai mais passe à côté du but : ce qui compte est le `dyn Forme`, qui permet de **mélanger** des types. « Copier les formes plus vite » : la `Box` ne copie rien et n'accélère pas, elle ajoute même un petit détour par l'adresse. « Rendre les formes mutables » : la mutabilité vient de `mut`, pas de `Box<dyn ...>`.\n\n**À retenir :** plusieurs types différents dans une même collection = `Vec<Box<dyn Trait>>`."
   },
   {
     "question": "Quel trait permet d'écrire `*ma_valeur` sur son propre type ?",
-    "choix": ["`Drop`", "`Deref`", "`Clone`", "`Display`"],
+    "choix": [
+      "`Drop`",
+      "`Deref`",
+      "`Clone`",
+      "`Display`"
+    ],
     "reponse": 1,
-    "explication": "`Deref` décrit comment obtenir une référence vers le contenu. `*x` devient `*(x.deref())`."
+    "explication": "**Règle :** le trait `Deref` dit comment obtenir une **référence vers le contenu** d'un type. Une fois implémenté, `*valeur` est transformé en `*(valeur.deref())`.\n\n**Pas à pas :** pour `struct MaBoite<T>(T)` :\n\n1. `type Target = T;` : en suivant la boîte, on tombe sur un `T`.\n2. `fn deref(&self) -> &T { &self.0 }` : on renvoie une référence vers le champ.\n3. `*boite` devient `*(boite.deref())`, soit `*(&valeur)` = la valeur.\n\n**Les autres réponses :** `Drop` sert à exécuter du code quand une valeur **disparaît**, pas à la suivre. `Clone` fabrique une copie (`.clone()`), il ne change pas le sens de `*`. `Display` sert à l'affichage avec `{}` dans `println!`.\n\n**À retenir :** `*` sur son propre type = implémenter `Deref` (avec `type Target` et `fn deref`)."
   },
   {
     "question": "Une fonction attend un `&str`. Que peut-on lui passer grâce à la coercion deref ?",
-    "choix": ["Un `&String` seulement", "Un `&Box<String>` aussi", "Un `String` sans `&`", "Rien d'autre qu'un `&str`"],
+    "choix": [
+      "Un `&String` seulement",
+      "Un `&Box<String>` aussi",
+      "Un `String` sans `&`",
+      "Rien d'autre qu'un `&str`"
+    ],
     "reponse": 1,
-    "explication": "Rust enchaîne les `deref` : `&Box<String>` devient `&String` puis `&str`. Il faut quand même le `&` devant."
+    "explication": "**Règle :** la **coercion deref** transforme automatiquement une référence `&A` en `&B` si `A` implémente `Deref<Target = B>`, et elle peut s'enchaîner plusieurs fois. Elle s'applique quand on passe un argument ou appelle une méthode.\n\n**Pas à pas avec un `&Box<String>` donné à une fonction qui attend `&str` :**\n\n| Étape | Type | Grâce à |\n|---|---|---|\n| départ | `&Box<String>` | |\n| 1er deref | `&String` | `Box<String>` implémente `Deref<Target = String>` |\n| 2e deref | `&str` | `String` implémente `Deref<Target = str>` |\n\nLe type attendu est atteint : l'appel compile.\n\n**Les autres réponses :** « un `&String` seulement » oublie que la coercion peut s'enchaîner (un `&String` marche aussi, mais pas seulement lui). « Un `String` sans `&` » est faux : la coercion transforme une **référence** en une autre référence, elle ne crée jamais une référence à partir d'une valeur ; il faut écrire `&texte`. « Rien d'autre qu'un `&str` » nie l'existence même de la coercion.\n\n**À retenir :** avec un `&` devant, Rust enchaîne les `deref` jusqu'à tomber sur le type attendu."
   },
   {
     "question": "Dans quel ordre les variables locales sont-elles libérées (`Drop`) ?",
-    "choix": ["Dans l'ordre de création", "Dans l'ordre inverse de création", "Dans un ordre aléatoire", "Par ordre alphabétique"],
+    "choix": [
+      "Dans l'ordre de création",
+      "Dans l'ordre inverse de création",
+      "Dans un ordre aléatoire",
+      "Par ordre alphabétique"
+    ],
     "reponse": 1,
-    "explication": "La dernière variable créée est libérée la première, comme une pile d'assiettes."
+    "explication": "**Règle :** à la fin d'une portée, les variables locales sont libérées dans l'**ordre inverse** de leur création : la dernière créée part la première.\n\n**Pas à pas :** avec\n\n```rust\nlet _a = Etiquette(\"a\");\nlet _b = Etiquette(\"b\");\nlet _c = Etiquette(\"c\");\n```\n\nà la `}` finale, Rust libère `_c`, puis `_b`, puis `_a`. C'est logique : `_c` a pu être construite en utilisant `_a` ou `_b`, il faut donc qu'elles existent encore quand `_c` disparaît.\n\n**Les autres réponses :** « dans l'ordre de création » est l'erreur classique : c'est l'inverse. L'ordre n'est jamais « aléatoire » : il est fixé et le même à chaque exécution. L'ordre « alphabétique » n'a aucun sens pour le compilateur, le nom d'une variable ne compte pas.\n\n**À retenir :** à la même `}`, dernière créée = première libérée, comme une pile d'assiettes."
   },
   {
     "question": "Comment libérer une valeur avant la fin de sa portée ?",
-    "choix": ["`valeur.drop()`", "`drop(valeur)`", "`valeur = None`", "`free(valeur)`"],
+    "choix": [
+      "`valeur.drop()`",
+      "`drop(valeur)`",
+      "`valeur = None`",
+      "`free(valeur)`"
+    ],
     "reponse": 1,
-    "explication": "Appeler la méthode `drop` soi-même est interdit par le compilateur. La fonction `drop(valeur)` prend la valeur et la laisse disparaître."
+    "explication": "**Règle :** on ne peut pas appeler la méthode `valeur.drop()` soi-même. Pour libérer plus tôt, on utilise la **fonction** `drop(valeur)` du prélude : elle prend la valeur (déplacement) et la laisse disparaître à la fin de son exécution.\n\n**Pas à pas :**\n\n```rust\nlet j = Jeton(1);\ndrop(j);\nprintln!(\"après drop\");\n```\n\n1. `drop(j)` reçoit `j` : `j` lui appartient maintenant.\n2. À la fin de `drop`, la valeur sort de sa portée : le `Drop` de `Jeton` s'exécute **tout de suite**.\n3. `j` a été déplacée : l'utiliser après donnerait une erreur de compilation.\n\n**Les autres réponses :** `valeur.drop()` est refusé par le compilateur (« explicit use of destructor method ») : sinon la valeur serait libérée deux fois, une par toi et une à la fin de la portée. `valeur = None` ne marche que si la variable est un `Option`, et ce n'est pas la façon de libérer une valeur quelconque. `free(valeur)` est une fonction du langage C, elle n'existe pas en Rust.\n\n**À retenir :** libérer avant la fin de la portée = `drop(valeur)`, la fonction, jamais la méthode."
   },
   {
     "question": "Que fait `Rc::clone(&a)` ?",
-    "choix": ["Copie toute la donnée sur le tas", "Ajoute 1 au compteur de références", "Déplace `a`", "Crée une référence mutable"],
+    "choix": [
+      "Copie toute la donnée sur le tas",
+      "Ajoute 1 au compteur de références",
+      "Déplace `a`",
+      "Crée une référence mutable"
+    ],
     "reponse": 1,
-    "explication": "La donnée n'est pas copiée : on ajoute juste un propriétaire. La valeur est libérée quand le compteur tombe à 0."
+    "explication": "**Règle :** un `Rc<T>` partage **une seule** donnée entre plusieurs propriétaires et compte combien ils sont. `Rc::clone(&a)` crée un nouveau propriétaire de la **même** donnée : il ajoute 1 au compteur, sans rien copier.\n\n**Pas à pas :**\n\n| Ligne | `Rc::strong_count(&a)` |\n|---|---|\n| `let a = Rc::new(String::from(\"x\"));` | 1 |\n| `let b = Rc::clone(&a);` | 2 |\n| `drop(b);` | 1 |\n\nIl n'existe toujours qu'une seule chaîne `\"x\"` en mémoire. Elle sera libérée quand le compteur tombera à 0.\n\n**Les autres réponses :** « copie toute la donnée » décrit le `clone` d'une `String` ou d'un `Vec`, pas celui d'un `Rc` (c'est pour cela qu'on écrit `Rc::clone(&a)`, pour bien montrer que c'est léger). « Déplace `a` » : on passe `&a`, une référence, donc `a` reste utilisable. « Crée une référence mutable » : un `Rc` ne donne jamais d'accès mutable à son contenu (il faut un `RefCell` pour cela).\n\n**À retenir :** `Rc::clone` = +1 propriétaire, 0 copie."
   },
   {
     "question": "Deux `Rc` qui se pointent mutuellement, que se passe-t-il ?",
-    "choix": ["Erreur de compilation", "Panique à l'exécution", "Fuite mémoire : les compteurs ne tombent jamais à 0", "Rust libère automatiquement les deux"],
+    "choix": [
+      "Erreur de compilation",
+      "Panique à l'exécution",
+      "Fuite mémoire : les compteurs ne tombent jamais à 0",
+      "Rust libère automatiquement les deux"
+    ],
     "reponse": 2,
-    "explication": "Chacun garde l'autre en vie. On casse le cycle en utilisant `Weak` pour un des deux liens."
+    "explication": "**Règle :** un `Rc` libère sa donnée seulement quand son compteur fort tombe à **0**. Rust ne détecte pas les cycles : il compile et laisse faire.\n\n**Pas à pas** avec deux nœuds `A` et `B` qui se tiennent par des `Rc` :\n\n| Moment | compteur de `A` | compteur de `B` |\n|---|---|---|\n| après création et liaison (variable + lien de l'autre) | 2 | 2 |\n| fin de `main` : les variables `a` et `b` disparaissent | 1 | 1 |\n\n`A` est encore tenu par `B`, et `B` par `A`. Aucun compteur n'atteint 0, aucun ne sera libéré : la mémoire est perdue, c'est une **fuite mémoire**.\n\n**Les autres réponses :** « erreur de compilation » : non, le compilateur ne voit pas les cycles, le code compile. « Panique à l'exécution » : rien ne plante, le programme se termine normalement. « Rust libère automatiquement les deux » : il n'y a pas de ramasse-miettes en Rust, seul le compteur décide.\n\n**À retenir :** un cycle de `Rc` fuit ; casse-le en mettant un `Weak` sur l'un des deux liens."
   },
   {
     "question": "Que renvoie `weak.upgrade()` ?",
-    "choix": ["Un `Rc<T>`", "Un `Option<Rc<T>>`, `None` si la valeur a disparu", "Un `Arc<T>`", "Une référence mutable"],
+    "choix": [
+      "Un `Rc<T>`",
+      "Un `Option<Rc<T>>`, `None` si la valeur a disparu",
+      "Un `Arc<T>`",
+      "Une référence mutable"
+    ],
     "reponse": 1,
-    "explication": "Un `Weak` ne garde pas la valeur en vie : elle a pu être libérée entre-temps, d'où l'`Option`."
+    "explication": "**Règle :** un `Weak<T>` ne garde pas la valeur en vie. Pour l'utiliser, `weak.upgrade()` essaie de récupérer un `Rc<T>` : il renvoie `Option<Rc<T>>`, avec `None` si la valeur a déjà été libérée.\n\n**Pas à pas :**\n\n```rust\nlet fort = Rc::new(5);\nlet faible = Rc::downgrade(&fort);\nprintln!(\"{:?}\", faible.upgrade());\ndrop(fort);\nprintln!(\"{:?}\", faible.upgrade());\n```\n\n1. Tant que `fort` existe, `upgrade()` donne `Some(5)` (et crée un propriétaire de plus tant qu'on garde le résultat).\n2. `drop(fort)` : il n'y avait qu'un propriétaire fort, la valeur est libérée (le `Weak` ne compte pas).\n3. `upgrade()` donne maintenant `None`.\n\n**Les autres réponses :** « un `Rc<T>` » oublie le cas où la valeur a disparu : on ne peut pas toujours renvoyer un `Rc`, d'où l'`Option`. « Un `Arc<T>` » : `Arc` est la version pour les threads, sans rapport avec `Weak` de `std::rc`. « Une référence mutable » : `upgrade` ne donne jamais d'accès mutable.\n\n**À retenir :** `upgrade()` = `Option<Rc<T>>` ; traite toujours le cas `None`."
   }
 ]

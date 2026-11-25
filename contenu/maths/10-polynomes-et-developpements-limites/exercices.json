@@ -9,25 +9,42 @@
         "intitule": "Nombre maximal de racines réelles d'un polynôme de degré $4$",
         "type": "nombre",
         "reponse": 4,
-        "refuses": ["3", "5"]
+        "refuses": [
+          "3",
+          "5"
+        ],
+        "explication": "**Règle :** un polynôme de degré $n$ (non nul) a **au plus** $n$ racines réelles.\n\n**Pas à pas :**\n\n1. Le degré vaut $4$, donc $n = 4$.\n2. Au plus $4$ racines réelles.\n3. Le maximum est atteint par exemple par $(x - 1)(x - 2)(x - 3)(x - 4)$, qui s'annule en $1, 2, 3, 4$.\n\n**Erreurs fréquentes :** répondre $3$ (possible, mais ce n'est pas le maximum) ou $5$ (plus que le degré, impossible). Un polynôme peut aussi en avoir moins : $x^4 + 1$ n'en a aucune, car il vaut toujours au moins $1$.\n\n**À retenir :** nombre maximal de racines réelles = le degré."
       },
       {
         "intitule": "Nombre exact de racines d'un polynôme de degré $3$, en comptant les racines complexes (et les racines multiples)",
         "type": "nombre",
         "reponse": 3,
-        "refuses": ["2", "1"]
+        "refuses": [
+          "2",
+          "1"
+        ],
+        "explication": "**Règle :** en comptant les racines complexes **et** les racines multiples (une racine double compte pour deux), un polynôme de degré $n$ a **exactement** $n$ racines.\n\n**Pas à pas :**\n\n1. Degré $3$ : exactement $3$ racines.\n2. Exemple avec une racine complexe : $x^3 + 4x = x(x^2 + 4)$ a $0$, $2i$ et $-2i$ (car $(2i)^2 = 4i^2 = -4$).\n3. Exemple avec une racine multiple : $(x - 1)^2(x + 5)$ a $1$ (comptée deux fois) et $-5$ : cela fait bien $3$.\n\n**Erreurs fréquentes :** répondre $2$ ou $1$ en ne comptant que les racines réelles **différentes**. Le « au plus » ne vaut que pour les racines réelles ; ici on compte tout.\n\n**À retenir :** en comptant complexes et multiplicités, degré $n$ = exactement $n$ racines."
       },
       {
         "intitule": "Nombre de racines **réelles** de $x^2 + 1$",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["1", "2"]
+        "refuses": [
+          "1",
+          "2"
+        ],
+        "explication": "**Règle :** une racine réelle est un réel $x$ tel que $P(x) = 0$. Un carré de réel n'est **jamais négatif** : $x^2 \\geq 0$.\n\n**Pas à pas :**\n\n1. Pour tout réel $x$ : $x^2 \\geq 0$.\n2. On ajoute $1$ des deux côtés : $x^2 + 1 \\geq 1$.\n3. Donc $x^2 + 1$ vaut toujours au moins $1$ : il ne peut jamais valoir $0$.\n4. Conclusion : **aucune** racine réelle. (Avec le discriminant : $\\Delta = 0 - 4 = -4 < 0$, même conclusion.)\n\nSes deux racines sont complexes : $i$ et $-i$, car $i^2 + 1 = -1 + 1 = 0$.\n\n**Erreurs fréquentes :** répondre $2$ parce que le degré vaut $2$ (c'est le nombre de racines **complexes**), ou $1$ en pensant à $x = -1$ : $(-1)^2 + 1 = 2 \\neq 0$.\n\n**À retenir :** si le polynôme est « un carré + un nombre positif », il ne s'annule jamais sur les réels."
       },
       {
         "intitule": "Valeur de $P(-1)$ pour $P(x) = 2x^3 - x + 4$",
         "type": "nombre",
         "reponse": 3,
-        "refuses": ["5", "-3", "7"]
+        "refuses": [
+          "5",
+          "-3",
+          "7"
+        ],
+        "explication": "**Règle :** pour calculer $P(a)$, on remplace **chaque** $x$ par $a$, en mettant $a$ entre parenthèses, puis on calcule puissances, produits, et enfin sommes.\n\n**Pas à pas :** $P(x) = 2x^3 - x + 4$ avec $x = -1$.\n\n| Morceau | Calcul | Valeur |\n|---|---|---|\n| $2x^3$ | $2 \\times (-1)^3 = 2 \\times (-1)$ | $-2$ |\n| $-x$ | $-(-1)$ | $+1$ |\n| $+4$ | | $+4$ |\n\nTotal : $-2 + 1 + 4 = 3$.\n\n**Erreurs fréquentes :** écrire $(-1)^3 = 1$ (une puissance **impaire** de $-1$ vaut $-1$), ce qui donne $5$ ou $7$ ; oublier que $-(-1) = +1$ ; obtenir $-3$ en changeant tous les signes.\n\n**À retenir :** remplace $x$ par $(-1)$ entre parenthèses ; $(-1)^{\\text{pair}} = 1$, $(-1)^{\\text{impair}} = -1$."
       }
     ],
     "indices": [
@@ -46,25 +63,44 @@
         "intitule": "Discriminant $\\Delta$",
         "type": "nombre",
         "reponse": -36,
-        "refuses": ["36", "68", "-52"]
+        "refuses": [
+          "36",
+          "68",
+          "-52"
+        ],
+        "explication": "**Règle :** pour $ax^2 + bx + c$, le discriminant est $\\Delta = b^2 - 4ac$.\n\n**Pas à pas :**\n\n1. On lit les coefficients de $x^2 + 4x + 13$ : $a = 1$, $b = 4$, $c = 13$.\n2. $b^2 = 4^2 = 16$.\n3. $4ac = 4 \\times 1 \\times 13 = 52$.\n4. $\\Delta = 16 - 52 = -36$.\n\n**Erreurs fréquentes :** oublier le facteur $4$ ($16 - 13$), changer le signe ($36$), ou additionner ($16 + 52 = 68$). $-52$ vient d'un oubli de $b^2$.\n\n**À retenir :** $\\Delta = b^2 - 4ac$ ; calcule $b^2$ et $4ac$ séparément, puis soustrais."
       },
       {
         "intitule": "L'équation a-t-elle une solution réelle ?",
         "type": "choix",
-        "choix": ["Oui, deux", "Oui, une seule", "Non"],
-        "reponse": 2
+        "choix": [
+          "Oui, deux",
+          "Oui, une seule",
+          "Non"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** le signe de $\\Delta$ donne le nombre de racines réelles : $\\Delta > 0$ deux, $\\Delta = 0$ une (double), $\\Delta < 0$ aucune.\n\n**Pas à pas :**\n\n1. On a trouvé $\\Delta = -36$.\n2. $-36 < 0$.\n3. Les formules demandent $\\sqrt{\\Delta} = \\sqrt{-36}$, qui n'existe pas dans les réels : aucune solution réelle.\n\nLes solutions existent quand même, mais elles sont **complexes** (question suivante).\n\n**Erreurs fréquentes :** « oui, deux » demanderait $\\Delta > 0$ ; « oui, une seule » demanderait $\\Delta = 0$.\n\n**À retenir :** $\\Delta < 0$ → pas de racine réelle, deux racines complexes."
       },
       {
         "intitule": "Valeur de $\\alpha$",
         "type": "nombre",
         "reponse": -2,
-        "refuses": ["2", "-4"]
+        "refuses": [
+          "2",
+          "-4"
+        ],
+        "explication": "**Règle :** quand $\\Delta < 0$, les solutions sont $x = \\dfrac{-b \\pm i\\sqrt{-\\Delta}}{2a} = \\alpha \\pm i\\beta$, avec $\\alpha = -\\dfrac{b}{2a}$ (la partie sans $i$).\n\n**Pas à pas :**\n\n1. $-\\Delta = 36$, donc $\\sqrt{-\\Delta} = 6$.\n2. $x = \\dfrac{-4 \\pm 6i}{2}$.\n3. On divise chaque morceau par $2$ : $\\dfrac{-4}{2} = -2$ et $\\dfrac{6i}{2} = 3i$. Donc $x = -2 \\pm 3i$.\n4. La partie sans $i$ est $\\alpha = -2$ (on retrouve $-\\dfrac{b}{2a} = -\\dfrac{4}{2}$).\n\n**Erreurs fréquentes :** oublier le signe moins de $-b$ et répondre $2$ ; oublier de diviser par $2a$ et répondre $-4$.\n\n**À retenir :** $\\alpha = -\\dfrac{b}{2a}$ : un signe moins, et on divise par $2a$."
       },
       {
         "intitule": "Valeur de $\\beta$",
         "type": "nombre",
         "reponse": 3,
-        "refuses": ["6", "36", "-3"]
+        "refuses": [
+          "6",
+          "36",
+          "-3"
+        ],
+        "explication": "**Règle :** dans $x = \\alpha \\pm i\\beta$, $\\beta$ est le nombre devant $i$ : $\\beta = \\dfrac{\\sqrt{-\\Delta}}{2a}$ (on le prend positif).\n\n**Pas à pas :**\n\n1. $\\sqrt{-\\Delta} = \\sqrt{36} = 6$.\n2. $2a = 2 \\times 1 = 2$.\n3. $\\beta = \\dfrac{6}{2} = 3$.\n4. Vérification de $x = -2 + 3i$ : $x^2 = 4 - 12i + 9i^2 = 4 - 12i - 9 = -5 - 12i$, puis $4x = -8 + 12i$, et $-5 - 12i - 8 + 12i + 13 = 0$. C'est bien une racine.\n\n**Erreurs fréquentes :** oublier de diviser par $2a$ ($6$) ; prendre $\\Delta$ au lieu de sa racine ($36$) ; donner $-3$ alors que l'énoncé impose $\\beta > 0$ (le $\\pm$ s'occupe déjà du signe).\n\n**À retenir :** $\\beta = \\dfrac{\\sqrt{-\\Delta}}{2a}$ : racine de $-\\Delta$, puis division par $2a$."
       }
     ],
     "indices": [
@@ -83,26 +119,53 @@
         "intitule": "Valeur de $P(2)$",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["2", "-4"]
+        "refuses": [
+          "2",
+          "-4"
+        ],
+        "explication": "**Règle :** on calcule $P(2)$ en remplaçant chaque $x$ par $2$. Si le résultat vaut $0$, alors $2$ est une racine.\n\n**Pas à pas :**\n\n| Morceau | Calcul | Valeur |\n|---|---|---|\n| $x^3$ | $2^3$ | $8$ |\n| $-4x^2$ | $-4 \\times 2^2 = -4 \\times 4$ | $-16$ |\n| $+x$ | | $+2$ |\n| $+6$ | | $+6$ |\n\nTotal : $8 - 16 + 2 + 6 = 0$. Donc $2$ est racine, et on peut factoriser $P$ par $(x - 2)$.\n\n**Erreurs fréquentes :** calculer $-4 \\times 2^2$ comme $(-4 \\times 2)^2 = 64$ : la puissance passe **avant** la multiplication ; se tromper sur un seul morceau fausse tout le total : calcule-les un par un.\n\n**À retenir :** une racine se vérifie en calculant $P(x_0)$ : il faut trouver exactement $0$."
       },
       {
         "intitule": "On écrit $P(x) = (x - 2)\\,Q(x)$. Donne $Q(x)$ (une expression en `x`).",
         "type": "expression",
         "reponse": "x^2 - 2x - 3",
-        "acceptes": ["(x-3)(x+1)", "x^2-2x-3"],
-        "refuses": ["x^2 - 4x + 1", "x^2 + 2x - 3", "x^2 - 2x + 3"]
+        "acceptes": [
+          "(x-3)(x+1)",
+          "x^2-2x-3"
+        ],
+        "refuses": [
+          "x^2 - 4x + 1",
+          "x^2 + 2x - 3",
+          "x^2 - 2x + 3"
+        ],
+        "explication": "**Règle :** si $x_0$ est racine, $P(x) = (x - x_0)\\,Q(x)$ avec $\\deg Q = \\deg P - 1$. On trouve $Q$ en **identifiant les coefficients** : on développe et on compare terme par terme.\n\n**Pas à pas :**\n\n1. $P$ est de degré $3$, donc $Q(x) = ax^2 + bx + c$.\n2. On développe : $(x - 2)(ax^2 + bx + c) = ax^3 + bx^2 + cx - 2ax^2 - 2bx - 2c = ax^3 + (b - 2a)x^2 + (c - 2b)x - 2c$.\n3. On compare avec $x^3 - 4x^2 + x + 6$ :\n\n| Terme | Développement | $P$ | Conclusion |\n|---|---|---|---|\n| $x^3$ | $a$ | $1$ | $a = 1$ |\n| $x^2$ | $b - 2a$ | $-4$ | $b = -4 + 2 = -2$ |\n| constant | $-2c$ | $6$ | $c = -3$ |\n| $x$ (contrôle) | $c - 2b = -3 + 4$ | $1$ | ça colle |\n\nDonc $Q(x) = x^2 - 2x - 3$.\n\n**Erreurs fréquentes :** $x^2 - 4x + 1$ recopie les coefficients de $P$ sans diviser ; $x^2 + 2x - 3$ ou $x^2 - 2x + 3$ viennent d'une erreur de signe (pense à faire le contrôle sur le terme en $x$).\n\n**À retenir :** développe $(x - x_0)(ax^2 + bx + c)$, identifie du plus haut degré au terme constant, et garde une équation pour contrôler."
       },
       {
         "intitule": "Racines de $Q$",
         "type": "ensemble",
-        "reponse": [-1, 3],
-        "refuses": ["{1, -3}", "{3}"]
+        "reponse": [
+          -1,
+          3
+        ],
+        "refuses": [
+          "{1, -3}",
+          "{3}"
+        ],
+        "explication": "**Règle :** pour $ax^2 + bx + c$ avec $\\Delta > 0$, les racines sont $\\dfrac{-b \\pm \\sqrt{\\Delta}}{2a}$.\n\n**Pas à pas :** $Q(x) = x^2 - 2x - 3$, donc $a = 1$, $b = -2$, $c = -3$.\n\n1. $\\Delta = (-2)^2 - 4 \\times 1 \\times (-3) = 4 + 12 = 16$, et $\\sqrt{16} = 4$.\n2. $x = \\dfrac{2 + 4}{2} = 3$ et $x = \\dfrac{2 - 4}{2} = -1$.\n3. Contrôle : $Q(3) = 9 - 6 - 3 = 0$ et $Q(-1) = 1 + 2 - 3 = 0$.\n\n**Erreurs fréquentes :** $\\{1, -3\\}$ vient de l'oubli du signe de $-b$ (on a pris $b$ au lieu de $-b$) ; $\\{3\\}$ oublie la deuxième racine.\n\n**À retenir :** $-b$ avec $b = -2$ donne $+2$ ; vérifie toujours chaque racine en la remplaçant."
       },
       {
         "intitule": "Toutes les racines de $P$",
         "type": "ensemble",
-        "reponse": [-1, 2, 3],
-        "refuses": ["{-1, 3}", "{1, 2, 3}"]
+        "reponse": [
+          -1,
+          2,
+          3
+        ],
+        "refuses": [
+          "{-1, 3}",
+          "{1, 2, 3}"
+        ],
+        "explication": "**Règle :** $P(x) = (x - 2)\\,Q(x)$ s'annule quand **un des facteurs** s'annule : soit $x - 2 = 0$, soit $Q(x) = 0$.\n\n**Pas à pas :**\n\n1. $x - 2 = 0$ donne $x = 2$ (la racine qui a servi à factoriser).\n2. $Q(x) = 0$ donne $3$ et $-1$.\n3. Donc $P(x) = (x - 2)(x - 3)(x + 1)$ et ses racines sont $\\{-1, 2, 3\\}$.\n4. Contrôle : degré $3$, $3$ racines, le compte est bon.\n\n**Erreurs fréquentes :** $\\{-1, 3\\}$ oublie la racine $2$ ; $\\{1, 2, 3\\}$ se trompe de signe sur $(x + 1)$, qui s'annule en $-1$ et non en $1$.\n\n**À retenir :** racines de $P$ = la racine connue + les racines de $Q$."
       }
     ],
     "indices": [
@@ -122,28 +185,52 @@
         "intitule": "$L_0(x)$ (vaut $1$ en $x = 2$ et $0$ en $x = 5$)",
         "type": "expression",
         "reponse": "(x-5)/(2-5)",
-        "acceptes": ["-(x-5)/3", "(5-x)/3"],
-        "refuses": ["(x-5)/3", "(x-2)/3"]
+        "acceptes": [
+          "-(x-5)/3",
+          "(5-x)/3"
+        ],
+        "refuses": [
+          "(x-5)/3",
+          "(x-2)/3"
+        ],
+        "explication": "**Règle :** $L_0$ doit valoir $0$ en l'**autre** point et $1$ en son propre point : $L_0(x) = \\dfrac{x - x_1}{x_0 - x_1}$.\n\n**Pas à pas :** ici $x_0 = 2$ et $x_1 = 5$.\n\n1. Pour s'annuler en $x = 5$, on met $(x - 5)$ au numérateur.\n2. En $x = 2$, ce numérateur vaut $2 - 5 = -3$. Pour obtenir $1$, on divise par $-3$.\n3. $L_0(x) = \\dfrac{x - 5}{2 - 5} = \\dfrac{x - 5}{-3}$.\n4. Contrôle : $L_0(2) = \\dfrac{-3}{-3} = 1$ et $L_0(5) = \\dfrac{0}{-3} = 0$.\n\n**Erreurs fréquentes :** diviser par $5 - 2 = 3$ donne $L_0(2) = -1$ au lieu de $1$ ; mettre $(x - 2)$ au numérateur fait s'annuler $L_0$ en son propre point.\n\n**À retenir :** dénominateur = le numérateur calculé en $x_i$ (le point qu'on allume)."
       },
       {
         "intitule": "$L_1(x)$ (vaut $0$ en $x = 2$ et $1$ en $x = 5$)",
         "type": "expression",
         "reponse": "(x-2)/(5-2)",
-        "acceptes": ["(x-2)/3"],
-        "refuses": ["(x-2)/(2-5)", "(x-5)/3"]
+        "acceptes": [
+          "(x-2)/3"
+        ],
+        "refuses": [
+          "(x-2)/(2-5)",
+          "(x-5)/3"
+        ],
+        "explication": "**Règle :** $L_1(x) = \\dfrac{x - x_0}{x_1 - x_0}$ : il s'annule en $x_0$ et vaut $1$ en $x_1$.\n\n**Pas à pas :**\n\n1. Pour s'annuler en $x = 2$, numérateur $(x - 2)$.\n2. En $x = 5$, ce numérateur vaut $5 - 2 = 3$ : on divise par $3$.\n3. $L_1(x) = \\dfrac{x - 2}{3}$.\n4. Contrôle : $L_1(2) = 0$ et $L_1(5) = \\dfrac{3}{3} = 1$.\n\n**Erreurs fréquentes :** $\\dfrac{x - 2}{2 - 5}$ inverse le dénominateur (on obtiendrait $-1$ en $5$) ; $\\dfrac{x - 5}{3}$ s'annule au mauvais point.\n\n**À retenir :** numérateur = s'annuler aux autres points ; dénominateur = valoir $1$ en son point."
       },
       {
         "intitule": "$P(x)$, simplifié",
         "type": "expression",
         "reponse": "2x - 3",
-        "acceptes": ["-(x-5)/3 + 7(x-2)/3"],
-        "refuses": ["2x + 3", "3x - 5", "x - 1"]
+        "acceptes": [
+          "-(x-5)/3 + 7(x-2)/3"
+        ],
+        "refuses": [
+          "2x + 3",
+          "3x - 5",
+          "x - 1"
+        ],
+        "explication": "**Règle :** $P(x) = y_0\\,L_0(x) + y_1\\,L_1(x)$ : chaque $L_i$ est multiplié par la hauteur de son point.\n\n**Pas à pas :**\n\n1. $y_0 = 1$ et $y_1 = 7$ : $P(x) = 1 \\times \\dfrac{-(x - 5)}{3} + 7 \\times \\dfrac{x - 2}{3}$.\n2. Même dénominateur, on regroupe : $P(x) = \\dfrac{-x + 5 + 7x - 14}{3}$.\n3. Numérateur : $-x + 7x = 6x$ et $5 - 14 = -9$, donc $P(x) = \\dfrac{6x - 9}{3} = 2x - 3$.\n4. Contrôle : $P(2) = 4 - 3 = 1$ et $P(5) = 10 - 3 = 7$.\n\n**Erreurs fréquentes :** $2x + 3$ vient d'une erreur de signe sur $-(x - 5) = -x + 5$ ; $3x - 5$ ou $x - 1$ ne passent pas par les deux points (fais le contrôle).\n\n**À retenir :** après avoir simplifié, vérifie toujours $P(x_i) = y_i$ sur chaque point."
       },
       {
         "intitule": "Valeur estimée en $x = 4$ : $P(4)$",
         "type": "nombre",
         "reponse": 5,
-        "refuses": ["4", "11"]
+        "refuses": [
+          "4",
+          "11"
+        ],
+        "explication": "**Règle :** une fois le polynôme connu, on estime une valeur en remplaçant $x$. Si $x$ est **entre** les mesures, c'est une **interpolation**.\n\n**Pas à pas :**\n\n1. $P(4) = 2 \\times 4 - 3 = 8 - 3 = 5$.\n2. $4$ est entre $2$ et $5$ : c'est une interpolation, donc une estimation fiable.\n3. Cohérence : la droite monte de $1$ à $7$ quand $x$ va de $2$ à $5$, donc en $4$ on attend une valeur entre $1$ et $7$.\n\n**Erreurs fréquentes :** $4$ ou $11$ viennent d'un mauvais polynôme (par exemple $2x + 3$ donne $11$).\n\n**À retenir :** pour estimer en un point, remplace $x$ dans le polynôme trouvé."
       }
     ],
     "indices": [
@@ -162,35 +249,67 @@
         "intitule": "$L_0(x)$",
         "type": "expression",
         "reponse": "(x-1)(x-2)/2",
-        "acceptes": ["(x-1)(x-2)/((0-1)(0-2))", "(x^2-3x+2)/2"],
-        "refuses": ["(x-1)(x-2)", "-(x-1)(x-2)/2", "x(x-1)/2"]
+        "acceptes": [
+          "(x-1)(x-2)/((0-1)(0-2))",
+          "(x^2-3x+2)/2"
+        ],
+        "refuses": [
+          "(x-1)(x-2)",
+          "-(x-1)(x-2)/2",
+          "x(x-1)/2"
+        ],
+        "explication": "**Règle :** $L_i(x) = \\prod_{j \\neq i} \\dfrac{x - x_j}{x_i - x_j}$ : au numérateur, tous les $(x - x_j)$ **sauf** celui de $x_i$ ; au dénominateur, ce même produit calculé en $x = x_i$.\n\n**Pas à pas :** points $x_0 = 0$, $x_1 = 1$, $x_2 = 2$ ; on construit $L_0$.\n\n1. Les autres points sont $1$ et $2$ : numérateur $(x - 1)(x - 2)$.\n2. En $x = 0$ : $(0 - 1)(0 - 2) = (-1) \\times (-2) = 2$.\n3. $L_0(x) = \\dfrac{(x - 1)(x - 2)}{2}$.\n4. Contrôle : $L_0(0) = \\dfrac{2}{2} = 1$, $L_0(1) = 0$, $L_0(2) = 0$.\n\n**Erreurs fréquentes :** oublier de diviser par $2$ (alors $L_0(0) = 2$) ; mettre un signe moins (le produit de deux négatifs est **positif**) ; $\\dfrac{x(x - 1)}{2}$ est $L_2$.\n\n**À retenir :** numérateur = « s'annule aux autres points », dénominateur = sa valeur au point qu'on allume."
       },
       {
         "intitule": "$L_1(x)$",
         "type": "expression",
         "reponse": "-x(x-2)",
-        "acceptes": ["x(x-2)/((1-0)(1-2))", "2x - x^2"],
-        "refuses": ["x(x-2)", "x(x-2)/2"]
+        "acceptes": [
+          "x(x-2)/((1-0)(1-2))",
+          "2x - x^2"
+        ],
+        "refuses": [
+          "x(x-2)",
+          "x(x-2)/2"
+        ],
+        "explication": "**Règle :** même construction : $L_1(x) = \\dfrac{(x - x_0)(x - x_2)}{(x_1 - x_0)(x_1 - x_2)}$.\n\n**Pas à pas :**\n\n1. Les autres points sont $0$ et $2$ : numérateur $(x - 0)(x - 2) = x(x - 2)$.\n2. En $x = 1$ : $1 \\times (1 - 2) = -1$.\n3. $L_1(x) = \\dfrac{x(x - 2)}{-1} = -x(x - 2)$.\n4. Contrôle : $L_1(1) = -1 \\times (-1) = 1$, $L_1(0) = 0$, $L_1(2) = 0$.\n\n**Erreurs fréquentes :** $x(x - 2)$ sans le signe moins vaut $-1$ en $x = 1$ ; $\\dfrac{x(x - 2)}{2}$ divise par une mauvaise valeur.\n\n**À retenir :** calcule le dénominateur avec son signe : ici il est négatif."
       },
       {
         "intitule": "$L_2(x)$",
         "type": "expression",
         "reponse": "x(x-1)/2",
-        "acceptes": ["x(x-1)/((2-0)(2-1))"],
-        "refuses": ["x(x-1)", "(x-1)(x-2)/2"]
+        "acceptes": [
+          "x(x-1)/((2-0)(2-1))"
+        ],
+        "refuses": [
+          "x(x-1)",
+          "(x-1)(x-2)/2"
+        ],
+        "explication": "**Règle :** $L_2(x) = \\dfrac{(x - x_0)(x - x_1)}{(x_2 - x_0)(x_2 - x_1)}$.\n\n**Pas à pas :**\n\n1. Les autres points sont $0$ et $1$ : numérateur $x(x - 1)$.\n2. En $x = 2$ : $2 \\times (2 - 1) = 2$.\n3. $L_2(x) = \\dfrac{x(x - 1)}{2}$.\n4. Contrôle : $L_2(2) = \\dfrac{2}{2} = 1$, $L_2(0) = 0$, $L_2(1) = 0$.\n\n**Erreurs fréquentes :** oublier la division par $2$ ; $\\dfrac{(x - 1)(x - 2)}{2}$ est $L_0$, qui s'annule en $2$ au lieu d'y valoir $1$.\n\n**À retenir :** chaque $L_i$ se contrôle sur les trois points : $1$ au sien, $0$ aux autres."
       },
       {
         "intitule": "$P(x)$, développé",
         "type": "expression",
         "reponse": "2x^2 - 3x + 3",
-        "acceptes": ["3(x-1)(x-2)/2 - 2x(x-2) + 5x(x-1)/2"],
-        "refuses": ["2x^2 + 3x + 3", "x^2 - 2x + 3", "x^2 + 2"]
+        "acceptes": [
+          "3(x-1)(x-2)/2 - 2x(x-2) + 5x(x-1)/2"
+        ],
+        "refuses": [
+          "2x^2 + 3x + 3",
+          "x^2 - 2x + 3",
+          "x^2 + 2"
+        ],
+        "explication": "**Règle :** $P(x) = y_0 L_0(x) + y_1 L_1(x) + y_2 L_2(x)$ ; on développe chaque morceau puis on regroupe les $x^2$, les $x$ et les constantes.\n\n**Pas à pas :**\n\n| Morceau | Développé | $x^2$ | $x$ | constante |\n|---|---|---|---|---|\n| $3 L_0 = \\dfrac{3(x^2 - 3x + 2)}{2}$ | $\\dfrac{3}{2}x^2 - \\dfrac{9}{2}x + 3$ | $\\dfrac{3}{2}$ | $-\\dfrac{9}{2}$ | $3$ |\n| $2 L_1 = -2x(x - 2)$ | $-2x^2 + 4x$ | $-2$ | $4$ | $0$ |\n| $5 L_2 = \\dfrac{5(x^2 - x)}{2}$ | $\\dfrac{5}{2}x^2 - \\dfrac{5}{2}x$ | $\\dfrac{5}{2}$ | $-\\dfrac{5}{2}$ | $0$ |\n\nSommes : $x^2$ : $\\dfrac{3}{2} - 2 + \\dfrac{5}{2} = 4 - 2 = 2$ ; $x$ : $-\\dfrac{9}{2} + 4 - \\dfrac{5}{2} = -7 + 4 = -3$ ; constante : $3$.\n\nDonc $P(x) = 2x^2 - 3x + 3$. Contrôle : $P(0) = 3$, $P(1) = 2 - 3 + 3 = 2$, $P(2) = 8 - 6 + 3 = 5$.\n\n**Erreurs fréquentes :** $2x^2 + 3x + 3$ (erreur de signe sur les $x$, et alors $P(1) = 8$) ; $x^2 - 2x + 3$ ou $x^2 + 2$ ne passent pas par les trois points.\n\n**À retenir :** range les coefficients dans un tableau ($x^2$, $x$, constante), puis vérifie $P$ sur chaque point."
       },
       {
         "intitule": "Valeur extrapolée en $x = 3$ : $P(3)$",
         "type": "nombre",
         "reponse": 12,
-        "refuses": ["8", "18"]
+        "refuses": [
+          "8",
+          "18"
+        ],
+        "explication": "**Règle :** estimer **en dehors** de l'intervalle des mesures s'appelle **extrapoler**. Le calcul se fait pareil, mais la valeur est moins fiable qu'entre les points.\n\n**Pas à pas :**\n\n1. $P(3) = 2 \\times 3^2 - 3 \\times 3 + 3$.\n2. $2 \\times 9 = 18$, $3 \\times 3 = 9$.\n3. $18 - 9 + 3 = 12$.\n4. Les mesures vont de $x = 0$ à $x = 2$ ; $x = 3$ est dehors : c'est une extrapolation.\n\n**Erreurs fréquentes :** calculer $2 \\times 3^2$ comme $(2 \\times 3)^2 = 36$ ; $8$ ou $18$ viennent d'un terme oublié.\n\n**À retenir :** entre les mesures = interpolation (fiable) ; en dehors = extrapolation (à prendre avec prudence)."
       }
     ],
     "indices": [
@@ -210,38 +329,65 @@
         "intitule": "$f[x_0, x_1]$ (pente entre les deux premiers points)",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["3", "1"]
+        "refuses": [
+          "3",
+          "1"
+        ],
+        "explication": "**Règle :** la différence divisée d'ordre 1 est la pente entre deux points : $f[x_0, x_1] = \\dfrac{y_1 - y_0}{x_1 - x_0}$.\n\n**Pas à pas :**\n\n1. $(x_0, y_0) = (0, 1)$ et $(x_1, y_1) = (1, 3)$.\n2. Écart des $y$ : $3 - 1 = 2$. Écart des $x$ : $1 - 0 = 1$.\n3. $f[x_0, x_1] = \\dfrac{2}{1} = 2$.\n\n**Erreurs fréquentes :** répondre $3$ (on a pris $y_1$ au lieu de l'écart $y_1 - y_0$) ou $1$ (l'écart des $x$).\n\n**À retenir :** ordre 1 = écart des $y$ divisé par écart des $x$."
       },
       {
         "intitule": "$f[x_1, x_2]$",
         "type": "nombre",
         "reponse": 6,
-        "refuses": ["9", "3"]
+        "refuses": [
+          "9",
+          "3"
+        ],
+        "explication": "**Règle :** même formule, entre le 2ᵉ et le 3ᵉ point : $f[x_1, x_2] = \\dfrac{y_2 - y_1}{x_2 - x_1}$.\n\n**Pas à pas :**\n\n1. $(x_1, y_1) = (1, 3)$ et $(x_2, y_2) = (2, 9)$.\n2. Écart des $y$ : $9 - 3 = 6$. Écart des $x$ : $2 - 1 = 1$.\n3. $f[x_1, x_2] = 6$.\n\n**Erreurs fréquentes :** $9$ prend $y_2$ sans soustraire $y_1$ ; $3$ vient d'une division par $2$ (écart entre $x_2$ et $x_0$, qui sert seulement à l'ordre 2).\n\n**À retenir :** à l'ordre 1, on compare deux points **voisins**."
       },
       {
         "intitule": "$f[x_0, x_1, x_2]$ (différence d'ordre 2)",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["4", "8"]
+        "refuses": [
+          "4",
+          "8"
+        ],
+        "explication": "**Règle :** l'ordre 2 est la « pente des pentes » : $f[x_0, x_1, x_2] = \\dfrac{f[x_1, x_2] - f[x_0, x_1]}{x_2 - x_0}$. On divise par l'écart entre le **premier et le dernier** $x$ utilisés.\n\n**Pas à pas :**\n\n1. Écart des pentes : $6 - 2 = 4$.\n2. Écart entre les $x$ extrêmes : $x_2 - x_0 = 2 - 0 = 2$.\n3. $f[x_0, x_1, x_2] = \\dfrac{4}{2} = 2$.\n\n| $x_i$ | $y_i$ | ordre 1 | ordre 2 |\n|---|---|---|---|\n| $0$ | $\\mathbf{1}$ | | |\n| | | $\\mathbf{2}$ | |\n| $1$ | $3$ | | $\\mathbf{2}$ |\n| | | $6$ | |\n| $2$ | $9$ | | |\n\n**Erreurs fréquentes :** diviser par $x_2 - x_1 = 1$ et trouver $4$ ; additionner les pentes ($8$).\n\n**À retenir :** ordre $k$ : on divise par l'écart entre le premier et le dernier des $k + 1$ points."
       },
       {
         "intitule": "$P(x)$, développé",
         "type": "expression",
         "reponse": "2x^2 + 1",
-        "acceptes": ["1 + 2x + 2x(x-1)"],
-        "refuses": ["1 + 2x + 2x^2", "4x^2 - 2x + 1"]
+        "acceptes": [
+          "1 + 2x + 2x(x-1)"
+        ],
+        "refuses": [
+          "1 + 2x + 2x^2",
+          "4x^2 - 2x + 1"
+        ],
+        "explication": "**Règle :** Newton prend la **première valeur de chaque colonne** (le haut du tableau, en gras) : $P(x) = y_0 + f[x_0, x_1]\\,(x - x_0) + f[x_0, x_1, x_2]\\,(x - x_0)(x - x_1)$.\n\n**Pas à pas :**\n\n1. Coefficients : $y_0 = 1$, $f[x_0, x_1] = 2$, $f[x_0, x_1, x_2] = 2$.\n2. $P(x) = 1 + 2(x - 0) + 2(x - 0)(x - 1) = 1 + 2x + 2x(x - 1)$.\n3. On développe : $2x(x - 1) = 2x^2 - 2x$, donc $P(x) = 1 + 2x + 2x^2 - 2x = 2x^2 + 1$.\n4. Contrôle : $P(0) = 1$, $P(1) = 3$, $P(2) = 8 + 1 = 9$.\n\n**Erreurs fréquentes :** $1 + 2x + 2x^2$ remplace $x(x - 1)$ par $x^2$ (on oublie le $-x$) ; $4x^2 - 2x + 1$ prend un mauvais coefficient d'ordre 2.\n\n**À retenir :** chaque nouveau coefficient multiplie le produit des $(x - x_j)$ des points **précédents**."
       },
       {
         "intitule": "Une 4ᵉ mesure arrive : $(3, 19)$. Que vaut la nouvelle différence d'ordre 3 ?",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["10", "2"]
+        "refuses": [
+          "10",
+          "2"
+        ],
+        "explication": "**Règle :** ajouter un point chez Newton = ajouter une ligne en bas du tableau : une nouvelle pente, un nouvel ordre 2, un nouvel ordre 3. L'ordre 3 se divise par $x_3 - x_0$.\n\n**Pas à pas :** nouveau point $(3, 19)$.\n\n1. Nouvelle pente (ordre 1) : $\\dfrac{19 - 9}{3 - 2} = 10$.\n2. Nouvel ordre 2 : $\\dfrac{10 - 6}{3 - 1} = \\dfrac{4}{2} = 2$.\n3. Ordre 3 : $\\dfrac{2 - 2}{3 - 0} = 0$.\n\nLe terme ajouté est $0 \\cdot x(x - 1)(x - 2)$ : il ne change rien. Le point était déjà sur la courbe : $2 \\times 3^2 + 1 = 19$.\n\n**Erreurs fréquentes :** répondre $10$ (la nouvelle pente, pas l'ordre 3) ou $2$ (le nouvel ordre 2).\n\n**À retenir :** un coefficient d'ordre 3 nul veut dire que le nouveau point était déjà sur l'ancien polynôme."
       },
       {
         "intitule": "Si la 4ᵉ mesure avait été $(3, 25)$, que vaudrait la différence d'ordre 3 ?",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["0", "3", "16"]
+        "refuses": [
+          "0",
+          "3",
+          "16"
+        ],
+        "explication": "**Règle :** même calcul qu'avant, ligne par ligne, avec $(3, 25)$.\n\n**Pas à pas :**\n\n1. Nouvelle pente : $\\dfrac{25 - 9}{3 - 2} = 16$.\n2. Nouvel ordre 2 : $\\dfrac{16 - 6}{3 - 1} = \\dfrac{10}{2} = 5$.\n3. Ordre 3 : $\\dfrac{5 - 2}{3 - 0} = \\dfrac{3}{3} = 1$.\n\nLe polynôme devient $P(x) = 2x^2 + 1 + 1 \\cdot x(x - 1)(x - 2)$ : on a seulement **ajouté un terme**, sans refaire le reste. Contrôle : $P(3) = 19 + 3 \\times 2 \\times 1 = 25$.\n\n**Erreurs fréquentes :** $3$ oublie de diviser par $x_3 - x_0 = 3$ ; $16$ est la pente ; $0$ recopie le cas précédent.\n\n**À retenir :** ordre 3 = (écart des ordres 2) divisé par $x_3 - x_0$."
       }
     ],
     "indices": [
@@ -261,38 +407,69 @@
         "intitule": "DL d'ordre 2 de $e^x$ en $0$ (une expression en `x`)",
         "type": "expression",
         "reponse": "1 + x + x^2/2",
-        "acceptes": ["1+x+0.5x^2"],
-        "refuses": ["1 + x + x^2", "x + x^2/2", "1 + x"]
+        "acceptes": [
+          "1+x+0.5x^2"
+        ],
+        "refuses": [
+          "1 + x + x^2",
+          "x + x^2/2",
+          "1 + x"
+        ],
+        "explication": "**Règle :** formule de Taylor à l'ordre 2 en $0$ : $f(x) \\approx f(0) + f'(0)\\,x + \\dfrac{f''(0)}{2}\\,x^2$.\n\n**Pas à pas :** pour $f(x) = e^x$, la dérivée de $e^x$ est $e^x$.\n\n1. $f(0) = e^0 = 1$.\n2. $f'(0) = e^0 = 1$.\n3. $f''(0) = e^0 = 1$.\n4. $1 + 1 \\cdot x + \\dfrac{1}{2}x^2 = 1 + x + \\dfrac{x^2}{2}$.\n\n**Erreurs fréquentes :** $1 + x + x^2$ oublie la division par $2$ ; $x + \\dfrac{x^2}{2}$ oublie la constante $e^0 = 1$ ; $1 + x$ s'arrête à l'ordre 1.\n\n**À retenir :** $e^x \\approx 1 + x + \\dfrac{x^2}{2}$."
       },
       {
         "intitule": "$e^{0{,}2}$",
         "type": "nombre",
         "reponse": 1.22,
         "tolerance": 0.0001,
-        "acceptes": ["1 + 0.2 + 0.2^2/2"],
-        "refuses": ["1.24", "1.2"]
+        "acceptes": [
+          "1 + 0.2 + 0.2^2/2"
+        ],
+        "refuses": [
+          "1.24",
+          "1.2"
+        ],
+        "explication": "**Règle :** on utilise $e^x \\approx 1 + x + \\dfrac{x^2}{2}$ avec $x$ proche de $0$.\n\n**Pas à pas :** $x = 0{,}2$.\n\n1. $x^2 = 0{,}2 \\times 0{,}2 = 0{,}04$.\n2. $\\dfrac{x^2}{2} = 0{,}02$.\n3. $1 + 0{,}2 + 0{,}02 = 1{,}22$.\n\n**Erreurs fréquentes :** $1{,}24$ oublie de diviser $x^2$ par $2$ ; $1{,}2$ s'arrête à l'ordre 1 ; écrire $0{,}2^2 = 0{,}4$ (c'est $0{,}04$).\n\n**À retenir :** calcule $x^2$, puis $\\dfrac{x^2}{2}$, puis additionne."
       },
       {
         "intitule": "$\\ln(1{,}2)$ (pose $x = 0{,}2$ dans $\\ln(1 + x)$)",
         "type": "nombre",
         "reponse": 0.18,
         "tolerance": 0.0001,
-        "acceptes": ["0.2 - 0.2^2/2"],
-        "refuses": ["0.22", "0.2", "1.18"]
+        "acceptes": [
+          "0.2 - 0.2^2/2"
+        ],
+        "refuses": [
+          "0.22",
+          "0.2",
+          "1.18"
+        ],
+        "explication": "**Règle :** le DL est celui de $\\ln(1 + x) \\approx x - \\dfrac{x^2}{2}$ : il faut d'abord écrire le nombre sous la forme $1 + x$, avec $x$ petit.\n\n**Pas à pas :**\n\n1. $1{,}2 = 1 + 0{,}2$, donc $x = 0{,}2$.\n2. $\\dfrac{x^2}{2} = \\dfrac{0{,}04}{2} = 0{,}02$.\n3. $0{,}2 - 0{,}02 = 0{,}18$.\n\n**Erreurs fréquentes :** $0{,}22$ met un plus au lieu d'un moins ; $0{,}2$ s'arrête à l'ordre 1 ; $1{,}18$ ajoute une constante $1$ (mais $\\ln 1 = 0$) ; poser $x = 1{,}2$, qui n'est pas proche de $0$.\n\n**À retenir :** pour $\\ln(a)$, pose $x = a - 1$ ; et le signe devant $\\dfrac{x^2}{2}$ est un moins."
       },
       {
         "intitule": "$\\dfrac{1}{1 - 0{,}2}$",
         "type": "nombre",
         "reponse": 1.24,
         "tolerance": 0.0001,
-        "acceptes": ["1 + 0.2 + 0.04"],
-        "refuses": ["1.25", "1.22"]
+        "acceptes": [
+          "1 + 0.2 + 0.04"
+        ],
+        "refuses": [
+          "1.25",
+          "1.22"
+        ],
+        "explication": "**Règle :** $\\dfrac{1}{1 - x} \\approx 1 + x + x^2$ (début de la série géométrique) : tous les coefficients valent $1$.\n\n**Pas à pas :**\n\n1. $\\dfrac{1}{1 - 0{,}2}$ a bien la forme $\\dfrac{1}{1 - x}$ avec $x = 0{,}2$.\n2. $x^2 = 0{,}04$.\n3. $1 + 0{,}2 + 0{,}04 = 1{,}24$.\n\n**Erreurs fréquentes :** $1{,}25$ est la valeur **exacte** ($\\dfrac{1}{0{,}8}$), pas celle du DL ; $1{,}22$ divise $x^2$ par $2$ comme pour $e^x$, ce qui est faux ici.\n\n**À retenir :** $\\dfrac{1}{1 - x} \\approx 1 + x + x^2$, sans aucun $\\dfrac{1}{2}$."
       },
       {
         "intitule": "Valeurs exactes : $e^{0{,}2} \\approx 1{,}2214$, $\\ln(1{,}2) \\approx 0{,}1823$, $\\frac{1}{0{,}8} = 1{,}25$. Quelle approximation est la **moins** précise ?",
         "type": "choix",
-        "choix": ["Celle de $e^{0{,}2}$", "Celle de $\\ln(1{,}2)$", "Celle de $\\frac{1}{1 - 0{,}2}$"],
-        "reponse": 2
+        "choix": [
+          "Celle de $e^{0{,}2}$",
+          "Celle de $\\ln(1{,}2)$",
+          "Celle de $\\frac{1}{1 - 0{,}2}$"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** la précision d'une approximation se mesure par l'**écart** : $\\lvert \\text{valeur exacte} - \\text{approximation} \\rvert$. Plus l'écart est grand, moins elle est précise.\n\n**Pas à pas :**\n\n| Nombre | Exact | DL | Écart |\n|---|---|---|---|\n| $e^{0{,}2}$ | $1{,}2214$ | $1{,}22$ | $0{,}0014$ |\n| $\\ln(1{,}2)$ | $0{,}1823$ | $0{,}18$ | $0{,}0023$ |\n| $\\dfrac{1}{1 - 0{,}2}$ | $1{,}25$ | $1{,}24$ | $0{,}01$ |\n\nLe plus grand écart est $0{,}01$ : c'est l'approximation de $\\dfrac{1}{1 - 0{,}2}$ la moins précise.\n\nPourquoi : le terme oublié de $\\dfrac{1}{1 - x}$ est $x^3 = 0{,}008$ (pas divisé), alors que pour $e^x$ c'est $\\dfrac{x^3}{6} \\approx 0{,}0013$ et pour $\\ln(1 + x)$ c'est $\\dfrac{x^3}{3} \\approx 0{,}0027$.\n\n**Erreurs fréquentes :** choisir $e^{0{,}2}$ parce que sa valeur est la plus « compliquée » : c'est au contraire la plus précise ; choisir $\\ln(1{,}2)$ sans calculer les écarts.\n\n**À retenir :** pour comparer des approximations, calcule chaque écart, puis prends le plus grand."
       }
     ],
     "indices": [
@@ -311,26 +488,46 @@
         "intitule": "$f'(0)$ pour $f(x) = e^{2x}$",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["1", "4"]
+        "refuses": [
+          "1",
+          "4"
+        ],
+        "explication": "**Règle :** dérivée d'une composée (règle de la chaîne) : $(e^{u(x)})' = u'(x)\\,e^{u(x)}$. Avec $u(x) = 2x$, $u'(x) = 2$.\n\n**Pas à pas :**\n\n1. $f(x) = e^{2x}$, donc $f'(x) = 2\\,e^{2x}$.\n2. En $0$ : $f'(0) = 2 \\times e^{0} = 2 \\times 1 = 2$.\n\n**Erreurs fréquentes :** répondre $1$ en dérivant comme si c'était $e^x$ (on oublie le $2$ qui sort) ; $4$ est la dérivée **seconde**.\n\n**À retenir :** $(e^{kx})' = k\\,e^{kx}$."
       },
       {
         "intitule": "$f''(0)$ pour $f(x) = e^{2x}$",
         "type": "nombre",
         "reponse": 4,
-        "refuses": ["2", "1"]
+        "refuses": [
+          "2",
+          "1"
+        ],
+        "explication": "**Règle :** on dérive une deuxième fois : $(2\\,e^{2x})' = 2 \\times (e^{2x})' = 2 \\times 2\\,e^{2x}$.\n\n**Pas à pas :**\n\n1. $f''(x) = 4\\,e^{2x}$.\n2. $f''(0) = 4 \\times 1 = 4$.\n\nÀ chaque dérivation, un facteur $2$ de plus sort : $f$, puis $2f$, puis $4f$.\n\n**Erreurs fréquentes :** $2$ (on n'a dérivé qu'une fois) ; $1$ (on a oublié tous les facteurs).\n\n**À retenir :** $(e^{kx})'' = k^2\\,e^{kx}$."
       },
       {
         "intitule": "DL d'ordre 2 de $e^{2x}$ en $0$ (une expression en `x`)",
         "type": "expression",
         "reponse": "1 + 2x + 2x^2",
-        "acceptes": ["1 + 2x + 4x^2/2"],
-        "refuses": ["1 + 2x + 4x^2", "1 + x + x^2/2", "1 + 2x + x^2"]
+        "acceptes": [
+          "1 + 2x + 4x^2/2"
+        ],
+        "refuses": [
+          "1 + 2x + 4x^2",
+          "1 + x + x^2/2",
+          "1 + 2x + x^2"
+        ],
+        "explication": "**Règle :** $f(x) \\approx f(0) + f'(0)\\,x + \\dfrac{f''(0)}{2}\\,x^2$.\n\n**Pas à pas :**\n\n| Quantité | Valeur |\n|---|---|\n| $f(0) = e^0$ | $1$ |\n| $f'(0)$ | $2$ |\n| $\\dfrac{f''(0)}{2} = \\dfrac{4}{2}$ | $2$ |\n\nDonc $e^{2x} \\approx 1 + 2x + 2x^2$.\n\nContrôle par substitution : dans $e^u \\approx 1 + u + \\dfrac{u^2}{2}$, on pose $u = 2x$ : $1 + 2x + \\dfrac{(2x)^2}{2} = 1 + 2x + \\dfrac{4x^2}{2} = 1 + 2x + 2x^2$.\n\n**Erreurs fréquentes :** $1 + 2x + 4x^2$ oublie la division par $2$ ; $1 + x + \\dfrac{x^2}{2}$ est le DL de $e^x$ ; $1 + 2x + x^2$ écrit $(2x)^2 = 2x^2$ puis divise.\n\n**À retenir :** divise $f''(0)$ par $2$ ; contrôle avec la substitution $u = kx$ (et $(kx)^2 = k^2 x^2$)."
       },
       {
         "intitule": "DL d'ordre 2 de $g(x) = \\dfrac{1}{1 + x}$ en $0$ (une expression en `x`)",
         "type": "expression",
         "reponse": "1 - x + x^2",
-        "refuses": ["1 + x + x^2", "1 - x + x^2/2", "1 - x"]
+        "refuses": [
+          "1 + x + x^2",
+          "1 - x + x^2/2",
+          "1 - x"
+        ],
+        "explication": "**Règle :** on applique Taylor à $g(x) = (1 + x)^{-1}$, avec $\\left((1 + x)^{n}\\right)' = n\\,(1 + x)^{n - 1}$.\n\n**Pas à pas :**\n\n| Dérivée | Formule | Valeur en $0$ |\n|---|---|---|\n| $g(x)$ | $(1 + x)^{-1}$ | $1$ |\n| $g'(x)$ | $-1 \\times (1 + x)^{-2}$ | $-1$ |\n| $g''(x)$ | $-1 \\times (-2) \\times (1 + x)^{-3} = 2\\,(1 + x)^{-3}$ | $2$ |\n\nTaylor : $1 + (-1)\\,x + \\dfrac{2}{2}\\,x^2 = 1 - x + x^2$.\n\nContrôle par substitution : $\\dfrac{1}{1 + x} = \\dfrac{1}{1 - (-x)}$ ; dans $1 + u + u^2$ on pose $u = -x$ : $1 - x + (-x)^2 = 1 - x + x^2$.\n\n**Erreurs fréquentes :** $1 + x + x^2$ est le DL de $\\dfrac{1}{1 - x}$ (mauvais signe) ; $1 - x + \\dfrac{x^2}{2}$ divise $x^2$ par $2$ alors que $\\dfrac{g''(0)}{2} = 1$ ; $1 - x$ s'arrête à l'ordre 1.\n\n**À retenir :** $\\dfrac{1}{1 + x} \\approx 1 - x + x^2$ : les signes alternent."
       }
     ],
     "indices": [
@@ -350,20 +547,35 @@
         "intitule": "Valeur donnée par le DL en $x = 2$",
         "type": "nombre",
         "reponse": 5,
-        "refuses": ["7", "3", "7.389"]
+        "refuses": [
+          "7",
+          "3",
+          "7.389"
+        ],
+        "explication": "**Règle :** on remplace $x$ par sa valeur dans le DL $1 + x + \\dfrac{x^2}{2}$.\n\n**Pas à pas :**\n\n1. $x = 2$, donc $x^2 = 4$ et $\\dfrac{x^2}{2} = 2$.\n2. $1 + 2 + 2 = 5$.\n\n**Erreurs fréquentes :** $7$ oublie de diviser par $2$ ; $3$ s'arrête à l'ordre 1 ; $7{,}389$ est la vraie valeur $e^2$, pas celle du DL.\n\n**À retenir :** le DL se calcule même loin de $0$ ; c'est sa fiabilité qui pose problème."
       },
       {
         "intitule": "Écart avec la vraie valeur, au centième près",
         "type": "nombre",
         "reponse": 2.39,
         "tolerance": 0.01,
-        "refuses": ["0.39", "12.39"]
+        "refuses": [
+          "0.39",
+          "12.39"
+        ],
+        "explication": "**Règle :** écart $= \\lvert \\text{vraie valeur} - \\text{approximation} \\rvert$. Erreur relative $= \\dfrac{\\text{écart}}{\\text{vraie valeur}}$, en pourcentage.\n\n**Pas à pas :**\n\n1. Écart : $7{,}389 - 5 = 2{,}389$.\n2. Au centième près : $2{,}39$.\n3. Erreur relative : $\\dfrac{2{,}389}{7{,}389} \\approx 0{,}32$, soit environ $32\\,\\%$.\n\nPour comparer : en $x = 0{,}1$, l'erreur est inférieure à $0{,}0002$.\n\n**Erreurs fréquentes :** $0{,}39$ oublie une unité dans la soustraction ; $12{,}39$ additionne au lieu de soustraire.\n\n**À retenir :** écart = vraie valeur moins approximation ; à rapporter à la vraie valeur pour juger."
       },
       {
         "intitule": "Pourquoi l'approximation est-elle si mauvaise ici ?",
         "type": "choix",
-        "choix": ["Parce que le DL est faux", "Parce qu'un DL n'est fiable que près de $0$ : le reste, de l'ordre de $x^3$, devient grand quand $x$ s'éloigne", "Parce qu'il fallait prendre $x = -2$", "Parce que $e^2$ n'a pas de valeur exacte"],
-        "reponse": 1
+        "choix": [
+          "Parce que le DL est faux",
+          "Parce qu'un DL n'est fiable que près de $0$ : le reste, de l'ordre de $x^3$, devient grand quand $x$ s'éloigne",
+          "Parce qu'il fallait prendre $x = -2$",
+          "Parce que $e^2$ n'a pas de valeur exacte"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $f(x) = (\\text{DL}) + \\text{reste}$, et le reste est de l'ordre de $x^3$. Le DL est une approximation **locale** : bonne seulement près du point de développement ($0$).\n\n**Pas à pas :**\n\n1. En $x = 0{,}1$ : $x^3 = 0{,}001$, le reste est minuscule.\n2. En $x = 2$ : $x^3 = 8$, le reste n'est plus négligeable du tout.\n3. Donc l'écart de $2{,}39$ n'est pas une erreur de calcul : on utilise le DL trop loin de $0$.\n\n**Les autres réponses :** « le DL est faux » : non, il est juste, mais seulement près de $0$ ; « prendre $x = -2$ » : on serait tout aussi loin de $0$ ; « $e^2$ n'a pas de valeur exacte » : faux, $e^2 \\approx 7{,}389$ se calcule avec autant de chiffres qu'on veut.\n\n**À retenir :** plus $x$ est loin de $0$, plus le reste en $x^3$ grandit : un DL ne sert que près de $0$."
       }
     ],
     "indices": [
@@ -383,30 +595,54 @@
         "type": "nombre",
         "reponse": 0.255,
         "tolerance": 0.0001,
-        "acceptes": ["0.3 - 0.3^2/2"],
-        "refuses": ["0.3", "0.345", "0.21"]
+        "acceptes": [
+          "0.3 - 0.3^2/2"
+        ],
+        "refuses": [
+          "0.3",
+          "0.345",
+          "0.21"
+        ],
+        "explication": "**Règle :** $\\ln(1 + x) \\approx x - \\dfrac{x^2}{2}$ ; on écrit d'abord le nombre sous la forme $1 + x$.\n\n**Pas à pas :**\n\n1. $1{,}3 = 1 + 0{,}3$, donc $x = 0{,}3$.\n2. $x^2 = 0{,}09$ et $\\dfrac{x^2}{2} = 0{,}045$.\n3. $0{,}3 - 0{,}045 = 0{,}255$.\n\n**Erreurs fréquentes :** $0{,}3$ s'arrête à l'ordre 1 ; $0{,}345$ met un plus au lieu d'un moins ; $0{,}21$ oublie de diviser $0{,}09$ par $2$.\n\n**À retenir :** $\\ln(1 + x)$ : pose $x = a - 1$, puis $x - \\dfrac{x^2}{2}$."
       },
       {
         "intitule": "Ordre de grandeur du reste $\\dfrac{x^3}{3}$",
         "type": "nombre",
         "reponse": 0.009,
         "tolerance": 0.0001,
-        "acceptes": ["0.3^3/3"],
-        "refuses": ["0.027", "0.09"]
+        "acceptes": [
+          "0.3^3/3"
+        ],
+        "refuses": [
+          "0.027",
+          "0.09"
+        ],
+        "explication": "**Règle :** on calcule $\\dfrac{x^3}{3}$ avec $x = 0{,}3$ ; $x^3 = x \\times x \\times x$.\n\n**Pas à pas :**\n\n1. $0{,}3 \\times 0{,}3 = 0{,}09$.\n2. $0{,}09 \\times 0{,}3 = 0{,}027$.\n3. $\\dfrac{0{,}027}{3} = 0{,}009$.\n\n**Erreurs fréquentes :** $0{,}027$ oublie de diviser par $3$ ; $0{,}09$ calcule $x^2$ au lieu de $x^3$.\n\n**À retenir :** avec des décimaux, compte les chiffres après la virgule : $0{,}3^3$ en a $3$, donc $0{,}027$."
       },
       {
         "intitule": "Écart réel entre la valeur exacte et le DL, au millième près",
         "type": "nombre",
         "reponse": 0.0074,
         "tolerance": 0.0006,
-        "acceptes": ["0.007"],
-        "refuses": ["0.009", "0.07"]
+        "acceptes": [
+          "0.007"
+        ],
+        "refuses": [
+          "0.009",
+          "0.07"
+        ],
+        "explication": "**Règle :** écart réel $= \\text{valeur exacte} - \\text{approximation}$.\n\n**Pas à pas :**\n\n1. Valeur exacte : $0{,}2624$. Approximation : $0{,}255$.\n2. $0{,}2624 - 0{,}2550 = 0{,}0074$ (environ $0{,}007$ au millième).\n3. L'écart est positif : le DL est un peu trop **bas**, car le terme suivant du développement, $+\\dfrac{x^3}{3}$, est positif et a été oublié.\n\n**Erreurs fréquentes :** répondre $0{,}009$ (c'est l'ordre de grandeur annoncé, pas l'écart réel) ; $0{,}07$ (erreur de virgule : aligne les chiffres en écrivant $0{,}2550$).\n\n**À retenir :** pour soustraire des décimaux, écris-les avec le même nombre de chiffres après la virgule."
       },
       {
         "intitule": "L'écart réel est-il cohérent avec l'ordre de grandeur du reste ?",
         "type": "choix",
-        "choix": ["Oui : les deux sont de l'ordre de quelques millièmes", "Non : l'écart réel est cent fois plus grand", "Non : l'écart réel est nul"],
-        "reponse": 0
+        "choix": [
+          "Oui : les deux sont de l'ordre de quelques millièmes",
+          "Non : l'écart réel est cent fois plus grand",
+          "Non : l'écart réel est nul"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le reste ne donne pas l'erreur exacte, mais son **ordre de grandeur** : on vérifie que l'écart réel et le reste ont à peu près la même taille (même nombre de zéros après la virgule).\n\n**Pas à pas :**\n\n1. Écart réel : $0{,}0074$, soit quelques millièmes.\n2. Reste annoncé : $0{,}009$, soit quelques millièmes aussi.\n3. Même ordre de grandeur : c'est cohérent.\n\n**Les autres réponses :** « cent fois plus grand » demanderait un écart autour de $0{,}9$ ; « nul » voudrait dire que le DL est exact, or $0{,}255 \\neq 0{,}2624$.\n\n**À retenir :** comparer reste et écart réel, c'est comparer leurs ordres de grandeur, pas leurs chiffres exacts."
       }
     ],
     "indices": [
@@ -424,24 +660,43 @@
       {
         "intitule": "On a $3$ mesures de température fiables (sans bruit) dans la journée, et on veut estimer la température entre deux mesures.",
         "type": "choix",
-        "choix": ["L'interpolation de Lagrange sur les 3 points est raisonnable", "Il faut obligatoirement une régression", "Aucune méthode ne marche avec 3 points"],
-        "reponse": 0
+        "choix": [
+          "L'interpolation de Lagrange sur les 3 points est raisonnable",
+          "Il faut obligatoirement une régression",
+          "Aucune méthode ne marche avec 3 points"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** l'**interpolation** passe exactement par chaque point : bien quand il y a **peu** de points **fiables**. La **régression** passe au plus près sans tout toucher : utile quand les données sont nombreuses et **bruitées**.\n\n**Pas à pas :**\n\n1. Nombre de points : $3$, c'est peu.\n2. Qualité : fiables, sans bruit.\n3. On peut donc passer exactement par eux : Lagrange donne un polynôme de degré au plus $2$ (une parabole), lisse entre les mesures.\n\n**Les autres réponses :** la régression n'est pas **obligatoire** : elle sert surtout contre le bruit ; « aucune méthode ne marche avec 3 points » est faux, 3 points suffisent pour une parabole.\n\n**À retenir :** peu de points fiables → interpolation."
       },
       {
         "intitule": "On a $500$ mesures **bruitées** sur un mois. Interpoler exactement par un polynôme de degré $499$ :",
         "type": "choix",
-        "choix": ["est la meilleure idée : il passe par tous les points", "est une mauvaise idée : il collerait au bruit et oscillerait entre les points", "est impossible : il faudrait un degré 500"],
-        "reponse": 1
+        "choix": [
+          "est la meilleure idée : il passe par tous les points",
+          "est une mauvaise idée : il collerait au bruit et oscillerait entre les points",
+          "est impossible : il faudrait un degré 500"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** par $n$ points d'abscisses différentes passe un polynôme de degré au plus $n - 1$. Mais sur des données bruitées, passer partout recopie le bruit : c'est le **sur-ajustement**.\n\n**Pas à pas :**\n\n1. $500$ points → degré au plus $499$ : c'est possible.\n2. Les mesures sont **bruitées** : chacune contient une petite erreur.\n3. Pour passer par toutes ces valeurs un peu fausses, le polynôme fait de grandes oscillations entre elles.\n4. Ses estimations entre les mesures sont donc mauvaises : c'est une mauvaise idée.\n\n**Les autres réponses :** « la meilleure idée, il passe par tous les points » : passer par les points ne suffit pas, il faut aussi être bon **entre** eux ; « impossible, il faudrait un degré 500 » : non, $500$ points demandent un degré au plus $499$.\n\n**À retenir :** beaucoup de points bruités → régression de petit degré."
       },
       {
         "intitule": "Un polynôme de degré $20$ passe exactement par $21$ mesures mais oscille fortement entre elles. Comment s'appelle ce phénomène ?",
         "type": "texte",
-        "reponse": ["sur-ajustement", "surajustement", "sur ajustement", "overfitting", "surapprentissage", "sur-apprentissage"]
+        "reponse": [
+          "sur-ajustement",
+          "surajustement",
+          "sur ajustement",
+          "overfitting",
+          "surapprentissage",
+          "sur-apprentissage"
+        ],
+        "explication": "**Règle :** quand un modèle colle **parfaitement** aux données connues, jusqu'à leurs défauts, et prédit mal ailleurs, on parle de **sur-ajustement**.\n\n**Pas à pas :**\n\n1. Le polynôme passe exactement par les $21$ mesures (degré $20$ = $21 - 1$).\n2. Il oscille fortement entre elles : il a « appris par cœur » les points, bruit compris.\n3. Ce symptôme porte le nom de sur-ajustement, en anglais *overfitting*.\n\n**Erreurs fréquentes :** répondre « interpolation » (c'est la méthode, pas le défaut) ou « extrapolation » (estimer en dehors des mesures, autre chose).\n\n**À retenir :** passe partout mais oscille = sur-ajustement (*overfitting*)."
       },
       {
         "intitule": "Propose en une phrase une piste pour éviter ce problème.",
         "type": "auto",
-        "reponse": "Utiliser une **régression** avec un polynôme de **petit degré** (2 ou 3 par exemple) : il passe près des points sans chercher à les toucher tous, et suit la tendance au lieu du bruit."
+        "reponse": "Utiliser une **régression** avec un polynôme de **petit degré** (2 ou 3 par exemple) : il passe près des points sans chercher à les toucher tous, et suit la tendance au lieu du bruit.",
+        "explication": "Une bonne réponse dit **quoi faire** contre le sur-ajustement, en une phrase claire :\n\n1. **Ne plus chercher à passer exactement** par tous les points : faire une **régression** (le polynôme passe au plus près).\n2. **Baisser le degré** du polynôme (2 ou 3 par exemple), pour qu'il ne puisse pas suivre chaque petite variation.\n3. Dire le but : suivre la **tendance** des données plutôt que le bruit.\n\nUne autre piste acceptable : avoir plus de mesures, ou des mesures moins bruitées.\n\n**Erreurs fréquentes :** proposer un degré **plus grand** (cela aggrave le problème) ; proposer « une autre interpolation » (Lagrange ou Newton donnent le même polynôme, qui oscille pareil).\n\n**À retenir :** contre le sur-ajustement : régression et petit degré."
       }
     ],
     "indices": [

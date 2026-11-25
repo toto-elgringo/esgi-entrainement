@@ -5,15 +5,55 @@
     "difficulte": 1,
     "enonce": "Sur l'ensemble des entiers relatifs $\\mathbb{Z}$, on considère le prédicat $P(x) : x^2 \\geq 9$.",
     "questions": [
-      { "intitule": "$P(4)$ est-il vrai ou faux ?", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 0 },
-      { "intitule": "$P(2)$ est-il vrai ou faux ?", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 1 },
-      { "intitule": "$P(-3)$ est-il vrai ou faux ?", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 0 },
+      {
+        "intitule": "$P(4)$ est-il vrai ou faux ?",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** pour savoir si $P(4)$ est vrai, on remplace $x$ par 4 dans $x^2 \\geq 9$, on calcule, puis on compare.\n\n**Pas à pas :**\n\n1. $x^2 = 4^2 = 4 \\times 4 = 16$.\n2. On compare à 9 : $16 \\geq 9$ est vrai.\n3. Donc $P(4)$ est **vrai**.\n\n**Erreur fréquente :** comparer $x$ lui-même à 9 ($4 < 9$) et répondre « Faux ». Le prédicat parle de $x^2$, pas de $x$.\n\n**À retenir :** remplace, calcule $x^2$, puis compare."
+      },
+      {
+        "intitule": "$P(2)$ est-il vrai ou faux ?",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** on remplace $x$ par 2 dans $x^2 \\geq 9$ et on regarde si l'inégalité est respectée.\n\n**Pas à pas :**\n\n1. $x^2 = 2^2 = 4$.\n2. On compare à 9 : $4 \\geq 9$ ? Non, $4 < 9$.\n3. La condition n'est pas remplie : $P(2)$ est **faux**.\n\n**Erreur fréquente :** calculer $2 \\times 2$ correctement mais lire l'inégalité à l'envers ($9 \\geq 4$). On compare toujours dans le sens écrit : $x^2$ à gauche, 9 à droite.\n\n**À retenir :** une seule comparaison ratée suffit pour que le prédicat soit faux en cette valeur."
+      },
+      {
+        "intitule": "$P(-3)$ est-il vrai ou faux ?",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** un carré n'est jamais négatif, et $\\geq$ veut dire « supérieur **ou égal** » : l'égalité suffit.\n\n**Pas à pas :**\n\n1. $(-3)^2 = (-3) \\times (-3) = 9$ (moins par moins donne plus).\n2. On compare : $9 \\geq 9$ ? Oui, car $9 = 9$ et le signe $\\geq$ accepte l'égalité.\n3. Donc $P(-3)$ est **vrai**.\n\n**Erreurs fréquentes :**\n\n- écrire $(-3)^2 = -9$ (le signe moins est **dans** le carré, entre parenthèses) ;\n- lire $\\geq$ comme $>$ et répondre « Faux » parce que 9 n'est pas strictement plus grand que 9.\n\n**À retenir :** $(-a)^2 = a^2$, et $\\geq$ inclut le cas d'égalité."
+      },
       {
         "intitule": "Donne l'ensemble des entiers $x$ pour lesquels $P(x)$ est **faux**. Écris-le entre accolades, par exemple `{1, 2}`.",
         "type": "ensemble",
-        "reponse": [-2, -1, 0, 1, 2],
-        "acceptes": ["{2, 1, 0, -1, -2}", "{-2; -1; 0; 1; 2}"],
-        "refuses": ["{0, 1, 2}", "{-3, -2, -1, 0, 1, 2, 3}"]
+        "reponse": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ],
+        "acceptes": [
+          "{2, 1, 0, -1, -2}",
+          "{-2; -1; 0; 1; 2}"
+        ],
+        "refuses": [
+          "{0, 1, 2}",
+          "{-3, -2, -1, 0, 1, 2, 3}"
+        ],
+        "explication": "**Règle :** $P(x)$ est faux quand la condition $x^2 \\geq 9$ n'est **pas** remplie, c'est-à-dire quand $x^2 < 9$.\n\n**Pas à pas :** on teste les entiers autour de 0, positifs **et** négatifs.\n\n| $x$ | $x^2$ | $x^2 < 9$ ? | $P(x)$ faux ? |\n|---|---|---|---|\n| $-4$ | 16 | non | non |\n| $-3$ | 9 | non ($9 = 9$) | non |\n| $-2$ | 4 | oui | oui |\n| $-1$ | 1 | oui | oui |\n| 0 | 0 | oui | oui |\n| 1 | 1 | oui | oui |\n| 2 | 4 | oui | oui |\n| 3 | 9 | non ($9 = 9$) | non |\n| 4 | 16 | non | non |\n\nAu-delà de 3 ou en dessous de $-3$, le carré ne fait que grandir : plus rien n'est faux. L'ensemble cherché est $\\{-2, -1, 0, 1, 2\\}$.\n\n**Erreurs fréquentes :**\n\n- répondre $\\{0, 1, 2\\}$ : on a oublié les négatifs, qui sont bien dans $\\mathbb{Z}$ ;\n- répondre $\\{-3, \\dots, 3\\}$ : pour $x = 3$ et $x = -3$, on a $x^2 = 9$ et $9 \\geq 9$ est vrai, donc $P$ est **vrai**, pas faux.\n\n**À retenir :** $x^2 < 9$ veut dire $-3 < x < 3$ au sens strict ; pense aux négatifs et vérifie les bornes à part."
       }
     ],
     "indices": [
@@ -37,15 +77,39 @@
           "Chaque projet a été rendu par au moins un étudiant",
           "Aucun étudiant n'a rendu de projet"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** on lit les quantificateurs de gauche à droite. Dans $\\exists y\\ \\forall x$, on choisit $y$ **en premier**, et ce même $y$ doit marcher pour **tous** les $x$.\n\n**Pas à pas :** on traduit morceau par morceau, avec $R(x, y)$ : « l'étudiant $x$ a rendu le projet $y$ ».\n\n1. $\\exists y$ : « il existe un projet $y$… »\n2. $\\forall x$ : « … tel que pour tout étudiant $x$… »\n3. $R(x, y)$ : « … $x$ a rendu $y$ ».\n\nPhrase complète : **« Un même projet a été rendu par tous les étudiants »**.\n\n**Les autres réponses :**\n\n- « Chaque étudiant a rendu au moins un projet » s'écrit $\\forall x\\ \\exists y\\ R(x, y)$ : ordre inversé, chacun peut avoir rendu un projet différent.\n- « Chaque projet a été rendu par au moins un étudiant » s'écrit $\\forall y\\ \\exists x\\ R(x, y)$ : c'est le projet qui est pris en « pour tout ».\n- « Aucun étudiant n'a rendu de projet » contient une négation, absente de la formule.\n\n**À retenir :** le quantificateur de gauche est choisi en premier ; $\\exists y\\ \\forall x$ = un seul $y$ pour tout le monde."
       },
-      { "intitule": "Dans cette classe, $\\forall x\\ \\exists y\\ R(x, y)$ est :", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 0 },
-      { "intitule": "Dans cette classe, $\\exists y\\ \\forall x\\ R(x, y)$ est :", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 1 },
+      {
+        "intitule": "Dans cette classe, $\\forall x\\ \\exists y\\ R(x, y)$ est :",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** $\\forall x\\ \\exists y\\ R(x, y)$ demande que **chaque** étudiant ait rendu au moins un projet. Le projet peut être différent d'un étudiant à l'autre.\n\n**Pas à pas :** on fait le tableau de la classe (« oui » = l'étudiant a rendu le projet).\n\n| | P1 | P2 |\n|---|---|---|\n| Alice | oui | non |\n| Bob | non | oui |\n\nOn vérifie chaque **ligne** (chaque étudiant) :\n\n- Alice : elle a rendu P1, on a trouvé un $y$.\n- Bob : il a rendu P2, on a trouvé un $y$.\n\nTous les étudiants ont leur projet : c'est **vrai**.\n\n**Erreur fréquente :** répondre « Faux » parce qu'Alice et Bob n'ont pas rendu **le même** projet. Ici, ce n'est pas demandé : le $\\exists y$ est après le $\\forall x$, donc $y$ peut changer avec $x$.\n\n**À retenir :** $\\forall x\\ \\exists y$ = chaque ligne du tableau contient au moins un « oui »."
+      },
+      {
+        "intitule": "Dans cette classe, $\\exists y\\ \\forall x\\ R(x, y)$ est :",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $\\exists y\\ \\forall x\\ R(x, y)$ demande **un même** projet rendu par **tous** les étudiants : dans le tableau, une **colonne** remplie de « oui ».\n\n**Pas à pas :** on teste chaque projet (chaque colonne).\n\n| Projet | Rendu par Alice ? | Rendu par Bob ? | Rendu par tous ? |\n|---|---|---|---|\n| P1 | oui | non | non |\n| P2 | non | oui | non |\n\nAucun projet ne convient : c'est **faux**.\n\n**Erreur fréquente :** répondre « Vrai » en raisonnant comme à la question précédente. Le résultat est différent alors que ce sont les mêmes symboles, dans un autre ordre : c'est la preuve qu'on ne peut pas échanger $\\forall$ et $\\exists$.\n\n**À retenir :** $\\exists y\\ \\forall x$ = il faut une colonne entière de « oui »."
+      },
       {
         "intitule": "Dans n'importe quelle classe, si $\\exists y\\ \\forall x\\ R(x, y)$ est vrai, alors $\\forall x\\ \\exists y\\ R(x, y)$ est :",
         "type": "choix",
-        "choix": ["Forcément faux", "On ne peut pas savoir", "Forcément vrai"],
-        "reponse": 2
+        "choix": [
+          "Forcément faux",
+          "On ne peut pas savoir",
+          "Forcément vrai"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** si $\\exists y\\ \\forall x\\ R(x, y)$ est vrai, il existe un projet $y_0$ que **tout le monde** a rendu. Ce $y_0$ sert alors de réponse pour chaque étudiant dans $\\forall x\\ \\exists y\\ R(x, y)$.\n\n**Pas à pas :**\n\n1. On suppose qu'un projet $y_0$ a été rendu par tous les étudiants.\n2. On prend n'importe quel étudiant $x$. Il a rendu $y_0$.\n3. Donc pour ce $x$, il existe bien un projet qu'il a rendu (le $y_0$).\n4. Comme $x$ était quelconque, $\\forall x\\ \\exists y\\ R(x, y)$ est **forcément vrai**.\n\nDans le tableau : si une colonne est pleine de « oui », chaque ligne contient au moins ce « oui ».\n\n**Les autres réponses :**\n\n- « Forcément faux » : le raisonnement ci-dessus montre le contraire.\n- « On ne peut pas savoir » : c'est l'**inverse** qui est incertain. La classe de l'énoncé montre que $\\forall x\\ \\exists y$ peut être vrai alors que $\\exists y\\ \\forall x$ est faux. Mais dans ce sens-ci, la conclusion est certaine.\n\n**À retenir :** $\\exists y\\ \\forall x$ entraîne toujours $\\forall x\\ \\exists y$, jamais l'inverse."
       }
     ],
     "indices": [
@@ -69,7 +133,8 @@
           "$\\exists y\\ \\exists x\\ \\neg R(x, y)$",
           "$\\forall y\\ \\exists x\\ \\neg R(x, y)$"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** on nie de l'extérieur vers l'intérieur : chaque $\\exists$ devient $\\forall$, chaque $\\forall$ devient $\\exists$, **l'ordre des variables ne bouge pas**, puis on nie le prédicat.\n\n**Pas à pas :**\n\n1. $\\exists y$ devient $\\forall y$.\n2. $\\forall x$ devient $\\exists x$.\n3. $R(x, y)$ devient $\\neg R(x, y)$.\n\nRésultat : $\\forall y\\ \\exists x\\ \\neg R(x, y)$. Avec « l'étudiant $x$ a rendu le projet $y$ » : « pour chaque projet, il y a au moins un étudiant qui ne l'a pas rendu ».\n\n**Les autres réponses :**\n\n- $\\exists y\\ \\forall x\\ \\neg R(x, y)$ : on a nié $R$ mais gardé les quantificateurs.\n- $\\forall x\\ \\exists y\\ R(x, y)$ : on a échangé l'ordre sans rien nier. Ce n'est pas une négation, c'est une autre phrase (et elle peut être vraie en même temps que celle de départ).\n- $\\exists y\\ \\exists x\\ \\neg R(x, y)$ : le $\\exists y$ n'a pas été changé en $\\forall y$.\n\n**À retenir :** change chaque quantificateur, garde l'ordre, nie le prédicat."
       },
       {
         "intitule": "Négation de « Tout abonné a emprunté au moins un livre de plus de 300 pages » :",
@@ -80,18 +145,26 @@
           "Il existe un abonné qui a emprunté un livre de moins de 300 pages",
           "Tout abonné a emprunté un livre d'au plus 300 pages"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** on écrit d'abord la phrase avec ses quantificateurs, puis on la nie couche par couche. « Plus de 300 pages » se nie en « **au plus** 300 pages » (la négation de $>$ est $\\leq$).\n\n**Pas à pas :**\n\n1. Forme de la phrase : « **pour tout** abonné, **il existe** un livre emprunté qui fait plus de 300 pages ».\n2. « pour tout abonné » devient « **il existe** un abonné ».\n3. « il existe un livre emprunté » devient « **pour tout** livre emprunté (par lui) ».\n4. « fait plus de 300 pages » devient « fait **au plus** 300 pages ».\n\nRésultat : **« Il existe un abonné dont tous les livres empruntés font au plus 300 pages »**.\n\n**Les autres réponses :**\n\n- « Aucun abonné n'a emprunté de livre de plus de 300 pages » parle de **tous** les abonnés : c'est beaucoup trop fort. Un seul abonné sans gros livre suffit à rendre la phrase de départ fausse.\n- « Il existe un abonné qui a emprunté un livre de moins de 300 pages » : cet abonné peut avoir emprunté **aussi** un gros livre. Le « il existe un livre » aurait dû devenir « tous les livres ».\n- « Tout abonné a emprunté un livre d'au plus 300 pages » garde le « tout abonné » et le « un livre » : seuls les mots du bout ont été niés.\n\n**À retenir :** écris d'abord « pour tout… il existe… », puis échange chaque quantificateur et nie la condition finale."
       },
       {
         "intitule": "Négation de « $x > 0$ et $y > 0$ » :",
         "type": "choix",
-        "choix": ["$x \\leq 0$ et $y \\leq 0$", "$x < 0$ ou $y < 0$", "$x \\leq 0$ ou $y \\leq 0$", "$x > 0$ ou $y > 0$"],
-        "reponse": 2
+        "choix": [
+          "$x \\leq 0$ et $y \\leq 0$",
+          "$x < 0$ ou $y < 0$",
+          "$x \\leq 0$ ou $y \\leq 0$",
+          "$x > 0$ ou $y > 0$"
+        ],
+        "reponse": 2,
+        "explication": "**Règle (De Morgan) :** la négation d'un « et » est un « ou » des négations : $\\neg(A \\text{ et } B) \\iff \\neg A \\text{ ou } \\neg B$. Et la négation de $x > 0$ est $x \\leq 0$ (le cas $x = 0$ doit être compté).\n\n**Pas à pas :**\n\n1. Le « et » devient « ou ».\n2. $\\neg(x > 0)$ donne $x \\leq 0$.\n3. $\\neg(y > 0)$ donne $y \\leq 0$.\n4. Résultat : **$x \\leq 0$ ou $y \\leq 0$**.\n\nVérification avec $x = 0$, $y = 5$ : « $x > 0$ et $y > 0$ » est faux (car $0 > 0$ est faux), donc la négation doit être vraie. « $x \\leq 0$ ou $y \\leq 0$ » : $0 \\leq 0$ est vrai, c'est bon.\n\n**Les autres réponses :**\n\n- « $x \\leq 0$ et $y \\leq 0$ » garde le « et » : avec $x = -1$, $y = 5$, la phrase de départ est fausse mais celle-ci aussi.\n- « $x < 0$ ou $y < 0$ » oublie l'égalité : avec $x = 0$, $y = 5$, elle est fausse alors qu'elle devrait être vraie.\n- « $x > 0$ ou $y > 0$ » change le « et » en « ou » mais ne nie pas les comparaisons.\n\n**À retenir :** « et » devient « ou », puis chaque comparaison devient son contraire exact ($>$ devient $\\leq$)."
       },
       {
         "intitule": "Écris en français la négation de : « Il existe un entrepôt qui stocke tous les produits ». Compare ensuite avec la réponse modèle.",
         "type": "auto",
-        "reponse": "« **Tout** entrepôt a **au moins un** produit qu'il ne stocke pas. »\n\nEn formule, avec $S(e, p)$ : « l'entrepôt $e$ stocke le produit $p$ » :\n$$\\neg\\big(\\exists e\\ \\forall p\\ S(e, p)\\big) \\iff \\forall e\\ \\exists p\\ \\neg S(e, p)$$"
+        "reponse": "« **Tout** entrepôt a **au moins un** produit qu'il ne stocke pas. »\n\nEn formule, avec $S(e, p)$ : « l'entrepôt $e$ stocke le produit $p$ » :\n$$\\neg\\big(\\exists e\\ \\forall p\\ S(e, p)\\big) \\iff \\forall e\\ \\exists p\\ \\neg S(e, p)$$",
+        "explication": "**Ce qu'une bonne réponse doit contenir :**\n\n1. **Le changement de « il existe » :** « il existe un entrepôt » devient « **tout** entrepôt » (ou « chaque entrepôt »).\n2. **Le changement de « tous les produits » :** il devient « **au moins un** produit ».\n3. **La négation de la propriété :** « stocke » devient « **ne stocke pas** ».\n\nMis bout à bout : « chaque entrepôt a au moins un produit qu'il ne stocke pas ». Une formulation équivalente comme « aucun entrepôt ne stocke tous les produits » est aussi juste.\n\nEn formule, avec $S(e, p)$ : « l'entrepôt $e$ stocke le produit $p$ », la phrase de départ est $\\exists e\\ \\forall p\\ S(e, p)$, et sa négation $\\forall e\\ \\exists p\\ \\neg S(e, p)$.\n\n**Erreurs fréquentes :**\n\n- « Aucun entrepôt ne stocke de produit » : beaucoup trop fort. Un entrepôt qui stocke tous les produits sauf un rend la phrase de départ fausse pour lui, mais il stocke bien des produits.\n- « Il existe un entrepôt qui ne stocke pas tous les produits » : on a gardé le « il existe ». Cette phrase peut être vraie en même temps que celle de départ (un entrepôt complet et un incomplet).\n\n**À retenir :** « il existe… tous » se nie en « tout… au moins un… ne… pas »."
       }
     ],
     "indices": [
@@ -114,7 +187,8 @@
           "$\\exists c \\in \\text{Commandes},\\ \\forall l \\in \\text{Livraisons},\\ l.\\mathrm{id\\_commande} = c.\\mathrm{id}$",
           "$\\forall c \\in \\text{Commandes},\\ \\exists l \\in \\text{Livraisons},\\ l.\\mathrm{id\\_commande} = c.\\mathrm{id}$"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une clé étrangère part de la table qui **contient** la référence (ici `Livraisons`, avec sa colonne `id_commande`). Pour **chaque** ligne de cette table, il doit **exister** une ligne dans la table référencée : « $\\forall$ ligne qui référence, $\\exists$ ligne référencée ».\n\n**Pas à pas :**\n\n1. On veut une règle valable pour chaque livraison : $\\forall l \\in \\text{Livraisons}$.\n2. Pour cette livraison $l$, on cherche une commande qui correspond : $\\exists c \\in \\text{Commandes}$.\n3. Ce qui doit correspondre : $l.\\mathrm{id\\_commande} = c.\\mathrm{id}$.\n\nFormule : $\\forall l \\in \\text{Livraisons},\\ \\exists c \\in \\text{Commandes},\\ l.\\mathrm{id\\_commande} = c.\\mathrm{id}$.\n\n**Les autres réponses :**\n\n- Celle qui commence par $\\exists c \\in \\text{Commandes},\\ \\forall l \\in \\text{Livraisons}$ : il faudrait **une seule** commande à laquelle appartiennent toutes les livraisons. Bien trop fort.\n- Celle qui commence par $\\forall c \\in \\text{Commandes},\\ \\exists l \\in \\text{Livraisons}$ : chaque commande aurait au moins une livraison. C'est une autre règle (aucune commande non livrée), pas la clé étrangère.\n\n**À retenir :** clé étrangère = $\\forall$ sur la table qui référence, puis $\\exists$ sur la table référencée."
       },
       {
         "intitule": "Quelle formule exprime « deux clients distincts n'ont jamais le même email » ?",
@@ -124,12 +198,14 @@
           "$\\forall u_1, u_2 \\in \\text{Clients},\\ u_1.\\mathrm{email} \\neq u_2.\\mathrm{email}$",
           "$\\forall u_1, u_2 \\in \\text{Clients},\\ u_1 \\neq u_2 \\Rightarrow u_1.\\mathrm{email} \\neq u_2.\\mathrm{email}$"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** une contrainte d'unicité compare **deux lignes différentes** : « si $u_1 \\neq u_2$, alors leurs emails sont différents ». La condition $u_1 \\neq u_2$ est indispensable.\n\n**Pas à pas :** on teste la formule sans la condition, $\\forall u_1, u_2,\\ u_1.\\mathrm{email} \\neq u_2.\\mathrm{email}$, sur une table d'un seul client $u$ d'email `a@x.fr`.\n\n1. On peut prendre $u_1 = u$ et $u_2 = u$ (le « pour tout » autorise de prendre deux fois le même).\n2. Il faudrait alors `a@x.fr` $\\neq$ `a@x.fr` : c'est faux.\n3. Cette formule serait donc violée par **n'importe quelle** table non vide : elle est inutilisable.\n\nAvec la condition $u_1 \\neq u_2 \\Rightarrow \\dots$, la paire $(u, u)$ ne déclenche rien (une implication dont le début est faux est vraie). Seules les paires de clients différents sont testées : c'est la bonne formule.\n\n**Les autres réponses :**\n\n- La formule sans $u_1 \\neq u_2$ : voir le test ci-dessus.\n- La formule avec $\\exists u_1, u_2,\\ u_1.\\mathrm{email} = u_2.\\mathrm{email}$ dit au contraire qu'il **existe** deux clients (ou un client avec lui-même) avec le même email : c'est presque la description d'un doublon.\n\n**À retenir :** unicité = $\\forall u_1, u_2,\\ u_1 \\neq u_2 \\Rightarrow$ valeurs différentes."
       },
       {
         "intitule": "Formalise avec un quantificateur : « Aucun salarié ne gagne plus que le directeur $d$ ». Compare ensuite avec la réponse modèle.",
         "type": "auto",
-        "reponse": "$$\\forall s \\in \\text{Salaries},\\ s.\\mathrm{salaire} \\leq d.\\mathrm{salaire}$$\n\n« Aucun... ne gagne plus » revient à dire que **tous** gagnent **au plus** autant que le directeur. On peut aussi l'écrire $\\neg\\big(\\exists s \\in \\text{Salaries},\\ s.\\mathrm{salaire} > d.\\mathrm{salaire}\\big)$."
+        "reponse": "$$\\forall s \\in \\text{Salaries},\\ s.\\mathrm{salaire} \\leq d.\\mathrm{salaire}$$\n\n« Aucun... ne gagne plus » revient à dire que **tous** gagnent **au plus** autant que le directeur. On peut aussi l'écrire $\\neg\\big(\\exists s \\in \\text{Salaries},\\ s.\\mathrm{salaire} > d.\\mathrm{salaire}\\big)$.",
+        "explication": "**Ce qu'une bonne réponse doit contenir :**\n\n1. **Un « pour tout » sur les salariés :** « aucun salarié ne gagne plus » revient à « **tous** les salariés gagnent au plus autant ». On commence donc par $\\forall s \\in \\text{Salaries}$.\n2. **La bonne comparaison :** « ne pas gagner plus » est la négation de $>$, c'est-à-dire $\\leq$. On écrit $s.\\mathrm{salaire} \\leq d.\\mathrm{salaire}$.\n3. Une écriture équivalente est permise : « il n'existe pas de salarié qui gagne plus », $\\neg\\big(\\exists s,\\ s.\\mathrm{salaire} > d.\\mathrm{salaire}\\big)$. En faisant entrer la négation, on retombe sur la première.\n\n**Erreurs fréquentes :**\n\n- écrire $<$ au lieu de $\\leq$ : un salarié payé exactement comme le directeur ne gagne pas « plus », il doit être accepté. Et si le directeur est lui-même dans la table, il gagne autant que lui-même : avec $<$, la formule serait toujours fausse ;\n- utiliser $\\exists s,\\ s.\\mathrm{salaire} \\leq d.\\mathrm{salaire}$ : il suffirait d'**un** salarié moins payé, les autres pourraient gagner plus ;\n- oublier de dire dans quel ensemble on prend $s$ ($s \\in \\text{Salaries}$).\n\n**À retenir :** « aucun $x$ n'a $P$ » s'écrit $\\forall x,\\ \\neg P(x)$, et la négation de $>$ est $\\leq$."
       }
     ],
     "indices": [
@@ -144,10 +220,46 @@
     "difficulte": 1,
     "enonce": "Calcule chaque somme. Réponds par un nombre entier.",
     "questions": [
-      { "intitule": "$\\displaystyle\\sum_{k=1}^{12} k$", "type": "nombre", "reponse": 78, "refuses": ["66", "144"] },
-      { "intitule": "$\\displaystyle\\sum_{k=1}^{5} (2k + 3)$", "type": "nombre", "reponse": 45, "refuses": ["33", "43"] },
-      { "intitule": "$\\displaystyle\\sum_{k=1}^{20} 4$", "type": "nombre", "reponse": 80, "refuses": ["4", "840"] },
-      { "intitule": "$\\displaystyle\\sum_{k=1}^{4} k^2$", "type": "nombre", "reponse": 30, "refuses": ["100", "10"] }
+      {
+        "intitule": "$\\displaystyle\\sum_{k=1}^{12} k$",
+        "type": "nombre",
+        "reponse": 78,
+        "refuses": [
+          "66",
+          "144"
+        ],
+        "explication": "**Règle :** $\\displaystyle\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$.\n\n**Pas à pas :**\n\n1. La somme va de $k = 1$ à $12$ : $n = 12$.\n2. On remplace : $\\frac{12 \\times 13}{2}$.\n3. $12 \\times 13 = 156$, puis $\\frac{156}{2} = 78$.\n\nVérification par paires : $1 + 12 = 13$, $2 + 11 = 13$, …, $6 + 7 = 13$. Il y a 6 paires de 13 : $78$.\n\n**Erreurs fréquentes :**\n\n- 156 : on a oublié de diviser par 2 ;\n- 66 vient de $\\frac{12 \\times 11}{2}$ : on a pris $n - 1$ au lieu de $n + 1$ ;\n- 144 vaut $12^2$ : ce n'est pas la formule.\n\n**À retenir :** $\\frac{n(n+1)}{2}$, avec le $+1$ et la division par 2."
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{k=1}^{5} (2k + 3)$",
+        "type": "nombre",
+        "reponse": 45,
+        "refuses": [
+          "33",
+          "43"
+        ],
+        "explication": "**Règle (linéarité) :** on coupe la somme et on sort les constantes : $\\sum (2k + 3) = 2 \\sum k + \\sum 3$. Une constante seule compte **une fois par terme** : $\\sum_{k=1}^{n} 3 = 3n$.\n\n**Pas à pas :**\n\n1. $\\sum_{k=1}^{5} k = \\frac{5 \\times 6}{2} = 15$, donc $2 \\sum k = 2 \\times 15 = 30$.\n2. Il y a 5 termes, donc le 3 est ajouté 5 fois : $\\sum_{k=1}^{5} 3 = 5 \\times 3 = 15$.\n3. Total : $30 + 15 = 45$.\n\nVérification en écrivant les termes :\n\n| $k$ | 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|---|\n| $2k + 3$ | 5 | 7 | 9 | 11 | 13 |\n\n$5 + 7 + 9 + 11 + 13 = 45$.\n\n**Erreurs fréquentes :**\n\n- 33 : le 3 n'a été ajouté qu'une seule fois ($30 + 3$) ;\n- 43 : erreur de calcul en additionnant les termes un par un, d'où l'intérêt de vérifier par deux méthodes.\n\n**À retenir :** coupe la somme, et multiplie la constante seule par le nombre de termes."
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{k=1}^{20} 4$",
+        "type": "nombre",
+        "reponse": 80,
+        "refuses": [
+          "4",
+          "840"
+        ],
+        "explication": "**Règle :** quand le terme ne dépend pas de $k$, c'est une constante : $\\displaystyle\\sum_{k=1}^{n} c = n\\,c$.\n\n**Pas à pas :**\n\n1. Le terme vaut toujours 4 : il n'y a pas de $k$ dedans.\n2. De 1 à 20, il y a $20 - 1 + 1 = 20$ termes.\n3. $4 + 4 + \\dots + 4$ (20 fois) $= 20 \\times 4 = 80$.\n\n**Erreurs fréquentes :**\n\n- 4 : on n'a écrit le terme qu'une fois, en oubliant qu'il y en a 20 ;\n- 840 vaut $4 \\times \\frac{20 \\times 21}{2} = 4 \\sum k$ : on a cru que la somme contenait un $k$.\n\n**À retenir :** une somme de $n$ fois la même constante $c$ vaut $n \\times c$."
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{k=1}^{4} k^2$",
+        "type": "nombre",
+        "reponse": 30,
+        "refuses": [
+          "100",
+          "10"
+        ],
+        "explication": "**Règle :** $\\sum k^2$ additionne les **carrés** un par un. Formule : $\\displaystyle\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$.\n\n**Pas à pas :**\n\n| $k$ | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $k^2$ | 1 | 4 | 9 | 16 |\n\n1. On additionne : $1 + 4 + 9 + 16 = 30$.\n2. On vérifie avec la formule, $n = 4$ : $\\frac{4 \\times 5 \\times 9}{6} = \\frac{180}{6} = 30$ (ici $2n + 1 = 9$).\n\n**Erreurs fréquentes :**\n\n- 100 vaut $(1 + 2 + 3 + 4)^2 = 10^2$ : le carré de la somme n'est **pas** la somme des carrés ;\n- 10 vaut $1 + 2 + 3 + 4$ : on a oublié les carrés.\n\n**À retenir :** pour une petite somme, écris les termes dans un tableau ; pour une grande, utilise $\\frac{n(n+1)(2n+1)}{6}$."
+      }
     ],
     "indices": [
       "Utilise $\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$.",
@@ -166,28 +278,53 @@
         "type": "expression",
         "variable": "n",
         "reponse": "n^2 + 6n",
-        "acceptes": ["n(n+6)", "n(n+1) + 5n", "n²+6n"],
-        "refuses": ["n^2 + 5n", "n(n+1) + 5", "2n + 5"]
+        "acceptes": [
+          "n(n+6)",
+          "n(n+1) + 5n",
+          "n²+6n"
+        ],
+        "refuses": [
+          "n^2 + 5n",
+          "n(n+1) + 5",
+          "2n + 5"
+        ],
+        "explication": "**Règle (linéarité) :** $\\sum (a\\,k + b) = a \\sum k + \\sum b$, avec $\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$ et $\\sum_{k=1}^{n} b = b\\,n$.\n\n**Pas à pas :**\n\n1. On coupe : $\\sum_{k=1}^{n} (2k + 5) = 2 \\sum_{k=1}^{n} k + \\sum_{k=1}^{n} 5$.\n2. $2 \\sum k = 2 \\times \\frac{n(n+1)}{2} = n(n+1)$ (le 2 et la division par 2 s'annulent).\n3. $\\sum_{k=1}^{n} 5 = 5n$ (5 ajouté une fois par terme, il y a $n$ termes).\n4. On développe : $n(n+1) + 5n = n^2 + n + 5n = n^2 + 6n$.\n\nVérification avec $n = 2$ : la somme vaut $7 + 9 = 16$, et $2^2 + 6 \\times 2 = 4 + 12 = 16$.\n\n**Erreurs fréquentes :**\n\n- $n^2 + 5n$ : on a oublié le $+n$ qui vient de $n(n+1) = n^2 + n$ ;\n- $n(n+1) + 5$ : $\\sum 5$ a été compté comme 5 au lieu de $5n$ ;\n- $2n + 5$ : on a seulement recopié le terme, sans faire la somme.\n\n**À retenir :** coupe, sors les constantes, et n'oublie pas que $\\sum_{k=1}^{n} b = b\\,n$."
       },
       {
         "intitule": "$\\displaystyle\\sum_{k=1}^{n} (4k - 3)$",
         "type": "expression",
         "variable": "n",
         "reponse": "2n^2 - n",
-        "acceptes": ["n(2n-1)", "2n(n+1) - 3n"],
-        "refuses": ["2n^2 + n", "2n^2", "2n(n+1) - 3"]
+        "acceptes": [
+          "n(2n-1)",
+          "2n(n+1) - 3n"
+        ],
+        "refuses": [
+          "2n^2 + n",
+          "2n^2",
+          "2n(n+1) - 3"
+        ],
+        "explication": "**Règle :** même méthode. Un signe moins devant une constante porte sur **toute** sa somme : $-\\sum_{k=1}^{n} 3 = -3n$.\n\n**Pas à pas :**\n\n1. On coupe : $\\sum_{k=1}^{n} (4k - 3) = 4 \\sum k - \\sum 3$.\n2. $4 \\sum k = 4 \\times \\frac{n(n+1)}{2} = 2n(n+1) = 2n^2 + 2n$.\n3. $\\sum_{k=1}^{n} 3 = 3n$.\n4. On regroupe : $2n^2 + 2n - 3n = 2n^2 - n$.\n\nVérification avec $n = 2$ : la somme vaut $1 + 5 = 6$, et $2 \\times 4 - 2 = 6$.\n\n**Erreurs fréquentes :**\n\n- $2n^2 + n$ : erreur de signe, $2n - 3n = -n$ et pas $+n$ ;\n- $2n^2$ : on a oublié le $2n$ venant de $2n(n+1)$, ou le $-3n$ ;\n- $2n(n+1) - 3$ : le $-3$ n'a pas été multiplié par le nombre de termes.\n\n**À retenir :** une constante soustraite donne $-b\\,n$ ; regroupe ensuite les termes en $n$ en faisant attention au signe."
       },
       {
         "intitule": "Valeur de $\\displaystyle\\sum_{k=1}^{n} (2k + 5)$ pour $n = 10$ (un nombre) :",
         "type": "nombre",
         "reponse": 160,
-        "refuses": ["150", "25"]
+        "refuses": [
+          "150",
+          "25"
+        ],
+        "explication": "**Règle :** une fois la somme simplifiée en fonction de $n$, on obtient sa valeur pour un $n$ précis en remplaçant $n$ par ce nombre.\n\n**Pas à pas :**\n\n1. D'après la première question, $\\sum_{k=1}^{n} (2k + 5) = n^2 + 6n$.\n2. Avec $n = 10$ : $10^2 + 6 \\times 10 = 100 + 60 = 160$.\n3. Vérification directe : le premier terme vaut $2 \\times 1 + 5 = 7$, le dernier $2 \\times 10 + 5 = 25$. Les termes augmentent de 2 à chaque fois, donc leur moyenne est $\\frac{7 + 25}{2} = 16$. Avec 10 termes : $10 \\times 16 = 160$.\n\n**Erreurs fréquentes :**\n\n- 150 vaut $10^2 + 5 \\times 10$ : la formule $n^2 + 5n$ (sans le $+n$) a été utilisée ;\n- 25 est seulement le dernier terme, pas la somme.\n\n**À retenir :** simplifie d'abord en fonction de $n$, puis remplace $n$ ; vérifie avec « nombre de termes $\\times$ moyenne du premier et du dernier »."
       },
       {
         "intitule": "L'égalité $\\sum a_k b_k = \\left(\\sum a_k\\right) \\times \\left(\\sum b_k\\right)$ est :",
         "type": "choix",
-        "choix": ["Toujours vraie", "Fausse en général"],
-        "reponse": 1
+        "choix": [
+          "Toujours vraie",
+          "Fausse en général"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** la linéarité permet seulement de couper une **somme** ($\\sum (a_k + b_k)$) et de sortir une **constante** ($\\sum c\\,a_k$). La somme d'un **produit** $a_k b_k$ n'est pas le produit des sommes.\n\n**Pas à pas (contre-exemple) :** on prend deux termes, $a_1 = b_1 = 1$ et $a_2 = b_2 = 2$.\n\n1. À gauche : $\\sum a_k b_k = 1 \\times 1 + 2 \\times 2 = 1 + 4 = 5$.\n2. À droite : $\\left(\\sum a_k\\right) \\times \\left(\\sum b_k\\right) = (1 + 2) \\times (1 + 2) = 9$.\n3. $5 \\neq 9$ : l'égalité est **fausse en général**.\n\nLa différence vient des produits croisés : $(1 + 2)(1 + 2) = 1 \\times 1 + 1 \\times 2 + 2 \\times 1 + 2 \\times 2$, qui contient en plus $1 \\times 2 + 2 \\times 1 = 4$.\n\n**Erreur fréquente :** répondre « Toujours vraie » par analogie avec $\\sum (a_k + b_k) = \\sum a_k + \\sum b_k$. Ce qui marche pour une addition ne marche pas pour une multiplication.\n\n**À retenir :** un seul contre-exemple suffit à montrer qu'une égalité est fausse en général."
       }
     ],
     "indices": [
@@ -202,27 +339,52 @@
     "difficulte": 2,
     "enonce": "Soit $S = \\displaystyle\\sum_{k=4}^{n+3} (k - 3)$. On pose $j = k - 3$.",
     "questions": [
-      { "intitule": "Nouvelle borne du **bas** pour $j$ (un nombre) :", "type": "nombre", "reponse": 1, "refuses": ["4", "0"] },
+      {
+        "intitule": "Nouvelle borne du **bas** pour $j$ (un nombre) :",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": [
+          "4",
+          "0"
+        ],
+        "explication": "**Règle :** quand on pose $j = k - 3$, on calcule $j$ pour la borne du bas en remplaçant $k$ par sa valeur.\n\n**Pas à pas :**\n\n1. La borne du bas de $S$ est $k = 4$.\n2. $j = 4 - 3 = 1$.\n3. La nouvelle borne du bas est donc **1**.\n\nOn vérifie avec le premier terme : pour $k = 4$, le terme $k - 3$ vaut 1, c'est bien $j = 1$.\n\n**Erreurs fréquentes :**\n\n- garder 4 : l'ancienne borne ne bouge pas toute seule, il faut la recalculer ;\n- répondre 0 : on a fait $4 - 4$ au lieu de $4 - 3$.\n\n**À retenir :** nouvelle borne = on applique la formule du changement ($j = k - 3$) à l'ancienne borne."
+      },
       {
         "intitule": "Nouvelle borne du **haut** pour $j$ (une expression en `n`) :",
         "type": "expression",
         "variable": "n",
         "reponse": "n",
-        "refuses": ["n+3", "n-3", "n+1"]
+        "refuses": [
+          "n+3",
+          "n-3",
+          "n+1"
+        ],
+        "explication": "**Règle :** on fait la même chose pour la borne du haut : on remplace $k$ par $n + 3$ dans $j = k - 3$.\n\n**Pas à pas :**\n\n1. La borne du haut de $S$ est $k = n + 3$.\n2. $j = (n + 3) - 3 = n$.\n3. La nouvelle borne du haut est donc **$n$**.\n\nLes deux bornes se sont décalées de 3, comme l'indice. Vérification du nombre de termes : avant, $(n + 3) - 4 + 1 = n$ ; après, $n - 1 + 1 = n$. C'est le même.\n\n**Erreurs fréquentes :**\n\n- $n + 3$ : on a gardé l'ancienne borne ;\n- $n - 3$ : on a retiré 3 à $n$ au lieu de le retirer à $n + 3$ ;\n- $n + 1$ : erreur de calcul, le nombre de termes ne serait plus le même.\n\n**À retenir :** applique le changement aux **deux** bornes, puis vérifie que le nombre de termes n'a pas changé."
       },
       {
         "intitule": "Valeur de $S$ en fonction de $n$ (une expression en `n`) :",
         "type": "expression",
         "variable": "n",
         "reponse": "n(n+1)/2",
-        "acceptes": ["(n^2+n)/2", "n^2/2 + n/2"],
-        "refuses": ["(n+3)(n+4)/2", "n(n-1)/2"]
+        "acceptes": [
+          "(n^2+n)/2",
+          "n^2/2 + n/2"
+        ],
+        "refuses": [
+          "(n+3)(n+4)/2",
+          "n(n-1)/2"
+        ],
+        "explication": "**Règle :** un changement d'indice change trois choses à la fois : la borne du bas, la borne du haut **et** le terme général. La valeur de la somme, elle, ne change pas.\n\n**Pas à pas :**\n\n1. Bornes : $j$ va de 1 à $n$ (questions précédentes).\n2. Terme : $k - 3$ s'écrit $j$, puisque $j = k - 3$.\n3. Donc $S = \\sum_{j=1}^{n} j$.\n4. Formule : $\\sum_{j=1}^{n} j = \\frac{n(n+1)}{2}$.\n\nVérification avec $n = 2$ : $S = \\sum_{k=4}^{5} (k - 3) = 1 + 2 = 3$, et $\\frac{2 \\times 3}{2} = 3$.\n\n**Erreurs fréquentes :**\n\n- $\\frac{(n+3)(n+4)}{2}$ : on a appliqué la formule $\\frac{m(m+1)}{2}$ à l'ancienne borne $m = n + 3$, sans changer le terme ;\n- $\\frac{n(n-1)}{2}$ : on a pris $n - 1$ au lieu de $n + 1$ dans la formule.\n\n**À retenir :** change les deux bornes **et** le terme, puis applique la formule connue."
       },
       {
         "intitule": "Avec la même méthode, calcule $T = \\displaystyle\\sum_{k=0}^{19} (k + 1)$ (un nombre).",
         "type": "nombre",
         "reponse": 210,
-        "refuses": ["190", "231"]
+        "refuses": [
+          "190",
+          "231"
+        ],
+        "explication": "**Règle :** même méthode avec $j = k + 1$ : nouvelles bornes, nouveau terme, puis formule $\\sum_{j=1}^{m} j = \\frac{m(m+1)}{2}$.\n\n**Pas à pas :**\n\n1. Borne du bas : $k = 0$ donne $j = 0 + 1 = 1$.\n2. Borne du haut : $k = 19$ donne $j = 19 + 1 = 20$.\n3. Terme : $k + 1$ s'écrit $j$.\n4. Donc $T = \\sum_{j=1}^{20} j = \\frac{20 \\times 21}{2} = \\frac{420}{2} = 210$.\n\nVérification du nombre de termes : de $k = 0$ à 19, il y a $19 - 0 + 1 = 20$ termes ; de $j = 1$ à 20, aussi 20.\n\n**Erreurs fréquentes :**\n\n- 190 vaut $\\sum_{k=0}^{19} k = \\frac{19 \\times 20}{2}$ : on a oublié le $+1$ du terme ;\n- 231 vaut $\\frac{21 \\times 22}{2}$ : on a décalé la borne du haut une fois de trop ($j$ jusqu'à 21).\n\n**À retenir :** une somme qui part de $k = 0$ se ramène à une somme qui part de 1 avec $j = k + 1$."
       }
     ],
     "indices": [
@@ -238,15 +400,39 @@
     "difficulte": 2,
     "enonce": "Les ventes $v_{i,j}$ (en milliers d'euros) du magasin $i$ pendant la semaine $j$ sont :\n\n| | Semaine 1 | Semaine 2 | Semaine 3 |\n|---|---|---|---|\n| Magasin 1 | 10 | 20 | 30 |\n| Magasin 2 | 5 | 15 | 25 |\n\nRéponds par un nombre.",
     "questions": [
-      { "intitule": "$\\displaystyle\\sum_{j=1}^{3} v_{2,j}$ (chiffre d'affaires du magasin 2)", "type": "nombre", "reponse": 45 },
-      { "intitule": "$\\displaystyle\\sum_{i=1}^{2} v_{i,3}$ (total de la semaine 3)", "type": "nombre", "reponse": 55 },
-      { "intitule": "$\\displaystyle\\sum_{i=1}^{2} \\sum_{j=1}^{3} v_{i,j}$ (total général)", "type": "nombre", "reponse": 105 },
-      { "intitule": "$\\displaystyle\\sum_{i=1}^{2} \\sum_{j=1}^{3} 1$ (l'équivalent de `COUNT(*)` sur ce tableau)", "type": "nombre", "reponse": 6 },
+      {
+        "intitule": "$\\displaystyle\\sum_{j=1}^{3} v_{2,j}$ (chiffre d'affaires du magasin 2)",
+        "type": "nombre",
+        "reponse": 45,
+        "explication": "**Règle :** dans $v_{i,j}$, $i$ est le magasin (la **ligne**) et $j$ la semaine (la **colonne**). Dans $\\sum_{j=1}^{3} v_{2,j}$, $i = 2$ est **fixé** et seul $j$ varie : on parcourt la ligne du magasin 2.\n\n**Pas à pas :**\n\n| $j$ | 1 | 2 | 3 |\n|---|---|---|---|\n| $v_{2,j}$ | 5 | 15 | 25 |\n\n$5 + 15 + 25 = 45$.\n\n**Erreur fréquente :** se tromper de ligne et additionner le magasin 1 ($10 + 20 + 30 = 60$), ou confondre ligne et colonne.\n\n**À retenir :** l'indice fixé choisit la ligne (ou la colonne), l'indice de la somme la parcourt."
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{i=1}^{2} v_{i,3}$ (total de la semaine 3)",
+        "type": "nombre",
+        "reponse": 55,
+        "explication": "**Règle :** dans $\\sum_{i=1}^{2} v_{i,3}$, c'est cette fois $j = 3$ qui est **fixé** : on parcourt la colonne de la semaine 3, en faisant varier le magasin $i$.\n\n**Pas à pas :**\n\n| $i$ | 1 | 2 |\n|---|---|---|\n| $v_{i,3}$ | 30 | 25 |\n\n$30 + 25 = 55$.\n\n**Erreur fréquente :** additionner la ligne 3 (il n'y en a pas : seulement 2 magasins) ou la ligne du magasin 2. Regarde quel indice bouge sous le $\\Sigma$ : ici c'est $i$, donc on descend dans une colonne.\n\n**À retenir :** $\\sum_i v_{i,3}$ = total d'une colonne ; $\\sum_j v_{2,j}$ = total d'une ligne."
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{i=1}^{2} \\sum_{j=1}^{3} v_{i,j}$ (total général)",
+        "type": "nombre",
+        "reponse": 105,
+        "explication": "**Règle :** $\\displaystyle\\sum_{i=1}^{2} \\sum_{j=1}^{3} v_{i,j}$ se calcule de l'intérieur vers l'extérieur : pour chaque $i$ fixé, on fait la somme sur $j$ (le total de la ligne), puis on additionne ces totaux.\n\n**Pas à pas :**\n\n| Magasin $i$ | Somme interne $\\sum_j v_{i,j}$ |\n|---|---|\n| 1 | $10 + 20 + 30 = 60$ |\n| 2 | $5 + 15 + 25 = 45$ |\n\nSomme externe : $60 + 45 = 105$. C'est la somme de **toutes** les cases du tableau.\n\n**Erreur fréquente :** ne faire que la somme interne d'une seule ligne, ou oublier une case.\n\n**À retenir :** somme double = total de chaque ligne, puis total des totaux."
+      },
+      {
+        "intitule": "$\\displaystyle\\sum_{i=1}^{2} \\sum_{j=1}^{3} 1$ (l'équivalent de `COUNT(*)` sur ce tableau)",
+        "type": "nombre",
+        "reponse": 6,
+        "explication": "**Règle :** $\\sum \\sum 1$ ajoute 1 pour **chaque case** du tableau, quelle que soit sa valeur : c'est un comptage, comme `COUNT(*)`.\n\n**Pas à pas :**\n\n1. Somme interne pour un magasin fixé : $\\sum_{j=1}^{3} 1 = 3$ (une par semaine).\n2. Somme externe : on le fait pour 2 magasins, $3 + 3 = 6$.\n3. Autrement dit, 2 lignes $\\times$ 3 colonnes $= 6$ cases.\n\n**Erreur fréquente :** remplacer le 1 par les ventes et répondre 105. Le terme de la somme est 1, pas $v_{i,j}$.\n\n**À retenir :** $\\sum_{i=1}^{m} \\sum_{j=1}^{n} 1 = m \\times n$, le nombre de cases."
+      },
       {
         "intitule": "Si on inverse l'ordre des deux sommes ($\\sum_j \\sum_i$ au lieu de $\\sum_i \\sum_j$), le total général :",
         "type": "choix",
-        "choix": ["Change", "Ne change pas"],
-        "reponse": 1
+        "choix": [
+          "Change",
+          "Ne change pas"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** si les bornes de $j$ ne dépendent pas de $i$ (et inversement), on peut inverser l'ordre des deux sommes : additionner par lignes ou par colonnes donne le même total.\n\n**Pas à pas :** on refait le total par colonnes ($\\sum_j \\sum_i$).\n\n| Semaine $j$ | $\\sum_i v_{i,j}$ |\n|---|---|\n| 1 | $10 + 5 = 15$ |\n| 2 | $20 + 15 = 35$ |\n| 3 | $30 + 25 = 55$ |\n\n$15 + 35 + 55 = 105$ : le même total que par lignes. Le total **ne change pas**.\n\n**Erreur fréquente :** répondre « Change » par analogie avec $\\forall$ et $\\exists$, dont l'ordre compte. Pour des sommes, on additionne les mêmes cases, seulement dans un autre ordre.\n\n**À retenir :** sur un tableau rectangulaire, $\\sum_i \\sum_j = \\sum_j \\sum_i$."
       }
     ],
     "indices": [
@@ -265,28 +451,48 @@
         "intitule": "On met $\\dfrac{1}{k} - \\dfrac{1}{k+1}$ au même dénominateur $k(k+1)$. Que vaut le numérateur, une fois simplifié ? (un nombre)",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["2", "0"]
+        "refuses": [
+          "2",
+          "0"
+        ],
+        "explication": "**Règle :** pour soustraire deux fractions, on les met au **même dénominateur** : on multiplie le haut et le bas de chacune par le dénominateur de l'autre, puis on soustrait les numérateurs.\n\n**Pas à pas :**\n\n1. Dénominateur commun : $k(k+1)$.\n2. $\\dfrac{1}{k} = \\dfrac{k+1}{k(k+1)}$ (haut et bas multipliés par $k + 1$).\n3. $\\dfrac{1}{k+1} = \\dfrac{k}{k(k+1)}$ (haut et bas multipliés par $k$).\n4. Numérateur : $(k + 1) - k = k + 1 - k = 1$.\n\nDonc $\\dfrac{1}{k} - \\dfrac{1}{k+1} = \\dfrac{1}{k(k+1)}$ : le numérateur vaut **1**. Test avec $k = 1$ : $1 - \\frac{1}{2} = \\frac{1}{2}$, et $\\frac{1}{1 \\times 2} = \\frac{1}{2}$.\n\n**Erreurs fréquentes :**\n\n- 2 : erreur de signe, par exemple en enlevant les parenthèses de travers ;\n- 0 : on a cru que les deux fractions s'annulaient. Elles ne sont pas égales ($\\frac{1}{k}$ est plus grand que $\\frac{1}{k+1}$).\n\n**À retenir :** au même dénominateur, puis soustrais les numérateurs **entre parenthèses**."
       },
       {
         "intitule": "Même travail : $\\dfrac{1}{k} - \\dfrac{1}{k+2} = \\dfrac{a}{k(k+2)}$. Que vaut $a$ ?",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["1"]
+        "refuses": [
+          "1"
+        ],
+        "explication": "**Règle :** même méthode, avec cette fois le dénominateur commun $k(k+2)$. Le numérateur obtenu vaut l'écart entre les deux dénominateurs.\n\n**Pas à pas :**\n\n1. $\\dfrac{1}{k} = \\dfrac{k+2}{k(k+2)}$ et $\\dfrac{1}{k+2} = \\dfrac{k}{k(k+2)}$.\n2. Numérateur : $(k + 2) - k = 2$.\n3. Donc $\\dfrac{1}{k} - \\dfrac{1}{k+2} = \\dfrac{2}{k(k+2)}$, et $a = 2$.\n\nTest avec $k = 1$ : $1 - \\frac{1}{3} = \\frac{2}{3}$, et $\\frac{2}{1 \\times 3} = \\frac{2}{3}$.\n\n**Erreur fréquente :** répondre 1 en recopiant le résultat de la question précédente. Le numérateur n'est pas toujours 1 : ici, l'écart entre $k$ et $k + 2$ vaut 2.\n\n**À retenir :** $\\dfrac{1}{k} - \\dfrac{1}{k+d} = \\dfrac{d}{k(k+d)}$ ; vérifie toujours avec $k = 1$."
       },
       {
         "intitule": "En déduire $\\displaystyle\\sum_{k=1}^{n} \\frac{2}{k(k+2)}$ en fonction de $n$ (une expression en `n`).",
         "type": "expression",
         "variable": "n",
         "reponse": "3/2 - 1/(n+1) - 1/(n+2)",
-        "acceptes": ["1 + 1/2 - 1/(n+1) - 1/(n+2)"],
-        "refuses": ["1 - 1/(n+2)", "3/2 - 1/(n+2)", "1 - 1/(n+1)"]
+        "acceptes": [
+          "1 + 1/2 - 1/(n+1) - 1/(n+2)"
+        ],
+        "refuses": [
+          "1 - 1/(n+2)",
+          "3/2 - 1/(n+2)",
+          "1 - 1/(n+1)"
+        ],
+        "explication": "**Règle :** grâce à la question 2, $\\dfrac{2}{k(k+2)} = \\dfrac{1}{k} - \\dfrac{1}{k+2}$. C'est un télescopage avec un **écart de 2** : chaque $+\\frac{1}{m}$ s'annule avec le $-\\frac{1}{m}$ placé deux lignes plus haut. Il reste deux termes au début et deux à la fin.\n\n**Pas à pas :** on écrit les termes.\n\n| $k$ | Terme $\\frac{1}{k} - \\frac{1}{k+2}$ |\n|---|---|\n| 1 | $1 - \\frac{1}{3}$ |\n| 2 | $\\frac{1}{2} - \\frac{1}{4}$ |\n| 3 | $\\frac{1}{3} - \\frac{1}{5}$ |\n| 4 | $\\frac{1}{4} - \\frac{1}{6}$ |\n| … | … |\n| $n - 1$ | $\\frac{1}{n-1} - \\frac{1}{n+1}$ |\n| $n$ | $\\frac{1}{n} - \\frac{1}{n+2}$ |\n\n1. Le $-\\frac{1}{3}$ (ligne 1) s'annule avec le $+\\frac{1}{3}$ (ligne 3), le $-\\frac{1}{4}$ (ligne 2) avec le $+\\frac{1}{4}$ (ligne 4), et ainsi de suite.\n2. Positifs qui restent : ceux des deux premières lignes, $1$ et $\\frac{1}{2}$ (aucune ligne plus haut ne les annule).\n3. Négatifs qui restent : ceux des deux dernières lignes, $-\\frac{1}{n+1}$ et $-\\frac{1}{n+2}$ (aucune ligne plus bas ne les annule).\n4. Somme : $1 + \\frac{1}{2} - \\frac{1}{n+1} - \\frac{1}{n+2} = \\frac{3}{2} - \\frac{1}{n+1} - \\frac{1}{n+2}$.\n\n**Erreurs fréquentes :**\n\n- $1 - \\frac{1}{n+1}$ ou $1 - \\frac{1}{n+2}$ : on a gardé un seul terme de chaque côté, comme pour un écart de 1 ;\n- $\\frac{3}{2} - \\frac{1}{n+2}$ : on a oublié l'avant-dernier négatif $-\\frac{1}{n+1}$.\n\n**À retenir :** avec un écart de 2, il reste les **deux** premiers positifs et les **deux** derniers négatifs."
       },
       {
         "intitule": "Valeur exacte de $\\displaystyle\\sum_{k=1}^{3} \\frac{2}{k(k+2)}$ (tu peux écrire une fraction comme `3/4`).",
         "type": "nombre",
         "reponse": "21/20",
-        "acceptes": ["1.05"],
-        "refuses": ["4/5", "1"]
+        "acceptes": [
+          "1.05"
+        ],
+        "refuses": [
+          "4/5",
+          "1"
+        ],
+        "explication": "**Règle :** on remplace $n$ par 3 dans le résultat de la question précédente, puis on met au même dénominateur.\n\n**Pas à pas :**\n\n1. $\\frac{3}{2} - \\frac{1}{3 + 1} - \\frac{1}{3 + 2} = \\frac{3}{2} - \\frac{1}{4} - \\frac{1}{5}$.\n2. Dénominateur commun : 20. $\\frac{3}{2} = \\frac{30}{20}$, $\\frac{1}{4} = \\frac{5}{20}$, $\\frac{1}{5} = \\frac{4}{20}$.\n3. $\\frac{30 - 5 - 4}{20} = \\frac{21}{20}$.\n\nVérification en calculant directement les 3 termes :\n\n| $k$ | $\\frac{2}{k(k+2)}$ |\n|---|---|\n| 1 | $\\frac{2}{3}$ |\n| 2 | $\\frac{2}{8}$ |\n| 3 | $\\frac{2}{15}$ |\n\nAu dénominateur 60 : $\\frac{40}{60} + \\frac{15}{60} + \\frac{8}{60} = \\frac{63}{60} = \\frac{21}{20}$ (on divise haut et bas par 3). C'est le même résultat, soit $1{,}05$.\n\n**Erreurs fréquentes :**\n\n- $\\frac{4}{5}$ vaut $1 - \\frac{1}{5}$ : on a gardé un seul terme de chaque côté, comme pour un écart de 1 ;\n- 1 : la somme est proche de 1, mais pas égale ($\\frac{21}{20} = 1{,}05$) ;\n- oublier de remplacer $n$ **partout**.\n\n**À retenir :** remplace $n$ dans la formule, puis vérifie en calculant les premiers termes à la main."
       }
     ],
     "indices": [
@@ -307,23 +513,46 @@
         "type": "expression",
         "variable": "n",
         "reponse": "n/(n+1)",
-        "acceptes": ["1 - 1/(n+1)", "1-(1/(n+1))"],
-        "refuses": ["1/(n+1)", "1 - 1/n", "(n-1)/n"]
+        "acceptes": [
+          "1 - 1/(n+1)",
+          "1-(1/(n+1))"
+        ],
+        "refuses": [
+          "1/(n+1)",
+          "1 - 1/n",
+          "(n-1)/n"
+        ],
+        "explication": "**Règle :** $\\displaystyle\\sum_{k=1}^{n} (u_k - u_{k+1}) = u_1 - u_{n+1}$ : en écrivant les termes, tout s'annule sauf le premier et le dernier.\n\n**Pas à pas :** avec la décomposition admise, la somme devient $\\sum \\left(\\frac{1}{k} - \\frac{1}{k+1}\\right)$.\n\n| $k$ | Terme |\n|---|---|\n| 1 | $1 - \\frac{1}{2}$ |\n| 2 | $\\frac{1}{2} - \\frac{1}{3}$ |\n| 3 | $\\frac{1}{3} - \\frac{1}{4}$ |\n| … | … |\n| $n$ | $\\frac{1}{n} - \\frac{1}{n+1}$ |\n\n1. Le $-\\frac{1}{2}$ s'annule avec le $+\\frac{1}{2}$ de la ligne suivante, le $-\\frac{1}{3}$ avec le $+\\frac{1}{3}$, etc.\n2. Il reste le tout premier, $1$, et le tout dernier, $-\\frac{1}{n+1}$.\n3. $1 - \\frac{1}{n+1} = \\frac{n+1}{n+1} - \\frac{1}{n+1} = \\frac{n}{n+1}$.\n\nVérification avec $n = 1$ : $\\frac{1}{1 \\times 2} = \\frac{1}{2}$, et $\\frac{1}{1 + 1} = \\frac{1}{2}$.\n\n**Erreurs fréquentes :**\n\n- $1 - \\frac{1}{n}$ ou $\\frac{n-1}{n}$ : on a pris $-\\frac{1}{n}$ comme dernier terme, alors que la dernière ligne finit par $-\\frac{1}{n+1}$ ;\n- $\\frac{1}{n+1}$ : on a oublié le 1 du début (ou inversé le signe).\n\n**À retenir :** écris les deux premières lignes et la dernière ; il reste « le premier $+$ » et « le dernier $-$ »."
       },
       {
         "intitule": "Valeur exacte de $\\displaystyle\\sum_{k=1}^{99} \\frac{1}{k(k+1)}$ (tu peux écrire une fraction comme `3/4`) :",
         "type": "nombre",
         "reponse": "99/100",
-        "acceptes": ["0.99", "1 - 1/100"],
-        "refuses": ["100/101", "1"]
+        "acceptes": [
+          "0.99",
+          "1 - 1/100"
+        ],
+        "refuses": [
+          "100/101",
+          "1"
+        ],
+        "explication": "**Règle :** on applique la formule de la question précédente, $\\sum_{k=1}^{n} \\frac{1}{k(k+1)} = \\frac{n}{n+1}$, avec la bonne valeur de $n$.\n\n**Pas à pas :**\n\n1. La somme va de $k = 1$ à 99 : $n = 99$.\n2. $\\frac{99}{99 + 1} = \\frac{99}{100}$, soit $0{,}99$.\n\n**Erreurs fréquentes :**\n\n- $\\frac{100}{101}$ : c'est le résultat pour $n = 100$, on a décalé la borne ;\n- 1 : la somme s'en approche (il manque seulement $\\frac{1}{100}$), mais ne l'atteint pas.\n\n**À retenir :** une fois la formule trouvée, repère $n$ (la borne du haut) et remplace."
       },
       {
         "intitule": "$\\displaystyle\\sum_{k=1}^{n} \\big((k+1)^2 - k^2\\big)$ en fonction de $n$ (une expression en `n`) :",
         "type": "expression",
         "variable": "n",
         "reponse": "(n+1)^2 - 1",
-        "acceptes": ["n^2 + 2n", "n(n+2)"],
-        "refuses": ["(n+1)^2", "n^2", "(n+1)^2 - n^2"]
+        "acceptes": [
+          "n^2 + 2n",
+          "n(n+2)"
+        ],
+        "refuses": [
+          "(n+1)^2",
+          "n^2",
+          "(n+1)^2 - n^2"
+        ],
+        "explication": "**Règle :** $\\displaystyle\\sum_{k=1}^{n} (u_{k+1} - u_k) = u_{n+1} - u_1$ (« le dernier moins le premier »).\n\n**Pas à pas :**\n\n1. On reconnaît la forme $u_{k+1} - u_k$ avec $u_k = k^2$ : $(k+1)^2$ est bien $u_{k+1}$.\n2. On écrit les termes : $(2^2 - 1^2) + (3^2 - 2^2) + \\dots + ((n+1)^2 - n^2)$. Chaque carré du milieu apparaît une fois avec $+$ et une fois avec $-$.\n3. Il reste $u_{n+1} - u_1 = (n+1)^2 - 1^2 = (n+1)^2 - 1$.\n4. En développant : $n^2 + 2n + 1 - 1 = n^2 + 2n$.\n\nVérification avec $n = 2$ : $(4 - 1) + (9 - 4) = 3 + 5 = 8$, et $2^2 + 2 \\times 2 = 8$.\n\n**Erreurs fréquentes :**\n\n- $(n+1)^2$ : on a oublié le $-1$ qui vient du premier terme $u_1 = 1^2$ ;\n- $(n+1)^2 - n^2$ : c'est seulement le **dernier terme**, pas la somme ;\n- $n^2$ : on s'est arrêté à $u_n$ au lieu de $u_{n+1}$, et on a oublié $u_1$.\n\n**À retenir :** identifie $u_k$, puis écris directement $u_{n+1} - u_1$."
       }
     ],
     "indices": [
@@ -338,20 +567,41 @@
     "difficulte": 2,
     "enonce": "Calcule ou simplifie chaque produit.",
     "questions": [
-      { "intitule": "$\\displaystyle\\prod_{k=1}^{6} k$ (un nombre)", "type": "nombre", "reponse": 720, "acceptes": ["6!"], "refuses": ["21", "120"] },
+      {
+        "intitule": "$\\displaystyle\\prod_{k=1}^{6} k$ (un nombre)",
+        "type": "nombre",
+        "reponse": 720,
+        "acceptes": [
+          "6!"
+        ],
+        "refuses": [
+          "21",
+          "120"
+        ],
+        "explication": "**Règle :** $\\displaystyle\\prod_{k=1}^{n} k = 1 \\times 2 \\times \\dots \\times n = n!$ (factorielle $n$) : on **multiplie** tous les entiers de 1 à $n$.\n\n**Pas à pas :**\n\n1. $1 \\times 2 = 2$\n2. $2 \\times 3 = 6$\n3. $6 \\times 4 = 24$\n4. $24 \\times 5 = 120$\n5. $120 \\times 6 = 720$\n\nDonc $\\prod_{k=1}^{6} k = 6! = 720$.\n\n**Erreurs fréquentes :**\n\n- 21 vaut $1 + 2 + \\dots + 6$ : c'est la **somme** $\\Sigma$, pas le produit $\\Pi$ ;\n- 120 vaut $5!$ : on s'est arrêté un facteur trop tôt.\n\n**À retenir :** $\\Pi$ multiplie, $\\Sigma$ additionne ; $n! = n \\times (n-1)!$, donc $6! = 6 \\times 120$."
+      },
       {
         "intitule": "$\\displaystyle\\prod_{k=1}^{n} 3$ en fonction de $n$ (une expression en `n`) :",
         "type": "expression",
         "variable": "n",
         "reponse": "3^n",
-        "refuses": ["3n", "n^3"]
+        "refuses": [
+          "3n",
+          "n^3"
+        ],
+        "explication": "**Règle :** un produit d'une constante répète la **multiplication** : $\\displaystyle\\prod_{k=1}^{n} c = c \\times c \\times \\dots \\times c = c^n$.\n\n**Pas à pas :**\n\n1. Le facteur vaut toujours 3 : il ne dépend pas de $k$.\n2. Il y a $n$ facteurs (de $k = 1$ à $n$).\n3. $3 \\times 3 \\times \\dots \\times 3$ ($n$ fois) $= 3^n$.\n\nVérification avec $n = 2$ : $3 \\times 3 = 9 = 3^2$.\n\n**Erreurs fréquentes :**\n\n- $3n$ : c'est la **somme** $\\sum_{k=1}^{n} 3 = 3 + 3 + \\dots + 3$. Une somme répétée donne une multiplication, un produit répété donne une **puissance** ;\n- $n^3$ : on a inversé la base et l'exposant. Avec $n = 2$, $n^3 = 8$ alors que le produit vaut 9.\n\n**À retenir :** $\\sum c = n\\,c$ mais $\\prod c = c^n$ (la constante en bas, le nombre de facteurs en exposant)."
       },
       {
         "intitule": "$\\displaystyle\\prod_{k=1}^{n} \\frac{k+1}{k}$ en fonction de $n$ (une expression en `n`) :",
         "type": "expression",
         "variable": "n",
         "reponse": "n+1",
-        "refuses": ["n", "(n+1)/n", "1"]
+        "refuses": [
+          "n",
+          "(n+1)/n",
+          "1"
+        ],
+        "explication": "**Règle :** dans un produit « en cascade », chaque numérateur s'annule avec le dénominateur du facteur suivant. Il reste le **dernier numérateur** sur le **premier dénominateur**.\n\n**Pas à pas :** on écrit les facteurs.\n\n| $k$ | Facteur $\\frac{k+1}{k}$ |\n|---|---|\n| 1 | $\\frac{2}{1}$ |\n| 2 | $\\frac{3}{2}$ |\n| 3 | $\\frac{4}{3}$ |\n| … | … |\n| $n$ | $\\frac{n+1}{n}$ |\n\n1. Le 2 du haut (ligne 1) s'annule avec le 2 du bas (ligne 2), le 3 avec le 3, et ainsi de suite jusqu'à $n$.\n2. Il reste le dernier numérateur, $n + 1$, et le premier dénominateur, 1.\n3. $\\frac{n+1}{1} = n + 1$.\n\nVérification avec $n = 3$ : $\\frac{2}{1} \\times \\frac{3}{2} \\times \\frac{4}{3} = 4 = 3 + 1$.\n\n**Erreurs fréquentes :**\n\n- $n$ : on a cru que le dernier numérateur était $n$, alors que c'est $n + 1$ (pour $k = n$, le facteur est $\\frac{n+1}{n}$) ;\n- $\\frac{n+1}{n}$ : c'est seulement le dernier facteur, pas le produit ;\n- 1 : on a cru que **tout** s'annulait.\n\n**À retenir :** cascade = dernier numérateur sur premier dénominateur."
       }
     ],
     "indices": [
@@ -371,18 +621,43 @@
         "type": "expression",
         "variable": "n",
         "reponse": "(n+1)^3 - 1",
-        "acceptes": ["n^3 + 3n^2 + 3n", "(n+1)^3 - 1^3"],
-        "refuses": ["(n+1)^3", "n^3", "(n+1)^3 - n^3"]
+        "acceptes": [
+          "n^3 + 3n^2 + 3n",
+          "(n+1)^3 - 1^3"
+        ],
+        "refuses": [
+          "(n+1)^3",
+          "n^3",
+          "(n+1)^3 - n^3"
+        ],
+        "explication": "**Règle :** $\\displaystyle\\sum_{k=1}^{n} (u_{k+1} - u_k) = u_{n+1} - u_1$, ici avec $u_k = k^3$.\n\n**Pas à pas :**\n\n1. On écrit les termes : $(2^3 - 1^3) + (3^3 - 2^3) + (4^3 - 3^3) + \\dots + ((n+1)^3 - n^3)$.\n2. $+2^3$ s'annule avec $-2^3$, $+3^3$ avec $-3^3$, … jusqu'à $n^3$.\n3. Il reste le dernier, $(n+1)^3$, et le premier, $-1^3 = -1$.\n4. Résultat : $(n+1)^3 - 1$, qu'on peut aussi développer en $n^3 + 3n^2 + 3n$.\n\nVérification avec $n = 2$ : $(8 - 1) + (27 - 8) = 7 + 19 = 26$, et $3^3 - 1 = 26$.\n\n**Erreurs fréquentes :**\n\n- $(n+1)^3$ : on a oublié le $-1^3$ du tout premier terme ;\n- $(n+1)^3 - n^3$ : c'est seulement le dernier terme ;\n- $n^3$ : on s'est arrêté à $u_n$.\n\n**À retenir :** télescopage = « le dernier moins le premier », $u_{n+1} - u_1$."
       },
       {
         "intitule": "En déduire $\\displaystyle\\sum_{k=1}^{n} k^2$ en fonction de $n$ (expression en `n`) :",
         "type": "expression",
         "variable": "n",
         "reponse": "n(n+1)(2n+1)/6",
-        "acceptes": ["(2n^3 + 3n^2 + n)/6", "n^3/3 + n^2/2 + n/6"],
-        "refuses": ["n(n+1)/2", "n^2(n+1)^2/4", "n(n+1)(2n+1)/3"]
+        "acceptes": [
+          "(2n^3 + 3n^2 + n)/6",
+          "n^3/3 + n^2/2 + n/6"
+        ],
+        "refuses": [
+          "n(n+1)/2",
+          "n^2(n+1)^2/4",
+          "n(n+1)(2n+1)/3"
+        ],
+        "explication": "**Règle :** on additionne l'égalité $(k+1)^3 - k^3 = 3k^2 + 3k + 1$ pour $k$ de 1 à $n$. Les deux côtés restent égaux : on calcule la gauche par télescopage, la droite par linéarité, puis on isole $\\sum k^2$.\n\n**Pas à pas :**\n\n1. **Gauche** (question précédente) : $(n+1)^3 - 1 = n^3 + 3n^2 + 3n$.\n2. **Droite**, par linéarité : $3 \\sum k^2 + 3 \\sum k + \\sum 1 = 3 \\sum k^2 + \\frac{3n(n+1)}{2} + n$. Le $\\sum 1$ vaut $n$ (un 1 par terme).\n3. **On égale** : $n^3 + 3n^2 + 3n = 3 \\sum k^2 + \\frac{3n^2 + 3n}{2} + n$.\n4. **On isole** $3 \\sum k^2$ en retirant les deux autres morceaux : $3 \\sum k^2 = n^3 + 3n^2 + 3n - n - \\frac{3n^2 + 3n}{2} = n^3 + 3n^2 + 2n - \\frac{3n^2 + 3n}{2}$.\n5. **Même dénominateur 2** : $\\frac{2n^3 + 6n^2 + 4n - 3n^2 - 3n}{2} = \\frac{2n^3 + 3n^2 + n}{2}$.\n6. **On divise par 3** : $\\sum k^2 = \\frac{2n^3 + 3n^2 + n}{6}$.\n7. **On factorise** : $2n^3 + 3n^2 + n = n(2n^2 + 3n + 1) = n(n+1)(2n+1)$, d'où $\\frac{n(n+1)(2n+1)}{6}$.\n\nVérification avec $n = 2$ : $1 + 4 = 5$, et $\\frac{2 \\times 3 \\times 5}{6} = 5$.\n\n**Erreurs fréquentes :**\n\n- $\\frac{n(n+1)(2n+1)}{3}$ : on a oublié de diviser par 3 à l'étape 6 (on n'a divisé que par 2) ;\n- oublier le $+n$ qui vient de $\\sum 1$, ou écrire $\\sum 1 = 1$ ;\n- $\\frac{n(n+1)}{2}$ : c'est la somme des $k$, pas des $k^2$.\n\n**À retenir :** télescoper à gauche, linéarité à droite (avec $\\sum 1 = n$), puis isoler et diviser par le coefficient."
       },
-      { "intitule": "Calcule $\\displaystyle\\sum_{k=1}^{10} k^2$ (un nombre).", "type": "nombre", "reponse": 385, "refuses": ["100", "55"] }
+      {
+        "intitule": "Calcule $\\displaystyle\\sum_{k=1}^{10} k^2$ (un nombre).",
+        "type": "nombre",
+        "reponse": 385,
+        "refuses": [
+          "100",
+          "55"
+        ],
+        "explication": "**Règle :** $\\displaystyle\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$.\n\n**Pas à pas :**\n\n1. $n = 10$, donc $n + 1 = 11$ et $2n + 1 = 21$.\n2. $10 \\times 11 = 110$, puis $110 \\times 21 = 2\\,310$.\n3. $\\frac{2\\,310}{6} = 385$.\n\nVérification en additionnant : $1 + 4 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100 = 385$.\n\n**Erreurs fréquentes :**\n\n- 55 vaut $1 + 2 + \\dots + 10$ : la somme des $k$, sans les carrés ;\n- 100 vaut $10^2$ : seulement le dernier terme ;\n- $3\\,025 = 55^2$ : le carré de la somme, qui n'est pas la somme des carrés.\n\n**À retenir :** remplace $n$, puis calcule $n$, $n + 1$ et $2n + 1$ séparément avant de multiplier."
+      }
     ],
     "indices": [
       "À gauche, presque tous les cubes s'annulent : il ne reste que le dernier et le premier.",
@@ -400,28 +675,54 @@
       {
         "intitule": "Quel mot-clé filtre les lignes **avant** le calcul des sommes ?",
         "type": "texte",
-        "reponse": ["WHERE"],
-        "refuses": ["HAVING"]
+        "reponse": [
+          "WHERE"
+        ],
+        "refuses": [
+          "HAVING"
+        ],
+        "explication": "**Règle :** SQL travaille dans cet ordre : `WHERE` (filtre les lignes une par une), puis `GROUP BY` (forme les groupes et calcule les sommes), puis `HAVING` (filtre les groupes).\n\n**Pas à pas :** la question demande le filtre qui agit **avant** le calcul des sommes. C'est le premier de la liste : **`WHERE`**. Par exemple `WHERE statut = 'validee'` décide quelles ventes entrent dans les totaux.\n\n**Erreur fréquente :** répondre `HAVING`. Il arrive **après** les sommes : il ne peut plus choisir les lignes qui y entrent, seulement garder ou enlever des groupes déjà calculés.\n\n**À retenir :** `WHERE` = filtre de lignes, avant les sommes."
       },
       {
         "intitule": "Quel mot-clé garde seulement les groupes dont `SUM(montant)` dépasse 5000 ?",
         "type": "texte",
-        "reponse": ["HAVING"],
-        "acceptes": ["having"],
-        "refuses": ["WHERE"]
+        "reponse": [
+          "HAVING"
+        ],
+        "acceptes": [
+          "having"
+        ],
+        "refuses": [
+          "WHERE"
+        ],
+        "explication": "**Règle :** une condition sur le **résultat** d'une somme ne peut être testée qu'après le calcul de cette somme, donc après le `GROUP BY` : c'est le rôle de `HAVING`.\n\n**Pas à pas :**\n\n1. `GROUP BY magasin` forme un groupe par magasin et calcule `SUM(montant)` pour chacun.\n2. `HAVING SUM(montant) > 5000` garde ensuite les groupes dont le total dépasse 5000.\n\nLa réponse est **`HAVING`**.\n\n**Erreur fréquente :** écrire `WHERE SUM(montant) > 5000`. C'est refusé par SQL : au moment où `WHERE` s'applique, les sommes n'existent pas encore.\n\n**À retenir :** `HAVING` = filtre de groupes, après les sommes."
       },
       {
         "intitule": "Quels mots-clés font une somme par magasin (une somme double) ?",
         "type": "texte",
-        "reponse": ["GROUP BY", "GROUP BY magasin"],
-        "acceptes": ["group by"]
+        "reponse": [
+          "GROUP BY",
+          "GROUP BY magasin"
+        ],
+        "acceptes": [
+          "group by"
+        ],
+        "explication": "**Règle :** une somme par magasin est une **somme double** : la somme externe parcourt les magasins, la somme interne additionne les ventes **d'un** magasin. En SQL, la somme externe (« pour chaque magasin ») s'écrit `GROUP BY`.\n\n**Pas à pas :**\n\n$$\\text{pour chaque magasin } m : \\quad \\sum_{v \\in \\text{ventes}(m)} v.\\mathrm{montant}$$\n\n1. « pour chaque magasin » : `GROUP BY magasin` (un groupe par magasin).\n2. La somme interne : `SUM(montant)`, calculée dans chaque groupe.\n\nLa réponse est **`GROUP BY`** (ou `GROUP BY magasin`).\n\n**Erreur fréquente :** croire que `SUM` seul suffit. Sans `GROUP BY`, `SUM(montant)` donne un seul total pour toute la table, tous magasins confondus.\n\n**À retenir :** « pour chaque … » devant une somme = `GROUP BY …`."
       },
       {
         "intitule": "Quelle fonction SQL correspond à $\\sum 1$ (compter les lignes) ?",
         "type": "texte",
-        "reponse": ["COUNT", "COUNT(*)"],
-        "acceptes": ["count(*)"],
-        "refuses": ["SUM"]
+        "reponse": [
+          "COUNT",
+          "COUNT(*)"
+        ],
+        "acceptes": [
+          "count(*)"
+        ],
+        "refuses": [
+          "SUM"
+        ],
+        "explication": "**Règle :** $\\sum 1$ ajoute 1 pour chaque ligne : c'est **compter** les lignes. En SQL : `COUNT(*)`.\n\n**Pas à pas :** sur une table de 4 lignes, $\\sum 1 = 1 + 1 + 1 + 1 = 4$, quelles que soient les valeurs dans les lignes. C'est exactement ce que renvoie `COUNT(*)`.\n\n**Erreur fréquente :** répondre `SUM`. `SUM(montant)` additionne les **valeurs** d'une colonne ($\\sum a_k$), pas le nombre de lignes ($\\sum 1$).\n\n**À retenir :** $\\sum 1$ = `COUNT(*)`, $\\sum a_k$ = `SUM(col)`, $\\frac{1}{n} \\sum a_k$ = `AVG(col)`."
       }
     ],
     "indices": [
@@ -436,19 +737,43 @@
     "difficulte": 2,
     "enonce": "Voici la table `Commandes` :\n\n| id | client | montant |\n|---|---|---|\n| 1 | A | 40 |\n| 2 | A | 70 |\n| 3 | B | 30 |\n| 4 | B | 20 |\n| 5 | C | 150 |\n\nDonne le résultat de chaque requête (un nombre).",
     "questions": [
-      { "intitule": "`SELECT SUM(montant) FROM Commandes WHERE client = 'A';`", "type": "nombre", "reponse": 110 },
-      { "intitule": "`SELECT COUNT(*) FROM Commandes;`", "type": "nombre", "reponse": 5 },
-      { "intitule": "`SELECT AVG(montant) FROM Commandes;`", "type": "nombre", "reponse": 62, "refuses": ["310", "103.33"] },
+      {
+        "intitule": "`SELECT SUM(montant) FROM Commandes WHERE client = 'A';`",
+        "type": "nombre",
+        "reponse": 110,
+        "explication": "**Règle :** `WHERE` garde d'abord les lignes qui respectent la condition, puis `SUM` additionne la colonne sur ces lignes seulement.\n\n**Pas à pas :**\n\n| id | client | montant | `client = 'A'` ? |\n|---|---|---|---|\n| 1 | A | 40 | oui |\n| 2 | A | 70 | oui |\n| 3 | B | 30 | non |\n| 4 | B | 20 | non |\n| 5 | C | 150 | non |\n\nLignes gardées : 40 et 70. `SUM(montant)` $= 40 + 70 = 110$.\n\n**Erreur fréquente :** additionner toute la colonne (310) en oubliant le `WHERE`, ou compter les lignes gardées (2) au lieu d'additionner leurs montants.\n\n**À retenir :** filtre d'abord avec `WHERE`, puis additionne ce qui reste."
+      },
+      {
+        "intitule": "`SELECT COUNT(*) FROM Commandes;`",
+        "type": "nombre",
+        "reponse": 5,
+        "explication": "**Règle :** `COUNT(*)` compte les lignes, c'est $\\sum 1$ : on ajoute 1 par ligne, quelles que soient ses valeurs.\n\n**Pas à pas :** la table a les lignes d'id 1, 2, 3, 4 et 5. Il n'y a pas de `WHERE`, donc aucune n'est enlevée : $1 + 1 + 1 + 1 + 1 = 5$.\n\n**Erreurs fréquentes :**\n\n- compter les clients différents (A, B, C, soit 3) : il faudrait pour cela `COUNT(DISTINCT client)` ;\n- additionner les montants (310) : c'est `SUM(montant)`.\n\n**À retenir :** `COUNT(*)` = nombre de lignes, sans regarder les valeurs."
+      },
+      {
+        "intitule": "`SELECT AVG(montant) FROM Commandes;`",
+        "type": "nombre",
+        "reponse": 62,
+        "refuses": [
+          "310",
+          "103.33"
+        ],
+        "explication": "**Règle :** `AVG` est la moyenne : la somme des valeurs divisée par le nombre de lignes, $\\frac{1}{n} \\sum a_k$.\n\n**Pas à pas :**\n\n1. Somme : $40 + 70 + 30 + 20 + 150 = 310$.\n2. Nombre de lignes : 5.\n3. Moyenne : $\\frac{310}{5} = 62$.\n\n**Erreurs fréquentes :**\n\n- 310 : on s'est arrêté à la somme, sans diviser ;\n- $103{,}33$ vaut $\\frac{310}{3}$ : on a divisé par le nombre de **clients** (3) au lieu du nombre de **lignes** (5).\n\n**À retenir :** `AVG(col)` = `SUM(col)` divisé par `COUNT(*)` (le nombre de lignes)."
+      },
       {
         "intitule": "Combien de lignes renvoie `SELECT client, SUM(montant) FROM Commandes GROUP BY client HAVING SUM(montant) > 100;` ?",
         "type": "nombre",
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** `GROUP BY client` calcule un total par client, puis `HAVING` garde les groupes dont le total respecte la condition. Chaque groupe gardé donne **une** ligne de résultat.\n\n**Pas à pas :**\n\n| Client | Montants | `SUM(montant)` | $> 100$ ? |\n|---|---|---|---|\n| A | 40, 70 | 110 | oui |\n| B | 30, 20 | 50 | non |\n| C | 150 | 150 | oui |\n\nGroupes gardés : A et C, soit **2** lignes.\n\n**Erreurs fréquentes :**\n\n- répondre 1 en comparant chaque **commande** à 100 (seule celle de 150 dépasse) : `HAVING` compare les **totaux** ;\n- répondre 3 en oubliant le `HAVING`.\n\n**À retenir :** `GROUP BY` puis `HAVING` = un total par groupe, puis on garde les groupes qui passent."
       },
       {
         "intitule": "Et combien de lignes si on ajoute `WHERE montant < 100` **avant** le `GROUP BY` ?",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["2", "0"]
+        "refuses": [
+          "2",
+          "0"
+        ],
+        "explication": "**Règle :** `WHERE` agit **avant** le `GROUP BY` : il enlève des lignes, et les totaux sont calculés ensuite sur ce qui reste.\n\n**Pas à pas :**\n\n1. `WHERE montant < 100` : la commande 5 (150) est enlevée, les autres restent.\n2. Totaux par client sur ce qui reste :\n\n| Client | Montants gardés | `SUM(montant)` | $> 100$ ? |\n|---|---|---|---|\n| A | 40, 70 | 110 | oui |\n| B | 30, 20 | 50 | non |\n| C | (aucun) | pas de groupe | |\n\n3. C n'a plus aucune ligne : il ne forme même pas de groupe. Seul A passe le `HAVING` : **1** ligne.\n\n**Erreurs fréquentes :**\n\n- répondre 2 en appliquant le filtre après les sommes (C garderait alors son total de 150) ;\n- répondre 0 en croyant que A est enlevé : ses deux commandes sont sous 100, elles restent.\n\n**À retenir :** `WHERE` change ce qui entre dans les sommes ; `HAVING` ne regarde que les sommes déjà faites."
       }
     ],
     "indices": [
@@ -466,31 +791,54 @@
       {
         "intitule": "Quelle formule donne le total dépensé par **un** client $c$ ?",
         "type": "choix",
-        "choix": ["$\\displaystyle\\sum_{a \\in A(c)} a.\\mathrm{montant}$", "$\\displaystyle\\sum_{c} \\sum_{a \\in A(c)} a.\\mathrm{montant}$", "$\\displaystyle\\sum_{a \\in A(c)} 1$", "$\\displaystyle\\max_{a \\in A(c)} a.\\mathrm{montant}$"],
-        "reponse": 0
+        "choix": [
+          "$\\displaystyle\\sum_{a \\in A(c)} a.\\mathrm{montant}$",
+          "$\\displaystyle\\sum_{c} \\sum_{a \\in A(c)} a.\\mathrm{montant}$",
+          "$\\displaystyle\\sum_{a \\in A(c)} 1$",
+          "$\\displaystyle\\max_{a \\in A(c)} a.\\mathrm{montant}$"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** pour **un** client $c$ fixé, son total est la somme des montants de **ses** achats : on additionne sur l'ensemble $A(c)$.\n\n**Pas à pas :** si $c$ a fait trois achats de 100, 250 et 50 euros :\n\n- $\\sum_{a \\in A(c)} a.\\mathrm{montant} = 100 + 250 + 50 = 400$ : son total, c'est ce qu'on veut.\n\nLa bonne formule est donc $\\displaystyle\\sum_{a \\in A(c)} a.\\mathrm{montant}$.\n\n**Les autres réponses, sur ce même exemple :**\n\n- $\\sum_{a \\in A(c)} 1 = 1 + 1 + 1 = 3$ : on a **compté** ses achats (comme `COUNT`), au lieu d'additionner les montants.\n- $\\max_{a \\in A(c)} a.\\mathrm{montant} = 250$ : son plus gros achat seulement.\n- $\\sum_{c} \\sum_{a \\in A(c)} a.\\mathrm{montant}$ : la somme externe sur $c$ ajoute **tous** les clients, on obtient le total du magasin, plus celui d'un seul client.\n\n**À retenir :** pour un client fixé, une seule somme, sur ses achats à lui."
       },
       {
         "intitule": "Que donne la somme double $\\displaystyle\\sum_{c} \\sum_{a \\in A(c)} a.\\mathrm{montant}$ ?",
         "type": "choix",
-        "choix": ["Le total de tous les achats, tous clients confondus", "Le nombre de clients", "Le total du client qui dépense le plus"],
-        "reponse": 0
+        "choix": [
+          "Le total de tous les achats, tous clients confondus",
+          "Le nombre de clients",
+          "Le total du client qui dépense le plus"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une somme double se calcule de l'intérieur vers l'extérieur. La somme interne $\\sum_{a \\in A(c)}$ donne le total d'un client ; la somme externe $\\sum_c$ additionne ces totaux pour **tous** les clients.\n\n**Pas à pas :** avec deux clients, Léo (achats 100 et 50) et Mia (achat 300) :\n\n1. Somme interne pour Léo : $100 + 50 = 150$.\n2. Somme interne pour Mia : $300$.\n3. Somme externe : $150 + 300 = 450$, le total de tous les achats.\n\nC'est **le total de tous les achats, tous clients confondus**, comme `SELECT SUM(montant) FROM Achats`.\n\n**Les autres réponses :**\n\n- « Le nombre de clients » s'écrirait $\\sum_c 1$ (ici 2), sans montant.\n- « Le total du client qui dépense le plus » serait un $\\max_c$ des totaux (ici 300), pas une somme.\n\n**À retenir :** somme interne = un client, somme externe = on additionne tous les clients."
       },
       {
         "intitule": "En SQL, quelle partie correspond à la boucle externe « pour chaque client $c$ » ?",
         "type": "choix",
-        "choix": ["`GROUP BY id_client`", "`WHERE montant > 800`", "`SELECT *`", "`ORDER BY montant`"],
-        "reponse": 0
+        "choix": [
+          "`GROUP BY id_client`",
+          "`WHERE montant > 800`",
+          "`SELECT *`",
+          "`ORDER BY montant`"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** dans la somme double $\\sum_c \\sum_{a \\in A(c)}$, la somme externe « pour chaque client $c$ » crée un groupe par client. En SQL, c'est `GROUP BY id_client` ; la somme interne est le `SUM(montant)` calculé dans chaque groupe.\n\n**Pas à pas :**\n\n| Maths | SQL |\n|---|---|\n| pour chaque client $c$ (somme externe) | `GROUP BY id_client` |\n| $\\sum_{a \\in A(c)} a.\\mathrm{montant}$ (somme interne) | `SUM(montant)` |\n\nLa réponse est **`GROUP BY id_client`**.\n\n**Les autres réponses :**\n\n- `WHERE montant > 800` filtre des **lignes** une par une, il ne regroupe rien.\n- `SELECT *` choisit les colonnes à afficher.\n- `ORDER BY montant` trie le résultat, sans former de groupes.\n\n**À retenir :** « pour chaque … » = `GROUP BY …`."
       },
       {
         "intitule": "Où écrire la condition « total $> 800$ » ?",
         "type": "choix",
-        "choix": ["`WHERE montant > 800`", "`WHERE SUM(montant) > 800`", "`HAVING SUM(montant) > 800`"],
-        "reponse": 2
+        "choix": [
+          "`WHERE montant > 800`",
+          "`WHERE SUM(montant) > 800`",
+          "`HAVING SUM(montant) > 800`"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** une condition sur un **total** (le résultat d'une somme) va dans `HAVING`, qui s'applique après le `GROUP BY`. Une condition sur une **ligne** va dans `WHERE`, avant les sommes.\n\n**Pas à pas :** « total $> 800$ » porte sur $\\text{total}(c) = \\sum_{a \\in A(c)} a.\\mathrm{montant}$, qui n'existe qu'une fois les groupes formés. C'est donc **`HAVING SUM(montant) > 800`**.\n\nExemple : un client avec trois achats de 300 euros a un total de 900, il doit être gardé.\n\n**Les autres réponses :**\n\n- `WHERE montant > 800` regarde chaque achat séparément : les trois achats de 300 seraient **tous** enlevés, et ce client disparaîtrait alors que son total dépasse 800.\n- `WHERE SUM(montant) > 800` est refusé par SQL : la somme n'est pas encore calculée au moment du `WHERE`.\n\n**À retenir :** condition sur un total = `HAVING`."
       },
       {
         "intitule": "Écris la formule complète (avec la condition), puis la requête SQL. Compare ensuite avec la réponse modèle.",
         "type": "auto",
-        "reponse": "Pour chaque client $c$ : $\\text{total}(c) = \\displaystyle\\sum_{a \\in A(c)} a.\\mathrm{montant}$, et on garde les clients $c$ tels que $\\text{total}(c) > 800$.\n\n```sql\nSELECT id_client, SUM(montant) AS total\nFROM Achats\nGROUP BY id_client\nHAVING SUM(montant) > 800;\n```"
+        "reponse": "Pour chaque client $c$ : $\\text{total}(c) = \\displaystyle\\sum_{a \\in A(c)} a.\\mathrm{montant}$, et on garde les clients $c$ tels que $\\text{total}(c) > 800$.\n\n```sql\nSELECT id_client, SUM(montant) AS total\nFROM Achats\nGROUP BY id_client\nHAVING SUM(montant) > 800;\n```",
+        "explication": "**Ce qu'une bonne réponse doit contenir :**\n\n1. **La formule du total d'un client :** une somme sur **ses** achats, $\\text{total}(c) = \\sum_{a \\in A(c)} a.\\mathrm{montant}$.\n2. **La condition :** on garde les clients $c$ tels que $\\text{total}(c) > 800$ (strictement, « dépasse »).\n3. **La requête SQL**, dans l'ordre :\n   - `SELECT id_client, SUM(montant)` : le client et son total ;\n   - `FROM Achats` ;\n   - `GROUP BY id_client` : la boucle « pour chaque client » ;\n   - `HAVING SUM(montant) > 800` : la condition sur le total.\n\n**Erreurs fréquentes :**\n\n- mettre la condition dans un `WHERE` (`WHERE montant > 800` filtre les achats un par un, `WHERE SUM(...)` est interdit) ;\n- oublier le `GROUP BY` : on obtiendrait un seul total pour toute la table ;\n- écrire $\\geq 800$ au lieu de $> 800$ : un total d'exactement 800 ne « dépasse » pas 800.\n\n**À retenir :** total par groupe = `GROUP BY` + `SUM`, condition sur le total = `HAVING`."
       }
     ],
     "indices": [
@@ -510,40 +858,70 @@
         "intitule": "Combien de fois la sous-requête est-elle exécutée ?",
         "type": "nombre",
         "reponse": 10000,
-        "acceptes": ["10^4"],
-        "refuses": ["1"]
+        "acceptes": [
+          "10^4"
+        ],
+        "refuses": [
+          "1"
+        ],
+        "explication": "**Règle :** une sous-requête **corrélée** utilise une colonne de la ligne en cours (ici `l1.agence`). Comme son résultat dépend de cette ligne, elle est relancée **une fois par ligne** de `l1`.\n\n**Pas à pas :**\n\n1. La requête parcourt `Locations l1` : $n = 10\\,000$ lignes.\n2. Pour chacune, la sous-requête `WHERE l2.agence = l1.agence` est exécutée.\n3. Total : $10\\,000$ exécutions.\n\n**Erreurs fréquentes :**\n\n- répondre 1 : ce serait vrai pour une sous-requête qui ne dépend pas de `l1`, mais celle-ci en dépend ;\n- croire que `DISTINCT` réduit le nombre d'exécutions : il enlève les doublons **à la fin**, une fois toutes les lignes calculées.\n\n**À retenir :** une sous-requête qui cite la ligne courante est exécutée autant de fois qu'il y a de lignes."
       },
       {
         "intitule": "Combien de lignes sont lues au total par toutes ces exécutions ?",
         "type": "nombre",
         "reponse": 100000000,
-        "acceptes": ["10^8", "10000^2"],
-        "refuses": ["20000", "10000"]
+        "acceptes": [
+          "10^8",
+          "10000^2"
+        ],
+        "refuses": [
+          "20000",
+          "10000"
+        ],
+        "explication": "**Règle :** travail total = nombre d'exécutions $\\times$ lignes lues par exécution.\n\n**Pas à pas :**\n\n1. Nombre d'exécutions : $10\\,000$ (question précédente).\n2. Chaque exécution relit toute la table : $10\\,000$ lignes.\n3. Total : $10\\,000 \\times 10\\,000 = 100\\,000\\,000 = 10^8$ lignes.\n\nPour les puissances : $10\\,000 = 10^4$, et $10^4 \\times 10^4 = 10^{4+4} = 10^8$.\n\n**Erreurs fréquentes :**\n\n- $20\\,000$ : on a **additionné** $10\\,000 + 10\\,000$ au lieu de multiplier. Chaque exécution relit tout, les lectures se répètent ;\n- $10\\,000$ : on a compté une seule lecture de la table.\n\n**À retenir :** $n$ exécutions de $n$ lignes = $n \\times n = n^2$ lignes."
       },
       {
         "intitule": "En termes de sommes, ce calcul est :",
         "type": "choix",
-        "choix": ["une somme simple sur les $n$ lignes", "une somme double : pour chaque ligne, on refait une somme sur toute la table", "un produit des prix"],
-        "reponse": 1
+        "choix": [
+          "une somme simple sur les $n$ lignes",
+          "une somme double : pour chaque ligne, on refait une somme sur toute la table",
+          "un produit des prix"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une somme double, c'est une somme (interne) refaite pour chaque élément d'une autre somme (externe). Son coût est le produit des deux tailles.\n\n**Pas à pas :**\n\n$$\\sum_{\\text{ligne } l_1} \\ \\sum_{\\text{ligne } l_2} (\\text{lire } l_2) = n \\times n$$\n\n1. Somme externe : on parcourt les $n$ lignes de `l1`.\n2. Somme interne : pour chacune, on refait `SUM(prix)` en parcourant les $n$ lignes de `l2`.\n\nC'est **une somme double : pour chaque ligne, on refait une somme sur toute la table**, d'où les $n^2$ lectures.\n\n**Les autres réponses :**\n\n- « Une somme simple sur les $n$ lignes » lirait la table une seule fois : c'est ce que fait le `GROUP BY`, pas cette requête.\n- « Un produit des prix » : aucun prix n'est multiplié par un autre. Le mot « produit » vient seulement du coût $n \\times n$.\n\n**À retenir :** une boucle dans une boucle = une somme double = un coût en $n^2$."
       },
       {
         "intitule": "Réécris la requête avec un seul `GROUP BY`, sans sous-requête. Compare ensuite avec la réponse modèle.",
         "type": "auto",
-        "reponse": "```sql\nSELECT agence, SUM(prix) AS ca\nFROM Locations\nGROUP BY agence;\n```\n\nLa table est lue **une seule fois** : chaque ligne ajoute son prix au total de son agence."
+        "reponse": "```sql\nSELECT agence, SUM(prix) AS ca\nFROM Locations\nGROUP BY agence;\n```\n\nLa table est lue **une seule fois** : chaque ligne ajoute son prix au total de son agence.",
+        "explication": "**Ce qu'une bonne réponse doit contenir :**\n\n1. **Une seule lecture de la table** `Locations`, sans sous-requête.\n2. **`SUM(prix)`** pour additionner les prix.\n3. **`GROUP BY agence`** pour faire un total par agence : chaque ligne lue ajoute son prix au total de **son** agence.\n4. **`agence` dans le `SELECT`**, pour savoir à quelle agence correspond chaque total.\n\nLe `DISTINCT` n'est plus utile : `GROUP BY agence` donne déjà une seule ligne par agence.\n\n**Erreurs fréquentes :**\n\n- garder la sous-requête en ajoutant seulement un `GROUP BY` : le travail reste en $n^2$ ;\n- oublier `agence` dans le `SELECT` : on obtient des totaux sans savoir à qui ils correspondent ;\n- écrire `SUM(prix)` sans `GROUP BY` : un seul total pour toute l'entreprise.\n\n**À retenir :** « un total par … » se calcule en une lecture avec `GROUP BY …` et `SUM`."
       },
       {
         "intitule": "Combien de lignes cette nouvelle requête lit-elle ?",
         "type": "nombre",
         "reponse": 10000,
-        "acceptes": ["10^4"],
-        "refuses": ["100000000"]
+        "acceptes": [
+          "10^4"
+        ],
+        "refuses": [
+          "100000000"
+        ],
+        "explication": "**Règle :** un `GROUP BY` parcourt la table **une seule fois** : chaque ligne est lue, et son prix est ajouté au total de son agence.\n\n**Pas à pas :**\n\n1. La table a $10\\,000$ lignes.\n2. Chacune est lue une fois : $10\\,000$ lignes lues.\n3. Comparaison : $\\frac{10^8}{10^4} = 10^4$, soit $10\\,000$ fois moins de travail qu'avant.\n\n**Erreur fréquente :** répondre $100\\,000\\,000$ en pensant que le travail reste le même. Le résultat est identique, mais la façon de le calculer coûte beaucoup moins.\n\n**À retenir :** un `GROUP BY` coûte $n$ lignes lues, une sous-requête corrélée $n^2$."
       },
       {
         "intitule": "Si la table passe à $n = 100\\,000$ lignes (10 fois plus), combien de lignes lit l'**ancienne** requête ?",
         "type": "nombre",
         "reponse": 10000000000,
-        "acceptes": ["10^10", "100000^2"],
-        "refuses": ["1000000000", "100000"]
+        "acceptes": [
+          "10^10",
+          "100000^2"
+        ],
+        "refuses": [
+          "1000000000",
+          "100000"
+        ],
+        "explication": "**Règle :** l'ancienne requête lit $n^2$ lignes. Si $n$ est multiplié par 10, $n^2$ est multiplié par $10^2 = 100$.\n\n**Pas à pas :**\n\n1. Nouveau $n$ : $100\\,000 = 10^5$.\n2. $n^2 = 10^5 \\times 10^5 = 10^{10} = 10\\,000\\,000\\,000$ lignes.\n3. Comparaison : avant $10^8$, maintenant $10^{10}$, soit $\\frac{10^{10}}{10^8} = 100$ fois plus.\n\n**Erreurs fréquentes :**\n\n- $10^9$ : on a seulement multiplié l'ancien coût par 10, comme si le coût était en $n$ ;\n- $100\\,000$ : c'est le coût du `GROUP BY` (une lecture), pas de l'ancienne requête.\n\n**À retenir :** un coût en $n^2$ est multiplié par 100 quand $n$ est multiplié par 10 ; un coût en $n$ seulement par 10."
       }
     ],
     "indices": [
@@ -568,7 +946,8 @@
           "$\\forall c \\in \\mathrm{cmd}(u),\\ c.\\mathrm{montant} > 500$",
           "$\\exists c \\in \\mathrm{cmd}(u),\\ c.\\mathrm{montant} > 500$"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** « **aucun** $x$ n'a la propriété $P$ » veut dire « **tous** les $x$ ont la propriété contraire » : $\\forall x,\\ \\neg P(x)$. Et la négation de « dépasse 500 » ($> 500$) est « au plus 500 » ($\\leq 500$).\n\n**Pas à pas :**\n\n1. Propriété interdite : « la commande dépasse 500 € », soit $c.\\mathrm{montant} > 500$.\n2. « Aucune commande ne la vérifie » devient « **toutes** les commandes vérifient le contraire ».\n3. Formule : $\\forall c \\in \\mathrm{cmd}(u),\\ c.\\mathrm{montant} \\leq 500$.\n\n**Les autres réponses**, avec un client qui a deux commandes, 200 € et 900 € (il ne doit **pas** être gardé) :\n\n- $\\exists c,\\ c.\\mathrm{montant} \\leq 500$ : vraie pour lui (la commande de 200 €). Une seule petite commande suffirait, à tort.\n- $\\forall c,\\ c.\\mathrm{montant} > 500$ : décrit les clients dont **toutes** les commandes sont grosses, l'inverse de ce qu'on veut.\n- $\\exists c,\\ c.\\mathrm{montant} > 500$ : vraie pour lui (900 €). Elle décrit justement les clients **exclus**.\n\n**À retenir :** « aucun… ne dépasse » = « tous… au plus » : $\\forall$ et $\\leq$."
       },
       {
         "intitule": "Quelle est la négation de cette formule (un client **qui ne convient pas**) ?",
@@ -578,12 +957,14 @@
           "$\\forall c \\in \\mathrm{cmd}(u),\\ c.\\mathrm{montant} > 500$",
           "$\\exists c \\in \\mathrm{cmd}(u),\\ c.\\mathrm{montant} \\leq 500$"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** on nie couche par couche : $\\forall$ devient $\\exists$, puis on nie la condition ($\\leq 500$ devient $> 500$).\n\n**Pas à pas :**\n\n1. Formule de départ : $\\forall c \\in \\mathrm{cmd}(u),\\ c.\\mathrm{montant} \\leq 500$.\n2. $\\forall c$ devient $\\exists c$.\n3. $c.\\mathrm{montant} \\leq 500$ devient $c.\\mathrm{montant} > 500$.\n4. Résultat : $\\exists c \\in \\mathrm{cmd}(u),\\ c.\\mathrm{montant} > 500$, c'est-à-dire « le client a **au moins une** commande de plus de 500 € ».\n\nC'est logique : un client ne convient pas dès qu'**une** de ses commandes dépasse le seuil.\n\n**Les autres réponses :**\n\n- $\\forall c,\\ c.\\mathrm{montant} > 500$ : on a nié la condition mais gardé le $\\forall$. Trop fort : un client avec une commande de 200 € et une de 900 € ne convient pas, mais ne vérifie pas cette formule.\n- $\\exists c,\\ c.\\mathrm{montant} \\leq 500$ : on a changé le quantificateur mais pas la condition.\n\n**À retenir :** la négation de « toutes $\\leq 500$ » est « au moins une $> 500$ »."
       },
       {
         "intitule": "Écris une requête SQL qui renvoie l'`id_client` de ces clients (parmi ceux qui ont au moins une commande). Compare ensuite avec la réponse modèle.",
         "type": "auto",
-        "reponse": "Avec `GROUP BY` et `HAVING` :\n\n```sql\nSELECT id_client\nFROM Commandes\nGROUP BY id_client\nHAVING MAX(montant) <= 500;\n```\n\nOu avec `NOT EXISTS` (on exclut les clients pour qui il **existe** une commande de plus de 500 €) :\n\n```sql\nSELECT DISTINCT c1.id_client\nFROM Commandes c1\nWHERE NOT EXISTS (\n  SELECT 1 FROM Commandes c2\n  WHERE c2.id_client = c1.id_client AND c2.montant > 500\n);\n```"
+        "reponse": "Avec `GROUP BY` et `HAVING` :\n\n```sql\nSELECT id_client\nFROM Commandes\nGROUP BY id_client\nHAVING MAX(montant) <= 500;\n```\n\nOu avec `NOT EXISTS` (on exclut les clients pour qui il **existe** une commande de plus de 500 €) :\n\n```sql\nSELECT DISTINCT c1.id_client\nFROM Commandes c1\nWHERE NOT EXISTS (\n  SELECT 1 FROM Commandes c2\n  WHERE c2.id_client = c1.id_client AND c2.montant > 500\n);\n```",
+        "explication": "**Ce qu'une bonne réponse doit contenir :** une traduction du « pour tout » de la formule $\\forall c \\in \\mathrm{cmd}(u),\\ c.\\mathrm{montant} \\leq 500$. Deux façons sont justes.\n\n**Façon 1, avec `MAX` :** « toutes les commandes sont $\\leq 500$ » est vrai exactement quand **la plus grosse** l'est.\n\n1. `GROUP BY id_client` : un groupe par client ;\n2. `HAVING MAX(montant) <= 500` : on garde le client si sa plus grosse commande ne dépasse pas 500.\n\n**Façon 2, avec `NOT EXISTS` :** on exclut les clients pour qui la **négation** est vraie (« il existe une commande $> 500$ »).\n\n1. On parcourt les commandes `c1` et on garde chaque client une seule fois (`DISTINCT`) ;\n2. la sous-requête cherche une commande `c2` **du même client** (`c2.id_client = c1.id_client`) avec `c2.montant > 500` ;\n3. `NOT EXISTS` garde le client si elle ne trouve rien.\n\n**Erreurs fréquentes :**\n\n- `WHERE montant <= 500` sans regroupement : il garde les **petites commandes** de tous les clients, y compris de ceux qui ont aussi une grosse commande ;\n- `HAVING MAX(montant) < 500` : une commande d'exactement 500 € ne « dépasse » pas 500, elle doit être acceptée ;\n- oublier le lien `c2.id_client = c1.id_client` : la sous-requête trouverait la grosse commande de n'importe quel client, et plus personne ne serait gardé.\n\n**À retenir :** « toutes $\\leq s$ » = `HAVING MAX(...) <= s`, ou `NOT EXISTS` sur la négation."
       }
     ],
     "indices": [

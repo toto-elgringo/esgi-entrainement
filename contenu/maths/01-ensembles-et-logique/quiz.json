@@ -1,80 +1,145 @@
 [
   {
     "question": "Combien d'éléments contient l'ensemble $\\{2, 5, 5, 7, 2\\}$ ?",
-    "choix": ["5", "4", "3", "2"],
+    "choix": [
+      "5",
+      "4",
+      "3",
+      "2"
+    ],
     "reponse": 2,
-    "explication": "Un ensemble n'a pas de répétition : $\\{2, 5, 5, 7, 2\\} = \\{2, 5, 7\\}$, soit 3 éléments."
+    "explication": "**Règle :** un ensemble n'a **pas de répétition**. Son nombre d'éléments (le cardinal) compte les valeurs **différentes**, pas le nombre de fois qu'on les écrit.\n\n**Pas à pas :** on lit les valeurs une par une.\n\n- 2 : nouvelle valeur, on la garde.\n- 5 : nouvelle valeur, on la garde.\n- 5 : déjà vue, on l'ignore.\n- 7 : nouvelle valeur, on la garde.\n- 2 : déjà vue, on l'ignore.\n\nDonc $\\{2, 5, 5, 7, 2\\} = \\{2, 5, 7\\}$ : **3** éléments.\n\n**Les autres réponses :** 5 compte les écritures (avec les doublons) ; 4 n'enlève qu'un seul doublon sur deux ; 2 enlève une valeur de trop.\n\n**À retenir :** pour un cardinal, raye les doublons puis compte ce qui reste."
   },
   {
     "question": "Avec $A = \\{1, 2, 3\\}$ et $B = \\{2, 3, 4\\}$, que vaut $A \\setminus B$ ?",
-    "choix": ["$\\{4\\}$", "$\\{1\\}$", "$\\{2, 3\\}$", "$\\{1, 4\\}$"],
+    "choix": [
+      "$\\{4\\}$",
+      "$\\{1\\}$",
+      "$\\{2, 3\\}$",
+      "$\\{1, 4\\}$"
+    ],
     "reponse": 1,
-    "explication": "$A \\setminus B$ garde les éléments de $A$ qui ne sont pas dans $B$ : seulement 1."
+    "explication": "**Règle :** $A \\setminus B$ (« $A$ privé de $B$ ») contient les éléments qui sont **dans $A$** et **pas dans $B$** : $x \\in A \\setminus B$ veut dire $x \\in A$ et $x \\notin B$.\n\n**Pas à pas :** on passe en revue les éléments de $A = \\{1, 2, 3\\}$ un par un.\n\n| Élément de $A$ | Dans $B = \\{2, 3, 4\\}$ ? | Gardé dans $A \\setminus B$ ? |\n|---|---|---|\n| 1 | non | oui |\n| 2 | oui | non |\n| 3 | oui | non |\n\nIl reste seulement 1 : $A \\setminus B = \\{1\\}$.\n\n**Les autres réponses :** $\\{4\\}$ est $B \\setminus A$ (on est parti du mauvais ensemble : la différence n'est pas symétrique) ; $\\{2, 3\\}$ est l'intersection $A \\cap B$ ; $\\{1, 4\\}$ mélange les deux différences (ce sont les éléments qui ne sont que d'un seul côté).\n\n**À retenir :** pour $A \\setminus B$, pars de $A$ et raye ce qui est aussi dans $B$."
   },
   {
     "question": "Quel opérateur SQL correspond à l'intersection $A \\cap B$ ?",
-    "choix": ["`UNION`", "`EXCEPT`", "`JOIN`", "`INTERSECT`"],
+    "choix": [
+      "`UNION`",
+      "`EXCEPT`",
+      "`JOIN`",
+      "`INTERSECT`"
+    ],
     "reponse": 3,
-    "explication": "`INTERSECT` garde les lignes présentes dans les deux résultats, comme $\\cap$."
+    "explication": "**Règle :** l'intersection $A \\cap B$ garde les éléments présents dans $A$ **et** dans $B$. En SQL, l'opérateur qui garde les lignes présentes dans les deux résultats s'appelle `INTERSECT`.\n\n**Pas à pas :** si une requête renvoie les clients $\\{1, 2, 3\\}$ et une autre $\\{2, 3, 4\\}$, alors `INTERSECT` renvoie $\\{2, 3\\}$, exactement comme $\\{1, 2, 3\\} \\cap \\{2, 3, 4\\} = \\{2, 3\\}$.\n\n**Les autres réponses :**\n\n- `UNION` correspond à l'union $\\cup$ (tout ce qui est d'un côté **ou** de l'autre) : elle renverrait $\\{1, 2, 3, 4\\}$.\n- `EXCEPT` correspond à la différence $\\setminus$ : elle renverrait $\\{1\\}$.\n- `JOIN` ne compare pas deux résultats de même forme : c'est un produit cartésien filtré qui **colle** des lignes de deux tables côte à côte.\n\n**À retenir :** `UNION` = $\\cup$ (ou), `INTERSECT` = $\\cap$ (et), `EXCEPT` = $\\setminus$ (mais pas)."
   },
   {
     "question": "D'après De Morgan, $\\overline{A \\cup B}$ est égal à :",
-    "choix": ["$\\overline{A} \\cap \\overline{B}$", "$\\overline{A} \\cup \\overline{B}$", "$A \\cap B$", "$\\overline{A} \\setminus B$"],
+    "choix": [
+      "$\\overline{A} \\cap \\overline{B}$",
+      "$\\overline{A} \\cup \\overline{B}$",
+      "$A \\cap B$",
+      "$A \\cup B$"
+    ],
     "reponse": 0,
-    "explication": "Le complémentaire échange l'union et l'intersection : $\\overline{A \\cup B} = \\overline{A} \\cap \\overline{B}$."
+    "explication": "**Règle (De Morgan) :** quand on prend le complémentaire d'une union ou d'une intersection, le complémentaire passe sur chaque ensemble **et** échange $\\cup$ et $\\cap$ : $\\overline{A \\cup B} = \\overline{A} \\cap \\overline{B}$ et $\\overline{A \\cap B} = \\overline{A} \\cup \\overline{B}$.\n\n**Pas à pas, avec des mots :** un élément est dans $\\overline{A \\cup B}$ s'il n'est **pas** dans « $A$ ou $B$ ». Ne pas être dans l'un **ou** l'autre, c'est n'être ni dans $A$, ni dans $B$ : il est dans $\\overline{A}$ **et** dans $\\overline{B}$, donc dans $\\overline{A} \\cap \\overline{B}$.\n\nPetit test : $E = \\{1, 2, 3, 4\\}$, $A = \\{1\\}$, $B = \\{2\\}$. $A \\cup B = \\{1, 2\\}$, son complémentaire est $\\{3, 4\\}$. $\\overline{A} = \\{2, 3, 4\\}$, $\\overline{B} = \\{1, 3, 4\\}$, leur intersection est $\\{3, 4\\}$ : même résultat.\n\n**Les autres réponses :**\n\n- $\\overline{A} \\cup \\overline{B}$ oublie d'échanger $\\cup$ en $\\cap$ : dans le test, elle vaut $\\{1, 2, 3, 4\\}$, pas $\\{3, 4\\}$. C'est la formule de $\\overline{A \\cap B}$.\n- $A \\cap B$ oublie complètement le complémentaire.\n- $A \\cup B$ oublie le complémentaire : dans le test, elle vaut $\\{1, 2\\}$, c'est justement ce qu'on enlève.\n\n**À retenir :** le complémentaire d'une union est l'intersection des complémentaires (et inversement)."
   },
   {
     "question": "Une table de 6 lignes et une table de 9 lignes : combien de lignes donne leur `CROSS JOIN` ?",
-    "choix": ["15", "54", "6", "9"],
+    "choix": [
+      "15",
+      "54",
+      "6",
+      "9"
+    ],
     "reponse": 1,
-    "explication": "`CROSS JOIN` est un produit cartésien : $|A \\times B| = |A| \\times |B| = 6 \\times 9 = 54$."
+    "explication": "**Règle :** un `CROSS JOIN` associe **chaque** ligne de la première table à **chaque** ligne de la seconde : c'est le produit cartésien, et $|A \\times B| = |A| \\times |B|$.\n\n**Pas à pas :**\n\n- La 1re ligne de la première table est associée aux 9 lignes de la seconde : 9 lignes.\n- La 2e ligne aussi : 9 lignes de plus.\n- … et ainsi de suite pour les 6 lignes.\n\nOn obtient 6 paquets de 9 lignes : $6 \\times 9 = 54$ lignes.\n\n**Les autres réponses :** 15 vient de $6 + 9$ (on a empilé les tables au lieu de les croiser) ; 6 et 9 sont seulement les tailles de départ de chaque table.\n\n**À retenir :** `CROSS JOIN` = produit cartésien, on **multiplie** les nombres de lignes."
   },
   {
     "question": "Que fait `A INNER JOIN B ON condition`, vu avec les ensembles ?",
-    "choix": ["Le produit cartésien $A \\times B$, filtré par la condition", "L'union $A \\cup B$", "L'intersection $A \\cap B$", "La différence $A \\setminus B$"],
+    "choix": [
+      "Le produit cartésien $A \\times B$, filtré par la condition",
+      "L'union $A \\cup B$",
+      "L'intersection $A \\cap B$",
+      "La différence $A \\setminus B$"
+    ],
     "reponse": 0,
-    "explication": "Une jointure part (en théorie) de toutes les combinaisons $A \\times B$, puis ne garde que les couples qui vérifient la condition du `ON`."
+    "explication": "**Règle :** une jointure `INNER JOIN ... ON condition` fait deux choses : elle forme (en théorie) toutes les paires de lignes $A \\times B$, puis elle ne garde que les paires pour lesquelles la condition du `ON` est vraie. C'est un **produit cartésien filtré**.\n\n**Pas à pas :** avec `Equipes` (2 lignes) et `Joueurs` (3 lignes) :\n\n1. Toutes les paires (équipe, joueur) : $2 \\times 3 = 6$ paires.\n2. Pour chaque paire, on teste `ON Equipes.id = Joueurs.id_equipe`.\n3. On garde seulement les paires où l'équipe est bien celle du joueur.\n\n**Les autres réponses :**\n\n- L'union $A \\cup B$ **empile** les lignes de deux résultats de même forme, elle ne colle pas des colonnes côte à côte.\n- L'intersection $A \\cap B$ garde les lignes présentes à l'identique dans les deux : c'est `INTERSECT`.\n- La différence $A \\setminus B$ retire des lignes : c'est `EXCEPT`.\n\n**À retenir :** jointure = produit cartésien (toutes les paires) + filtre (la condition du `ON`)."
   },
   {
     "question": "Une relation réflexive, symétrique et transitive est :",
-    "choix": ["une relation d'ordre", "une fonction injective", "une relation d'équivalence", "une relation antisymétrique"],
+    "choix": [
+      "une relation d'ordre",
+      "une fonction injective",
+      "une relation d'équivalence",
+      "une relation antisymétrique"
+    ],
     "reponse": 2,
-    "explication": "Réflexive + symétrique + transitive = équivalence. Elle découpe l'ensemble en classes, comme un `GROUP BY`."
+    "explication": "**Règle :** une relation **d'équivalence** est, par définition, une relation qui a les **trois** propriétés : réflexive, symétrique et transitive. Elle découpe l'ensemble en classes (comme un `GROUP BY`).\n\n**Pas à pas :** on compare avec les définitions du cours.\n\n| Famille | Réflexive | Symétrique | Antisymétrique | Transitive |\n|---|---|---|---|---|\n| Équivalence | oui | **oui** | | oui |\n| Ordre | oui | | **oui** | oui |\n\nLes trois propriétés de l'énoncé sont exactement la ligne « équivalence ».\n\n**Les autres réponses :**\n\n- Une relation d'ordre demande l'**antisymétrie** à la place de la symétrie.\n- Une fonction injective n'est pas une relation sur un ensemble : c'est une fonction dont les images sont toutes différentes.\n- « Antisymétrique » est une propriété, pas une famille, et elle n'apparaît même pas dans l'énoncé.\n\n**À retenir :** réflexive + symétrique + transitive = équivalence ; réflexive + antisymétrique + transitive = ordre."
   },
   {
     "question": "Pourquoi la relation « $x$ divise $y$ » sur $\\mathbb{N}^*$ est-elle un ordre **partiel** ?",
-    "choix": ["Parce qu'elle n'est pas transitive", "Parce que certains nombres ne sont pas comparables, comme 6 et 10", "Parce qu'elle n'est pas réflexive", "Parce qu'elle est symétrique"],
+    "choix": [
+      "Parce qu'elle n'est pas transitive",
+      "Parce que certains nombres ne sont pas comparables, comme 6 et 10",
+      "Parce qu'elle n'est pas réflexive",
+      "Parce qu'elle est symétrique"
+    ],
     "reponse": 1,
-    "explication": "6 ne divise pas 10 et 10 ne divise pas 6 : ils ne sont pas comparables. Dans un ordre total comme $\\le$, deux éléments sont toujours comparables."
+    "explication": "**Règle :** un ordre est **total** si deux éléments sont **toujours** comparables (l'un est en relation avec l'autre). Il est **partiel** s'il existe au moins une paire d'éléments non comparables. « $x$ divise $y$ » veut dire $y = k \\times x$ avec $k$ entier.\n\n**Pas à pas avec 6 et 10 :**\n\n- 6 divise-t-il 10 ? Il faudrait $10 = k \\times 6$, soit $k = \\frac{10}{6}$, qui n'est pas entier : non.\n- 10 divise-t-il 6 ? Il faudrait $6 = k \\times 10$, soit $k = 0{,}6$ : non.\n\nAucun ne divise l'autre : 6 et 10 ne sont pas comparables. Une seule paire de ce genre suffit, l'ordre est partiel.\n\n**Les autres réponses :**\n\n- Elle **est** transitive : si $y = kx$ et $z = my$, alors $z = (mk)x$.\n- Elle **est** réflexive : $x = 1 \\times x$, donc $x$ divise $x$.\n- Elle n'est **pas** symétrique (2 divise 4, mais 4 ne divise pas 2), et de toute façon la symétrie n'a rien à voir avec « partiel ».\n\n**À retenir :** partiel = il existe deux éléments qu'on ne peut pas comparer."
   },
   {
     "question": "Quand l'implication $P \\Rightarrow Q$ est-elle fausse ?",
-    "choix": ["Quand $P$ est fausse", "Quand $Q$ est vraie", "Quand $P$ et $Q$ sont fausses", "Seulement quand $P$ est vraie et $Q$ fausse"],
+    "choix": [
+      "Quand $P$ est fausse",
+      "Quand $Q$ est vraie",
+      "Quand $P$ et $Q$ sont fausses",
+      "Seulement quand $P$ est vraie et $Q$ fausse"
+    ],
     "reponse": 3,
-    "explication": "C'est le seul cas où la promesse « si $P$ alors $Q$ » est rompue. Dans tous les autres cas, l'implication est vraie."
+    "explication": "**Règle :** $P \\Rightarrow Q$ (« si $P$ alors $Q$ ») est une promesse : « chaque fois que $P$ est vraie, $Q$ l'est aussi ». Elle n'est rompue que si $P$ est vraie **et** $Q$ fausse.\n\n**Pas à pas, les 4 cas :**\n\n| $P$ | $Q$ | $P \\Rightarrow Q$ | Pourquoi |\n|---|---|---|---|\n| V | V | V | $P$ arrive et $Q$ suit : promesse tenue |\n| V | F | **F** | $P$ arrive mais pas $Q$ : promesse rompue |\n| F | V | V | $P$ n'arrive pas : rien n'était promis |\n| F | F | V | $P$ n'arrive pas : rien n'était promis |\n\n**Les autres réponses :**\n\n- « Quand $P$ est fausse » : au contraire, l'implication est alors **toujours vraie** (lignes 3 et 4).\n- « Quand $Q$ est vraie » : l'implication est alors toujours vraie (lignes 1 et 3).\n- « Quand $P$ et $Q$ sont fausses » : c'est la ligne 4, où elle est vraie.\n\n**À retenir :** $P \\Rightarrow Q$ est fausse dans un seul cas : $P$ vraie et $Q$ fausse."
   },
   {
     "question": "Quelle est la négation de $P \\Rightarrow Q$ ?",
-    "choix": ["$P \\wedge \\neg Q$", "$\\neg P \\Rightarrow \\neg Q$", "$Q \\Rightarrow P$", "$\\neg P \\wedge Q$"],
+    "choix": [
+      "$P \\wedge \\neg Q$",
+      "$\\neg P \\Rightarrow \\neg Q$",
+      "$Q \\Rightarrow P$",
+      "$\\neg P \\wedge Q$"
+    ],
     "reponse": 0,
-    "explication": "Pour contredire une implication, il faut un cas où $P$ est vraie et $Q$ fausse : $\\neg(P \\Rightarrow Q) \\equiv P \\wedge \\neg Q$."
+    "explication": "**Règle :** la négation d'une phrase est vraie exactement quand la phrase est fausse. Or $P \\Rightarrow Q$ est fausse seulement quand $P$ est vraie et $Q$ fausse. Donc $\\neg(P \\Rightarrow Q) \\equiv P \\wedge \\neg Q$.\n\n**Pas à pas avec un exemple :** « si la commande est payée ($P$), elle est expédiée ($Q$) ». Pour contredire cette phrase, il faut montrer une commande **payée** ($P$ vraie) **et non expédiée** ($\\neg Q$) : c'est $P \\wedge \\neg Q$.\n\n| $P$ | $Q$ | $P \\Rightarrow Q$ | $P \\wedge \\neg Q$ |\n|---|---|---|---|\n| V | V | V | F |\n| V | F | F | V |\n| F | V | V | F |\n| F | F | V | F |\n\nLa dernière colonne est l'inverse exact de l'implication sur chaque ligne : c'est bien sa négation.\n\n**Les autres réponses :**\n\n- $\\neg P \\Rightarrow \\neg Q$ est encore une implication (et elle ne vaut pas l'inverse de la phrase) : une négation d'implication n'est **jamais** une implication.\n- $Q \\Rightarrow P$ est la réciproque, une autre phrase.\n- $\\neg P \\wedge Q$ décrit une commande non payée mais expédiée : son hypothèse est fausse, elle ne contredit rien.\n\n**À retenir :** pour nier « si $P$ alors $Q$ », écris « $P$ et non $Q$ »."
   },
   {
     "question": "Quelle est la contraposée de $P \\Rightarrow Q$ ?",
-    "choix": ["$Q \\Rightarrow P$", "$\\neg P \\Rightarrow \\neg Q$", "$\\neg Q \\Rightarrow \\neg P$", "$P \\wedge \\neg Q$"],
+    "choix": [
+      "$Q \\Rightarrow P$",
+      "$\\neg P \\Rightarrow \\neg Q$",
+      "$\\neg Q \\Rightarrow \\neg P$",
+      "$P \\wedge \\neg Q$"
+    ],
     "reponse": 2,
-    "explication": "La contraposée est $\\neg Q \\Rightarrow \\neg P$ et elle a toujours la même valeur que $P \\Rightarrow Q$. $Q \\Rightarrow P$ est la réciproque, qui peut être fausse."
+    "explication": "**Règle :** la contraposée de $P \\Rightarrow Q$ est $\\neg Q \\Rightarrow \\neg P$ : on fait **deux** gestes, inverser le sens **et** nier les deux côtés. Elle a toujours la même valeur (vraie ou fausse) que $P \\Rightarrow Q$.\n\n**Pas à pas :** « si c'est un chat ($P$), c'est un animal ($Q$) ».\n\n1. On inverse : « si c'est un animal, c'est un chat ».\n2. On nie les deux côtés : « si ce n'est **pas** un animal, ce n'est **pas** un chat ».\n\nC'est $\\neg Q \\Rightarrow \\neg P$, et elle est vraie, comme la phrase de départ.\n\n**Les autres réponses :**\n\n- $Q \\Rightarrow P$ inverse sans nier : c'est la **réciproque** (« si c'est un animal, c'est un chat », fausse avec un chien).\n- $\\neg P \\Rightarrow \\neg Q$ nie sans inverser (« si ce n'est pas un chat, ce n'est pas un animal », fausse aussi).\n- $P \\wedge \\neg Q$ est la **négation**, pas une implication.\n\n**À retenir :** contraposée = inverser **et** nier ; elle dit la même chose que la phrase de départ."
   },
   {
     "question": "Quelle est la négation de « tous les champs sont remplis » ?",
-    "choix": ["Aucun champ n'est rempli", "Tous les champs sont vides", "Au moins un champ est rempli", "Au moins un champ n'est pas rempli"],
+    "choix": [
+      "Aucun champ n'est rempli",
+      "Tous les champs sont vides",
+      "Au moins un champ est rempli",
+      "Au moins un champ n'est pas rempli"
+    ],
     "reponse": 3,
-    "explication": "$\\neg(\\forall x,\\ P(x)) \\equiv \\exists x,\\ \\neg P(x)$ : il suffit d'un seul champ vide pour contredire « tous »."
+    "explication": "**Règle :** la négation d'un « pour tout » est un « il existe … ne … pas » : $\\neg(\\forall x,\\ P(x)) \\equiv \\exists x,\\ \\neg P(x)$.\n\n**Pas à pas :** « tous les champs sont remplis » = « pour tout champ, il est rempli ».\n\n1. On remplace « pour tout » par « il existe (au moins un) ».\n2. On nie la propriété : « rempli » devient « pas rempli ».\n3. Résultat : « au moins un champ n'est pas rempli ».\n\nVérification : la phrase de départ est fausse dès qu'**un seul** champ est vide, et c'est exactement ce que dit la négation.\n\n**Les autres réponses :**\n\n- « Aucun champ n'est rempli » et « tous les champs sont vides » disent la même chose : c'est le **contraire**, bien trop fort. Avec un formulaire à moitié rempli, la phrase de départ est fausse, et ces deux phrases aussi : ce n'est donc pas la négation.\n- « Au moins un champ est rempli » peut être vrai en même temps que « tous les champs sont remplis » : ce n'est pas une négation.\n\n**À retenir :** « tous … » se nie en « au moins un … ne … pas »."
   },
   {
     "question": "Pour montrer qu'un énoncé « pour tout $n$ » est **faux**, il suffit :",
-    "choix": ["de le vérifier sur 100 exemples", "de trouver un seul contre-exemple", "de faire une preuve par contraposée", "de calculer sa table de vérité"],
+    "choix": [
+      "de le vérifier sur 100 exemples",
+      "de trouver un seul contre-exemple",
+      "de faire une preuve par contraposée",
+      "de calculer sa table de vérité"
+    ],
     "reponse": 1,
-    "explication": "Un seul cas où l'énoncé ne marche pas le réfute. À l'inverse, des exemples, même nombreux, ne prouvent jamais un « pour tout »."
+    "explication": "**Règle :** un énoncé « pour tout $n$ » affirme que la propriété marche pour **chaque** $n$. Il suffit d'**un seul** $n$ où elle ne marche pas (un contre-exemple) pour qu'il soit faux.\n\n**Pas à pas avec un exemple :** « pour tout entier $n \\ge 0$, $2^n + 1$ est premier ».\n\n- $n = 0$ : 2, premier.\n- $n = 1$ : 3, premier.\n- $n = 2$ : 5, premier.\n- $n = 3$ : $9 = 3 \\times 3$, **pas premier**.\n\nCe seul cas suffit : l'énoncé est faux, peu importe que les trois premiers marchent.\n\n**Les autres réponses :**\n\n- Le vérifier sur 100 exemples ne montre rien : le 101e pourrait échouer, et de toute façon on cherche à montrer qu'il est **faux**.\n- La contraposée sert à **prouver** une implication vraie, pas à réfuter un « pour tout ».\n- Une table de vérité sert pour des propositions V / F en nombre fini, pas pour une infinité d'entiers $n$.\n\n**À retenir :** pour réfuter un « pour tout », un seul contre-exemple suffit ; pour le prouver, aucun nombre d'exemples ne suffit."
   }
 ]

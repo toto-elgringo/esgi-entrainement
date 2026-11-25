@@ -1,86 +1,156 @@
 [
   {
     "question": "Combien de racines réelles un polynôme de degré $5$ peut-il avoir, au maximum ?",
-    "choix": ["$5$", "$4$", "$6$", "Une infinité"],
+    "choix": [
+      "$5$",
+      "$4$",
+      "$6$",
+      "Une infinité"
+    ],
     "reponse": 0,
-    "explication": "Un polynôme de degré $n$ a au plus $n$ racines réelles."
+    "explication": "**Règle :** un polynôme de degré $n$ (non nul) a **au plus** $n$ racines réelles. Il peut en avoir moins, jamais plus.\n\n**Pas à pas :**\n\n1. Le degré est la plus grande puissance de $x$ : ici $n = 5$.\n2. On applique la règle : au plus $5$ racines réelles.\n3. Ce maximum peut être atteint : $(x - 1)(x - 2)(x - 3)(x - 4)(x - 5)$ est de degré $5$ et s'annule en $1, 2, 3, 4, 5$.\n\n**Les autres réponses :** $4$ est possible mais ce n'est pas le **maximum** ; $6$ dépasse le degré, c'est impossible ; « une infinité » n'arrive que pour le polynôme nul ($P(x) = 0$ partout), qui n'a pas de degré $5$.\n\n**À retenir :** nombre maximal de racines réelles = le degré."
   },
   {
     "question": "L'équation $x^2 + x + 3 = 0$ a un discriminant $\\Delta = -11$. Que peut-on dire ?",
-    "choix": ["Elle n'a aucune solution, même complexe", "Elle a deux solutions complexes conjuguées", "Elle a une racine double", "Elle a deux solutions réelles"],
+    "choix": [
+      "Elle n'a aucune solution, même complexe",
+      "Elle a deux solutions complexes conjuguées",
+      "Elle a une racine double",
+      "Elle a deux solutions réelles"
+    ],
     "reponse": 1,
-    "explication": "$\\Delta < 0$ : pas de solution **réelle**, mais deux solutions complexes $\\dfrac{-b \\pm i\\sqrt{-\\Delta}}{2a}$."
+    "explication": "**Règle :** pour $ax^2 + bx + c = 0$, le signe du discriminant $\\Delta = b^2 - 4ac$ décide : $\\Delta > 0$ deux racines réelles, $\\Delta = 0$ une racine double, $\\Delta < 0$ aucune racine **réelle** mais deux racines **complexes** $\\dfrac{-b \\pm i\\sqrt{-\\Delta}}{2a}$.\n\n**Pas à pas :**\n\n1. On vérifie le discriminant : $a = 1$, $b = 1$, $c = 3$, donc $\\Delta = 1 - 12 = -11$.\n2. $\\Delta < 0$ : on ne peut pas prendre $\\sqrt{-11}$ dans les réels.\n3. Avec $i^2 = -1$, on écrit $\\sqrt{-11} = i\\sqrt{11}$ : les solutions sont $x = \\dfrac{-1 \\pm i\\sqrt{11}}{2}$.\n4. Elles ne diffèrent que par le signe devant $i$ : elles sont **conjuguées**.\n\n**Les autres réponses :** « aucune solution, même complexe » est faux : en passant aux complexes, il y en a toujours deux ; « racine double » demande $\\Delta = 0$ ; « deux solutions réelles » demande $\\Delta > 0$.\n\n**À retenir :** $\\Delta < 0$ = pas de racine réelle, mais deux racines complexes conjuguées $\\alpha \\pm i\\beta$."
   },
   {
     "question": "Que vaut $i^2$ ?",
-    "choix": ["$1$", "$-1$", "$i$", "$0$"],
+    "choix": [
+      "$1$",
+      "$-1$",
+      "$i$",
+      "$0$"
+    ],
     "reponse": 1,
-    "explication": "Le nombre $i$ est justement défini pour que $i^2 = -1$ : il permet d'écrire la racine carrée d'un nombre négatif."
+    "explication": "**Règle :** le nombre $i$ est **inventé** exactement pour que $i^2 = -1$. C'est sa définition : il sert à écrire la racine carrée d'un nombre négatif, par exemple $\\sqrt{-9} = 3i$.\n\n**Pas à pas :** on peut le vérifier sur $\\sqrt{-9} = 3i$ : $(3i)^2 = 3^2 \\times i^2 = 9 \\times (-1) = -9$. On retrouve bien $-9$, ce qui ne marche que parce que $i^2 = -1$.\n\n**Les autres réponses :** $1$ est le carré de $1$ ou de $-1$, pas de $i$ (sinon $i$ serait un réel) ; $i$ serait vrai seulement si $i = 1$ ou $i = 0$ ; $0$ est le carré de $0$ seulement.\n\n**À retenir :** $i^2 = -1$, c'est la définition de $i$."
   },
   {
     "question": "En comptant les racines complexes, combien de racines a un polynôme de degré $3$ ?",
-    "choix": ["Au plus $3$", "Exactement $3$", "Exactement $2$", "Au moins $4$"],
+    "choix": [
+      "Au plus $3$",
+      "Exactement $3$",
+      "Exactement $2$",
+      "Au moins $4$"
+    ],
     "reponse": 1,
-    "explication": "En comptant les complexes (et les racines multiples), un polynôme de degré $n$ a toujours exactement $n$ racines."
+    "explication": "**Règle :** en comptant les racines complexes **et** les racines multiples (une racine double compte deux fois), un polynôme de degré $n$ a **toujours exactement** $n$ racines.\n\n**Pas à pas :**\n\n1. Degré $3$, donc $n = 3$.\n2. Une fois les complexes acceptés, il n'y a plus de racine « manquante » : exactement $3$.\n3. Exemple : $x^3 - x = x(x - 1)(x + 1)$ a $0$, $1$, $-1$. Et $x^3 + x = x(x^2 + 1)$ a $0$, $i$, $-i$ : toujours $3$.\n\n**Les autres réponses :** « au plus $3$ » est la règle pour les racines **réelles** seulement ; « exactement $2$ » oublie une racine ; « au moins $4$ » dépasse le degré, c'est impossible.\n\n**À retenir :** réelles : au plus $n$ ; en comptant les complexes : exactement $n$."
   },
   {
     "question": "On sait que $P(2) = 0$, avec $P$ de degré $4$. Que peut-on écrire ?",
-    "choix": ["$P(x) = (x + 2)\\,Q(x)$ avec $Q$ de degré $3$", "$P(x) = (x - 2)\\,Q(x)$ avec $Q$ de degré $3$", "$P(x) = (x - 2)\\,Q(x)$ avec $Q$ de degré $4$", "$P(x) = 2\\,Q(x)$"],
+    "choix": [
+      "$P(x) = (x + 2)\\,Q(x)$ avec $Q$ de degré $3$",
+      "$P(x) = (x - 2)\\,Q(x)$ avec $Q$ de degré $3$",
+      "$P(x) = (x - 2)\\,Q(x)$ avec $Q$ de degré $4$",
+      "$P(x) = 2\\,Q(x)$"
+    ],
     "reponse": 1,
-    "explication": "Si $x_0$ est racine, $P(x) = (x - x_0)\\,Q(x)$ et le degré baisse de $1$. Ici $x_0 = 2$, donc le facteur est $(x - 2)$."
+    "explication": "**Règle :** si $x_0$ est une racine de $P$ (c'est-à-dire $P(x_0) = 0$), alors $P(x) = (x - x_0)\\,Q(x)$, et $Q$ a un degré de **moins** que $P$.\n\n**Pas à pas :**\n\n1. $P(2) = 0$ : la racine est $x_0 = 2$.\n2. Le facteur est $(x - x_0) = (x - 2)$. On le vérifie : en $x = 2$, $(2 - 2)\\,Q(2) = 0$, c'est bien nul.\n3. Degrés : $\\deg P = \\deg(x - 2) + \\deg Q$, soit $4 = 1 + \\deg Q$, donc $\\deg Q = 3$.\n\n**Les autres réponses :** $(x + 2)$ s'annule en $x = -2$, pas en $2$ (erreur de signe) ; un $Q$ de degré $4$ donnerait un produit de degré $5$ ; $2\\,Q(x)$ ne fait pas apparaître de facteur qui s'annule en $2$.\n\n**À retenir :** racine $x_0$ → facteur $(x - x_0)$ (signe moins), et le degré baisse de $1$."
   },
   {
     "question": "Par $4$ points d'abscisses toutes différentes, combien passe-t-il de polynômes de degré au plus $3$ ?",
-    "choix": ["Aucun en général", "Exactement un", "Deux", "Une infinité"],
+    "choix": [
+      "Aucun en général",
+      "Exactement un",
+      "Deux",
+      "Une infinité"
+    ],
     "reponse": 1,
-    "explication": "$n + 1$ points d'abscisses distinctes déterminent un **unique** polynôme de degré au plus $n$. Ici $n = 3$."
+    "explication": "**Règle :** par $n + 1$ points d'abscisses toutes différentes passe **un et un seul** polynôme de degré au plus $n$.\n\n**Pas à pas :**\n\n1. On a $4$ points, donc $n + 1 = 4$, soit $n = 3$.\n2. On cherche justement les polynômes de degré au plus $3$ : la règle s'applique.\n3. Il en existe donc exactement un (Lagrange ou Newton permettent de le calculer).\n\n**Les autres réponses :** « aucun » est faux, il en existe toujours un dès que les abscisses sont différentes ; « deux » ou « une infinité » est faux, il est **unique** (une infinité de polynômes passeraient par les points seulement si on autorisait un degré plus grand que $3$).\n\n**À retenir :** $n + 1$ points distincts ↔ un unique polynôme de degré au plus $n$ (2 points → une droite, 3 points → une parabole)."
   },
   {
     "question": "Dans la méthode de Lagrange, que vaut $L_i(x_j)$ pour $j \\neq i$ ?",
-    "choix": ["$1$", "$0$", "$y_i$", "$x_i - x_j$"],
+    "choix": [
+      "$1$",
+      "$0$",
+      "$y_i$",
+      "$x_i - x_j$"
+    ],
     "reponse": 1,
-    "explication": "$L_i$ vaut $1$ en $x_i$ et $0$ en tous les autres points : il « allume » seulement le point $i$."
+    "explication": "**Règle :** $L_i(x) = \\prod_{j \\neq i} \\dfrac{x - x_j}{x_i - x_j}$ est construit pour valoir $1$ en son propre point $x_i$ et $0$ en tous les autres points $x_j$.\n\n**Pas à pas :** on remplace $x$ par un autre point $x_j$ (avec $j \\neq i$).\n\n1. Le numérateur contient le facteur $(x - x_j)$.\n2. En $x = x_j$, ce facteur vaut $x_j - x_j = 0$.\n3. Un produit qui contient un $0$ vaut $0$ : $L_i(x_j) = 0$.\n\nExemple avec les points $1$ et $3$ : $L_0(x) = \\dfrac{x - 3}{1 - 3}$ donne $L_0(3) = \\dfrac{0}{-2} = 0$.\n\n**Les autres réponses :** $1$ est la valeur en **son** point $x_i$, pas aux autres ; $y_i$ est la valeur de $y_i\\,L_i$ en $x_i$ ; $x_i - x_j$ est un morceau du dénominateur, pas la valeur de $L_i$.\n\n**À retenir :** $L_i$ « allume » son point ($1$) et « éteint » tous les autres ($0$)."
   },
   {
     "question": "Quel est l'avantage principal de la méthode de Newton sur celle de Lagrange ?",
-    "choix": ["Elle donne un polynôme de degré plus petit", "Elle permet d'ajouter un point sans tout recalculer", "Elle n'exige pas des abscisses différentes", "Elle donne un polynôme différent, plus précis"],
+    "choix": [
+      "Elle donne un polynôme de degré plus petit",
+      "Elle permet d'ajouter un point sans tout recalculer",
+      "Elle n'exige pas des abscisses différentes",
+      "Elle donne un polynôme différent, plus précis"
+    ],
     "reponse": 1,
-    "explication": "Les deux méthodes donnent le **même** polynôme. Mais avec Newton, un nouveau point ajoute seulement une ligne au tableau des différences divisées."
+    "explication": "**Règle :** Lagrange et Newton donnent **le même** polynôme (il est unique). La différence est la façon de le calculer : Newton le construit point par point avec le tableau des différences divisées.\n\n**Pas à pas :**\n\n1. Avec Lagrange, ajouter un point change **tous** les $L_i$ (chacun reçoit un nouveau facteur) : il faut tout recalculer.\n2. Avec Newton, ajouter un point ajoute **une ligne** au tableau et **un terme** au polynôme ; les coefficients déjà trouvés ne changent pas.\n\n**Les autres réponses :** « degré plus petit » et « polynôme différent, plus précis » sont faux, car le polynôme est le même ; « n'exige pas des abscisses différentes » est faux, Newton divise par des écarts $x_j - x_i$, qui ne doivent jamais être nuls.\n\n**À retenir :** même polynôme ; Newton est pratique quand les mesures arrivent une par une."
   },
   {
     "question": "Que vaut la différence divisée d'ordre 1 $f[x_0, x_1]$ pour les points $(1, 4)$ et $(3, 10)$ ?",
-    "choix": ["$6$", "$3$", "$\\dfrac{1}{3}$", "$2$"],
+    "choix": [
+      "$6$",
+      "$3$",
+      "$\\dfrac{1}{3}$",
+      "$2$"
+    ],
     "reponse": 1,
-    "explication": "C'est la pente : $\\dfrac{10 - 4}{3 - 1} = \\dfrac{6}{2} = 3$."
+    "explication": "**Règle :** la différence divisée d'ordre 1 est la **pente** entre deux points : $f[x_0, x_1] = \\dfrac{y_1 - y_0}{x_1 - x_0}$.\n\n**Pas à pas :**\n\n1. On lit $x_0 = 1$, $y_0 = 4$, $x_1 = 3$, $y_1 = 10$.\n2. Écart des $y$ : $10 - 4 = 6$.\n3. Écart des $x$ : $3 - 1 = 2$.\n4. Pente : $\\dfrac{6}{2} = 3$.\n\n**Les autres réponses :** $6$ oublie de diviser par l'écart des $x$ ; $\\dfrac{1}{3}$ divise dans le mauvais sens ($\\dfrac{\\text{écart des } x}{\\text{écart des } y}$) ; $2$ est seulement l'écart des $x$.\n\n**À retenir :** ordre 1 = $\\dfrac{\\text{écart des } y}{\\text{écart des } x}$, dans le même ordre en haut et en bas."
   },
   {
     "question": "Quel est le développement limité de $e^x$ à l'ordre 2 en $0$ ?",
-    "choix": ["$1 + x + x^2$", "$1 + x + \\dfrac{x^2}{2}$", "$x - \\dfrac{x^2}{2}$", "$1 + x^2$"],
+    "choix": [
+      "$1 + x + x^2$",
+      "$1 + x + \\dfrac{x^2}{2}$",
+      "$x - \\dfrac{x^2}{2}$",
+      "$1 + x^2$"
+    ],
     "reponse": 1,
-    "explication": "$f(0) = f'(0) = f''(0) = 1$, donc $f(0) + f'(0)\\,x + \\dfrac{f''(0)}{2}\\,x^2 = 1 + x + \\dfrac{x^2}{2}$."
+    "explication": "**Règle :** formule de Taylor à l'ordre 2 en $0$ : $f(x) \\approx f(0) + f'(0)\\,x + \\dfrac{f''(0)}{2}\\,x^2$.\n\n**Pas à pas :** avec $f(x) = e^x$.\n\n| Quantité | Calcul | Valeur |\n|---|---|---|\n| $f(0)$ | $e^0$ | $1$ |\n| $f'(0)$ | la dérivée de $e^x$ est $e^x$, donc $e^0$ | $1$ |\n| $f''(0)$ | on dérive encore : $e^x$, donc $e^0$ | $1$ |\n\nOn remplace : $1 + 1 \\cdot x + \\dfrac{1}{2}\\,x^2 = 1 + x + \\dfrac{x^2}{2}$.\n\n**Les autres réponses :** $1 + x + x^2$ oublie de diviser $f''(0)$ par $2$ (c'est le DL de $\\dfrac{1}{1 - x}$) ; $x - \\dfrac{x^2}{2}$ est le DL de $\\ln(1 + x)$ ; $1 + x^2$ oublie le terme en $x$.\n\n**À retenir :** $e^x \\approx 1 + x + \\dfrac{x^2}{2}$ : tous les coefficients de Taylor valent $1$, on divise seulement par $2$ devant $x^2$."
   },
   {
     "question": "Quel est le développement limité de $\\ln(1 + x)$ à l'ordre 2 en $0$ ?",
-    "choix": ["$1 + x + \\dfrac{x^2}{2}$", "$x + \\dfrac{x^2}{2}$", "$x - \\dfrac{x^2}{2}$", "$1 - x + x^2$"],
+    "choix": [
+      "$1 + x + \\dfrac{x^2}{2}$",
+      "$x + \\dfrac{x^2}{2}$",
+      "$x - \\dfrac{x^2}{2}$",
+      "$1 - x + x^2$"
+    ],
     "reponse": 2,
-    "explication": "$\\ln(1 + x) \\approx x - \\dfrac{x^2}{2}$ : le terme constant est nul car $\\ln 1 = 0$."
+    "explication": "**Règle :** Taylor à l'ordre 2 en $0$ : $f(0) + f'(0)\\,x + \\dfrac{f''(0)}{2}\\,x^2$, ici avec $f(x) = \\ln(1 + x)$.\n\n**Pas à pas :**\n\n| Quantité | Calcul | Valeur |\n|---|---|---|\n| $f(0)$ | $\\ln(1)$ | $0$ |\n| $f'(x)$ | $\\dfrac{1}{1 + x}$, donc $f'(0) = \\dfrac{1}{1}$ | $1$ |\n| $f''(x)$ | $-\\dfrac{1}{(1 + x)^2}$, donc $f''(0)$ | $-1$ |\n\nOn remplace : $0 + 1 \\cdot x + \\dfrac{-1}{2}\\,x^2 = x - \\dfrac{x^2}{2}$.\n\n**Les autres réponses :** $1 + x + \\dfrac{x^2}{2}$ est le DL de $e^x$ ; $x + \\dfrac{x^2}{2}$ a le mauvais signe devant $x^2$ ; $1 - x + x^2$ commence par $1$, alors que $\\ln 1 = 0$ (c'est le DL de $\\dfrac{1}{1 + x}$).\n\n**À retenir :** $\\ln(1 + x) \\approx x - \\dfrac{x^2}{2}$ : pas de constante ($\\ln 1 = 0$) et un **moins** devant $x^2$."
   },
   {
     "question": "Le DL d'ordre 1 de $f$ en $0$, $f(0) + f'(0)\\,x$, correspond à :",
-    "choix": ["la tangente à la courbe en $0$", "la droite $y = x$", "l'axe horizontal", "la corde entre $0$ et $1$"],
+    "choix": [
+      "la tangente à la courbe en $0$",
+      "la droite $y = x$",
+      "l'axe horizontal",
+      "la corde entre $0$ et $1$"
+    ],
     "reponse": 0,
-    "explication": "$y = f(0) + f'(0)\\,x$ est l'équation de la tangente en $0$. L'ordre 2 ajoute une correction de courbure."
+    "explication": "**Règle :** la tangente à la courbe de $f$ au point d'abscisse $a$ a pour équation $y = f(a) + f'(a)\\,(x - a)$.\n\n**Pas à pas :**\n\n1. On prend $a = 0$ : $y = f(0) + f'(0)\\,(x - 0) = f(0) + f'(0)\\,x$.\n2. C'est exactement le DL d'ordre 1.\n3. Exemple avec $e^x$ : $f(0) = 1$, $f'(0) = 1$, tangente $y = 1 + x$ (c'est ce que montre l'animation du cours).\n\n**Les autres réponses :** $y = x$ n'est la tangente que si $f(0) = 0$ et $f'(0) = 1$ ; l'axe horizontal ($y = 0$) n'est la tangente que si $f(0) = 0$ et $f'(0) = 0$ ; la corde relie deux points de la courbe ($0$ et $1$), elle ne touche pas la courbe en un seul point.\n\n**À retenir :** DL d'ordre 1 en $0$ = tangente en $0$ ; l'ordre 2 ajoute la courbure."
   },
   {
     "question": "Pourquoi le DL $1 + x + \\frac{x^2}{2}$ approche-t-il mal $e^{3}$ ?",
-    "choix": ["Car la formule est fausse", "Car un DL n'est valable que près de $0$ : le reste, en $O(x^3)$, devient énorme pour $x = 3$", "Car il faudrait diviser par $3$", "Car $e^3$ n'existe pas"],
+    "choix": [
+      "Car la formule est fausse",
+      "Car un DL n'est valable que près de $0$ : le reste, en $O(x^3)$, devient énorme pour $x = 3$",
+      "Car il faudrait diviser par $3$",
+      "Car $e^3$ n'existe pas"
+    ],
     "reponse": 1,
-    "explication": "Le DL donne $8{,}5$ contre $e^3 \\approx 20{,}1$. L'erreur est de l'ordre de $x^3$ : minuscule près de $0$, énorme pour $x = 3$."
+    "explication": "**Règle :** $f(x) = (\\text{DL d'ordre } 2) + R_2(x)$, avec un reste $R_2(x)$ de l'ordre de $x^3$. Un DL est une approximation **locale** : bonne seulement quand $x$ est proche du point de développement ($0$ ici).\n\n**Pas à pas :**\n\n1. Le DL en $x = 3$ donne $1 + 3 + \\dfrac{9}{2} = 8{,}5$.\n2. La vraie valeur est $e^3 \\approx 20{,}1$ : l'erreur vaut environ $11{,}6$.\n3. Le reste est de l'ordre de $x^3$ : pour $x = 0{,}1$, $x^3 = 0{,}001$ (minuscule) ; pour $x = 3$, $x^3 = 27$ (énorme).\n\n**Les autres réponses :** la formule n'est pas fausse, elle est simplement utilisée trop loin de $0$ ; « diviser par $3$ » n'a aucun sens ici ; $e^3$ existe bien, c'est environ $20{,}09$.\n\n**À retenir :** plus $x$ s'éloigne du point de développement, plus le reste (en $x^3$) grossit et plus le DL est faux."
   },
   {
     "question": "On a $500$ mesures bruitées. Pourquoi ne pas les interpoler par un polynôme de degré $499$ ?",
-    "choix": ["C'est impossible mathématiquement", "Il collerait au bruit et oscillerait entre les points : c'est du sur-ajustement", "Il serait forcément constant", "Il ne passerait pas par les points"],
+    "choix": [
+      "C'est impossible mathématiquement",
+      "Il collerait au bruit et oscillerait entre les points : c'est du sur-ajustement",
+      "Il serait forcément constant",
+      "Il ne passerait pas par les points"
+    ],
     "reponse": 1,
-    "explication": "Il passerait bien par les $500$ points, mais en apprenant le bruit par cœur : ses prédictions entre les points seraient mauvaises. On préfère une régression de petit degré."
+    "explication": "**Règle :** un polynôme de très grand degré qui passe **exactement** par des points bruités les « apprend par cœur », bruit compris, et oscille entre eux : c'est le **sur-ajustement** (*overfitting*).\n\n**Pas à pas :**\n\n1. $500$ points d'abscisses différentes : un polynôme de degré $499$ passe exactement par eux (règle des $n + 1$ points), donc c'est possible.\n2. Mais chaque mesure contient du bruit (une petite erreur) : le polynôme le recopie fidèlement.\n3. Pour toucher tous ces points un peu faux, il fait de grandes oscillations entre eux : ses valeurs entre les mesures (et après) sont mauvaises.\n4. Mieux vaut une **régression** de petit degré, qui passe près des points et suit la tendance.\n\n**Les autres réponses :** ce n'est pas impossible (voir étape 1) ; il n'est pas « forcément constant », au contraire il est très agité ; il passe bien par les points, c'est justement le problème.\n\n**À retenir :** données bruitées et nombreuses → régression de petit degré, pas une interpolation exacte."
   }
 ]

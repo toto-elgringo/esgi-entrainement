@@ -8,7 +8,7 @@
       "Il n'a pas besoin de Rust"
     ],
     "reponse": 1,
-    "explication": "Avec Axum seul, il faut choisir et brancher soi-même l'ORM, l'auth, les tests... Loco fournit tout cela et des générateurs de code."
+    "explication": "**Règle :** Axum est une bibliothèque HTTP (routes, extracteurs, réponses) : avec elle seule, c'est à toi de brancher la config, la base, l'authentification et les tests. Loco est un framework complet construit **sur** Axum, qui fournit tout cela déjà branché, avec des conventions et des générateurs.\n\n**Pas à pas :** imagine une appli de capteurs avec utilisateurs.\n\n| Besoin | Axum seul | Loco |\n|---|---|---|\n| lire la config par environnement | à coder | `config/*.yaml` |\n| base + migrations | choisir un ORM, l'installer | SeaORM déjà branché |\n| inscription / connexion | à coder | `/api/auth/...` fourni |\n| tests de requêtes | à organiser | `request::<App, ...>` |\n\nL'intérêt de Loco, c'est tout ce code que tu n'écris pas.\n\n**Les autres réponses :** « plus rapide à l'exécution » est faux : les gestionnaires Loco **sont** des gestionnaires Axum, donc même vitesse. « Il remplace Tokio » est faux : Loco utilise Axum, qui utilise Tokio. « Il n'a pas besoin de Rust » est absurde : tout s'écrit en Rust.\n\n**À retenir :** Loco = Axum + config, base, auth et tests déjà branchés, avec des conventions. Le gain est en code à écrire, pas en vitesse."
   },
   {
     "question": "Avec quels frameworks d'autres langages compare-t-on Loco ?",
@@ -19,7 +19,7 @@
       "Pandas et NumPy"
     ],
     "reponse": 0,
-    "explication": "Loco est « le Rails de Rust » : un framework complet qui impose des conventions."
+    "explication": "**Règle :** Loco est un framework « tout compris » à conventions, surnommé « le Rails de Rust ». On le compare donc aux frameworks web complets des autres langages.\n\n**Pas à pas :** on cherche des outils qui, comme Loco, gèrent routes + base + auth + générateurs côté serveur :\n\n- **Rails** (Ruby), **Django** (Python), **Laravel** (PHP), **NestJS** (TypeScript) : oui, ce sont tous des frameworks web serveur complets, avec conventions et générateurs.\n\n**Les autres réponses :** React et Vue servent à construire des interfaces **dans le navigateur** (côté client), pas des serveurs avec base. Docker et Kubernetes servent à **déployer** des applications dans des conteneurs. Pandas et NumPy sont des bibliothèques Python de **calcul et d'analyse de données**.\n\n**À retenir :** Loco joue le même rôle que Rails, Django, Laravel ou NestJS : un framework serveur complet à conventions."
   },
   {
     "question": "Sur quoi Loco est-il construit pour le HTTP et la base de données ?",
@@ -30,7 +30,7 @@
       "Hyper seul"
     ],
     "reponse": 1,
-    "explication": "Les gestionnaires Loco sont des gestionnaires Axum, et l'accès aux données passe par SeaORM. On peut toujours « redescendre » dans Axum."
+    "explication": "**Règle :** Loco ne réinvente pas le HTTP ni l'accès à la base : il assemble des briques existantes. Le HTTP passe par **Axum** (lui-même sur Tokio et Hyper), la base par l'ORM **SeaORM**.\n\n**Pas à pas :** on relie ce qu'on écrit dans Loco à ce qui tourne vraiment :\n\n- `get(list)`, `Path(id)`, `Json(corps)`, `State(ctx)` : ce sont des fonctions et extracteurs **Axum** ;\n- `mesures::Entity::find().filter(...)`, `ActiveModel`, les migrations `create_table` : c'est **SeaORM**.\n\nD'où « Axum et SeaORM ». On peut même ajouter des routes Axum pures dans `after_routes`.\n\n**Les autres réponses :** Actix et Rocket sont d'autres frameworks web Rust, Diesel et sqlx d'autres outils d'accès aux bases : ils existent, mais Loco ne les utilise pas. « Hyper seul » est trop bas niveau : Hyper est bien dessous, mais à travers Axum, et il ne gère pas la base.\n\n**À retenir :** Loco = Axum pour le HTTP + SeaORM pour la base."
   },
   {
     "question": "Où se règle le port du serveur et l'adresse de la base dans un projet Loco ?",
@@ -41,7 +41,7 @@
       "Dans les migrations"
     ],
     "reponse": 1,
-    "explication": "Il y a un fichier YAML par environnement : development, test, production."
+    "explication": "**Règle :** dans un projet Loco, tout ce qui change d'un environnement à l'autre (port, adresse de la base, CORS, délais) est dans un fichier YAML **par environnement** : `config/development.yaml`, `config/test.yaml`, `config/production.yaml`.\n\n**Pas à pas :** en local, Loco lit `development.yaml` :\n\n```yaml\nserver:\n  port: 5150\ndatabase:\n  uri: sqlite://capteurs-api_development.sqlite?mode=rwc\n```\n\nPour la production, on change seulement `production.yaml` (ou une variable d'environnement, qui l'emporte), sans toucher au code Rust.\n\n**Les autres réponses :** `Cargo.toml` décrit le paquet et ses dépendances, pas la config d'exécution. « `src/main.rs` uniquement » obligerait à recompiler pour changer de port : c'est justement ce que la config évite. Les migrations décrivent le **schéma** des tables (colonnes, clés), pas l'adresse de la base.\n\n**À retenir :** port, base et middlewares se règlent dans `config/<environnement>.yaml`."
   },
   {
     "question": "Que fait la commande `cargo loco generate scaffold` ?",
@@ -52,7 +52,7 @@
       "Elle déploie en production"
     ],
     "reponse": 1,
-    "explication": "Un scaffold écrit le code répétitif d'une ressource complète : migration, modèle, contrôleur avec ses routes, et un test."
+    "explication": "**Règle :** un **scaffold** (échafaudage) génère d'un coup tout le code d'une ressource : la migration (la table), le modèle, le contrôleur avec ses routes CRUD (créer, lire, modifier, supprimer) et un test.\n\n**Pas à pas :** `cargo loco generate scaffold capteur nom:string! unite:string!` produit :\n\n1. une migration qui crée la table `capteurs` avec `id`, `nom`, `unite` ;\n2. le modèle dans `src/models/` (et l'entité générée dans `_entities/`) ;\n3. un contrôleur avec les routes `GET`, `POST`, `PUT`, `DELETE` ;\n4. un test de requêtes.\n\n**Les autres réponses :** lancer le serveur, c'est `cargo loco start`. Aucune commande `generate` ne supprime la base ni ne déploie en production : `generate` **écrit du code**, rien d'autre. Ne confonds pas non plus avec `generate model`, qui fait table + modèle **sans** contrôleur.\n\n**À retenir :** `generate scaffold` = table + modèle + contrôleur CRUD + test ; `generate model` = sans contrôleur ; `start` = lancer."
   },
   {
     "question": "Comment protège-t-on une route avec l'authentification JWT dans Loco ?",
@@ -63,7 +63,7 @@
       "Impossible sans crate externe"
     ],
     "reponse": 1,
-    "explication": "`auth::JWT` est un extracteur : si le jeton est absent ou faux, la requête est refusée (401) avant même d'entrer dans le gestionnaire."
+    "explication": "**Règle :** dans Loco, `auth::JWT` est un **extracteur** Axum : un argument du gestionnaire qui lit le jeton dans l'en-tête `Authorization: Bearer ...` et vérifie sa signature. Si ça échoue, la requête est refusée avec un **401** avant d'exécuter le gestionnaire.\n\n**Pas à pas :**\n\n```text\nasync fn current(auth: auth::JWT, State(ctx): State<AppContext>) -> Result<Response>\n```\n\n- sans jeton : l'extraction échoue, réponse 401, `current` n'est pas appelé ;\n- jeton inventé : signature fausse, 401 ;\n- jeton reçu à la connexion : l'extraction réussit, `current` tourne et connaît l'utilisateur.\n\nProtéger une route = **ajouter cet argument**, rien d'autre.\n\n**Les autres réponses :** le YAML règle les middlewares généraux (CORS, délais), pas la protection d'une route précise. Le dossier où est rangé le contrôleur ne change rien à la sécurité. Et aucune crate externe n'est à ajouter : l'auth JWT est fournie par Loco.\n\n**À retenir :** pour exiger un utilisateur connecté, ajoute `auth: auth::JWT` aux arguments du gestionnaire."
   },
   {
     "question": "Quel type représente un gestionnaire stocké dans un routeur écrit à la main en std ?",
@@ -74,7 +74,7 @@
       "`Option<Requete>`"
     ],
     "reponse": 0,
-    "explication": "Chaque gestionnaire est une fonction ou une closure de type différent : on les range derrière un pointeur `Box<dyn Fn...>`."
+    "explication": "**Règle :** chaque closure a son **propre type**, unique, même si deux closures ont la même signature. Pour ranger des gestionnaires différents dans une même liste, on les cache derrière un objet-trait `dyn Fn(&Requete) -> Reponse`, mis dans une `Box` car sa taille n'est pas connue à la compilation.\n\n**Pas à pas :**\n\n```rust\ntype Gestionnaire = Box<dyn Fn(&Requete) -> Reponse>;\nlet mut routes: Vec<(String, Gestionnaire)> = Vec::new();\nroutes.push((\"/a\".to_string(), Box::new(|_| Reponse { statut: 200 })));\nroutes.push((\"/b\".to_string(), Box::new(page_b)));\n```\n\nUne closure et une fonction nommée entrent dans le même `Vec` : toutes deux « s'appellent avec une `&Requete` et rendent une `Reponse` ». On les appelle ensuite comme une fonction : `gestionnaire(&requete)`.\n\n**Les autres réponses :** un `&str` est du texte, pas du code qu'on peut appeler (c'est plutôt la **clé** de la route). `Vec<u8>` est une suite d'octets. `Option<Requete>` est une requête qui existe ou non : ce sont des données, pas un gestionnaire.\n\n**À retenir :** un gestionnaire stocké = `Box<dyn Fn(&Requete) -> Reponse>`."
   },
   {
     "question": "Un middleware, en Rust simple, c'est :",
@@ -85,7 +85,7 @@
       "Un fichier de configuration"
     ],
     "reponse": 1,
-    "explication": "Le middleware agit avant et/ou après le gestionnaire (journal, vérification du jeton...) puis appelle le suivant."
+    "explication": "**Règle :** un middleware est une fonction qui **reçoit un gestionnaire** (`suivant`) et **en rend un nouveau** qui l'enveloppe : il peut agir avant, appeler `suivant` (ou refuser sans l'appeler), puis agir après.\n\n**Pas à pas :**\n\n```rust\nfn avec_journal(suivant: Gestionnaire) -> Gestionnaire {\n    Box::new(move |r: &Requete| {\n        println!(\"début {}\", r.chemin);\n        let rep = suivant(r);\n        println!(\"fin {}\", rep.statut);\n        rep\n    })\n}\n```\n\n1. avant : on écrit `début` ;\n2. on appelle le gestionnaire enveloppé ;\n3. après : on écrit `fin` avec le statut, et on renvoie la réponse.\n\nUn middleware de jeton, lui, rend directement un 401 sans appeler `suivant`.\n\n**Les autres réponses :** une base de données stocke des données, elle ne s'intercale pas entre la requête et le gestionnaire. Une macro génère du code à la compilation. Un fichier de configuration peut **activer** des middlewares dans Loco (CORS, délai), mais le middleware lui-même est du code qui enveloppe.\n\n**À retenir :** middleware = `fn(Gestionnaire) -> Gestionnaire`, qui fait quelque chose avant et/ou après l'appel au suivant."
   },
   {
     "question": "À quoi sert `impl From<ParseIntError> for MonErreur` quand on utilise `?` ?",
@@ -96,7 +96,7 @@
       "À créer une macro"
     ],
     "reponse": 1,
-    "explication": "Le `?` appelle `From::from` sur l'erreur : on peut mélanger plusieurs sortes d'erreurs dans une même fonction."
+    "explication": "**Règle :** quand le `?` tombe sur un `Err(e)`, il fait `return Err(From::from(e))`. Il **convertit** donc l'erreur vers le type d'erreur de la fonction, à condition qu'un `impl From<TypeDeE> for MonErreur` existe.\n\n**Pas à pas :**\n\n```rust\nimpl From<ParseIntError> for ErreurWeb {\n    fn from(_: ParseIntError) -> Self {\n        ErreurWeb::Invalide(\"identifiant invalide\".to_string())\n    }\n}\n\nfn lire(texte: &str) -> Result<u32, ErreurWeb> {\n    let n: u32 = texte.parse()?;\n    Ok(n)\n}\n```\n\n- `lire(\"7\")` : `parse` donne `Ok(7)`, le `?` laisse passer, résultat `Ok(7)` ;\n- `lire(\"x\")` : `parse` donne `Err(ParseIntError)`, le `?` appelle `ErreurWeb::from`, résultat `Err(Invalide(...))`.\n\nSans le `impl From`, `texte.parse()?` ne compile pas : la `ParseIntError` n'est pas une `ErreurWeb`.\n\n**Les autres réponses :** afficher une erreur, c'est `Display` ou `Debug`. Le `?` n'ignore jamais l'erreur : il la **renvoie**. Et `From` est un trait ordinaire, pas une macro.\n\n**À retenir :** `impl From<ErreurDeBase> for MonErreur` permet au `?` de convertir l'erreur automatiquement."
   },
   {
     "question": "Quelle différence entre `From` et `TryFrom` ?",
@@ -107,7 +107,7 @@
       "`TryFrom` ne marche qu'avec les nombres"
     ],
     "reponse": 1,
-    "explication": "`From` est une conversion qui réussit toujours. `TryFrom` renvoie `Result` : c'est l'idée d'un extracteur qui peut refuser une requête."
+    "explication": "**Règle :** `From<T>` est une conversion qui **réussit toujours** : `fn from(t: T) -> Self`. `TryFrom<T>` est une conversion qui **peut échouer** : `fn try_from(t: T) -> Result<Self, Self::Error>`.\n\n**Pas à pas :**\n\n| Conversion | Peut rater ? | Trait |\n|---|---|---|\n| un `u8` vers un `u32` | non, tout `u8` tient dans un `u32` | `From` : `u32::from(5u8)` |\n| un `u32` vers un `u8` | oui, `300` ne tient pas | `TryFrom` : `u8::try_from(300u32)` donne `Err(...)` |\n| un texte `\"42\"` vers un identifiant | oui, `\"abc\"` n'est pas un nombre | `TryFrom<&str>` |\n\nC'est exactement l'idée d'un extracteur : il peut refuser une requête mal formée.\n\n**Les autres réponses :** « aucune » est faux, la signature est différente (`Self` contre `Result`). « `From` est plus lent » : la vitesse n'a rien à voir. « `TryFrom` ne marche qu'avec les nombres » : on l'implémente pour n'importe quel type, comme `TryFrom<&str> for Identifiant`.\n\n**À retenir :** conversion sûre → `From` ; conversion qui peut refuser → `TryFrom`, qui renvoie un `Result`."
   },
   {
     "question": "Dans l'architecture en couches, pourquoi le service est-il écrit `fn stats<R: MesuresRepository>(repo: &R, ...)` ?",
@@ -118,7 +118,7 @@
       "Pour éviter d'écrire des tests"
     ],
     "reponse": 1,
-    "explication": "Le service ne connaît que le trait : on lui donne la vraie base en production et une `BTreeMap` dans les tests, qui tournent alors sans serveur ni base."
+    "explication": "**Règle :** `fn stats<R: MesuresRepository>(repo: &R, ...)` est une fonction **générique** : elle marche pour **n'importe quel** type `R` qui implémente le trait. Le service ne connaît que le trait, jamais la façon dont les données sont stockées.\n\n**Pas à pas :**\n\n1. En production, on appelle `stats(&repo_sqlite, 3)` : `R` = le repository qui parle à SQLite.\n2. Dans les tests, on appelle `stats(&en_memoire, 3)` avec une simple `BTreeMap` : `R` = `EnMemoire`.\n3. Le **même** code du service tourne dans les deux cas. Les tests vont très vite : pas de serveur, pas de base.\n\n**Les autres réponses :** « aller plus vite à l'exécution » n'est pas le but (un générique ne rend pas le calcul plus rapide qu'une fonction écrite pour un seul type). Loco n'impose rien sur la forme des services : c'est un choix d'architecture. Et c'est l'inverse d'« éviter les tests » : le générique sert justement à **faciliter** les tests.\n\n**À retenir :** service générique sur un trait = une seule logique, plusieurs sources de données (vraie base en production, mémoire en test)."
   },
   {
     "question": "Quel est le rôle du contrôleur dans cette architecture ?",
@@ -129,6 +129,6 @@
       "Créer les migrations"
     ],
     "reponse": 2,
-    "explication": "Le contrôleur ne fait que du HTTP : par exemple `None` devient un 404 et `Some(stats)` un 200 avec du JSON."
+    "explication": "**Règle :** dans l'architecture en couches, chaque couche a un seul rôle : le contrôleur fait **uniquement du HTTP**. Il extrait les données de la requête, appelle le service, puis traduit le résultat en code HTTP et en JSON.\n\n**Pas à pas :** pour `GET /api/capteurs/3/stats` :\n\n1. **extraire** : `Path(id)` donne `3` ;\n2. **appeler** : `stats_capteur(&repo, 3)` ;\n3. **traduire** : `Some(stats)` devient `200` + JSON, `None` devient `404`.\n\n**Les autres réponses :** écrire les requêtes SQL, c'est le rôle du **repository**. Calculer les statistiques, c'est le **service** (la logique métier). Créer les migrations, c'est la commande `generate` et le dossier `migration/` : rien à voir avec le contrôleur.\n\n**À retenir :** contrôleur = extraire, appeler le service, traduire en code HTTP + JSON ; la logique va dans le service, les données dans le repository."
   }
 ]

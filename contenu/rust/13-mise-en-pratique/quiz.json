@@ -1,56 +1,101 @@
 [
   {
     "question": "Dans l'exercice des calories, pourquoi faut-il traiter le dernier lutin **après** la boucle ?",
-    "choix": ["Parce qu'il est le plus gros", "Parce qu'il n'est pas suivi d'une ligne vide", "Parce que `lines()` saute la dernière ligne", "Ce n'est pas nécessaire"],
+    "choix": [
+      "Parce qu'il est le plus gros",
+      "Parce qu'il n'est pas suivi d'une ligne vide",
+      "Parce que `lines()` saute la dernière ligne",
+      "Ce n'est pas nécessaire"
+    ],
     "reponse": 1,
-    "explication": "Le total d'un lutin est enregistré quand on rencontre une ligne vide. Le dernier n'en a pas après lui : sans traitement après la boucle, il est oublié."
+    "explication": "**Règle :** dans la boucle, le total d'un lutin est comparé au record (ou rangé dans la liste) **au moment où on lit une ligne vide**. Un lutin n'est donc « fermé » que s'il est suivi d'une ligne vide.\n\n**Pas à pas :** avec l'entrée `\"100\\n200\\n\\n50\\n\\n1000\"` :\n\n| Ligne | Vide ? | Total en cours | Record |\n|---|---|---|---|\n| `100` | non | 100 | 0 |\n| `200` | non | 300 | 0 |\n| (vide) | oui | 0 | 300 |\n| `50` | non | 50 | 300 |\n| (vide) | oui | 0 | 300 |\n| `1000` | non | 1000 | 300 |\n\nLa boucle est finie, mais le dernier lutin (1000) n'a jamais été comparé : sans une dernière mise à jour **après** la boucle, on répondrait 300 au lieu de 1000.\n\n**Les autres réponses :** le dernier lutin n'est pas forcément le plus gros (dans l'exemple de l'énoncé, c'est le 4e) ; `lines()` ne saute aucune ligne, la ligne `1000` est bien lue ; et c'est nécessaire, sinon un test échoue.\n\n**À retenir :** une boucle qui regroupe par séparateur doit fermer le dernier groupe après la boucle."
   },
   {
     "question": "Que fait `*best = ongoing_total;` quand `best` est un `&mut i32` ?",
-    "choix": ["Change la référence pour qu'elle pointe ailleurs", "Écrit la valeur derrière la référence", "Copie la référence", "Ne compile pas"],
+    "choix": [
+      "Change la référence pour qu'elle pointe ailleurs",
+      "Écrit la valeur derrière la référence",
+      "Copie la référence",
+      "Ne compile pas"
+    ],
     "reponse": 1,
-    "explication": "L'étoile **déréférence** : on modifie le nombre emprunté, pas la référence elle-même."
+    "explication": "**Règle :** `best` est une **référence** (`&mut i32`) vers un nombre qui appartient à quelqu'un d'autre. L'étoile `*` **déréférence** : `*best` désigne le nombre lui-même, derrière la référence.\n\n**Pas à pas :**\n\n```rust\nlet mut record = 10;\nlet best = &mut record;\n*best = 25;\nprintln!(\"{record}\");   // 25\n```\n\n1. `best` regarde `record`.\n2. `*best = 25` écrit 25 **dans** `record`, à travers la référence.\n3. `record` vaut maintenant 25 : c'est comme ça que `update_best` modifie le record de la fonction appelante.\n\n**Les autres réponses :** pour que la référence pointe ailleurs, il faudrait écrire `best = &mut autre` (sans étoile, et `best` devrait être `mut`) ; rien n'est copié, on écrit dans la valeur d'origine ; et ça compile, c'est justement l'écriture correcte (sans l'étoile, on mettrait un `i32` dans une variable de type `&mut i32` : erreur de types).\n\n**À retenir :** `*ref = valeur` écrit dans la valeur empruntée."
   },
   {
     "question": "Que renvoie `\"\".parse::<i32>().unwrap_or(0)` ?",
-    "choix": ["Une panique", "`0`", "`None`", "Une erreur de compilation"],
+    "choix": [
+      "Une panique",
+      "`0`",
+      "`None`",
+      "Une erreur de compilation"
+    ],
     "reponse": 1,
-    "explication": "La conversion d'un texte vide échoue (`Err`), et `unwrap_or(0)` remplace l'erreur par 0."
+    "explication": "**Règle :** `parse::<i32>()` renvoie un `Result` : `Ok(nombre)` si le texte est un nombre, `Err(...)` sinon. `unwrap_or(0)` donne le nombre si c'est `Ok`, et `0` si c'est `Err`.\n\n**Pas à pas :**\n\n1. `\"\"` (texte vide) n'est pas un nombre : `\"\".parse::<i32>()` donne `Err(...)`.\n2. `unwrap_or(0)` voit un `Err` : il renvoie la valeur de secours, `0`.\n3. Le résultat est donc le nombre `0` (de type `i32`).\n\nComparaison : `\"42\".parse::<i32>().unwrap_or(0)` donne `42`.\n\n**Les autres réponses :** une panique, ce serait avec `unwrap()` tout court ; `None` est une valeur d'`Option`, et `unwrap_or` sort justement de l'enveloppe ; ça compile sans problème.\n\n**À retenir :** `unwrap_or(secours)` = « la valeur, ou `secours` en cas d'échec », jamais de panique."
   },
   {
     "question": "Que fait `include_str!(\"inputs/real_input.txt\")` ?",
-    "choix": ["Lit le fichier à chaque exécution", "Copie le contenu du fichier dans le programme, à la compilation", "Crée le fichier", "Affiche le fichier"],
+    "choix": [
+      "Lit le fichier à chaque exécution",
+      "Copie le contenu du fichier dans le programme, à la compilation",
+      "Crée le fichier",
+      "Affiche le fichier"
+    ],
     "reponse": 1,
-    "explication": "C'est une macro : le texte du fichier est intégré au programme quand on compile. Le type obtenu est `&'static str`."
+    "explication": "**Règle :** `include_str!` est une **macro** (le `!`) exécutée **à la compilation** : elle lit le fichier et colle son contenu dans le programme, comme un texte écrit entre guillemets. Le résultat est un `&'static str`.\n\n**Pas à pas :**\n\n1. `cargo build` : le compilateur ouvre `inputs/real_input.txt` (chemin relatif au fichier `.rs`) et range son texte dans le programme.\n2. À l'exécution, le fichier n'est **plus** lu : on pourrait le supprimer, le programme garde le texte.\n3. Si le fichier n'existe pas au moment de compiler, c'est une erreur de **compilation**.\n\n**Les autres réponses :** lire le fichier à chaque exécution, c'est `std::fs::read_to_string` ; `include_str!` ne crée aucun fichier ; et il n'affiche rien, il faut un `println!` pour ça.\n\n**À retenir :** `include_str!` = le texte du fichier copié dans le programme au moment de compiler."
   },
   {
     "question": "Quel type choisir pour représenter « dépôt ou retrait d'un montant » ?",
-    "choix": ["Deux `bool`", "Une `struct` avec deux champs", "Un `enum Operation { Depot(u64), Retrait(u64) }`", "Une `String`"],
+    "choix": [
+      "Deux `bool`",
+      "Une `struct` avec deux champs",
+      "Un `enum Operation { Depot(u64), Retrait(u64) }`",
+      "Une `String`"
+    ],
     "reponse": 2,
-    "explication": "Un `enum` exprime un choix entre plusieurs cas, chacun pouvant porter ses propres données."
+    "explication": "**Règle :** un `enum` représente un **choix** entre plusieurs cas ; chaque variante peut porter ses propres données. Une `struct`, au contraire, regroupe des données qui existent **toutes en même temps**.\n\n**Pas à pas :** « dépôt **ou** retrait **d'un montant** » :\n\n1. Le mot « ou » : un choix entre deux cas, donc un `enum`.\n2. « d'un montant » : chaque cas porte un nombre, donc `Depot(u64)` et `Retrait(u64)`.\n3. Avec `match operation { Operation::Depot(m) => ..., Operation::Retrait(m) => ... }`, le compilateur oblige à traiter les deux cas.\n\n**Les autres réponses :** deux `bool` permettraient des états absurdes (les deux vrais, ou aucun) ; une `struct` avec deux champs (par exemple un montant et un `bool`) marche mal et laisse aussi des combinaisons floues ; une `String` (`\"depot 50\"`) devrait être relue et vérifiée à chaque fois, sans aide du compilateur.\n\n**À retenir :** « ceci **ou** cela, avec des données » = `enum` à variantes avec données."
   },
   {
     "question": "Que fait `*compte.entry(mot).or_insert(0) += 1;` sur une `HashMap` ?",
-    "choix": ["Supprime le mot", "Ajoute 1 au compteur du mot, en le créant à 0 s'il n'existe pas", "Remet le compteur à 0", "Ne compile pas"],
+    "choix": [
+      "Supprime le mot",
+      "Ajoute 1 au compteur du mot, en le créant à 0 s'il n'existe pas",
+      "Remet le compteur à 0",
+      "Ne compile pas"
+    ],
     "reponse": 1,
-    "explication": "C'est la façon idiomatique de compter des occurrences avec une `HashMap`."
+    "explication": "**Règle :** `entry(cle)` donne la case de la clé ; `or_insert(0)` la crée avec 0 si elle n'existe pas, puis renvoie une référence modifiable vers la valeur ; `*... += 1` ajoute 1 à cette valeur.\n\n**Pas à pas :** avec les mots `chat`, `chien`, `chat` :\n\n| Mot | Case existe ? | Valeur après |\n|---|---|---|\n| `chat` | non : créée à 0, puis + 1 | `chat → 1` |\n| `chien` | non : créée à 0, puis + 1 | `chien → 1` |\n| `chat` | oui (1), + 1 | `chat → 2` |\n\nL'étoile est nécessaire car `or_insert` renvoie un `&mut` : on écrit dans le nombre derrière la référence.\n\n**Les autres réponses :** pour supprimer, c'est `remove` ; rien n'est remis à 0, le 0 ne sert que pour une clé **nouvelle** ; et ça compile, c'est la façon habituelle de compter en Rust.\n\n**À retenir :** compter avec une `HashMap` = `*table.entry(cle).or_insert(0) += 1;`."
   },
   {
     "question": "Dans une fonction qui renvoie `Result<i64, String>`, que fait `valeur?` si `valeur` est un `Err` ?",
-    "choix": ["Le programme panique", "La fonction renvoie immédiatement cette erreur", "L'erreur est ignorée", "La valeur devient 0"],
+    "choix": [
+      "Le programme panique",
+      "La fonction renvoie immédiatement cette erreur",
+      "L'erreur est ignorée",
+      "La valeur devient 0"
+    ],
     "reponse": 1,
-    "explication": "`?` propage l'erreur à l'appelant. Si c'est un `Ok`, il donne la valeur contenue."
+    "explication": "**Règle :** sur un `Result`, l'opérateur `?` donne la valeur si c'est `Ok(valeur)`. Si c'est `Err(e)`, il fait **sortir immédiatement** la fonction en renvoyant `Err(e)` à l'appelant (on dit qu'il **propage** l'erreur).\n\n**Pas à pas :**\n\n```rust\nfn somme(a: &str, b: &str) -> Result<i64, String> {\n    let x = lire(a)?;\n    let y = lire(b)?;\n    Ok(x + y)\n}\n```\n\nAvec `somme(\"4\", \"six\")` :\n\n1. `lire(\"4\")` donne `Ok(4)` : `?` sort le 4, `x = 4`.\n2. `lire(\"six\")` donne `Err(...)` : `?` arrête **tout de suite** la fonction et renvoie cette erreur.\n3. La ligne `Ok(x + y)` n'est jamais atteinte.\n\n**Les autres réponses :** la panique, c'est `unwrap()` ; l'erreur n'est pas ignorée, elle est transmise ; et aucune valeur 0 n'est inventée (ce serait `unwrap_or(0)`).\n\n**À retenir :** `?` = « continue avec la valeur, ou renvoie l'erreur tout de suite »."
   },
   {
     "question": "Que renvoie `\"ajoute 5\".split_once(' ')` ?",
-    "choix": ["`[\"ajoute\", \"5\"]`", "`Some((\"ajoute\", \"5\"))`", "`(\"ajoute\", \"5\")`", "`\"ajoute\"`"],
+    "choix": [
+      "`[\"ajoute\", \"5\"]`",
+      "`Some((\"ajoute\", \"5\"))`",
+      "`(\"ajoute\", \"5\")`",
+      "`\"ajoute\"`"
+    ],
     "reponse": 1,
-    "explication": "`split_once` coupe en deux au premier séparateur et renvoie `None` si le séparateur est absent."
+    "explication": "**Règle :** `split_once(sep)` coupe le texte en deux au **premier** séparateur trouvé. Comme le séparateur peut être absent, le résultat est une `Option` contenant un **couple** : `Some((avant, après))` ou `None`.\n\n**Pas à pas :**\n\n1. Dans `\"ajoute 5\"`, le premier espace est entre `ajoute` et `5`.\n2. Avant : `\"ajoute\"` ; après : `\"5\"`.\n3. Résultat : `Some((\"ajoute\", \"5\"))`, de type `Option<(&str, &str)>`.\n\nAutres cas : `\"reset\".split_once(' ')` donne `None` (pas d'espace) ; `\"a b c\".split_once(' ')` donne `Some((\"a\", \"b c\"))` (seul le premier espace coupe).\n\n**Les autres réponses :** une liste `[\"ajoute\", \"5\"]`, c'est ce qu'on obtiendrait avec `split(' ').collect::<Vec<_>>()` ; le couple sans `Some` oublie que le séparateur peut manquer ; `\"ajoute\"` seul, c'est `split(' ').next()` (et encore, dans un `Some`).\n\n**À retenir :** `split_once` = `Option` d'un couple (avant, après), coupé au premier séparateur."
   },
   {
     "question": "Pour obtenir les trois plus gros totaux d'un `Vec<u32>`, quelle approche est la plus simple ?",
-    "choix": ["Trier du plus grand au plus petit puis prendre les 3 premiers", "Supprimer les éléments un par un", "Utiliser une `HashMap`", "C'est impossible sans boucle"],
+    "choix": [
+      "Trier du plus grand au plus petit puis prendre les 3 premiers",
+      "Supprimer les éléments un par un",
+      "Utiliser une `HashMap`",
+      "C'est impossible sans boucle"
+    ],
     "reponse": 0,
-    "explication": "`totaux.sort_unstable_by(|a, b| b.cmp(a));` puis `totaux.iter().take(3).sum()`."
+    "explication": "**Règle :** pour « les N plus grands », on trie la liste du plus grand au plus petit, puis on garde les N premiers. `sort_unstable_by(|a, b| b.cmp(a))` trie à l'envers ; `iter().take(N)` garde au plus N éléments ; `sum()` les additionne.\n\n**Pas à pas :** avec `vec![300, 800, 150, 500]` :\n\n1. Tri à l'envers : `[800, 500, 300, 150]`.\n2. `take(3)` : `800`, `500`, `300` (le 150 est écarté).\n3. `sum()` : 800 + 500 + 300 = `1600`.\n\nS'il n'y a que deux totaux, `take(3)` en prend deux, sans panique.\n\n**Les autres réponses :** supprimer les éléments un par un est long et compliqué ; une `HashMap` sert à associer des clés à des valeurs, pas à classer ; et c'est possible sans boucle écrite à la main, grâce aux itérateurs.\n\n**À retenir :** les N plus grands = tri à l'envers (`b.cmp(a)`) + `take(N)`."
   }
 ]

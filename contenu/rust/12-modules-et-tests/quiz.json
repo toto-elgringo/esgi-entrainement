@@ -1,68 +1,123 @@
 [
   {
     "question": "Par défaut, une fonction déclarée dans un `mod` est...",
-    "choix": ["publique", "privée", "statique", "mutable"],
+    "choix": [
+      "publique",
+      "privée",
+      "statique",
+      "mutable"
+    ],
     "reponse": 1,
-    "explication": "Tout est privé par défaut. Il faut `pub` pour l'utiliser en dehors du module (sinon erreur E0603)."
+    "explication": "**Règle :** en Rust, tout ce qui est déclaré dans un module (fonction, struct, module, constante) est **privé** par défaut : visible seulement à l'intérieur de ce module. Pour l'utiliser ailleurs, on ajoute `pub`.\n\n**Pas à pas :**\n\n```rust\nmod outils {\n    fn aide() -> u32 { 1 }\n}\nfn main() {\n    outils::aide();   // E0603 : function `aide` is private\n}\n```\n\n1. `aide` est dans `outils`, sans `pub` : privée.\n2. `main` est en dehors de `outils` : il ne la voit pas, erreur **E0603**.\n3. Avec `pub fn aide()`, l'appel compile.\n\n**Les autres réponses :** « publique » est l'inverse de la règle ; « statique » et « mutable » ne décrivent pas la visibilité (une fonction n'est ni mutable ni immuable).\n\n**À retenir :** privé par défaut ; `pub` devant ce qui doit sortir du module."
   },
   {
     "question": "Avec `pub struct Compte { solde: u64 }`, peut-on écrire `compte.solde = 10;` en dehors du module ?",
-    "choix": ["Oui, car la struct est `pub`", "Non, le champ `solde` est privé", "Oui, si `compte` est `mut`", "Seulement dans `main`"],
+    "choix": [
+      "Oui, car la struct est `pub`",
+      "Non, le champ `solde` est privé",
+      "Oui, si `compte` est `mut`",
+      "Seulement dans `main`"
+    ],
     "reponse": 1,
-    "explication": "`pub struct` rend le type public, pas ses champs. Erreur E0616 : il faut passer par une méthode publique."
+    "explication": "**Règle :** `pub struct` rend le **type** visible, mais chaque champ reste privé tant qu'il n'a pas son propre `pub`. Un champ privé ne peut être ni lu ni modifié en dehors du module.\n\n**Pas à pas :**\n\n1. Le type `Compte` est `pub` : on peut écrire `banque::Compte` depuis l'extérieur.\n2. Le champ `solde` n'a pas `pub` : il est privé.\n3. `compte.solde = 10;` depuis l'extérieur donne **E0616** (*field `solde` of struct `Compte` is private*).\n4. Pour changer le solde, on passe par une méthode publique (`deposer`, `retirer`) qui vérifie les règles : c'est l'**encapsulation**.\n\n**Les autres réponses :** « oui car la struct est `pub` » confond le type et ses champs ; `mut` autorise la modification d'une variable, pas l'accès à un champ privé ; `main` est en dehors du module comme le reste, il n'a aucun droit spécial.\n\n**À retenir :** `pub struct` ≠ champs publics : chaque champ a besoin de son propre `pub`."
   },
   {
     "question": "Que fait `use restaurant::desserts;` ?",
-    "choix": ["Copie le module", "Crée un raccourci : on peut écrire `desserts::...`", "Rend `desserts` public", "Exécute le module"],
+    "choix": [
+      "Copie le module",
+      "Crée un raccourci : on peut écrire `desserts::...`",
+      "Rend `desserts` public",
+      "Exécute le module"
+    ],
     "reponse": 1,
-    "explication": "`use` crée un raccourci vers un chemin, pour ne pas tout réécrire à chaque fois."
+    "explication": "**Règle :** `use chemin::nom;` crée un **raccourci** : dans la suite du module, `nom` remplace le chemin complet. Rien n'est copié ni lancé.\n\n**Pas à pas :**\n\n1. Sans `use`, il faut écrire `restaurant::desserts::du_jour()`.\n2. Avec `use restaurant::desserts;`, le nom `desserts` est disponible directement.\n3. On écrit donc `desserts::du_jour()`, ce qui appelle exactement la même fonction.\n\n**Les autres réponses :** `use` ne copie rien, c'est seulement un nom plus court ; il ne rend rien public (c'est `pub use` qui réexporte, et `pub mod` qui rend un module public) ; un module ne « s'exécute » pas, seules les fonctions s'appellent.\n\n**À retenir :** `use` = raccourci de chemin, rien de plus."
   },
   {
     "question": "Dans un module, que désigne `super::` ?",
-    "choix": ["Le module actuel", "La racine du programme", "Le module parent", "La bibliothèque standard"],
+    "choix": [
+      "Le module actuel",
+      "La racine du programme",
+      "Le module parent",
+      "La bibliothèque standard"
+    ],
     "reponse": 2,
-    "explication": "`super::` remonte d'un niveau. `crate::` désigne la racine et `self::` le module actuel."
+    "explication": "**Règle :** dans un chemin, `super::` remonte d'**un** niveau, vers le module parent (celui qui contient le module actuel). `crate::` part de la racine et `self::` désigne le module actuel.\n\n**Pas à pas :**\n\n```rust\nfn taux() -> u64 { 20 }\nmod facture {\n    pub fn tva(prix: u64) -> u64 { prix * super::taux() / 100 }\n}\n```\n\n1. On est dans `facture`.\n2. Son parent est la racine du fichier, où est `taux`.\n3. `super::taux()` remonte d'un niveau et trouve `taux`. Sans `super::`, erreur **E0425** (*cannot find function*).\n\nDans un module de deux niveaux (`facture::remise`), `super::` désigne `facture` et `super::super::` la racine.\n\n**Les autres réponses :** le module actuel, c'est `self::` ; la racine, c'est `crate::` ; la bibliothèque standard, c'est `std::`.\n\n**À retenir :** `super` = un cran au-dessus, comme `..` dans un chemin de dossier."
   },
   {
     "question": "À quoi sert `#[cfg(test)]` devant `mod tests` ?",
-    "choix": ["À rendre le module public", "À compiler ce module seulement pendant les tests", "À lancer les tests en release", "À ignorer les tests"],
+    "choix": [
+      "À rendre le module public",
+      "À compiler ce module seulement pendant les tests",
+      "À lancer les tests en release",
+      "À ignorer les tests"
+    ],
     "reponse": 1,
-    "explication": "Le module de tests n'est pas inclus dans le programme final : il n'est compilé que par `cargo test`."
+    "explication": "**Règle :** `#[cfg(...)]` compile un morceau de code **seulement** si une condition est vraie. `#[cfg(test)]` veut dire : « seulement quand on compile pour les tests » (`cargo test`).\n\n**Pas à pas :**\n\n1. `cargo build` / `cargo run` : la condition `test` est fausse, le module `tests` est ignoré, il n'est pas dans le programme final.\n2. `cargo test` : la condition est vraie, le module est compilé et ses fonctions `#[test]` sont lancées.\n3. Avantage : les tests (et leurs données) n'alourdissent pas le programme livré.\n\n**Les autres réponses :** la visibilité se règle avec `pub`, pas avec `cfg` ; `cfg(test)` n'a rien à voir avec le mode release ; et il n'ignore pas les tests, il les garde justement pour `cargo test` (pour ignorer un test, c'est `#[ignore]`).\n\n**À retenir :** `#[cfg(test)]` = « compilé seulement par `cargo test` »."
   },
   {
     "question": "Pourquoi écrit-on `use super::*;` au début du module de tests ?",
-    "choix": ["Pour importer tout ce qui est dans le module parent", "Pour rendre les tests plus rapides", "C'est obligatoire pour `#[test]`", "Pour importer la bibliothèque standard"],
+    "choix": [
+      "Pour importer tout ce qui est dans le module parent",
+      "Pour rendre les tests plus rapides",
+      "C'est obligatoire pour `#[test]`",
+      "Pour importer la bibliothèque standard"
+    ],
     "reponse": 0,
-    "explication": "Le module `tests` est un enfant : `use super::*` lui donne accès aux fonctions à tester sans écrire leur chemin complet."
+    "explication": "**Règle :** `mod tests` est un module **enfant** du fichier. Comme tout module, il ne voit pas automatiquement les noms de son parent. `use super::*;` importe **tout** ce que contient le parent (le `*` veut dire « tout »).\n\n**Pas à pas :**\n\n1. La fonction `diviser` est à la racine du fichier.\n2. Dans `mod tests`, écrire `diviser(10, 2)` seul donnerait E0425 (*cannot find function*).\n3. Avec `use super::*;`, tous les noms de la racine (`diviser`, les structs, les modules...) sont disponibles directement, y compris les privés (un enfant voit les éléments privés de ses parents).\n\n**Les autres réponses :** ça ne change rien à la vitesse ; ce n'est pas obligatoire pour `#[test]` (on pourrait écrire `super::diviser(...)` à chaque fois) ; la bibliothèque standard s'importe avec `std::`, pas `super`.\n\n**À retenir :** `use super::*;` = « je veux tout ce qui est dans le fichier testé »."
   },
   {
     "question": "Quand un test marqué `#[test]` échoue-t-il ?",
-    "choix": ["Quand il renvoie `false`", "Quand il panique", "Quand il affiche du texte", "Quand il dure plus d'une seconde"],
+    "choix": [
+      "Quand il renvoie `false`",
+      "Quand il panique",
+      "Quand il affiche du texte",
+      "Quand il dure plus d'une seconde"
+    ],
     "reponse": 1,
-    "explication": "Un test réussit s'il se termine normalement. `assert!` et `assert_eq!` paniquent quand la vérification est fausse."
+    "explication": "**Règle :** un test **réussit** s'il se termine normalement, et **échoue** s'il **panique**. Les macros `assert!`, `assert_eq!`, `assert_ne!` paniquent quand leur vérification est fausse.\n\n**Pas à pas :**\n\n1. `assert_eq!(carre(3), 9)` : `carre(3)` vaut 9, la macro ne fait rien, le test se termine : réussi.\n2. `assert_eq!(carre(3), 10)` : 9 ≠ 10, la macro **panique** et affiche les deux valeurs (`left: 9`, `right: 10`) : échoué.\n3. Un `unwrap()` sur `None`, une division par zéro ou un `panic!` font aussi échouer le test.\n\n**Les autres réponses :** une fonction de test ne renvoie pas de `bool` (renvoyer `false` ne compte pas) ; afficher du texte avec `println!` est permis ; il n'y a pas de limite d'une seconde.\n\n**À retenir :** test raté = panique ; les `assert…!` sont des « panique si c'est faux »."
   },
   {
     "question": "Que vérifie `#[should_panic(expected = \"division par zéro\")]` ?",
-    "choix": ["Que le test ne panique jamais", "Que le test panique avec un message contenant « division par zéro »", "Que la division renvoie zéro", "Rien, c'est un commentaire"],
+    "choix": [
+      "Que le test ne panique jamais",
+      "Que le test panique avec un message contenant « division par zéro »",
+      "Que la division renvoie zéro",
+      "Rien, c'est un commentaire"
+    ],
     "reponse": 1,
-    "explication": "Le test réussit seulement si le code panique, et si le message de panique contient le texte attendu."
+    "explication": "**Règle :** `#[should_panic]` inverse la règle des tests : le test réussit **seulement si** le code panique. Avec `expected = \"texte\"`, il faut en plus que le message de panique **contienne** ce texte.\n\n**Pas à pas :** avec `fn diviser(a, b)` qui fait `panic!(\"division par zéro\")` quand `b == 0` :\n\n| Test | Panique ? | Message contient « division par zéro » ? | Résultat |\n|---|---|---|---|\n| `diviser(1, 0)` | oui | oui | réussi |\n| `diviser(4, 2)` | non | | **échoué** (panique attendue) |\n| `diviser(1, 0)` si `diviser` ne fait que `a / b` (sans le `if`) | oui | non (*attempt to divide by zero*) | **échoué** |\n\n**Les autres réponses :** « ne panique jamais » est l'inverse ; l'attribut ne regarde pas la valeur renvoyée par la division ; ce n'est pas un commentaire, c'est un attribut lu par le compilateur.\n\n**À retenir :** `#[should_panic(expected = \"...\")]` = « ce test doit paniquer, avec ce message »."
   },
   {
     "question": "Quelle macro vérifie que deux valeurs sont **différentes** ?",
-    "choix": ["`assert!`", "`assert_eq!`", "`assert_ne!`", "`assert_diff!`"],
+    "choix": [
+      "`assert!`",
+      "`assert_eq!`",
+      "`assert_ne!`",
+      "`assert_diff!`"
+    ],
     "reponse": 2,
-    "explication": "`assert_ne!(a, b)` panique si `a == b`. « ne » veut dire *not equal*."
+    "explication": "**Règle :** `assert_ne!(a, b)` panique si `a == b` ; il vérifie donc que les deux valeurs sont **différentes**. *ne* = *not equal* (pas égal).\n\n**Pas à pas :**\n\n1. `assert_ne!(diviser(9, 3), 0)` : `9 / 3` = 3, et 3 ≠ 0 : rien ne se passe, le test réussit.\n2. `assert_ne!(2 + 2, 4)` : 4 = 4, la macro panique : le test échoue.\n\n**Les autres réponses :** `assert!` vérifie qu'une condition est vraie (on pourrait écrire `assert!(a != b)`, mais la macro dédiée est `assert_ne!`, qui affiche en plus les deux valeurs) ; `assert_eq!` vérifie l'égalité, l'inverse ; `assert_diff!` n'existe pas.\n\n**À retenir :** `eq` = égal, `ne` = différent."
   },
   {
     "question": "Que lance `cargo test division` ?",
-    "choix": ["Tous les tests", "Seulement les tests dont le nom contient « division »", "Le fichier `division.rs`", "Rien, la commande est invalide"],
+    "choix": [
+      "Tous les tests",
+      "Seulement les tests dont le nom contient « division »",
+      "Le fichier `division.rs`",
+      "Rien, la commande est invalide"
+    ],
     "reponse": 1,
-    "explication": "Le texte après `cargo test` filtre les tests par leur nom."
+    "explication": "**Règle :** le mot écrit après `cargo test` est un **filtre** : seuls les tests dont le nom **contient** ce texte sont lancés. Les autres sont comptés comme *filtered out*.\n\n**Pas à pas :** avec les tests `division_simple`, `division_par_zero` et `addition` :\n\n| Test | Contient « division » ? | Lancé ? |\n|---|---|---|\n| `division_simple` | oui | oui |\n| `division_par_zero` | oui | oui |\n| `addition` | non | non |\n\n**Les autres réponses :** « tous les tests » serait `cargo test` sans rien ; le filtre ne désigne pas un fichier `division.rs` ; et la commande est valide.\n\n**À retenir :** `cargo test mot` = seulement les tests dont le nom contient `mot`."
   },
   {
     "question": "Que fait `pub use meteo::alerte::niveau;` à la racine du programme ?",
-    "choix": ["Supprime le module `meteo`", "Rend `niveau` utilisable directement depuis la racine (réexport)", "Rend tout `meteo` public", "Copie la fonction"],
+    "choix": [
+      "Supprime le module `meteo`",
+      "Rend `niveau` utilisable directement depuis la racine (réexport)",
+      "Rend tout `meteo` public",
+      "Copie la fonction"
+    ],
     "reponse": 1,
-    "explication": "`pub use` réexporte : `niveau` devient accessible à la racine, comme s'il y avait été écrit."
+    "explication": "**Règle :** `pub use chemin::nom;` crée un raccourci **public** : `nom` devient accessible depuis le module où on écrit la ligne, comme s'il y avait été défini. On appelle ça un **réexport**.\n\n**Pas à pas :**\n\n1. `niveau` est rangée dans `meteo::alerte`.\n2. `pub use meteo::alerte::niveau;` à la racine : `niveau` est maintenant aussi un nom de la racine.\n3. `main` peut écrire `niveau(104.0)` sans chemin, et un module `tests` qui fait `use super::*;` la trouve aussi (le `*` importe les noms de la racine, y compris ce réexport).\n4. La fonction n'a pas bougé : `meteo::alerte::niveau(...)` marche toujours.\n\n**Les autres réponses :** rien n'est supprimé ; seul le nom `niveau` est exposé, pas tout le module `meteo` ; et rien n'est copié, c'est un deuxième chemin vers la même fonction.\n\n**À retenir :** `pub use` = « rends ce nom disponible ici, pour moi et pour ceux qui m'importent »."
   }
 ]

@@ -12,7 +12,8 @@
           "Combinatoire",
           "Pas combinatoire"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un problème est d'optimisation combinatoire quand on choisit parmi un ensemble **fini** de candidats **discrets** (ordres, sous-ensembles, affectations), selon un critère.\n\n**Pas à pas :**\n\n1. Que choisit-on ? Une **température**.\n2. Ces choix se comptent-ils ? Non : entre 21 °C et 21,1 °C il y a 21,05 °C, 21,01 °C… une infinité de valeurs. La variable est **continue**.\n3. Il n'y a donc pas d'ensemble fini de candidats à comparer : on règle une grandeur (c'est de la **commande**), on ne choisit pas une combinaison.\n\nRéponse : **pas combinatoire**.\n\n**Erreur fréquente :** croire que « minimiser un écart » suffit pour être combinatoire. Il y a bien un critère, mais il manque l'ensemble fini de candidats.\n\n**À retenir :** une grandeur continue à régler (température, vitesse, pression) n'est pas un problème combinatoire."
       },
       {
         "intitule": "Affecter 30 étudiants à 6 projets en respectant leurs vœux et en maximisant la satisfaction globale.",
@@ -21,7 +22,8 @@
           "Combinatoire",
           "Pas combinatoire"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** combinatoire = un nombre **fini** de candidats discrets + un critère à optimiser sous contraintes.\n\n**Pas à pas :**\n\n1. Que choisit-on ? Pour chaque étudiant, l'un des 6 projets : c'est une **affectation**.\n2. Combien de candidats ? Le 1er étudiant a 6 choix, le 2e aussi pour chacun de ceux-là, etc. : $6 \\times 6 \\times \\dots \\times 6 = 6^{30}$ affectations (avant même de filtrer par les vœux). C'est énorme, mais **fini**.\n3. Un critère ? Oui : **maximiser la satisfaction** globale, sous la contrainte des vœux.\n\nLes deux conditions sont réunies : **combinatoire**.\n\n**Erreur fréquente :** penser qu'un nombre aussi grand que $6^{30}$ est « infini ». Fini veut seulement dire qu'on peut, en principe, compter les candidats un par un.\n\n**À retenir :** une affectation de $n$ éléments à $k$ choix donne $k^n$ candidats : c'est combinatoire."
       },
       {
         "intitule": "Choisir l'ordre de passage d'un livreur chez 40 clients.",
@@ -30,7 +32,8 @@
           "Combinatoire",
           "Pas combinatoire"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un ordre de passage de $n$ éléments est une **permutation** ; il y en a $n! = 1 \\times 2 \\times \\dots \\times n$.\n\n**Pas à pas :**\n\n1. Que choisit-on ? L'ordre de passage chez les 40 clients.\n2. Combien de candidats ? 40 choix pour le 1er client, 39 pour le 2e, 38 pour le 3e… soit $40!$ ordres : un nombre gigantesque (environ $8 \\times 10^{47}$), mais **fini**.\n3. Un critère ? Oui : on veut le meilleur ordre (le plus court trajet).\n\nRéponse : **combinatoire**. C'est un voyageur de commerce.\n\n**Erreur fréquente :** répondre « pas combinatoire » parce que l'énoncé ne dit pas « minimiser ». Choisir un ordre de passage, c'est implicitement chercher le plus court.\n\n**À retenir :** choisir un ordre parmi $n!$ = problème combinatoire."
       },
       {
         "intitule": "Comment s'appelle le problème du livreur (situation 3) ?",
@@ -49,7 +52,8 @@
         "refuses": [
           "sac à dos",
           "coloration"
-        ]
+        ],
+        "explication": "**Règle :** le **voyageur de commerce** (TSP, *Travelling Salesman Problem*) : visiter $n$ lieux, chacun **une fois**, avec retour au départ, en minimisant la distance totale.\n\n**Pas à pas :** on compare l'énoncé du livreur aux quatre problèmes fondateurs.\n\n| Problème | Ce qu'on choisit | Correspond au livreur ? |\n|---|---|---|\n| voyageur de commerce | un **ordre de visite** de lieux | **oui** : l'ordre de passage chez les clients |\n| sac à dos | des objets sous une capacité | non |\n| coloration | une couleur par sommet | non |\n| ordonnancement | des tâches sur des machines | non |\n\nRéponse : **voyageur de commerce** (ou TSP).\n\n**Erreur fréquente :** répondre « sac à dos » ou « coloration » parce qu'ils sont aussi combinatoires. Le mot clé ici est **ordre de visite**.\n\n**À retenir :** « visiter des lieux une fois chacun dans le meilleur ordre » = voyageur de commerce."
       }
     ],
     "indices": [
@@ -73,7 +77,8 @@
           "Minimiser le kilométrage total des 8 tournées",
           "Livrer chaque colis une fois"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** la **fonction objectif** est la quantité qu'on cherche à **minimiser ou maximiser**. C'est un nombre, calculé à partir des choix faits.\n\n**Pas à pas :** on passe chaque proposition au test « est-ce une quantité que je veux rendre la plus petite ou la plus grande possible ? ».\n\n| Proposition | Quantité à minimiser / maximiser ? | Rôle réel |\n|---|---|---|\n| minimiser le kilométrage total des 8 tournées | **oui**, on la minimise | **objectif** |\n| respecter la capacité des camionnettes | non, c'est une condition | contrainte |\n| livrer chaque colis une fois | non, c'est une condition | contrainte |\n| choisir la camionnette de chaque colis | non, c'est un choix | variable |\n\n**Erreur fréquente :** prendre une contrainte (« respecter la capacité ») pour l'objectif. Une contrainte se respecte ou non (oui/non), elle ne se minimise pas.\n\n**À retenir :** l'objectif commence presque toujours par « minimiser » ou « maximiser »."
       },
       {
         "intitule": "Lequel de ces éléments est une **variable de décision** ?",
@@ -84,7 +89,8 @@
           "La capacité d'une camionnette",
           "La fenêtre horaire d'un client"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une **variable de décision** est ce que l'on **choisit**. Les **données** sont imposées par l'énoncé : on ne les choisit pas, elles servent à écrire les contraintes.\n\n**Pas à pas :** pour chaque élément, on se demande « est-ce moi qui le décide ? ».\n\n| Élément | Je le décide ? | Rôle |\n|---|---|---|\n| la camionnette qui transporte chaque colis | **oui** | **variable** |\n| le nombre de camionnettes | non, il y en a 8 | donnée |\n| la capacité d'une camionnette | non, elle est fixée par le véhicule | donnée (utilisée dans une contrainte) |\n| la fenêtre horaire d'un client | non, c'est le client qui l'impose | donnée (utilisée dans une contrainte) |\n\n**Erreur fréquente :** prendre une donnée pour une variable parce qu'elle a l'air importante. La capacité compte beaucoup, mais personne ne la choisit.\n\n**À retenir :** variable = ce que je choisis ; tout ce que l'énoncé fixe est une donnée."
       },
       {
         "intitule": "Lequel de ces éléments est une **contrainte** ?",
@@ -95,7 +101,8 @@
           "Le choix de la camionnette",
           "Chaque colis est livré exactement une fois"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** une **contrainte** est une condition que toute solution doit respecter pour être réalisable. Elle se vérifie par oui ou non.\n\n**Pas à pas :**\n\n| Élément | Condition à respecter ? | Rôle |\n|---|---|---|\n| chaque colis est livré exactement une fois | **oui** (une solution qui oublie un colis est refusée) | **contrainte** |\n| minimiser le kilométrage | non, c'est une quantité à minimiser | objectif |\n| l'ordre de livraison | non, c'est un choix | variable |\n| le choix de la camionnette | non, c'est un choix | variable |\n\n**Erreur fréquente :** confondre « choisir l'ordre » (une décision) avec une contrainte d'ordre (« le colis 3 avant le colis 7 »). Ici l'énoncé laisse l'ordre libre : c'est une variable.\n\n**À retenir :** contrainte = condition oui/non que toute solution doit respecter."
       },
       {
         "intitule": "Quel est le sigle anglais de ce problème de tournées de véhicules ?",
@@ -108,7 +115,8 @@
         ],
         "refuses": [
           "TSP"
-        ]
+        ],
+        "explication": "**Règle :** le problème de tournées de véhicules s'appelle en anglais *Vehicle Routing Problem*, abrégé **VRP**. Plusieurs véhicules se partagent les clients, chacun fait sa tournée.\n\n**Pas à pas :**\n\n- *Vehicle* = véhicule, *Routing* = choix des itinéraires, *Problem* = problème.\n- Les initiales donnent **VRP**.\n\n**Erreur fréquente :** répondre **TSP**. Le TSP (voyageur de commerce) n'a **qu'un seul** voyageur et aucune capacité ; ici, 8 camionnettes avec capacité et horaires : c'est un VRP, une généralisation du TSP.\n\n**À retenir :** un seul voyageur = TSP ; plusieurs véhicules avec capacités = VRP."
       }
     ],
     "indices": [
@@ -133,7 +141,8 @@
         "refuses": [
           "12",
           "24"
-        ]
+        ],
+        "explication": "**Règle :** le nombre d'**ordres** de $n$ éléments est $n! = 1 \\times 2 \\times \\dots \\times n$ : $n$ choix pour le premier, $n - 1$ pour le second, etc.\n\n**Pas à pas avec 5 villes :**\n\n1. 1re ville : 5 choix.\n2. 2e ville : 4 choix restants.\n3. 3e : 3, 4e : 2, 5e : 1.\n4. Total : $5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$.\n\n**Erreurs fréquentes :** 24 est $4!$ (on a déjà fixé le départ, ce n'est plus le nombre d'**ordres**) ; 12 est le nombre de **tournées** distinctes (question suivante).\n\n**À retenir :** ordres de visite de $n$ villes = $n!$."
       },
       {
         "intitule": "Nombre de tournées distinctes pour 5 villes.",
@@ -145,7 +154,8 @@
         "refuses": [
           "120",
           "24"
-        ]
+        ],
+        "explication": "**Règle :** une tournée est une boucle : la ville de départ ne compte pas (on divise par $n$) et le sens de parcours non plus (on divise par 2). Tournées distinctes : $\\dfrac{(n-1)!}{2}$.\n\n**Pas à pas avec 5 villes :**\n\n1. $n - 1 = 4$, et $4! = 4 \\times 3 \\times 2 \\times 1 = 24$ (ordres une fois le départ fixé).\n2. Chaque boucle est comptée deux fois (un sens et l'autre) : $\\dfrac{24}{2} = 12$.\n\nVérification par l'autre chemin : $\\dfrac{5!}{2 \\times 5} = \\dfrac{120}{10} = 12$.\n\n**Erreurs fréquentes :** 120 oublie les deux simplifications ; 24 fixe le départ mais oublie le sens.\n\n**À retenir :** tournées distinctes = $\\dfrac{(n-1)!}{2}$."
       },
       {
         "intitule": "8 villes en partant de A : nombre d'ordres de visite des 7 autres villes.",
@@ -158,7 +168,8 @@
         "refuses": [
           "40320",
           "2520"
-        ]
+        ],
+        "explication": "**Règle :** si le départ est fixé, il ne reste à ordonner que les $n - 1$ autres villes : $(n-1)!$ ordres.\n\n**Pas à pas avec 8 villes, départ en A :**\n\n1. Il reste 7 villes à ordonner.\n2. $7! = 7 \\times 6 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1$.\n3. Calcul : $7 \\times 6 = 42$, $\\times 5 = 210$, $\\times 4 = 840$, $\\times 3 = 2\\,520$, $\\times 2 = 5\\,040$.\n\nRéponse : **5 040**.\n\n**Erreurs fréquentes :** $8! = 40\\,320$ compte aussi le choix du départ (déjà fixé en A) ; $2\\,520$ divise en plus par 2, c'est le nombre de **tournées** (question suivante).\n\n**À retenir :** départ fixé = on ordonne les $n - 1$ autres villes, $(n-1)!$."
       },
       {
         "intitule": "Nombre de tournées distinctes pour 8 villes.",
@@ -171,7 +182,8 @@
         "refuses": [
           "5040",
           "40320"
-        ]
+        ],
+        "explication": "**Règle :** tournées distinctes = $\\dfrac{(n-1)!}{2}$.\n\n**Pas à pas avec 8 villes :**\n\n1. $(8 - 1)! = 7! = 5\\,040$ (question précédente).\n2. On divise par 2 car A → B → … → A et le même circuit parcouru à l'envers ont la même longueur : $\\dfrac{5\\,040}{2} = 2\\,520$.\n\n**Erreurs fréquentes :** $5\\,040$ oublie le sens de parcours ; $40\\,320 = 8!$ oublie aussi le départ.\n\n**À retenir :** une fois le départ fixé, divise encore par 2 pour le sens."
       },
       {
         "intitule": "Nombre de tournées distinctes pour 10 villes.",
@@ -184,7 +196,8 @@
         "refuses": [
           "3628800",
           "362880"
-        ]
+        ],
+        "explication": "**Règle :** tournées distinctes = $\\dfrac{(n-1)!}{2}$.\n\n**Pas à pas avec 10 villes :**\n\n1. $(10 - 1)! = 9!$. On part de $7! = 5\\,040$ : $8! = 5\\,040 \\times 8 = 40\\,320$, puis $9! = 40\\,320 \\times 9 = 362\\,880$.\n2. On divise par 2 : $\\dfrac{362\\,880}{2} = 181\\,440$.\n\n**Erreurs fréquentes :** $362\\,880 = 9!$ oublie la division par 2 ; $3\\,628\\,800 = 10!$ compte tous les ordres. Remarque : passer de 8 à 10 villes multiplie le nombre de tournées par $8 \\times 9 = 72$.\n\n**À retenir :** pour calculer $9!$, réutilise $8!$ et multiplie par 9."
       }
     ],
     "indices": [
@@ -210,7 +223,8 @@
           "25",
           "120",
           "5!"
-        ]
+        ],
+        "explication": "**Règle :** chaque objet a 2 possibilités (pris ou laissé). Avec $n$ objets : $2^n$ sous-ensembles, sac vide compris.\n\n**Pas à pas :** 5 objets A, B, C, D, E.\n\n$2 \\times 2 \\times 2 \\times 2 \\times 2 = 2^5 = 32$.\n\n**Erreurs fréquentes :**\n\n- $5! = 120$ compte des **ordres**, or l'ordre des objets dans le sac ne change rien ;\n- $5^2 = 25$ ou $5 \\times 5$ n'ont pas de sens ici : on multiplie 2 par lui-même 5 fois, pas 5 par lui-même.\n\n**À retenir :** « pris ou non » pour $n$ objets = $2^n$."
       },
       {
         "intitule": "Poids du chargement A + C + D (en kg).",
@@ -218,7 +232,8 @@
         "reponse": 14,
         "refuses": [
           "36"
-        ]
+        ],
+        "explication": "**Règle :** le poids d'un chargement est la **somme des poids** des objets pris : $\\sum_i p_i x_i$.\n\n**Pas à pas :** on lit le tableau.\n\n| Objet | Poids |\n|---|---|\n| A | 4 kg |\n| C | 7 kg |\n| D | 3 kg |\n\nTotal : $4 + 7 + 3 = 14$ kg (réalisable, car $14 \\le 15$).\n\n**Erreur fréquente :** additionner les **valeurs** au lieu des poids : $10 + 20 + 6 = 36$ (ce sont des euros, pas des kilos).\n\n**À retenir :** poids = on additionne la ligne « Poids » des objets pris."
       },
       {
         "intitule": "Le chargement B + C + E est-il réalisable ?",
@@ -227,7 +242,8 @@
           "Oui",
           "Non, il dépasse la capacité"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un chargement est **réalisable** si son poids total ne dépasse pas la capacité : $\\sum_i p_i x_i \\le C$.\n\n**Pas à pas :**\n\n1. Poids de B + C + E : $5 + 7 + 6 = 18$ kg.\n2. Capacité : 15 kg.\n3. $18 > 15$ : la contrainte est violée.\n\nRéponse : **non, il dépasse la capacité**. Sa valeur ($13 + 20 + 22 = 55$ euros) ne compte pas : une solution non réalisable est hors jeu.\n\n**Erreur fréquente :** juger sur la valeur (55 euros, c'est beaucoup) au lieu de vérifier d'abord le poids.\n\n**À retenir :** réalisable ? Compare le poids total à la capacité, avant de regarder la valeur."
       },
       {
         "intitule": "Valeur maximale que l'on peut emporter (en euros).",
@@ -237,7 +253,8 @@
           "42",
           "52",
           "71"
-        ]
+        ],
+        "explication": "**Règle :** la valeur maximale est la meilleure valeur **parmi les chargements réalisables** (poids $\\le 15$ kg).\n\n**Pas à pas :** on cherche les bons candidats autour des objets précieux (E : 22 euros pour 6 kg, C : 20 euros pour 7 kg).\n\n| Chargement | Poids | Réalisable ? | Valeur |\n|---|---|---|---|\n| C + E | 13 | oui | 42 |\n| C + E + D | 16 | non | (48, interdit) |\n| C + E + A | 17 | non | (52, interdit) |\n| A + B + E | 15 | oui | **45** |\n| B + D + E | 14 | oui | 41 |\n| B + C + D | 15 | oui | 39 |\n| A + D + E | 13 | oui | 38 |\n| A + C + D | 14 | oui | 36 |\n\nQuatre objets pèsent au moins $3 + 4 + 5 + 6 = 18$ kg : c'est toujours trop. Le meilleur chargement réalisable vaut **45 euros**.\n\n**Erreurs fréquentes :** 42 (C + E) laisse 2 kg inutilisés pour moins de valeur ; 52 (A + C + E) pèse 17 kg, il n'est pas réalisable ; 71 est la valeur de tous les objets, bien trop lourds ensemble.\n\n**À retenir :** écarte d'abord les chargements trop lourds, puis compare les valeurs des autres."
       },
       {
         "intitule": "Quels objets donnent cette valeur maximale ?",
@@ -248,7 +265,8 @@
           "A + C + D",
           "B + D + E"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** la solution optimale est le chargement réalisable de plus grande valeur.\n\n**Pas à pas :** on vérifie chaque proposition.\n\n| Proposition | Poids | Réalisable ? | Valeur |\n|---|---|---|---|\n| A + B + E | $4 + 5 + 6 = 15$ | oui (pile 15) | $10 + 13 + 22 = 45$ |\n| C + E | $7 + 6 = 13$ | oui | $20 + 22 = 42$ |\n| A + C + D | $4 + 7 + 3 = 14$ | oui | $10 + 20 + 6 = 36$ |\n| B + D + E | $5 + 3 + 6 = 14$ | oui | $13 + 6 + 22 = 41$ |\n\nRéponse : **A + B + E**, qui remplit exactement le sac pour 45 euros.\n\n**Erreur fréquente :** choisir C + E parce qu'il contient les deux objets les plus précieux. Le « meilleur objet d'abord » ne garantit pas le meilleur ensemble.\n\n**À retenir :** la meilleure combinaison n'est pas forcément faite des meilleurs objets pris séparément."
       }
     ],
     "indices": [
@@ -273,7 +291,8 @@
           "$\\max \\sum_i v_i x_i$",
           "$\\min \\sum_i p_i x_i$"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** dans le sac à dos, on **maximise la valeur** emportée. $\\sum_i v_i x_i$ vaut la somme des valeurs des objets pris, car $v_i x_i = v_i$ si l'objet est pris ($x_i = 1$) et $0$ sinon.\n\n**Pas à pas :** on lit chaque formule en français.\n\n| Formule | Ce qu'elle calcule | Bon objectif ? |\n|---|---|---|\n| $\\max \\sum_i v_i x_i$ | rendre la **valeur** totale la plus grande | **oui** |\n| $\\max \\sum_i p_i x_i$ | rendre le **poids** le plus grand | non, on chargerait des cailloux |\n| $\\max \\sum_i x_i$ | prendre le plus **d'objets** possible | non, la valeur est oubliée |\n| $\\min \\sum_i p_i x_i$ | rendre le poids le plus petit | non, le sac vide (poids 0) gagnerait |\n\n**À retenir :** objectif du sac à dos = $\\max \\sum_i v_i x_i$ (on maximise la valeur)."
       },
       {
         "intitule": "Quelle est la contrainte ?",
@@ -284,7 +303,8 @@
           "$\\sum_i p_i x_i \\ge C$",
           "$\\sum_i p_i x_i \\le C$"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** la contrainte du sac à dos limite le **poids** total des objets pris par la capacité : $\\sum_i p_i x_i \\le C$.\n\n**Pas à pas :**\n\n1. Qu'est-ce qui est limité ? Le **poids** : on utilise donc les $p_i$.\n2. Dans quel sens ? Le poids ne doit **pas dépasser** $C$ : c'est un $\\le$.\n3. Résultat : $\\sum_i p_i x_i \\le C$.\n\n**Les autres formules :**\n\n- $\\sum_i v_i x_i \\le C$ limite la **valeur**, alors que $C$ est une capacité en kilos ;\n- $\\sum_i x_i \\le C$ limite le **nombre** d'objets, pas leur poids ;\n- $\\sum_i p_i x_i \\ge C$ oblige à **dépasser** la capacité : c'est le sens inverse.\n\n**À retenir :** contrainte = poids total $\\le$ capacité."
       },
       {
         "intitule": "Avec les objets du cours (poids 4, 5, 7, 3, 6 et valeurs 10, 13, 20, 6, 22), que vaut l'objectif pour $x = (1, 0, 1, 0, 1)$ ?",
@@ -293,7 +313,8 @@
         "refuses": [
           "17",
           "45"
-        ]
+        ],
+        "explication": "**Règle :** pour évaluer l'objectif, on calcule $\\sum_i v_i x_i$ : on additionne la valeur des objets pour lesquels $x_i = 1$.\n\n**Pas à pas :** $x = (1, 0, 1, 0, 1)$, dans l'ordre A, B, C, D, E.\n\n| Objet | $x_i$ | $v_i$ | $v_i x_i$ |\n|---|---|---|---|\n| A | 1 | 10 | 10 |\n| B | 0 | 13 | 0 |\n| C | 1 | 20 | 20 |\n| D | 0 | 6 | 0 |\n| E | 1 | 22 | 22 |\n\nTotal : $10 + 20 + 22 = 52$.\n\n**Erreurs fréquentes :** 17 est le **poids** ($4 + 7 + 6$), pas la valeur ; 45 est la valeur de la solution optimale A + B + E, ce n'est pas ce $x$-là.\n\n**À retenir :** chaque $x_i = 1$ ajoute $v_i$, chaque $x_i = 0$ ajoute 0."
       },
       {
         "intitule": "Cette solution $x = (1, 0, 1, 0, 1)$ est-elle réalisable pour $C = 15$ ?",
@@ -302,7 +323,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** $x$ est réalisable si $\\sum_i p_i x_i \\le C$.\n\n**Pas à pas :** $x = (1, 0, 1, 0, 1)$ prend A, C et E.\n\n1. Poids : $4 + 7 + 6 = 17$ kg.\n2. Capacité : $C = 15$ kg.\n3. $17 > 15$ : la contrainte est violée.\n\nRéponse : **non**. Sa valeur de 52 euros est plus grande que l'optimum (45), et c'est justement parce qu'elle triche sur le poids.\n\n**Erreur fréquente :** croire que la plus grande valeur trouvée est forcément la bonne réponse, sans vérifier la contrainte.\n\n**À retenir :** une valeur « trop belle » doit faire vérifier la contrainte de poids."
       }
     ],
     "indices": [
@@ -326,7 +348,8 @@
           "Les conflits",
           "Les examens"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** pour un planning d'examens vu comme une coloration de graphe : **sommets = examens**, arête = deux examens qu'un même étudiant passe (un conflit), couleurs = créneaux.\n\n**Pas à pas :** les conflits de l'énoncé s'écrivent M-P, M-I… Chaque conflit relie **deux examens** : ce sont donc les examens qui sont aux deux bouts, c'est-à-dire les sommets.\n\n**Les autres réponses :**\n\n- les **créneaux** sont les couleurs qu'on attribue aux sommets ;\n- les **conflits** sont les arêtes, pas les sommets ;\n- les **étudiants** n'apparaissent pas dans le graphe : ils servent juste à savoir quels examens relier.\n\n**À retenir :** ce qu'on colorie (ici les examens) = les sommets."
       },
       {
         "intitule": "Deux créneaux suffisent-ils ?",
@@ -335,7 +358,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** si trois sommets sont **tous reliés deux à deux** (un triangle), ils doivent avoir trois couleurs différentes : 2 couleurs ne suffisent pas.\n\n**Pas à pas :** on regarde M, P et I.\n\n| Paire | Conflit dans l'énoncé ? |\n|---|---|\n| M-P | oui |\n| M-I | oui |\n| P-I | oui |\n\nM, P et I forment un triangle. Avec seulement 2 créneaux, deux de ces trois examens tomberaient forcément sur le même créneau alors qu'ils sont en conflit.\n\nRéponse : **non**.\n\n**Erreur fréquente :** essayer quelques placements, échouer, puis conclure au hasard. Le triangle donne une preuve directe que 2 est impossible.\n\n**À retenir :** un triangle dans le graphe = au moins 3 couleurs."
       },
       {
         "intitule": "Nombre minimum de créneaux nécessaires.",
@@ -344,7 +368,8 @@
         "refuses": [
           "2",
           "5"
-        ]
+        ],
+        "explication": "**Règle :** pour trouver le minimum, on montre qu'il en faut **au moins** $k$ (un groupe de $k$ sommets tous reliés) et que $k$ **suffisent** (une coloration qui marche).\n\n**Pas à pas :**\n\n1. **Au moins 3** : le triangle M, P, I (question précédente).\n2. **3 suffisent** : on place les examens un par un, avec le plus petit créneau libre.\n   - M : créneau 1.\n   - P (conflit avec M) : créneau 2.\n   - I (conflit avec M et P) : créneau 3.\n   - A (conflit avec I, créneau 3) : créneau 1.\n   - G (conflit avec A et M, tous deux au créneau 1) : créneau 2.\n3. **Vérification des 6 conflits** : M-P (1 et 2), M-I (1 et 3), P-I (2 et 3), I-A (3 et 1), A-G (1 et 2), G-M (2 et 1). Tous différents.\n\nMinimum : **3 créneaux**.\n\n**Erreurs fréquentes :** 2 ignore le triangle ; 5 donne un créneau par examen, ce qui marche mais n'est pas le minimum (M et A, non reliés, partagent un créneau).\n\n**À retenir :** minimum = borne « groupe tout relié » + coloration vérifiée avec le même nombre."
       },
       {
         "intitule": "Quel problème fondateur reconnaît-on ?",
@@ -355,7 +380,8 @@
           "Le voyageur de commerce",
           "Le sac à dos"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** la **coloration de graphe** attribue une couleur à chaque sommet, deux sommets reliés ayant des couleurs différentes, avec le moins de couleurs possible.\n\n**Pas à pas :** on traduit l'énoncé.\n\n- On attribue un **créneau** (une couleur) à chaque **examen** (un sommet).\n- Deux examens en **conflit** (une arête) n'ont pas le même créneau.\n- On veut le **moins de créneaux** possible.\n\nC'est mot pour mot la coloration de graphe.\n\n**Les autres réponses :** l'ordonnancement place des tâches sur des machines pour finir au plus tôt (il n'y a pas de machine ici) ; le voyageur de commerce cherche un ordre de visite ; le sac à dos choisit des objets sous une capacité.\n\n**À retenir :** « deux éléments en conflit ne peuvent pas partager une ressource » = coloration."
       }
     ],
     "indices": [
@@ -377,7 +403,8 @@
         "refuses": [
           "10",
           "20"
-        ]
+        ],
+        "explication": "**Règle :** on prend les tâches dans l'ordre donné et on place chacune sur la machine **la moins chargée** (égalité : machine 1). Le makespan est la charge de la machine qui finit **en dernier**.\n\n**Pas à pas :**\n\n| Tâche | Charge M1 avant | Charge M2 avant | Placée sur | M1 après | M2 après |\n|---|---|---|---|---|---|\n| 3 h | 0 | 0 | M1 (égalité) | 3 | 0 |\n| 5 h | 3 | 0 | M2 | 3 | 5 |\n| 2 h | 3 | 5 | M1 | 5 | 5 |\n| 4 h | 5 | 5 | M1 (égalité) | 9 | 5 |\n| 6 h | 9 | 5 | M2 | 9 | 11 |\n\nM1 finit à 9 h, M2 à 11 h : makespan **11 heures**.\n\n**Erreurs fréquentes :** 20 additionne toutes les durées (comme s'il n'y avait qu'une machine) ; 10 est l'optimum, que cette règle ne trouve pas ici.\n\n**À retenir :** suis la règle ligne par ligne dans un tableau des charges, puis prends la plus grande charge finale."
       },
       {
         "intitule": "Durée totale des tâches divisée par le nombre de machines : c'est une borne en dessous de laquelle aucun makespan ne peut descendre. Que vaut-elle ?",
@@ -386,7 +413,8 @@
         "refuses": [
           "20",
           "11"
-        ]
+        ],
+        "explication": "**Règle :** avec $m$ machines identiques, même un partage parfait du travail laisse chaque machine travailler au moins $\\dfrac{\\text{durée totale}}{m}$. Aucun makespan ne peut être plus petit : c'est une **borne inférieure**.\n\n**Pas à pas :**\n\n1. Durée totale : $3 + 5 + 2 + 4 + 6 = 20$ heures.\n2. Nombre de machines : 2.\n3. Borne : $\\dfrac{20}{2} = 10$ heures.\n\n**Erreurs fréquentes :** 20 oublie de diviser par le nombre de machines ; 11 est le makespan de la règle simple, pas la borne.\n\n**À retenir :** borne inférieure du makespan = total ÷ nombre de machines."
       },
       {
         "intitule": "Makespan optimal (en heures).",
@@ -395,7 +423,8 @@
         "refuses": [
           "11",
           "9"
-        ]
+        ],
+        "explication": "**Règle :** si un planning atteint la borne inférieure, il est **optimal** (on ne peut pas faire mieux que la borne).\n\n**Pas à pas :**\n\n1. Borne : 10 heures (question précédente).\n2. Peut-on faire deux groupes de 10 heures exactement ? On cherche des durées qui font 10 : $6 + 4 = 10$. Il reste $3 + 5 + 2 = 10$.\n3. Planning : M1 fait 6 h et 4 h (fin à 10 h), M2 fait 3 h, 5 h et 2 h (fin à 10 h).\n4. Le makespan vaut 10 = la borne : c'est l'optimum.\n\nRéponse : **10 heures**.\n\n**Erreurs fréquentes :** 11 est le résultat de la règle simple, qui n'est pas optimale ici ; 9 est en dessous de la borne, donc impossible.\n\n**À retenir :** cherche un partage qui atteint la borne ; si tu le trouves, c'est l'optimum."
       }
     ],
     "indices": [
@@ -417,7 +446,8 @@
           "Décision",
           "Optimisation"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un **problème de décision** attend une réponse **oui ou non** ; un problème d'optimisation attend **la meilleure solution**.\n\n**Pas à pas :** « Existe-t-il une tournée … de longueur au plus 500 km ? »\n\n1. La question commence par « existe-t-il ».\n2. On répond par oui (en montrant une telle tournée) ou par non.\n3. Le seuil « au plus 500 km » remplace « la plus courte ».\n\nRéponse : **décision**.\n\n**Erreur fréquente :** voir le mot « tournée » et répondre optimisation. C'est la **forme de la réponse** (oui/non) qui décide, pas le sujet.\n\n**À retenir :** « existe-t-il … au plus / au moins $K$ ? » = décision."
       },
       {
         "intitule": "« Trouver la tournée la plus courte des 20 villes. »",
@@ -426,7 +456,8 @@
           "Décision",
           "Optimisation"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un problème d'**optimisation** demande de trouver la **meilleure** solution (la plus courte, la moins chère, la plus rentable).\n\n**Pas à pas :** « Trouver la tournée la plus courte. »\n\n1. On n'attend pas oui ou non, on attend **une tournée**.\n2. « La plus courte » = on minimise la longueur.\n\nRéponse : **optimisation**.\n\n**Erreur fréquente :** confondre avec la question précédente, qui parle des mêmes 20 villes. Ici il n'y a pas de seuil, on veut le meilleur.\n\n**À retenir :** « trouver le / la plus… » = optimisation."
       },
       {
         "intitule": "« Trois couleurs suffisent-elles pour colorier ce graphe ? »",
@@ -435,7 +466,8 @@
           "Décision",
           "Optimisation"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une question à laquelle on répond par oui ou non est un problème de **décision**.\n\n**Pas à pas :** « Trois couleurs suffisent-elles pour colorier ce graphe ? »\n\n1. Réponse attendue : oui (il existe une coloration à 3 couleurs) ou non.\n2. Le nombre 3 joue le rôle du seuil $K$.\n\nRéponse : **décision**. La version optimisation serait « quel est le plus petit nombre de couleurs ? ».\n\n**Erreur fréquente :** penser que tout problème de coloration est de l'optimisation. Le même problème existe sous les deux formes.\n\n**À retenir :** « … suffisent-elles ? » = décision."
       },
       {
         "intitule": "« Quel chargement du sac donne la plus grande valeur ? »",
@@ -444,7 +476,8 @@
           "Décision",
           "Optimisation"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** chercher **le** meilleur choix = **optimisation**.\n\n**Pas à pas :** « Quel chargement du sac donne la plus grande valeur ? »\n\n1. On attend un **chargement** précis, pas oui ou non.\n2. « La plus grande valeur » = on maximise.\n\nRéponse : **optimisation**.\n\n**Erreur fréquente :** se laisser tromper par le mot « quel » : une question en « quel » n'est pas forcément du oui/non. Ici on demande une solution.\n\n**À retenir :** une réponse qui est une solution (et pas oui/non) = optimisation."
       },
       {
         "intitule": "Quelle est la version décision de « maximiser la valeur du sac » ?",
@@ -455,7 +488,8 @@
           "Existe-t-il un chargement de valeur au moins $K$ sans dépasser la capacité ?",
           "Quel est le chargement le plus lourd ?"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** la version décision d'une optimisation garde les **mêmes contraintes** et remplace « le meilleur » par un **seuil** $K$ : pour une maximisation, « existe-t-il une solution de valeur **au moins** $K$ ? ».\n\n**Pas à pas :**\n\n1. L'optimisation : maximiser la valeur du sac, sous la contrainte de capacité.\n2. On garde la contrainte : « sans dépasser la capacité ».\n3. On remplace « maximiser la valeur » par « valeur au moins $K$ ».\n4. Résultat : « existe-t-il un chargement de valeur au moins $K$ sans dépasser la capacité ? ».\n\n**Les autres réponses :** « combien d'objets peut-on prendre ? » demande un nombre, pas oui/non, et oublie la valeur ; « le sac est-il plein ? » est bien un oui/non mais ne parle pas de valeur ; « le chargement le plus lourd » est une autre optimisation (sur le poids).\n\n**À retenir :** version décision = mêmes contraintes + « valeur au moins $K$ » (ou « au plus $K$ » pour une minimisation)."
       }
     ],
     "indices": [
@@ -477,7 +511,8 @@
           "des sommets du graphe (les adresses)",
           "des arêtes du graphe (les rues)"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** dans un graphe routier, les **adresses** sont les **sommets** (les points) et les **rues** sont les **arêtes** (les liens entre deux points).\n\n**Pas à pas :** le livreur doit passer chez 40 **clients**, c'est-à-dire à 40 adresses. Ce sont des points du graphe : il visite des **sommets**.\n\n**Erreur fréquente :** penser aux rues parce que le livreur roule dans des rues. Ce qu'il doit **couvrir**, ce sont les adresses ; les rues ne sont que le chemin entre elles.\n\n**À retenir :** lieux à visiter = sommets."
       },
       {
         "intitule": "Le facteur doit parcourir…",
@@ -486,7 +521,8 @@
           "des sommets du graphe (les adresses)",
           "des arêtes du graphe (les rues)"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** les **rues** d'un graphe routier sont des **arêtes**.\n\n**Pas à pas :** le facteur doit **parcourir chaque rue** au moins une fois (il distribue le courrier tout le long). Ce qu'il doit couvrir, ce sont les liens entre adresses : il parcourt des **arêtes**.\n\n**Erreur fréquente :** croire que le facteur visite des adresses comme le livreur. Ici, l'énoncé dit « parcourir chaque rue », pas « passer à chaque adresse ».\n\n**À retenir :** liens à parcourir = arêtes."
       },
       {
         "intitule": "Comment s'appelle le problème du facteur ?",
@@ -501,7 +537,8 @@
         ],
         "refuses": [
           "voyageur de commerce"
-        ]
+        ],
+        "explication": "**Règle :** le problème qui consiste à parcourir **chaque arête** d'un graphe au moins une fois, en faisant le trajet le plus court possible, s'appelle le problème du **postier chinois** (il porte le nom du mathématicien chinois qui l'a étudié).\n\n**Pas à pas :** le facteur parcourt toutes les rues (les arêtes) : c'est le postier chinois.\n\n**Erreur fréquente :** répondre « voyageur de commerce ». Le voyageur de commerce visite chaque **sommet** une fois ; le postier chinois parcourt chaque **arête**.\n\n**À retenir :** toutes les arêtes = postier chinois ; tous les sommets = voyageur de commerce."
       },
       {
         "intitule": "Lequel des deux problèmes se résout en temps polynomial ?",
@@ -510,12 +547,14 @@
           "Celui du livreur (voyageur de commerce)",
           "Celui du facteur (postier chinois)"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** le **postier chinois** (parcourir toutes les arêtes) se résout en **temps polynomial** : il existe un algorithme rapide. Le **voyageur de commerce** (visiter tous les sommets une fois) est difficile : on ne connaît aucun algorithme polynomial.\n\n**Pas à pas :**\n\n| Problème | Ce qu'on couvre | Difficulté |\n|---|---|---|\n| livreur (voyageur de commerce) | les sommets | difficile, aucun algorithme polynomial connu |\n| facteur (postier chinois) | les arêtes | **polynomial** |\n\nRéponse : **celui du facteur**.\n\n**Erreur fréquente :** penser que les deux se valent parce qu'ils ont 40 éléments et se ressemblent. Le nombre ne fait pas la difficulté, c'est la **nature** de ce qu'on couvre.\n\n**À retenir :** postier chinois = polynomial ; voyageur de commerce = difficile."
       },
       {
         "intitule": "Explique en une ou deux phrases pourquoi il faut lire l'énoncé avec soin.",
         "type": "auto",
-        "reponse": "Deux énoncés presque identiques peuvent cacher des problèmes de difficulté très différente : visiter des **sommets** une fois chacun (voyageur de commerce) est difficile, alors que parcourir des **arêtes** (postier chinois) se résout en temps polynomial."
+        "reponse": "Deux énoncés presque identiques peuvent cacher des problèmes de difficulté très différente : visiter des **sommets** une fois chacun (voyageur de commerce) est difficile, alors que parcourir des **arêtes** (postier chinois) se résout en temps polynomial.",
+        "explication": "Une bonne réponse contient deux idées.\n\n1. **Les deux énoncés se ressemblent** : 40 éléments, une tournée, un véhicule. Seul un mot change : « clients » contre « rues ».\n2. **Ce mot change toute la difficulté** : visiter des **sommets** une fois chacun, c'est le voyageur de commerce, pour lequel on ne connaît aucun algorithme polynomial ; parcourir des **arêtes**, c'est le postier chinois, qui se résout en temps polynomial.\n\nConclusion attendue : il faut lire l'énoncé avec soin pour bien identifier le problème, car une lecture rapide peut faire choisir une méthode bien trop lourde (ou bien trop faible).\n\n**Erreurs fréquentes :** dire seulement « pour ne pas se tromper » sans expliquer **en quoi** on peut se tromper ; oublier de citer les deux problèmes ou d'indiquer lequel est facile.\n\n**À retenir :** sommets ou arêtes ? Pose-toi toujours la question avant de choisir une méthode."
       }
     ],
     "indices": [

@@ -8,7 +8,7 @@
       "O(n²)"
     ],
     "reponse": 2,
-    "explication": "On garde le plus petit vu jusque-là et on le compare à chaque case : un seul passage. On ne peut pas faire mieux, car une case non regardée pourrait être le minimum."
+    "explication": "**Règle :** la bonne méthode garde dans `min` la plus petite valeur vue jusque-là, et la compare à chaque case suivante : un seul passage sur le tableau.\n\n**Pas à pas** sur `6 2 8 1` :\n\n| Case lue | Plus petite que `min` ? | `min` après |\n|---|---|---|\n| 6 (départ) | | 6 |\n| 2 | oui | 2 |\n| 8 | non | 2 |\n| 1 | oui | 1 |\n\n4 cases, 3 comparaisons (`n - 1`) : le travail suit `n`, c'est **O(n)**. On ne peut pas faire mieux : une case qu'on n'a pas lue pourrait contenir une valeur encore plus petite.\n\n**Les autres réponses :** O(1) n'est possible que sur un tableau **trié** (le minimum est en `tab[0]`). O(log n) demande aussi un tableau trié. O(n²) est la méthode « bourrine » qui compare chaque case à toutes les autres : elle marche, mais ce n'est pas la bonne méthode.\n\n**À retenir :** minimum d'un tableau non trié = une passe, O(n)."
   },
   {
     "question": "Et dans un tableau trié dans l'ordre croissant ?",
@@ -19,7 +19,7 @@
       "O(n log n)"
     ],
     "reponse": 0,
-    "explication": "Les valeurs vont de la plus petite à la plus grande : le minimum est toujours dans la première case, le maximum dans la dernière."
+    "explication": "**Règle :** dans un tableau trié dans l'ordre croissant, `tab[0] <= tab[1] <= ... <= tab[n - 1]` : la plus petite valeur est forcément dans la première case.\n\n**Pas à pas** sur `-3 0 4 4 10` :\n\n1. Le tableau est trié : chaque case est au moins aussi grande que la précédente.\n2. Donc aucune case ne peut être plus petite que `tab[0]` = -3.\n3. On lit une seule case, quelle que soit la taille du tableau : **O(1)**.\n4. De même, le maximum est `tab[n - 1]` = 10.\n\n**Les autres réponses :** O(log n) par dichotomie sert à **chercher une valeur donnée**, pas le minimum, qui est déjà à une place connue. O(n) serait un parcours inutile. O(n log n) est le coût d'un tri, et le tableau est déjà trié.\n\n**À retenir :** tableau trié croissant = minimum en `tab[0]`, maximum en `tab[n - 1]`, sans boucle."
   },
   {
     "question": "Pourquoi écrire `int min = tab[0];` plutôt que `int min = 0;` ?",
@@ -30,7 +30,7 @@
       "Il n'y a aucune différence"
     ],
     "reponse": 1,
-    "explication": "Le minimum de départ doit être une vraie valeur du tableau. Avec `{5, 8, 3}`, partir de `0` donnerait `0`."
+    "explication": "**Règle :** la valeur de départ du minimum doit être une **vraie valeur du tableau**. Sinon, elle risque de gagner contre toutes les cases alors qu'elle n'en fait pas partie.\n\n**Pas à pas** avec `{5, 8, 3}` et `int min = 0;` :\n\n| Case | Plus petite que `min` ? | `min` |\n|---|---|---|\n| départ | | 0 |\n| 5 | 5 < 0 non | 0 |\n| 8 | 8 < 0 non | 0 |\n| 3 | 3 < 0 non | 0 |\n\nLa fonction renvoie 0, qui n'est **pas** dans le tableau (le bon minimum est 3). Avec `int min = tab[0];`, on part de 5, puis 3 < 5 remplace `min` : on obtient bien 3.\n\n**Les autres réponses :** ce n'est pas une question de vitesse (les deux versions font le même nombre de comparaisons). `0` n'est pas interdit en C. Et il y a bien une différence, démontrée ci-dessus dès que toutes les valeurs sont positives.\n\n**À retenir :** initialise un minimum (ou un maximum) avec la première case, jamais avec une constante."
   },
   {
     "question": "Que fait la boucle `for (size_t i = 0; i < n; i++) { if (tab[i] == v) return 1; else return 0; }` ?",
@@ -41,7 +41,7 @@
       "Il ne compile pas"
     ],
     "reponse": 1,
-    "explication": "Au premier tour, l'un des deux `return` quitte la fonction. Le `return 0` « absent » doit être placé **après** la boucle."
+    "explication": "**Règle :** `return` quitte la fonction **immédiatement**, même au milieu d'une boucle.\n\n**Pas à pas** avec `tab = {4, 7, 9}` et `v = 9` :\n\n| Tour | `tab[i]` | `tab[i] == 9` ? | Ce qui se passe |\n|---|---|---|---|\n| `i = 0` | 4 | non | `else return 0;` : la fonction s'arrête |\n| `i = 1` | | | jamais exécuté |\n\nAu premier tour, la condition est vraie ou fausse : dans les deux cas un `return` est exécuté. Seule la **première case** est regardée : la réponse est 0 alors que 9 est dans le tableau. Correction : garder le `return 1;` dans la boucle et placer le `return 0;` **après** la boucle.\n\n**Les autres réponses :** il ne cherche pas dans tout le tableau (on vient de le voir). Il ne regarde pas la dernière case : on n'y arrive jamais. Et il compile très bien, c'est ce qui rend ce bug sournois.\n\n**À retenir :** dans une recherche, « absent » ne se décide qu'après la boucle, quand toutes les cases ont été vues."
   },
   {
     "question": "Quelle condition est indispensable pour utiliser la recherche dichotomique ?",
@@ -52,7 +52,7 @@
       "Le tableau doit être alloué avec `malloc`"
     ],
     "reponse": 0,
-    "explication": "Elle décide de jeter la moitié gauche ou droite en comparant avec le milieu. Ce n'est juste que si les valeurs sont rangées dans l'ordre."
+    "explication": "**Règle :** la dichotomie compare la valeur cherchée avec la case du milieu, puis **jette** une moitié sans la lire. Ce n'est juste que si le tableau est **trié**.\n\n**Pas à pas :** chercher 9 dans `9 3 7`, qui n'est **pas** trié.\n\n1. Zone : cases 0 à 2. Milieu : case 1, qui vaut 3.\n2. 9 > 3 : on garde la moitié droite, la case 2 (7), et on jette la case 0.\n3. 7 n'est pas 9 : réponse « absent ».\n4. Or 9 était en case 0, dans la moitié jetée. Sur un tableau trié, « 9 > 3 » aurait garanti que tout ce qui est à gauche de 3 est plus petit que 3, donc différent de 9.\n\n**Les autres réponses :** la taille n'a pas besoin d'être une puissance de 2 (la division entière donne toujours un milieu). Les valeurs peuvent être négatives. `malloc` n'a rien à voir : un tableau déclaré normalement convient.\n\n**À retenir :** pas de dichotomie sans tableau trié."
   },
   {
     "question": "Avec la recherche dichotomique, combien de tours au maximum pour un tableau trié d'un million de valeurs ?",
@@ -63,7 +63,7 @@
       "Un million"
     ],
     "reponse": 0,
-    "explication": "La zone est divisée par deux à chaque tour, et 2²⁰ vaut environ un million : environ 20 tours, c'est du O(log n)."
+    "explication": "**Règle :** la dichotomie divise la zone par deux à chaque tour : il faut environ **log₂(n)** tours dans le pire cas.\n\n**Pas à pas :**\n\n1. 2¹⁰ = 1 024, environ mille.\n2. 2²⁰ = 1 024 × 1 024 = 1 048 576, environ un million.\n3. Un million de valeurs → 500 000 → 250 000 → ... → 1 : une vingtaine de divisions.\n4. Donc environ **20** tours, contre un million pour une recherche case par case.\n\n**Les autres réponses :** 1 000 est la racine carrée d'un million, sans rapport avec une division par deux. 500 000 est la taille de la zone après **un seul** tour. Un million de tours, c'est la recherche séquentielle, en O(n).\n\n**À retenir :** dichotomie = O(log n) : environ 10 tours pour mille valeurs, 20 pour un million, 30 pour un milliard."
   },
   {
     "question": "Dans la version fermée `[debut, fin]` de la dichotomie, quand s'arrête-t-on si la valeur est absente ?",
@@ -74,7 +74,7 @@
       "Après `n` tours"
     ],
     "reponse": 0,
-    "explication": "Tant que `debut <= fin`, la zone contient au moins une case. Quand `debut` dépasse `fin`, il ne reste plus rien à regarder."
+    "explication": "**Règle :** dans la version fermée `[debut, fin]`, les **deux** bornes font partie de la zone. Elle contient `fin - debut + 1` cases ; elle est vide quand `debut > fin`.\n\n**Pas à pas :** chercher 6 dans `2 4 8`.\n\n| `debut` | `fin` | Cases dans la zone | `milieu` | Décision |\n|---|---|---|---|---|\n| 0 | 2 | 3 | 1 (4) | 6 > 4 : `debut = 2` |\n| 2 | 2 | 1 | 2 (8) | 6 < 8 : `fin = 1` |\n| 2 | 1 | 0 | | `debut > fin` : absent |\n\nLa boucle `Tant que debut <= fin` s'arrête au moment où `debut` dépasse `fin`.\n\n**Les autres réponses :** quand `debut == fin`, il reste **une** case (la ligne 2 ci-dessus) : s'arrêter là ferait rater une valeur placée dans cette case. `milieu == 0` arrive aussi quand la valeur est dans la première case, ce n'est pas un signal d'arrêt. « Après `n` tours » : la dichotomie s'arrête bien avant, en environ log₂(n) tours.\n\n**À retenir :** version fermée = `while (debut <= fin)` ; zone vide quand `debut > fin`."
   },
   {
     "question": "Avec des indices `size_t`, pourquoi `fin = milieu - 1;` est-il dangereux ?",
@@ -85,7 +85,7 @@
       "Ce n'est pas dangereux"
     ],
     "reponse": 1,
-    "explication": "`size_t` est non signé. La version sûre utilise une zone semi-ouverte `[debut, fin[` : `fin = milieu` et la condition `debut < fin`."
+    "explication": "**Règle :** `size_t` est non signé : il ne descend pas sous 0. `0 - 1` donne le plus grand `size_t` (environ 1,8 × 10¹⁹), pas -1.\n\n**Pas à pas :** chercher 1 dans `3 5 8` avec la version fermée en `size_t`.\n\n1. `debut = 0`, `fin = 2`, `milieu = 1` (5) : 1 < 5, `fin = 0`.\n2. `debut = 0`, `fin = 0`, `milieu = 0` (3) : 1 < 3, `fin = 0 - 1`.\n3. Avec un `int`, `fin` vaudrait -1 et `debut <= fin` serait faux : arrêt normal.\n4. Avec un `size_t`, `fin` vaut 18446744073709551615 : `debut <= fin` reste vrai, le milieu suivant est une case des milliards de fois trop loin. Le programme lit hors du tableau et plante (ou répond n'importe quoi).\n\nLa version sûre prend une zone semi-ouverte `[debut, fin[` : `fin = milieu` (sans soustraction) et la condition `debut < fin`.\n\n**Les autres réponses :** une soustraction n'est pas lente. `size_t` permet très bien la division. Et c'est bel et bien dangereux, dès qu'on cherche une valeur plus petite que la première case.\n\n**À retenir :** avec des `size_t`, pas de `milieu - 1` : zone `[debut, fin[` et `fin = milieu`."
   },
   {
     "question": "Pourquoi calculer le milieu avec `debut + (fin - debut) / 2` ?",
@@ -96,7 +96,7 @@
       "Pour arrondir au supérieur"
     ],
     "reponse": 1,
-    "explication": "Le résultat est le même, mais `fin - debut` reste petit : aucun débordement possible."
+    "explication": "**Règle :** un entier a une valeur maximale. Si `debut + fin` la dépasse, le calcul « fait le tour » et repart de 0 : le milieu obtenu est faux. `fin - debut`, la taille de la zone, ne dépasse jamais.\n\n**Pas à pas,** avec des entiers limités à 255 pour voir les chiffres, `debut = 200`, `fin = 250` :\n\n| Calcul | Détail | Résultat |\n|---|---|---|\n| `(debut + fin) / 2` | 450 dépasse 255, devient 450 - 256 = 194, puis / 2 | 97 : hors de la zone |\n| `debut + (fin - debut) / 2` | 50 / 2 = 25, puis 200 + 25 | 225 : le vrai milieu |\n\nC'est la même chose avec des `size_t` sur des bornes proches de `SIZE_MAX` (tableaux immenses).\n\n**Les autres réponses :** pour des bornes normales, les deux formules donnent **le même** milieu (pas un milieu différent, ni arrondi au-dessus). `(debut + fin) / 2` compile très bien : le problème n'apparaît qu'à l'exécution, sur de très grandes valeurs.\n\n**À retenir :** milieu = début + la moitié de la taille de la zone, pour ne jamais additionner deux grandes bornes."
   },
   {
     "question": "On compare deux tableaux triés de taille `n` avec `for (size_t i = 0; i < n - 1; i++)`. Quel est le problème ?",
@@ -107,7 +107,7 @@
       "La boucle fait un tour de trop"
     ],
     "reponse": 1,
-    "explication": "`1 2 3` et `1 2 4` seraient déclarés égaux. La bonne borne est `i < n`."
+    "explication": "**Règle :** les indices d'un tableau de `n` cases vont de `0` à `n - 1` **compris** : la boucle s'écrit `i < n`. Avec un `size_t`, `n - 1` vaut un nombre énorme quand `n` vaut 0.\n\n**Pas à pas,** avec `a = 1 2 3` et `b = 1 2 4` (n = 3) et la condition `i < n - 1`, c'est-à-dire `i < 2` :\n\n| `i` | `a[i]` | `b[i]` | Égaux ? |\n|---|---|---|---|\n| 0 | 1 | 1 | oui |\n| 1 | 2 | 2 | oui |\n| 2 | | | jamais comparé (`2 < 2` est faux) |\n\nLa fonction répond « égaux » alors que 3 ≠ 4. Et avec `n = 0`, `n - 1` vaut 18446744073709551615 : la boucle croit qu'il y a des milliards de cases et lit hors des tableaux.\n\n**Les autres réponses :** la dernière case n'est pas « forcément égale », l'exemple le montre. La première case est bien comparée (`i` part de 0). La boucle fait un tour **de moins**, pas de trop.\n\n**À retenir :** boucle sur toutes les cases = `i < n`, jamais `i < n - 1` (et teste la dernière case et le tableau vide)."
   },
   {
     "question": "`[1, 2, 2, 3]` et `[1, 2, 3, 3]` sont-ils égaux au sens « mêmes valeurs, même nombre de fois » ?",
@@ -118,7 +118,7 @@
       "Ça dépend de l'ordre"
     ],
     "reponse": 1,
-    "explication": "Le premier a deux 2 et un 3, le second un 2 et deux 3. Il faut comparer les **quantités**, pas seulement la présence."
+    "explication": "**Règle :** « égaux » veut dire ici : mêmes valeurs **et même nombre de fois** chacune. On compare donc les quantités.\n\n**Pas à pas :**\n\n| Valeur | dans `[1, 2, 2, 3]` | dans `[1, 2, 3, 3]` |\n|---|---|---|\n| 1 | 1 fois | 1 fois |\n| 2 | **2 fois** | **1 fois** |\n| 3 | **1 fois** | **2 fois** |\n\nLes quantités de 2 et de 3 diffèrent : les tableaux ne sont **pas** égaux. Comme ils sont triés, on le voit aussi case par case : la case 2 contient 2 d'un côté et 3 de l'autre.\n\n**Les autres réponses :** « ils contiennent tous les deux 1, 2 et 3 » ne regarde que la présence, pas les quantités. « Même taille » est nécessaire mais pas suffisant. L'ordre ne compte pas dans cette définition, donc « ça dépend de l'ordre » est faux.\n\n**À retenir :** pour l'égalité « même nombre de fois », compte chaque valeur des deux côtés."
   },
   {
     "question": "Quelle est la meilleure méthode pour tester l'égalité de deux tableaux **non triés** ?",
@@ -129,7 +129,7 @@
       "Comparer les sommes des deux tableaux : O(n)"
     ],
     "reponse": 1,
-    "explication": "Un bon tri coûte O(n log n), la comparaison O(n) : O(n log n) au total. Comparer les sommes ne suffit pas : `1 + 4` = `2 + 3`."
+    "explication": "**Règle :** deux tableaux qui contiennent les mêmes valeurs le même nombre de fois deviennent **identiques** une fois triés. Un bon tri coûte O(n log n), la comparaison case par case O(n).\n\n**Pas à pas** avec `a = 4 1 4` et `b = 1 4 4` :\n\n1. Copie de `a` triée : `1 4 4`. Copie de `b` triée : `1 4 4`.\n2. Comparaison case par case : 1 = 1, 4 = 4, 4 = 4 : égaux.\n3. Coût : O(n log n) + O(n) = **O(n log n)**.\n\n**Les autres réponses :**\n\n- Chercher chaque valeur de `a` dans `b` (en marquant les cases utilisées) est juste, mais en O(n²) : pour 100 000 cases, 10 milliards de comparaisons, contre environ 1,7 million.\n- Comparer case par case directement est faux sur des tableaux non triés : `1 2` et `2 1` seraient déclarés différents.\n- Comparer les sommes est faux : `1 4` et `2 3` ont la même somme (5) sans être égaux.\n\n**À retenir :** égalité de deux tableaux non triés = trier des copies puis comparer case par case, O(n log n)."
   },
   {
     "question": "Une fonction `egaux(int *a, int *b, size_t n)` trie `a` et `b` directement avant de les comparer. Qu'est-ce qui ne va pas ?",
@@ -140,7 +140,7 @@
       "Elle est en O(n³)"
     ],
     "reponse": 1,
-    "explication": "La réponse est juste, mais c'est un effet de bord caché. On trie des copies, et on écrit `const int *` pour promettre qu'on ne touche pas aux tableaux reçus."
+    "explication": "**Règle :** une fonction qui répond à une question (« sont-ils égaux ? ») ne doit pas changer les données qu'on lui confie. Un paramètre `const int *` promet qu'elle ne les modifie pas.\n\n**Pas à pas :**\n\n1. L'appelant a `notes = 15 9 12` et `bareme = 12 15 9`, rangés dans un ordre qui a du sens pour lui (par exemple, l'ordre des élèves).\n2. `egaux(notes, bareme, 3)` trie directement les deux tableaux, puis compare : la réponse « égaux » est juste.\n3. Mais après l'appel, `notes` vaut `9 12 15` : l'ordre des élèves est perdu, sans que l'appelant l'ait demandé. C'est un **effet de bord** caché.\n4. La bonne version copie chaque tableau (`malloc` + `memcpy`), trie les copies (`qsort`), compare, puis libère les copies (`free`).\n\n**Les autres réponses :** « rien, la réponse est juste » oublie l'effet de bord. Le code compile (sans `const`, le compilateur ne peut rien reprocher). Il n'est pas en O(n³) : deux tris en O(n log n) et une comparaison en O(n).\n\n**À retenir :** pour trier des données qu'on ne doit pas modifier, trie une copie, et libère-la ensuite."
   },
   {
     "question": "Quelle est la complexité de la fusion de deux tableaux triés de tailles `na` et `nb` ?",
@@ -151,7 +151,7 @@
       "O((na + nb)²)"
     ],
     "reponse": 1,
-    "explication": "À chaque tour, une valeur est copiée dans le résultat et un indice avance : `na + nb` copies en tout."
+    "explication": "**Règle :** la fusion copie, à chaque tour, la plus petite des deux têtes, puis avance d'une case dans le tableau d'où elle vient. Chaque valeur est copiée **une seule fois**.\n\n**Pas à pas** avec `a = 2 7` (na = 2) et `b = 1 5 9` (nb = 3) :\n\n| Tour | Têtes | Copié |\n|---|---|---|\n| 1 | 2 et 1 | 1 |\n| 2 | 2 et 5 | 2 |\n| 3 | 7 et 5 | 5 |\n| 4 | 7 et 9 | 7 |\n| 5 | `a` fini | 9 (reste de `b`) |\n\n5 copies = na + nb, et une comparaison au plus par copie : **O(na + nb)**.\n\n**Les autres réponses :** O(na × nb) comparerait chaque valeur de `a` à chaque valeur de `b`, ce que la fusion ne fait jamais. O(log(na + nb)) est impossible : il faut au moins écrire les `na + nb` valeurs du résultat. O((na + nb)²) est le coût d'un tri simple sur le tout, pas de la fusion.\n\n**À retenir :** fusion de deux tableaux triés = une copie par valeur = O(na + nb)."
   },
   {
     "question": "Pendant la fusion, `a` est épuisé alors qu'il reste des valeurs dans `b`. Que faire ?",
@@ -162,7 +162,7 @@
       "Recommencer la fusion depuis le début"
     ],
     "reponse": 1,
-    "explication": "Elles sont triées et plus grandes que tout ce qui a été copié : on les ajoute à la fin, dans l'ordre."
+    "explication": "**Règle :** quand l'un des deux tableaux est épuisé, les valeurs restantes de l'autre sont déjà triées et **toutes plus grandes ou égales** à ce qui a été copié : on les recopie telles quelles à la fin.\n\n**Pas à pas** avec `a = 1 3` et `b = 2 8 9` :\n\n1. 1 (de `a`), puis 2 (de `b`), puis 3 (de `a`) : `a` est fini, `res = 1 2 3`.\n2. Il reste `8 9` dans `b`. Ils sont triés, et plus grands que 3 (sinon ils auraient été copiés avant 3).\n3. On les ajoute dans l'ordre : `res = 1 2 3 8 9`.\n\nC'est le rôle des deux boucles `while (i < na)` et `while (j < nb)` après la boucle principale : une seule des deux fait des tours.\n\n**Les autres réponses :** s'arrêter là perdrait 8 et 9 (le résultat doit contenir `na + nb` valeurs). Trier le reste est inutile, il l'est déjà. Recommencer depuis le début recopierait des valeurs en double.\n\n**À retenir :** après la boucle principale de la fusion, recopie le reste du tableau qui n'est pas fini."
   },
   {
     "question": "On insère une valeur à sa place dans un tableau trié, en trouvant la position par dichotomie. Quelle est la complexité totale ?",
@@ -173,6 +173,6 @@
       "O(n log n)"
     ],
     "reponse": 1,
-    "explication": "Trouver la position coûte O(log n), mais décaler les cases suivantes coûte O(n). On garde le plus gros : O(n)."
+    "explication": "**Règle :** ajouter dans un tableau trié se fait en deux étapes : **trouver** la place, puis **décaler** les cases suivantes pour libérer cette place. On additionne les coûts et on garde le plus gros.\n\n**Pas à pas :** ajouter 1 dans `3 5 8 13` (pire cas : 1 est plus petit que tout).\n\n| Étape | Travail | Coût |\n|---|---|---|\n| trouver la place | dichotomie : la place est la case 0 | O(log n) |\n| décaler | 13, 8, 5 et 3 avancent d'une case : 4 copies = n | O(n) |\n| écrire | `tab[0] = 1` | O(1) |\n\nTotal : O(log n) + O(n) + O(1) = **O(n)**. Résultat : `1 3 5 8 13`.\n\n**Les autres réponses :** O(log n) ne compte que la recherche de la place et oublie le décalage. O(1) oublie les deux. O(n log n) multiplie les deux étapes au lieu de les additionner : elles se font l'une **après** l'autre, pas l'une dans l'autre.\n\n**À retenir :** étapes à la suite = on garde la plus coûteuse ; ici le décalage, O(n)."
   }
 ]

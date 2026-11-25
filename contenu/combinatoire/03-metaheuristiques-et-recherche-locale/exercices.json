@@ -12,7 +12,8 @@
         "refuses": [
           "1",
           "27"
-        ]
+        ],
+        "explication": "**Règle :** l'erreur est $E = \\sum |y_i - y_j|$ sur toutes les paires de cubes de **même couleur**, où $y_i$ est le numéro de ligne du cube $i$.\n\n**Pas à pas :**\n\n1. Dans l'état résolu, les 9 cubes d'une couleur sont tous sur la même ligne.\n2. Pour deux cubes de même couleur, $y_i = y_j$, donc $|y_i - y_j| = 0$.\n3. Toutes les paires valent 0, la somme vaut **0**.\n\n**Erreurs fréquentes :** répondre 27 (le nombre de cubes) ou 1 : l'erreur n'est pas un nombre de cubes, c'est une somme d'écarts, et ici tous les écarts sont nuls.\n\n**À retenir :** l'erreur vaut 0 exactement quand chaque couleur est rangée sur une seule ligne : c'est le but du casse-tête."
       },
       {
         "intitule": "On part de l'état résolu et on échange deux cubes de deux lignes voisines. Nouvelle erreur ?",
@@ -25,7 +26,8 @@
           "16",
           "2",
           "8"
-        ]
+        ],
+        "explication": "**Règle :** on additionne $|y_i - y_j|$ sur chaque paire de même couleur, **dans les deux sens** : $(i, j)$ et $(j, i)$ comptent chacune.\n\n**Pas à pas :** on échange un cube rouge $R$ (ligne 1) et un cube bleu $B$ (ligne 2).\n\n1. $R$ est maintenant en ligne 2 ; ses 8 partenaires rouges sont restés en ligne 1 : 8 paires d'écart 1.\n2. Dans les deux sens : $8 \\times 2 = 16$ pour $R$.\n3. Même chose pour $B$, en ligne 1 face à ses 8 partenaires bleus en ligne 2 : 16.\n4. Les autres paires (deux cubes qui n'ont pas bougé) ont toujours un écart 0, et $R$ et $B$ ne sont pas de la même couleur.\n5. Total : $16 + 16 = 2 \\times 8 \\times 2 = 32$.\n\n**Erreurs fréquentes :** 16 oublie le double comptage des paires (ou ne compte qu'un des deux cubes) ; 8 ou 2 ne comptent qu'une partie des paires.\n\n**À retenir :** nombre de cubes déplacés × partenaires de couleur × écart × 2 (les deux sens)."
       },
       {
         "intitule": "Nombre d'échanges horizontaux possibles (deux cubes voisins sur une même ligne).",
@@ -37,7 +39,8 @@
         "refuses": [
           "27",
           "9"
-        ]
+        ],
+        "explication": "**Règle :** sur une ligne de $k$ cubes, il y a $k - 1$ paires de voisins côte à côte (toujours une de moins que de cubes).\n\n**Pas à pas :**\n\n1. Une ligne de 9 cubes : les paires (1,2), (2,3), …, (8,9), soit **8** paires.\n2. Il y a 3 lignes : $3 \\times 8 = 24$ échanges horizontaux.\n\n**Erreurs fréquentes :** compter 9 paires par ligne (le 9e cube n'a pas de voisin à droite), ce qui donne 27 ; ou ne compter qu'une seule ligne (9 ou 8).\n\n**À retenir :** échanges horizontaux = nombre de lignes × (cubes par ligne − 1)."
       },
       {
         "intitule": "Nombre d'échanges verticaux possibles.",
@@ -49,7 +52,8 @@
         "refuses": [
           "27",
           "9"
-        ]
+        ],
+        "explication": "**Règle :** un échange vertical prend deux cubes l'un **au-dessus** de l'autre, dans deux lignes **voisines**.\n\n**Pas à pas :**\n\n1. Les paires de lignes voisines : 1-2 et 2-3. Les lignes 1 et 3 ne se touchent pas : **2** paires.\n2. Entre deux lignes voisines, chacune des 9 colonnes donne un échange : 9.\n3. Total : $2 \\times 9 = 18$. Avec les 24 horizontaux, on retrouve bien $24 + 18 = 42$ mouvements.\n\n**Erreurs fréquentes :** compter 3 paires de lignes (en ajoutant 1-3), ce qui donne 27 ; ou ne compter qu'une paire de lignes (9).\n\n**À retenir :** échanges verticaux = (nombre de lignes − 1) × nombre de colonnes."
       },
       {
         "intitule": "Combien un échange horizontal change-t-il l'erreur ?",
@@ -58,7 +62,8 @@
         "refuses": [
           "32",
           "1"
-        ]
+        ],
+        "explication": "**Règle :** l'erreur ne dépend que du **numéro de ligne** $y_i$ de chaque cube, pas de sa colonne.\n\n**Pas à pas :**\n\n1. Un échange horizontal prend deux cubes de la même ligne, par exemple la ligne 3.\n2. Après l'échange, ils sont toujours tous les deux en ligne 3 : aucun $y_i$ ne change.\n3. Aucun écart $|y_i - y_j|$ ne change : l'erreur varie de **0**.\n\nC'est un **plateau** : le coût ne bouge pas. Ces mouvements servent seulement à amener un cube dans la bonne colonne avant un échange vertical.\n\n**Erreurs fréquentes :** répondre 32 (c'est l'effet d'un échange **vertical** depuis l'état résolu) ou 1 (aucun écart ne change, même pas d'une unité).\n\n**À retenir :** un mouvement qui ne change aucune ligne laisse l'erreur identique."
       }
     ],
     "indices": [
@@ -85,7 +90,8 @@
         "refuses": [
           "228",
           "38"
-        ]
+        ],
+        "explication": "**Règle :** temps (en secondes) = nombre d'états ÷ vitesse ; puis on divise par 60 pour avoir des minutes.\n\n**Pas à pas :**\n\n1. Nombre d'états : $\\dfrac{27!}{(9!)^3} \\approx 2{,}28 \\times 10^{11}$.\n2. Secondes : $\\dfrac{2{,}28 \\times 10^{11}}{10^9} = 2{,}28 \\times 10^{2} = 228$ s (on soustrait les puissances : $11 - 9 = 2$).\n3. Minutes : $\\dfrac{228}{60} = 3{,}8$ min.\n\n**Erreurs fréquentes :** donner 228 (ce sont des secondes, la conversion manque) ; 38 vient d'une virgule mal placée.\n\n**À retenir :** états ÷ vitesse donne des secondes ; ÷ 60 pour des minutes."
       },
       {
         "intitule": "Temps pour énumérer les $3^{27}$ coloriages libres, en **heures**.",
@@ -99,7 +105,8 @@
         "refuses": [
           "7625",
           "21"
-        ]
+        ],
+        "explication": "**Règle :** temps (en secondes) = nombre d'états ÷ vitesse ; une heure fait $60 \\times 60 = 3\\,600$ secondes.\n\n**Pas à pas :**\n\n1. Nombre d'états : $3^{27} \\approx 7{,}6 \\times 10^{12}$ (plus précisément $7\\,625\\,597\\,484\\,987$).\n2. Secondes : $\\dfrac{7{,}6 \\times 10^{12}}{10^9} = 7{,}6 \\times 10^3 \\approx 7\\,625$ s.\n3. Heures : $\\dfrac{7\\,625}{3\\,600} \\approx 2{,}1$ h.\n\n**Erreurs fréquentes :** donner 7 625 (des secondes) ; diviser par 60 seulement (on obtient des minutes, environ 127) ; 21 vient d'une virgule mal placée.\n\n**À retenir :** pour des heures, divise les secondes par 3 600, pas par 60."
       },
       {
         "intitule": "Pourquoi rejette-t-on la modélisation « coloriages libres » ?",
@@ -110,7 +117,8 @@
           "Elle est trop grande",
           "Elle oublie des états"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un modèle doit décrire exactement les états **possibles**. Ici, on a 9 cubes de chaque couleur, déjà peints : on les déplace, on ne les repeint pas.\n\n**Pas à pas :**\n\n1. Les coloriages libres choisissent une couleur parmi 3 pour chacune des 27 places, sans limite.\n2. Exemple d'état compté : les 27 places en rouge. Il est impossible, puisqu'il n'y a que 9 cubes rouges.\n3. Ce modèle décrit donc un autre problème (où l'on choisirait les couleurs) : on le rejette.\n\n**Les autres réponses :**\n\n- « Elle donne une erreur négative » : l'erreur est une somme de valeurs absolues, elle n'est jamais négative.\n- « Elle est trop grande » : au contraire, $3^{27} \\approx 7{,}6 \\times 10^{12}$ est bien plus petit que $27! \\approx 1{,}1 \\times 10^{28}$.\n- « Elle oublie des états » : elle en a trop (des impossibles), pas trop peu.\n\n**À retenir :** un bon modèle ne compte que des états réalisables, même s'il est plus gros."
       },
       {
         "intitule": "Pourquoi la force brute est-elle « hors de propos » sur ce casse-tête, même si 4 minutes suffiraient ?",
@@ -121,7 +129,8 @@
           "Les ordinateurs ne savent pas compter",
           "Il n'existe pas de solution"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** la force brute (essayer tous les états) suppose qu'on peut **décrire** chaque état et qu'on peut se permettre d'en essayer autant. Ici, aucune des deux conditions ne tient vraiment.\n\n**Pas à pas :**\n\n1. Le joueur est **aveugle** : il ne voit pas les couleurs. Il ne connaît que l'erreur de la situation et un seul mouvement (échanger deux voisins). Il ne peut donc pas écrire la liste des états à essayer.\n2. La taille explose : avec plus de cubes ou de couleurs, le nombre d'états grandit comme une factorielle, et 4 minutes deviennent vite des milliards d'années.\n3. D'où l'idée de la recherche locale : partir de l'état courant et le retoucher pas à pas en regardant l'erreur.\n\n**Les autres réponses :**\n\n- « L'erreur ne peut pas être calculée » : si, le joueur la connaît à chaque instant.\n- « Les ordinateurs ne savent pas compter » : ce n'est pas le problème.\n- « Il n'existe pas de solution » : faux, l'état résolu (erreur 0) existe.\n\n**À retenir :** la force brute est hors de propos quand on ne peut pas décrire l'état et que la taille explose avec le problème."
       }
     ],
     "indices": [
@@ -146,7 +155,8 @@
         "refuses": [
           "15",
           "18"
-        ]
+        ],
+        "explication": "**Règle :** une tournée de $n$ villes a $\\dfrac{n(n-3)}{2}$ voisins 2-opt. Elle a $n$ arêtes ; chacune peut être associée à $n - 3$ autres (pas elle-même, pas ses 2 voisines qui la touchent), et chaque paire est comptée deux fois.\n\n**Pas à pas :** avec $n = 6$.\n\n1. $n - 3 = 6 - 3 = 3$.\n2. $n(n-3) = 6 \\times 3 = 18$.\n3. On divise par 2 : $\\dfrac{18}{2} = 9$ voisins.\n\n**Erreurs fréquentes :** 15 compte toutes les paires d'arêtes, $\\dfrac{6 \\times 5}{2}$, y compris celles qui se touchent (les retirer redonne la même tournée) ; 18 oublie de diviser par 2.\n\n**À retenir :** voisins 2-opt = $\\dfrac{n(n-3)}{2}$ : on retire les paires d'arêtes qui se touchent."
       },
       {
         "intitule": "Pour 12 villes.",
@@ -158,7 +168,8 @@
         "refuses": [
           "66",
           "108"
-        ]
+        ],
+        "explication": "**Règle :** même formule, $\\dfrac{n(n-3)}{2}$.\n\n**Pas à pas :** avec $n = 12$.\n\n1. $n - 3 = 12 - 3 = 9$.\n2. $n(n-3) = 12 \\times 9 = 108$.\n3. $\\dfrac{108}{2} = 54$ voisins.\n\n**Erreurs fréquentes :** 108 oublie de diviser par 2 ; 66 utilise $n - 1$ au lieu de $n - 3$ ($\\dfrac{12 \\times 11}{2}$, toutes les paires d'arêtes).\n\n**À retenir :** calcule $n - 3$, multiplie par $n$, divise par 2."
       },
       {
         "intitule": "Pour 100 villes.",
@@ -171,7 +182,8 @@
         "refuses": [
           "4950",
           "9700"
-        ]
+        ],
+        "explication": "**Règle :** même formule, $\\dfrac{n(n-3)}{2}$.\n\n**Pas à pas :** avec $n = 100$.\n\n1. $n - 3 = 97$.\n2. $100 \\times 97 = 9\\,700$.\n3. $\\dfrac{9\\,700}{2} = 4\\,850$ voisins.\n\nCe voisinage grandit comme $n^2$ (polynomial) : 4 850 échanges à tester, c'est rapide. Le nombre de tournées, lui, vaut $\\dfrac{99!}{2}$, un nombre de plus de 150 chiffres. C'est ce qui rend la recherche locale praticable.\n\n**Erreurs fréquentes :** 9 700 oublie la division par 2 ; 4 950 utilise $n - 1$ au lieu de $n - 3$.\n\n**À retenir :** le voisinage 2-opt reste petit (en $n^2$) même quand le nombre de tournées est astronomique."
       },
       {
         "intitule": "Nombre de tournées distinctes de 6 villes.",
@@ -183,7 +195,8 @@
         "refuses": [
           "720",
           "120"
-        ]
+        ],
+        "explication": "**Règle :** il existe $\\dfrac{(n-1)!}{2}$ tournées distinctes de $n$ villes : on fixe la ville de départ (il reste $(n-1)!$ ordres pour les autres), puis on divise par 2 car une tournée lue à l'envers est la même.\n\n**Pas à pas :** avec $n = 6$.\n\n1. $(6 - 1)! = 5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$.\n2. $\\dfrac{120}{2} = 60$ tournées.\n\n**Erreurs fréquentes :** $6! = 720$ ne fixe pas la ville de départ (A B C D E F et B C D E F A sont le même cycle) ; 120 oublie que les deux sens de parcours donnent la même tournée.\n\n**À retenir :** tournées distinctes = $\\dfrac{(n-1)!}{2}$ : départ fixé, sens ignoré."
       }
     ],
     "indices": [
@@ -207,7 +220,8 @@
           "B",
           "C"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** le plus proche voisin va toujours, depuis la ville courante, à la ville **non visitée** la plus proche. On lit la ligne de la ville courante et on prend la plus petite distance.\n\n**Pas à pas :** ligne A du tableau.\n\n| Ville | Distance depuis A |\n|---|---|\n| B | 3,16 |\n| C | 2,24 |\n| D | **1,00** |\n| E | 3,00 |\n| F | 4,00 |\n\nLa plus petite est 1,00 : on va en **D**.\n\n**Les autres réponses :** C (2,24) est la deuxième plus proche ; B (3,16) et F (4,00) sont plus loin. Le glouton prend le minimum, pas « une ville proche ».\n\n**À retenir :** à chaque étape, minimum de la ligne courante parmi les villes non visitées."
       },
       {
         "intitule": "En partant de A, quelle ville est visitée en **dernier** (avant le retour en A) ?",
@@ -218,7 +232,8 @@
         "refuses": [
           "B",
           "D"
-        ]
+        ],
+        "explication": "**Règle :** on applique le plus proche voisin étape par étape, en ne regardant que les villes **pas encore visitées**.\n\n**Pas à pas :**\n\n| Ville courante | Villes restantes (distance) | Choix |\n|---|---|---|\n| A | B 3,16 ; C 2,24 ; D 1,00 ; E 3,00 ; F 4,00 | D |\n| D | B 3,00 ; C 2,00 ; E 3,16 ; F 3,00 | C |\n| C | B 1,00 ; E 1,41 ; F 3,61 | B |\n| B | E 1,00 ; F 4,24 | E |\n| E | F 5,00 | F |\n\nLa dernière ville visitée est **F**, puis on revient en A. F est loin de tout : elle n'est jamais la plus proche tant qu'il reste une autre ville.\n\n**Erreurs fréquentes :** répondre D (c'est la **première** ville visitée) ou B (avant-avant-dernière), ou choisir une ville déjà visitée.\n\n**À retenir :** la ville la plus isolée finit souvent en dernier avec le glouton, c'est son défaut typique."
       },
       {
         "intitule": "Longueur de la tournée gloutonne partant de A.",
@@ -231,7 +246,8 @@
         "refuses": [
           "12.61",
           "13.77"
-        ]
+        ],
+        "explication": "**Règle :** la longueur d'une tournée est la somme de **toutes** ses arêtes, y compris le **retour** à la ville de départ.\n\n**Pas à pas :** tournée A → D → C → B → E → F → A.\n\n| Arête | Distance |\n|---|---|\n| A → D | 1,00 |\n| D → C | 2,00 |\n| C → B | 1,00 |\n| B → E | 1,00 |\n| E → F | 5,00 |\n| F → A | 4,00 |\n\nTotal : $1 + 2 + 1 + 1 + 5 + 4 = 14{,}00$.\n\n**Erreurs fréquentes :** oublier le retour F → A (on obtient 10) ; donner 13,77 ou 12,61, qui sont les longueurs après les échanges 2-opt.\n\n**À retenir :** une tournée a autant d'arêtes que de villes : compte-les avant d'additionner."
       },
       {
         "intitule": "Longueur de la tournée gloutonne partant de **F** (F → D → A → C → B → E → F).",
@@ -244,7 +260,8 @@
         "refuses": [
           "14",
           "12.61"
-        ]
+        ],
+        "explication": "**Règle :** on additionne les arêtes de la tournée donnée, retour compris.\n\n**Pas à pas :** tournée F → D → A → C → B → E → F. On vérifie d'abord qu'elle suit bien le glouton : depuis F, la plus proche est D (3,00) ; depuis D, A (1,00) ; depuis A, C (2,24, contre 3,16 pour B et 3,00 pour E) ; depuis C, B (1,00) ; puis E.\n\n| Arête | Distance |\n|---|---|\n| F → D | 3,00 |\n| D → A | 1,00 |\n| A → C | 2,24 |\n| C → B | 1,00 |\n| B → E | 1,00 |\n| E → F | 5,00 |\n\nTotal : $3 + 1 + 2{,}24 + 1 + 1 + 5 = 13{,}24$.\n\n**Erreurs fréquentes :** répondre 14 (c'est le glouton depuis A) ou 12,61 (l'optimum). Le glouton donne un résultat différent selon la ville de départ, et aucun des deux n'atteint 12,61.\n\n**À retenir :** le résultat du plus proche voisin dépend de la ville de départ."
       }
     ],
     "indices": [
@@ -266,7 +283,8 @@
         "tolerance": 0.001,
         "refuses": [
           "6.77"
-        ]
+        ],
+        "explication": "**Règle :** dans un échange 2-opt, on calcule séparément la somme des arêtes **retirées** et celle des arêtes **ajoutées**.\n\n**Pas à pas :** les arêtes retirées sont (D,C) et (E,F). On les lit dans le tableau :\n\n- $d(D,C)$ : ligne D, colonne C, soit 2,00 ;\n- $d(E,F)$ : ligne E, colonne F, soit 5,00.\n\nSomme : $2{,}00 + 5{,}00 = 7{,}00$.\n\n**Erreur fréquente :** donner 6,77, qui est la somme des arêtes **ajoutées** (D,E) et (C,F).\n\n**À retenir :** une distance $d(X,Y)$ se lit à l'intersection de la ligne X et de la colonne Y (le tableau est symétrique)."
       },
       {
         "intitule": "$d(D,E) + d(C,F)$",
@@ -278,7 +296,8 @@
         ],
         "refuses": [
           "7"
-        ]
+        ],
+        "explication": "**Règle :** on additionne les deux arêtes **ajoutées** par l'échange.\n\n**Pas à pas :** après inversion de C…E, la tournée devient A → D → E → B → C → F → A. Les nouvelles arêtes sont (D,E) et (C,F).\n\n- $d(D,E)$ = 3,16 ;\n- $d(C,F)$ = 3,61.\n\nSomme : $3{,}16 + 3{,}61 = 6{,}77$.\n\n**Erreur fréquente :** donner 7, qui est la somme des arêtes retirées.\n\n**À retenir :** ajoutées = les arêtes qui relient les bouts du segment inversé à ses nouveaux voisins."
       },
       {
         "intitule": "Gain de l'échange.",
@@ -291,7 +310,8 @@
         "refuses": [
           "-0.23",
           "1.16"
-        ]
+        ],
+        "explication": "**Règle :** gain = (somme des arêtes retirées) − (somme des arêtes ajoutées). Un gain positif veut dire que la tournée raccourcit.\n\n**Pas à pas :**\n\n1. Retirées : 7,00.\n2. Ajoutées : 6,77.\n3. Gain : $7{,}00 - 6{,}77 = 0{,}23$.\n\n**Erreurs fréquentes :** faire la soustraction à l'envers ($6{,}77 - 7{,}00 = -0{,}23$), ce qui fait croire que la tournée s'allonge ; 1,16 est le gain d'un autre échange (le pas suivant de la descente).\n\n**À retenir :** gain = retirées − ajoutées, dans cet ordre."
       },
       {
         "intitule": "Longueur de la nouvelle tournée.",
@@ -304,7 +324,8 @@
         "refuses": [
           "14.23",
           "12.61"
-        ]
+        ],
+        "explication": "**Règle :** si le gain est positif, la nouvelle longueur vaut l'ancienne **moins** le gain.\n\n**Pas à pas :**\n\n1. Longueur avant : 14,00.\n2. Gain : 0,23.\n3. Nouvelle longueur : $14{,}00 - 0{,}23 = 13{,}77$.\n\nOn peut vérifier en additionnant la nouvelle tournée A → D → E → B → C → F → A : $1 + 3{,}16 + 1 + 1 + 3{,}61 + 4 = 13{,}77$.\n\n**Erreurs fréquentes :** ajouter le gain (14,23) au lieu de le retirer ; donner 12,61, qui est la longueur après le deuxième pas.\n\n**À retenir :** nouvelle longueur = ancienne − gain (ou ancienne − retirées + ajoutées)."
       },
       {
         "intitule": "Cet échange est-il améliorant ?",
@@ -313,7 +334,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un échange 2-opt est **améliorant** si $d(a,c) + d(b,d) < d(a,b) + d(c,d)$, c'est-à-dire si les arêtes ajoutées coûtent moins que les arêtes retirées (gain positif).\n\n**Pas à pas :**\n\n1. Ajoutées : $d(D,E) + d(C,F) = 6{,}77$.\n2. Retirées : $d(D,C) + d(E,F) = 7{,}00$.\n3. $6{,}77 < 7{,}00$ : oui, le critère est vérifié, le gain vaut $+0{,}23$.\n\n**Autre réponse :** « Non » serait juste seulement si les arêtes ajoutées coûtaient autant ou plus que les retirées.\n\n**À retenir :** améliorant = ajoutées < retirées = gain positif."
       }
     ],
     "indices": [
@@ -337,7 +359,8 @@
           "(E,B) et (C,F)",
           "(A,D) et (B,C)"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour trouver les arêtes supprimées par un 2-opt, on compare la liste des arêtes avant et après : celles qui disparaissent sont les supprimées. Ce sont toujours celle qui **entre** dans le segment inversé et celle qui en **sort**.\n\n**Pas à pas :**\n\n| Arêtes avant (A D E B C F) | Encore là après (A D F C B E) ? |\n|---|---|\n| (A,D) | oui |\n| (D,E) | **non** |\n| (E,B) | oui, devenue (B,E) |\n| (B,C) | oui, devenue (C,B) |\n| (C,F) | oui, devenue (F,C) |\n| (F,A) | **non** |\n\nLes arêtes supprimées sont **(D,E) et (F,A)**. Le segment inversé est E B C F : on y entre par (D,E) et on en sort par (F,A).\n\n**Les autres réponses :** (D,C) et (E,F) étaient les arêtes supprimées au **premier** pas ; (E,B), (C,F), (A,D) et (B,C) sont toujours dans la tournée (inverser un segment garde ses arêtes internes, parcourues à l'envers).\n\n**À retenir :** une arête (X,Y) et (Y,X) sont la même arête : compare les listes sans tenir compte du sens."
       },
       {
         "intitule": "Gain de l'échange.",
@@ -350,7 +373,8 @@
         "refuses": [
           "0.23",
           "-1.16"
-        ]
+        ],
+        "explication": "**Règle :** gain = (arêtes retirées) − (arêtes ajoutées).\n\n**Pas à pas :**\n\n1. Retirées : $d(D,E) + d(F,A) = 3{,}16 + 4{,}00 = 7{,}16$.\n2. Ajoutées : $d(D,F) + d(E,A) = 3{,}00 + 3{,}00 = 6{,}00$.\n3. Gain : $7{,}16 - 6{,}00 = 1{,}16$, positif : l'échange raccourcit la tournée.\n\n**Erreurs fréquentes :** 0,23 est le gain du pas précédent ; $-1{,}16$ vient d'une soustraction dans le mauvais sens.\n\n**À retenir :** liste les arêtes retirées et ajoutées, lis-les dans le tableau, puis retirées − ajoutées."
       },
       {
         "intitule": "Longueur de la nouvelle tournée.",
@@ -363,7 +387,8 @@
         "refuses": [
           "13.77",
           "14"
-        ]
+        ],
+        "explication": "**Règle :** nouvelle longueur = longueur **courante** − gain.\n\n**Pas à pas :**\n\n1. La tournée courante est A D E B C F, de longueur 13,77 (après le premier pas).\n2. Gain : 1,16.\n3. Nouvelle longueur : $13{,}77 - 1{,}16 = 12{,}61$.\n\nVérification directe sur A → D → F → C → B → E → A : $1 + 3 + 3{,}61 + 1 + 1 + 3 = 12{,}61$.\n\n**Erreurs fréquentes :** partir de 14,00 (la tournée gloutonne de départ, déjà améliorée une fois) donnerait 12,84 ; répondre 13,77 oublie le pas.\n\n**À retenir :** dans une descente, chaque pas part de la tournée **courante**, pas de celle du début."
       },
       {
         "intitule": "Ensuite, plus aucun échange 2-opt n'améliore la tournée. Elle est donc…",
@@ -373,7 +398,8 @@
           "forcément la pire tournée",
           "irréalisable"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une tournée qu'**aucun** échange 2-opt ne raccourcit est **2-optimale** : c'est un optimum local pour le voisinage 2-opt.\n\n**Pas à pas :**\n\n1. On a testé les 9 voisins 2-opt de A D F C B E : aucun n'a un gain positif.\n2. La descente stricte s'arrête : c'est la définition d'un optimum local.\n3. Ici, en énumérant les 60 tournées, on voit que 12,61 est aussi l'optimum global, mais la descente seule ne le prouve pas.\n\n**Les autres réponses :**\n\n- « forcément la pire tournée » : faux, on vient de l'améliorer deux fois (14,00 puis 13,77 puis 12,61).\n- « irréalisable » : elle passe toujours une fois par chaque ville et revient au départ, elle est réalisable.\n\n**À retenir :** plus aucun voisin meilleur = optimum local ; global seulement si on le vérifie autrement."
       }
     ],
     "indices": [
@@ -398,7 +424,8 @@
         ],
         "refuses": [
           "12.61"
-        ]
+        ],
+        "explication": "**Règle :** la longueur d'une tournée est la somme de ses arêtes, retour au départ compris.\n\n**Pas à pas :** tournée A → E → B → C → D → F → A.\n\n| Arête | Distance |\n|---|---|\n| A → E | 3,00 |\n| E → B | 1,00 |\n| B → C | 1,00 |\n| C → D | 2,00 |\n| D → F | 3,00 |\n| F → A | 4,00 |\n\nTotal : $3 + 1 + 1 + 2 + 3 + 4 = 14{,}00$.\n\nC'est la même longueur que la tournée gloutonne A D C B E F, mais ce n'est **pas** la même tournée (par exemple, l'arête A-E n'est pas dans la tournée gloutonne). Deux tournées différentes peuvent avoir la même longueur.\n\n**Erreurs fréquentes :** oublier F → A (on obtient 10) ; répondre 12,61, la longueur obtenue après l'échange.\n\n**À retenir :** compte autant d'arêtes que de villes, retour compris."
       },
       {
         "intitule": "Un seul échange améliore : supprimer (C,D) et (F,A), inverser le segment D…F. Longueur obtenue ?",
@@ -411,7 +438,8 @@
         "refuses": [
           "13.77",
           "14"
-        ]
+        ],
+        "explication": "**Règle :** nouvelle longueur = ancienne − (arêtes retirées) + (arêtes ajoutées).\n\n**Pas à pas :**\n\n1. Retirées : $d(C,D) + d(F,A) = 2{,}00 + 4{,}00 = 6{,}00$.\n2. On inverse D…F : la tournée devient A → E → B → C → F → D → A. Ajoutées : $d(C,F) + d(D,A) = 3{,}61 + 1{,}00 = 4{,}61$.\n3. Nouvelle longueur : $14{,}00 - 6{,}00 + 4{,}61 = 12{,}61$.\n\nVérification directe : $3 + 1 + 1 + 3{,}61 + 3 + 1 = 12{,}61$.\n\n**Erreurs fréquentes :** 13,77 est un résultat de l'autre descente (depuis le glouton) ; 14 oublie de faire l'échange.\n\n**À retenir :** retire les deux anciennes arêtes, ajoute les deux nouvelles, et vérifie en refaisant la somme."
       },
       {
         "intitule": "Gain de cet échange.",
@@ -424,7 +452,8 @@
         "refuses": [
           "1.16",
           "0.23"
-        ]
+        ],
+        "explication": "**Règle :** gain = (arêtes retirées) − (arêtes ajoutées).\n\n**Pas à pas :**\n\n1. Retirées : $6{,}00$.\n2. Ajoutées : $4{,}61$.\n3. Gain : $6{,}00 - 4{,}61 = 1{,}39$.\n4. Contrôle : $14{,}00 - 1{,}39 = 12{,}61$, la longueur trouvée juste avant.\n\n**Erreurs fréquentes :** 1,16 et 0,23 sont les gains des deux pas de l'autre descente (depuis le glouton), pas de celle-ci.\n\n**À retenir :** gain = retirées − ajoutées, et ancienne longueur − gain doit redonner la nouvelle."
       },
       {
         "intitule": "La tournée obtenue, A → E → B → C → F → D → A, est-elle la même que la tournée A → D → F → C → B → E → A trouvée depuis le glouton ?",
@@ -434,12 +463,14 @@
           "Non, elle est différente et plus courte",
           "Oui, c'est la même parcourue en sens inverse"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** une tournée lue **à l'envers** passe par les mêmes arêtes : c'est la même tournée, de même longueur.\n\n**Pas à pas :** on lit A → E → B → C → F → D → A de droite à gauche, en gardant A au départ.\n\n1. À l'envers : A, D, F, C, B, E, puis retour en A.\n2. On obtient A → D → F → C → B → E → A : exactement la tournée trouvée depuis le glouton.\n3. Même tournée, donc même longueur (12,61).\n\n**Les autres réponses :** « différente et plus longue » et « différente et plus courte » sont fausses toutes les deux : ce n'est pas une autre tournée, et les deux longueurs valent 12,61.\n\n**À retenir :** pour comparer deux tournées, lis l'une à l'envers en gardant la même ville de départ."
       },
       {
         "intitule": "Quelle leçon tires-tu de cet exercice sur la descente et le multi-start ?",
         "type": "auto",
-        "reponse": "Deux départs différents donnent deux chemins de descente différents (un pas ici, deux depuis le glouton) mais ici le même optimum local, qui est l'optimum global. Rien ne le garantissait : c'est en multipliant les départs (**multi-start**) qu'on gagne en confiance."
+        "reponse": "Deux départs différents donnent deux chemins de descente différents (un pas ici, deux depuis le glouton) mais ici le même optimum local, qui est l'optimum global. Rien ne le garantissait : c'est en multipliant les départs (**multi-start**) qu'on gagne en confiance.",
+        "explication": "**Règle :** une descente s'arrête sur un optimum local qui dépend de son **point de départ** ; le multi-start relance depuis plusieurs départs pour gagner en confiance, sans jamais rien prouver.\n\n**Pas à pas :** une bonne réponse dit, dans l'ordre :\n\n1. **ce qu'on a observé** : deux départs différents (la tournée gloutonne et une tournée au hasard) ont suivi deux chemins différents (deux pas d'un côté, un seul de l'autre) ;\n2. **le résultat** : les deux sont arrivés au **même** optimum local (12,61, la même tournée dans les deux sens), qui est ici aussi l'optimum global ;\n3. **la leçon** : rien ne garantissait d'arriver au même endroit ; c'est en multipliant les départs (**multi-start**) que l'on gagne en confiance dans le résultat, sans preuve.\n\n**Erreurs fréquentes :** conclure que la descente trouve toujours l'optimum global (deux essais ne prouvent rien) ; oublier de citer le multi-start ; dire que les deux tournées finales sont différentes.\n\n**À retenir :** même résultat depuis plusieurs départs = plus de confiance, jamais une preuve."
       }
     ],
     "indices": [
@@ -461,7 +492,8 @@
         "refuses": [
           "1",
           "9"
-        ]
+        ],
+        "explication": "**Règle :** gain $= \\big(d(a,b) + d(c,d)\\big) - \\big(d(a,c) + d(b,d)\\big)$ : les arêtes retirées moins les arêtes ajoutées.\n\n**Pas à pas :**\n\n1. Retirées : $d(a,b) + d(c,d) = 5 + 4 = 9$.\n2. Ajoutées : $d(a,c) + d(b,d) = 3 + 7 = 10$.\n3. Gain : $9 - 10 = -1$.\n\nLe gain est **négatif** : l'échange allongerait la tournée de 1.\n\n**Erreurs fréquentes :** donner 1 (soustraction à l'envers, ou signe oublié) ; donner 9 (seulement les arêtes retirées).\n\n**À retenir :** garde le signe du gain : négatif = la tournée s'allonge."
       },
       {
         "intitule": "Cas 1 : l'échange est-il améliorant ?",
@@ -470,7 +502,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un échange est améliorant si $d(a,c) + d(b,d) < d(a,b) + d(c,d)$, c'est-à-dire si le gain est strictement positif.\n\n**Pas à pas :**\n\n1. Ajoutées : $3 + 7 = 10$.\n2. Retirées : $5 + 4 = 9$.\n3. Est-ce que $10 < 9$ ? Non. Le gain vaut $-1$ : l'échange allongerait la tournée, on le **refuse**.\n\n**Autre réponse :** « Oui » confond la petite arête ajoutée (3, plus courte que 5 et 4) avec le total : il faut comparer les **sommes**, et 7 est trop long.\n\n**À retenir :** compare la somme des deux nouvelles arêtes à la somme des deux anciennes, pas les arêtes une par une."
       },
       {
         "intitule": "Cas 2 : $d(a,b) = 6$, $d(c,d) = 5$, $d(a,c) = 3$, $d(b,d) = 4$. Gain ?",
@@ -479,7 +512,8 @@
         "refuses": [
           "-4",
           "7"
-        ]
+        ],
+        "explication": "**Règle :** gain $= \\big(d(a,b) + d(c,d)\\big) - \\big(d(a,c) + d(b,d)\\big)$.\n\n**Pas à pas :**\n\n1. Retirées : $6 + 5 = 11$.\n2. Ajoutées : $3 + 4 = 7$.\n3. Gain : $11 - 7 = 4$.\n\n**Erreurs fréquentes :** $-4$ vient d'une soustraction dans le mauvais sens (ajoutées − retirées) ; 7 est seulement la somme des arêtes ajoutées.\n\n**À retenir :** gain = retirées − ajoutées ; ici positif, la tournée raccourcit de 4."
       },
       {
         "intitule": "Cas 2 : l'échange est-il améliorant ?",
@@ -488,7 +522,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** améliorant si les arêtes ajoutées coûtent strictement moins que les arêtes retirées.\n\n**Pas à pas :**\n\n1. Ajoutées : $d(a,c) + d(b,d) = 3 + 4 = 7$.\n2. Retirées : $d(a,b) + d(c,d) = 6 + 5 = 11$.\n3. $7 < 11$ : oui. Le gain vaut $+4$, la tournée raccourcit de 4.\n\n**Autre réponse :** « Non » serait juste si les ajoutées coûtaient 11 ou plus.\n\n**À retenir :** gain positif = échange améliorant = on le garde."
       }
     ],
     "indices": [
@@ -517,7 +552,8 @@
         "refuses": [
           "{6}",
           "{2, 5, 6}"
-        ]
+        ],
+        "explication": "**Règle :** une solution est un **minimum local** si **aucune** de ses voisines n'a un coût strictement plus petit.\n\n**Pas à pas :** on teste chaque solution.\n\n| Solution | Coût | Coûts des voisines | Voisine moins chère ? | Minimum local ? |\n|---|---|---|---|---|\n| 1 | 5 | 3 | oui | non |\n| 2 | 3 | 5 et 4 | non | **oui** |\n| 3 | 4 | 3 et 6 | oui | non |\n| 4 | 6 | 4 et 2 | oui | non |\n| 5 | 2 | 6 et 1 | oui (1) | non |\n| 6 | 1 | 2 et 3 | non | **oui** |\n| 7 | 3 | 1 et 7 | oui | non |\n| 8 | 7 | 3 | oui | non |\n\nLes minima locaux sont **{2, 6}**. La 6 (coût 1) est aussi le minimum global.\n\n**Erreurs fréquentes :** ne garder que {6} (c'est confondre local et global) ; ajouter 5 (coût 2, assez bas, mais sa voisine 6 coûte 1).\n\n**À retenir :** pour chaque solution, compare son coût à ses deux voisines ; « local » ne regarde que les voisines."
       },
       {
         "intitule": "Partant de la solution 1, sur quelle solution la descente s'arrête-t-elle ?",
@@ -526,7 +562,8 @@
         "refuses": [
           "6",
           "1"
-        ]
+        ],
+        "explication": "**Règle :** descente stricte en meilleure amélioration : on va à la meilleure voisine **si** elle est strictement moins chère ; sinon on s'arrête.\n\n**Pas à pas :**\n\n1. Départ en 1 (coût 5). Seule voisine : 2 (coût 3). $3 < 5$ : on va en 2.\n2. En 2 (coût 3). Voisines : 1 (coût 5) et 3 (coût 4). Aucune n'est sous 3 : **arrêt en 2**.\n\n**Erreurs fréquentes :** répondre 6 (le minimum global : la descente ne peut pas y aller, il faudrait remonter en 3 puis en 4) ; répondre 1 (la solution 2 est meilleure, on la prend).\n\n**À retenir :** la descente ne remonte jamais : elle reste au fond du premier creux rencontré."
       },
       {
         "intitule": "Partant de la solution 4 ?",
@@ -535,7 +572,8 @@
         "refuses": [
           "2",
           "5"
-        ]
+        ],
+        "explication": "**Règle :** même descente, on enchaîne les pas jusqu'à ce qu'aucune voisine ne soit meilleure.\n\n**Pas à pas :**\n\n| Position | Coût | Voisines (coût) | Meilleure voisine | On y va ? |\n|---|---|---|---|---|\n| 4 | 6 | 3 (4) et 5 (2) | 5 (2) | oui |\n| 5 | 2 | 4 (6) et 6 (1) | 6 (1) | oui |\n| 6 | 1 | 5 (2) et 7 (3) | 5 (2) | non, $2 > 1$ |\n\nArrêt en **6**.\n\n**Erreurs fréquentes :** s'arrêter en 5 (elle a encore une voisine moins chère, ce n'est pas un minimum local) ; répondre 2 (en meilleure amélioration, depuis 4 on part vers 5, pas vers 3).\n\n**À retenir :** à chaque pas, compare **les deux** voisines et prends la moins chère."
       },
       {
         "intitule": "Partant de la solution 3 ?",
@@ -544,7 +582,8 @@
         "refuses": [
           "6",
           "4"
-        ]
+        ],
+        "explication": "**Règle :** en meilleure amélioration, on prend la voisine la moins chère si elle bat le coût actuel.\n\n**Pas à pas :**\n\n1. Départ en 3 (coût 4). Voisines : 2 (coût 3) et 4 (coût 6). La meilleure est 2, et $3 < 4$ : on va en 2.\n2. En 2 (coût 3). Voisines : 1 (coût 5) et 3 (coût 4) : aucune n'est meilleure. **Arrêt en 2**.\n\n**Erreurs fréquentes :** répondre 6 (pour y aller il faudrait passer par 4, de coût 6, donc remonter) ; répondre 4 (c'est plus cher que 3, la descente n'y va jamais).\n\n**À retenir :** le premier pas décide de la vallée où l'on finit."
       },
       {
         "intitule": "Meilleur coût trouvé par un multi-start qui part de 1 et de 8.",
@@ -553,7 +592,8 @@
         "refuses": [
           "3",
           "2"
-        ]
+        ],
+        "explication": "**Règle :** le multi-start lance plusieurs descentes depuis des départs différents et garde le **meilleur** résultat.\n\n**Pas à pas :**\n\n1. Départ 1 : 1 → 2, arrêt en 2 (coût 3) (vu plus haut).\n2. Départ 8 (coût 7) : seule voisine 7 (coût 3), on y va ; en 7, voisines 6 (coût 1) et 8 (coût 7), on va en 6 ; en 6, rien de mieux. Arrêt en 6 (coût 1).\n3. On garde le meilleur des deux coûts : $\\min(3, 1) = 1$.\n\n**Erreurs fréquentes :** donner 3 (le résultat d'un seul départ) ; donner 2 (le coût de la solution 5, où aucune descente ne s'arrête).\n\n**À retenir :** multi-start = meilleur coût parmi toutes les descentes."
       }
     ],
     "indices": [
@@ -581,7 +621,8 @@
           "2",
           "0.2",
           "0.8^10"
-        ]
+        ],
+        "explication": "**Règle :** si chaque lancement réussit avec la probabilité $p$ et que les lancements sont indépendants, alors les $k$ lancements échouent **tous** avec la probabilité $(1 - p)^k$, et **au moins un** réussit avec $1 - (1 - p)^k$.\n\n**Pas à pas :** $p = 0{,}2$, $k = 10$.\n\n1. Un lancement échoue avec $1 - 0{,}2 = 0{,}8$.\n2. Les 10 échouent tous : $0{,}8^{10} \\approx 0{,}107$ (indépendants : on multiplie dix fois 0,8).\n3. Au moins un réussit : $1 - 0{,}107 = 0{,}893$.\n\n**Erreurs fréquentes :** $10 \\times 0{,}2 = 2$ n'est pas une probabilité (elle dépasse 1 : on ne peut pas additionner des chances qui se chevauchent) ; 0,2 est la chance d'un seul lancement ; $0{,}8^{10}$ est la probabilité de l'**échec** total.\n\n**À retenir :** « au moins un » = 1 − « aucun »."
       },
       {
         "intitule": "Nombre **minimal** de lancements pour que cette probabilité dépasse 95 %.",
@@ -591,7 +632,8 @@
           "13",
           "5",
           "20"
-        ]
+        ],
+        "explication": "**Règle :** on cherche le plus petit entier $k$ tel que $1 - 0{,}8^k \\ge 0{,}95$, c'est-à-dire $0{,}8^k \\le 0{,}05$. On passe au logarithme ; comme $\\ln 0{,}8 < 0$, diviser par lui **retourne** l'inégalité.\n\n**Pas à pas :**\n\n1. $0{,}8^k \\le 0{,}05$ donne $k \\ln 0{,}8 \\le \\ln 0{,}05$.\n2. On divise par $\\ln 0{,}8 \\approx -0{,}223$ (négatif) : $k \\ge \\dfrac{\\ln 0{,}05}{\\ln 0{,}8} \\approx \\dfrac{-2{,}996}{-0{,}223} \\approx 13{,}4$.\n3. $k$ est un nombre entier de lancements : on arrondit **au-dessus**, $k = 14$.\n4. Vérification : $0{,}8^{13} \\approx 0{,}055$ (plus de 5 % d'échec, pas assez) et $0{,}8^{14} \\approx 0{,}044$ (moins de 5 %, c'est bon).\n\n**Erreurs fréquentes :** arrondir à 13 (au plus proche, mais 13 lancements ne suffisent pas) ; répondre 5 en divisant 1 par 0,2 ; 20 lancements marchent mais ce n'est pas le minimum.\n\n**À retenir :** $k \\ge \\dfrac{\\ln(\\text{échec toléré})}{\\ln(1 - p)}$, puis arrondi au-dessus et vérification."
       },
       {
         "intitule": "Ce calcul garantit-il qu'on a trouvé le minimum global après 14 lancements ?",
@@ -600,7 +642,8 @@
           "Non, ce n'est qu'une probabilité (et en pratique on ne connaît pas $p$)",
           "Oui, à coup sûr"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une probabilité de succès de 95 % n'est **pas** une certitude : il reste une chance d'échec.\n\n**Pas à pas :**\n\n1. Après 14 lancements, la probabilité que **tous** échouent vaut $0{,}8^{14} \\approx 0{,}044$, soit environ 4 %.\n2. Il reste donc environ 4 chances sur 100 de n'avoir jamais trouvé le minimum global.\n3. En plus, le calcul suppose que l'on connaît $p = 0{,}2$ ; en pratique, on ne le connaît pas.\n\n**Autre réponse :** « Oui, à coup sûr » confond « très probable » et « certain ». Aucune méthode sans preuve ne garantit l'optimum.\n\n**À retenir :** le multi-start augmente les chances, il ne garantit jamais l'optimum."
       }
     ],
     "indices": [
@@ -623,7 +666,8 @@
           "Heuristique d'amélioration",
           "Métaheuristique"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une heuristique de **construction** crée une solution à partir de rien ; une heuristique d'**amélioration** retouche une solution existante ; une **métaheuristique** pilote ces briques.\n\n**Pas à pas :** le plus proche voisin part d'une seule ville, puis ajoute à chaque étape la ville non visitée la plus proche, jusqu'à obtenir une tournée complète. Il ne part d'aucune tournée : il en **fabrique** une. C'est une construction, et une méthode gloutonne.\n\n**Les autres réponses :**\n\n- « Heuristique d'amélioration » : il n'a pas de tournée à améliorer au départ.\n- « Métaheuristique » : il ne pilote aucune autre méthode, il fait lui-même tout le travail.\n\n**À retenir :** part de rien = construction."
       },
       {
         "intitule": "La descente 2-opt.",
@@ -633,7 +677,8 @@
           "Heuristique d'amélioration",
           "Métaheuristique"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** amélioration = on part d'une solution existante et on la retouche.\n\n**Pas à pas :** la descente 2-opt prend une tournée déjà faite (par exemple celle du plus proche voisin), essaie d'inverser des segments, et garde un échange seulement s'il raccourcit la tournée. Elle a besoin d'une tournée au départ : c'est une heuristique d'**amélioration**.\n\n**Les autres réponses :**\n\n- « Heuristique de construction » : elle ne crée pas de tournée à partir de rien.\n- « Métaheuristique » : elle n'accepte jamais de dégradation et ne pilote aucune autre méthode, contrairement au recuit simulé.\n\n**À retenir :** part d'une solution existante et la répare = amélioration."
       },
       {
         "intitule": "Le recuit simulé, qui pilote un voisinage et accepte parfois des dégradations.",
@@ -643,7 +688,8 @@
           "Heuristique d'amélioration",
           "Métaheuristique"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** une métaheuristique est un **cadre générique** qui pilote une brique de bas niveau (un voisinage) et ajoute une stratégie pour mieux explorer.\n\n**Pas à pas :** le recuit simulé :\n\n1. utilise un voisinage (par exemple le 2-opt) : il ne le remplace pas, il le **commande** ;\n2. ajoute une règle à lui : accepter **parfois** une dégradation, pour sortir des minima locaux ;\n3. marche sur n'importe quel problème qui a un coût et un voisinage.\n\nC'est donc une **métaheuristique**.\n\n**Les autres réponses :** ce n'est pas une construction (il part d'une solution existante) ni une simple amélioration (une amélioration refuse toute dégradation).\n\n**À retenir :** accepte de dégrader et pilote un voisinage = métaheuristique."
       },
       {
         "intitule": "Une méthode gloutonne…",
@@ -654,7 +700,8 @@
           "utilise une population",
           "fait à chaque étape le meilleur choix du moment, sans revenir en arrière"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** une méthode **gloutonne** fait, à chaque étape, le choix qui paraît le meilleur **sur le moment**, et ne revient jamais en arrière.\n\n**Pas à pas :** avec le plus proche voisin depuis A, on prend D (la plus proche), puis C, puis B, puis E ; arrivé en E, il ne reste que F, très loin (5,00). Le glouton ne peut pas revenir changer ses premiers choix : la tournée finit à 14,00 alors que l'optimum vaut 12,61.\n\n**Les autres réponses :**\n\n- « essaie toutes les solutions » : ça, c'est l'énumération complète (force brute).\n- « garantit l'optimum » : faux, l'exemple ci-dessus le montre.\n- « utilise une population » : c'est le principe des algorithmes génétiques.\n\n**À retenir :** glouton = meilleur choix immédiat, sans retour en arrière, sans garantie."
       }
     ],
     "indices": [

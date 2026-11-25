@@ -13,6 +13,19 @@ Le site a deux sortes de domaines :
 | `anglais` | `contenu/anglais/` | Anglais professionnel | réponses (choix, mots à compléter…) |
 | `electif` | `contenu/electif/` | Cours électif | réponses |
 
+## Style des explications (cours, quiz, exercices)
+
+Les élèves apprennent : une explication doit être **bête mais complète**, sans jamais supposer qu'une étape est évidente. Cela vaut pour le `cours.md`, l'`explication` de chaque question de quiz et l'`explication` de chaque question d'exercice.
+
+1. **Rappeler** la définition, la règle ou la propriété utilisée (en une ou deux phrases, avec la formule si besoin).
+2. **Appliquer pas à pas** sur l'exemple concret : chaque élément, chaque couple, chaque étape de calcul vérifiée une par une (un tableau aide souvent : « couple / couple inverse / présent ? »).
+3. **Dire pourquoi les autres réponses sont fausses** (piège, erreur fréquente). Dans un quiz ou une question `choix`, les options sont mélangées : les désigner par leur contenu.
+4. **Finir par « À retenir : … »** : la méthode réutilisable en une ligne.
+
+Les explications sont en Markdown (listes, tableaux, blocs de code) : dans un JSON, les retours à la ligne s'écrivent `\n`. Dans un cours, chaque notion a sa définition puis un **exemple résolu pas à pas** et un « À retenir », et le cours couvre tout ce que demandent le quiz et les exercices du chapitre.
+
+Exemple d'explication (relation $R = \{(1,1), (2,2), (3,3), (1,3), (3,1)\}$ sur $E = \{1, 2, 3\}$, combien de classes ?) : rappeler qu'une classe regroupe les éléments en relation entre eux ; calculer la classe de 1 ($(1,1)$ et $(1,3)$ donc $[1] = \{1, 3\}$), de 2 (seulement $(2,2)$ donc $[2] = \{2\}$), de 3 ($[3] = \{1, 3\}$, la même que $[1]$, on ne la compte pas deux fois) ; conclure : 2 classes ; « À retenir : calcule la classe de chaque élément, puis enlève les doublons ».
+
 La liste des domaines est dans `js/domaines.js`. `npm run verifier-contenu` sans argument vérifie tout (compte quelques minutes : chaque solution est compilée ou lancée).
 
 ## Animations dans les cours (tous les domaines)
@@ -331,8 +344,18 @@ Une liste d'exercices. Chaque exercice a un énoncé commun et une ou plusieurs 
     "difficulte": 1,
     "enonce": "Soit $A = \\{1, 2, 3, 4\\}$ et $B = \\{3, 4, 5, 6\\}$.",
     "questions": [
-      { "intitule": "$A \\cup B$", "type": "ensemble", "reponse": [1, 2, 3, 4, 5, 6] },
-      { "intitule": "$A \\cap B$", "type": "ensemble", "reponse": [3, 4] }
+      {
+        "intitule": "$A \\cup B$",
+        "type": "ensemble",
+        "reponse": [1, 2, 3, 4, 5, 6],
+        "explication": "L'union garde tout ce qui est dans $A$ **ou** dans $B$, sans répéter $3$ et $4$."
+      },
+      {
+        "intitule": "$A \\cap B$",
+        "type": "ensemble",
+        "reponse": [3, 4],
+        "explication": "L'intersection ne garde que les éléments communs : seuls $3$ et $4$ sont dans les deux."
+      }
     ],
     "indices": ["L'union prend les éléments qui sont dans A **ou** dans B."],
     "correction": "$A \\cup B = \\{1, \\dots, 6\\}$ et $A \\cap B = \\{3, 4\\}$."
@@ -343,6 +366,7 @@ Une liste d'exercices. Chaque exercice a un énoncé commun et une ou plusieurs 
 - `difficulte` : 1 (facile), 2 (moyen), 3 (difficile).
 - `indices` : affichés un par un, du plus vague au plus précis.
 - `correction` : la correction détaillée (Markdown + formules), visible en dernier recours.
+- `explication` (**obligatoire** dans chaque question) : pourquoi la bonne réponse est la bonne et où est le piège. Affichée sous la question dès qu'elle est vérifiée, juste ou fausse. Pour un `choix`, désigner les options par leur contenu (elles sont mélangées).
 - L'exercice est réussi quand **toutes** ses questions sont justes.
 
 ### Les types de question

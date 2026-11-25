@@ -8,7 +8,7 @@
       "Elle lance un nouveau thread"
     ],
     "reponse": 1,
-    "explication": "Une `async fn` renvoie une valeur de type futur. Son code ne démarre que lorsque quelqu'un appelle `poll` (via `.await` ou un exécuteur)."
+    "explication": "**Règle :** une `async fn` est **paresseuse** : l'appeler ne lance pas son code, cela fabrique seulement un **futur** (un objet « résultat à venir »). Le code ne démarre que lorsque quelqu'un appelle `poll` sur ce futur, avec `.await` ou un exécuteur (`block_on`, tokio…).\n\n**Pas à pas :** avec `async fn dire() -> u32 { println!(\"coucou\"); 1 }` :\n\n1. `let f = dire();` : aucun affichage, `f` est juste un futur.\n2. `block_on(f)` (ou `f.await` dans une fonction async) : `coucou` s'affiche, et on obtient `1`.\n3. Si on ne fait jamais l'étape 2, `coucou` ne s'affiche jamais (le compilateur avertit d'un futur non utilisé).\n\n**Les autres réponses :** elle ne s'exécute pas « en entier », justement elle ne s'exécute pas du tout. Elle ne panique pas : créer un futur est parfaitement permis. Et `async` ne lance **aucun** thread, tout se passe dans le fil qui appellera `poll`.\n\n**À retenir :** appeler une `async fn` = fabriquer un futur ; rien ne tourne avant `.await` ou un exécuteur."
   },
   {
     "question": "Quelles sont les deux valeurs de l'enum `Poll<T>` ?",
@@ -19,7 +19,7 @@
       "`Start` et `Stop`"
     ],
     "reponse": 2,
-    "explication": "`Ready(valeur)` : le futur est terminé. `Pending` : pas encore, il faudra rappeler `poll`."
+    "explication": "**Règle :** `poll` renvoie un `Poll<T>`, un `enum` à deux cas : `Poll::Ready(T)` (fini, voici le résultat) et `Poll::Pending` (pas encore, rappelle-moi).\n\n**Pas à pas :** un futur qui finit au 2e poll avec la valeur 8 :\n\n| Appel | Réponse |\n|---|---|\n| 1er `poll` | `Poll::Pending` |\n| 2e `poll` | `Poll::Ready(8)` |\n\n**Les autres réponses :** `Some` / `None` sont les cas d'`Option` (« il y a une valeur ou pas »), `Ok` / `Err` ceux de `Result` (« réussite ou erreur ») : ce ne sont pas les réponses d'un futur. `Start` / `Stop` n'existent pas en Rust. Un futur qui répond `Pending` n'est ni vide ni en erreur : il n'a simplement **pas encore fini**.\n\n**À retenir :** `Poll` = `Ready(valeur)` quand c'est fini, `Pending` sinon."
   },
   {
     "question": "Où peut-on écrire `.await` ?",
@@ -30,7 +30,7 @@
       "Seulement dans un thread"
     ],
     "reponse": 2,
-    "explication": "`.await` doit être dans un contexte `async` (une `async fn` ou un bloc `async { }`), sinon erreur de compilation."
+    "explication": "**Règle :** `.await` met la fonction en pause jusqu'à la fin d'un futur. Seule une fonction **qui est elle-même un futur** peut se mettre en pause : `.await` ne s'écrit donc que dans une `async fn` ou dans un bloc `async { ... }`.\n\n**Pas à pas :**\n\n```text\nfn normale() -> u32 { addition(1, 2).await }        // refusé : pas async\nasync fn asynchrone() -> u32 { addition(1, 2).await }  // accepté\nlet f = async { addition(1, 2).await };              // accepté (bloc async)\n```\n\nPour utiliser un futur depuis une fonction normale (comme `main`), on ne fait pas `.await` : on le donne à un exécuteur, par exemple `block_on(asynchrone())`.\n\n**Les autres réponses :** « partout » est faux, la première ligne ne compile pas. « Seulement dans `main` » est faux aussi : `main` n'est pas async en std, c'est même un des endroits où `.await` est refusé. Un thread n'est pas un contexte async : dans `thread::spawn(|| ...)`, la closure est normale.\n\n**À retenir :** `.await` seulement dans `async fn` ou `async { }` ; depuis du code normal, passe par un exécuteur."
   },
   {
     "question": "Pourquoi `fn main` ne peut-elle pas être `async` avec la bibliothèque standard seule ?",
@@ -41,7 +41,7 @@
       "Il faut Rust 2015"
     ],
     "reponse": 1,
-    "explication": "Il faut un exécuteur qui appelle `poll`. La std n'en contient pas : on utilise une bibliothèque comme tokio, ou son propre `block_on`."
+    "explication": "**Règle :** un futur n'avance que si quelqu'un appelle `poll` dessus. Ce « quelqu'un » est un **exécuteur**, et la bibliothèque standard n'en contient pas.\n\n**Pas à pas :**\n\n1. Une `async fn main()` renverrait un futur au lieu d'exécuter son code.\n2. Le système lance le programme, reçoit ce futur… et personne n'appelle `poll` dessus.\n3. Rien ne se passerait : Rust refuse donc `async fn main` sans exécuteur.\n4. `#[tokio::main]` règle le problème : il écrit un vrai `fn main` qui crée le runtime tokio et lui donne le futur. En std seule, on écrit un `fn main` normal qui appelle son propre `block_on`.\n\n**Les autres réponses :** la syntaxe `async fn main` est connue du compilateur (elle est acceptée avec `#[tokio::main]`), donc ce n'est pas un simple interdit de syntaxe. La vitesse de `main` n'a rien à voir. Et c'est l'édition 2018 qui a apporté `async` : Rust 2015 ne l'a même pas.\n\n**À retenir :** pas d'exécuteur dans la std, donc pas d'`async fn main` sans bibliothèque ou `block_on` maison."
   },
   {
     "question": "Que garantit `Pin<&mut Self>` ?",
@@ -52,7 +52,7 @@
       "Que la valeur est partagée entre threads"
     ],
     "reponse": 1,
-    "explication": "`Pin` interdit de déplacer la valeur, car un futur généré par le compilateur peut contenir des références vers lui-même."
+    "explication": "**Règle :** `Pin<&mut Self>` est une référence mutable avec une promesse : la valeur **ne sera plus déplacée** en mémoire. C'est nécessaire parce qu'un futur écrit par le compilateur peut contenir des références vers ses propres champs.\n\n**Pas à pas :** un futur garde un tableau et, entre deux `.await`, une référence vers une case de ce tableau.\n\n1. Le futur est à l'adresse 100, la référence pointe vers l'adresse 104 (une case du tableau).\n2. Si on déplaçait le futur à l'adresse 500, le tableau partirait avec lui (case à 504)…\n3. … mais la référence pointerait toujours vers 104 : une zone qui ne contient plus le tableau.\n4. `Pin` interdit l'étape 2 : la référence reste juste.\n\n**Les autres réponses :** `Pin<&mut Self>` contient `&mut`, la valeur reste donc **modifiable** (pas immuable). `Pin` ne copie rien, il interdit au contraire de déplacer. Et le partage entre threads est l'affaire de `Send` / `Sync`, pas de `Pin`.\n\n**À retenir :** `Pin` = « ne bouge plus en mémoire » ; pour un type simple (`Unpin`), il ne gêne pas."
   },
   {
     "question": "À quoi sert le `Waker` du `Context` ?",
@@ -63,7 +63,7 @@
       "À créer un thread"
     ],
     "reponse": 1,
-    "explication": "Un futur `Pending` appelle `wake` quand il peut avancer, pour que l'exécuteur le poll de nouveau."
+    "explication": "**Règle :** le `Context` passé à `poll` contient un **waker**, une sonnette. Un futur qui répond `Pending` fait sonner ce waker (`cx.waker().wake()` ou `wake_by_ref()`) quand il peut avancer, pour que l'exécuteur l'interroge de nouveau.\n\n**Pas à pas :** un futur attend une réponse réseau.\n\n1. Premier `poll` : pas de données, le futur garde le waker et répond `Pending`.\n2. L'exécuteur ne l'interroge plus et s'occupe d'autres tâches (il ne perd pas de temps).\n3. Les données arrivent : le waker sonne.\n4. L'exécuteur remet le futur dans sa file et appelle `poll` : cette fois `Ready`.\n\nAvec `Waker::noop()` (sonnette qui ne fait rien), notre `block_on` d'apprentissage interroge sans arrêt, donc il n'a pas besoin d'être réveillé.\n\n**Les autres réponses :** le waker n'affiche rien (c'est `println!`), n'arrête pas le programme et ne crée aucun thread : il sert seulement à **prévenir** l'exécuteur.\n\n**À retenir :** `Pending` + waker qui sonnera plus tard = l'exécuteur sait quand rappeler `poll`."
   },
   {
     "question": "Que fait le compilateur d'une `async fn` ?",
@@ -74,7 +74,7 @@
       "Rien de spécial"
     ],
     "reponse": 0,
-    "explication": "Chaque `.await` devient un point de pause : le compilateur écrit un `enum` d'états avec une méthode `poll`."
+    "explication": "**Règle :** le compilateur transforme chaque `async fn` en un type caché qui **implémente `Future`** : un `enum` d'états (une **machine à états**), avec un état par point de pause `.await`.\n\n**Pas à pas :** `async fn f() { a().await; b().await; }` devient en gros :\n\n| État | Signification |\n|---|---|\n| `Debut` | rien n'est fait |\n| `AttendA` | on attend la fin de `a()` |\n| `AttendB` | `a()` a fini, on attend `b()` |\n| `Fini` | terminé |\n\nChaque `poll` avance d'état en état jusqu'à un `.await` qui répond `Pending`, puis rend la main.\n\n**Les autres réponses :** aucun thread caché n'est créé (une tâche async coûte justement très peu). Ce n'est pas une macro qui recopie le code. Et « rien de spécial » est faux : sans cette transformation, une fonction ne pourrait pas se mettre en pause puis reprendre au même endroit.\n\n**À retenir :** `async fn` = machine à états qui implémente `Future`, un état par `.await`."
   },
   {
     "question": "Avec `let a = f(); let b = g(); a.await; b.await;` (dans une fonction async), que se passe-t-il ?",
@@ -85,7 +85,7 @@
       "`g` finit toujours avant `f`"
     ],
     "reponse": 1,
-    "explication": "Les futures sont paresseuses : `g` ne démarre qu'à son `.await`, après la fin de `f`. Pour les faire avancer ensemble, il faut un `join`."
+    "explication": "**Règle :** les futures sont **paresseuses** : créer `f()` et `g()` ne lance rien. Chaque futur ne commence à avancer qu'à son propre `.await`, et `.await` attend la **fin** du futur avant de passer à la ligne suivante.\n\n**Pas à pas :**\n\n| Ligne | Effet |\n|---|---|\n| `let a = f();` | futur créé, rien ne tourne |\n| `let b = g();` | futur créé, rien ne tourne |\n| `a.await;` | `f` tourne jusqu'au bout ; `g` n'a toujours pas commencé |\n| `b.await;` | seulement maintenant, `g` tourne |\n\nSi `f` et `g` attendent chacun 1 s, le tout prend 2 s. Pour qu'ils avancent ensemble (1 s), il faut un `join` (par exemple `tokio::join!(f(), g())`).\n\n**Les autres réponses :** ils n'avancent pas en même temps, car créer `b` ne le démarre pas. Tout s'exécute bien (les deux `.await` sont là). Et `g` ne peut pas finir avant `f`, puisqu'il ne commence qu'après.\n\n**À retenir :** `.await` l'un après l'autre = en séquence ; pour avancer ensemble, il faut un `join`."
   },
   {
     "question": "Quel est le meilleur choix pour 10 000 connexions réseau qui attendent surtout des données ?",
@@ -96,7 +96,7 @@
       "Un seul `Mutex`"
     ],
     "reponse": 1,
-    "explication": "Une tâche async est très légère et ne consomme presque rien pendant l'attente. 10 000 threads coûteraient beaucoup de mémoire."
+    "explication": "**Règle :** un thread a sa propre **pile mémoire** (souvent quelques centaines de Ko à quelques Mo) et c'est le système qui le gère. Une tâche async est un **petit objet** (sa machine à états) qui ne consomme presque rien pendant qu'elle attend. Pour beaucoup d'attentes, l'async est le bon choix.\n\n**Pas à pas :** 10 000 connexions qui attendent surtout.\n\n| Choix | Coût |\n|---|---|\n| 10 000 threads | 10 000 piles mémoire (plusieurs Go possibles), et le système passe son temps à changer de thread |\n| 10 000 tâches async | 10 000 petits objets, quelques workers qui ne s'occupent que des connexions qui ont reçu des données |\n\n**Les autres réponses :** une `loop` sans pause occupe le processeur à 100 % pour rien et ne gère pas plusieurs connexions. Un seul `Mutex` ne sert qu'à protéger une donnée, il ne fait rien avancer.\n\n**À retenir :** beaucoup d'attentes (réseau) → async avec un exécuteur ; calcul lourd → threads."
   },
   {
     "question": "Pourquoi éviter `std::thread::sleep` dans une tâche async ?",
@@ -107,7 +107,7 @@
       "Il est réservé à `main`"
     ],
     "reponse": 1,
-    "explication": "Un exécuteur fait tourner plusieurs tâches dans un même fil. Bloquer ce fil bloque tout. Il faut un sommeil asynchrone (par exemple `tokio::time::sleep`)."
+    "explication": "**Règle :** un exécuteur fait avancer **plusieurs tâches dans un même fil**, à tour de rôle. `std::thread::sleep` bloque **tout le fil** : pendant ce temps, l'exécuteur ne peut interroger aucune autre tâche.\n\n**Pas à pas :** un worker gère les tâches T1, T2, T3.\n\n1. T1 appelle `std::thread::sleep(1 s)`.\n2. Le fil dort : T2 et T3 attendent une seconde, même si leurs données sont prêtes.\n3. Avec `tokio::time::sleep(1 s).await`, T1 répond `Pending` et le worker passe tout de suite à T2 et T3 ; le minuteur réveillera T1 plus tard.\n\n**Les autres réponses :** `std::thread::sleep` compile très bien dans une `async fn` (c'est ce qui rend le piège dangereux). Sa précision n'a rien à voir, et il n'est pas réservé à `main`.\n\n**À retenir :** dans du code async, attends avec un sommeil async (`.await`), jamais avec `std::thread::sleep`."
   },
   {
     "question": "Que crée `tokio::spawn(async { ... })` ?",
@@ -118,7 +118,7 @@
       "Un processus séparé"
     ],
     "reponse": 1,
-    "explication": "`tokio::spawn` ajoute une tâche dans une file : quelques workers font avancer des milliers de tâches, sans un thread chacune."
+    "explication": "**Règle :** `tokio::spawn(futur)` ajoute une **tâche** dans la file du runtime. Les quelques threads workers du runtime (environ un par cœur) font avancer toutes les tâches à tour de rôle. Il rend un `JoinHandle` qu'on attend avec `.await`.\n\n**Pas à pas :** `(0..10_000).map(|i| tokio::spawn(async move { i * 2 }))`.\n\n1. 10 000 tâches sont mises en file : 10 000 petits objets, pas 10 000 threads.\n2. Sur une machine à 8 cœurs, 8 workers les exécutent ; un worker sans travail vole des tâches aux autres.\n3. `t.await.unwrap()` récupère le résultat de chaque tâche (`Err` si elle a paniqué).\n\n**Les autres réponses :** ce n'est pas un thread du système (c'est `std::thread::spawn` qui fait ça). Ce n'est pas un nouveau runtime : la tâche rejoint celui qui existe déjà (`#[tokio::main]`). Et ce n'est pas un processus séparé : tout reste dans le même programme.\n\n**À retenir :** `tokio::spawn` = une tâche légère dans le runtime, pas un thread."
   },
   {
     "question": "Un gestionnaire async fait un calcul d'une seconde. Que faut-il écrire ?",
@@ -129,6 +129,6 @@
       "Appeler `tokio::join!` avec le calcul seul"
     ],
     "reponse": 1,
-    "explication": "Un calcul long bloque le worker et retarde toutes les autres tâches. `spawn_blocking` l'envoie dans un pool de threads à part."
+    "explication": "**Règle :** un calcul long dans une tâche async ne répond jamais `Pending` : il **monopolise** le worker. `tokio::task::spawn_blocking(closure)` envoie ce calcul dans un **pool de threads à part**, réservé aux travaux bloquants ; on attend son résultat avec `.await`, ce qui libère le worker.\n\n**Pas à pas :**\n\n```text\nlet resultat = tokio::task::spawn_blocking(move || calcul_long(&donnees))\n    .await\n    .unwrap();\n```\n\n1. `spawn_blocking` lance `calcul_long` sur un autre thread.\n2. `.await` : la tâche se met en pause (`Pending`), le worker sert les autres requêtes pendant la seconde de calcul.\n3. Le calcul finit, la tâche est réveillée et `unwrap` donne le résultat.\n\n**Les autres réponses :** `async` ne rend **pas** un calcul parallèle, il le laisse dans le fil du worker. Un `std::thread::sleep` ajouterait encore du blocage. `tokio::join!` avec un seul calcul ne change rien : le calcul bloque toujours le worker.\n\n**À retenir :** calcul lourd dans du code async → `spawn_blocking(...).await`."
   }
 ]

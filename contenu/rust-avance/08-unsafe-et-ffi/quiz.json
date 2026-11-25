@@ -1,62 +1,112 @@
 [
   {
     "question": "Que change un bloc `unsafe` ?",
-    "choix": ["Il désactive le vérificateur d'emprunts", "Il autorise cinq opérations que le compilateur ne peut pas vérifier", "Il rend le code plus rapide", "Il permet d'ignorer les erreurs de type"],
+    "choix": [
+      "Il désactive le vérificateur d'emprunts",
+      "Il autorise cinq opérations que le compilateur ne peut pas vérifier",
+      "Il rend le code plus rapide",
+      "Il permet d'ignorer les erreurs de type"
+    ],
     "reponse": 1,
-    "explication": "`unsafe` ne coupe aucune vérification : les types et les emprunts restent contrôlés. Il débloque seulement cinq opérations, et c'est à toi de garantir qu'elles sont correctes."
+    "explication": "**Règle :** un bloc `unsafe` **ne désactive aucune vérification**. Il débloque seulement 5 opérations que le compilateur ne sait pas contrôler : déréférencer un pointeur brut, appeler une fonction `unsafe`, lire ou modifier un `static mut`, implémenter un trait `unsafe`, lire un champ d'`union`. Pour ces 5 opérations, c'est toi qui garantis que tout est correct.\n\n**Pas à pas :** dans un bloc `unsafe` :\n\n1. `let n: i32 = String::from(\"a\");` est toujours refusé (types vérifiés) ;\n2. utiliser une variable après l'avoir déplacée est toujours refusé (propriété vérifiée) ;\n3. `*p` avec `p: *const i32` devient permis (pouvoir n°1).\n\n**Les autres réponses :**\n\n- « désactive le vérificateur d'emprunts » : faux, les règles d'emprunt s'appliquent aussi dans le bloc ;\n- « rend le code plus rapide » : `unsafe` ne change rien à la vitesse, le code produit est le même ;\n- « ignorer les erreurs de type » : faux, les types restent vérifiés.\n\n**À retenir :** `unsafe` = 5 permissions en plus, zéro vérification en moins."
   },
   {
     "question": "Laquelle de ces opérations est possible SANS `unsafe` ?",
-    "choix": ["Déréférencer un `*const i32`", "Créer un `*const i32` à partir d'une référence", "Lire un `static mut`", "Lire un champ d'une `union`"],
+    "choix": [
+      "Déréférencer un `*const i32`",
+      "Créer un `*const i32` à partir d'une référence",
+      "Lire un `static mut`",
+      "Lire un champ d'une `union`"
+    ],
     "reponse": 1,
-    "explication": "Créer un pointeur brut est sûr : il ne fait de mal que si on le lit ou l'écrit. Le déréférencer, lire un `static mut` ou un champ d'union demande `unsafe`."
+    "explication": "**Règle :** **créer** un pointeur brut est sûr : ce n'est qu'une adresse, elle ne fait aucun mal tant qu'on ne s'en sert pas. Ce qui demande `unsafe`, c'est de **lire ou écrire à travers** lui, ou d'utiliser un des autres pouvoirs.\n\n**Pas à pas :** on passe chaque opération au crible des 5 pouvoirs.\n\n| Opération | Pouvoir utilisé | `unsafe` ? |\n|---|---|---|\n| `let p = &x as *const i32;` | aucun, on ne lit rien | non |\n| `*p` | n°1, déréférencer | oui |\n| lire un `static mut` | n°3 | oui |\n| lire un champ d'`union` | n°5 | oui |\n\n**Les autres réponses :** les trois autres opérations sont justement trois des cinq pouvoirs : déréférencer un `*const i32` (n°1), lire un `static mut` (n°3), lire un champ d'union (n°5).\n\n**À retenir :** créer un pointeur brut = sûr ; s'en servir = `unsafe`."
   },
   {
     "question": "Quelle est la différence entre une référence `&T` et un pointeur brut `*const T` ?",
-    "choix": ["Aucune", "Le pointeur brut peut être nul, dangler ou aliasé : le compilateur ne garantit rien", "Le pointeur brut est plus lent", "Le pointeur brut ne peut pas être copié"],
+    "choix": [
+      "Aucune",
+      "Le pointeur brut peut être nul, dangler ou aliasé : le compilateur ne garantit rien",
+      "Le pointeur brut est plus lent",
+      "Le pointeur brut ne peut pas être copié"
+    ],
     "reponse": 1,
-    "explication": "Une référence est toujours valide et respecte les règles d'emprunt. Un pointeur brut n'a aucune garantie (nul, périmé, plusieurs `*mut` sur la même donnée...)."
+    "explication": "**Règle :** une **référence** `&T` est garantie par le compilateur : jamais nulle, toujours vers une donnée vivante, et elle respecte les règles d'emprunt (plusieurs `&` ou un seul `&mut`). Un **pointeur brut** `*const T` n'a **aucune** de ces garanties.\n\n**Pas à pas :** on compare point par point.\n\n| | `&T` | `*const T` |\n|---|---|---|\n| peut être nul | non | oui (`std::ptr::null()`) |\n| peut pointer vers une donnée libérée (périmé) | non | oui |\n| plusieurs `*mut` sur la même donnée | interdit pour `&mut` | rien ne l'empêche |\n| lire la valeur | libre | dans `unsafe` |\n\n**Les autres réponses :**\n\n- « aucune » : il y a toutes les différences du tableau ;\n- « plus lent » : un pointeur brut et une référence sont tous les deux une simple adresse, aussi rapides l'un que l'autre ;\n- « ne peut pas être copié » : au contraire, un pointeur brut se copie librement (il est `Copy`).\n\n**À retenir :** référence = adresse **garantie** ; pointeur brut = adresse **sans garantie**, à vérifier soi-même."
   },
   {
     "question": "À quoi sert le commentaire `// SAFETY:` ?",
-    "choix": ["À faire compiler le bloc `unsafe`", "À expliquer pourquoi le bloc `unsafe` est correct", "À désactiver un avertissement", "À marquer une fonction comme sûre"],
+    "choix": [
+      "À faire compiler le bloc `unsafe`",
+      "À expliquer pourquoi le bloc `unsafe` est correct",
+      "À désactiver un avertissement",
+      "À marquer une fonction comme sûre"
+    ],
     "reponse": 1,
-    "explication": "C'est une convention : on écrit au-dessus du bloc la raison pour laquelle les conditions sont respectées. Le compilateur l'ignore, mais les relecteurs (et clippy) l'attendent."
+    "explication": "**Règle :** `// SAFETY:` est une **convention** : au-dessus de chaque bloc `unsafe`, on explique **pourquoi** les conditions sont respectées (pointeur non nul, dans les bornes, donnée vivante, personne d'autre ne la modifie).\n\n**Pas à pas :** sur `let p = v.as_ptr(); let x = unsafe { *p.add(1) };` avec `v` de 3 éléments, on écrit :\n\n```text\n// SAFETY: v a 3 éléments, donc l'indice 1 existe, et v est vivant pendant la lecture\n```\n\n1. Le compilateur ignore ce commentaire : le bloc compile avec ou sans.\n2. Un relecteur sait tout de suite quelle promesse a été faite et peut la vérifier.\n3. Clippy a même une règle (`undocumented_unsafe_blocks`, à activer) qui signale les blocs sans ce commentaire.\n\n**Les autres réponses :**\n\n- « faire compiler le bloc » : un commentaire ne change jamais la compilation ;\n- « désactiver un avertissement » : c'est le rôle de `#[allow(...)]` ;\n- « marquer une fonction comme sûre » : une fonction est sûre parce qu'elle n'est pas déclarée `unsafe fn` et qu'elle vérifie ce qu'il faut, pas grâce à un commentaire.\n\n**À retenir :** `// SAFETY:` = la justification écrite de la promesse faite au compilateur."
   },
   {
     "question": "Pourquoi `split_at_mut` de la bibliothèque standard utilise-t-il `unsafe` en interne ?",
-    "choix": ["Parce qu'il est lent", "Parce que le compilateur ne sait pas prouver que les deux morceaux ne se chevauchent pas", "Parce qu'il modifie la mémoire du système", "Il n'en utilise pas"],
+    "choix": [
+      "Parce qu'il est lent",
+      "Parce que le compilateur ne sait pas prouver que les deux morceaux ne se chevauchent pas",
+      "Parce qu'il modifie la mémoire du système",
+      "Il n'en utilise pas"
+    ],
     "reponse": 1,
-    "explication": "Deux `&mut` sur le même tableau sont refusés par le compilateur. Ici les morceaux sont disjoints, mais seul un humain peut le garantir : d'où `unsafe` à l'intérieur, et une API sûre à l'extérieur."
+    "explication": "**Règle :** le vérificateur d'emprunts refuse **deux `&mut`** sur le même tableau en même temps. Il ne regarde pas les indices : il ne peut pas prouver que deux morceaux ne se chevauchent pas.\n\n**Pas à pas :** pour couper `[1, 2, 3, 4]` au milieu 2 :\n\n1. on voudrait `&mut t[..2]` (cases 0 et 1) et `&mut t[2..]` (cases 2 et 3) en même temps ;\n2. le compilateur voit deux emprunts modifiables de `t` : erreur `cannot borrow as mutable more than once` ;\n3. pourtant les cases 0-1 et 2-3 sont **disjointes** : un humain le voit, pas le compilateur ;\n4. `split_at_mut` vérifie donc `milieu <= longueur` (sinon panique), puis fabrique les deux morceaux avec des pointeurs bruts (`slice::from_raw_parts_mut`) dans un bloc `unsafe`.\n\nRésultat : une fonction **sûre** à utiliser, avec l'`unsafe` caché dedans.\n\n**Les autres réponses :**\n\n- « parce qu'il est lent » : `unsafe` n'a rien à voir avec la vitesse ;\n- « modifie la mémoire du système » : il modifie seulement le tableau qu'on lui donne ;\n- « il n'en utilise pas » : il en utilise justement, car il n'existe pas d'autre moyen d'obtenir deux `&mut` disjoints.\n\n**À retenir :** quand c'est correct mais que le compilateur ne peut pas le prouver, on vérifie soi-même puis on enveloppe l'`unsafe` dans une API sûre."
   },
   {
     "question": "Comment s'écrit un bloc de déclarations de fonctions C en édition 2024 ?",
-    "choix": ["`extern \"C\" { ... }`", "`unsafe extern \"C\" { ... }`", "`#[extern(C)] { ... }`", "`import \"C\" { ... }`"],
+    "choix": [
+      "`extern \"C\" { ... }`",
+      "`unsafe extern \"C\" { ... }`",
+      "`#[extern(C)] { ... }`",
+      "`import \"C\" { ... }`"
+    ],
     "reponse": 1,
-    "explication": "Depuis l'édition 2024, le mot `unsafe` est obligatoire devant `extern`, car Rust ne peut pas vérifier que la déclaration correspond à la vraie fonction C."
+    "explication": "**Règle :** en édition 2024, un bloc qui déclare des fonctions écrites dans un autre langage s'écrit **`unsafe extern \"C\" { ... }`**. Le mot `unsafe` est obligatoire, car Rust ne peut pas vérifier que la déclaration correspond à la vraie fonction C (nombre et types des paramètres).\n\n**Pas à pas :**\n\n```text\nunsafe extern \"C\" {\n    safe fn abs(x: c_int) -> c_int;\n    fn strlen(s: *const c_char) -> usize;\n}\n```\n\n1. `unsafe extern \"C\"` : « ces fonctions viennent du C, je garantis que leurs signatures sont justes » ;\n2. chaque ligne est une **déclaration** (pas de corps, elle finit par `;`) ;\n3. le code de ces fonctions est trouvé à l'édition des liens, dans la bibliothèque C.\n\n**Les autres réponses :**\n\n- `extern \"C\" { ... }` sans `unsafe` : c'était la syntaxe des éditions précédentes, elle est refusée en 2024 ;\n- `#[extern(C)]` : cet attribut n'existe pas ;\n- `import \"C\"` : c'est la syntaxe du langage Go, pas de Rust.\n\n**À retenir :** déclarer du C en édition 2024 = `unsafe extern \"C\" { ... }`."
   },
   {
     "question": "Que fait `safe fn abs(x: c_int) -> c_int;` dans un bloc `unsafe extern \"C\"` ?",
-    "choix": ["Rien de spécial", "Elle déclare que l'appel est sûr : on peut l'appeler sans `unsafe`", "Elle empêche d'appeler la fonction", "Elle convertit `x` en entier sûr"],
+    "choix": [
+      "Rien de spécial",
+      "Elle déclare que l'appel est sûr : on peut l'appeler sans `unsafe`",
+      "Elle empêche d'appeler la fonction",
+      "Elle convertit `x` en entier sûr"
+    ],
     "reponse": 1,
-    "explication": "`safe fn` est une promesse du programmeur : aucune valeur d'argument ne peut causer de comportement indéfini. Les fonctions sans `safe` demandent `unsafe` à l'appel."
+    "explication": "**Règle :** dans un bloc `unsafe extern \"C\"`, une fonction marquée **`safe fn`** peut être appelée **sans** `unsafe`. C'est une promesse du programmeur : aucune valeur d'argument ne peut provoquer de comportement indéfini. Sans `safe`, chaque appel demande un bloc `unsafe`.\n\n**Pas à pas :**\n\n1. `abs` prend un entier et renvoie sa valeur absolue : quel que soit l'entier, elle ne touche pas à la mémoire. La marquer `safe` est donc correct ;\n2. on écrit alors `let v = abs(-5);` directement, comme une fonction Rust : `v` vaut 5 ;\n3. au contraire, `strlen` reçoit un **pointeur** : avec un mauvais pointeur elle lirait n'importe où. On ne la marque pas `safe`, et on l'appelle dans `unsafe { strlen(p) }`.\n\n**Les autres réponses :**\n\n- « rien de spécial » : `safe` change bien la façon d'appeler la fonction ;\n- « empêche d'appeler la fonction » : c'est l'inverse, elle devient plus facile à appeler ;\n- « convertit `x` en entier sûr » : `safe` ne touche pas aux arguments, `x` reste un `c_int`.\n\n**À retenir :** `safe fn` dans `unsafe extern` = appel sans `unsafe`, à réserver aux fonctions qu'aucun argument ne peut rendre dangereuses (jamais à celles qui prennent un pointeur)."
   },
   {
     "question": "Pourquoi utiliser `CString` pour passer un texte à une fonction C ?",
-    "choix": ["Pour le rendre plus rapide", "Parce que C attend un texte terminé par un octet nul `\\0`, ce qu'un `String` ne garantit pas", "Parce que C n'accepte que l'ASCII", "Pour éviter de copier le texte"],
+    "choix": [
+      "Pour le rendre plus rapide",
+      "Parce que C attend un texte terminé par un octet nul `\\0`, ce qu'un `String` ne garantit pas",
+      "Parce que C n'accepte que l'ASCII",
+      "Pour éviter de copier le texte"
+    ],
     "reponse": 1,
-    "explication": "Un texte C se termine par `\\0`.`CString::new` ajoute ce zéro et refuse les textes qui en contiennent déjà un au milieu."
+    "explication": "**Règle :** en C, un texte est une suite d'octets qui se **termine par un octet nul `\\0`** : c'est ce zéro qui indique la fin. Une `String` Rust connaît sa longueur et **n'a pas** ce zéro final. `CString::new` ajoute le `\\0` et refuse un texte qui contient déjà un `\\0` au milieu.\n\n**Pas à pas :** pour passer `\"chat\"` à une fonction C :\n\n1. `CString::new(\"chat\")` : les octets `c h a t` puis `0`, soit 5 octets ;\n2. `.as_ptr()` donne un `*const c_char` vers le `c` ;\n3. la fonction C lit jusqu'au `0` : elle trouve 4 caractères ;\n4. avec `\"ch\\0at\"`, `CString::new` renvoie une erreur : sinon C croirait que le texte s'arrête après `ch`.\n\n**Les autres réponses :**\n\n- « plus rapide » : `CString::new` copie le texte, ce n'est pas un gain de vitesse ;\n- « C n'accepte que l'ASCII » : faux, un `CString` peut contenir de l'UTF-8 (`é` = 2 octets), le seul octet interdit au milieu est `0` ;\n- « éviter de copier » : au contraire, `CString::new` fait une copie pour ajouter le zéro.\n\n**À retenir :** texte vers C = `CString::new(texte)` (zéro final ajouté), puis `.as_ptr()`, en gardant le `CString` en vie."
   },
   {
     "question": "Que fait `#[unsafe(no_mangle)]` sur une fonction ?",
-    "choix": ["Elle la rend plus rapide", "Elle garde son nom tel quel dans le binaire pour que C ou Python puisse la trouver", "Elle la rend privée", "Elle supprime ses vérifications"],
+    "choix": [
+      "Elle la rend plus rapide",
+      "Elle garde son nom tel quel dans le binaire pour que C ou Python puisse la trouver",
+      "Elle la rend privée",
+      "Elle supprime ses vérifications"
+    ],
     "reponse": 1,
-    "explication": "Normalement le compilateur change les noms des fonctions (« mangling »). `no_mangle` garde `add` sous le nom `add`. Il s'écrit `#[unsafe(no_mangle)]` en édition 2024."
+    "explication": "**Règle :** normalement, le compilateur Rust **transforme le nom** de chaque fonction dans le binaire (le *mangling*) pour éviter les conflits entre modules. `#[unsafe(no_mangle)]` garde le nom **tel quel**, pour qu'un programme C (ou Python avec `ctypes`) puisse trouver la fonction par son nom.\n\n**Pas à pas :** pour `#[unsafe(no_mangle)] pub extern \"C\" fn tripler(n: i32) -> i32` :\n\n1. sans l'attribut, le nom dans le binaire serait une longue suite comme `_ZN…7tripler17h…E` : introuvable depuis C ;\n2. avec l'attribut, le nom est exactement `tripler` ;\n3. le C peut alors déclarer `int tripler(int n);` et l'appeler.\n\nL'attribut s'écrit `#[unsafe(no_mangle)]` en édition 2024 : deux fonctions exportées avec le même nom entreraient en conflit, et le compilateur ne peut pas toujours le voir.\n\n**Les autres réponses :**\n\n- « plus rapide » : le nom dans le binaire ne change rien à la vitesse ;\n- « la rend privée » : au contraire, elle devient trouvable de l'extérieur ;\n- « supprime ses vérifications » : le corps de la fonction est vérifié normalement.\n\n**À retenir :** `no_mangle` = le nom dans le binaire reste celui que tu as écrit."
   },
   {
     "question": "À quoi sert `#[repr(C)]` sur une structure ?",
-    "choix": ["À la rendre copiable", "À imposer la même disposition mémoire qu'en C, pour l'échanger avec du code C", "À l'afficher avec `{:?}`", "À la rendre immuable"],
+    "choix": [
+      "À la rendre copiable",
+      "À imposer la même disposition mémoire qu'en C, pour l'échanger avec du code C",
+      "À l'afficher avec `{:?}`",
+      "À la rendre immuable"
+    ],
     "reponse": 1,
-    "explication": "Par défaut Rust peut réordonner les champs. Avec `#[repr(C)]`, ils sont rangés dans l'ordre écrit, comme le ferait un compilateur C."
+    "explication": "**Règle :** par défaut, Rust a le droit de **réordonner** les champs d'une structure en mémoire (pour gagner de la place). `#[repr(C)]` impose la disposition de C : les champs sont rangés **dans l'ordre écrit**, avec les mêmes règles d'alignement qu'un compilateur C.\n\n**Pas à pas :** sur `#[repr(C)] struct Couleur { r: u8, g: u8, b: u8, a: u8 }` :\n\n1. `r` est à l'octet 0, `g` à l'octet 1, `b` à l'octet 2, `a` à l'octet 3 ;\n2. le C déclare `struct Couleur { unsigned char r, g, b, a; };` : même ordre, mêmes positions ;\n3. quand Rust passe une `Couleur` au C (ou l'inverse), chaque côté lit les bons octets.\n\nSans `#[repr(C)]`, l'ordre en mémoire n'est pas garanti, et le C pourrait lire `g` à la place de `r`.\n\n**Les autres réponses :**\n\n- « la rendre copiable » : c'est `#[derive(Clone, Copy)]` ;\n- « l'afficher avec `{:?}` » : c'est `#[derive(Debug)]` ;\n- « la rendre immuable » : en Rust, une valeur est immuable par défaut tant qu'on n'écrit pas `mut`, ce n'est pas lié à `repr`.\n\n**À retenir :** structure échangée avec du C = `#[repr(C)]`, pour que l'ordre et la position des champs soient ceux du C."
   }
 ]

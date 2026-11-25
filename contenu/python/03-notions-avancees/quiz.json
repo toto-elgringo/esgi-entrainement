@@ -8,7 +8,7 @@
       "`[0, 4]`"
     ],
     "reponse": 1,
-    "explication": "On garde les `x` impairs (1 et 3) et on met leur double dans la liste : `[2, 6]`."
+    "explication": "**Règle :** `[traitement for x in source if condition]` parcourt la source, garde les `x` qui respectent la condition, et met `traitement` dans la liste.\n\n**Pas à pas :** `range(4)` donne 0, 1, 2, 3 (le 4 est exclu).\n\n| `x` | `x % 2 == 1` (impair) ? | Ajouté `x * 2` |\n|---|---|---|\n| 0 | non | |\n| 1 | oui | 2 |\n| 2 | non | |\n| 3 | oui | 6 |\n\nRésultat : `[2, 6]`.\n\n**Les autres réponses :** `[0, 2, 4, 6]` oublie le filtre (tous les doubles) ; `[1, 3]` garde les bons `x` mais oublie de les doubler ; `[0, 4]` double les **pairs** (le test `== 1` garde les impairs).\n\n**À retenir :** lis le `for`, puis le `if`, et applique le traitement du début seulement aux valeurs gardées."
   },
   {
     "question": "Quel est le type de `{m: len(m) for m in [\"a\", \"bb\"]}` ?",
@@ -19,7 +19,7 @@
       "`tuple`"
     ],
     "reponse": 1,
-    "explication": "Des accolades avec des éléments `cle: valeur` : c'est un dictionnaire en compréhension, ici `{'a': 1, 'bb': 2}`."
+    "explication": "**Règle :** des accolades avec `clé: valeur` donnent un **dictionnaire** ; des accolades sans `:` donnent un **ensemble** ; des crochets, une liste ; des parenthèses, un générateur (pas un tuple).\n\n**Pas à pas :** `{m: len(m) for m in [\"a\", \"bb\"]}` contient un deux-points : pour chaque mot `m`, la clé est le mot et la valeur sa longueur. On obtient `{'a': 1, 'bb': 2}`, de type `dict`.\n\n**Les autres réponses :** `set` serait `{len(m) for m in ...}` (sans `:`) ; `list` demande des crochets ; `tuple` n'a pas de compréhension directe (il faut `tuple(... for ...)`).\n\n**À retenir :** accolades + deux-points = `dict` ; accolades sans deux-points = `set`."
   },
   {
     "question": "Quelle est la différence entre `[x * x for x in l]` et `(x * x for x in l)` ?",
@@ -30,7 +30,7 @@
       "La première est plus économe en mémoire"
     ],
     "reponse": 1,
-    "explication": "Avec des parenthèses, on obtient une expression génératrice : rien n'est stocké, chaque valeur est calculée au moment où on la demande, une seule fois."
+    "explication": "**Règle :** avec des crochets, la liste est calculée **tout de suite** et stockée en entier. Avec des parenthèses, on obtient une **expression génératrice** : les valeurs sont calculées une par une, au moment où on les demande, et le générateur ne se parcourt qu'**une fois**.\n\n**Pas à pas :** `[x * x for x in l]` crée immédiatement la liste de tous les carrés en mémoire. `(x * x for x in l)` ne calcule rien au départ : c'est `for`, `sum`, `next`... qui demandent les valeurs une à une.\n\n**Les autres réponses :** « aucune » est faux, la mémoire utilisée et le moment du calcul changent ; « un tuple » est le piège classique (`(...)` autour d'une compréhension n'est **pas** un tuple, il faudrait `tuple(...)`) ; c'est la **seconde** qui économise la mémoire, pas la première.\n\n**À retenir :** `[...]` = liste stockée, `(...)` = générateur calculé à la demande, utilisable une seule fois."
   },
   {
     "question": "Que vaut `len(list(zip([1, 2, 3, 4], \"ab\")))` ?",
@@ -41,7 +41,7 @@
       "Une erreur : longueurs différentes"
     ],
     "reponse": 1,
-    "explication": "`zip` s'arrête à la fin du plus court des itérables : ici `\"ab\"`, donc 2 couples."
+    "explication": "**Règle :** `zip` avance rang par rang dans toutes les sources et **s'arrête dès que la plus courte est finie**, sans erreur.\n\n**Pas à pas :**\n\n| Rang | `[1, 2, 3, 4]` | `\"ab\"` | Couple |\n|---|---|---|---|\n| 0 | 1 | `'a'` | `(1, 'a')` |\n| 1 | 2 | `'b'` | `(2, 'b')` |\n| 2 | 3 | plus rien | arrêt |\n\n`list(zip(...))` vaut `[(1, 'a'), (2, 'b')]`, donc `len` vaut **2**.\n\n**Les autres réponses :** 4 est la longueur de la liste la plus longue ; 6 additionne les deux longueurs ; il n'y a **pas** d'erreur, `zip` accepte des longueurs différentes.\n\n**À retenir :** le nombre de résultats de `zip` est la longueur de la source **la plus courte**."
   },
   {
     "question": "Qu'affiche `print(map(int, [\"1\", \"2\"]))` ?",
@@ -52,7 +52,7 @@
       "`12`"
     ],
     "reponse": 2,
-    "explication": "`map` renvoie un itérable paresseux, pas une liste. `list(map(...))` permet de voir le contenu."
+    "explication": "**Règle :** `map` ne renvoie pas une liste mais un objet **paresseux** (il calcule à la demande). L'afficher directement montre l'objet lui-même, pas son contenu.\n\n**Pas à pas :** `map(int, [\"1\", \"2\"])` n'a encore rien converti. `print(...)` affiche donc quelque chose comme `<map object at 0x...>` (le nombre est une adresse en mémoire, il change à chaque exécution). Pour voir les valeurs : `print(list(map(int, [\"1\", \"2\"])))` affiche `[1, 2]`.\n\n**Les autres réponses :** `[1, 2]` est ce qu'on obtient **avec** `list(...)` ; `(1, 2)` **avec** `tuple(...)` ; `12` mélange une concaténation de chaînes et une conversion, ce que `map` ne fait jamais.\n\n**À retenir :** `map`, `filter`, `zip`, `enumerate` → entoure de `list(...)` pour voir le contenu."
   },
   {
     "question": "Que fournit `enumerate([\"a\", \"b\"], start=1)` ?",
@@ -63,7 +63,7 @@
       "`1` puis `2`"
     ],
     "reponse": 0,
-    "explication": "`enumerate` fournit des couples `(compteur, élément)`, avec un compteur qui démarre à `start`."
+    "explication": "**Règle :** `enumerate(l, start=s)` fournit des couples `(compteur, élément)` ; le compteur commence à `s` (0 si on ne met rien).\n\n**Pas à pas :** avec `start=1`, le premier élément `\"a\"` reçoit le numéro 1, le deuxième `\"b\"` le numéro 2 : on obtient `(1, 'a')` puis `(2, 'b')`. On les découpe d'habitude avec `for i, x in enumerate(...)`.\n\n**Les autres réponses :** `(0, 'a')` puis `(1, 'b')` est le résultat **sans** `start=1` ; `'a'` puis `'b'` est ce que donne la liste seule, sans `enumerate` ; `1` puis `2` oublie que l'élément accompagne toujours le compteur.\n\n**À retenir :** `enumerate` = couples `(numéro, élément)`, numéro qui part de `start`."
   },
   {
     "question": "Après `l = [3, 1, 2]` puis `l = l.sort()`, que vaut `l` ?",
@@ -74,7 +74,7 @@
       "`[3, 2, 1]`"
     ],
     "reponse": 2,
-    "explication": "`sort()` trie sur place et renvoie `None` : on a remplacé la liste par `None`. Il fallait écrire `l.sort()` seul, ou `l = sorted(l)`."
+    "explication": "**Règle :** `l.sort()` trie la liste **sur place** (il modifie `l` elle-même) et **renvoie `None`**. `sorted(l)`, au contraire, renvoie une nouvelle liste triée.\n\n**Pas à pas :**\n\n1. `l.sort()` range `l` : elle devient `[1, 2, 3]`.\n2. La méthode renvoie `None`.\n3. `l = ...` range ce `None` dans `l` : la liste triée est perdue, `l` vaut `None`.\n\n**Les autres réponses :** `[1, 2, 3]` serait vrai avec `l.sort()` seul sur sa ligne, ou `l = sorted(l)` ; `[3, 1, 2]` supposerait que rien n'a changé ; `[3, 2, 1]` serait un tri décroissant (`reverse=True`).\n\n**À retenir :** jamais `l = l.sort()` : soit `l.sort()` seul, soit `l = sorted(l)`."
   },
   {
     "question": "Que vaut `sorted([\"poire\", \"kiwi\", \"banane\"], key=len)` ?",
@@ -85,7 +85,7 @@
       "`[4, 5, 6]`"
     ],
     "reponse": 1,
-    "explication": "`key=len` trie selon la longueur des mots : kiwi (4), poire (5), banane (6)."
+    "explication": "**Règle :** avec `key=len`, `sorted` calcule `len` de chaque élément, trie selon ces nombres (du plus petit au plus grand), mais renvoie **les éléments d'origine**.\n\n**Pas à pas :**\n\n| Mot | `len` |\n|---|---|\n| `\"poire\"` | 5 |\n| `\"kiwi\"` | 4 |\n| `\"banane\"` | 6 |\n\nOrdre des longueurs : 4, 5, 6, donc `['kiwi', 'poire', 'banane']`.\n\n**Les autres réponses :** `['banane', 'kiwi', 'poire']` est l'ordre **alphabétique** (le tri sans `key`) ; `['banane', 'poire', 'kiwi']` est l'ordre des longueurs décroissantes (`reverse=True`) ; `[4, 5, 6]` confond la clé de tri avec le résultat : `sorted` renvoie les mots, pas les longueurs.\n\n**À retenir :** `key` sert à **comparer**, le résultat contient toujours les éléments de départ."
   },
   {
     "question": "Que valent `any([])` et `all([])` ?",
@@ -96,7 +96,7 @@
       "Une erreur"
     ],
     "reponse": 2,
-    "explication": "Aucun élément n'est vrai, donc `any` est faux ; aucun élément n'est faux, donc `all` est vrai."
+    "explication": "**Règle :** `any` vaut `True` s'il trouve **au moins un** élément vrai ; `all` vaut `False` s'il trouve **au moins un** élément faux, et `True` sinon.\n\n**Pas à pas :** la liste vide n'a aucun élément.\n\n- `any([])` : on cherche un élément vrai, il n'y en a aucun → `False`.\n- `all([])` : on cherche un élément faux qui ferait échouer « tous », il n'y en a aucun → `True`.\n\n**Les autres réponses :** `False` et `False` ou `True` et `True` supposent que les deux fonctions se comportent pareil sur le vide ; il n'y a pas d'erreur, une liste vide est un itérable tout à fait valable.\n\n**À retenir :** sur du vide, `any` → `False` (rien à trouver), `all` → `True` (aucune exception)."
   },
   {
     "question": "Laquelle de ces lambdas est **invalide** ?",
@@ -107,7 +107,7 @@
       "`lambda x: y = x + 1`"
     ],
     "reponse": 3,
-    "explication": "Une lambda ne contient qu'une expression : une affectation `y = ...` n'est pas permise."
+    "explication": "**Règle :** une lambda s'écrit `lambda paramètres: expression`, avec **une seule expression** dont la valeur est renvoyée. Une expression produit une valeur ; une affectation (`y = ...`), une boucle ou un `return` n'en sont pas.\n\n**Pas à pas :** on vérifie chaque proposition.\n\n- `lambda x: x * 2` : `x * 2` est une expression → valide.\n- `lambda x, y: x + y` : deux paramètres, une expression → valide.\n- `lambda x: x if x > 0 else -x` : l'expression conditionnelle `a if cond else b` produit une valeur → valide (c'est la valeur absolue).\n- `lambda x: y = x + 1` : `y = x + 1` est une **affectation** → erreur de syntaxe.\n\n**À retenir :** après les deux-points d'une lambda, uniquement quelque chose qu'on pourrait écrire après un `return`."
   },
   {
     "question": "Que fait `open(\"notes.txt\", \"w\")` si `notes.txt` contient déjà du texte ?",
@@ -118,7 +118,7 @@
       "Il ouvre en lecture"
     ],
     "reponse": 1,
-    "explication": "Le mode `\"w\"` vide le fichier dès l'ouverture. Pour ajouter à la fin, on utilise `\"a\"`."
+    "explication": "**Règle :** le mode `\"w\"` (*write*, écrire) ouvre le fichier en écriture et **vide son contenu dès l'ouverture** (ou le crée s'il n'existe pas).\n\n**Pas à pas :** `open(\"notes.txt\", \"w\")` : le fichier existe et contient du texte ; au moment même de l'ouverture, ce texte est effacé, avant d'avoir écrit quoi que ce soit. Ce qu'on écrira ensuite remplacera l'ancien contenu.\n\n**Les autres réponses :** ajouter à la fin, c'est le mode `\"a\"` (*append*) ; il n'y a pas d'erreur, `\"w\"` accepte un fichier existant ; ouvrir en lecture, c'est `\"r\"` (le mode par défaut).\n\n**À retenir :** `\"w\"` remplace tout, `\"a\"` ajoute à la fin, `\"r\"` lit."
   },
   {
     "question": "Quel est l'intérêt principal de `with open(...) as f:` ?",
@@ -129,7 +129,7 @@
       "On peut écrire et lire en même temps"
     ],
     "reponse": 1,
-    "explication": "`with` lie la durée de vie du fichier au bloc : il est fermé quoi qu'il arrive (fin normale, `return` ou exception)."
+    "explication": "**Règle :** `with open(...) as f:` lie la durée de vie du fichier au bloc indenté : à la sortie du bloc (fin normale, `return` ou exception), le fichier est **fermé automatiquement**.\n\n**Pas à pas :** sans `with`, si une erreur survient entre `open` et `close`, la ligne `close()` n'est jamais atteinte et le fichier reste ouvert. Avec `with`, Python appelle la fermeture pour toi dans tous les cas, comme un `try` / `finally`.\n\n**Les autres réponses :** la lecture n'est pas plus rapide, `with` ne change pas la vitesse ; c'est le **mode** (`\"w\"`, `\"a\"`) qui crée un fichier absent, pas `with` ; lire et écrire à la fois dépend aussi du mode, pas de `with`.\n\n**À retenir :** `with` = fermeture garantie du fichier, même en cas d'erreur."
   },
   {
     "question": "Comment crée-t-on la liste des cubes des nombres de 1 à 5 inclus, avec une liste en compréhension ?",
@@ -140,7 +140,7 @@
       "`[x**3 in range(1, 6)]`"
     ],
     "reponse": 0,
-    "explication": "La puissance s'écrit `**` (`^` est le ou exclusif) et `range(1, 6)` va de 1 à 5 : la fin est exclue. `range(5)` irait de 0 à 4."
+    "explication": "**Règle :** en Python, la puissance s'écrit `**` ; `range(a, b)` va de `a` à `b - 1` (la fin est exclue) ; une compréhension a la forme `[traitement for x in source]`.\n\n**Pas à pas :** on veut 1, 2, 3, 4, 5, donc `range(1, 6)` ; le cube de `x` est `x**3`. D'où `[x**3 for x in range(1, 6)]`, qui vaut `[1, 8, 27, 64, 125]`.\n\n**Les autres réponses :** `x^3` n'est pas une puissance (`^` est le « ou exclusif » bit à bit : `2 ^ 3` vaut 1) ; `range(5)` va de 0 à 4, ce qui ajoute 0 et oublie 5 ; `[x**3 in range(1, 6)]` n'a pas de `for` : ce n'est pas une compréhension (et `x` n'est pas défini).\n\n**À retenir :** `**` pour la puissance, et `range(1, n + 1)` pour aller de 1 à `n` inclus."
   },
   {
     "question": "Comment garde-t-on seulement les mots de plus de 3 lettres d'une liste `mots` ?",
@@ -151,7 +151,7 @@
       "`[m for len(m) > 3 in mots]`"
     ],
     "reponse": 1,
-    "explication": "Le filtre se met **après** le `for`. La première version renvoie une liste de `True` / `False` ; la troisième est une erreur de syntaxe (un `if` placé avant le `for` exige un `else`)."
+    "explication": "**Règle :** dans une compréhension, le filtre se met **après** le `for` : `[x for x in source if condition]`. Un `if` placé avant le `for` est une expression conditionnelle qui exige un `else`.\n\n**Pas à pas :** on veut les mots eux-mêmes (`m` au début), pris dans `mots` (`for m in mots`), seulement si `len(m) > 3` (à la fin) : `[m for m in mots if len(m) > 3]`. Avec `[\"chat\", \"ou\", \"souris\"]`, on obtient `['chat', 'souris']`.\n\n**Les autres réponses :** `[len(m) > 3 for m in mots]` ne filtre rien, il met le résultat du test dans la liste : `[True, False, True]` ; `[m if len(m) > 3 for m in mots]` est une erreur de syntaxe (il manque le `else`) ; `[m for len(m) > 3 in mots]` met une condition à la place de la variable de boucle : erreur de syntaxe.\n\n**À retenir :** `[ce qu'on garde  for x in source  if condition]`, dans cet ordre."
   },
   {
     "question": "Comment crée-t-on un tableau 2D de 3 lignes et 4 colonnes rempli de 0, dont les lignes sont **indépendantes** ?",
@@ -162,7 +162,7 @@
       "`[[0 for _ in range(3)]] * 4`"
     ],
     "reponse": 1,
-    "explication": "La compréhension fabrique une **nouvelle** ligne à chaque tour. `[[0] * 4] * 3` répète trois fois la même ligne : changer une case change toute la colonne. `[0] * 4 * 3` donne une liste simple de 12 zéros."
+    "explication": "**Règle :** `[liste] * n` répète **la même** liste `n` fois (la même référence, pas des copies). Une compréhension, elle, recalcule l'expression à chaque tour : chaque ligne est une liste neuve.\n\n**Pas à pas :** `[[0] * 4 for _ in range(3)]` exécute `[0] * 4` trois fois et fabrique trois listes `[0, 0, 0, 0]` différentes. Après `t[0][0] = 1`, seule la première ligne change : `[[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]`.\n\n**Les autres réponses :** `[[0] * 4] * 3` met trois fois **la même** ligne : `t[0][0] = 1` donnerait un 1 au début des trois lignes ; `[0] * 4 * 3` donne une liste simple de 12 zéros, pas un tableau 2D ; `[[0 for _ in range(3)]] * 4` a le même défaut que la première (lignes partagées) et en plus 4 lignes de 3 colonnes au lieu de l'inverse.\n\n**À retenir :** tableau 2D = `[[valeur] * colonnes for _ in range(lignes)]`."
   },
   {
     "question": "Comment obtient-on la transposée d'une matrice `mat` (liste de listes) ?",
@@ -173,7 +173,7 @@
       "`[list(c) for c in zip(mat)]`"
     ],
     "reponse": 1,
-    "explication": "`zip(*mat)` passe chaque ligne comme un argument séparé, puis regroupe les premiers éléments, les deuxièmes... Sans `*`, `zip` reçoit un seul itérable et emballe chaque ligne seule dans un tuple."
+    "explication": "**Règle :** la transposée échange lignes et colonnes. `zip(*mat)` : l'étoile passe chaque ligne comme un argument séparé, puis `zip` regroupe les 1ers éléments de chaque ligne, puis les 2es...\n\n**Pas à pas :** avec `mat = [[1, 2], [3, 4]]`, `zip(*mat)` devient `zip([1, 2], [3, 4])`, qui fournit `(1, 3)` puis `(2, 4)`. `[list(c) for c in ...]` remet chaque tuple en liste : `[[1, 3], [2, 4]]`.\n\n**Les autres réponses :** `zip(mat)` sans étoile ne reçoit qu'**un** itérable : il emballe chaque ligne seule dans un tuple (`([1, 2],)`...), et en plus c'est un objet paresseux, pas une liste ; `mat.transpose()` n'existe pas pour une liste Python ; `[list(c) for c in zip(mat)]` a le même défaut d'étoile manquante (`[[[1, 2]], [[3, 4]]]`).\n\n**À retenir :** transposée = `[list(c) for c in zip(*mat)]`, l'étoile est indispensable."
   },
   {
     "question": "Comment crée-t-on un dictionnaire à partir d'une liste de clés `k` et d'une liste de valeurs `v` de même longueur ?",
@@ -184,7 +184,7 @@
       "`k.zip(v)`"
     ],
     "reponse": 2,
-    "explication": "`zip(k, v)` fournit les couples `(clé, valeur)` rang par rang, et `dict(...)` les transforme en dictionnaire. `{k: v}` essaie d'utiliser la liste `k` comme clé : `TypeError`."
+    "explication": "**Règle :** `zip(k, v)` fournit les couples `(clé, valeur)` rang par rang, et `dict(...)` transforme une suite de couples en dictionnaire.\n\n**Pas à pas :** avec `k = [\"a\", \"b\"]` et `v = [1, 2]`, `zip(k, v)` fournit `('a', 1)` puis `('b', 2)` ; `dict(zip(k, v))` vaut `{'a': 1, 'b': 2}`. La compréhension `{x: y for x, y in zip(k, v)}` donne la même chose.\n\n**Les autres réponses :** `dict(k, v)` refuse deux listes (`TypeError` : `dict` attend une seule suite de couples) ; `{k: v}` essaie de prendre la liste `k` entière comme clé, ce qui lève `TypeError` (une liste ne peut pas être une clé) ; `k.zip(v)` n'existe pas, `zip` est une fonction, pas une méthode de liste.\n\n**À retenir :** deux listes → dictionnaire : `dict(zip(cles, valeurs))`."
   },
   {
     "question": "Comment vérifie-t-on que **tous** les nombres d'une liste `l` sont strictement positifs ?",
@@ -195,7 +195,7 @@
       "`x > 0 for all x in l`"
     ],
     "reponse": 0,
-    "explication": "`all` vaut `True` si chaque élément est vrai, `any` si au moins un l'est. Ce sont des fonctions, pas des méthodes de liste."
+    "explication": "**Règle :** `all(condition for x in l)` vaut `True` si **chaque** élément respecte la condition ; `any(...)` vaut `True` si **au moins un** la respecte. Ce sont des fonctions qu'on appelle avec un itérable.\n\n**Pas à pas :** avec `l = [4, 1, -2]`, `all(x > 0 for x in l)` teste 4 (vrai), 1 (vrai), -2 (faux) et s'arrête : `False`. Avec `[4, 1]`, tous les tests sont vrais : `True`.\n\n**Les autres réponses :** `any(x > 0 for x in l)` vaudrait `True` pour `[4, 1, -2]` alors que -2 n'est pas positif ; `l.all(x > 0)` n'existe pas (pas de méthode `all` sur une liste) ; `x > 0 for all x in l` n'est pas du Python, c'est l'écriture mathématique.\n\n**À retenir :** « tous » → `all(...)`, « au moins un » → `any(...)`, avec un générateur à l'intérieur."
   },
   {
     "question": "Que contient `input().split()` si l'utilisateur tape `3 7 12` ?",
@@ -206,7 +206,7 @@
       "`(3, 7, 12)`"
     ],
     "reponse": 1,
-    "explication": "`input()` renvoie toujours une chaîne, et `split()` la coupe en une liste de **chaînes**. Pour avoir des entiers : `[int(x) for x in input().split()]`."
+    "explication": "**Règle :** `input()` renvoie **toujours une chaîne**, et `split()` (sans argument) coupe cette chaîne sur les espaces : on obtient une liste de **chaînes**.\n\n**Pas à pas :** l'utilisateur tape `3 7 12`, `input()` renvoie `\"3 7 12\"` ; `\"3 7 12\".split()` coupe aux espaces : `[\"3\", \"7\", \"12\"]`. Ce sont des textes : `\"3\" + \"7\"` donnerait `\"37\"`. Pour des entiers : `[int(x) for x in input().split()]`.\n\n**Les autres réponses :** `[3, 7, 12]` suppose une conversion en `int` qui n'a pas eu lieu ; `\"3 7 12\"` est la valeur de `input()` **avant** `split()` ; `(3, 7, 12)` est un tuple d'entiers, `split` renvoie une liste de chaînes.\n\n**À retenir :** `input()` = une chaîne, `.split()` = une liste de chaînes, `int(...)` pour convertir chaque morceau."
   },
   {
     "question": "Que vaut `{p[0]: p for p in [\"Ana\", \"Alex\", \"Bob\"]}` ?",
@@ -217,6 +217,6 @@
       "Une erreur : la clé `\"A\"` apparaît deux fois"
     ],
     "reponse": 1,
-    "explication": "Un dictionnaire ne garde qu'une valeur par clé : la deuxième clé `\"A\"` écrase la première, sans erreur. Il reste la dernière valeur, `\"Alex\"`."
+    "explication": "**Règle :** un dictionnaire ne garde qu'**une** valeur par clé. Si la même clé est produite deux fois, la nouvelle valeur **remplace** l'ancienne, sans erreur.\n\n**Pas à pas :** la clé est `p[0]`, la première lettre.\n\n| `p` | Clé `p[0]` | Dictionnaire après ce tour |\n|---|---|---|\n| `\"Ana\"` | `\"A\"` | `{\"A\": \"Ana\"}` |\n| `\"Alex\"` | `\"A\"` (déjà là) | `{\"A\": \"Alex\"}` |\n| `\"Bob\"` | `\"B\"` | `{\"A\": \"Alex\", \"B\": \"Bob\"}` |\n\n**Les autres réponses :** `{\"A\": \"Ana\", \"B\": \"Bob\"}` garde la première valeur, mais c'est la **dernière** qui reste ; `{\"A\": [\"Ana\", \"Alex\"], ...}` regrouperait les valeurs dans des listes, ce qu'une compréhension ne fait pas toute seule ; il n'y a pas d'erreur, une clé répétée est simplement écrasée.\n\n**À retenir :** même clé deux fois → la dernière valeur gagne."
   }
 ]

@@ -19,7 +19,8 @@
           "1",
           "0.1",
           "e^(-10)"
-        ]
+        ],
+        "explication": "**Règle :** une dégradation $\\Delta E > 0$ est acceptée avec la probabilité $P = e^{-\\Delta E/T}$. On calcule d'abord le rapport $\\Delta E / T$, puis l'exponentielle de son opposé.\n\n**Pas à pas :**\n\n1. Rapport : $\\dfrac{\\Delta E}{T} = \\dfrac{10}{10} = 1$.\n2. Opposé : $-1$.\n3. $P = e^{-1} \\approx 0{,}368$.\n\nRepère à garder : quand la dégradation est égale à la température, elle passe environ une fois sur trois.\n\n**Erreurs fréquentes :** répondre 1 (c'est le rapport, pas la probabilité) ; 0,1 vient d'un calcul sans exponentielle ; $e^{-10}$ oublie de diviser par $T$.\n\n**À retenir :** rapport, signe moins, exponentielle ; $\\Delta E = T$ donne $e^{-1} \\approx 0{,}368$."
       },
       {
         "intitule": "$\\Delta E = 5$ et $T = 50$.",
@@ -32,7 +33,8 @@
         "refuses": [
           "0.1",
           "0.5"
-        ]
+        ],
+        "explication": "**Règle :** $P = e^{-\\Delta E/T}$.\n\n**Pas à pas :**\n\n1. Rapport : $\\dfrac{\\Delta E}{T} = \\dfrac{5}{50} = 0{,}1$.\n2. $P = e^{-0{,}1} \\approx 0{,}905$.\n\nIl fait chaud et la dégradation est petite : elle passe environ 9 fois sur 10.\n\n**Erreurs fréquentes :** donner 0,1 (le rapport) ; donner 0,5 en divisant mal ($5 / 10$ au lieu de $5 / 50$).\n\n**À retenir :** petit rapport $\\Delta E / T$ = probabilité proche de 1 = exploration."
       },
       {
         "intitule": "$\\Delta E = 50$ et $T = 100$.",
@@ -44,7 +46,8 @@
         ],
         "refuses": [
           "0.5"
-        ]
+        ],
+        "explication": "**Règle :** $P = e^{-\\Delta E/T}$.\n\n**Pas à pas :**\n\n1. Rapport : $\\dfrac{\\Delta E}{T} = \\dfrac{50}{100} = 0{,}5$.\n2. $P = e^{-0{,}5} \\approx 0{,}607$.\n\nMême une grosse dégradation (50) passe 6 fois sur 10 quand la température est encore plus grande (100) : c'est la phase d'**exploration**.\n\n**Erreur fréquente :** répondre 0,5, qui est le rapport lui-même ; la probabilité est $e^{-0{,}5}$, pas $0{,}5$.\n\n**À retenir :** ce n'est pas la taille de $\\Delta E$ seule qui compte, mais son rapport avec $T$."
       },
       {
         "intitule": "$\\Delta E = 5$ et $T = 1$.",
@@ -57,7 +60,8 @@
         ],
         "refuses": [
           "0.2"
-        ]
+        ],
+        "explication": "**Règle :** $P = e^{-\\Delta E/T}$.\n\n**Pas à pas :**\n\n1. Rapport : $\\dfrac{\\Delta E}{T} = \\dfrac{5}{1} = 5$.\n2. $P = e^{-5} \\approx 0{,}0067$, soit environ $0{,}007$.\n\nÀ basse température, la même dégradation de 5 ne passe plus que 7 fois sur 1 000 : la recherche **exploite**, elle se comporte presque comme une descente.\n\n**Erreur fréquente :** $\\dfrac{1}{5} = 0{,}2$ inverse le rapport ($T / \\Delta E$ au lieu de $\\Delta E / T$).\n\n**À retenir :** gros rapport $\\Delta E / T$ = probabilité proche de 0 = exploitation."
       }
     ],
     "indices": [
@@ -84,7 +88,8 @@
         "refuses": [
           "0.3",
           "1.2"
-        ]
+        ],
+        "explication": "**Règle :** $P = e^{-\\Delta E/T}$ avec $\\Delta E$ l'écart de coût et $T$ la température actuelle.\n\n**Pas à pas :**\n\n1. $\\Delta E = 12$, $T = 10$ : rapport $\\dfrac{12}{10} = 1{,}2$.\n2. $P = e^{-1{,}2} \\approx 0{,}301$ (valeur donnée dans l'énoncé).\n\n**Erreurs fréquentes :** donner 1,2 (le rapport) ; donner 0,3, qui est le **tirage** $r$ et non la probabilité (ils sont très proches ici, mais ce ne sont pas les mêmes nombres).\n\n**À retenir :** calcule $P$ d'abord, sans regarder le tirage ; on ne les compare qu'ensuite."
       },
       {
         "intitule": "Accepte-t-on le voisin à $T = 10$ ?",
@@ -93,7 +98,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** on accepte la dégradation si $r < P$ (inégalité **stricte**).\n\n**Pas à pas :**\n\n1. $P \\approx 0{,}301$ (question précédente).\n2. Tirage $r = 0{,}30$.\n3. Est-ce que $0{,}30 < 0{,}301$ ? Oui (de justesse) : le voisin est **accepté**, malgré la dégradation.\n\n**Autre réponse :** « Non » viendrait d'un arrondi de $P$ à 0,30 avant de comparer, ou de l'inégalité prise à l'envers. Compare toujours avec la valeur précise donnée.\n\n**À retenir :** $r < P$ : accepté ; $r \\ge P$ : refusé."
       },
       {
         "intitule": "Probabilité d'acceptation à $T = 2$ (arrondie au dix-millième).",
@@ -107,7 +113,8 @@
         "refuses": [
           "0.3",
           "6"
-        ]
+        ],
+        "explication": "**Règle :** même formule $P = e^{-\\Delta E/T}$, avec la nouvelle température.\n\n**Pas à pas :**\n\n1. $\\Delta E = 12$, $T = 2$ : rapport $\\dfrac{12}{2} = 6$.\n2. $P = e^{-6} \\approx 0{,}0025$.\n\nLa même dégradation, qui passait 3 fois sur 10 à $T = 10$, ne passe plus que 25 fois sur 10 000 à $T = 2$.\n\n**Erreurs fréquentes :** donner 6 (le rapport) ; donner 0,3 (le tirage).\n\n**À retenir :** quand $T$ baisse, la même dégradation devient beaucoup plus difficile à accepter."
       },
       {
         "intitule": "Accepte-t-on le voisin à $T = 2$ ?",
@@ -116,12 +123,14 @@
           "Oui",
           "Non"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** on accepte si $r < P$.\n\n**Pas à pas :**\n\n1. $P \\approx 0{,}0025$.\n2. Tirage $r = 0{,}30$.\n3. Est-ce que $0{,}30 < 0{,}0025$ ? Non : $0{,}30$ est bien plus grand. Le voisin est **refusé**.\n\nAvec le **même** tirage et le **même** voisin, on accepte à $T = 10$ et on refuse à $T = 2$ : seule la température a changé.\n\n**Autre réponse :** « Oui » oublierait de recalculer $P$ avec la nouvelle température.\n\n**À retenir :** à basse température, presque toute dégradation est refusée."
       },
       {
         "intitule": "Quelle leçon en tires-tu sur le rôle de $T$ ?",
         "type": "auto",
-        "reponse": "À température élevée, le recuit **explore** : les dégradations passent. À température basse, il **exploite** : tout est refusé, il se comporte comme une descente. C'est le refroidissement qui transforme l'explorateur en descendeur."
+        "reponse": "À température élevée, le recuit **explore** : les dégradations passent. À température basse, il **exploite** : tout est refusé, il se comporte comme une descente. C'est le refroidissement qui transforme l'explorateur en descendeur.",
+        "explication": "**Règle :** la température règle l'équilibre entre **exploration** (accepter des dégradations pour visiter d'autres vallées) et **exploitation** (descendre au fond de la vallée courante).\n\n**Pas à pas :** une bonne réponse dit, dans l'ordre :\n\n1. **à haute température** ($T = 10$ ici), une dégradation de 12 passe encore environ 3 fois sur 10 : le recuit **explore** ;\n2. **à basse température** ($T = 2$), la même dégradation ne passe presque jamais : le recuit **exploite**, il se comporte comme une descente ;\n3. c'est le **refroidissement** (la baisse de $T$ au fil des itérations) qui fait passer de l'exploration à l'exploitation.\n\n**Erreurs fréquentes :** inverser chaud et froid ; dire que $T$ change l'acceptation des améliorations (elles sont toujours acceptées) ; oublier le rôle du refroidissement.\n\n**À retenir :** chaud = explore, froid = exploite, le refroidissement fait la transition."
       }
     ],
     "indices": [
@@ -143,7 +152,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** $\\Delta E = \\text{erreur du voisin} - \\text{erreur courante}$ ; une dégradation est acceptée si $r < e^{-\\Delta E/T}$.\n\n**Pas à pas :**\n\n1. $\\Delta E = 100 - 80 = 20 > 0$ : dégradation.\n2. $P = e^{-20/40} = e^{-0{,}5} \\approx 0{,}607$.\n3. Tirage $r = 0{,}55$ : est-ce que $0{,}55 < 0{,}607$ ? Oui : **accepté**.\n\n**Autre réponse :** « Non » oublierait qu'une dégradation peut être acceptée : c'est tout l'intérêt du recuit.\n\n**À retenir :** une dégradation passe quand le tirage tombe sous $P$."
       },
       {
         "intitule": "Voisin d'erreur 100, tirage $r = 0{,}75$ : accepté ?",
@@ -152,7 +162,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** même voisin, donc même $P$ ; seul le tirage change.\n\n**Pas à pas :**\n\n1. $P \\approx 0{,}607$ (comme à la question précédente).\n2. Tirage $r = 0{,}75$ : est-ce que $0{,}75 < 0{,}607$ ? Non : **refusé**.\n\nLe même voisin est accepté ou refusé selon le hasard du tirage : c'est ce qui rend le recuit **stochastique** (deux lancements peuvent suivre deux chemins différents).\n\n**Autre réponse :** « Oui » reprendrait la décision précédente sans comparer le nouveau tirage.\n\n**À retenir :** $P$ dépend du voisin et de $T$ ; la décision dépend aussi du tirage."
       },
       {
         "intitule": "Voisin d'erreur 77, tirage $r = 0{,}99$ : accepté ?",
@@ -161,7 +172,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** si $\\Delta E \\le 0$ (amélioration), $P = e^{-\\Delta E/T} \\ge 1$, et tout tirage $r$ de $[0, 1[$ est en dessous : le voisin est toujours accepté.\n\n**Pas à pas :**\n\n1. $\\Delta E = 77 - 80 = -3 \\le 0$ : amélioration.\n2. $P = e^{3/40} = e^{0{,}075} \\approx 1{,}08 > 1$.\n3. $r = 0{,}99 < 1{,}08$ : **accepté**.\n\n**Autre réponse :** « Non » croit qu'un grand tirage fait refuser. Le tirage ne compte que pour les dégradations : une amélioration passe toujours.\n\n**À retenir :** amélioration = acceptée, quel que soit $r$."
       },
       {
         "intitule": "Pour le voisin d'erreur 100, quelle température donnerait exactement $P = e^{-1}$ ?",
@@ -170,7 +182,8 @@
         "refuses": [
           "40",
           "100"
-        ]
+        ],
+        "explication": "**Règle :** $P = e^{-1}$ exactement quand le rapport $\\dfrac{\\Delta E}{T}$ vaut 1, c'est-à-dire quand $T = \\Delta E$.\n\n**Pas à pas :**\n\n1. $\\Delta E = 100 - 80 = 20$.\n2. On veut $\\dfrac{20}{T} = 1$, donc $T = 20$.\n3. Vérification : $e^{-20/20} = e^{-1}$.\n\n**Erreurs fréquentes :** prendre l'erreur du voisin (100) au lieu de l'**écart** ; garder la température actuelle (40), qui donne $e^{-0{,}5}$.\n\n**À retenir :** $P = e^{-1}$ quand $T = \\Delta E$."
       }
     ],
     "indices": [
@@ -197,7 +210,8 @@
         "refuses": [
           "50",
           "95"
-        ]
+        ],
+        "explication": "**Règle :** avec la loi géométrique, on **multiplie** la température par $\\alpha$ à chaque palier : $T(k) = T_0 \\times \\alpha^k$.\n\n**Pas à pas :**\n\n1. $\\alpha^k = 0{,}95^{10} \\approx 0{,}5987$ (calculatrice : 0,95 puissance 10).\n2. $T(10) = 100 \\times 0{,}5987 \\approx 59{,}87$.\n\n**Erreurs fréquentes :** 50 vient d'une baisse **linéaire** (retirer 5 à chaque palier) ; 95 ne fait qu'un seul palier.\n\n**À retenir :** géométrique = $T_0 \\times \\alpha^k$, une puissance."
       },
       {
         "intitule": "Même réglage, après 50 paliers.",
@@ -210,7 +224,8 @@
         "refuses": [
           "2.5",
           "47.5"
-        ]
+        ],
+        "explication": "**Règle :** $T(k) = T_0 \\times \\alpha^k$.\n\n**Pas à pas :**\n\n1. $0{,}95^{50} \\approx 0{,}0769$.\n2. $T(50) = 100 \\times 0{,}0769 \\approx 7{,}69$.\n\nAprès 50 paliers à 5 % de perte, il ne reste qu'environ 8 % de la température de départ.\n\n**Erreurs fréquentes :** $50 \\times 0{,}95 = 47{,}5$ multiplie par le nombre de paliers au lieu d'élever à la puissance ; 2,5 vient d'une baisse linéaire mal faite.\n\n**À retenir :** « multiplier 50 fois par 0,95 » s'écrit $0{,}95^{50}$."
       },
       {
         "intitule": "$T_0 = 100$, $\\alpha = 0{,}99$ : après 100 paliers.",
@@ -223,7 +238,8 @@
         "refuses": [
           "1",
           "99"
-        ]
+        ],
+        "explication": "**Règle :** $T(k) = T_0 \\times \\alpha^k$.\n\n**Pas à pas :**\n\n1. $0{,}99^{100} \\approx 0{,}366$.\n2. $T(100) = 100 \\times 0{,}366 \\approx 36{,}60$.\n\nAvec $\\alpha = 0{,}99$ (1 % perdu par palier), il reste encore plus d'un tiers de la température après 100 paliers.\n\n**Erreurs fréquentes :** 1 suppose que la température a presque disparu (comme une baisse linéaire qui retirerait 1 par palier) ; 99 ne fait qu'un seul palier.\n\n**À retenir :** avec $\\alpha$ proche de 1, la température baisse lentement."
       },
       {
         "intitule": "Lequel refroidit le plus lentement ?",
@@ -233,7 +249,8 @@
           "$\\alpha = 0{,}93$",
           "$\\alpha = 0{,}999$"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** à chaque palier, on perd une fraction $1 - \\alpha$ de la température. Plus $\\alpha$ est proche de 1, plus la perte est faible, donc plus le refroidissement est **lent**.\n\n**Pas à pas :**\n\n| $\\alpha$ | Perte par palier |\n|---|---|\n| 0,999 | 0,1 % |\n| 0,95 | 5 % |\n| 0,93 | 7 % |\n\nLe plus lent est $\\alpha = 0{,}999$.\n\n**Les autres réponses :** $\\alpha = 0{,}95$ perd 50 fois plus par palier ; $\\alpha = 0{,}93$ refroidit le plus vite des trois, trop vite : c'est la **trempe**.\n\n**À retenir :** $\\alpha$ proche de 1 = refroidissement lent = exploration longue."
       }
     ],
     "indices": [
@@ -256,7 +273,8 @@
           "89",
           "100",
           "5"
-        ]
+        ],
+        "explication": "**Règle :** on cherche le plus petit entier $k$ tel que $T_0 \\alpha^k \\le T_f$, soit $k \\ge \\dfrac{\\ln(T_f / T_0)}{\\ln \\alpha}$ (l'inégalité se retourne car $\\ln \\alpha < 0$).\n\n**Pas à pas :**\n\n1. $\\dfrac{T_f}{T_0} = \\dfrac{1}{100} = 0{,}01$, et $\\ln 0{,}01 \\approx -4{,}605$.\n2. $\\ln 0{,}95 \\approx -0{,}0513$.\n3. $k \\ge \\dfrac{-4{,}605}{-0{,}0513} \\approx 89{,}8$.\n4. $k$ entier : on arrondit **au-dessus**, $k = 90$.\n5. Vérification : $100 \\times 0{,}95^{89} \\approx 1{,}04$ (encore au-dessus de 1) et $100 \\times 0{,}95^{90} \\approx 0{,}99$ (en dessous).\n\n**Erreurs fréquentes :** 89 laisse $T$ un peu au-dessus de 1 ; 100 vient d'une division linéaire ; 5 confond avec les 5 % perdus à chaque palier.\n\n**À retenir :** $k = \\dfrac{\\ln(T_f/T_0)}{\\ln \\alpha}$, arrondi au-dessus."
       },
       {
         "intitule": "De $T_0 = 100$ à $T_f = 0{,}01$ avec $\\alpha = 0{,}995$.",
@@ -268,7 +286,8 @@
         "refuses": [
           "1837",
           "20000"
-        ]
+        ],
+        "explication": "**Règle :** même formule $k \\ge \\dfrac{\\ln(T_f / T_0)}{\\ln \\alpha}$.\n\n**Pas à pas :**\n\n1. $\\dfrac{T_f}{T_0} = \\dfrac{0{,}01}{100} = 10^{-4}$, et $\\ln(10^{-4}) \\approx -9{,}210$.\n2. $\\ln 0{,}995 \\approx -0{,}00501$.\n3. $k \\ge \\dfrac{-9{,}210}{-0{,}00501} \\approx 1\\,837{,}5$.\n4. On arrondit au-dessus : $k = 1\\,838$.\n\n**Erreurs fréquentes :** 1 837 (tronquer ou arrondir au plus proche) ne suffit pas, $T$ serait encore un peu au-dessus de 0,01 ; se tromper dans le rapport $\\dfrac{0{,}01}{100}$ (c'est $10^{-4}$, pas $10^{-2}$).\n\n**À retenir :** arrondis toujours au-dessus : il faut que $T$ soit passée **sous** $T_f$."
       },
       {
         "intitule": "Si on garde $T_0$ et $T_f$ mais qu'on passe de $\\alpha = 0{,}95$ à $\\alpha = 0{,}99$, le nombre de paliers…",
@@ -278,14 +297,15 @@
           "augmente (environ 5 fois)",
           "diminue"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** avec $T_0$ et $T_f$ fixés, $k = \\dfrac{\\ln(T_f/T_0)}{\\ln \\alpha}$. Le numérateur ne change pas ; quand $\\alpha$ se rapproche de 1, $\\ln \\alpha$ se rapproche de 0, donc $k$ **grandit**.\n\n**Pas à pas :** de $T_0 = 100$ à $T_f = 1$.\n\n| $\\alpha$ | $\\ln \\alpha$ | $k = \\dfrac{-4{,}605}{\\ln \\alpha}$ | Paliers |\n|---|---|---|---|\n| 0,95 | $-0{,}0513$ | $\\approx 89{,}8$ | 90 |\n| 0,99 | $-0{,}01005$ | $\\approx 458{,}2$ | 459 |\n\n$\\dfrac{459}{90} \\approx 5{,}1$ : environ 5 fois plus de paliers.\n\n**Les autres réponses :** « ne change pas » oublie que $\\alpha$ est dans la formule ; « diminue » confond : un $\\alpha$ plus proche de 1 refroidit plus **lentement**, il faut donc plus de paliers pour arriver à la même température.\n\n**À retenir :** refroidir plus lentement coûte plus de paliers, mais explore davantage."
       }
     ],
     "indices": [
       "$\\dfrac{\\ln(0{,}01)}{\\ln(0{,}95)} \\approx 89{,}8$ : arrondis à l'entier **supérieur**.",
       "$\\dfrac{\\ln(10^{-4})}{\\ln(0{,}995)} \\approx 1\\,837{,}5$."
     ],
-    "correction": "- $k \\ge \\dfrac{\\ln(1/100)}{\\ln 0{,}95} = \\dfrac{-4{,}605}{-0{,}0513} \\approx 89{,}8$, donc **90** paliers.\n- $k \\ge \\dfrac{\\ln(10^{-4})}{\\ln 0{,}995} = \\dfrac{-9{,}210}{-0{,}00501} \\approx 1\\,837{,}5$, donc **1 838** paliers.\n- Avec $\\alpha = 0{,}99$ : $\\dfrac{-4{,}605}{-0{,}01005} \\approx 458$ paliers au lieu de 90 : refroidir plus lentement coûte plus d'itérations, mais explore davantage."
+    "correction": "- $k \\ge \\dfrac{\\ln(1/100)}{\\ln 0{,}95} = \\dfrac{-4{,}605}{-0{,}0513} \\approx 89{,}8$, donc **90** paliers.\n- $k \\ge \\dfrac{\\ln(10^{-4})}{\\ln 0{,}995} = \\dfrac{-9{,}210}{-0{,}00501} \\approx 1\\,837{,}5$, donc **1 838** paliers.\n- Avec $\\alpha = 0{,}99$ : $\\dfrac{-4{,}605}{-0{,}01005} \\approx 458{,}2$, donc **459** paliers au lieu de 90 : refroidir plus lentement coûte plus d'itérations, mais explore davantage."
   },
   {
     "id": "lineaire-ou-geometrique",
@@ -301,7 +321,8 @@
         "refuses": [
           "50",
           "25"
-        ]
+        ],
+        "explication": "**Règle :** loi linéaire $T(k) = T_0\\left(1 - \\dfrac{k}{k_{\\max}}\\right)$ : on retire la **même quantité** à chaque itération, ici $\\dfrac{100}{200} = 0{,}5$.\n\n**Pas à pas :**\n\n1. $\\dfrac{k}{k_{\\max}} = \\dfrac{50}{200} = 0{,}25$.\n2. $1 - 0{,}25 = 0{,}75$.\n3. $T(50) = 100 \\times 0{,}75 = 75$.\n\nAutre façon : 50 itérations × 0,5 retiré à chaque fois = 25 retirés, et $100 - 25 = 75$.\n\n**Erreurs fréquentes :** 25 est la **baisse**, pas la température restante ; 50 confond itérations et température.\n\n**À retenir :** linéaire = $T_0 \\times (1 - \\text{fraction du budget écoulée})$."
       },
       {
         "intitule": "Loi géométrique : température après 50 itérations.",
@@ -315,7 +336,8 @@
         "refuses": [
           "98",
           "49"
-        ]
+        ],
+        "explication": "**Règle :** loi géométrique $T(k) = T_0 \\times \\alpha^k$ : on multiplie par $\\alpha$ à chaque itération.\n\n**Pas à pas :**\n\n1. $0{,}98^{50} \\approx 0{,}3642$.\n2. $T(50) = 100 \\times 0{,}3642 \\approx 36{,}42$.\n\n**Erreurs fréquentes :** $100 \\times 0{,}98 = 98$ ne fait qu'une seule itération ; 49 vient de $50 \\times 0{,}98$, une multiplication au lieu d'une puissance.\n\n**À retenir :** géométrique = puissance $\\alpha^k$, jamais $\\alpha \\times k$."
       },
       {
         "intitule": "Loi linéaire : température après 200 itérations.",
@@ -325,7 +347,8 @@
         "refuses": [
           "1",
           "100"
-        ]
+        ],
+        "explication": "**Règle :** $T(k) = T_0\\left(1 - \\dfrac{k}{k_{\\max}}\\right)$.\n\n**Pas à pas :**\n\n1. $\\dfrac{k}{k_{\\max}} = \\dfrac{200}{200} = 1$.\n2. $1 - 1 = 0$.\n3. $T(200) = 100 \\times 0 = 0$.\n\nLa loi linéaire atteint **exactement** 0 à la fin du budget. La géométrique, elle, ne vaut jamais exactement 0 : $100 \\times 0{,}98^{200} \\approx 1{,}76$.\n\n**Erreurs fréquentes :** 1 suppose qu'on s'arrête une itération avant ; 100 oublie complètement la baisse.\n\n**À retenir :** la loi linéaire est conçue pour arriver à 0 pile à $k_{\\max}$."
       },
       {
         "intitule": "Laquelle refroidit le plus vite au début ?",
@@ -334,7 +357,8 @@
           "La loi géométrique",
           "La loi linéaire"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour comparer deux lois, on calcule les deux températures au même moment.\n\n**Pas à pas :**\n\n| Après 50 itérations | Température |\n|---|---|\n| linéaire | 75 |\n| géométrique | 36,42 |\n\nLa géométrique est déjà beaucoup plus froide : elle refroidit **plus vite au début**. Elle retire 2 % de ce qui reste : quand $T$ vaut 100, c'est 2 ; quand $T$ vaut 10, ce n'est plus que 0,2. Elle ralentit donc ensuite, alors que la linéaire retire toujours 0,5.\n\n**Autre réponse :** « La loi linéaire » confond la vitesse au début et à la fin : c'est vers la fin du budget que la linéaire devient plus froide (elle arrive à 0).\n\n**À retenir :** géométrique = forte baisse au début, puis de plus en plus lente ; linéaire = baisse régulière."
       }
     ],
     "indices": [
@@ -361,7 +385,8 @@
         "refuses": [
           "8",
           "12.5"
-        ]
+        ],
+        "explication": "**Règle :** on veut $e^{-\\Delta E/T_0} = P_0$. En prenant le $\\ln$ : $-\\dfrac{\\Delta E}{T_0} = \\ln P_0$, donc $T_0 = \\dfrac{-\\Delta E}{\\ln P_0}$.\n\n**Pas à pas :**\n\n1. $\\ln 0{,}8 \\approx -0{,}223$ (négatif, car $0{,}8 < 1$).\n2. $T_0 = \\dfrac{-10}{-0{,}223} \\approx 44{,}8$.\n3. Vérification : $e^{-10/44{,}8} = e^{-0{,}223} \\approx 0{,}8$.\n\nLe signe moins du numérateur compense celui du logarithme : $T_0$ est bien positive.\n\n**Erreurs fréquentes :** $\\dfrac{10}{0{,}8} = 12{,}5$ oublie le logarithme ; 8 vient de $10 \\times 0{,}8$.\n\n**À retenir :** $T_0 = \\dfrac{-\\Delta E}{\\ln P_0}$, et vérifie en recalculant $e^{-\\Delta E/T_0}$."
       },
       {
         "intitule": "$\\Delta E = 10$ et $P_0 = 0{,}95$.",
@@ -375,7 +400,8 @@
         "refuses": [
           "9.5",
           "44.8"
-        ]
+        ],
+        "explication": "**Règle :** $T_0 = \\dfrac{-\\Delta E}{\\ln P_0}$.\n\n**Pas à pas :**\n\n1. $\\ln 0{,}95 \\approx -0{,}0513$.\n2. $T_0 = \\dfrac{-10}{-0{,}0513} \\approx 195{,}0$.\n\nPasser de 80 % à 95 % d'acceptation multiplie la température initiale par plus de 4 ($\\dfrac{195}{44{,}8} \\approx 4{,}35$) : $\\ln P_0$ devient très petit quand $P_0$ se rapproche de 1.\n\n**Erreurs fréquentes :** 9,5 vient de $10 \\times 0{,}95$ ; 44,8 est le résultat pour $P_0 = 0{,}8$.\n\n**À retenir :** plus $P_0$ est proche de 1, plus $T_0$ grandit vite."
       },
       {
         "intitule": "Pour accepter plus de dégradations au départ, il faut une température initiale…",
@@ -384,7 +410,8 @@
           "plus grande",
           "plus petite"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** à $\\Delta E$ fixé, $P = e^{-\\Delta E/T}$ se rapproche de 1 quand $T$ augmente, car le rapport $\\dfrac{\\Delta E}{T}$ diminue.\n\n**Pas à pas :** les deux calculs précédents le montrent :\n\n| Acceptation voulue $P_0$ | $T_0$ nécessaire |\n|---|---|\n| 80 % | $\\approx 44{,}8$ |\n| 95 % | $\\approx 195$ |\n\nPlus on veut accepter de dégradations, plus il faut une température **grande**.\n\n**Autre réponse :** « plus petite » inverse le rôle de $T$ : une petite température fait refuser presque toutes les dégradations.\n\n**À retenir :** accepter plus au départ = $T_0$ plus grande."
       }
     ],
     "indices": [
@@ -411,7 +438,8 @@
           "198",
           "199",
           "10000"
-        ]
+        ],
+        "explication": "**Règle :** avec $T(k) = \\dfrac{c}{\\ln(k+1)}$, $c$ est fixe : diviser $T$ par 2 revient à **doubler** $\\ln(k+1)$. Et $2 \\ln x = \\ln(x^2)$.\n\n**Pas à pas :**\n\n1. Au départ, $k = 99$, donc $k + 1 = 100$ et $T = \\dfrac{c}{\\ln 100}$.\n2. On veut $T' = \\dfrac{T}{2}$, donc $\\ln(k'+1) = 2 \\ln 100$.\n3. $2 \\ln 100 = \\ln(100^2) = \\ln 10\\,000$, donc $k' + 1 = 10\\,000$.\n4. $k' = 9\\,999$.\n\n**Erreurs fréquentes :** 198 ou 199 supposent qu'il suffit de doubler le nombre d'itérations, alors qu'il faut l'**élever au carré** ; 10 000 oublie le $-1$ (c'est $k' + 1$ qui vaut 10 000).\n\n**À retenir :** diviser $T$ par 2 avec Hajek = élever $k + 1$ au carré."
       },
       {
         "intitule": "Et pour la diviser par 4 (depuis $k = 99$) ?",
@@ -424,7 +452,8 @@
         "refuses": [
           "9999",
           "396"
-        ]
+        ],
+        "explication": "**Règle :** diviser $T$ par 4 revient à multiplier $\\ln(k+1)$ par 4, et $4 \\ln x = \\ln(x^4)$.\n\n**Pas à pas :**\n\n1. $\\ln(k'+1) = 4 \\ln 100 = \\ln(100^4)$.\n2. $100^4 = (10^2)^4 = 10^8 = 100\\,000\\,000$.\n3. $k' + 1 = 10^8$, donc $k' = 99\\,999\\,999$.\n\nOn passe de 100 à 100 millions d'itérations pour diviser la température par 4.\n\n**Erreurs fréquentes :** 9 999 est la réponse pour une division par 2 ; 396 multiplie simplement par 4.\n\n**À retenir :** diviser $T$ par $m$ = élever $k + 1$ à la puissance $m$."
       },
       {
         "intitule": "Conclusion pratique ?",
@@ -434,7 +463,8 @@
           "On utilise toujours la loi de Hajek",
           "On ne refroidit pas"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** la loi de Hajek garantit (en probabilité) l'optimum global, mais demande un nombre d'itérations astronomique. En pratique, on préfère un refroidissement **géométrique**, rapide, et on renonce à la garantie.\n\n**Pas à pas :**\n\n1. Les deux questions précédentes montrent que la température baisse beaucoup trop lentement avec Hajek (100 millions d'itérations pour la diviser par 4).\n2. Une loi géométrique $T \\leftarrow \\alpha T$ atteint une température basse en quelques centaines ou milliers de paliers.\n3. On perd la garantie, mais on obtient en pratique un très bon optimum local.\n\n**Les autres réponses :**\n\n- « On utilise toujours la loi de Hajek » : le calcul vient de montrer qu'elle est inutilisable.\n- « On ne refroidit pas » : la recherche accepterait des dégradations sans fin et ne se stabiliserait jamais.\n\n**À retenir :** en pratique, refroidissement géométrique et pas de garantie."
       }
     ],
     "indices": [
@@ -455,7 +485,8 @@
         "reponse": 45,
         "refuses": [
           "50"
-        ]
+        ],
+        "explication": "**Règle :** une amélioration ($\\Delta E \\le 0$) est toujours acceptée. Après chaque pas, on met à jour la meilleure solution si la courante est passée en dessous.\n\n**Pas à pas :** pas 1, $T = 10$, courante 50.\n\n1. Voisin d'erreur 45 : $\\Delta E = 45 - 50 = -5 \\le 0$, amélioration.\n2. Acceptée quel que soit le tirage (même $r = 0{,}90$).\n3. Courante = **45** ; et $45 < 50$, donc meilleure = 45.\n\n**Erreur fréquente :** répondre 50 en croyant que le grand tirage $r = 0{,}90$ fait refuser ; le tirage ne compte que pour les dégradations.\n\n**À retenir :** amélioration = acceptée sans regarder $r$."
       },
       {
         "intitule": "Probabilité d'accepter le voisin du pas 2 (arrondie au millième).",
@@ -469,7 +500,8 @@
         "refuses": [
           "0.3",
           "0.135"
-        ]
+        ],
+        "explication": "**Règle :** $P = e^{-\\Delta E/T}$, avec $\\Delta E$ calculé par rapport à la solution **courante du moment** et la température **du pas**.\n\n**Pas à pas :** pas 2.\n\n1. Courante : 45 (après le pas 1). Température : $10 / 2 = 5$.\n2. $\\Delta E = 48 - 45 = 3 > 0$ : dégradation.\n3. $P = e^{-3/5} = e^{-0{,}6} \\approx 0{,}549$.\n\n**Erreurs fréquentes :** comparer à l'erreur de départ 50 (le voisin semblerait meilleur) ; garder $T = 10$, ce qui donne $e^{-0{,}3}$ ; 0,3 est le tirage ; 0,135 est la probabilité du pas 3.\n\n**À retenir :** à chaque pas, repars de la courante et de la température actuelles."
       },
       {
         "intitule": "Erreur de la solution courante après le pas 2.",
@@ -478,7 +510,8 @@
         "refuses": [
           "45",
           "50"
-        ]
+        ],
+        "explication": "**Règle :** une dégradation est acceptée si $r < P$.\n\n**Pas à pas :**\n\n1. $P \\approx 0{,}549$ et $r = 0{,}30$.\n2. $0{,}30 < 0{,}549$ : **accepté**.\n3. Courante = **48** : le recuit accepte de remonter de 45 à 48 pour pouvoir explorer ailleurs.\n4. Meilleure : 48 n'est pas sous 45, elle reste à 45.\n\n**Erreurs fréquentes :** répondre 45 (refuser une dégradation que le tirage autorise) ; répondre 50 (revenir à l'état de départ).\n\n**À retenir :** la courante peut remonter ; la meilleure, elle, ne remonte jamais."
       },
       {
         "intitule": "Erreur de la solution courante après le pas 3.",
@@ -487,7 +520,8 @@
         "refuses": [
           "53",
           "45"
-        ]
+        ],
+        "explication": "**Règle :** même règle, avec la courante (48) et la température du pas 3 ($5 / 2 = 2{,}5$).\n\n**Pas à pas :**\n\n1. $\\Delta E = 53 - 48 = 5 > 0$ : dégradation.\n2. $P = e^{-5/2{,}5} = e^{-2} \\approx 0{,}135$.\n3. $r = 0{,}60 > 0{,}135$ : **refusé**.\n4. La courante reste à **48**.\n\n**Erreurs fréquentes :** répondre 53 (accepter sans comparer) ; comparer 53 à 45 (la meilleure) au lieu de la courante ; répondre 45 (revenir à la meilleure : le recuit ne fait jamais ça pendant la recherche).\n\n**À retenir :** un refus laisse la courante telle quelle."
       },
       {
         "intitule": "Erreur de la solution retournée si on s'arrête après le pas 3.",
@@ -496,7 +530,8 @@
         "refuses": [
           "48",
           "53"
-        ]
+        ],
+        "explication": "**Règle :** le recuit retourne la **meilleure solution rencontrée** depuis le départ, pas la dernière courante.\n\n**Pas à pas :**\n\n| Après le pas | Courante | Meilleure |\n|---|---|---|\n| 1 | 45 | 45 |\n| 2 | 48 | 45 |\n| 3 | 48 | 45 |\n\nOn s'arrête après le pas 3 : on retourne l'erreur **45**, trouvée au pas 1.\n\n**Erreurs fréquentes :** 48 est la courante (moins bonne que la meilleure) ; 53 est un voisin refusé, jamais devenu courant.\n\n**À retenir :** garde la meilleure en mémoire à chaque pas, et retourne-la à la fin."
       }
     ],
     "indices": [

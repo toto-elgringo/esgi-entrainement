@@ -1,63 +1,113 @@
 [
   {
     "question": "Après `int n = 7; int *p = &n;`, que contient `p` ?",
-    "choix": ["La valeur 7", "L'adresse de `n`", "Une copie de `n`", "`NULL`"],
+    "choix": [
+      "La valeur 7",
+      "L'adresse de `n`",
+      "Une copie de `n`",
+      "`NULL`"
+    ],
     "reponse": 1,
-    "explication": "`&n` est l'adresse de `n`. Un pointeur contient une adresse, pas la valeur elle-même. Pour lire la valeur, on écrit `*p`."
+    "explication": "**Règle :** `&n` se lit « l'adresse de `n` ». Un pointeur (`int *p`) est une variable qui range une **adresse**, jamais directement une valeur.\n\n**Pas à pas :**\n\n| Ligne | `n` | `p` |\n|---|---|---|\n| `int n = 7;` | 7 | (n'existe pas) |\n| `int *p = &n;` | 7 | adresse de `n` |\n\n`p` contient donc l'adresse de `n`. Pour retrouver le 7, il faut suivre cette adresse : c'est `*p`.\n\n**Les autres réponses :** « la valeur 7 », c'est ce que donne `*p`, pas `p` ; « une copie de `n` » serait `int m = n;` (une nouvelle variable qui vaut 7) ; `NULL` n'apparaît nulle part : `p` a reçu une vraie adresse.\n\n**À retenir :** `p` = l'adresse, `*p` = la valeur qui se trouve à cette adresse."
   },
   {
     "question": "Après `int n = 7; int *p = &n; *p = 3;`, combien vaut `n` ?",
-    "choix": ["7", "3", "L'adresse de `p`", "Le programme plante"],
+    "choix": [
+      "7",
+      "3",
+      "L'adresse de `p`",
+      "Le programme plante"
+    ],
     "reponse": 1,
-    "explication": "`*p` désigne la variable pointée par `p`, c'est-à-dire `n`. Écrire `*p = 3` modifie donc `n`."
+    "explication": "**Règle :** dans une instruction, `*p` désigne la variable dont l'adresse est rangée dans `p`. Écrire `*p = ...` modifie donc cette variable.\n\n**Pas à pas :**\n\n| Ligne | `n` | `p` | Explication |\n|---|---|---|---|\n| `int n = 7;` | 7 | | |\n| `int *p = &n;` | 7 | adr. n | `p` montre `n` |\n| `*p = 3;` | **3** | adr. n | `*p` est `n` : on écrit 3 dans `n` |\n\n`n` vaut **3**.\n\n**Les autres réponses :** 7 oublie que l'écriture passe **à travers** le pointeur ; « l'adresse de `p` » confond avec `&p`, et on n'a jamais rangé d'adresse dans `n` ; le programme ne plante pas, car `p` montre une vraie variable (il planterait seulement si `p` valait `NULL` ou une adresse invalide).\n\n**À retenir :** `*p = valeur` écrit dans la variable pointée, pas dans `p`."
   },
   {
     "question": "Une fonction `void plusUn(int x) { x = x + 1; }` est appelée avec `plusUn(n);`. Que devient `n` ?",
-    "choix": ["Il augmente de 1", "Il ne change pas", "Il vaut 0", "Ça ne compile pas"],
+    "choix": [
+      "Il augmente de 1",
+      "Il ne change pas",
+      "Il vaut 0",
+      "Ça ne compile pas"
+    ],
     "reponse": 1,
-    "explication": "En C, les paramètres sont passés par valeur : `x` est une copie de `n`. Modifier la copie ne change pas l'original. Il faudrait `void plusUn(int *x)` et l'appel `plusUn(&n)`."
+    "explication": "**Règle :** en C, les paramètres sont passés **par valeur** : la fonction reçoit une **copie** de ce qu'on lui donne. Modifier la copie ne change pas l'original.\n\n**Pas à pas :** avec par exemple `n = 5` avant l'appel :\n\n| Étape | `n` (appelant) | `x` (dans `plusUn`) |\n|---|---|---|\n| appel `plusUn(n)` | 5 | 5 (copie) |\n| `x = x + 1;` | 5 | 6 |\n| fin de la fonction | **5** | (disparaît) |\n\n`n` **ne change pas**.\n\n**Les autres réponses :** « il augmente de 1 » serait vrai avec `void plusUn(int *x) { *x = *x + 1; }` appelée par `plusUn(&n)` ; « il vaut 0 » ne correspond à rien, personne n'écrit 0 ; le code compile parfaitement, il est juste inutile.\n\n**À retenir :** pour qu'une fonction modifie une variable de l'appelant, il faut lui passer son adresse."
   },
   {
     "question": "Comment écrire l'appel pour qu'une fonction `void echanger(int *a, int *b)` échange les variables `x` et `y` ?",
-    "choix": ["`echanger(x, y);`", "`echanger(*x, *y);`", "`echanger(&x, &y);`", "`echanger(x&, y&);`"],
+    "choix": [
+      "`echanger(x, y);`",
+      "`echanger(*x, *y);`",
+      "`echanger(&x, &y);`",
+      "`echanger(x&, y&);`"
+    ],
     "reponse": 2,
-    "explication": "La fonction attend des adresses (`int *`) : on lui passe `&x` et `&y`."
+    "explication": "**Règle :** le type du paramètre dit quoi passer. Un paramètre `int *a` attend une **adresse** d'entier ; l'adresse d'une variable `x` s'écrit `&x`.\n\n**Pas à pas :** `echanger` a deux paramètres `int *`. Pour qu'elle puisse modifier `x` et `y`, on lui donne leurs adresses : `echanger(&x, &y);`. Dans la fonction, `*a` désigne alors `x` et `*b` désigne `y`.\n\n**Les autres réponses :**\n- `echanger(x, y);` donne les **valeurs** de `x` et `y` là où des adresses sont attendues : gcc refuse (*makes pointer from integer without a cast*), et même accepté, la fonction ne pourrait pas retrouver `x` et `y`.\n- `echanger(*x, *y);` : l'étoile ne s'applique qu'à un pointeur, or `x` est un simple `int` : erreur de compilation.\n- `echanger(x&, y&);` : l'esperluette se met **devant** le nom, jamais derrière : erreur de syntaxe.\n\n**À retenir :** paramètre `int *` → à l'appel, `&` devant la variable."
   },
   {
     "question": "`p` est un pointeur vers une structure `Point`. Comment lire son champ `x` ?",
-    "choix": ["`p.x`", "`p->x`", "`*p.x`", "`&p.x`"],
+    "choix": [
+      "`p.x`",
+      "`p->x`",
+      "`*p.x`",
+      "`&p.x`"
+    ],
     "reponse": 1,
-    "explication": "Avec un pointeur vers une structure, on utilise la flèche : `p->x`, qui est un raccourci pour `(*p).x`. Le point `.` s'utilise sur une structure, pas sur un pointeur."
+    "explication": "**Règle :** sur une structure, on prend un champ avec le point (`a.x`) ; sur un **pointeur** vers une structure, avec la flèche (`p->x`). `p->x` est un raccourci de `(*p).x`.\n\n**Pas à pas :** `p` est un pointeur (il contient une adresse). Il faut d'abord aller à la structure pointée, puis prendre son champ `x` : c'est exactement ce que fait `p->x`.\n\n**Les autres réponses :**\n- `p.x` : le point demande une structure, or `p` est un pointeur. gcc répond *'p' is a pointer; did you mean to use '->'?*\n- `*p.x` : le point passe **avant** l'étoile, donc ça se lit `*(p.x)` : même problème que `p.x`. Il faudrait des parenthèses, `(*p).x`.\n- `&p.x` donnerait une adresse (et souffre du même problème de point sur un pointeur), pas la valeur du champ.\n\n**À retenir :** pointeur vers une structure → `->` ; structure → `.`."
   },
   {
     "question": "Que renvoie `malloc` quand il n'y a plus de mémoire disponible ?",
-    "choix": ["0 octet réservé mais une adresse valide", "`NULL`", "Il arrête le programme", "Une adresse au hasard"],
+    "choix": [
+      "0 octet réservé mais une adresse valide",
+      "`NULL`",
+      "Il arrête le programme",
+      "Une adresse au hasard"
+    ],
     "reponse": 1,
-    "explication": "`malloc` renvoie `NULL` en cas d'échec. C'est pour ça qu'on teste toujours son résultat avant de l'utiliser."
+    "explication": "**Règle :** `malloc` renvoie l'adresse de la zone réservée quand tout va bien, et **`NULL`** quand il ne peut pas réserver la mémoire demandée.\n\n**Pas à pas :** c'est pour ça que tout `malloc` est suivi d'un test :\n\n```c\nint *t = malloc(100 * sizeof(int));\nif (t == NULL) {\n    exit(EXIT_FAILURE);\n}\n```\n\nSans ce test, en cas d'échec, `t[0] = ...` suivrait `NULL` et ferait planter le programme (erreur de segmentation).\n\n**Les autres réponses :** `malloc` n'arrête pas le programme tout seul : c'est **toi** qui appelles `exit` après le test ; il ne renvoie pas une adresse « au hasard » ni une adresse valide sans place derrière : la seule réponse d'échec est `NULL`.\n\n**À retenir :** après chaque `malloc`, teste `== NULL` avant d'utiliser l'adresse."
   },
   {
     "question": "Que contient un champ d'une structure qu'on vient de réserver avec `malloc`, sans l'avoir rempli ?",
-    "choix": ["Toujours 0", "Toujours `NULL`", "N'importe quoi", "La valeur du champ précédent"],
+    "choix": [
+      "Toujours 0",
+      "Toujours `NULL`",
+      "N'importe quoi",
+      "La valeur du champ précédent"
+    ],
     "reponse": 2,
-    "explication": "`malloc` ne met pas la mémoire à zéro : la zone contient ce qui traînait là avant. Il faut remplir chaque champ (par exemple `next = NULL`)."
+    "explication": "**Règle :** `malloc` réserve une zone mais **ne la remplit pas** : elle contient les octets qui traînaient là avant (des restes d'anciennes données). On dit que la mémoire n'est **pas initialisée**.\n\n**Pas à pas :** après `Cell *c = malloc(sizeof(Cell));` :\n\n| Champ | Contenu |\n|---|---|\n| `c->value` | n'importe quoi |\n| `c->next` | n'importe quoi (une adresse au hasard, pas forcément `NULL`) |\n\nIl faut donc remplir chaque champ soi-même : `c->value = 5; c->next = NULL;`. Oublier `next = NULL` est une erreur classique : un parcours de liste suivrait alors une adresse au hasard.\n\n**Les autres réponses :** « toujours 0 » et « toujours `NULL` » arrivent parfois par hasard, mais rien ne le garantit (c'est `calloc` qui met la mémoire à zéro) ; « la valeur du champ précédent » n'a pas de sens, rien ne recopie les champs entre eux.\n\n**À retenir :** après `malloc`, remplis **tous** les champs, en particulier les pointeurs (`next = NULL`)."
   },
   {
     "question": "Comment s'appelle l'erreur qui consiste à oublier de rendre avec `free` une mémoire réservée par `malloc` ?",
-    "choix": ["Un débordement de pile", "Une fuite mémoire", "Une erreur de segmentation", "Un double free"],
+    "choix": [
+      "Un débordement de pile",
+      "Une fuite mémoire",
+      "Une erreur de segmentation",
+      "Un double free"
+    ],
     "reponse": 1,
-    "explication": "La mémoire reste réservée alors que plus personne ne s'en sert : c'est une fuite mémoire. Dans un programme qui tourne longtemps, elle s'accumule."
+    "explication": "**Règle :** une **fuite mémoire**, c'est une zone réservée par `malloc` que plus personne n'utilise mais qu'on n'a jamais rendue avec `free`. Elle reste occupée jusqu'à la fin du programme.\n\n**Pas à pas :**\n\n```c\nint *t = malloc(10 * sizeof(int));\nt = NULL;\n```\n\nAprès la deuxième ligne, plus aucune variable ne contient l'adresse de la zone : on ne peut même plus faire `free`. Ces 40 octets sont perdus. Répété dans une boucle, le programme consomme de plus en plus de mémoire.\n\n**Les autres réponses :** le **débordement de pile** arrive quand la pile est pleine (par exemple une fonction qui s'appelle sans fin) ; l'**erreur de segmentation** est le plantage quand on accède à une zone interdite (suivre `NULL`) ; le **double free** consiste à libérer **deux fois** la même zone, l'inverse d'un oubli.\n\n**À retenir :** un `malloc` sans son `free` = fuite mémoire."
   },
   {
     "question": "Après `free(p);`, que peut-on faire avec `p` sans risque ?",
-    "choix": ["Lire `p->x`", "Appeler `free(p)` une deuxième fois", "Lui donner une nouvelle valeur, par exemple `p = NULL`", "Écrire `p->x = 0`"],
+    "choix": [
+      "Lire `p->x`",
+      "Appeler `free(p)` une deuxième fois",
+      "Lui donner une nouvelle valeur, par exemple `p = NULL`",
+      "Écrire `p->x = 0`"
+    ],
     "reponse": 2,
-    "explication": "La zone pointée a été rendue : la lire, y écrire ou la libérer à nouveau est interdit. On peut seulement changer le pointeur lui-même, et `p = NULL` est une bonne habitude."
+    "explication": "**Règle :** `free(p)` rend la zone pointée par `p`, mais laisse dans `p` l'ancienne adresse. Cette zone n'est plus à toi : y lire, y écrire ou la rendre une deuxième fois est interdit. La variable `p` elle-même, en revanche, existe toujours et peut recevoir une nouvelle valeur.\n\n**Pas à pas :**\n\n| Action après `free(p)` | Touche à la zone rendue ? | Autorisé ? |\n|---|---|---|\n| lire `p->x` | oui (lecture) | non : utilisation après `free` |\n| `p->x = 0` | oui (écriture) | non : utilisation après `free` |\n| `free(p)` encore | oui (la rend à nouveau) | non : double `free` |\n| `p = NULL` | non, change seulement `p` | **oui** |\n\n**Les autres réponses :** les trois autres touchent la zone rendue. Une lecture après `free` peut même afficher l'ancienne valeur par hasard, ce qui rend l'erreur difficile à voir.\n\n**À retenir :** juste après `free(p)`, écris `p = NULL;` et ne suis plus jamais l'ancienne adresse."
   },
   {
     "question": "Dans `typedef struct cell { int value; struct cell *next; } Cell;`, pourquoi écrit-on `struct cell *next` et pas `Cell *next` ?",
-    "choix": ["Par habitude, les deux marchent", "Le nom court `Cell` n'existe pas encore à cet endroit", "Parce que `next` est un entier", "Pour que `next` soit `NULL` par défaut"],
+    "choix": [
+      "Par habitude, les deux marchent",
+      "Le nom court `Cell` n'existe pas encore à cet endroit",
+      "Parce que `next` est un entier",
+      "Pour que `next` soit `NULL` par défaut"
+    ],
     "reponse": 1,
-    "explication": "Le nom `Cell` n'est créé qu'à la fin de la déclaration, après l'accolade fermante. À l'intérieur, seul le nom complet `struct cell` est connu."
+    "explication": "**Règle :** le compilateur lit le code de haut en bas. Le nom court créé par `typedef` (`Cell`) n'existe qu'**après** l'accolade fermante et le mot `Cell;`.\n\n**Pas à pas :**\n\n| Moment de la lecture | Noms connus |\n|---|---|\n| `typedef struct cell {` | `struct cell` (nom donné ici) |\n| `struct cell *next;` | `struct cell` seulement |\n| `} Cell;` | `struct cell` et maintenant `Cell` |\n\nAu moment du champ `next`, seul `struct cell` existe : c'est le seul nom utilisable. Après la déclaration, `Cell *` et `struct cell *` désignent le même type.\n\n**Les autres réponses :** les deux ne marchent pas, `Cell *next` à l'intérieur provoque une erreur (type inconnu) ; `next` est un pointeur, pas un entier ; rien ne met `next` à `NULL` par défaut, surtout pas après un `malloc`.\n\n**À retenir :** à l'intérieur de sa propre définition, une structure se désigne par son nom complet `struct nom`."
   },
   {
     "question": "En C, un pointeur est :",
@@ -68,25 +118,40 @@
       "une boucle qui parcourt la mémoire"
     ],
     "reponse": 0,
-    "explication": "Un pointeur range l'adresse d'une autre donnée (`int *p = &n;`). On lit ou on modifie cette donnée avec `*p`."
+    "explication": "**Règle :** un pointeur est une **variable** dont la valeur est une **adresse** mémoire (le numéro de la case où se trouve une autre donnée).\n\n**Pas à pas :** dans `int n = 4; int *p = &n;`, `p` est déclaré comme une variable (de type `int *`) et reçoit `&n`, l'adresse de `n`. Ensuite `*p` permet de lire ou de modifier `n`.\n\n**Les autres réponses :** la fonction qui réserve de la mémoire, c'est `malloc` (elle **renvoie** un pointeur, elle n'en est pas un) ; un tableau dont la taille change toute seule n'existe pas en C ; une boucle qui parcourt la mémoire est un `for` ou un `while`, pas un type de variable.\n\n**À retenir :** pointeur = variable qui contient une adresse."
   },
   {
     "question": "Quelle est la complexité de la lecture d'une valeur à travers un pointeur (`*p`) ?",
-    "choix": ["O(N log N)", "O(log N)", "O(1)", "O(N²)"],
+    "choix": [
+      "O(N log N)",
+      "O(log N)",
+      "O(1)",
+      "O(N²)"
+    ],
     "reponse": 2,
-    "explication": "L'adresse est déjà connue : on va directement à la bonne case de la mémoire, sans rien parcourir."
+    "explication": "**Règle :** O(1) veut dire « temps constant » : le coût ne dépend pas de la taille des données. O(N) dépend du nombre N d'éléments, O(log N) et O(N log N) aussi.\n\n**Pas à pas :** pour lire `*p`, le processeur prend l'adresse rangée dans `p` et va **directement** à cette case. Il n'y a ni boucle ni recherche : une seule opération, que la mémoire contienne 10 ou 10 millions de données.\n\n**Les autres réponses :** O(log N) correspond à une recherche qui coupe en deux à chaque étape (recherche dichotomique) ; O(N log N) à un bon tri (tri fusion) ; O(N²) à deux boucles imbriquées. Aucune de ces situations ne se produit quand on suit un pointeur.\n\n**À retenir :** suivre une adresse déjà connue coûte O(1)."
   },
   {
     "question": "Où `malloc` réserve-t-il la mémoire qu'il renvoie ?",
-    "choix": ["Sur la pile d'exécution", "Sur le tas", "Dans le disque dur", "Dans le code du programme"],
+    "choix": [
+      "Sur la pile d'exécution",
+      "Sur le tas",
+      "Dans le disque dur",
+      "Dans le code du programme"
+    ],
     "reponse": 1,
-    "explication": "Les variables locales vivent sur la pile et disparaissent à la fin de la fonction. La mémoire du tas reste réservée jusqu'au `free`."
+    "explication": "**Règle :** il y a deux zones pour les données d'un programme : la **pile** (variables locales, libérées automatiquement à la fin de chaque fonction) et le **tas** (mémoire réservée par `malloc`, qui reste jusqu'au `free`).\n\n**Pas à pas :** dans\n\n```c\nint *creer(void) {\n    int locale = 1;\n    int *t = malloc(sizeof(int));\n    return t;\n}\n```\n\n`locale` et la variable `t` elle-même sont sur la pile et disparaissent au `return`. La zone renvoyée par `malloc` est sur le **tas** : elle survit, et l'appelant reçoit son adresse.\n\n**Les autres réponses :** la pile est justement la zone qui disparaît à la fin des fonctions, `malloc` sert à en sortir ; le disque dur n'est pas de la mémoire vive, `malloc` n'y touche pas ; le code du programme est une zone en lecture seule, pas un endroit pour les données.\n\n**À retenir :** `malloc` → tas (dure jusqu'au `free`) ; variable locale → pile (dure jusqu'à la fin de la fonction)."
   },
   {
     "question": "Sur une machine où un `int` fait 4 octets, combien d'octets réserve `malloc(10 * sizeof(int))` ?",
-    "choix": ["10", "14", "40", "4"],
+    "choix": [
+      "10",
+      "14",
+      "40",
+      "4"
+    ],
     "reponse": 2,
-    "explication": "`sizeof(int)` vaut 4, donc 10 entiers prennent 40 octets. C'est pour cela qu'on multiplie toujours par `sizeof`."
+    "explication": "**Règle :** `malloc` compte en **octets**. `sizeof(int)` donne la taille d'un `int` en octets ; pour `n` cases, on réserve `n * sizeof(int)` octets.\n\n**Pas à pas :** ici `sizeof(int)` vaut 4.\n\n| Calcul | Résultat |\n|---|---|\n| `10 * sizeof(int)` | 10 × 4 |\n| | **40** octets |\n\n**Les autres réponses :** 10 est le nombre de cases, pas le nombre d'octets (ce serait `malloc(10)`, la place de 2 `int` et demi) ; 14 additionne 10 + 4 au lieu de multiplier ; 4 est la taille d'**un seul** `int`.\n\n**À retenir :** octets = nombre de cases × taille d'une case."
   },
   {
     "question": "Que fait `free(p)` ?",
@@ -97,6 +162,6 @@
       "Il supprime la variable `p`"
     ],
     "reponse": 1,
-    "explication": "`p` garde la même adresse, mais cette mémoire n'est plus à nous. C'est à nous de remettre `p` à `NULL` si on veut s'en souvenir."
+    "explication": "**Règle :** `free(p)` rend au système la zone réservée par `malloc` dont l'adresse est dans `p`. C'est tout : elle ne change pas `p`, ne vide pas la zone et ne supprime aucune variable.\n\n**Pas à pas :**\n\n| | Avant `free(p)` | Après `free(p)` |\n|---|---|---|\n| contenu de `p` | adr. zone | adr. zone (**la même**) |\n| la zone | à nous | rendue, interdite d'accès |\n| la variable `p` | existe | existe toujours |\n\n**Les autres réponses :** `free` ne met pas `p` à `NULL`, c'est à toi d'écrire `p = NULL;` ; il ne remet pas les cases à 0 (on ne doit plus les lire de toute façon) ; il ne supprime pas la variable `p`, qui vit jusqu'à la fin de sa fonction comme toute variable locale.\n\n**À retenir :** `free(p)` rend la zone, et seulement la zone."
   }
 ]

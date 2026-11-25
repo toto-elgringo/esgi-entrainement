@@ -8,7 +8,7 @@
       "Merci pour votre commande sur mesure"
     ],
     "reponse": 2,
-    "explication": "*custom* = la clientèle, la fidélité du client. La douane se dit *customs*, avec un *s*."
+    "explication": "**Règle :** *custom* (sans *s*, nom indénombrable) = la clientèle fidèle, le fait de revenir acheter dans le même magasin. C'est un faux ami : il ne veut pas dire « coutume » dans ce contexte.\n\n**Pas à pas :**\n\n1. Le contexte : un **ticket de caisse**, donc un magasin qui remercie son client.\n2. *your custom* = « votre clientèle », le fait que tu achètes chez eux.\n3. En bon français : **Merci de votre fidélité**.\n\n**Les autres réponses :** « Merci pour votre coutume » est la traduction mot à mot, qui n'a pas de sens sur un ticket ; la douane se dit *customs*, toujours avec un *s* ; « sur mesure » se dit *custom-made* (adjectif composé), et rien ne parle de commande ici.\n\n**À retenir :** *custom* = la clientèle fidèle, *customs* = la douane, *customer* = le client."
   },
   {
     "question": "Au rayon *produce* d'un supermarché, on trouve...",
@@ -19,7 +19,7 @@
       "les produits laitiers"
     ],
     "reponse": 1,
-    "explication": "*produce* (nom) = fruits et légumes. Un produit = *a product* ; les produits laitiers = *dairy products*."
+    "explication": "**Règle :** *produce* (nom, indénombrable) = les **fruits et légumes** frais. Faux ami : il ressemble à « produit », mais un produit se dit *a product*.\n\n**Pas à pas :**\n\n1. *the produce section / aisle* d'un supermarché = le rayon des produits agricoles frais.\n2. On y trouve pommes, salades, tomates : **les fruits et légumes**.\n\n**Les autres réponses :** les produits d'entretien se disent *cleaning products* ; « les nouveaux produits » seraient *new products* (on confond *produce* et *product*) ; les produits laitiers sont les *dairy products* ou le rayon *dairy*.\n\n**À retenir :** *produce* = fruits et légumes, *product* = un produit, *production* = la fabrication."
   },
   {
     "question": "*Sorry, we don't ...... that brand.*",
@@ -30,7 +30,7 @@
       "hold"
     ],
     "reponse": 2,
-    "explication": "*carry* = avoir en rayon, vendre. Synonyme : *stock*."
+    "explication": "**Règle :** dans un magasin, **carry** veut dire « avoir en rayon, vendre » une marque ou un article. Synonyme : *stock*.\n\n**Pas à pas :**\n\n1. *Sorry* : le vendeur s'excuse, il ne peut pas aider le client.\n2. *that brand* : il parle d'une marque.\n3. Ce qu'un magasin fait avec une marque, c'est la vendre, l'avoir en stock → *we don't **carry** that brand* (on ne vend pas cette marque).\n\n**Les autres réponses :** *wear* = porter (un vêtement) ; *bring* = apporter (le magasin n'apporte pas une marque) ; *hold* = tenir dans la main, ou organiser (*hold a meeting*) : aucun ne veut dire « vendre ».\n\n**À retenir :** *We don't carry / stock that brand* = on ne vend pas cette marque."
   },
   {
     "question": "Quelle est la différence entre *rebate* et *discount* ?",
@@ -41,7 +41,7 @@
       "*rebate* : un remboursement complet ; *discount* : un avoir"
     ],
     "reponse": 1,
-    "explication": "Avec un *rebate*, on paie le prix complet puis on reçoit une partie en retour (souvent avec un bon et une preuve d'achat)."
+    "explication": "**Règle :** les deux sont des réductions, mais pas au même moment :\n\n| Mot | Quand reçoit-on l'argent ? | Exemple |\n|---|---|---|\n| *discount* | **au moment** de payer : le prix affiché baisse | *10% discount at the checkout* |\n| *rebate* | **après** l'achat : on paie tout, puis on récupère une partie | on renvoie un bon avec le ticket, on reçoit un virement |\n\n**Pas à pas :** la bonne réponse est donc celle qui place le *rebate* **après** l'achat et le *discount* **pendant** l'achat.\n\n**Les autres réponses :**\n- « synonymes parfaits » : faux, le moment de la réduction est différent ;\n- « une hausse de prix » : un *rebate* n'augmente jamais le prix, c'est une somme rendue ;\n- « un remboursement complet » : ce serait un *refund* ; le *rebate* ne rend qu'une **partie** de la somme.\n\n**À retenir :** *rebate* = on te rend une partie plus tard ; *discount* = tu paies moins tout de suite ; *refund* = on te rend tout."
   },
   {
     "question": "*A ...... desk lamp is included with every order over $200.*",
@@ -52,7 +52,7 @@
       "complimentary"
     ],
     "reponse": 3,
-    "explication": "*complimentary* = offert, gratuit. *complementary* = complémentaire ; *a compliment* = un compliment."
+    "explication": "**Règle :** **complimentary** (avec un *i*) = offert, gratuit. Il ressemble à **complementary** (avec un *e*), qui veut dire « complémentaire ».\n\n**Pas à pas :**\n\n1. Indice de sens : *included with every order over $200* = donnée avec toute commande de plus de 200 $. On ne paie pas la lampe en plus : elle est **offerte**.\n2. Indice de grammaire : le trou est entre *A* et *desk lamp* (un nom) : il faut un **adjectif** qui décrit la lampe.\n3. Offert + adjectif → *complimentary*.\n\n**Les autres réponses :** *complementary* = complémentaire (deux choses qui vont bien ensemble), pas gratuit ; *compliment* est un nom (un compliment) ; *complimenting* est une forme du verbe « complimenter ».\n\n**À retenir :** *compl**i**mentary* = gratuit (comme un compl**i**ment, on le donne) ; *compl**e**mentary* = qui compl**è**te."
   },
   {
     "question": "Qui vend en gros aux magasins ?",
@@ -63,7 +63,7 @@
       "a purchaser"
     ],
     "reponse": 0,
-    "explication": "Le *wholesaler* (grossiste) vend aux magasins ; le *retailer* (détaillant) vend au public ; le *purchaser* achète pour son entreprise."
+    "explication": "**Règle :** le **wholesaler** (grossiste) achète en très grande quantité aux fabricants et revend **en gros** aux magasins. Le mot vient de *wholesale* (la vente en gros).\n\n**Pas à pas :** on lit la fonction de chaque personne et on garde celle qui vend aux magasins.\n\n| Choix | Qui est-ce ? | Vend aux magasins ? |\n|---|---|---|\n| *wholesaler* | grossiste | **oui** |\n| *retailer* | détaillant : vend au public, article par article | non |\n| *cashier* | caissier : encaisse l'argent en magasin | non |\n| *purchaser* | acheteur d'une entreprise : il achète, il ne vend pas | non |\n\n**À retenir :** *wholesale* = en gros, aux magasins ; *retail* = au détail, au public."
   },
   {
     "question": "*The goods ...... damaged during transport.*",
@@ -74,7 +74,7 @@
       "has been"
     ],
     "reponse": 1,
-    "explication": "*goods* est toujours pluriel : *the goods were*. Avec *merchandise* (indénombrable), on dirait *the merchandise was*."
+    "explication": "**Règle :** **goods** (la marchandise) est un nom **toujours pluriel** : son verbe se met au pluriel (*the goods are*, *the goods were*).\n\n**Pas à pas :**\n\n1. Le sujet est *The goods* : pluriel.\n2. La phrase raconte ce qui est arrivé pendant un transport passé (*during transport*) → prétérit.\n3. Prétérit de *be* au pluriel = **were** : *The goods were damaged* (la marchandise a été abîmée).\n\n**Les autres réponses :** *was* et *is* sont au singulier (on traduit « la marchandise » au singulier en français, c'est le piège) ; *has been* est aussi au singulier (au pluriel, ce serait *have been*).\n\n**À retenir :** *goods* → verbe au pluriel ; *merchandise* (indénombrable) → verbe au singulier (*the merchandise was*)."
   },
   {
     "question": "Dans *Your account is still outstanding*, *outstanding* veut dire...",
@@ -85,7 +85,7 @@
       "remarquable"
     ],
     "reponse": 1,
-    "explication": "Sur une facture, *outstanding* = impayé, en retard. Dans *an outstanding result*, il veut dire excellent : le contexte décide."
+    "explication": "**Règle :** **outstanding** a deux sens : **impayé, encore dû** (pour de l'argent) et **excellent, remarquable** (pour un travail, un résultat). C'est le mot d'à côté qui décide.\n\n**Pas à pas :**\n\n1. Le mot voisin : *Your account* (votre compte, chez un fournisseur).\n2. Un compte qui est *still outstanding* (toujours...) : il reste de l'argent à payer.\n3. Donc *outstanding* = **impayé**.\n\n**Les autres réponses :** « excellent » et « remarquable » sont le deuxième sens du mot, mais un compte n'est pas « excellent » ; *still* (toujours, encore) montre qu'on attend quelque chose. « fermé » se dirait *closed*.\n\n**À retenir :** *outstanding* + argent (*invoice, account, payment*) = impayé ; *outstanding* + travail (*job, result*) = excellent."
   },
   {
     "question": "Un automobiliste mal garé doit payer...",
@@ -96,7 +96,7 @@
       "a rebate"
     ],
     "reponse": 2,
-    "explication": "Une amende (une punition) = *a fine*. Un *fee* est un frais normal (frais de dossier, de livraison)."
+    "explication": "**Règle :** une **fine** est une **amende**, une punition qu'on paie parce qu'on a enfreint une règle. Un **fee** est un frais normal pour un service.\n\n**Pas à pas :**\n\n1. Se garer au mauvais endroit est **interdit**.\n2. On paie donc une **punition** : une amende.\n3. Amende = **a fine** (*a parking fine*).\n\n**Les autres réponses :** *a fee* = des frais normaux (frais de dossier, de livraison), pas une punition ; *a charge* = un montant facturé pour un service ; *a rebate* = une remise rendue après un achat, donc de l'argent qu'on **reçoit**.\n\n**À retenir :** punition = *fine* ; service normal = *fee*."
   },
   {
     "question": "*If you have already paid, please ...... this reminder.*",
@@ -107,7 +107,7 @@
       "remind"
     ],
     "reponse": 0,
-    "explication": "*disregard* = ne pas tenir compte de (synonyme : *ignore*). Formule très fréquente dans les relances de facture."
+    "explication": "**Règle :** **disregard** = ne pas tenir compte de, ignorer. La phrase *If you have already paid, please disregard this reminder* termine presque toutes les relances de facture.\n\n**Pas à pas :**\n\n1. *If you have already paid* : si tu as déjà payé...\n2. ... la relance (*this reminder*) ne te concerne pas, tu peux l'oublier.\n3. « ne pas en tenir compte » = **disregard** (le préfixe *dis-* inverse le sens, comme dans *agree* / *disagree*).\n\n**Les autres réponses :** *regard* = considérer, regarder (le contraire du sens voulu) ; *discharge* = décharger, ou laisser sortir quelqu'un de l'hôpital ; *remind* = rappeler à quelqu'un, ce que fait la relance, pas le client.\n\n**À retenir :** *please disregard this reminder* = ne tenez pas compte de cette relance (synonyme : *ignore*)."
   },
   {
     "question": "*Payment is due ...... 30 days of the invoice date.*",
@@ -118,7 +118,7 @@
       "until"
     ],
     "reponse": 2,
-    "explication": "*within 30 days* = dans un délai de 30 jours, au plus tard 30 jours après."
+    "explication": "**Règle :** **within** + durée = « dans un délai de », au plus tard à la fin de cette durée. *within 30 days of the invoice date* = au plus tard 30 jours après la date de la facture.\n\n**Pas à pas :**\n\n1. *Payment is due* = le paiement doit être fait.\n2. *30 days of the invoice date* : on donne un délai qui commence à la date de la facture.\n3. Un délai à ne pas dépasser → **within**.\n\n**Les autres réponses :**\n- *since* = depuis (un point de départ dans le passé : *since Monday*), pas un délai ;\n- *during* = pendant (*during the meeting*) : on ne paie pas « pendant » 30 jours ;\n- *until* = jusqu'à, et il ne s'utilise pas avec *of* : on dirait *until 30 June*, pas *until 30 days of*.\n\n**À retenir :** *within* + durée (+ *of* + point de départ) = dans un délai de."
   },
   {
     "question": "Quelle est la différence entre *carrier* et *courier* ?",
@@ -129,7 +129,7 @@
       "Aucune"
     ],
     "reponse": 0,
-    "explication": "Le *carrier* (transporteur) est une société ; le *courier* livre lui-même, souvent à vélo ou à moto en ville."
+    "explication": "**Règle :** **carrier** = l'**entreprise** de transport (le transporteur) ; **courier** = le **coursier**, la personne qui livre elle-même, souvent à vélo ou à moto.\n\n**Pas à pas :**\n\n1. On cherche la proposition qui associe *carrier* à une entreprise et *courier* à une personne qui livre.\n2. C'est « *carrier* = l'entreprise de transport ; *courier* = le coursier ».\n\n**Les autres réponses :**\n- « le destinataire / l'expéditeur » : le destinataire se dit *recipient*, l'expéditeur *sender* ;\n- « un chariot / une lettre » : un chariot se dit *cart* ou *trolley* ; « courrier » (les lettres) se dit *mail*, c'est le faux ami ;\n- « Aucune » : faux, l'une est une société, l'autre une personne.\n\n**À retenir :** *carrier* = la société de transport ; *courier* = le coursier ; le courrier (les lettres) = *mail*."
   },
   {
     "question": "*Please sign here: the ...... must sign for registered parcels.*",
@@ -140,7 +140,7 @@
       "receiver"
     ],
     "reponse": 2,
-    "explication": "*recipient* = le destinataire. *receipt* = ticket de caisse, *recipe* = recette de cuisine."
+    "explication": "**Règle :** **recipient** = le **destinataire**, la personne qui reçoit un colis ou une lettre. Il ressemble à *receipt* (ticket de caisse) et à *recipe* (recette de cuisine).\n\n**Pas à pas :**\n\n1. *must sign for registered parcels* : doit signer pour recevoir les colis recommandés.\n2. Celui qui signe à la livraison, c'est la personne qui reçoit le colis : le destinataire.\n3. Destinataire = **recipient** (le mot du cours et de la poste).\n\n**Les autres réponses :** *receipt* = un ticket de caisse (un papier, il ne peut pas signer) ; *recipe* = une recette de cuisine ; *receiver* existe et peut désigner celui qui reçoit, mais on l'emploie surtout pour un appareil (récepteur, combiné de téléphone) : sur un colis, le mot attendu est *recipient*.\n\n**À retenir :** *recipient* = destinataire ; *receipt* = ticket de caisse ; *recipe* = recette."
   },
   {
     "question": "*I'll ...... the package at the post office on my way to work.*",
@@ -151,7 +151,7 @@
       "try on"
     ],
     "reponse": 1,
-    "explication": "*drop off* = déposer. *pick up* = passer prendre ; *pick out* = choisir."
+    "explication": "**Règle :** **drop off** = déposer quelque chose (ou quelqu'un) quelque part, en passant. Le contraire est **pick up** (passer prendre).\n\n**Pas à pas :**\n\n1. *on my way to work* : en allant au travail, je passe à la poste.\n2. J'apporte le colis à la poste et je le **laisse** là-bas.\n3. Laisser un colis quelque part = **drop off** (*drop off the package at the post office*).\n\n**Les autres réponses :** *pick out* = choisir (comme choisir un cadeau) ; *sell out* = tout vendre ; *try on* = essayer un vêtement : aucun ne veut dire déposer.\n\n**À retenir :** *drop off* = je laisse ; *pick up* = je récupère ; *pick out* = je choisis."
   },
   {
     "question": "*The concert tickets sold ...... in two hours.*",
@@ -162,7 +162,7 @@
       "around"
     ],
     "reponse": 2,
-    "explication": "*sell out* = tout vendre (*sold out* = épuisé). *sell off* = brader pour vider le stock."
+    "explication": "**Règle :** **sell out** = tout vendre, il n'en reste plus (*sold out* = épuisé, complet). **sell off** = brader, vendre à bas prix pour vider le stock.\n\n**Pas à pas :**\n\n1. *The concert tickets* : des places de concert.\n2. *in two hours* : en deux heures seulement, donc elles sont parties très vite.\n3. Toutes les places vendues → **sold out**.\n\n**Les autres réponses :** *sold off* voudrait dire bradées pour s'en débarrasser (ce n'est pas le cas d'un concert qui marche) ; *sell down* n'existe pas dans ce sens (c'est *mark down* qui baisse un prix) ; *sell around* n'existe pas (c'est *shop around*, comparer les prix).\n\n**À retenir :** *sold out* = il n'en reste plus ; *sold off* = bradé."
   },
   {
     "question": "*Please contact our ...... department about the missing invoice.*",
@@ -173,6 +173,6 @@
       "invoicing"
     ],
     "reponse": 3,
-    "explication": "Devant *department*, on met le nom de l'activité en *-ing* : *the invoicing department*, *the purchasing department*."
+    "explication": "**Règle :** devant le nom *department* (le service), on met le nom de l'**activité** en *-ing* : *the invoicing department* (le service facturation), *the purchasing department* (le service achats).\n\n**Pas à pas :**\n\n1. Indice de grammaire : le trou est entre *our* et *department* : il faut un mot qui dit **quel** service.\n2. Un service porte le nom de ce qu'il fait : l'activité, donc la forme en *-ing*.\n3. La facturation = **invoicing** → *our invoicing department*.\n\n**Les autres réponses :** *invoice* est la facture elle-même (un document), pas une activité ; *invoiced* est un participe passé (« facturé ») ; *invoicer* serait la personne qui facture, pas le service.\n\n**À retenir :** nom d'un service = activité en *-ing* + *department* (*shipping, purchasing, invoicing*)."
   }
 ]

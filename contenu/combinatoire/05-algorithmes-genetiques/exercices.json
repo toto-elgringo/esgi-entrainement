@@ -18,7 +18,8 @@
         ],
         "refuses": [
           "population"
-        ]
+        ],
+        "explication": "**Règle :** un **individu** est une solution candidate du problème (une tournée, un sac rempli, un emploi du temps).\n\n**Pas à pas :** la définition parle d'**une** solution, au singulier. Dans le vocabulaire de l'AG, une solution seule s'appelle un individu, comme un être vivant dans une espèce.\n\n**Erreur fréquente :** répondre « population ». La population est l'**ensemble** des individus traités ensemble (par exemple 100 tournées), pas une seule solution.\n\n**À retenir :** individu = une solution ; population = toutes les solutions de la génération."
       },
       {
         "intitule": "Une itération de la boucle principale.",
@@ -33,7 +34,8 @@
         ],
         "refuses": [
           "mutation"
-        ]
+        ],
+        "explication": "**Règle :** une **génération** est un tour complet de la boucle principale : évaluation, sélection, croisement, mutation, remplacement.\n\n**Pas à pas :** à chaque passage dans la boucle, la population est remplacée par une nouvelle population d'enfants. Comme chez les êtres vivants, on parle de génération 1, génération 2, etc.\n\n**Erreur fréquente :** répondre « mutation ». La mutation n'est qu'**une** des étapes à l'intérieur d'une génération, pas la boucle entière.\n\n**À retenir :** génération = un tour de boucle complet."
       },
       {
         "intitule": "La qualité d'un individu, à maximiser.",
@@ -48,7 +50,8 @@
         ],
         "refuses": [
           "cout"
-        ]
+        ],
+        "explication": "**Règle :** la **fitness** mesure la qualité d'un individu. Plus elle est grande, meilleur est l'individu : elle se **maximise**.\n\n**Pas à pas :** la définition dit « la qualité » et « à maximiser » : c'est exactement la fitness (en anglais, « être en forme », « être adapté »).\n\n**Erreur fréquente :** répondre « coût ». Le coût se **minimise** (une longueur de tournée, par exemple). Pour l'utiliser dans un AG, on le transforme en fitness : $f = 1/c$ ou $f = c_{\\max} - c$.\n\n**À retenir :** fitness = qualité à maximiser ; coût = à minimiser."
       },
       {
         "intitule": "La perturbation rare d'un individu pour garder de la diversité.",
@@ -63,7 +66,8 @@
         ],
         "refuses": [
           "croisement"
-        ]
+        ],
+        "explication": "**Règle :** la **mutation** est une petite modification **rare** d'un individu (inverser un bit, échanger deux villes), qui sert à garder de la diversité.\n\n**Pas à pas :** la définition contient trois indices : « perturbation » (une petite modification), « rare » (environ 1 % des individus) et « d'un individu » (un seul individu est touché). Ces trois indices désignent la mutation.\n\n**Erreur fréquente :** répondre « croisement ». Le croisement travaille sur **deux** parents qu'il mélange ; la mutation ne touche qu'un individu.\n\n**À retenir :** mutation = un individu, petite modification, rarement."
       },
       {
         "intitule": "La combinaison de deux parents en un ou deux enfants.",
@@ -80,7 +84,8 @@
         ],
         "refuses": [
           "mutation"
-        ]
+        ],
+        "explication": "**Règle :** le **croisement** (en anglais *crossover*) combine les gènes de **deux parents** pour fabriquer un ou deux enfants.\n\n**Pas à pas :** la définition parle de « deux parents » et d'« enfants » : c'est la reproduction de l'AG, le croisement. Exemple : parents `10|11` et `01|00`, on échange les fins, enfants `1000` et `0111`.\n\n**Erreur fréquente :** répondre « mutation ». La mutation ne part que d'**un** individu et ne le mélange avec personne.\n\n**À retenir :** croisement = deux parents mélangés ; mutation = un individu modifié."
       }
     ],
     "indices": [
@@ -107,7 +112,8 @@
         "refuses": [
           "4",
           "520"
-        ]
+        ],
+        "explication": "**Règle :** la roulette divise chaque fitness par la **somme des fitness** : il faut donc d'abord calculer toutes les fitness, ici $f = 1000/L$.\n\n**Pas à pas :**\n\n| Longueur $L$ | Fitness $1000/L$ |\n|---|---|\n| 100 | $1000/100 = 10$ |\n| 120 | $1000/120 \\approx 8{,}333$ |\n| 140 | $1000/140 \\approx 7{,}143$ |\n| 160 | $1000/160 = 6{,}25$ |\n\nSomme : $10 + 8{,}333 + 7{,}143 + 6{,}25 \\approx 31{,}73$.\n\n**Erreurs fréquentes :** additionner les longueurs ($100 + 120 + 140 + 160 = 520$) au lieu des fitness, ou compter les tournées (4). La somme qui compte est celle des **fitness**.\n\n**À retenir :** pour une roulette, calcule chaque fitness puis additionne-les toutes."
       },
       {
         "intitule": "Probabilité de la tournée de longueur 100.",
@@ -120,7 +126,8 @@
         "refuses": [
           "25",
           "10"
-        ]
+        ],
+        "explication": "**Règle :** $P(i) = \\dfrac{f_i}{\\sum_j f_j}$, puis on multiplie par 100 pour avoir un pourcentage.\n\n**Pas à pas :**\n\n1. Fitness de la tournée de longueur 100 : $1000/100 = 10$.\n2. Somme des fitness (question précédente) : $\\approx 31{,}73$.\n3. $P = 10 / 31{,}73 \\approx 0{,}3152$.\n4. En pourcentage : $0{,}3152 \\times 100 \\approx 31{,}5$.\n\n**Erreurs fréquentes :** diviser par le nombre de tournées ($1/4 = 25$ %), comme si tout le monde avait la même chance ; ou donner la fitness (10) au lieu de la probabilité.\n\n**À retenir :** probabilité de la roulette = sa fitness / somme des fitness, × 100 pour un pourcentage."
       },
       {
         "intitule": "Probabilité de la tournée de longueur 120.",
@@ -129,7 +136,8 @@
         "tolerance": 0.1,
         "refuses": [
           "25"
-        ]
+        ],
+        "explication": "**Règle :** même formule, $P(i) = \\dfrac{f_i}{\\sum_j f_j}$.\n\n**Pas à pas :**\n\n1. Fitness de la tournée de longueur 120 : $1000/120 \\approx 8{,}333$.\n2. $P = 8{,}333 / 31{,}73 \\approx 0{,}2627$.\n3. En pourcentage : $\\approx 26{,}3$.\n\nElle est plus longue que la tournée de 100, donc sa fitness est plus petite et sa probabilité aussi (26,3 % contre 31,5 %).\n\n**Erreur fréquente :** répondre 25 % (une chance sur 4), ce qui ignore la fitness.\n\n**À retenir :** plus la tournée est longue, plus sa fitness et sa part de roue sont petites."
       },
       {
         "intitule": "Probabilité de la tournée de longueur 160.",
@@ -139,7 +147,8 @@
         "refuses": [
           "0",
           "25"
-        ]
+        ],
+        "explication": "**Règle :** même formule, $P(i) = \\dfrac{f_i}{\\sum_j f_j}$.\n\n**Pas à pas :**\n\n1. Fitness de la tournée de longueur 160 : $1000/160 = 6{,}25$.\n2. $P = 6{,}25 / 31{,}73 \\approx 0{,}1970$.\n3. En pourcentage : $\\approx 19{,}7$.\n\nVérification : $31{,}5 + 26{,}3 + 22{,}5 + 19{,}7 = 100$ (la tournée de 140 a $7{,}143/31{,}73 \\approx 22{,}5$ %).\n\n**Erreurs fréquentes :** répondre 0 (la roulette n'élimine pas la pire, elle la défavorise seulement) ou 25 % (tirage uniforme).\n\n**À retenir :** avec la roulette, même la pire garde une chance : c'est ce qui préserve la diversité."
       }
     ],
     "indices": [
@@ -164,7 +173,8 @@
         ],
         "refuses": [
           "31.5"
-        ]
+        ],
+        "explication": "**Règle :** la roulette divise chaque fitness par la somme des fitness. Ici la fitness change : $f = 10^4 / L^2$ (on élève d'abord la longueur au carré).\n\n**Pas à pas :**\n\n| $L$ | $L^2$ | $f = 10^4/L^2$ |\n|---|---|---|\n| 100 | 10 000 | $1$ |\n| 120 | 14 400 | $\\approx 0{,}6944$ |\n| 140 | 19 600 | $\\approx 0{,}5102$ |\n| 160 | 25 600 | $\\approx 0{,}3906$ |\n\nSomme : $1 + 0{,}6944 + 0{,}5102 + 0{,}3906 \\approx 2{,}5952$.\n\n$P = 1 / 2{,}5952 \\approx 0{,}3853$, soit **38,5 %**.\n\n**Erreur fréquente :** reprendre les fitness $1000/L$ de l'exercice précédent (31,5 %). La formule de fitness a changé, toutes les valeurs changent.\n\n**À retenir :** quand la fitness change, recalcule toutes les fitness et leur somme avant de diviser."
       },
       {
         "intitule": "Probabilité de la tournée de longueur 120.",
@@ -173,7 +183,8 @@
         "tolerance": 0.1,
         "refuses": [
           "26.3"
-        ]
+        ],
+        "explication": "**Règle :** $P(i) = \\dfrac{f_i}{\\sum_j f_j}$ avec $f = 10^4/L^2$ et la somme $\\approx 2{,}5952$ trouvée à la question précédente.\n\n**Pas à pas :**\n\n1. $120^2 = 14\\,400$.\n2. $f = 10\\,000 / 14\\,400 \\approx 0{,}6944$.\n3. $P = 0{,}6944 / 2{,}5952 \\approx 0{,}2676$, soit **26,8 %**.\n\n**Erreurs fréquentes :** répondre 26,3 % (valeur avec $1000/L$), ou oublier le carré : $10^4/120 \\approx 83{,}3$ n'est pas la bonne fitness.\n\n**À retenir :** $L^2$ d'abord, puis $10^4$ divisé par ce carré, puis division par la somme."
       },
       {
         "intitule": "Probabilité de la tournée de longueur 140.",
@@ -182,7 +193,8 @@
         "tolerance": 0.1,
         "refuses": [
           "22.5"
-        ]
+        ],
+        "explication": "**Règle :** même formule, même somme $\\approx 2{,}5952$.\n\n**Pas à pas :**\n\n1. $140^2 = 19\\,600$.\n2. $f = 10\\,000 / 19\\,600 \\approx 0{,}5102$.\n3. $P = 0{,}5102 / 2{,}5952 \\approx 0{,}1966$, soit **19,7 %**.\n\nAvec $1000/L$, cette tournée avait 22,5 % : elle perd environ 3 points.\n\n**Erreur fréquente :** répondre 22,5 % en reprenant l'ancienne fitness.\n\n**À retenir :** une fitness qui pénalise plus fort les longues tournées fait baisser leur part de roue."
       },
       {
         "intitule": "Probabilité de la tournée de longueur 160.",
@@ -191,7 +203,8 @@
         "tolerance": 0.1,
         "refuses": [
           "19.7"
-        ]
+        ],
+        "explication": "**Règle :** même formule, même somme $\\approx 2{,}5952$.\n\n**Pas à pas :**\n\n1. $160^2 = 25\\,600$.\n2. $f = 10\\,000 / 25\\,600 \\approx 0{,}3906$.\n3. $P = 0{,}3906 / 2{,}5952 \\approx 0{,}1505$, soit **15,1 %**.\n\nVérification : $38{,}5 + 26{,}8 + 19{,}7 + 15{,}1 = 100{,}1$, soit 100 aux arrondis près.\n\n**Erreur fréquente :** répondre 19,7 % (la valeur de cette tournée avec $1000/L$).\n\n**À retenir :** vérifie toujours que les probabilités font environ 100 % au total."
       },
       {
         "intitule": "Par rapport à $f = 1000/L$, la pression de sélection a…",
@@ -201,7 +214,8 @@
           "pas changé",
           "augmenté"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** la **pression de sélection** mesure à quel point on favorise les meilleurs. Elle augmente si les meilleurs gagnent des chances et les pires en perdent.\n\n**Pas à pas :** on compare les deux roulettes.\n\n| Tournée | Avec $1000/L$ | Avec $10^4/L^2$ | Évolution |\n|---|---|---|---|\n| 100 (meilleure) | 31,5 % | 38,5 % | monte |\n| 120 | 26,3 % | 26,8 % | stable |\n| 140 | 22,5 % | 19,7 % | baisse |\n| 160 (pire) | 19,7 % | 15,1 % | baisse |\n\nLa meilleure monte, les pires baissent : la pression a **augmenté**.\n\n**Les autres réponses :** « diminué » dirait l'inverse des chiffres (la meilleure aurait moins de chances) ; « pas changé » est faux, toutes les probabilités ont bougé.\n\n**À retenir :** la meilleure gagne des points et la pire en perd → pression plus forte."
       },
       {
         "intitule": "Dans une population de 4, probabilité (en %) que la meilleure gagne un tournoi à $k = 2$.",
@@ -215,12 +229,14 @@
         "refuses": [
           "50",
           "25"
-        ]
+        ],
+        "explication": "**Règle :** dans un tournoi à $k$ tirages avec remise, le meilleur gagne s'il est tiré au moins une fois : $P = 1 - \\left(\\frac{N-1}{N}\\right)^k$.\n\n**Pas à pas :** $N = 4$, $k = 2$.\n\n1. Ne pas tirer la meilleure à un tirage : 3 chances sur 4, soit $3/4 = 0{,}75$.\n2. Ne la tirer à aucun des 2 tirages : $0{,}75 \\times 0{,}75 = 0{,}5625$.\n3. Elle gagne dans tous les autres cas : $1 - 0{,}5625 = 0{,}4375$.\n4. En pourcentage : **43,75 %**.\n\n**Erreurs fréquentes :** répondre $2/4 = 50$ % (ce serait vrai sans remise, avec deux individus forcément différents ; ici on peut tirer deux fois le même) ; répondre 25 % ($1/4$, un seul tirage).\n\n**À retenir :** « au moins une fois » = $1 -$ « jamais », et « jamais » = $\\left(\\frac{N-1}{N}\\right)^k$."
       },
       {
         "intitule": "Pourquoi ne pas sélectionner les deux meilleures tournées à coup sûr ?",
         "type": "auto",
-        "reponse": "Parce que la diversité s'effondrerait : la population **convergerait prématurément** vers un optimum local, le même écueil que la descente pure, mais à l'échelle d'une population."
+        "reponse": "Parce que la diversité s'effondrerait : la population **convergerait prématurément** vers un optimum local, le même écueil que la descente pure, mais à l'échelle d'une population.",
+        "explication": "Une bonne réponse contient deux idées, dans cet ordre :\n\n1. **La cause :** si on prend à coup sûr les deux meilleures comme parents, tous les enfants sont fabriqués à partir des **deux mêmes** tournées. Après quelques générations, toute la population leur ressemble : la **diversité disparaît** (une « armée de clones »).\n2. **La conséquence :** la population **converge prématurément** vers un optimum local. Elle ne peut plus en sortir, car les croisements entre clones ne produisent que des clones. C'est le même défaut qu'une descente pure, mais pour toute une population.\n\nTu peux ajouter que c'est pour cela qu'on utilise une sélection **douce** (roulette ou tournoi), qui laisse une chance aux individus moins bons.\n\n**Erreurs fréquentes :** parler de « dérive génétique » (elle vient du hasard dans une petite population, pas d'une sélection trop dure) ; ou dire seulement « ce n'est pas aléatoire » sans expliquer la perte de diversité.\n\n**À retenir :** sélection à coup sûr des meilleurs → perte de diversité → convergence prématurée."
       }
     ],
     "indices": [
@@ -243,7 +259,8 @@
         "refuses": [
           "20",
           "10"
-        ]
+        ],
+        "explication": "**Règle :** $P(\\text{le meilleur gagne}) = 1 - \\left(\\frac{N-1}{N}\\right)^k$ : on calcule d'abord la probabilité de ne **jamais** tirer le meilleur, puis on prend le contraire.\n\n**Pas à pas :** $N = 10$, $k = 2$.\n\n1. Ne pas tirer le meilleur à un tirage : $\\frac{9}{10} = 0{,}9$.\n2. Ne pas le tirer en 2 tirages : $0{,}9^2 = 0{,}81$.\n3. Le meilleur gagne : $1 - 0{,}81 = 0{,}19$, soit **19 %**.\n\n**Erreurs fréquentes :** répondre $2/10 = 20$ % : on oublie qu'avec remise on peut tirer deux fois le même individu (si c'est un autre que le meilleur, le meilleur a raté sa chance) ; répondre 10 % correspond à un seul tirage ($k = 1$).\n\n**À retenir :** $1 - 0{,}9^k$ pour $N = 10$."
       },
       {
         "intitule": "$N = 10$, $k = 4$.",
@@ -256,7 +273,8 @@
         ],
         "refuses": [
           "40"
-        ]
+        ],
+        "explication": "**Règle :** même formule $1 - \\left(\\frac{N-1}{N}\\right)^k$.\n\n**Pas à pas :** $N = 10$, $k = 4$.\n\n1. $\\frac{N-1}{N} = 0{,}9$.\n2. $0{,}9^4 = 0{,}9 \\times 0{,}9 \\times 0{,}9 \\times 0{,}9 = 0{,}81 \\times 0{,}81 = 0{,}6561$.\n3. $1 - 0{,}6561 = 0{,}3439$, soit **34,4 %**.\n\n**Erreur fréquente :** répondre $4/10 = 40$ %, ce qui suppose 4 individus tous différents (tirage sans remise).\n\n**À retenir :** calcule la puissance pas à pas ($0{,}9^4 = 0{,}81^2$)."
       },
       {
         "intitule": "$N = 10$, $k = 8$.",
@@ -268,7 +286,8 @@
         ],
         "refuses": [
           "80"
-        ]
+        ],
+        "explication": "**Règle :** même formule $1 - \\left(\\frac{N-1}{N}\\right)^k$.\n\n**Pas à pas :** $N = 10$, $k = 8$.\n\n1. $0{,}9^8 = (0{,}9^4)^2 = 0{,}6561^2 \\approx 0{,}4305$.\n2. $1 - 0{,}4305 \\approx 0{,}5695$, soit **57,0 %**.\n\nMême avec 8 tirages dans une population de 10, le meilleur n'est pas sûr de gagner : il y a environ 43 % de chances qu'il ne soit jamais tiré, à cause des répétitions.\n\n**Erreur fréquente :** répondre $8/10 = 80$ % (tirages sans remise).\n\n**À retenir :** avec remise, la probabilité de gagner augmente avec $k$ mais n'atteint jamais 100 %."
       },
       {
         "intitule": "$N = 4$, $k = 3$.",
@@ -282,7 +301,8 @@
         "refuses": [
           "75",
           "42.2"
-        ]
+        ],
+        "explication": "**Règle :** même formule, avec cette fois $N = 4$.\n\n**Pas à pas :** $N = 4$, $k = 3$.\n\n1. $\\frac{N-1}{N} = \\frac{3}{4} = 0{,}75$.\n2. $0{,}75^3 = 0{,}75 \\times 0{,}75 \\times 0{,}75 = 0{,}5625 \\times 0{,}75 \\approx 0{,}4219$.\n3. $1 - 0{,}4219 \\approx 0{,}5781$, soit **57,8 %**.\n\n**Erreurs fréquentes :** répondre 42,2 % : c'est la probabilité de **ne jamais** le tirer, il manque l'étape « $1 - \\dots$ » ; répondre $3/4 = 75$ % (tirages sans remise).\n\n**À retenir :** n'oublie jamais la dernière étape : $1 -$ « jamais tiré »."
       },
       {
         "intitule": "Quel $k$ est le compromis habituel ?",
@@ -292,7 +312,8 @@
           "1",
           "Égal à la taille de la population"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** $k$ règle la pression de sélection : $k = 1$ ne favorise personne, un $k$ très grand fait gagner le meilleur presque à chaque fois.\n\n**Pas à pas :** on regarde chaque choix.\n\n| $k$ | Effet |\n|---|---|\n| 1 | tirage au hasard : aucune pression |\n| 2 ou 3 | les meilleurs sont favorisés, les autres gardent une chance |\n| égal à la taille de la population | le meilleur gagne environ 2 fois sur 3 ($1 - 0{,}9^{10} \\approx 65$ % pour $N = k = 10$) et le gagnant est presque toujours un des tout meilleurs : pression très forte |\n\nLe compromis habituel est donc **2 ou 3**.\n\n**Les autres réponses :** $k = 1$ revient à choisir au hasard, la fitness ne sert à rien ; $k$ égal à la taille de la population donne une pression très forte, qui fait perdre la diversité.\n\n**À retenir :** tournoi : $k = 2$ ou $3$ en pratique."
       }
     ],
     "indices": [
@@ -316,7 +337,8 @@
         "refuses": [
           "11010010",
           "01100010"
-        ]
+        ],
+        "explication": "**Règle :** croisement un point : on coupe les deux parents au **même** endroit, puis l'enfant 1 prend le début du parent 1 et la fin du parent 2.\n\n**Pas à pas :**\n\n1. On coupe après le 4ᵉ bit : parent 1 = `1101|0010`, parent 2 = `0110|1100`.\n2. Début du parent 1 : `1101`.\n3. Fin du parent 2 : `1100`.\n4. Enfant 1 = `1101` + `1100` = `11011100` (8 bits, comme les parents).\n\n**Erreurs fréquentes :** recopier le parent 1 sans croiser (`11010010`), ou donner l'enfant 2 (`01100010`) en inversant les rôles.\n\n**À retenir :** enfant 1 = début du parent 1 + fin du parent 2."
       },
       {
         "intitule": "Enfant 2 (début du parent 2, fin du parent 1).",
@@ -327,7 +349,8 @@
         "refuses": [
           "01101100",
           "11011100"
-        ]
+        ],
+        "explication": "**Règle :** l'enfant 2 est le symétrique de l'enfant 1 : début du parent 2, fin du parent 1.\n\n**Pas à pas :**\n\n1. Début du parent 2 (4 premiers bits de `01101100`) : `0110`.\n2. Fin du parent 1 (4 derniers bits de `11010010`) : `0010`.\n3. Enfant 2 = `0110` + `0010` = `01100010`.\n\n**Erreurs fréquentes :** recopier le parent 2 (`01101100`), ou redonner l'enfant 1 (`11011100`).\n\n**À retenir :** enfant 2 = début du parent 2 + fin du parent 1 ; les deux enfants se partagent tous les morceaux."
       },
       {
         "intitule": "Peut-on utiliser ce croisement sur des tournées codées par permutation ?",
@@ -336,7 +359,8 @@
           "Non, il créerait des doublons",
           "Oui, sans problème"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une tournée codée par permutation doit contenir chaque ville **exactement une fois**.\n\n**Pas à pas :** on essaie sur deux tournées de 4 villes : `1 2 3 4` et `4 3 2 1`, coupure après la 2ᵉ ville.\n\n- Enfant 1 : `1 2` + `2 1` = `1 2 2 1`.\n- Les villes 1 et 2 sont en double, les villes 3 et 4 ont disparu : ce n'est plus une tournée.\n\nLe croisement un point n'est donc pas adapté aux permutations : on utilise l'OX, qui ne complète qu'avec les villes manquantes.\n\n**L'autre réponse :** « Oui, sans problème » est faux, l'exemple ci-dessus montre un enfant invalide.\n\n**À retenir :** le croisement doit respecter le codage ; pour des permutations, on prend l'OX."
       }
     ],
     "indices": [
@@ -371,7 +395,8 @@
         "refuses": [
           "(4, 2, 6, 1, 5, 3, 8, 7)",
           "(3, 7, 6, 1, 5, 2, 4, 8)"
-        ]
+        ],
+        "explication": "**Règle (OX, variante du cours) :** on recopie le segment du parent 1 à sa place, puis on écrit les villes manquantes dans l'ordre du parent 2 (lu depuis le début), en commençant par la case qui suit le segment et en revenant au début.\n\n**Pas à pas :**\n\n1. Segment (positions 3 à 5) du parent 1 `4 2 6 1 5 3 8 7` : `6 1 5`. Enfant provisoire : `_ _ 6 1 5 _ _ _`.\n2. Parent 2 `1 3 5 7 2 4 6 8` lu dans l'ordre, sans les villes 6, 1, 5 :\n\n| Ville | 1 | 3 | 5 | 7 | 2 | 4 | 6 | 8 |\n|---|---|---|---|---|---|---|---|---|\n| Gardée ? | non | oui | non | oui | oui | oui | non | oui |\n\nListe : `3 7 2 4 8`.\n\n3. Remplissage : position 6 ← 3, position 7 ← 7, position 8 ← 2, puis retour au début : position 1 ← 4, position 2 ← 8.\n4. Enfant : `(4, 8, 6, 1, 5, 3, 7, 2)`. Chaque ville de 1 à 8 apparaît une fois.\n\n**Erreurs fréquentes :** commencer à remplir en position 1 (on obtiendrait `(3, 7, 6, 1, 5, 2, 4, 8)`) ; ou recopier le parent 1 tel quel.\n\n**À retenir :** segment en place, villes manquantes dans l'ordre du parent 2, remplissage à partir de la case après le segment."
       },
       {
         "intitule": "Parent 1 = `1 2 3 4 5 6 7 8`, parent 2 = `8 7 6 5 4 3 2 1`, segment = positions 3 à 6. Enfant ?",
@@ -392,7 +417,8 @@
         "refuses": [
           "(8, 7, 3, 4, 5, 6, 2, 1)",
           "(1, 2, 3, 4, 5, 6, 7, 8)"
-        ]
+        ],
+        "explication": "**Règle :** même méthode OX : segment du parent 1, puis villes manquantes dans l'ordre du parent 2, à partir de la case qui suit le segment.\n\n**Pas à pas :**\n\n1. Segment (positions 3 à 6) du parent 1 `1 2 3 4 5 6 7 8` : `3 4 5 6`. Enfant provisoire : `_ _ 3 4 5 6 _ _`.\n2. Parent 2 `8 7 6 5 4 3 2 1` sans les villes 3, 4, 5, 6 : il reste `8 7 2 1`, dans cet ordre.\n3. Remplissage : position 7 ← 8, position 8 ← 7, puis retour au début : position 1 ← 2, position 2 ← 1.\n4. Enfant : `(2, 1, 3, 4, 5, 6, 8, 7)`.\n\n**Erreurs fréquentes :** remplir les cases vides dans l'ordre 1, 2, 7, 8, ce qui donne `(8, 7, 3, 4, 5, 6, 2, 1)` ; ou recopier le parent 1.\n\n**À retenir :** après le segment d'abord, le début ensuite."
       },
       {
         "intitule": "L'enfant d'un croisement OX est…",
@@ -402,7 +428,8 @@
           "parfois une tournée avec doublons",
           "toujours identique au parent 1"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** l'OX ne place que les villes **qui manquent** après la copie du segment, chacune une seule fois.\n\n**Pas à pas :**\n\n1. Le segment contient des villes différentes (c'est un morceau d'une permutation).\n2. On ajoute ensuite chaque ville absente du segment, une seule fois, dans les cases vides.\n3. À la fin, chaque ville apparaît exactement une fois : l'enfant est une permutation valide.\n\nDans la question 1, l'enfant `(4, 8, 6, 1, 5, 3, 7, 2)` contient bien 1, 2, …, 8 une seule fois.\n\n**Les autres réponses :** « parfois une tournée avec doublons » est le défaut du croisement naïf, justement corrigé par l'OX ; « toujours identique au parent 1 » est faux, seul le segment vient du parent 1, le reste suit l'ordre du parent 2 (l'enfant de la question 1 diffère du parent 1).\n\n**À retenir :** l'OX donne toujours une permutation valide."
       }
     ],
     "indices": [
@@ -436,7 +463,8 @@
         "refuses": [
           "(4, 8, 6, 1, 5, 3, 7, 2)",
           "(8, 4, 6, 1, 5, 3, 7, 2)"
-        ]
+        ],
+        "explication": "**Règle :** une mutation par échange prend deux positions et échange les villes qui s'y trouvent ; tout le reste ne bouge pas.\n\n**Pas à pas :** tournée `4 8 6 1 5 3 7 2`.\n\n| Position | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n|---|---|---|---|---|---|---|---|---|\n| Ville | 4 | 8 | 6 | 1 | 5 | 3 | 7 | 2 |\n\n1. Position 2 : ville 8. Position 7 : ville 7.\n2. On les échange : la position 2 reçoit 7, la position 7 reçoit 8.\n3. Résultat : `(4, 7, 6, 1, 5, 3, 8, 2)`. C'est toujours une permutation.\n\n**Erreurs fréquentes :** échanger les positions 1 et 2 (`(8, 4, 6, …)`), ou ne rien changer.\n\n**À retenir :** numérote les positions, repère les deux villes, échange-les."
       },
       {
         "intitule": "On inverse le 3ᵉ bit du chromosome `10110`. Résultat ?",
@@ -447,7 +475,8 @@
         "refuses": [
           "10110",
           "10111"
-        ]
+        ],
+        "explication": "**Règle :** une mutation par inversion change un seul bit : `0` devient `1`, `1` devient `0`.\n\n**Pas à pas :** chromosome `10110`, on compte à partir de la gauche.\n\n| Position | 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|---|\n| Bit | 1 | 0 | 1 | 1 | 0 |\n\nLe 3ᵉ bit vaut `1`, il devient `0` : `10010`.\n\n**Erreurs fréquentes :** inverser le dernier bit (`10111`), ou recopier le chromosome sans le changer (`10110`).\n\n**À retenir :** compte les positions depuis la gauche, puis inverse seulement le bit demandé."
       },
       {
         "intitule": "Avec $p_m = 0{,}01$, combien d'individus mutent en moyenne dans une population de 200 ?",
@@ -456,7 +485,8 @@
         "refuses": [
           "20",
           "0.01"
-        ]
+        ],
+        "explication": "**Règle :** si chaque individu mute avec la probabilité $p_m$, le nombre **moyen** de mutants dans une population de taille $N$ est $N \\times p_m$.\n\n**Pas à pas :** $N = 200$ et $p_m = 0{,}01$ (soit 1 %).\n\n$200 \\times 0{,}01 = 2$ : en moyenne, **2** individus mutent par génération (une génération peut en avoir 1 ou 3, mais la moyenne est 2).\n\n**Erreurs fréquentes :** répondre $0{,}01$ (c'est la probabilité, pas un nombre d'individus) ; répondre 20 (on a pris 10 % au lieu de 1 %).\n\n**À retenir :** nombre moyen = taille × probabilité."
       },
       {
         "intitule": "Le rôle principal de la mutation est…",
@@ -466,7 +496,8 @@
           "de choisir les parents",
           "de maintenir la diversité et réintroduire des gènes perdus"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** la mutation est **aveugle** et **rare** : elle ne cherche pas à améliorer un individu précis. Son rôle est de **maintenir la diversité** et de faire réapparaître des gènes perdus.\n\n**Pas à pas :** imagine que tous les individus ont un `0` en 3ᵉ position. Aucun croisement ne pourra jamais fabriquer un `1` à cet endroit, car aucun parent n'en a. Seule une mutation peut réintroduire ce `1`.\n\n**Les autres réponses :** « améliorer directement le meilleur individu » est faux, la mutation est au hasard et peut aussi abîmer un individu ; « choisir les parents » est le rôle de la **sélection**.\n\n**À retenir :** mutation = diversité et gènes perdus, pas amélioration ciblée."
       }
     ],
     "indices": [
@@ -488,7 +519,8 @@
         "refuses": [
           "100",
           "0.01"
-        ]
+        ],
+        "explication": "**Règle :** $f = c_{\\max} - c$ : on retire le coût de l'individu au plus grand coût de la population. Le moins cher obtient la plus grande fitness.\n\n**Pas à pas :** $c_{\\max} = 160$ et la tournée coûte $c = 100$.\n\n$f = 160 - 100 = 60$.\n\n**Erreurs fréquentes :** répondre 100 (c'est le coût, pas la fitness) ; répondre $0{,}01$ (c'est $1/c$, l'autre formule de fitness).\n\n**À retenir :** avec $c_{\\max} - c$, fitness = écart entre le pire coût et le coût de l'individu."
       },
       {
         "intitule": "Probabilité de sélection de la tournée de coût 100.",
@@ -498,7 +530,8 @@
         "refuses": [
           "31.5",
           "60"
-        ]
+        ],
+        "explication": "**Règle :** roulette : $P(i) = \\dfrac{f_i}{\\sum_j f_j}$, avec ici $f = 160 - c$.\n\n**Pas à pas :**\n\n| Coût $c$ | Fitness $160 - c$ |\n|---|---|\n| 100 | 60 |\n| 120 | 40 |\n| 140 | 20 |\n| 160 | 0 |\n\nSomme : $60 + 40 + 20 + 0 = 120$.\n\n$P = 60 / 120 = 0{,}5$, soit **50 %**.\n\n**Erreurs fréquentes :** reprendre le 31,5 % de la fitness $1000/L$ (autre formule) ; répondre 60 (la fitness, pas la probabilité).\n\n**À retenir :** calcule toutes les fitness, leur somme, puis divise."
       },
       {
         "intitule": "Probabilité de sélection de la tournée de coût 140.",
@@ -512,7 +545,8 @@
         "refuses": [
           "22.5",
           "20"
-        ]
+        ],
+        "explication": "**Règle :** même roulette, somme des fitness = 120.\n\n**Pas à pas :**\n\n1. Fitness : $160 - 140 = 20$.\n2. $P = 20 / 120 \\approx 0{,}1667$, soit **16,7 %**.\n\n**Erreurs fréquentes :** diviser par 100 au lieu de la somme 120 (20 %) ; reprendre les 22,5 % de la fitness $1000/L$.\n\n**À retenir :** on divise toujours par la somme de **toutes** les fitness."
       },
       {
         "intitule": "Probabilité de sélection de la tournée de coût 160.",
@@ -522,7 +556,8 @@
         "refuses": [
           "19.7",
           "25"
-        ]
+        ],
+        "explication": "**Règle :** même roulette ; une fitness nulle donne une part de roue nulle.\n\n**Pas à pas :**\n\n1. Fitness : $160 - 160 = 0$.\n2. $P = 0 / 120 = 0$ : **0 %**.\n\nC'est toujours le cas avec cette formule : le pire individu a justement le coût $c_{\\max}$, donc sa fitness vaut 0 et il n'est jamais tiré.\n\n**Erreurs fréquentes :** répondre 19,7 % (la valeur avec $1000/L$) ou 25 % (tirage uniforme).\n\n**À retenir :** avec $c_{\\max} - c$, le pire individu a toujours 0 % à la roulette."
       },
       {
         "intitule": "Quel est le défaut de cette fitness ici ?",
@@ -532,7 +567,8 @@
           "Elle ne change rien",
           "La pire tournée n'a plus aucune chance : la pression est plus forte"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** une fitness qui donne plus de chances aux meilleurs et moins aux pires **augmente** la pression de sélection, et donc fait baisser la diversité.\n\n**Pas à pas :** on compare avec la roulette $1000/L$.\n\n| Tournée | Avec $1000/L$ | Avec $c_{\\max} - c$ |\n|---|---|---|\n| 100 | 31,5 % | 50 % |\n| 160 | 19,7 % | 0 % |\n\nLa meilleure passe de 31,5 % à 50 % et la pire de 19,7 % à 0 % : elle n'a **plus aucune chance**, la pression est plus forte.\n\n**Les autres réponses :** « elle favorise la pire tournée » est l'inverse (la pire tombe à 0 %) ; « elle ne change rien » est contredit par les chiffres.\n\n**À retenir :** $c_{\\max} - c$ élimine le pire individu : forte pression, moins de diversité."
       }
     ],
     "indices": [
@@ -554,7 +590,8 @@
         "refuses": [
           "52",
           "15"
-        ]
+        ],
+        "explication": "**Règle :** chaque bit correspond à un objet, dans l'ordre A, B, C, D, E. Un `1` veut dire « objet pris ». Le poids de l'individu est la somme des poids des objets pris.\n\n**Pas à pas :** individu `10101`.\n\n| Objet | A | B | C | D | E |\n|---|---|---|---|---|---|\n| Bit | 1 | 0 | 1 | 0 | 1 |\n| Poids si pris | 4 | — | 7 | — | 6 |\n\nPoids : $4 + 7 + 6 = 17$ kg.\n\n**Erreurs fréquentes :** additionner les **valeurs** ($10 + 20 + 22 = 52$) au lieu des poids ; répondre 15 (c'est la capacité, pas le poids).\n\n**À retenir :** associe chaque bit à son objet, puis additionne les poids des `1`."
       },
       {
         "intitule": "L'individu `10101` est-il réalisable ?",
@@ -563,7 +600,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un individu est **réalisable** s'il respecte toutes les contraintes, ici : poids ≤ capacité (15 kg).\n\n**Pas à pas :** le poids de `10101` vaut 17 kg (question précédente). On compare : $17 > 15$. La contrainte est violée de $17 - 15 = 2$ kg : l'individu **n'est pas** réalisable.\n\n**Erreur fréquente :** répondre « Oui » parce que la valeur (52) est grande. La valeur ne compte pas pour la réalisabilité, seul le poids compte.\n\n**À retenir :** réalisable = toutes les contraintes respectées, quelle que soit la valeur."
       },
       {
         "intitule": "On **pénalise** : fitness = valeur − 10 × (kg en trop). Fitness de `10101` ?",
@@ -572,7 +610,8 @@
         "refuses": [
           "52",
           "42"
-        ]
+        ],
+        "explication": "**Règle :** pénaliser = garder l'individu mais baisser sa fitness selon la violation. Ici : fitness = valeur − 10 × (kg en trop).\n\n**Pas à pas :**\n\n1. Valeur de `10101` (A, C, E) : $10 + 20 + 22 = 52$.\n2. Kg en trop : $17 - 15 = 2$.\n3. Pénalité : $10 \\times 2 = 20$.\n4. Fitness : $52 - 20 = 32$.\n\n**Erreurs fréquentes :** oublier la pénalité (52) ; ne retirer que 10 (42), en oubliant de multiplier par le nombre de kg en trop.\n\n**À retenir :** pénalité = coefficient × importance de la violation, retirée de la valeur."
       },
       {
         "intitule": "On **répare** `10101` en retirant l'objet C. Valeur de l'individu obtenu ?",
@@ -581,7 +620,8 @@
         "refuses": [
           "52",
           "42"
-        ]
+        ],
+        "explication": "**Règle :** réparer = modifier l'individu pour qu'il respecte la contrainte, ici en retirant un objet.\n\n**Pas à pas :** on retire C de `10101`, ce qui donne `10001` (A et E).\n\n1. Poids : $4 + 6 = 10$ kg, et $10 \\le 15$ : réalisable.\n2. Valeur : $10 + 22 = 32$.\n\nOn retrouve 32, comme avec la pénalité, mais c'est une coïncidence des données. La différence est importante : ici l'individu respecte **vraiment** la capacité, alors que l'individu pénalisé restait trop lourd.\n\n**Erreurs fréquentes :** garder la valeur de départ (52) ; retirer l'objet E au lieu de C.\n\n**À retenir :** réparer change l'individu ; pénaliser change seulement sa note."
       },
       {
         "intitule": "Valeur de l'individu `11001`.",
@@ -590,7 +630,8 @@
         "refuses": [
           "35",
           "42"
-        ]
+        ],
+        "explication": "**Règle :** même lecture des bits ; on vérifie le poids, puis on additionne les valeurs.\n\n**Pas à pas :** individu `11001`.\n\n| Objet | A | B | C | D | E |\n|---|---|---|---|---|---|\n| Bit | 1 | 1 | 0 | 0 | 1 |\n| Poids | 4 | 5 | — | — | 6 |\n| Valeur | 10 | 13 | — | — | 22 |\n\n1. Poids : $4 + 5 + 6 = 15$ kg, exactement la capacité : $15 \\le 15$, réalisable.\n2. Valeur : $10 + 13 + 22 = 45$.\n\n**Erreurs fréquentes :** lire les bits dans le désordre et additionner d'autres objets ; croire qu'un poids égal à la capacité est interdit (la contrainte est « ≤ »).\n\n**À retenir :** lis les bits dans l'ordre des objets et additionne les valeurs des `1`."
       }
     ],
     "indices": [
@@ -612,7 +653,8 @@
           "Dérive génétique",
           "Convergence prématurée"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** la **dérive génétique** est une perte de diversité due au **hasard** des tirages, surtout dans une **petite** population. La **convergence prématurée** vient d'une sélection **trop dure**.\n\n**Pas à pas :** on pose les deux questions.\n\n1. La sélection est-elle trop dure ? Non : c'est une roulette douce.\n2. La population est-elle petite ? Oui : 8 individus seulement. Les gènes ont disparu « par hasard ».\n\nC'est donc une **dérive génétique**.\n\n**L'autre réponse :** la convergence prématurée demande une sélection trop dure, ce qui n'est pas le cas ici.\n\n**À retenir :** petite population + hasard → dérive génétique."
       },
       {
         "intitule": "Une population de 200 individus, mais on ne garde que les 5 % meilleurs comme parents : tout le monde ressemble vite au meilleur.",
@@ -621,7 +663,8 @@
           "Dérive génétique",
           "Convergence prématurée"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une sélection **trop dure** (garder les N % meilleurs, ce qu'on appelle une troncature) recopie le meilleur partout : c'est la **convergence prématurée**.\n\n**Pas à pas :**\n\n1. La sélection est-elle trop dure ? Oui : on ne garde que 5 % des individus, soit 10 parents sur 200.\n2. La population est grande (200), donc le hasard n'est pas en cause.\n3. « Tout le monde ressemble vite au meilleur » : c'est l'armée de clones de la convergence prématurée.\n\n**L'autre réponse :** la dérive génétique vient du hasard dans une petite population ; ici la population est grande et la cause est la sélection.\n\n**À retenir :** troncature aux meilleurs → convergence prématurée, même dans une grande population."
       },
       {
         "intitule": "Remède à la dérive génétique ?",
@@ -631,7 +674,8 @@
           "Augmenter la taille de la population",
           "Garder seulement le meilleur"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** la dérive vient du hasard dans une petite population ; le remède est d'**augmenter la taille de la population**.\n\n**Pas à pas :** dans une population de 8, une variante portée par 1 individu peut disparaître si cet individu n'est pas tiré une seule fois. Dans une population de 200, la même proportion représente 25 individus : il faudrait qu'aucun des 25 ne soit tiré, ce qui est très peu probable.\n\n**Les autres réponses :** supprimer les mutations enlèverait la seule source de gènes nouveaux, la diversité baisserait encore ; garder seulement le meilleur détruirait toute la diversité.\n\n**À retenir :** contre la dérive, agrandis la population."
       },
       {
         "intitule": "Remède à la convergence prématurée ?",
@@ -641,7 +685,8 @@
           "Réduire la population",
           "Adoucir la sélection (roulette, tournoi avec petit $k$)"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** la convergence prématurée vient d'une sélection trop dure ; le remède est d'**adoucir la sélection** (roulette, ou tournoi avec un petit $k$ comme 2 ou 3).\n\n**Pas à pas :** une sélection douce laisse une chance aux individus moins bons. Ils gardent des gènes différents du meilleur, que les croisements pourront réutiliser : la diversité se maintient.\n\n**Les autres réponses :** garder les 1 % meilleurs est une troncature **encore plus dure**, qui aggrave le problème ; réduire la population ajouterait en plus de la dérive génétique.\n\n**À retenir :** contre la convergence prématurée, adoucis la sélection."
       },
       {
         "intitule": "On veut ne jamais perdre le meilleur individu sans tuer la diversité. On utilise…",
@@ -651,7 +696,8 @@
           "la troncature aux N % meilleurs",
           "une mutation de 50 %"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** l'**élitisme** recopie d'office **quelques** meilleurs individus dans la génération suivante ; les autres places sont remplies normalement.\n\n**Pas à pas :**\n\n1. Le meilleur est recopié tel quel : il ne peut plus être perdu par malchance.\n2. Les autres individus sont fabriqués par sélection, croisement et mutation : la population continue d'explorer et garde sa diversité.\n\nLes deux exigences de la question (ne jamais perdre le meilleur, ne pas tuer la diversité) sont donc remplies.\n\n**Les autres réponses :** la troncature aux N % meilleurs détruit la diversité (convergence prématurée) ; une mutation de 50 % casserait la moitié des bons individus à chaque génération.\n\n**À retenir :** élitisme = quelques meilleurs recopiés, le reste évolue."
       }
     ],
     "indices": [

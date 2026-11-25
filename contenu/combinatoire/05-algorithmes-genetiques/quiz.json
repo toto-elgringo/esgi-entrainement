@@ -8,7 +8,7 @@
       "De la physique quantique"
     ],
     "reponse": 0,
-    "explication": "Les mieux adaptés se reproduisent davantage, leurs enfants combinent leurs caractères avec quelques mutations : la population s'adapte."
+    "explication": "**Règle :** chaque métaheuristique copie un phénomène naturel. L'algorithme génétique copie l'**évolution des espèces** décrite par Darwin : les mieux adaptés se reproduisent davantage.\n\n**Pas à pas :** on retrouve chaque ingrédient de l'évolution dans l'AG.\n\n| Dans la nature | Dans l'AG |\n|---|---|\n| un être vivant | un individu (une solution) |\n| être bien adapté | avoir une bonne fitness |\n| se reproduire | croisement de deux parents |\n| petite erreur de copie de l'ADN | mutation |\n\n**Les autres réponses :** le refroidissement des métaux, c'est l'idée du **recuit simulé** (chapitre précédent) ; les colonies de fourmis, c'est une autre métaheuristique (les fourmis laissent des traces sur les bons chemins) ; la physique quantique n'a rien à voir ici.\n\n**À retenir :** génétique = Darwin (sélection naturelle) ; recuit = métal qui refroidit ; fourmis = traces de phéromones."
   },
   {
     "question": "Quelle est la grande différence entre un algorithme génétique et le recuit simulé ?",
@@ -19,7 +19,7 @@
       "L'AG n'a pas de fonction de coût"
     ],
     "reponse": 0,
-    "explication": "Recuit et recherche locale suivent une seule solution ; l'AG manipule toute une population et la fait évoluer."
+    "explication": "**Règle :** le recuit simulé (comme la recherche locale) suit **une seule** solution qu'il déplace pas à pas. L'algorithme génétique manipule une **population** entière de solutions qui évolue génération après génération.\n\n**Pas à pas :** on compare les deux méthodes point par point.\n\n| | Recuit simulé | Algorithme génétique |\n|---|---|---|\n| Nombre de solutions suivies | une | une population (50 à 200) |\n| Hasard ? | oui (accepter un moins bon voisin) | oui (sélection, croisement, mutation) |\n| Fonction à optimiser ? | oui, un coût | oui, la fitness |\n| Méthode exacte ? | non | non |\n\n**Les autres réponses :** l'AG n'est **pas** une méthode exacte (c'est une métaheuristique, elle ne prouve pas qu'elle a trouvé l'optimum) ; le recuit **utilise** du hasard (c'est même son principe) ; l'AG a bien une fonction à optimiser, la fitness.\n\n**À retenir :** recuit = un randonneur ; AG = une meute (une population)."
   },
   {
     "question": "La fitness d'un individu doit être…",
@@ -30,7 +30,7 @@
       "négative"
     ],
     "reponse": 0,
-    "explication": "Plus un individu est adapté, plus sa fitness est grande. Pour un coût $c$ à minimiser, on prend par exemple $f = 1/c$."
+    "explication": "**Règle :** la fitness mesure la qualité d'un individu : **plus elle est grande, meilleur est l'individu**. Elle se **maximise**.\n\n**Pas à pas :** si le problème est de minimiser un coût $c$ (une longueur de tournée par exemple), on le transforme :\n\n- $f = 1/c$ : une tournée de 50 km donne $f = 0{,}02$, une de 100 km donne $f = 0{,}01$. La plus courte a la plus grande fitness.\n- ou $f = c_{\\max} - c$, avec $c_{\\max}$ le plus grand coût de la population.\n\n**Les autres réponses :** « à minimiser » confond la fitness avec le **coût** ; « toujours égale à 1 » ne permettrait pas de distinguer les individus ; « négative » est faux, la fitness sert de poids pour la roulette, elle doit être positive (ou nulle).\n\n**À retenir :** fitness = à maximiser ; un coût à minimiser se retourne avec $1/c$ ou $c_{\\max} - c$."
   },
   {
     "question": "Dans un algorithme génétique, la mutation sert à…",
@@ -41,7 +41,7 @@
       "trier la population"
     ],
     "reponse": 0,
-    "explication": "La mutation, rare, réintroduit de la diversité. Combiner deux parents, c'est le croisement ; choisir les reproducteurs, c'est la sélection."
+    "explication": "**Règle :** la mutation est une petite modification **rare** d'un seul individu (inverser un bit, échanger deux villes). Son rôle est de **maintenir la diversité** et de réintroduire des gènes perdus.\n\n**Pas à pas :** on associe chaque étape de la boucle à son rôle.\n\n| Étape | Rôle |\n|---|---|\n| Sélection | choisir les individus qui vont se reproduire |\n| Croisement | combiner deux parents en un ou deux enfants |\n| Mutation | perturber un peu un individu, pour la diversité |\n\n**Les autres réponses :** « combiner deux parents » décrit le **croisement** ; « choisir les individus qui vont se reproduire » décrit la **sélection** ; « trier la population » n'est le rôle d'aucun opérateur de l'AG.\n\n**À retenir :** mutation = un seul individu, petite modification rare, pour garder de la diversité."
   },
   {
     "question": "Avec la sélection par **roulette**, la probabilité de choisir un individu est…",
@@ -52,7 +52,7 @@
       "proportionnelle à son coût"
     ],
     "reponse": 0,
-    "explication": "$P(i) = f_i / \\sum_j f_j$ : le meilleur est favori, les autres gardent une chance."
+    "explication": "**Règle :** la roulette donne à chaque individu une part de roue proportionnelle à sa fitness : $P(i) = \\dfrac{f_i}{\\sum_j f_j}$.\n\n**Pas à pas :** trois individus de fitness 6, 3 et 1. La somme vaut $6 + 3 + 1 = 10$.\n\n- Le premier est tiré avec $6/10 = 60$ %.\n- Le deuxième avec $3/10 = 30$ %.\n- Le troisième avec $1/10 = 10$ % : il est défavorisé, mais pas éliminé.\n\n**Les autres réponses :** « la même pour tous » décrit un tirage uniforme (comme un tournoi à $k = 1$) ; « nulle pour tous sauf le meilleur » serait une sélection brutale qui tuerait la diversité ; « proportionnelle à son coût » favoriserait les **pires** individus (le coût est à minimiser).\n\n**À retenir :** roulette = fitness divisée par la somme des fitness."
   },
   {
     "question": "Dans une sélection par **tournoi**, que se passe-t-il avec $k = 1$ ?",
@@ -63,7 +63,7 @@
       "On garde les 10 % meilleurs"
     ],
     "reponse": 0,
-    "explication": "Un tournoi d'un seul participant choisit un individu au hasard. Plus $k$ est grand, plus le meilleur a de chances de gagner."
+    "explication": "**Règle :** dans un tournoi, on tire $k$ individus au hasard (avec remise) et on garde le **meilleur des $k$**. Plus $k$ est grand, plus le meilleur de la population a de chances de gagner.\n\n**Pas à pas :** avec $k = 1$, on tire **un seul** individu. Il n'a aucun adversaire : il gagne d'office, quel que soit son niveau. Chaque individu a donc la même chance $1/N$ d'être choisi. C'est un tirage uniforme : la fitness ne joue aucun rôle, il n'y a aucune pression de sélection.\n\n**Les autres réponses :** « le meilleur gagne toujours » correspond à un $k$ très grand, pas à $k = 1$ ; « personne n'est sélectionné » est faux, le tournoi désigne toujours un gagnant ; « on garde les 10 % meilleurs » est une sélection par troncature, une autre méthode.\n\n**À retenir :** $k = 1$ : hasard pur ; $k$ grand : le meilleur gagne presque toujours ; $k = 2$ ou $3$ : le compromis."
   },
   {
     "question": "Pourquoi ne pas utiliser un croisement « couper-coller » naïf sur des tournées (permutations) ?",
@@ -74,7 +74,7 @@
       "Il n'utilise pas les parents"
     ],
     "reponse": 0,
-    "explication": "Le codage impose des opérateurs adaptés, comme le croisement OX, qui donne toujours une permutation valide."
+    "explication": "**Règle :** dans une permutation, chaque ville apparaît **exactement une fois**. Un croisement doit garder cette propriété, sinon l'enfant n'est plus une tournée.\n\n**Pas à pas :** parents `1 2 3 4` et `3 4 1 2`, on coupe après la 2ᵉ ville et on échange les fins.\n\n- Enfant 1 : `1 2` + `1 2` = `1 2 1 2`.\n- Les villes 1 et 2 apparaissent deux fois, les villes 3 et 4 ont disparu : ce n'est pas une tournée valide.\n\nLe croisement OX évite ce problème : il recopie un segment d'un parent puis complète seulement avec les villes **manquantes**.\n\n**Les autres réponses :** le problème n'est pas la vitesse (couper-coller est très rapide) ; il ne donne pas toujours le même enfant (il dépend de la coupure) ; il utilise bien les deux parents, mais mal.\n\n**À retenir :** pour des permutations, il faut un croisement qui n'ajoute que les villes manquantes, comme l'OX."
   },
   {
     "question": "Qu'est-ce que la **dérive génétique** ?",
@@ -85,7 +85,7 @@
       "Un croisement raté"
     ],
     "reponse": 0,
-    "explication": "Des variantes disparaissent par hasard d'une génération à l'autre. Remède : augmenter la taille de la population."
+    "explication": "**Règle :** la dérive génétique est la perte de diversité due au **seul hasard** des tirages, d'une génération à l'autre. Elle frappe surtout les **petites** populations.\n\n**Pas à pas :** dans une population de 4 individus, une variante n'est portée que par un seul individu. À chaque génération, on tire les parents au hasard : si ce porteur n'est tiré par malchance aucune fois, la variante disparaît pour toujours, même si elle était utile. Dans une population de 200, la même variante serait portée par beaucoup plus d'individus et aurait peu de risques de disparaître d'un coup.\n\n**Les autres réponses :** « une sélection trop dure » provoque la **convergence prématurée**, un autre phénomène ; une mutation trop fréquente casserait les bons individus, mais ce n'est pas la dérive ; un « croisement raté » n'est pas un phénomène défini dans l'AG.\n\n**À retenir :** dérive = hasard + petite population ; remède : agrandir la population."
   },
   {
     "question": "Garder systématiquement les « 10 % meilleurs » comme reproducteurs risque de provoquer…",
@@ -96,7 +96,7 @@
       "un refroidissement"
     ],
     "reponse": 0,
-    "explication": "Une pression de sélection excessive recopie le meilleur partout : la population devient une armée de clones. Remède : adoucir la sélection."
+    "explication": "**Règle :** une sélection **trop dure** recopie le meilleur partout : la population perd sa diversité et se fige sur un optimum local. C'est la **convergence prématurée**.\n\n**Pas à pas :** sur 100 individus, garder les 10 % meilleurs comme parents, c'est n'utiliser que 10 individus. Leurs enfants se ressemblent, puis à la génération suivante on garde encore les 10 meilleurs parmi ces enfants, etc. En quelques générations, tout le monde ressemble au meilleur : une « armée de clones ». L'algorithme stagne.\n\n**Les autres réponses :** la dérive génétique vient du **hasard** dans une petite population, pas d'une sélection trop dure ; une « explosion de la diversité » est l'inverse de ce qui se passe ; le « refroidissement » appartient au recuit simulé.\n\n**À retenir :** sélection trop dure (troncature) → convergence prématurée ; remède : adoucir la sélection (roulette, tournoi)."
   },
   {
     "question": "Qu'est-ce que l'**élitisme** ?",
@@ -107,7 +107,7 @@
       "Muter tous les individus"
     ],
     "reponse": 0,
-    "explication": "Rien ne garantit que le meilleur survive à une génération : l'élitisme le protège, sans détruire la diversité du reste de la population."
+    "explication": "**Règle :** l'élitisme recopie d'office **quelques** meilleurs individus dans la génération suivante, sans les modifier. Le reste de la génération est fabriqué normalement.\n\n**Pas à pas :** population de 50, élitisme de 2.\n\n1. Les 2 meilleurs passent directement dans la génération suivante : le meilleur ne peut plus être perdu par malchance.\n2. Les 48 autres places sont remplies par sélection, croisement et mutation : la population continue d'explorer.\n\n**Les autres réponses :** « ne garder que le meilleur » détruirait la diversité (population de clones) ; « supprimer les meilleurs » ferait perdre les bonnes solutions ; « muter tous les individus » casserait les bons individus et n'a rien à voir avec l'élite.\n\n**À retenir :** élitisme = recopier **quelques** meilleurs tels quels, le reste évolue normalement."
   },
   {
     "question": "Le codage par permutation du voyageur de commerce gère la contrainte « chaque ville une fois »…",
@@ -118,7 +118,7 @@
       "il ne la gère pas"
     ],
     "reponse": 0,
-    "explication": "C'est la meilleure des trois réponses aux contraintes : choisir un codage où l'irréalisable n'existe pas."
+    "explication": "**Règle :** face à une contrainte, il y a trois réponses : pénaliser, réparer, ou choisir un **codage où l'interdit n'existe pas**. Le codage par permutation est de ce troisième type pour le voyageur de commerce.\n\n**Pas à pas :** une permutation de 5 villes, par exemple `(3, 5, 1, 4, 2)`, contient chaque ville **exactement une fois** par définition. Toute permutation est donc une tournée qui passe une fois par chaque ville : aucun individu ne peut violer la contrainte, il n'y a rien à pénaliser ni à réparer (à condition d'utiliser des opérateurs comme l'OX ou l'échange de deux villes, qui gardent une permutation).\n\n**Les autres réponses :** pénaliser et réparer sont les solutions quand le codage **permet** des individus interdits (un sac à dos trop lourd, par exemple) ; « il ne la gère pas » est faux, le codage la gère tout seul.\n\n**À retenir :** le meilleur moyen de respecter une contrainte est un codage qui rend l'interdit impossible."
   },
   {
     "question": "Quelles valeurs sont conseillées pour les probabilités de croisement $p_c$ et de mutation $p_m$ ?",
@@ -129,6 +129,6 @@
       "$p_c = 1$ et $p_m = 1$"
     ],
     "reponse": 0,
-    "explication": "Croisement fréquent, mutation rare : la mutation doit réinjecter de la diversité sans casser les bons individus."
+    "explication": "**Règle :** le croisement est **fréquent** ($p_c \\approx 0{,}8$) car c'est lui qui mélange les bonnes idées des parents. La mutation est **rare** ($p_m \\approx 0{,}01$) car elle doit seulement réinjecter un peu de diversité.\n\n**Pas à pas :** population de 100.\n\n- $p_c = 0{,}8$ : environ 80 % des couples de parents sont croisés, les autres sont recopiés.\n- $p_m = 0{,}01$ : environ $100 \\times 0{,}01 = 1$ individu muté par génération.\n\n**Les autres réponses :** $p_c \\approx 0{,}01$ et $p_m \\approx 0{,}8$ inverse les deux valeurs (presque plus de croisements, et des mutations partout qui cassent les bons individus) ; $p_c = p_m = 0{,}5$ donne beaucoup trop de mutations ; $p_c = p_m = 1$ ferait muter tout le monde à chaque génération, l'algorithme deviendrait presque une recherche au hasard.\n\n**À retenir :** croisement souvent ($\\approx 0{,}8$), mutation rarement ($\\approx 0{,}01$)."
   }
 ]

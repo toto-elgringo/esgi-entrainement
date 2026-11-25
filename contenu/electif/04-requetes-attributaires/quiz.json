@@ -1,38 +1,68 @@
 [
   {
     "question": "Une requête **attributaire** sélectionne les objets d'après…",
-    "choix": ["Les valeurs de leur table d'attributs", "Leur position sur la carte", "Leur couleur", "Leur projection"],
+    "choix": [
+      "Les valeurs de leur table d'attributs",
+      "Leur position sur la carte",
+      "Leur couleur",
+      "Leur projection"
+    ],
     "reponse": 0,
-    "explication": "Elle lit les champs de la table. La position relève de l'analyse spatiale."
+    "explication": "**Règle :** une requête **attributaire** choisit les objets d'après les **valeurs de leur table d'attributs** (les colonnes du tableau), pas d'après leur place sur la carte.\n\n**Pas à pas :** « les communes de plus de 10 000 habitants » se lit dans la colonne `POPULATION` de la table : c'est une requête attributaire.\n\n**Les autres réponses :** la position sur la carte relève de l'**analyse spatiale** (par exemple « à moins de 200 m d'une gare ») ; la couleur est un réglage d'affichage (la symbologie), pas une donnée ; la projection est le système de coordonnées, elle ne sert pas à choisir des objets.\n\n**À retenir :** attributaire = on interroge les colonnes du tableau."
   },
   {
     "question": "Comment écrit-on un nom de champ dans une expression QGIS ?",
-    "choix": ["Entre guillemets doubles : \"POPULATION\"", "Entre apostrophes : 'POPULATION'", "Sans rien", "Entre crochets"],
+    "choix": [
+      "Entre guillemets doubles : \"POPULATION\"",
+      "Entre apostrophes : 'POPULATION'",
+      "Sans rien",
+      "Entre crochets"
+    ],
     "reponse": 0,
-    "explication": "Champ entre guillemets doubles, texte entre apostrophes."
+    "explication": "**Règle :** dans une expression QGIS, un **nom de champ** s'écrit entre **guillemets doubles**, un **texte** entre **apostrophes**.\n\n**Pas à pas :** `\"POPULATION\"` avec des guillemets doubles veut dire « la colonne POPULATION ». QGIS va lire, pour chaque objet, la valeur de cette colonne.\n\n**Les autres réponses :** `'POPULATION'` entre apostrophes serait le **mot** « POPULATION » (un texte), pas la colonne ; sans rien, cela marche parfois mais casse dès que le nom contient un espace ou un accent ; les crochets ne sont pas la syntaxe de QGIS.\n\n**À retenir :** guillemets doubles = champ ; apostrophes = texte."
   },
   {
     "question": "Quelle expression sélectionne les communes de plus de 10 000 habitants ?",
-    "choix": ["\"POPULATION\" > 10000", "\"POPULATION\" = 10000", "'POPULATION' > 10000", "POPULATION < 10000"],
+    "choix": [
+      "\"POPULATION\" > 10000",
+      "\"POPULATION\" = 10000",
+      "'POPULATION' > 10000",
+      "POPULATION < 10000"
+    ],
     "reponse": 0,
-    "explication": "Champ entre guillemets doubles, opérateur > et nombre sans guillemets."
+    "explication": "**Règle :** une expression de comparaison = champ entre guillemets doubles + opérateur + valeur. « Plus de 10 000 » = strictement supérieur, opérateur `>` ; un nombre s'écrit sans apostrophes.\n\n**Pas à pas :**\n\n1. Champ : `\"POPULATION\"`.\n2. « Plus de » : `>`.\n3. Valeur : `10000`, nombre sans espace ni apostrophes.\n4. Résultat : `\"POPULATION\" > 10000`.\n\n**Les autres réponses :** `\"POPULATION\" = 10000` ne garde que les communes d'exactement 10 000 habitants ; `'POPULATION' > 10000` compare le **texte** « POPULATION » (et non la colonne) à 10000 ; `POPULATION < 10000` prend les petites communes, le sens est inversé.\n\n**À retenir :** « plus de » → `>`, champ entre guillemets doubles, nombre tout nu."
   },
   {
     "question": "Quelle différence entre **sélectionner** et **filtrer** ?",
-    "choix": ["Filtrer masque tous les autres objets de la couche", "Sélectionner supprime les autres objets", "Aucune", "Filtrer change la projection"],
+    "choix": [
+      "Filtrer masque tous les autres objets de la couche",
+      "Sélectionner supprime les autres objets",
+      "Aucune",
+      "Filtrer change la projection"
+    ],
     "reponse": 0,
-    "explication": "La sélection surligne ; le filtre ne garde dans la couche que les objets qui répondent à la condition."
+    "explication": "**Règle :** **sélectionner** surligne les objets qui répondent à la condition (les autres restent visibles) ; **filtrer** **masque** tous les autres objets : la couche n'affiche plus que ceux-là.\n\n**Pas à pas :** sur 100 routes, une sélection des autoroutes en surligne 5 en jaune et laisse voir les 95 autres. Un filtre avec la même expression fait que la couche n'affiche plus que les 5 autoroutes, jusqu'à ce qu'on l'enlève.\n\n**Les autres réponses :** sélectionner ne supprime rien, ça surligne ; « aucune différence » est faux, l'un surligne et l'autre cache ; filtrer ne touche pas à la projection.\n\n**À retenir :** sélectionner = surligner pour vérifier ; filtrer = cacher le reste."
   },
   {
     "question": "Pour garder les bâtiments résidentiels ET hauts, quel opérateur relie les deux conditions ?",
-    "choix": ["AND", "OR", "NOT", "LIKE"],
+    "choix": [
+      "AND",
+      "OR",
+      "NOT",
+      "LIKE"
+    ],
     "reponse": 0,
-    "explication": "AND demande que les deux conditions soient vraies."
+    "explication": "**Règle :** `AND` exige que **les deux** conditions soient vraies en même temps ; `OR` se contente d'une seule.\n\n**Pas à pas :** on veut des bâtiments « résidentiels » **et** « hauts ».\n\n| Bâtiment | Résidentiel ? | Haut ? | Gardé avec `AND` ? |\n|---|---|---|---|\n| maison basse | oui | non | non |\n| immeuble | oui | oui | **oui** |\n| entrepôt haut | non | oui | non |\n\nSeul celui qui coche les deux est gardé : c'est `AND`.\n\n**Les autres réponses :** `OR` garderait aussi la maison basse et l'entrepôt ; `NOT` prend le contraire d'**une** condition ; `LIKE` compare des textes avec `%`, il ne relie pas deux conditions.\n\n**À retenir :** les deux à la fois → `AND`."
   },
   {
     "question": "Pourquoi une seule commune apparaît dans la couche COMMUNE de la BD TOPO 75 ?",
-    "choix": ["Le département 75 ne contient que la commune de Paris", "La couche est cassée", "Le filtre est actif", "La projection est mauvaise"],
+    "choix": [
+      "Le département 75 ne contient que la commune de Paris",
+      "La couche est cassée",
+      "Le filtre est actif",
+      "La projection est mauvaise"
+    ],
     "reponse": 0,
-    "explication": "Paris est à la fois une commune et un département."
+    "explication": "**Règle :** Paris est à la fois une **commune** et un **département** (le 75). Le département 75 ne contient donc qu'**une seule commune**.\n\n**Pas à pas :** la BD TOPO livrée est celle du département 75. Sa couche `COMMUNE` contient toutes les communes du département… c'est-à-dire seulement Paris. Les 20 arrondissements ne sont pas des communes : ils sont dans la couche `ARRONDISSEMENT`.\n\n**Les autres réponses :** la couche n'est pas cassée, elle est complète ; un filtre actif est possible en théorie, mais ici il n'y a vraiment qu'une commune ; une mauvaise projection décalerait la couche, elle ne ferait pas disparaître des communes.\n\n**À retenir :** BD TOPO 75 = une seule commune ; pour en comparer plusieurs, charge plusieurs départements."
   }
 ]

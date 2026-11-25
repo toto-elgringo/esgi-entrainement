@@ -5,12 +5,46 @@
     "difficulte": 1,
     "enonce": "Fichier : `BDTOPO_3-5_TOUSTHEMES_SHP_LAMB93_D075_2026-06-15.7z`",
     "questions": [
-      { "intitule": "Quel est le format des couches ?", "type": "choix", "choix": ["Shapefile", "GeoPackage", "CSV", "GeoJSON"], "reponse": 0 },
-      { "intitule": "Quelle est la projection ?", "type": "choix", "choix": ["Lambert 93", "WGS 84", "Mercator web", "Aucune"], "reponse": 0 },
-      { "intitule": "Quel est le jour du mois de l'édition ?", "type": "nombre", "reponse": 15 },
-      { "intitule": "Quel est le numéro du département ?", "type": "nombre", "reponse": 75 }
+      {
+        "intitule": "Quel est le format des couches ?",
+        "type": "choix",
+        "choix": [
+          "Shapefile",
+          "GeoPackage",
+          "CSV",
+          "GeoJSON"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** dans le nom d'un fichier BD TOPO, le morceau de format dit comment sont rangées les couches : `SHP` = Shapefile, `GPKG` = GeoPackage.\n\n**Pas à pas :**\n\n1. On découpe le nom aux `_` : `BDTOPO`, `3-5`, `TOUSTHEMES`, `SHP`, `LAMB93`, `D075`, `2026-06-15.7z`.\n2. Le morceau de format est `SHP`.\n3. `SHP` = **Shapefile**.\n\n**Les autres réponses :** GeoPackage serait noté `GPKG` ; CSV et GeoJSON n'apparaissent pas dans le nom. Piège : le `.7z` final n'est pas le format des couches, c'est celui de l'**archive** qui les contient.\n\n**À retenir :** `SHP` dans le nom = couches en Shapefile ; `.7z` = l'emballage."
+      },
+      {
+        "intitule": "Quelle est la projection ?",
+        "type": "choix",
+        "choix": [
+          "Lambert 93",
+          "WGS 84",
+          "Mercator web",
+          "Aucune"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le morceau de projection du nom donne le système de coordonnées : `LAMB93` = **Lambert 93** (EPSG:2154).\n\n**Pas à pas :**\n\n1. On repère le morceau juste après le format : `LAMB93`.\n2. `LAMB` = Lambert, `93` = la version de 1993.\n3. La projection est donc le **Lambert 93**.\n\n**Les autres réponses :** WGS 84 et Mercator web n'apparaissent pas dans le nom ; « aucune » est impossible, des données géographiques ont toujours un système de coordonnées.\n\n**À retenir :** `LAMB93` = Lambert 93."
+      },
+      {
+        "intitule": "Quel est le jour du mois de l'édition ?",
+        "type": "nombre",
+        "reponse": 15,
+        "explication": "**Règle :** la date d'édition, à la fin du nom, est écrite **année-mois-jour**.\n\n**Pas à pas :**\n\n1. On isole la date : `2026-06-15`.\n2. Premier nombre : 2026, l'année.\n3. Deuxième : 06, le mois (juin).\n4. Troisième : **15**, le jour.\n\n**Erreurs fréquentes :** répondre 6 (le mois) en lisant la date à la française ; répondre 2026 (l'année).\n\n**À retenir :** année-mois-jour : le jour est le **dernier** nombre."
+      },
+      {
+        "intitule": "Quel est le numéro du département ?",
+        "type": "nombre",
+        "reponse": 75,
+        "explication": "**Règle :** le morceau `D` + 3 chiffres donne le numéro du **département**.\n\n**Pas à pas :**\n\n1. On isole `D075`.\n2. `D` = département.\n3. `075` : on enlève le zéro de remplissage (il sert seulement à écrire le numéro sur 3 chiffres), il reste **75**.\n4. Département 75 = Paris.\n\n**Erreur fréquente :** confondre avec la version `3-5` (qui est juste après `BDTOPO`), ou avec un morceau de la date.\n\n**À retenir :** `D075` = département 75."
+      }
     ],
-    "indices": ["SHP = Shapefile, LAMB93 = Lambert 93, D075 = département 75."],
+    "indices": [
+      "SHP = Shapefile, LAMB93 = Lambert 93, D075 = département 75."
+    ],
     "correction": "Format **Shapefile**, projection **Lambert 93**, édition du **15** juin 2026, département **75**."
   },
   {
@@ -19,12 +53,58 @@
     "difficulte": 1,
     "enonce": "Associe chaque besoin à la source la plus adaptée.",
     "questions": [
-      { "intitule": "Télécharger les bâtiments de Paris", "type": "choix", "choix": ["Catalogue cartes.gouv.fr (BD TOPO)", "OpenStreetMap", "Institut Paris Region", "SCoT"], "reponse": 0 },
-      { "intitule": "Connaître l'évolution de l'occupation du sol en Île-de-France", "type": "choix", "choix": ["MOS (Institut Paris Region)", "BD TOPO", "QGIS.org", "Géoportail photo aérienne"], "reponse": 0 },
-      { "intitule": "Trouver les restaurants italiens", "type": "choix", "choix": ["OpenStreetMap", "BD TOPO", "MOS", "SCoT"], "reponse": 0 },
-      { "intitule": "Connaître les orientations d'aménagement d'une intercommunalité", "type": "choix", "choix": ["Le SCoT", "Le Shapefile", "Le MOS", "Le Lambert 93"], "reponse": 0 }
+      {
+        "intitule": "Télécharger les bâtiments de Paris",
+        "type": "choix",
+        "choix": [
+          "Catalogue cartes.gouv.fr (BD TOPO)",
+          "OpenStreetMap",
+          "Institut Paris Region",
+          "SCoT"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** les **bâtiments** sont une donnée de référence de l'IGN : ils sont dans la **BD TOPO** (thème BATI), téléchargée depuis le catalogue de **cartes.gouv.fr**.\n\n**Pas à pas :**\n\n1. Quelle sorte d'information ? Une donnée de référence qui décrit le territoire.\n2. Qui la produit ? L'IGN, dans la BD TOPO.\n3. Où la télécharger ? Le catalogue de cartes.gouv.fr.\n\n**Les autres réponses :** OpenStreetMap a aussi des bâtiments, mais saisis par des bénévoles, donc moins sûrs ; l'Institut Paris Region publie des études, pas la couche des bâtiments ; le SCoT est un projet d'aménagement, pas un fichier de données.\n\n**À retenir :** donnée de référence (bâtiments, routes, limites) → BD TOPO."
+      },
+      {
+        "intitule": "Connaître l'évolution de l'occupation du sol en Île-de-France",
+        "type": "choix",
+        "choix": [
+          "MOS (Institut Paris Region)",
+          "BD TOPO",
+          "QGIS.org",
+          "Géoportail photo aérienne"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le **MOS** de l'Institut Paris Region décrit l'occupation du sol de l'Île-de-France en **11 millésimes** (11 dates) : c'est ce qui permet de voir une **évolution**.\n\n**Pas à pas :**\n\n1. Le besoin contient le mot « évolution » : il faut des données à plusieurs dates.\n2. Le MOS a 11 dates : on compare deux millésimes pour voir ce qui a changé.\n\n**Les autres réponses :** la BD TOPO décrit le territoire à une seule date (celle de l'édition) ; QGIS.org est le site du logiciel ; une photo aérienne de Géoportail montre une image, sans classement tout fait de l'occupation du sol ni comparaison automatique.\n\n**À retenir :** « évolution de l'occupation du sol » → MOS."
+      },
+      {
+        "intitule": "Trouver les restaurants italiens",
+        "type": "choix",
+        "choix": [
+          "OpenStreetMap",
+          "BD TOPO",
+          "MOS",
+          "SCoT"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** les commerces et restaurants, avec le type de cuisine, se trouvent dans **OpenStreetMap**, enrichie par des contributeurs.\n\n**Pas à pas :**\n\n1. Quelle sorte d'information ? Un commerce précis, avec un détail (cuisine italienne).\n2. Les données de référence (BD TOPO) ne décrivent pas les commerces un par un.\n3. OSM, elle, étiquette les restaurants et leur cuisine : c'est la bonne source (à vérifier).\n\n**Les autres réponses :** la BD TOPO décrit bâti, routes, eau… ; le MOS classe l'occupation du sol par grands types ; le SCoT est un projet d'aménagement.\n\n**À retenir :** commerces et points d'intérêt → OpenStreetMap."
+      },
+      {
+        "intitule": "Connaître les orientations d'aménagement d'une intercommunalité",
+        "type": "choix",
+        "choix": [
+          "Le SCoT",
+          "Le Shapefile",
+          "Le MOS",
+          "Le Lambert 93"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le **SCoT** (Schéma de cohérence territoriale) fixe les grandes orientations d'aménagement d'une **intercommunalité** (plusieurs communes regroupées).\n\n**Pas à pas :**\n\n1. « Orientations d'aménagement » = un projet : où construire, quoi protéger, quels transports.\n2. Le document qui porte ce projet à l'échelle de plusieurs communes est le **SCoT**.\n\n**Les autres réponses :** le Shapefile est un **format de fichier** ; le Lambert 93 est une **projection** ; le MOS est une base d'occupation du sol (ce qui existe), pas un projet (ce qu'on veut faire).\n\n**À retenir :** projet d'aménagement d'un groupe de communes → SCoT."
+      }
     ],
-    "indices": ["Les commerces ne sont pas dans la BD TOPO : pense à la carte collaborative."],
+    "indices": [
+      "Les commerces ne sont pas dans la BD TOPO : pense à la carte collaborative."
+    ],
     "correction": "Bâtiments → **BD TOPO** ; occupation du sol → **MOS** ; restaurants → **OpenStreetMap** ; orientations d'aménagement → **SCoT**."
   },
   {
@@ -33,10 +113,27 @@
     "difficulte": 1,
     "enonce": "Le réseau cyclable structurant (RCS) de l'Institut Paris Region est un schéma d'itinéraires continus et maillés.",
     "questions": [
-      { "intitule": "Longueur minimale du schéma, en km ?", "type": "nombre", "reponse": 4500 },
-      { "intitule": "Quel type de géométrie représente un itinéraire ?", "type": "choix", "choix": ["Point", "Ligne", "Surface"], "reponse": 1 }
+      {
+        "intitule": "Longueur minimale du schéma, en km ?",
+        "type": "nombre",
+        "reponse": 4500,
+        "explication": "**Règle :** d'après l'Institut Paris Region, le réseau cyclable structurant (RCS) est un schéma de **plus de 4 500 km** d'itinéraires continus et maillés couvrant toute l'Île-de-France.\n\n**Pas à pas :** « plus de 4 500 km » veut dire que 4 500 est la longueur **minimale** : la réponse attendue est **4500**.\n\n**Erreur fréquente :** écrire 4,5, qui serait la longueur en **milliers** de km : la question demande des km.\n\n**À retenir :** RCS = plus de 4 500 km d'itinéraires."
+      },
+      {
+        "intitule": "Quel type de géométrie représente un itinéraire ?",
+        "type": "choix",
+        "choix": [
+          "Point",
+          "Ligne",
+          "Surface"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** on choisit la géométrie selon l'objet : aire → surface, tracé → **ligne**, simple position → point.\n\n**Pas à pas :**\n\n1. Un itinéraire a-t-il une aire utile ? Non, on ne mesure pas des m² de piste.\n2. A-t-il une longueur ? Oui, on le parcourt d'un point à un autre.\n3. C'est donc une **ligne**, comme une route ou un cours d'eau.\n\n**Les autres réponses :** un point n'aurait pas de longueur, impossible d'y mesurer des km ; une surface n'a pas de sens pour un tracé.\n\n**À retenir :** itinéraire, route, rivière → ligne."
+      }
     ],
-    "indices": ["Un itinéraire est un tracé."],
+    "indices": [
+      "Un itinéraire est un tracé."
+    ],
     "correction": "Plus de **4 500 km**. Un itinéraire est une **ligne**."
   },
   {
@@ -45,9 +142,16 @@
     "difficulte": 2,
     "enonce": "Tu veux compter les restaurants d'un quartier avec OpenStreetMap. Explique en une ou deux phrases pourquoi le résultat peut être faux et comment le vérifier.",
     "questions": [
-      { "intitule": "Ta réponse", "type": "auto", "reponse": "OSM est alimentée par des contributeurs bénévoles : des restaurants peuvent manquer, être fermés ou mal étiquetés (type de cuisine absent). On vérifie en comparant avec une autre source (Géoportail, sites d'avis, repérage terrain) et en regardant la date de dernière mise à jour." }
+      {
+        "intitule": "Ta réponse",
+        "type": "auto",
+        "reponse": "OSM est alimentée par des contributeurs bénévoles : des restaurants peuvent manquer, être fermés ou mal étiquetés (type de cuisine absent). On vérifie en comparant avec une autre source (Géoportail, sites d'avis, repérage terrain) et en regardant la date de dernière mise à jour.",
+        "explication": "**Ce qu'une bonne réponse doit contenir :** deux idées, **la cause** du doute et **la manière de vérifier**.\n\n1. **La cause :** OpenStreetMap est remplie par des **contributeurs bénévoles**. Donc, dans un quartier :\n   - des restaurants peuvent **manquer** (personne ne les a ajoutés) ;\n   - d'autres peuvent avoir **fermé** sans être retirés ;\n   - certains peuvent être **mal étiquetés** (pas de type « restaurant », ou pas de type de cuisine).\n2. **La vérification :** **recouper** avec une autre source (photo aérienne de Géoportail, annuaire ou site d'avis, ou aller voir sur place) et regarder la **date de dernière mise à jour** des données.\n\n**Erreurs fréquentes :** dire seulement « OSM n'est pas fiable » sans expliquer pourquoi ; donner la cause sans dire comment vérifier ; dire qu'OSM est payante ou qu'elle ne s'ouvre pas dans QGIS (c'est faux).\n\n**À retenir :** pour une donnée collaborative : cause (bénévoles, donc incomplète ou périmée) + vérification (autre source, date)."
+      }
     ],
-    "indices": ["Qui saisit les données d'OSM ?"],
+    "indices": [
+      "Qui saisit les données d'OSM ?"
+    ],
     "correction": "OSM est collaborative : données possiblement **incomplètes ou périmées**. On recoupe avec une autre source et on note la date des données."
   }
 ]

@@ -10,49 +10,56 @@
         "type": "texte",
         "reponse": [
           "when"
-        ]
+        ],
+        "explication": "**Règle :** en partie 2, le mot interrogatif annonce le type de réponse. « Quand » se dit **when** et attend un **moment**.\n\n**Pas à pas :** *When does the meeting start?* → *At 10 a.m.*, *Tomorrow*, *Next week* : à chaque fois, un moment.\n\n**Erreur fréquente :** confondre à l'oral *when* (quand) et *where* (où) : le son du début est le même, seule la fin change (*-en* / *-ere*). Si la réponse donne un lieu, c'est que la question était *where*.\n\n**À retenir :** *when* = quand → un moment (heure, jour, date)."
       },
       {
         "intitule": "pourquoi",
         "type": "texte",
         "reponse": [
           "why"
-        ]
+        ],
+        "explication": "**Règle :** « Pourquoi » se dit **why** et attend une **raison**.\n\n**Pas à pas :** *Why is Tom absent?* → *Because he's ill*, *To visit a client* (*to* + verbe = pour), ou simplement *He's on holiday* : une raison, avec ou sans *because*.\n\n**Erreur fréquente :** répondre *Yes* ou *No* à une question en *Why* : impossible, on ne répond pas « oui » à « pourquoi ? ».\n\n**À retenir :** *why* = pourquoi → une raison (*because…*, *to…*), jamais *Yes / No*."
       },
       {
         "intitule": "comment",
         "type": "texte",
         "reponse": [
           "how"
-        ]
+        ],
+        "explication": "**Règle :** « Comment » se dit **how** et attend une **manière**, un moyen.\n\n**Pas à pas :** *How do you get to work?* → *By train*, *On foot* (à pied). *How did you pay?* → *With a card*.\n\n**Erreur fréquente :** *how* sert aussi de base à d'autres questions (*how long*, *how much*, *how often*) : seul, il veut dire « comment ». Dans *How are you?*, il demande comment tu vas.\n\n**À retenir :** *how* = comment → une manière (*by…*, *with…*)."
       },
       {
         "intitule": "où",
         "type": "texte",
         "reponse": [
           "where"
-        ]
+        ],
+        "explication": "**Règle :** « Où » se dit **where** et attend un **lieu**.\n\n**Pas à pas :** *Where is the printer?* → *On the second floor*, *Next to the lift*, *In room 12* : un lieu, souvent avec une préposition (*on, in, next to*).\n\n**Erreur fréquente :** à l'oral, *where* sonne comme *wear* (porter un vêtement) et ressemble à *were* (passé de *be*). Écris bien **where**, avec *wh-*.\n\n**À retenir :** *where* = où → un lieu."
       },
       {
         "intitule": "qui",
         "type": "texte",
         "reponse": [
           "who"
-        ]
+        ],
+        "explication": "**Règle :** « Qui » se dit **who** et attend une **personne** (ou un service, une équipe).\n\n**Pas à pas :** *Who is organizing the party?* → *Ms. Lee*, *The HR department*, *I am*.\n\n**Erreur fréquente :** confondre *who* (qui) et *how* (comment) : mêmes lettres, ordre différent. Ne pas non plus le confondre avec *whose* (à qui).\n\n**À retenir :** *who* = qui → une personne ou un service."
       },
       {
         "intitule": "combien (de temps)",
         "type": "texte",
         "reponse": [
           "how long"
-        ]
+        ],
+        "explication": "**Règle :** « Combien de temps » se dit **how long** (mot à mot « combien long ») et attend une **durée**.\n\n**Pas à pas :** *How long is the flight?* → *About three hours*, *Forty minutes*.\n\n**Erreur fréquente :** *how often* (à quelle fréquence) ressemble à *how long*, mais il attend une fréquence (*every week*), pas une durée. Et *when* attend un moment précis, pas une durée.\n\n**À retenir :** *how long* = combien de temps → une durée."
       },
       {
         "intitule": "combien (d'argent)",
         "type": "texte",
         "reponse": [
           "how much"
-        ]
+        ],
+        "explication": "**Règle :** « Combien » pour de l'**argent** ou une quantité qu'on ne compte pas se dit **how much**. Pour des choses qu'on **compte** une par une, on dit *how many*.\n\n**Pas à pas :**\n\n| Question | Pourquoi |\n|---|---|\n| *How much is this jacket?* | un prix → *much* |\n| *How much water do you need?* | l'eau ne se compte pas → *much* |\n| *How many boxes do you need?* | on compte les boîtes → *many* |\n\nIci c'est de l'argent → **how much**.\n\n**Erreur fréquente :** écrire *how many* pour un prix : l'argent se dit avec *much*.\n\n**À retenir :** argent ou non comptable → *how much* ; choses comptables → *how many*."
       }
     ],
     "indices": [
@@ -74,7 +81,8 @@
           "un lieu",
           "un moment"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** **When** (quand) attend un **moment** : une heure, un jour, une date.\n\n**Pas à pas :** *When is the delivery due?* = « Quand la livraison est-elle prévue ? » (*due* = prévu, attendu). Réponses possibles : *On Friday*, *Next week*, *By noon*.\n\n**Les autres choix :** une **raison** répondrait à *Why* (pourquoi) ; un **lieu** répondrait à *Where* (où). Attention : *due* ne veut pas dire « dû » ici, il indique la date prévue.\n\n**À retenir :** *When* → un moment."
       },
       {
         "intitule": "*Why did the client cancel the order?*",
@@ -84,7 +92,8 @@
           "une raison",
           "un moment"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** **Why** (pourquoi) attend une **raison**.\n\n**Pas à pas :** *Why did the client cancel the order?* = « Pourquoi le client a-t-il annulé la commande ? ». Réponse : *Because the price was too high* ou *He found a cheaper supplier*.\n\n**Les autres choix :** une **personne** répondrait à *Who* (qui) ; un **moment** répondrait à *When* (quand).\n\n**À retenir :** *Why* → une raison, avec ou sans *because*."
       },
       {
         "intitule": "*Where should I put these boxes?*",
@@ -94,7 +103,8 @@
           "une durée",
           "une raison"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** **Where** (où) attend un **lieu**.\n\n**Pas à pas :** *Where should I put these boxes?* = « Où dois-je mettre ces cartons ? ». Réponse : *In the storage room* (dans la réserve), *Under the desk*.\n\n**Les autres choix :** une **durée** répondrait à *How long* (combien de temps) ; une **raison** répondrait à *Why*.\n\n**À retenir :** *Where* → un lieu, souvent avec une préposition (*in, on, under…*)."
       },
       {
         "intitule": "*Who is in charge of the budget?*",
@@ -104,7 +114,8 @@
           "un moment",
           "une personne"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** **Who** (qui) attend une **personne** ou un service.\n\n**Pas à pas :** *Who is in charge of the budget?* = « Qui est responsable du budget ? » (*in charge of* = responsable de). Réponse : *Mr. Kim is*, *The finance team*.\n\n**Les autres choix :** un **prix** répondrait à *How much* ; un **moment** répondrait à *When*. Le mot *budget* fait penser à de l'argent, mais la question commence par *Who* : c'est ce mot qui compte.\n\n**À retenir :** *Who* → une personne ; c'est le **mot interrogatif** qui décide, pas le sujet de la phrase."
       },
       {
         "intitule": "*How often do you visit the factory?*",
@@ -114,7 +125,8 @@
           "une personne",
           "un lieu"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** **How often** (à quelle fréquence, combien de fois) attend une **fréquence**.\n\n**Pas à pas :** *How often do you visit the factory?* = « À quelle fréquence visites-tu l'usine ? ». Réponse : *Twice a month* (deux fois par mois), *Every Monday*, *Rarely*.\n\n**Les autres choix :** une **personne** répondrait à *Who* ; un **lieu** répondrait à *Where* (le mot *factory* est un lieu, mais il est dans la question, pas dans la réponse attendue). Piège : *How long* attendrait une durée (*for two hours*).\n\n**À retenir :** *How often* → une fréquence (*every…*, *twice a…*) ; *How long* → une durée."
       }
     ],
     "indices": [
@@ -136,7 +148,8 @@
           "Yes, at the Italian place.",
           "The book is on my desk."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** un **distracteur** reprend un mot ou un son de la question, mais **sans y répondre**. Piège fréquent : **même mot, autre sens**.\n\n**Pas à pas :**\n\n| Réponse | Répond à « As-tu réservé une table ? » | Verdict |\n|---|---|---|\n| *No, I forgot, sorry.* | oui : non, j'ai oublié | vraie réponse |\n| *Yes, at the Italian place.* | oui : oui, au restaurant italien | vraie réponse |\n| *The book is on my desk.* | non : parle d'un livre | **piège** |\n\nDans la question, *book* est un **verbe** : réserver. Dans *The book is on my desk*, c'est un **nom** : un livre.\n\n**À retenir :** un mot répété avec un autre sens (*book* = réserver / livre) signale le piège."
       },
       {
         "intitule": "*Where is the training room?*",
@@ -146,7 +159,8 @@
           "On the second floor.",
           "Next to the cafeteria."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un distracteur peut jouer sur un **son proche** : un mot qui ressemble à un mot de la question.\n\n**Pas à pas :** *Where is the training room?* attend un **lieu**.\n\n| Réponse | Lieu ? | Verdict |\n|---|---|---|\n| *The train leaves at six.* | non : une heure de départ | **piège** |\n| *On the second floor.* | oui | vraie réponse |\n| *Next to the cafeteria.* | oui | vraie réponse |\n\n*train* (un train) ressemble à *training* (une formation), mais ne donne aucun lieu.\n\n**À retenir :** vérifie d'abord que la réponse donne le bon type (*Where* → lieu) ; celle qui sonne pareil sans répondre est le piège."
       },
       {
         "intitule": "*Has the copier been fixed?*",
@@ -156,7 +170,8 @@
           "The coffee is fixed price.",
           "Yes, it works now."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un distracteur peut cumuler **son proche** et **même mot, autre sens**.\n\n**Pas à pas :** *Has the copier been fixed?* = « La photocopieuse a-t-elle été réparée ? ».\n\n| Réponse | Répond ? | Verdict |\n|---|---|---|\n| *The technician came this morning.* | oui, de façon indirecte : le technicien est venu, donc c'est réparé | vraie réponse |\n| *The coffee is fixed price.* | non : parle du prix du café | **piège** |\n| *Yes, it works now.* | oui | vraie réponse |\n\nDeux pièges dans la même phrase : *coffee* sonne comme *copier*, et *fixed* passe de « réparé » à « fixe » (*fixed price* = prix fixe).\n\n**À retenir :** une réponse indirecte peut être juste ; une réponse qui ne fait que reprendre des sons ne l'est pas."
       },
       {
         "intitule": "*Why are you leaving early?*",
@@ -166,7 +181,8 @@
           "I have a doctor's appointment.",
           "My son is ill."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** les mots de la même famille ou qui se ressemblent (*leave / leaving / leaves*) sont des pièges sonores classiques.\n\n**Pas à pas :** *Why are you leaving early?* = « Pourquoi pars-tu tôt ? » → on attend une **raison**.\n\n| Réponse | Raison ? | Verdict |\n|---|---|---|\n| *The leaves are falling.* | non : les feuilles tombent | **piège** |\n| *I have a doctor's appointment.* | oui : un rendez-vous chez le médecin | vraie réponse |\n| *My son is ill.* | oui : mon fils est malade | vraie réponse |\n\n*leaves* (les feuilles, pluriel de *leaf*) sonne comme *leaving* (partir).\n\n**À retenir :** une raison peut venir sans *because* ; un mot qui sonne comme la question sans répondre est le piège."
       }
     ],
     "indices": [
@@ -188,7 +204,8 @@
           "The meeting has been cancelled.",
           "The meeting room has moved."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une **reformulation** garde le sens avec d'autres mots. On découpe la phrase en idées et on garde le choix qui les dit toutes.\n\n**Pas à pas :** *The meeting has been moved to Thursday* = « La réunion a été déplacée à jeudi ». Idée clé : la réunion a **lieu quand même, à une autre date**.\n\n| Choix | Même sens ? |\n|---|---|\n| *The meeting has been rescheduled.* | oui : *rescheduled* = reprogrammée (nouvelle date) |\n| *The meeting has been cancelled.* | non : *cancelled* = annulée, elle n'aura pas lieu |\n| *The meeting room has moved.* | non : c'est la **salle** qui change de place |\n\n*The meeting room has moved* reprend *moved* et *meeting* : piège typique.\n\n**À retenir :** *move a meeting to…* = *reschedule* ; ne pas confondre avec *cancel* (annuler)."
       },
       {
         "intitule": "*We've run out of paper.*",
@@ -198,7 +215,8 @@
           "There is no paper left.",
           "We need to recycle paper."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** **run out of** + nom = ne plus avoir de, être à court de.\n\n**Pas à pas :** *We've run out of paper* = « Nous n'avons plus de papier ».\n\n| Choix | Même sens ? |\n|---|---|\n| *There is no paper left.* | oui : il ne **reste** plus de papier (*left* = restant) |\n| *Someone ran with the paper.* | non : quelqu'un a couru avec le papier |\n| *We need to recycle paper.* | non : parle de recyclage |\n\n*Someone ran with the paper* reprend *run / ran* au sens de **courir** : piège.\n\n**À retenir :** *run out of* = *there is no … left*."
       },
       {
         "intitule": "*Ms. Gray is in charge of recruitment.*",
@@ -208,7 +226,8 @@
           "Ms. Gray is charging the recruits.",
           "Ms. Gray is responsible for hiring."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** **in charge of** = responsable de ; **recruitment** = le recrutement, et **hire** = embaucher.\n\n**Pas à pas :** *Ms. Gray is in charge of recruitment* = « Mme Gray s'occupe du recrutement ».\n\n| Choix | Même sens ? |\n|---|---|\n| *Ms. Gray is responsible for hiring.* | oui : *responsible for* = *in charge of*, *hiring* = *recruitment* |\n| *Ms. Gray is being recruited.* | non : c'est **elle** qu'on recrute |\n| *Ms. Gray is charging the recruits.* | non : *charge* veut dire ici facturer |\n\nLes deux pièges reprennent *charge* et *recruit* avec un autre sens.\n\n**À retenir :** *in charge of* = *responsible for* ; *recruit* = *hire*."
       },
       {
         "intitule": "*The store is open around the clock.*",
@@ -218,7 +237,8 @@
           "The store opens at noon.",
           "The store sells clocks."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** **around the clock** est une expression figée : **24 heures sur 24**, sans arrêt.\n\n**Pas à pas :** *The store is open around the clock* = « Le magasin est ouvert jour et nuit ».\n\n| Choix | Même sens ? |\n|---|---|\n| *The store never closes.* | oui : il ne ferme jamais |\n| *The store opens at noon.* | non : une heure d'ouverture précise |\n| *The store sells clocks.* | non : il vend des horloges |\n\n*The store sells clocks* reprend *clock* (horloge) au sens propre : piège.\n\n**À retenir :** *around the clock* = 24 h / 24 = *never closes* ; on ne traduit pas une expression mot à mot."
       },
       {
         "intitule": "*Admission is complimentary for members.*",
@@ -228,7 +248,8 @@
           "Members don't pay to enter.",
           "Members receive compliments."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** **complimentary** = **gratuit, offert** (un *complimentary breakfast* est un petit-déjeuner offert). C'est un faux ami.\n\n**Pas à pas :** *Admission is complimentary for members* = « L'entrée est gratuite pour les membres » (*admission* = l'entrée).\n\n| Choix | Même sens ? |\n|---|---|\n| *Members don't pay to enter.* | oui : ils ne paient pas pour entrer |\n| *Members must pay extra.* | non : c'est le contraire, payer en plus |\n| *Members receive compliments.* | non : recevoir des compliments |\n\n*complimentary* ressemble à *compliments* (des compliments) mais n'a pas ce sens.\n\n**À retenir :** *complimentary* = *free* = gratuit."
       }
     ],
     "indices": [
@@ -252,7 +273,8 @@
           "She's cleaning the window.",
           "She's typing on a laptop."
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** en partie 1, la bonne phrase décrit ce qui est **clairement visible**, pas ce qui pourrait se passer.\n\n**Pas à pas :** sur la photo : une femme **assise**, qui **tape** sur un ordinateur portable, une tasse à côté, une fenêtre fermée.\n\n| Phrase | Visible ? |\n|---|---|\n| *She's typing on a laptop.* | oui : elle tape sur l'ordinateur |\n| *She's drinking coffee.* | non : il y a une tasse, mais elle ne boit pas |\n| *She's cleaning the window.* | non : elle est au bureau, la fenêtre est juste derrière |\n| *She's leaving the office.* | non : elle est assise |\n\n*cleaning* et *leaving* sont aussi des pièges sonores (proches de *leaning*).\n\n**À retenir :** vérifie l'**action** de chaque phrase sur la photo ; un objet visible ne prouve pas l'action."
       },
       {
         "intitule": "Quelle phrase est correcte sur la tasse ?",
@@ -263,7 +285,8 @@
           "A cup is under the desk.",
           "A cup is next to the computer."
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** pour un objet, on vérifie sa **place** (la préposition) et si une action est **en train** d'être faite dessus (*is being* + participe).\n\n**Pas à pas :** la tasse est posée **à côté** de l'ordinateur.\n\n| Phrase | Vérification |\n|---|---|\n| *A cup is next to the computer.* | *next to* = à côté de : oui |\n| *A cup is under the desk.* | *under* = sous : non, elle est sur le bureau |\n| *A cup is being washed.* | *is being washed* = quelqu'un la lave en ce moment : non |\n| *She's pouring coffee into a cup.* | *pouring* = verser : non |\n\n**À retenir :** *is being* + participe = quelqu'un fait l'action **maintenant** ; si personne ne la fait sur la photo, c'est faux."
       },
       {
         "intitule": "Pourquoi *She's drinking coffee* est-il un piège ?",
@@ -273,7 +296,8 @@
           "La phrase est au passé",
           "Il n'y a pas de tasse"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** le piège classique de la partie 1 : montrer un **objet** pour faire croire à une **action** (sur-interpréter la photo).\n\n**Pas à pas :**\n\n1. On voit une tasse : l'objet existe bien.\n2. Mais la femme tape à l'ordinateur : l'action « boire » n'a pas lieu.\n3. *She's drinking coffee* décrit une action **imaginée** à partir de l'objet : piège.\n\n**Les autres choix :** la phrase est au **présent continu** (*is drinking*), pas au passé ; et « il n'y a pas de tasse » est faux puisque la tasse est décrite.\n\n**À retenir :** objet visible ≠ action visible."
       }
     ],
     "indices": [
@@ -295,7 +319,8 @@
           "efficient",
           "efficiently"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** après **be** (*is, are, was*), on décrit le **sujet**, qui est un nom → on met un **adjectif**.\n\n**Pas à pas :**\n\n1. Juste avant le trou : *is very*. Le verbe est *is*.\n2. Le mot dit comment est **le système** (*the system*, un nom).\n3. Ce qui décrit un nom est un adjectif → **efficient** (efficace).\n\n**Erreur fréquente :** croire que *very* appelle un adverbe. *very* renforce n'importe quel adjectif ou adverbe : il ne décide pas de la forme.\n\n**À retenir :** *be* (+ *very*) + **adjectif**."
       },
       {
         "intitule": "*The team worked ...... to finish on time.*",
@@ -304,7 +329,8 @@
           "efficient",
           "efficiently"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un mot qui décrit un **verbe** (comment on fait l'action) est un **adverbe**, souvent en *-ly*.\n\n**Pas à pas :**\n\n1. Le verbe est *worked* (ont travaillé).\n2. Le trou répond à « comment ont-ils travaillé ? ».\n3. Il décrit le verbe → adverbe **efficiently** (efficacement).\n\n**Erreur fréquente :** *efficient* est un adjectif : il irait devant un nom (*an efficient team*), pas après le verbe *worked*.\n\n**À retenir :** verbe d'action + **adverbe** en *-ly*."
       },
       {
         "intitule": "*Please drive ...... near the school.*",
@@ -313,7 +339,8 @@
           "careful",
           "carefully"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour dire **comment** on fait une action, on utilise un **adverbe**.\n\n**Pas à pas :**\n\n1. Le verbe est *drive* (conduire).\n2. Le trou répond à « comment conduire ? ».\n3. Il décrit le verbe → adverbe **carefully** (prudemment).\n\n**Erreur fréquente :** *careful* (prudent) est un adjectif : *Be careful!* (après *be*) ou *a careful driver* (devant un nom), mais pas après *drive*.\n\n**À retenir :** comment ? → adverbe en *-ly*."
       },
       {
         "intitule": "*She gave a ...... answer.*",
@@ -322,7 +349,8 @@
           "clear",
           "clearly"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** l'**adjectif** décrit un **nom** et se place **devant** lui.\n\n**Pas à pas :**\n\n1. Autour du trou : *a ...... answer*.\n2. Le mot est entre l'article *a* et le nom *answer* : il décrit la réponse.\n3. Ce qui décrit un nom est un adjectif → **clear** (claire).\n\n**Erreur fréquente :** *clearly* est un adverbe : il décrirait le verbe (*She answered clearly*), pas le nom.\n\n**À retenir :** *a / the* + **adjectif** + nom."
       },
       {
         "intitule": "*Sales increased ...... last quarter.*",
@@ -331,7 +359,8 @@
           "significant",
           "significantly"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un mot qui décrit un **verbe** est un **adverbe**.\n\n**Pas à pas :**\n\n1. Le verbe est *increased* (ont augmenté).\n2. Le trou dit **de combien / comment** les ventes ont augmenté.\n3. Il décrit le verbe → adverbe **significantly** (nettement, de façon importante).\n\n**Erreur fréquente :** *significant* (important) est un adjectif : *a significant increase* (devant le nom *increase*).\n\n**À retenir :** verbe + adverbe ; adjectif + nom (*increased significantly* = *a significant increase*)."
       },
       {
         "intitule": "*The prices are ...... high.*",
@@ -340,7 +369,8 @@
           "extreme",
           "extremely"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un mot qui décrit un **adjectif** est un **adverbe**.\n\n**Pas à pas :**\n\n1. Après le trou : *high* (élevé), un adjectif.\n2. Le trou dit **à quel point** les prix sont élevés : il décrit l'adjectif *high*.\n3. Ce qui décrit un adjectif est un adverbe → **extremely** (extrêmement).\n\n**Erreur fréquente :** *extreme* est un adjectif ; un adjectif ne peut pas décrire un autre adjectif (*extreme high* est faux).\n\n**À retenir :** adverbe + adjectif (*extremely high*, *very cheap*)."
       }
     ],
     "indices": [
@@ -361,7 +391,8 @@
           "is",
           "are"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** le verbe s'accorde avec le **vrai sujet** ; le complément en *of …* ne compte pas.\n\n**Pas à pas :**\n\n1. Qui est très occupé ? **le manager** (*the manager*).\n2. *of the two stores* (des deux magasins) dit seulement de quoi il est le manager : on le barre.\n3. *the manager* est singulier → **is**.\n\n**Erreur fréquente :** accorder avec *stores*, le pluriel juste avant le verbe, et mettre *are*.\n\n**À retenir :** barre le *of …* et accorde avec le premier nom."
       },
       {
         "intitule": "*Each employee ...... a parking space.*",
@@ -370,7 +401,8 @@
           "has",
           "have"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** **each** (chaque) + nom **singulier** → verbe au **singulier**.\n\n**Pas à pas :**\n\n1. Sujet : *Each employee* (chaque employé).\n2. *each* prend les employés un par un : c'est un singulier.\n3. Au présent, 3e personne du singulier : *have* devient **has**.\n\n**Erreur fréquente :** penser à « tous les employés » et mettre *have*. On dirait *All employees have*, mais *Each employee has*.\n\n**À retenir :** *each / every* + singulier → *has, is, -s*."
       },
       {
         "intitule": "*The results of the survey ...... surprising.*",
@@ -379,7 +411,8 @@
           "was",
           "were"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** le verbe s'accorde avec le **vrai sujet** ; le complément en *of …* ne compte pas.\n\n**Pas à pas :**\n\n1. Qu'est-ce qui est surprenant ? **les résultats** (*the results*).\n2. *of the survey* (de l'enquête) est un complément : on le barre.\n3. *the results* est pluriel → **were**.\n\n**Erreur fréquente :** accorder avec *survey* (singulier), juste avant le verbe, et mettre *was*.\n\n**À retenir :** le mot juste avant le verbe n'est pas toujours le sujet."
       },
       {
         "intitule": "*Mr. Lopez ...... at the head office.*",
@@ -388,7 +421,8 @@
           "work",
           "works"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** au présent simple, à la **3e personne du singulier** (*he, she, it*), le verbe prend un **-s**.\n\n**Pas à pas :**\n\n1. Sujet : *Mr. Lopez*, une seule personne = *he*.\n2. Présent simple (une habitude : il travaille au siège).\n3. 3e personne du singulier → *work* + *s* = **works**.\n\n**Erreur fréquente :** oublier le *-s*, parce qu'en français on ne l'entend pas.\n\n**À retenir :** *he / she / it* (ou un nom de personne) au présent → **-s**."
       },
       {
         "intitule": "*Neither of the candidates ...... the job.*",
@@ -397,7 +431,8 @@
           "has accepted",
           "have accepted"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** **neither of** (aucun des deux) + nom pluriel → verbe au **singulier** dans l'anglais soigné attendu au TOEIC.\n\n**Pas à pas :**\n\n1. Sujet : *Neither of the candidates* = aucun des deux candidats.\n2. *neither* prend les candidats **un par un** (ni l'un ni l'autre) : c'est un singulier.\n3. Au present perfect, singulier → **has accepted**.\n\n**Erreur fréquente :** accorder avec *candidates* (pluriel). À l'oral, on entend parfois *have*, mais le TOEIC attend le singulier. Même règle pour *either of* et *one of*.\n\n**À retenir :** *neither of / either of / one of* + pluriel → verbe au singulier."
       }
     ],
     "indices": [
@@ -415,22 +450,26 @@
       {
         "intitule": "La section Reading dure 75 min. Si tu passes 12 min sur la partie 5 et 8 min sur la partie 6, combien de minutes te reste-t-il pour la partie 7 ?",
         "type": "nombre",
-        "reponse": 55
+        "reponse": 55,
+        "explication": "**Règle :** temps de la partie 7 = 75 minutes - (temps de la partie 5 + temps de la partie 6).\n\n**Pas à pas :**\n\n1. Temps déjà utilisé : 12 + 8 = 20 minutes.\n2. Temps restant : 75 - 20 = **55** minutes.\n\nC'est plus que les 45 à 50 minutes conseillées : bon équilibre, la partie 7 (54 questions) a assez de temps.\n\n**Erreur fréquente :** oublier de soustraire une des deux parties (75 - 12 = 63 ou 75 - 8 = 67).\n\n**À retenir :** temps restant = 75 - (partie 5 + partie 6)."
       },
       {
         "intitule": "Partie 5 : 30 phrases à 30 secondes maximum chacune. Combien de minutes au maximum ?",
         "type": "nombre",
-        "reponse": 15
+        "reponse": 15,
+        "explication": "**Règle :** temps total = nombre de questions × temps par question ; pour passer des secondes aux minutes, on **divise par 60**.\n\n**Pas à pas :**\n\n1. 30 phrases × 30 secondes = 900 secondes.\n2. 900 ÷ 60 = **15** minutes.\n\n**Erreur fréquente :** répondre 900 (en secondes) alors que la question demande des **minutes**. Autre façon de voir : 30 secondes = une demi-minute, et 30 demi-minutes = 15 minutes.\n\n**À retenir :** secondes ÷ 60 = minutes."
       },
       {
         "intitule": "Combien de questions compte la partie 7 ?",
         "type": "nombre",
-        "reponse": 54
+        "reponse": 54,
+        "explication": "**Règle :** le Reading compte 3 parties : partie 5 (30 questions), partie 6 (16), partie 7 (**54**).\n\n**Pas à pas :** la partie 7 est la plus grosse : 54 questions sur les 100 du Reading, soit plus de la moitié. C'est pour ça qu'on lui garde 45 à 50 minutes.\n\n**Erreur fréquente :** confondre avec la partie 5 (30 questions) ou la partie 3 du Listening (39 questions).\n\n**À retenir :** partie 7 = **54** questions, plus de la moitié du Reading."
       },
       {
         "intitule": "Combien de questions compte toute la section Reading ?",
         "type": "nombre",
-        "reponse": 100
+        "reponse": 100,
+        "explication": "**Règle :** le Reading regroupe les parties 5, 6 et 7.\n\n**Pas à pas :**\n\n| Partie | Questions |\n|---|---|\n| 5 | 30 |\n| 6 | 16 |\n| 7 | 54 |\n\n1. 30 + 16 = 46.\n2. 46 + 54 = **100** questions.\n\nLe Listening en compte aussi 100 : 200 au total.\n\n**Erreur fréquente :** répondre 200, qui est le total **des deux** sections.\n\n**À retenir :** chaque section du TOEIC = 100 questions."
       }
     ],
     "indices": [
@@ -452,7 +491,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** au TOEIC, une mauvaise réponse **ne retire aucun point** : elle vaut 0, comme une case vide.\n\n**Pas à pas :** case vide → 0 point à coup sûr ; réponse au hasard → 1 chance sur 4 de gagner un point. Répondre ne coûte rien.\n\n**Erreur fréquente :** croire que le TOEIC fonctionne comme certains QCM à points négatifs, et laisser des cases vides par prudence.\n\n**À retenir :** **Faux** : pas de pénalité, donc on répond toujours."
       },
       {
         "intitule": "Il faut lire les questions avant d'écouter une conversation.",
@@ -461,7 +501,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** en partie 3, on lit les questions **avant** que la conversation commence.\n\n**Pas à pas :** les questions te disent quoi chercher : qui parle (*who*), quel problème ou quelle raison (*why*), et ce qui va se passer ensuite (*next step*). Tu écoutes alors avec un but précis au lieu d'essayer de tout retenir.\n\n**Erreur fréquente :** attendre la fin de l'audio pour lire les questions : il est trop tard, l'audio n'est joué qu'une fois.\n\n**À retenir :** **Vrai** : questions d'abord, écoute ensuite."
       },
       {
         "intitule": "En partie 7, il faut lire chaque document mot à mot.",
@@ -470,7 +511,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** en partie 7, on **balaie** le texte (*scanning*) au lieu de tout lire mot à mot.\n\n**Pas à pas :** 54 questions en 45 à 50 minutes, textes compris : moins d'une minute par question. On lit la question, on repère ses mots-clés (un nom, une date, un chiffre), puis on cherche seulement ces mots dans le document.\n\n**Erreur fréquente :** vouloir tout comprendre avant de répondre : on n'a jamais le temps de finir.\n\n**À retenir :** **Faux** : questions d'abord, puis balayage des mots-clés."
       },
       {
         "intitule": "La bonne réponse reprend souvent les mots exacts entendus.",
@@ -479,7 +521,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** la bonne réponse **reformule** l'idée avec d'autres mots (*paraphrase*).\n\n**Pas à pas :** on entend *The printer is out of order* (l'imprimante est en panne). La bonne réponse sera plutôt *The machine isn't working*. Une réponse comme *Please order more paper* reprend *order* : piège.\n\n**Erreur fréquente :** se jeter sur la réponse où l'on reconnaît des mots entendus.\n\n**À retenir :** **Faux** : mêmes mots = méfiance ; même sens = bonne réponse."
       },
       {
         "intitule": "En partie 6, il faut lire la phrase avant et après le trou.",
@@ -488,7 +531,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** en partie 6, on lit la phrase **avant** et la phrase **après** le trou.\n\n**Pas à pas :** le bon mot dépend souvent du contexte : un connecteur (*however* ou *therefore* selon le lien entre les deux phrases), un temps (passé si l'événement a eu lieu), le ton du texte (lettre polie ou annonce). Une seule phrase ne suffit pas toujours.\n\n**Erreur fréquente :** remplir le trou en ne lisant que sa phrase, comme en partie 5.\n\n**À retenir :** **Vrai** : en partie 6, lis autour du trou."
       },
       {
         "intitule": "En partie 1, on décrit ce qui pourrait se passer sur la photo.",
@@ -497,7 +541,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** en partie 1, la bonne phrase décrit seulement ce qui est **clairement visible** sur la photo.\n\n**Pas à pas :** une photo de valise près d'une porte ne prouve pas que quelqu'un *is leaving for the airport*. On ne garde que les faits visibles : la valise est à côté de la porte (*next to the door*).\n\n**Erreur fréquente :** imaginer une histoire autour de la photo et choisir la phrase qui la raconte.\n\n**À retenir :** **Faux** : on décrit ce qu'on voit, pas ce qui pourrait arriver."
       }
     ],
     "indices": [
@@ -519,7 +564,8 @@
           "Therefore",
           "However"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** **In addition** (de plus) **ajoute** une idée qui va dans le **même sens** que la précédente.\n\n**Pas à pas :**\n\n1. 1re phrase : l'imprimante est rapide → une **qualité**.\n2. 2e phrase : elle utilise moins d'encre → une **autre qualité**.\n3. Qualité + qualité = **ajout** → **In addition**.\n\n**Les autres choix :** *Therefore* (donc) voudrait dire qu'elle consomme moins **parce qu'**elle est rapide : pas de lien de cause ici. *However* (cependant) annoncerait un défaut après la qualité.\n\n**À retenir :** même sens → ajout (*In addition, Moreover*)."
       },
       {
         "intitule": "*The supplier was late again. ......, we have decided to change suppliers.*",
@@ -529,7 +575,8 @@
           "In addition",
           "Therefore"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** **Therefore** (donc, par conséquent) annonce une **conséquence** de la phrase précédente.\n\n**Pas à pas :**\n\n1. 1re phrase : le fournisseur est encore en retard → une **cause**.\n2. 2e phrase : on change de fournisseur → ce qu'on fait **à cause de** ça.\n3. Cause puis effet = **conséquence** → **Therefore**.\n\n**Les autres choix :** *However* (cependant) annoncerait une opposition (« il était en retard, cependant on le garde ») ; *In addition* ajouterait juste un autre fait sans lien de cause.\n\n**À retenir :** cause → effet = *Therefore, As a result*."
       },
       {
         "intitule": "*The hotel was comfortable. ......, the restaurant was disappointing.*",
@@ -539,7 +586,8 @@
           "In addition",
           "However"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** **However** (cependant, pourtant) annonce une **opposition** : la 2e phrase va contre la 1re.\n\n**Pas à pas :**\n\n1. 1re phrase : l'hôtel était confortable → **positif**.\n2. 2e phrase : le restaurant était décevant → **négatif**.\n3. Positif puis négatif = **opposition** → **However**.\n\n**Les autres choix :** *Therefore* voudrait dire que le restaurant est décevant **parce que** l'hôtel est confortable : absurde. *In addition* ajouterait une idée du même sens (une 2e qualité).\n\n**À retenir :** sens contraire → opposition (*However, Nevertheless*)."
       }
     ],
     "indices": [
@@ -556,7 +604,8 @@
       {
         "intitule": "Ton plan",
         "type": "auto",
-        "reponse": "Exemple :\n\n- **Chaque jour (15 min)** : écouter un podcast ou une vidéo en anglais ; apprendre 10 mots d'un thème du TOEIC.\n- **Lundi et jeudi (30 min)** : une série de parties 1 et 2 sur ExamEnglish, en notant les pièges sonores.\n- **Samedi (45 min)** : un test d'écoute complet en temps réel (TestDEN ou MyPrepster), puis revoir chaque erreur.\n- **Fin de semaine 2** : refaire un test de niveau (ETS Level Projector) pour mesurer les progrès."
+        "reponse": "Exemple :\n\n- **Chaque jour (15 min)** : écouter un podcast ou une vidéo en anglais ; apprendre 10 mots d'un thème du TOEIC.\n- **Lundi et jeudi (30 min)** : une série de parties 1 et 2 sur ExamEnglish, en notant les pièges sonores.\n- **Samedi (45 min)** : un test d'écoute complet en temps réel (TestDEN ou MyPrepster), puis revoir chaque erreur.\n- **Fin de semaine 2** : refaire un test de niveau (ETS Level Projector) pour mesurer les progrès.",
+        "explication": "**Règle :** un bon plan d'entraînement répond à **quoi**, **quand** et **avec quel site**, et respecte cinq principes : régularité, format officiel, chronomètre, correction des erreurs, mesure des progrès.\n\n**Pas à pas : ce que ta réponse doit contenir.**\n\n1. **Régularité** : un petit moment **chaque jour** (10 à 20 minutes d'écoute en anglais, quelques mots de vocabulaire d'un thème du TOEIC : bureau, voyages, finance…).\n2. **Exercices au format officiel**, avec des jours précis : par exemple des séries de parties 1 et 2, puis 3 et 4, sur un des sites du cours (ExamEnglish, TestDEN, MyPrepster).\n3. **Un test chronométré** au moins une fois par semaine, en temps réel, sans pause ni réécoute.\n4. **La correction** : revoir chaque erreur et noter le piège (son proche, mot interrogatif mal compris…).\n5. **Une mesure** : un test de niveau (ETS Level Projector, DigiSchool) au milieu ou à la fin des 4 semaines.\n\n**Erreurs fréquentes :** un plan trop vague (« je vais travailler l'anglais ») sans jours ni durée ; tout concentrer la veille du CC ; ne faire que du vocabulaire sans aucun test d'écoute ; oublier de revoir ses erreurs ; oublier que le CC porte sur le **Listening**.\n\n**À retenir :** quoi + quand + quel site, un peu chaque jour, un test chronométré par semaine, et chaque erreur revue."
       }
     ],
     "indices": [

@@ -1,74 +1,134 @@
 [
   {
     "question": "Quelle erreur faut-il traiter avec `Result` plutôt qu'avec `panic!` ?",
-    "choix": ["Un bug dans le programme", "Une saisie invalide de l'utilisateur", "Un indice hors du tableau", "Un état impossible"],
+    "choix": [
+      "Un bug dans le programme",
+      "Une saisie invalide de l'utilisateur",
+      "Un indice hors du tableau",
+      "Un état impossible"
+    ],
     "reponse": 1,
-    "explication": "Une saisie invalide est prévisible : le programme doit pouvoir réagir. `panic!` est réservé aux bugs et aux situations impossibles."
+    "explication": "**Règle :** `Result` sert aux échecs **prévisibles**, qui peuvent arriver même quand le programme est correct. `panic!` sert aux **bugs** et aux situations impossibles.\n\n**Pas à pas :** pour chaque choix, on se demande « est-ce que ça peut arriver sans erreur dans le code ? ».\n\n| Situation | Arrive sans bug ? | Outil |\n|---|---|---|\n| saisie invalide de l'utilisateur | **oui**, les gens se trompent | `Result` |\n| bug dans le programme | non | panique |\n| indice hors du tableau | non, c'est une erreur de calcul d'indice | panique (Rust panique tout seul) |\n| état impossible | non, par définition | panique |\n\nSeule la saisie invalide est un échec normal, auquel le programme doit répondre (redemander, afficher un message).\n\n**À retenir :** saisie, fichier, réseau → `Result` ; bug ou situation « qui ne devrait jamais arriver » → panique."
   },
   {
     "question": "Que contient une valeur de type `Result<T, E>` ?",
-    "choix": ["Soit `Ok(T)`, soit `Err(E)`", "Soit `Some(T)`, soit `None`", "T et E en même temps", "Seulement une erreur"],
+    "choix": [
+      "Soit `Ok(T)`, soit `Err(E)`",
+      "Soit `Some(T)`, soit `None`",
+      "T et E en même temps",
+      "Seulement une erreur"
+    ],
     "reponse": 0,
-    "explication": "`Result` est une enum à deux variantes : le succès avec sa valeur, ou l'échec avec son erreur."
+    "explication": "**Règle :** `Result<T, E>` est une **enum** à deux variantes : `Ok(T)` (succès, avec la valeur) et `Err(E)` (échec, avec l'erreur). Comme toute enum, elle vaut **une seule** variante à la fois.\n\n**Pas à pas :** `\"42\".parse::<i32>()` vaut `Ok(42)` : `T = i32` ; `\"abc\".parse::<i32>()` vaut `Err(ParseIntError ...)` : `E = ParseIntError`. Jamais les deux ensemble.\n\n**Les autres réponses :** `Some(T)` ou `None`, c'est `Option` ; « T et E en même temps » décrit une struct ou un tuple `(T, E)`, pas une enum ; « seulement une erreur » oublie le cas `Ok`.\n\n**À retenir :** `Result` = `Ok(valeur)` **ou** `Err(erreur)`, jamais les deux."
   },
   {
     "question": "Quelle est la différence entre `Option` et `Result` ?",
-    "choix": ["Aucune", "`Result` dit pourquoi ça a échoué, `Option` dit seulement qu'il n'y a rien", "`Option` est plus rapide", "`Result` ne marche qu'avec des nombres"],
+    "choix": [
+      "Aucune",
+      "`Result` dit pourquoi ça a échoué, `Option` dit seulement qu'il n'y a rien",
+      "`Option` est plus rapide",
+      "`Result` ne marche qu'avec des nombres"
+    ],
     "reponse": 1,
-    "explication": "`Err(E)` transporte une information sur l'échec, `None` ne transporte rien."
+    "explication": "**Règle :** `Option<T>` vaut `Some(valeur)` ou `None` : `None` ne porte **aucune** information. `Result<T, E>` vaut `Ok(valeur)` ou `Err(erreur)` : l'erreur **explique** l'échec.\n\n**Pas à pas :**\n\n- Chercher un élève absent d'une liste : `None` suffit, il n'y a qu'une seule raison possible (il n'y est pas).\n- Lire un nombre : `\"abc\"` (pas un chiffre), `\"\"` (vide) et `\"300\"` dans un `u8` (trop grand) échouent pour des raisons différentes. `Err(ParseIntError)` dit laquelle.\n\n**Les autres réponses :** il y a bien une différence ; `Option` n'est pas « plus rapide », ce n'est pas le critère ; `Result` marche avec n'importe quels types (`Result<String, ErreurAge>`…).\n\n**À retenir :** absence sans explication → `Option` ; échec avec une raison → `Result`."
   },
   {
     "question": "Que renvoie `\"abc\".parse::<i32>()` ?",
-    "choix": ["`0`", "`None`", "`Err(...)` contenant une `ParseIntError`", "Une panique"],
+    "choix": [
+      "`0`",
+      "`None`",
+      "`Err(...)` contenant une `ParseIntError`",
+      "Une panique"
+    ],
     "reponse": 2,
-    "explication": "`parse` ne panique pas : il renvoie un `Result`. Ici c'est un `Err` car « abc » n'est pas un nombre."
+    "explication": "**Règle :** `parse` ne panique jamais : il renvoie un `Result`. `Ok(nombre)` si tout le texte est un nombre valide pour le type demandé, sinon `Err(ParseIntError)`.\n\n**Pas à pas :**\n\n1. On demande un `i32`.\n2. `\"abc\"` : le premier caractère, `a`, n'est pas un chiffre.\n3. Résultat : `Err(ParseIntError { kind: InvalidDigit })`, qui s'affiche avec `{}` comme `invalid digit found in string`.\n\n**Les autres réponses :** `0` serait une valeur inventée (on ne peut pas distinguer « 0 » et « pas un nombre ») ; `None` est une variante d'`Option`, pas de `Result` ; une panique n'arrive que si on appelle `unwrap()` ou `expect()` sur ce `Err`.\n\n**À retenir :** `parse` renvoie toujours un `Result` ; c'est toi qui décides quoi faire du `Err`."
   },
   {
     "question": "À quoi sert `::<i32>` dans `texte.parse::<i32>()` ?",
-    "choix": ["À mettre le texte en majuscules", "À préciser le type voulu (le « turbofish »)", "À ignorer les erreurs", "C'est obligatoire pour toutes les méthodes"],
+    "choix": [
+      "À mettre le texte en majuscules",
+      "À préciser le type voulu (le « turbofish »)",
+      "À ignorer les erreurs",
+      "C'est obligatoire pour toutes les méthodes"
+    ],
     "reponse": 1,
-    "explication": "`parse` peut produire beaucoup de types différents : `::<i32>` dit lequel on veut."
+    "explication": "**Règle :** `parse` peut fabriquer beaucoup de types (`i32`, `u8`, `f64`…). Le **turbofish** `::<Type>`, placé entre le nom de la méthode et les parenthèses, dit lequel on veut.\n\n**Pas à pas :** `\"42\".parse::<i32>()` lit un `i32` et donne `Ok(42)`. `\"42\".parse::<f64>()` lirait un `f64`. Le type peut aussi venir d'ailleurs : avec `let n: u8 = texte.parse().unwrap();` ou dans une fonction qui renvoie un `u8`, le compilateur devine tout seul et le turbofish n'est pas nécessaire.\n\n**Les autres réponses :** il ne touche pas au texte (les majuscules, c'est `to_uppercase()`) ; il n'ignore aucune erreur, `parse` renvoie toujours un `Result` ; et il n'est **pas** obligatoire pour toutes les méthodes, seulement quand le compilateur ne peut pas deviner le type.\n\n**À retenir :** `::<Type>` choisit le type produit par une méthode générique comme `parse`, quand rien d'autre ne l'indique."
   },
   {
     "question": "Que fait `?` placé après une valeur `Err(e)` ?",
-    "choix": ["Il fait paniquer le programme", "Il arrête la fonction et renvoie `Err(e)` à l'appelant", "Il remplace l'erreur par 0", "Il ignore l'erreur et continue"],
+    "choix": [
+      "Il fait paniquer le programme",
+      "Il arrête la fonction et renvoie `Err(e)` à l'appelant",
+      "Il remplace l'erreur par 0",
+      "Il ignore l'erreur et continue"
+    ],
     "reponse": 1,
-    "explication": "`?` propage l'erreur : c'est un raccourci pour `match ... { Err(e) => return Err(e), ... }`."
+    "explication": "**Règle :** `?` sur un `Result` : sur `Ok(v)` il donne `v` ; sur `Err(e)` il **arrête la fonction** et fait `return Err(e)` vers l'appelant.\n\n**Pas à pas :** dans `let x = a.parse::<i32>()?;` avec `a = \"x\"` :\n\n1. `parse` donne `Err(ParseIntError)`.\n2. `?` voit un `Err` : `x` n'est jamais créé.\n3. La fonction renvoie aussitôt ce `Err` ; les lignes suivantes ne sont pas exécutées.\n\nC'est l'équivalent de `match ... { Ok(v) => v, Err(e) => return Err(e) }`.\n\n**Les autres réponses :** pas de panique (c'est `unwrap` qui panique) ; l'erreur n'est pas remplacée par 0 (ça, c'est `unwrap_or(0)`) ; et elle n'est pas ignorée, elle est transmise à l'appelant.\n\n**À retenir :** `?` = « continue avec la valeur, ou renvoie l'erreur tout de suite »."
   },
   {
     "question": "Où peut-on utiliser `?` sur un `Result` ?",
-    "choix": ["Partout", "Dans une fonction qui renvoie elle-même un `Result`", "Seulement dans `main`", "Seulement dans les tests"],
+    "choix": [
+      "Partout",
+      "Dans une fonction qui renvoie elle-même un `Result`",
+      "Seulement dans `main`",
+      "Seulement dans les tests"
+    ],
     "reponse": 1,
-    "explication": "`?` peut faire un `return Err(...)` : la fonction doit donc renvoyer un `Result` compatible."
+    "explication": "**Règle :** `?` peut faire `return Err(e)`. La fonction qui le contient doit donc **renvoyer un `Result`**, avec un type d'erreur compatible avec celui de `e`.\n\n**Pas à pas :**\n\n- `fn additionner(a: &str, b: &str) -> Result<i32, ParseIntError>` : `?` sur `parse` est permis, la fonction peut renvoyer une `ParseIntError`.\n- `fn afficher(a: &str) -> i32` : `?` est refusé, la fonction ne peut pas renvoyer d'erreur.\n- `main` peut utiliser `?` à condition d'être déclarée `fn main() -> Result<(), ...>` et de finir par `Ok(())`.\n\n**Les autres réponses :** pas « partout » (voir le deuxième cas) ; pas « seulement dans `main` » (n'importe quelle fonction qui renvoie un `Result`) ; pas « seulement dans les tests ».\n\n**À retenir :** avant d'écrire `?`, vérifie que ta fonction renvoie un `Result` (ou un `Option` pour un `?` sur un `Option`)."
   },
   {
     "question": "Que vaut `Some(3).ok_or(\"vide\")` ?",
-    "choix": ["`Ok(3)`", "`Err(\"vide\")`", "`Some(3)`", "`3`"],
+    "choix": [
+      "`Ok(3)`",
+      "`Err(\"vide\")`",
+      "`Some(3)`",
+      "`3`"
+    ],
     "reponse": 0,
-    "explication": "`ok_or` transforme `Some(v)` en `Ok(v)` et `None` en `Err(erreur)`."
+    "explication": "**Règle :** `option.ok_or(erreur)` transforme un `Option` en `Result` : `Some(v)` devient `Ok(v)`, `None` devient `Err(erreur)`.\n\n**Pas à pas :** on part de `Some(3)`. Il y a une valeur, donc on la met dans un `Ok` : `Ok(3)`. Le `\"vide\"` n'est pas utilisé ici ; il ne servirait que si on partait de `None` (on obtiendrait `Err(\"vide\")`).\n\n**Les autres réponses :** `Err(\"vide\")` est le résultat pour `None`, pas pour `Some(3)` ; `Some(3)` est l'entrée, `ok_or` change justement le type ; `3` tout seul oublierait l'enveloppe `Ok`.\n\n**À retenir :** `ok_or(e)` : `Some(v)` → `Ok(v)`, `None` → `Err(e)` ; on peut ensuite enchaîner avec `?`."
   },
   {
     "question": "À quoi sert `map_err` ?",
-    "choix": ["À transformer la valeur dans `Ok`", "À remplacer l'erreur par une autre erreur", "À ignorer l'erreur", "À paniquer avec un message"],
+    "choix": [
+      "À transformer la valeur dans `Ok`",
+      "À remplacer l'erreur par une autre erreur",
+      "À ignorer l'erreur",
+      "À paniquer avec un message"
+    ],
     "reponse": 1,
-    "explication": "`map_err` transforme le contenu de `Err` sans toucher à `Ok`. Très utilisé avec `?` pour passer à son propre type d'erreur."
+    "explication": "**Règle :** `resultat.map_err(|e| autre)` remplace le contenu d'un `Err` par ce que renvoie la closure. Un `Ok` passe sans être touché.\n\n**Pas à pas :** dans `texte.parse::<u32>().map_err(|_| ErreurAge::PasUnNombre)?` :\n\n1. `\"vingt\"` : `parse` donne `Err(ParseIntError)`. `map_err` le remplace par `Err(ErreurAge::PasUnNombre)`, et `?` peut alors le renvoyer depuis une fonction qui renvoie `Result<u32, ErreurAge>`.\n2. `\"42\"` : `parse` donne `Ok(42)`, `map_err` ne fait rien, `?` donne 42.\n\nSans `map_err`, le `?` serait refusé : la fonction ne peut pas renvoyer une `ParseIntError` à la place d'une `ErreurAge`.\n\n**Les autres réponses :** transformer la valeur dans `Ok`, c'est `map` ; ignorer l'erreur, ce serait `.ok()` ou `unwrap_or` ; paniquer avec un message, c'est `expect`.\n\n**À retenir :** `map_err` convertit l'erreur reçue en **ton** type d'erreur, juste avant le `?`."
   },
   {
     "question": "Quelle est la différence entre `unwrap()` et `expect(\"message\")` ?",
-    "choix": ["`expect` ne panique jamais", "Les deux paniquent en cas d'erreur, mais `expect` affiche ton message", "`unwrap` est plus sûr", "`expect` renvoie un `Result`"],
+    "choix": [
+      "`expect` ne panique jamais",
+      "Les deux paniquent en cas d'erreur, mais `expect` affiche ton message",
+      "`unwrap` est plus sûr",
+      "`expect` renvoie un `Result`"
+    ],
     "reponse": 1,
-    "explication": "`expect` permet d'expliquer pourquoi on pensait que l'échec était impossible."
+    "explication": "**Règle :** `unwrap()` et `expect(\"message\")` donnent tous les deux la valeur d'un `Ok` (ou `Some`), et **paniquent** sur un `Err` (ou `None`). La seule différence est le message de la panique.\n\n**Pas à pas :** sur `\"abc\".parse::<u16>()` :\n\n- `.unwrap()` panique avec `called Result::unwrap() on an Err value: ParseIntError { kind: InvalidDigit }` : on ne sait pas ce qu'on essayait de lire.\n- `.expect(\"le port doit être un nombre\")` panique avec `le port doit être un nombre: ParseIntError { kind: InvalidDigit }` : le message dit ce qui était attendu.\n\n**Les autres réponses :** `expect` panique bel et bien ; `unwrap` n'est pas plus sûr, c'est la même chose avec un moins bon message ; `expect` renvoie la valeur, pas un `Result`.\n\n**À retenir :** si tu dois paniquer, préfère `expect(\"ce qui devait être vrai\")` à `unwrap()`."
   },
   {
     "question": "Dans quel cas un `unwrap()` est-il acceptable ?",
-    "choix": ["Pour lire une saisie de l'utilisateur", "Dans un test ou un prototype, ou quand l'échec est vraiment impossible", "Pour lire un fichier", "Toujours, c'est plus court"],
+    "choix": [
+      "Pour lire une saisie de l'utilisateur",
+      "Dans un test ou un prototype, ou quand l'échec est vraiment impossible",
+      "Pour lire un fichier",
+      "Toujours, c'est plus court"
+    ],
     "reponse": 1,
-    "explication": "Pour tout ce qui peut raisonnablement échouer, on traite l'erreur avec `match`, `?` ou une valeur par défaut."
+    "explication": "**Règle :** `unwrap()` transforme tout échec en panique. C'est acceptable seulement quand une panique est sans conséquence (un test, un prototype) ou quand l'échec est **réellement impossible**.\n\n**Pas à pas :**\n\n| Cas | Échec possible ? | `unwrap` ? |\n|---|---|---|\n| un test : `assert_eq!(lire(\"4\").unwrap(), 4)` | si ça panique, le test échoue, c'est voulu | oui |\n| `\"42\".parse::<i32>()` sur un texte écrit dans le code | impossible | oui (mieux : `expect` qui dit pourquoi) |\n| saisie de l'utilisateur | très possible | non : `match`, `?` ou `unwrap_or` |\n| lecture d'un fichier | possible (absent, droits) | non |\n\n**Les autres réponses :** la saisie et la lecture de fichier sont justement les exemples d'échecs prévisibles ; « toujours, c'est plus court » ferait planter le programme à la première faute de frappe.\n\n**À retenir :** `unwrap` seulement là où une panique est acceptable ; ailleurs, traite l'erreur."
   },
   {
     "question": "Que vaut `\"12\".parse::<i32>().ok()` ?",
-    "choix": ["`Ok(12)`", "`Some(12)`", "`12`", "`true`"],
+    "choix": [
+      "`Ok(12)`",
+      "`Some(12)`",
+      "`12`",
+      "`true`"
+    ],
     "reponse": 1,
-    "explication": "`.ok()` transforme un `Result` en `Option` : `Ok(12)` devient `Some(12)`, une erreur deviendrait `None`."
+    "explication": "**Règle :** `resultat.ok()` transforme un `Result` en `Option` : `Ok(v)` devient `Some(v)`, `Err(_)` devient `None` (l'erreur est jetée).\n\n**Pas à pas :**\n\n1. `\"12\".parse::<i32>()` donne `Ok(12)`.\n2. `.ok()` change l'enveloppe : `Ok(12)` → `Some(12)`.\n\nAvec `\"abc\"`, on aurait `Err(...)` → `None`.\n\n**Les autres réponses :** `Ok(12)` est le résultat **avant** `.ok()` ; `12` tout seul demanderait `unwrap()` ou `unwrap_or(...)` ; `true` est le résultat de `.is_ok()`, pas de `.ok()`.\n\n**À retenir :** `.ok()` passe de `Result` à `Option` (c'est l'inverse de `ok_or`)."
   }
 ]

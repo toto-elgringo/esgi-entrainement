@@ -5,11 +5,46 @@
     "difficulte": 1,
     "enonce": "Pour chaque sélection du cours, choisis la couche de la BD TOPO.",
     "questions": [
-      { "intitule": "Sélectionner uniquement les autoroutes", "type": "choix", "choix": ["TRONCON_DE_ROUTE", "COMMUNE", "BATIMENT", "ADRESSE_BAN"], "reponse": 0 },
-      { "intitule": "Sélectionner les communes de plus de 10 000 habitants", "type": "choix", "choix": ["COMMUNE", "TRONCON_DE_ROUTE", "BATIMENT", "COURS_D_EAU"], "reponse": 0 },
-      { "intitule": "Sélectionner les bâtiments résidentiels de plus de 4 m", "type": "choix", "choix": ["BATIMENT", "COMMUNE", "TRONCON_DE_ROUTE", "TOPONYMIE"], "reponse": 0 }
+      {
+        "intitule": "Sélectionner uniquement les autoroutes",
+        "type": "choix",
+        "choix": [
+          "TRONCON_DE_ROUTE",
+          "COMMUNE",
+          "BATIMENT",
+          "ADRESSE_BAN"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** on cherche une information dans la couche qui décrit **l'objet concerné**. Une autoroute est un morceau du réseau routier : couche **TRONCON_DE_ROUTE** (thème TRANSPORT).\n\n**Pas à pas :**\n\n1. Quel objet veut-on ? Des autoroutes, donc des routes.\n2. Quelle couche contient les routes ? `TRONCON_DE_ROUTE`.\n3. Quel champ dit le type de route ? `NATURE` (valeur `Type autoroutier`).\n\n**Les autres réponses :** COMMUNE contient des limites de communes ; BATIMENT des bâtiments ; ADRESSE_BAN des adresses (des points). Aucune ne contient de routes.\n\n**À retenir :** information sur une route → couche de routes."
+      },
+      {
+        "intitule": "Sélectionner les communes de plus de 10 000 habitants",
+        "type": "choix",
+        "choix": [
+          "COMMUNE",
+          "TRONCON_DE_ROUTE",
+          "BATIMENT",
+          "COURS_D_EAU"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le nombre d'habitants est un attribut **de la commune** : on le cherche dans la couche **COMMUNE**, champ `POPULATION`.\n\n**Pas à pas :**\n\n1. Quel objet veut-on ? Des communes.\n2. Quelle couche ? `COMMUNE` (thème ADMINISTRATIF).\n3. Quel champ ? `POPULATION`.\n\n**Les autres réponses :** TRONCON_DE_ROUTE, BATIMENT et COURS_D_EAU n'ont pas de nombre d'habitants. Attention : la BD TOPO de Paris (75) ne contient qu'une seule commune ; il faut un jeu de plusieurs départements pour en avoir plusieurs.\n\n**À retenir :** information sur une commune → couche COMMUNE."
+      },
+      {
+        "intitule": "Sélectionner les bâtiments résidentiels de plus de 4 m",
+        "type": "choix",
+        "choix": [
+          "BATIMENT",
+          "COMMUNE",
+          "TRONCON_DE_ROUTE",
+          "TOPONYMIE"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** l'usage et la hauteur décrivent **un bâtiment** : couche **BATIMENT**, champs `USAGE1` et `HAUTEUR`.\n\n**Pas à pas :**\n\n1. Quel objet veut-on ? Des bâtiments.\n2. Quelle couche ? `BATIMENT` (thème BATI).\n3. Quels champs ? `USAGE1` (résidentiel ?) et `HAUTEUR` (plus de 4 m ?).\n\n**Les autres réponses :** COMMUNE et TRONCON_DE_ROUTE ne décrivent pas les bâtiments ; TOPONYMIE ne contient que des noms de lieux.\n\n**À retenir :** information sur un bâtiment → couche BATIMENT."
+      }
     ],
-    "indices": ["Un objet routier est dans TRANSPORT, un bâtiment dans BATI, une commune dans ADMINISTRATIF."],
+    "indices": [
+      "Un objet routier est dans TRANSPORT, un bâtiment dans BATI, une commune dans ADMINISTRATIF."
+    ],
     "correction": "**TRONCON_DE_ROUTE**, **COMMUNE**, **BATIMENT**."
   },
   {
@@ -18,9 +53,16 @@
     "difficulte": 2,
     "enonce": "Dans TRONCON_DE_ROUTE, le champ `NATURE` vaut `Type autoroutier` pour les autoroutes.",
     "questions": [
-      { "intitule": "Écris l'expression de sélection", "type": "auto", "reponse": "\"NATURE\" = 'Type autoroutier'" }
+      {
+        "intitule": "Écris l'expression de sélection",
+        "type": "auto",
+        "reponse": "\"NATURE\" = 'Type autoroutier'",
+        "explication": "**Ce qu'une bonne réponse doit contenir :** une **égalité** entre le champ et la valeur, avec la bonne ponctuation.\n\n1. **Le champ** `NATURE`, entre **guillemets doubles** : c'est le nom d'une colonne.\n2. **L'opérateur** `=` : on veut exactement cette valeur.\n3. **La valeur** `Type autoroutier`, entre **apostrophes** : c'est un texte, écrit exactement comme dans la table (majuscule au début, espace au milieu, rien d'autre).\n\n**Erreurs fréquentes :**\n\n- inverser la ponctuation (`'NATURE' = \"Type autoroutier\"`) : QGIS lirait un texte à la place du champ et chercherait un champ nommé « Type autoroutier », qui n'existe pas ;\n- mal écrire la valeur (`'type autoroutier'`, `'Autoroute'`) : aucun objet trouvé ;\n- utiliser `LIKE` sans `%` : inutile ici, une égalité suffit.\n\n**À retenir :** champ = valeur, avec `\"champ\"` et `'texte'`."
+      }
     ],
-    "indices": ["Champ entre guillemets doubles, valeur entre apostrophes."],
+    "indices": [
+      "Champ entre guillemets doubles, valeur entre apostrophes."
+    ],
     "correction": "`\"NATURE\" = 'Type autoroutier'`"
   },
   {
@@ -29,10 +71,28 @@
     "difficulte": 1,
     "enonce": "Dans COMMUNE, le champ `POPULATION` contient le nombre d'habitants.",
     "questions": [
-      { "intitule": "Écris l'expression pour les communes de plus de 10 000 habitants", "type": "auto", "reponse": "\"POPULATION\" > 10000" },
-      { "intitule": "Quel opérateur faut-il changer pour avoir « au moins 10 000 » ?", "type": "choix", "choix": [">=", "<", "=", "<>"], "reponse": 0 }
+      {
+        "intitule": "Écris l'expression pour les communes de plus de 10 000 habitants",
+        "type": "auto",
+        "reponse": "\"POPULATION\" > 10000",
+        "explication": "**Ce qu'une bonne réponse doit contenir :** une **comparaison** entre le champ et un nombre.\n\n1. **Le champ** `POPULATION`, entre guillemets doubles.\n2. **L'opérateur** `>` : « plus de » veut dire strictement supérieur.\n3. **Le nombre** `10000`, **sans** apostrophes et **sans** espace.\n\n**Erreurs fréquentes :**\n\n- écrire `'10 000'` entre apostrophes : ce serait un texte, pas un nombre, et l'espace gêne aussi ;\n- mettre `'POPULATION'` entre apostrophes : ce serait le mot « POPULATION », pas la colonne ;\n- utiliser `<` (sens inversé, petites communes) ou `=` (exactement 10 000).\n\n**À retenir :** « plus de N » → `\"champ\" > N`, nombre tout nu."
+      },
+      {
+        "intitule": "Quel opérateur faut-il changer pour avoir « au moins 10 000 » ?",
+        "type": "choix",
+        "choix": [
+          ">=",
+          "<",
+          "=",
+          "<>"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** « plus de 10 000 » **exclut** 10 000 (`>`), « au moins 10 000 » l'**inclut** : il faut `>=` (supérieur **ou égal**).\n\n**Pas à pas :** on teste une commune d'exactement 10 000 habitants.\n\n| Expression | 10 000 gardée ? |\n|---|---|\n| `\"POPULATION\" > 10000` | non |\n| `\"POPULATION\" >= 10000` | **oui** |\n\n« Au moins 10 000 » doit la garder : on remplace `>` par `>=`.\n\n**Les autres réponses :** `<` donnerait les petites communes ; `=` seulement celles d'exactement 10 000 habitants ; `<>` toutes sauf celles-là.\n\n**À retenir :** « au moins » → `>=` ; « plus de » → `>`."
+      }
     ],
-    "indices": ["Plus de = strictement supérieur."],
+    "indices": [
+      "Plus de = strictement supérieur."
+    ],
     "correction": "`\"POPULATION\" > 10000` ; pour « au moins », on utilise `>=`."
   },
   {
@@ -41,10 +101,24 @@
     "difficulte": 2,
     "enonce": "Dans BATIMENT, `USAGE1` donne l'usage principal et `HAUTEUR` la hauteur en mètres.",
     "questions": [
-      { "intitule": "Écris l'expression pour les bâtiments résidentiels de plus de 4 m", "type": "auto", "reponse": "\"USAGE1\" = 'Résidentiel' AND \"HAUTEUR\" > 4" },
-      { "intitule": "Quel mot relie les deux conditions ?", "type": "texte", "reponse": ["AND", "ET"] }
+      {
+        "intitule": "Écris l'expression pour les bâtiments résidentiels de plus de 4 m",
+        "type": "auto",
+        "reponse": "\"USAGE1\" = 'Résidentiel' AND \"HAUTEUR\" > 4",
+        "explication": "**Ce qu'une bonne réponse doit contenir :** **deux conditions** reliées par `AND`.\n\n1. **Condition sur l'usage :** `\"USAGE1\" = 'Résidentiel'` (champ entre guillemets doubles, texte entre apostrophes, avec l'accent et la majuscule comme dans la table).\n2. **Condition sur la hauteur :** `\"HAUTEUR\" > 4` (« plus de 4 m » = strictement supérieur, nombre sans apostrophes).\n3. **Le lien :** `AND`, car les deux doivent être vraies en même temps.\n\n**Erreurs fréquentes :**\n\n- utiliser `OR` : on garderait aussi les maisons basses et les bâtiments hauts non résidentiels ;\n- oublier l'accent (`'Residentiel'`) : aucun bâtiment trouvé ;\n- écrire `'4'` entre apostrophes ou ajouter l'unité (`4 m`) : la hauteur est un nombre, déjà en mètres.\n\n**À retenir :** deux critères à la fois → condition 1 `AND` condition 2."
+      },
+      {
+        "intitule": "Quel mot relie les deux conditions ?",
+        "type": "texte",
+        "reponse": [
+          "AND"
+        ],
+        "explication": "**Règle :** `AND` (qu'on lit « et ») exige que **les deux** conditions soient vraies. Dans QGIS, les opérateurs s'écrivent en anglais : on tape `AND` (« ET » en français n'est pas compris).\n\n**Pas à pas :**\n\n| Bâtiment | Résidentiel ? | Plus de 4 m ? | Avec `AND` | Avec `OR` |\n|---|---|---|---|---|\n| immeuble de 12 m | oui | oui | gardé | gardé |\n| maison de 3 m | oui | non | rejeté | gardé |\n| bureau de 20 m | non | oui | rejeté | gardé |\n\nOn ne veut que l'immeuble : c'est `AND`.\n\n**Erreur fréquente :** utiliser `OR`, qui garderait tous les bâtiments résidentiels, même bas, et tous les bâtiments de plus de 4 m, même non résidentiels.\n\n**À retenir :** « les deux à la fois » → `AND`."
+      }
     ],
-    "indices": ["Deux conditions qui doivent être vraies en même temps."],
+    "indices": [
+      "Deux conditions qui doivent être vraies en même temps."
+    ],
     "correction": "`\"USAGE1\" = 'Résidentiel' AND \"HAUTEUR\" > 4`"
   },
   {
@@ -53,9 +127,16 @@
     "difficulte": 2,
     "enonce": "Un camarade n'arrive pas à trouver les écoles dans la couche BATIMENT : il ne voit que commercial, résidentiel et sportif.",
     "questions": [
-      { "intitule": "Que lui répondre ?", "type": "auto", "reponse": "Le champ USAGE1 ne distingue que de grandes catégories : on ne peut pas filtrer par fonction précise. Il faut une autre source, par exemple OpenStreetMap (QuickOSM) qui étiquette les écoles." }
+      {
+        "intitule": "Que lui répondre ?",
+        "type": "auto",
+        "reponse": "Le champ USAGE1 ne distingue que de grandes catégories : on ne peut pas filtrer par fonction précise. Il faut une autre source, par exemple OpenStreetMap (QuickOSM) qui étiquette les écoles.",
+        "explication": "**Ce qu'une bonne réponse doit contenir :** **la cause** (pourquoi il ne trouve pas) et **la solution** (où chercher à la place).\n\n1. **La cause :** le champ `USAGE1` de la BD TOPO ne donne que de **grandes catégories** (résidentiel, commercial et services, sportif…). Il n'existe **aucune** valeur « école » dans la table.\n2. **La conséquence :** aucune expression, même parfaitement écrite, ne peut trouver les écoles dans cette couche : une requête ne trouve que des valeurs qui existent.\n3. **La solution :** utiliser **une autre source** qui décrit les fonctions précises, comme **OpenStreetMap**, récupérée avec l'extension **QuickOSM** (type « école »), en pensant à vérifier ces données collaboratives.\n\n**Erreurs fréquentes :** dire que son expression est mal écrite (le problème vient des données, pas de la syntaxe) ; proposer de chercher `'Ecole'` avec `LIKE` (la valeur n'existe pas) ; ne pas proposer d'autre source.\n\n**À retenir :** si la valeur n'existe pas dans la table, change de source."
+      }
     ],
-    "indices": ["Le même problème que pour les restaurants italiens."],
+    "indices": [
+      "Le même problème que pour les restaurants italiens."
+    ],
     "correction": "Les catégories de la BD TOPO sont larges. Pour une fonction précise (école, restaurant italien…), il faut **OpenStreetMap**."
   }
 ]

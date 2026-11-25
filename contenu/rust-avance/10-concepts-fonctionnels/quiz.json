@@ -8,7 +8,7 @@
       "Il n'y en a aucune"
     ],
     "reponse": 0,
-    "explication": "Impératif : on détaille les étapes (boucles, variables modifiées). Déclaratif : on dit ce qu'on veut (`filter`, `map`, `sum`)."
+    "explication": "**Règle :** le style **impératif** décrit le **comment** : les étapes une par une, avec des boucles et des variables qu'on modifie. Le style **déclaratif** décrit le **quoi** : ce qu'on veut obtenir, le détail des étapes étant caché dans des fonctions réutilisables.\n\n**Pas à pas :** « la somme des carrés des nombres pairs » :\n\n```rust\nlet mut total = 0;\nfor &n in &nombres {\n    if n % 2 == 0 {\n        total += n * n;\n    }\n}\n```\n\nC'est impératif : on gère soi-même `total` et la boucle. La version déclarative se lit comme la consigne :\n\n```rust\nlet total: i32 = nombres.iter().filter(|n| *n % 2 == 0).map(|n| n * n).sum();\n```\n\n**Les autres réponses :** « l'impératif est toujours plus rapide » est faux : en Rust, les itérateurs sont compilés en code aussi rapide qu'une boucle. « Le déclaratif interdit les fonctions » est l'inverse : il repose justement sur des fonctions (`filter`, `map`). « Aucune différence » est faux : les deux donnent le même résultat, mais s'écrivent et se lisent différemment.\n\n**À retenir :** impératif = comment (boucle, `mut`) ; déclaratif = quoi (`filter`, `map`, `sum`)."
   },
   {
     "question": "Qui a inventé le calcul lambda, base théorique de la PF ?",
@@ -19,7 +19,7 @@
       "Graydon Hoare en 2010"
     ],
     "reponse": 1,
-    "explication": "Alonzo Church a proposé le calcul lambda dans les années 1930 : calculer avec des fonctions, sans état qui change."
+    "explication": "**Règle :** le **calcul lambda** est un modèle mathématique où l'on calcule uniquement avec des fonctions (on les crée, on les applique), sans état qui change. Il a été proposé par **Alonzo Church** dans les années 1930.\n\n**Pas à pas :** on replace chaque nom proposé dans l'histoire :\n\n| Personne | Ce qu'on lui doit |\n|---|---|\n| Alonzo Church, années 1930 | le calcul lambda, base de la PF |\n| Alan Turing | la machine de Turing (1936), un autre modèle de calcul, à base d'un ruban qu'on modifie |\n| Linus Torvalds, 1991 | le noyau Linux |\n| Graydon Hoare | le langage Rust, commencé vers 2006 |\n\n**Les autres réponses :** Turing est contemporain de Church, mais son modèle est la machine de Turing, pas le calcul lambda (et 1950 ne correspond à aucun des deux). Torvalds et Hoare n'ont rien à voir avec le calcul lambda.\n\n**À retenir :** calcul lambda = Church, années 1930 ; puis LISP (1958), ML (1973), Haskell (1990)."
   },
   {
     "question": "Pourquoi la closure de `creer_compteur` est-elle déclarée `move` ?",
@@ -30,7 +30,7 @@
       "Pour l'envoyer sur le réseau"
     ],
     "reponse": 1,
-    "explication": "Sans `move`, la closure emprunterait `compte`, qui disparaît à la fin de la fonction. Avec `move`, elle en devient propriétaire."
+    "explication": "**Règle :** une closure qui **sort** de la fonction où elle est créée ne peut pas emprunter une variable locale de cette fonction, car la variable disparaît à la fin de l'appel. `move` fait **prendre possession** des variables capturées : la closure les emporte avec elle.\n\n**Pas à pas :**\n\n```rust\nfn creer_compteur() -> impl FnMut() -> i32 {\n    let mut compte = 0;\n    move || {\n        compte += 1;\n        compte\n    }\n}\n```\n\n1. `compte` est une variable locale de `creer_compteur`.\n2. La closure est renvoyée : `creer_compteur` se termine, sa variable locale devrait disparaître.\n3. Grâce à `move`, `compte` a été **déplacé dans** la closure : elle garde sa propre copie, et chaque appel de `creer_compteur()` crée un nouveau compteur indépendant.\n\nSans `move`, le compilateur refuse : la closure emprunterait une variable qui ne vit pas assez longtemps.\n\n**Les autres réponses :** `move` ne change pas la vitesse. Il n'interdit pas la modification : la closure modifie bien `compte` (c'est pour cela qu'elle est `FnMut`). Et il n'a rien à voir avec le réseau : « déplacer » parle ici de propriété en mémoire.\n\n**À retenir :** closure renvoyée par une fonction = `move`, pour qu'elle possède ce qu'elle capture."
   },
   {
     "question": "Que renvoie `[3, 8, 5].iter().position(|n| *n > 4)` ?",
@@ -41,7 +41,7 @@
       "`Some(2)`"
     ],
     "reponse": 1,
-    "explication": "`position` renvoie l'**index** du premier élément qui valide la condition, dans un `Option`. Ici 8 est à l'index 1."
+    "explication": "**Règle :** `position(p)` renvoie l'**index** (à partir de 0) du premier élément qui valide `p`, dans un `Option<usize>` : `Some(index)` s'il y en a un, `None` sinon. À ne pas confondre avec `find(p)`, qui renvoie l'**élément** lui-même.\n\n**Pas à pas :** sur `[3, 8, 5]` avec la condition `*n > 4` :\n\n| Index | Élément | `> 4` ? |\n|---|---|---|\n| 0 | 3 | non |\n| 1 | 8 | **oui** : on s'arrête |\n\n`position` renvoie donc `Some(1)`. L'élément 5 (index 2) n'est jamais regardé.\n\n**Les autres réponses :** `Some(8)` est ce que renverrait `find` (la valeur, et même `Some(&8)` avec `iter()`). `1` seul est impossible : le résultat est toujours dans une `Option`, car il pourrait ne rien y avoir. `Some(2)` est l'index de 5, qui valide aussi la condition, mais `position` s'arrête au **premier**.\n\n**À retenir :** `position` → index du premier qui valide, dans un `Option` ; `find` → l'élément."
   },
   {
     "question": "Qu'est-ce que l'application partielle ?",
@@ -52,7 +52,7 @@
       "Ignorer une erreur"
     ],
     "reponse": 1,
-    "explication": "`multiplier(2)` fixe le premier argument et renvoie une fonction qui attend le second."
+    "explication": "**Règle :** l'**application partielle** consiste à fixer à l'avance certains arguments d'une fonction : on obtient une nouvelle fonction, plus simple, qui n'attend plus que les arguments restants.\n\n**Pas à pas :**\n\n```rust\nfn multiplier(x: i32) -> impl Fn(i32) -> i32 {\n    move |y| x * y\n}\nlet double = multiplier(2);\n```\n\n1. `multiplier(2)` fixe `x = 2` et renvoie une fonction qui attend `y`.\n2. `double(7)` calcule `2 * 7 = 14`.\n\nDe même, avec une fonction à deux arguments `|a, b| a - b`, fixer `b = 1` donne une fonction « moins un » qui n'attend plus que `a`.\n\n**Les autres réponses :** compiler une partie du programme n'a rien à voir avec les fonctions (c'est de la compilation incrémentale). Appeler une fonction deux fois, c'est la répéter, pas fixer un argument. Ignorer une erreur, c'est par exemple `.ok()` ou `let _ =`, sans rapport.\n\n**À retenir :** application partielle = fixer un ou plusieurs arguments pour obtenir une fonction qui attend le reste."
   },
   {
     "question": "Comment simule-t-on une fonction curryfiée en Rust ?",
@@ -63,7 +63,7 @@
       "Avec `unsafe`"
     ],
     "reponse": 1,
-    "explication": "`fn multiplier(x: i32) -> impl Fn(i32) -> i32 { move |y| x * y }` : appeler `multiplier(2)` donne une closure qui attend `y`."
+    "explication": "**Règle :** une fonction **curryfiée** prend ses arguments un par un : `f(a)(b)`. Rust ne curryfie pas automatiquement ; on le **simule** avec une fonction qui prend le premier argument et **renvoie une closure** (`impl Fn`) qui attend le suivant.\n\n**Pas à pas :**\n\n```rust\nfn multiplier(x: i32) -> impl Fn(i32) -> i32 {\n    move |y| x * y\n}\nassert_eq!(multiplier(4)(5), 20);\n```\n\n1. `multiplier(4)` renvoie la closure `move |y| 4 * y` ;\n2. `(5)` l'appelle avec `y = 5` ;\n3. résultat `20`.\n\nLe `move` emporte `x` dans la closure, et `impl Fn(i32) -> i32` évite d'écrire le type exact de la closure, qui n'a pas de nom.\n\n**Les autres réponses :** il n'existe pas de macro `curry!` dans la bibliothèque standard. « Rust la fournit nativement » est faux : `fn f(a: i32, b: i32)` s'appelle `f(1, 2)`, jamais `f(1)(2)`. `unsafe` sert à contourner des vérifications de mémoire, aucun rapport.\n\n**À retenir :** curryfier en Rust = une fonction qui renvoie `impl Fn(...)`, avec une closure `move`."
   },
   {
     "question": "Quelle écriture est en style point-free ?",
@@ -74,7 +74,7 @@
       "`for x in v { double(x); }`"
     ],
     "reponse": 1,
-    "explication": "Point-free : on ne nomme pas l'argument, on passe directement la fonction."
+    "explication": "**Règle :** un code est **point-free** quand on ne nomme pas l'argument : au lieu d'écrire une closure `|x| f(x)` qui ne fait qu'appeler `f`, on passe directement `f`.\n\n**Pas à pas :** on regarde chaque écriture et on se demande « est-ce qu'un argument est nommé ? » :\n\n| Écriture | Argument nommé ? | Point-free ? |\n|---|---|---|\n| `.map(\\|x\\| double(x))` | oui, `x` | non |\n| `.map(double)` | non | **oui** |\n| `.map(\\|x\\| x * 2)` | oui, `x` | non |\n| `for x in v { double(x); }` | oui, `x` (et c'est une boucle) | non |\n\n`.map(double)` fait exactement la même chose que `.map(|x| double(x))`, en plus court.\n\n**Les autres réponses :** `.map(|x| x * 2)` donne le même résultat que `double`, mais avec une closure qui nomme `x`. La boucle `for` est du style impératif (et elle jette le résultat de `double`).\n\n**À retenir :** point-free = passer la fonction elle-même (`map(double)`, `map(str::len)`), sans `|x| ...`."
   },
   {
     "question": "Que fait le motif `[premier, reste @ ..]` sur une slice ?",
@@ -85,7 +85,7 @@
       "Il trie la slice"
     ],
     "reponse": 1,
-    "explication": "Il ne correspond qu'à une slice d'au moins un élément : `premier` est le premier, `reste` la sous-slice du reste (éventuellement vide)."
+    "explication": "**Règle :** dans un motif de slice, `reste @ ..` **lie** à un nom tous les éléments que `..` laisse de côté. `[premier, reste @ ..]` correspond donc à une slice d'**au moins un** élément : `premier` est le premier, `reste` est la sous-slice qui suit (peut-être vide).\n\n**Pas à pas :**\n\n| Slice | Correspond ? | `premier` | `reste` |\n|---|---|---|---|\n| `[7, 8, 9]` | oui | `7` | `[8, 9]` |\n| `[7]` | oui | `7` | `[]` |\n| `[]` | **non** | | |\n\nC'est le motif de base de la récursion sur une slice : on traite `premier`, puis on rappelle la fonction sur `reste`.\n\n**Les autres réponses :** il n'accepte **pas** la slice vide : il faut au moins un élément pour `premier` (c'est le rôle du motif `[]`). Il ne copie rien : `premier` et `reste` sont des **références** vers la slice d'origine. Et un `match` ne trie jamais rien, il ne fait que reconnaître une forme.\n\n**À retenir :** `[premier, reste @ ..]` = au moins un élément, coupé en « premier » + « le reste » ; la slice vide se traite avec `[]`."
   },
   {
     "question": "Pourquoi `Option<T>` vaut-il mieux qu'un `panic!` pour une valeur absente ?",
@@ -96,7 +96,7 @@
       "Parce qu'`Option` remplace les boucles"
     ],
     "reponse": 0,
-    "explication": "Une fonction qui panique a une signature qui ment. Avec `Option`, l'appelant voit le cas possible et doit le gérer."
+    "explication": "**Règle :** une fonction qui renvoie `Option<T>` dit dans son **type** que la valeur peut manquer. L'appelant ne peut pas utiliser le `T` sans traiter le cas `None` : le compilateur l'y oblige. Un `panic!`, lui, n'apparaît nulle part dans la signature.\n\n**Pas à pas :**\n\n```rust\nfn diviser_panique(a: f64, b: f64) -> f64 { /* panic! si b == 0 */ a / b }\nfn diviser(a: f64, b: f64) -> Option<f64> {\n    if b == 0.0 { None } else { Some(a / b) }\n}\n```\n\n1. `diviser_panique` promet un `f64` : rien ne prévient qu'elle peut faire planter le programme.\n2. `diviser` promet un `Option<f64>` : pour avoir le nombre, il faut écrire un `match`, un `map`, un `unwrap_or`... donc **penser** au cas « division par zéro ».\n3. Résultat : l'oubli est attrapé à la compilation au lieu de planter à l'exécution.\n\n**Les autres réponses :** `panic!` n'est pas interdit en Rust, il est réservé aux bugs vraiment impossibles à gérer. `Option` n'est pas plus lent de façon notable, et ce n'est de toute façon pas un avantage. Et `Option` ne remplace pas les boucles : il représente une valeur présente ou absente.\n\n**À retenir :** `Option` met l'absence dans le type ; le compilateur force à la traiter, alors qu'un `panic!` est invisible dans la signature."
   },
   {
     "question": "Dans la comparaison avec les interfaces, à quoi ressemble un foncteur en Rust ?",
@@ -107,6 +107,6 @@
       "À une macro"
     ],
     "reponse": 0,
-    "explication": "Un foncteur promet « je sais appliquer une fonction à ce que je contiens » : `Option::map`, `Iterator::map`. C'est une interface, comme un trait."
+    "explication": "**Règle :** en théorie des catégories, un **foncteur** est une « boîte » qui promet une seule chose : on peut appliquer une fonction à ce qu'elle contient, et on obtient une boîte du même genre. En Rust, cette promesse s'appelle `map`.\n\n**Pas à pas :**\n\n- `Some(4).map(|x| x + 1)` donne `Some(5)` : la fonction est appliquée au contenu, on reste dans une `Option` ;\n- `None.map(|x: i32| x + 1)` donne `None` : rien à transformer, la boîte reste vide ;\n- `[1, 2].iter().map(|x| x * 10)` donne `10, 20` : même promesse sur un itérateur.\n\n`Option`, `Result` et les itérateurs sont donc des foncteurs : c'est une **interface** commune, comme un trait. (La monade ajoute `and_then`, pour enchaîner une étape qui rend elle-même une boîte.)\n\n**Les autres réponses :** une boucle `for` parcourt des éléments mais n'est pas un type « boîte » avec `map`. Un pointeur brut (`*const T`) est une adresse mémoire sans garantie, rien à voir. Une macro génère du code à la compilation.\n\n**À retenir :** foncteur = un type qui sait faire `map` ; monade = un type qui sait faire `and_then`."
   }
 ]

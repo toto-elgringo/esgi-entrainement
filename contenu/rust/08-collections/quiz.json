@@ -1,74 +1,134 @@
 [
   {
     "question": "Que crée `vec![0; 3]` ?",
-    "choix": ["`[0, 3]`", "`[0, 0, 0]`", "`[0, 1, 2]`", "`[3, 3, 3]`"],
+    "choix": [
+      "`[0, 3]`",
+      "`[0, 0, 0]`",
+      "`[0, 1, 2]`",
+      "`[3, 3, 3]`"
+    ],
     "reponse": 1,
-    "explication": "`vec![valeur; n]` crée une liste de `n` éléments tous égaux à `valeur`."
+    "explication": "**Règle :** `vec![valeur; n]` crée une liste de `n` cases, toutes égales à `valeur`. Le `;` veut dire « répéter », la virgule veut dire « lister ».\n\n**Pas à pas :** dans `vec![0; 3]`, la valeur (avant le `;`) est `0` et le nombre de cases (après le `;`) est `3`. On obtient 3 cases qui valent 0 : `[0, 0, 0]`.\n\n**Les autres réponses :**\n- `[0, 3]` serait `vec![0, 3]`, avec une virgule : une liste de deux éléments.\n- `[0, 1, 2]` compte de 0 à 2 : `vec!` ne compte jamais, il répète.\n- `[3, 3, 3]` inverse les rôles : le nombre après le `;` est la **taille**, pas la valeur.\n\n**À retenir :** `vec![v; n]` = `n` fois la valeur `v`."
   },
   {
     "question": "Que renvoie `pop()` sur un `Vec<i32>` vide ?",
-    "choix": ["`0`", "Une panique", "`None`", "`-1`"],
+    "choix": [
+      "`0`",
+      "Une panique",
+      "`None`",
+      "`-1`"
+    ],
     "reponse": 2,
-    "explication": "`pop()` renvoie une `Option` : `Some(dernier)` s'il y a un élément, `None` si la liste est vide. Pas de panique."
+    "explication": "**Règle :** `pop()` retire le dernier élément et le renvoie dans une `Option` : `Some(dernier)` s'il y avait un élément, `None` si la liste était vide.\n\n**Pas à pas :** la liste est vide, il n'y a pas de dernier élément à retirer. `pop()` ne peut rien mettre dans un `Some` : il renvoie `None`, et la liste reste vide.\n\n**Les autres réponses :**\n- Une panique : non, c'est justement pour éviter la panique que `pop` renvoie une `Option` (c'est `v[i]` qui panique).\n- `0` ou `-1` : Rust n'invente jamais de « valeur spéciale ». `0` pourrait être un vrai élément, et `-1` n'existe même pas pour un `Vec<u32>`.\n\n**À retenir :** une opération qui peut ne rien trouver renvoie une `Option` ; sur une liste vide, `pop()` donne `None`."
   },
   {
     "question": "Avec `let v = vec![1, 2, 3];`, que fait `v[5]` ?",
-    "choix": ["Renvoie `None`", "Renvoie `0`", "Le programme panique", "Ne compile pas"],
+    "choix": [
+      "Renvoie `None`",
+      "Renvoie `0`",
+      "Le programme panique",
+      "Ne compile pas"
+    ],
     "reponse": 2,
-    "explication": "L'indexation avec `[]` vérifie les bornes à l'exécution et panique (index out of bounds). `v.get(5)` renverrait `None`."
+    "explication": "**Règle :** `v[i]` lit directement la case `i`. Si elle n'existe pas, le programme **panique** à l'exécution (« index out of bounds »). `v.get(i)` est la version sans danger, qui renvoie `None`.\n\n**Pas à pas :** `vec![1, 2, 3]` a les indices 0, 1 et 2 (on compte à partir de 0). L'indice 5 n'existe pas : `v[5]` arrête le programme avec un message du genre « the len is 3 but the index is 5 ».\n\n**Les autres réponses :**\n- Renvoie `None` : c'est ce que ferait `v.get(5)`, pas `v[5]`.\n- Renvoie `0` : Rust n'invente pas de valeur par défaut.\n- Ne compile pas : le compilateur ne connaît pas la taille d'un `Vec` (elle change pendant l'exécution), donc il ne peut pas refuser le code. L'erreur arrive seulement quand le programme tourne.\n\n**À retenir :** `v[i]` panique hors des bornes, `v.get(i)` renvoie `None` ; utilise `get` quand l'indice dépend des données."
   },
   {
     "question": "Quel type de paramètre accepte à la fois un `Vec<i32>` et un tableau `[i32; 4]` en lecture ?",
-    "choix": ["`Vec<i32>`", "`&Vec<i32>`", "`&[i32]`", "`[i32]`"],
+    "choix": [
+      "`Vec<i32>`",
+      "`&Vec<i32>`",
+      "`&[i32]`",
+      "`[i32]`"
+    ],
     "reponse": 2,
-    "explication": "`&[i32]` est une tranche (slice) : une vue empruntée sur des éléments qui se suivent en mémoire, quelle que soit leur origine."
+    "explication": "**Règle :** `&[i32]` est une **tranche** (*slice*) : une vue empruntée sur des `i32` rangés les uns après les autres en mémoire, quelle que soit leur origine. Rust transforme tout seul un `&Vec<i32>` ou un `&[i32; 4]` en `&[i32]`.\n\n**Pas à pas :**\n\n| Paramètre | Accepte `&mon_vec` ? | Accepte `&mon_tableau` ? |\n|---|---|---|\n| `&[i32]` | oui | oui |\n| `&Vec<i32>` | oui | **non** : un tableau n'est pas un `Vec` |\n| `Vec<i32>` | il faudrait donner le `Vec` lui-même (et le perdre) | non |\n\n**Les autres réponses :**\n- `Vec<i32>` prend la **propriété** de la liste (elle est déplacée, plus utilisable après) et n'accepte pas un tableau.\n- `&Vec<i32>` n'accepte que des `Vec` ; Clippy conseille d'ailleurs de le remplacer par `&[i32]`.\n- `[i32]` sans `&` n'a pas de taille connue à la compilation : on ne peut pas l'utiliser comme paramètre.\n\n**À retenir :** pour **lire** une liste dans une fonction, prends `&[T]`."
   },
   {
     "question": "Dans `for x in &mut v { ... }`, comment doubler l'élément ?",
-    "choix": ["`x *= 2;`", "`*x *= 2;`", "`&x *= 2;`", "`v[x] *= 2;`"],
+    "choix": [
+      "`x *= 2;`",
+      "`*x *= 2;`",
+      "`&x *= 2;`",
+      "`v[x] *= 2;`"
+    ],
     "reponse": 1,
-    "explication": "`x` est une référence modifiable (`&mut i32`). L'étoile `*x` désigne la valeur derrière la référence."
+    "explication": "**Règle :** avec `for x in &mut v`, `x` n'est pas un nombre mais une **référence modifiable** (`&mut i32`), une flèche vers la case de la liste. L'étoile `*x` désigne la case pointée.\n\n**Pas à pas :** avec `v = [1, 2, 3]`, au premier tour `x` pointe vers la case qui contient 1. `*x *= 2` multiplie le contenu de cette case : elle vaut 2. Pareil pour les autres : `v` devient `[2, 4, 6]`.\n\n**Les autres réponses :**\n- `x *= 2;` essaie de multiplier la **référence** elle-même : erreur de compilation (on ne multiplie pas une flèche).\n- `&x *= 2;` n'a pas de sens : `&x` crée une nouvelle référence vers `x`, on ne peut rien lui affecter.\n- `v[x] *= 2;` utilise `x` comme un **indice**, alors que c'est une valeur de la liste ; et on ne peut pas toucher `v` pendant qu'on la parcourt en `&mut`.\n\n**À retenir :** derrière une référence, on lit et on écrit avec `*x`."
   },
   {
     "question": "Que donne `[3, 1, 3, 2]` après `sort()` puis `dedup()` ?",
-    "choix": ["`[1, 2, 3, 3]`", "`[1, 2, 3]`", "`[3, 1, 2]`", "`[1, 3, 2]`"],
+    "choix": [
+      "`[1, 2, 3, 3]`",
+      "`[1, 2, 3]`",
+      "`[3, 1, 2]`",
+      "`[1, 3, 2]`"
+    ],
     "reponse": 1,
-    "explication": "`sort()` donne `[1, 2, 3, 3]`, puis `dedup()` retire les doublons qui se suivent : `[1, 2, 3]`. Sans le tri, `dedup` ne voit pas les doublons éloignés."
+    "explication": "**Règle :** `sort()` trie dans l'ordre croissant. `dedup()` retire seulement les doublons **qui se suivent** (il compare chaque élément au précédent).\n\n**Pas à pas :**\n\n| Étape | Liste |\n|---|---|\n| départ | `[3, 1, 3, 2]` |\n| `sort()` | `[1, 2, 3, 3]` : les deux 3 sont maintenant côte à côte |\n| `dedup()` | `[1, 2, 3]` : le second 3 suit un 3, il est retiré |\n\n**Les autres réponses :**\n- `[1, 2, 3, 3]` est la liste après `sort()` seulement : on a oublié `dedup()`.\n- `[3, 1, 2]` et `[1, 3, 2]` ne sont pas triées : `sort()` a été oublié ou mal appliqué. D'ailleurs, `dedup()` seul sur `[3, 1, 3, 2]` ne retire rien, car les deux 3 ne se suivent pas.\n\n**À retenir :** pour retirer **tous** les doublons, `sort()` puis `dedup()`, dans cet ordre."
   },
   {
     "question": "Que renvoie `insert` sur une `HashMap` quand la clé existait déjà ?",
-    "choix": ["`false`", "Une panique", "`Some(ancienne_valeur)`", "`None`"],
+    "choix": [
+      "`false`",
+      "Une panique",
+      "`Some(ancienne_valeur)`",
+      "`None`"
+    ],
     "reponse": 2,
-    "explication": "La nouvelle valeur remplace l'ancienne, et `insert` renvoie `Some(ancienne_valeur)`. Il renvoie `None` si la clé était nouvelle."
+    "explication": "**Règle :** `insert(cle, valeur)` range la valeur sous la clé. Une clé n'existe qu'une fois : si elle était déjà là, la nouvelle valeur **remplace** l'ancienne, et `insert` renvoie l'ancienne dans une `Option`.\n\n**Pas à pas :**\n\n```rust\nlet mut m = std::collections::HashMap::new();\nlet r1 = m.insert(\"a\", 1); // clé nouvelle : None\nlet r2 = m.insert(\"a\", 5); // clé existante : Some(1), et \"a\" vaut maintenant 5\n```\n\n**Les autres réponses :**\n- `None` : c'est le résultat quand la clé était **nouvelle**.\n- `false` : c'est `HashSet::insert` qui renvoie un `bool`, pas `HashMap::insert`.\n- Une panique : remplacer une valeur est un usage normal, rien n'échoue.\n\n**À retenir :** `HashMap::insert` renvoie l'ancienne valeur : `None` = clé nouvelle, `Some(ancienne)` = valeur remplacée."
   },
   {
     "question": "Quel est le type de `ages.get(\"Alice\")` pour une `HashMap<String, u32>` ?",
-    "choix": ["`u32`", "`&u32`", "`Option<&u32>`", "`Result<u32, String>`"],
+    "choix": [
+      "`u32`",
+      "`&u32`",
+      "`Option<&u32>`",
+      "`Result<u32, String>`"
+    ],
     "reponse": 2,
-    "explication": "La clé peut ne pas exister, donc `get` renvoie une `Option`. La valeur reste dans la map : on reçoit une référence."
+    "explication": "**Règle :** `get` cherche une clé qui peut **ne pas exister**, donc il renvoie une `Option`. Et la valeur reste rangée dans la map : on la regarde à travers une **référence**. D'où `Option<&V>`.\n\n**Pas à pas :** ici `V = u32`, donc `ages.get(\"Alice\")` est un `Option<&u32>` : `Some(&31)` si Alice est dans la map, `None` sinon. Pour obtenir un simple nombre, il faut encore sortir de l'`Option` (`match`, `copied().unwrap_or(0)`...).\n\n**Les autres réponses :**\n- `u32` : impossible, que renverrait `get` si Alice n'existe pas ?\n- `&u32` : même problème, il faut pouvoir dire « absent ».\n- `Result<u32, String>` : `Result` sert aux opérations qui **échouent avec une erreur** ; une clé absente n'est pas une erreur, c'est un cas normal, représenté par `None`.\n\n**À retenir :** `get` sur une `HashMap<K, V>` renvoie `Option<&V>`."
   },
   {
     "question": "Que fait `*compteur.entry(mot).or_insert(0) += 1;` ?",
-    "choix": ["Remet le compteur à 0", "Ajoute 1 au compteur du mot, en le créant à 0 s'il n'existe pas", "Ne compile pas", "Ajoute le mot seulement s'il est nouveau"],
+    "choix": [
+      "Remet le compteur à 0",
+      "Ajoute 1 au compteur du mot, en le créant à 0 s'il n'existe pas",
+      "Ne compile pas",
+      "Ajoute le mot seulement s'il est nouveau"
+    ],
     "reponse": 1,
-    "explication": "`entry(...).or_insert(0)` renvoie la case du mot (créée à 0 si besoin) sous forme de `&mut u32`. L'étoile permet d'y ajouter 1."
+    "explication": "**Règle :** `entry(cle)` donne la case de la clé, qu'elle existe ou non. `.or_insert(0)` la crée avec 0 si elle n'existe pas, puis renvoie une référence modifiable `&mut u32` vers le nombre rangé. L'étoile permet d'y ajouter 1.\n\n**Pas à pas :** avec les mots `\"le\"`, `\"chat\"`, `\"le\"` :\n\n| Mot | La case existait ? | Compteur après |\n|---|---|---|\n| le | non → créée à 0, puis +1 | `{le: 1}` |\n| chat | non → créée à 0, puis +1 | `{le: 1, chat: 1}` |\n| le | oui → +1 | `{le: 2, chat: 1}` |\n\n**Les autres réponses :**\n- Remet le compteur à 0 : non, `or_insert(0)` ne met 0 **que** si la case n'existait pas ; une case existante garde sa valeur.\n- Ne compile pas : si, l'étoile est justement là pour que `+= 1` porte sur le nombre et pas sur la référence.\n- Ajoute le mot seulement s'il est nouveau : le `+= 1` s'exécute à **chaque** fois, mot nouveau ou pas.\n\n**À retenir :** `*map.entry(cle).or_insert(0) += 1;` = « +1 sur la case, créée à 0 si besoin »."
   },
   {
     "question": "Tu parcours une `HashMap` deux fois de suite dans deux exécutions différentes du programme. L'ordre est...",
-    "choix": ["Toujours l'ordre d'insertion", "Toujours l'ordre alphabétique", "Pas garanti", "Toujours l'ordre inverse d'insertion"],
+    "choix": [
+      "Toujours l'ordre d'insertion",
+      "Toujours l'ordre alphabétique",
+      "Pas garanti",
+      "Toujours l'ordre inverse d'insertion"
+    ],
     "reponse": 2,
-    "explication": "L'ordre d'une `HashMap` dépend d'un calcul (le hachage) qui change entre les exécutions. Pour un ordre fixe, trier les clés ou utiliser un `BTreeMap`."
+    "explication": "**Règle :** une `HashMap` range ses éléments selon un calcul sur les clés (le **hachage**), et ce calcul change d'une exécution à l'autre (pour des raisons de sécurité). L'ordre de parcours n'est donc **pas garanti**.\n\n**Pas à pas :** insère `\"Alice\"` puis `\"Bob\"` et affiche la map avec une boucle. Une exécution peut afficher Bob en premier, la suivante Alice : les deux sont correctes, le programme ne promet rien.\n\n**Les autres réponses :**\n- L'ordre d'insertion, ou son inverse : une `HashMap` ne retient pas quand une clé a été ajoutée.\n- L'ordre alphabétique : c'est ce que fait un `BTreeMap` (clés toujours triées), pas une `HashMap`.\n\n**À retenir :** si l'ordre compte, copie les clés dans un `Vec` et trie-le, ou utilise un `BTreeMap`."
   },
   {
     "question": "Que renvoie `ensemble.insert(5)` si `5` est déjà dans le `HashSet` ?",
-    "choix": ["`true`", "`false`", "`Some(5)`", "Une panique"],
+    "choix": [
+      "`true`",
+      "`false`",
+      "`Some(5)`",
+      "Une panique"
+    ],
     "reponse": 1,
-    "explication": "Un `HashSet` ne garde jamais de doublon. `insert` renvoie `false` quand l'élément était déjà présent."
+    "explication": "**Règle :** un `HashSet` ne garde jamais deux fois la même valeur. `insert(x)` renvoie un `bool` : `true` si `x` était nouveau (il est ajouté), `false` s'il était déjà là (rien ne change).\n\n**Pas à pas :** l'ensemble contient déjà 5. `ensemble.insert(5)` ne peut pas l'ajouter une seconde fois : il ne fait rien et renvoie `false`. La taille ne change pas.\n\n**Les autres réponses :**\n- `true` : c'est la réponse pour une valeur **nouvelle**.\n- `Some(5)` : c'est le style de `HashMap::insert` (qui renvoie l'ancienne valeur), pas de `HashSet::insert`.\n- Une panique : un doublon n'est pas une erreur, il est simplement ignoré.\n\n**À retenir :** `if !ensemble.insert(x)` détecte un doublon en une ligne."
   },
   {
     "question": "Après `for x in v { ... }` (sans `&`), peut-on encore utiliser `v` ?",
-    "choix": ["Oui, toujours", "Non : la boucle a consommé (déplacé) la liste", "Oui, mais seulement en lecture", "Seulement si `v` est `mut`"],
+    "choix": [
+      "Oui, toujours",
+      "Non : la boucle a consommé (déplacé) la liste",
+      "Oui, mais seulement en lecture",
+      "Seulement si `v` est `mut`"
+    ],
     "reponse": 1,
-    "explication": "Sans `&`, la boucle prend la propriété de la liste et la détruit à la fin. Pour la garder, on parcourt `&v`."
+    "explication": "**Règle :** `for x in v` (sans `&`) prend la **propriété** de la liste : elle est déplacée dans la boucle, qui donne chaque élément lui-même puis libère la liste à la fin.\n\n**Pas à pas :**\n\n```rust\nlet v = vec![String::from(\"a\"), String::from(\"b\")];\nfor x in v {\n    println!(\"{x}\");\n}\n// println!(\"{:?}\", v); refusé : « borrow of moved value: `v` »\n```\n\nPour garder la liste, on parcourt une référence : `for x in &v` (lecture) ou `for x in &mut v` (modification).\n\n**Les autres réponses :**\n- Oui, toujours : non, c'est le cas avec `&v`, pas avec `v`.\n- Oui, mais seulement en lecture : une valeur déplacée n'est plus utilisable du tout, même pour la lire.\n- Seulement si `v` est `mut` : `mut` permet de modifier, il n'empêche pas le déplacement.\n\n**À retenir :** `for x in v` consomme la liste ; pour la garder, `for x in &v`."
   }
 ]

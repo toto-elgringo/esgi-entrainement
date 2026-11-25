@@ -1,38 +1,68 @@
 [
   {
     "question": "Qu'est-ce qu'une **zone tampon** ?",
-    "choix": ["Une surface à une distance donnée autour d'un objet", "Un fichier de sauvegarde", "Une couche de fond de carte", "Un champ de la table d'attributs"],
+    "choix": [
+      "Une surface à une distance donnée autour d'un objet",
+      "Un fichier de sauvegarde",
+      "Une couche de fond de carte",
+      "Un champ de la table d'attributs"
+    ],
     "reponse": 0,
-    "explication": "Le tampon (buffer) entoure un objet d'une zone de rayon choisi."
+    "explication": "**Règle :** une **zone tampon** (*buffer*) est une **surface** tracée à une distance choisie tout autour d'un objet. On l'obtient par Vecteur > Géotraitement > Tampon, et elle forme une nouvelle couche.\n\n**Pas à pas :** prends une gare (un point) et une distance de 200 m.\n\n1. QGIS trace tous les endroits situés à 200 m de la gare.\n2. Pour un point, cela donne un disque de 200 m de rayon.\n3. Ce disque est rangé dans une nouvelle couche : c'est la zone tampon. Tout ce qui est dedans est « à moins de 200 m ».\n\n**Les autres réponses :** un fichier de sauvegarde n'a rien à voir (le mot « tampon » ne parle pas de copie ici) ; un fond de carte est une image affichée sous les couches ; un champ de la table d'attributs est une colonne, pas une forme sur la carte.\n\n**À retenir :** tampon = la zone « à moins de N » autour d'un objet, dessinée comme une surface."
   },
   {
     "question": "Dans quelle unité est la distance d'un tampon sur une couche en EPSG:4326 ?",
-    "choix": ["En degrés", "En mètres", "En kilomètres", "En pixels"],
+    "choix": [
+      "En degrés",
+      "En mètres",
+      "En kilomètres",
+      "En pixels"
+    ],
     "reponse": 0,
-    "explication": "Le WGS 84 est en degrés : il faut reprojeter en Lambert 93 pour parler en mètres."
+    "explication": "**Règle :** la distance d'un tampon est toujours dans l'**unité du système de coordonnées** de la couche. EPSG:4326 (WGS 84) repère les lieux par latitude et longitude, donc son unité est le **degré**. EPSG:2154 (Lambert 93) est en **mètres**.\n\n**Pas à pas :**\n\n1. La couche est en EPSG:4326.\n2. L'unité de ce système est le degré.\n3. Si tu saisis 200, QGIS comprend 200 degrés, pas 200 m.\n4. Solution : reprojeter la couche en EPSG:2154 avant le tampon, puis saisir la distance en mètres.\n\n**Les autres réponses :** « en mètres » est le piège classique (c'est vrai seulement en Lambert 93) ; les kilomètres ne sont l'unité d'aucun de ces deux systèmes ; les pixels sont des points d'écran, ils dépendent du zoom et ne servent jamais à une analyse.\n\n**À retenir :** avant un tampon, regarde le code EPSG : 4326 = degrés, 2154 = mètres."
   },
   {
     "question": "Pour trouver les restaurants à moins de 200 m d'une gare, quelle suite d'étapes ?",
-    "choix": ["Tampon de 200 m autour des gares, puis sélection des restaurants qui intersectent le tampon", "Filtrer par attribut « distance »", "Exporter en CSV", "Changer de fond de carte"],
+    "choix": [
+      "Tampon de 200 m autour des gares, puis sélection des restaurants qui intersectent le tampon",
+      "Filtrer par attribut « distance »",
+      "Exporter en CSV",
+      "Changer de fond de carte"
+    ],
     "reponse": 0,
-    "explication": "Tampon puis Sélectionner par localisation."
+    "explication": "**Règle :** « les X à moins de N m des Y » se traite en deux outils : un **tampon** de N m autour des Y (il crée la zone), puis **Sélectionner par localisation** les X qui **intersectent** ce tampon (on garde ce qui est dans la zone).\n\n**Pas à pas :**\n\n1. Les couches sont en EPSG:2154 (mètres).\n2. Tampon de 200 m autour des gares : on obtient un disque par gare.\n3. Sélection par localisation : couche à sélectionner = restaurants, relation = intersecte, couche de comparaison = tampons.\n4. Les restaurants surlignés sont ceux à 200 m ou moins d'une gare.\n\n**Les autres réponses :** il n'existe pas de colonne « distance » toute prête dans la table des restaurants, donc un filtre par attribut ne peut rien trouver ; exporter en CSV ne fait que sauvegarder un tableau ; changer de fond de carte modifie l'image derrière, pas les données.\n\n**À retenir :** distance entre deux couches = tampon, puis sélection par localisation avec « intersecte »."
   },
   {
     "question": "Quelle extension récupère les restaurants italiens d'une ville ?",
-    "choix": ["QuickOSM", "QuickMapServices", "Aucune, c'est dans la BD TOPO", "7-Zip"],
+    "choix": [
+      "QuickOSM",
+      "QuickMapServices",
+      "Aucune, c'est dans la BD TOPO",
+      "7-Zip"
+    ],
     "reponse": 0,
-    "explication": "QuickOSM interroge OpenStreetMap avec une clé et une valeur (cuisine = italian)."
+    "explication": "**Règle :** les restaurants ne sont pas dans la BD TOPO. On les prend dans **OpenStreetMap** grâce à l'extension **QuickOSM**, qui interroge OSM avec des étiquettes `clé=valeur` et charge le résultat comme une couche.\n\n**Pas à pas :**\n\n1. Tous les restaurants : clé `amenity`, valeur `restaurant`.\n2. Seulement les italiens : on ajoute la clé `cuisine`, valeur `italian`.\n3. Zone : on tape le nom de la ville.\n4. On exécute : une couche de points apparaît.\n\n**Les autres réponses :** QuickMapServices ajoute seulement des **fonds de carte** (des images), sans données qu'on peut sélectionner ; la BD TOPO décrit le bâti, les routes, l'eau… mais pas les commerces ; 7-Zip sert à ouvrir des archives `.7z`, il ne récupère aucune donnée.\n\n**À retenir :** commerces et services (restaurants, boulangeries…) = OpenStreetMap via QuickOSM."
   },
   {
     "question": "Quel format d'export est à préférer pour un seul fichier ?",
-    "choix": ["GeoPackage (.gpkg)", "Shapefile (.shp)", "Texte brut", "Image PNG"],
+    "choix": [
+      "GeoPackage (.gpkg)",
+      "Shapefile (.shp)",
+      "Texte brut",
+      "Image PNG"
+    ],
     "reponse": 0,
-    "explication": "Le GeoPackage tient dans un seul fichier, sans la limite de 10 caractères par nom de champ."
+    "explication": "**Règle :** le **GeoPackage** (`.gpkg`) range toute une couche, et même plusieurs, dans **un seul fichier**. Il accepte les noms de champs longs et les accents.\n\n**Pas à pas :** compare ce que contient chaque format.\n\n| Format | Nombre de fichiers | Données utilisables ? |\n|---|---|---|\n| GeoPackage | 1 | oui (formes + attributs) |\n| Shapefile | au moins 3 (`.shp`, `.shx`, `.dbf`, souvent `.prj`, `.cpg`) | oui, mais noms de champs limités à 10 caractères |\n| Texte brut | 1 | non, pas de formes |\n| Image PNG | 1 | non, c'est un dessin |\n\nLe seul qui soit à la fois un seul fichier et une vraie couche est le GeoPackage.\n\n**Les autres réponses :** le Shapefile est une couche, mais éclatée en plusieurs fichiers qu'il ne faut jamais séparer ; le texte brut et le PNG tiennent en un fichier, mais on y perd les géométries ou les attributs.\n\n**À retenir :** pour rendre une couche en un seul fichier propre, choisis le GeoPackage."
   },
   {
     "question": "Quelle différence avec une requête attributaire ?",
-    "choix": ["L'analyse spatiale utilise la position des objets", "Elle utilise seulement les noms", "Elle ne marche que sur des points", "Aucune"],
+    "choix": [
+      "L'analyse spatiale utilise la position des objets",
+      "Elle utilise seulement les noms",
+      "Elle ne marche que sur des points",
+      "Aucune"
+    ],
     "reponse": 0,
-    "explication": "Attributaire = valeurs de la table ; spatiale = position et relations entre objets."
+    "explication": "**Règle :** une **requête attributaire** lit les **valeurs de la table d'attributs** (ex. `\"POPULATION\" > 10000`). Une **analyse spatiale** utilise la **position** des objets et leurs relations sur la carte (distance, inclusion, contact).\n\n**Pas à pas :** deux questions sur les mêmes bâtiments.\n\n- « Quels bâtiments font plus de 10 m ? » : la hauteur est écrite dans la colonne `HAUTEUR`. On lit le tableau : attributaire.\n- « Quels bâtiments sont à moins de 100 m d'une école ? » : cette information n'est dans aucune colonne, il faut mesurer sur la carte : spatiale.\n\n**Les autres réponses :** l'analyse spatiale ne se limite pas aux noms (au contraire, elle ne les regarde pas) ; elle marche sur des points, des lignes et des surfaces ; et il y a bien une différence, puisque les outils ne sont pas les mêmes (Sélectionner par expression d'un côté, Tampon et Sélectionner par localisation de l'autre).\n\n**À retenir :** la réponse est déjà dans une colonne = attributaire ; il faut regarder où sont les objets = spatiale."
   }
 ]

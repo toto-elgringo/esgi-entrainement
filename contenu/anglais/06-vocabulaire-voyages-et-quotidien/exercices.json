@@ -13,7 +13,8 @@
           "to book",
           "reserve",
           "to reserve"
-        ]
+        ],
+        "explication": "**Règle :** réserver (une chambre, un vol, une table) = *to book* ; *to reserve* est accepté aussi. Le nom est *a booking* (une réservation).\n\n**Pas à pas :** *I'd like to book a double room for two nights* = je voudrais réserver une chambre double pour deux nuits. *Fully booked* = complet.\n\n**Erreurs fréquentes :** écrire *to reservate* (n'existe pas) ; oublier que *book* est aussi le nom « livre » : c'est la phrase qui montre si c'est un verbe (après *to* ou un sujet).\n\n**À retenir :** réserver = *book* ; une réservation = *a booking*."
       },
       {
         "intitule": "un vol",
@@ -21,7 +22,8 @@
         "reponse": [
           "flight",
           "a flight"
-        ]
+        ],
+        "explication": "**Règle :** un vol (en avion) = *a flight*, du verbe *to fly* (voler, prendre l'avion).\n\n**Pas à pas :** *a direct flight* = un vol direct ; *a connecting flight* = un vol de correspondance ; *a flight attendant* = un steward, une hôtesse de l'air.\n\n**Erreurs fréquentes :** écrire *a theft* ou *a robbery* : c'est un vol au sens « voler quelque chose » (dérober), un autre mot ; écrire *a fly* (une mouche).\n\n**À retenir :** vol en avion = *flight* ; vol d'un objet = *theft*."
       },
       {
         "intitule": "un bagage à main",
@@ -34,7 +36,8 @@
           "carry on baggage",
           "carry-on bag",
           "cabin bag"
-        ]
+        ],
+        "explication": "**Règle :** un bagage à main = *carry-on baggage* (US) ou *hand luggage* (UK) ; *carry-on bag* et *cabin bag* sont acceptés aussi.\n\n**Pas à pas :** *to carry on* = porter **avec soi** (à bord). On distingue : *carry-on baggage* (en cabine) ↔ *checked baggage* (en soute, enregistré). *Baggage* et *luggage* sont **indénombrables** : pas de **s**, on dit *a piece of luggage* pour « un bagage ».\n\n**Erreurs fréquentes :** écrire *hand baggages* ou *luggages* (avec un **s**) ; écrire *handbag* (un sac à main).\n\n**À retenir :** bagage à main = *carry-on (baggage)* ou *hand luggage* ; jamais de **s** à *luggage*."
       },
       {
         "intitule": "le décalage horaire (la fatigue)",
@@ -42,7 +45,8 @@
         "reponse": [
           "jet lag",
           "jetlag"
-        ]
+        ],
+        "explication": "**Règle :** le décalage horaire (la fatigue après un long vol) = *jet lag* (en deux mots ; *jetlag* accepté).\n\n**Pas à pas :** *jet* = avion à réaction + *lag* = retard, décalage. *I've got terrible jet lag after my flight to Tokyo.*\n\n**Erreurs fréquentes :** écrire *time difference* : c'est l'écart d'heures entre deux pays (« il y a 6 heures de décalage »), pas la fatigue ; écrire *jet delay*.\n\n**À retenir :** la fatigue = *jet lag* ; l'écart d'heures = *time difference*."
       },
       {
         "intitule": "un quai (de gare)",
@@ -50,7 +54,8 @@
         "reponse": [
           "platform",
           "a platform"
-        ]
+        ],
+        "explication": "**Règle :** un quai de gare = *a platform* (*The train leaves from platform 4*).\n\n**Pas à pas :** à la gare, on attend sur le *platform*, et le panneau indique *Platform 2*. Au port, le quai s'appelle *a quay* ou *a pier* (jetée).\n\n**Erreurs fréquentes :** écrire *a quay* (un quai de port, pas de gare) ou *a dock* (un bassin pour les bateaux).\n\n**À retenir :** gare → *platform* ; port → *quay, pier*."
       },
       {
         "intitule": "une navette",
@@ -60,7 +65,8 @@
           "a shuttle",
           "shuttle bus",
           "a shuttle bus"
-        ]
+        ],
+        "explication": "**Règle :** une navette = *a shuttle* (ou *a shuttle bus*) : un véhicule qui fait des allers-retours réguliers entre deux lieux.\n\n**Pas à pas :** *A free shuttle runs between the airport and the hotel every 20 minutes* = une navette gratuite circule entre l'aéroport et l'hôtel toutes les 20 minutes.\n\n**Erreurs fréquentes :** écrire *a navette* ou *a commuter* (c'est la personne qui fait le trajet domicile-travail, pas le véhicule).\n\n**À retenir :** navette (véhicule) = *shuttle* ; faire la navette (personne) = *to commute*."
       },
       {
         "intitule": "la piste (d'aéroport)",
@@ -68,7 +74,8 @@
         "reponse": [
           "runway",
           "the runway"
-        ]
+        ],
+        "explication": "**Règle :** la piste (d'aéroport) = *the runway* : la longue route où l'avion décolle et atterrit.\n\n**Pas à pas :** *run* (courir) + *way* (chemin) : l'avion y « court » avant de décoller (*take off*) ou après avoir atterri (*land*).\n\n**Erreurs fréquentes :** écrire *a track* (une piste d'athlétisme ou un chemin) ou *a lane* (une voie de circulation).\n\n**À retenir :** piste d'aéroport = *runway*."
       },
       {
         "intitule": "une voiture de location",
@@ -78,7 +85,8 @@
           "a rental car",
           "hire car",
           "a hire car"
-        ]
+        ],
+        "explication": "**Règle :** une voiture de location = *a rental car* (US) ou *a hire car* (UK) ; *to rent* (US) / *to hire* (UK) = louer.\n\n**Pas à pas :** *We picked up our rental car at the airport* = nous avons récupéré notre voiture de location à l'aéroport. *Car rental* = la location de voitures.\n\n**Erreurs fréquentes :** écrire *a location car* : en anglais, *location* veut dire **emplacement**, jamais « location » ; c'est un faux ami classique.\n\n**À retenir :** location = *rental* ou *hire* ; *location* = emplacement."
       }
     ],
     "indices": [
@@ -101,7 +109,8 @@
           "book",
           "board"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *to check in* = s'enregistrer **à l'arrivée** (hôtel, aéroport) ; *to check out* = régler et partir.\n\n**Pas à pas :**\n1. *Please ...... at the front desk when you arrive* : il faut une action faite à la réception (*front desk*).\n2. L'indice est *when you arrive* (quand vous arrivez).\n3. À l'arrivée, on s'enregistre : *check in*.\n\n**Les autres réponses :** *check out* se fait au **départ** ; *book* (réserver) se fait **avant** le séjour, pas à la réception en arrivant ; *board* (embarquer) concerne un avion ou un train.\n\n**À retenir :** *arrive* → *check in* ; *leave* → *check out*."
       },
       {
         "intitule": "*Guests must ...... before 11 a.m. on the day they leave.*",
@@ -112,7 +121,8 @@
           "board",
           "accommodate"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *to check out* = libérer la chambre et régler la note, le jour du **départ**.\n\n**Pas à pas :**\n1. *Guests must ...... before 11 a.m.* : les clients doivent faire quelque chose avant 11 h.\n2. L'indice est *on the day they leave* (le jour où ils partent).\n3. Au départ, on fait son *check out*.\n\n**Les autres réponses :** *check in* se fait à l'arrivée ; *board* (embarquer) concerne un transport ; *accommodate* (héberger) est ce que fait l'hôtel, pas le client.\n\n**À retenir :** *leave* (partir) → *check out*."
       },
       {
         "intitule": "*Passengers can now ...... the plane through gate 12.*",
@@ -123,7 +133,8 @@
           "land",
           "book"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *to board* = monter à bord de (un avion, un train, un bateau) : *to board the plane*. Le nom : *boarding* (l'embarquement).\n\n**Pas à pas :**\n1. *Passengers can now ...... the plane* : les passagers peuvent maintenant ...... l'avion.\n2. L'indice est *through gate 12* (par la porte 12) : la porte d'embarquement, *boarding gate*.\n3. Monter dans l'avion par la porte = *board*.\n\n**Les autres réponses :** *land* = atterrir (c'est l'avion qui atterrit, pas les passagers « par la porte 12 ») ; *book* = réserver (déjà fait avant) ; *check out* = quitter un hôtel.\n\n**À retenir :** *board* + transport = monter à bord ; *boarding pass* = carte d'embarquement."
       },
       {
         "intitule": "*While you wait, you can relax in the business ......*",
@@ -134,7 +145,8 @@
           "runway",
           "lounge"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *a lounge* = un salon, une salle d'attente confortable (*the business lounge* à l'aéroport, *the hotel lounge*).\n\n**Pas à pas :**\n1. *While you wait, you can relax in the business ......* : pendant l'attente, on peut se détendre dans ce lieu.\n2. Un lieu pour se détendre (*relax*) en attendant = un salon : *lounge*.\n\n**Les autres réponses :** *platform* (quai de gare), *pier* (jetée) et *runway* (piste) sont des lieux de transport où l'on ne « se détend » pas.\n\n**À retenir :** *lounge* = salon d'attente."
       },
       {
         "intitule": "*The hotel can ...... up to 300 guests.*",
@@ -145,7 +157,8 @@
           "accommodation",
           "commute"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *to accommodate* = loger, accueillir, avoir de la place pour (*can accommodate 300 guests* = peut accueillir 300 clients). Le nom est *accommodation* (l'hébergement).\n\n**Pas à pas :**\n1. *The hotel can ...... up to 300 guests* : après *can*, il faut un **verbe à la base**.\n2. Sens : l'hôtel peut loger jusqu'à 300 clients : *accommodate* (deux **c**, deux **m**).\n\n**Les autres réponses :**\n- *accommodation* est un **nom** : impossible après *can* ;\n- *entertain* = divertir (on ne divertit pas « jusqu'à 300 » au sens de capacité) ;\n- *commute* = faire la navette domicile-travail.\n\n**À retenir :** après *can*, le verbe : *accommodate* ; le nom est *accommodation*."
       },
       {
         "intitule": "*Meet me in the hotel ......, next to the reception.*",
@@ -156,7 +169,8 @@
           "pier",
           "lobby"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *the lobby* = le hall d'entrée d'un hôtel ou d'un immeuble, où se trouve la réception.\n\n**Pas à pas :**\n1. *Meet me in the hotel ......* : on se retrouve dans un lieu de l'hôtel.\n2. L'indice est *next to the reception* (à côté de la réception).\n3. Le grand espace d'entrée près de la réception = *lobby*.\n\n**Les autres réponses :** *runway* (piste d'aéroport), *lane* (voie de circulation, ruelle) et *pier* (jetée) ne sont pas dans un hôtel.\n\n**À retenir :** *lobby* = hall ; *front desk* = la réception elle-même."
       }
     ],
     "indices": [
@@ -175,7 +189,8 @@
         "type": "texte",
         "reponse": [
           "lift"
-        ]
+        ],
+        "explication": "**Règle :** ascenseur = *elevator* (US) = *lift* (UK).\n\n**Pas à pas :** *elevator* vient de *to elevate* (élever) ; *lift* vient de *to lift* (soulever). Les deux disent « ce qui monte ».\n\n**Erreurs fréquentes :** écrire *escalator* (escalier roulant, un autre appareil) ou *ascensor*.\n\n**À retenir :** *elevator* (US) / *lift* (UK)."
       },
       {
         "intitule": "*subway*",
@@ -185,21 +200,24 @@
           "the underground",
           "tube",
           "the tube"
-        ]
+        ],
+        "explication": "**Règle :** métro = *subway* (US) = *underground* (UK), surnommé *the tube* à Londres.\n\n**Pas à pas :** *underground* = « sous le sol » ; *the tube* vient de la forme ronde des tunnels londoniens.\n\n**Erreurs fréquentes :** au UK, *a subway* est un **passage souterrain pour piétons**, pas le métro : écrire *subway* ne répond donc pas à la question. *Metro* existe (Paris, Washington) mais n'est pas le mot britannique attendu.\n\n**À retenir :** *subway* (US) / *underground, tube* (UK)."
       },
       {
         "intitule": "*sidewalk*",
         "type": "texte",
         "reponse": [
           "pavement"
-        ]
+        ],
+        "explication": "**Règle :** trottoir = *sidewalk* (US) = *pavement* (UK).\n\n**Pas à pas :** *sidewalk* = « marcher sur le côté » (*side* + *walk*) ; *pavement* = la surface pavée.\n\n**Erreurs fréquentes :** écrire *path* (un chemin) ou *walkway* ; attention, en américain *pavement* désigne la chaussée (la route), d'où l'importance de savoir de quel anglais on parle.\n\n**À retenir :** *sidewalk* (US) / *pavement* (UK)."
       },
       {
         "intitule": "*gas* (pour la voiture)",
         "type": "texte",
         "reponse": [
           "petrol"
-        ]
+        ],
+        "explication": "**Règle :** essence = *gas* (US, abréviation de *gasoline*) = *petrol* (UK).\n\n**Pas à pas :** *a gas station* (US) = *a petrol station* (UK) = une station-service.\n\n**Erreurs fréquentes :** croire que *petrol* veut dire pétrole : le pétrole brut se dit *oil* (ou *crude oil*) ; écrire *fuel* (carburant en général, pas le mot britannique précis).\n\n**À retenir :** *gas* (US) / *petrol* (UK) = essence ; *oil* = pétrole."
       },
       {
         "intitule": "*vacation*",
@@ -207,7 +225,8 @@
         "reponse": [
           "holiday",
           "holidays"
-        ]
+        ],
+        "explication": "**Règle :** vacances = *vacation* (US) = *holiday* ou *holidays* (UK).\n\n**Pas à pas :** *to be on vacation* (US) = *to be on holiday* (UK) = être en vacances. En américain, *a holiday* est plutôt un **jour férié**.\n\n**Erreurs fréquentes :** écrire *vacancy* : c'est un poste vacant ou une chambre libre, pas les vacances.\n\n**À retenir :** *vacation* (US) / *holiday(s)* (UK) ; *vacancy* = poste ou chambre libre."
       },
       {
         "intitule": "*round-trip ticket*",
@@ -216,7 +235,8 @@
           "return ticket",
           "return",
           "a return ticket"
-        ]
+        ],
+        "explication": "**Règle :** aller-retour = *round-trip ticket* (US) = *return ticket* (UK). Aller simple = *one-way ticket* (US) = *single ticket* (UK).\n\n**Pas à pas :**\n\n| | US | UK |\n|---|---|---|\n| aller-retour | *round-trip* | ***return*** |\n| aller simple | *one-way* | *single* |\n\n**Erreurs fréquentes :** écrire *back ticket* (calque) ou *single* (c'est l'aller simple, le contraire).\n\n**À retenir :** *round-trip* (US) = *return* (UK)."
       },
       {
         "intitule": "*zip code*",
@@ -224,14 +244,16 @@
         "reponse": [
           "postcode",
           "post code"
-        ]
+        ],
+        "explication": "**Règle :** code postal = *zip code* (US) = *postcode* (UK).\n\n**Pas à pas :** *ZIP* est un sigle américain (*Zone Improvement Plan*). Au UK, on dit simplement *postcode* (en un mot, *post code* accepté).\n\n**Erreurs fréquentes :** écrire *postal code* (utilisé au Canada, pas le mot britannique attendu) ou *post office* (le bureau de poste).\n\n**À retenir :** *zip code* (US) / *postcode* (UK)."
       },
       {
         "intitule": "*fall* (la saison)",
         "type": "texte",
         "reponse": [
           "autumn"
-        ]
+        ],
+        "explication": "**Règle :** automne = *fall* (US) = *autumn* (UK).\n\n**Pas à pas :** *fall* vient de *the fall of the leaves* (la chute des feuilles). *In the fall* (US) = *in autumn* (UK) = en automne.\n\n**Erreurs fréquentes :** écrire *autom* ou *automn* (le **n** final est muet, mais il s'écrit : *autumn*).\n\n**À retenir :** *fall* (US) / *autumn* (UK)."
       }
     ],
     "indices": [
@@ -254,7 +276,8 @@
           "runway",
           "delay"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *a delay* = un **retard** ; c'est un faux ami : le « délai » français se dit *deadline* ou *time limit*.\n\n**Pas à pas :**\n1. *Our flight had a two-hour ......* : notre vol a eu un ...... de deux heures.\n2. L'indice est *because of fog* (à cause du brouillard) : le vol est parti plus tard.\n3. Partir plus tard = un retard = *a delay*.\n\n**Les autres réponses :** *deadline* (date limite) est le faux ami ; *diversion* (déviation) concerne une route ; *runway* (piste) est un lieu.\n\n**À retenir :** *delay* = retard ; *deadline* = délai, date limite."
       },
       {
         "intitule": "*Because of roadworks, there is a ...... via the north bridge.*",
@@ -265,7 +288,8 @@
           "lane",
           "delay"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *a diversion* (UK) = une **déviation** : un autre chemin quand une route est fermée.\n\n**Pas à pas :**\n1. *Because of roadworks* = à cause de travaux sur la route.\n2. *there is a ...... via the north bridge* = il y a une ...... par le pont nord.\n3. Passer par un autre chemin à cause de travaux = une déviation : *diversion*.\n\n**Les autres réponses :** *delay* (retard) ne se fait pas « par le pont nord » ; *pier* (jetée) et *lane* (voie) ne disent pas qu'on change d'itinéraire.\n\n**À retenir :** *diversion* = déviation (aussi « divertissement » dans d'autres contextes)."
       },
       {
         "intitule": "*Most ...... take the 7:45 train to the city every morning.*",
@@ -276,7 +300,8 @@
           "flight attendants",
           "tenants"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *commuters* = les personnes qui font chaque jour le trajet domicile-travail.\n\n**Pas à pas :**\n1. *Most ...... take the 7:45 train to the city every morning* : il faut des personnes.\n2. Indices : *every morning* (chaque matin) et *to the city* (vers la ville, là où ils travaillent).\n3. Ceux qui prennent le même train chaque matin pour aller travailler = *commuters*.\n\n**Les autres réponses :** *caterers* (traiteurs), *flight attendants* (personnel de cabine d'avion) et *tenants* (locataires) ne sont pas définis par ce trajet quotidien en train.\n\n**À retenir :** trajet quotidien vers le travail → *commute*, *commuter*."
       },
       {
         "intitule": "*The taxi ...... from the airport was 45 dollars.*",
@@ -287,7 +312,8 @@
           "fare",
           "fee"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a fare* = le prix d'un **trajet** (billet de bus, de train, course de taxi).\n\n**Pas à pas :**\n1. *The taxi ...... from the airport was 45 dollars* : le ...... du taxi depuis l'aéroport était de 45 dollars.\n2. On paie un trajet en taxi : c'est le prix de la course, *fare*.\n\n**Les autres réponses :** *fee* = des frais pour un service (inscription, avocat) ; *rate* = un taux ou un tarif à l'unité ; *tip* = le pourboire qu'on ajoute, pas le prix de la course.\n\n**À retenir :** trajet → *fare* ; service → *fee* ; taux → *rate* ; en plus, pour remercier → *tip*."
       },
       {
         "intitule": "*In the US, people usually leave a 15% ...... for the waiter.*",
@@ -298,7 +324,8 @@
           "tip",
           "fee"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a tip* = un **pourboire** ; *to leave a tip* = laisser un pourboire. *Tip* veut aussi dire « conseil, astuce ».\n\n**Pas à pas :**\n1. *people usually leave a 15% ...... for the waiter* : on laisse 15 % pour le serveur.\n2. L'argent qu'on laisse au serveur en plus de l'addition = le pourboire : *tip*.\n\n**Les autres réponses :** *fare* est le prix d'un trajet ; *fee* des frais ; *voucher* un bon d'achat (on ne « laisse » pas un bon de 15 %).\n\n**À retenir :** *tip* = pourboire (ou conseil : *a useful tip*)."
       },
       {
         "intitule": "*Trucks must use the right-hand ...... on the motorway.*",
@@ -309,7 +336,8 @@
           "lane",
           "platform"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a lane* = une **voie** (une file de circulation) sur une route : *the right-hand lane* = la voie de droite.\n\n**Pas à pas :**\n1. *Trucks must use the right-hand ...... on the motorway* : les camions doivent utiliser la ...... de droite sur l'autoroute.\n2. Sur une autoroute, on roule dans une voie : *lane*.\n\n**Les autres réponses :** *lounge* (salon), *runway* (piste d'aéroport) et *platform* (quai de gare) ne sont pas sur une autoroute.\n\n**À retenir :** voie de circulation = *lane* ; *bus lane* = couloir de bus."
       }
     ],
     "indices": [
@@ -331,7 +359,8 @@
           "un goûter",
           "une boîte à repas"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *a luncheon* = **un déjeuner**, souvent officiel ou formel (*a business luncheon*). C'est un mot plus soutenu que *lunch*.\n\n**Pas à pas :** on reconnaît *lunch* au début du mot : c'est le repas de midi. *The annual awards luncheon* = le déjeuner annuel de remise des prix.\n\n**Les autres réponses :** « un goûter » se dit *an afternoon snack* (ou *tea*, UK) ; « une boîte à repas » se dit *a lunch box*.\n\n**À retenir :** *luncheon* = déjeuner (formel)."
       },
       {
         "intitule": "*to host a party*",
@@ -341,7 +370,8 @@
           "recevoir, organiser une fête",
           "héberger un site"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *to host* = **recevoir, accueillir, organiser** (un événement, des invités). *The host* = l'hôte, celui qui reçoit.\n\n**Pas à pas :** *to host a party* = organiser une fête chez soi et recevoir les invités. *Our company will host the conference* = notre entreprise accueillera la conférence.\n\n**Les autres réponses :** « être invité à une fête » se dit *to be invited to a party* (c'est le rôle de l'invité, *the guest*) ; « héberger un site » (*to host a website*) est un sens informatique, qui ne va pas avec *a party*.\n\n**À retenir :** *host* = celui qui reçoit ; *guest* = l'invité."
       },
       {
         "intitule": "*to entertain clients*",
@@ -351,7 +381,8 @@
           "entretenir des clients",
           "attendre des clients"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *to entertain* = **recevoir, divertir** (des clients, des invités) : leur offrir un repas, une sortie, un spectacle.\n\n**Pas à pas :** *Sales managers often entertain clients at restaurants* = les responsables commerciaux reçoivent souvent des clients au restaurant. Le nom *entertainment* = divertissement, spectacle.\n\n**Les autres réponses :** « entretenir » est le faux ami (entretenir une machine = *to maintain*) ; « attendre » se dit *to wait for* (et *to attend* = assister à).\n\n**À retenir :** *entertain* = recevoir, divertir ; *maintain* = entretenir."
       },
       {
         "intitule": "*to rehearse a speech*",
@@ -361,7 +392,8 @@
           "rechercher un discours",
           "répéter un discours"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *to rehearse* = **répéter** (un discours, une pièce, un morceau) pour se préparer. Le nom est *a rehearsal* (une répétition).\n\n**Pas à pas :** *She rehearsed her speech three times before the meeting* = elle a répété son discours trois fois avant la réunion. Attention : « répéter » au sens de « redire » se dit *to repeat*.\n\n**Les autres réponses :** « résumer » se dit *to summarize* (faux ami : *to resume* veut dire reprendre) ; « rechercher » se dit *to search for* ou *to research*, qui ressemble à *rehearse*.\n\n**À retenir :** s'entraîner avant de présenter = *rehearse* ; redire = *repeat*."
       },
       {
         "intitule": "*a performance* (au théâtre)",
@@ -371,7 +403,8 @@
           "un rendement",
           "une performance sportive"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** au théâtre, *a performance* = **une représentation**, un spectacle, une séance.\n\n**Pas à pas :** le contexte (« au théâtre ») choisit le sens. *Tonight's performance is sold out* = la représentation de ce soir est complète. Dans une entreprise, *performance* voudrait dire « résultats, rendement ».\n\n**Les autres réponses :** « un rendement » est le sens en entreprise ou pour une machine, pas au théâtre ; « une performance sportive » est un calque du français, pas le sens ici.\n\n**À retenir :** *performance* = représentation (spectacle) ou résultats (entreprise) : le contexte décide."
       },
       {
         "intitule": "*a workshop*",
@@ -381,7 +414,8 @@
           "un magasin",
           "une semaine de travail"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *a workshop* = **un atelier** : un lieu où l'on fabrique ou répare, ou une séance de travail en petit groupe (*a training workshop*).\n\n**Pas à pas :** *work* (travail) + *shop* (ici au sens ancien d'« atelier ») : *The conference includes three workshops on marketing* = la conférence comprend trois ateliers sur le marketing.\n\n**Les autres réponses :** « un magasin » se dit *a shop* ou *a store* (sans *work*) ; « une semaine de travail » se dit *a working week* (*week*, pas *shop*).\n\n**À retenir :** *workshop* = atelier."
       },
       {
         "intitule": "*salad dressing*",
@@ -391,7 +425,8 @@
           "pansement",
           "habillage"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *salad dressing* = **la sauce pour la salade** (vinaigrette). *Dressing* veut dire « assaisonnement, sauce » en cuisine.\n\n**Pas à pas :** le mot *salad* devant *dressing* fixe le sens cuisine. Ailleurs, *dressing* peut vouloir dire « pansement » (à l'hôpital) ou « le fait de s'habiller » (*dressing room*, loge, cabine d'essayage).\n\n**Les autres réponses :** « pansement » est un autre sens de *dressing*, mais pas avec *salad* ; « habillage » est un mauvais découpage (*to dress* = s'habiller).\n\n**À retenir :** *dressing* en cuisine = sauce ; *dressing room* = loge, cabine."
       }
     ],
     "indices": [
@@ -411,7 +446,8 @@
         "reponse": [
           "city hall",
           "town hall"
-        ]
+        ],
+        "explication": "**Règle :** la mairie = *city hall* (US, grande ville) ou *town hall* (UK, ville plus petite).\n\n**Pas à pas :** *hall* = grand bâtiment public ; *city* = grande ville, *town* = petite ville. *The wedding took place at City Hall* = le mariage a eu lieu à la mairie.\n\n**Erreurs fréquentes :** écrire *mayory* (n'existe pas) ou *mayor* (le maire, la personne).\n\n**À retenir :** mairie = *city hall* / *town hall* ; maire = *mayor*."
       },
       {
         "intitule": "le propriétaire (qui loue)",
@@ -422,7 +458,8 @@
           "landlady",
           "owner",
           "the owner"
-        ]
+        ],
+        "explication": "**Règle :** le propriétaire qui loue un logement = *the landlord* (*landlady* pour une femme) ; *owner* est accepté, mais il est plus général.\n\n**Pas à pas :** *landlord* précise le rôle dans une location : c'est lui qui reçoit le loyer (*rent*) du locataire (*tenant*). *Owner* veut dire « propriétaire » de n'importe quoi (une voiture, un chien, un magasin).\n\n**Erreurs fréquentes :** écrire *proprietor* (rare, plutôt pour un commerce) ou *tenant* (le locataire, l'autre rôle).\n\n**À retenir :** location : *landlord* (loue) ↔ *tenant* (paie)."
       },
       {
         "intitule": "le locataire",
@@ -430,7 +467,8 @@
         "reponse": [
           "tenant",
           "the tenant"
-        ]
+        ],
+        "explication": "**Règle :** le locataire = *the tenant* : celui qui paie le loyer (*rent*) au propriétaire (*landlord*).\n\n**Pas à pas :** *The tenant must pay the rent on the first day of the month* = le locataire doit payer le loyer le premier jour du mois.\n\n**Erreurs fréquentes :** écrire *renter* (compris aux États-Unis, mais ce n'est pas le mot de la liste) ou *locator* (calque du français, sans ce sens).\n\n**À retenir :** locataire = *tenant* ; loyer = *rent*."
       },
       {
         "intitule": "un agent immobilier",
@@ -442,7 +480,8 @@
           "an estate agent",
           "realtor",
           "a realtor"
-        ]
+        ],
+        "explication": "**Règle :** un agent immobilier = *a real estate agent* (US), *an estate agent* (UK) ou *a realtor* (US).\n\n**Pas à pas :** *real estate* = les biens immobiliers (maisons, terrains). L'*estate agent* aide à acheter, vendre ou louer un logement.\n\n**Erreurs fréquentes :** écrire *immobilier agent* (calque) ou *a real agent*.\n\n**À retenir :** immobilier = *real estate* ; agent immobilier = *(real) estate agent*."
       },
       {
         "intitule": "un quartier",
@@ -454,7 +493,8 @@
           "a neighbourhood",
           "district",
           "area"
-        ]
+        ],
+        "explication": "**Règle :** un quartier = *a neighborhood* (US) ou *a neighbourhood* (UK) ; *district* et *area* sont acceptés aussi.\n\n**Pas à pas :** *neighbo(u)r* = un voisin + *-hood* (l'ensemble) : « l'ensemble des voisins », le quartier. *A quiet neighborhood* = un quartier calme.\n\n**Erreurs fréquentes :** écrire *a quarter* : c'est un quart ou un trimestre (et seulement dans quelques noms propres, comme *the French Quarter*) ; oublier le **h** (*neighborood*).\n\n**À retenir :** quartier = *neighbo(u)rhood* ; voisin = *neighbo(u)r*."
       },
       {
         "intitule": "un médecin (mot de la liste)",
@@ -464,7 +504,8 @@
           "a physician",
           "doctor",
           "a doctor"
-        ]
+        ],
+        "explication": "**Règle :** un médecin = *a physician* (mot de la liste du TOEIC) ou *a doctor*.\n\n**Pas à pas :** *physician* est un mot soutenu, fréquent dans les textes officiels : *Consult your physician before taking this medicine* = consultez votre médecin avant de prendre ce médicament.\n\n**Erreurs fréquentes :** écrire *physicist*, qui veut dire **physicien** (le faux ami) ; écrire *medic* (secouriste, militaire).\n\n**À retenir :** *physician* = médecin ; *physicist* = physicien."
       },
       {
         "intitule": "un chirurgien",
@@ -472,7 +513,8 @@
         "reponse": [
           "surgeon",
           "a surgeon"
-        ]
+        ],
+        "explication": "**Règle :** un chirurgien = *a surgeon* ; la chirurgie (ou une opération) = *surgery*.\n\n**Pas à pas :** *The surgeon performed the operation* = le chirurgien a fait l'opération. Au UK, *a surgery* veut aussi dire un cabinet médical.\n\n**Erreurs fréquentes :** écrire *a chirurgian* (calque du français) ou *a sergeant* (un sergent, mot qui ressemble à l'oral).\n\n**À retenir :** chirurgien = *surgeon* ; chirurgie = *surgery*."
       },
       {
         "intitule": "un membre de la famille",
@@ -482,7 +524,8 @@
           "a relative",
           "family member",
           "a family member"
-        ]
+        ],
+        "explication": "**Règle :** un membre de la famille = *a relative* (un proche, un parent au sens large) ; *a family member* est accepté aussi.\n\n**Pas à pas :** *relative* vient de *related* (lié) : une personne liée à toi par la famille (oncle, cousine, grand-père…). *I'm visiting relatives in Spain* = je rends visite à de la famille en Espagne.\n\n**Erreurs fréquentes :** écrire *parent* : en anglais, *parents* désigne **seulement** le père et la mère ; c'est un faux ami partiel.\n\n**À retenir :** *relative* = membre de la famille ; *parents* = père et mère."
       }
     ],
     "indices": [
@@ -505,7 +548,8 @@
           "landlord",
           "physician"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *the landlord* = le propriétaire qui loue ; *the tenants* = les locataires. C'est le *landlord* qui fixe le loyer (*rent*).\n\n**Pas à pas :**\n1. *The ...... raised the rent* : quelqu'un a augmenté le loyer.\n2. *so the tenants complained* : alors les locataires se sont plaints.\n3. Celui qui augmente le loyer et dont les locataires se plaignent = le propriétaire : *landlord*.\n\n**Les autres réponses :** *tenant* est le locataire (il ne s'augmente pas lui-même le loyer, et les locataires se plaignent **de** lui) ; *relative* (membre de la famille) et *physician* (médecin) n'ont rien à voir avec un loyer.\n\n**À retenir :** loyer augmenté par → *landlord* ; payé par → *tenant*."
       },
       {
         "intitule": "*The bus offers free rides for ...... people over 70.*",
@@ -516,7 +560,8 @@
           "elderly",
           "older than"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *elderly* = âgé (forme polie) : *elderly people* = les personnes âgées.\n\n**Pas à pas :**\n1. *free rides for ...... people over 70* : des trajets gratuits pour les personnes ...... de plus de 70 ans.\n2. Il faut un **adjectif** devant *people* qui veut dire « âgé » : *elderly*.\n\n**Les autres réponses :**\n- *elder* et *eldest* servent à comparer des membres d'une même famille (*my elder sister* = ma sœur aînée) ;\n- *older than* est un comparatif qui demande un complément après *than* (*older than 70*), or *people* vient juste après.\n\n**À retenir :** *elderly people* = personnes âgées ; *elder / eldest* = aîné(e) dans une famille."
       },
       {
         "intitule": "*Close the ...... : the sun is too bright.*",
@@ -527,7 +572,8 @@
           "lockers",
           "slips"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *a blind* = **un store** (un rideau qu'on monte et qu'on baisse) ; au pluriel, *blinds*.\n\n**Pas à pas :**\n1. *Close the ......* : ferme les ......\n2. L'indice est *the sun is too bright* (le soleil est trop fort).\n3. Ce qu'on ferme contre le soleil = les stores : *blinds*.\n\n**Les autres réponses :** *piers* (jetées), *lockers* (casiers) et *slips* (bordereaux, petits papiers) ne protègent pas du soleil.\n\n**À retenir :** *blinds* = stores ; *curtains* = rideaux."
       },
       {
         "intitule": "*Washing machines and fridges are ...... appliances.*",
@@ -538,7 +584,8 @@
           "housing",
           "homemade"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *household appliances* = les appareils électroménagers (*household* = du foyer, de la maison).\n\n**Pas à pas :**\n1. *Washing machines and fridges are ...... appliances* : lave-linge et frigos sont des appareils ......\n2. Il faut un mot devant *appliances* qui veut dire « de la maison » : *household*.\n\n**Les autres réponses :** *housework* (les tâches ménagères) est une activité, pas un type d'appareil ; *housing* veut dire logement ; *homemade* veut dire fait maison.\n\n**À retenir :** *household appliance* = appareil ménager."
       },
       {
         "intitule": "*Let's meet at ...... for lunch.*",
@@ -549,7 +596,8 @@
           "noon",
           "midnight"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *at noon* = à midi (12 h) ; *at midnight* = à minuit.\n\n**Pas à pas :**\n1. *Let's meet at ...... for lunch* : retrouvons-nous à ...... pour déjeuner.\n2. L'indice est *for lunch* : le déjeuner se prend à midi.\n3. Midi = *noon*.\n\n**Les autres réponses :** *dawn* (l'aube) et *midnight* (minuit) ne sont pas l'heure du déjeuner ; *fall* (automne, chute) n'est pas une heure.\n\n**À retenir :** *noon* = midi ; *midnight* = minuit ; *dawn* = l'aube."
       },
       {
         "intitule": "*Please don't drop ...... in the park.*",
@@ -560,7 +608,8 @@
           "liability",
           "litter"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *litter* = les détritus jetés par terre (papiers, canettes) ; *to drop litter* = jeter des déchets par terre.\n\n**Pas à pas :**\n1. *Please don't drop ...... in the park* : ne jetez pas de ...... dans le parc.\n2. Ce qu'on ne doit pas jeter par terre dans un parc = des détritus : *litter*.\n\n**Les autres réponses :** *lane* (voie), *refund* (remboursement) et *liability* (responsabilité) ne se « jettent » pas par terre.\n\n**À retenir :** *litter* = détritus par terre ; *garbage* (US), *rubbish* (UK) = ordures."
       }
     ],
     "indices": [
@@ -583,7 +632,8 @@
           "la ligne d'arrivée",
           "le retard"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *the deadline* = **la date limite** (ou l'heure limite).\n\n**Pas à pas :** *dead* + *line* = la ligne à ne pas franchir. *The deadline for registration is 30 June* = la date limite d'inscription est le 30 juin. *To meet a deadline* = respecter une date limite.\n\n**Les autres réponses :** « le retard » est le piège : il se dit *delay* (c'est le « délai » français qui se dit *deadline*) ; « la ligne d'arrivée » se dit *the finish line*.\n\n**À retenir :** *deadline* = date limite ; *delay* = retard."
       },
       {
         "intitule": "*pending*",
@@ -593,7 +643,8 @@
           "pendant",
           "suspendu au plafond"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *pending* = **en attente, en cours** (pas encore réglé ou décidé).\n\n**Pas à pas :** *The decision is still pending* = la décision est toujours en attente. *Pending approval* = en attente de validation.\n\n**Les autres réponses :** « pendant » est le piège du son (pendant = *during*) ; « suspendu au plafond » se dit *hanging from the ceiling* (même si *pending* vient de l'idée « suspendu »).\n\n**À retenir :** *pending* = en attente ; *during* = pendant."
       },
       {
         "intitule": "*upcoming*",
@@ -603,7 +654,8 @@
           "récent",
           "montant"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *upcoming* = **prochain, à venir** (*the upcoming meeting* = la prochaine réunion).\n\n**Pas à pas :** *up* + *coming* (qui arrive) : ce qui arrive bientôt. *Upcoming events* = les événements à venir.\n\n**Les autres réponses :** « récent » se dit *recent* (c'est le passé, le contraire) ; « montant » se dit *rising* ou *going up*.\n\n**À retenir :** *upcoming* = à venir ; *recent* = passé récent."
       },
       {
         "intitule": "*ahead of time*",
@@ -613,7 +665,8 @@
           "à l'heure",
           "en retard"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *ahead of time* = **en avance**, à l'avance (*ahead* = devant).\n\n**Pas à pas :** *Please arrive ahead of time* = merci d'arriver en avance. Expressions de la même famille : *ahead of schedule* (en avance sur le planning), *behind schedule* (en retard sur le planning).\n\n**Les autres réponses :** « à l'heure » se dit *on time* ; « en retard » se dit *late* ou *behind schedule*.\n\n**À retenir :** *ahead* = en avance ; *on time* = à l'heure ; *late* = en retard."
       },
       {
         "intitule": "*to catch up*",
@@ -623,7 +676,8 @@
           "se rencontrer",
           "attraper un rhume"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *to catch up* = **rattraper son retard** (*to catch up on work*, *to catch up with someone*).\n\n**Pas à pas :** *catch* = attraper + *up* = jusqu'au niveau : on « attrape » le niveau qu'on aurait dû avoir. *I need to catch up on my emails* = je dois rattraper mon retard dans mes e-mails.\n\n**Les autres réponses :** « se rencontrer » se dit *to meet* (même si *catch up* peut vouloir dire « prendre des nouvelles » entre amis) ; « attraper un rhume » se dit *to catch a cold*, sans *up*.\n\n**À retenir :** *catch up (on)* = rattraper son retard."
       },
       {
         "intitule": "*the outcome*",
@@ -633,7 +687,8 @@
           "la sortie",
           "le résultat"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *the outcome* = **le résultat, l'issue** (d'une réunion, d'une négociation).\n\n**Pas à pas :** *out* (dehors) + *come* (venir) : ce qui « sort » à la fin. *We are waiting for the outcome of the vote* = nous attendons le résultat du vote.\n\n**Les autres réponses :** « le revenu » se dit *income* (*in* + *come*, ce qui entre : le piège) ; « la sortie » se dit *the exit* ou *the way out*.\n\n**À retenir :** *outcome* = résultat ; *income* = revenu."
       },
       {
         "intitule": "*to set up*",
@@ -643,7 +698,8 @@
           "se lever",
           "créer, mettre en place"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *to set up* = **créer, fonder, mettre en place** (une entreprise, un système, une réunion).\n\n**Pas à pas :** *They set up a new branch in Berlin* = ils ont créé une nouvelle agence à Berlin. *To set up a meeting* = organiser une réunion. Le sens « installer » (un logiciel, un matériel) existe aussi, mais il n'est pas le seul.\n\n**Les autres réponses :** « installer un logiciel uniquement » est trop limité (le mot *uniquement* rend la réponse fausse) ; « se lever » se dit *to get up*.\n\n**À retenir :** *set up* = créer, mettre en place ; *get up* = se lever."
       },
       {
         "intitule": "*the pace*",
@@ -653,7 +709,8 @@
           "le rythme",
           "la paix"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *the pace* = **le rythme, l'allure** (*at a fast pace* = à un rythme rapide).\n\n**Pas à pas :** *The project is moving at a slow pace* = le projet avance à un rythme lent. *To keep pace with* = suivre le rythme de.\n\n**Les autres réponses :** « la paix » se dit *peace* (le son est proche, mais le « ea » se prononce « i ») ; « la page » se dit *page*.\n\n**À retenir :** *pace* = rythme ; *peace* = paix."
       }
     ],
     "indices": [
@@ -672,14 +729,16 @@
         "type": "texte",
         "reponse": [
           "deadline"
-        ]
+        ],
+        "explication": "**Règle :** *the deadline for something* = la date limite pour quelque chose.\n\n**Pas à pas :**\n1. *The ...... for applications is 15 March* : la ...... des candidatures est le 15 mars.\n2. L'indice est *After that date, we won't accept any* (après cette date, nous n'en accepterons plus).\n3. Une date après laquelle c'est trop tard = la date limite : *deadline*.\n\n**Erreurs fréquentes :** écrire *delay* (retard, le faux ami de « délai ») ou *limit date* (calque du français).\n\n**À retenir :** « après cette date, plus rien » → *deadline*."
       },
       {
         "intitule": "*I was ill last week, so I have a lot of work to catch ...... on.*",
         "type": "texte",
         "reponse": [
           "up"
-        ]
+        ],
+        "explication": "**Règle :** *to catch up on something* = rattraper son retard dans quelque chose. Le verbe a deux petits mots : *up* puis *on*.\n\n**Pas à pas :**\n1. *I was ill last week* = j'étais malade la semaine dernière : j'ai pris du retard.\n2. *so I have a lot of work to catch ...... on* : il manque la particule entre *catch* et *on*.\n3. *catch up on* = rattraper : le mot est *up*.\n\n**Erreurs fréquentes :** écrire *back* (*to catch back* n'existe pas) ou *with* (*catch up with* sert pour une personne : *catch up with the others*).\n\n**À retenir :** *catch up on* + travail ; *catch up with* + personne."
       },
       {
         "intitule": "*Our call centre is open ...... the clock.* (24 h sur 24)",
@@ -687,7 +746,8 @@
         "reponse": [
           "around",
           "round"
-        ]
+        ],
+        "explication": "**Règle :** *around the clock* (ou *round the clock*) = 24 heures sur 24.\n\n**Pas à pas :**\n1. *Our call centre is open ...... the clock* : l'aide dit « 24 h sur 24 ».\n2. Les aiguilles font **le tour** de l'horloge : *around* (ou *round*).\n\n**Erreurs fréquentes :** écrire *all* (*all the clock* n'existe pas ; on dit *all day*) ou *by* / *on*.\n\n**À retenir :** 24 h / 24 = *around the clock*."
       },
       {
         "intitule": "*The director is busy on Monday, so we need to ...... the meeting.* (changer la date)",
@@ -697,21 +757,24 @@
           "postpone",
           "move",
           "rearrange"
-        ]
+        ],
+        "explication": "**Règle :** *to reschedule* = changer la date ou l'heure (reprogrammer) ; *postpone* (reporter), *move* et *rearrange* sont acceptés aussi.\n\n**Pas à pas :**\n1. *The director is busy on Monday* : le directeur n'est pas disponible lundi.\n2. *so we need to ...... the meeting* : il faut changer la date de la réunion (l'aide dit « changer la date »).\n3. *re-* (de nouveau) + *schedule* (planifier) = *reschedule*.\n\n**Erreurs fréquentes :** écrire *cancel* (annuler : on ne la fait plus du tout) ou *delay* (retarder, mais pas forcément choisir une nouvelle date).\n\n**À retenir :** *reschedule* = nouvelle date ; *cancel* = plus de date du tout."
       },
       {
         "intitule": "*We finished the project two days ...... of schedule.* (en avance)",
         "type": "texte",
         "reponse": [
           "ahead"
-        ]
+        ],
+        "explication": "**Règle :** *ahead of schedule* = en avance sur le planning ; le contraire est *behind schedule* (en retard).\n\n**Pas à pas :**\n1. *We finished the project two days ...... of schedule* : l'aide dit « en avance ».\n2. *ahead* = devant : on est « devant » le planning.\n\n**Erreurs fréquentes :** écrire *before* (*before schedule* ne se dit pas) ou *in advance* (correct en général, mais il ne va pas avec *of schedule*).\n\n**À retenir :** *ahead of schedule* (en avance) ↔ *behind schedule* (en retard) ; *on schedule* = dans les temps."
       },
       {
         "intitule": "*She wants to ...... up her own company next year.* (créer)",
         "type": "texte",
         "reponse": [
           "set"
-        ]
+        ],
+        "explication": "**Règle :** *to set up a company* = créer une entreprise ; le verbe est *set*, suivi de la particule *up*.\n\n**Pas à pas :**\n1. *She wants to ...... up her own company* : après *wants to*, il faut un verbe à la base.\n2. L'aide dit « créer » et la phrase contient déjà *up* : *set up* = créer, fonder.\n\n**Erreurs fréquentes :** écrire *create* (*create up* ne se dit pas : le *up* déjà présent impose *set*) ou *make*.\n\n**À retenir :** créer une entreprise = *set up a company* (aussi *start a business*)."
       }
     ],
     "indices": [
@@ -734,7 +797,8 @@
           "booker",
           "booked"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un nom peut servir d'adjectif devant un autre nom. *Booking number* = numéro de réservation (*booking* = réservation).\n\n**Pas à pas :**\n1. *Your ...... number is on the confirmation e-mail* : après *Your* et devant *number*, il faut un mot qui précise *number*.\n2. Le numéro **de réservation** : le nom de la famille de *book* qui veut dire « réservation » est *booking* (suffixe *-ing*).\n\n**Les autres réponses :** *book* serait « numéro de livre » ; *booker* est une personne (celui qui réserve) ; *booked* est un participe (« réservé »), pas un nom.\n\n**À retenir :** nom + nom : *booking number*, *flight number*, *room number*."
       },
       {
         "intitule": "*The price includes flights and ...... for five nights.*",
@@ -745,7 +809,8 @@
           "accommodating",
           "accommodate"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *and* relie deux mots de **même nature**. Ici *flights* est un nom, il faut donc un nom : *accommodation* (l'hébergement).\n\n**Pas à pas :**\n1. *The price includes flights and ......* : le prix comprend les vols et ......\n2. *includes* (comprend) attend des choses : un nom.\n3. Nom de la famille de *accommodate* : *accommodation* (suffixe *-tion*), qui reste au singulier en anglais britannique.\n\n**Les autres réponses :** *accommodate* est le verbe ; *accommodated* (participe) et *accommodating* (« arrangeant », adjectif ou forme en -ing) ne sont pas des noms.\n\n**À retenir :** *and* relie deux mots de même nature ; *-tion* = nom."
       },
       {
         "intitule": "*Tonight's ...... starts at 8 p.m. sharp.*",
@@ -756,7 +821,8 @@
           "performed",
           "perform"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** après un possessif (*Tonight's*), il faut un **nom**. *Performance* = la représentation, le spectacle.\n\n**Pas à pas :**\n1. *Tonight's ......* = le / la ...... de ce soir.\n2. *starts at 8 p.m. sharp* (commence à 20 h précises) : c'est une chose qui commence, un spectacle.\n3. Nom de chose de la famille de *perform* : *performance* (suffixe *-ance*).\n\n**Les autres réponses :** *performer* est aussi un nom, mais c'est l'artiste (une personne ne « commence pas à 20 h ») ; *perform* et *performed* sont des formes du verbe.\n\n**À retenir :** *-ance* = la chose ; *-er* = la personne."
       },
       {
         "intitule": "*The hotel offers live ...... every Friday night.*",
@@ -767,7 +833,8 @@
           "entertainment",
           "entertainer"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** après un adjectif (*live*), il faut un **nom**. *Live entertainment* = des spectacles en direct, de l'animation.\n\n**Pas à pas :**\n1. *The hotel offers live ......* : l'hôtel propose des ...... en direct.\n2. *offers* (propose) et *every Friday night* : on propose une activité, une chose.\n3. Nom de chose de la famille de *entertain* : *entertainment* (suffixe *-ment*).\n\n**Les autres réponses :** *entertainer* est une personne (un artiste) ; *entertain* est le verbe ; *entertaining* est l'adjectif « divertissant » (il faudrait un nom après).\n\n**À retenir :** adjectif + **nom** ; *-ment* = la chose."
       },
       {
         "intitule": "*The summit was ...... by the city of Geneva.*",
@@ -778,7 +845,8 @@
           "hostess",
           "host"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *was* + **participe passé** = passif au prétérit (« a été … »). *By* introduit celui qui fait l'action.\n\n**Pas à pas :**\n1. *The summit was ...... by the city of Geneva* : le sommet a été ...... par la ville de Genève.\n2. Le sommet ne s'accueille pas lui-même : c'est la ville qui l'accueille (*by the city*), donc passif.\n3. Participe passé de *to host* : *hosted*.\n\n**Les autres réponses :** *hosting* (-ing) donnerait « était en train d'accueillir », sens actif impossible avec *by* ; *hostess* (hôtesse) est un nom ; *host* (base) ne peut pas suivre *was*.\n\n**À retenir :** *be* + participe passé + *by* = passif."
       },
       {
         "intitule": "*Sales are ...... to rise by 5% next year.*",
@@ -789,7 +857,8 @@
           "forecaster",
           "forecast"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *to be forecast to* + verbe = « il est prévu que » (passif). *Forecast* est **irrégulier** : son participe passé est aussi *forecast* (comme *cast*, *cost*, *put*).\n\n**Pas à pas :**\n1. *Sales are ...... to rise by 5% next year* : les ventes ...... augmenter de 5 % l'an prochain.\n2. Les ventes ne prévoient rien : ce sont des gens qui les prévoient. C'est un passif : *are* + participe passé.\n3. Participe passé de *forecast* = *forecast*.\n\n**Les autres réponses :** *forecasting* donnerait « les ventes prévoient », sens actif impossible ; *forecasts* et *forecaster* (le prévisionniste) sont des noms (ou un verbe conjugué) qui ne vont pas après *are … to rise*. On rencontre parfois *forecasted*, mais il n'est pas proposé ici.\n\n**À retenir :** *be forecast / expected to* + verbe = il est prévu que."
       }
     ],
     "indices": [
@@ -812,7 +881,8 @@
           "une déviation",
           "un retard"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a delay* = **un retard**. Faux ami : un délai (une date limite) se dit *a deadline* ou *a time limit*.\n\n**Pas à pas :**\n1. *We waited two hours because of a delay* : nous avons attendu deux heures à cause d'un ......\n2. On attend parce que quelque chose arrive **plus tard** que prévu : c'est un retard.\n\n**Les autres réponses :** « un délai » est le faux ami (*deadline*) ; « une déviation » se dit *a diversion*.\n\n**À retenir :** *delay* = retard ; délai = *deadline*."
       },
       {
         "intitule": "*I borrowed this book from the library.*",
@@ -822,7 +892,8 @@
           "la bibliothèque",
           "la librairie"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *a library* = **une bibliothèque** (où l'on emprunte des livres). Faux ami : une librairie (où l'on achète) se dit *a bookshop* (UK) ou *a bookstore* (US).\n\n**Pas à pas :**\n1. *I borrowed this book from the library* : *borrowed* = emprunté.\n2. On emprunte un livre (sans l'acheter) dans une bibliothèque : *library* = bibliothèque.\n\n**Les autres réponses :** « la librairie » est le faux ami (*bookshop*) ; « la papeterie » se dit *a stationery shop*.\n\n**À retenir :** *library* = bibliothèque ; *bookshop* = librairie."
       },
       {
         "intitule": "*She went to see her physician.*",
@@ -832,7 +903,8 @@
           "son médecin",
           "sa physiothérapeute"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *a physician* = **un médecin**. Faux ami : un physicien se dit *a physicist*.\n\n**Pas à pas :**\n1. *She went to see her physician* = elle est allée voir son ......\n2. On « va voir son » médecin quand on est malade : *physician* = médecin.\n\n**Les autres réponses :** « son physicien » est le faux ami (*physicist*) ; « sa physiothérapeute » (kiné) se dit *physiotherapist*.\n\n**À retenir :** *physician* = médecin."
       },
       {
         "intitule": "*The journey took six hours.*",
@@ -842,7 +914,8 @@
           "Le séjour",
           "La journée"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *a journey* = **un trajet, un voyage** (le fait de se déplacer d'un endroit à un autre). Faux ami : une journée se dit *a day*.\n\n**Pas à pas :**\n1. *The journey took six hours* = le ...... a pris six heures.\n2. Ce qui « prend » six heures, c'est le déplacement : le trajet.\n\n**Les autres réponses :** « la journée » est le faux ami (*a day*) ; « le séjour » se dit *a stay* (le temps passé sur place, pas le déplacement).\n\n**À retenir :** *journey* = trajet ; *stay* = séjour ; *day* = journée."
       },
       {
         "intitule": "*The hotel is in a great location.*",
@@ -852,7 +925,8 @@
           "location",
           "emplacement"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a location* = **un emplacement, un lieu**. Faux ami : la location (d'une voiture, d'un logement) se dit *rental* ou *hire*.\n\n**Pas à pas :**\n1. *The hotel is in a great location* = l'hôtel est dans un super ......\n2. Un hôtel est « dans » un lieu : c'est son emplacement.\n\n**Les autres réponses :** « location » est le faux ami (*rental*) ; « localité » (une ville, un village) se dit *a town* ou *a village*.\n\n**À retenir :** *location* = emplacement ; location = *rental*."
       }
     ],
     "indices": [
@@ -875,7 +949,8 @@
           "Mr. Becker's assistant",
           "A hotel manager"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour identifier une personne, on regarde l'**en-tête** (*From*) et la **signature** d'un e-mail.\n\n**Pas à pas :**\n1. *From: Anna Ruiz, Travel Agent* : le titre est écrit après son nom.\n2. *Travel agent* = agent(e) de voyages.\n3. Le contenu confirme : elle a réservé le vol et l'hôtel pour M. Becker.\n\n**Les autres réponses :** elle n'est pas *flight attendant* (personnel de cabine) ; rien ne dit qu'elle est l'assistante de M. Becker ; elle parle de l'hôtel sans y travailler (*hotel manager*).\n\n**À retenir :** « *Who is…?* » → regarde *From*, la signature et le titre après le nom."
       },
       {
         "intitule": "How will Mr. Becker get to the hotel?",
@@ -886,7 +961,8 @@
           "By subway",
           "By rental car"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour une question *How will…?* (comment), on cherche le **moyen de transport** dans le texte.\n\n**Pas à pas :**\n1. On cherche *hotel* : *A shuttle will take you from the airport to the Maple Hotel*.\n2. *A shuttle* = une navette : c'est elle qui l'emmène de l'aéroport à l'hôtel.\n\n**Les autres réponses :** le taxi n'est jamais cité ; le métro (*subway*) sert seulement à dire que l'hôtel est près d'une station ; la voiture de location n'est **pas** incluse (*not included*).\n\n**À retenir :** un mot cité dans le texte n'est pas forcément la réponse : vérifie à quoi il sert dans la phrase."
       },
       {
         "intitule": "What is free at the hotel?",
@@ -897,12 +973,14 @@
           "The minibar",
           "Breakfast"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *complimentary* = offert, gratuit. Au TOEIC, « gratuit » apparaît souvent sous la forme *complimentary* ou *free of charge*.\n\n**Pas à pas :**\n1. *What is free at the hotel?* : on cherche un synonyme de *free* dans le texte.\n2. *Breakfast is complimentary* : le petit-déjeuner est offert.\n\n**Les autres réponses :** le parking, le dîner et le minibar ne sont pas mentionnés dans l'e-mail : on ne peut pas les choisir.\n\n**À retenir :** *free* = *complimentary* = *free of charge* = *at no extra cost*."
       },
       {
         "intitule": "How many nights will he stay at the hotel? (du 3 au 7 mai)",
         "type": "nombre",
-        "reponse": 4
+        "reponse": 4,
+        "explication": "**Règle :** pour compter des **nuits** d'hôtel, on compte les soirs entre l'arrivée et le départ : nuits = jour du départ − jour d'arrivée.\n\n**Pas à pas :**\n1. Arrivée (*check in*) : 3 mai. Départ (*check out*) : 7 mai.\n2. Nuits passées : du 3 au 4, du 4 au 5, du 5 au 6, du 6 au 7.\n3. 7 − 3 = **4** nuits.\n\n**Erreurs fréquentes :** répondre 5 en comptant les **jours** (3, 4, 5, 6, 7) au lieu des nuits : le 7, il part le soir et ne dort pas à l'hôtel.\n\n**À retenir :** nombre de nuits = date de départ − date d'arrivée."
       },
       {
         "intitule": "What is NOT included in the trip?",
@@ -913,7 +991,8 @@
           "The shuttle",
           "A rental car"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** pour une question *NOT included*, on cherche la phrase avec *not* dans le texte, et on vérifie chaque réponse.\n\n**Pas à pas :**\n\n| Réponse | Dans le voyage ? |\n|---|---|\n| *The flights* | oui : *Your round-trip flight is booked* |\n| *The hotel* | oui : *the Maple Hotel* |\n| *The shuttle* | oui : *A shuttle will take you…* |\n| *A rental car* | **non** : *A rental car is not included* |\n\n**Erreurs fréquentes :** choisir la navette en pensant qu'elle est payante : le texte ne dit pas cela, il dit qu'elle est prévue.\n\n**À retenir :** *NOT* → cherche la négation dans le texte et coche chaque option."
       }
     ],
     "indices": [
@@ -937,12 +1016,14 @@
           "A technical problem",
           "Bad weather"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** la **cause** d'un événement s'annonce avec *due to*, *because of* ou *owing to* (à cause de).\n\n**Pas à pas :**\n1. On cherche *delayed* : *due to bad weather, this flight has been delayed*.\n2. *due to bad weather* = à cause du mauvais temps.\n\n**Les autres réponses :** aucune grève (*strike*), aucun problème technique (*technical problem*) ni d'équipage en retard (*late crew*) n'est mentionné.\n\n**À retenir :** *due to* / *because of* / *owing to* + cause."
       },
       {
         "intitule": "How many minutes is the delay?",
         "type": "nombre",
-        "reponse": 90
+        "reponse": 90,
+        "explication": "**Règle :** *to be delayed by + durée* = être retardé de (cette durée).\n\n**Pas à pas :**\n1. On cherche le chiffre près de *delayed* : *this flight has been delayed by 90 minutes*.\n2. *by 90 minutes* = de 90 minutes : le retard est de **90** minutes (une heure et demie).\n\n**Erreurs fréquentes :** répondre 15 ou 30 en lisant l'heure d'embarquement (15:30) au lieu de la durée du retard ; répondre 1,5 (c'est en heures, la question demande des minutes).\n\n**À retenir :** *delayed by X* = X de retard ; *delayed until X* = jusqu'à l'heure X."
       },
       {
         "intitule": "Where will passengers board?",
@@ -953,7 +1034,8 @@
           "Gate 27",
           "Gate 21"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *instead of* = **au lieu de** : ce qui vient avant remplace ce qui vient après.\n\n**Pas à pas :**\n1. *Boarding will now begin at 15:30 at gate 27 instead of gate 21*.\n2. *gate 27 instead of gate 21* = porte 27 au lieu de la porte 21 : la nouvelle porte est la **27**.\n3. *now* (maintenant) confirme que c'est le changement.\n\n**Les autres réponses :** la porte 21 est l'**ancienne** porte (le piège de *instead of*) ; le *Nordic Lounge* sert à attendre, pas à embarquer ; le comptoir d'information distribue des bons repas.\n\n**À retenir :** A *instead of* B → c'est A qui compte."
       },
       {
         "intitule": "What can all passengers get at the information desk?",
@@ -964,7 +1046,8 @@
           "A new ticket",
           "A hotel room"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** attention aux mots qui **limitent** une information : *all passengers* (tous) ≠ *passengers in business class* (seulement une partie).\n\n**Pas à pas :**\n1. On cherche *information desk* : *Meal vouchers are available at the information desk*.\n2. *Meal vouchers* = des bons repas, sans limite de classe : pour tous les passagers.\n\n**Les autres réponses :** aucun remboursement (*refund*), nouveau billet ni chambre d'hôtel n'est proposé. Le salon (*Nordic Lounge*), lui, est réservé à la classe affaires : il ne concerne pas *all passengers*.\n\n**À retenir :** vérifie **à qui** s'adresse chaque offre (*all*, *only*, *in business class*)."
       }
     ],
     "indices": [
@@ -981,17 +1064,20 @@
       {
         "intitule": "J'ai réservé un aller-retour pour Londres.",
         "type": "auto",
-        "reponse": "*I have booked a round-trip (return) ticket to London.*"
+        "reponse": "*I have booked a round-trip (return) ticket to London.*",
+        "explication": "**Règle :** une action passée dont le résultat compte maintenant se met au **present perfect** (*have* + participe passé) : *I have booked*. Le prétérit (*I booked*) est accepté aussi.\n\n**Pas à pas :** une bonne réponse contient :\n1. *I have booked* (j'ai réservé ; *booked* = participe passé de *to book*) ;\n2. *a round-trip ticket* (US) ou *a return ticket* (UK) pour « un aller-retour » ;\n3. *to London* (vers Londres : *to* pour la destination).\n\n**Erreurs fréquentes :** écrire *for London* (*for* est moins naturel pour une destination de billet) ; écrire *a go-return* (calque du français) ; oublier *ticket* après *round-trip*.\n\n**À retenir :** billet pour une ville = *a ticket to* + ville."
       },
       {
         "intitule": "Notre vol a été retardé, donc nous avons manqué la navette.",
         "type": "auto",
-        "reponse": "*Our flight was delayed, so we missed the shuttle.*"
+        "reponse": "*Our flight was delayed, so we missed the shuttle.*",
+        "explication": "**Règle :** « a été retardé » = **passif au prétérit** : *was* + participe passé (*was delayed*). « Donc » = *so* ; rater un transport = *to miss*.\n\n**Pas à pas :** une bonne réponse contient :\n1. *Our flight was delayed* (notre vol a été retardé : le vol subit le retard) ;\n2. *so* (donc), pour relier la cause et la conséquence ;\n3. *we missed the shuttle* (nous avons manqué la navette, prétérit de *miss*).\n\n**Erreurs fréquentes :** écrire *we lost the shuttle* (*to lose* = perdre un objet, pas rater un transport) ; écrire *our flight has delayed* (sens actif : le vol aurait retardé quelque chose).\n\n**À retenir :** rater un train, un bus, une navette = *to miss*."
       },
       {
         "intitule": "La date limite pour rendre le rapport a été repoussée à lundi.",
         "type": "auto",
-        "reponse": "*The deadline for the report has been postponed (put off, pushed back) to Monday.*"
+        "reponse": "*The deadline for the report has been postponed (put off, pushed back) to Monday.*",
+        "explication": "**Règle :** « date limite » = *deadline* ; « a été repoussée » = passif au present perfect : *has been* + participe passé (*postponed*, *put off*, *pushed back*).\n\n**Pas à pas :** une bonne réponse contient :\n1. *The deadline for the report* (la date limite pour le rapport) ;\n2. *has been postponed* (a été repoussée) ; *put off* ou *pushed back* sont aussi corrects ;\n3. *to Monday* ou *until Monday* (à lundi).\n\n**Erreurs fréquentes :** écrire *the delay* pour « la date limite » (*delay* = retard, faux ami) ; écrire *has postponed* sans *been* (cela voudrait dire que la date limite a repoussé quelque chose).\n\n**À retenir :** « a été + participe » = passif = *has been* (ou *was*) + participe passé."
       }
     ],
     "indices": [

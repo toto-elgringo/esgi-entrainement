@@ -9,28 +9,54 @@
         "intitule": "$e^{4} \\times e^{-2}$",
         "type": "nombre",
         "reponse": "e^2",
-        "acceptes": ["e^2", "exp(2)", "e²"],
-        "refuses": ["e^8", "e^(-8)", "e^6"]
+        "acceptes": [
+          "e^2",
+          "exp(2)",
+          "e²"
+        ],
+        "refuses": [
+          "e^8",
+          "e^(-8)",
+          "e^6"
+        ],
+        "explication": "**Règle :** un **produit** d'exponentielles se simplifie en **additionnant** les exposants : $e^a \\times e^b = e^{a+b}$.\n\n**Pas à pas :**\n\n1. Les deux exposants sont $4$ et $-2$.\n2. On les additionne : $4 + (-2) = 4 - 2 = 2$.\n3. Donc $e^{4} \\times e^{-2} = e^{2}$.\n\nVérification en détail : $e^{-2} = \\frac{1}{e^2}$, donc $e^4 \\times \\frac{1}{e^2} = \\frac{e^4}{e^2} = e^2$.\n\n**Erreurs fréquentes :** multiplier les exposants ($4 \\times (-2) = -8$, d'où $e^{-8}$) : on ne multiplie que pour une puissance de puissance. Ou oublier le signe moins et trouver $e^{4+2} = e^6$.\n\n**À retenir :** $\\times$ entre deux exponentielles → $+$ entre les exposants."
       },
       {
         "intitule": "$\\dfrac{e^{7}}{e^{3}}$",
         "type": "nombre",
         "reponse": "e^4",
-        "acceptes": ["e^4", "exp(4)"],
-        "refuses": ["e^10", "e^(7/3)"]
+        "acceptes": [
+          "e^4",
+          "exp(4)"
+        ],
+        "refuses": [
+          "e^10",
+          "e^(7/3)"
+        ],
+        "explication": "**Règle :** un **quotient** d'exponentielles se simplifie en **soustrayant** les exposants (celui du haut moins celui du bas) : $\\dfrac{e^a}{e^b} = e^{a-b}$.\n\n**Pas à pas :**\n\n1. Exposant du haut : 7. Exposant du bas : 3.\n2. Haut moins bas : $7 - 3 = 4$.\n3. Donc $\\dfrac{e^7}{e^3} = e^4$.\n\nPourquoi : $e^7 = e^3 \\times e^4$, et on simplifie le $e^3$ en haut et en bas.\n\n**Erreurs fréquentes :** additionner les exposants ($e^{10}$, c'est la règle du produit) ou les diviser ($e^{7/3}$, aucune règle ne fait ça).\n\n**À retenir :** $\\div$ entre deux exponentielles → $-$ entre les exposants (haut moins bas)."
       },
       {
         "intitule": "$\\left(e^{2}\\right)^{3}$",
         "type": "nombre",
         "reponse": "e^6",
-        "acceptes": ["e^6"],
-        "refuses": ["e^5", "e^8"]
+        "acceptes": [
+          "e^6"
+        ],
+        "refuses": [
+          "e^5",
+          "e^8"
+        ],
+        "explication": "**Règle :** une **puissance de puissance** se simplifie en **multipliant** les exposants : $(e^a)^n = e^{a \\times n}$.\n\n**Pas à pas :**\n\n1. $(e^2)^3$ veut dire $e^2$ multiplié 3 fois par lui-même : $e^2 \\times e^2 \\times e^2$.\n2. Règle du produit : $e^{2 + 2 + 2} = e^6$.\n3. Additionner trois fois 2, c'est faire $2 \\times 3 = 6$ : on retrouve la règle, $e^6$.\n\n**Erreurs fréquentes :** additionner $2 + 3$ et trouver $e^5$ (on mélange avec la règle du produit), ou faire $2^3 = 8$ et trouver $e^8$.\n\n**À retenir :** parenthèse puis puissance → on **multiplie** les exposants."
       },
       {
         "intitule": "$e^{0}$",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["0", "e"]
+        "refuses": [
+          "0",
+          "e"
+        ],
+        "explication": "**Règle :** tout nombre (non nul) élevé à la puissance 0 vaut 1 : $e^0 = 1$.\n\n**Pas à pas :**\n\n1. On écrit $0 = 3 - 3$, par exemple.\n2. $e^0 = e^{3 - 3} = \\dfrac{e^3}{e^3}$ (règle du quotient).\n3. Un nombre divisé par lui-même vaut 1 : $e^0 = 1$.\n\nOn peut aussi le lire sur la courbe de $e^x$ : elle coupe l'axe vertical à la hauteur 1.\n\n**Erreurs fréquentes :** répondre 0 (on confond « exposant 0 » et « résultat 0 » ; d'ailleurs $e^x$ n'est jamais nul) ou répondre $e$ (c'est $e^1$).\n\n**À retenir :** $e^0 = 1$, et en miroir $\\ln 1 = 0$."
       }
     ],
     "indices": [
@@ -49,25 +75,40 @@
         "intitule": "$\\ln\\left(e^{5}\\right)$",
         "type": "nombre",
         "reponse": 5,
-        "refuses": ["e^5", "ln(5)"]
+        "refuses": [
+          "e^5",
+          "ln(5)"
+        ],
+        "explication": "**Règle :** $\\ln$ est la réciproque de l'exponentielle : $\\ln(e^x) = x$ pour tout réel $x$. $\\ln y$ répond à « à quelle puissance faut-il élever $e$ pour obtenir $y$ ? ».\n\n**Pas à pas :**\n\n1. On cherche la puissance de $e$ qui donne $e^5$.\n2. C'est 5, évidemment.\n3. Autre chemin avec les règles : $\\ln(e^5) = 5 \\ln e = 5 \\times 1 = 5$.\n\n**Erreurs fréquentes :** répondre $e^5$ (on oublie que le $\\ln$ défait l'exponentielle) ou $\\ln 5$ (on applique le $\\ln$ au 5 au lieu de $e^5$).\n\n**À retenir :** $\\ln(e^{\\text{truc}}) = \\text{truc}$."
       },
       {
         "intitule": "$e^{\\ln 9}$",
         "type": "nombre",
         "reponse": 9,
-        "refuses": ["ln(9)", "e^9"]
+        "refuses": [
+          "ln(9)",
+          "e^9"
+        ],
+        "explication": "**Règle :** l'exponentielle défait le $\\ln$ : $e^{\\ln x} = x$ pour $x > 0$.\n\n**Pas à pas :**\n\n1. $\\ln 9$ est, par définition, la puissance de $e$ qui donne 9.\n2. Donc $e^{\\ln 9}$ = « $e$ élevé à la puissance qui donne 9 » = 9.\n3. C'est permis car $9 > 0$ ($\\ln 9$ existe).\n\n**Erreurs fréquentes :** répondre $\\ln 9$ (on oublie l'exponentielle) ou $e^9$ (on oublie le $\\ln$). Les deux fonctions s'annulent, il ne reste que 9.\n\n**À retenir :** $e^{\\ln(\\text{truc})} = \\text{truc}$, dès que le truc est $> 0$."
       },
       {
         "intitule": "$\\ln 1$",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["1"]
+        "refuses": [
+          "1"
+        ],
+        "explication": "**Règle :** $\\ln 1 = 0$, car $e^0 = 1$.\n\n**Pas à pas :**\n\n1. On cherche la puissance de $e$ qui donne 1.\n2. On a vu que $e^0 = 1$.\n3. Donc $\\ln 1 = 0$.\n\n**Erreur fréquente :** répondre 1, en confondant avec $\\ln e = 1$. Ici le nombre dans le $\\ln$ est 1, pas $e$.\n\n**À retenir :** $\\ln 1 = 0$ et $\\ln e = 1$ : ce sont deux valeurs à ne pas inverser."
       },
       {
         "intitule": "$\\ln e$",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["0", "e"]
+        "refuses": [
+          "0",
+          "e"
+        ],
+        "explication": "**Règle :** $\\ln e = 1$, car $e^1 = e$.\n\n**Pas à pas :**\n\n1. On cherche la puissance de $e$ qui donne $e$.\n2. $e^1 = e$ : la puissance est 1.\n3. Donc $\\ln e = 1$.\n\n**Erreurs fréquentes :** répondre 0 (c'est $\\ln 1$) ou $e$ (on n'a pas appliqué le $\\ln$).\n\n**À retenir :** $\\ln e = 1$, exactement comme $\\log_{10}(10) = 1$ : le log de sa propre base vaut 1."
       }
     ],
     "indices": [
@@ -86,25 +127,44 @@
         "intitule": "$\\ln 12 - \\ln 3 = \\ln N$. Que vaut $N$ ?",
         "type": "nombre",
         "reponse": 4,
-        "refuses": ["9", "ln(4)", "36"]
+        "refuses": [
+          "9",
+          "ln(4)",
+          "36"
+        ],
+        "explication": "**Règle :** une **différence** de $\\ln$ devient le $\\ln$ d'un **quotient** : $\\ln a - \\ln b = \\ln\\dfrac{a}{b}$.\n\n**Pas à pas :**\n\n1. $\\ln 12 - \\ln 3 = \\ln\\dfrac{12}{3}$.\n2. $\\dfrac{12}{3} = 4$.\n3. Donc $\\ln 12 - \\ln 3 = \\ln 4$ : $N = 4$.\n\nVérification à la calculatrice : $\\ln 12 - \\ln 3 \\approx 2{,}485 - 1{,}099 = 1{,}386$, et $\\ln 4 \\approx 1{,}386$.\n\n**Erreurs fréquentes :** soustraire les nombres ($12 - 3 = 9$) ou les multiplier ($36$). Le $\\ln$ transforme la soustraction en **division**.\n\n**À retenir :** $\\ln - \\ln$ → $\\ln$ du quotient."
       },
       {
         "intitule": "$3\\ln 2 + \\ln 5 = \\ln N$. Que vaut $N$ ?",
         "type": "nombre",
         "reponse": 40,
-        "refuses": ["11", "30", "ln(40)"]
+        "refuses": [
+          "11",
+          "30",
+          "ln(40)"
+        ],
+        "explication": "**Règle :** un coefficient devant un $\\ln$ **remonte en exposant** ($n \\ln a = \\ln(a^n)$), puis une somme de $\\ln$ devient le $\\ln$ d'un **produit** ($\\ln a + \\ln b = \\ln(ab)$).\n\n**Pas à pas :**\n\n1. On commence par le coefficient : $3 \\ln 2 = \\ln(2^3) = \\ln 8$.\n2. L'expression devient $\\ln 8 + \\ln 5$.\n3. Somme → produit : $\\ln(8 \\times 5) = \\ln 40$.\n4. Donc $N = 40$.\n\n**Erreurs fréquentes :**\n\n- Écrire $3 \\ln 2 = \\ln 6$ (on multiplie 3 par 2 au lieu de faire $2^3$) : on obtient alors $\\ln(6 \\times 5) = \\ln 30$.\n- Additionner au lieu de multiplier : $\\ln 8 + \\ln 5 \\neq \\ln(8 + 5) = \\ln 13$, et $3 \\times 2 + 5 = 11$ mélange les deux erreurs.\n\n**À retenir :** d'abord les coefficients en exposant, ensuite somme → produit."
       },
       {
         "intitule": "$2\\ln 5 - \\ln 25 = \\ln N$. Que vaut $N$ ?",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["0", "25"]
+        "refuses": [
+          "0",
+          "25"
+        ],
+        "explication": "**Règle :** $n \\ln a = \\ln(a^n)$, $\\ln a - \\ln b = \\ln\\frac{a}{b}$, et $\\ln 1 = 0$.\n\n**Pas à pas :**\n\n1. Le coefficient remonte : $2 \\ln 5 = \\ln(5^2) = \\ln 25$.\n2. L'expression devient $\\ln 25 - \\ln 25 = 0$.\n3. On veut l'écrire sous la forme $\\ln N$ : quel $N$ donne $\\ln N = 0$ ? C'est $N = 1$, car $\\ln 1 = 0$.\n4. Autre chemin : $\\ln 25 - \\ln 25 = \\ln\\frac{25}{25} = \\ln 1$.\n\n**Erreurs fréquentes :** répondre 0, qui est la **valeur** de l'expression, pas le nombre $N$ **dans** le $\\ln$. Ou répondre 25 en oubliant de faire remonter le 2.\n\n**À retenir :** une expression qui vaut 0 s'écrit $\\ln 1$."
       },
       {
         "intitule": "$\\ln 6 + \\ln\\dfrac{1}{2} = \\ln N$. Que vaut $N$ ?",
         "type": "nombre",
         "reponse": 3,
-        "refuses": ["6", "12", "6.5"]
+        "refuses": [
+          "6",
+          "12",
+          "6.5"
+        ],
+        "explication": "**Règle :** $\\ln a + \\ln b = \\ln(ab)$. Et $\\ln\\frac{1}{a} = -\\ln a$.\n\n**Pas à pas :**\n\n1. Somme → produit : $\\ln 6 + \\ln\\frac{1}{2} = \\ln\\left(6 \\times \\frac{1}{2}\\right)$.\n2. $6 \\times \\frac{1}{2} = 3$.\n3. Donc $N = 3$.\n\nAutre chemin : $\\ln\\frac{1}{2} = -\\ln 2$, donc l'expression vaut $\\ln 6 - \\ln 2 = \\ln\\frac{6}{2} = \\ln 3$. Même résultat.\n\n**Erreurs fréquentes :** additionner les nombres ($6 + \\frac{1}{2} = 6{,}5$), garder 6 en oubliant le $\\ln\\frac{1}{2}$, ou multiplier par 2 au lieu de diviser (12).\n\n**À retenir :** ajouter $\\ln\\frac{1}{a}$, c'est **diviser** par $a$ dans le $\\ln$."
       }
     ],
     "indices": [
@@ -123,25 +183,43 @@
         "intitule": "$\\log_2(32)$",
         "type": "nombre",
         "reponse": 5,
-        "refuses": ["16", "6"]
+        "refuses": [
+          "16",
+          "6"
+        ],
+        "explication": "**Règle :** $\\log_a(x) = n$ veut dire $a^n = x$ : on cherche l'exposant à mettre sur la base $a$ pour obtenir $x$.\n\n**Pas à pas :** on multiplie 2 par lui-même jusqu'à tomber sur 32.\n\n| Puissance | Valeur |\n|---|---|\n| $2^1$ | 2 |\n| $2^2$ | 4 |\n| $2^3$ | 8 |\n| $2^4$ | 16 |\n| $2^5$ | **32** |\n\nDonc $\\log_2(32) = 5$. Avec la formule : $\\dfrac{\\ln 32}{\\ln 2} = \\dfrac{\\ln(2^5)}{\\ln 2} = \\dfrac{5 \\ln 2}{\\ln 2} = 5$.\n\n**Erreurs fréquentes :** répondre 16 (la moitié de 32, ce n'est pas un logarithme) ou 6 (on a compté une multiplication de trop).\n\n**À retenir :** pour $\\log_a(x)$, compte combien de fois il faut multiplier par $a$ pour arriver à $x$."
       },
       {
         "intitule": "$\\log_{10}(10\\,000)$",
         "type": "nombre",
         "reponse": 4,
-        "refuses": ["1000", "5"]
+        "refuses": [
+          "1000",
+          "5"
+        ],
+        "explication": "**Règle :** en base 10, $\\log_{10}(10^n) = n$ : pour un 1 suivi de zéros, la réponse est le **nombre de zéros**.\n\n**Pas à pas :**\n\n1. $10\\,000$ s'écrit 1 suivi de 4 zéros.\n2. Donc $10\\,000 = 10 \\times 10 \\times 10 \\times 10 = 10^4$.\n3. $\\log_{10}(10\\,000) = 4$.\n\n**Erreurs fréquentes :** compter les **chiffres** (5) au lieu des zéros, ou répondre $1\\,000$ (on divise par 10 au lieu de prendre le log).\n\n**À retenir :** le $\\log_{10}$ d'un 1 suivi de $n$ zéros vaut $n$."
       },
       {
         "intitule": "$\\log_3(81)$",
         "type": "nombre",
         "reponse": 4,
-        "refuses": ["27", "3"]
+        "refuses": [
+          "27",
+          "3"
+        ],
+        "explication": "**Règle :** $\\log_3(81) = n$ veut dire $3^n = 81$.\n\n**Pas à pas :**\n\n| Puissance | Valeur |\n|---|---|\n| $3^1$ | 3 |\n| $3^2$ | 9 |\n| $3^3$ | 27 |\n| $3^4$ | **81** |\n\nDonc $\\log_3(81) = 4$.\n\n**Erreurs fréquentes :** répondre 27 (c'est $3^3$, une valeur, pas un exposant) ou 3 (on s'arrête à $3^3 = 27$, un cran trop tôt).\n\n**À retenir :** la réponse d'un logarithme est toujours un **exposant**, jamais une des puissances intermédiaires."
       },
       {
         "intitule": "Pour $a > 0$ et $a \\neq 1$, que vaut $\\log_a\\left(a^{7}\\right)$ ?",
         "type": "choix",
-        "choix": ["$7$", "$a^7$", "$7a$", "$\\ln 7$"],
-        "reponse": 0
+        "choix": [
+          "$7$",
+          "$a^7$",
+          "$7a$",
+          "$\\ln 7$"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** par définition, $\\log_a(a^n) = n$ : la puissance à laquelle il faut élever $a$ pour obtenir $a^n$, c'est $n$.\n\n**Pas à pas :**\n\n1. On cherche l'exposant qui transforme $a$ en $a^7$ : c'est 7.\n2. Avec la formule : $\\log_a(a^7) = \\dfrac{\\ln(a^7)}{\\ln a} = \\dfrac{7 \\ln a}{\\ln a}$.\n3. On simplifie par $\\ln a$ (non nul car $a \\neq 1$) : il reste **7**.\n\n**Les autres réponses :** $a^7$ revient à n'avoir rien fait ; $7a$ garde $a$ alors qu'il se simplifie ; $\\ln 7$ met le $\\ln$ sur l'exposant au lieu de le faire descendre.\n\n**À retenir :** $\\log_a(a^n) = n$, quelle que soit la base, comme $\\ln(e^n) = n$."
       }
     ],
     "indices": [
@@ -160,28 +238,56 @@
         "intitule": "$e^{x} = 15$",
         "type": "nombre",
         "reponse": "ln(15)",
-        "acceptes": ["ln 15", "ln(15)"],
-        "refuses": ["e^15", "15", "ln(14)"]
+        "acceptes": [
+          "ln 15",
+          "ln(15)"
+        ],
+        "refuses": [
+          "e^15",
+          "15",
+          "ln(14)"
+        ],
+        "explication": "**Règle :** pour « enlever » une exponentielle, on applique $\\ln$ des deux côtés : $e^x = a \\iff x = \\ln a$ (avec $a > 0$).\n\n**Pas à pas :**\n\n1. $e^x = 15$.\n2. On applique $\\ln$ : $\\ln(e^x) = \\ln 15$.\n3. Le $\\ln$ défait l'exponentielle : $x = \\ln 15 \\approx 2{,}71$.\n4. Vérification : $e^{2{,}71} \\approx 15$.\n\n**Erreurs fréquentes :** écrire $e^{15}$ (on applique l'exponentielle une deuxième fois au lieu de la défaire) ou 15 (on oublie de faire quoi que ce soit).\n\n**À retenir :** $e^x = a$ → $x = \\ln a$."
       },
       {
         "intitule": "$e^{2x+1} = 9$",
         "type": "nombre",
         "reponse": "(ln(9)-1)/2",
-        "acceptes": ["(ln9-1)/2", "ln(3) - 1/2", "(2ln(3)-1)/2"],
-        "refuses": ["(ln(9)+1)/2", "ln(9)/2", "ln(9)-1"]
+        "acceptes": [
+          "(ln9-1)/2",
+          "ln(3) - 1/2",
+          "(2ln(3)-1)/2"
+        ],
+        "refuses": [
+          "(ln(9)+1)/2",
+          "ln(9)/2",
+          "ln(9)-1"
+        ],
+        "explication": "**Règle :** on applique $\\ln$ des deux côtés pour faire tomber l'exponentielle, puis on isole $x$ comme dans une équation ordinaire.\n\n**Pas à pas :**\n\n1. $e^{2x+1} = 9$.\n2. On applique $\\ln$ : $2x + 1 = \\ln 9$.\n3. On retire 1 des deux côtés : $2x = \\ln 9 - 1$.\n4. On divise **tout** par 2 : $x = \\dfrac{\\ln 9 - 1}{2}$.\n5. Écriture équivalente : $\\ln 9 = \\ln(3^2) = 2 \\ln 3$, donc $x = \\dfrac{2\\ln 3 - 1}{2} = \\ln 3 - \\dfrac{1}{2} \\approx 0{,}60$.\n\n**Erreurs fréquentes :** ajouter 1 au lieu de le retirer ($\\frac{\\ln 9 + 1}{2}$), oublier de diviser par 2 ($\\ln 9 - 1$), ou ne diviser que le $\\ln 9$ ($\\frac{\\ln 9}{2} - 1$).\n\n**À retenir :** $\\ln$ des deux côtés, puis on isole $x$ étape par étape."
       },
       {
         "intitule": "$\\ln x = 4$",
         "type": "nombre",
         "reponse": "e^4",
-        "acceptes": ["e^4", "exp(4)"],
-        "refuses": ["ln(4)", "4"]
+        "acceptes": [
+          "e^4",
+          "exp(4)"
+        ],
+        "refuses": [
+          "ln(4)",
+          "4"
+        ],
+        "explication": "**Règle :** pour « enlever » un $\\ln$, on applique l'exponentielle des deux côtés : $\\ln x = b \\iff x = e^b$.\n\n**Pas à pas :**\n\n1. Domaine : $\\ln x$ existe pour $x > 0$.\n2. On applique l'exponentielle : $e^{\\ln x} = e^4$, donc $x = e^4 \\approx 54{,}6$.\n3. $e^4 > 0$ : la solution respecte le domaine.\n\n**Erreurs fréquentes :** répondre $\\ln 4$ (on applique encore un $\\ln$ au lieu de le défaire) ou 4 (on oublie l'exponentielle).\n\n**À retenir :** $\\ln x = b$ → $x = e^b$."
       },
       {
         "intitule": "$\\ln(3x - 2) = 0$",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["2/3", "0"]
+        "refuses": [
+          "2/3",
+          "0"
+        ],
+        "explication": "**Règle :** $\\ln(\\text{quelque chose}) = 0$ veut dire que le quelque chose vaut **1**, car $\\ln 1 = 0$ (ou : on applique l'exponentielle, $e^0 = 1$).\n\n**Pas à pas :**\n\n1. Domaine : il faut $3x - 2 > 0$, donc $x > \\frac{2}{3}$.\n2. $\\ln(3x - 2) = 0 \\iff 3x - 2 = e^0 = 1$.\n3. $3x = 3$, donc $x = 1$.\n4. Vérification : $1 > \\frac{2}{3}$, et $\\ln(3 \\times 1 - 2) = \\ln 1 = 0$.\n\n**Erreurs fréquentes :** écrire $3x - 2 = 0$ (d'où $x = \\frac{2}{3}$), mais alors on aurait $\\ln 0$, qui n'existe pas. Ou répondre 0.\n\n**À retenir :** $\\ln(\\dots) = 0$ → l'intérieur vaut 1, pas 0."
       }
     ],
     "indices": [
@@ -200,22 +306,47 @@
       {
         "intitule": "À quelle condition sur $x$ l'équation a-t-elle un sens ?",
         "type": "choix",
-        "choix": ["$x > 0$", "$x > 2$", "$x > -2$", "$x \\neq 2$"],
-        "reponse": 1
+        "choix": [
+          "$x > 0$",
+          "$x > 2$",
+          "$x > -2$",
+          "$x \\neq 2$"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $\\ln(\\dots)$ n'existe que si l'intérieur est **strictement positif**. Avec plusieurs $\\ln$, **toutes** les conditions doivent être vraies en même temps.\n\n**Pas à pas :**\n\n1. Premier $\\ln$, $\\ln x$ : il faut $x > 0$.\n2. Second $\\ln$, $\\ln(x - 2)$ : il faut $x - 2 > 0$, donc $x > 2$.\n3. Les deux à la fois : un nombre plus grand que 2 est forcément plus grand que 0, donc tout se résume à $x > 2$.\n\nContrôle avec $x = 1$ : $\\ln 1$ existe, mais $\\ln(1 - 2) = \\ln(-1)$ non. Donc $x > 0$ ne suffit pas.\n\n**Les autres réponses :** $x > 0$ oublie le second logarithme ; $x > -2$ se trompe de signe en résolvant $x - 2 > 0$ ; $x \\neq 2$ accepte des négatifs et des nombres comme 1, où $\\ln(x - 2)$ n'existe pas.\n\n**À retenir :** une condition par $\\ln$, puis on garde la plus exigeante."
       },
       {
         "intitule": "En regroupant les $\\ln$, on obtient une équation du second degré. Donne l'ensemble de **ses** solutions (ex. : `{1, 2}`).",
         "type": "ensemble",
-        "reponse": [-2, 4],
-        "acceptes": ["{4, -2}", "-2; 4"],
-        "refuses": ["{4}", "{2, -4}"]
+        "reponse": [
+          -2,
+          4
+        ],
+        "acceptes": [
+          "{4, -2}",
+          "-2; 4"
+        ],
+        "refuses": [
+          "{4}",
+          "{2, -4}"
+        ],
+        "explication": "**Règle :** $\\ln a + \\ln b = \\ln(ab)$, et comme $\\ln$ est strictement croissante, $\\ln A = \\ln B$ veut dire $A = B$. Pour $ax^2 + bx + c = 0$ : $\\Delta = b^2 - 4ac$ et, si $\\Delta > 0$, $x = \\dfrac{-b \\pm \\sqrt{\\Delta}}{2a}$.\n\n**Pas à pas :**\n\n1. On regroupe : $\\ln x + \\ln(x - 2) = \\ln\\big(x(x - 2)\\big)$.\n2. L'équation devient $\\ln\\big(x(x-2)\\big) = \\ln 8$, donc $x(x - 2) = 8$.\n3. On développe : $x^2 - 2x = 8$, puis $x^2 - 2x - 8 = 0$.\n4. $a = 1$, $b = -2$, $c = -8$ : $\\Delta = (-2)^2 - 4 \\times 1 \\times (-8) = 4 + 32 = 36$, et $\\sqrt{36} = 6$.\n5. $x = \\dfrac{2 + 6}{2} = 4$ ou $x = \\dfrac{2 - 6}{2} = -2$.\n\nLa question porte sur l'équation du **second degré** : on garde les deux, $\\{-2, 4\\}$. Le tri avec le domaine vient à la question suivante.\n\n**Erreurs fréquentes :** se tromper de signe sur $b$ (on trouve $\\{2, -4\\}$), ou trier déjà avec le domaine et ne garder que $\\{4\\}$.\n\n**À retenir :** regrouper les $\\ln$ fait apparaître une équation sans $\\ln$ ; on la résout entièrement avant de trier."
       },
       {
         "intitule": "Donne l'ensemble des solutions de l'équation **de départ**.",
         "type": "ensemble",
-        "reponse": [4],
-        "acceptes": ["{4}", "4"],
-        "refuses": ["{-2, 4}", "{-2}"]
+        "reponse": [
+          4
+        ],
+        "acceptes": [
+          "{4}",
+          "4"
+        ],
+        "refuses": [
+          "{-2, 4}",
+          "{-2}"
+        ],
+        "explication": "**Règle :** une solution de l'équation de départ doit respecter la condition d'existence des $\\ln$, ici $x > 2$. Les candidats qui ne la respectent pas sont des **fausses solutions**, à éliminer.\n\n**Pas à pas :**\n\n| Candidat | $x > 2$ ? | Gardé ? |\n|---|---|---|\n| $4$ | oui | oui |\n| $-2$ | non | non : il donnerait $\\ln(-2)$ et $\\ln(-4)$ |\n\nVérification de 4 : $\\ln 4 + \\ln(4 - 2) = \\ln 4 + \\ln 2 = \\ln(4 \\times 2) = \\ln 8$. C'est bon. L'ensemble des solutions est $\\{4\\}$.\n\n**Erreurs fréquentes :** garder $-2$. Il est apparu quand on a regroupé les $\\ln$ : $x(x - 2)$ est positif pour $x = -2$, alors que $\\ln x$ et $\\ln(x - 2)$ pris séparément n'existent pas.\n\n**À retenir :** en fin de résolution, confronte chaque candidat au domaine écrit au début."
       }
     ],
     "indices": [
@@ -235,27 +366,53 @@
         "intitule": "$e^{x} > 50 \\iff x > a$. Donne la valeur exacte de $a$.",
         "type": "nombre",
         "reponse": "ln(50)",
-        "acceptes": ["ln 50", "ln(50)"],
-        "refuses": ["e^50", "50"]
+        "acceptes": [
+          "ln 50",
+          "ln(50)"
+        ],
+        "refuses": [
+          "e^50",
+          "50"
+        ],
+        "explication": "**Règle :** pour « enlever » une exponentielle dans une inégalité, on applique $\\ln$ des deux côtés. $\\ln$ est strictement croissante : le sens de l'inégalité ne change pas.\n\n**Pas à pas :**\n\n1. $e^x > 50$.\n2. On applique $\\ln$ : $\\ln(e^x) > \\ln 50$.\n3. Le $\\ln$ défait l'exponentielle : $x > \\ln 50$. Donc $a = \\ln 50 \\approx 3{,}91$.\n\nVérification avec $x = 4$ (un peu plus que 3,91) : $e^4 \\approx 54{,}6 > 50$. Et avec $x = 3$ : $e^3 \\approx 20{,}1 < 50$.\n\n**Erreurs fréquentes :** écrire $e^{50}$ (on applique l'exponentielle au lieu de la défaire) ou 50.\n\n**À retenir :** $e^x > a$ → $x > \\ln a$, même sens."
       },
       {
         "intitule": "Pourquoi peut-on appliquer $\\ln$ des deux côtés sans changer le sens de l'inégalité ?",
         "type": "choix",
-        "choix": ["Parce que $\\ln$ est strictement croissante", "Parce que $e^x$ est toujours positif", "Parce que $\\ln$ est concave", "Parce que $e > 1$"],
-        "reponse": 0
+        "choix": [
+          "Parce que $\\ln$ est strictement croissante",
+          "Parce que $e^x$ est toujours positif",
+          "Parce que $\\ln$ est concave",
+          "Parce que $e > 1$"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une fonction **strictement croissante** garde l'ordre : si $u < v$ alors $f(u) < f(v)$. C'est exactement ce qui permet de l'appliquer des deux côtés d'une inégalité sans en changer le sens.\n\n**Pas à pas :** exemple avec $u = 2$ et $v = 5$. On a $2 < 5$, et $\\ln 2 \\approx 0{,}69 < \\ln 5 \\approx 1{,}61$ : l'ordre est conservé. Une fonction décroissante, au contraire, l'inverserait (par exemple $-2 > -5$ quand on multiplie par $-1$).\n\n**Les autres réponses :**\n\n- « $e^x$ est toujours positif » garantit seulement que $\\ln(e^x)$ **existe**, pas que l'ordre est conservé.\n- « $\\ln$ est concave » parle de la forme de la courbe (sa courbure), pas de l'ordre.\n- « $e > 1$ » est vrai mais ne dit rien directement sur ce que fait $\\ln$ à une inégalité.\n\n**À retenir :** croissante = garde le sens de l'inégalité ; décroissante = l'inverse."
       },
       {
         "intitule": "$\\ln x \\le 3 \\iff 0 < x \\le b$. Donne la valeur exacte de $b$.",
         "type": "nombre",
         "reponse": "e^3",
-        "acceptes": ["e^3", "exp(3)"],
-        "refuses": ["3", "ln(3)"]
+        "acceptes": [
+          "e^3",
+          "exp(3)"
+        ],
+        "refuses": [
+          "3",
+          "ln(3)"
+        ],
+        "explication": "**Règle :** pour « enlever » un $\\ln$ dans une inégalité, on applique l'exponentielle des deux côtés. Elle est strictement croissante : le sens ne change pas.\n\n**Pas à pas :**\n\n1. $\\ln x \\le 3$.\n2. On applique l'exponentielle : $e^{\\ln x} \\le e^3$.\n3. L'exponentielle défait le $\\ln$ : $x \\le e^3$. Donc $b = e^3 \\approx 20{,}1$.\n\n**Erreurs fréquentes :** laisser 3 (on n'a pas défait le $\\ln$) ou écrire $\\ln 3$ (on a appliqué un $\\ln$ au lieu de l'exponentielle).\n\n**À retenir :** $\\ln x \\le b$ → $x \\le e^b$, plus la condition $x > 0$."
       },
       {
         "intitule": "Quel est l'ensemble des solutions de $\\ln x \\le 3$ ?",
         "type": "choix",
-        "choix": ["$]-\\infty, e^3]$", "$]0, e^3]$", "$[e^3, +\\infty[$", "$]0, 3]$"],
-        "reponse": 1
+        "choix": [
+          "$]-\\infty, e^3]$",
+          "$]0, e^3]$",
+          "$[e^3, +\\infty[$",
+          "$]0, 3]$"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** les solutions doivent respecter **deux** choses : l'inégalité ($x \\le e^3$) et le domaine du $\\ln$ ($x > 0$).\n\n**Pas à pas :**\n\n1. De la question précédente : $x \\le e^3$.\n2. Domaine : $x > 0$ (strictement).\n3. Les deux ensemble : $0 < x \\le e^3$, soit $]0, e^3]$. Le crochet est ouvert en 0 (0 exclu) et fermé en $e^3$ (car l'inégalité est « $\\le$ »).\n\n**Les autres réponses :**\n\n- $]-\\infty, e^3]$ oublie le domaine : $\\ln(-1)$ n'existe pas.\n- $[e^3, +\\infty[$ retourne l'inégalité, alors que l'exponentielle est croissante.\n- $]0, 3]$ oublie de passer à l'exponentielle : par exemple $x = 10$ vérifie $\\ln 10 \\approx 2{,}3 \\le 3$, mais n'est pas dans $]0, 3]$.\n\n**À retenir :** avec un $\\ln$, l'ensemble des solutions commence toujours après 0."
       }
     ],
     "indices": [
@@ -274,29 +431,58 @@
         "intitule": "$f(x) = e^{3x}$. Que vaut $f'(x)$ ?",
         "type": "expression",
         "reponse": "3e^(3x)",
-        "acceptes": ["3exp(3x)", "3*e^(3*x)"],
-        "refuses": ["e^(3x)", "3x e^(3x)", "3e^x"]
+        "acceptes": [
+          "3exp(3x)",
+          "3*e^(3*x)"
+        ],
+        "refuses": [
+          "e^(3x)",
+          "3x e^(3x)",
+          "3e^x"
+        ],
+        "explication": "**Règle :** pour une composée, $\\left(e^{u}\\right)' = u'\\,e^{u}$ : on garde l'exponentielle telle quelle et on multiplie par la dérivée de l'exposant.\n\n**Pas à pas :**\n\n1. Ce qu'il y a dans l'exposant : $u(x) = 3x$.\n2. Sa dérivée : $u'(x) = 3$.\n3. $f'(x) = u'\\,e^{u} = 3\\,e^{3x}$.\n\n**Erreurs fréquentes :** oublier la dérivée de l'intérieur (répondre $e^{3x}$), mettre tout l'exposant devant ($3x\\,e^{3x}$), ou changer l'exposant ($3e^x$) : l'exposant reste $3x$.\n\n**À retenir :** $(e^{kx})' = k\\,e^{kx}$."
       },
       {
         "intitule": "$g(x) = x^2 e^{x}$. Que vaut $g'(x)$ ?",
         "type": "expression",
         "reponse": "(2x+x^2)e^x",
-        "acceptes": ["2xe^x + x^2e^x", "x(x+2)e^x"],
-        "refuses": ["2xe^x", "x^2e^x"]
+        "acceptes": [
+          "2xe^x + x^2e^x",
+          "x(x+2)e^x"
+        ],
+        "refuses": [
+          "2xe^x",
+          "x^2e^x"
+        ],
+        "explication": "**Règle :** pour un **produit**, $(uv)' = u'v + uv'$ : on dérive chaque facteur à son tour, et on additionne.\n\n**Pas à pas :**\n\n| Morceau | Valeur | Dérivée |\n|---|---|---|\n| $u$ | $x^2$ | $u' = 2x$ |\n| $v$ | $e^x$ | $v' = e^x$ |\n\n$g'(x) = u'v + uv' = 2x \\cdot e^x + x^2 \\cdot e^x$. On met $e^x$ en facteur : $g'(x) = (2x + x^2)\\,e^x = x(x + 2)\\,e^x$.\n\n**Erreurs fréquentes :** ne dériver qu'un seul des deux facteurs (on trouve $2x\\,e^x$ ou $x^2 e^x$). Il faut garder les **deux** termes, $2x\\,e^x$ et $x^2 e^x$.\n\n**À retenir :** produit → deux termes, « dérivée du premier fois le second » + « premier fois dérivée du second »."
       },
       {
         "intitule": "$h(x) = \\ln(x^2 + 1)$. Que vaut $h'(x)$ ?",
         "type": "expression",
         "reponse": "2x/(x^2+1)",
-        "acceptes": ["2x/(1+x^2)", "(2x)/(x²+1)"],
-        "refuses": ["1/(x^2+1)", "2x"]
+        "acceptes": [
+          "2x/(1+x^2)",
+          "(2x)/(x²+1)"
+        ],
+        "refuses": [
+          "1/(x^2+1)",
+          "2x"
+        ],
+        "explication": "**Règle :** pour une composée, $(\\ln u)' = \\dfrac{u'}{u}$ : la dérivée de l'intérieur en haut, l'intérieur en bas.\n\n**Pas à pas :**\n\n1. Ce qu'il y a dans le $\\ln$ : $u(x) = x^2 + 1$.\n2. Sa dérivée : $u'(x) = 2x$ (la dérivée de 1 est 0).\n3. $h'(x) = \\dfrac{u'}{u} = \\dfrac{2x}{x^2 + 1}$.\n\n**Erreurs fréquentes :** écrire $\\dfrac{1}{x^2 + 1}$ (on applique $(\\ln x)' = \\frac{1}{x}$ sans multiplier par $u'$), ou ne garder que $2x$ (on oublie de diviser par $u$).\n\n**À retenir :** $(\\ln u)' = \\dfrac{u'}{u}$, toujours une fraction."
       },
       {
         "intitule": "$k(x) = x \\ln x$. Que vaut $k'(x)$ ?",
         "type": "expression",
         "reponse": "ln(x)+1",
-        "acceptes": ["1 + ln x", "lnx+1"],
-        "refuses": ["1/x", "ln(x)"]
+        "acceptes": [
+          "1 + ln x",
+          "lnx+1"
+        ],
+        "refuses": [
+          "1/x",
+          "ln(x)"
+        ],
+        "explication": "**Règle :** $k(x) = x \\times \\ln x$ est un **produit** : $(uv)' = u'v + uv'$.\n\n**Pas à pas :**\n\n| Morceau | Valeur | Dérivée |\n|---|---|---|\n| $u$ | $x$ | $u' = 1$ |\n| $v$ | $\\ln x$ | $v' = \\frac{1}{x}$ |\n\n$k'(x) = 1 \\times \\ln x + x \\times \\dfrac{1}{x} = \\ln x + 1$ (car $x \\times \\frac{1}{x} = 1$).\n\n**Erreurs fréquentes :** oublier un des deux morceaux : sans le second on trouve $\\ln x$, sans le premier on trouve $\\frac{1}{x}$ (ou $1$).\n\n**À retenir :** $(x \\ln x)' = \\ln x + 1$, un résultat qui revient souvent."
       }
     ],
     "indices": [
@@ -314,34 +500,65 @@
       {
         "intitule": "Quand $x \\to +\\infty$, laquelle de ces fonctions grandit le plus vite ?",
         "type": "choix",
-        "choix": ["$\\ln x$", "$x$", "$e^x$", "Elles grandissent toutes à la même vitesse"],
-        "reponse": 2
+        "choix": [
+          "$\\ln x$",
+          "$x$",
+          "$e^x$",
+          "Elles grandissent toutes à la même vitesse"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** en $+\\infty$, la hiérarchie est $\\ln x \\ll x \\ll e^x$ (« $\\ll$ » = est négligeable devant). L'exponentielle grandit plus vite que tout le reste.\n\n**Pas à pas :** on compare pour $x = 20$.\n\n| Fonction | Valeur en $x = 20$ |\n|---|---|\n| $\\ln x$ | $\\approx 3$ |\n| $x$ | $20$ |\n| $e^x$ | $\\approx 485$ millions |\n\n$e^x$ est de très loin la plus grande, et l'écart se creuse quand $x$ augmente.\n\n**Les autres réponses :** $\\ln x$ est la **plus lente** des trois ; $x$ est au milieu ; « toutes à la même vitesse » est faux : elles tendent toutes vers $+\\infty$, mais pas au même rythme.\n\n**À retenir :** en $+\\infty$, $e^x$ gagne toujours."
       },
       {
         "intitule": "Que vaut $\\lim\\limits_{x \\to +\\infty} \\dfrac{x}{e^{x}}$ ?",
         "type": "choix",
-        "choix": ["$+\\infty$", "$0$", "$1$", "$e$"],
-        "reponse": 1
+        "choix": [
+          "$+\\infty$",
+          "$0$",
+          "$1$",
+          "$e$"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $x \\ll e^x$, donc $\\dfrac{x}{e^x} \\to 0$ en $+\\infty$ : quand le bas grandit beaucoup plus vite que le haut, la fraction tend vers 0.\n\n**Pas à pas :**\n\n| $x$ | $\\frac{x}{e^x}$ |\n|---|---|\n| $1$ | $\\approx 0{,}37$ |\n| $5$ | $\\approx 0{,}034$ |\n| $10$ | $\\approx 0{,}000\\,45$ |\n\nLa fraction s'écrase vers **0**.\n\n**Les autres réponses :** $+\\infty$ serait la limite de l'inverse $\\frac{e^x}{x}$ ; 1 vient de l'idée fausse « $\\frac{\\infty}{\\infty} = 1$ » ; $e$ n'a aucun lien avec cette limite.\n\n**À retenir :** $e^x$ en bas → limite 0 ; $e^x$ en haut → limite $+\\infty$."
       },
       {
         "intitule": "Pour $n = 10^9$ données, quelle complexité donne l'algorithme le plus rapide ?",
         "type": "choix",
-        "choix": ["$O(n^2)$", "$O(n \\log n)$", "$O(\\log n)$", "$O(2^n)$"],
-        "reponse": 2
+        "choix": [
+          "$O(n^2)$",
+          "$O(n \\log n)$",
+          "$O(\\log n)$",
+          "$O(2^n)$"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** plus une complexité grandit lentement, moins l'algorithme fait d'opérations, donc plus il est rapide. Hiérarchie : $\\log n \\ll n \\log n \\ll n^2 \\ll 2^n$.\n\n**Pas à pas :** on estime chaque nombre d'opérations pour $n = 10^9$, avec $\\log_2(10^9) \\approx 30$.\n\n| Complexité | Opérations environ |\n|---|---|\n| $O(\\log n)$ | $30$ |\n| $O(n \\log n)$ | $10^9 \\times 30 = 3 \\times 10^{10}$ |\n| $O(n^2)$ | $10^{18}$ |\n| $O(2^n)$ | un nombre à 300 millions de chiffres : impossible |\n\nLe plus petit est $O(\\log n)$ : c'est l'algorithme le plus rapide.\n\n**Les autres réponses :** $O(n \\log n)$ est bon mais un milliard de fois plus lent ; $O(n^2)$ est très lent ; $O(2^n)$ est inutilisable.\n\n**À retenir :** plus rapide = complexité la plus basse dans la hiérarchie."
       },
       {
         "intitule": "Arrondi à l'unité, combien vaut $\\log_2(10^9)$ (le nombre d'étapes d'une recherche dichotomique) ?",
         "type": "nombre",
         "reponse": 30,
         "tolerance": 0.5,
-        "acceptes": ["30", "log2(10^9)"],
-        "refuses": ["9", "1000000000"]
+        "acceptes": [
+          "30",
+          "log2(10^9)"
+        ],
+        "refuses": [
+          "9",
+          "1000000000"
+        ],
+        "explication": "**Règle :** $\\log_2(a^n) = n \\log_2 a$, avec $\\log_2 10 \\approx 3{,}32$. Raccourci : $2^{10} = 1\\,024 \\approx 10^3$.\n\n**Pas à pas :**\n\n- Méthode 1 : $\\log_2(10^9) = 9 \\times \\log_2 10 \\approx 9 \\times 3{,}32 = 29{,}88$, arrondi à **30**.\n- Méthode 2 : $10^9 = (10^3)^3 \\approx (2^{10})^3 = 2^{30}$, donc $\\log_2(10^9) \\approx 30$.\n\nInterprétation : une recherche dichotomique dans un milliard d'éléments ne fait qu'environ 30 comparaisons.\n\n**Erreurs fréquentes :** répondre 9, qui est $\\log_{10}(10^9)$ (mauvaise base), ou $10^9$, le nombre d'éléments lui-même.\n\n**À retenir :** $\\log_2(10^{3k}) \\approx 10k$."
       },
       {
         "intitule": "La fonction $\\ln$ est :",
         "type": "choix",
-        "choix": ["convexe", "concave", "ni convexe ni concave", "constante"],
-        "reponse": 1
+        "choix": [
+          "convexe",
+          "concave",
+          "ni convexe ni concave",
+          "constante"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une fonction est **concave** si sa dérivée seconde est négative (courbe au-dessus de ses cordes), **convexe** si elle est positive (courbe en dessous, elle « sourit »).\n\n**Pas à pas :**\n\n1. $(\\ln x)' = \\dfrac{1}{x} = x^{-1}$.\n2. $(\\ln x)'' = (x^{-1})' = -x^{-2} = -\\dfrac{1}{x^2}$.\n3. $x^2 > 0$, donc $(\\ln x)'' < 0$ partout sur $]0, +\\infty[$ : $\\ln$ est **concave**.\n\n**Les autres réponses :** « convexe » est la forme de $e^x$ ; « ni l'un ni l'autre » est faux puisque le signe de la dérivée seconde ne change jamais ; « constante » est faux puisque $\\ln$ est strictement croissante.\n\n**À retenir :** $\\ln$ concave, $e^x$ convexe : dérive deux fois et regarde le signe."
       }
     ],
     "indices": [
@@ -362,40 +579,71 @@
         "type": "nombre",
         "reponse": "ln(10^6)",
         "tolerance": 0.05,
-        "acceptes": ["13.8"],
-        "refuses": ["6", "1000000"]
+        "acceptes": [
+          "13.8"
+        ],
+        "refuses": [
+          "6",
+          "1000000"
+        ],
+        "explication": "**Règle :** $\\ln(a^n) = n \\ln a$ : l'exposant descend devant le $\\ln$.\n\n**Pas à pas :**\n\n1. $\\ln(10^6) = 6 \\times \\ln 10$.\n2. $\\ln 10 \\approx 2{,}3$ (valeur donnée dans l'énoncé ; plus précisément $2{,}3026$).\n3. $6 \\times 2{,}3026 \\approx 13{,}8$.\n\n**Erreurs fréquentes :** répondre 6, qui est $\\log_{10}(10^6)$ et non $\\ln(10^6)$ : la base n'est pas la même. Ou répondre $1\\,000\\,000$, en oubliant le $\\ln$.\n\n**À retenir :** $\\ln(10^k) = k \\ln 10 \\approx 2{,}3\\,k$."
       },
       {
         "intitule": "Calcule $\\sqrt{10^6}$.",
         "type": "nombre",
         "reponse": 1000,
-        "refuses": ["100000", "500000"]
+        "refuses": [
+          "100000",
+          "500000"
+        ],
+        "explication": "**Règle :** $\\sqrt{a} = a^{1/2}$, donc $\\sqrt{10^n} = 10^{n/2}$ : une racine carrée **divise l'exposant** par 2.\n\n**Pas à pas :**\n\n1. $\\sqrt{10^6} = (10^6)^{1/2}$.\n2. Puissance de puissance : $10^{6 \\times \\frac{1}{2}} = 10^3$.\n3. $10^3 = 1\\,000$. Vérification : $1\\,000 \\times 1\\,000 = 1\\,000\\,000$.\n\n**Erreurs fréquentes :** diviser le nombre par 2 ($500\\,000$) au lieu de l'exposant, ou ne diviser qu'un zéro ($100\\,000$).\n\n**À retenir :** racine carrée = exposant divisé par 2, et on vérifie en remultipliant le résultat par lui-même."
       },
       {
         "intitule": "Lequel est le plus grand ?",
         "type": "choix",
-        "choix": ["$\\ln(1\\,000\\,000)$", "$\\sqrt{1\\,000\\,000}$", "Ils sont à peu près égaux"],
-        "reponse": 1
+        "choix": [
+          "$\\ln(1\\,000\\,000)$",
+          "$\\sqrt{1\\,000\\,000}$",
+          "Ils sont à peu près égaux"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** on compare les deux valeurs calculées aux questions précédentes.\n\n**Pas à pas :**\n\n| Quantité | Valeur |\n|---|---|\n| $\\ln(1\\,000\\,000)$ | $\\approx 13{,}8$ |\n| $\\sqrt{1\\,000\\,000}$ | $1\\,000$ |\n\n$\\frac{1\\,000}{13{,}8} \\approx 72$ : la racine est environ 70 fois plus grande.\n\n**Les autres réponses :** « à peu près égaux » est très loin du compte. Et $\\ln$ n'est pas le plus grand : il grandit plus lentement que $x$, et même que $\\sqrt{x}$.\n\n**À retenir :** dès que $x$ est grand, $\\sqrt{x}$ écrase $\\ln x$."
       },
       {
         "intitule": "Quand $x \\to +\\infty$, vers quoi tend $\\dfrac{\\ln x}{\\sqrt{x}}$ ?",
         "type": "choix",
-        "choix": ["$0$", "$1$", "$+\\infty$"],
-        "reponse": 0
+        "choix": [
+          "$0$",
+          "$1$",
+          "$+\\infty$"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** $\\ln x$ est négligeable devant toute puissance $x^a$ ($a > 0$), y compris $\\sqrt{x} = x^{1/2}$. Donc $\\dfrac{\\ln x}{\\sqrt{x}} \\to 0$ en $+\\infty$.\n\n**Pas à pas :**\n\n1. Haut et bas tendent vers $+\\infty$ : il faut voir qui gagne.\n2. Le bas ($\\sqrt{x}$) grandit plus vite que le haut ($\\ln x$).\n3. Les valeurs précédentes le confirment : pour $x = 10^6$, $\\frac{13{,}8}{1\\,000} \\approx 0{,}014$, déjà tout petit. Pour $x = 10^{12}$ : $\\frac{27{,}6}{10^6} \\approx 0{,}000\\,03$.\n4. La limite vaut **0**.\n\n**Les autres réponses :** 1 suppose « $\\frac{\\infty}{\\infty} = 1$ », ce qui n'a pas de sens ; $+\\infty$ voudrait dire que $\\ln$ grandit plus vite, c'est l'inverse.\n\n**À retenir :** $\\ln$ en haut, puissance de $x$ en bas → 0."
       },
       {
         "intitule": "L'algorithme A est en $O(n \\log n)$, l'algorithme B en $O(n^2)$. Pour $n$ très grand, lequel est le plus lent ?",
         "type": "choix",
-        "choix": ["A", "B", "Ils se valent"],
-        "reponse": 1
+        "choix": [
+          "A",
+          "B",
+          "Ils se valent"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** le plus lent est l'algorithme qui fait le **plus** d'opérations. Pour comparer $n \\log n$ et $n^2$, on enlève le facteur $n$ commun et on compare ce qui reste.\n\n**Pas à pas :**\n\n1. $n \\log n = n \\times \\log n$.\n2. $n^2 = n \\times n$.\n3. Il reste à comparer $\\log n$ et $n$ : $\\log n \\ll n$.\n4. Donc $n \\log n \\ll n^2$ : B (en $O(n^2)$) fait beaucoup plus d'opérations, c'est **B** le plus lent.\n\n**Les autres réponses :** A est le plus rapide des deux ; « ils se valent » est faux, car l'écart $\\frac{n}{\\log n}$ grandit sans limite quand $n$ augmente.\n\n**À retenir :** pour comparer deux complexités, simplifie ce qu'elles ont en commun."
       },
       {
         "intitule": "Pour $n = 10^6$, calcule le rapport $\\dfrac{n^2}{n \\log_2 n} = \\dfrac{n}{\\log_2 n}$ (une valeur approchée à $1\\,000$ près suffit).",
         "type": "nombre",
         "reponse": "10^6/log2(10^6)",
         "tolerance": 1000,
-        "acceptes": ["50000"],
-        "refuses": ["20", "1000000"]
+        "acceptes": [
+          "50000"
+        ],
+        "refuses": [
+          "20",
+          "1000000"
+        ],
+        "explication": "**Règle :** le rapport $\\dfrac{n^2}{n \\log_2 n}$ se simplifie par $n$ en $\\dfrac{n}{\\log_2 n}$. Et $\\log_2(10^6) = 6 \\log_2 10$, avec $\\log_2 10 \\approx 3{,}32$.\n\n**Pas à pas :**\n\n1. $\\log_2(10^6) = 6 \\times 3{,}32 \\approx 19{,}9$, soit environ 20.\n2. $\\dfrac{n}{\\log_2 n} \\approx \\dfrac{1\\,000\\,000}{20} = 50\\,000$.\n3. Avec la valeur précise ($19{,}93$), on trouve environ $50\\,200$ : dans la marge de $1\\,000$ acceptée.\n\nInterprétation : pour un million de données, B fait environ $50\\,000$ fois plus d'opérations que A.\n\n**Erreurs fréquentes :** répondre 20, qui est seulement $\\log_2 n$ (on a oublié de diviser $n$ par lui) ; ou $1\\,000\\,000$, qui est $n$ seul.\n\n**À retenir :** $\\dfrac{n^2}{n \\log n} = \\dfrac{n}{\\log n}$, un rapport qui explose quand $n$ grandit."
       }
     ],
     "indices": [
@@ -415,33 +663,67 @@
         "intitule": "Calcule $h'(x)$ (règle du quotient). Exemple d'écriture : `e^x(x+1)/x^2`.",
         "type": "expression",
         "reponse": "e^x(x-1)/x^2",
-        "acceptes": ["(xe^x - e^x)/x^2", "e^x/x - e^x/x^2", "(x-1)e^x/x²"],
-        "refuses": ["e^x/x^2", "e^x(x+1)/x^2", "e^x"]
+        "acceptes": [
+          "(xe^x - e^x)/x^2",
+          "e^x/x - e^x/x^2",
+          "(x-1)e^x/x²"
+        ],
+        "refuses": [
+          "e^x/x^2",
+          "e^x(x+1)/x^2",
+          "e^x"
+        ],
+        "explication": "**Règle :** règle du quotient : $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$, dans cet ordre.\n\n**Pas à pas :**\n\n| Morceau | Valeur | Dérivée |\n|---|---|---|\n| $u$ (en haut) | $e^x$ | $u' = e^x$ |\n| $v$ (en bas) | $x$ | $v' = 1$ |\n\n1. $u'v - uv' = e^x \\times x - e^x \\times 1 = x\\,e^x - e^x$.\n2. $v^2 = x^2$.\n3. $h'(x) = \\dfrac{x\\,e^x - e^x}{x^2}$, et en mettant $e^x$ en facteur : $h'(x) = \\dfrac{e^x(x - 1)}{x^2}$.\n\n**Erreurs fréquentes :** inverser la soustraction ($uv' - u'v$ donne $\\frac{e^x(1 - x)}{x^2}$, tous les signes faux), additionner au lieu de soustraire ($x + 1$), ou oublier le $v^2$ en bas ($e^x(x-1)$ seul, ou $\\frac{e^x}{x^2}$ en perdant un terme).\n\n**À retenir :** quotient → $\\dfrac{u'v - uv'}{v^2}$ ; écris d'abord $u$, $u'$, $v$, $v'$ dans un tableau."
       },
       {
         "intitule": "Pour quelle valeur de $x$ la dérivée s'annule-t-elle ?",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["0", "e"]
+        "refuses": [
+          "0",
+          "e"
+        ],
+        "explication": "**Règle :** un produit (ou un quotient) vaut 0 seulement si l'un des facteurs **du haut** vaut 0. $e^x$ n'est jamais nul, et un bas non nul ne peut pas annuler une fraction.\n\n**Pas à pas :**\n\n1. $h'(x) = \\dfrac{e^x(x - 1)}{x^2}$.\n2. $e^x > 0$ toujours : il ne s'annule jamais.\n3. $x^2 > 0$ sur $]0, +\\infty[$ : c'est le bas, il ne fait pas s'annuler la fraction.\n4. Il reste $x - 1 = 0$, donc $x = 1$.\n\n**Erreurs fréquentes :** répondre 0, qui n'est même pas dans $]0, +\\infty[$ (et où $h$ n'existe pas : division par 0) ; répondre $e$, en confondant avec l'étude de $\\frac{\\ln x}{x}$.\n\n**À retenir :** pour annuler une dérivée, enlève les facteurs toujours positifs et résous ce qui reste $= 0$."
       },
       {
         "intitule": "Sur $]0, 1]$, la fonction $h$ est :",
         "type": "choix",
-        "choix": ["croissante", "décroissante", "constante", "négative"],
-        "reponse": 1
+        "choix": [
+          "croissante",
+          "décroissante",
+          "constante",
+          "négative"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** sur un intervalle, si $h'(x) < 0$ alors $h$ est **décroissante** (elle descend) ; si $h'(x) > 0$, elle est croissante.\n\n**Pas à pas :** on étudie le signe de chaque morceau de $h'(x) = \\dfrac{e^x(x - 1)}{x^2}$ pour $0 < x < 1$.\n\n| Morceau | Signe pour $0 < x < 1$ |\n|---|---|\n| $e^x$ | $+$ |\n| $x - 1$ | $-$ (par exemple $0{,}5 - 1 = -0{,}5$) |\n| $x^2$ | $+$ |\n| $h'(x)$ | $\\frac{(+)(-)}{(+)} = -$ |\n\n$h'(x) < 0$ : $h$ est **décroissante** sur $]0, 1]$. Contrôle : $h(0{,}5) = \\frac{e^{0{,}5}}{0{,}5} \\approx 3{,}30$ et $h(1) = e \\approx 2{,}72$ : ça descend.\n\n**Les autres réponses :** « croissante » se trompe de signe ; « constante » demanderait $h' = 0$ partout ; « négative » parle du **signe de $h$**, pas de son sens de variation, et ici $h(x) > 0$ puisque $e^x > 0$ et $x > 0$.\n\n**À retenir :** le sens de variation se lit sur le signe de la **dérivée**, pas sur celui de la fonction."
       },
       {
         "intitule": "Quelle est la valeur exacte du minimum de $h$ sur $]0, +\\infty[$ ?",
         "type": "nombre",
         "reponse": "e",
-        "acceptes": ["e", "exp(1)", "e^1"],
-        "refuses": ["1", "e^2", "0"]
+        "acceptes": [
+          "e",
+          "exp(1)",
+          "e^1"
+        ],
+        "refuses": [
+          "1",
+          "e^2",
+          "0"
+        ],
+        "explication": "**Règle :** si une fonction descend puis monte, elle a un minimum à l'endroit du changement. La **valeur** du minimum s'obtient en remplaçant $x$ par cet endroit dans $h$ (pas dans $h'$).\n\n**Pas à pas :**\n\n1. $h$ décroît sur $]0, 1]$ (question précédente) et croît sur $[1, +\\infty[$ (car $x - 1 > 0$ pour $x > 1$).\n2. Le minimum est donc atteint en $x = 1$.\n3. Sa valeur : $h(1) = \\dfrac{e^1}{1} = e \\approx 2{,}72$.\n\n**Erreurs fréquentes :** répondre 1, qui est **l'endroit** où le minimum est atteint, pas sa valeur ; répondre 0, qui est la valeur de $h'(1)$ ; ou $e^2$ par erreur de calcul.\n\n**À retenir :** « où » = la valeur de $x$ ; « combien » = $h$ calculée en ce $x$."
       },
       {
         "intitule": "Que vaut $\\lim\\limits_{x \\to +\\infty} h(x)$ ?",
         "type": "choix",
-        "choix": ["$0$", "$1$", "$+\\infty$", "$e$"],
-        "reponse": 2
+        "choix": [
+          "$0$",
+          "$1$",
+          "$+\\infty$",
+          "$e$"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** croissances comparées : $x \\ll e^x$, donc $\\dfrac{e^x}{x} \\to +\\infty$ en $+\\infty$ (l'exponentielle est en haut et elle gagne).\n\n**Pas à pas :**\n\n| $x$ | $\\frac{e^x}{x}$ |\n|---|---|\n| $5$ | $\\approx 29{,}7$ |\n| $10$ | $\\approx 2\\,203$ |\n| $20$ | $\\approx 24$ millions |\n\nLe haut écrase le bas : la limite vaut $+\\infty$.\n\n**Les autres réponses :** 0 est la limite de l'inverse $\\frac{x}{e^x}$ ; 1 vient de l'idée fausse « $\\frac{\\infty}{\\infty} = 1$ » ; $e$ est la valeur du minimum, pas une limite.\n\n**À retenir :** $e^x$ en haut → $+\\infty$ ; $e^x$ en bas → 0."
       }
     ],
     "indices": [
@@ -461,28 +743,50 @@
         "intitule": "On écrit $Q(t) = 40\\,e^{kt}$. Donne la valeur exacte de $k$ (ex. : `ln(3)/4`).",
         "type": "nombre",
         "reponse": "ln(2)/6",
-        "acceptes": ["ln2/6", "(ln 2)/6"],
-        "refuses": ["6ln(2)", "ln(6)/2", "2/6"]
+        "acceptes": [
+          "ln2/6",
+          "(ln 2)/6"
+        ],
+        "refuses": [
+          "6ln(2)",
+          "ln(6)/2",
+          "2/6"
+        ],
+        "explication": "**Règle :** toute puissance s'écrit avec $e$ : $a^x = e^{x \\ln a}$, car $a = e^{\\ln a}$.\n\n**Pas à pas :**\n\n1. $2 = e^{\\ln 2}$.\n2. $2^{t/6} = \\left(e^{\\ln 2}\\right)^{t/6} = e^{\\frac{t}{6}\\ln 2}$ (puissance de puissance : on multiplie les exposants).\n3. $\\frac{t}{6} \\ln 2 = \\frac{\\ln 2}{6} \\times t$.\n4. Donc $Q(t) = 40\\,e^{kt}$ avec $k = \\dfrac{\\ln 2}{6} \\approx 0{,}116$.\n\n**Erreurs fréquentes :** multiplier par 6 au lieu de diviser ($6 \\ln 2$), écrire $\\frac{\\ln 6}{2}$ (on inverse les rôles de 2 et 6), ou oublier le $\\ln$ ($\\frac{2}{6}$).\n\n**À retenir :** doublement tous les $T$ → $k = \\dfrac{\\ln 2}{T}$."
       },
       {
         "intitule": "Calcule $Q(18)$, en To.",
         "type": "nombre",
         "reponse": 320,
-        "refuses": ["240", "120"]
+        "refuses": [
+          "240",
+          "120"
+        ],
+        "explication": "**Règle :** dans $2^{t/6}$, l'exposant $\\frac{t}{6}$ compte le **nombre de doublements** déjà faits.\n\n**Pas à pas :**\n\n1. $\\frac{18}{6} = 3$ : en 18 mois, il y a 3 doublements.\n2. $2^3 = 2 \\times 2 \\times 2 = 8$.\n3. $Q(18) = 40 \\times 8 = 320$ To.\n\nContrôle étape par étape : 40 → 80 (6 mois) → 160 (12 mois) → 320 (18 mois).\n\n**Erreurs fréquentes :** $40 \\times 3 = 120$ (on multiplie par 3 au lieu de doubler 3 fois), ou $40 \\times 2 \\times 3 = 240$ (on multiplie $2 \\times 3$ au lieu de $2^3$).\n\n**À retenir :** $n$ doublements = multiplier par $2^n$, pas par $2n$."
       },
       {
         "intitule": "Le volume dépasse $1\\,280$ To quand $t > T$. Donne $T$, en mois.",
         "type": "nombre",
         "reponse": 30,
-        "refuses": ["32", "5"]
+        "refuses": [
+          "32",
+          "5"
+        ],
+        "explication": "**Règle :** pour trouver quand on dépasse un seuil, on isole la puissance, on écrit le seuil comme une puissance de 2 (ou on passe au $\\ln$), puis on compare les exposants. $x \\mapsto 2^x$ est croissante : le sens de l'inégalité ne change pas.\n\n**Pas à pas :**\n\n1. $40 \\times 2^{t/6} > 1\\,280$.\n2. On divise par 40 : $2^{t/6} > 32$.\n3. $32 = 2^5$, donc $2^{t/6} > 2^5$, c'est-à-dire $\\frac{t}{6} > 5$.\n4. On multiplie par 6 : $t > 30$ mois. Donc $T = 30$.\n\nContrôle : 40 → 80 → 160 → 320 → 640 → 1 280, soit 5 doublements de 6 mois = 30 mois.\n\n**Erreurs fréquentes :** s'arrêter à 5 (c'est le nombre de doublements, pas des mois), ou répondre 32 (le quotient $\\frac{1\\,280}{40}$).\n\n**À retenir :** nombre de doublements $\\times$ durée d'un doublement = temps."
       },
       {
         "intitule": "Calcule $Q(10)$, arrondi au To près.",
         "type": "nombre",
         "reponse": "40*2^(10/6)",
         "tolerance": 0.5,
-        "acceptes": ["127"],
-        "refuses": ["126", "67"]
+        "acceptes": [
+          "127"
+        ],
+        "refuses": [
+          "126",
+          "67"
+        ],
+        "explication": "**Règle :** quand le temps n'est pas un multiple de 6, l'exposant n'est pas entier : on calcule $2^{10/6}$ à la calculatrice, ou avec $2^x = e^{x \\ln 2}$.\n\n**Pas à pas :**\n\n1. $\\frac{10}{6} = \\frac{5}{3} \\approx 1{,}667$.\n2. $2^{5/3} = e^{\\frac{5}{3} \\ln 2} \\approx e^{1{,}155} \\approx 3{,}175$.\n3. $Q(10) \\approx 40 \\times 3{,}175 = 127$ To.\n\nCohérence : $Q(6) = 80$ et $Q(12) = 160$ ; 127 est bien entre les deux.\n\n**Erreurs fréquentes :** remplacer $2^{10/6}$ par $2 \\times \\frac{10}{6}$ (on trouve $133$) : une puissance n'est pas une multiplication. Ou faire une règle de trois entre 80 et 160, ce qui suppose une croissance en ligne droite.\n\n**À retenir :** exposant non entier → calculatrice ou $e^{x \\ln 2}$, jamais « $2 \\times$ exposant »."
       }
     ],
     "indices": [
@@ -503,30 +807,57 @@
         "type": "nombre",
         "reponse": "-ln(0.8)",
         "tolerance": 0.005,
-        "acceptes": ["0.22", "0,22"],
-        "refuses": ["0.8", "-0.22"]
+        "acceptes": [
+          "0.22",
+          "0,22"
+        ],
+        "refuses": [
+          "0.8",
+          "-0.22"
+        ],
+        "explication": "**Règle :** avec $y = 1$, le second terme est multiplié par $1 - y = 0$ et disparaît : la perte vaut $-\\ln \\hat{p}$.\n\n**Pas à pas :**\n\n1. $\\text{perte} = -\\big(1 \\times \\ln 0{,}8 + 0 \\times \\ln 0{,}2\\big) = -\\ln 0{,}8$.\n2. $\\ln 0{,}8 \\approx -0{,}223$ (négatif, car $0{,}8 < 1$).\n3. $-\\ln 0{,}8 \\approx 0{,}223$, arrondi au centième : $0{,}22$.\n\nLa prédiction est bonne (80 % pour la bonne classe) : la perte est petite.\n\n**Erreurs fréquentes :** répondre $-0{,}22$ en oubliant le signe moins de la formule (une perte n'est jamais négative), ou $0{,}8$ en oubliant le $\\ln$.\n\n**À retenir :** $y = 1$ → perte $= -\\ln \\hat{p}$."
       },
       {
         "intitule": "$y = 1$ et $\\hat{p} = 0{,}05$.",
         "type": "nombre",
         "reponse": "-ln(0.05)",
         "tolerance": 0.005,
-        "acceptes": ["3", "3.00"],
-        "refuses": ["0.05", "-3"]
+        "acceptes": [
+          "3",
+          "3.00"
+        ],
+        "refuses": [
+          "0.05",
+          "-3"
+        ],
+        "explication": "**Règle :** avec $y = 1$, la perte vaut $-\\ln \\hat{p}$. Plus $\\hat{p}$ est proche de 0, plus $\\ln \\hat{p}$ est très négatif, donc plus la perte est grande.\n\n**Pas à pas :**\n\n1. $\\text{perte} = -\\ln 0{,}05$.\n2. $\\ln 0{,}05 \\approx -2{,}996$.\n3. $-\\ln 0{,}05 \\approx 2{,}996$, arrondi au centième : $3{,}00$.\n\nLe modèle donnait seulement 5 % de chances au spam, alors que c'en était un : la perte est environ 14 fois plus grande qu'à la question précédente.\n\n**Erreurs fréquentes :** répondre $-3$ (signe moins oublié) ou $0{,}05$ (on a recopié la probabilité).\n\n**À retenir :** une probabilité faible donnée à la vraie classe coûte cher."
       },
       {
         "intitule": "$y = 0$ et $\\hat{p} = 0{,}3$.",
         "type": "nombre",
         "reponse": "-ln(0.7)",
         "tolerance": 0.005,
-        "acceptes": ["0.36", "0,36"],
-        "refuses": ["1.2", "0.3"]
+        "acceptes": [
+          "0.36",
+          "0,36"
+        ],
+        "refuses": [
+          "1.2",
+          "0.3"
+        ],
+        "explication": "**Règle :** avec $y = 0$, c'est le **premier** terme qui disparaît ($y \\ln \\hat{p} = 0$) : la perte vaut $-\\ln(1 - \\hat{p})$, le $\\ln$ de la probabilité donnée à la classe « pas spam ».\n\n**Pas à pas :**\n\n1. $\\text{perte} = -\\big(0 \\times \\ln 0{,}3 + 1 \\times \\ln(1 - 0{,}3)\\big) = -\\ln 0{,}7$.\n2. $\\ln 0{,}7 \\approx -0{,}357$.\n3. $-\\ln 0{,}7 \\approx 0{,}357$, arrondi au centième : $0{,}36$.\n\nLe modèle donnait 70 % à « pas spam », la bonne réponse : perte assez petite.\n\n**Erreurs fréquentes :** calculer $-\\ln 0{,}3 \\approx 1{,}20$, en oubliant de passer à $1 - \\hat{p}$ ; ou répondre $0{,}3$.\n\n**À retenir :** $y = 0$ → perte $= -\\ln(1 - \\hat{p})$."
       },
       {
         "intitule": "Que traduit une perte très élevée ?",
         "type": "choix",
-        "choix": ["Le modèle était sûr de lui et s'est trompé", "Le modèle a hésité entre les deux classes", "Le modèle a eu raison avec certitude", "Les données sont vides"],
-        "reponse": 0
+        "choix": [
+          "Le modèle était sûr de lui et s'est trompé",
+          "Le modèle a hésité entre les deux classes",
+          "Le modèle a eu raison avec certitude",
+          "Les données sont vides"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** la perte vaut $-\\ln(\\text{probabilité donnée à la vraie classe})$. Elle est proche de 0 quand cette probabilité est proche de 1, et elle tend vers $+\\infty$ quand elle est proche de 0.\n\n**Pas à pas :** on regarde les trois situations.\n\n| Situation | Proba donnée à la vraie classe | Perte |\n|---|---|---|\n| sûr et juste | $0{,}99$ | $\\approx 0{,}01$ |\n| hésite | $0{,}5$ | $\\approx 0{,}69$ |\n| sûr et faux | $0{,}01$ | $\\approx 4{,}61$ |\n\nLa perte très élevée correspond au modèle **sûr de lui et qui se trompe**.\n\n**Les autres réponses :** un modèle qui hésite a une perte moyenne (environ 0,69) ; un modèle qui a raison avec certitude a une perte proche de 0 ; « données vides » n'a rien à voir avec la valeur de la perte.\n\n**À retenir :** la log-loss punit surtout l'excès de confiance dans une mauvaise réponse."
       }
     ],
     "indices": [
@@ -544,27 +875,49 @@
       {
         "intitule": "En posant $z = \\ln y$, quelle relation obtient-on ?",
         "type": "choix",
-        "choix": ["$z = \\ln 3 + 0{,}4\\,x$", "$z = 3 + \\ln(0{,}4\\,x)$", "$z = 1{,}2\\,x$", "$z = e^{3 + 0{,}4x}$"],
-        "reponse": 0
+        "choix": [
+          "$z = \\ln 3 + 0{,}4\\,x$",
+          "$z = 3 + \\ln(0{,}4\\,x)$",
+          "$z = 1{,}2\\,x$",
+          "$z = e^{3 + 0{,}4x}$"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** $\\ln(ab) = \\ln a + \\ln b$ et $\\ln(e^u) = u$.\n\n**Pas à pas :**\n\n1. $z = \\ln y = \\ln\\big(3\\,e^{0{,}4x}\\big)$.\n2. Produit → somme : $z = \\ln 3 + \\ln\\big(e^{0{,}4x}\\big)$.\n3. Le $\\ln$ défait l'exponentielle : $z = \\ln 3 + 0{,}4x$.\n\n**Les autres réponses :**\n\n- $z = 3 + \\ln(0{,}4x)$ : le $\\ln$ est mis sur l'exposant au lieu d'être mis sur le 3.\n- $z = 1{,}2x$ : on a multiplié $3 \\times 0{,}4$, en mélangeant les deux facteurs.\n- $z = e^{3 + 0{,}4x}$ : on a ajouté une exponentielle au lieu d'appliquer $\\ln$.\n\n**À retenir :** $\\ln(a\\,e^{bx}) = \\ln a + bx$."
       },
       {
         "intitule": "Quelle est la pente de la droite $z$ en fonction de $x$ ?",
         "type": "nombre",
         "reponse": 0.4,
-        "acceptes": ["0.4", "0,4", "2/5"],
-        "refuses": ["3", "1.2"]
+        "acceptes": [
+          "0.4",
+          "0,4",
+          "2/5"
+        ],
+        "refuses": [
+          "3",
+          "1.2"
+        ],
+        "explication": "**Règle :** une droite s'écrit $z = p + m\\,x$ : la **pente** $m$ est le nombre qui multiplie $x$.\n\n**Pas à pas :**\n\n1. $z = \\ln 3 + 0{,}4x$.\n2. Le nombre devant $x$ est $0{,}4$.\n3. Donc la pente vaut $0{,}4$ : chaque semaine, $z = \\ln y$ augmente de $0{,}4$.\n\n**Erreurs fréquentes :** prendre 3 (le coefficient devant l'exponentielle, qui devient $\\ln 3$, la hauteur de départ) ou $1{,}2$ (le produit $3 \\times 0{,}4$, qui n'apparaît nulle part).\n\n**À retenir :** pente = coefficient de $x$, qui est l'exposant $b$ de $e^{bx}$."
       },
       {
         "intitule": "Quelle est l'ordonnée à l'origine de cette droite (valeur exacte) ?",
         "type": "nombre",
         "reponse": "ln(3)",
-        "acceptes": ["ln 3", "ln(3)"],
-        "refuses": ["3", "e^3"]
+        "acceptes": [
+          "ln 3",
+          "ln(3)"
+        ],
+        "refuses": [
+          "3",
+          "e^3"
+        ],
+        "explication": "**Règle :** l'**ordonnée à l'origine** d'une droite $z = p + m\\,x$ est le nombre $p$ seul, c'est-à-dire la valeur de $z$ quand $x = 0$.\n\n**Pas à pas :**\n\n1. On remplace $x$ par 0 : $z = \\ln 3 + 0{,}4 \\times 0 = \\ln 3$.\n2. Valeur exacte : $\\ln 3$ (environ $1{,}10$).\n\n**Erreurs fréquentes :** répondre 3, qui est la valeur de $y$ en $x = 0$ (au départ, 3 000 utilisateurs), alors qu'on demande celle de $z = \\ln y$ ; ou $e^3$, en appliquant la mauvaise fonction.\n\n**À retenir :** ordonnée à l'origine de $z = \\ln y$ = $\\ln(\\text{valeur de départ})$."
       },
       {
         "intitule": "Explique en une ou deux phrases pourquoi on préfère tracer $\\ln y$ plutôt que $y$ pour repérer une croissance exponentielle.",
         "type": "auto",
-        "reponse": "Avec $z = \\ln y$, une croissance exponentielle devient une **droite**. Or il est beaucoup plus facile de reconnaître une droite à l'œil (et d'en mesurer la pente) qu'une courbe exponentielle. Si les points $(x, \\ln y)$ sont alignés, la croissance de $y$ est exponentielle."
+        "reponse": "Avec $z = \\ln y$, une croissance exponentielle devient une **droite**. Or il est beaucoup plus facile de reconnaître une droite à l'œil (et d'en mesurer la pente) qu'une courbe exponentielle. Si les points $(x, \\ln y)$ sont alignés, la croissance de $y$ est exponentielle.",
+        "explication": "Une bonne réponse contient deux idées, dans cet ordre :\n\n1. **Ce qui se passe :** en traçant $\\ln y$ au lieu de $y$, la relation $y = a\\,e^{bx}$ devient $\\ln y = \\ln a + bx$, c'est-à-dire une **droite**.\n2. **Pourquoi c'est utile :** une droite se reconnaît tout de suite à l'œil (des points alignés), et on peut lire sa pente, qui donne directement le taux $b$. Une courbe exponentielle, elle, ressemble à beaucoup d'autres courbes qui montent vite.\n\nBonus : si les points $(x, \\ln y)$ sont alignés, on peut conclure que la croissance de $y$ est exponentielle.\n\n**Erreurs fréquentes :** dire seulement « c'est plus lisible » sans parler de droite, ou dire que le $\\ln$ « fait disparaître » la croissance (elle est toujours là, elle est juste représentée autrement).\n\n**À retenir :** échelle logarithmique = une exponentielle devient une droite."
       }
     ],
     "indices": [
@@ -584,41 +937,69 @@
         "type": "nombre",
         "reponse": "log2(1000)",
         "tolerance": 0.5,
-        "acceptes": ["10"],
-        "refuses": ["1000", "500"]
+        "acceptes": [
+          "10"
+        ],
+        "refuses": [
+          "1000",
+          "500"
+        ],
+        "explication": "**Règle :** la dichotomie coupe le tableau en deux à chaque comparaison ; le nombre de comparaisons est environ $\\log_2 n$, le nombre de fois qu'on peut diviser $n$ par 2 avant d'arriver à 1.\n\n**Pas à pas :**\n\n1. On cherche $\\log_2(1\\,000)$ : 2 puissance combien donne 1 000 ?\n2. $2^{10} = 1\\,024$, très proche de $1\\,000$ (et $2^9 = 512$, trop petit).\n3. Plus précisément, $\\log_2(1\\,000) \\approx 9{,}97$, arrondi à **10**.\n\nOn peut le vérifier en divisant par 2 : $1\\,000 \\to 500 \\to 250 \\to 125 \\to 63 \\to 32 \\to 16 \\to 8 \\to 4 \\to 2 \\to 1$ : 10 coupures.\n\n**Erreurs fréquentes :** répondre 500 (c'est ce qui reste après **une seule** coupure) ou 1 000 (c'est la recherche linéaire).\n\n**À retenir :** $\\log_2(1\\,000) \\approx 10$, car $2^{10} \\approx 1\\,000$."
       },
       {
         "intitule": "Et pour $n = 1\\,000\\,000$ ? (arrondi à l'unité)",
         "type": "nombre",
         "reponse": "log2(10^6)",
         "tolerance": 0.5,
-        "acceptes": ["20"],
-        "refuses": ["1000", "6"]
+        "acceptes": [
+          "20"
+        ],
+        "refuses": [
+          "1000",
+          "6"
+        ],
+        "explication": "**Règle :** $\\log_2(a^2) = 2 \\log_2 a$, et $10^3 \\approx 2^{10}$.\n\n**Pas à pas :**\n\n1. $10^6 = (10^3)^2$.\n2. $10^3 \\approx 2^{10}$, donc $10^6 \\approx (2^{10})^2 = 2^{20}$.\n3. $\\log_2(10^6) \\approx 20$ (plus précisément $19{,}93$).\n\nMille fois plus de données qu'à la question précédente, et seulement 10 comparaisons de plus.\n\n**Erreurs fréquentes :** répondre 6, qui est $\\log_{10}(10^6)$ (mauvaise base), ou $1\\,000$, qui est $\\sqrt{10^6}$.\n\n**À retenir :** $\\log_2(10^6) \\approx 20$, $\\log_2(10^9) \\approx 30$."
       },
       {
         "intitule": "Pour $n = 1\\,000\\,000$, en comptant 20 comparaisons pour la dichotomie : combien de fois la recherche linéaire est-elle plus lente dans le pire cas ?",
         "type": "nombre",
         "reponse": 50000,
-        "refuses": ["20", "1000000"]
+        "refuses": [
+          "20",
+          "1000000"
+        ],
+        "explication": "**Règle :** « combien de fois plus lente » = on divise le nombre de comparaisons de la recherche linéaire par celui de la dichotomie.\n\n**Pas à pas :**\n\n1. Recherche linéaire, pire cas (valeur à la fin ou absente) : $n = 1\\,000\\,000$ comparaisons.\n2. Dichotomie : 20 comparaisons.\n3. Rapport : $\\dfrac{1\\,000\\,000}{20} = 50\\,000$.\n\n**Erreurs fréquentes :** répondre 20 (c'est le nombre de comparaisons de la dichotomie, pas le rapport) ou $1\\,000\\,000$ (on a oublié de diviser).\n\n**À retenir :** « $x$ fois plus lent » = un quotient."
       },
       {
         "intitule": "On passe de $n = 10^6$ à $n = 10^9$ (1 000 fois plus de données). Combien de comparaisons **en plus**, environ, pour la dichotomie ?",
         "type": "nombre",
         "reponse": "log2(1000)",
         "tolerance": 0.5,
-        "acceptes": ["10"],
-        "refuses": ["30", "1000"]
+        "acceptes": [
+          "10"
+        ],
+        "refuses": [
+          "30",
+          "1000"
+        ],
+        "explication": "**Règle :** $\\log_2(ab) = \\log_2 a + \\log_2 b$ : multiplier $n$ par un nombre **ajoute** son $\\log_2$ au nombre d'étapes.\n\n**Pas à pas :**\n\n1. $10^9 = 10^6 \\times 10^3$.\n2. $\\log_2(10^9) = \\log_2(10^6) + \\log_2(10^3) \\approx 20 + 10 = 30$.\n3. On passe de 20 à 30 comparaisons : **10 en plus**.\n\n**Erreurs fréquentes :** répondre 30, qui est le **total**, alors qu'on demande le supplément ; ou $1\\,000$, en croyant que la dichotomie travaille 1 000 fois plus.\n\n**À retenir :** $\\times 1\\,000$ sur les données = $+10$ étapes de dichotomie."
       },
       {
         "intitule": "Et pour la recherche linéaire, dans le pire cas ?",
         "type": "choix",
-        "choix": ["Environ 10 comparaisons de plus", "1 000 fois plus de comparaisons", "Le même nombre de comparaisons"],
-        "reponse": 1
+        "choix": [
+          "Environ 10 comparaisons de plus",
+          "1 000 fois plus de comparaisons",
+          "Le même nombre de comparaisons"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** la recherche linéaire fait jusqu'à $n$ comparaisons : son travail est **proportionnel** à $n$.\n\n**Pas à pas :**\n\n1. Pire cas avec $n = 10^6$ : $10^6$ comparaisons.\n2. Pire cas avec $n = 10^9$ : $10^9$ comparaisons.\n3. $\\dfrac{10^9}{10^6} = 10^3 = 1\\,000$ : **1 000 fois plus** de comparaisons.\n\n**Les autres réponses :** « environ 10 comparaisons de plus », c'est ce qui arrive à la **dichotomie** (question précédente) ; « le même nombre » est faux puisque le tableau est plus grand.\n\n**À retenir :** $O(n)$ : données $\\times 1\\,000$ → travail $\\times 1\\,000$."
       },
       {
         "intitule": "Explique en une ou deux phrases pourquoi l'écart se creuse quand $n$ augmente.",
         "type": "auto",
-        "reponse": "$\\log_2 n$ grandit **extrêmement lentement** : multiplier $n$ par $1\\,000$ n'ajoute qu'environ 10 comparaisons à la dichotomie, alors que le travail de la recherche linéaire est multiplié par $1\\,000$. C'est la hiérarchie $\\ln x \\ll x$ : le rapport $\\dfrac{n}{\\log_2 n}$ tend vers $+\\infty$."
+        "reponse": "$\\log_2 n$ grandit **extrêmement lentement** : multiplier $n$ par $1\\,000$ n'ajoute qu'environ 10 comparaisons à la dichotomie, alors que le travail de la recherche linéaire est multiplié par $1\\,000$. C'est la hiérarchie $\\ln x \\ll x$ : le rapport $\\dfrac{n}{\\log_2 n}$ tend vers $+\\infty$.",
+        "explication": "Une bonne réponse compare les deux algorithmes quand $n$ est multiplié par un grand nombre :\n\n1. **Dichotomie :** son coût est $\\log_2 n$, qui grandit **extrêmement lentement**. Multiplier $n$ par $1\\,000$ n'ajoute qu'environ 10 comparaisons (le $\\log$ transforme le produit en somme).\n2. **Recherche linéaire :** son coût est $n$. Multiplier $n$ par $1\\,000$ multiplie son travail par $1\\,000$.\n3. **Conclusion :** l'écart entre les deux, le rapport $\\dfrac{n}{\\log_2 n}$, devient de plus en plus grand et tend vers $+\\infty$. C'est la hiérarchie $\\log n \\ll n$.\n\n**Erreurs fréquentes :** dire seulement « la dichotomie est plus rapide » sans expliquer pourquoi l'écart **grandit**, ou croire que la dichotomie garde le même nombre d'étapes (elle en ajoute, mais très peu).\n\n**À retenir :** $\\log n$ ajoute, $n$ multiplie : l'écart explose."
       }
     ],
     "indices": [
@@ -638,27 +1019,47 @@
         "intitule": "Que vaut $C(0)$ ?",
         "type": "nombre",
         "reponse": 5,
-        "refuses": ["7", "0"]
+        "refuses": [
+          "7",
+          "0"
+        ],
+        "explication": "**Règle :** $\\ln 1 = 0$.\n\n**Pas à pas :**\n\n1. On remplace $n$ par 0 : $C(0) = 5 + 2\\ln(0 + 1)$.\n2. $0 + 1 = 1$, donc $C(0) = 5 + 2 \\ln 1$.\n3. $\\ln 1 = 0$, donc $C(0) = 5 + 2 \\times 0 = 5$ €.\n\nLe 5 € est le prix fixe, payé même sans aucune requête.\n\n**Erreurs fréquentes :** croire que $\\ln 1 = 1$ (on trouve 7), ou faire $\\ln 0$ en oubliant le $+1$ (qui n'existe pas). Répondre 0 oublie le 5.\n\n**À retenir :** remplace d'abord, simplifie l'intérieur du $\\ln$, puis utilise $\\ln 1 = 0$."
       },
       {
         "intitule": "Que vaut $C(999)$, arrondi au centime ?",
         "type": "nombre",
         "reponse": "5+2ln(1000)",
         "tolerance": 0.005,
-        "acceptes": ["18.82", "18,82"],
-        "refuses": ["18.8", "2003"]
+        "acceptes": [
+          "18.82",
+          "18,82"
+        ],
+        "refuses": [
+          "18.8",
+          "2003"
+        ],
+        "explication": "**Règle :** on remplace $n$ par 999, puis on calcule avec la calculatrice **sans arrondir avant la fin**.\n\n**Pas à pas :**\n\n1. $C(999) = 5 + 2\\ln(999 + 1) = 5 + 2 \\ln(1\\,000)$.\n2. $\\ln(1\\,000) = 3 \\ln 10 \\approx 6{,}907\\,76$.\n3. $2 \\times 6{,}907\\,76 \\approx 13{,}815\\,5$.\n4. $5 + 13{,}815\\,5 = 18{,}815\\,5$, arrondi au centime : $18{,}82$ €.\n\n**Erreurs fréquentes :** arrondir trop tôt ($\\ln 1\\,000 \\approx 6{,}9$ donne $18{,}80$, faux au centime), oublier le $+1$ ($\\ln 999$, qui donne presque pareil mais pas la valeur exacte voulue), ou faire $2 \\times 1\\,000 + \\dots$ en oubliant le $\\ln$.\n\n**À retenir :** garde toutes les décimales jusqu'à la dernière étape, puis arrondis une seule fois."
       },
       {
         "intitule": "Pour quelle valeur exacte de $n$ le coût vaut-il $11$ euros ?",
         "type": "nombre",
         "reponse": "e^3-1",
-        "acceptes": ["e^3 - 1", "exp(3)-1"],
-        "refuses": ["e^3", "e^(3-1)", "3"]
+        "acceptes": [
+          "e^3 - 1",
+          "exp(3)-1"
+        ],
+        "refuses": [
+          "e^3",
+          "e^(3-1)",
+          "3"
+        ],
+        "explication": "**Règle :** on isole le $\\ln$, puis on applique l'exponentielle : $\\ln A = b \\iff A = e^b$.\n\n**Pas à pas :**\n\n1. $5 + 2\\ln(n + 1) = 11$.\n2. On retire 5 : $2 \\ln(n + 1) = 6$.\n3. On divise par 2 : $\\ln(n + 1) = 3$.\n4. On applique l'exponentielle : $n + 1 = e^3$.\n5. On retire 1 : $n = e^3 - 1 \\approx 19{,}09$.\n\nVérification : $C(e^3 - 1) = 5 + 2 \\ln(e^3) = 5 + 2 \\times 3 = 11$.\n\n**Erreurs fréquentes :** oublier le $-1$ et répondre $e^3$, écrire $e^{3-1}$ (le $-1$ n'est pas dans l'exposant), ou s'arrêter à 3 sans appliquer l'exponentielle.\n\n**À retenir :** isole le $\\ln$ tout seul, applique $e^{\\dots}$, puis isole $n$."
       },
       {
         "intitule": "Le coût peut-il dépasser n'importe quelle valeur fixée à l'avance si $n$ devient très grand ? Justifie avec une propriété du logarithme.",
         "type": "auto",
-        "reponse": "**Oui.** $\\lim\\limits_{n \\to +\\infty} \\ln(n + 1) = +\\infty$, donc $C(n) \\to +\\infty$ : le coût finit par dépasser n'importe quelle valeur, même s'il grandit **très lentement** (bien plus lentement qu'un coût proportionnel à $n$)."
+        "reponse": "**Oui.** $\\lim\\limits_{n \\to +\\infty} \\ln(n + 1) = +\\infty$, donc $C(n) \\to +\\infty$ : le coût finit par dépasser n'importe quelle valeur, même s'il grandit **très lentement** (bien plus lentement qu'un coût proportionnel à $n$).",
+        "explication": "Une bonne réponse contient trois éléments :\n\n1. **La réponse :** oui.\n2. **La justification par une propriété du logarithme :** $\\lim\\limits_{n \\to +\\infty} \\ln(n + 1) = +\\infty$. Multiplier par 2 et ajouter 5 ne change pas cette limite, donc $C(n) \\to +\\infty$ : quelle que soit la valeur choisie, le coût finit par la dépasser (il suffit de résoudre $C(n) = $ cette valeur, comme à la question précédente).\n3. **La nuance :** cette hausse est **très lente**, bien plus lente qu'un coût proportionnel à $n$ (par exemple, passer de 1 000 à 1 000 000 de requêtes n'ajoute qu'environ 14 €).\n\n**Erreurs fréquentes :** répondre « non, le coût est plafonné » parce qu'il augmente lentement : lent ne veut pas dire borné. Ou répondre « oui » sans citer la limite du $\\ln$.\n\n**À retenir :** $\\ln$ tend vers $+\\infty$ sans plafond, simplement très lentement."
       }
     ],
     "indices": [

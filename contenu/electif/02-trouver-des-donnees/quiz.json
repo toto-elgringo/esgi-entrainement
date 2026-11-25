@@ -1,38 +1,68 @@
 [
   {
     "question": "Où télécharge-t-on la BD TOPO ?",
-    "choix": ["Dans le catalogue de cartes.gouv.fr", "Sur QGIS.org", "Sur OpenStreetMap", "Sur MyGES"],
+    "choix": [
+      "Dans le catalogue de cartes.gouv.fr",
+      "Sur QGIS.org",
+      "Sur OpenStreetMap",
+      "Sur MyGES"
+    ],
     "reponse": 0,
-    "explication": "Le catalogue de cartes.gouv.fr (jeu de données IGNF_BD-TOPO) donne accès aux téléchargements, hébergés sur data.geopf.fr."
+    "explication": "**Règle :** les données de l'IGN, dont la BD TOPO, se téléchargent depuis le **catalogue de cartes.gouv.fr** (jeu de données `IGNF_BD-TOPO`) ; les fichiers sont hébergés sur `data.geopf.fr`.\n\n**Pas à pas :**\n\n1. La BD TOPO est produite par l'IGN.\n2. Le portail de téléchargement de l'IGN est cartes.gouv.fr (Géoportail, lui, sert à consulter).\n3. On y cherche `IGNF_BD-TOPO`, puis le département voulu.\n\n**Les autres réponses :** QGIS.org donne le **logiciel**, pas les données ; OpenStreetMap est une **autre** carte, faite par des bénévoles ; MyGES est l'intranet de l'école, où l'on trouve les supports du cours mais pas le catalogue de l'IGN.\n\n**À retenir :** BD TOPO → catalogue cartes.gouv.fr."
   },
   {
     "question": "Dans `BDTOPO_3-5_TOUSTHEMES_SHP_LAMB93_D075_2026-06-15.7z`, que veut dire `D075` ?",
-    "choix": ["Le département de Paris", "La version du logiciel", "Le format du fichier", "Le thème des données"],
+    "choix": [
+      "Le département de Paris",
+      "La version du logiciel",
+      "Le format du fichier",
+      "Le thème des données"
+    ],
     "reponse": 0,
-    "explication": "D075 = département 75, Paris."
+    "explication": "**Règle :** le nom d'un fichier BD TOPO se lit morceau par morceau, séparés par `_`. Le morceau `D` + 3 chiffres donne le **département**.\n\n**Pas à pas :**\n\n1. On isole le morceau : `D075`.\n2. `D` = département.\n3. `075` = 75 écrit sur 3 chiffres (le 0 sert seulement à remplir).\n4. Le département 75, c'est **Paris**.\n\n**Les autres réponses :** la version est `3-5` (juste après `BDTOPO`) ; le format est `SHP` ; le thème est `TOUSTHEMES`.\n\n**À retenir :** `D0xx` = département xx."
   },
   {
     "question": "Qu'est-ce que le MOS ?",
-    "choix": ["Le mode d'occupation du sol de l'Île-de-France", "Un format de fichier de QGIS", "Une extension de navigation", "Un système de coordonnées"],
+    "choix": [
+      "Le mode d'occupation du sol de l'Île-de-France",
+      "Un format de fichier de QGIS",
+      "Une extension de navigation",
+      "Un système de coordonnées"
+    ],
     "reponse": 0,
-    "explication": "Le MOS est une base de données d'occupation du sol (11 millésimes) publiée par l'Institut Paris Region."
+    "explication": "**Règle :** le **MOS** (Mode d'occupation du sol) est une base de données de l'**Institut Paris Region** qui décrit ce qui occupe le sol en Île-de-France (habitat, bois, champs, routes…), en 11 millésimes (11 dates).\n\n**Pas à pas :** « Mode d'occupation du sol » : pour chaque zone de la région, il dit à quoi sert le sol. Avec plusieurs dates, on voit comment cela évolue.\n\n**Les autres réponses :** ce n'est pas un format de fichier (comme SHP ou GPKG), ni une extension de navigateur, ni un système de coordonnées (comme le Lambert 93) : c'est un **jeu de données**.\n\n**À retenir :** MOS = occupation du sol de l'Île-de-France, dans le temps."
   },
   {
     "question": "Que fixe un **SCoT** ?",
-    "choix": ["Les grandes orientations d'aménagement d'un territoire", "La projection d'une carte", "Le prix des logements", "Le nom des communes"],
+    "choix": [
+      "Les grandes orientations d'aménagement d'un territoire",
+      "La projection d'une carte",
+      "Le prix des logements",
+      "Le nom des communes"
+    ],
     "reponse": 0,
-    "explication": "Le Schéma de cohérence territoriale cadre le logement, les transports et les espaces naturels d'un territoire."
+    "explication": "**Règle :** un **SCoT** (Schéma de cohérence territoriale) est un document d'urbanisme qui fixe les **grandes orientations d'aménagement** d'un territoire intercommunal : logement, transports, espaces naturels.\n\n**Pas à pas :** « schéma » = plan d'ensemble, « cohérence territoriale » = faire en sorte que les communes voisines avancent dans le même sens. C'est donc un projet d'aménagement commun.\n\n**Les autres réponses :** la projection d'une carte est un réglage technique (Lambert 93…), pas un document d'urbanisme ; le SCoT ne fixe pas le prix des logements (c'est le marché ou d'autres règles) ; le nom des communes ne dépend pas du SCoT.\n\n**À retenir :** SCoT = plan d'aménagement d'une intercommunalité."
   },
   {
     "question": "Pourquoi faut-il vérifier les données d'OpenStreetMap ?",
-    "choix": ["Elles sont saisies par des contributeurs et peuvent être incomplètes", "Elles sont payantes", "Elles sont toujours en degrés", "Elles ne marchent pas dans QGIS"],
+    "choix": [
+      "Elles sont saisies par des contributeurs et peuvent être incomplètes",
+      "Elles sont payantes",
+      "Elles sont toujours en degrés",
+      "Elles ne marchent pas dans QGIS"
+    ],
     "reponse": 0,
-    "explication": "OSM est collaborative : la qualité dépend des contributeurs."
+    "explication": "**Règle :** OpenStreetMap est **collaborative** : ce sont des contributeurs bénévoles qui ajoutent les données. Leur qualité dépend donc de qui a contribué, et quand.\n\n**Pas à pas :** dans un quartier, un commerce peut ne jamais avoir été ajouté, avoir fermé sans être retiré, ou être mal étiqueté. Le résultat peut donc être **incomplet ou faux** : il faut le vérifier.\n\n**Les autres réponses :** OSM est **gratuite** (données libres) ; ses coordonnées ne posent pas de problème, QGIS sait les convertir ; et elle s'ouvre très bien dans QGIS.\n\n**À retenir :** OSM = libre et utile, mais toujours à recouper."
   },
   {
     "question": "Quel outil ouvre une archive `.7z` ?",
-    "choix": ["7-Zip (ou équivalent)", "Un navigateur web", "Excel", "Notepad"],
+    "choix": [
+      "7-Zip (ou équivalent)",
+      "Un navigateur web",
+      "Excel",
+      "Notepad"
+    ],
     "reponse": 0,
-    "explication": "Le format 7z demande un logiciel de décompression comme 7-Zip."
+    "explication": "**Règle :** un fichier `.7z` est une **archive compressée** (plusieurs fichiers rangés et réduits dans un seul). Il faut un logiciel de décompression comme **7-Zip** pour en sortir les fichiers.\n\n**Pas à pas :** on télécharge `BDTOPO_…_D075_….7z`, on l'ouvre avec 7-Zip (clic droit, « Extraire »), et on obtient les dossiers de couches Shapefile.\n\n**Les autres réponses :** un navigateur sert à télécharger le fichier, pas à l'ouvrir ; Excel ouvre des tableaux (CSV, XLSX), pas des archives ; le Bloc-notes (Notepad) n'afficherait que des caractères illisibles.\n\n**À retenir :** `.7z` = archive, à extraire avec 7-Zip avant d'ouvrir les couches."
   }
 ]

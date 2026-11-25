@@ -13,7 +13,8 @@
           "prétérit",
           "past perfect"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *have / has* + participe passé = **present perfect**.\n\n**Pas à pas :**\n1. Auxiliaire : *has* (présent de *have*, 3e personne).\n2. Verbe principal : *left*, participe passé de *leave* (*leave* → *left* → *left*). *just* est seulement glissé entre les deux.\n3. *has* + participe passé → present perfect. Sens : elle vient de quitter le bureau.\n\n**Les autres réponses :** le prétérit serait *She left* (sans *has*) ; le past perfect serait *She had left* (avec *had*).\n\n**À retenir :** *have / has* + participe = present perfect ; *just* entre les deux = « venir de »."
       },
       {
         "intitule": "*They **had finished** before we arrived.*",
@@ -23,7 +24,8 @@
           "present perfect",
           "past perfect"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *had* + participe passé = **past perfect** (le passé du passé).\n\n**Pas à pas :**\n1. Auxiliaire : *had*.\n2. Verbe : *finished*, participe passé.\n3. *had* + participe → past perfect. Sens : ils avaient fini **avant** que nous arrivions (*arrived*, prétérit).\n\n**Les autres réponses :** le prétérit serait *They finished* ; le present perfect serait *They have finished* (avec *have*, pas *had*).\n\n**À retenir :** *had* + participe = past perfect."
       },
       {
         "intitule": "*I**'ll be working** at 9 tomorrow.*",
@@ -33,7 +35,8 @@
           "future perfect",
           "present continuous"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *will be* + verbe en -ing = **future continuous** : action en cours à un moment du futur.\n\n**Pas à pas :**\n1. *I'll* = *I will*.\n2. Puis *be* + *working* (-ing).\n3. *will be* + -ing → future continuous. Sens : demain à 9 h, je serai en train de travailler.\n\n**Les autres réponses :** le future perfect serait *I'll have worked* (*will have* + participe) ; le present continuous serait *I'm working* (sans *will*).\n\n**À retenir :** *will be* + -ing = future continuous."
       },
       {
         "intitule": "*By Friday, we **will have signed** the deal.*",
@@ -43,7 +46,8 @@
           "future perfect",
           "present perfect"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *will have* + participe passé = **future perfect** : action terminée avant un moment du futur.\n\n**Pas à pas :**\n1. Auxiliaire : *will have*.\n2. Verbe : *signed*, participe passé.\n3. *will have* + participe → future perfect. Mot-repère : *By Friday* (d'ici vendredi).\n\n**Les autres réponses :** le future continuous serait *will be signing* ; le present perfect serait *we have signed* (sans *will*).\n\n**À retenir :** *will have* + participe = future perfect (avec *by* + date)."
       },
       {
         "intitule": "*We**'ve been waiting** since 8 o'clock.*",
@@ -53,7 +57,8 @@
           "present continuous",
           "past perfect continuous"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *have / has been* + -ing = **present perfect continuous** : action commencée dans le passé et qui dure encore.\n\n**Pas à pas :**\n1. *We've* = *We have*.\n2. Puis *been* + *waiting* (-ing).\n3. *have been* + -ing → present perfect continuous. Mot-repère : *since 8 o'clock* (depuis 8 h, on attend encore).\n\n**Les autres réponses :** le present continuous serait *We're waiting* (sans *been*) ; le past perfect continuous serait *We had been waiting* (avec *had*).\n\n**À retenir :** *have been* + -ing = present perfect continuous ; *'ve* = *have*."
       },
       {
         "intitule": "*He **was talking** on the phone when I came in.*",
@@ -63,7 +68,8 @@
           "past continuous",
           "present continuous"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *was / were* + -ing = **past continuous** : action en cours à un moment du passé.\n\n**Pas à pas :**\n1. Auxiliaire : *was* (passé de *be*).\n2. Verbe : *talking* (-ing).\n3. *was* + -ing → past continuous. Il était en train de téléphoner (action longue) quand je suis entré (*came in*, prétérit, action courte).\n\n**Les autres réponses :** le prétérit serait *He talked* ; le present continuous serait *He is talking* (avec *is*, présent).\n\n**À retenir :** *was / were* + -ing = past continuous."
       }
     ],
     "indices": [
@@ -85,7 +91,8 @@
         ],
         "refuses": [
           "went"
-        ]
+        ],
+        "explication": "**Règle :** *go* est irrégulier : *go* → *went* → ***gone***.\n\n**Pas à pas :** le participe passé est la 3e forme, celle qui suit *have* : *She has gone home* (elle est rentrée chez elle et y est encore).\n\n**Erreurs fréquentes :** écrire *went* (c'est le prétérit, 2e forme) ; écrire *been* : *been* est le participe de *be*, il sert aussi pour « être allé et revenu » (*I've been to Rome*), mais le participe de *go* est *gone*.\n\n**À retenir :** *go – went – gone*."
       },
       {
         "intitule": "*to write*",
@@ -95,7 +102,8 @@
         ],
         "refuses": [
           "wrote"
-        ]
+        ],
+        "explication": "**Règle :** *write* est irrégulier : *write* → *wrote* → ***written*** (avec deux *t*).\n\n**Pas à pas :** *I have written the report* = j'ai écrit le rapport. Le *i* court de *written* explique le double *t* (comme *bitten*, *hidden*).\n\n**Erreurs fréquentes :** *wrote* (prétérit) ; *writen* (un seul *t*) ; *writed* (forme régulière qui n'existe pas).\n\n**À retenir :** *write – wrote – written*."
       },
       {
         "intitule": "*to take*",
@@ -105,7 +113,8 @@
         ],
         "refuses": [
           "took"
-        ]
+        ],
+        "explication": "**Règle :** *take* est irrégulier : *take* → *took* → ***taken***.\n\n**Pas à pas :** *Have you taken your medicine?* = as-tu pris ton médicament ? Le participe finit en *-en*, comme beaucoup d'irréguliers.\n\n**Erreurs fréquentes :** *took* (prétérit) ; *taked* (n'existe pas).\n\n**À retenir :** *take – took – taken*."
       },
       {
         "intitule": "*to rise*",
@@ -115,7 +124,8 @@
         ],
         "refuses": [
           "rose"
-        ]
+        ],
+        "explication": "**Règle :** *rise* (monter, augmenter) est irrégulier : *rise* → *rose* → ***risen***.\n\n**Pas à pas :** *Prices have risen by 5%* = les prix ont augmenté de 5 %. Très fréquent au TOEIC pour les chiffres.\n\n**Erreurs fréquentes :** *rose* (prétérit) ; *rised* (n'existe pas) ; confondre avec *raise* (augmenter quelque chose, régulier : *raised*).\n\n**À retenir :** *rise – rose – risen* ; *raise – raised – raised*."
       },
       {
         "intitule": "*to choose*",
@@ -125,7 +135,8 @@
         ],
         "refuses": [
           "chose"
-        ]
+        ],
+        "explication": "**Règle :** *choose* est irrégulier : *choose* → *chose* → ***chosen***.\n\n**Pas à pas :** *We have chosen a supplier* = nous avons choisi un fournisseur.\n\n**Erreurs fréquentes :** *chose* (prétérit, un seul *o*) ; *choosed* (n'existe pas) ; *choosen* (deux *o* : faux, le participe en a un seul).\n\n**À retenir :** *choose – chose – chosen*."
       },
       {
         "intitule": "*to hang* (up)",
@@ -135,7 +146,8 @@
         ],
         "refuses": [
           "hanged"
-        ]
+        ],
+        "explication": "**Règle :** *hang* (accrocher, *hang up* = raccrocher le téléphone) est irrégulier : *hang* → *hung* → ***hung***.\n\n**Pas à pas :** *She has hung up* = elle a raccroché. Prétérit et participe sont identiques.\n\n**Erreurs fréquentes :** *hanged* existe, mais seulement pour la pendaison d'une personne ; pour un objet ou le téléphone, c'est *hung*. *hanged* n'est donc pas accepté ici.\n\n**À retenir :** *hang – hung – hung* (*hang up* = raccrocher)."
       },
       {
         "intitule": "*to know*",
@@ -145,14 +157,16 @@
         ],
         "refuses": [
           "knew"
-        ]
+        ],
+        "explication": "**Règle :** *know* est irrégulier : *know* → *knew* → ***known***.\n\n**Pas à pas :** *I have known him for years* = je le connais depuis des années (present perfect avec un verbe d'état).\n\n**Erreurs fréquentes :** *knew* (prétérit) ; *knowed* (n'existe pas). Le *k* ne se prononce pas.\n\n**À retenir :** *know – knew – known*."
       },
       {
         "intitule": "*to win*",
         "type": "texte",
         "reponse": [
           "won"
-        ]
+        ],
+        "explication": "**Règle :** *win* est irrégulier : *win* → *won* → ***won***.\n\n**Pas à pas :** *Our team has won the contract* = notre équipe a remporté le contrat. Prétérit et participe sont identiques.\n\n**Erreurs fréquentes :** *winned* (n'existe pas) ; *win* (la base) ; confondre avec *one* (un), qui se prononce pareil.\n\n**À retenir :** *win – won – won*."
       }
     ],
     "indices": [
@@ -173,7 +187,8 @@
           "have signed",
           "signed"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une **date passée et terminée** (*yesterday*, *last…*, *ago*, *in 2019*) impose le **prétérit**.\n\n**Pas à pas :**\n1. Mot-repère : *yesterday* (hier), une période finie.\n2. → prétérit : ***signed***.\n\n**Erreur fréquente :** *have signed yesterday* : le present perfect ne s'emploie jamais avec une date finie.\n\n**À retenir :** *yesterday* → prétérit."
       },
       {
         "intitule": "*I ...... the contract: here it is.*",
@@ -182,7 +197,8 @@
           "have signed",
           "signed"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** **pas de date** et un **résultat visible maintenant** → **present perfect**.\n\n**Pas à pas :**\n1. Pas de mot-repère de date.\n2. *here it is* (le voici) : le résultat est là, maintenant.\n3. → ***have signed***.\n\n**Erreur fréquente :** *signed* seul raconterait un fait passé daté ; ici on montre le résultat présent du contrat signé.\n\n**À retenir :** résultat visible maintenant, sans date → present perfect."
       },
       {
         "intitule": "*She ...... in Madrid from 2018 to 2021.*",
@@ -191,7 +207,8 @@
           "has lived",
           "lived"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une période **finie** (*from … to …* dans le passé) → **prétérit**.\n\n**Pas à pas :**\n1. Mot-repère : *from 2018 to 2021*, une période qui a commencé et **fini** dans le passé.\n2. Elle n'habite plus à Madrid → ***lived***.\n\n**Erreur fréquente :** *has lived* dirait qu'elle y habite encore, ce qui contredit *to 2021*.\n\n**À retenir :** période terminée (*from … to …*) → prétérit."
       },
       {
         "intitule": "*She ...... in Madrid since 2021.*",
@@ -200,7 +217,8 @@
           "has lived",
           "lived"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *since* + point de départ, situation qui **dure encore** → **present perfect**.\n\n**Pas à pas :**\n1. Mot-repère : *since 2021*, depuis 2021 jusqu'à maintenant.\n2. Elle y habite toujours → ***has lived*** (*has* car *she*).\n\n**Erreur fréquente :** *lived since 2021* : le prétérit dit que c'est fini, *since* dit que ça continue ; les deux ne vont pas ensemble.\n\n**À retenir :** *since* → present perfect."
       },
       {
         "intitule": "*...... you ever ...... a TOEIC test?*",
@@ -209,7 +227,8 @@
           "Did / take",
           "Have / taken"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *ever* (« déjà, dans ta vie ») pour une **expérience** → **present perfect** en question : *Have you ever* + participe ?\n\n**Pas à pas :**\n1. Mot-repère : *ever*, pas de date.\n2. *Have* + *you* + *ever* + participe de *take* (*taken*) → ***Have*** *you ever* ***taken*** *a TOEIC test?*\n\n**Erreur fréquente :** *Did you ever take* : prétérit, il faudrait un moment précis du passé.\n\n**À retenir :** *Have you ever…?* = as-tu déjà… (dans ta vie) ?"
       },
       {
         "intitule": "*When ...... you ...... the TOEIC?*",
@@ -218,7 +237,8 @@
           "did / take",
           "have / taken"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une question avec ***When*** demande **un moment précis** du passé → **prétérit**.\n\n**Pas à pas :**\n1. *When* = quand ? → on attend une date (*in May*, *last year*).\n2. Date → prétérit en question : *did* + sujet + base verbale → *When* ***did*** *you* ***take*** *the TOEIC?*\n\n**Erreur fréquente :** *When have you taken…?* : le present perfect ne s'emploie pas avec *When*, puisque la réponse est une date.\n\n**À retenir :** *When…?* au passé → prétérit (*did* + base)."
       }
     ],
     "indices": [
@@ -240,7 +260,8 @@
           "for",
           "since"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *for* + **durée** (combien de temps) ; *since* + **point de départ** (depuis quand).\n\n**Pas à pas :**\n1. Après le trou : *three years* = une durée.\n2. → ***for*** *three years*.\n\n**Erreur fréquente :** traduire « depuis » par *since* à chaque fois : devant une durée, « depuis trois ans » = *for three years*.\n\n**À retenir :** durée → *for*."
       },
       {
         "intitule": "*She has been on holiday ...... Monday.*",
@@ -249,7 +270,8 @@
           "for",
           "since"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *since* + **point de départ** (un jour, une date, un événement).\n\n**Pas à pas :**\n1. Après le trou : *Monday* = un jour, un moment de départ.\n2. « Depuis quand est-elle en vacances ? Depuis lundi » → ***since*** *Monday*.\n\n**Erreur fréquente :** *for Monday* voudrait dire « pour lundi ».\n\n**À retenir :** jour, date → *since*."
       },
       {
         "intitule": "*We have known each other ...... 2015.*",
@@ -258,7 +280,8 @@
           "for",
           "since"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *since* + **point de départ**.\n\n**Pas à pas :**\n1. Après le trou : *2015* = une année, un moment de départ.\n2. → ***since*** *2015*.\n\n**Erreur fréquente :** *for 2015* : une année seule n'est pas une durée (il faudrait *for ten years*).\n\n**À retenir :** année → *since*."
       },
       {
         "intitule": "*They have been in the meeting ...... two hours.*",
@@ -267,7 +290,8 @@
           "for",
           "since"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *for* + **durée**.\n\n**Pas à pas :**\n1. Après le trou : *two hours* = une durée (combien de temps).\n2. → ***for*** *two hours*.\n\n**Erreur fréquente :** *since two hours* : faute très fréquente chez les francophones (« depuis deux heures »).\n\n**À retenir :** heures, jours, ans comptés → *for*."
       },
       {
         "intitule": "*He has been CEO ...... the merger.*",
@@ -276,7 +300,8 @@
           "for",
           "since"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *since* + **point de départ**, qui peut être un **événement**.\n\n**Pas à pas :**\n1. Après le trou : *the merger* (la fusion des deux entreprises) = un événement qui marque le début.\n2. « Depuis quand est-il PDG ? Depuis la fusion » → ***since*** *the merger*.\n\n**Erreur fréquente :** croire que *since* demande forcément une date chiffrée : un événement (*the merger*, *the meeting*, *I was a child*) est aussi un point de départ.\n\n**À retenir :** événement de départ → *since*."
       },
       {
         "intitule": "*I haven't seen her ...... ages.*",
@@ -285,7 +310,8 @@
           "for",
           "since"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *for* + **durée**, même vague : *for ages* = depuis une éternité, depuis très longtemps.\n\n**Pas à pas :**\n1. Après le trou : *ages* = « des siècles », une très longue **durée**.\n2. → *I haven't seen her* ***for*** *ages*.\n\n**Erreur fréquente :** *since ages* : *ages* n'est pas un moment de départ, c'est une durée.\n\n**À retenir :** *for ages* (expression figée) = depuis très longtemps."
       }
     ],
     "indices": [
@@ -308,7 +334,8 @@
           "yet",
           "already"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *yet* = **déjà ?** dans une question au present perfect, placé **à la fin**.\n\n**Pas à pas :**\n1. Question : *Has the parcel arrived …?*\n2. Trou à la fin de la question → ***yet***. Sens : le colis est-il déjà arrivé ?\n\n**Les autres réponses :**\n- *just* et *already* se placent entre *has* et le participe, pas à la fin d'une question neutre.\n- *ever* parle d'une expérience de vie (« au moins une fois »), pas du colis attendu.\n\n**À retenir :** question au present perfect, fin de phrase → *yet*."
       },
       {
         "intitule": "*I have ...... finished: you can check it now.* (à l'instant)",
@@ -319,7 +346,8 @@
           "yet",
           "since"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *just* = **à l'instant**, venir de ; place : entre *have* et le participe.\n\n**Pas à pas :**\n1. Indice : « à l'instant », et *you can check it now*.\n2. *I have* ***just*** *finished* = je viens de finir.\n\n**Les autres réponses :**\n- *ever* : expérience de vie, sans sens ici.\n- *yet* : se met à la fin, dans une question ou une négation.\n- *since* : il faudrait un point de départ après.\n\n**À retenir :** « venir de » = *have just* + participe."
       },
       {
         "intitule": "*Don't send the invoice: I have ...... sent it.* (déjà)",
@@ -330,7 +358,8 @@
           "yet",
           "still"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *already* = **déjà** dans une phrase **affirmative** ; place : entre *have* et le participe.\n\n**Pas à pas :**\n1. Indice : « déjà ». La phrase est affirmative : *I have …… sent it*.\n2. → *I have* ***already*** *sent it* (inutile de l'envoyer, c'est fait).\n\n**Les autres réponses :**\n- *ever* : expérience de vie (question), pas ici.\n- *yet* : question ou négation, en fin de phrase.\n- *still* : « encore, toujours » ; *I have still sent* ne veut rien dire.\n\n**À retenir :** affirmatif + « déjà » → *already*."
       },
       {
         "intitule": "*Have you ...... worked abroad?* (déjà, dans ta vie)",
@@ -341,7 +370,8 @@
           "already",
           "yet"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *ever* = **déjà, au moins une fois dans ta vie** (question d'expérience).\n\n**Pas à pas :**\n1. Indice : « déjà, dans ta vie ».\n2. Question d'expérience → *Have you* ***ever*** *worked abroad?*\n\n**Les autres réponses :**\n- *just* (à l'instant) : on ne demande pas si tu viens de travailler à l'étranger.\n- *already* : marque la surprise (« déjà ? »), pas l'expérience de vie.\n- *yet* : se met à la fin de la question.\n\n**À retenir :** expérience de vie → *Have you ever…?*"
       },
       {
         "intitule": "*I have ...... met the new CEO. I don't know what she looks like.*",
@@ -352,7 +382,8 @@
           "ever",
           "just"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *never* = **jamais** (dans toute ma vie, jusqu'à maintenant) ; il rend la phrase négative tout seul.\n\n**Pas à pas :**\n1. Indice : *I don't know what she looks like* (je ne sais pas à quoi elle ressemble) → je ne l'ai jamais rencontrée.\n2. Phrase sans *not* → le mot négatif est ***never*** : *I have never met the new CEO.*\n\n**Les autres réponses :**\n- *yet* : irait dans une négation avec *not*, à la fin (*I haven't met her yet*).\n- *ever* : seulement dans une question ou avec une négation (*I haven't ever*).\n- *just* : « je viens de la rencontrer » contredit la 2e phrase.\n\n**À retenir :** pas de *not* + sens négatif → *never*."
       },
       {
         "intitule": "*The client hasn't paid ......*",
@@ -363,7 +394,8 @@
           "never",
           "just"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *yet* = **pas encore** dans une phrase **négative**, à la fin.\n\n**Pas à pas :**\n1. La phrase est négative : *hasn't paid*.\n2. Trou à la fin → ***yet*** : le client n'a pas encore payé.\n\n**Les autres réponses :**\n- *already* : s'emploie dans une phrase affirmative.\n- *never* : ne s'ajoute pas à *hasn't* (double négation).\n- *just* : se place avant le participe, pas en fin de phrase négative.\n\n**À retenir :** négation au present perfect + « pas encore » → *yet* à la fin."
       }
     ],
     "indices": [
@@ -384,14 +416,16 @@
         "reponse": [
           "has just sent",
           "'s just sent"
-        ]
+        ],
+        "explication": "**Règle :** present perfect = *have / has* + participe passé ; *just* se place entre les deux (« venir de »).\n\n**Pas à pas :**\n1. Sujet *She* → *has*.\n2. *just* juste après *has*.\n3. Participe de *send* : *send* → *sent* → *sent*.\n4. → ***has just sent*** (ou *'s just sent*).\n\n**Erreurs fréquentes :** *has just send* (base au lieu du participe) ; *have just sent* (*have* avec *she*) ; *just has sent* (mauvaise place de *just*).\n\n**À retenir :** sujet + *has / have* + *just* + participe."
       },
       {
         "intitule": "*...... (you / finish) the report yet?*",
         "type": "texte",
         "reponse": [
           "have you finished"
-        ]
+        ],
+        "explication": "**Règle :** question au present perfect = *Have / Has* + sujet + participe passé (+ *yet* à la fin).\n\n**Pas à pas :**\n1. Sujet *you* → *have*.\n2. Question : on inverse → *Have you*.\n3. Participe de *finish* (régulier) : *finished*.\n4. → ***Have you finished*** *the report yet?*\n\n**Erreurs fréquentes :** *Did you finish* (prétérit : courant en anglais américain, mais la consigne demande le present perfect) ; *You have finished* (pas d'inversion).\n\n**À retenir :** question = *Have* + sujet + participe."
       },
       {
         "intitule": "*We ...... (work) on this project since January.* (action qui dure)",
@@ -401,7 +435,8 @@
           "'ve been working",
           "have worked",
           "'ve worked"
-        ]
+        ],
+        "explication": "**Règle :** action qui a **commencé dans le passé et dure encore** (*since January*) → present perfect, de préférence **continu** pour un verbe d'action : *have been* + -ing. Le simple *have worked* est aussi accepté.\n\n**Pas à pas :**\n1. Mot-repère : *since January* → present perfect.\n2. *work* est une action qui dure (indice « action qui dure ») → continu.\n3. *We* → *have been working* (ou *'ve been working*).\n\n**Erreurs fréquentes :** *We work since January* ou *We are working since January* : le présent ne traduit pas « depuis ».\n\n**À retenir :** « depuis » + action qui continue → *have been* + -ing."
       },
       {
         "intitule": "*How long ...... (you / know) Mr. Lee?*",
@@ -412,7 +447,8 @@
         "refuses": [
           "do you know",
           "have you been knowing"
-        ]
+        ],
+        "explication": "**Règle :** *How long…?* + situation qui dure → present perfect ; *know* est un verbe d'état → forme **simple**.\n\n**Pas à pas :**\n1. *How long* + aujourd'hui encore → present perfect.\n2. *know* = état → pas de *been knowing*.\n3. Question : *have you* + participe *known* → ***have you known*** *Mr. Lee?*\n\n**Erreurs fréquentes :** *do you know* (présent) ; *have you been knowing* (continu impossible).\n\n**À retenir :** *How long have you known…?*"
       },
       {
         "intitule": "*I ...... (never / be) to Australia.*",
@@ -420,7 +456,8 @@
         "reponse": [
           "have never been",
           "'ve never been"
-        ]
+        ],
+        "explication": "**Règle :** expérience de vie négative → *have never* + participe passé. « Être allé quelque part » = *have been to*.\n\n**Pas à pas :**\n1. Sujet *I* → *have*.\n2. *never* entre *have* et le participe.\n3. Participe de *be* : *been*.\n4. → ***have never been*** *to Australia*.\n\n**Erreurs fréquentes :** *have never gone* (on attend *been to* pour un voyage fait puis revenu) ; *never have been* (mauvaise place) ; *haven't never been* (double négation).\n\n**À retenir :** *I have never been to…* = je ne suis jamais allé à…"
       },
       {
         "intitule": "*Sales ...... (rise) by 10% this year.*",
@@ -432,7 +469,8 @@
         "refuses": [
           "have rised",
           "have raised"
-        ]
+        ],
+        "explication": "**Règle :** *this year* (l'année n'est pas finie) → **present perfect**. *rise* est irrégulier : *rise* → *rose* → *risen*.\n\n**Pas à pas :**\n1. Mot-repère : *this year*, période en cours.\n2. Sujet *Sales* (pluriel) → *have*.\n3. Participe de *rise* : *risen* → ***have risen***.\n\n**Erreurs fréquentes :** *have rose* (prétérit après *have*) ; *have raised* (*raise* veut un complément : on augmente **quelque chose**) ; *has risen* (*sales* est pluriel).\n\n**À retenir :** *this year / this month* → present perfect ; *have risen*."
       }
     ],
     "indices": [
@@ -454,7 +492,8 @@
           "understand",
           "am understanding"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *understand* est un **verbe d'état** (on comprend ou on ne comprend pas, ce n'est pas une activité) → forme simple.\n\n**Pas à pas :**\n1. Test : « être en train de comprendre » ne décrit pas une activité qu'on fait.\n2. → ***understand*** : *I understand what you mean.*\n\n**Erreur fréquente :** *I am understanding* : calque du « je suis en train de… » ; impossible avec un verbe d'état.\n\n**À retenir :** *understand* → toujours au simple."
       },
       {
         "intitule": "*She ...... a new car at the moment.*",
@@ -463,7 +502,8 @@
           "wants",
           "is wanting"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *want* est un **verbe d'état** → forme simple, **même avec *at the moment***.\n\n**Pas à pas :**\n1. *at the moment* fait penser à la forme -ing, c'est le piège.\n2. Mais *want* (vouloir) est un état → simple, avec -s pour *she* : ***wants***.\n\n**Erreur fréquente :** se laisser guider par *at the moment* sans regarder le verbe.\n\n**À retenir :** verbe d'état + *now / at the moment* → reste au simple."
       },
       {
         "intitule": "*Look! The technician ...... the printer.*",
@@ -472,7 +512,8 @@
           "repairs",
           "is repairing"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *repair* (réparer) est une **action** ; *Look!* montre qu'elle se passe **maintenant** → present continuous.\n\n**Pas à pas :**\n1. *Look!* = regarde ! → l'action est sous nos yeux.\n2. *repair* = action → *is repairing* (*the technician* = *he*).\n\n**Erreur fréquente :** *repairs* (présent simple) dirait que c'est son habitude, pas ce qu'il fait maintenant.\n\n**À retenir :** *Look!* + verbe d'action → *be* + -ing."
       },
       {
         "intitule": "*This laptop ...... to the company, not to you.*",
@@ -481,7 +522,8 @@
           "belongs",
           "is belonging"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *belong (to)* = appartenir : **verbe d'état** → forme simple.\n\n**Pas à pas :**\n1. « Être en train d'appartenir » n'a pas de sens : c'est une situation.\n2. → ***belongs*** (avec -s pour *this laptop*).\n\n**Erreur fréquente :** *is belonging* : impossible.\n\n**À retenir :** *belong, own* (posséder) → simple."
       },
       {
         "intitule": "*We ...... the supplier for ten years.*",
@@ -490,7 +532,8 @@
           "have known",
           "have been knowing"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *for ten years* (situation qui dure encore) → present perfect ; *know* est un verbe d'état → present perfect **simple**.\n\n**Pas à pas :**\n1. Mot-repère : *for ten years* → present perfect.\n2. *know* = état → pas de forme continue.\n3. → ***have known***.\n\n**Erreur fréquente :** *have been knowing* : on choisit le continu à cause de la durée, mais un verbe d'état l'interdit.\n\n**À retenir :** durée + verbe d'état → *have* + participe (simple)."
       }
     ],
     "indices": [
@@ -512,7 +555,8 @@
           "get",
           "will get"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** après *when* (pour le futur), on met le **présent**, pas *will*.\n\n**Pas à pas :**\n1. Partie principale : *I'll send you the file* (futur, avec *will*).\n2. Après *when* → présent : *when I* ***get*** *back to the office*.\n\n**Erreur fréquente :** *when I will get* : calque du français « quand je serai rentré ».\n\n**À retenir :** *when* + présent pour le futur."
       },
       {
         "intitule": "*As soon as the contract ......, we will start.*",
@@ -521,7 +565,8 @@
           "is signed",
           "will be signed"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** après *as soon as*, on met le **présent**, aussi au passif : *is* + participe passé.\n\n**Pas à pas :**\n1. *the contract* subit l'action (on le signe) → passif.\n2. Après *as soon as* → passif au présent : ***is signed***.\n3. La partie principale garde *will* : *we will start*.\n\n**Erreur fréquente :** *will be signed* : c'est le même interdit (*will* après *as soon as*), même au passif.\n\n**À retenir :** *as soon as* + présent (passif : *is* + participe)."
       },
       {
         "intitule": "*We won't leave until the meeting ...... .*",
@@ -530,7 +575,8 @@
           "ends",
           "will end"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** après *until* (jusqu'à ce que), on met le **présent** pour le futur.\n\n**Pas à pas :**\n1. Partie principale : *We won't leave* (*won't* = *will not*).\n2. Après *until* → présent, *the meeting* = *it* → ***ends***.\n\n**Erreur fréquente :** *until the meeting will end*.\n\n**À retenir :** *until* + présent."
       },
       {
         "intitule": "*She ...... you as soon as she lands.*",
@@ -539,7 +585,8 @@
           "calls",
           "will call"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** le présent est obligatoire **après** *as soon as* ; mais la **partie principale** parle du futur avec ***will***.\n\n**Pas à pas :**\n1. Le trou est **avant** *as soon as* : c'est la partie principale.\n2. Futur → ***will call***.\n3. Après *as soon as* : *she lands* (présent), déjà écrit.\n\n**Erreur fréquente :** appliquer la règle « pas de *will* » au mauvais morceau : *She calls you as soon as she lands* dirait que c'est une habitude.\n\n**À retenir :** pas de *will* **après** *as soon as*, mais *will* dans l'autre partie."
       },
       {
         "intitule": "*Once you ...... the form, give it to HR.*",
@@ -548,7 +595,8 @@
           "complete",
           "will complete"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** après *once* (une fois que), on met le **présent** pour le futur.\n\n**Pas à pas :**\n1. Partie principale : *give it to HR* (ordre).\n2. Après *Once* → présent : *you* ***complete*** *the form*.\n\n**Erreur fréquente :** *Once you will complete*.\n\n**À retenir :** *once* + présent."
       }
     ],
     "indices": [
@@ -567,7 +615,8 @@
         "type": "texte",
         "reponse": [
           "had already started"
-        ]
+        ],
+        "explication": "**Règle :** past perfect = *had* + participe passé : action **plus ancienne** qu'une autre action passée. *already* se place entre *had* et le participe.\n\n**Pas à pas :**\n1. Action passée : *When I arrived* (prétérit).\n2. La réunion avait commencé **avant** → past perfect.\n3. *had* + *already* + *started* → ***had already started***.\n\n**Erreurs fréquentes :** *has already started* (present perfect dans un récit passé) ; *already started* (l'ordre des actions n'est plus clair) ; *had already start* (base au lieu du participe).\n\n**À retenir :** *had already* + participe = « avait déjà »."
       },
       {
         "intitule": "*She was tired because she ...... (work) all night.* (action qui a duré)",
@@ -575,14 +624,16 @@
         "reponse": [
           "had been working",
           "had worked"
-        ]
+        ],
+        "explication": "**Règle :** action qui a **duré** jusqu'à un moment du passé → past perfect **continu** : *had been* + -ing (le simple *had worked* est aussi accepté).\n\n**Pas à pas :**\n1. Récit au passé : *She was tired*.\n2. Elle avait travaillé **toute la nuit**, avant ce moment, et l'action a duré (*all night*).\n3. → ***had been working***.\n\n**Erreurs fréquentes :** *has been working* (present perfect continu : on n'est pas « maintenant ») ; *was working* (en cours, sans le lien de cause « elle était fatiguée **parce qu'**elle avait travaillé »).\n\n**À retenir :** durée avant un moment passé → *had been* + -ing."
       },
       {
         "intitule": "*By the time he was 30, he ...... (set up) three companies.*",
         "type": "texte",
         "reponse": [
           "had set up"
-        ]
+        ],
+        "explication": "**Règle :** *By the time* + passé → past perfect : l'action est **terminée avant** ce moment.\n\n**Pas à pas :**\n1. Moment passé : *By the time he was 30* (quand il a eu 30 ans).\n2. Les trois entreprises étaient déjà créées **avant** → past perfect.\n3. *set up* est irrégulier et ne change pas (*set up – set up – set up*) → ***had set up***.\n\n**Erreurs fréquentes :** *had setted up* (n'existe pas) ; *set up* seul (prétérit).\n\n**À retenir :** *By the time* + passé → *had* + participe."
       },
       {
         "intitule": "*I realised that I ...... (forget) my badge.*",
@@ -592,7 +643,8 @@
         ],
         "refuses": [
           "forgot"
-        ]
+        ],
+        "explication": "**Règle :** après *I realised that* (je me suis rendu compte que), ce qu'on découvre s'est passé **avant** → past perfect.\n\n**Pas à pas :**\n1. Action passée : *I realised* (prétérit).\n2. L'oubli du badge est arrivé **avant** que je m'en rende compte.\n3. *forget* → *forgot* → *forgotten* → ***had forgotten***.\n\n**Erreurs fréquentes :** *had forgot* (prétérit après *had*) ; *have forgotten* (on est dans un récit au passé).\n\n**À retenir :** *realised / saw / found that* + action d'avant → past perfect."
       },
       {
         "intitule": "*They ...... (wait) for 40 minutes when the taxi arrived.*",
@@ -600,7 +652,8 @@
         "reponse": [
           "had been waiting",
           "had waited"
-        ]
+        ],
+        "explication": "**Règle :** *for* + durée jusqu'à un moment passé → past perfect **continu** *had been* + -ing (le simple *had waited* est aussi accepté).\n\n**Pas à pas :**\n1. Moment passé : *when the taxi arrived*.\n2. L'attente a duré 40 minutes **jusqu'à** ce moment → *had been waiting*.\n\n**Erreurs fréquentes :** *have been waiting* (présent : on attendrait encore) ; *were waiting* (pas de lien avec la durée *for 40 minutes*).\n\n**À retenir :** *for* + durée + *when* + prétérit → *had been* + -ing."
       }
     ],
     "indices": [
@@ -623,7 +676,8 @@
           "'ll get",
           "'m going to get"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *will* + base sert pour une **décision prise à l'instant**, en réaction à ce qui se passe.\n\n**Pas à pas :**\n1. Situation : le téléphone sonne **maintenant**.\n2. La personne décide sur le moment de répondre → ***'ll get*** *it* (je réponds / j'y vais).\n\n**Les autres réponses :**\n- *'m going to get* : projet décidé **avant**, ce qui n'est pas le cas.\n- *'ll be getting* : action en cours à un moment futur, sans sens ici.\n- *'ll have got* : action terminée avant un moment futur, sans sens ici.\n\n**À retenir :** réaction immédiate → *I'll…*"
       },
       {
         "intitule": "*We ...... a new office in Lyon next year: we signed the lease last week.* (projet décidé)",
@@ -634,7 +688,8 @@
           "have opened",
           "are going to open"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *be going to* + base sert pour un **projet déjà décidé**.\n\n**Pas à pas :**\n1. Indice : *we signed the lease last week* (on a signé le bail la semaine dernière) → la décision est prise.\n2. Futur (*next year*) + projet décidé → ***are going to open***.\n\n**Les autres réponses :**\n- *will have opened* : « aurons ouvert » avant un moment futur ; il faudrait *by next year*.\n- *opened* et *have opened* : temps du passé, alors que c'est *next year*.\n\n**À retenir :** décision déjà prise → *be going to*."
       },
       {
         "intitule": "*I ...... the sales team at 10 a.m. tomorrow; it's in my diary.* (rendez-vous)",
@@ -645,7 +700,8 @@
           "'m meeting",
           "met"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** le **present continuous** sert pour un **rendez-vous organisé** dans le futur.\n\n**Pas à pas :**\n1. Indice : *it's in my diary* (c'est dans mon agenda) et *at 10 a.m. tomorrow*.\n2. Rendez-vous fixé → ***'m meeting*** *the sales team*.\n\n**Les autres réponses :**\n- *was meeting* : past continuous, on parle de demain.\n- *'ll have met* : « aurai rencontré » avant un moment, sans *by*.\n- *met* : prétérit.\n\n**À retenir :** rendez-vous dans l'agenda → *I'm* + -ing."
       },
       {
         "intitule": "*Don't call at 3: I ...... a presentation then.* (en cours à ce moment-là)",
@@ -656,7 +712,8 @@
           "'ll have given",
           "'ll give"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *will be* + -ing (**future continuous**) = action **en cours** à un moment précis du futur.\n\n**Pas à pas :**\n1. Indice : *Don't call at 3* et *then* (à ce moment-là).\n2. À 15 h, la présentation sera **en cours** → ***'ll be giving***.\n\n**Les autres réponses :**\n- *give* : présent simple (habitude), pas ici.\n- *'ll have given* : la présentation serait **finie** à 15 h ; on pourrait alors appeler.\n- *'ll give* : futur simple, il ne dit pas « en train de » au moment de l'appel.\n\n**À retenir :** « à ce moment-là, je serai en train de… » → *will be* + -ing."
       },
       {
         "intitule": "*By the end of the year, we ...... 1,000 customers.* (terminé avant)",
@@ -667,7 +724,8 @@
           "will be reaching",
           "will reach"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *will have* + participe passé (**future perfect**) = action **terminée avant** un moment du futur, avec *by*.\n\n**Pas à pas :**\n1. Indice : *By the end of the year* (d'ici la fin de l'année).\n2. Les 1 000 clients seront **atteints** avant cette date → ***will have reached***.\n\n**Les autres réponses :**\n- *are reaching* : rendez-vous organisé, pas le sens.\n- *will be reaching* : en cours à ce moment, pas « terminé ».\n- *will reach* : futur simple, possible en anglais courant mais il ne montre pas le « déjà fait avant » demandé par *by*.\n\n**À retenir :** *by* + moment futur → *will have* + participe."
       },
       {
         "intitule": "*Look at those clouds! It ...... rain.* (signe visible)",
@@ -678,7 +736,8 @@
           "will be",
           "has"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *be going to* sert aussi pour une **prédiction avec un signe visible** maintenant.\n\n**Pas à pas :**\n1. Indice : *Look at those clouds!* (regarde ces nuages !) → on voit le signe.\n2. → *It* ***is going to*** *rain*.\n\n**Les autres réponses :**\n- *is* (*It is rain*) : forme fausse.\n- *will be* (*It will be rain*) : forme fausse (« ce sera de la pluie »).\n- *has* (*It has rain*) : forme fausse.\n\n**À retenir :** signe visible → *It's going to…*"
       }
     ],
     "indices": [
@@ -699,14 +758,16 @@
         "reponse": [
           "has gone",
           "'s gone"
-        ]
+        ],
+        "explication": "**Règle :** *has gone (to)* = **est parti(e) et y est encore** ; c'est le present perfect de *go*.\n\n**Pas à pas :**\n1. Indice : *She'll be back soon* (elle sera bientôt de retour) → elle est **encore** à la banque.\n2. Pas de date, lien avec maintenant → present perfect.\n3. *She* → *has* + participe de *go* (*gone*) → ***has gone*** (ou *'s gone*).\n\n**Erreurs fréquentes :** *went* (prétérit, raconterait un fait passé sans lien avec maintenant) ; *has been* (elle y serait allée et **revenue** : elle serait déjà là).\n\n**À retenir :** *has gone* = parti et pas encore revenu ; *has been* = allé et revenu."
       },
       {
         "intitule": "*I ...... (meet) her at a conference in 2019.*",
         "type": "texte",
         "reponse": [
           "met"
-        ]
+        ],
+        "explication": "**Règle :** une date passée et terminée (*in 2019*) → **prétérit**.\n\n**Pas à pas :**\n1. Mot-repère : *in 2019*.\n2. *meet* est irrégulier : *meet* → *met* → *met*.\n3. → ***met***.\n\n**Erreurs fréquentes :** *have met* (present perfect avec une date) ; *meeted* (n'existe pas).\n\n**À retenir :** *in* + année passée → prétérit."
       },
       {
         "intitule": "*Quick, we're late! The film ...... (start) in five minutes.*",
@@ -716,21 +777,24 @@
           "is starting",
           "will start",
           "'s starting"
-        ]
+        ],
+        "explication": "**Règle :** pour un **horaire** (film, train), on utilise le **présent simple** ; le present continuous et *will* sont aussi acceptés ici.\n\n**Pas à pas :**\n1. Indice : *in five minutes*, la séance est à une heure fixée.\n2. Horaire officiel → présent simple : *The film* ***starts*** (le -s pour *it*).\n3. *is starting* (c'est imminent) et *will start* sont aussi corrects.\n\n**Erreurs fréquentes :** *start* sans -s (3e personne) ; *has started* (le film n'a pas encore commencé).\n\n**À retenir :** horaire → présent simple (*The train leaves at 6*)."
       },
       {
         "intitule": "*What ...... (you / do) right now? Can you help me?*",
         "type": "texte",
         "reponse": [
           "are you doing"
-        ]
+        ],
+        "explication": "**Règle :** action **en cours maintenant** (*right now*) → **present continuous**, en question : *am / is / are* + sujet + -ing.\n\n**Pas à pas :**\n1. Mot-repère : *right now*.\n2. Sujet *you* → *are*.\n3. Question : inversion → *What* ***are you doing*** *right now?*\n\n**Erreurs fréquentes :** *What do you do?* (= quel est ton métier ?) ; *What you are doing?* (pas d'inversion).\n\n**À retenir :** *right now* → *be* + -ing ; question = *are you* + -ing."
       },
       {
         "intitule": "*When I opened the door, I saw that someone ...... (take) my laptop.*",
         "type": "texte",
         "reponse": [
           "had taken"
-        ]
+        ],
+        "explication": "**Règle :** ce qu'on **découvre** dans un récit passé s'était passé **avant** → **past perfect**.\n\n**Pas à pas :**\n1. Actions passées : *I opened the door*, *I saw that…*\n2. Le vol de l'ordinateur a eu lieu **avant** que j'ouvre la porte.\n3. *take* → *took* → *taken* → ***had taken***.\n\n**Erreurs fréquentes :** *took* (on comprendrait que le vol se passe au même moment) ; *has taken* (présent dans un récit au passé) ; *had took*.\n\n**À retenir :** *saw that* + action plus ancienne → *had* + participe."
       },
       {
         "intitule": "*This time next week, we ...... (fly) to New York.*",
@@ -740,7 +804,8 @@
           "'ll be flying",
           "are flying",
           "'re flying"
-        ]
+        ],
+        "explication": "**Règle :** *This time next week* → action **en cours** à un moment du futur → **future continuous** (*will be* + -ing). Le present continuous (vol réservé) est aussi accepté.\n\n**Pas à pas :**\n1. Mot-repère : *This time next week* (la semaine prochaine à la même heure).\n2. À ce moment, le vol sera en cours → ***will be flying*** (ou *'ll be flying*).\n\n**Erreurs fréquentes :** *will fly* (ne dit pas « en train de ») ; *will have flown* (le vol serait terminé).\n\n**À retenir :** *this time next week* → *will be* + -ing."
       },
       {
         "intitule": "*By 2030, prices ...... (double).*",
@@ -748,7 +813,8 @@
         "reponse": [
           "will have doubled",
           "'ll have doubled"
-        ]
+        ],
+        "explication": "**Règle :** *By* + date future → action **terminée avant** → **future perfect** (*will have* + participe).\n\n**Pas à pas :**\n1. Mot-repère : *By 2030*.\n2. Le doublement sera fait avant → *will have* + *doubled* (régulier) → ***will have doubled***.\n\n**Erreurs fréquentes :** *will double* (futur simple : il ne montre pas « ce sera déjà fait ») ; *will have double* (base au lieu du participe).\n\n**À retenir :** *By* + futur → *will have* + participe."
       },
       {
         "intitule": "*Text me when you ...... (arrive).*",
@@ -758,7 +824,8 @@
         ],
         "refuses": [
           "will arrive"
-        ]
+        ],
+        "explication": "**Règle :** après *when*, pour le futur → **présent simple**.\n\n**Pas à pas :**\n1. *Text me* = ordre (futur).\n2. Après *when* → présent : *you* ***arrive***.\n\n**Erreurs fréquentes :** *will arrive* (interdit après *when*) ; *arrives* (-s seulement avec *he / she / it*).\n\n**À retenir :** *when* + présent."
       }
     ],
     "indices": [
@@ -780,7 +847,8 @@
           "I have seen him yesterday.",
           "I have saw him yesterday."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une date finie (*yesterday*) → **prétérit** ; après *have*, il faut le participe passé, jamais le prétérit.\n\n**Pas à pas :** on vérifie chaque phrase.\n\n| Phrase | Problème |\n|---|---|\n| ***I saw him yesterday.*** | aucun : prétérit + date finie ✔ |\n| *I have seen him yesterday.* | present perfect avec une date finie ✘ |\n| *I have saw him yesterday.* | *have* + prétérit (*saw*) au lieu du participe, et date finie ✘ |\n\n**À retenir :** *yesterday* → prétérit ; *have* + participe (*seen*), jamais *have saw*."
       },
       {
         "intitule": "Laquelle est correcte ?",
@@ -790,7 +858,8 @@
           "I have worked here since 2020.",
           "I am working here since 2020."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** « depuis » + situation qui dure → **present perfect** + *since* / *for*.\n\n**Pas à pas :**\n\n| Phrase | Problème |\n|---|---|\n| *I work here since 2020.* | présent : calque du français ✘ |\n| ***I have worked here since 2020.*** | present perfect + *since* ✔ |\n| *I am working here since 2020.* | present continuous : même erreur ✘ |\n\n**À retenir :** « je travaille ici depuis » → *I have worked / have been working here since…*"
       },
       {
         "intitule": "Laquelle est correcte ?",
@@ -800,7 +869,8 @@
           "I'll tell him when he comes.",
           "I'll tell him when he will come."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** après *when* (futur), on met le **présent** ; la partie principale garde *will*.\n\n**Pas à pas :**\n\n| Phrase | Problème |\n|---|---|\n| *I tell him when he will come.* | les temps sont inversés : présent dans la principale, *will* après *when* ✘ |\n| ***I'll tell him when he comes.*** | *will* dans la principale, présent après *when* ✔ |\n| *I'll tell him when he will come.* | *will* après *when* ✘ |\n\n**À retenir :** *I'll…* **when** + présent."
       },
       {
         "intitule": "Laquelle est correcte ?",
@@ -810,7 +880,8 @@
           "I am knowing the answer.",
           "I have been knowing the answer."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *know* est un **verbe d'état** : pas de forme en -ing.\n\n**Pas à pas :**\n\n| Phrase | Problème |\n|---|---|\n| ***I know the answer.*** | présent simple ✔ |\n| *I am knowing the answer.* | forme -ing avec un verbe d'état ✘ |\n| *I have been knowing the answer.* | même erreur au present perfect ✘ |\n\n**À retenir :** *know* → toujours au simple."
       },
       {
         "intitule": "Laquelle est correcte ?",
@@ -820,7 +891,8 @@
           "I just arrived, so I'm a bit lost.",
           "I'm just arriving, so I'm a bit lost."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** « venir de » + résultat qui compte maintenant → present perfect + *just*.\n\n**Pas à pas :**\n\n| Phrase | Problème |\n|---|---|\n| ***I've just arrived, so I'm a bit lost.*** | present perfect + *just*, lien avec maintenant (*I'm lost*) ✔ |\n| *I just arrived, so I'm a bit lost.* | prétérit : accepté en américain, mais c'est l'erreur corrigée dans le cours (anglais britannique, TOEIC) ✘ |\n| *I'm just arriving…* | « je suis en train d'arriver » : ne dit pas que je suis déjà là ✘ |\n\n**À retenir :** « je viens de » → *I've just* + participe."
       }
     ],
     "indices": [
@@ -843,7 +915,8 @@
           "worked",
           "has worked"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *since* + point de départ, situation qui **continue** → **present perfect**.\n\n**Pas à pas :**\n1. Mot-repère : *since it opened in 2012*.\n2. Elle travaille toujours pour l'entreprise → ***has worked*** (*has* pour *Ms. Rivera*).\n\n**Les autres réponses :**\n- *works* : le présent ne traduit pas « depuis ».\n- *will work* : le futur ne va pas avec *since*.\n- *worked* : prétérit = fini, alors que *since* dit que ça continue.\n\n**À retenir :** *since* → present perfect."
       },
       {
         "intitule": "*The shipment ...... yesterday afternoon.*",
@@ -854,7 +927,8 @@
           "arrives",
           "arrived"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** date finie (*yesterday afternoon*) → **prétérit**.\n\n**Pas à pas :**\n1. Mot-repère : *yesterday afternoon*.\n2. → ***arrived***.\n\n**Les autres réponses :**\n- *has arrived* : present perfect avec une date finie.\n- *had been arriving* : past perfect continu, sans autre action passée et sans durée.\n- *arrives* : présent.\n\n**À retenir :** *yesterday* → prétérit."
       },
       {
         "intitule": "*By the time the CEO arrived, the presentation ...... .*",
@@ -865,7 +939,8 @@
           "already began",
           "has already begun"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *By the time* + prétérit → l'autre action est **terminée avant** → **past perfect**.\n\n**Pas à pas :**\n1. Moment passé : *By the time the CEO arrived*.\n2. La présentation avait commencé **avant** → *had already* + participe de *begin* (*begin – began – begun*) → ***had already begun***.\n\n**Les autres réponses :**\n- *already begins* : présent dans un récit au passé.\n- *already began* : prétérit, l'antériorité n'est pas marquée ; avec *By the time*, on attend le past perfect.\n- *has already begun* : present perfect dans un récit au passé.\n\n**À retenir :** *By the time* + prétérit → *had* + participe."
       },
       {
         "intitule": "*We will contact you as soon as your order ...... .*",
@@ -876,7 +951,8 @@
           "will be ready",
           "is ready"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** après *as soon as* (futur) → **présent**.\n\n**Pas à pas :**\n1. Partie principale : *We will contact you* (futur).\n2. Après *as soon as* → présent : *your order* ***is ready***.\n\n**Les autres réponses :**\n- *will be ready* : *will* après *as soon as*, interdit.\n- *was ready* : passé.\n- *has been readied* : forme lourde et peu naturelle (*ready* s'emploie comme adjectif : *be ready*).\n\n**À retenir :** *as soon as* + présent."
       },
       {
         "intitule": "*At the moment, the technicians ...... the network.*",
@@ -887,7 +963,8 @@
           "have upgraded",
           "upgraded"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *At the moment* + verbe d'action → **present continuous**.\n\n**Pas à pas :**\n1. Mot-repère : *At the moment* (en ce moment).\n2. *upgrade* (mettre à niveau) = action → *are upgrading* (*the technicians* = *they*).\n\n**Les autres réponses :**\n- *upgrade* : présent simple (habitude).\n- *have upgraded* : travail déjà fini.\n- *upgraded* : prétérit.\n\n**À retenir :** *at the moment* + action → *be* + -ing."
       },
       {
         "intitule": "*The new branch ...... next spring.*",
@@ -898,7 +975,8 @@
           "will open",
           "had opened"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *next spring* (le printemps prochain) → **futur**.\n\n**Pas à pas :**\n1. Mot-repère : *next spring*.\n2. Le seul choix au futur → ***will open***.\n\n**Les autres réponses :** *opened* (prétérit), *has opened* (present perfect) et *had opened* (past perfect) parlent tous du passé.\n\n**À retenir :** *next* + période → futur."
       }
     ],
     "indices": [
@@ -921,7 +999,8 @@
           "will rise",
           "rose"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *since January* + action qui **continue** → **present perfect continuous** (*have been* + -ing).\n\n**Pas à pas :**\n1. Mot-repère : *since January*.\n2. *rise* (monter) est une action qui dure, *steadily* (régulièrement) insiste sur la progression.\n3. *our sales figures* (pluriel) → ***have been rising***.\n\n**Les autres réponses :**\n- *rise* : présent, ne traduit pas « depuis ».\n- *will rise* : futur, incompatible avec *since*.\n- *rose* : prétérit, incompatible avec *since*.\n\n**À retenir :** *since* + action qui continue → *have been* + -ing."
       },
       {
         "intitule": "(2)",
@@ -932,7 +1011,8 @@
           "have signed",
           "sign"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une période passée **terminée** (*Last month*) → **prétérit**.\n\n**Pas à pas :**\n1. Mot-repère : *Last month alone* (rien que le mois dernier).\n2. → ***signed***.\n\n**Les autres réponses :**\n- *had been signing* : il faudrait une autre action passée plus récente.\n- *have signed* : present perfect avec une période finie.\n- *sign* : présent.\n\n**À retenir :** *last month* → prétérit."
       },
       {
         "intitule": "(3)",
@@ -943,7 +1023,8 @@
           "had",
           "are having"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** événement futur **organisé** → **present continuous**.\n\n**Pas à pas :**\n1. Mot-repère : *next Friday* (futur).\n2. Indice dans la suite de la phrase : *the restaurant is already booked* (le restaurant est déjà réservé) → c'est organisé.\n3. → *we* ***are having*** *a dinner*.\n\n**Les autres réponses :**\n- *have had* : present perfect, passé.\n- *were having* : past continuous, passé.\n- *had* : prétérit, passé.\n\n**À retenir :** futur réservé, organisé → *be* + -ing."
       },
       {
         "intitule": "(4)",
@@ -954,7 +1035,8 @@
           "sent",
           "has sent"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** après *before* (pour le futur) → **présent**.\n\n**Pas à pas :**\n1. *on Wednesday* : c'est dans le futur.\n2. Mais le trou suit *before* → présent : *she* ***sends*** (-s pour *she*).\n\n**Les autres réponses :**\n- *will send* : *will* après *before*, interdit.\n- *sent* : prétérit.\n- *has sent* : present perfect ; il se rencontre après *before* pour insister sur une action terminée, mais ici l'envoi est une action simple prévue à un jour précis (*on Wednesday*) : la forme attendue est le présent simple.\n\n**À retenir :** *before / when / as soon as* + présent pour le futur."
       }
     ],
     "indices": [
@@ -972,22 +1054,26 @@
       {
         "intitule": "Je travaille ici depuis deux ans.",
         "type": "auto",
-        "reponse": "*I have worked (have been working) here for two years.*"
+        "reponse": "*I have worked (have been working) here for two years.*",
+        "explication": "**Ce que doit contenir une bonne réponse :** « depuis » + situation qui dure encore = **present perfect** + ***for*** (deux ans est une durée).\n\n**Pas à pas :**\n1. « Je travaille ici » + « depuis » + ça continue → present perfect : *I have worked* ou *I have been working* (action qui dure, le continu est très naturel).\n2. « deux ans » = une **durée** → *for two years* (pas *since*).\n3. L'ordre : sujet + verbe + *here* + *for two years*.\n\n**Erreurs fréquentes :** *I work here since two years* (deux erreurs : présent et *since*) ; *I am working here for two years* (le present continuous ne traduit pas « depuis »).\n\n**À retenir :** « depuis » + durée → *have (been) …ing for*."
       },
       {
         "intitule": "Je viens d'envoyer la facture.",
         "type": "auto",
-        "reponse": "*I have just sent the invoice.*"
+        "reponse": "*I have just sent the invoice.*",
+        "explication": "**Ce que doit contenir une bonne réponse :** « venir de » = present perfect + ***just***.\n\n**Pas à pas :**\n1. « Je viens de » → *I have just* + participe passé.\n2. « envoyer » → *send – sent – sent* → *sent*.\n3. « la facture » = *the invoice* (*the bill* est accepté dans la vie courante).\n\n**Erreurs fréquentes :** *I come to send* (traduction mot à mot de « venir de ») ; *I just sent* (prétérit, américain) ; *I have just send* (base au lieu du participe).\n\n**À retenir :** « je viens de faire » → *I have just done*."
       },
       {
         "intitule": "Quand je suis arrivé, la réunion avait déjà commencé.",
         "type": "auto",
-        "reponse": "*When I arrived, the meeting had already started.*"
+        "reponse": "*When I arrived, the meeting had already started.*",
+        "explication": "**Ce que doit contenir une bonne réponse :** deux actions passées, la plus ancienne au **past perfect**.\n\n**Pas à pas :**\n1. « Quand je suis arrivé » → *When I arrived* (prétérit, une action finie dans le récit).\n2. « la réunion avait déjà commencé » → plus-que-parfait français = past perfect : *had already started* (ou *had already begun*).\n3. *already* entre *had* et le participe.\n\n**Erreurs fréquentes :** *When I have arrived* (present perfect dans un récit) ; *the meeting already started* (l'antériorité disparaît) ; *has already started*.\n\n**À retenir :** « avait fait » → *had done*."
       },
       {
         "intitule": "Je t'appellerai dès que j'aurai les résultats.",
         "type": "auto",
-        "reponse": "*I will call you as soon as I have (get) the results.*"
+        "reponse": "*I will call you as soon as I have (get) the results.*",
+        "explication": "**Ce que doit contenir une bonne réponse :** futur dans la partie principale (*will*), **présent** après *as soon as*.\n\n**Pas à pas :**\n1. « Je t'appellerai » → *I will call you* (*I'll call you*).\n2. « dès que » → *as soon as*.\n3. « j'aurai les résultats » : futur antérieur en français, mais après *as soon as* → présent : *I have the results* (ou *I get the results*).\n\n**Erreurs fréquentes :** *as soon as I will have the results* (*will* interdit après *as soon as*) ; confondre *I have* (présent de *have*, « j'ai ») avec un present perfect : ici *have* veut juste dire « avoir ».\n\n**À retenir :** « dès que j'aurai… » → *as soon as I have / get…*"
       }
     ],
     "indices": [

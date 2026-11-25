@@ -1,6 +1,6 @@
 import { chargerQuiz } from '../catalogue.js';
-import { avecFormules, langueDe } from '../domaines.js';
-import { echapper, rendreMarkdownEnLigne } from '../outils.js';
+import { avecFormules, estDomaineCode, langageDe, langueDe, LANGAGES } from '../domaines.js';
+import { colorerCode, echapper, rendreMarkdown, rendreMarkdownEnLigne } from '../outils.js';
 
 function melanger(tableau) {
   const copie = [...tableau];
@@ -82,6 +82,7 @@ export async function afficherQuiz(ctx, chapitre) {
   const langue = langueDe(chapitre.domaine);
   const attributLangue = langue ? ` lang="${langue}"` : '';
   const enLigne = (texte) => rendreMarkdownEnLigne(texte, options);
+  const surligneur = estDomaineCode(chapitre.domaine) ? LANGAGES[langageDe(chapitre.domaine)].surligneur : undefined;
 
   function blocQuestion(question, index, numero, ordre) {
     const choix = ordre
@@ -91,7 +92,7 @@ export async function afficherQuiz(ctx, chapitre) {
       <div class="question" data-index="${index}">
         <p class="question-texte"><span class="numero">${numero}.</span><span${attributLangue}>${enLigne(question.question)}</span></p>
         <div class="choix">${choix}</div>
-        <div class="explication" role="status" tabindex="-1" hidden></div>
+        <div class="explication markdown" role="status" tabindex="-1" hidden></div>
       </div>`;
   }
 
@@ -105,7 +106,8 @@ export async function afficherQuiz(ctx, chapitre) {
     });
 
     const explication = bloc.querySelector('.explication');
-    explication.innerHTML = `<strong>${juste ? 'Bonne réponse !' : 'Raté.'}</strong> ${enLigne(question.explication)}`;
+    explication.innerHTML = `<p><strong>${juste ? 'Bonne réponse !' : 'Raté.'}</strong></p>${rendreMarkdown(question.explication, options)}`;
+    colorerCode(explication, surligneur);
     explication.hidden = false;
     return explication;
   }

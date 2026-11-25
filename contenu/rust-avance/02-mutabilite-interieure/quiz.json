@@ -1,21 +1,36 @@
 [
   {
     "question": "Quand `RefCell` vérifie-t-il les règles d'emprunt ?",
-    "choix": ["À la compilation", "À l'exécution", "Jamais", "Au lancement de `cargo build` seulement"],
+    "choix": [
+      "À la compilation",
+      "À l'exécution",
+      "Jamais",
+      "Au lancement de `cargo build` seulement"
+    ],
     "reponse": 1,
-    "explication": "`RefCell` compte les emprunts pendant que le programme tourne. Une violation ne se voit donc pas à la compilation."
+    "explication": "**Règle :** un `RefCell` tient le compte des emprunts **pendant que le programme tourne** : à chaque `borrow()` ou `borrow_mut()`, il regarde combien de lectures et d'écritures sont actives.\n\n**Pas à pas :**\n\n```rust\nlet case = RefCell::new(1);\nlet lecture = case.borrow();\nlet ecriture = case.borrow_mut();\n```\n\n1. Ce code **compile** sans erreur : le compilateur ne suit pas les emprunts d'un `RefCell`.\n2. À l'exécution, `borrow()` note « 1 lecture active ».\n3. `borrow_mut()` voit cette lecture et refuse : le programme panique, à ce moment-là seulement.\n\n**Les autres réponses :** « à la compilation », c'est le cas des références normales `&` / `&mut`, justement pas celui de `RefCell`. « Jamais » est faux : les règles existent toujours, la sanction est une panique. « Au lancement de `cargo build` » revient à dire « à la compilation » : `cargo build` compile sans exécuter le programme.\n\n**À retenir :** `RefCell` = mêmes règles d'emprunt, vérifiées à l'exécution."
   },
   {
     "question": "Que se passe-t-il si on appelle `borrow_mut()` alors qu'un `borrow()` est encore actif ?",
-    "choix": ["Le code ne compile pas", "Le programme panique", "La valeur est copiée", "L'emprunt en lecture est annulé"],
+    "choix": [
+      "Le code ne compile pas",
+      "Le programme panique",
+      "La valeur est copiée",
+      "L'emprunt en lecture est annulé"
+    ],
     "reponse": 1,
-    "explication": "La règle « une écriture OU plusieurs lectures » est vérifiée à l'exécution : la violation provoque une panique (`already borrowed: BorrowMutError`)."
+    "explication": "**Règle :** un `RefCell` accepte **plusieurs lectures** ou **une seule écriture**, jamais les deux en même temps. Si la règle est violée, `borrow_mut()` (ou `borrow()`) **panique**.\n\n**Pas à pas :**\n\n| Ligne | Lectures actives | Écriture demandée | Résultat |\n|---|---|---|---|\n| `let l = case.borrow();` | 1 | | OK |\n| `let e = case.borrow_mut();` | 1 (`l` existe encore) | oui | panique (`RefCell already borrowed`) |\n\nPour l'éviter : relâcher la lecture avant d'écrire (fin du bloc, `drop(l)`, ou lecture copiée dans une variable), ou utiliser `try_borrow_mut()`.\n\n**Les autres réponses :** « le code ne compile pas » : le compilateur ne voit rien, c'est tout l'intérêt (et le danger) de `RefCell`. « La valeur est copiée » : `RefCell` ne copie jamais pour contourner un conflit. « L'emprunt en lecture est annulé » : un emprunt actif n'est jamais retiré en douce, sinon la lecture verrait la valeur changer sous ses yeux.\n\n**À retenir :** écrire pendant qu'une lecture est vivante = panique."
   },
   {
     "question": "Quelle méthode permet d'essayer d'emprunter en écriture sans risquer de panique ?",
-    "choix": ["`safe_borrow_mut()`", "`try_borrow_mut()`", "`borrow_mut().ok()`", "`get_mut()`"],
+    "choix": [
+      "`safe_borrow_mut()`",
+      "`try_borrow_mut()`",
+      "`borrow_mut().ok()`",
+      "`get_mut()`"
+    ],
     "reponse": 1,
-    "explication": "`try_borrow_mut()` renvoie un `Result` : `Ok(garde)` si l'emprunt est possible, `Err` sinon."
+    "explication": "**Règle :** les versions `try_` des emprunts ne paniquent pas : elles renvoient un `Result`. `try_borrow_mut()` donne `Ok(garde)` si l'écriture est possible, `Err(...)` sinon.\n\n**Pas à pas :**\n\n```rust\nlet case = RefCell::new(5);\nlet _lecture = case.borrow();\nmatch case.try_borrow_mut() {\n    Ok(mut v) => *v += 1,\n    Err(_) => println!(\"occupé\"),\n}\n```\n\n1. Une lecture est active (`_lecture`).\n2. `try_borrow_mut()` voit le conflit et renvoie `Err` au lieu de paniquer.\n3. Le `match` traite ce cas : affiche `occupé`, le programme continue.\n\n**Les autres réponses :** `safe_borrow_mut()` n'existe pas. `borrow_mut().ok()` ne compile pas (`borrow_mut()` renvoie un garde, pas un `Result`), et de toute façon `borrow_mut()` aurait déjà paniqué avant. `get_mut()` existe mais demande `&mut RefCell` : il ne sert que quand on a déjà un accès exclusif, il ne « teste » rien.\n\n**À retenir :** `try_borrow()` / `try_borrow_mut()` = demander sans risquer la panique, puis traiter `Ok` et `Err`."
   },
   {
     "question": "Quelle est la grande différence entre `Cell<T>` et `RefCell<T>` ?",
@@ -26,13 +41,18 @@
       "`Cell` marche sur plusieurs threads"
     ],
     "reponse": 2,
-    "explication": "`Cell` ne donne jamais de référence vers son contenu : on lit une copie avec `get` ou on remplace avec `set`. Pas d'emprunt donc pas de panique."
+    "explication": "**Règle :** `Cell<T>` ne donne **jamais** de référence vers son contenu : on lit une copie (`get`) ou on remplace (`set`, `replace`, `take`). `RefCell<T>` donne des références (des gardes `Ref` / `RefMut`) et compte les emprunts.\n\n**Pas à pas :**\n\n| | `Cell<u32>` | `RefCell<Vec<i32>>` |\n|---|---|---|\n| lire | `c.get()` → une copie du nombre | `r.borrow()` → un garde vers le vecteur |\n| modifier | `c.set(c.get() + 1)` | `r.borrow_mut().push(4)` |\n| conflit possible ? | non : aucune référence, donc aucun emprunt | oui : panique si la règle est violée |\n\n**Les autres réponses :** « `Cell` est plus lent » : c'est l'inverse, `Cell` ne compte rien, il ne coûte rien de plus. « `Cell` donne des références, pas `RefCell` » inverse les deux. « `Cell` marche sur plusieurs threads » : ni `Cell` ni `RefCell` ne passent entre threads.\n\n**À retenir :** `Cell` = copier dedans / dehors, sans panique ; `RefCell` = emprunter, avec vérification."
   },
   {
     "question": "Pourquoi `Cell::get()` n'est-il disponible que pour certains types ?",
-    "choix": ["Le type doit être `Copy`", "Le type doit être `Clone` seulement", "Le type doit être `Send`", "Le type doit être `String`"],
+    "choix": [
+      "Le type doit être `Copy`",
+      "Le type doit être `Clone` seulement",
+      "Le type doit être `Send`",
+      "Le type doit être `String`"
+    ],
     "reponse": 0,
-    "explication": "`get` renvoie une copie de la valeur : le type doit implémenter `Copy`. Pour les autres types, on utilise `replace` ou `take`."
+    "explication": "**Règle :** `get()` renvoie une **copie** de la valeur tout en la laissant dans la case. Une copie « gratuite » (bit à bit) n'est possible que pour les types `Copy` (nombres, `bool`, `char`...).\n\n**Pas à pas :**\n\n1. `Cell<u32>` : `get()` fabrique une copie du nombre, la case garde le sien. Permis.\n2. `Cell<String>` : `get()` devrait dupliquer la chaîne. `String` n'est pas `Copy`, donc `get()` n'existe pas pour ce type.\n3. Pour un tel type, on récupère la valeur en la **sortant** : `take()` (laisse la valeur par défaut, ici une chaîne vide) ou `replace(nouvelle)` (laisse la nouvelle et rend l'ancienne).\n\n**Les autres réponses :** « `Clone` seulement » ne suffit pas : `Cell::get` est réservé à `Copy`, une copie simple et sans coût, pas un `.clone()` qui peut être coûteux. `Send` concerne le passage entre threads, sans rapport avec `get`. « Le type doit être `String` » : c'est justement un type pour lequel `get()` est **interdit**.\n\n**À retenir :** `Cell::get()` seulement pour un type `Copy` ; sinon `take()` ou `replace()`."
   },
   {
     "question": "Que permet `Rc<RefCell<T>>` ?",
@@ -43,30 +63,50 @@
       "Rendre la valeur immuable"
     ],
     "reponse": 0,
-    "explication": "`Rc` donne plusieurs propriétaires, `RefCell` donne la modification. Ni l'un ni l'autre ne sont sûrs entre threads (il faut `Arc<Mutex<T>>`)."
+    "explication": "**Règle :** `Rc<T>` donne plusieurs propriétaires mais seulement un accès en lecture. `RefCell<T>` permet de modifier à travers une référence partagée. Les deux ensemble : une valeur **partagée et modifiable**, dans **un seul thread**.\n\n**Pas à pas :**\n\n```rust\nlet solde = Rc::new(RefCell::new(10));\nlet autre = Rc::clone(&solde);\n*autre.borrow_mut() += 5;\nprintln!(\"{}\", solde.borrow());\n```\n\n1. `solde` et `autre` sont deux propriétaires de la même case.\n2. `autre.borrow_mut()` passe à travers le `Rc` et ouvre l'écriture : 10 devient 15.\n3. `solde.borrow()` lit la même case : affiche `15`.\n\n**Les autres réponses :** « partager entre plusieurs threads » : `Rc` et `RefCell` ne sont pas sûrs entre threads, le compilateur refuse ; il faut `Arc<Mutex<T>>`. « Éviter toute panique » : `RefCell` peut au contraire paniquer si on viole la règle d'emprunt. « Rendre la valeur immuable » : c'est le contraire, `RefCell` sert à modifier.\n\n**À retenir :** `Rc<RefCell<T>>` = plusieurs propriétaires qui modifient, dans un seul thread."
   },
   {
     "question": "Deux `Rc` qui se pointent l'un l'autre provoquent...",
-    "choix": ["Une erreur de compilation", "Une panique immédiate", "Une fuite mémoire (les compteurs ne tombent jamais à 0)", "Rien de spécial"],
+    "choix": [
+      "Une erreur de compilation",
+      "Une panique immédiate",
+      "Une fuite mémoire (les compteurs ne tombent jamais à 0)",
+      "Rien de spécial"
+    ],
     "reponse": 2,
-    "explication": "Chaque valeur garde l'autre en vie, donc leur compteur fort ne tombe jamais à 0 et la mémoire n'est jamais libérée."
+    "explication": "**Règle :** une valeur dans un `Rc` est libérée quand son compteur **fort** tombe à 0. Rust ne détecte pas les cycles.\n\n**Pas à pas** avec deux valeurs `A` et `B` qui se tiennent par des `Rc` :\n\n| Moment | fort de `A` | fort de `B` |\n|---|---|---|\n| après création (variable) et liaison (lien de l'autre) | 2 | 2 |\n| fin de `main` : les variables disparaissent | 1 | 1 |\n\nChacune est encore tenue par l'autre : les compteurs restent à 1, aucune n'est libérée. La mémoire est perdue : **fuite mémoire**.\n\n**Les autres réponses :** « une erreur de compilation » : le compilateur ne voit pas les cycles, le code compile. « Une panique immédiate » : rien ne plante, le programme se termine normalement. « Rien de spécial » : si, la mémoire n'est jamais rendue (sans bruit, ce qui rend le problème difficile à voir).\n\n**À retenir :** cycle de `Rc` = fuite ; remplace un des deux liens par un `Weak`."
   },
   {
     "question": "Que renvoie `weak.upgrade()` ?",
-    "choix": ["Un `Rc<T>` toujours", "Un `Option<Rc<T>>`", "Un `Result<T, String>`", "Un `Weak<T>` plus fort"],
+    "choix": [
+      "Un `Rc<T>` toujours",
+      "Un `Option<Rc<T>>`",
+      "Un `Result<T, String>`",
+      "Un `Weak<T>` plus fort"
+    ],
     "reponse": 1,
-    "explication": "`Some(rc)` si la valeur existe encore, `None` si elle a déjà été libérée."
+    "explication": "**Règle :** un `Weak<T>` ne garde pas la valeur en vie. `weak.upgrade()` essaie de récupérer un propriétaire fort et renvoie `Option<Rc<T>>` : `Some(rc)` si la valeur existe encore, `None` si elle a déjà été libérée.\n\n**Pas à pas :**\n\n| Ligne | Forts | `faible.upgrade()` |\n|---|---|---|\n| `let a = Rc::new(5); let faible = Rc::downgrade(&a);` | 1 | `Some(5)` |\n| `drop(a);` | 0 : la valeur est libérée | `None` |\n\n**Les autres réponses :** « un `Rc<T>` toujours » est impossible : si la valeur a disparu, il n'y a plus de `Rc` à donner, d'où l'`Option`. « Un `Result<T, String>` » : ni `Result` ni message d'erreur, et on ne récupère pas la valeur elle-même mais un `Rc` vers elle. « Un `Weak<T>` plus fort » : `upgrade` transforme un lien faible en `Rc`, pas en un autre `Weak`.\n\n**À retenir :** `upgrade()` = `Option<Rc<T>>` ; prévois toujours le cas `None`."
   },
   {
     "question": "Dans un arbre, quel lien doit être un `Weak` ?",
-    "choix": ["Parent vers enfants", "Enfant vers parent", "Les deux", "Aucun"],
+    "choix": [
+      "Parent vers enfants",
+      "Enfant vers parent",
+      "Les deux",
+      "Aucun"
+    ],
     "reponse": 1,
-    "explication": "Le parent possède ses enfants (`Rc`). L'enfant pointe vers son parent avec un `Weak`, pour ne pas créer de cycle."
+    "explication": "**Règle :** dans un arbre, le parent **possède** ses enfants (s'il disparaît, ses enfants aussi) : lien `Rc`. L'enfant doit seulement **connaître** son parent : lien `Weak`, qui ne compte pas comme propriétaire.\n\n**Pas à pas** avec une racine et un enfant :\n\n| Lien | Type | Effet sur les compteurs |\n|---|---|---|\n| racine → enfant | `Rc` | fort de l'enfant : 2 (sa variable + la liste de la racine) |\n| enfant → racine | `Weak` | faible de la racine : 1, fort de la racine : 1 (sa variable) |\n\nQuand la variable `racine` disparaît, son compteur fort tombe à 0 : elle est libérée, et sa liste d'enfants avec. Pas de cycle.\n\n**Les autres réponses :** « parent vers enfants » en `Weak` : les enfants ne seraient possédés par personne (sauf leurs variables) et disparaîtraient trop tôt. « Les deux » : plus personne ne posséderait les nœuds de l'arbre. « Aucun » : deux `Rc` dans les deux sens forment un cycle, donc une fuite mémoire.\n\n**À retenir :** possède → `Rc` (vers les enfants) ; connaît → `Weak` (vers le parent)."
   },
   {
     "question": "Que fait `OnceCell::set` si la case est déjà remplie ?",
-    "choix": ["Il écrase la valeur", "Il panique", "Il renvoie `Err(valeur)` et ne change rien", "Il attend"],
+    "choix": [
+      "Il écrase la valeur",
+      "Il panique",
+      "Il renvoie `Err(valeur)` et ne change rien",
+      "Il attend"
+    ],
     "reponse": 2,
-    "explication": "Une `OnceCell` ne se remplit qu'une seule fois. Un second `set` échoue en rendant la valeur proposée."
+    "explication": "**Règle :** une `OnceCell` ne peut être remplie **qu'une fois**. `set(valeur)` renvoie `Ok(())` si la case était vide, et `Err(valeur)` (en rendant la valeur proposée) si elle était déjà pleine.\n\n**Pas à pas :**\n\n```rust\nlet case: OnceCell<u32> = OnceCell::new();\nprintln!(\"{:?}\", case.set(1));\nprintln!(\"{:?}\", case.set(2));\nprintln!(\"{:?}\", case.get());\n```\n\n1. 1er `set(1)` : case vide → elle reçoit 1, affiche `Ok(())`.\n2. 2e `set(2)` : case pleine → rien ne change, affiche `Err(2)` (on récupère le 2 refusé).\n3. `get()` affiche `Some(1)` : la première valeur est restée.\n\n**Les autres réponses :** « il écrase la valeur » : ce serait une case normale, pas une `OnceCell`. « Il panique » : non, il signale l'échec par une `Err`, c'est à toi de décider quoi en faire. « Il attend » : une `OnceCell` n'attend jamais personne (elle ne sert que dans un seul thread).\n\n**À retenir :** `OnceCell::set` sur une case pleine = `Err(valeur)`, la valeur d'origine reste."
   }
 ]

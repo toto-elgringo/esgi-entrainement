@@ -1,98 +1,178 @@
 [
   {
     "question": "Quelles sont les deux règles d'un tas max ?",
-    "choix": ["L'arbre est complet, et chaque nœud est plus grand ou égal à ses enfants", "L'arbre est trié de gauche à droite, et la racine est le minimum", "Chaque nœud a exactement deux enfants, et le fils gauche est plus petit que le fils droit", "Les valeurs sont toutes différentes, et la racine est au milieu du tableau"],
+    "choix": [
+      "L'arbre est complet, et chaque nœud est plus grand ou égal à ses enfants",
+      "L'arbre est trié de gauche à droite, et la racine est le minimum",
+      "Chaque nœud a exactement deux enfants, et le fils gauche est plus petit que le fils droit",
+      "Les valeurs sont toutes différentes, et la racine est au milieu du tableau"
+    ],
     "reponse": 0,
-    "explication": "Un tas est un arbre **complet** (rempli niveau par niveau, de gauche à droite) et **ordonné** : dans un tas max, un parent est toujours plus grand ou égal à ses enfants."
+    "explication": "**Règle :** un tas max respecte deux règles : (1) l'arbre est **complet** (tous les niveaux pleins sauf peut-être le dernier, rempli de gauche à droite sans trou) ; (2) il est **ordonné** : chaque nœud est plus grand ou égal à ses enfants.\n\n**Pas à pas :** le tableau `60 45 50 20 41` est un tas max :\n\n- complet : rangé case par case dans le tableau, il n'a pas de trou ;\n- ordonné : 60 >= 45 et 60 >= 50 (enfants de la racine), 45 >= 20 et 45 >= 41 (enfants de la case 1).\n\n**Les autres réponses :**\n\n- « Trié de gauche à droite, racine = minimum » : un tas n'est pas trié, et dans un tas **max** la racine est le maximum.\n- « Exactement deux enfants, gauche < droit » : un nœud peut avoir 0, 1 ou 2 enfants, et les frères ne sont pas comparés.\n- « Valeurs différentes, racine au milieu » : les égalités sont permises (`7 7 7` est un tas), et la racine est la case 0.\n\n**À retenir :** tas max = complet + chaque parent >= ses enfants."
   },
   {
     "question": "Dans un tas max, que peut-on dire de deux frères (les deux enfants d'un même nœud) ?",
-    "choix": ["Le gauche est toujours plus grand", "Le droit est toujours plus grand", "Aucun ordre n'est imposé entre eux", "Ils sont toujours égaux"],
+    "choix": [
+      "Le gauche est toujours plus grand",
+      "Le droit est toujours plus grand",
+      "Aucun ordre n'est imposé entre eux",
+      "Ils sont toujours égaux"
+    ],
     "reponse": 2,
-    "explication": "La règle ne compare qu'un parent à ses enfants. Entre frères, tout est possible : c'est pour ça qu'un tas n'est pas un tableau trié."
+    "explication": "**Règle :** la règle d'ordre d'un tas ne compare qu'un **parent** à ses **enfants**. Deux frères ne sont jamais comparés entre eux.\n\n**Pas à pas :** deux tas max avec les mêmes valeurs :\n\n- `9 7 5` : la racine 9 a pour enfants 7 (gauche) et 5 (droit) ; le gauche est le plus grand ;\n- `9 5 7` : mêmes enfants, inversés ; le droit est le plus grand.\n\nLes deux respectent la règle (9 >= 7 et 9 >= 5) : les deux sont des tas max.\n\n**Les autres réponses :**\n\n- « Le gauche est toujours plus grand » ou « le droit est toujours plus grand » : le contre-exemple ci-dessus montre que les deux cas arrivent.\n- « Toujours égaux » : non, ils le sont seulement par hasard.\n\n**À retenir :** dans un tas, seul l'ordre parent / enfant compte ; c'est pour ça qu'un tas n'est pas un tableau trié."
   },
   {
     "question": "Le tas est rangé dans un tableau à partir de l'indice 0. Où sont les enfants de la case `i` ?",
-    "choix": ["`2 * i` et `2 * i + 1`", "`2 * i + 1` et `2 * i + 2`", "`i + 1` et `i + 2`", "`i / 2` et `i / 2 + 1`"],
+    "choix": [
+      "`2 * i` et `2 * i + 1`",
+      "`2 * i + 1` et `2 * i + 2`",
+      "`i + 1` et `i + 2`",
+      "`i / 2` et `i / 2 + 1`"
+    ],
     "reponse": 1,
-    "explication": "En comptant à partir de 0 : enfant gauche `2 * i + 1`, enfant droit `2 * i + 2`. Les formules `2 * i` et `2 * i + 1` sont celles d'un tableau qui commence à 1."
+    "explication": "**Règle :** un tas est rangé niveau par niveau, de gauche à droite. Avec des indices qui commencent à 0, les enfants de la case `i` sont `2 * i + 1` (gauche) et `2 * i + 2` (droit).\n\n**Pas à pas :** on vérifie sur les premières cases :\n\n| `i` | `2i + 1` | `2i + 2` |\n|---|---|---|\n| 0 (racine) | 1 | 2 |\n| 1 | 3 | 4 |\n| 2 | 5 | 6 |\n\nC'est bien le rangement niveau par niveau : la racine, puis ses deux enfants (cases 1 et 2), puis les quatre petits-enfants (cases 3 à 6).\n\n**Les autres réponses :**\n\n- `2 * i` et `2 * i + 1` : formules d'un tableau qui commence à 1 ; ici la racine (case 0) serait son propre enfant.\n- `i + 1` et `i + 2` : ce sont les cases suivantes, pas les enfants (la case 1 aurait pour enfant la case 2, sa sœur).\n- `i / 2` et `i / 2 + 1` : `i / 2` ressemble plutôt au calcul du parent.\n\n**À retenir :** à partir de 0, enfants `2i + 1` et `2i + 2`."
   },
   {
     "question": "Quel est l'indice du parent de la case 10 ?",
-    "choix": ["`4`", "`5`", "`9`", "`20`"],
+    "choix": [
+      "`4`",
+      "`5`",
+      "`9`",
+      "`20`"
+    ],
     "reponse": 0,
-    "explication": "`(10 - 1) / 2 = 9 / 2 = 4` en division entière. Vérification : les enfants de 4 sont 9 et 10."
+    "explication": "**Règle :** le parent de la case `i` est la case `(i - 1) / 2`, en division **entière** (on jette ce qui est après la virgule).\n\n**Pas à pas :** `(10 - 1) / 2 = 9 / 2 = 4,5`, et en division entière **4**. Vérification dans l'autre sens : les enfants de la case 4 sont `2 × 4 + 1 = 9` et `2 × 4 + 2 = 10`. La case 10 est bien un enfant de 4 (le droit).\n\n**Les autres réponses :**\n\n- `5` : c'est `10 / 2`, la formule d'un tableau qui commence à 1 ; les enfants de 5 sont 11 et 12.\n- `9` : c'est la case juste avant, sa sœur (l'autre enfant de 4).\n- `20` : c'est `2 × 10`, un calcul qui va vers les **enfants** (et avec la formule d'un tableau qui commence à 1), pas vers le parent.\n\n**À retenir :** parent de `i` = `(i - 1) / 2` en division entière ; vérifie en recalculant les enfants."
   },
   {
     "question": "Le tableau `20 5 18 6 4` est-il un tas max ?",
-    "choix": ["Oui, la racine 20 est le maximum", "Non : 6 (case 3) est plus grand que son parent 5 (case 1)", "Non : 18 est plus grand que 5", "Oui, car chaque case est plus petite que 20"],
+    "choix": [
+      "Oui, la racine 20 est le maximum",
+      "Non : 6 (case 3) est plus grand que son parent 5 (case 1)",
+      "Non : 18 est plus grand que 5",
+      "Oui, car chaque case est plus petite que 20"
+    ],
     "reponse": 1,
-    "explication": "Avoir le maximum à la racine ne suffit pas : **chaque** case doit être plus petite ou égale à son parent. Le parent de la case 3 est la case 1, et 6 > 5."
+    "explication": "**Règle :** un tableau est un tas max si **chaque** case (sauf la racine) est plus petite ou égale à son parent `(i - 1) / 2`.\n\n**Pas à pas :** sur `20 5 18 6 4` :\n\n| `i` | `t[i]` | Parent | `t[parent]` | `t[i] <= t[parent]` ? |\n|---|---|---|---|---|\n| 1 | 5 | 0 | 20 | oui |\n| 2 | 18 | 0 | 20 | oui |\n| 3 | 6 | 1 | 5 | **non** |\n| 4 | 4 | 1 | 5 | oui |\n\nLa case 3 (valeur 6) est plus grande que son parent, la case 1 (valeur 5) : ce n'est **pas** un tas max.\n\n**Les autres réponses :**\n\n- « La racine 20 est le maximum » : nécessaire, mais pas suffisant ; la règle porte sur chaque couple parent / enfant.\n- « 18 est plus grand que 5 » : 18 et 5 sont frères (enfants de la racine), on ne les compare pas.\n- « Chaque case est plus petite que 20 » : même erreur, on ne compare pas tout à la racine.\n\n**À retenir :** vérifie chaque case contre **son** parent, pas contre la racine ni contre son frère."
   },
   {
     "question": "Pour insérer une valeur dans un tas max, où la place-t-on d'abord ?",
-    "choix": ["À la racine", "Dans la première case libre, à la fin du tableau", "À sa place dans l'ordre trié", "À la place de la plus petite valeur"],
+    "choix": [
+      "À la racine",
+      "Dans la première case libre, à la fin du tableau",
+      "À sa place dans l'ordre trié",
+      "À la place de la plus petite valeur"
+    ],
     "reponse": 1,
-    "explication": "En la mettant à la fin, l'arbre reste complet. Il ne reste plus qu'à la faire **remonter** tant qu'elle est plus grande que son parent."
+    "explication": "**Règle :** pour insérer dans un tas, on place la valeur dans la **première case libre** (la case `taille`, juste après le tas), puis on la fait **remonter**.\n\n**Pas à pas :** dans le tas `50 30 40` (taille 3), insérer 45 :\n\n1. 45 va en case 3 : `50 30 40 45`, l'arbre reste complet (pas de trou).\n2. Son parent est la case `(3 - 1) / 2 = 1` (30) : 45 > 30, échange : `50 45 40 30`.\n3. Son parent est la racine (50) : 45 > 50 est faux, on s'arrête.\n\n**Les autres réponses :**\n\n- « À la racine » : il faudrait décaler tout le tableau, et l'arbre ne serait plus bien rangé.\n- « À sa place dans l'ordre trié » : un tas n'est pas trié, et trouver cette place coûterait O(n).\n- « À la place de la plus petite valeur » : on perdrait cette valeur.\n\n**À retenir :** insertion = première case libre, puis remontée."
   },
   {
     "question": "On insère 30 dans le tas `54 28 12 5 3`. Que devient le tableau ?",
-    "choix": ["`54 30 28 12 5 3`", "`54 28 30 5 3 12`", "`30 54 28 12 5 3`", "`54 28 12 5 3 30`"],
+    "choix": [
+      "`54 30 28 12 5 3`",
+      "`54 28 30 5 3 12`",
+      "`30 54 28 12 5 3`",
+      "`54 28 12 5 3 30`"
+    ],
     "reponse": 1,
-    "explication": "30 arrive en case 5, son parent est la case 2 (12) : échange. Son nouveau parent est 54, plus grand : on s'arrête."
+    "explication": "**Règle :** insertion = la valeur va à la fin, puis elle remonte : tant qu'elle est plus grande que son parent `(i - 1) / 2`, on les échange.\n\n**Pas à pas :** tas `54 28 12 5 3`, on insère 30.\n\n| Étape | Case de 30 | Parent | Comparaison | Tableau après |\n|---|---|---|---|---|\n| à la fin | 5 | | | 54 28 12 5 3 30 |\n| 1 | 5 | (5 - 1) / 2 = 2 (12) | 30 > 12 ? oui, échange | 54 28 30 5 3 12 |\n| 2 | 2 | (2 - 1) / 2 = 0 (54) | 30 > 54 ? non, fin | 54 28 30 5 3 12 |\n\n**Les autres réponses :**\n\n- `54 30 28 12 5 3` : 30 a été rangé comme dans un tableau trié, avec tout décalé ; ce n'est pas la remontée.\n- `30 54 28 12 5 3` : 30 à la racine, au-dessus de 54 : ce n'est plus un tas max.\n- `54 28 12 5 3 30` : on a oublié la remontée ; 30 est sous 12, plus petit que lui.\n\n**À retenir :** ne compare la valeur qu'à son parent, case `(i - 1) / 2`, jamais aux autres cases."
   },
   {
     "question": "Pour retirer la racine d'un tas max de `taille` cases, que fait-on en premier ?",
-    "choix": ["On décale toutes les cases d'un cran vers la gauche", "On échange la racine avec la dernière case du tas, puis le tas perd une case", "On met 0 dans la racine", "On reconstruit tout le tas"],
+    "choix": [
+      "On décale toutes les cases d'un cran vers la gauche",
+      "On échange la racine avec la dernière case du tas, puis le tas perd une case",
+      "On met 0 dans la racine",
+      "On reconstruit tout le tas"
+    ],
     "reponse": 1,
-    "explication": "L'ancien maximum part à la fin, juste après le tas. La nouvelle racine (l'ancienne dernière case) est sans doute trop petite : on la fait descendre."
+    "explication": "**Règle :** pour retirer la racine (le maximum), on l'**échange avec la dernière case** du tas, on enlève une case au tas, puis on fait descendre la nouvelle racine.\n\n**Pas à pas :** tas `80 50 70 20` (taille 4).\n\n1. Échange de la racine et de la case 3 : `20 50 70 80`.\n2. Le tas a 3 cases : `[20 50 70] 80`. Le 80 retiré est juste après le tas.\n3. 20 descend : enfants 50 et 70, le plus grand 70 > 20, échange : `[70 50 20] 80`.\n\nUn seul échange a vidé la racine, sans rien décaler.\n\n**Les autres réponses :**\n\n- « Décaler toutes les cases » : O(n), et le rangement parent / enfant serait cassé (chaque case changerait de parent).\n- « Mettre 0 dans la racine » : le 0 resterait dans le tas, et on perdrait le maximum au lieu de le ranger.\n- « Reconstruire tout le tas » : O(n) au lieu de O(log n).\n\n**À retenir :** retrait = échange racine / dernière case, taille - 1, descente."
   },
   {
     "question": "Pendant la descente, avec quel enfant échange-t-on la case ?",
-    "choix": ["Toujours l'enfant gauche", "Le plus grand des deux enfants, s'il est plus grand qu'elle", "Le plus petit des deux enfants", "Celui qui est le plus près de la fin du tableau"],
+    "choix": [
+      "Toujours l'enfant gauche",
+      "Le plus grand des deux enfants, s'il est plus grand qu'elle",
+      "Le plus petit des deux enfants",
+      "Celui qui est le plus près de la fin du tableau"
+    ],
     "reponse": 1,
-    "explication": "L'enfant qui monte devient le parent de son frère : il doit être plus grand que lui. Si même le plus grand enfant n'est pas plus grand que la case, la descente s'arrête."
+    "explication": "**Règle :** pendant la descente, on échange la case avec le **plus grand** de ses enfants, seulement s'il est plus grand qu'elle ; sinon, la descente s'arrête.\n\n**Pas à pas :** la racine 10 a pour enfants 40 (gauche) et 60 (droit).\n\n- Échange avec 60 (le plus grand) : 60 devient le parent de 10 **et** de 40. 60 >= 40 et 60 >= 10 : correct.\n- Échange avec 40 (le gauche) : 40 devient le parent de 60, plus grand que lui. Le tas est cassé.\n\n**Les autres réponses :**\n\n- « Toujours l'enfant gauche » : cassé dès que le droit est plus grand, comme ci-dessus.\n- « Le plus petit des deux » : c'est la règle d'un tas **min**.\n- « Le plus près de la fin » : la position ne compte pas, seule la valeur compte.\n\n**À retenir :** descente d'un tas max = échange avec le plus grand enfant, tant qu'il est plus grand."
   },
   {
     "question": "Après l'échange de la racine avec la case `taille - 1`, on fait la descente avec l'**ancienne** taille. Que se passe-t-il ?",
-    "choix": ["Rien, le résultat est le même", "L'ancien maximum, toujours visible comme enfant, peut remonter dans le tas", "Le programme plante toujours", "La descente s'arrête tout de suite"],
+    "choix": [
+      "Rien, le résultat est le même",
+      "L'ancien maximum, toujours visible comme enfant, peut remonter dans le tas",
+      "Le programme plante toujours",
+      "La descente s'arrête tout de suite"
+    ],
     "reponse": 1,
-    "explication": "La case `taille - 1` contient l'ancien maximum, plus grand que tout. Si elle est encore considérée comme un enfant, elle est échangée et revient dans le tas : il faut descendre avec la **nouvelle** taille."
+    "explication": "**Règle :** après l'échange de la racine avec la case `taille - 1`, cette case contient l'ancien maximum et ne fait **plus** partie du tas. La descente doit utiliser la nouvelle taille, `taille - 1`.\n\n**Pas à pas :** tas `90 70 80 30 60 75` (6 cases). Échange (0, 5) : `75 70 80 30 60 90`.\n\n- Taille 5 (juste) : 75 descend sous 80 (case 2) ; la case 2 n'a pas d'enfant (5 >= 5). Résultat `[80 70 75 30 60] 90`.\n- Taille 6 (fausse) : après le même échange, la case 2 « voit » un enfant en case 5 : le 90. 90 > 75 : échange. Résultat `[80 70 90 30 60] 75`. L'ancien maximum est revenu dans le tas.\n\n**Les autres réponses :**\n\n- « Rien, même résultat » : vrai seulement si la descente ne va pas jusqu'au parent de la dernière case ; l'exemple montre le contraire.\n- « Le programme plante toujours » : la case `taille - 1` existe dans le tableau, la lecture ne plante pas ; c'est le résultat qui est faux.\n- « La descente s'arrête tout de suite » : non, elle continue normalement, puis va trop loin.\n\n**À retenir :** échange, **puis** taille - 1, **puis** descente avec cette nouvelle taille."
   },
   {
     "question": "Pour construire un tas « en partant du bas », quelles cases fait-on descendre, et dans quel ordre ?",
-    "choix": ["De 0 à `n - 1`", "De `n / 2 - 1` jusqu'à 0", "De `n - 1` jusqu'à `n / 2`", "Seulement la racine"],
+    "choix": [
+      "De 0 à `n - 1`",
+      "De `n / 2 - 1` jusqu'à 0",
+      "De `n - 1` jusqu'à `n / 2`",
+      "Seulement la racine"
+    ],
     "reponse": 1,
-    "explication": "Les cases à partir de `n / 2` sont des feuilles, déjà des tas. On fait descendre les autres en remontant vers la racine : quand une case descend, ses deux sous-arbres sont déjà des tas."
+    "explication": "**Règle :** les cases à partir de `n / 2` sont des feuilles (aucun enfant), donc déjà des tas. On fait descendre les autres, de la dernière qui a un enfant (`n / 2 - 1`) jusqu'à la racine (0), dans cet ordre.\n\n**Pas à pas :** `t = 5 3 8 9 1 7 6 4` (n = 8) : feuilles = cases 4 à 7. On fait descendre les cases 3, 2, 1, puis 0. Quand la case 1 descend, ses sous-arbres (cases 3 et 4) ont déjà été traités : ce sont des tas. On obtient `9 5 8 4 1 7 6 3`.\n\n**Les autres réponses :**\n\n- « De 0 à `n - 1` » : la racine descend avant que ses sous-arbres soient des tas ; sur l'exemple, on finit avec 9 sous 8 (`8 9 7 4 ...`), ce n'est pas un tas.\n- « De `n - 1` à `n / 2` » : ce sont les feuilles, elles n'ont rien sous elles : ces descentes ne font rien.\n- « Seulement la racine » : une seule descente ne range que le chemin suivi, pas tout le tableau.\n\n**À retenir :** construction = `descendre(t, n, i)` pour `i` de `n / 2 - 1` jusqu'à 0 compris."
   },
   {
     "question": "Quel est le coût de la construction d'un tas en partant du bas ?",
-    "choix": ["O(log n)", "O(n)", "O(n log n)", "O(n²)"],
+    "choix": [
+      "O(log n)",
+      "O(n)",
+      "O(n log n)",
+      "O(n²)"
+    ],
     "reponse": 1,
-    "explication": "La moitié des cases ne descend pas, un quart descend d'un niveau au plus, un huitième de deux... Le total reste proportionnel à n. Par insertions successives, on paierait O(n log n)."
+    "explication": "**Règle :** une descente coûte au plus la hauteur sous la case. En partant du bas, la plupart des cases sont près du bas et descendent très peu.\n\n**Pas à pas :** tas de 15 cases (4 niveaux) :\n\n| Cases | Combien | Descente maximale | Échanges au plus |\n|---|---|---|---|\n| feuilles | 8 | 0 niveau | 0 |\n| au-dessus | 4 | 1 niveau | 4 |\n| encore au-dessus | 2 | 2 niveaux | 4 |\n| racine | 1 | 3 niveaux | 3 |\n\nTotal : au plus 11 échanges pour 15 cases, moins que n. En doublant n, ce total double environ : c'est **O(n)**.\n\n**Les autres réponses :**\n\n- O(log n) : c'est le coût d'**une seule** descente, pas de toute la construction.\n- O(n log n) : c'est la construction par **insertions**, où les nombreuses cases du bas remontent de toute la hauteur.\n- O(n²) : bien trop, aucune case ne fait plus de log₂ n échanges.\n\n**À retenir :** construction par le bas = O(n) ; par insertions = O(n log n)."
   },
   {
     "question": "Dans la deuxième étape du tri par tas, à chaque tour `fin` va de `n - 1` à 1. Quel appel suit `echanger(t, 0, fin)` ?",
-    "choix": ["`descendre(t, fin, 0)`", "`descendre(t, fin + 1, 0)`", "`descendre(t, n, 0)`", "`descendre(t, fin, fin)`"],
+    "choix": [
+      "`descendre(t, fin, 0)`",
+      "`descendre(t, fin + 1, 0)`",
+      "`descendre(t, n, 0)`",
+      "`descendre(t, fin, fin)`"
+    ],
     "reponse": 0,
-    "explication": "Après l'échange, la case `fin` est rangée : le tas ne garde que les cases `[0, fin)`, donc une taille de `fin`."
+    "explication": "**Règle :** dans la deuxième étape, la case `fin` reçoit le maximum et sort du tas. Le tas ne garde que les cases `[0, fin)`, soit `fin` cases : la descente se fait avec la taille `fin`.\n\n**Pas à pas :** tri de `[9 7 6 4 2 1]`, premier tour `fin = 5` :\n\n1. `echanger(t, 0, 5)` : `1 7 6 4 2 9`, le 9 est rangé en case 5.\n2. `descendre(t, 5, 0)` : le tas, ce sont les cases 0 à 4. Le 1 descend sous 7 puis sous 4 : `[7 4 6 1 2] 9`.\n\n**Les autres réponses :**\n\n- `descendre(t, fin + 1, 0)` : la case `fin` (le 9 qu'on vient de ranger) serait encore dans le tas et pourrait remonter.\n- `descendre(t, n, 0)` : pire, toutes les cases déjà rangées pourraient remonter.\n- `descendre(t, fin, fin)` : c'est la case `fin` qu'on ferait descendre, alors que c'est la nouvelle racine (case 0) qui est mal placée ; et `fin` est hors du tas de `fin` cases.\n\n**À retenir :** après `echanger(t, 0, fin)`, le tas a `fin` cases : `descendre(t, fin, 0)`."
   },
   {
     "question": "On trie par tas avec les deux opérations « insérer la case `taille - 1` dans le tas » et « retirer la racine d'un tas de `taille` cases ». Pour `n` cases, quelles valeurs doit prendre `taille` ?",
-    "choix": ["Insertions de 2 à `n`, retraits de `n` à 2", "Insertions de 2 à `n - 1`, retraits de `n` à 3", "Insertions de 1 à `n - 1`, retraits de `n - 1` à 1", "Insertions de 0 à `n`, retraits de `n` à 0"],
+    "choix": [
+      "Insertions de 2 à `n`, retraits de `n` à 2",
+      "Insertions de 2 à `n - 1`, retraits de `n` à 3",
+      "Insertions de 1 à `n - 1`, retraits de `n - 1` à 1",
+      "Insertions de 0 à `n`, retraits de `n` à 0"
+    ],
     "reponse": 0,
-    "explication": "La dernière insertion ajoute la case `n - 1`, avec un tas de `n` cases. Le dernier retrait utile se fait sur 2 cases : il range la plus grande des deux derrière l'autre (le retrait sur 1 case ne change rien)."
+    "explication": "**Règle :** « insérer la case `taille - 1` » fait passer le tas de `taille - 1` à `taille` cases ; « retirer la racine d'un tas de `taille` cases » range la racine en case `taille - 1`.\n\n**Pas à pas :** avec `n = 4` :\n\n- insertions : le tas de la case 0 seule est déjà prêt. On ajoute la case 1 (`taille = 2`), la case 2 (`taille = 3`), la case 3 (`taille = 4`). Donc `taille` de **2 à n**.\n- retraits : racine du tas de 4 cases vers la case 3, de 3 cases vers la case 2, de 2 cases vers la case 1 (`taille` = 4, 3, 2). Le tas d'une case qui reste est le minimum, déjà à sa place. Donc `taille` de **n à 2**.\n\n**Les autres réponses :**\n\n- « Insertions de 2 à `n - 1`, retraits de `n` à 3 » : la case `n - 1` n'entre jamais dans le tas, et le dernier tas de 2 cases reste « le plus grand devant » (par exemple `2 1 3 4`).\n- « Insertions de 1 à `n - 1`, retraits de `n - 1` à 1 » : décalé d'un cran : insérer avec `taille = 1` ne fait rien, la dernière case est oubliée, et le premier retrait ignore une case.\n- « De 0 à `n`, retraits jusqu'à 0 » : `taille = 0` ferait lire la case -1, hors du tableau.\n\n**À retenir :** avec des tailles, `n - 1` tours de chaque côté : insertions de 2 à `n`, retraits de `n` à 2."
   },
   {
     "question": "Avec un tas max, le tri par tas range le tableau dans quel ordre ?",
-    "choix": ["Croissant", "Décroissant", "Ça dépend des valeurs", "Aucun : il faut ensuite inverser le tableau"],
+    "choix": [
+      "Croissant",
+      "Décroissant",
+      "Ça dépend des valeurs",
+      "Aucun : il faut ensuite inverser le tableau"
+    ],
     "reponse": 0,
-    "explication": "Chaque maximum est envoyé à la fin du tas, devant les valeurs déjà rangées : les plus grandes finissent à droite. Un tas min donnerait l'ordre décroissant."
+    "explication": "**Règle :** à chaque tour, le maximum du tas est envoyé dans la dernière case du tas, juste devant les valeurs déjà rangées.\n\n**Pas à pas :** sur `6 2 9 4 7 1`, les valeurs rangées à droite arrivent dans cet ordre : 9 (case 5), puis 7 (case 4), 6 (case 3), 4 (case 2), 2 (case 1) ; il reste 1 en case 0. Le tableau final est `1 2 4 6 7 9` : les plus grandes à droite, donc l'ordre **croissant**.\n\n**Les autres réponses :**\n\n- « Décroissant » : c'est ce qu'on obtiendrait avec un tas **min** (les minimums rangés à la fin).\n- « Ça dépend des valeurs » : non, l'ordre ne dépend que du type de tas.\n- « Il faut inverser ensuite » : non, le tableau est directement croissant.\n\n**À retenir :** tas max → maximums rangés à la fin → ordre croissant."
   },
   {
     "question": "Quelle phrase sur le tri par tas est vraie ?",
-    "choix": ["Il est stable et utilise O(n) de mémoire en plus", "Il est en O(n log n) même dans le pire cas, en place, mais pas stable", "Il est en O(n²) dans le pire cas, comme le tri rapide", "Il a besoin de la récursivité"],
+    "choix": [
+      "Il est stable et utilise O(n) de mémoire en plus",
+      "Il est en O(n log n) même dans le pire cas, en place, mais pas stable",
+      "Il est en O(n²) dans le pire cas, comme le tri rapide",
+      "Il a besoin de la récursivité"
+    ],
     "reponse": 1,
-    "explication": "Construction O(n) puis n - 1 descentes en O(log n) : O(n log n) toujours. Tout se fait par échanges dans le tableau, mais ces grands sauts peuvent inverser deux valeurs égales."
+    "explication": "**Règle :** le tri par tas fait une construction en O(n), puis n - 1 retraits qui coûtent chacun au plus la hauteur, environ log₂ n. Tout se fait par échanges dans le tableau.\n\n**Pas à pas :**\n\n- temps : O(n) + (n - 1) × O(log n) = **O(n log n)**, quel que soit l'ordre de départ (même un tableau déjà trié ne change rien à la hauteur de l'arbre) ;\n- mémoire : seulement quelques variables (`i`, `fin`, `enfant`), **en place**, et deux boucles sans récursivité ;\n- stabilité : sur `3a 3b 1`, le tri donne `1 3b 3a` : les deux 3 sont inversés, il n'est **pas stable**.\n\n**Les autres réponses :**\n\n- « Stable et O(n) de mémoire » : c'est la description du tri **fusion**.\n- « O(n²) au pire, comme le tri rapide » : non, le tas garde une hauteur de log₂ n, il n'a pas de mauvais cas.\n- « Besoin de la récursivité » : la descente et le tri s'écrivent avec des boucles `while` et `for`.\n\n**À retenir :** tri par tas = O(n log n) toujours, en place, non stable."
   }
 ]

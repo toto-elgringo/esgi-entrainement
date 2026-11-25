@@ -8,28 +8,65 @@
       {
         "intitule": "$A \\cup B$",
         "type": "ensemble",
-        "reponse": [2, 4, 6, 8, 10, 12],
-        "acceptes": ["{12, 10, 8, 6, 4, 2}", "2; 4; 6; 8; 10; 12"],
-        "refuses": ["{6, 8, 10}", "{2, 4, 6, 8, 10}"]
+        "reponse": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12
+        ],
+        "acceptes": [
+          "{12, 10, 8, 6, 4, 2}",
+          "2; 4; 6; 8; 10; 12"
+        ],
+        "refuses": [
+          "{6, 8, 10}",
+          "{2, 4, 6, 8, 10}"
+        ],
+        "explication": "**Règle :** l'union $A \\cup B$ contient tout ce qui est dans $A$ **ou** dans $B$ (ou dans les deux), chaque élément écrit **une seule fois**.\n\n**Pas à pas :**\n\n1. On recopie $A$ : 2, 4, 6, 8, 10.\n2. On passe en revue $B = \\{6, 8, 10, 12\\}$ : 6 est déjà écrit, 8 aussi, 10 aussi, 12 est nouveau, on l'ajoute.\n3. Résultat : $A \\cup B = \\{2, 4, 6, 8, 10, 12\\}$.\n\n**Erreurs fréquentes :** écrire 6, 8 et 10 deux fois (un ensemble n'a pas de répétition), ou ne garder que les éléments communs $\\{6, 8, 10\\}$ (c'est l'intersection), ou oublier 12 (on a seulement recopié $A$).\n\n**À retenir :** union = recopie le premier ensemble, puis ajoute les éléments du second qui manquent."
       },
       {
         "intitule": "$A \\cap B$",
         "type": "ensemble",
-        "reponse": [6, 8, 10],
-        "refuses": ["{2, 4, 6, 8, 10, 12}", "{6, 8}"]
+        "reponse": [
+          6,
+          8,
+          10
+        ],
+        "refuses": [
+          "{2, 4, 6, 8, 10, 12}",
+          "{6, 8}"
+        ],
+        "explication": "**Règle :** l'intersection $A \\cap B$ garde seulement les éléments présents dans $A$ **et** dans $B$.\n\n**Pas à pas :** on prend chaque élément de $A$ et on regarde s'il est dans $B = \\{6, 8, 10, 12\\}$.\n\n| Élément de $A$ | Dans $B$ ? |\n|---|---|\n| 2 | non |\n| 4 | non |\n| 6 | oui |\n| 8 | oui |\n| 10 | oui |\n\nOn garde les « oui » : $A \\cap B = \\{6, 8, 10\\}$. (12 n'est pas dans $A$, il ne peut pas être dans l'intersection.)\n\n**Erreurs fréquentes :** donner l'union $\\{2, 4, 6, 8, 10, 12\\}$ (qui prend tout), ou oublier un élément commun comme 10.\n\n**À retenir :** intersection = les éléments qui ont « oui » des deux côtés."
       },
       {
         "intitule": "$A \\setminus B$",
         "type": "ensemble",
-        "reponse": [2, 4],
-        "refuses": ["{12}", "{2, 4, 12}"]
+        "reponse": [
+          2,
+          4
+        ],
+        "refuses": [
+          "{12}",
+          "{2, 4, 12}"
+        ],
+        "explication": "**Règle :** $A \\setminus B$ contient les éléments de $A$ qui ne sont **pas** dans $B$ : $x \\in A \\setminus B$ veut dire $x \\in A$ et $x \\notin B$.\n\n**Pas à pas :** on part de $A = \\{2, 4, 6, 8, 10\\}$ et on raye ce qui est aussi dans $B$.\n\n| Élément de $A$ | Dans $B$ ? | Gardé ? |\n|---|---|---|\n| 2 | non | oui |\n| 4 | non | oui |\n| 6 | oui | non |\n| 8 | oui | non |\n| 10 | oui | non |\n\nIl reste $A \\setminus B = \\{2, 4\\}$.\n\n**Erreurs fréquentes :** ajouter 12 (il n'est même pas dans $A$, et on ne garde que des éléments de $A$), ou donner $\\{2, 4, 12\\}$, qui mélange $A \\setminus B$ et $B \\setminus A$.\n\n**À retenir :** pour $A \\setminus B$, pars de $A$ et raye ce qui est dans $B$ ; rien ne s'ajoute."
       },
       {
         "intitule": "$B \\setminus A$",
         "type": "ensemble",
-        "reponse": [12],
-        "acceptes": ["{12}", "12"],
-        "refuses": ["{2, 4}"]
+        "reponse": [
+          12
+        ],
+        "acceptes": [
+          "{12}",
+          "12"
+        ],
+        "refuses": [
+          "{2, 4}"
+        ],
+        "explication": "**Règle :** $B \\setminus A$ contient les éléments de $B$ qui ne sont **pas** dans $A$. On part cette fois de $B$.\n\n**Pas à pas :** on passe en revue $B = \\{6, 8, 10, 12\\}$.\n\n| Élément de $B$ | Dans $A$ ? | Gardé ? |\n|---|---|---|\n| 6 | oui | non |\n| 8 | oui | non |\n| 10 | oui | non |\n| 12 | non | oui |\n\nIl reste $B \\setminus A = \\{12\\}$.\n\n**Erreur fréquente :** répondre $\\{2, 4\\}$, qui est $A \\setminus B$. Les deux résultats sont différents : la différence n'est **pas symétrique**, l'ordre des ensembles compte.\n\n**À retenir :** l'ensemble écrit à gauche du $\\setminus$ est celui dont on part."
       }
     ],
     "indices": [
@@ -48,38 +85,71 @@
         "intitule": "Combien d'éléments contient l'ensemble $\\{3, 3, 7, 1, 7, 3\\}$ ? (un nombre)",
         "type": "nombre",
         "reponse": 3,
-        "refuses": ["6"]
+        "refuses": [
+          "6"
+        ],
+        "explication": "**Règle :** un ensemble n'a **pas de répétition**. Son nombre d'éléments compte les valeurs **différentes**.\n\n**Pas à pas :** on lit $3, 3, 7, 1, 7, 3$ et on garde seulement les nouvelles valeurs.\n\n| Valeur lue | Déjà vue ? |\n|---|---|\n| 3 | non, on garde |\n| 3 | oui |\n| 7 | non, on garde |\n| 1 | non, on garde |\n| 7 | oui |\n| 3 | oui |\n\nIl reste $\\{1, 3, 7\\}$ : **3** éléments.\n\n**Erreur fréquente :** répondre 6, le nombre de valeurs **écrites**, doublons compris.\n\n**À retenir :** raye les doublons, puis compte."
       },
       {
         "intitule": "Les ensembles $\\{1, 2, 3\\}$ et $\\{3, 1, 2\\}$ sont-ils égaux ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** un ensemble n'a **pas d'ordre** : deux ensembles sont égaux s'ils ont exactement les mêmes éléments, peu importe l'ordre dans lequel on les écrit.\n\n**Pas à pas :**\n\n- 1 est-il dans les deux ? Oui.\n- 2 est-il dans les deux ? Oui.\n- 3 est-il dans les deux ? Oui.\n- Y a-t-il un élément en plus d'un côté ? Non.\n\nLes deux ensembles contiennent exactement 1, 2 et 3 : la réponse est **Oui**, ils sont égaux.\n\n**Erreur fréquente :** répondre « Non » parce que l'écriture est différente. C'est vrai pour des **couples** comme $(1, 2) \\neq (2, 1)$, pas pour des ensembles.\n\n**À retenir :** pour comparer deux ensembles, compare leurs éléments, jamais leur ordre d'écriture."
       },
       {
         "intitule": "A-t-on $\\{2, 4\\} \\subset \\{1, 2, 3, 4\\}$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** $X \\subset Y$ veut dire que **chaque** élément de $X$ est aussi dans $Y$. $Y$ peut avoir des éléments en plus.\n\n**Pas à pas :** on passe en revue les éléments de $X = \\{2, 4\\}$.\n\n| Élément de $\\{2, 4\\}$ | Dans $\\{1, 2, 3, 4\\}$ ? |\n|---|---|\n| 2 | oui |\n| 4 | oui |\n\nAucun ne manque : la réponse est **Oui**.\n\n**Erreur fréquente :** répondre « Non » parce que 1 et 3 ne sont pas dans $\\{2, 4\\}$. On ne teste que les éléments du **petit** ensemble (celui de gauche) ; ce que $Y$ a en plus ne compte pas.\n\n**À retenir :** $X \\subset Y$ se vérifie en passant en revue les éléments de $X$."
       },
       {
         "intitule": "A-t-on $\\{2, 5\\} \\subset \\{1, 2, 3, 4\\}$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $X \\subset Y$ demande que **chaque** élément de $X$ soit dans $Y$. Un seul élément manquant suffit pour que ce soit faux.\n\n**Pas à pas :** on passe en revue $X = \\{2, 5\\}$.\n\n| Élément de $\\{2, 5\\}$ | Dans $\\{1, 2, 3, 4\\}$ ? |\n|---|---|\n| 2 | oui |\n| 5 | **non** |\n\n5 manque : la réponse est **Non**.\n\n**Erreur fréquente :** répondre « Oui » parce que 2 y est. « Une partie seulement » ne suffit pas : il faut **tous** les éléments.\n\n**À retenir :** un seul élément de $X$ absent de $Y$, et $X \\not\\subset Y$."
       },
       {
         "intitule": "Écris l'ensemble des entiers $x$ tels que $1 \\le x \\le 30$ et $x$ est un multiple de 7, sous la forme `{a, b, ...}`.",
         "type": "ensemble",
-        "reponse": [7, 14, 21, 28],
-        "refuses": ["{0, 7, 14, 21, 28}", "{7, 14, 21}"]
+        "reponse": [
+          7,
+          14,
+          21,
+          28
+        ],
+        "refuses": [
+          "{0, 7, 14, 21, 28}",
+          "{7, 14, 21}"
+        ],
+        "explication": "**Règle :** pour passer de la compréhension à l'extension, on vérifie **chaque** condition sur chaque candidat. Un multiple de 7 s'écrit $7 \\times k$ avec $k$ entier.\n\n**Pas à pas :**\n\n1. Les multiples de 7 : $7 \\times 0 = 0$, $7 \\times 1 = 7$, $7 \\times 2 = 14$, $7 \\times 3 = 21$, $7 \\times 4 = 28$, $7 \\times 5 = 35$…\n2. Condition $x \\ge 1$ : on retire 0.\n3. Condition $x \\le 30$ : on s'arrête à 28, car 35 dépasse 30.\n\nRésultat : $\\{7, 14, 21, 28\\}$.\n\n**Erreurs fréquentes :** garder 0 (c'est bien un multiple de 7, mais il ne respecte pas $x \\ge 1$), ou oublier 28 en s'arrêtant trop tôt.\n\n**À retenir :** liste les candidats dans l'ordre, puis contrôle les deux bornes."
       },
       {
         "intitule": "Écris l'ensemble des réels $x$ tels que $x^2 = -1$. S'il est vide, écris `{}` ou `∅`.",
         "type": "ensemble",
         "reponse": [],
-        "acceptes": ["∅", "{}", "vide"],
-        "refuses": ["{1}", "{-1}", "{1, -1}"]
+        "acceptes": [
+          "∅",
+          "{}",
+          "vide"
+        ],
+        "refuses": [
+          "{1}",
+          "{-1}",
+          "{1, -1}"
+        ],
+        "explication": "**Règle :** si **aucune** valeur ne respecte la condition, l'ensemble est **vide**, noté $\\emptyset$. Le carré d'un réel est toujours positif ou nul : $x^2 \\ge 0$.\n\n**Pas à pas :**\n\n- Si $x$ est positif, $x^2$ est positif (exemple $2^2 = 4$).\n- Si $x$ est négatif, $x^2$ est aussi positif, car « moins par moins donne plus » (exemple $(-1)^2 = 1$).\n- Si $x = 0$, $x^2 = 0$.\n\nDans tous les cas $x^2 \\ge 0$, donc $x^2$ ne peut jamais valoir $-1$. Aucun réel ne convient : l'ensemble est $\\emptyset$.\n\n**Erreurs fréquentes :** répondre $\\{-1\\}$ ou $\\{1, -1\\}$ : $(-1)^2 = 1$ et $1^2 = 1$, jamais $-1$.\n\n**À retenir :** quand aucune valeur ne marche, la réponse est l'ensemble vide, pas « pas de réponse »."
       }
     ],
     "indices": [
@@ -97,25 +167,66 @@
       {
         "intitule": "$\\overline{A}$",
         "type": "ensemble",
-        "reponse": [6, 7, 8, 9, 10],
-        "refuses": ["{1, 2, 3, 4, 5}"]
+        "reponse": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "refuses": [
+          "{1, 2, 3, 4, 5}"
+        ],
+        "explication": "**Règle :** le complémentaire $\\overline{A}$ contient les éléments de l'ensemble de référence $E$ qui ne sont **pas** dans $A$.\n\n**Pas à pas :** on passe en revue $E = \\{1, 2, \\dots, 10\\}$.\n\n- 1, 2, 3, 4, 5 sont dans $A$ : on les retire.\n- 6, 7, 8, 9, 10 ne sont pas dans $A$ : on les garde.\n\nDonc $\\overline{A} = \\{6, 7, 8, 9, 10\\}$. Contrôle : $A$ (5 éléments) et $\\overline{A}$ (5 éléments) redonnent bien les 10 éléments de $E$.\n\n**Erreur fréquente :** répondre $A$ lui-même, $\\{1, 2, 3, 4, 5\\}$ : le complémentaire, c'est justement **ce qui manque** à $A$.\n\n**À retenir :** $\\overline{A}$ = $E$ moins les éléments de $A$."
       },
       {
         "intitule": "$\\overline{C}$",
         "type": "ensemble",
-        "reponse": [1, 3, 5, 7, 9, 10],
-        "refuses": ["{1, 3, 5, 7, 9}"]
+        "reponse": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          10
+        ],
+        "refuses": [
+          "{1, 3, 5, 7, 9}"
+        ],
+        "explication": "**Règle :** $\\overline{C}$ contient les éléments de $E$ qui ne sont pas dans $C$.\n\n**Pas à pas :** on passe en revue $E = \\{1, \\dots, 10\\}$ avec $C = \\{2, 4, 6, 8\\}$.\n\n| Élément | Dans $C$ ? | Dans $\\overline{C}$ ? |\n|---|---|---|\n| 1 | non | oui |\n| 2 | oui | non |\n| 3 | non | oui |\n| 4 | oui | non |\n| 5 | non | oui |\n| 6 | oui | non |\n| 7 | non | oui |\n| 8 | oui | non |\n| 9 | non | oui |\n| 10 | non | oui |\n\nDonc $\\overline{C} = \\{1, 3, 5, 7, 9, 10\\}$.\n\n**Erreur fréquente :** se dire « $C$ contient les pairs, donc $\\overline{C}$ contient les impairs » et oublier **10** : 10 est pair, mais il n'est pas dans $C$.\n\n**À retenir :** pour un complémentaire, passe en revue **tout** $E$ jusqu'au dernier élément."
       },
       {
         "intitule": "$\\overline{A \\cap C}$",
         "type": "ensemble",
-        "reponse": [1, 3, 5, 6, 7, 8, 9, 10],
-        "refuses": ["{2, 4}"]
+        "reponse": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "refuses": [
+          "{2, 4}"
+        ],
+        "explication": "**Règle :** dans $\\overline{A \\cap C}$, on fait d'abord ce qui est sous la barre ($A \\cap C$), **puis** le complémentaire.\n\n**Pas à pas :**\n\n1. $A \\cap C$ : les éléments de $A = \\{1, 2, 3, 4, 5\\}$ qui sont aussi dans $C = \\{2, 4, 6, 8\\}$. Seuls 2 et 4 conviennent : $A \\cap C = \\{2, 4\\}$.\n2. Complémentaire dans $E = \\{1, \\dots, 10\\}$ : on retire 2 et 4.\n\nRésultat : $\\overline{A \\cap C} = \\{1, 3, 5, 6, 7, 8, 9, 10\\}$.\n\n**Erreur fréquente :** s'arrêter à l'étape 1 et répondre $\\{2, 4\\}$ : on demande le complémentaire de l'intersection, pas l'intersection elle-même.\n\n**À retenir :** une barre sur une formule se calcule en dernier : d'abord l'intérieur, ensuite le complémentaire."
       },
       {
         "intitule": "$\\overline{A} \\cup \\overline{C}$",
         "type": "ensemble",
-        "reponse": [1, 3, 5, 6, 7, 8, 9, 10]
+        "reponse": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "explication": "**Règle :** l'union contient tout ce qui est dans l'un **ou** l'autre ensemble, sans répétition.\n\n**Pas à pas :**\n\n1. On reprend $\\overline{A} = \\{6, 7, 8, 9, 10\\}$ et $\\overline{C} = \\{1, 3, 5, 7, 9, 10\\}$ (questions 1 et 2).\n2. On recopie $\\overline{A}$ : 6, 7, 8, 9, 10.\n3. On ajoute ce qui manque de $\\overline{C}$ : 1, 3, 5 (7, 9 et 10 sont déjà écrits).\n\nRésultat : $\\overline{A} \\cup \\overline{C} = \\{1, 3, 5, 6, 7, 8, 9, 10\\}$. C'est **exactement** le même ensemble qu'à la question précédente.\n\n**Erreur fréquente :** écrire 7, 9 et 10 deux fois, ou faire l'intersection $\\{7, 9, 10\\}$ au lieu de l'union.\n\n**À retenir :** union = recopie le premier ensemble, puis ajoute ce qui manque du second."
       },
       {
         "intitule": "Quelle égalité vient-on de vérifier ?",
@@ -125,7 +236,8 @@
           "$\\overline{A \\cap C} = \\overline{A} \\cup \\overline{C}$",
           "$\\overline{A \\cup C} = \\overline{A} \\cup \\overline{C}$"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle (De Morgan) :** le complémentaire **échange** $\\cap$ et $\\cup$ : $\\overline{A \\cap C} = \\overline{A} \\cup \\overline{C}$ et $\\overline{A \\cup C} = \\overline{A} \\cap \\overline{C}$.\n\n**Pas à pas :** les questions 3 et 4 ont donné le même résultat :\n\n- $\\overline{A \\cap C} = \\{1, 3, 5, 6, 7, 8, 9, 10\\}$ ;\n- $\\overline{A} \\cup \\overline{C} = \\{1, 3, 5, 6, 7, 8, 9, 10\\}$.\n\nOn vient donc de vérifier $\\overline{A \\cap C} = \\overline{A} \\cup \\overline{C}$ : le $\\cap$ sous la barre est devenu un $\\cup$.\n\n**Les autres réponses :**\n\n- $\\overline{A \\cap C} = \\overline{A} \\cap \\overline{C}$ oublie l'échange. Ici $\\overline{A} \\cap \\overline{C} = \\{7, 9, 10\\}$, très différent.\n- $\\overline{A \\cup C} = \\overline{A} \\cup \\overline{C}$ oublie aussi l'échange : $A \\cup C = \\{1, 2, 3, 4, 5, 6, 8\\}$, donc $\\overline{A \\cup C} = \\{7, 9, 10\\}$, qui n'est pas $\\overline{A} \\cup \\overline{C}$.\n\n**À retenir :** quand la barre « entre » dans la parenthèse, $\\cap$ devient $\\cup$ et $\\cup$ devient $\\cap$."
       }
     ],
     "indices": [
@@ -144,30 +256,45 @@
         "intitule": "Combien d'éléments contient $A \\times B$ ? (un nombre)",
         "type": "nombre",
         "reponse": 6,
-        "refuses": ["5"]
+        "refuses": [
+          "5"
+        ],
+        "explication": "**Règle :** $|A \\times B| = |A| \\times |B|$ : chaque élément de $A$ est associé à **chaque** élément de $B$.\n\n**Pas à pas :** on liste les couples, ligne par ligne.\n\n| Premier élément | Couples |\n|---|---|\n| $a$ | $(a, 1)$, $(a, 2)$ |\n| $b$ | $(b, 1)$, $(b, 2)$ |\n| $c$ | $(c, 1)$, $(c, 2)$ |\n\n3 lignes de 2 couples : $3 \\times 2 = 6$.\n\n**Erreur fréquente :** additionner, $3 + 2 = 5$. On ne réunit pas les deux ensembles, on fabrique toutes les **paires**.\n\n**À retenir :** produit cartésien = on **multiplie** les tailles."
       },
       {
         "intitule": "Le couple $(1, a)$ appartient-il à $A \\times B$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** dans $A \\times B$, un couple $(x, y)$ a sa **première** place dans $A$ et sa **seconde** place dans $B$. Un couple est ordonné : l'ordre compte.\n\n**Pas à pas :** pour $(1, a)$ :\n\n- première place : 1. Est-ce que $1 \\in A = \\{a, b, c\\}$ ? **Non**.\n- Ce seul point suffit : $(1, a) \\notin A \\times B$.\n\nLa réponse est **Non**. Le couple $(1, a)$ est en fait dans $B \\times A$ (1 vient de $B$, $a$ vient de $A$). Le couple de $A \\times B$ qui contient les mêmes valeurs est $(a, 1)$.\n\n**Erreur fréquente :** répondre « Oui » parce que $a$ et 1 sont bien dans $A$ et $B$ : il faut aussi qu'ils soient à la **bonne place**.\n\n**À retenir :** pour savoir si $(x, y) \\in A \\times B$, vérifie $x \\in A$ **puis** $y \\in B$."
       },
       {
         "intitule": "Combien d'éléments contient $B \\times A$ ?",
         "type": "nombre",
-        "reponse": 6
+        "reponse": 6,
+        "explication": "**Règle :** $|B \\times A| = |B| \\times |A|$.\n\n**Pas à pas :**\n\n- $|B| = 2$ (les éléments 1 et 2).\n- $|A| = 3$ (les éléments $a$, $b$, $c$).\n- $|B \\times A| = 2 \\times 3 = 6$ : $(1, a)$, $(1, b)$, $(1, c)$, $(2, a)$, $(2, b)$, $(2, c)$.\n\nOn trouve 6, comme pour $A \\times B$, puisque $2 \\times 3 = 3 \\times 2$.\n\n**Erreur fréquente :** croire que changer l'ordre change le nombre de couples. Il change **les couples** eux-mêmes, pas leur nombre.\n\n**À retenir :** $|A \\times B| = |B \\times A|$, toujours."
       },
       {
         "intitule": "$A \\times B$ et $B \\times A$ sont-ils le même ensemble ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** deux ensembles sont égaux s'ils ont **les mêmes éléments**. Avoir autant d'éléments ne suffit pas. Un couple est ordonné : $(a, 1) \\neq (1, a)$.\n\n**Pas à pas :**\n\n- $(a, 1)$ est dans $A \\times B$ (première place $a \\in A$, seconde place $1 \\in B$).\n- $(a, 1)$ est-il dans $B \\times A$ ? Sa première place devrait venir de $B$, or $a \\notin B$ : non.\n\nUn élément de $A \\times B$ n'est pas dans $B \\times A$ : les ensembles sont différents. La réponse est **Non**. (En fait, ici, **aucun** couple n'est commun aux deux.)\n\n**Erreur fréquente :** répondre « Oui » parce qu'ils ont tous les deux 6 éléments : même taille ne veut pas dire mêmes éléments.\n\n**À retenir :** $A \\times B$ et $B \\times A$ ont la même taille, mais pas les mêmes couples (sauf si $A = B$)."
       },
       {
         "intitule": "Une table `Produits` a 7 lignes et une table `Magasins` en a 5. Combien de lignes renvoie `Produits CROSS JOIN Magasins` ?",
         "type": "nombre",
         "reponse": 35,
-        "refuses": ["12"]
+        "refuses": [
+          "12"
+        ],
+        "explication": "**Règle :** un `CROSS JOIN` est un produit cartésien : chaque ligne de la première table est associée à **chaque** ligne de la seconde, donc on multiplie les nombres de lignes.\n\n**Pas à pas :**\n\n- Le 1er produit est associé aux 5 magasins : 5 lignes.\n- Le 2e produit aussi : 5 lignes de plus.\n- … pour les 7 produits.\n\n7 paquets de 5 lignes : $7 \\times 5 = 35$ lignes.\n\n**Erreur fréquente :** répondre $7 + 5 = 12$, ce qui reviendrait à **empiler** les deux tables (comme un `UNION`), pas à les croiser.\n\n**À retenir :** `CROSS JOIN` de $n$ lignes et $m$ lignes = $n \\times m$ lignes."
       }
     ],
     "indices": [
@@ -190,12 +317,14 @@
           "prend un élément quelconque de $X$ et on montre qu'il appartient à $Y$",
           "montre que $X$ et $Y$ ont le même nombre d'éléments"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour montrer $X \\subset Y$, on prend un élément **quelconque** de $X$ (on ne choisit pas sa valeur) et on montre qu'il est dans $Y$. Comme il est quelconque, le raisonnement vaut pour **tous** les éléments de $X$.\n\n**Pourquoi les autres méthodes ne marchent pas :**\n\n- « Vérifier la propriété sur un exemple » : un exemple ne montre qu'un cas. Une inclusion affirme quelque chose pour **tous** les éléments, et un autre exemple pourrait échouer.\n- « Montrer que $X$ et $Y$ ont le même nombre d'éléments » : la taille ne dit rien sur l'inclusion. $\\{1\\}$ et $\\{2\\}$ ont chacun un élément, et aucun n'est inclus dans l'autre. À l'inverse, $\\{1\\} \\subset \\{1, 2\\}$ alors que les tailles sont différentes.\n\n**À retenir :** une inclusion se prouve toujours en commençant par « Soit $x \\in X$ » (un $x$ quelconque)."
       },
       {
         "intitule": "Rédige la preuve de $A \\setminus B \\subset A$ (trois lignes suffisent).",
         "type": "auto",
-        "reponse": "Soit $x \\in A \\setminus B$.\n\nPar définition de la différence, $x \\in A$ et $x \\notin B$.\n\nEn particulier $x \\in A$. Comme $x$ était quelconque, tout élément de $A \\setminus B$ est dans $A$ : $A \\setminus B \\subset A$."
+        "reponse": "Soit $x \\in A \\setminus B$.\n\nPar définition de la différence, $x \\in A$ et $x \\notin B$.\n\nEn particulier $x \\in A$. Comme $x$ était quelconque, tout élément de $A \\setminus B$ est dans $A$ : $A \\setminus B \\subset A$.",
+        "explication": "**Règle :** une preuve d'inclusion suit quatre temps : poser un $x$ quelconque, traduire avec la définition, garder ce qui sert, conclure. La définition utile ici : $x \\in A \\setminus B$ veut dire $x \\in A$ **et** $x \\notin B$.\n\n**Compare ta preuve, ligne par ligne :**\n\n1. **Poser :** « Soit $x \\in A \\setminus B$. » On part d'un élément du premier ensemble, sans choisir sa valeur.\n2. **Traduire :** « Par définition de la différence, $x \\in A$ et $x \\notin B$. »\n3. **Garder :** « En particulier, $x \\in A$. » L'information $x \\notin B$ ne sert pas ici, on peut la laisser de côté.\n4. **Conclure :** « Comme $x$ était quelconque, tout élément de $A \\setminus B$ est dans $A$, donc $A \\setminus B \\subset A$. »\n\n**Erreurs fréquentes :**\n\n- Prendre des ensembles précis ($A = \\{1, 2\\}$, $B = \\{2\\}$) : c'est un exemple, pas une preuve.\n- Partir d'un $x$ de $A$ au lieu d'un $x$ de $A \\setminus B$ : on part toujours de l'ensemble de **gauche** du $\\subset$.\n- Oublier la phrase de conclusion.\n\n**À retenir :** « Soit $x \\in$ (gauche) », définition, « en particulier $x \\in$ (droite) », « donc (gauche) $\\subset$ (droite) »."
       }
     ],
     "indices": [
@@ -213,38 +342,68 @@
       {
         "intitule": "Cette relation est :",
         "type": "choix",
-        "choix": ["une relation d'ordre", "une relation d'équivalence", "ni l'une ni l'autre"],
-        "reponse": 1
+        "choix": [
+          "une relation d'ordre",
+          "une relation d'équivalence",
+          "ni l'une ni l'autre"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une relation d'**équivalence** est réflexive, symétrique **et** transitive. Une relation d'**ordre** est réflexive, **antisymétrique** et transitive.\n\n**Pas à pas pour « même reste dans la division par 4 » :**\n\n| Propriété | Test | Résultat |\n|---|---|---|\n| Réflexive | $x$ a-t-il le même reste que lui-même ? | oui, toujours |\n| Symétrique | si $x$ a le même reste que $y$, $y$ a-t-il le même reste que $x$ ? | oui, la phrase marche dans les deux sens |\n| Transitive | même reste pour $x$ et $y$, et pour $y$ et $z$ : même reste pour $x$ et $z$ ? | oui, c'est le même reste partout |\n| Antisymétrique | si $x R y$ et $y R x$, a-t-on $x = y$ ? | **non** : $1 R 5$ et $5 R 1$ (reste 1), mais $1 \\neq 5$ |\n\nRéflexive, symétrique et transitive : c'est une **relation d'équivalence**.\n\n**Les autres réponses :** ce n'est pas une relation d'ordre, car elle n'est pas antisymétrique (le contre-exemple 1 et 5 suffit). Et « ni l'une ni l'autre » est faux, puisque les trois propriétés de l'équivalence sont vérifiées.\n\n**À retenir :** une relation définie par « avoir la même … » (même reste, même âge, même ville) est presque toujours une équivalence."
       },
       {
         "intitule": "Combien de classes d'équivalence y a-t-il ? (un nombre)",
         "type": "nombre",
         "reponse": 4,
-        "refuses": ["3"]
+        "refuses": [
+          "3"
+        ],
+        "explication": "**Règle :** une classe d'équivalence regroupe tous les éléments en relation entre eux. Ici, une classe = tous les entiers qui ont **le même reste** dans la division par 4.\n\n**Pas à pas :** la division par 4 donne un reste $r$ avec $0 \\le r < 4$.\n\n| Reste | Quelques entiers de la classe |\n|---|---|\n| 0 | …, $-4$, 0, 4, 8, 12, … |\n| 1 | …, $-3$, 1, 5, 9, 13, … |\n| 2 | …, $-2$, 2, 6, 10, 14, … |\n| 3 | …, $-1$, 3, 7, 11, 15, … |\n\nIl y a une classe par reste possible : **4 classes**.\n\n**Erreur fréquente :** répondre 3 en oubliant la classe du reste **0** (les multiples de 4, comme 8 ou 12).\n\n**À retenir :** « même reste dans la division par $n$ » donne $n$ classes."
       },
       {
         "intitule": "Écris l'ensemble des restes possibles, sous la forme `{a, b, ...}`.",
         "type": "ensemble",
-        "reponse": [0, 1, 2, 3],
-        "refuses": ["{1, 2, 3, 4}", "{1, 2, 3}"]
+        "reponse": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "refuses": [
+          "{1, 2, 3, 4}",
+          "{1, 2, 3}"
+        ],
+        "explication": "**Règle :** dans la division euclidienne par 4, on écrit $a = q \\times 4 + r$ avec un reste $r$ qui vérifie $0 \\le r < 4$.\n\n**Pas à pas :** les entiers $r$ tels que $0 \\le r < 4$ sont 0, 1, 2 et 3. Chacun existe vraiment :\n\n- reste 0 : $8 = 2 \\times 4 + 0$ ;\n- reste 1 : $5 = 1 \\times 4 + 1$ ;\n- reste 2 : $6 = 1 \\times 4 + 2$ ;\n- reste 3 : $7 = 1 \\times 4 + 3$.\n\nLes restes possibles sont $\\{0, 1, 2, 3\\}$.\n\n**Erreurs fréquentes :**\n\n- $\\{1, 2, 3, 4\\}$ : un reste de 4 est impossible, on pourrait encore retirer un 4 (exemple : $8 = 1 \\times 4 + 4$ s'écrit en fait $2 \\times 4 + 0$).\n- $\\{1, 2, 3\\}$ : on a oublié le reste 0, celui des multiples de 4.\n\n**À retenir :** les restes de la division par $n$ vont de $0$ à $n - 1$."
       },
       {
         "intitule": "Quel est le reste de 23 dans la division par 4 ?",
         "type": "nombre",
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** le reste $r$ de $a$ dans la division par 4 vérifie $a = q \\times 4 + r$ avec $0 \\le r < 4$.\n\n**Pas à pas :** on cherche le plus grand multiple de 4 qui ne dépasse pas 23.\n\n- $5 \\times 4 = 20$, qui ne dépasse pas 23.\n- $6 \\times 4 = 24$, qui dépasse 23.\n\nDonc $q = 5$, et $23 - 20 = 3$ : $23 = 5 \\times 4 + 3$. On vérifie que $0 \\le 3 < 4$ : le reste est **3**.\n\n**Erreur fréquente :** donner le quotient (5) au lieu du reste, ou faire $23 - 24 = -1$ (un reste n'est jamais négatif).\n\n**À retenir :** reste = $a$ moins le plus grand multiple de $n$ qui ne dépasse pas $a$."
       },
       {
         "intitule": "Les entiers 23 et 11 sont-ils en relation ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** deux entiers sont en relation s'ils ont **le même reste** dans la division par 4.\n\n**Pas à pas :**\n\n| Entier | Division par 4 | Reste |\n|---|---|---|\n| 23 | $23 = 5 \\times 4 + 3$ | 3 |\n| 11 | $11 = 2 \\times 4 + 3$ | 3 |\n\nLes deux restes sont égaux (3) : la réponse est **Oui**, 23 et 11 sont dans la même classe.\n\nAutre façon de voir : $23 - 11 = 12 = 3 \\times 4$. Quand la différence est un multiple de 4, les deux nombres ont le même reste.\n\n**À retenir :** pour savoir si deux entiers sont en relation, calcule leurs deux restes et compare-les."
       },
       {
         "intitule": "Quel mot-clé SQL regroupe les lignes en classes ? (deux mots)",
         "type": "texte",
-        "reponse": ["GROUP BY"],
-        "acceptes": ["group by", "Group By"],
-        "refuses": ["ORDER BY"]
+        "reponse": [
+          "GROUP BY"
+        ],
+        "acceptes": [
+          "group by",
+          "Group By"
+        ],
+        "refuses": [
+          "ORDER BY"
+        ],
+        "explication": "**Règle :** une relation d'équivalence découpe un ensemble en classes. En SQL, `GROUP BY colonne` fait la même chose : il range dans un même groupe toutes les lignes qui ont **la même valeur** dans la colonne.\n\n**Pas à pas :** `GROUP BY reste` sur des lignes contenant 5, 13, 6 et 9 (restes 1, 1, 2, 1) donnerait deux groupes : $\\{5, 13, 9\\}$ (reste 1) et $\\{6\\}$ (reste 2), exactement les classes de la relation.\n\n**Erreur fréquente :** `ORDER BY` **trie** les lignes (c'est une relation d'ordre), il ne les regroupe pas : il y aurait toujours autant de lignes qu'au départ.\n\n**À retenir :** classes d'équivalence = `GROUP BY` ; relation d'ordre = `ORDER BY`."
       }
     ],
     "indices": [
@@ -263,43 +422,72 @@
       {
         "intitule": "$R$ est-elle réflexive ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une relation est **réflexive** si **chaque** élément de $E$ est en relation avec lui-même : $\\forall x \\in E,\\ x R x$. Sur $E = \\{1, 2, 3\\}$, il faut donc trouver les trois couples $(1,1)$, $(2,2)$ et $(3,3)$.\n\n**Pas à pas :**\n\n| Couple nécessaire | Dans $R$ ? |\n|---|---|\n| $(1,1)$ | oui |\n| $(2,2)$ | oui |\n| $(3,3)$ | oui |\n\nLes trois sont présents : la réponse est **Oui**.\n\n**Erreur fréquente :** se laisser distraire par $(1,3)$ et $(3,1)$ : ils ne jouent aucun rôle pour la réflexivité, on ne regarde que les couples $(x, x)$.\n\n**À retenir :** réflexive = tous les couples $(x, x)$ sont là, sans exception."
       },
       {
         "intitule": "$R$ est-elle symétrique ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une relation est **symétrique** si $x R y \\Rightarrow y R x$ : pour chaque couple $(x, y)$, le couple inverse $(y, x)$ doit aussi être présent.\n\n**Pas à pas :** on inverse chaque couple et on le cherche dans la liste.\n\n| Couple | Couple inverse | Présent ? |\n|---|---|---|\n| $(1,1)$ | $(1,1)$ | oui |\n| $(2,2)$ | $(2,2)$ | oui |\n| $(3,3)$ | $(3,3)$ | oui |\n| $(1,3)$ | $(3,1)$ | oui |\n| $(3,1)$ | $(1,3)$ | oui |\n\nTous les couples ont leur inverse : la réponse est **Oui**. Les couples $(x, x)$ sont leur propre inverse, ils ne posent jamais de problème.\n\n**À retenir :** pour la symétrie, inverse chaque couple $(x, y)$ en $(y, x)$ et vérifie qu'il est dans la liste."
       },
       {
         "intitule": "$R$ est-elle antisymétrique ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une relation est **antisymétrique** si $(x R y \\text{ et } y R x) \\Rightarrow x = y$. Autrement dit : il ne doit exister **aucune** paire de couples inverses $(x, y)$ et $(y, x)$ avec $x \\neq y$.\n\n**Pas à pas :** on cherche les couples avec deux valeurs différentes, et on regarde si leur inverse est là.\n\n| Couple avec $x \\neq y$ | Inverse présent ? | Problème ? |\n|---|---|---|\n| $(1,3)$ | $(3,1)$ oui | oui : $1 \\neq 3$ |\n| $(3,1)$ | $(1,3)$ oui | oui : $3 \\neq 1$ |\n\n$1 R 3$ et $3 R 1$ alors que $1 \\neq 3$ : la réponse est **Non**.\n\n**Erreur fréquente :** croire qu'antisymétrique veut dire « pas symétrique ». Ce sont deux tests indépendants : une relation peut être les deux (exemple $\\{(1,1), (2,2)\\}$), une seule, ou aucune des deux.\n\n**À retenir :** une seule paire $(x, y)$, $(y, x)$ avec $x \\neq y$ suffit à casser l'antisymétrie."
       },
       {
         "intitule": "$R$ est-elle transitive ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une relation est **transitive** si $(x R y \\text{ et } y R z) \\Rightarrow x R z$ : à chaque fois qu'on peut enchaîner $(x, y)$ puis $(y, z)$, le « raccourci » $(x, z)$ doit être présent.\n\n**Pas à pas :** on liste les enchaînements possibles (le deuxième couple doit commencer par la fin du premier).\n\n| Premier couple | Deuxième couple | Raccourci nécessaire | Présent ? |\n|---|---|---|---|\n| $(1,3)$ | $(3,1)$ | $(1,1)$ | oui |\n| $(1,3)$ | $(3,3)$ | $(1,3)$ | oui |\n| $(3,1)$ | $(1,3)$ | $(3,3)$ | oui |\n| $(3,1)$ | $(1,1)$ | $(3,1)$ | oui |\n| $(1,1)$ | $(1,3)$ | $(1,3)$ | oui |\n| $(3,3)$ | $(3,1)$ | $(3,1)$ | oui |\n\nLes autres enchaînements ($(1,1)$ puis $(1,1)$, $(2,2)$ puis $(2,2)$, …) redonnent un couple déjà dans la liste. Aucun raccourci ne manque : la réponse est **Oui**.\n\n**À retenir :** pour la transitivité, cherche chaque enchaînement « $x \\to y \\to z$ » et vérifie que $(x, z)$ existe."
       },
       {
         "intitule": "C'est donc :",
         "type": "choix",
-        "choix": ["une relation d'ordre", "ni l'une ni l'autre", "une relation d'équivalence"],
-        "reponse": 2
+        "choix": [
+          "une relation d'ordre",
+          "ni l'une ni l'autre",
+          "une relation d'équivalence"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** une relation d'**équivalence** doit être réflexive, symétrique **et** transitive. Une relation d'**ordre** doit être réflexive, **antisymétrique** et transitive. Il suffit qu'une seule propriété manque pour ne pas appartenir à la famille.\n\n**Pas à pas :** on reprend les questions précédentes.\n\n| Propriété | Résultat | Équivalence ? | Ordre ? |\n|---|---|---|---|\n| Réflexive | oui | requise, vérifiée | requise, vérifiée |\n| Symétrique | oui | requise, vérifiée | pas demandée |\n| Antisymétrique | **non** | pas demandée | requise, **manque** |\n| Transitive | oui | requise, vérifiée | requise, vérifiée |\n\nLes trois propriétés de l'équivalence sont vérifiées : c'est une **relation d'équivalence**.\n\n**Les autres réponses :** pas une relation d'ordre, car l'antisymétrie manque. Et pas « ni l'une ni l'autre », puisque l'équivalence est complète.\n\n**À retenir :** remplis le tableau des propriétés, puis compare avec les deux familles."
       },
       {
         "intitule": "Écris la classe de 1 (tous les éléments en relation avec 1), sous la forme `{a, b}`.",
         "type": "ensemble",
-        "reponse": [1, 3],
-        "refuses": ["{3}", "{1, 2, 3}"]
+        "reponse": [
+          1,
+          3
+        ],
+        "refuses": [
+          "{3}",
+          "{1, 2, 3}"
+        ],
+        "explication": "**Règle :** la classe de 1, notée $[1]$, contient tous les $y$ tels que $1 R y$, c'est-à-dire tous les $y$ pour lesquels le couple $(1, y)$ est dans la liste.\n\n**Pas à pas :** on cherche les couples qui **commencent** par 1.\n\n| Couple | Commence par 1 ? | Élément ajouté |\n|---|---|---|\n| $(1,1)$ | oui | 1 |\n| $(2,2)$ | non | |\n| $(3,3)$ | non | |\n| $(1,3)$ | oui | 3 |\n| $(3,1)$ | non | |\n\nDonc $[1] = \\{1, 3\\}$.\n\n**Erreurs fréquentes :** répondre $\\{3\\}$ en oubliant 1 lui-même (la relation est réflexive, donc 1 est toujours dans sa propre classe), ou ajouter 2 alors que $(1,2)$ n'est pas dans la liste.\n\n**À retenir :** la classe de $x$ = les secondes places de tous les couples qui commencent par $x$."
       },
       {
         "intitule": "Combien de classes d'équivalence y a-t-il ?",
         "type": "nombre",
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** une classe d'équivalence regroupe les éléments en relation entre eux. On calcule la classe de chaque élément, puis on **enlève les doublons**.\n\n**Pas à pas :**\n\n| Élément | Couples qui commencent par lui | Classe |\n|---|---|---|\n| 1 | $(1,1)$, $(1,3)$ | $\\{1, 3\\}$ |\n| 2 | $(2,2)$ seulement | $\\{2\\}$ |\n| 3 | $(3,3)$, $(3,1)$ | $\\{1, 3\\}$ |\n\n$[1]$ et $[3]$ sont le même ensemble $\\{1, 3\\}$ : on ne le compte qu'une fois. Les classes sont $\\{1, 3\\}$ et $\\{2\\}$, soit **2** classes. Contrôle : elles ne se chevauchent pas et, ensemble, elles contiennent 1, 2 et 3.\n\n**Erreur fréquente :** répondre 3 (une classe par élément) sans voir que $[1] = [3]$.\n\n**À retenir :** calcule la classe de chaque élément, puis compte les classes **différentes**."
       }
     ],
     "indices": [
@@ -318,33 +506,67 @@
       {
         "intitule": "Cette relation est :",
         "type": "choix",
-        "choix": ["une relation d'équivalence", "une relation d'ordre", "ni l'une ni l'autre"],
-        "reponse": 1
+        "choix": [
+          "une relation d'équivalence",
+          "une relation d'ordre",
+          "ni l'une ni l'autre"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une relation d'**ordre** est réflexive, **antisymétrique** et transitive. Une relation d'**équivalence** est réflexive, **symétrique** et transitive. « $x$ divise $y$ » veut dire $y = k \\times x$ avec $k$ entier.\n\n**Pas à pas :**\n\n| Propriété | Test | Résultat |\n|---|---|---|\n| Réflexive | $x$ divise-t-il $x$ ? | oui : $x = 1 \\times x$ |\n| Antisymétrique | si $x$ divise $y$ et $y$ divise $x$, a-t-on $x = y$ ? | oui : $y = kx$ et $x = my$ donnent $x = mkx$, donc $mk = 1$, et avec des entiers positifs $k = m = 1$ |\n| Transitive | si $x$ divise $y$ et $y$ divise $z$, $x$ divise-t-il $z$ ? | oui : $y = kx$ et $z = my$ donnent $z = (mk)x$ |\n| Symétrique | si $x$ divise $y$, $y$ divise-t-il $x$ ? | **non** : 2 divise 4 ($4 = 2 \\times 2$), mais 4 ne divise pas 2 |\n\nRéflexive, antisymétrique et transitive : c'est une **relation d'ordre**.\n\n**Les autres réponses :** pas une équivalence, car elle n'est pas symétrique (le cas 2 et 4 suffit). Pas « ni l'une ni l'autre », puisque les trois propriétés de l'ordre sont vérifiées.\n\n**À retenir :** une relation qui « va dans un seul sens » (diviser, être plus petit, être ancêtre) est un candidat ordre, pas équivalence."
       },
       {
         "intitule": "4 et 6 sont-ils comparables (l'un divise-t-il l'autre) ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** deux éléments sont **comparables** si l'un est en relation avec l'autre, dans un sens **ou** dans l'autre. Ici : 4 divise 6, ou 6 divise 4.\n\n**Pas à pas :**\n\n- 4 divise-t-il 6 ? Il faudrait $6 = k \\times 4$, soit $k = \\frac{6}{4} = 1{,}5$, qui n'est pas entier : non.\n- 6 divise-t-il 4 ? Il faudrait $4 = k \\times 6$, soit $k = \\frac{4}{6}$, pas entier : non.\n\nAucun des deux sens ne marche : la réponse est **Non**, 4 et 6 ne sont pas comparables.\n\n**Erreur fréquente :** penser « 4 est plus petit que 6, donc ils sont comparables ». C'est vrai pour $\\le$, mais ici la relation est « divise », pas « est plus petit que ».\n\n**À retenir :** pour « $x$ divise $y$ », teste les deux sens : $y$ est-il un multiple de $x$, ou $x$ un multiple de $y$ ?"
       },
       {
         "intitule": "Cet ordre est-il **total** ou **partiel** ? (un mot)",
         "type": "texte",
-        "reponse": ["partiel", "ordre partiel"],
-        "acceptes": ["Partiel", "Ordre partiel"],
-        "refuses": ["total"]
+        "reponse": [
+          "partiel",
+          "ordre partiel"
+        ],
+        "acceptes": [
+          "Partiel",
+          "Ordre partiel"
+        ],
+        "refuses": [
+          "total"
+        ],
+        "explication": "**Règle :** un ordre est **total** si **deux éléments quelconques** sont toujours comparables. S'il existe **au moins une** paire non comparable, il est **partiel**.\n\n**Pas à pas :**\n\n1. On cherche une paire non comparable.\n2. La question précédente en donne une : 4 et 6 (aucun ne divise l'autre).\n3. Une seule paire suffit : l'ordre « divise » est **partiel**.\n\n**Erreur fréquente :** répondre « total » parce que beaucoup de paires sont comparables (1 et 5, 2 et 8, 3 et 9…). Il faudrait que **toutes** le soient. À l'inverse, $\\le$ sur $\\mathbb{R}$ est total : pour deux réels, on a toujours $x \\le y$ ou $y \\le x$.\n\n**À retenir :** une seule paire non comparable rend l'ordre partiel."
       },
       {
         "intitule": "Écris l'ensemble des $x$ tels que $x \\, R \\, 18$ (les diviseurs de 18), sous la forme `{a, b, ...}`.",
         "type": "ensemble",
-        "reponse": [1, 2, 3, 6, 9, 18],
-        "refuses": ["{2, 3, 6, 9}", "{1, 2, 3, 6, 9}"]
+        "reponse": [
+          1,
+          2,
+          3,
+          6,
+          9,
+          18
+        ],
+        "refuses": [
+          "{2, 3, 6, 9}",
+          "{1, 2, 3, 6, 9}"
+        ],
+        "explication": "**Règle :** $x R 18$ veut dire « $x$ divise 18 », c'est-à-dire $18 = k \\times x$ avec $k$ entier. On cherche donc les **diviseurs** de 18.\n\n**Pas à pas :** on écrit 18 comme produit de deux entiers, en essayant $x = 1, 2, 3, \\dots$\n\n| $x$ | $18 = k \\times x$ ? | Diviseur ? |\n|---|---|---|\n| 1 | $18 = 18 \\times 1$ | oui |\n| 2 | $18 = 9 \\times 2$ | oui |\n| 3 | $18 = 6 \\times 3$ | oui |\n| 4 | $18 = 4{,}5 \\times 4$ | non |\n| 5 | $18 = 3{,}6 \\times 5$ | non |\n| 6 | $18 = 3 \\times 6$ | oui |\n\nAu-delà de 6, on retrouve les partenaires déjà vus : 9 (avec 2) et 18 (avec 1). Résultat : $\\{1, 2, 3, 6, 9, 18\\}$.\n\n**Erreurs fréquentes :** oublier 1, ou oublier 18 lui-même (la relation est réflexive : 18 divise 18).\n\n**À retenir :** pour les diviseurs de $n$, cherche toutes les écritures $n = a \\times b$ et garde $a$ et $b$, sans oublier 1 et $n$."
       },
       {
         "intitule": "La relation $<$ (strictement inférieur) sur $\\mathbb{R}$ est-elle une relation d'ordre au sens du cours ?",
         "type": "choix",
-        "choix": ["Oui, c'est l'ordre usuel", "Non, car elle n'est pas réflexive", "Non, car elle n'est pas transitive"],
-        "reponse": 1
+        "choix": [
+          "Oui, c'est l'ordre usuel",
+          "Non, car elle n'est pas réflexive",
+          "Non, car elle n'est pas transitive"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** au sens du cours, une relation d'ordre doit être réflexive, antisymétrique **et** transitive. Une seule propriété qui manque suffit pour que ce n'en soit pas une.\n\n**Pas à pas pour $<$ sur $\\mathbb{R}$ :**\n\n| Propriété | Test | Résultat |\n|---|---|---|\n| Réflexive | $x < x$ ? | **non**, jamais (exemple : $3 < 3$ est faux) |\n| Antisymétrique | si $x < y$ et $y < x$… | ce cas n'arrive jamais, donc la règle n'est jamais contredite : oui |\n| Transitive | si $x < y$ et $y < z$, alors $x < z$ ? | oui |\n\nLa réflexivité manque : $<$ n'est **pas** une relation d'ordre au sens du cours. On l'appelle un ordre **strict**.\n\n**Les autres réponses :**\n\n- « Oui, c'est l'ordre usuel » : l'ordre usuel au sens du cours est $\\le$ (qui, lui, est réflexif), pas $<$.\n- « Non, car elle n'est pas transitive » : elle **est** transitive ; la vraie raison est la réflexivité.\n\n**À retenir :** $\\le$ est un ordre, $<$ est un ordre strict (pas réflexif)."
       }
     ],
     "indices": [
@@ -363,26 +585,43 @@
       {
         "intitule": "$f$ est-elle injective ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $f$ est **injective** si deux éléments différents ont **toujours** des images différentes. Il suffit de trouver deux éléments différents avec la même image pour qu'elle ne le soit pas.\n\n**Pas à pas :** on regarde chaque image d'arrivée et qui l'atteint.\n\n| Arrivée | Atteinte par |\n|---|---|\n| $a$ | 1 **et** 3 |\n| $b$ | 4 |\n| $c$ | 2 |\n\n$f(1) = a$ et $f(3) = a$, avec $1 \\neq 3$ : $a$ est atteinte deux fois. La réponse est **Non**, $f$ n'est pas injective.\n\n**À retenir :** injective = aucune image atteinte deux fois ; un seul doublon suffit à le casser."
       },
       {
         "intitule": "$f$ est-elle surjective ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** $f$ est **surjective** si chaque élément de l'ensemble d'**arrivée** est l'image d'**au moins un** élément de départ.\n\n**Pas à pas :** on passe en revue l'arrivée $\\{a, b, c\\}$.\n\n| Arrivée | Atteinte ? | Par |\n|---|---|---|\n| $a$ | oui | 1 et 3 |\n| $b$ | oui | 4 |\n| $c$ | oui | 2 |\n\nAucun élément d'arrivée n'est oublié : la réponse est **Oui**, $f$ est surjective.\n\n**Erreur fréquente :** répondre « Non » parce que $a$ est atteinte deux fois. Ça empêche l'injectivité, pas la surjectivité : « au moins une fois » accepte deux fois.\n\n**À retenir :** surjective = chaque élément d'arrivée est atteint au moins une fois."
       },
       {
         "intitule": "La fonction « étudiant $\\mapsto$ `promo` » est-elle injective en général ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une fonction est injective si deux éléments différents ont toujours des images différentes.\n\n**Pas à pas :** la fonction associe à chaque étudiant sa promo.\n\n- Prenons deux étudiants différents de la même promo, par exemple Alice et Karim, tous les deux en « B2 ».\n- Ils ont la même image : « B2 ».\n- Deux éléments différents, même image : ce n'est pas injectif.\n\nLa réponse est **Non**. Rien dans la table n'interdit deux étudiants dans la même promo, c'est même le cas normal.\n\n**À retenir :** une colonne qui peut se répéter (promo, ville, département) ne donne pas une fonction injective."
       },
       {
         "intitule": "La fonction « étudiant $\\mapsto$ `num_etudiant` » est-elle injective ?",
         "type": "choix",
-        "choix": ["Oui, grâce à la clé primaire", "Non, deux étudiants peuvent avoir le même numéro", "On ne peut pas savoir"],
-        "reponse": 0
+        "choix": [
+          "Oui, grâce à la clé primaire",
+          "Non, deux étudiants peuvent avoir le même numéro",
+          "On ne peut pas savoir"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une **clé primaire** interdit qu'une même valeur apparaisse sur deux lignes. Une fonction est injective si deux éléments différents ont des images différentes.\n\n**Pas à pas :**\n\n1. Deux étudiants différents sont deux lignes différentes de la table.\n2. La clé primaire `num_etudiant` interdit que ces deux lignes aient le même numéro.\n3. Donc deux étudiants différents ont toujours deux numéros différents : c'est exactement la définition de l'injectivité.\n\nLa réponse est « **Oui, grâce à la clé primaire** ».\n\n**Les autres réponses :** « deux étudiants peuvent avoir le même numéro » est faux, la base de données refuse l'ajout d'une ligne avec un numéro déjà pris. « On ne peut pas savoir » est faux aussi : c'est la table elle-même qui garantit la règle.\n\n**À retenir :** clé primaire (ou `UNIQUE`) sur une colonne = la fonction « ligne $\\mapsto$ valeur » est injective."
       },
       {
         "intitule": "Quelle formule exprime la contrainte d'unicité sur `num_etudiant` ?",
@@ -392,13 +631,19 @@
           "$\\forall e,\\ e.num \\neq 0$",
           "$\\forall e_1, e_2,\\ e_1 \\neq e_2 \\Rightarrow e_1.num \\neq e_2.num$"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** l'injectivité se dit « deux éléments différents ont des images différentes ». En formule : $\\forall e_1, e_2,\\ e_1 \\neq e_2 \\Rightarrow e_1.num \\neq e_2.num$.\n\n**Pas à pas, on traduit morceau par morceau :**\n\n- « pour tous étudiants $e_1$ et $e_2$ » : $\\forall e_1, e_2$ ;\n- « s'ils sont différents » : $e_1 \\neq e_2 \\Rightarrow \\dots$ ;\n- « alors leurs numéros sont différents » : $e_1.num \\neq e_2.num$.\n\n**Les autres réponses :**\n\n- $\\exists e_1, e_2,\\ e_1.num = e_2.num$ dit l'inverse : « il existe deux étudiants qui partagent un numéro » (et comme elle accepte $e_1 = e_2$, elle est vraie dès qu'il y a un seul étudiant).\n- $\\forall e,\\ e.num \\neq 0$ interdit seulement la valeur 0 : deux étudiants pourraient encore avoir le numéro 7.\n\n**À retenir :** unicité = « pour tous $e_1 \\neq e_2$, leurs valeurs sont différentes »."
       },
       {
         "intitule": "Quel mot-clé SQL, autre que la clé primaire, interdit les doublons dans une colonne ? (un mot)",
         "type": "texte",
-        "reponse": ["UNIQUE"],
-        "refuses": ["DISTINCT"]
+        "reponse": [
+          "UNIQUE"
+        ],
+        "refuses": [
+          "DISTINCT"
+        ],
+        "explication": "**Règle :** `UNIQUE` est une **contrainte** posée sur une colonne : la base refuse toute ligne dont la valeur existe déjà dans cette colonne. C'est la même garantie qu'une clé primaire (la clé primaire interdit en plus les valeurs vides).\n\n**Pas à pas :** avec `email UNIQUE`, si un étudiant a déjà `alice@exemple.fr`, l'ajout d'un deuxième étudiant avec la même adresse est **refusé**. La colonne ne peut jamais contenir de doublon.\n\n**Erreur fréquente :** répondre `DISTINCT`. `DISTINCT` ne protège pas la table : il enlève seulement les doublons **du résultat** d'un `SELECT`. La table, elle, peut toujours en contenir.\n\n**À retenir :** `UNIQUE` empêche les doublons dans la table ; `DISTINCT` les cache dans un résultat."
       }
     ],
     "indices": [
@@ -417,37 +662,58 @@
       {
         "intitule": "$P$ vraie et $Q$ vraie",
         "type": "choix",
-        "choix": ["Vrai", "Faux"],
-        "reponse": 0
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** $P \\Rightarrow Q$ est une promesse : « chaque fois que $P$ est vraie, $Q$ l'est aussi ». Elle n'est fausse que si $P$ est vraie **et** $Q$ fausse.\n\n**Pas à pas :** ici $P$ est vraie et $Q$ est vraie. $P$ arrive, et $Q$ suit : la promesse est tenue. Ce n'est pas le cas « $P$ vraie et $Q$ fausse ».\n\n| $P$ | $Q$ | $P \\Rightarrow Q$ |\n|---|---|---|\n| V | V | **V** |\n\nLa réponse est **Vrai**.\n\n**À retenir :** $P$ vraie et $Q$ vraie : l'implication est tenue, donc vraie."
       },
       {
         "intitule": "$P$ vraie et $Q$ fausse",
         "type": "choix",
-        "choix": ["Vrai", "Faux"],
-        "reponse": 1
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $P \\Rightarrow Q$ est fausse dans **un seul** cas : $P$ vraie et $Q$ fausse.\n\n**Pas à pas :** ici $P$ est vraie : la promesse « si $P$ alors $Q$ » s'applique. Mais $Q$ est fausse : ce qui était promis n'arrive pas. La promesse est rompue.\n\n| $P$ | $Q$ | $P \\Rightarrow Q$ |\n|---|---|---|\n| V | F | **F** |\n\nLa réponse est **Faux**. Exemple : « s'il pleut, je prends mon parapluie », un jour de pluie où je sors sans parapluie.\n\n**À retenir :** $P$ vraie et $Q$ fausse est le seul cas où l'implication est fausse."
       },
       {
         "intitule": "$P$ fausse et $Q$ vraie",
         "type": "choix",
-        "choix": ["Vrai", "Faux"],
-        "reponse": 0
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** quand $P$ est fausse, l'implication $P \\Rightarrow Q$ ne promet rien : elle est **vraie**, quelle que soit la valeur de $Q$.\n\n**Pas à pas :** ici $P$ est fausse. La condition « si $P$ » n'est pas remplie, donc la promesse n'est pas mise à l'épreuve. On n'est pas dans le cas « $P$ vraie et $Q$ fausse » : rien ne la contredit.\n\n| $P$ | $Q$ | $P \\Rightarrow Q$ |\n|---|---|---|\n| F | V | **V** |\n\nLa réponse est **Vrai**. Exemple : « s'il pleut, je prends mon parapluie », un jour sans pluie où je prends quand même mon parapluie : je n'ai rien promis de faux.\n\n**Erreur fréquente :** croire que l'implication est fausse parce que $P$ est fausse. Une implication ne dit rien sur ce qui se passe quand $P$ est fausse.\n\n**À retenir :** $P$ fausse rend toujours l'implication vraie."
       },
       {
         "intitule": "$P$ fausse et $Q$ fausse",
         "type": "choix",
-        "choix": ["Vrai", "Faux"],
-        "reponse": 0
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** quand $P$ est fausse, $P \\Rightarrow Q$ est **vraie**, même si $Q$ est fausse aussi.\n\n**Pas à pas :** ici $P$ est fausse et $Q$ est fausse. Pour que l'implication soit fausse, il faudrait $P$ **vraie** et $Q$ fausse. $P$ n'est pas vraie : ce n'est pas le cas qui la rend fausse.\n\n| $P$ | $Q$ | $P \\Rightarrow Q$ |\n|---|---|---|\n| F | F | **V** |\n\nLa réponse est **Vrai**. Exemple : un jour sans pluie, je ne prends pas mon parapluie : la phrase « s'il pleut, je prends mon parapluie » n'est pas contredite.\n\n**Erreur fréquente :** penser « faux et faux donne faux ». C'est vrai pour le « et » ($\\wedge$) ou le « ou » ($\\vee$), pas pour l'implication.\n\n**À retenir :** l'implication n'est fausse que si $P$ est vraie ; ici $P$ est fausse, donc elle est vraie."
       },
       {
         "intitule": "Sur ces 4 cas, combien rendent $P \\Rightarrow Q$ vraie ? (un nombre)",
         "type": "nombre",
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** $P \\Rightarrow Q$ est fausse dans un seul des 4 cas ($P$ vraie et $Q$ fausse), et vraie dans les 3 autres.\n\n**Pas à pas :** on reprend les quatre questions précédentes.\n\n| $P$ | $Q$ | $P \\Rightarrow Q$ |\n|---|---|---|\n| V | V | V |\n| V | F | F |\n| F | V | V |\n| F | F | V |\n\nOn compte les V de la dernière colonne : **3**.\n\n**Erreur fréquente :** répondre 2 en comptant faux le cas « $P$ fausse et $Q$ fausse » ; ou répondre 1 en pensant qu'elle n'est vraie que si $P$ et $Q$ sont vraies (c'est le « et »).\n\n**À retenir :** 4 cas, une seule ligne fausse, donc 3 lignes vraies."
       },
       {
         "intitule": "« Si un fichier est modifié, alors il est sauvegardé. » Aujourd'hui, aucun fichier n'a été modifié et rien n'a été sauvegardé. La phrase est :",
         "type": "choix",
-        "choix": ["vraie", "fausse"],
-        "reponse": 0
+        "choix": [
+          "vraie",
+          "fausse"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une implication dont l'hypothèse $P$ est fausse est toujours **vraie**. Elle n'est fausse que si $P$ est vraie et $Q$ fausse.\n\n**Pas à pas :**\n\n1. $P$ = « un fichier est modifié ». Aujourd'hui, aucun fichier n'a été modifié : $P$ est **fausse**.\n2. $Q$ = « il est sauvegardé ». Rien n'a été sauvegardé : $Q$ est fausse.\n3. On est dans le cas $P$ fausse, $Q$ fausse : l'implication est **vraie**.\n\nLa phrase n'est pas contredite : la réponse est « **vraie** ». Elle serait fausse seulement si un fichier avait été modifié **sans** être sauvegardé.\n\n**Erreur fréquente :** répondre « fausse » parce que « rien n'a été sauvegardé » sonne comme un échec. Mais personne n'a rien promis pour les jours sans modification.\n\n**À retenir :** pour juger une phrase « si … alors … », regarde d'abord si l'hypothèse est vraie ; si elle est fausse, la phrase est vraie."
       }
     ],
     "indices": [
@@ -465,14 +731,24 @@
       {
         "intitule": "Négation de « Tous les tests passent ».",
         "type": "choix",
-        "choix": ["Aucun test ne passe", "Tous les tests échouent", "Au moins un test ne passe pas"],
-        "reponse": 2
+        "choix": [
+          "Aucun test ne passe",
+          "Tous les tests échouent",
+          "Au moins un test ne passe pas"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** la négation de « pour tout $x$, $P(x)$ » est « il existe un $x$ tel que non $P(x)$ ». En français : « tous … » se nie en « au moins un … ne … pas ».\n\n**Pas à pas :**\n\n1. « Tous les tests passent » = « pour tout test, il passe ».\n2. On remplace « pour tout » par « il existe (au moins un) ».\n3. On nie la propriété : « passe » devient « ne passe pas ».\n4. Résultat : « **au moins un test ne passe pas** ».\n\nContrôle : la phrase de départ est fausse dès qu'un seul test échoue, et c'est exactement ce que dit la négation.\n\n**Les autres réponses :** « aucun test ne passe » et « tous les tests échouent » disent la même chose et sont beaucoup trop fortes. Avec 9 tests qui passent et 1 qui échoue, la phrase de départ est fausse, mais ces deux phrases aussi : ce sont des **contraires**, pas la négation.\n\n**À retenir :** la négation est vraie exactement quand la phrase de départ est fausse ; « tous » se nie en « au moins un ne … pas »."
       },
       {
         "intitule": "Négation de « $x \\ge 0$ et $y < 5$ ».",
         "type": "choix",
-        "choix": ["$x < 0$ ou $y \\ge 5$", "$x < 0$ et $y \\ge 5$", "$x \\le 0$ ou $y > 5$"],
-        "reponse": 0
+        "choix": [
+          "$x < 0$ ou $y \\ge 5$",
+          "$x < 0$ et $y \\ge 5$",
+          "$x \\le 0$ ou $y > 5$"
+        ],
+        "reponse": 0,
+        "explication": "**Règle (De Morgan) :** la négation d'un « et » est un « ou » des négations : $\\neg(A \\wedge B) \\equiv \\neg A \\vee \\neg B$. Pour nier une comparaison, on prend son contraire exact : $\\ge$ devient $<$, et $<$ devient $\\ge$.\n\n**Pas à pas :**\n\n1. « $x \\ge 0$ **et** $y < 5$ » : le « et » devient « **ou** ».\n2. $\\neg(x \\ge 0)$ donne $x < 0$.\n3. $\\neg(y < 5)$ donne $y \\ge 5$.\n4. Résultat : « $x < 0$ ou $y \\ge 5$ ».\n\nContrôle avec $x = 0$, $y = 0$ : la phrase de départ est vraie ($0 \\ge 0$ et $0 < 5$), donc la négation doit être fausse. « $0 < 0$ ou $0 \\ge 5$ » est bien fausse.\n\n**Les autres réponses :**\n\n- « $x < 0$ et $y \\ge 5$ » garde le « et » : avec $x = -1$, $y = 0$, la phrase de départ est fausse, mais celle-ci aussi. Ce n'est pas la négation.\n- « $x \\le 0$ ou $y > 5$ » inverse mal les comparaisons : avec $x = 0$, $y = 0$, elle est vraie ($0 \\le 0$), en même temps que la phrase de départ.\n\n**À retenir :** pour nier, « et » devient « ou », puis chaque comparaison prend son contraire exact ($\\ge$ ↔ $<$, $\\le$ ↔ $>$)."
       },
       {
         "intitule": "Négation de « Si la commande est payée, alors elle est expédiée ».",
@@ -482,13 +758,19 @@
           "La commande est payée et elle n'est pas expédiée",
           "La commande n'est pas payée et elle est expédiée"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** $\\neg(P \\Rightarrow Q) \\equiv P \\wedge \\neg Q$. La négation d'une implication n'est **pas** une implication : c'est « $P$ et non $Q$ ».\n\n**Pas à pas :**\n\n1. $P$ = « la commande est payée », $Q$ = « elle est expédiée ».\n2. La phrase est fausse seulement si $P$ est vraie et $Q$ fausse.\n3. La négation décrit donc ce cas : « la commande est payée **et** elle n'est pas expédiée ».\n\n**Les autres réponses :**\n\n- « Si la commande n'est pas payée, alors elle n'est pas expédiée » est encore une implication ($\\neg P \\Rightarrow \\neg Q$), ce ne peut pas être une négation d'implication.\n- « La commande n'est pas payée et elle est expédiée » : l'hypothèse « payée » est fausse, donc cette situation ne contredit pas la phrase de départ.\n\n**À retenir :** pour contredire « si $P$ alors $Q$ », montre un cas où $P$ est vraie et $Q$ fausse."
       },
       {
         "intitule": "Négation de « Il existe un fichier vide ».",
         "type": "choix",
-        "choix": ["Il existe un fichier non vide", "Aucun fichier n'est non vide", "Tous les fichiers sont non vides"],
-        "reponse": 2
+        "choix": [
+          "Il existe un fichier non vide",
+          "Aucun fichier n'est non vide",
+          "Tous les fichiers sont non vides"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** la négation de « il existe $x$ tel que $P(x)$ » est « pour tout $x$, non $P(x)$ » : $\\neg(\\exists x,\\ P(x)) \\equiv \\forall x,\\ \\neg P(x)$.\n\n**Pas à pas :**\n\n1. « Il existe un fichier vide ».\n2. On remplace « il existe » par « pour tout » : tous les fichiers.\n3. On nie la propriété : « vide » devient « non vide ».\n4. Résultat : « **tous les fichiers sont non vides** ».\n\nContrôle : s'il n'existe aucun fichier vide, c'est bien que tous sont non vides.\n\n**Les autres réponses :**\n\n- « Il existe un fichier non vide » peut être vrai **en même temps** que « il existe un fichier vide » (un dossier avec un fichier vide et un plein) : ce n'est pas une négation.\n- « Aucun fichier n'est non vide » veut dire « tous les fichiers sont vides », ce qui n'a rien à voir.\n\n**À retenir :** « il existe … » se nie en « pour tout … ne … pas » ; on échange le quantificateur **et** on nie la propriété."
       },
       {
         "intitule": "Contraposée de « Si un utilisateur est connecté, alors il voit son panier ».",
@@ -498,13 +780,19 @@
           "S'il ne voit pas son panier, alors il n'est pas connecté",
           "S'il n'est pas connecté, alors il ne voit pas son panier"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** la contraposée de $P \\Rightarrow Q$ est $\\neg Q \\Rightarrow \\neg P$ : on **inverse** le sens **et** on **nie** les deux côtés. Elle a toujours la même valeur que la phrase de départ.\n\n**Pas à pas :**\n\n1. $P$ = « l'utilisateur est connecté », $Q$ = « il voit son panier ».\n2. On inverse : « s'il voit son panier, alors il est connecté ».\n3. On nie les deux côtés : « s'il **ne** voit **pas** son panier, alors il **n'est pas** connecté ».\n\nC'est la contraposée.\n\n**Les autres réponses :**\n\n- « S'il voit son panier, alors il est connecté » inverse **sans** nier : c'est la réciproque $Q \\Rightarrow P$.\n- « S'il n'est pas connecté, alors il ne voit pas son panier » nie **sans** inverser ($\\neg P \\Rightarrow \\neg Q$).\n\nNi l'une ni l'autre n'a forcément la même valeur que la phrase de départ.\n\n**À retenir :** contraposée = deux gestes, inverser **et** nier."
       },
       {
         "intitule": "Et la phrase « S'il voit son panier, alors il est connecté » est :",
         "type": "choix",
-        "choix": ["la contraposée", "la réciproque", "la négation"],
-        "reponse": 1
+        "choix": [
+          "la contraposée",
+          "la réciproque",
+          "la négation"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** à partir de $P \\Rightarrow Q$ :\n\n| Nom | Formule | Gestes |\n|---|---|---|\n| Réciproque | $Q \\Rightarrow P$ | inverser seulement |\n| Contraposée | $\\neg Q \\Rightarrow \\neg P$ | inverser et nier |\n| Négation | $P \\wedge \\neg Q$ | pas une implication |\n\n**Pas à pas :** « s'il voit son panier ($Q$), alors il est connecté ($P$) » est $Q \\Rightarrow P$. On a échangé les deux côtés, mais aucun n'a été nié : c'est la **réciproque**.\n\n**Les autres réponses :** la contraposée aurait aussi nié les deux côtés (« s'il ne voit pas son panier, il n'est pas connecté »). La négation n'est même pas une phrase « si … alors » : c'est « il est connecté et il ne voit pas son panier ».\n\nAttention : la réciproque peut être fausse alors que la phrase de départ est vraie (par exemple si le site affiche aussi le panier d'un visiteur non connecté).\n\n**À retenir :** réciproque = les deux côtés échangés, sans négation ; elle n'a pas forcément la même valeur."
       }
     ],
     "indices": [
@@ -524,29 +812,45 @@
         "intitule": "Combien de lignes compte la table de vérité de trois propositions ? (un nombre)",
         "type": "nombre",
         "reponse": 8,
-        "refuses": ["6", "3"]
+        "refuses": [
+          "6",
+          "3"
+        ],
+        "explication": "**Règle :** une table de vérité liste **tous** les cas possibles. Chaque proposition vaut V ou F, soit 2 possibilités, et les choix se multiplient.\n\n**Pas à pas :**\n\n- $P$ seule : 2 lignes (V, F).\n- $P$ et $Q$ : pour chaque valeur de $P$, 2 valeurs de $Q$, soit $2 \\times 2 = 4$ lignes.\n- $P$, $Q$ et $R$ : pour chacune de ces 4 lignes, 2 valeurs de $R$, soit $4 \\times 2 = 8$ lignes.\n\nDonc $2 \\times 2 \\times 2 = 2^3 = 8$ lignes.\n\n**Erreurs fréquentes :** répondre 6 ($2 \\times 3$, on a multiplié au lieu de faire une puissance) ou 3 (une ligne par proposition).\n\n**À retenir :** $n$ propositions donnent $2^n$ lignes."
       },
       {
         "intitule": "Sur combien de lignes $F_1$ est-elle fausse ?",
         "type": "nombre",
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** $F_1 = (P \\vee Q) \\Rightarrow R$ est une implication : elle est fausse **seulement** quand sa partie gauche $P \\vee Q$ est vraie et sa partie droite $R$ fausse. Un « ou » est vrai dès qu'au moins un des deux est vrai.\n\n**Pas à pas :** on remplit la table, avec une colonne pour $P \\vee Q$.\n\n| $P$ | $Q$ | $R$ | $P \\vee Q$ | $F_1$ |\n|---|---|---|---|---|\n| V | V | V | V | V |\n| V | V | F | V | **F** |\n| V | F | V | V | V |\n| V | F | F | V | **F** |\n| F | V | V | V | V |\n| F | V | F | V | **F** |\n| F | F | V | F | V |\n| F | F | F | F | V |\n\n$F_1$ est fausse sur **3** lignes : $(V, V, F)$, $(V, F, F)$ et $(F, V, F)$.\n\n**Erreur fréquente :** compter la ligne $(F, F, F)$ comme fausse : là, $P \\vee Q$ est fausse, donc l'implication est vraie.\n\n**À retenir :** pour une implication, cherche les lignes « gauche vraie, droite fausse », et seulement celles-là."
       },
       {
         "intitule": "Sur combien de lignes $F_2$ est-elle fausse ?",
         "type": "nombre",
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** $F_2 = (P \\Rightarrow R) \\vee (Q \\Rightarrow R)$ est un « ou » : il est faux **seulement** si ses deux morceaux sont faux. Et $P \\Rightarrow R$ est fausse seulement si $P$ est vraie et $R$ fausse.\n\n**Pas à pas :**\n\n| $P$ | $Q$ | $R$ | $P \\Rightarrow R$ | $Q \\Rightarrow R$ | $F_2$ |\n|---|---|---|---|---|---|\n| V | V | V | V | V | V |\n| V | V | F | F | F | **F** |\n| V | F | V | V | V | V |\n| V | F | F | F | V | V |\n| F | V | V | V | V | V |\n| F | V | F | V | F | V |\n| F | F | V | V | V | V |\n| F | F | F | V | V | V |\n\nIl faut $P \\Rightarrow R$ fausse ($P$ vraie, $R$ fausse) **et** $Q \\Rightarrow R$ fausse ($Q$ vraie, $R$ fausse) : seule la ligne $(V, V, F)$ convient. $F_2$ est fausse sur **1** ligne.\n\n**À retenir :** un « ou » n'est faux que si ses deux morceaux sont faux en même temps."
       },
       {
         "intitule": "$F_1$ et $F_2$ sont-elles équivalentes ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** deux formules sont **équivalentes** si elles ont la même valeur sur **toutes** les lignes de la table. Une seule ligne différente suffit pour qu'elles ne le soient pas.\n\n**Pas à pas :** on compare les deux colonnes obtenues.\n\n| $(P, Q, R)$ | $F_1$ | $F_2$ | Pareil ? |\n|---|---|---|---|\n| (V, V, F) | F | F | oui |\n| (V, F, F) | F | V | **non** |\n| (F, V, F) | F | V | **non** |\n| les 5 autres lignes | V | V | oui |\n\nElles diffèrent sur 2 lignes : la réponse est **Non**. On pouvait même le voir plus vite : $F_1$ est fausse sur 3 lignes et $F_2$ sur une seule, elles ne peuvent pas avoir les mêmes colonnes.\n\n**À retenir :** équivalentes = colonnes identiques ligne par ligne ; un seul écart et ce n'est pas le cas."
       },
       {
         "intitule": "Pour quel triplet $(P, Q, R)$ a-t-on $F_1$ fausse et $F_2$ vraie ?",
         "type": "choix",
-        "choix": ["(V, V, F)", "(V, V, V)", "(V, F, F)", "(F, F, F)"],
-        "reponse": 2
+        "choix": [
+          "(V, V, F)",
+          "(V, V, V)",
+          "(V, F, F)",
+          "(F, F, F)"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** on cherche une ligne où $F_1$ est fausse **et** $F_2$ vraie. $F_1$ est fausse quand $P \\vee Q$ est vraie et $R$ fausse ; $F_2$ est vraie dès qu'un de ses deux morceaux est vrai.\n\n**Pas à pas :** on teste chaque proposition.\n\n| Triplet | $F_1$ | $P \\Rightarrow R$ | $Q \\Rightarrow R$ | $F_2$ | $F_1$ fausse et $F_2$ vraie ? |\n|---|---|---|---|---|---|\n| (V, V, F) | F | F | F | F | non, les deux sont fausses |\n| (V, V, V) | V | V | V | V | non, les deux sont vraies |\n| (V, F, F) | F | F | V | V | **oui** |\n| (F, F, F) | V | V | V | V | non, les deux sont vraies |\n\nPour $(V, F, F)$ : $P \\vee Q$ est vraie et $R$ fausse, donc $F_1$ est fausse ; mais $Q \\Rightarrow R$ est vraie (car $Q$ est fausse), donc $F_2$ est vraie. La réponse est **(V, F, F)**.\n\n**À retenir :** pour trouver où deux formules diffèrent, calcule les deux sur chaque ligne candidate."
       },
       {
         "intitule": "En réalité, $(P \\vee Q) \\Rightarrow R$ est équivalente à :",
@@ -556,7 +860,8 @@
           "$(P \\Rightarrow R) \\vee (Q \\Rightarrow R)$",
           "$P \\Rightarrow (Q \\Rightarrow R)$"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour savoir si deux formules sont équivalentes, on compare leurs tables. $F_1$ est fausse sur les 3 lignes $(V, V, F)$, $(V, F, F)$ et $(F, V, F)$ : la bonne formule doit être fausse sur ces 3 lignes et vraie partout ailleurs.\n\n**Pas à pas :** on compte les lignes fausses de chaque proposition.\n\n| Formule | Fausse quand… | Lignes fausses |\n|---|---|---|\n| $(P \\Rightarrow R) \\wedge (Q \\Rightarrow R)$ | un des deux morceaux est faux : ($P$ vraie, $R$ fausse) ou ($Q$ vraie, $R$ fausse) | (V, V, F), (V, F, F), (F, V, F) |\n| $(P \\Rightarrow R) \\vee (Q \\Rightarrow R)$ | les deux morceaux sont faux | (V, V, F) seulement |\n| $P \\Rightarrow (Q \\Rightarrow R)$ | $P$ vraie et $Q \\Rightarrow R$ fausse ($Q$ vraie, $R$ fausse) | (V, V, F) seulement |\n\nSeule $(P \\Rightarrow R) \\wedge (Q \\Rightarrow R)$ est fausse sur les mêmes 3 lignes que $F_1$ : c'est elle. En mots : « si $P$ ou $Q$, alors $R$ » veut dire que $P$ suffit à donner $R$ **et** que $Q$ aussi.\n\n**Les autres réponses :** la version avec $\\vee$ est $F_2$, déjà écartée. $P \\Rightarrow (Q \\Rightarrow R)$ n'est fausse que sur $(V, V, F)$ : elle équivaut à $(P \\wedge Q) \\Rightarrow R$, pas à $(P \\vee Q) \\Rightarrow R$.\n\n**À retenir :** un « ou » à gauche d'une implication se transforme en « et » de deux implications."
       }
     ],
     "indices": [
@@ -575,31 +880,54 @@
       {
         "intitule": "« Il n'existe pas de plus petit réel strictement positif. »",
         "type": "choix",
-        "choix": ["Démonstration directe", "Contraposée", "Par l'absurde", "Contre-exemple"],
-        "reponse": 2
+        "choix": [
+          "Démonstration directe",
+          "Contraposée",
+          "Par l'absurde",
+          "Contre-exemple"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** la preuve **par l'absurde** consiste à supposer le contraire de ce qu'on veut, puis à arriver à une contradiction. Elle convient très bien aux énoncés « il n'existe pas … ».\n\n**Pas à pas :**\n\n1. On suppose le contraire : il existe un plus petit réel strictement positif, appelons-le $\\varepsilon$ (donc $\\varepsilon > 0$).\n2. On regarde $\\frac{\\varepsilon}{2}$ : il est encore strictement positif, et plus petit que $\\varepsilon$.\n3. Contradiction : $\\varepsilon$ n'était donc pas le plus petit.\n4. Conclusion : la supposition est fausse, il n'existe pas de plus petit réel strictement positif.\n\n**Les autres réponses :**\n\n- Directe : il n'y a pas d'hypothèse $P$ de départ d'où enchaîner.\n- Contraposée : elle s'applique à un « si … alors … », or l'énoncé n'en est pas un.\n- Contre-exemple : il sert à **réfuter** un « pour tout », pas à prouver qu'une chose n'existe pas.\n\n**À retenir :** « il n'existe pas … » appelle souvent une preuve par l'absurde."
       },
       {
         "intitule": "« Si $n^2$ est pair, alors $n$ est pair. » (la conclusion est plus simple à nier)",
         "type": "choix",
-        "choix": ["Démonstration directe", "Contraposée", "Par l'absurde", "Contre-exemple"],
-        "reponse": 1
+        "choix": [
+          "Démonstration directe",
+          "Contraposée",
+          "Par l'absurde",
+          "Contre-exemple"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** la **contraposée** remplace $P \\Rightarrow Q$ par $\\neg Q \\Rightarrow \\neg P$, qui a la même valeur. On l'utilise quand partir de $P$ est difficile, et que partir de $\\neg Q$ est simple.\n\n**Pas à pas :**\n\n1. Directement, on partirait de « $n^2$ pair » ($n^2 = 2k$) : on ne sait pas en déduire quoi que ce soit sur $n$ (on ne sait pas « enlever le carré »).\n2. La contraposée est « $n$ impair $\\Rightarrow$ $n^2$ impair ».\n3. On part de $n = 2k + 1$, on développe : $n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$, qui est impair.\n4. La contraposée est vraie, donc l'énoncé de départ aussi.\n\n**Les autres réponses :** la méthode directe bloque (étape 1) ; l'absurde marcherait mais revient au même calcul de façon plus lourde ; un contre-exemple sert à montrer qu'un énoncé est **faux**, or celui-ci est vrai.\n\n**À retenir :** « si $n^2$ … alors $n$ … » : passe par la contraposée et pars de $n$."
       },
       {
         "intitule": "Montrer que « pour tout réel $x$, $x^2 \\ge x$ » est faux.",
         "type": "choix",
-        "choix": ["Démonstration directe", "Contraposée", "Par l'absurde", "Contre-exemple"],
-        "reponse": 3
+        "choix": [
+          "Démonstration directe",
+          "Contraposée",
+          "Par l'absurde",
+          "Contre-exemple"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** pour montrer qu'un énoncé « pour tout » est **faux**, il suffit d'**un seul** cas où il ne marche pas : un contre-exemple.\n\n**Pas à pas :** on teste quelques valeurs de $x$.\n\n| $x$ | $x^2$ | $x^2 \\ge x$ ? |\n|---|---|---|\n| 2 | 4 | oui |\n| 0 | 0 | oui |\n| $-1$ | 1 | oui |\n| $\\frac{1}{2}$ | $\\frac{1}{4}$ | **non**, car $\\frac{1}{4} < \\frac{1}{2}$ |\n\n$x = \\frac{1}{2}$ suffit : l'énoncé est faux. (Tous les nombres strictement entre 0 et 1 marchent aussi.)\n\n**Les autres réponses :** une démonstration directe ou par contraposée sert à prouver qu'un énoncé est **vrai** ; l'absurde est inutilement compliqué quand un seul exemple chiffré règle la question.\n\n**À retenir :** pour réfuter un « pour tout », cherche un contre-exemple, en pensant aux fractions, aux négatifs et à 0."
       },
       {
         "intitule": "On affirme que $n^2 + n + 11$ est un nombre premier pour tout entier $n \\ge 0$. Quel est le **plus petit** $n$ qui contredit cette affirmation ?",
         "type": "nombre",
         "reponse": 10,
-        "refuses": ["11", "0"]
+        "refuses": [
+          "11",
+          "0"
+        ],
+        "explication": "**Règle :** pour réfuter un « pour tout », un seul contre-exemple suffit. Pour trouver le **plus petit**, on teste les valeurs dans l'ordre et on s'arrête au premier échec.\n\n**Pas à pas :** on calcule $n^2 + n + 11$ pour $n = 0, 1, 2, \\dots$\n\n| $n$ | $n^2 + n + 11$ | Premier ? |\n|---|---|---|\n| 0 | 11 | oui |\n| 1 | 13 | oui |\n| 2 | 17 | oui |\n| 3 | 23 | oui |\n| 4 | 31 | oui |\n| 5 | 41 | oui |\n| 6 | 53 | oui |\n| 7 | 67 | oui |\n| 8 | 83 | oui |\n| 9 | 101 | oui |\n| 10 | $100 + 10 + 11 = 121 = 11 \\times 11$ | **non** |\n\nLe plus petit contre-exemple est $n = 10$.\n\n**Erreurs fréquentes :** répondre 11 ($121 + 11 + 11 = 143 = 11 \\times 13$, pas premier non plus, mais ce n'est pas le plus petit), ou 0 (11 est premier). Et surtout : les 10 cas qui marchent ne prouvaient rien.\n\n**À retenir :** teste dans l'ordre, et arrête-toi au premier cas qui échoue."
       },
       {
         "intitule": "Démonstration directe : montre que la somme de deux entiers pairs est paire.",
         "type": "auto",
-        "reponse": "Soit $a$ et $b$ deux entiers pairs. Il existe des entiers $k$ et $m$ tels que $a = 2k$ et $b = 2m$.\n\nAlors $a + b = 2k + 2m = 2(k + m)$.\n\nComme $k + m$ est un entier, $a + b$ est pair."
+        "reponse": "Soit $a$ et $b$ deux entiers pairs. Il existe des entiers $k$ et $m$ tels que $a = 2k$ et $b = 2m$.\n\nAlors $a + b = 2k + 2m = 2(k + m)$.\n\nComme $k + m$ est un entier, $a + b$ est pair.",
+        "explication": "**Règle :** une preuve directe part de l'hypothèse et enchaîne jusqu'à la conclusion. « $a$ est pair » se traduit par « il existe un entier $k$ tel que $a = 2k$ ».\n\n**Compare ta preuve, étape par étape :**\n\n1. **Traduire :** $a = 2k$ et $b = 2m$, avec $k$ et $m$ entiers. Deux lettres **différentes**, car $a$ et $b$ ne sont pas forcément égaux.\n2. **Calculer :** $a + b = 2k + 2m$.\n3. **Factoriser par 2 :** $a + b = 2(k + m)$.\n4. **Conclure :** $k + m$ est un entier, donc $a + b$ s'écrit $2 \\times (\\text{entier})$ : il est pair.\n\n**Erreurs fréquentes :**\n\n- Vérifier sur un exemple ($2 + 4 = 6$) : ça ne prouve rien pour **tous** les entiers pairs.\n- Écrire $a = 2k$ et $b = 2k$ : cela forcerait $a = b$, la preuve ne marcherait que pour $a + a$.\n- Oublier de dire que $k + m$ est un entier : c'est ce qui permet de conclure « pair ».\n\n**À retenir :** traduis « pair » par $2 \\times$ (entier), une lettre par nombre, puis factorise par 2."
       }
     ],
     "indices": [
@@ -618,37 +946,63 @@
       {
         "intitule": "Quelle est la contraposée de cet énoncé ?",
         "type": "choix",
-        "choix": ["Si $n$ n'est pas un multiple de 3, alors $n^2$ n'est pas un multiple de 3", "Si $n$ est un multiple de 3, alors $n^2$ est un multiple de 3", "Si $n^2$ n'est pas un multiple de 3, alors $n$ n'est pas un multiple de 3", "$n^2$ est un multiple de 3 et $n$ n'est pas un multiple de 3"],
-        "reponse": 0
+        "choix": [
+          "Si $n$ n'est pas un multiple de 3, alors $n^2$ n'est pas un multiple de 3",
+          "Si $n$ est un multiple de 3, alors $n^2$ est un multiple de 3",
+          "Si $n^2$ n'est pas un multiple de 3, alors $n$ n'est pas un multiple de 3",
+          "$n^2$ est un multiple de 3 et $n$ n'est pas un multiple de 3"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** la contraposée de $P \\Rightarrow Q$ est $\\neg Q \\Rightarrow \\neg P$ : on **inverse** le sens **et** on **nie** les deux côtés.\n\n**Pas à pas :**\n\n1. $P$ = « $n^2$ est un multiple de 3 », $Q$ = « $n$ est un multiple de 3 ».\n2. $\\neg Q$ = « $n$ n'est pas un multiple de 3 », $\\neg P$ = « $n^2$ n'est pas un multiple de 3 ».\n3. Contraposée : « si $n$ n'est pas un multiple de 3, alors $n^2$ n'est pas un multiple de 3 ».\n\n**Les autres réponses :**\n\n- « Si $n$ est un multiple de 3, alors $n^2$ est un multiple de 3 » inverse sans nier : c'est la réciproque.\n- « Si $n^2$ n'est pas un multiple de 3, alors $n$ n'est pas un multiple de 3 » nie sans inverser.\n- « $n^2$ est un multiple de 3 et $n$ n'est pas un multiple de 3 » est la négation ($P \\wedge \\neg Q$), pas une implication.\n\n**À retenir :** contraposée = inverser **et** nier ; elle a la même valeur que la phrase de départ."
       },
       {
         "intitule": "Un entier qui n'est pas un multiple de 3 a un reste non nul dans la division par 3. Quels restes sont possibles ? (forme `{a, b}`)",
         "type": "ensemble",
-        "reponse": [1, 2],
-        "refuses": ["{0, 1, 2}", "{1}"]
+        "reponse": [
+          1,
+          2
+        ],
+        "refuses": [
+          "{0, 1, 2}",
+          "{1}"
+        ],
+        "explication": "**Règle :** dans la division par 3, on écrit $n = 3q + r$ avec un reste $r$ tel que $0 \\le r < 3$. Les restes possibles sont donc 0, 1 et 2. Être multiple de 3, c'est avoir le reste 0.\n\n**Pas à pas :**\n\n1. Restes possibles : $\\{0, 1, 2\\}$.\n2. « Pas multiple de 3 » = reste non nul : on retire 0.\n3. Il reste $\\{1, 2\\}$. Exemples : $7 = 3 \\times 2 + 1$ (reste 1) et $5 = 3 \\times 1 + 2$ (reste 2).\n\n**Erreurs fréquentes :** garder 0 (c'est justement le cas « multiple de 3 », qu'on exclut), ou oublier le reste 2.\n\n**À retenir :** un entier non multiple de $d$ a un reste parmi $1, 2, \\dots, d - 1$."
       },
       {
         "intitule": "Cas $n = 3k + 1$ : on trouve $n^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + r$. Que vaut $r$ ?",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["0"]
+        "refuses": [
+          "0"
+        ],
+        "explication": "**Règle :** pour trouver le reste de $n^2$ dans la division par 3, on l'écrit sous la forme $3 \\times (\\text{entier}) + r$ avec $0 \\le r < 3$.\n\n**Pas à pas avec $n = 3k + 1$ :**\n\n1. On développe : $(3k + 1)^2 = (3k)^2 + 2 \\times 3k \\times 1 + 1^2 = 9k^2 + 6k + 1$.\n2. On regroupe ce qui est multiple de 3 : $9k^2 = 3 \\times 3k^2$ et $6k = 3 \\times 2k$, donc $9k^2 + 6k = 3(3k^2 + 2k)$.\n3. On obtient $n^2 = 3(3k^2 + 2k) + 1$.\n4. Le reste est $r = 1$ (et $0 \\le 1 < 3$).\n\nDonc $n^2$ n'est pas un multiple de 3.\n\n**Erreur fréquente :** répondre 0 en pensant que tout est multiple de 3 : le $+1$ final, lui, ne l'est pas.\n\n**À retenir :** développe, mets en facteur 3 tout ce qui peut l'être, ce qui reste est le reste."
       },
       {
         "intitule": "Cas $n = 3k + 2$ : on écrit $n^2 = 3 \\times (\\dots) + r$ avec $0 \\le r \\le 2$. Que vaut $r$ ?",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["4", "2", "0"]
+        "refuses": [
+          "4",
+          "2",
+          "0"
+        ],
+        "explication": "**Règle :** un reste dans la division par 3 doit vérifier $0 \\le r < 3$. Si le nombre qui reste dépasse 2, on en retire encore des 3.\n\n**Pas à pas avec $n = 3k + 2$ :**\n\n1. On développe : $(3k + 2)^2 = 9k^2 + 2 \\times 3k \\times 2 + 4 = 9k^2 + 12k + 4$.\n2. On regroupe les multiples de 3 : $9k^2 + 12k = 3(3k^2 + 4k)$, donc $n^2 = 3(3k^2 + 4k) + 4$.\n3. Mais 4 n'est pas un reste possible ($4 \\ge 3$) : on écrit $4 = 3 + 1$.\n4. $n^2 = 3(3k^2 + 4k) + 3 + 1 = 3(3k^2 + 4k + 1) + 1$.\n\nLe reste est $r = 1$.\n\n**Erreurs fréquentes :** répondre 4 (on a oublié l'étape 3), répondre 2 (le reste de $n$, pas de $n^2$), ou mal développer le carré en $9k^2 + 4$ (on oublie le double produit $12k$).\n\n**À retenir :** si ce qui reste dépasse le diviseur, retire-lui ce diviseur autant de fois que possible."
       },
       {
         "intitule": "Pour montrer de la même façon « $n^2$ multiple de 5 $\\Rightarrow$ $n$ multiple de 5 », combien de cas (restes non nuls) faudrait-il traiter ?",
         "type": "nombre",
         "reponse": 4,
-        "refuses": ["5", "2"]
+        "refuses": [
+          "5",
+          "2"
+        ],
+        "explication": "**Règle :** dans la contraposée, on traite un cas par reste **non nul**. Dans la division par 5, les restes sont 0, 1, 2, 3 et 4 (car $0 \\le r < 5$).\n\n**Pas à pas :**\n\n1. Restes possibles : $\\{0, 1, 2, 3, 4\\}$, soit 5 restes.\n2. La contraposée part de « $n$ n'est **pas** multiple de 5 » : on retire le reste 0.\n3. Il reste 1, 2, 3 et 4 : **4** cas ($n = 5k + 1$, $5k + 2$, $5k + 3$, $5k + 4$).\n\n**Erreurs fréquentes :** répondre 5 en gardant le reste 0 (c'est justement le cas « multiple de 5 », écarté), ou 2 en recopiant le nombre de cas de la division par 3.\n\n**À retenir :** pour un diviseur $d$, il y a $d - 1$ restes non nuls, donc $d - 1$ cas."
       },
       {
         "intitule": "Rédige la preuve complète pour le multiple de 3. Compare ensuite avec la réponse modèle.",
         "type": "auto",
-        "reponse": "On raisonne par **contraposée** : on montre que si $n$ n'est pas un multiple de 3, alors $n^2$ n'en est pas un non plus.\n\nSi $n$ n'est pas un multiple de 3, son reste dans la division par 3 vaut 1 ou 2.\n\n- Si $n = 3k + 1$ : $n^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$, le reste vaut 1.\n- Si $n = 3k + 2$ : $n^2 = 9k^2 + 12k + 4 = 3(3k^2 + 4k + 1) + 1$, le reste vaut 1.\n\nDans les deux cas, $n^2$ n'est pas un multiple de 3. La contraposée est vraie, donc l'énoncé de départ aussi : si $n^2$ est un multiple de 3, alors $n$ est un multiple de 3."
+        "reponse": "On raisonne par **contraposée** : on montre que si $n$ n'est pas un multiple de 3, alors $n^2$ n'en est pas un non plus.\n\nSi $n$ n'est pas un multiple de 3, son reste dans la division par 3 vaut 1 ou 2.\n\n- Si $n = 3k + 1$ : $n^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$, le reste vaut 1.\n- Si $n = 3k + 2$ : $n^2 = 9k^2 + 12k + 4 = 3(3k^2 + 4k + 1) + 1$, le reste vaut 1.\n\nDans les deux cas, $n^2$ n'est pas un multiple de 3. La contraposée est vraie, donc l'énoncé de départ aussi : si $n^2$ est un multiple de 3, alors $n$ est un multiple de 3.",
+        "explication": "**Règle :** une preuve par contraposée annonce qu'on montre $\\neg Q \\Rightarrow \\neg P$, la démontre, puis conclut que $P \\Rightarrow Q$ est vraie.\n\n**Compare ta preuve, étape par étape :**\n\n1. **Annoncer :** « on raisonne par contraposée : on montre que si $n$ n'est pas un multiple de 3, alors $n^2$ n'en est pas un ».\n2. **Séparer les cas :** $n$ non multiple de 3 a pour reste 1 ou 2, donc $n = 3k + 1$ ou $n = 3k + 2$.\n3. **Cas $3k + 1$ :** $n^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$, reste 1.\n4. **Cas $3k + 2$ :** $n^2 = 9k^2 + 12k + 4 = 3(3k^2 + 4k + 1) + 1$, reste 1.\n5. **Conclure :** dans les deux cas $n^2$ n'est pas multiple de 3. La contraposée est vraie, donc l'énoncé de départ aussi.\n\n**Erreurs fréquentes :**\n\n- Oublier le cas $3k + 2$ : la preuve ne couvre alors pas tous les entiers.\n- Laisser $+4$ sans l'écrire $3 + 1$ : on ne voit pas que le reste vaut 1.\n- Ne pas dire qu'on passe par la contraposée, ou oublier la phrase finale qui revient à l'énoncé de départ.\n\n**À retenir :** contraposée = annoncer, un cas par reste non nul, développer, conclure sur l'énoncé de départ."
       }
     ],
     "indices": [
@@ -667,31 +1021,53 @@
       {
         "intitule": "Par quelle phrase commence la preuve ?",
         "type": "choix",
-        "choix": ["Supposons qu'il existe un plus grand entier naturel, noté $N$.", "Prenons $N = 1\\,000\\,000$ et vérifions qu'il existe un entier plus grand.", "Supposons qu'il n'existe pas de plus grand entier naturel."],
-        "reponse": 0
+        "choix": [
+          "Supposons qu'il existe un plus grand entier naturel, noté $N$.",
+          "Prenons $N = 1\\,000\\,000$ et vérifions qu'il existe un entier plus grand.",
+          "Supposons qu'il n'existe pas de plus grand entier naturel."
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une preuve par l'absurde commence par supposer le **contraire** de ce qu'on veut montrer.\n\n**Pas à pas :**\n\n1. On veut montrer : « il n'existe pas de plus grand entier naturel ».\n2. Le contraire : « il **existe** un plus grand entier naturel ».\n3. On lui donne un nom pour pouvoir raisonner : $N$.\n\nLa bonne phrase est donc « Supposons qu'il existe un plus grand entier naturel, noté $N$ ».\n\n**Les autres réponses :**\n\n- « Supposons qu'il n'existe pas de plus grand entier naturel » : c'est supposer ce qu'on veut prouver, on tourne en rond.\n- « Prenons $N = 1\\,000\\,000$ … » : c'est un exemple. Montrer qu'il y a plus grand qu'un million ne dit rien d'un $N$ quelconque.\n\n**À retenir :** par l'absurde, la première phrase est « supposons le contraire », avec un objet quelconque nommé."
       },
       {
         "intitule": "Quel nombre permet d'obtenir une contradiction ?",
         "type": "choix",
-        "choix": ["$N - 1$", "$N + 1$", "$\\dfrac{N}{2}$", "$0$"],
-        "reponse": 1
+        "choix": [
+          "$N - 1$",
+          "$N + 1$",
+          "$\\dfrac{N}{2}$",
+          "$0$"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** pour obtenir une contradiction, on cherche un objet qui casse l'hypothèse. Ici l'hypothèse dit « $N$ est le plus grand », donc on cherche un entier naturel **plus grand** que $N$.\n\n**Pas à pas :**\n\n| Candidat | Entier naturel ? | Plus grand que $N$ ? | Casse l'hypothèse ? |\n|---|---|---|---|\n| $N + 1$ | oui | oui | **oui** |\n| $N - 1$ | pas toujours (si $N = 0$) | non | non |\n| $\\frac{N}{2}$ | pas toujours (si $N$ est impair) | non | non |\n| $0$ | oui | non | non |\n\nSeul $N + 1$ dépasse $N$ : c'est lui qui donne la contradiction.\n\n**À retenir :** pour contredire « $N$ est le plus grand », fabrique un élément plus grand à partir de $N$."
       },
       {
         "intitule": "Pourquoi est-ce une contradiction ?",
         "type": "choix",
-        "choix": ["$N + 1$ est un entier naturel strictement plus grand que $N$, alors que $N$ devait être le plus grand", "$N + 1$ n'est pas un entier naturel", "$N$ est forcément négatif"],
-        "reponse": 0
+        "choix": [
+          "$N + 1$ est un entier naturel strictement plus grand que $N$, alors que $N$ devait être le plus grand",
+          "$N + 1$ n'est pas un entier naturel",
+          "$N$ est forcément négatif"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une contradiction, c'est deux faits qui ne peuvent pas être vrais en même temps.\n\n**Pas à pas :**\n\n1. Hypothèse : $N$ est le plus grand entier naturel, donc tout entier naturel $m$ vérifie $m \\le N$.\n2. Premier fait : $N + 1$ est un entier naturel (on ajoute 1 à un entier naturel).\n3. Deuxième fait : $N + 1 > N$.\n4. Avec l'hypothèse, il faudrait $N + 1 \\le N$ : c'est incompatible avec le deuxième fait. Contradiction.\n\n**Les autres réponses :** « $N + 1$ n'est pas un entier naturel » est faux, c'en est bien un. « $N$ est forcément négatif » est faux aussi : un entier naturel est positif ou nul, et rien dans le raisonnement ne parle de signe.\n\n**À retenir :** la contradiction vient de l'objet construit ($N + 1$) qui viole l'hypothèse ($N$ le plus grand)."
       },
       {
         "intitule": "Que conclut-on ?",
         "type": "choix",
-        "choix": ["L'hypothèse de départ est fausse : il n'existe pas de plus grand entier naturel", "Le plus grand entier naturel est $N + 1$", "On ne peut rien conclure"],
-        "reponse": 0
+        "choix": [
+          "L'hypothèse de départ est fausse : il n'existe pas de plus grand entier naturel",
+          "Le plus grand entier naturel est $N + 1$",
+          "On ne peut rien conclure"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** si une hypothèse mène à une contradiction, cette hypothèse est **fausse**. On en déduit son contraire, qui est ce qu'on voulait montrer.\n\n**Pas à pas :**\n\n1. On a supposé : « il existe un plus grand entier naturel ».\n2. Cette supposition mène à une contradiction.\n3. Elle est donc fausse : « il n'existe pas de plus grand entier naturel ».\n\n**Les autres réponses :**\n\n- « Le plus grand entier naturel est $N + 1$ » : le même raisonnement donnerait $N + 2$, encore plus grand. Il n'y a pas de plus grand.\n- « On ne peut rien conclure » : au contraire, une contradiction est exactement ce qui permet de conclure dans une preuve par l'absurde.\n\n**À retenir :** contradiction = la supposition de départ est fausse, donc son contraire est vrai."
       },
       {
         "intitule": "Rédige la preuve complète (trois ou quatre lignes). Compare ensuite avec la réponse modèle.",
         "type": "auto",
-        "reponse": "Supposons, par l'absurde, qu'il existe un plus grand entier naturel $N$ : pour tout entier naturel $m$, $m \\le N$.\n\nOr $N + 1$ est aussi un entier naturel, et $N + 1 > N$. Cela contredit le fait que $N$ est le plus grand.\n\nL'hypothèse est donc fausse : il n'existe pas de plus grand entier naturel."
+        "reponse": "Supposons, par l'absurde, qu'il existe un plus grand entier naturel $N$ : pour tout entier naturel $m$, $m \\le N$.\n\nOr $N + 1$ est aussi un entier naturel, et $N + 1 > N$. Cela contredit le fait que $N$ est le plus grand.\n\nL'hypothèse est donc fausse : il n'existe pas de plus grand entier naturel.",
+        "explication": "**Règle :** une preuve par l'absurde a trois temps : supposer le contraire, trouver une contradiction, conclure que la supposition est fausse.\n\n**Compare ta preuve, étape par étape :**\n\n1. **Supposer :** « Supposons, par l'absurde, qu'il existe un plus grand entier naturel $N$ : pour tout entier naturel $m$, $m \\le N$. »\n2. **Contredire :** « Or $N + 1$ est un entier naturel et $N + 1 > N$, ce qui contredit le fait que $N$ est le plus grand. »\n3. **Conclure :** « L'hypothèse est fausse : il n'existe pas de plus grand entier naturel. »\n\n**Erreurs fréquentes :**\n\n- Choisir une valeur ($N = 100$) : $N$ doit rester quelconque.\n- Oublier de dire que $N + 1$ est un **entier naturel** : sans ça, il ne contredit rien.\n- S'arrêter à la contradiction sans la phrase de conclusion.\n\n**À retenir :** « supposons le contraire », contradiction, « donc l'hypothèse est fausse »."
       }
     ],
     "indices": [
@@ -709,21 +1085,39 @@
       {
         "intitule": "Les clients à Lyon **ou** fidèles : quel opérateur SQL relie les deux requêtes ? (un mot)",
         "type": "texte",
-        "reponse": ["UNION"],
-        "acceptes": ["union"],
-        "refuses": ["INTERSECT"]
+        "reponse": [
+          "UNION"
+        ],
+        "acceptes": [
+          "union"
+        ],
+        "refuses": [
+          "INTERSECT"
+        ],
+        "explication": "**Règle :** « ou » correspond à l'union $\\cup$ : on garde ce qui est dans l'un, dans l'autre, ou dans les deux. En SQL, l'opérateur qui relie deux requêtes de cette façon est `UNION`.\n\n**Pas à pas :** si `ClientsLyon` renvoie $\\{1, 2, 3\\}$ et `ClientsFideles` renvoie $\\{2, 5\\}$ :\n\n- `ClientsLyon UNION ClientsFideles` renvoie $\\{1, 2, 3, 5\\}$ (2 n'apparaît qu'une fois) ;\n- c'est bien $\\{1, 2, 3\\} \\cup \\{2, 5\\}$.\n\n**Erreur fréquente :** `INTERSECT` ne garderait que les clients présents dans les deux, ici $\\{2\\}$ : c'est le « et ».\n\n**À retenir :** « ou » = $\\cup$ = `UNION`."
       },
       {
         "intitule": "Les clients à Lyon **et** fidèles ?",
         "type": "texte",
-        "reponse": ["INTERSECT"],
-        "refuses": ["UNION"]
+        "reponse": [
+          "INTERSECT"
+        ],
+        "refuses": [
+          "UNION"
+        ],
+        "explication": "**Règle :** « et » correspond à l'intersection $\\cap$ : on garde ce qui est dans les **deux** à la fois. En SQL : `INTERSECT`.\n\n**Pas à pas :** avec `ClientsLyon` = $\\{1, 2, 3\\}$ et `ClientsFideles` = $\\{2, 5\\}$ :\n\n| Client | À Lyon ? | Fidèle ? | Gardé ? |\n|---|---|---|---|\n| 1 | oui | non | non |\n| 2 | oui | oui | oui |\n| 3 | oui | non | non |\n| 5 | non | oui | non |\n\n`ClientsLyon INTERSECT ClientsFideles` renvoie $\\{2\\}$.\n\n**Erreur fréquente :** `UNION` en prendrait trop : il garderait aussi 1, 3 et 5, qui ne sont que d'un côté.\n\n**À retenir :** « et » = $\\cap$ = `INTERSECT`."
       },
       {
         "intitule": "Les clients fidèles mais **pas** à Lyon ?",
         "type": "texte",
-        "reponse": ["EXCEPT", "MINUS"],
-        "refuses": ["NOT"]
+        "reponse": [
+          "EXCEPT",
+          "MINUS"
+        ],
+        "refuses": [
+          "NOT"
+        ],
+        "explication": "**Règle :** « mais pas » correspond à la différence $\\setminus$ : on garde les éléments du premier ensemble qui ne sont pas dans le second. En SQL : `EXCEPT` (appelé `MINUS` sous Oracle).\n\n**Pas à pas :** avec `ClientsFideles` = $\\{2, 5\\}$ et `ClientsLyon` = $\\{1, 2, 3\\}$ :\n\n1. On part des fidèles : 2 et 5.\n2. On retire ceux qui sont à Lyon : 2.\n3. Il reste $\\{5\\}$ : `ClientsFideles EXCEPT ClientsLyon`.\n\nL'ordre compte : `ClientsLyon EXCEPT ClientsFideles` donnerait $\\{1, 3\\}$, les Lyonnais non fidèles, une autre question.\n\n**Erreur fréquente :** répondre `NOT` : il sert à nier une condition **dans** un `WHERE`, il ne relie pas deux requêtes.\n\n**À retenir :** « mais pas » = $\\setminus$ = `EXCEPT`, en écrivant d'abord la requête qu'on garde."
       },
       {
         "intitule": "Quelle est la négation de `WHERE note >= 10 AND absences < 3` ?",
@@ -733,7 +1127,8 @@
           "`WHERE note < 10 OR absences >= 3`",
           "`WHERE note <= 10 OR absences > 3`"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle (De Morgan) :** `NOT (A AND B)` équivaut à `NOT A OR NOT B`. Ensuite, chaque comparaison prend son contraire exact : `>=` devient `<`, et `<` devient `>=`.\n\n**Pas à pas :**\n\n1. `note >= 10 AND absences < 3` : le `AND` devient `OR`.\n2. `NOT (note >= 10)` donne `note < 10`.\n3. `NOT (absences < 3)` donne `absences >= 3`.\n4. Résultat : `WHERE note < 10 OR absences >= 3`.\n\nContrôle avec une note de 10 et 0 absence : la condition de départ est vraie, donc la négation doit être fausse. `10 < 10 OR 0 >= 3` est bien fausse.\n\n**Les autres réponses :**\n\n- `note < 10 AND absences >= 3` garde le `AND` : un élève avec 8 et 0 absence ne vérifie ni la condition de départ, ni celle-ci. Ce n'est pas la négation.\n- `note <= 10 OR absences > 3` inverse mal : avec 10 et 0 absence, elle est vraie ($10 \\le 10$), en même temps que la condition de départ.\n\n**À retenir :** pour nier un `WHERE`, `AND` ↔ `OR`, puis chaque comparaison prend son contraire exact."
       },
       {
         "intitule": "« Le client $c$ n'a jamais commandé » s'écrit :",
@@ -743,12 +1138,14 @@
           "$\\exists\\, cmd \\in Commandes,\\ cmd.client = c$",
           "$\\forall\\, cmd \\in Commandes,\\ cmd.client \\neq c$"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** la négation de « il existe » est « pour tout … ne … pas » : $\\neg(\\exists x,\\ P(x)) \\equiv \\forall x,\\ \\neg P(x)$.\n\n**Pas à pas :**\n\n1. « $c$ a commandé » = « il existe une commande dont le client est $c$ » : $\\exists\\, cmd,\\ cmd.client = c$.\n2. « $c$ n'a **jamais** commandé » est la négation : $\\neg \\exists\\, cmd,\\ cmd.client = c$.\n3. On échange $\\exists$ en $\\forall$ et on nie la condition ($=$ devient $\\neq$) : $\\forall\\, cmd \\in Commandes,\\ cmd.client \\neq c$.\n\nEn mots : « chaque commande appartient à un autre client que $c$ ».\n\n**Les autres réponses :**\n\n- $\\exists\\, cmd,\\ cmd.client = c$ dit que $c$ a passé **au moins une** commande : le contraire de ce qu'on veut.\n- $\\exists\\, cmd,\\ cmd.client \\neq c$ dit seulement qu'il existe une commande d'un **autre** client, ce qui est vrai même si $c$ a commandé.\n\n**À retenir :** « jamais » = « il n'existe aucun » = « pour tout … $\\neq$ »."
       },
       {
         "intitule": "Écris une requête SQL qui liste les clients qui n'ont **jamais** passé de commande.",
         "type": "auto",
-        "reponse": "Avec `NOT EXISTS` :\n\n```sql\nSELECT c.*\nFROM Clients c\nWHERE NOT EXISTS (\n  SELECT 1 FROM Commandes cmd\n  WHERE cmd.id_client = c.id_client\n);\n```\n\nOu avec `EXCEPT` sur les identifiants :\n\n```sql\nSELECT id_client FROM Clients\nEXCEPT\nSELECT id_client FROM Commandes;\n```"
+        "reponse": "Avec `NOT EXISTS` :\n\n```sql\nSELECT c.*\nFROM Clients c\nWHERE NOT EXISTS (\n  SELECT 1 FROM Commandes cmd\n  WHERE cmd.id_client = c.id_client\n);\n```\n\nOu avec `EXCEPT` sur les identifiants :\n\n```sql\nSELECT id_client FROM Clients\nEXCEPT\nSELECT id_client FROM Commandes;\n```",
+        "explication": "**Règle :** « n'a jamais commandé » = « il n'existe aucune commande de ce client ». En SQL, on l'écrit avec `NOT EXISTS` et une sous-requête **reliée** au client courant, ou avec `EXCEPT` sur les identifiants.\n\n**Compare ta requête, étape par étape :**\n\n1. **Requête principale :** `SELECT ... FROM Clients c` parcourt chaque client.\n2. **Sous-requête :** `SELECT 1 FROM Commandes cmd WHERE cmd.id_client = c.id_client` cherche les commandes de **ce** client.\n3. **Filtre :** `WHERE NOT EXISTS (...)` garde le client si la sous-requête ne trouve rien.\n4. **Autre version :** `SELECT id_client FROM Clients EXCEPT SELECT id_client FROM Commandes` : tous les clients, moins ceux qui apparaissent dans les commandes.\n\n**Erreurs fréquentes :**\n\n- Oublier `WHERE cmd.id_client = c.id_client` dans la sous-requête : elle trouverait n'importe quelle commande, et `NOT EXISTS` ne garderait aucun client.\n- Faire un `INNER JOIN` entre `Clients` et `Commandes` : il garde au contraire les clients **qui ont** commandé.\n- Inverser l'`EXCEPT` (`Commandes EXCEPT Clients`) : on partirait des commandes.\n\n**À retenir :** « aucun » en SQL = `NOT EXISTS` avec une sous-requête reliée à la ligne courante."
       }
     ],
     "indices": [
@@ -768,36 +1165,59 @@
         "intitule": "Combien de lignes renvoie `SELECT * FROM Auteurs CROSS JOIN Livres;` ?",
         "type": "nombre",
         "reponse": 15,
-        "refuses": ["8", "5"]
+        "refuses": [
+          "8",
+          "5"
+        ],
+        "explication": "**Règle :** `CROSS JOIN` est un produit cartésien : chaque ligne de la première table est associée à **chaque** ligne de la seconde, donc on multiplie les nombres de lignes.\n\n**Pas à pas :**\n\n- `Auteurs` a 3 lignes (Hugo, Sand, Verne).\n- `Livres` a 5 lignes (id 10 à 14).\n- Hugo est associé aux 5 livres, Sand aussi, Verne aussi : $3 \\times 5 = 15$ lignes.\n\n**Erreurs fréquentes :** répondre 8 ($3 + 5$, on additionne au lieu de multiplier), ou 5 (c'est le résultat de la jointure **filtrée**, pas du `CROSS JOIN`).\n\n**À retenir :** `CROSS JOIN` = toutes les paires = produit des nombres de lignes."
       },
       {
         "intitule": "En langage ensembliste, ce résultat est :",
         "type": "choix",
-        "choix": ["$\\text{Auteurs} \\cup \\text{Livres}$", "$\\text{Auteurs} \\times \\text{Livres}$", "$\\text{Auteurs} \\cap \\text{Livres}$"],
-        "reponse": 1
+        "choix": [
+          "$\\text{Auteurs} \\cup \\text{Livres}$",
+          "$\\text{Auteurs} \\times \\text{Livres}$",
+          "$\\text{Auteurs} \\cap \\text{Livres}$"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** le produit cartésien $A \\times B$ est l'ensemble de **toutes** les paires $(a, b)$ avec $a \\in A$ et $b \\in B$. C'est exactement ce que renvoie un `CROSS JOIN`.\n\n**Pas à pas :** chaque ligne du résultat est une paire (un auteur, un livre), par exemple (Sand, Les Misérables). Toutes les paires possibles sont là : c'est $\\text{Auteurs} \\times \\text{Livres}$.\n\n**Les autres réponses :**\n\n- $\\text{Auteurs} \\cup \\text{Livres}$ **empilerait** les lignes des deux tables, sans les associer (et les deux tables n'ont même pas les mêmes colonnes).\n- $\\text{Auteurs} \\cap \\text{Livres}$ chercherait des lignes identiques dans les deux tables : il n'y en a aucune, ça n'a pas de sens ici.\n\n**À retenir :** une ligne de `CROSS JOIN` = une paire = un élément du produit cartésien."
       },
       {
         "intitule": "Dans `Auteurs INNER JOIN Livres ON Auteurs.id_auteur = Livres.id_auteur`, quelle proposition sert de filtre ?",
         "type": "choix",
-        "choix": ["`Auteurs.id_auteur = Livres.id_auteur`", "`Auteurs.id_auteur <> Livres.id_auteur`", "Aucune : `INNER JOIN` garde toutes les combinaisons"],
-        "reponse": 0
+        "choix": [
+          "`Auteurs.id_auteur = Livres.id_auteur`",
+          "`Auteurs.id_auteur <> Livres.id_auteur`",
+          "Aucune : `INNER JOIN` garde toutes les combinaisons"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** `INNER JOIN ... ON condition` est un produit cartésien **filtré** : on forme toutes les paires, puis on ne garde que celles pour lesquelles la proposition du `ON` est vraie.\n\n**Pas à pas :** la proposition qui sert de filtre est celle écrite après `ON` : `Auteurs.id_auteur = Livres.id_auteur`. Elle est vraie quand le livre a bien été écrit par cet auteur. Exemple :\n\n- (Hugo, Les Misérables) : $1 = 1$, vraie, la paire est gardée ;\n- (Sand, Les Misérables) : $2 = 1$, fausse, la paire est retirée.\n\n**Les autres réponses :**\n\n- `Auteurs.id_auteur <> Livres.id_auteur` garderait au contraire les **mauvaises** paires (un livre avec un auteur qui ne l'a pas écrit).\n- « Aucune » est faux : sans filtre, ce serait un `CROSS JOIN`. C'est le `ON` qui fait la différence.\n\n**À retenir :** la condition du `ON` est la proposition qui filtre le produit cartésien."
       },
       {
         "intitule": "Combien de lignes renvoie cette `INNER JOIN` ?",
         "type": "nombre",
         "reponse": 5,
-        "refuses": ["15", "3"]
+        "refuses": [
+          "15",
+          "3"
+        ],
+        "explication": "**Règle :** on part des 15 paires du produit cartésien et on garde celles où `Auteurs.id_auteur = Livres.id_auteur`.\n\n**Pas à pas :** pour chaque livre, on cherche l'auteur qui a le même identifiant.\n\n| Livre | `id_auteur` du livre | Auteur correspondant | Lignes gardées |\n|---|---|---|---|\n| 10 Les Misérables | 1 | Hugo | 1 |\n| 11 Notre-Dame de Paris | 1 | Hugo | 1 |\n| 12 Vingt mille lieues… | 3 | Verne | 1 |\n| 13 Le Tour du monde… | 3 | Verne | 1 |\n| 14 L'Île mystérieuse | 3 | Verne | 1 |\n\nChaque livre a exactement un auteur dans la table : $5$ lignes.\n\n**Erreurs fréquentes :** répondre 15 (le `CROSS JOIN` sans filtre), ou 3 (le nombre d'auteurs : Hugo apparaît 2 fois et Verne 3 fois dans le résultat).\n\n**À retenir :** une jointure sur une clé étrangère donne une ligne par ligne « enfant » (ici par livre) qui a un parent."
       },
       {
         "intitule": "Combien d'auteurs n'apparaissent dans **aucune** ligne de cette jointure ?",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["0", "2"]
+        "refuses": [
+          "0",
+          "2"
+        ],
+        "explication": "**Règle :** un `INNER JOIN` ne garde que les paires qui vérifient la condition. Un auteur sans aucun livre ne figure dans **aucune** paire gardée : il disparaît du résultat.\n\n**Pas à pas :** on regarde chaque auteur.\n\n| Auteur | Livres avec son `id_auteur` | Présent dans la jointure ? |\n|---|---|---|\n| Hugo (1) | 10, 11 | oui |\n| Sand (2) | aucun | **non** |\n| Verne (3) | 12, 13, 14 | oui |\n\nUn seul auteur est absent : **1** (Sand).\n\n**Erreurs fréquentes :** répondre 0 (on croit que la jointure garde toutes les lignes de chaque table), ou 2. Pour garder Sand avec des cases vides (`NULL`), il faudrait un `LEFT JOIN`.\n\n**À retenir :** `INNER JOIN` perd les lignes sans correspondance ; `LEFT JOIN` les garde."
       },
       {
         "intitule": "Réécris la jointure avec un `CROSS JOIN` et un `WHERE`, puis explique en une phrase pourquoi le résultat est le même.",
         "type": "auto",
-        "reponse": "```sql\nSELECT *\nFROM Auteurs CROSS JOIN Livres\nWHERE Auteurs.id_auteur = Livres.id_auteur;\n```\n\nLe `CROSS JOIN` construit toutes les combinaisons (le produit cartésien $\\text{Auteurs} \\times \\text{Livres}$), puis le `WHERE` ne garde que les couples qui vérifient la condition. C'est exactement ce que fait `INNER JOIN ... ON` : un produit cartésien **filtré** par un prédicat."
+        "reponse": "```sql\nSELECT *\nFROM Auteurs CROSS JOIN Livres\nWHERE Auteurs.id_auteur = Livres.id_auteur;\n```\n\nLe `CROSS JOIN` construit toutes les combinaisons (le produit cartésien $\\text{Auteurs} \\times \\text{Livres}$), puis le `WHERE` ne garde que les couples qui vérifient la condition. C'est exactement ce que fait `INNER JOIN ... ON` : un produit cartésien **filtré** par un prédicat.",
+        "explication": "**Règle :** `INNER JOIN ... ON condition` = `CROSS JOIN` (toutes les paires) + `WHERE condition` (le filtre). Les deux écritures donnent le même résultat.\n\n**Compare ta réponse, étape par étape :**\n\n1. **La requête :** `SELECT * FROM Auteurs CROSS JOIN Livres WHERE Auteurs.id_auteur = Livres.id_auteur;`\n2. **Le `CROSS JOIN`** fabrique les 15 paires (auteur, livre), c'est-à-dire $\\text{Auteurs} \\times \\text{Livres}$.\n3. **Le `WHERE`** garde les 5 paires où la condition est vraie, exactement comme le `ON`.\n4. **La phrase d'explication** doit dire cette idée : une jointure est un produit cartésien filtré par une condition.\n\n**Erreurs fréquentes :**\n\n- Oublier le `WHERE` : on obtient les 15 lignes du `CROSS JOIN`.\n- Écrire `<>` au lieu de `=` dans la condition.\n- Expliquer sans parler du produit cartésien, alors que c'est le cœur de la question.\n\n**À retenir :** jointure = produit cartésien + filtre ; le `ON` et le `WHERE` jouent le même rôle ici."
       }
     ],
     "indices": [

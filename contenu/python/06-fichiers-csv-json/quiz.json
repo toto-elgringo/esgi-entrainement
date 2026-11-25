@@ -1,128 +1,233 @@
 [
   {
     "question": "Lequel de ces fichiers est un fichier **binaire** ?",
-    "choix": ["`notes.csv`", "`photo.png`", "`script.py`", "`config.json`"],
+    "choix": [
+      "`notes.csv`",
+      "`photo.png`",
+      "`script.py`",
+      "`config.json`"
+    ],
     "reponse": 1,
-    "explication": "Une image contient des octets qu'il faut décoder. CSV, code source et JSON sont des fichiers texte, lisibles par un humain."
+    "explication": "**Règle :** un fichier **texte** contient des caractères lisibles par un humain (même si ce sont du code ou des données). Un fichier **binaire** contient des octets qui n'ont de sens qu'une fois décodés par un programme (image, son, vidéo, exécutable).\n\n**Pas à pas :** on se demande pour chaque fichier « est-ce lisible dans le Bloc-notes ? ».\n\n| Fichier | Lisible ? | Type |\n|---|---|---|\n| `notes.csv` | oui, des valeurs séparées par `;` ou `,` | texte |\n| `photo.png` | non, des symboles sans sens | **binaire** |\n| `script.py` | oui, du code | texte |\n| `config.json` | oui, des accolades et des guillemets | texte |\n\n**Les autres réponses :** CSV et JSON sont des **données**, mais écrites en texte ; un fichier de code source est toujours du texte.\n\n**À retenir :** images, sons, vidéos, programmes = binaire (`\"rb\"`, des `bytes`) ; tout le reste qu'on lit à l'œil = texte."
   },
   {
     "question": "Que se passe-t-il avec `open(\"absent.txt\")` si le fichier n'existe pas ?",
-    "choix": ["Le fichier est créé vide", "`open` renvoie `None`", "Python lève `FileNotFoundError`", "On obtient un fichier en mode ajout"],
+    "choix": [
+      "Le fichier est créé vide",
+      "`open` renvoie `None`",
+      "Python lève `FileNotFoundError`",
+      "On obtient un fichier en mode ajout"
+    ],
     "reponse": 2,
-    "explication": "Sans mode, `open` lit (`\"r\"`) : lire un fichier qui n'existe pas lève `FileNotFoundError`. Seuls `\"w\"`, `\"a\"` et `\"x\"` créent le fichier."
+    "explication": "**Règle :** sans mode, `open` ouvre en **lecture** (`\"r\"`). Lire un fichier qui n'existe pas est impossible : Python lève `FileNotFoundError`. Seuls les modes d'écriture `\"w\"`, `\"a\"` et `\"x\"` créent le fichier s'il manque.\n\n**Pas à pas :**\n\n1. `open(\"absent.txt\")` équivaut à `open(\"absent.txt\", \"r\")`.\n2. Python cherche le fichier, ne le trouve pas.\n3. Il lève `FileNotFoundError: [Errno 2] No such file or directory: 'absent.txt'` : le programme s'arrête, sauf si on intercepte l'erreur avec `try` / `except FileNotFoundError`.\n\n**Les autres réponses :** « le fichier est créé vide » est ce que fait `open(\"absent.txt\", \"w\")` (ou `\"a\"`, `\"x\"`) ; `open` ne renvoie jamais `None` : soit il réussit (objet fichier), soit il lève une exception ; le mode ajout ne s'active pas tout seul, il faut écrire `\"a\"`.\n\n**À retenir :** `\"r\"` (le mode par défaut) exige que le fichier existe ; pour lire un fichier qui peut manquer, `try` / `except FileNotFoundError`."
   },
   {
     "question": "Quel mode ajoute du texte **à la fin** d'un fichier sans effacer son contenu ?",
-    "choix": ["`\"w\"`", "`\"r\"`", "`\"a\"`", "`\"x\"`"],
+    "choix": [
+      "`\"w\"`",
+      "`\"r\"`",
+      "`\"a\"`",
+      "`\"x\"`"
+    ],
     "reponse": 2,
-    "explication": "`\"a\"` (*append*) écrit à la suite. `\"w\"` vide le fichier dès l'ouverture, `\"x\"` refuse un fichier qui existe déjà."
+    "explication": "**Règle :** le mode `\"a\"` (*append*, ajouter) ouvre le fichier pour écrire **à la fin**, sans toucher à ce qu'il contient déjà (et le crée s'il n'existe pas).\n\n**Pas à pas :** si `journal.txt` contient `lundi\\n` :\n\n1. `open(\"journal.txt\", \"a\")` puis `f.write(\"mardi\\n\")` : le fichier contient `lundi\\nmardi\\n`.\n2. Avec `\"w\"` à la place, il ne contiendrait plus que `mardi\\n` : `\"w\"` vide le fichier **dès l'ouverture**.\n\n**Les autres réponses :** `\"w\"` efface tout avant d'écrire ; `\"r\"` ouvre seulement en lecture, `write` lèverait une erreur ; `\"x\"` sert à **créer** un nouveau fichier et lève `FileExistsError` si le fichier existe déjà.\n\n**À retenir :** compléter = `\"a\"`, remplacer = `\"w\"`, créer sans écraser = `\"x\"`, lire = `\"r\"`."
   },
   {
     "question": "Que renvoie `f.readline()` quand on est arrivé à la fin du fichier ?",
-    "choix": ["`None`", "`\"\\n\"`", "`\"\"` (chaîne vide)", "Une `EOFError`"],
+    "choix": [
+      "`None`",
+      "`\"\\n\"`",
+      "`\"\"` (chaîne vide)",
+      "Une `EOFError`"
+    ],
     "reponse": 2,
-    "explication": "Une ligne vide au milieu du fichier vaut `\"\\n\"`. La chaîne vide `\"\"` signifie qu'il n'y a plus rien à lire."
+    "explication": "**Règle :** `readline()` renvoie la ligne suivante **avec** son `\"\\n\"`. Quand il n'y a plus rien à lire, il renvoie la chaîne vide `\"\"`.\n\n**Pas à pas** avec un fichier qui contient `a\\n\\nb\\n` :\n\n| Appel | Résultat |\n|---|---|\n| 1er `readline()` | `\"a\\n\"` |\n| 2e | `\"\\n\"` (la ligne vide du milieu) |\n| 3e | `\"b\\n\"` |\n| 4e | `\"\"` : fin du fichier |\n\nUne ligne vide au milieu contient encore son retour à la ligne, `\"\\n\"`, donc on ne la confond pas avec la fin.\n\n**Les autres réponses :** `None` n'est jamais renvoyé par `readline` ; `\"\\n\"` est une ligne vide **au milieu** du fichier, pas la fin ; `EOFError` est levée par `input()` quand il n'y a plus d'entrée, pas par la lecture d'un fichier.\n\n**À retenir :** `readline()` qui renvoie `\"\"` = fin du fichier ; c'est la condition d'arrêt d'une boucle `while`."
   },
   {
     "question": "Pourquoi `for ligne in f: print(ligne)` affiche-t-il une ligne vide entre chaque ligne ?",
-    "choix": ["`print` lit deux lignes à la fois", "Chaque ligne lue garde son `\"\\n\"`, et `print` en ajoute un autre", "Le fichier est en mode binaire", "Il faut écrire `f.readlines()`"],
+    "choix": [
+      "`print` lit deux lignes à la fois",
+      "Chaque ligne lue garde son `\"\\n\"`, et `print` en ajoute un autre",
+      "Le fichier est en mode binaire",
+      "Il faut écrire `f.readlines()`"
+    ],
     "reponse": 1,
-    "explication": "Les lignes lues se terminent par `\"\\n\"`. On l'enlève avec `ligne.rstrip(\"\\n\")`, ou on écrit `print(ligne, end=\"\")`."
+    "explication": "**Règle :** chaque ligne lue dans un fichier **garde** son retour à la ligne `\"\\n\"` à la fin. Et `print` ajoute **toujours** son propre retour à la ligne.\n\n**Pas à pas** avec la ligne `\"un\\n\"` :\n\n1. `print(\"un\\n\")` affiche `un`, puis le `\\n` de la ligne (passage à la ligne), puis le `\\n` de `print` (deuxième passage).\n2. Deux passages à la ligne = une ligne vide entre chaque ligne du fichier.\n\nSolutions : `print(ligne.rstrip(\"\\n\"))` (on enlève celui de la ligne) ou `print(ligne, end=\"\")` (on enlève celui de `print`).\n\n**Les autres réponses :** `print` n'a rien à voir avec la lecture, il n'en fait qu'une par tour de boucle ; en mode binaire on lirait des `bytes`, affichés sous la forme `b'...'` ; `readlines()` donne exactement les mêmes lignes, avec leurs `\"\\n\"`, le problème serait le même.\n\n**À retenir :** ligne lue = texte + `\"\\n\"` : nettoie avec `rstrip(\"\\n\")` avant de l'utiliser."
   },
   {
     "question": "Quel est l'avantage de `with open(chemin) as f:` sur `f = open(chemin)` suivi de `f.close()` ?",
-    "choix": ["La lecture est plus rapide", "Le fichier est fermé automatiquement, même en cas de `return` ou d'exception", "Le fichier est ouvert en lecture et en écriture", "Il n'y a plus besoin de préciser l'encodage"],
+    "choix": [
+      "La lecture est plus rapide",
+      "Le fichier est fermé automatiquement, même en cas de `return` ou d'exception",
+      "Le fichier est ouvert en lecture et en écriture",
+      "Il n'y a plus besoin de préciser l'encodage"
+    ],
     "reponse": 1,
-    "explication": "`with` est un gestionnaire de contexte : en sortant du bloc, quelle que soit la façon, il appelle `close()` pour toi."
+    "explication": "**Règle :** `with` est un **gestionnaire de contexte** : en sortant du bloc, de **n'importe quelle** façon (fin normale, `return`, exception), il ferme le fichier tout seul.\n\n**Pas à pas :**\n\n1. Avec `f = open(chemin)` puis du code puis `f.close()` : si le code fait un `return` ou plante au milieu, la ligne `f.close()` n'est jamais atteinte, le fichier reste ouvert.\n2. Avec `with open(chemin) as f:`, la fermeture a lieu quoi qu'il arrive. On n'a plus à écrire `close()`.\n\n**Les autres réponses :** la lecture n'est pas plus rapide, on lit exactement de la même façon ; le mode d'ouverture ne change pas (c'est toujours le deuxième argument de `open`) ; l'encodage reste à préciser avec `encoding=\"utf-8\"`, `with` n'y change rien.\n\n**À retenir :** `with` sert à **fermer automatiquement** : c'est la façon normale d'ouvrir un fichier."
   },
   {
     "question": "Après `contenu = f.read()`, que renvoie un deuxième `f.read()` ?",
-    "choix": ["Le même contenu", "`\"\"`, car le curseur est déjà à la fin", "`None`", "Une erreur : le fichier est fermé"],
+    "choix": [
+      "Le même contenu",
+      "`\"\"`, car le curseur est déjà à la fin",
+      "`None`",
+      "Une erreur : le fichier est fermé"
+    ],
     "reponse": 1,
-    "explication": "Chaque lecture avance le curseur. Pour relire depuis le début, on fait `f.seek(0)`."
+    "explication": "**Règle :** un fichier ouvert a un **curseur** : chaque lecture part du curseur et l'avance. `read()` lit **tout ce qui reste** et laisse le curseur à la fin.\n\n**Pas à pas :**\n\n1. Premier `f.read()` : lit du début jusqu'à la fin, le curseur est maintenant au bout.\n2. Deuxième `f.read()` : il ne reste plus rien après le curseur, on obtient `\"\"`.\n3. Pour relire, on remet le curseur au début avec `f.seek(0)`, puis `f.read()` redonne tout.\n\n**Les autres réponses :** on ne relit pas le même contenu, car le curseur ne revient pas au début tout seul ; `read` ne renvoie jamais `None` ; le fichier n'est pas fermé par une lecture, il reste ouvert jusqu'à la fin du `with` ou au `close()`.\n\n**À retenir :** une lecture avance le curseur ; `\"\"` = plus rien à lire ; `f.seek(0)` pour recommencer."
   },
   {
     "question": "Pourquoi écrire `open(chemin, encoding=\"utf-8\")` plutôt que `open(chemin)` ?",
-    "choix": ["Sinon le fichier est ouvert en binaire", "L'encodage par défaut dépend du système : un fichier avec accents peut être mal lu ailleurs", "`utf-8` rend le fichier plus petit", "C'est obligatoire pour écrire"],
+    "choix": [
+      "Sinon le fichier est ouvert en binaire",
+      "L'encodage par défaut dépend du système : un fichier avec accents peut être mal lu ailleurs",
+      "`utf-8` rend le fichier plus petit",
+      "C'est obligatoire pour écrire"
+    ],
     "reponse": 1,
-    "explication": "Sans encodage, Python prend celui du système (souvent cp1252 sur un vieux Windows) : `été` peut devenir `Ã©tÃ©` ou lever `UnicodeDecodeError`."
+    "explication": "**Règle :** sans `encoding=`, `open` utilise l'encodage **par défaut du système**, qui change d'un ordinateur à l'autre (souvent cp1252 sur un vieux Windows, UTF-8 sur Linux et macOS).\n\n**Pas à pas :**\n\n1. Un fichier écrit en UTF-8 contient `été` sous la forme de 5 octets (`é` en prend 2).\n2. Relu en cp1252, chaque octet devient un caractère : `été` s'affiche `Ã©tÃ©`, ou la lecture plante avec `UnicodeDecodeError`.\n3. Avec `encoding=\"utf-8\"` à l'écriture **et** à la lecture, le fichier se lit pareil partout.\n\n**Les autres réponses :** le mode binaire vient de `\"b\"` dans le mode (`\"rb\"`), pas de l'encodage ; préciser l'encodage ne rend pas le fichier plus petit, il fixe seulement la façon de lire les caractères ; ce n'est pas obligatoire pour écrire, `open(chemin, \"w\")` fonctionne, mais avec l'encodage du système.\n\n**À retenir :** `encoding=\"utf-8\"` à **chaque** `open` d'un fichier texte, pour que les accents soient lus pareil sur tous les ordinateurs."
   },
   {
     "question": "Que fournit `csv.reader(f, delimiter=\";\")` pour chaque ligne du fichier ?",
-    "choix": ["Une chaîne", "Une liste de chaînes", "Une liste où les nombres sont déjà convertis en `int`", "Un dictionnaire"],
+    "choix": [
+      "Une chaîne",
+      "Une liste de chaînes",
+      "Une liste où les nombres sont déjà convertis en `int`",
+      "Un dictionnaire"
+    ],
     "reponse": 1,
-    "explication": "Toutes les valeurs restent du texte : il faut convertir soi-même avec `int(...)` ou `float(...)`. C'est `csv.DictReader` qui donne des dictionnaires."
+    "explication": "**Règle :** `csv.reader` découpe chaque ligne du fichier selon le délimiteur et donne une **liste de chaînes**. Il ne convertit **rien** : un nombre reste un texte.\n\n**Pas à pas :** la ligne `Lina;Lyon;24` devient `[\"Lina\", \"Lyon\", \"24\"]`. Le `\"24\"` est un texte : pour calculer, il faut `int(ligne[2])` (ou `float(...)`).\n\n**Les autres réponses :**\n\n- une chaîne : c'est ce qu'on aurait en lisant la ligne **sans** le module `csv` (`for ligne in f`) ;\n- des nombres déjà convertis : non, le module `csv` ne devine pas les types ;\n- un dictionnaire : c'est `csv.DictReader` qui en donne un par ligne, avec les noms de colonnes en clés.\n\n**À retenir :** `csv.reader` → liste de **textes** par ligne ; convertis toi-même les nombres."
   },
   {
     "question": "Pourquoi utiliser le module `csv` plutôt que `ligne.split(\";\")` ?",
-    "choix": ["`split` ne marche pas sur les fichiers", "Une valeur entre guillemets peut contenir le délimiteur, et `split` la coupe en deux", "`csv` convertit les nombres", "`split` enlève les accents"],
+    "choix": [
+      "`split` ne marche pas sur les fichiers",
+      "Une valeur entre guillemets peut contenir le délimiteur, et `split` la coupe en deux",
+      "`csv` convertit les nombres",
+      "`split` enlève les accents"
+    ],
     "reponse": 1,
-    "explication": "Avec `\"Brest; Finistère\";31`, `split(\";\")` donne trois morceaux au lieu de deux. Le module `csv` sait lire les valeurs entre guillemets."
+    "explication": "**Règle :** dans un CSV, une valeur qui contient le délimiteur est écrite **entre guillemets**. Le module `csv` comprend ces guillemets ; `split` ne les connaît pas et coupe à chaque délimiteur.\n\n**Pas à pas** avec la ligne `Marc;\"Brest; Finistère\";31` :\n\n1. `ligne.split(\";\")` coupe à chacun des 3 `;` : `['Marc', '\"Brest', ' Finistère\"', '31']`, soit 4 morceaux pour 3 colonnes.\n2. `csv.reader(f, delimiter=\";\")` voit les guillemets et garde `Brest; Finistère` en **une** valeur : `['Marc', 'Brest; Finistère', '31']`.\n\n**Les autres réponses :** `split` marche très bien sur une ligne lue dans un fichier (c'est une chaîne comme une autre) ; le module `csv` ne convertit pas les nombres, ils restent des textes ; `split` ne touche pas aux accents.\n\n**À retenir :** dès qu'une valeur peut contenir le délimiteur ou des guillemets, lis et écris avec le module `csv`."
   },
   {
     "question": "Avec `csv.DictReader(f)`, d'où viennent les clés des dictionnaires ?",
-    "choix": ["De la première ligne du fichier", "Des numéros de colonnes 0, 1, 2...", "Du paramètre `delimiter`", "Il faut toujours les donner avec `fieldnames`"],
+    "choix": [
+      "De la première ligne du fichier",
+      "Des numéros de colonnes 0, 1, 2...",
+      "Du paramètre `delimiter`",
+      "Il faut toujours les donner avec `fieldnames`"
+    ],
     "reponse": 0,
-    "explication": "Par défaut, la première ligne est lue comme l'en-tête. On peut aussi donner `fieldnames=[...]` quand le fichier n'a pas d'en-tête."
+    "explication": "**Règle :** par défaut, `csv.DictReader` lit la **première ligne** du fichier comme l'en-tête : ses valeurs deviennent les clés des dictionnaires des lignes suivantes.\n\n**Pas à pas** avec le fichier :\n\n```text\narticle,prix\nstylo,1.5\n```\n\n1. La première ligne donne les clés `\"article\"` et `\"prix\"`.\n2. La deuxième ligne devient `{\"article\": \"stylo\", \"prix\": \"1.5\"}`.\n\nSi le fichier n'a pas d'en-tête, on donne les noms soi-même : `csv.DictReader(f, fieldnames=[\"article\", \"prix\"])`, et alors la première ligne est lue comme une donnée.\n\n**Les autres réponses :** les numéros 0, 1, 2 correspondent aux positions dans les listes de `csv.reader`, pas aux clés de `DictReader` ; `delimiter` indique seulement le séparateur ; `fieldnames` n'est **pas** obligatoire, il ne sert que sans en-tête.\n\n**À retenir :** `DictReader` = la première ligne fournit les clés (ou `fieldnames=` s'il n'y a pas d'en-tête)."
   },
   {
     "question": "Après `csv.Sniffer().sniff(f.read(1024))`, pourquoi faut-il faire `f.seek(0)` ?",
-    "choix": ["Pour fermer le fichier", "Pour changer de dialecte", "Parce que la lecture de l'extrait a avancé le curseur", "Pour vider le tampon d'écriture"],
+    "choix": [
+      "Pour fermer le fichier",
+      "Pour changer de dialecte",
+      "Parce que la lecture de l'extrait a avancé le curseur",
+      "Pour vider le tampon d'écriture"
+    ],
     "reponse": 2,
-    "explication": "Le `Sniffer` a besoin d'un extrait, et le lire a déplacé le curseur. `seek(0)` revient au début avant la vraie lecture."
+    "explication": "**Règle :** chaque lecture avance le curseur du fichier. Pour relire depuis le début, il faut revenir en arrière avec `f.seek(0)`.\n\n**Pas à pas :**\n\n1. `f.read(1024)` lit un **extrait** (jusqu'à 1024 caractères) pour que le `Sniffer` devine le délimiteur.\n2. Le curseur se trouve maintenant **après** cet extrait (à la fin, pour un petit fichier).\n3. Sans retour en arrière, `csv.reader(f, ...)` commencerait au curseur et raterait le début, voire tout le fichier.\n4. `f.seek(0)` remet le curseur à la position 0 : la vraie lecture commence au début.\n\n**Les autres réponses :** `seek` ne ferme rien, c'est `close()` (ou la fin du `with`) ; le dialecte se choisit en le passant à `csv.reader`, pas avec `seek` ; il n'y a aucune écriture en cours, donc aucun tampon à vider.\n\n**À retenir :** après une lecture « pour voir », `f.seek(0)` avant la vraie lecture."
   },
   {
     "question": "Quelle fonction transforme une **chaîne** JSON en objet Python ?",
-    "choix": ["`json.load`", "`json.loads`", "`json.dump`", "`json.dumps`"],
+    "choix": [
+      "`json.load`",
+      "`json.loads`",
+      "`json.dump`",
+      "`json.dumps`"
+    ],
     "reponse": 1,
-    "explication": "Le `s` final veut dire *string* : `loads` lit une chaîne, `load` lit un fichier ouvert, `dump` et `dumps` font le chemin inverse."
+    "explication": "**Règle :** le module `json` a quatre fonctions. Le `s` final veut dire *string* (chaîne) : `loads` et `dumps` travaillent sur des **chaînes**, `load` et `dump` sur des **fichiers** ouverts.\n\n**Pas à pas :**\n\n| Fonction | Reçoit | Donne |\n|---|---|---|\n| `json.loads(texte)` | une chaîne JSON | un objet Python |\n| `json.load(f)` | un fichier ouvert | un objet Python |\n| `json.dumps(donnees)` | un objet Python | une chaîne JSON |\n| `json.dump(donnees, f)` | un objet Python et un fichier | rien (écrit dans le fichier) |\n\nOn cherche « chaîne → Python » : `json.loads('{\"a\": 1}')` donne `{'a': 1}`.\n\n**Les autres réponses :** `json.load` attend un fichier ouvert, pas une chaîne ; `json.dump` et `json.dumps` font le chemin inverse (Python → JSON).\n\n**À retenir :** chaîne → `loads` / `dumps`, fichier → `load` / `dump`."
   },
   {
     "question": "Que vaut `json.loads(json.dumps({1: (2, 3)}))` ?",
-    "choix": ["`{1: (2, 3)}`", "`{\"1\": [2, 3]}`", "`{1: [2, 3]}`", "Une `TypeError`"],
+    "choix": [
+      "`{1: (2, 3)}`",
+      "`{\"1\": [2, 3]}`",
+      "`{1: [2, 3]}`",
+      "Une `TypeError`"
+    ],
     "reponse": 1,
-    "explication": "En JSON, les clés sont toujours du texte, et un tuple devient un tableau, relu comme une liste."
+    "explication": "**Règle :** en JSON, les clés d'un objet sont **toujours des textes**, et il n'existe pas de tuple : seulement des tableaux, relus comme des **listes**.\n\n**Pas à pas :**\n\n1. `json.dumps({1: (2, 3)})` : la clé `1` est écrite `\"1\"`, le tuple `(2, 3)` est écrit `[2, 3]`. Le texte obtenu est `{\"1\": [2, 3]}`.\n2. `json.loads(...)` relit ce texte : la clé reste le texte `\"1\"`, le tableau devient la liste `[2, 3]`.\n3. Résultat : `{\"1\": [2, 3]}`.\n\n**Les autres réponses :** `{1: (2, 3)}` supposerait que JSON garde les types Python, ce qui est faux ; `{1: [2, 3]}` garde à tort la clé entière ; il n'y a pas de `TypeError`, car les entiers en clé et les tuples sont acceptés (convertis) à l'écriture.\n\n**À retenir :** après un aller-retour JSON, les clés sont des textes et les tuples sont des listes."
   },
   {
     "question": "Quelle valeur Python correspond au `null` de JSON ?",
-    "choix": ["`0`", "`\"\"`", "`None`", "`False`"],
+    "choix": [
+      "`0`",
+      "`\"\"`",
+      "`None`",
+      "`False`"
+    ],
     "reponse": 2,
-    "explication": "`null` ↔ `None`, `true` / `false` ↔ `True` / `False`, objet ↔ `dict`, tableau ↔ `list`."
+    "explication": "**Règle :** les types JSON se traduisent en Python ainsi : objet → `dict`, tableau → `list`, texte → `str`, nombre → `int` / `float`, `true` / `false` → `True` / `False`, `null` → `None`.\n\n**Pas à pas :** `json.loads('{\"tel\": null}')` donne `{'tel': None}`. Dans l'autre sens, `json.dumps({\"tel\": None})` écrit `{\"tel\": null}`.\n\n**Les autres réponses :** `0` est un nombre (JSON l'écrit `0`) ; `\"\"` est un texte vide (JSON l'écrit `\"\"`) ; `False` correspond à `false`. Ce sont des valeurs différentes de « aucune valeur ».\n\n**À retenir :** `null` ↔ `None`, `true` ↔ `True`, `false` ↔ `False`."
   },
   {
     "question": "Que se passe-t-il avec `json.dumps({\"tags\": {\"a\", \"b\"}})` ?",
-    "choix": ["L'ensemble devient une liste", "L'ensemble devient un texte", "Python lève `TypeError` : un `set` ne passe pas en JSON", "Les doublons sont gardés"],
+    "choix": [
+      "L'ensemble devient une liste",
+      "L'ensemble devient un texte",
+      "Python lève `TypeError` : un `set` ne passe pas en JSON",
+      "Les doublons sont gardés"
+    ],
     "reponse": 2,
-    "explication": "JSON ne connaît pas les ensembles. Il faut d'abord les convertir, par exemple avec `sorted(tags)`."
+    "explication": "**Règle :** JSON ne connaît que les objets, les tableaux, les textes, les nombres, `true` / `false` et `null`. Un `set` n'a pas d'équivalent : `json.dumps` refuse de l'écrire et lève `TypeError`.\n\n**Pas à pas :**\n\n1. `{\"tags\": {\"a\", \"b\"}}` est un dictionnaire dont la valeur est un **ensemble**.\n2. `json.dumps` arrive sur l'ensemble et ne sait pas l'écrire : `TypeError: Object of type set is not JSON serializable`.\n3. Solution : convertir avant, par exemple `json.dumps({\"tags\": sorted(tags)})`, qui écrit `{\"tags\": [\"a\", \"b\"]}`.\n\n**Les autres réponses :** l'ensemble ne devient pas une liste tout seul (c'est le tuple qui devient une liste) ; il ne devient pas non plus un texte ; la question des doublons ne se pose pas, puisque rien n'est écrit.\n\n**À retenir :** `set`, dates et objets de tes classes → convertis-les (en liste, en texte, en dictionnaire) avant `json.dump`."
   },
   {
     "question": "Comment ouvre-t-on en Python le fichier `rapport.txt` pour l'écrire en remplaçant son contenu ?",
-    "choix": ["`open(\"rapport.txt\", \"r\")`", "`open(\"rapport.txt\", \"w\")`", "`fopen(\"rapport.txt\", \"w\")`", "`file.open(\"rapport.txt\")`"],
+    "choix": [
+      "`open(\"rapport.txt\", \"r\")`",
+      "`open(\"rapport.txt\", \"w\")`",
+      "`fopen(\"rapport.txt\", \"w\")`",
+      "`file.open(\"rapport.txt\")`"
+    ],
     "reponse": 1,
-    "explication": "C'est `open(nom, \"w\")`. `fopen` est la fonction du C, et `\"r\"` ouvre en lecture."
+    "explication": "**Règle :** en Python, on ouvre un fichier avec la fonction `open(nom, mode)`. Pour écrire en **remplaçant** le contenu, le mode est `\"w\"`.\n\n**Pas à pas :**\n\n```python\nwith open(\"rapport.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Nouveau rapport\\n\")\n```\n\nLe fichier est vidé à l'ouverture (ou créé s'il n'existe pas), puis on y écrit.\n\n**Les autres réponses :** `open(\"rapport.txt\", \"r\")` ouvre en **lecture** : `write` lèverait une erreur ; `fopen` est la fonction du langage C, elle n'existe pas en Python ; `file.open(...)` n'existe pas non plus.\n\n**À retenir :** écrire en remplaçant = `open(nom, \"w\")`, à la suite = `open(nom, \"a\")`."
   },
   {
     "question": "Comment récupère-t-on en Python la **liste** des lignes restantes d'un fichier `f` ?",
-    "choix": ["`f.readline()`", "`f.lines()`", "`f.readlines()`", "`f.getLines()`"],
+    "choix": [
+      "`f.readline()`",
+      "`f.lines()`",
+      "`f.readlines()`",
+      "`f.getLines()`"
+    ],
     "reponse": 2,
-    "explication": "`readlines()` renvoie une liste (chaque ligne garde son `\"\\n\"`). `readline()` ne renvoie qu'**une** ligne."
+    "explication": "**Règle :** `f.readlines()` lit toutes les lignes **restantes** et les renvoie dans une **liste**, chaque ligne avec son `\"\\n\"`.\n\n**Pas à pas :** avec un fichier qui contient `un\\ndeux\\n`, `f.readlines()` renvoie `['un\\n', 'deux\\n']`. Pour des lignes propres : `[ligne.rstrip(\"\\n\") for ligne in f.readlines()]`.\n\n**Les autres réponses :** `f.readline()` (sans `s`) ne renvoie qu'**une** ligne, sous forme de chaîne ; `f.lines()` et `f.getLines()` n'existent pas (`AttributeError`).\n\n**À retenir :** `readline()` = une ligne, `readlines()` = la liste de toutes les lignes ; pour un gros fichier, préfère `for ligne in f`."
   },
   {
     "question": "Comment écrit-on le texte `bonjour` suivi d'un retour à la ligne dans un fichier `f` ouvert en écriture ?",
-    "choix": ["`f.write(\"bonjour\")`", "`f.write(\"bonjour\\n\")`", "`f.print(\"bonjour\")`", "`f.writeline(\"bonjour\")`"],
+    "choix": [
+      "`f.write(\"bonjour\")`",
+      "`f.write(\"bonjour\\n\")`",
+      "`f.print(\"bonjour\")`",
+      "`f.writeline(\"bonjour\")`"
+    ],
     "reponse": 1,
-    "explication": "`write` écrit le texte tel quel, sans ajouter de retour à la ligne : il faut mettre le `\"\\n\"` soi-même. `print(\"bonjour\", file=f)` marche aussi."
+    "explication": "**Règle :** `f.write(texte)` écrit le texte **exactement tel quel** : il n'ajoute **pas** de retour à la ligne. Pour passer à la ligne, il faut écrire `\"\\n\"` soi-même.\n\n**Pas à pas :**\n\n1. `f.write(\"bonjour\")` écrit `bonjour` sans passer à la ligne : un `write` suivant serait collé à la suite (`bonjourau revoir`).\n2. `f.write(\"bonjour\\n\")` écrit `bonjour` puis le retour à la ligne.\n3. Autre écriture possible : `print(\"bonjour\", file=f)`, car `print` ajoute le `\\n` lui-même.\n\n**Les autres réponses :** `f.write(\"bonjour\")` oublie le retour à la ligne ; `f.print(...)` et `f.writeline(...)` n'existent pas (seul `writelines`, avec un `s`, existe, et il n'ajoute pas de `\\n` non plus).\n\n**À retenir :** avec `write`, le `\"\\n\"` est toujours à ta charge."
   },
   {
     "question": "Comment charge-t-on en Python le contenu d'un fichier JSON ouvert dans `f` ?",
-    "choix": ["`json.parse(f)`", "`json.load(f)`", "`JSON.read(f)`", "`json.loads(f)`"],
+    "choix": [
+      "`json.parse(f)`",
+      "`json.load(f)`",
+      "`JSON.read(f)`",
+      "`json.loads(f)`"
+    ],
     "reponse": 1,
-    "explication": "`json.load` prend un fichier ouvert. `json.parse` et `JSON.read` n'existent pas (`JSON.parse` est du JavaScript), et `loads` attend une chaîne."
+    "explication": "**Règle :** `json.load(f)` lit un **fichier ouvert** et renvoie l'objet Python correspondant (dictionnaire, liste…).\n\n**Pas à pas :**\n\n```python\nimport json\n\nwith open(\"donnees.json\", \"w\", encoding=\"utf-8\") as f:\n    f.write('{\"a\": 1}')\nwith open(\"donnees.json\", encoding=\"utf-8\") as f:\n    print(json.load(f))\n```\n\nOn obtient `{'a': 1}`.\n\n**Les autres réponses :** `json.parse` n'existe pas (c'est `JSON.parse` en JavaScript) ; `JSON.read` n'existe pas non plus ; `json.loads(f)` attend une **chaîne**, pas un fichier : il lèverait `TypeError`. On pourrait écrire `json.loads(f.read())`, mais `json.load(f)` fait la même chose directement.\n\n**À retenir :** fichier ouvert → `json.load(f)`, chaîne → `json.loads(texte)`."
   },
   {
     "question": "Comment lit-on en Python un fichier CSV dont les colonnes sont séparées par des points-virgules ?",
-    "choix": ["`csv.reader(f, sep=\";\")`", "`csv.reader(f, delimiter=\";\")`", "`csv.read(f, \";\")`", "`f.csv(\";\")`"],
+    "choix": [
+      "`csv.reader(f, sep=\";\")`",
+      "`csv.reader(f, delimiter=\";\")`",
+      "`csv.read(f, \";\")`",
+      "`f.csv(\";\")`"
+    ],
     "reponse": 1,
-    "explication": "Le paramètre s'appelle `delimiter`. `sep` est le nom utilisé par la bibliothèque pandas, pas par le module `csv`."
+    "explication": "**Règle :** le séparateur de colonnes se donne à `csv.reader` avec le paramètre nommé `delimiter`.\n\n**Pas à pas :**\n\n```python\nimport csv\n\nwith open(\"v.csv\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Lyon;24\\n\")\nwith open(\"v.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for ligne in csv.reader(f, delimiter=\";\"):\n        print(ligne)\n```\n\nOn obtient `['Lyon', '24']`. Sans `delimiter=\";\"`, le séparateur par défaut est la virgule, et la ligne entière resterait en une seule valeur : `['Lyon;24']`.\n\n**Les autres réponses :** `sep=\";\"` est le nom utilisé par la bibliothèque pandas (`read_csv`), le module `csv` ne le connaît pas (`TypeError`) ; `csv.read` n'existe pas ; un fichier n'a pas de méthode `csv`.\n\n**À retenir :** `csv.reader(f, delimiter=\";\")` et `csv.writer(f, delimiter=\";\")`."
   }
 ]

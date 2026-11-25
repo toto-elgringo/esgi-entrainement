@@ -129,7 +129,7 @@
             "Dans un registre du processeur"
           ],
           "reponse": 1,
-          "explication": "`Box::new` place la valeur sur le tas. La variable `x` (sur la pile) ne contient que l'adresse."
+          "explication": "**Règle :** `Box::new(valeur)` range la valeur sur le **tas**. La variable elle-même (la `Box`) est sur la **pile** et ne contient qu'une adresse vers le tas.\n\n**Pas à pas :**\n\n1. `Box::new(5)` réserve une place sur le tas et y écrit `5`.\n2. Il renvoie une `Box<i32>` : une adresse, rangée dans la variable `x`.\n3. `x` est une variable locale, donc sur la pile ; le `5` est au bout de l'adresse, sur le tas.\n\n**Les autres réponses :** « sur la pile » confond la variable `x` (l'adresse, sur la pile) et la valeur `5` (sur le tas) : mettre la valeur ailleurs que sur la pile est justement le rôle de `Box`. « Dans un fichier » : rien n'est écrit sur le disque, tout reste en mémoire. « Dans un registre du processeur » : c'est un détail interne que Rust ne promet jamais, et une `Box` force au contraire un passage par la mémoire du tas.\n\n**À retenir :** `Box` = la valeur sur le tas, l'adresse sur la pile."
         },
         {
           "question": "Pourquoi `enum Liste { Cons(i32, Liste), Vide }` ne compile-t-il pas ?",
@@ -140,7 +140,7 @@
             "Il manque `#[derive(Debug)]`"
           ],
           "reponse": 1,
-          "explication": "Une liste contiendrait une liste, qui contiendrait une liste... Avec `Box<Liste>`, la taille est fixe (un `i32` et une adresse)."
+          "explication": "**Règle :** pour ranger une valeur, Rust doit connaître sa **taille** à la compilation. Un `enum` a la taille de sa plus grosse variante.\n\n**Pas à pas :** taille de `Liste` avec `Cons(i32, Liste)` :\n\n| Morceau | Taille |\n|---|---|\n| `i32` | 4 octets |\n| `Liste` (à l'intérieur) | taille de `Liste`, qui contient encore un `i32` et une `Liste`... |\n\nOn obtient 4 + 4 + 4 + ... sans fin : la taille serait **infinie**. Le compilateur s'arrête avec « recursive type has infinite size ». Avec `Cons(i32, Box<Liste>)`, la liste intérieure est remplacée par une **adresse** (taille fixe) : la taille devient un nombre fini.\n\n**Les autres réponses :** `Vide` est une variante tout à fait permise (une variante sans données). `i32` est autorisé dans un `enum` comme n'importe quel type. `#[derive(Debug)]` ne sert qu'à afficher avec `{:?}` : son absence n'empêche jamais un type de compiler.\n\n**À retenir :** un type qui se contient lui-même a besoin d'une `Box` (ou d'un `Rc`) à l'endroit de la récursion."
         },
         {
           "question": "À quoi sert `Vec<Box<dyn Forme>>` ?",
@@ -151,7 +151,7 @@
             "À rendre les formes mutables"
           ],
           "reponse": 0,
-          "explication": "Chaque `Box<dyn Forme>` a la même taille (une adresse), donc on peut mélanger cercles, carrés, etc. La bonne méthode est choisie à l'exécution."
+          "explication": "**Règle :** un `Vec<T>` ne contient qu'un seul type `T`. `dyn Forme` veut dire « n'importe quel type qui implémente `Forme` » ; mis dans une `Box`, chaque élément a la même taille (une adresse).\n\n**Pas à pas :**\n\n1. Un `Cercle` et un `Carre` n'ont pas la même taille : un `Vec<Cercle>` refuse un `Carre`.\n2. `Box::new(Cercle { ... })` et `Box::new(Carre { ... })` deviennent tous deux des `Box<dyn Forme>` : même type, même taille.\n3. En parcourant le `Vec`, `forme.aire()` appelle la méthode du vrai type contenu (cercle ou carré), choisie **à l'exécution**.\n\n**Les autres réponses :** « stocker uniquement des `Box` » est vrai mais passe à côté du but : ce qui compte est le `dyn Forme`, qui permet de **mélanger** des types. « Copier les formes plus vite » : la `Box` ne copie rien et n'accélère pas, elle ajoute même un petit détour par l'adresse. « Rendre les formes mutables » : la mutabilité vient de `mut`, pas de `Box<dyn ...>`.\n\n**À retenir :** plusieurs types différents dans une même collection = `Vec<Box<dyn Trait>>`."
         },
         {
           "question": "Quel trait permet d'écrire `*ma_valeur` sur son propre type ?",
@@ -162,7 +162,7 @@
             "`Display`"
           ],
           "reponse": 1,
-          "explication": "`Deref` décrit comment obtenir une référence vers le contenu. `*x` devient `*(x.deref())`."
+          "explication": "**Règle :** le trait `Deref` dit comment obtenir une **référence vers le contenu** d'un type. Une fois implémenté, `*valeur` est transformé en `*(valeur.deref())`.\n\n**Pas à pas :** pour `struct MaBoite<T>(T)` :\n\n1. `type Target = T;` : en suivant la boîte, on tombe sur un `T`.\n2. `fn deref(&self) -> &T { &self.0 }` : on renvoie une référence vers le champ.\n3. `*boite` devient `*(boite.deref())`, soit `*(&valeur)` = la valeur.\n\n**Les autres réponses :** `Drop` sert à exécuter du code quand une valeur **disparaît**, pas à la suivre. `Clone` fabrique une copie (`.clone()`), il ne change pas le sens de `*`. `Display` sert à l'affichage avec `{}` dans `println!`.\n\n**À retenir :** `*` sur son propre type = implémenter `Deref` (avec `type Target` et `fn deref`)."
         },
         {
           "question": "Une fonction attend un `&str`. Que peut-on lui passer grâce à la coercion deref ?",
@@ -173,7 +173,7 @@
             "Rien d'autre qu'un `&str`"
           ],
           "reponse": 1,
-          "explication": "Rust enchaîne les `deref` : `&Box<String>` devient `&String` puis `&str`. Il faut quand même le `&` devant."
+          "explication": "**Règle :** la **coercion deref** transforme automatiquement une référence `&A` en `&B` si `A` implémente `Deref<Target = B>`, et elle peut s'enchaîner plusieurs fois. Elle s'applique quand on passe un argument ou appelle une méthode.\n\n**Pas à pas avec un `&Box<String>` donné à une fonction qui attend `&str` :**\n\n| Étape | Type | Grâce à |\n|---|---|---|\n| départ | `&Box<String>` | |\n| 1er deref | `&String` | `Box<String>` implémente `Deref<Target = String>` |\n| 2e deref | `&str` | `String` implémente `Deref<Target = str>` |\n\nLe type attendu est atteint : l'appel compile.\n\n**Les autres réponses :** « un `&String` seulement » oublie que la coercion peut s'enchaîner (un `&String` marche aussi, mais pas seulement lui). « Un `String` sans `&` » est faux : la coercion transforme une **référence** en une autre référence, elle ne crée jamais une référence à partir d'une valeur ; il faut écrire `&texte`. « Rien d'autre qu'un `&str` » nie l'existence même de la coercion.\n\n**À retenir :** avec un `&` devant, Rust enchaîne les `deref` jusqu'à tomber sur le type attendu."
         },
         {
           "question": "Dans quel ordre les variables locales sont-elles libérées (`Drop`) ?",
@@ -184,7 +184,7 @@
             "Par ordre alphabétique"
           ],
           "reponse": 1,
-          "explication": "La dernière variable créée est libérée la première, comme une pile d'assiettes."
+          "explication": "**Règle :** à la fin d'une portée, les variables locales sont libérées dans l'**ordre inverse** de leur création : la dernière créée part la première.\n\n**Pas à pas :** avec\n\n```rust\nlet _a = Etiquette(\"a\");\nlet _b = Etiquette(\"b\");\nlet _c = Etiquette(\"c\");\n```\n\nà la `}` finale, Rust libère `_c`, puis `_b`, puis `_a`. C'est logique : `_c` a pu être construite en utilisant `_a` ou `_b`, il faut donc qu'elles existent encore quand `_c` disparaît.\n\n**Les autres réponses :** « dans l'ordre de création » est l'erreur classique : c'est l'inverse. L'ordre n'est jamais « aléatoire » : il est fixé et le même à chaque exécution. L'ordre « alphabétique » n'a aucun sens pour le compilateur, le nom d'une variable ne compte pas.\n\n**À retenir :** à la même `}`, dernière créée = première libérée, comme une pile d'assiettes."
         },
         {
           "question": "Comment libérer une valeur avant la fin de sa portée ?",
@@ -195,7 +195,7 @@
             "`free(valeur)`"
           ],
           "reponse": 1,
-          "explication": "Appeler la méthode `drop` soi-même est interdit par le compilateur. La fonction `drop(valeur)` prend la valeur et la laisse disparaître."
+          "explication": "**Règle :** on ne peut pas appeler la méthode `valeur.drop()` soi-même. Pour libérer plus tôt, on utilise la **fonction** `drop(valeur)` du prélude : elle prend la valeur (déplacement) et la laisse disparaître à la fin de son exécution.\n\n**Pas à pas :**\n\n```rust\nlet j = Jeton(1);\ndrop(j);\nprintln!(\"après drop\");\n```\n\n1. `drop(j)` reçoit `j` : `j` lui appartient maintenant.\n2. À la fin de `drop`, la valeur sort de sa portée : le `Drop` de `Jeton` s'exécute **tout de suite**.\n3. `j` a été déplacée : l'utiliser après donnerait une erreur de compilation.\n\n**Les autres réponses :** `valeur.drop()` est refusé par le compilateur (« explicit use of destructor method ») : sinon la valeur serait libérée deux fois, une par toi et une à la fin de la portée. `valeur = None` ne marche que si la variable est un `Option`, et ce n'est pas la façon de libérer une valeur quelconque. `free(valeur)` est une fonction du langage C, elle n'existe pas en Rust.\n\n**À retenir :** libérer avant la fin de la portée = `drop(valeur)`, la fonction, jamais la méthode."
         },
         {
           "question": "Que fait `Rc::clone(&a)` ?",
@@ -206,7 +206,7 @@
             "Crée une référence mutable"
           ],
           "reponse": 1,
-          "explication": "La donnée n'est pas copiée : on ajoute juste un propriétaire. La valeur est libérée quand le compteur tombe à 0."
+          "explication": "**Règle :** un `Rc<T>` partage **une seule** donnée entre plusieurs propriétaires et compte combien ils sont. `Rc::clone(&a)` crée un nouveau propriétaire de la **même** donnée : il ajoute 1 au compteur, sans rien copier.\n\n**Pas à pas :**\n\n| Ligne | `Rc::strong_count(&a)` |\n|---|---|\n| `let a = Rc::new(String::from(\"x\"));` | 1 |\n| `let b = Rc::clone(&a);` | 2 |\n| `drop(b);` | 1 |\n\nIl n'existe toujours qu'une seule chaîne `\"x\"` en mémoire. Elle sera libérée quand le compteur tombera à 0.\n\n**Les autres réponses :** « copie toute la donnée » décrit le `clone` d'une `String` ou d'un `Vec`, pas celui d'un `Rc` (c'est pour cela qu'on écrit `Rc::clone(&a)`, pour bien montrer que c'est léger). « Déplace `a` » : on passe `&a`, une référence, donc `a` reste utilisable. « Crée une référence mutable » : un `Rc` ne donne jamais d'accès mutable à son contenu (il faut un `RefCell` pour cela).\n\n**À retenir :** `Rc::clone` = +1 propriétaire, 0 copie."
         },
         {
           "question": "Deux `Rc` qui se pointent mutuellement, que se passe-t-il ?",
@@ -217,7 +217,7 @@
             "Rust libère automatiquement les deux"
           ],
           "reponse": 2,
-          "explication": "Chacun garde l'autre en vie. On casse le cycle en utilisant `Weak` pour un des deux liens."
+          "explication": "**Règle :** un `Rc` libère sa donnée seulement quand son compteur fort tombe à **0**. Rust ne détecte pas les cycles : il compile et laisse faire.\n\n**Pas à pas** avec deux nœuds `A` et `B` qui se tiennent par des `Rc` :\n\n| Moment | compteur de `A` | compteur de `B` |\n|---|---|---|\n| après création et liaison (variable + lien de l'autre) | 2 | 2 |\n| fin de `main` : les variables `a` et `b` disparaissent | 1 | 1 |\n\n`A` est encore tenu par `B`, et `B` par `A`. Aucun compteur n'atteint 0, aucun ne sera libéré : la mémoire est perdue, c'est une **fuite mémoire**.\n\n**Les autres réponses :** « erreur de compilation » : non, le compilateur ne voit pas les cycles, le code compile. « Panique à l'exécution » : rien ne plante, le programme se termine normalement. « Rust libère automatiquement les deux » : il n'y a pas de ramasse-miettes en Rust, seul le compteur décide.\n\n**À retenir :** un cycle de `Rc` fuit ; casse-le en mettant un `Weak` sur l'un des deux liens."
         },
         {
           "question": "Que renvoie `weak.upgrade()` ?",
@@ -228,7 +228,7 @@
             "Une référence mutable"
           ],
           "reponse": 1,
-          "explication": "Un `Weak` ne garde pas la valeur en vie : elle a pu être libérée entre-temps, d'où l'`Option`."
+          "explication": "**Règle :** un `Weak<T>` ne garde pas la valeur en vie. Pour l'utiliser, `weak.upgrade()` essaie de récupérer un `Rc<T>` : il renvoie `Option<Rc<T>>`, avec `None` si la valeur a déjà été libérée.\n\n**Pas à pas :**\n\n```rust\nlet fort = Rc::new(5);\nlet faible = Rc::downgrade(&fort);\nprintln!(\"{:?}\", faible.upgrade());\ndrop(fort);\nprintln!(\"{:?}\", faible.upgrade());\n```\n\n1. Tant que `fort` existe, `upgrade()` donne `Some(5)` (et crée un propriétaire de plus tant qu'on garde le résultat).\n2. `drop(fort)` : il n'y avait qu'un propriétaire fort, la valeur est libérée (le `Weak` ne compte pas).\n3. `upgrade()` donne maintenant `None`.\n\n**Les autres réponses :** « un `Rc<T>` » oublie le cas où la valeur a disparu : on ne peut pas toujours renvoyer un `Rc`, d'où l'`Option`. « Un `Arc<T>` » : `Arc` est la version pour les threads, sans rapport avec `Weak` de `std::rc`. « Une référence mutable » : `upgrade` ne donne jamais d'accès mutable.\n\n**À retenir :** `upgrade()` = `Option<Rc<T>>` ; traite toujours le cas `None`."
         }
       ]
     },
@@ -351,7 +351,7 @@
             "Au lancement de `cargo build` seulement"
           ],
           "reponse": 1,
-          "explication": "`RefCell` compte les emprunts pendant que le programme tourne. Une violation ne se voit donc pas à la compilation."
+          "explication": "**Règle :** un `RefCell` tient le compte des emprunts **pendant que le programme tourne** : à chaque `borrow()` ou `borrow_mut()`, il regarde combien de lectures et d'écritures sont actives.\n\n**Pas à pas :**\n\n```rust\nlet case = RefCell::new(1);\nlet lecture = case.borrow();\nlet ecriture = case.borrow_mut();\n```\n\n1. Ce code **compile** sans erreur : le compilateur ne suit pas les emprunts d'un `RefCell`.\n2. À l'exécution, `borrow()` note « 1 lecture active ».\n3. `borrow_mut()` voit cette lecture et refuse : le programme panique, à ce moment-là seulement.\n\n**Les autres réponses :** « à la compilation », c'est le cas des références normales `&` / `&mut`, justement pas celui de `RefCell`. « Jamais » est faux : les règles existent toujours, la sanction est une panique. « Au lancement de `cargo build` » revient à dire « à la compilation » : `cargo build` compile sans exécuter le programme.\n\n**À retenir :** `RefCell` = mêmes règles d'emprunt, vérifiées à l'exécution."
         },
         {
           "question": "Que se passe-t-il si on appelle `borrow_mut()` alors qu'un `borrow()` est encore actif ?",
@@ -362,7 +362,7 @@
             "L'emprunt en lecture est annulé"
           ],
           "reponse": 1,
-          "explication": "La règle « une écriture OU plusieurs lectures » est vérifiée à l'exécution : la violation provoque une panique (`already borrowed: BorrowMutError`)."
+          "explication": "**Règle :** un `RefCell` accepte **plusieurs lectures** ou **une seule écriture**, jamais les deux en même temps. Si la règle est violée, `borrow_mut()` (ou `borrow()`) **panique**.\n\n**Pas à pas :**\n\n| Ligne | Lectures actives | Écriture demandée | Résultat |\n|---|---|---|---|\n| `let l = case.borrow();` | 1 | | OK |\n| `let e = case.borrow_mut();` | 1 (`l` existe encore) | oui | panique (`RefCell already borrowed`) |\n\nPour l'éviter : relâcher la lecture avant d'écrire (fin du bloc, `drop(l)`, ou lecture copiée dans une variable), ou utiliser `try_borrow_mut()`.\n\n**Les autres réponses :** « le code ne compile pas » : le compilateur ne voit rien, c'est tout l'intérêt (et le danger) de `RefCell`. « La valeur est copiée » : `RefCell` ne copie jamais pour contourner un conflit. « L'emprunt en lecture est annulé » : un emprunt actif n'est jamais retiré en douce, sinon la lecture verrait la valeur changer sous ses yeux.\n\n**À retenir :** écrire pendant qu'une lecture est vivante = panique."
         },
         {
           "question": "Quelle méthode permet d'essayer d'emprunter en écriture sans risquer de panique ?",
@@ -373,7 +373,7 @@
             "`get_mut()`"
           ],
           "reponse": 1,
-          "explication": "`try_borrow_mut()` renvoie un `Result` : `Ok(garde)` si l'emprunt est possible, `Err` sinon."
+          "explication": "**Règle :** les versions `try_` des emprunts ne paniquent pas : elles renvoient un `Result`. `try_borrow_mut()` donne `Ok(garde)` si l'écriture est possible, `Err(...)` sinon.\n\n**Pas à pas :**\n\n```rust\nlet case = RefCell::new(5);\nlet _lecture = case.borrow();\nmatch case.try_borrow_mut() {\n    Ok(mut v) => *v += 1,\n    Err(_) => println!(\"occupé\"),\n}\n```\n\n1. Une lecture est active (`_lecture`).\n2. `try_borrow_mut()` voit le conflit et renvoie `Err` au lieu de paniquer.\n3. Le `match` traite ce cas : affiche `occupé`, le programme continue.\n\n**Les autres réponses :** `safe_borrow_mut()` n'existe pas. `borrow_mut().ok()` ne compile pas (`borrow_mut()` renvoie un garde, pas un `Result`), et de toute façon `borrow_mut()` aurait déjà paniqué avant. `get_mut()` existe mais demande `&mut RefCell` : il ne sert que quand on a déjà un accès exclusif, il ne « teste » rien.\n\n**À retenir :** `try_borrow()` / `try_borrow_mut()` = demander sans risquer la panique, puis traiter `Ok` et `Err`."
         },
         {
           "question": "Quelle est la grande différence entre `Cell<T>` et `RefCell<T>` ?",
@@ -384,7 +384,7 @@
             "`Cell` marche sur plusieurs threads"
           ],
           "reponse": 2,
-          "explication": "`Cell` ne donne jamais de référence vers son contenu : on lit une copie avec `get` ou on remplace avec `set`. Pas d'emprunt donc pas de panique."
+          "explication": "**Règle :** `Cell<T>` ne donne **jamais** de référence vers son contenu : on lit une copie (`get`) ou on remplace (`set`, `replace`, `take`). `RefCell<T>` donne des références (des gardes `Ref` / `RefMut`) et compte les emprunts.\n\n**Pas à pas :**\n\n| | `Cell<u32>` | `RefCell<Vec<i32>>` |\n|---|---|---|\n| lire | `c.get()` → une copie du nombre | `r.borrow()` → un garde vers le vecteur |\n| modifier | `c.set(c.get() + 1)` | `r.borrow_mut().push(4)` |\n| conflit possible ? | non : aucune référence, donc aucun emprunt | oui : panique si la règle est violée |\n\n**Les autres réponses :** « `Cell` est plus lent » : c'est l'inverse, `Cell` ne compte rien, il ne coûte rien de plus. « `Cell` donne des références, pas `RefCell` » inverse les deux. « `Cell` marche sur plusieurs threads » : ni `Cell` ni `RefCell` ne passent entre threads.\n\n**À retenir :** `Cell` = copier dedans / dehors, sans panique ; `RefCell` = emprunter, avec vérification."
         },
         {
           "question": "Pourquoi `Cell::get()` n'est-il disponible que pour certains types ?",
@@ -395,7 +395,7 @@
             "Le type doit être `String`"
           ],
           "reponse": 0,
-          "explication": "`get` renvoie une copie de la valeur : le type doit implémenter `Copy`. Pour les autres types, on utilise `replace` ou `take`."
+          "explication": "**Règle :** `get()` renvoie une **copie** de la valeur tout en la laissant dans la case. Une copie « gratuite » (bit à bit) n'est possible que pour les types `Copy` (nombres, `bool`, `char`...).\n\n**Pas à pas :**\n\n1. `Cell<u32>` : `get()` fabrique une copie du nombre, la case garde le sien. Permis.\n2. `Cell<String>` : `get()` devrait dupliquer la chaîne. `String` n'est pas `Copy`, donc `get()` n'existe pas pour ce type.\n3. Pour un tel type, on récupère la valeur en la **sortant** : `take()` (laisse la valeur par défaut, ici une chaîne vide) ou `replace(nouvelle)` (laisse la nouvelle et rend l'ancienne).\n\n**Les autres réponses :** « `Clone` seulement » ne suffit pas : `Cell::get` est réservé à `Copy`, une copie simple et sans coût, pas un `.clone()` qui peut être coûteux. `Send` concerne le passage entre threads, sans rapport avec `get`. « Le type doit être `String` » : c'est justement un type pour lequel `get()` est **interdit**.\n\n**À retenir :** `Cell::get()` seulement pour un type `Copy` ; sinon `take()` ou `replace()`."
         },
         {
           "question": "Que permet `Rc<RefCell<T>>` ?",
@@ -406,7 +406,7 @@
             "Rendre la valeur immuable"
           ],
           "reponse": 0,
-          "explication": "`Rc` donne plusieurs propriétaires, `RefCell` donne la modification. Ni l'un ni l'autre ne sont sûrs entre threads (il faut `Arc<Mutex<T>>`)."
+          "explication": "**Règle :** `Rc<T>` donne plusieurs propriétaires mais seulement un accès en lecture. `RefCell<T>` permet de modifier à travers une référence partagée. Les deux ensemble : une valeur **partagée et modifiable**, dans **un seul thread**.\n\n**Pas à pas :**\n\n```rust\nlet solde = Rc::new(RefCell::new(10));\nlet autre = Rc::clone(&solde);\n*autre.borrow_mut() += 5;\nprintln!(\"{}\", solde.borrow());\n```\n\n1. `solde` et `autre` sont deux propriétaires de la même case.\n2. `autre.borrow_mut()` passe à travers le `Rc` et ouvre l'écriture : 10 devient 15.\n3. `solde.borrow()` lit la même case : affiche `15`.\n\n**Les autres réponses :** « partager entre plusieurs threads » : `Rc` et `RefCell` ne sont pas sûrs entre threads, le compilateur refuse ; il faut `Arc<Mutex<T>>`. « Éviter toute panique » : `RefCell` peut au contraire paniquer si on viole la règle d'emprunt. « Rendre la valeur immuable » : c'est le contraire, `RefCell` sert à modifier.\n\n**À retenir :** `Rc<RefCell<T>>` = plusieurs propriétaires qui modifient, dans un seul thread."
         },
         {
           "question": "Deux `Rc` qui se pointent l'un l'autre provoquent...",
@@ -417,7 +417,7 @@
             "Rien de spécial"
           ],
           "reponse": 2,
-          "explication": "Chaque valeur garde l'autre en vie, donc leur compteur fort ne tombe jamais à 0 et la mémoire n'est jamais libérée."
+          "explication": "**Règle :** une valeur dans un `Rc` est libérée quand son compteur **fort** tombe à 0. Rust ne détecte pas les cycles.\n\n**Pas à pas** avec deux valeurs `A` et `B` qui se tiennent par des `Rc` :\n\n| Moment | fort de `A` | fort de `B` |\n|---|---|---|\n| après création (variable) et liaison (lien de l'autre) | 2 | 2 |\n| fin de `main` : les variables disparaissent | 1 | 1 |\n\nChacune est encore tenue par l'autre : les compteurs restent à 1, aucune n'est libérée. La mémoire est perdue : **fuite mémoire**.\n\n**Les autres réponses :** « une erreur de compilation » : le compilateur ne voit pas les cycles, le code compile. « Une panique immédiate » : rien ne plante, le programme se termine normalement. « Rien de spécial » : si, la mémoire n'est jamais rendue (sans bruit, ce qui rend le problème difficile à voir).\n\n**À retenir :** cycle de `Rc` = fuite ; remplace un des deux liens par un `Weak`."
         },
         {
           "question": "Que renvoie `weak.upgrade()` ?",
@@ -428,7 +428,7 @@
             "Un `Weak<T>` plus fort"
           ],
           "reponse": 1,
-          "explication": "`Some(rc)` si la valeur existe encore, `None` si elle a déjà été libérée."
+          "explication": "**Règle :** un `Weak<T>` ne garde pas la valeur en vie. `weak.upgrade()` essaie de récupérer un propriétaire fort et renvoie `Option<Rc<T>>` : `Some(rc)` si la valeur existe encore, `None` si elle a déjà été libérée.\n\n**Pas à pas :**\n\n| Ligne | Forts | `faible.upgrade()` |\n|---|---|---|\n| `let a = Rc::new(5); let faible = Rc::downgrade(&a);` | 1 | `Some(5)` |\n| `drop(a);` | 0 : la valeur est libérée | `None` |\n\n**Les autres réponses :** « un `Rc<T>` toujours » est impossible : si la valeur a disparu, il n'y a plus de `Rc` à donner, d'où l'`Option`. « Un `Result<T, String>` » : ni `Result` ni message d'erreur, et on ne récupère pas la valeur elle-même mais un `Rc` vers elle. « Un `Weak<T>` plus fort » : `upgrade` transforme un lien faible en `Rc`, pas en un autre `Weak`.\n\n**À retenir :** `upgrade()` = `Option<Rc<T>>` ; prévois toujours le cas `None`."
         },
         {
           "question": "Dans un arbre, quel lien doit être un `Weak` ?",
@@ -439,7 +439,7 @@
             "Aucun"
           ],
           "reponse": 1,
-          "explication": "Le parent possède ses enfants (`Rc`). L'enfant pointe vers son parent avec un `Weak`, pour ne pas créer de cycle."
+          "explication": "**Règle :** dans un arbre, le parent **possède** ses enfants (s'il disparaît, ses enfants aussi) : lien `Rc`. L'enfant doit seulement **connaître** son parent : lien `Weak`, qui ne compte pas comme propriétaire.\n\n**Pas à pas** avec une racine et un enfant :\n\n| Lien | Type | Effet sur les compteurs |\n|---|---|---|\n| racine → enfant | `Rc` | fort de l'enfant : 2 (sa variable + la liste de la racine) |\n| enfant → racine | `Weak` | faible de la racine : 1, fort de la racine : 1 (sa variable) |\n\nQuand la variable `racine` disparaît, son compteur fort tombe à 0 : elle est libérée, et sa liste d'enfants avec. Pas de cycle.\n\n**Les autres réponses :** « parent vers enfants » en `Weak` : les enfants ne seraient possédés par personne (sauf leurs variables) et disparaîtraient trop tôt. « Les deux » : plus personne ne posséderait les nœuds de l'arbre. « Aucun » : deux `Rc` dans les deux sens forment un cycle, donc une fuite mémoire.\n\n**À retenir :** possède → `Rc` (vers les enfants) ; connaît → `Weak` (vers le parent)."
         },
         {
           "question": "Que fait `OnceCell::set` si la case est déjà remplie ?",
@@ -450,7 +450,7 @@
             "Il attend"
           ],
           "reponse": 2,
-          "explication": "Une `OnceCell` ne se remplit qu'une seule fois. Un second `set` échoue en rendant la valeur proposée."
+          "explication": "**Règle :** une `OnceCell` ne peut être remplie **qu'une fois**. `set(valeur)` renvoie `Ok(())` si la case était vide, et `Err(valeur)` (en rendant la valeur proposée) si elle était déjà pleine.\n\n**Pas à pas :**\n\n```rust\nlet case: OnceCell<u32> = OnceCell::new();\nprintln!(\"{:?}\", case.set(1));\nprintln!(\"{:?}\", case.set(2));\nprintln!(\"{:?}\", case.get());\n```\n\n1. 1er `set(1)` : case vide → elle reçoit 1, affiche `Ok(())`.\n2. 2e `set(2)` : case pleine → rien ne change, affiche `Err(2)` (on récupère le 2 refusé).\n3. `get()` affiche `Some(1)` : la première valeur est restée.\n\n**Les autres réponses :** « il écrase la valeur » : ce serait une case normale, pas une `OnceCell`. « Il panique » : non, il signale l'échec par une `Err`, c'est à toi de décider quoi en faire. « Il attend » : une `OnceCell` n'attend jamais personne (elle ne sert que dans un seul thread).\n\n**À retenir :** `OnceCell::set` sur une case pleine = `Err(valeur)`, la valeur d'origine reste."
         }
       ]
     },
@@ -581,7 +581,7 @@
             "Un champ de la structure"
           ],
           "reponse": 1,
-          "explication": "Un type associé est un type « rempli » par l'implémentation. Un type donné n'implémente `Iterator` qu'une fois, donc `Item` est unique."
+          "explication": "**Règle :** un **type associé** se déclare dans un trait avec `type Nom;` et chaque `impl` le remplit avec `type Nom = UnType;`. Il est fixé **une fois** par implémentation.\n\n**Pas à pas :**\n\n1. Dans `trait Iterator { type Item; fn next(&mut self) -> Option<Self::Item>; }`, `Item` n'a pas encore de valeur : c'est une place vide.\n2. Un itérateur la remplit : `impl Iterator for Saut { type Item = u32; ... }`.\n3. Un type n'implémente `Iterator` qu'**une seule fois**, donc il n'a qu'un seul `Item`. C'est pour ça qu'on n'écrit jamais `iter.next::<u32>()` : Rust connaît déjà le type.\n\n**Les autres réponses :** « un paramètre générique choisi à chaque appel » décrit `trait Convertir<T>`, où c'est l'appel qui choisit ; ce n'est pas une constante (une constante s'écrit `const N: usize;` et contient une valeur, pas un type) ; ce n'est pas un champ (un trait n'a pas de champs, seule une structure en a).\n\n**À retenir :** `type X;` dans un trait = un type que chaque `impl` choisit une seule fois."
         },
         {
           "question": "Quelle est la différence principale entre `trait Convertir<T>` et `trait Convertir { type Sortie; }` ?",
@@ -592,7 +592,7 @@
             "Le générique ne marche qu'avec les nombres"
           ],
           "reponse": 1,
-          "explication": "`From<i32>` et `From<f64>` peuvent coexister sur un même type. Avec un type associé, il n'y a qu'un seul choix possible, donc moins d'annotations."
+          "explication": "**Règle :** un trait générique `Convertir<T>` est en réalité une famille de traits (`Convertir<String>`, `Convertir<f64>`...) ; un trait avec type associé est **un seul** trait.\n\n**Pas à pas :**\n\n1. Avec `trait Convertir<T>`, on peut écrire `impl Convertir<String> for Age` **et** `impl Convertir<f64> for Age` : ce sont deux traits différents pour Rust.\n2. À l'appel, on précise lequel avec une annotation : `let t: String = a.convertir();`.\n3. Avec `trait Convertir { type Sortie; }`, `Age` ne peut avoir qu'**un** `impl Convertir for Age`, donc une seule `Sortie`. En échange, aucune annotation n'est nécessaire.\n4. La bibliothèque standard utilise le générique pour `From<T>` : un même type peut avoir `From<i32>` et `From<f64>`.\n\n**Les autres réponses :** il y a bien une différence (« aucune » est faux) ; le type associé n'est pas plus lent, tout est décidé à la compilation dans les deux cas ; le générique marche avec n'importe quel type, pas seulement les nombres.\n\n**À retenir :** plusieurs `impl` possibles pour un même type → générique ; un seul choix logique → type associé."
         },
         {
           "question": "Quel trait faut-il implémenter pour que `a + b` marche sur ton type ?",
@@ -603,7 +603,7 @@
             "`Sum`"
           ],
           "reponse": 0,
-          "explication": "Chaque opérateur a son trait dans `std::ops` : `Add` pour `+`, `Sub` pour `-`, `Mul` pour `*`, `Neg` pour le `-` unaire, `Index` pour `[]`."
+          "explication": "**Règle :** chaque opérateur correspond à un trait du module `std::ops`. `a + b` est traduit par Rust en `a.add(b)`, qui n'existe que si le type implémente `std::ops::Add`.\n\n**Pas à pas :**\n\n1. On importe le trait : `use std::ops::Add;`.\n2. On l'implémente : `impl Add for Point { type Output = Point; fn add(self, autre: Point) -> Point { ... } }`.\n3. `a + b` marche alors : `self` est `a` (à gauche), `autre` est `b` (à droite), et le résultat est du type `Output`.\n\nMême logique pour les autres : `Sub` pour `-`, `Mul` pour `*`, `Neg` pour le `-` devant une seule valeur, `Index` pour `[]`.\n\n**Les autres réponses :** `std::fmt::Add` n'existe pas (`std::fmt` sert à l'affichage : `Display`, `Debug`) ; `Plus` n'existe pas en Rust ; `Sum` existe, mais il sert à `iter.sum()` (additionner tous les éléments d'un itérateur), pas au `+` entre deux valeurs.\n\n**À retenir :** opérateur = trait de `std::ops` (`+` → `Add`, `-` → `Sub`, `*` → `Mul`, `[]` → `Index`)."
         },
         {
           "question": "Que signifie `trait Article: Display` ?",
@@ -614,7 +614,7 @@
             "C'est une erreur de syntaxe"
           ],
           "reponse": 1,
-          "explication": "`Display` est un supertrait : c'est une condition. Les méthodes par défaut de `Article` peuvent donc utiliser `{}` sur `self`."
+          "explication": "**Règle :** `trait A: B` déclare que `B` est un **supertrait** de `A` : pour implémenter `A`, un type doit **aussi** implémenter `B`. C'est une condition, pas un héritage.\n\n**Pas à pas :**\n\n1. `trait Article: Display` : tout type qui veut être un `Article` doit d'abord savoir s'afficher avec `{}`.\n2. Si on écrit `impl Article for Livre` sans `impl Display for Livre`, le compilateur refuse (« `Livre` doesn't implement `std::fmt::Display` »).\n3. En échange, dans le trait, les méthodes par défaut peuvent utiliser `{}` sur `self` : `format!(\"{} : {:.2} €\", self, ...)` marche, car tout `Article` est forcément `Display`.\n\n**Les autres réponses :** il n'y a pas de champs hérités (un trait n'a pas de champs, et Rust n'a pas d'héritage de classes) ; `Display` n'implémente pas `Article` tout seul, c'est l'inverse : il faut écrire les deux `impl` ; la syntaxe est tout à fait valide.\n\n**À retenir :** `trait A: B` = « pour être `A`, il faut être `B` », et les méthodes de `A` peuvent utiliser celles de `B`."
         },
         {
           "question": "Pourquoi `Box<dyn Clonable>` ne compile-t-il pas avec `trait Clonable { fn copie(&self) -> Self; }` ?",
@@ -625,7 +625,7 @@
             "Il faut `unsafe`"
           ],
           "reponse": 1,
-          "explication": "Avec `dyn`, le type concret est oublié. Une méthode qui renvoie `Self` ou qui est générique empêche de créer un objet-trait."
+          "explication": "**Règle :** un trait n'est utilisable en `dyn` (« sûr pour les objets ») que si ses méthodes prennent un `self`, ne renvoient pas `Self` et n'ont pas de paramètre générique.\n\n**Pas à pas :**\n\n1. Derrière un `Box<dyn Clonable>`, le vrai type est oublié : il reste un pointeur vers la valeur et un pointeur vers la table des méthodes.\n2. `fn copie(&self) -> Self` doit renvoyer une valeur du vrai type. Mais lequel ? Ce peut être un type de 1 octet ou de 1 000 octets : Rust ne peut pas réserver la place du résultat.\n3. Le compilateur refuse donc le trait en `dyn` : « the trait `Clonable` cannot be made into an object » (ou « is not dyn compatible »).\n\nUne solution classique : renvoyer `Box<dyn Clonable>` au lieu de `Self`, ce qui a une taille connue.\n\n**Les autres réponses :** `Box<dyn Trait>` est autorisé, c'est même l'usage normal (`Vec<Box<dyn Forme>>`) ; `pub` règle la visibilité entre modules, pas ce problème ; `unsafe` ne change pas les règles des objets-traits.\n\n**À retenir :** une méthode qui renvoie `Self` ou qui est générique empêche le trait de devenir `dyn`."
         },
         {
           "question": "Quelle est la différence entre `fn f(x: impl Trait)` et `fn f(x: &dyn Trait)` ?",
@@ -636,7 +636,7 @@
             "`impl` ne marche qu'en retour"
           ],
           "reponse": 1,
-          "explication": "`impl Trait` en argument est du générique (monomorphisation). `dyn Trait` permet de mélanger plusieurs types dans une même collection, au prix d'un appel indirect."
+          "explication": "**Règle :** `impl Trait` en argument est un générique : le compilateur fabrique une copie de la fonction pour chaque type utilisé (**monomorphisation**). `&dyn Trait` est un objet-trait : une seule fonction, qui trouve la bonne méthode à l'exécution dans une table (vtable).\n\n**Pas à pas :** avec `f(Carre(2.0))` puis `f(Rectangle(2.0, 3.0))` :\n\n| | `fn f(x: impl Forme)` | `fn f(x: &dyn Forme)` |\n|---|---|---|\n| Fonctions dans le programme | deux (une pour `Carre`, une pour `Rectangle`) | une seule |\n| Appel de `x.aire()` | direct, connu à la compilation | via la table, choisi à l'exécution |\n| Mélanger les types dans un `Vec` | non | oui (`Vec<Box<dyn Forme>>`) |\n\n**Les autres réponses :** il y a bien une différence (« aucune » est faux) ; `dyn` n'est pas plus rapide, au contraire : l'appel indirect a un petit coût ; `impl Trait` marche aussi bien en argument qu'en retour.\n\n**À retenir :** `impl` = résolu à la compilation (rapide, une copie par type) ; `dyn` = résolu à l'exécution (types mélangés, appel indirect)."
         },
         {
           "question": "Que permet `fn pairs() -> impl Iterator<Item = u32>` ?",
@@ -647,7 +647,7 @@
             "Rien, c'est interdit"
           ],
           "reponse": 1,
-          "explication": "Le type est choisi par la fonction, pas l'appelant. Un seul type concret possible : deux branches de types différents ne compilent pas (il faudrait `Box<dyn Iterator>`)."
+          "explication": "**Règle :** `-> impl Trait` en retour veut dire « je renvoie **un** type précis, que je choisis et que je cache ; tu sais seulement qu'il implémente `Trait` ».\n\n**Pas à pas :**\n\n1. `fn pairs() -> impl Iterator<Item = u32> { (0..10).filter(|n| n % 2 == 0) }` renvoie en réalité un `Filter<Range<u32>, {closure}>`, un type impossible à écrire à la main (la closure n'a pas de nom).\n2. Grâce à `impl Iterator<Item = u32>`, on n'a pas à l'écrire : l'appelant peut faire `pairs().collect()`, `pairs().sum()`, comme avec n'importe quel itérateur de `u32`.\n3. C'est la **fonction** qui choisit le type, et elle n'en choisit qu'**un**.\n\n**Les autres réponses :** « n'importe quel type, choisi par l'appelant » décrit un générique en argument, pas un retour ; « plusieurs types différents selon un `if` » est justement interdit : deux branches de types différents donnent « `if` and `else` have incompatible types », il faudrait `Box<dyn Iterator<Item = u32>>` ; et ce n'est pas interdit, c'est très courant.\n\n**À retenir :** `-> impl Trait` cache un seul type concret, choisi par la fonction."
         },
         {
           "question": "Si tu implémentes `From<A> for B`, que reçois-tu gratuitement ?",
@@ -658,7 +658,7 @@
             "Rien"
           ],
           "reponse": 1,
-          "explication": "Il existe une implémentation générale `impl<T, U: From<T>> Into<U> for T`. On implémente `From`, et `Into` suit."
+          "explication": "**Règle :** la bibliothèque standard contient l'implémentation générale `impl<T, U: From<T>> Into<U> for T`. Dès que `From<A> for B` existe, `A` reçoit automatiquement `into()` vers `B`.\n\n**Pas à pas :** avec `impl From<Kilometres> for Metres` :\n\n1. `Metres::from(Kilometres(2.5))` marche : c'est ce qu'on a écrit.\n2. La blanket impl se lit avec `T = Kilometres` et `U = Metres` : la condition `Metres: From<Kilometres>` est remplie, donc `Kilometres` a `Into<Metres>`.\n3. `let m: Metres = Kilometres(2.5).into();` marche, sans une ligne de plus. L'annotation `: Metres` dit à Rust vers quel type convertir.\n\n**Les autres réponses :** « `TryFrom` seulement » est faux à cause du mot « seulement » : on reçoit bien `into()` (et, au passage, un `TryFrom` qui ne peut jamais échouer, mais ce n'est pas le cadeau principal) ; `Display` n'a aucun rapport avec les conversions ; « rien » est faux, c'est tout l'intérêt d'écrire `From`.\n\n**À retenir :** implémente toujours `From`, jamais `Into` : `into()` vient tout seul."
         },
         {
           "question": "Qu'est-ce que la règle des orphelins interdit ?",
@@ -669,7 +669,7 @@
             "Utiliser `dyn` sans `Box`"
           ],
           "reponse": 1,
-          "explication": "Au moins le trait ou le type doit être défini dans ta crate. Le newtype (`struct Liste(Vec<String>);`) rend le type local et contourne la règle."
+          "explication": "**Règle des orphelins :** on ne peut écrire `impl Trait for Type` que si le trait **ou** le type est défini dans ta crate (ton projet).\n\n**Pas à pas :** on regarde d'où vient chaque morceau.\n\n| `impl` | Trait vient de | Type vient de | Permis ? |\n|---|---|---|---|\n| `impl Display for Livre` | std | ta crate | oui |\n| `impl Crier for i32` | ta crate | std | oui |\n| `impl Display for Vec<String>` | std | std | **non** |\n\nPour le dernier cas, la solution est le **newtype** : `struct Liste(Vec<String>);` est un type de ta crate, donc `impl Display for Liste` est permis. La règle existe pour éviter que deux bibliothèques écrivent chacune leur propre `Display` pour `Vec<String>` : Rust ne saurait pas laquelle choisir.\n\n**Les autres réponses :** un type sans trait est parfaitement utilisable ; écrire deux `impl` du même trait pour le même type est interdit, mais c'est une autre erreur (« conflicting implementations ») ; `dyn` sans `Box` est possible avec une référence (`&dyn Trait`), et ça n'a rien à voir avec les orphelins.\n\n**À retenir :** trait étranger + type étranger = interdit ; enveloppe le type dans un newtype."
         },
         {
           "question": "Que fait `impl<T: Display> Resumer for T { ... }` ?",
@@ -680,7 +680,7 @@
             "Supprime `Display`"
           ],
           "reponse": 1,
-          "explication": "C'est une implémentation générale. La bibliothèque standard l'utilise : tout type `Display` a `.to_string()` grâce à `ToString`."
+          "explication": "**Règle :** une **blanket impl** (implémentation générale) donne un trait à **tous** les types qui remplissent une condition : `impl<T: Condition> MonTrait for T`.\n\n**Pas à pas :**\n\n1. `impl<T: Display>` : « pour tout type `T`, à condition que `T` implémente `Display` ».\n2. `Resumer for T` : après `for`, il n'y a pas un type précis mais le `T` lui-même. Donc tous les types concernés reçoivent `Resumer`.\n3. Conséquence : `42_i32.resume()`, `\"salut\".resume()`, et même un type à toi qui implémente `Display` (un newtype par exemple) ont `resume()` sans une ligne de plus.\n\nC'est exactement ce que fait la bibliothèque standard avec `impl<T: Display> ToString for T` : c'est pour ça que tout ce qui est `Display` a `.to_string()`.\n\n**Les autres réponses :** ce n'est pas un seul type, `T` représente n'importe quel type qui respecte la condition ; aucun nouveau type n'est créé, `T` est juste un nom de paramètre ; `Display` n'est pas supprimé, c'est la condition demandée.\n\n**À retenir :** `impl<T: Condition> Trait for T` = le trait pour tous les types qui remplissent la condition."
         }
       ]
     },
@@ -813,7 +813,7 @@
             "Attraper toutes les erreurs avec `panic!`"
           ],
           "reponse": 1,
-          "explication": "On construit les types pour que les valeurs absurdes (pourcentage de 250, connexion fermée qui envoie) ne compilent pas ou ne puissent pas être créées."
+          "explication": "**Règle :** l'idée est de choisir des **types** tels qu'une valeur absurde ne puisse **pas être créée**. Au lieu de détecter l'erreur après coup, on la rend impossible à écrire.\n\n**Pas à pas :** trois exemples du chapitre.\n\n| État illégal | Type qui l'empêche | Pourquoi |\n|---|---|---|\n| un pourcentage de 250 | `Pourcentage` avec champ privé et `new` qui renvoie `Result` | `new(250)` renvoie `Err`, et on ne peut pas écrire `Pourcentage(250)` à la main |\n| `paye: false, rembourse: true` | `enum Paiement { EnAttente, Paye {..}, Rembourse {..} }` | cette combinaison n'a pas de variante |\n| envoyer sur une connexion fermée | `Connexion<Fermee>` sans méthode `envoyer` | le compilateur refuse l'appel |\n\n**Les autres réponses :** écrire plus de tests aide, mais les tests **cherchent** les erreurs, ils ne les rendent pas impossibles ; `unsafe` enlève des garanties au lieu d'en ajouter ; `panic!` arrête le programme quand l'erreur arrive à l'exécution, alors que le but est qu'elle ne puisse même pas exister.\n\n**À retenir :** si une valeur est absurde, cherche un type dans lequel elle ne peut pas s'écrire."
         },
         {
           "question": "Qu'est-ce qu'un newtype ?",
@@ -824,7 +824,7 @@
             "Un trait générique"
           ],
           "reponse": 1,
-          "explication": "`struct Metres(f64);` est un type distinct de `f64` pour le compilateur, sans coût à l'exécution. Un alias `type` ne crée pas un type différent."
+          "explication": "**Règle :** un **newtype** est une structure à un seul champ, sans nom, qui enveloppe un type existant : `struct Metres(f64);`. Pour le compilateur, c'est un type **différent** de `f64`, et il ne coûte rien à l'exécution.\n\n**Pas à pas :**\n\n1. `struct Metres(f64);` : un tuple struct avec un champ, lu avec `.0`.\n2. `fn vitesse(d: Metres, t: Secondes)` refuse `vitesse(Secondes(9.58), Metres(100.0))` : les types ne correspondent pas.\n3. En mémoire, un `Metres` est exactement un `f64` : aucune place ni aucun calcul en plus.\n\n**Les autres réponses :** un alias `type Metres = f64;` n'est **pas** un newtype : c'est un autre nom pour `f64`, qui se mélange librement avec les autres `f64` ; « une nouvelle version de Rust » n'a rien à voir (les versions s'appellent des éditions : 2021, 2024) ; un trait générique est une liste de méthodes avec un paramètre, pas une structure.\n\n**À retenir :** newtype = `struct Nom(TypeExistant);`, un vrai nouveau type sans coût."
         },
         {
           "question": "Quelle différence y a-t-il entre `type Metres = f64;` et `struct Metres(f64);` ?",
@@ -835,7 +835,7 @@
             "La structure est plus lente"
           ],
           "reponse": 2,
-          "explication": "Un alias est juste un autre nom : on peut mélanger `Metres` et `f64`. Une structure est un type distinct que le compilateur refuse de mélanger."
+          "explication": "**Règle :** `type X = Y;` crée un **alias**, un deuxième nom pour le **même** type. `struct X(Y);` crée un **nouveau** type, distinct de `Y`.\n\n**Pas à pas :** avec `type Metres = f64;` puis `struct Metres(f64);`.\n\n| Code | Avec l'alias | Avec la structure |\n|---|---|---|\n| `let d: Metres = 5.0;` | compile : `Metres` est un `f64` | refusé : il faut `Metres(5.0)` |\n| `d + 2.0` | compile, résultat `f64` | refusé : pas de `+` sans `impl Add` |\n| `fn f(d: Metres)` appelé avec un `f64` quelconque | accepté | refusé |\n\nL'alias ne protège donc de rien : on peut passer des secondes là où on attend des mètres. La structure, si.\n\n**Les autres réponses :** il y a une vraie différence (« aucune » est faux) ; c'est l'inverse de « l'alias est un vrai nouveau type » ; la structure n'est pas plus lente, elle a exactement la même taille et le même code machine que le `f64`.\n\n**À retenir :** `type` = un autre nom, `struct X(T);` = un autre type ; seul le second empêche les mélanges."
         },
         {
           "question": "Pourquoi le champ d'un newtype validé (comme `Pourcentage`) doit-il rester privé ?",
@@ -846,7 +846,7 @@
             "Pour économiser de la mémoire"
           ],
           "reponse": 1,
-          "explication": "Avec un champ `pub`, on peut écrire `Pourcentage(250)` directement : la validation du constructeur est contournée."
+          "explication": "**Règle :** un newtype validé n'offre qu'**une** façon d'être créé : `new`, qui vérifie la valeur. Si le champ est privé, le code extérieur au module ne peut pas écrire `Pourcentage(...)` directement.\n\n**Pas à pas :**\n\n1. Avec `struct Pourcentage(u8);` (champ privé), hors du module, `Pourcentage(250)` est refusé : « tuple struct constructor `Pourcentage` is private ». La seule porte d'entrée est `Pourcentage::new(250)`, qui renvoie `Err`.\n2. Avec `struct Pourcentage(pub u8);`, n'importe qui écrit `Pourcentage(250)` : la vérification de `new` est contournée.\n3. Toutes les fonctions qui reçoivent un `Pourcentage` ne peuvent alors plus faire confiance à la valeur, et toute la garantie tombe.\n\n**Les autres réponses :** un champ privé ne rend pas le code plus rapide ni plus petit en mémoire (`pub` ne change que **qui** a le droit d'y accéder) ; Rust n'impose rien ici, `pub` est permis, c'est un choix de conception.\n\n**À retenir :** champ privé + `new` validé = impossible de fabriquer une valeur invalide."
         },
         {
           "question": "Quel type de retour est le plus adapté pour un constructeur qui peut refuser une valeur, avec la raison du refus ?",
@@ -857,7 +857,7 @@
             "`Self` avec un `panic!`"
           ],
           "reponse": 1,
-          "explication": "`Result<Self, E>` dit pourquoi la valeur est refusée. `Option` ne donne pas la raison, `bool` ne rend pas la valeur."
+          "explication": "**Règle :** `Result<Self, E>` contient soit la valeur (`Ok(valeur)`), soit une erreur `E` qui **explique** le refus (`Err(raison)`).\n\n**Pas à pas :** on compare ce que reçoit l'appelant de `Note::new(25)`.\n\n| Retour | Ce que l'appelant reçoit | Il sait pourquoi ? |\n|---|---|---|\n| `Option<Self>` | `None` | non |\n| `Result<Self, E>` | `Err(\"25 n'est pas une note sur 20\")` | oui |\n| `bool` | `false` (et jamais la valeur, même si elle est valide) | non |\n| `Self` avec `panic!` | le programme s'arrête | il n'a rien à recevoir |\n\nSeul `Result` donne à la fois la valeur en cas de succès et la raison en cas d'échec. `E` peut être un `String` ou une `enum` d'erreurs précises.\n\n**Les autres réponses :** `Option` convient quand il n'y a qu'**une** raison possible d'échec, mais elle ne dit rien ; `bool` oblige à garder la valeur à côté et la vérification est vite oubliée ; `panic!` fait planter le programme pour une simple saisie invalide.\n\n**À retenir :** constructeur qui peut refuser, avec une raison → `Result<Self, E>`."
         },
         {
           "question": "Pourquoi préférer une `enum` à plusieurs booléens (`paye`, `rembourse`) ?",
@@ -868,7 +868,7 @@
             "Les enums sont toujours plus rapides"
           ],
           "reponse": 2,
-          "explication": "Deux booléens autorisent 4 combinaisons dont certaines n'ont pas de sens. Une enum n'a que les variantes voulues, et chacune peut avoir ses champs."
+          "explication": "**Règle :** une `enum` n'a que les variantes qu'on a écrites, et chaque variante peut porter ses **propres** champs.\n\n**Pas à pas :** avec deux booléens `paye` et `rembourse`, on compte les combinaisons.\n\n| `paye` | `rembourse` | Sens |\n|---|---|---|\n| false | false | en attente |\n| true | false | payé |\n| true | true | remboursé |\n| false | true | **absurde** : remboursé sans avoir payé |\n\n2 × 2 = 4 combinaisons pour 3 états réels. Avec `enum Paiement { EnAttente, Paye { montant }, Rembourse { montant, motif } }`, il y a exactement 3 possibilités, et le `motif` n'existe que dans `Rembourse`. Bonus : un `match` qui oublie un état ne compile pas.\n\n**Les autres réponses :** une enum n'est pas forcément plus courte à écrire (souvent plus longue) ; les booléens sont tout à fait permis en Rust ; la vitesse n'est pas l'argument, elle est comparable.\n\n**À retenir :** plusieurs booléens qui décrivent un état → remplace-les par une `enum`, une variante par état réel."
         },
         {
           "question": "Dans le pattern builder, pourquoi les méthodes prennent-elles `mut self` et renvoient-elles `Self` ?",
@@ -879,7 +879,7 @@
             "Parce que `&self` est interdit dans un builder"
           ],
           "reponse": 0,
-          "explication": "En recevant et rendant `self`, chaque appel donne le builder suivant : `Builder::nouveau().url(..).delai(..).construire()`."
+          "explication": "**Règle :** chaque méthode d'un builder a la forme `fn x(mut self, ...) -> Self { ...; self }` : elle reçoit le builder, le modifie, et le **rend**. L'appel suivant s'applique donc à ce qui vient d'être rendu.\n\n**Pas à pas :** `Builder::nouveau().url(\"a\").delai(5).construire()`.\n\n1. `nouveau()` rend un builder.\n2. `.url(\"a\")` reçoit ce builder (`self`), change `url`, rend le builder.\n3. `.delai(5)` reçoit le builder rendu à l'étape 2, change `delai`, le rend.\n4. `.construire()` reçoit le builder final et rend un `Result`.\n\n`mut self` est nécessaire pour avoir le droit de modifier `self` à l'intérieur. La valeur est **déplacée** d'appel en appel, pas copiée.\n\n**Les autres réponses :** il n'y a pas de copie de la structure, c'est un déplacement (aucun `Clone` n'est appelé) ; ce n'est pas pour éviter des erreurs de compilation ; `&self` n'est pas interdit, mais avec `&mut self` qui ne rend rien, on ne pourrait pas écrire la chaîne `a.url(..).delai(..)` en une expression.\n\n**À retenir :** prendre et rendre `self` = des appels qu'on enchaîne avec des points."
         },
         {
           "question": "À quoi sert `PhantomData<Etat>` dans `struct Connexion<Etat> { ... }` ?",
@@ -890,7 +890,7 @@
             "À cacher la structure"
           ],
           "reponse": 1,
-          "explication": "Rust refuse un paramètre générique inutilisé. `PhantomData` le « consomme » sans prendre de place : il n'existe qu'à la compilation."
+          "explication": "**Règle :** Rust refuse un paramètre générique qui n'apparaît dans **aucun** champ (« parameter `Etat` is never used »). `PhantomData<Etat>` est un champ de taille **zéro** qui « utilise » ce paramètre.\n\n**Pas à pas :**\n\n1. `struct Connexion<Etat> { adresse: String }` : `Etat` n'est utilisé nulle part, erreur de compilation.\n2. On ajoute `etat: PhantomData<Etat>` : le paramètre est utilisé, ça compile.\n3. En mémoire, `PhantomData` ne prend aucun octet : `Connexion<Ouverte>` a la même taille qu'une structure avec seulement `adresse`.\n4. Pour le créer : `etat: PhantomData` (sans valeur à donner).\n\nL'état n'existe donc **qu'à la compilation**, pour choisir quelles méthodes sont permises.\n\n**Les autres réponses :** il ne stocke **pas** de valeur `Etat` (c'est justement l'intérêt : il est « fantôme ») ; il ne rend pas la structure utilisable entre threads ; il ne cache rien, la structure reste visible.\n\n**À retenir :** `PhantomData<T>` = utiliser un paramètre de type sans rien stocker."
         },
         {
           "question": "Dans un typestate, pourquoi une transition comme `ouvrir` prend-elle `self` et non `&self` ?",
@@ -901,7 +901,7 @@
             "Pour appeler `drop` manuellement"
           ],
           "reponse": 0,
-          "explication": "`self` déplace la valeur : la connexion fermée disparaît et on ne garde que la connexion ouverte. On ne peut plus rouvrir deux fois."
+          "explication": "**Règle :** une méthode qui prend `self` (par valeur) **consomme** la valeur : après l'appel, l'ancienne variable est déplacée et ne peut plus servir.\n\n**Pas à pas :**\n\n1. `let fermee = Connexion::nouvelle(\"x\");`\n2. `let ouverte = fermee.ouvrir();` : `fermee` est déplacée dans `ouvrir`, qui rend une `Connexion<Ouverte>`.\n3. `fermee.ouvrir();` une deuxième fois : erreur « use of moved value: `fermee` ».\n\nAvec `fn ouvrir(&self)`, `fermee` resterait utilisable : on aurait en même temps une version fermée et une version ouverte de la même connexion, ce que le typestate veut justement empêcher.\n\n**Les autres réponses :** `&self` marche très bien avec les génériques (les méthodes communes comme `adresse(&self)` l'utilisent) ; il n'y a pas de copie, c'est un déplacement ; on n'appelle pas `drop` à la main, l'ancienne valeur est simplement transformée en la nouvelle.\n\n**À retenir :** une transition d'état prend `self` pour que l'ancien état disparaisse."
         },
         {
           "question": "Que fait `and_then` sur un `Result` ?",
@@ -912,7 +912,7 @@
             "Il fait paniquer en cas d'erreur"
           ],
           "reponse": 1,
-          "explication": "`and_then(f)` appelle `f` sur la valeur `Ok` et rend directement son `Result`, sans double boîte. Une erreur passe sans appeler `f`. Pour transformer l'erreur, on utilise `map_err`."
+          "explication": "**Règle :** `resultat.and_then(f)` : si `resultat` est `Ok(v)`, on appelle `f(v)`, qui renvoie **lui-même** un `Result`, et c'est ce `Result` qu'on obtient ; si `resultat` est `Err(e)`, `f` n'est pas appelée et l'erreur passe telle quelle.\n\n**Pas à pas :** avec `lire_age(texte).and_then(verifier_majeur)`.\n\n| `lire_age` donne | `and_then` | Résultat |\n|---|---|---|\n| `Ok(25)` | appelle `verifier_majeur(25)` | `Ok(25)` |\n| `Ok(12)` | appelle `verifier_majeur(12)` | `Err(\"12 ans : trop jeune\")` |\n| `Err(\"« abc » ...\")` | n'appelle rien | `Err(\"« abc » ...\")` |\n\nAvec `map(verifier_majeur)`, on aurait `Ok(Ok(25))` : un `Result` dans un `Result`. `and_then` évite cette double boîte.\n\n**Les autres réponses :** transformer l'erreur, c'est `map_err` ; `and_then` n'ignore pas les erreurs, il les laisse passer jusqu'au bout ; paniquer en cas d'erreur, c'est `unwrap` ou `expect`.\n\n**À retenir :** étape qui peut échouer → `and_then` ; étape qui ne peut pas échouer → `map` ; changer l'erreur → `map_err`."
         }
       ]
     },
@@ -1050,7 +1050,7 @@
             "Il copie le thread"
           ],
           "reponse": 1,
-          "explication": "`join` bloque jusqu'à la fin du thread et renvoie un `Result` : `Ok(valeur)`, ou `Err` si le thread a paniqué."
+          "explication": "**Règle :** `thread::spawn` renvoie un `JoinHandle` (le « ticket » du thread). `handle.join()` **bloque** le thread courant jusqu'à la fin de ce thread, puis renvoie un `Result` : `Ok(valeur renvoyée par la closure)`, ou `Err` si le thread a paniqué.\n\n**Pas à pas :** avec `let h = thread::spawn(|| 2 + 3);` :\n\n1. `spawn` lance le calcul dans un nouveau thread et rend la main tout de suite.\n2. `h.join()` attend que le thread ait fini.\n3. Il rend `Ok(5)` ; `.unwrap()` donne `5`.\n\n**Les autres réponses :** « il arrête le thread » est faux, `join` n'interrompt rien, il **attend** la fin normale (Rust n'a pas de moyen d'arrêter un thread de force). « Il crée un nouveau thread » : c'est le rôle de `spawn`. « Il copie le thread » ne veut rien dire : un thread ne se copie pas.\n\n**À retenir :** `spawn` lance, `join` attend la fin et rend le résultat dans un `Result`."
         },
         {
           "question": "Pourquoi `thread::spawn` demande-t-il souvent une closure `move` ?",
@@ -1061,7 +1061,7 @@
             "Pour partager la mémoire sans règle"
           ],
           "reponse": 1,
-          "explication": "Le thread peut continuer après la fin de la fonction. Il ne peut donc pas emprunter ses variables locales : `move` lui en donne la propriété."
+          "explication": "**Règle :** un thread lancé par `thread::spawn` peut continuer à tourner **après** la fin de la fonction qui l'a créé. Il n'a donc pas le droit d'emprunter les variables locales de cette fonction (elles pourraient être détruites avant lui). `move` **déplace** ces variables dans la closure : le thread en devient propriétaire.\n\n**Pas à pas :** avec `let nom = String::from(\"Ada\"); thread::spawn(|| println!(\"{nom}\"));` :\n\n1. Sans `move`, la closure emprunte `nom`.\n2. Le compilateur ne sait pas si le thread finira avant que `nom` soit détruit : il refuse (« closure may outlive the current function »).\n3. Avec `move ||`, `nom` est donné au thread : plus de problème de durée de vie.\n\n**Les autres réponses :** `move` ne rend rien plus rapide, il change seulement **qui possède** les données. Il ne désactive aucune vérification du compilateur. Et il ne permet pas de « partager sans règle » : c'est l'inverse, chaque donnée a un seul propriétaire (pour partager, il faut `Arc`).\n\n**À retenir :** avec `thread::spawn`, le thread doit posséder ce qu'il utilise : `move`."
         },
         {
           "question": "Qu'est-ce qui rend `thread::scope` différent de `thread::spawn` ?",
@@ -1072,7 +1072,7 @@
             "Il ne marche qu'avec des canaux"
           ],
           "reponse": 1,
-          "explication": "Le bloc attend tous ses threads avant de se terminer. Les emprunts restent donc valides, sans `move` ni `Arc`."
+          "explication": "**Règle :** `thread::scope(|s| { ... })` attend **tous** les threads lancés avec `s.spawn` avant de se terminer. Comme ces threads ne peuvent pas survivre au bloc, ils ont le droit d'**emprunter** les variables locales.\n\n**Pas à pas :** avec `let v = vec![1, 2, 3];` :\n\n1. `thread::spawn(|| v.len())` est refusé sans `move` : le thread pourrait vivre plus longtemps que `v`.\n2. `thread::scope(|s| { s.spawn(|| v.len()); })` est accepté : le bloc ne se termine qu'après la fin du thread, donc `v` existe encore pendant toute la vie du thread.\n3. Après le bloc, `v` est toujours utilisable : il n'a été ni déplacé ni copié.\n\n**Les autres réponses :** `scope` n'est pas plus lent (il lance de vrais threads, comme `spawn`). « Il n'a pas besoin de compilateur » n'a pas de sens. Il marche avec n'importe quel code, pas seulement avec des canaux.\n\n**À retenir :** `scope` = threads attendus à la fin du bloc, donc ils peuvent emprunter sans `move` ni `Arc`."
         },
         {
           "question": "Que veut dire `mpsc` ?",
@@ -1083,7 +1083,7 @@
             "Multi-thread process scheduler"
           ],
           "reponse": 0,
-          "explication": "Plusieurs producteurs (on clone le `Sender`), un seul consommateur (un seul `Receiver`)."
+          "explication": "**Règle :** le module des canaux s'appelle `mpsc` pour **m**ultiple **p**roducers, **s**ingle **c**onsumer : plusieurs producteurs, un seul consommateur.\n\n**Pas à pas :** on le retrouve dans l'utilisation :\n\n- « multiple producers » : on peut cloner l'émetteur (`tx.clone()`) autant de fois qu'on veut, un par thread producteur.\n- « single consumer » : le récepteur `rx` ne se clone pas, un seul endroit lit les messages.\n\n**Les autres réponses :** « Mutex per shared channel », « Message passing safe channel » et « Multi-thread process scheduler » sont inventés : un canal ne contient pas de `Mutex` à manipuler, et ce n'est pas un ordonnanceur de processus.\n\n**À retenir :** `mpsc` = plusieurs `Sender` (clonés), un seul `Receiver`."
         },
         {
           "question": "Pourquoi `for m in rx` peut-il ne jamais se terminer ?",
@@ -1094,7 +1094,7 @@
             "`for` ne marche pas avec les canaux"
           ],
           "reponse": 1,
-          "explication": "Le canal se ferme quand tous les `Sender` sont détruits. Il faut penser à faire `drop(tx)` sur l'émetteur d'origine."
+          "explication": "**Règle :** `for m in rx` (ou `rx.iter()`) lit les messages **jusqu'à la fermeture** du canal. Le canal se ferme seulement quand **tous** les émetteurs (`Sender`) sont détruits et qu'il est vide.\n\n**Pas à pas :** on compte les émetteurs vivants.\n\n| Moment | Émetteurs vivants |\n|---|---|\n| `let (tx, rx) = mpsc::channel();` | 1 (dans `main`) |\n| 2 threads reçoivent chacun un `tx.clone()` | 3 |\n| les 2 threads finissent | 1 (celui de `main`) |\n\nIl reste un émetteur, donc le canal n'est pas fermé : la boucle attend un message qui ne viendra jamais. `drop(tx)` dans `main` fait tomber le compte à 0 et la boucle s'arrête.\n\n**Les autres réponses :** le `Receiver` n'est pas « cassé », il fait exactement son travail (attendre). `join` n'y change rien : on peut attendre les threads, l'émetteur de `main` est toujours là. Et `for` marche très bien avec un canal.\n\n**À retenir :** un canal reste ouvert tant qu'un `Sender` existe : pense à `drop(tx)` sur l'original."
         },
         {
           "question": "Quel type permet de partager un `Mutex` entre plusieurs threads ?",
@@ -1105,7 +1105,7 @@
             "`&mut Mutex<T>`"
           ],
           "reponse": 2,
-          "explication": "`Arc` est un compteur de références atomique, sûr entre threads. `Rc` n'est pas `Send` et le compilateur le refuse."
+          "explication": "**Règle :** pour partager une donnée entre threads, chaque thread doit en être **propriétaire**, et le compteur de propriétaires doit être sûr entre threads. C'est le rôle d'`Arc` (Atomic Reference Counted) : `Arc::clone` ajoute un propriétaire avec un compteur atomique.\n\n**Pas à pas :**\n\n1. `let c = Arc::new(Mutex::new(0));`\n2. Pour chaque thread : `let c = Arc::clone(&c);` puis `thread::spawn(move || ...)`.\n3. Chaque thread a son `Arc`, tous pointent vers le même `Mutex`, et `lock()` fait passer les threads un par un.\n\n**Les autres réponses :**\n\n- `Rc<Mutex<T>>` : le compteur de `Rc` n'est pas atomique, `Rc` n'est pas `Send` et `thread::spawn` le refuse à la compilation.\n- `Box<Mutex<T>>` : une `Box` a **un seul** propriétaire, on ne peut pas la donner à plusieurs threads.\n- `&mut Mutex<T>` : une référence mutable est unique (un seul `&mut` à la fois), et avec `thread::spawn` le thread ne peut pas emprunter une variable locale.\n\n**À retenir :** partager entre threads = `Arc` ; partager **et** modifier = `Arc<Mutex<T>>`."
         },
         {
           "question": "Quand le verrou d'un `Mutex` est-il libéré ?",
@@ -1116,7 +1116,7 @@
             "Au prochain `lock()`"
           ],
           "reponse": 1,
-          "explication": "Il n'y a pas de méthode `unlock` : le garde (`MutexGuard`) libère le verrou en sortant de sa portée ou avec `drop`."
+          "explication": "**Règle :** `lock()` renvoie un **garde** (`MutexGuard`). Le verrou reste pris tant que le garde existe, et il est relâché **automatiquement** quand le garde est détruit : à la fin de son bloc, ou plus tôt avec `drop(garde)`.\n\n**Pas à pas :**\n\n```text\n{\n    let mut g = m.lock().unwrap();   // verrou pris\n    *g += 1;\n}                                    // g détruit : verrou relâché\n```\n\nAvec `*m.lock().unwrap() += 1;` sur une seule ligne, le garde est un temporaire détruit à la fin de la ligne : le verrou est relâché tout de suite.\n\n**Les autres réponses :** il n'y a pas de méthode `unlock()` en Rust stable (c'est justement le garde qui s'en charge, on ne peut pas oublier). Attendre la fin du programme bloquerait tous les autres threads. Et le prochain `lock()` ne libère rien : si le garde existe encore, il **attend** (et se bloque pour toujours si c'est le même thread).\n\n**À retenir :** le verrou vit aussi longtemps que le garde ; ferme son bloc ou fais `drop` pour le relâcher."
         },
         {
           "question": "Dans quel cas un `RwLock` est-il plus intéressant qu'un `Mutex` ?",
@@ -1127,7 +1127,7 @@
             "Quand on écrit tout le temps"
           ],
           "reponse": 0,
-          "explication": "`RwLock` laisse plusieurs lecteurs travailler en même temps. Un `Mutex` les ferait passer un par un."
+          "explication": "**Règle :** un `RwLock` accepte **plusieurs lecteurs en même temps** (`read()`) ou **un seul écrivain** (`write()`). Un `Mutex` ne laisse passer qu'un thread à la fois, même pour lire.\n\n**Pas à pas :** 8 threads lisent une configuration, un thread la change de temps en temps.\n\n| Outil | 8 lectures en même temps ? | Écriture |\n|---|---|---|\n| `Mutex` | non, une par une | seule |\n| `RwLock` | oui, toutes ensemble | seule, attend la fin des lectures |\n\nAvec beaucoup de lectures, le `RwLock` évite que les lecteurs fassent la queue.\n\n**Les autres réponses :** avec un seul thread, aucun verrou n'est utile. Un `RwLock` ne dispense pas d'`Arc` : pour le partager entre threads lancés par `spawn`, il faut `Arc<RwLock<T>>`. Et si on écrit tout le temps, chaque `write()` est seul de toute façon : le `RwLock` n'apporte rien par rapport au `Mutex`.\n\n**À retenir :** beaucoup de lectures, peu d'écritures → `RwLock` ; sinon un `Mutex` suffit."
         },
         {
           "question": "Quelle opération est correcte pour incrémenter un `AtomicUsize` depuis plusieurs threads ?",
@@ -1138,7 +1138,7 @@
             "`*x += 1`"
           ],
           "reponse": 1,
-          "explication": "`fetch_add` fait la lecture et l'écriture en une seule opération indivisible. Lire puis écrire séparément peut perdre des incréments."
+          "explication": "**Règle :** `fetch_add(n, ordre)` lit, ajoute `n` et écrit **en une seule opération indivisible** : aucun autre thread ne peut passer au milieu.\n\n**Pas à pas : pourquoi `load` puis `store` perd des incréments.** `x` vaut 5, deux threads font `x.store(x.load(..) + 1, ..)` :\n\n| Moment | Thread A | Thread B | `x` |\n|---|---|---|---|\n| 1 | `load` → 5 | | 5 |\n| 2 | | `load` → 5 | 5 |\n| 3 | `store(6)` | | 6 |\n| 4 | | `store(6)` | 6 |\n\nDeux incréments, mais `x` vaut 6 au lieu de 7. Avec `fetch_add(1, ..)`, chaque ajout est entier : 5 → 6 → 7.\n\n**Les autres réponses :** `x += 1` et `*x += 1` ne compilent pas : un atomique n'a pas d'opérateur `+=`, et on ne le modifie qu'avec ses méthodes (`fetch_add`, `store`…). La version `load` + `store` compile mais est fausse, comme le montre le tableau.\n\n**À retenir :** pour incrémenter un atomique partagé, toujours `fetch_add`, jamais `load` puis `store`."
         },
         {
           "question": "Quelle est la meilleure façon d'éviter un interblocage entre deux `Mutex` ?",
@@ -1149,7 +1149,7 @@
             "Utiliser `unwrap` partout"
           ],
           "reponse": 1,
-          "explication": "Si tous les threads prennent les verrous dans le même ordre, aucun cycle d'attente ne peut se former."
+          "explication": "**Règle :** un interblocage est un **cycle d'attente** : A attend un verrou tenu par B, et B attend un verrou tenu par A. Si **tous** les threads prennent les verrous dans le **même ordre**, ce cycle ne peut pas se former.\n\n**Pas à pas :** verrous 1 et 2, règle « toujours 1 avant 2 ».\n\n1. A prend le verrou 1.\n2. B veut le verrou 1 aussi (même ordre) : il attend, **sans tenir** le verrou 2.\n3. A prend le verrou 2 (libre), fait son travail, relâche les deux.\n4. B obtient le verrou 1 puis le 2. Tout le monde avance.\n\nSans la règle, B aurait pu prendre le verrou 2 pendant que A tenait le 1 : chacun attend l'autre pour toujours.\n\n**Les autres réponses :** un `sleep` rend le blocage plus rare, mais pas impossible (et ralentit tout). Prendre les verrous au hasard, c'est justement ce qui crée des ordres différents, donc des cycles. `unwrap` gère seulement l'erreur d'empoisonnement, il n'empêche aucune attente.\n\n**À retenir :** même ordre de verrouillage pour tout le monde (par exemple numéro croissant) = pas d'interblocage."
         },
         {
           "question": "Que fait `tx.send(v)` sur un canal créé avec `mpsc::sync_channel(2)` quand 2 messages attendent déjà ?",
@@ -1160,7 +1160,7 @@
             "Il renvoie toujours une erreur"
           ],
           "reponse": 1,
-          "explication": "Un canal borné garde au plus `n` messages : quand il est plein, `send` attend. Un producteur trop rapide est freiné et la mémoire ne déborde pas."
+          "explication": "**Règle :** `mpsc::sync_channel(n)` crée un canal **borné** : au plus `n` messages en attente. Quand la file est pleine, `send` **attend** que le consommateur retire un message.\n\n**Pas à pas :** avec `sync_channel(2)` :\n\n| Action | File | Résultat |\n|---|---|---|\n| `send(a)` | `[a]` | continue |\n| `send(b)` | `[a, b]` | continue (pleine) |\n| `send(c)` | `[a, b]` | **attend** |\n| le consommateur fait `recv()` → `a` | `[b]` | `c` entre : `[b, c]` |\n\nAucun message n'est perdu : le producteur est seulement freiné.\n\n**Les autres réponses :** le message n'est jamais perdu, il attend sa place. La file ne s'agrandit pas toute seule (c'est tout l'intérêt de la borne, sinon on aurait `mpsc::channel`). `send` ne renvoie une erreur que si le récepteur a été détruit, pas parce que la file est pleine.\n\n**À retenir :** canal borné plein → `send` attend ; ça protège la mémoire sans rien perdre."
         },
         {
           "question": "Avec rayon, que change `par_iter()` à la place de `iter()` dans `liste.iter().map(f).collect()` ?",
@@ -1171,7 +1171,7 @@
             "Il faut entourer la liste d'un `Mutex`"
           ],
           "reponse": 1,
-          "explication": "rayon découpe le travail entre les cœurs puis `collect` remet les morceaux dans l'ordre : même résultat, plus vite pour un calcul lourd."
+          "explication": "**Règle :** `par_iter()` de rayon découpe la liste en morceaux, les traite sur plusieurs cœurs, puis `collect` **remet les résultats dans l'ordre** de départ. Le résultat est identique à la version `iter()`.\n\n**Pas à pas :** `liste = [1, 2, 3, 4]`, `f = |x| x * 10`.\n\n1. `iter().map(f).collect()` donne `[10, 20, 30, 40]`, un élément après l'autre.\n2. `par_iter().map(f).collect()` peut calculer `30` et `40` sur un cœur pendant que `10` et `20` sont calculés sur un autre.\n3. `collect` range chaque résultat à la place de son élément : `[10, 20, 30, 40]`, exactement pareil.\n\n**Les autres réponses :** l'ordre n'est **pas** aléatoire, `collect` le garde. Ce n'est pas de l'asynchrone (`async`) : ce sont des threads qui calculent en parallèle. Pas besoin de `Mutex` autour de la liste : chaque élément est lu sans être modifié, et rayon vérifie avec `Send` / `Sync` que c'est sûr.\n\n**À retenir :** `par_iter()` = même résultat, même ordre, réparti sur les cœurs (utile pour un calcul lourd)."
         }
       ]
     },
@@ -1298,7 +1298,7 @@
             "Elle lance un nouveau thread"
           ],
           "reponse": 1,
-          "explication": "Une `async fn` renvoie une valeur de type futur. Son code ne démarre que lorsque quelqu'un appelle `poll` (via `.await` ou un exécuteur)."
+          "explication": "**Règle :** une `async fn` est **paresseuse** : l'appeler ne lance pas son code, cela fabrique seulement un **futur** (un objet « résultat à venir »). Le code ne démarre que lorsque quelqu'un appelle `poll` sur ce futur, avec `.await` ou un exécuteur (`block_on`, tokio…).\n\n**Pas à pas :** avec `async fn dire() -> u32 { println!(\"coucou\"); 1 }` :\n\n1. `let f = dire();` : aucun affichage, `f` est juste un futur.\n2. `block_on(f)` (ou `f.await` dans une fonction async) : `coucou` s'affiche, et on obtient `1`.\n3. Si on ne fait jamais l'étape 2, `coucou` ne s'affiche jamais (le compilateur avertit d'un futur non utilisé).\n\n**Les autres réponses :** elle ne s'exécute pas « en entier », justement elle ne s'exécute pas du tout. Elle ne panique pas : créer un futur est parfaitement permis. Et `async` ne lance **aucun** thread, tout se passe dans le fil qui appellera `poll`.\n\n**À retenir :** appeler une `async fn` = fabriquer un futur ; rien ne tourne avant `.await` ou un exécuteur."
         },
         {
           "question": "Quelles sont les deux valeurs de l'enum `Poll<T>` ?",
@@ -1309,7 +1309,7 @@
             "`Start` et `Stop`"
           ],
           "reponse": 2,
-          "explication": "`Ready(valeur)` : le futur est terminé. `Pending` : pas encore, il faudra rappeler `poll`."
+          "explication": "**Règle :** `poll` renvoie un `Poll<T>`, un `enum` à deux cas : `Poll::Ready(T)` (fini, voici le résultat) et `Poll::Pending` (pas encore, rappelle-moi).\n\n**Pas à pas :** un futur qui finit au 2e poll avec la valeur 8 :\n\n| Appel | Réponse |\n|---|---|\n| 1er `poll` | `Poll::Pending` |\n| 2e `poll` | `Poll::Ready(8)` |\n\n**Les autres réponses :** `Some` / `None` sont les cas d'`Option` (« il y a une valeur ou pas »), `Ok` / `Err` ceux de `Result` (« réussite ou erreur ») : ce ne sont pas les réponses d'un futur. `Start` / `Stop` n'existent pas en Rust. Un futur qui répond `Pending` n'est ni vide ni en erreur : il n'a simplement **pas encore fini**.\n\n**À retenir :** `Poll` = `Ready(valeur)` quand c'est fini, `Pending` sinon."
         },
         {
           "question": "Où peut-on écrire `.await` ?",
@@ -1320,7 +1320,7 @@
             "Seulement dans un thread"
           ],
           "reponse": 2,
-          "explication": "`.await` doit être dans un contexte `async` (une `async fn` ou un bloc `async { }`), sinon erreur de compilation."
+          "explication": "**Règle :** `.await` met la fonction en pause jusqu'à la fin d'un futur. Seule une fonction **qui est elle-même un futur** peut se mettre en pause : `.await` ne s'écrit donc que dans une `async fn` ou dans un bloc `async { ... }`.\n\n**Pas à pas :**\n\n```text\nfn normale() -> u32 { addition(1, 2).await }        // refusé : pas async\nasync fn asynchrone() -> u32 { addition(1, 2).await }  // accepté\nlet f = async { addition(1, 2).await };              // accepté (bloc async)\n```\n\nPour utiliser un futur depuis une fonction normale (comme `main`), on ne fait pas `.await` : on le donne à un exécuteur, par exemple `block_on(asynchrone())`.\n\n**Les autres réponses :** « partout » est faux, la première ligne ne compile pas. « Seulement dans `main` » est faux aussi : `main` n'est pas async en std, c'est même un des endroits où `.await` est refusé. Un thread n'est pas un contexte async : dans `thread::spawn(|| ...)`, la closure est normale.\n\n**À retenir :** `.await` seulement dans `async fn` ou `async { }` ; depuis du code normal, passe par un exécuteur."
         },
         {
           "question": "Pourquoi `fn main` ne peut-elle pas être `async` avec la bibliothèque standard seule ?",
@@ -1331,7 +1331,7 @@
             "Il faut Rust 2015"
           ],
           "reponse": 1,
-          "explication": "Il faut un exécuteur qui appelle `poll`. La std n'en contient pas : on utilise une bibliothèque comme tokio, ou son propre `block_on`."
+          "explication": "**Règle :** un futur n'avance que si quelqu'un appelle `poll` dessus. Ce « quelqu'un » est un **exécuteur**, et la bibliothèque standard n'en contient pas.\n\n**Pas à pas :**\n\n1. Une `async fn main()` renverrait un futur au lieu d'exécuter son code.\n2. Le système lance le programme, reçoit ce futur… et personne n'appelle `poll` dessus.\n3. Rien ne se passerait : Rust refuse donc `async fn main` sans exécuteur.\n4. `#[tokio::main]` règle le problème : il écrit un vrai `fn main` qui crée le runtime tokio et lui donne le futur. En std seule, on écrit un `fn main` normal qui appelle son propre `block_on`.\n\n**Les autres réponses :** la syntaxe `async fn main` est connue du compilateur (elle est acceptée avec `#[tokio::main]`), donc ce n'est pas un simple interdit de syntaxe. La vitesse de `main` n'a rien à voir. Et c'est l'édition 2018 qui a apporté `async` : Rust 2015 ne l'a même pas.\n\n**À retenir :** pas d'exécuteur dans la std, donc pas d'`async fn main` sans bibliothèque ou `block_on` maison."
         },
         {
           "question": "Que garantit `Pin<&mut Self>` ?",
@@ -1342,7 +1342,7 @@
             "Que la valeur est partagée entre threads"
           ],
           "reponse": 1,
-          "explication": "`Pin` interdit de déplacer la valeur, car un futur généré par le compilateur peut contenir des références vers lui-même."
+          "explication": "**Règle :** `Pin<&mut Self>` est une référence mutable avec une promesse : la valeur **ne sera plus déplacée** en mémoire. C'est nécessaire parce qu'un futur écrit par le compilateur peut contenir des références vers ses propres champs.\n\n**Pas à pas :** un futur garde un tableau et, entre deux `.await`, une référence vers une case de ce tableau.\n\n1. Le futur est à l'adresse 100, la référence pointe vers l'adresse 104 (une case du tableau).\n2. Si on déplaçait le futur à l'adresse 500, le tableau partirait avec lui (case à 504)…\n3. … mais la référence pointerait toujours vers 104 : une zone qui ne contient plus le tableau.\n4. `Pin` interdit l'étape 2 : la référence reste juste.\n\n**Les autres réponses :** `Pin<&mut Self>` contient `&mut`, la valeur reste donc **modifiable** (pas immuable). `Pin` ne copie rien, il interdit au contraire de déplacer. Et le partage entre threads est l'affaire de `Send` / `Sync`, pas de `Pin`.\n\n**À retenir :** `Pin` = « ne bouge plus en mémoire » ; pour un type simple (`Unpin`), il ne gêne pas."
         },
         {
           "question": "À quoi sert le `Waker` du `Context` ?",
@@ -1353,7 +1353,7 @@
             "À créer un thread"
           ],
           "reponse": 1,
-          "explication": "Un futur `Pending` appelle `wake` quand il peut avancer, pour que l'exécuteur le poll de nouveau."
+          "explication": "**Règle :** le `Context` passé à `poll` contient un **waker**, une sonnette. Un futur qui répond `Pending` fait sonner ce waker (`cx.waker().wake()` ou `wake_by_ref()`) quand il peut avancer, pour que l'exécuteur l'interroge de nouveau.\n\n**Pas à pas :** un futur attend une réponse réseau.\n\n1. Premier `poll` : pas de données, le futur garde le waker et répond `Pending`.\n2. L'exécuteur ne l'interroge plus et s'occupe d'autres tâches (il ne perd pas de temps).\n3. Les données arrivent : le waker sonne.\n4. L'exécuteur remet le futur dans sa file et appelle `poll` : cette fois `Ready`.\n\nAvec `Waker::noop()` (sonnette qui ne fait rien), notre `block_on` d'apprentissage interroge sans arrêt, donc il n'a pas besoin d'être réveillé.\n\n**Les autres réponses :** le waker n'affiche rien (c'est `println!`), n'arrête pas le programme et ne crée aucun thread : il sert seulement à **prévenir** l'exécuteur.\n\n**À retenir :** `Pending` + waker qui sonnera plus tard = l'exécuteur sait quand rappeler `poll`."
         },
         {
           "question": "Que fait le compilateur d'une `async fn` ?",
@@ -1364,7 +1364,7 @@
             "Rien de spécial"
           ],
           "reponse": 0,
-          "explication": "Chaque `.await` devient un point de pause : le compilateur écrit un `enum` d'états avec une méthode `poll`."
+          "explication": "**Règle :** le compilateur transforme chaque `async fn` en un type caché qui **implémente `Future`** : un `enum` d'états (une **machine à états**), avec un état par point de pause `.await`.\n\n**Pas à pas :** `async fn f() { a().await; b().await; }` devient en gros :\n\n| État | Signification |\n|---|---|\n| `Debut` | rien n'est fait |\n| `AttendA` | on attend la fin de `a()` |\n| `AttendB` | `a()` a fini, on attend `b()` |\n| `Fini` | terminé |\n\nChaque `poll` avance d'état en état jusqu'à un `.await` qui répond `Pending`, puis rend la main.\n\n**Les autres réponses :** aucun thread caché n'est créé (une tâche async coûte justement très peu). Ce n'est pas une macro qui recopie le code. Et « rien de spécial » est faux : sans cette transformation, une fonction ne pourrait pas se mettre en pause puis reprendre au même endroit.\n\n**À retenir :** `async fn` = machine à états qui implémente `Future`, un état par `.await`."
         },
         {
           "question": "Avec `let a = f(); let b = g(); a.await; b.await;` (dans une fonction async), que se passe-t-il ?",
@@ -1375,7 +1375,7 @@
             "`g` finit toujours avant `f`"
           ],
           "reponse": 1,
-          "explication": "Les futures sont paresseuses : `g` ne démarre qu'à son `.await`, après la fin de `f`. Pour les faire avancer ensemble, il faut un `join`."
+          "explication": "**Règle :** les futures sont **paresseuses** : créer `f()` et `g()` ne lance rien. Chaque futur ne commence à avancer qu'à son propre `.await`, et `.await` attend la **fin** du futur avant de passer à la ligne suivante.\n\n**Pas à pas :**\n\n| Ligne | Effet |\n|---|---|\n| `let a = f();` | futur créé, rien ne tourne |\n| `let b = g();` | futur créé, rien ne tourne |\n| `a.await;` | `f` tourne jusqu'au bout ; `g` n'a toujours pas commencé |\n| `b.await;` | seulement maintenant, `g` tourne |\n\nSi `f` et `g` attendent chacun 1 s, le tout prend 2 s. Pour qu'ils avancent ensemble (1 s), il faut un `join` (par exemple `tokio::join!(f(), g())`).\n\n**Les autres réponses :** ils n'avancent pas en même temps, car créer `b` ne le démarre pas. Tout s'exécute bien (les deux `.await` sont là). Et `g` ne peut pas finir avant `f`, puisqu'il ne commence qu'après.\n\n**À retenir :** `.await` l'un après l'autre = en séquence ; pour avancer ensemble, il faut un `join`."
         },
         {
           "question": "Quel est le meilleur choix pour 10 000 connexions réseau qui attendent surtout des données ?",
@@ -1386,7 +1386,7 @@
             "Un seul `Mutex`"
           ],
           "reponse": 1,
-          "explication": "Une tâche async est très légère et ne consomme presque rien pendant l'attente. 10 000 threads coûteraient beaucoup de mémoire."
+          "explication": "**Règle :** un thread a sa propre **pile mémoire** (souvent quelques centaines de Ko à quelques Mo) et c'est le système qui le gère. Une tâche async est un **petit objet** (sa machine à états) qui ne consomme presque rien pendant qu'elle attend. Pour beaucoup d'attentes, l'async est le bon choix.\n\n**Pas à pas :** 10 000 connexions qui attendent surtout.\n\n| Choix | Coût |\n|---|---|\n| 10 000 threads | 10 000 piles mémoire (plusieurs Go possibles), et le système passe son temps à changer de thread |\n| 10 000 tâches async | 10 000 petits objets, quelques workers qui ne s'occupent que des connexions qui ont reçu des données |\n\n**Les autres réponses :** une `loop` sans pause occupe le processeur à 100 % pour rien et ne gère pas plusieurs connexions. Un seul `Mutex` ne sert qu'à protéger une donnée, il ne fait rien avancer.\n\n**À retenir :** beaucoup d'attentes (réseau) → async avec un exécuteur ; calcul lourd → threads."
         },
         {
           "question": "Pourquoi éviter `std::thread::sleep` dans une tâche async ?",
@@ -1397,7 +1397,7 @@
             "Il est réservé à `main`"
           ],
           "reponse": 1,
-          "explication": "Un exécuteur fait tourner plusieurs tâches dans un même fil. Bloquer ce fil bloque tout. Il faut un sommeil asynchrone (par exemple `tokio::time::sleep`)."
+          "explication": "**Règle :** un exécuteur fait avancer **plusieurs tâches dans un même fil**, à tour de rôle. `std::thread::sleep` bloque **tout le fil** : pendant ce temps, l'exécuteur ne peut interroger aucune autre tâche.\n\n**Pas à pas :** un worker gère les tâches T1, T2, T3.\n\n1. T1 appelle `std::thread::sleep(1 s)`.\n2. Le fil dort : T2 et T3 attendent une seconde, même si leurs données sont prêtes.\n3. Avec `tokio::time::sleep(1 s).await`, T1 répond `Pending` et le worker passe tout de suite à T2 et T3 ; le minuteur réveillera T1 plus tard.\n\n**Les autres réponses :** `std::thread::sleep` compile très bien dans une `async fn` (c'est ce qui rend le piège dangereux). Sa précision n'a rien à voir, et il n'est pas réservé à `main`.\n\n**À retenir :** dans du code async, attends avec un sommeil async (`.await`), jamais avec `std::thread::sleep`."
         },
         {
           "question": "Que crée `tokio::spawn(async { ... })` ?",
@@ -1408,7 +1408,7 @@
             "Un processus séparé"
           ],
           "reponse": 1,
-          "explication": "`tokio::spawn` ajoute une tâche dans une file : quelques workers font avancer des milliers de tâches, sans un thread chacune."
+          "explication": "**Règle :** `tokio::spawn(futur)` ajoute une **tâche** dans la file du runtime. Les quelques threads workers du runtime (environ un par cœur) font avancer toutes les tâches à tour de rôle. Il rend un `JoinHandle` qu'on attend avec `.await`.\n\n**Pas à pas :** `(0..10_000).map(|i| tokio::spawn(async move { i * 2 }))`.\n\n1. 10 000 tâches sont mises en file : 10 000 petits objets, pas 10 000 threads.\n2. Sur une machine à 8 cœurs, 8 workers les exécutent ; un worker sans travail vole des tâches aux autres.\n3. `t.await.unwrap()` récupère le résultat de chaque tâche (`Err` si elle a paniqué).\n\n**Les autres réponses :** ce n'est pas un thread du système (c'est `std::thread::spawn` qui fait ça). Ce n'est pas un nouveau runtime : la tâche rejoint celui qui existe déjà (`#[tokio::main]`). Et ce n'est pas un processus séparé : tout reste dans le même programme.\n\n**À retenir :** `tokio::spawn` = une tâche légère dans le runtime, pas un thread."
         },
         {
           "question": "Un gestionnaire async fait un calcul d'une seconde. Que faut-il écrire ?",
@@ -1419,7 +1419,7 @@
             "Appeler `tokio::join!` avec le calcul seul"
           ],
           "reponse": 1,
-          "explication": "Un calcul long bloque le worker et retarde toutes les autres tâches. `spawn_blocking` l'envoie dans un pool de threads à part."
+          "explication": "**Règle :** un calcul long dans une tâche async ne répond jamais `Pending` : il **monopolise** le worker. `tokio::task::spawn_blocking(closure)` envoie ce calcul dans un **pool de threads à part**, réservé aux travaux bloquants ; on attend son résultat avec `.await`, ce qui libère le worker.\n\n**Pas à pas :**\n\n```text\nlet resultat = tokio::task::spawn_blocking(move || calcul_long(&donnees))\n    .await\n    .unwrap();\n```\n\n1. `spawn_blocking` lance `calcul_long` sur un autre thread.\n2. `.await` : la tâche se met en pause (`Pending`), le worker sert les autres requêtes pendant la seconde de calcul.\n3. Le calcul finit, la tâche est réveillée et `unwrap` donne le résultat.\n\n**Les autres réponses :** `async` ne rend **pas** un calcul parallèle, il le laisse dans le fil du worker. Un `std::thread::sleep` ajouterait encore du blocage. `tokio::join!` avec un seul calcul ne change rien : le calcul bloque toujours le worker.\n\n**À retenir :** calcul lourd dans du code async → `spawn_blocking(...).await`."
         }
       ]
     },
@@ -1536,7 +1536,7 @@
             "Un commentaire spécial"
           ],
           "reponse": 1,
-          "explication": "Le compilateur remplace l'appel de la macro par le code qu'elle produit, avant même de vérifier les types."
+          "explication": "**Règle :** une macro est du **code qui écrit du code**. Le compilateur remplace l'appel (`vec![1, 2]`, `println!(...)`) par le code que la macro produit : c'est le **dépliage**. Il a lieu à la compilation, avant la vérification des types.\n\n**Pas à pas :** quand tu écris `vec![4, 5, 6]` :\n\n1. le compilateur voit le `!` : c'est une macro ;\n2. il la déplie en un code qui crée un `Vec` et y range 4, 5 et 6 ;\n3. ensuite seulement, il vérifie les types et compile ce code, comme si tu l'avais tapé.\n\n**Les autres réponses :**\n\n- « une fonction plus rapide » : une macro n'est pas une fonction, elle n'est pas appelée pendant l'exécution, elle disparaît dès la compilation ;\n- « un type de donnée » : une macro ne décrit pas de valeurs, elle produit du code ;\n- « un commentaire spécial » : un commentaire est ignoré, alors que le code produit par une macro est bien compilé et exécuté.\n\n**À retenir :** macro = un modèle de code, remplacé par du vrai code à la compilation."
         },
         {
           "question": "Comment reconnaît-on l'appel d'une macro déclarative ?",
@@ -1547,7 +1547,7 @@
             "Des doubles deux-points"
           ],
           "reponse": 0,
-          "explication": "Les macros s'appellent avec un `!` : `println!`, `vec!`, `carre!`. Les `$` servent seulement à l'intérieur de la définition."
+          "explication": "**Règle :** on appelle une macro avec son nom suivi d'un **`!`**, puis des parenthèses, crochets ou accolades : `println!(...)`, `vec![...]`, `hashmap!{...}`.\n\n**Pas à pas :** on regarde où apparaît chaque symbole.\n\n| Symbole | Où on le trouve | Rôle |\n|---|---|---|\n| `!` après le nom | à l'**appel** : `carre!(3)` | dit « ceci est une macro » |\n| `$` devant un nom | **dans la définition** : `$x:expr` | marque une variable de macro |\n| `::` | `Vec::new()`, `std::fmt` | chemin vers un élément (module, type) |\n\n**Les autres réponses :**\n\n- `$` ne s'écrit jamais à l'appel : il sert seulement à l'intérieur de `macro_rules!` ;\n- `@` n'a pas ce rôle en Rust (on le croise dans les motifs `n @ 1..=5`) ;\n- les doubles deux-points `::` séparent les morceaux d'un chemin, ils n'indiquent pas une macro.\n\n**À retenir :** `nom!(...)` = un appel de macro ; `$x` = une variable dans sa définition."
         },
         {
           "question": "Que capture le fragment `$x:expr` ?",
@@ -1558,7 +1558,7 @@
             "Un bloc d'instructions"
           ],
           "reponse": 2,
-          "explication": "`expr` capture une expression entière, par exemple `1 + 2`, et la garde en un seul morceau."
+          "explication": "**Règle :** le fragment `expr` capture une **expression complète** : un calcul, un appel, une variable, un littéral (`1 + 2`, `f(x)`, `n`, `42`). Elle est gardée comme **un seul morceau** groupé.\n\n**Pas à pas :** avec le motif `($x:expr)` :\n\n- `macro!(7)` : `$x = 7` ;\n- `macro!(a * 2 + 1)` : `$x = a * 2 + 1`, en entier ;\n- `macro!(longueur(&v))` : `$x = longueur(&v)`.\n\nÀ chaque fois, `$x` reçoit **tout** le calcul, pas seulement le premier mot.\n\n**Les autres réponses :**\n\n- « un seul mot » : c'est `ident` (un nom) ou `tt` (un seul jeton) ;\n- « un type » : c'est `ty` (`Vec<i32>`, `String`) ;\n- « un bloc d'instructions » : c'est `block`, qui exige des accolades `{ ... }`.\n\n**À retenir :** `expr` = un calcul entier, gardé groupé."
         },
         {
           "question": "Avec `macro_rules! carre { ($x:expr) => { $x * $x }; }`, que vaut `carre!(1 + 2)` ?",
@@ -1569,7 +1569,7 @@
             "Erreur de compilation"
           ],
           "reponse": 1,
-          "explication": "`$x` est une expression entière, donc le calcul est `(1 + 2) * (1 + 2)` = 9. En C, une macro de texte donnerait 5."
+          "explication": "**Règle :** `$x:expr` capture l'expression **entière**, et quand elle est recopiée dans le code produit, elle reste **groupée**, comme si elle était entre parenthèses.\n\n**Pas à pas :** dépliage de `carre!(1 + 2)` :\n\n1. le bras `($x:expr)` correspond : `$x = 1 + 2` ;\n2. le code produit `$x * $x` devient `(1 + 2) * (1 + 2)` ;\n3. calcul : `3 * 3 = 9`.\n\n**Les autres réponses :**\n\n- `5` : c'est ce que donnerait une copie de **texte** à la manière du C : `1 + 2 * 1 + 2`, où la multiplication passe d'abord : `1 + 2 + 2 = 5`. Rust ne copie pas du texte, il manipule des expressions déjà analysées ;\n- `3` : c'est la valeur de `1 + 2`, pas son carré ;\n- « erreur de compilation » : `1 + 2` est une expression tout à fait valide pour un fragment `expr`.\n\n**À retenir :** en Rust, `$x` remplacé garde ses parenthèses invisibles : pas de piège de priorité comme en C."
         },
         {
           "question": "Quel fragment permet de recevoir un nom (de fonction, de champ...) ?",
@@ -1580,7 +1580,7 @@
             "`lit`"
           ],
           "reponse": 2,
-          "explication": "`ident` capture un identifiant. Grâce à lui, une macro peut générer des fonctions ou des champs avec le nom voulu."
+          "explication": "**Règle :** le fragment `ident` capture un **identifiant**, c'est-à-dire un nom : nom de variable, de fonction, de champ, de type. Grâce à lui, une macro peut **créer** des fonctions ou des champs portant le nom voulu.\n\n**Pas à pas :** avec `($nom:ident: $type:ty) => { fn $nom(&self) -> $type { self.$nom } }`, l'appel `getter!(age: u32)` :\n\n1. `age` est un nom : `$nom = age` ;\n2. `u32` est un type : `$type = u32` ;\n3. le code produit est `fn age(&self) -> u32 { self.age }` : `age` sert de nom de méthode **et** de nom de champ.\n\n**Les autres réponses :**\n\n- `expr` capture un calcul, on ne peut pas s'en servir pour nommer une fonction (`fn 1 + 2()` n'a pas de sens) ;\n- `ty` capture un type (`u32`, `Vec<String>`), pas un nom de fonction ;\n- `lit` n'existe pas : le fragment des valeurs littérales s'appelle `literal`, et il capture `42` ou `\"texte\"`, pas un nom.\n\n**À retenir :** pour générer un nom (fonction, champ, type), utilise `$n:ident`."
         },
         {
           "question": "Que signifie `$( $x:expr ),*` dans un motif ?",
@@ -1591,7 +1591,7 @@
             "Un tableau de taille fixe"
           ],
           "reponse": 1,
-          "explication": "`*` veut dire zéro ou plus, `+` un ou plus, `?` zéro ou un. La virgule est le séparateur."
+          "explication": "**Règle :** une répétition s'écrit `$( motif ) séparateur opérateur`. L'opérateur dit combien de fois :\n\n| Opérateur | Nombre de répétitions |\n|---|---|\n| `*` | zéro ou plus |\n| `+` | une ou plus |\n| `?` | zéro ou une |\n\n**Pas à pas :** dans `$( $x:expr ),*` :\n\n- `$x:expr` : chaque élément est une expression ;\n- `,` (entre la parenthèse fermante et l'opérateur) : les éléments sont séparés par des virgules ;\n- `*` : il peut y en avoir **zéro**, une ou plusieurs.\n\nDonc `m!()`, `m!(1)` et `m!(1, 2 + 3, x)` correspondent tous.\n\n**Les autres réponses :**\n\n- « exactement une expression » : ce serait `$x:expr` tout seul, sans `$( )` ;\n- « au moins une expression » : ce serait `+` au lieu de `*` ;\n- « un tableau de taille fixe » : une répétition n'a pas de taille imposée, et ne crée pas de tableau par elle-même.\n\n**À retenir :** `*` = 0 ou plus, `+` = 1 ou plus, `?` = 0 ou 1 ; le symbole juste avant est le séparateur."
         },
         {
           "question": "Pourquoi une macro peut-elle faire ce qu'une fonction ne peut pas, comme `vec![1, 2, 3]` ?",
@@ -1602,7 +1602,7 @@
             "Elle s'exécute en parallèle"
           ],
           "reponse": 1,
-          "explication": "Une fonction a un nombre fixe de paramètres. Une macro peut accepter autant d'éléments qu'on veut grâce aux répétitions."
+          "explication": "**Règle :** une fonction a un **nombre fixe** de paramètres, décidé une fois pour toutes. Une macro, grâce aux répétitions `$( ... ),*`, accepte **autant d'arguments qu'on veut**, et produit un code adapté à chaque appel.\n\n**Pas à pas :** comparons.\n\n- `fn trois(a: i32, b: i32, c: i32)` : `trois(1, 2)` ou `trois(1, 2, 3, 4)` ne compilent pas ;\n- `vec![1, 2, 3]` comme `vec![1]` ou `vec![1, 2, 3, 4, 5]` compilent : la macro est dépliée en un code qui range exactement les éléments donnés.\n\n**Les autres réponses :**\n\n- « plus rapide » : le code produit par une macro n'est pas plus rapide qu'une fonction bien écrite, ce n'est pas la raison ;\n- « jamais vérifiée » : c'est faux, le code produit est vérifié (types, emprunts) comme tout le reste ;\n- « s'exécute en parallèle » : une macro n'a rien à voir avec les threads, elle disparaît à la compilation.\n\n**À retenir :** nombre variable d'arguments = travail de macro (répétitions), impossible pour une fonction."
         },
         {
           "question": "Que fait `#[derive(Debug)]` ?",
@@ -1613,7 +1613,7 @@
             "Copie la structure"
           ],
           "reponse": 1,
-          "explication": "`derive` est une macro procédurale : elle lit la structure et écrit l'`impl` du trait à notre place."
+          "explication": "**Règle :** `#[derive(Trait)]` est une **macro** (procédurale, de la famille derive) : elle lit la définition de la structure (ses champs) et **écrit l'`impl` du trait** à ta place.\n\n**Pas à pas :** sur `#[derive(Debug)] struct Point { x: i32, y: i32 }` :\n\n1. la macro voit les champs `x` et `y` ;\n2. elle écrit une `impl Debug for Point` qui affiche le nom du type et chaque champ ;\n3. tu peux alors écrire `println!(\"{:?}\", p)`, qui affiche `Point { x: 1, y: 2 }`.\n\n**Les autres réponses :**\n\n- « lance le programme en mode debug » : le mode debug se choisit avec `cargo build` (contre `cargo build --release`), pas avec un attribut ;\n- « désactive les avertissements » : c'est le rôle de `#[allow(...)]` ;\n- « copie la structure » : copier, c'est le trait `Clone` (ou `Copy`), qu'on peut aussi dériver, mais `Debug` sert seulement à l'affichage `{:?}`.\n\n**À retenir :** `derive(X)` = « écris l'`impl X` pour moi » ; `Debug` = affichage avec `{:?}`."
         },
         {
           "question": "Que veut dire « hygiène » des macros ?",
@@ -1624,7 +1624,7 @@
             "La macro vérifie les noms de fonctions"
           ],
           "reponse": 1,
-          "explication": "Un `let x` écrit dans la macro n'est pas le même `x` que celui de l'appelant : pas de collision de noms par accident."
+          "explication": "**Règle :** l'**hygiène** veut dire que les variables créées **dans** une macro (`let x = ...`) sont séparées de celles de l'appelant, même si elles ont le même nom. Aucune collision par accident.\n\n**Pas à pas :** avec `macro_rules! m { ($e:expr) => {{ let x = 2; $e * x }}; }` et dans `main` `let x = 10; m!(x)` :\n\n1. `$e` est le `x` **de `main`** : 10 ;\n2. le `let x = 2` de la macro crée une **autre** variable : 2 ;\n3. résultat : `10 * 2 = 20`. Sans hygiène, les deux `x` se confondraient et on aurait `2 * 2 = 4`.\n\n**Les autres réponses :**\n\n- « le code est formaté automatiquement » : c'est le rôle de `rustfmt` (`cargo fmt`) ;\n- « supprime le code inutile » : ce n'est pas lié aux macros (le compilateur optimise, clippy signale) ;\n- « vérifie les noms de fonctions » : au contraire, l'hygiène **ne protège pas** les noms d'items (fonctions, structures) générés, qui restent visibles normalement.\n\n**À retenir :** un `let` dans une macro ne touche jamais aux variables de l'appelant."
         },
         {
           "question": "Quand vaut-il mieux écrire une fonction plutôt qu'une macro ?",
@@ -1635,7 +1635,7 @@
             "Jamais"
           ],
           "reponse": 2,
-          "explication": "Une fonction est plus simple à lire, à déboguer et donne de meilleurs messages d'erreur. On passe à la macro seulement quand la fonction ne peut pas faire le travail."
+          "explication": "**Règle :** une fonction est plus simple à lire, à tester et donne des messages d'erreur plus clairs. On écrit une **fonction** dès qu'elle suffit (éventuellement **générique**, comme `fn plus_grand<T: PartialOrd>(a: T, b: T) -> T`), et une macro seulement quand la fonction ne peut pas faire le travail.\n\n**Pas à pas :** pour chaque besoin, on se demande si une fonction peut le faire.\n\n| Besoin | Une fonction peut ? |\n|---|---|\n| comparer deux valeurs de n'importe quel type | oui, avec un générique |\n| accepter 1, 2, 3... arguments écrits à la suite | non : macro |\n| créer une méthode dont le nom est donné | non : macro |\n\n**Les autres réponses :**\n\n- « nombre d'arguments variable » et « générer des noms de fonctions » : ce sont justement les deux cas où il **faut** une macro ;\n- « jamais » : faux, la fonction est le choix par défaut.\n\n**À retenir :** fonction d'abord ; macro seulement pour un nombre variable d'arguments, des noms générés ou une syntaxe sur mesure."
         }
       ]
     },
@@ -1768,7 +1768,7 @@
             "Il permet d'ignorer les erreurs de type"
           ],
           "reponse": 1,
-          "explication": "`unsafe` ne coupe aucune vérification : les types et les emprunts restent contrôlés. Il débloque seulement cinq opérations, et c'est à toi de garantir qu'elles sont correctes."
+          "explication": "**Règle :** un bloc `unsafe` **ne désactive aucune vérification**. Il débloque seulement 5 opérations que le compilateur ne sait pas contrôler : déréférencer un pointeur brut, appeler une fonction `unsafe`, lire ou modifier un `static mut`, implémenter un trait `unsafe`, lire un champ d'`union`. Pour ces 5 opérations, c'est toi qui garantis que tout est correct.\n\n**Pas à pas :** dans un bloc `unsafe` :\n\n1. `let n: i32 = String::from(\"a\");` est toujours refusé (types vérifiés) ;\n2. utiliser une variable après l'avoir déplacée est toujours refusé (propriété vérifiée) ;\n3. `*p` avec `p: *const i32` devient permis (pouvoir n°1).\n\n**Les autres réponses :**\n\n- « désactive le vérificateur d'emprunts » : faux, les règles d'emprunt s'appliquent aussi dans le bloc ;\n- « rend le code plus rapide » : `unsafe` ne change rien à la vitesse, le code produit est le même ;\n- « ignorer les erreurs de type » : faux, les types restent vérifiés.\n\n**À retenir :** `unsafe` = 5 permissions en plus, zéro vérification en moins."
         },
         {
           "question": "Laquelle de ces opérations est possible SANS `unsafe` ?",
@@ -1779,7 +1779,7 @@
             "Lire un champ d'une `union`"
           ],
           "reponse": 1,
-          "explication": "Créer un pointeur brut est sûr : il ne fait de mal que si on le lit ou l'écrit. Le déréférencer, lire un `static mut` ou un champ d'union demande `unsafe`."
+          "explication": "**Règle :** **créer** un pointeur brut est sûr : ce n'est qu'une adresse, elle ne fait aucun mal tant qu'on ne s'en sert pas. Ce qui demande `unsafe`, c'est de **lire ou écrire à travers** lui, ou d'utiliser un des autres pouvoirs.\n\n**Pas à pas :** on passe chaque opération au crible des 5 pouvoirs.\n\n| Opération | Pouvoir utilisé | `unsafe` ? |\n|---|---|---|\n| `let p = &x as *const i32;` | aucun, on ne lit rien | non |\n| `*p` | n°1, déréférencer | oui |\n| lire un `static mut` | n°3 | oui |\n| lire un champ d'`union` | n°5 | oui |\n\n**Les autres réponses :** les trois autres opérations sont justement trois des cinq pouvoirs : déréférencer un `*const i32` (n°1), lire un `static mut` (n°3), lire un champ d'union (n°5).\n\n**À retenir :** créer un pointeur brut = sûr ; s'en servir = `unsafe`."
         },
         {
           "question": "Quelle est la différence entre une référence `&T` et un pointeur brut `*const T` ?",
@@ -1790,7 +1790,7 @@
             "Le pointeur brut ne peut pas être copié"
           ],
           "reponse": 1,
-          "explication": "Une référence est toujours valide et respecte les règles d'emprunt. Un pointeur brut n'a aucune garantie (nul, périmé, plusieurs `*mut` sur la même donnée...)."
+          "explication": "**Règle :** une **référence** `&T` est garantie par le compilateur : jamais nulle, toujours vers une donnée vivante, et elle respecte les règles d'emprunt (plusieurs `&` ou un seul `&mut`). Un **pointeur brut** `*const T` n'a **aucune** de ces garanties.\n\n**Pas à pas :** on compare point par point.\n\n| | `&T` | `*const T` |\n|---|---|---|\n| peut être nul | non | oui (`std::ptr::null()`) |\n| peut pointer vers une donnée libérée (périmé) | non | oui |\n| plusieurs `*mut` sur la même donnée | interdit pour `&mut` | rien ne l'empêche |\n| lire la valeur | libre | dans `unsafe` |\n\n**Les autres réponses :**\n\n- « aucune » : il y a toutes les différences du tableau ;\n- « plus lent » : un pointeur brut et une référence sont tous les deux une simple adresse, aussi rapides l'un que l'autre ;\n- « ne peut pas être copié » : au contraire, un pointeur brut se copie librement (il est `Copy`).\n\n**À retenir :** référence = adresse **garantie** ; pointeur brut = adresse **sans garantie**, à vérifier soi-même."
         },
         {
           "question": "À quoi sert le commentaire `// SAFETY:` ?",
@@ -1801,7 +1801,7 @@
             "À marquer une fonction comme sûre"
           ],
           "reponse": 1,
-          "explication": "C'est une convention : on écrit au-dessus du bloc la raison pour laquelle les conditions sont respectées. Le compilateur l'ignore, mais les relecteurs (et clippy) l'attendent."
+          "explication": "**Règle :** `// SAFETY:` est une **convention** : au-dessus de chaque bloc `unsafe`, on explique **pourquoi** les conditions sont respectées (pointeur non nul, dans les bornes, donnée vivante, personne d'autre ne la modifie).\n\n**Pas à pas :** sur `let p = v.as_ptr(); let x = unsafe { *p.add(1) };` avec `v` de 3 éléments, on écrit :\n\n```text\n// SAFETY: v a 3 éléments, donc l'indice 1 existe, et v est vivant pendant la lecture\n```\n\n1. Le compilateur ignore ce commentaire : le bloc compile avec ou sans.\n2. Un relecteur sait tout de suite quelle promesse a été faite et peut la vérifier.\n3. Clippy a même une règle (`undocumented_unsafe_blocks`, à activer) qui signale les blocs sans ce commentaire.\n\n**Les autres réponses :**\n\n- « faire compiler le bloc » : un commentaire ne change jamais la compilation ;\n- « désactiver un avertissement » : c'est le rôle de `#[allow(...)]` ;\n- « marquer une fonction comme sûre » : une fonction est sûre parce qu'elle n'est pas déclarée `unsafe fn` et qu'elle vérifie ce qu'il faut, pas grâce à un commentaire.\n\n**À retenir :** `// SAFETY:` = la justification écrite de la promesse faite au compilateur."
         },
         {
           "question": "Pourquoi `split_at_mut` de la bibliothèque standard utilise-t-il `unsafe` en interne ?",
@@ -1812,7 +1812,7 @@
             "Il n'en utilise pas"
           ],
           "reponse": 1,
-          "explication": "Deux `&mut` sur le même tableau sont refusés par le compilateur. Ici les morceaux sont disjoints, mais seul un humain peut le garantir : d'où `unsafe` à l'intérieur, et une API sûre à l'extérieur."
+          "explication": "**Règle :** le vérificateur d'emprunts refuse **deux `&mut`** sur le même tableau en même temps. Il ne regarde pas les indices : il ne peut pas prouver que deux morceaux ne se chevauchent pas.\n\n**Pas à pas :** pour couper `[1, 2, 3, 4]` au milieu 2 :\n\n1. on voudrait `&mut t[..2]` (cases 0 et 1) et `&mut t[2..]` (cases 2 et 3) en même temps ;\n2. le compilateur voit deux emprunts modifiables de `t` : erreur `cannot borrow as mutable more than once` ;\n3. pourtant les cases 0-1 et 2-3 sont **disjointes** : un humain le voit, pas le compilateur ;\n4. `split_at_mut` vérifie donc `milieu <= longueur` (sinon panique), puis fabrique les deux morceaux avec des pointeurs bruts (`slice::from_raw_parts_mut`) dans un bloc `unsafe`.\n\nRésultat : une fonction **sûre** à utiliser, avec l'`unsafe` caché dedans.\n\n**Les autres réponses :**\n\n- « parce qu'il est lent » : `unsafe` n'a rien à voir avec la vitesse ;\n- « modifie la mémoire du système » : il modifie seulement le tableau qu'on lui donne ;\n- « il n'en utilise pas » : il en utilise justement, car il n'existe pas d'autre moyen d'obtenir deux `&mut` disjoints.\n\n**À retenir :** quand c'est correct mais que le compilateur ne peut pas le prouver, on vérifie soi-même puis on enveloppe l'`unsafe` dans une API sûre."
         },
         {
           "question": "Comment s'écrit un bloc de déclarations de fonctions C en édition 2024 ?",
@@ -1823,7 +1823,7 @@
             "`import \"C\" { ... }`"
           ],
           "reponse": 1,
-          "explication": "Depuis l'édition 2024, le mot `unsafe` est obligatoire devant `extern`, car Rust ne peut pas vérifier que la déclaration correspond à la vraie fonction C."
+          "explication": "**Règle :** en édition 2024, un bloc qui déclare des fonctions écrites dans un autre langage s'écrit **`unsafe extern \"C\" { ... }`**. Le mot `unsafe` est obligatoire, car Rust ne peut pas vérifier que la déclaration correspond à la vraie fonction C (nombre et types des paramètres).\n\n**Pas à pas :**\n\n```text\nunsafe extern \"C\" {\n    safe fn abs(x: c_int) -> c_int;\n    fn strlen(s: *const c_char) -> usize;\n}\n```\n\n1. `unsafe extern \"C\"` : « ces fonctions viennent du C, je garantis que leurs signatures sont justes » ;\n2. chaque ligne est une **déclaration** (pas de corps, elle finit par `;`) ;\n3. le code de ces fonctions est trouvé à l'édition des liens, dans la bibliothèque C.\n\n**Les autres réponses :**\n\n- `extern \"C\" { ... }` sans `unsafe` : c'était la syntaxe des éditions précédentes, elle est refusée en 2024 ;\n- `#[extern(C)]` : cet attribut n'existe pas ;\n- `import \"C\"` : c'est la syntaxe du langage Go, pas de Rust.\n\n**À retenir :** déclarer du C en édition 2024 = `unsafe extern \"C\" { ... }`."
         },
         {
           "question": "Que fait `safe fn abs(x: c_int) -> c_int;` dans un bloc `unsafe extern \"C\"` ?",
@@ -1834,7 +1834,7 @@
             "Elle convertit `x` en entier sûr"
           ],
           "reponse": 1,
-          "explication": "`safe fn` est une promesse du programmeur : aucune valeur d'argument ne peut causer de comportement indéfini. Les fonctions sans `safe` demandent `unsafe` à l'appel."
+          "explication": "**Règle :** dans un bloc `unsafe extern \"C\"`, une fonction marquée **`safe fn`** peut être appelée **sans** `unsafe`. C'est une promesse du programmeur : aucune valeur d'argument ne peut provoquer de comportement indéfini. Sans `safe`, chaque appel demande un bloc `unsafe`.\n\n**Pas à pas :**\n\n1. `abs` prend un entier et renvoie sa valeur absolue : quel que soit l'entier, elle ne touche pas à la mémoire. La marquer `safe` est donc correct ;\n2. on écrit alors `let v = abs(-5);` directement, comme une fonction Rust : `v` vaut 5 ;\n3. au contraire, `strlen` reçoit un **pointeur** : avec un mauvais pointeur elle lirait n'importe où. On ne la marque pas `safe`, et on l'appelle dans `unsafe { strlen(p) }`.\n\n**Les autres réponses :**\n\n- « rien de spécial » : `safe` change bien la façon d'appeler la fonction ;\n- « empêche d'appeler la fonction » : c'est l'inverse, elle devient plus facile à appeler ;\n- « convertit `x` en entier sûr » : `safe` ne touche pas aux arguments, `x` reste un `c_int`.\n\n**À retenir :** `safe fn` dans `unsafe extern` = appel sans `unsafe`, à réserver aux fonctions qu'aucun argument ne peut rendre dangereuses (jamais à celles qui prennent un pointeur)."
         },
         {
           "question": "Pourquoi utiliser `CString` pour passer un texte à une fonction C ?",
@@ -1845,7 +1845,7 @@
             "Pour éviter de copier le texte"
           ],
           "reponse": 1,
-          "explication": "Un texte C se termine par `\\0`.`CString::new` ajoute ce zéro et refuse les textes qui en contiennent déjà un au milieu."
+          "explication": "**Règle :** en C, un texte est une suite d'octets qui se **termine par un octet nul `\\0`** : c'est ce zéro qui indique la fin. Une `String` Rust connaît sa longueur et **n'a pas** ce zéro final. `CString::new` ajoute le `\\0` et refuse un texte qui contient déjà un `\\0` au milieu.\n\n**Pas à pas :** pour passer `\"chat\"` à une fonction C :\n\n1. `CString::new(\"chat\")` : les octets `c h a t` puis `0`, soit 5 octets ;\n2. `.as_ptr()` donne un `*const c_char` vers le `c` ;\n3. la fonction C lit jusqu'au `0` : elle trouve 4 caractères ;\n4. avec `\"ch\\0at\"`, `CString::new` renvoie une erreur : sinon C croirait que le texte s'arrête après `ch`.\n\n**Les autres réponses :**\n\n- « plus rapide » : `CString::new` copie le texte, ce n'est pas un gain de vitesse ;\n- « C n'accepte que l'ASCII » : faux, un `CString` peut contenir de l'UTF-8 (`é` = 2 octets), le seul octet interdit au milieu est `0` ;\n- « éviter de copier » : au contraire, `CString::new` fait une copie pour ajouter le zéro.\n\n**À retenir :** texte vers C = `CString::new(texte)` (zéro final ajouté), puis `.as_ptr()`, en gardant le `CString` en vie."
         },
         {
           "question": "Que fait `#[unsafe(no_mangle)]` sur une fonction ?",
@@ -1856,7 +1856,7 @@
             "Elle supprime ses vérifications"
           ],
           "reponse": 1,
-          "explication": "Normalement le compilateur change les noms des fonctions (« mangling »). `no_mangle` garde `add` sous le nom `add`. Il s'écrit `#[unsafe(no_mangle)]` en édition 2024."
+          "explication": "**Règle :** normalement, le compilateur Rust **transforme le nom** de chaque fonction dans le binaire (le *mangling*) pour éviter les conflits entre modules. `#[unsafe(no_mangle)]` garde le nom **tel quel**, pour qu'un programme C (ou Python avec `ctypes`) puisse trouver la fonction par son nom.\n\n**Pas à pas :** pour `#[unsafe(no_mangle)] pub extern \"C\" fn tripler(n: i32) -> i32` :\n\n1. sans l'attribut, le nom dans le binaire serait une longue suite comme `_ZN…7tripler17h…E` : introuvable depuis C ;\n2. avec l'attribut, le nom est exactement `tripler` ;\n3. le C peut alors déclarer `int tripler(int n);` et l'appeler.\n\nL'attribut s'écrit `#[unsafe(no_mangle)]` en édition 2024 : deux fonctions exportées avec le même nom entreraient en conflit, et le compilateur ne peut pas toujours le voir.\n\n**Les autres réponses :**\n\n- « plus rapide » : le nom dans le binaire ne change rien à la vitesse ;\n- « la rend privée » : au contraire, elle devient trouvable de l'extérieur ;\n- « supprime ses vérifications » : le corps de la fonction est vérifié normalement.\n\n**À retenir :** `no_mangle` = le nom dans le binaire reste celui que tu as écrit."
         },
         {
           "question": "À quoi sert `#[repr(C)]` sur une structure ?",
@@ -1867,7 +1867,7 @@
             "À la rendre immuable"
           ],
           "reponse": 1,
-          "explication": "Par défaut Rust peut réordonner les champs. Avec `#[repr(C)]`, ils sont rangés dans l'ordre écrit, comme le ferait un compilateur C."
+          "explication": "**Règle :** par défaut, Rust a le droit de **réordonner** les champs d'une structure en mémoire (pour gagner de la place). `#[repr(C)]` impose la disposition de C : les champs sont rangés **dans l'ordre écrit**, avec les mêmes règles d'alignement qu'un compilateur C.\n\n**Pas à pas :** sur `#[repr(C)] struct Couleur { r: u8, g: u8, b: u8, a: u8 }` :\n\n1. `r` est à l'octet 0, `g` à l'octet 1, `b` à l'octet 2, `a` à l'octet 3 ;\n2. le C déclare `struct Couleur { unsigned char r, g, b, a; };` : même ordre, mêmes positions ;\n3. quand Rust passe une `Couleur` au C (ou l'inverse), chaque côté lit les bons octets.\n\nSans `#[repr(C)]`, l'ordre en mémoire n'est pas garanti, et le C pourrait lire `g` à la place de `r`.\n\n**Les autres réponses :**\n\n- « la rendre copiable » : c'est `#[derive(Clone, Copy)]` ;\n- « l'afficher avec `{:?}` » : c'est `#[derive(Debug)]` ;\n- « la rendre immuable » : en Rust, une valeur est immuable par défaut tant qu'on n'écrit pas `mut`, ce n'est pas lié à `repr`.\n\n**À retenir :** structure échangée avec du C = `#[repr(C)]`, pour que l'ordre et la position des champs soient ceux du C."
         }
       ]
     },
@@ -1979,7 +1979,7 @@
             "Il n'a pas besoin de Rust"
           ],
           "reponse": 1,
-          "explication": "Avec Axum seul, il faut choisir et brancher soi-même l'ORM, l'auth, les tests... Loco fournit tout cela et des générateurs de code."
+          "explication": "**Règle :** Axum est une bibliothèque HTTP (routes, extracteurs, réponses) : avec elle seule, c'est à toi de brancher la config, la base, l'authentification et les tests. Loco est un framework complet construit **sur** Axum, qui fournit tout cela déjà branché, avec des conventions et des générateurs.\n\n**Pas à pas :** imagine une appli de capteurs avec utilisateurs.\n\n| Besoin | Axum seul | Loco |\n|---|---|---|\n| lire la config par environnement | à coder | `config/*.yaml` |\n| base + migrations | choisir un ORM, l'installer | SeaORM déjà branché |\n| inscription / connexion | à coder | `/api/auth/...` fourni |\n| tests de requêtes | à organiser | `request::<App, ...>` |\n\nL'intérêt de Loco, c'est tout ce code que tu n'écris pas.\n\n**Les autres réponses :** « plus rapide à l'exécution » est faux : les gestionnaires Loco **sont** des gestionnaires Axum, donc même vitesse. « Il remplace Tokio » est faux : Loco utilise Axum, qui utilise Tokio. « Il n'a pas besoin de Rust » est absurde : tout s'écrit en Rust.\n\n**À retenir :** Loco = Axum + config, base, auth et tests déjà branchés, avec des conventions. Le gain est en code à écrire, pas en vitesse."
         },
         {
           "question": "Avec quels frameworks d'autres langages compare-t-on Loco ?",
@@ -1990,7 +1990,7 @@
             "Pandas et NumPy"
           ],
           "reponse": 0,
-          "explication": "Loco est « le Rails de Rust » : un framework complet qui impose des conventions."
+          "explication": "**Règle :** Loco est un framework « tout compris » à conventions, surnommé « le Rails de Rust ». On le compare donc aux frameworks web complets des autres langages.\n\n**Pas à pas :** on cherche des outils qui, comme Loco, gèrent routes + base + auth + générateurs côté serveur :\n\n- **Rails** (Ruby), **Django** (Python), **Laravel** (PHP), **NestJS** (TypeScript) : oui, ce sont tous des frameworks web serveur complets, avec conventions et générateurs.\n\n**Les autres réponses :** React et Vue servent à construire des interfaces **dans le navigateur** (côté client), pas des serveurs avec base. Docker et Kubernetes servent à **déployer** des applications dans des conteneurs. Pandas et NumPy sont des bibliothèques Python de **calcul et d'analyse de données**.\n\n**À retenir :** Loco joue le même rôle que Rails, Django, Laravel ou NestJS : un framework serveur complet à conventions."
         },
         {
           "question": "Sur quoi Loco est-il construit pour le HTTP et la base de données ?",
@@ -2001,7 +2001,7 @@
             "Hyper seul"
           ],
           "reponse": 1,
-          "explication": "Les gestionnaires Loco sont des gestionnaires Axum, et l'accès aux données passe par SeaORM. On peut toujours « redescendre » dans Axum."
+          "explication": "**Règle :** Loco ne réinvente pas le HTTP ni l'accès à la base : il assemble des briques existantes. Le HTTP passe par **Axum** (lui-même sur Tokio et Hyper), la base par l'ORM **SeaORM**.\n\n**Pas à pas :** on relie ce qu'on écrit dans Loco à ce qui tourne vraiment :\n\n- `get(list)`, `Path(id)`, `Json(corps)`, `State(ctx)` : ce sont des fonctions et extracteurs **Axum** ;\n- `mesures::Entity::find().filter(...)`, `ActiveModel`, les migrations `create_table` : c'est **SeaORM**.\n\nD'où « Axum et SeaORM ». On peut même ajouter des routes Axum pures dans `after_routes`.\n\n**Les autres réponses :** Actix et Rocket sont d'autres frameworks web Rust, Diesel et sqlx d'autres outils d'accès aux bases : ils existent, mais Loco ne les utilise pas. « Hyper seul » est trop bas niveau : Hyper est bien dessous, mais à travers Axum, et il ne gère pas la base.\n\n**À retenir :** Loco = Axum pour le HTTP + SeaORM pour la base."
         },
         {
           "question": "Où se règle le port du serveur et l'adresse de la base dans un projet Loco ?",
@@ -2012,7 +2012,7 @@
             "Dans les migrations"
           ],
           "reponse": 1,
-          "explication": "Il y a un fichier YAML par environnement : development, test, production."
+          "explication": "**Règle :** dans un projet Loco, tout ce qui change d'un environnement à l'autre (port, adresse de la base, CORS, délais) est dans un fichier YAML **par environnement** : `config/development.yaml`, `config/test.yaml`, `config/production.yaml`.\n\n**Pas à pas :** en local, Loco lit `development.yaml` :\n\n```yaml\nserver:\n  port: 5150\ndatabase:\n  uri: sqlite://capteurs-api_development.sqlite?mode=rwc\n```\n\nPour la production, on change seulement `production.yaml` (ou une variable d'environnement, qui l'emporte), sans toucher au code Rust.\n\n**Les autres réponses :** `Cargo.toml` décrit le paquet et ses dépendances, pas la config d'exécution. « `src/main.rs` uniquement » obligerait à recompiler pour changer de port : c'est justement ce que la config évite. Les migrations décrivent le **schéma** des tables (colonnes, clés), pas l'adresse de la base.\n\n**À retenir :** port, base et middlewares se règlent dans `config/<environnement>.yaml`."
         },
         {
           "question": "Que fait la commande `cargo loco generate scaffold` ?",
@@ -2023,7 +2023,7 @@
             "Elle déploie en production"
           ],
           "reponse": 1,
-          "explication": "Un scaffold écrit le code répétitif d'une ressource complète : migration, modèle, contrôleur avec ses routes, et un test."
+          "explication": "**Règle :** un **scaffold** (échafaudage) génère d'un coup tout le code d'une ressource : la migration (la table), le modèle, le contrôleur avec ses routes CRUD (créer, lire, modifier, supprimer) et un test.\n\n**Pas à pas :** `cargo loco generate scaffold capteur nom:string! unite:string!` produit :\n\n1. une migration qui crée la table `capteurs` avec `id`, `nom`, `unite` ;\n2. le modèle dans `src/models/` (et l'entité générée dans `_entities/`) ;\n3. un contrôleur avec les routes `GET`, `POST`, `PUT`, `DELETE` ;\n4. un test de requêtes.\n\n**Les autres réponses :** lancer le serveur, c'est `cargo loco start`. Aucune commande `generate` ne supprime la base ni ne déploie en production : `generate` **écrit du code**, rien d'autre. Ne confonds pas non plus avec `generate model`, qui fait table + modèle **sans** contrôleur.\n\n**À retenir :** `generate scaffold` = table + modèle + contrôleur CRUD + test ; `generate model` = sans contrôleur ; `start` = lancer."
         },
         {
           "question": "Comment protège-t-on une route avec l'authentification JWT dans Loco ?",
@@ -2034,7 +2034,7 @@
             "Impossible sans crate externe"
           ],
           "reponse": 1,
-          "explication": "`auth::JWT` est un extracteur : si le jeton est absent ou faux, la requête est refusée (401) avant même d'entrer dans le gestionnaire."
+          "explication": "**Règle :** dans Loco, `auth::JWT` est un **extracteur** Axum : un argument du gestionnaire qui lit le jeton dans l'en-tête `Authorization: Bearer ...` et vérifie sa signature. Si ça échoue, la requête est refusée avec un **401** avant d'exécuter le gestionnaire.\n\n**Pas à pas :**\n\n```text\nasync fn current(auth: auth::JWT, State(ctx): State<AppContext>) -> Result<Response>\n```\n\n- sans jeton : l'extraction échoue, réponse 401, `current` n'est pas appelé ;\n- jeton inventé : signature fausse, 401 ;\n- jeton reçu à la connexion : l'extraction réussit, `current` tourne et connaît l'utilisateur.\n\nProtéger une route = **ajouter cet argument**, rien d'autre.\n\n**Les autres réponses :** le YAML règle les middlewares généraux (CORS, délais), pas la protection d'une route précise. Le dossier où est rangé le contrôleur ne change rien à la sécurité. Et aucune crate externe n'est à ajouter : l'auth JWT est fournie par Loco.\n\n**À retenir :** pour exiger un utilisateur connecté, ajoute `auth: auth::JWT` aux arguments du gestionnaire."
         },
         {
           "question": "Quel type représente un gestionnaire stocké dans un routeur écrit à la main en std ?",
@@ -2045,7 +2045,7 @@
             "`Option<Requete>`"
           ],
           "reponse": 0,
-          "explication": "Chaque gestionnaire est une fonction ou une closure de type différent : on les range derrière un pointeur `Box<dyn Fn...>`."
+          "explication": "**Règle :** chaque closure a son **propre type**, unique, même si deux closures ont la même signature. Pour ranger des gestionnaires différents dans une même liste, on les cache derrière un objet-trait `dyn Fn(&Requete) -> Reponse`, mis dans une `Box` car sa taille n'est pas connue à la compilation.\n\n**Pas à pas :**\n\n```rust\ntype Gestionnaire = Box<dyn Fn(&Requete) -> Reponse>;\nlet mut routes: Vec<(String, Gestionnaire)> = Vec::new();\nroutes.push((\"/a\".to_string(), Box::new(|_| Reponse { statut: 200 })));\nroutes.push((\"/b\".to_string(), Box::new(page_b)));\n```\n\nUne closure et une fonction nommée entrent dans le même `Vec` : toutes deux « s'appellent avec une `&Requete` et rendent une `Reponse` ». On les appelle ensuite comme une fonction : `gestionnaire(&requete)`.\n\n**Les autres réponses :** un `&str` est du texte, pas du code qu'on peut appeler (c'est plutôt la **clé** de la route). `Vec<u8>` est une suite d'octets. `Option<Requete>` est une requête qui existe ou non : ce sont des données, pas un gestionnaire.\n\n**À retenir :** un gestionnaire stocké = `Box<dyn Fn(&Requete) -> Reponse>`."
         },
         {
           "question": "Un middleware, en Rust simple, c'est :",
@@ -2056,7 +2056,7 @@
             "Un fichier de configuration"
           ],
           "reponse": 1,
-          "explication": "Le middleware agit avant et/ou après le gestionnaire (journal, vérification du jeton...) puis appelle le suivant."
+          "explication": "**Règle :** un middleware est une fonction qui **reçoit un gestionnaire** (`suivant`) et **en rend un nouveau** qui l'enveloppe : il peut agir avant, appeler `suivant` (ou refuser sans l'appeler), puis agir après.\n\n**Pas à pas :**\n\n```rust\nfn avec_journal(suivant: Gestionnaire) -> Gestionnaire {\n    Box::new(move |r: &Requete| {\n        println!(\"début {}\", r.chemin);\n        let rep = suivant(r);\n        println!(\"fin {}\", rep.statut);\n        rep\n    })\n}\n```\n\n1. avant : on écrit `début` ;\n2. on appelle le gestionnaire enveloppé ;\n3. après : on écrit `fin` avec le statut, et on renvoie la réponse.\n\nUn middleware de jeton, lui, rend directement un 401 sans appeler `suivant`.\n\n**Les autres réponses :** une base de données stocke des données, elle ne s'intercale pas entre la requête et le gestionnaire. Une macro génère du code à la compilation. Un fichier de configuration peut **activer** des middlewares dans Loco (CORS, délai), mais le middleware lui-même est du code qui enveloppe.\n\n**À retenir :** middleware = `fn(Gestionnaire) -> Gestionnaire`, qui fait quelque chose avant et/ou après l'appel au suivant."
         },
         {
           "question": "À quoi sert `impl From<ParseIntError> for MonErreur` quand on utilise `?` ?",
@@ -2067,7 +2067,7 @@
             "À créer une macro"
           ],
           "reponse": 1,
-          "explication": "Le `?` appelle `From::from` sur l'erreur : on peut mélanger plusieurs sortes d'erreurs dans une même fonction."
+          "explication": "**Règle :** quand le `?` tombe sur un `Err(e)`, il fait `return Err(From::from(e))`. Il **convertit** donc l'erreur vers le type d'erreur de la fonction, à condition qu'un `impl From<TypeDeE> for MonErreur` existe.\n\n**Pas à pas :**\n\n```rust\nimpl From<ParseIntError> for ErreurWeb {\n    fn from(_: ParseIntError) -> Self {\n        ErreurWeb::Invalide(\"identifiant invalide\".to_string())\n    }\n}\n\nfn lire(texte: &str) -> Result<u32, ErreurWeb> {\n    let n: u32 = texte.parse()?;\n    Ok(n)\n}\n```\n\n- `lire(\"7\")` : `parse` donne `Ok(7)`, le `?` laisse passer, résultat `Ok(7)` ;\n- `lire(\"x\")` : `parse` donne `Err(ParseIntError)`, le `?` appelle `ErreurWeb::from`, résultat `Err(Invalide(...))`.\n\nSans le `impl From`, `texte.parse()?` ne compile pas : la `ParseIntError` n'est pas une `ErreurWeb`.\n\n**Les autres réponses :** afficher une erreur, c'est `Display` ou `Debug`. Le `?` n'ignore jamais l'erreur : il la **renvoie**. Et `From` est un trait ordinaire, pas une macro.\n\n**À retenir :** `impl From<ErreurDeBase> for MonErreur` permet au `?` de convertir l'erreur automatiquement."
         },
         {
           "question": "Quelle différence entre `From` et `TryFrom` ?",
@@ -2078,7 +2078,7 @@
             "`TryFrom` ne marche qu'avec les nombres"
           ],
           "reponse": 1,
-          "explication": "`From` est une conversion qui réussit toujours. `TryFrom` renvoie `Result` : c'est l'idée d'un extracteur qui peut refuser une requête."
+          "explication": "**Règle :** `From<T>` est une conversion qui **réussit toujours** : `fn from(t: T) -> Self`. `TryFrom<T>` est une conversion qui **peut échouer** : `fn try_from(t: T) -> Result<Self, Self::Error>`.\n\n**Pas à pas :**\n\n| Conversion | Peut rater ? | Trait |\n|---|---|---|\n| un `u8` vers un `u32` | non, tout `u8` tient dans un `u32` | `From` : `u32::from(5u8)` |\n| un `u32` vers un `u8` | oui, `300` ne tient pas | `TryFrom` : `u8::try_from(300u32)` donne `Err(...)` |\n| un texte `\"42\"` vers un identifiant | oui, `\"abc\"` n'est pas un nombre | `TryFrom<&str>` |\n\nC'est exactement l'idée d'un extracteur : il peut refuser une requête mal formée.\n\n**Les autres réponses :** « aucune » est faux, la signature est différente (`Self` contre `Result`). « `From` est plus lent » : la vitesse n'a rien à voir. « `TryFrom` ne marche qu'avec les nombres » : on l'implémente pour n'importe quel type, comme `TryFrom<&str> for Identifiant`.\n\n**À retenir :** conversion sûre → `From` ; conversion qui peut refuser → `TryFrom`, qui renvoie un `Result`."
         },
         {
           "question": "Dans l'architecture en couches, pourquoi le service est-il écrit `fn stats<R: MesuresRepository>(repo: &R, ...)` ?",
@@ -2089,7 +2089,7 @@
             "Pour éviter d'écrire des tests"
           ],
           "reponse": 1,
-          "explication": "Le service ne connaît que le trait : on lui donne la vraie base en production et une `BTreeMap` dans les tests, qui tournent alors sans serveur ni base."
+          "explication": "**Règle :** `fn stats<R: MesuresRepository>(repo: &R, ...)` est une fonction **générique** : elle marche pour **n'importe quel** type `R` qui implémente le trait. Le service ne connaît que le trait, jamais la façon dont les données sont stockées.\n\n**Pas à pas :**\n\n1. En production, on appelle `stats(&repo_sqlite, 3)` : `R` = le repository qui parle à SQLite.\n2. Dans les tests, on appelle `stats(&en_memoire, 3)` avec une simple `BTreeMap` : `R` = `EnMemoire`.\n3. Le **même** code du service tourne dans les deux cas. Les tests vont très vite : pas de serveur, pas de base.\n\n**Les autres réponses :** « aller plus vite à l'exécution » n'est pas le but (un générique ne rend pas le calcul plus rapide qu'une fonction écrite pour un seul type). Loco n'impose rien sur la forme des services : c'est un choix d'architecture. Et c'est l'inverse d'« éviter les tests » : le générique sert justement à **faciliter** les tests.\n\n**À retenir :** service générique sur un trait = une seule logique, plusieurs sources de données (vraie base en production, mémoire en test)."
         },
         {
           "question": "Quel est le rôle du contrôleur dans cette architecture ?",
@@ -2100,7 +2100,7 @@
             "Créer les migrations"
           ],
           "reponse": 2,
-          "explication": "Le contrôleur ne fait que du HTTP : par exemple `None` devient un 404 et `Some(stats)` un 200 avec du JSON."
+          "explication": "**Règle :** dans l'architecture en couches, chaque couche a un seul rôle : le contrôleur fait **uniquement du HTTP**. Il extrait les données de la requête, appelle le service, puis traduit le résultat en code HTTP et en JSON.\n\n**Pas à pas :** pour `GET /api/capteurs/3/stats` :\n\n1. **extraire** : `Path(id)` donne `3` ;\n2. **appeler** : `stats_capteur(&repo, 3)` ;\n3. **traduire** : `Some(stats)` devient `200` + JSON, `None` devient `404`.\n\n**Les autres réponses :** écrire les requêtes SQL, c'est le rôle du **repository**. Calculer les statistiques, c'est le **service** (la logique métier). Créer les migrations, c'est la commande `generate` et le dossier `migration/` : rien à voir avec le contrôleur.\n\n**À retenir :** contrôleur = extraire, appeler le service, traduire en code HTTP + JSON ; la logique va dans le service, les données dans le repository."
         }
       ]
     },
@@ -2229,7 +2229,7 @@
             "Il n'y en a aucune"
           ],
           "reponse": 0,
-          "explication": "Impératif : on détaille les étapes (boucles, variables modifiées). Déclaratif : on dit ce qu'on veut (`filter`, `map`, `sum`)."
+          "explication": "**Règle :** le style **impératif** décrit le **comment** : les étapes une par une, avec des boucles et des variables qu'on modifie. Le style **déclaratif** décrit le **quoi** : ce qu'on veut obtenir, le détail des étapes étant caché dans des fonctions réutilisables.\n\n**Pas à pas :** « la somme des carrés des nombres pairs » :\n\n```rust\nlet mut total = 0;\nfor &n in &nombres {\n    if n % 2 == 0 {\n        total += n * n;\n    }\n}\n```\n\nC'est impératif : on gère soi-même `total` et la boucle. La version déclarative se lit comme la consigne :\n\n```rust\nlet total: i32 = nombres.iter().filter(|n| *n % 2 == 0).map(|n| n * n).sum();\n```\n\n**Les autres réponses :** « l'impératif est toujours plus rapide » est faux : en Rust, les itérateurs sont compilés en code aussi rapide qu'une boucle. « Le déclaratif interdit les fonctions » est l'inverse : il repose justement sur des fonctions (`filter`, `map`). « Aucune différence » est faux : les deux donnent le même résultat, mais s'écrivent et se lisent différemment.\n\n**À retenir :** impératif = comment (boucle, `mut`) ; déclaratif = quoi (`filter`, `map`, `sum`)."
         },
         {
           "question": "Qui a inventé le calcul lambda, base théorique de la PF ?",
@@ -2240,7 +2240,7 @@
             "Graydon Hoare en 2010"
           ],
           "reponse": 1,
-          "explication": "Alonzo Church a proposé le calcul lambda dans les années 1930 : calculer avec des fonctions, sans état qui change."
+          "explication": "**Règle :** le **calcul lambda** est un modèle mathématique où l'on calcule uniquement avec des fonctions (on les crée, on les applique), sans état qui change. Il a été proposé par **Alonzo Church** dans les années 1930.\n\n**Pas à pas :** on replace chaque nom proposé dans l'histoire :\n\n| Personne | Ce qu'on lui doit |\n|---|---|\n| Alonzo Church, années 1930 | le calcul lambda, base de la PF |\n| Alan Turing | la machine de Turing (1936), un autre modèle de calcul, à base d'un ruban qu'on modifie |\n| Linus Torvalds, 1991 | le noyau Linux |\n| Graydon Hoare | le langage Rust, commencé vers 2006 |\n\n**Les autres réponses :** Turing est contemporain de Church, mais son modèle est la machine de Turing, pas le calcul lambda (et 1950 ne correspond à aucun des deux). Torvalds et Hoare n'ont rien à voir avec le calcul lambda.\n\n**À retenir :** calcul lambda = Church, années 1930 ; puis LISP (1958), ML (1973), Haskell (1990)."
         },
         {
           "question": "Pourquoi la closure de `creer_compteur` est-elle déclarée `move` ?",
@@ -2251,7 +2251,7 @@
             "Pour l'envoyer sur le réseau"
           ],
           "reponse": 1,
-          "explication": "Sans `move`, la closure emprunterait `compte`, qui disparaît à la fin de la fonction. Avec `move`, elle en devient propriétaire."
+          "explication": "**Règle :** une closure qui **sort** de la fonction où elle est créée ne peut pas emprunter une variable locale de cette fonction, car la variable disparaît à la fin de l'appel. `move` fait **prendre possession** des variables capturées : la closure les emporte avec elle.\n\n**Pas à pas :**\n\n```rust\nfn creer_compteur() -> impl FnMut() -> i32 {\n    let mut compte = 0;\n    move || {\n        compte += 1;\n        compte\n    }\n}\n```\n\n1. `compte` est une variable locale de `creer_compteur`.\n2. La closure est renvoyée : `creer_compteur` se termine, sa variable locale devrait disparaître.\n3. Grâce à `move`, `compte` a été **déplacé dans** la closure : elle garde sa propre copie, et chaque appel de `creer_compteur()` crée un nouveau compteur indépendant.\n\nSans `move`, le compilateur refuse : la closure emprunterait une variable qui ne vit pas assez longtemps.\n\n**Les autres réponses :** `move` ne change pas la vitesse. Il n'interdit pas la modification : la closure modifie bien `compte` (c'est pour cela qu'elle est `FnMut`). Et il n'a rien à voir avec le réseau : « déplacer » parle ici de propriété en mémoire.\n\n**À retenir :** closure renvoyée par une fonction = `move`, pour qu'elle possède ce qu'elle capture."
         },
         {
           "question": "Que renvoie `[3, 8, 5].iter().position(|n| *n > 4)` ?",
@@ -2262,7 +2262,7 @@
             "`Some(2)`"
           ],
           "reponse": 1,
-          "explication": "`position` renvoie l'**index** du premier élément qui valide la condition, dans un `Option`. Ici 8 est à l'index 1."
+          "explication": "**Règle :** `position(p)` renvoie l'**index** (à partir de 0) du premier élément qui valide `p`, dans un `Option<usize>` : `Some(index)` s'il y en a un, `None` sinon. À ne pas confondre avec `find(p)`, qui renvoie l'**élément** lui-même.\n\n**Pas à pas :** sur `[3, 8, 5]` avec la condition `*n > 4` :\n\n| Index | Élément | `> 4` ? |\n|---|---|---|\n| 0 | 3 | non |\n| 1 | 8 | **oui** : on s'arrête |\n\n`position` renvoie donc `Some(1)`. L'élément 5 (index 2) n'est jamais regardé.\n\n**Les autres réponses :** `Some(8)` est ce que renverrait `find` (la valeur, et même `Some(&8)` avec `iter()`). `1` seul est impossible : le résultat est toujours dans une `Option`, car il pourrait ne rien y avoir. `Some(2)` est l'index de 5, qui valide aussi la condition, mais `position` s'arrête au **premier**.\n\n**À retenir :** `position` → index du premier qui valide, dans un `Option` ; `find` → l'élément."
         },
         {
           "question": "Qu'est-ce que l'application partielle ?",
@@ -2273,7 +2273,7 @@
             "Ignorer une erreur"
           ],
           "reponse": 1,
-          "explication": "`multiplier(2)` fixe le premier argument et renvoie une fonction qui attend le second."
+          "explication": "**Règle :** l'**application partielle** consiste à fixer à l'avance certains arguments d'une fonction : on obtient une nouvelle fonction, plus simple, qui n'attend plus que les arguments restants.\n\n**Pas à pas :**\n\n```rust\nfn multiplier(x: i32) -> impl Fn(i32) -> i32 {\n    move |y| x * y\n}\nlet double = multiplier(2);\n```\n\n1. `multiplier(2)` fixe `x = 2` et renvoie une fonction qui attend `y`.\n2. `double(7)` calcule `2 * 7 = 14`.\n\nDe même, avec une fonction à deux arguments `|a, b| a - b`, fixer `b = 1` donne une fonction « moins un » qui n'attend plus que `a`.\n\n**Les autres réponses :** compiler une partie du programme n'a rien à voir avec les fonctions (c'est de la compilation incrémentale). Appeler une fonction deux fois, c'est la répéter, pas fixer un argument. Ignorer une erreur, c'est par exemple `.ok()` ou `let _ =`, sans rapport.\n\n**À retenir :** application partielle = fixer un ou plusieurs arguments pour obtenir une fonction qui attend le reste."
         },
         {
           "question": "Comment simule-t-on une fonction curryfiée en Rust ?",
@@ -2284,7 +2284,7 @@
             "Avec `unsafe`"
           ],
           "reponse": 1,
-          "explication": "`fn multiplier(x: i32) -> impl Fn(i32) -> i32 { move |y| x * y }` : appeler `multiplier(2)` donne une closure qui attend `y`."
+          "explication": "**Règle :** une fonction **curryfiée** prend ses arguments un par un : `f(a)(b)`. Rust ne curryfie pas automatiquement ; on le **simule** avec une fonction qui prend le premier argument et **renvoie une closure** (`impl Fn`) qui attend le suivant.\n\n**Pas à pas :**\n\n```rust\nfn multiplier(x: i32) -> impl Fn(i32) -> i32 {\n    move |y| x * y\n}\nassert_eq!(multiplier(4)(5), 20);\n```\n\n1. `multiplier(4)` renvoie la closure `move |y| 4 * y` ;\n2. `(5)` l'appelle avec `y = 5` ;\n3. résultat `20`.\n\nLe `move` emporte `x` dans la closure, et `impl Fn(i32) -> i32` évite d'écrire le type exact de la closure, qui n'a pas de nom.\n\n**Les autres réponses :** il n'existe pas de macro `curry!` dans la bibliothèque standard. « Rust la fournit nativement » est faux : `fn f(a: i32, b: i32)` s'appelle `f(1, 2)`, jamais `f(1)(2)`. `unsafe` sert à contourner des vérifications de mémoire, aucun rapport.\n\n**À retenir :** curryfier en Rust = une fonction qui renvoie `impl Fn(...)`, avec une closure `move`."
         },
         {
           "question": "Quelle écriture est en style point-free ?",
@@ -2295,7 +2295,7 @@
             "`for x in v { double(x); }`"
           ],
           "reponse": 1,
-          "explication": "Point-free : on ne nomme pas l'argument, on passe directement la fonction."
+          "explication": "**Règle :** un code est **point-free** quand on ne nomme pas l'argument : au lieu d'écrire une closure `|x| f(x)` qui ne fait qu'appeler `f`, on passe directement `f`.\n\n**Pas à pas :** on regarde chaque écriture et on se demande « est-ce qu'un argument est nommé ? » :\n\n| Écriture | Argument nommé ? | Point-free ? |\n|---|---|---|\n| `.map(\\|x\\| double(x))` | oui, `x` | non |\n| `.map(double)` | non | **oui** |\n| `.map(\\|x\\| x * 2)` | oui, `x` | non |\n| `for x in v { double(x); }` | oui, `x` (et c'est une boucle) | non |\n\n`.map(double)` fait exactement la même chose que `.map(|x| double(x))`, en plus court.\n\n**Les autres réponses :** `.map(|x| x * 2)` donne le même résultat que `double`, mais avec une closure qui nomme `x`. La boucle `for` est du style impératif (et elle jette le résultat de `double`).\n\n**À retenir :** point-free = passer la fonction elle-même (`map(double)`, `map(str::len)`), sans `|x| ...`."
         },
         {
           "question": "Que fait le motif `[premier, reste @ ..]` sur une slice ?",
@@ -2306,7 +2306,7 @@
             "Il trie la slice"
           ],
           "reponse": 1,
-          "explication": "Il ne correspond qu'à une slice d'au moins un élément : `premier` est le premier, `reste` la sous-slice du reste (éventuellement vide)."
+          "explication": "**Règle :** dans un motif de slice, `reste @ ..` **lie** à un nom tous les éléments que `..` laisse de côté. `[premier, reste @ ..]` correspond donc à une slice d'**au moins un** élément : `premier` est le premier, `reste` est la sous-slice qui suit (peut-être vide).\n\n**Pas à pas :**\n\n| Slice | Correspond ? | `premier` | `reste` |\n|---|---|---|---|\n| `[7, 8, 9]` | oui | `7` | `[8, 9]` |\n| `[7]` | oui | `7` | `[]` |\n| `[]` | **non** | | |\n\nC'est le motif de base de la récursion sur une slice : on traite `premier`, puis on rappelle la fonction sur `reste`.\n\n**Les autres réponses :** il n'accepte **pas** la slice vide : il faut au moins un élément pour `premier` (c'est le rôle du motif `[]`). Il ne copie rien : `premier` et `reste` sont des **références** vers la slice d'origine. Et un `match` ne trie jamais rien, il ne fait que reconnaître une forme.\n\n**À retenir :** `[premier, reste @ ..]` = au moins un élément, coupé en « premier » + « le reste » ; la slice vide se traite avec `[]`."
         },
         {
           "question": "Pourquoi `Option<T>` vaut-il mieux qu'un `panic!` pour une valeur absente ?",
@@ -2317,7 +2317,7 @@
             "Parce qu'`Option` remplace les boucles"
           ],
           "reponse": 0,
-          "explication": "Une fonction qui panique a une signature qui ment. Avec `Option`, l'appelant voit le cas possible et doit le gérer."
+          "explication": "**Règle :** une fonction qui renvoie `Option<T>` dit dans son **type** que la valeur peut manquer. L'appelant ne peut pas utiliser le `T` sans traiter le cas `None` : le compilateur l'y oblige. Un `panic!`, lui, n'apparaît nulle part dans la signature.\n\n**Pas à pas :**\n\n```rust\nfn diviser_panique(a: f64, b: f64) -> f64 { /* panic! si b == 0 */ a / b }\nfn diviser(a: f64, b: f64) -> Option<f64> {\n    if b == 0.0 { None } else { Some(a / b) }\n}\n```\n\n1. `diviser_panique` promet un `f64` : rien ne prévient qu'elle peut faire planter le programme.\n2. `diviser` promet un `Option<f64>` : pour avoir le nombre, il faut écrire un `match`, un `map`, un `unwrap_or`... donc **penser** au cas « division par zéro ».\n3. Résultat : l'oubli est attrapé à la compilation au lieu de planter à l'exécution.\n\n**Les autres réponses :** `panic!` n'est pas interdit en Rust, il est réservé aux bugs vraiment impossibles à gérer. `Option` n'est pas plus lent de façon notable, et ce n'est de toute façon pas un avantage. Et `Option` ne remplace pas les boucles : il représente une valeur présente ou absente.\n\n**À retenir :** `Option` met l'absence dans le type ; le compilateur force à la traiter, alors qu'un `panic!` est invisible dans la signature."
         },
         {
           "question": "Dans la comparaison avec les interfaces, à quoi ressemble un foncteur en Rust ?",
@@ -2328,7 +2328,7 @@
             "À une macro"
           ],
           "reponse": 0,
-          "explication": "Un foncteur promet « je sais appliquer une fonction à ce que je contiens » : `Option::map`, `Iterator::map`. C'est une interface, comme un trait."
+          "explication": "**Règle :** en théorie des catégories, un **foncteur** est une « boîte » qui promet une seule chose : on peut appliquer une fonction à ce qu'elle contient, et on obtient une boîte du même genre. En Rust, cette promesse s'appelle `map`.\n\n**Pas à pas :**\n\n- `Some(4).map(|x| x + 1)` donne `Some(5)` : la fonction est appliquée au contenu, on reste dans une `Option` ;\n- `None.map(|x: i32| x + 1)` donne `None` : rien à transformer, la boîte reste vide ;\n- `[1, 2].iter().map(|x| x * 10)` donne `10, 20` : même promesse sur un itérateur.\n\n`Option`, `Result` et les itérateurs sont donc des foncteurs : c'est une **interface** commune, comme un trait. (La monade ajoute `and_then`, pour enchaîner une étape qui rend elle-même une boîte.)\n\n**Les autres réponses :** une boucle `for` parcourt des éléments mais n'est pas un type « boîte » avec `map`. Un pointeur brut (`*const T`) est une adresse mémoire sans garantie, rien à voir. Une macro génère du code à la compilation.\n\n**À retenir :** foncteur = un type qui sait faire `map` ; monade = un type qui sait faire `and_then`."
         }
       ]
     }

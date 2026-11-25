@@ -1,9 +1,14 @@
 [
   {
     "question": "Que vaut $\\det \\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$ ?",
-    "choix": ["$1$", "$11$", "$-1$", "$6$"],
+    "choix": [
+      "$1$",
+      "$11$",
+      "$-1$",
+      "$6$"
+    ],
     "reponse": 0,
-    "explication": "$ad - bc = 2 \\times 3 - 5 \\times 1 = 6 - 5 = 1$."
+    "explication": "**Règle :** $\\det \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc$ : produit de la diagonale descendante, **moins** le produit de l'autre diagonale.\n\n**Pas à pas :**\n\n1. $a = 2$, $b = 5$, $c = 1$, $d = 3$.\n2. $ad = 2 \\times 3 = 6$.\n3. $bc = 5 \\times 1 = 5$.\n4. $ad - bc = 6 - 5 = 1$.\n\n**Les autres réponses :**\n\n- $11 = 6 + 5$ : on a **ajouté** les deux produits au lieu de les soustraire.\n- $-1 = 5 - 6$ : on a fait $bc - ad$, la soustraction à l'envers.\n- $6$ : on s'est arrêté à $ad$, en oubliant de retirer $bc$.\n\n**À retenir :** $ad - bc$, dans cet ordre, avec un « moins »."
   },
   {
     "question": "Le mineur $M_{ij}$ d'une matrice est :",
@@ -14,37 +19,62 @@
       "la somme de la ligne $i$ et de la colonne $j$"
     ],
     "reponse": 1,
-    "explication": "On supprime la ligne $i$ et la colonne $j$, puis on calcule le déterminant de ce qui reste. Le cofacteur ajoute le signe : $C_{ij} = (-1)^{i+j} M_{ij}$."
+    "explication": "**Règle :** le **mineur** $M_{ij}$ est le déterminant de la matrice plus petite obtenue en **barrant la ligne $i$ et la colonne $j$**. Le **cofacteur** ajoute le signe : $C_{ij} = (-1)^{i+j} M_{ij}$.\n\n**Pas à pas avec $\\begin{pmatrix} 1 & 2 & 0 \\\\ 3 & -1 & 2 \\\\ 0 & 1 & 4 \\end{pmatrix}$ et $M_{21}$ :**\n\n1. On barre la ligne 2 $(3, -1, 2)$ et la colonne 1 $(1, 3, 0)$.\n2. Il reste $\\begin{pmatrix} 2 & 0 \\\\ 1 & 4 \\end{pmatrix}$.\n3. $M_{21} = 2 \\times 4 - 0 \\times 1 = 8$.\n\n**Les autres réponses :**\n\n- « Le coefficient à la ligne $i$, colonne $j$ » : c'est $a_{ij}$, justement la case qu'on barre.\n- « Le produit des coefficients de la ligne $i$ » et « la somme de la ligne $i$ et de la colonne $j$ » n'ont rien à voir avec le calcul d'un déterminant.\n\n**À retenir :** mineur = barrer une ligne et une colonne, puis calculer le déterminant de ce qui reste."
   },
   {
     "question": "Quel est le signe du cofacteur de $a_{23}$ dans une matrice $3 \\times 3$ ?",
-    "choix": ["$+$", "$-$", "Ça dépend de $a_{23}$", "Il n'y a pas de signe"],
+    "choix": [
+      "$+$",
+      "$-$",
+      "Ça dépend de $a_{23}$",
+      "Il n'y a pas de signe"
+    ],
     "reponse": 1,
-    "explication": "$(-1)^{2+3} = (-1)^5 = -1$. Dans le damier des signes, la case (2, 3) est un $-$."
+    "explication": "**Règle :** le signe du cofacteur de $a_{ij}$ est $(-1)^{i+j}$ : $+$ si $i + j$ est pair, $-$ si $i + j$ est impair. C'est le damier qui commence par $+$ en haut à gauche.\n\n**Pas à pas :** pour $a_{23}$, $i = 2$ et $j = 3$.\n\n1. $i + j = 2 + 3 = 5$.\n2. 5 est impair, donc $(-1)^5 = -1$ : le signe est $-$.\n3. Vérification sur le damier $3 \\times 3$ : ligne 1 $+ - +$, ligne 2 $- + -$ ; la 3e case de la ligne 2 est bien un $-$.\n\n**Les autres réponses :**\n\n- $+$ : c'est le signe des cases où $i + j$ est pair, comme $(2, 2)$ ou $(1, 3)$.\n- « Ça dépend de $a_{23}$ » : le signe du damier ne dépend que de la **position**, pas de la valeur du coefficient.\n- « Il n'y a pas de signe » : c'est le mineur qui n'a pas de signe ; le cofacteur en a toujours un.\n\n**À retenir :** signe du cofacteur = $+$ si ligne + colonne est pair, $-$ sinon."
   },
   {
     "question": "Pour développer un déterminant par cofacteurs, quelle ligne vaut-il mieux choisir ?",
-    "choix": ["Toujours la première", "Celle qui contient le plus de zéros", "Celle qui a les plus grands nombres", "La dernière"],
+    "choix": [
+      "Toujours la première",
+      "Celle qui contient le plus de zéros",
+      "Celle qui a les plus grands nombres",
+      "La dernière"
+    ],
     "reponse": 1,
-    "explication": "Le résultat est le même quelle que soit la ligne, mais chaque $0$ supprime un mineur à calculer : on gagne du temps."
+    "explication": "**Règle :** le développement par cofacteurs donne le **même résultat** quelle que soit la ligne (ou la colonne) choisie. Chaque coefficient nul donne un terme $0 \\times C_{ij} = 0$ : son mineur n'a pas besoin d'être calculé.\n\n**Pas à pas avec un exemple :** dans $\\begin{pmatrix} 5 & 7 & 2 \\\\ 0 & 3 & 0 \\\\ 4 & 1 & 6 \\end{pmatrix}$, la ligne 2 a deux zéros.\n\n- Selon la ligne 2 : un seul mineur à calculer, $3 \\times \\begin{vmatrix} 5 & 2 \\\\ 4 & 6 \\end{vmatrix} = 3 \\times (30 - 8) = 66$ (le signe de la case (2, 2) est $+$).\n- Selon la ligne 1 : il faudrait **trois** mineurs pour arriver au même 66.\n\n**Les autres réponses :**\n\n- « Toujours la première » : on peut, mais ce n'est pas obligatoire et souvent plus long.\n- « Celle qui a les plus grands nombres » : ça rend les calculs plus durs, pas plus courts.\n- « La dernière » : rien ne la rend meilleure qu'une autre.\n\n**À retenir :** développe selon la ligne ou la colonne qui a le plus de zéros."
   },
   {
     "question": "La règle de Sarrus s'applique aux matrices de taille :",
-    "choix": ["$2 \\times 2$ seulement", "$3 \\times 3$ seulement", "toutes les tailles", "$4 \\times 4$ et plus"],
+    "choix": [
+      "$2 \\times 2$ seulement",
+      "$3 \\times 3$ seulement",
+      "toutes les tailles",
+      "$4 \\times 4$ et plus"
+    ],
     "reponse": 1,
-    "explication": "Sarrus est le développement par cofacteurs écrit en entier, mais **uniquement** pour une matrice $3 \\times 3$. En $4 \\times 4$, on revient aux cofacteurs."
+    "explication": "**Règle :** la règle de Sarrus ($aei + bfg + cdh - ceg - bdi - afh$) est le développement par cofacteurs d'une matrice **$3 \\times 3$**, écrit en entier. Elle ne marche que pour cette taille.\n\n**Pas à pas :**\n\n1. En $2 \\times 2$, on utilise directement $ad - bc$ (Sarrus n'a pas de sens : il n'y a pas trois diagonales).\n2. En $3 \\times 3$ : Sarrus donne 6 produits de 3 nombres, c'est exactement le bon nombre de termes.\n3. En $4 \\times 4$, le déterminant a 24 termes ; recopier « à la Sarrus » ne donnerait que 8 produits, c'est faux. On revient aux cofacteurs.\n\n**Les autres réponses :** « $2 \\times 2$ seulement », « toutes les tailles » et « $4 \\times 4$ et plus » sont faux pour les raisons ci-dessus.\n\n**À retenir :** Sarrus = $3 \\times 3$ seulement ; au-delà, cofacteurs."
   },
   {
     "question": "Que vaut $\\det \\begin{pmatrix} 3 & 8 & -1 \\\\ 0 & 2 & 5 \\\\ 0 & 0 & -1 \\end{pmatrix}$ ?",
-    "choix": ["$-6$", "$6$", "$4$", "$0$"],
+    "choix": [
+      "$-6$",
+      "$6$",
+      "$4$",
+      "$0$"
+    ],
     "reponse": 0,
-    "explication": "La matrice est triangulaire : le déterminant est le produit de la diagonale, $3 \\times 2 \\times (-1) = -6$."
+    "explication": "**Règle :** le déterminant d'une matrice **triangulaire** (tous les nombres d'un côté de la diagonale sont nuls) est le **produit des coefficients de la diagonale**.\n\n**Pas à pas :**\n\n1. Sous la diagonale : $0$, $0$, $0$. La matrice est triangulaire.\n2. Diagonale : $3$, $2$, $-1$.\n3. $\\det = 3 \\times 2 \\times (-1) = -6$.\n\nLes nombres au-dessus de la diagonale ($8$, $-1$, $5$) ne servent pas.\n\n**Les autres réponses :**\n\n- $6$ : on a perdu le signe de $-1$.\n- $4 = 3 + 2 + (-1)$ : on a **additionné** la diagonale au lieu de la multiplier.\n- $0$ : un déterminant n'est nul que si un coefficient de la diagonale l'est (pour une triangulaire) ; ce n'est pas le cas ici.\n\n**À retenir :** triangulaire = produit de la diagonale, avec les signes."
   },
   {
     "question": "$\\det(A) = 4$ et $\\det(B) = -3$. Que vaut $\\det(AB)$ ?",
-    "choix": ["$1$", "$-12$", "$12$", "$7$"],
+    "choix": [
+      "$1$",
+      "$-12$",
+      "$12$",
+      "$7$"
+    ],
     "reponse": 1,
-    "explication": "$\\det(AB) = \\det(A) \\times \\det(B) = 4 \\times (-3) = -12$."
+    "explication": "**Règle :** le déterminant d'un produit est le **produit** des déterminants : $\\det(AB) = \\det(A) \\times \\det(B)$.\n\n**Pas à pas :** $\\det(AB) = 4 \\times (-3) = -12$.\n\n**Les autres réponses :**\n\n- $1 = 4 + (-3)$ : on a additionné ; le déterminant ne se comporte pas comme une somme.\n- $12$ : on a perdu le signe moins ($4 \\times (-3)$ est négatif).\n- $7 = 4 - (-3)$ : on a soustrait.\n\n**À retenir :** $\\det(AB) = \\det(A)\\det(B)$ : on multiplie, signes compris."
   },
   {
     "question": "Si $\\det(A) = 0$, alors :",
@@ -55,7 +85,7 @@
       "$A$ est la matrice identité"
     ],
     "reponse": 1,
-    "explication": "$\\det(A) \\neq 0 \\iff A$ inversible $\\iff$ colonnes libres. Un déterminant nul signifie que la matrice écrase l'espace : pas de retour possible."
+    "explication": "**Règle (admise) :** une matrice carrée est inversible **si et seulement si** son déterminant n'est pas nul. $\\det(A) = 0$ veut dire que les colonnes de $A$ sont **liées** (l'une est une combinaison des autres) : la matrice écrase l'espace et on ne peut pas revenir en arrière.\n\n**Pas à pas avec un exemple :** $A = \\begin{pmatrix} 1 & 3 \\\\ 2 & 6 \\end{pmatrix}$.\n\n1. $\\det(A) = 1 \\times 6 - 3 \\times 2 = 0$.\n2. Colonnes : $(1, 2)$ et $(3, 6) = 3 \\times (1, 2)$, elles sont liées.\n3. $A$ n'est pas inversible. Pourtant elle n'est ni nulle, ni l'identité.\n\n**Les autres réponses :**\n\n- « $A$ est inversible » : c'est le contraire, il faudrait $\\det(A) \\neq 0$.\n- « $A$ est la matrice nulle » : la matrice nulle a bien un déterminant nul, mais l'exemple montre que d'autres matrices aussi.\n- « $A$ est la matrice identité » : $\\det(I) = 1$, pas 0.\n\n**À retenir :** $\\det = 0$ $\\iff$ pas inversible $\\iff$ colonnes liées."
   },
   {
     "question": "Quelle est l'inverse de $A = \\begin{pmatrix} 2 & 1 \\\\ 3 & 2 \\end{pmatrix}$ ?",
@@ -66,19 +96,29 @@
       "$\\begin{pmatrix} 1/2 & 1 \\\\ 1/3 & 1/2 \\end{pmatrix}$"
     ],
     "reponse": 0,
-    "explication": "$\\det(A) = 4 - 3 = 1$. On échange la diagonale ($2$ et $2$), on change le signe des deux autres, et on divise par $1$ : $\\begin{pmatrix} 2 & -1 \\\\ -3 & 2 \\end{pmatrix}$."
+    "explication": "**Règle :** inverse d'une $2 \\times 2$ : $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}^{-1} = \\frac{1}{ad - bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$. On échange la diagonale, on change le signe des deux autres, on divise par le déterminant.\n\n**Pas à pas :**\n\n1. $\\det(A) = 2 \\times 2 - 1 \\times 3 = 4 - 3 = 1$.\n2. On échange les deux nombres de la diagonale : $2$ et $2$, ça ne change rien ici.\n3. On change le signe des deux autres : $1$ devient $-1$, $3$ devient $-3$.\n4. On divise par $1$ : rien ne change. $A^{-1} = \\begin{pmatrix} 2 & -1 \\\\ -3 & 2 \\end{pmatrix}$.\n5. Vérification : $\\begin{pmatrix} 2 & 1 \\\\ 3 & 2 \\end{pmatrix}\\begin{pmatrix} 2 & -1 \\\\ -3 & 2 \\end{pmatrix}$ donne $(4 - 3,\\ -2 + 2,\\ 6 - 6,\\ -3 + 4) = (1, 0, 0, 1)$, c'est bien $I$.\n\n**Les autres réponses :**\n\n- $\\begin{pmatrix} 2 & 1 \\\\ 3 & 2 \\end{pmatrix}$ est $A$ elle-même : rien n'a été changé.\n- $\\begin{pmatrix} -2 & 1 \\\\ 3 & -2 \\end{pmatrix}$ change le signe de la **diagonale** au lieu des deux autres : c'est $-A^{-1}$.\n- $\\begin{pmatrix} 1/2 & 1 \\\\ 1/3 & 1/2 \\end{pmatrix}$ inverse certains nombres un par un : l'inverse d'une matrice ne se calcule pas case par case.\n\n**À retenir :** échanger la diagonale, changer le signe du reste, diviser par $\\det$ ; vérifier avec $AA^{-1} = I$."
   },
   {
     "question": "Pendant le pivot de Gauss, une ligne devient $0 = 0$. Le système a :",
-    "choix": ["aucune solution", "une seule solution", "une infinité de solutions", "deux solutions"],
+    "choix": [
+      "aucune solution",
+      "une seule solution",
+      "une infinité de solutions",
+      "deux solutions"
+    ],
     "reponse": 2,
-    "explication": "Une équation a disparu : elle était une combinaison des autres. Il reste moins d'équations que d'inconnues, d'où un paramètre libre et une infinité de solutions."
+    "explication": "**Règle :** pendant le pivot, une ligne $0 = 0$ signifie que cette équation était une **combinaison des autres** : elle n'apporte aucune information. Il reste moins d'équations utiles que d'inconnues, donc au moins une inconnue est **libre** (un paramètre $t$), et chaque valeur de $t$ donne une solution.\n\n**Pas à pas avec un exemple :** $x + y = 4$ et $3x + 3y = 12$.\n\n1. $L_2 - 3L_1$ : $3x - 3x = 0$, $3y - 3y = 0$, $12 - 12 = 0$, soit $0 = 0$.\n2. Il reste une seule équation, $x + y = 4$, pour deux inconnues.\n3. On pose $y = t$ : $x = 4 - t$. Avec $t = 0$ : $(4, 0)$ ; avec $t = 1$ : $(3, 1)$ ; etc.\n\n**Les autres réponses :**\n\n- « Aucune solution » : c'est le cas $0 = c$ avec $c \\neq 0$, pas $0 = 0$ (qui est toujours vraie).\n- « Une seule solution » : il faudrait un système triangulaire complet, sans ligne disparue.\n- « Deux solutions » : un système linéaire n'a jamais exactement deux solutions (0, 1 ou une infinité).\n\n**À retenir :** $0 = 0$ = équation en trop = une infinité de solutions."
   },
   {
     "question": "Pendant le pivot de Gauss, une ligne devient $0 = 4$. Le système a :",
-    "choix": ["aucune solution", "une seule solution", "une infinité de solutions", "la solution $x = 4$"],
+    "choix": [
+      "aucune solution",
+      "une seule solution",
+      "une infinité de solutions",
+      "la solution $x = 4$"
+    ],
     "reponse": 0,
-    "explication": "$0 = 4$ est impossible : les équations se contredisent, le système n'a **aucune** solution."
+    "explication": "**Règle :** une ligne $0 = c$ avec $c \\neq 0$ est une **contradiction** : aucune valeur des inconnues ne peut la rendre vraie, puisque la partie gauche vaut toujours 0.\n\n**Pas à pas avec un exemple :** $x + y = 2$ et $2x + 2y = 8$.\n\n1. $L_2 - 2L_1$ : à gauche $0$, à droite $8 - 4 = 4$, soit $0 = 4$.\n2. Quels que soient $x$ et $y$, $0 \\times x + 0 \\times y = 0$, jamais 4.\n3. Le système n'a **aucune** solution : la 1re équation veut $x + y = 2$, la 2e veut $x + y = 4$.\n\n**Les autres réponses :**\n\n- « Une seule solution » ou « une infinité » : une seule ligne impossible suffit à tout bloquer.\n- « La solution $x = 4$ » : la ligne $0 = 4$ ne contient plus aucune inconnue, on ne peut rien en tirer sur $x$.\n\n**À retenir :** $0 = c$ avec $c \\neq 0$ = aucune solution."
   },
   {
     "question": "Dans la règle de Cramer, comment obtient-on $\\Delta_x$ ?",
@@ -89,7 +129,7 @@
       "En multipliant $\\Delta$ par $x$"
     ],
     "reponse": 0,
-    "explication": "$\\Delta_x$ est le déterminant de la matrice où la colonne des coefficients de $x$ est remplacée par le second membre. Ensuite, $x = \\Delta_x / \\Delta$."
+    "explication": "**Règle (Cramer) :** pour $ax + by = e$ et $cx + dy = f$, $\\Delta = \\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}$ et $\\Delta_x$ est le même déterminant où la **colonne des coefficients de $x$** est remplacée par le second membre : $\\Delta_x = \\begin{vmatrix} e & b \\\\ f & d \\end{vmatrix}$. Puis $x = \\Delta_x / \\Delta$.\n\n**Pas à pas avec $x + 3y = 7$ et $2x - y = 0$ :**\n\n1. Colonne de $x$ : $(1, 2)$ ; colonne de $y$ : $(3, -1)$ ; second membre : $(7, 0)$.\n2. $\\Delta_x$ : on met $(7, 0)$ à la place de $(1, 2)$ : $\\begin{vmatrix} 7 & 3 \\\\ 0 & -1 \\end{vmatrix} = -7 - 0 = -7$.\n3. $\\Delta = \\begin{vmatrix} 1 & 3 \\\\ 2 & -1 \\end{vmatrix} = -7$, donc $x = 1$.\n\n**Les autres réponses :**\n\n- « Remplacer la ligne 1 par le second membre » : on remplace une **colonne** (celle d'une inconnue), pas une ligne (une équation).\n- « Barrer la colonne de $x$ » : ça donnerait une matrice non carrée, sans déterminant.\n- « Multiplier $\\Delta$ par $x$ » : on ne connaît pas encore $x$, c'est justement ce qu'on cherche.\n\n**À retenir :** $\\Delta_x$ = colonne de $x$ remplacée par le second membre."
   },
   {
     "question": "Pourquoi les bibliothèques de calcul utilisent-elles le pivot de Gauss plutôt que Cramer pour les grands systèmes ?",
@@ -100,6 +140,6 @@
       "Cramer ne marche qu'avec des nombres entiers"
     ],
     "reponse": 1,
-    "explication": "Cramer est pratique pour 2 ou 3 inconnues, mais le nombre de déterminants à calculer explose ensuite. Le pivot marche pour toutes les tailles, et il détecte aussi les cas « infinité » et « aucune solution »."
+    "explication": "**Règle :** Cramer demande $n + 1$ déterminants $n \\times n$ pour $n$ inconnues, et chaque déterminant, calculé par cofacteurs, coûte de plus en plus cher quand $n$ grandit. Le pivot de Gauss se contente de combiner des lignes : il reste raisonnable pour toutes les tailles.\n\n**Pas à pas, en comptant :**\n\n| Inconnues | Déterminants pour Cramer | Taille de chacun |\n|---|---|---|\n| 2 | 3 | $2 \\times 2$, facile |\n| 3 | 4 | $3 \\times 3$, encore faisable |\n| 10 | 11 | $10 \\times 10$, chacun demande des millions de produits par cofacteurs |\n\n**Les autres réponses :**\n\n- « Cramer donne des résultats faux » : non, il est exact dès que $\\Delta \\neq 0$ ; il est seulement trop lent.\n- « Le pivot ne marche que pour les petits systèmes » : c'est l'inverse, il marche pour toutes les tailles.\n- « Cramer ne marche qu'avec des nombres entiers » : il marche avec tous les réels.\n\n**À retenir :** Cramer pour 2 ou 3 inconnues ; pivot de Gauss pour les grands systèmes (et pour détecter « aucune » ou « une infinité »)."
   }
 ]

@@ -8,21 +8,41 @@
       {
         "intitule": "Sur quel ensemble $f$ est-elle continue ?",
         "type": "choix",
-        "choix": ["Sur $\\mathbb{R}$", "Sur $]0, +\\infty[$", "Sur $\\mathbb{R} \\setminus \\{-7\\}$", "Nulle part"],
-        "reponse": 0
+        "choix": [
+          "Sur $\\mathbb{R}$",
+          "Sur $]0, +\\infty[$",
+          "Sur $\\mathbb{R} \\setminus \\{-7\\}$",
+          "Nulle part"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** un **polynôme** (une somme de termes $a\\,x^n$) est défini et continu sur $\\mathbb{R}$ tout entier. Seuls deux cas créent des valeurs interdites dans ce chapitre : un **dénominateur** qui vaut 0, et un $\\ln$ d'un nombre qui n'est pas strictement positif.\n\n**Pas à pas :** on passe en revue chaque morceau de $f(x) = x^2 + 4x - 7$.\n\n| Morceau | Type | Valeur interdite ? |\n|---|---|---|\n| $x^2$ | puissance de $x$ | aucune |\n| $4x$ | nombre fois $x$ | aucune |\n| $-7$ | constante | aucune |\n\nIl n'y a ni fraction ni $\\ln$ : on peut calculer $f(x)$ pour n'importe quel réel. $f$ est continue **sur $\\mathbb{R}$**.\n\n**Erreurs fréquentes :**\n\n- $]0, +\\infty[$ : c'est le domaine de $\\ln$, il n'y a pas de $\\ln$ ici.\n- $\\mathbb{R} \\setminus \\{-7\\}$ : $-7$ est juste le terme constant, il n'interdit rien ($f(-7) = 49 - 28 - 7 = 14$ existe).\n- « Nulle part » : un polynôme se trace d'un seul trait.\n\n**À retenir :** polynôme = continu sur $\\mathbb{R}$, sans rien à enlever."
       },
       {
         "intitule": "Quelle valeur de $x$ faut-il exclure pour que $g$ soit définie ? Donne un nombre.",
         "type": "nombre",
         "reponse": -5,
-        "acceptes": ["-5", "−5"],
-        "refuses": ["5", "3", "0"]
+        "acceptes": [
+          "-5",
+          "−5"
+        ],
+        "refuses": [
+          "5",
+          "3",
+          "0"
+        ],
+        "explication": "**Règle :** une fraction $\\dfrac{A}{B}$ n'existe pas quand son **dénominateur** $B$ vaut 0. Le numérateur, lui, ne pose jamais problème.\n\n**Pas à pas :**\n\n1. Le dénominateur de $g(x) = \\dfrac{3}{x+5}$ est $x + 5$.\n2. On résout $x + 5 = 0$ : on enlève 5 des deux côtés, $x = -5$.\n3. Vérification : $g(-5) = \\dfrac{3}{-5 + 5} = \\dfrac{3}{0}$, impossible. Il faut exclure $-5$.\n\n**Erreurs fréquentes :**\n\n- $5$ : erreur de signe. $g(5) = \\dfrac{3}{10}$ existe très bien.\n- $3$ : c'est le numérateur, il ne rend jamais une fraction impossible.\n- $0$ : réflexe venu de $\\dfrac{1}{x}$, mais ici $g(0) = \\dfrac{3}{5}$ existe.\n\n**À retenir :** valeur interdite d'une fraction = solution de « dénominateur $= 0$ »."
       },
       {
         "intitule": "Sur quel ensemble $h$ est-elle continue ?",
         "type": "choix",
-        "choix": ["Sur $\\mathbb{R}$", "Sur $[0, +\\infty[$", "Sur $]0, +\\infty[$", "Sur $\\mathbb{R} \\setminus \\{1\\}$"],
-        "reponse": 2
+        "choix": [
+          "Sur $\\mathbb{R}$",
+          "Sur $[0, +\\infty[$",
+          "Sur $]0, +\\infty[$",
+          "Sur $\\mathbb{R} \\setminus \\{1\\}$"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** $\\ln(x)$ n'existe que pour $x$ **strictement** positif ($x > 0$). Là où elle existe, elle est continue.\n\n**Pas à pas :**\n\n- $x = 1$ : $\\ln 1 = 0$, ça existe.\n- $x = 0{,}5$ : $\\ln 0{,}5 \\approx -0{,}69$, ça existe (le résultat peut être négatif, c'est $x$ qui doit être positif).\n- $x = 0$ : $\\ln 0$ n'existe pas.\n- $x = -2$ : $\\ln(-2)$ n'existe pas.\n\nDonc $h$ est continue sur $]0, +\\infty[$ : le crochet est **ouvert** en 0 (tourné vers l'extérieur) pour dire que 0 est exclu.\n\n**Erreurs fréquentes :**\n\n- $[0, +\\infty[$ : le crochet fermé inclut 0, or $\\ln 0$ n'existe pas.\n- $\\mathbb{R}$ : les nombres négatifs n'ont pas de logarithme.\n- $\\mathbb{R} \\setminus \\{1\\}$ : $\\ln$ vaut 0 en 1, mais elle y est bien définie. Confusion avec « $\\ln$ s'annule en 1 ».\n\n**À retenir :** $\\ln$ est définie et continue sur $]0, +\\infty[$, avec 0 exclu."
       }
     ],
     "indices": [
@@ -42,21 +62,42 @@
         "intitule": "$f(x) = 4x^3 - 5x^2 + 2x - 7$. Donne $f'(x)$.",
         "type": "expression",
         "reponse": "12x^2 - 10x + 2",
-        "acceptes": ["2 - 10x + 12x^2", "2(6x^2 - 5x + 1)", "12*x^2-10*x+2"],
-        "refuses": ["12x^2 - 10x", "12x^2 - 10x - 5", "4x^3 - 5x^2 + 2x"]
+        "acceptes": [
+          "2 - 10x + 12x^2",
+          "2(6x^2 - 5x + 1)",
+          "12*x^2-10*x+2"
+        ],
+        "refuses": [
+          "12x^2 - 10x",
+          "12x^2 - 10x - 5",
+          "4x^3 - 5x^2 + 2x"
+        ],
+        "explication": "**Règle :** on dérive une somme **terme par terme**, avec $(x^n)' = n\\,x^{n-1}$, $(k\\,u)' = k\\,u'$ et (constante)$' = 0$.\n\n**Pas à pas :**\n\n| Terme | Calcul | Dérivée |\n|---|---|---|\n| $4x^3$ | $4 \\times 3x^{2}$ | $12x^2$ |\n| $-5x^2$ | $-5 \\times 2x^{1}$ | $-10x$ |\n| $2x$ | $2 \\times 1x^{0}$ | $2$ |\n| $-7$ | constante | $0$ |\n\nOn additionne : $f'(x) = 12x^2 - 10x + 2$.\n\n**Erreurs fréquentes :**\n\n- $12x^2 - 10x$ : on a oublié que $(2x)' = 2$ (et non 0).\n- $12x^2 - 10x - 5$ : le $-5$ ne vient de nulle part, la dérivée de $-7$ est 0 et celle de $2x$ est $+2$.\n- $4x^3 - 5x^2 + 2x$ : on a seulement enlevé la constante sans dériver le reste.\n\n**À retenir :** dérive chaque terme : le coefficient se multiplie par la puissance, la puissance baisse de 1, la constante disparaît."
       },
       {
         "intitule": "$g(x) = \\dfrac{x^5}{5} - 3x$. Donne $g'(x)$.",
         "type": "expression",
         "reponse": "x^4 - 3",
-        "acceptes": ["x^4-3", "-3 + x^4"],
-        "refuses": ["x^4", "5x^4 - 3", "x^4 - 3x"]
+        "acceptes": [
+          "x^4-3",
+          "-3 + x^4"
+        ],
+        "refuses": [
+          "x^4",
+          "5x^4 - 3",
+          "x^4 - 3x"
+        ],
+        "explication": "**Règle :** $(k\\,u)' = k\\,u'$ : un nombre qui multiplie (ou divise) reste devant. Et $(x^n)' = n\\,x^{n-1}$.\n\n**Pas à pas :**\n\n1. $\\dfrac{x^5}{5} = \\dfrac{1}{5} \\times x^5$. On dérive $x^5$ : $5x^4$.\n2. On garde le $\\dfrac{1}{5}$ devant : $\\dfrac{1}{5} \\times 5x^4 = x^4$ (le 5 de la puissance et le 5 du dénominateur se simplifient).\n3. $(-3x)' = -3$.\n4. Total : $g'(x) = x^4 - 3$.\n\n**Erreurs fréquentes :**\n\n- $5x^4 - 3$ : on a oublié de diviser par 5.\n- $x^4$ : on a oublié le terme $-3$.\n- $x^4 - 3x$ : on n'a pas dérivé $-3x$ (sa dérivée est $-3$, sans $x$).\n\n**À retenir :** un facteur constant reste devant la dérivée, puis on simplifie."
       },
       {
         "intitule": "$h(x) = 7$. Donne $h'(x)$ (un nombre).",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["7", "1"]
+        "refuses": [
+          "7",
+          "1"
+        ],
+        "explication": "**Règle :** la dérivée d'une **constante** vaut 0 : la courbe est une droite horizontale, sa pente est nulle.\n\n**Pas à pas :**\n\n1. $h(x) = 7$ pour tout $x$ : $h(0) = 7$, $h(10) = 7$, $h(-3) = 7$.\n2. Quand $x$ change, $h$ ne bouge pas : la variation est nulle, la pente aussi.\n3. Donc $h'(x) = 0$.\n\n**Erreurs fréquentes :**\n\n- $7$ : c'est la **valeur** de $h$, pas sa pente.\n- $1$ : c'est la dérivée de $x$, pas celle d'un nombre fixe.\n\n**À retenir :** dérivée d'un nombre seul = 0."
       }
     ],
     "indices": [
@@ -75,22 +116,48 @@
         "intitule": "$f(x) = x^3 \\ln(x)$ (pour $x > 0$). Donne $f'(x)$.",
         "type": "expression",
         "reponse": "3x^2 ln(x) + x^2",
-        "acceptes": ["x^2(3ln(x) + 1)", "3x^2lnx + x^2", "x^2 + 3x^2 ln x"],
-        "refuses": ["3x^2 * (1/x)", "3x^2 ln(x)", "3x^2 ln(x) + x^3"]
+        "acceptes": [
+          "x^2(3ln(x) + 1)",
+          "3x^2lnx + x^2",
+          "x^2 + 3x^2 ln x"
+        ],
+        "refuses": [
+          "3x^2 * (1/x)",
+          "3x^2 ln(x)",
+          "3x^2 ln(x) + x^3"
+        ],
+        "explication": "**Règle :** pour un produit, $(uv)' = u'v + uv'$. On repère $u$ et $v$, on dérive chacun à part, puis on assemble.\n\n**Pas à pas :**\n\n| | Fonction | Dérivée |\n|---|---|---|\n| $u$ | $x^3$ | $u' = 3x^2$ |\n| $v$ | $\\ln x$ | $v' = \\dfrac{1}{x}$ |\n\n1. $u'v = 3x^2 \\ln x$.\n2. $uv' = x^3 \\times \\dfrac{1}{x} = \\dfrac{x^3}{x} = x^2$ (on enlève un $x$ en haut et en bas).\n3. $f'(x) = 3x^2 \\ln x + x^2$.\n\n**Erreurs fréquentes :**\n\n- $3x^2 \\times \\dfrac{1}{x}$ : c'est $u' \\times v'$, la règle n'est **pas** « on dérive chaque facteur ».\n- $3x^2 \\ln x$ : on a oublié le second terme $uv'$.\n- $3x^2 \\ln x + x^3$ : on a oublié de multiplier $x^3$ par $v' = \\dfrac{1}{x}$.\n\n**À retenir :** produit = (dérivée du 1er × 2e) + (1er × dérivée du 2e)."
       },
       {
         "intitule": "$g(x) = x\\,e^x$. Donne $g'(x)$.",
         "type": "expression",
         "reponse": "e^x + x e^x",
-        "acceptes": ["(1 + x)e^x", "e^x(x+1)", "exp(x) + x*exp(x)"],
-        "refuses": ["e^x", "x e^x", "1 * e^x"]
+        "acceptes": [
+          "(1 + x)e^x",
+          "e^x(x+1)",
+          "exp(x) + x*exp(x)"
+        ],
+        "refuses": [
+          "e^x",
+          "x e^x",
+          "1 * e^x"
+        ],
+        "explication": "**Règle :** $(uv)' = u'v + uv'$, avec $(e^x)' = e^x$.\n\n**Pas à pas :**\n\n| | Fonction | Dérivée |\n|---|---|---|\n| $u$ | $x$ | $u' = 1$ |\n| $v$ | $e^x$ | $v' = e^x$ |\n\n1. $u'v = 1 \\times e^x = e^x$.\n2. $uv' = x \\times e^x = x\\,e^x$.\n3. $g'(x) = e^x + x\\,e^x$, qu'on peut factoriser par $e^x$ : $(1 + x)\\,e^x$.\n\n**Erreurs fréquentes :**\n\n- $e^x$ ou $x\\,e^x$ : on n'a gardé qu'un des deux termes.\n- $1 \\times e^x$ : c'est $u' \\times v'$, la mauvaise règle.\n\n**À retenir :** un produit donne toujours **deux** termes, même quand l'un des facteurs est juste $x$."
       },
       {
         "intitule": "$k(x) = x \\cos(x)$. Donne $k'(x)$.",
         "type": "expression",
         "reponse": "cos(x) - x sin(x)",
-        "acceptes": ["cos x - x sin x", "-x sin(x) + cos(x)"],
-        "refuses": ["-sin(x)", "cos(x) + x sin(x)", "-x sin(x)"]
+        "acceptes": [
+          "cos x - x sin x",
+          "-x sin(x) + cos(x)"
+        ],
+        "refuses": [
+          "-sin(x)",
+          "cos(x) + x sin(x)",
+          "-x sin(x)"
+        ],
+        "explication": "**Règle :** $(uv)' = u'v + uv'$, avec $(\\cos x)' = -\\sin x$ (attention au signe moins).\n\n**Pas à pas :**\n\n| | Fonction | Dérivée |\n|---|---|---|\n| $u$ | $x$ | $u' = 1$ |\n| $v$ | $\\cos x$ | $v' = -\\sin x$ |\n\n1. $u'v = 1 \\times \\cos x = \\cos x$.\n2. $uv' = x \\times (-\\sin x) = -x \\sin x$.\n3. $k'(x) = \\cos x - x\\sin x$.\n\n**Erreurs fréquentes :**\n\n- $\\cos x + x \\sin x$ : on a oublié le moins de $(\\cos x)' = -\\sin x$.\n- $-\\sin x$ : c'est $u' \\times v'$, la mauvaise règle.\n- $-x\\sin x$ : on a oublié le terme $u'v = \\cos x$.\n\n**À retenir :** écris $u$, $u'$, $v$, $v'$ dans un petit tableau avant d'assembler, les signes ne se perdent plus."
       }
     ],
     "indices": [
@@ -110,16 +177,40 @@
         "intitule": "$h(x) = \\dfrac{x+3}{x-2}$ (pour $x \\neq 2$). Donne $h'(x)$.",
         "type": "expression",
         "reponse": "-5/(x-2)^2",
-        "points": [-1, 0.5, 1, 3, 4, 5.5],
-        "acceptes": ["(-5)/(x-2)^2", "-5/(x^2 - 4x + 4)", "((x-2) - (x+3))/(x-2)^2"],
-        "refuses": ["5/(x-2)^2", "1", "-5/(x-2)"]
+        "points": [
+          -1,
+          0.5,
+          1,
+          3,
+          4,
+          5.5
+        ],
+        "acceptes": [
+          "(-5)/(x-2)^2",
+          "-5/(x^2 - 4x + 4)",
+          "((x-2) - (x+3))/(x-2)^2"
+        ],
+        "refuses": [
+          "5/(x-2)^2",
+          "1",
+          "-5/(x-2)"
+        ],
+        "explication": "**Règle :** $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$. L'ordre compte : on commence par $u'v$ (dérivée du haut fois le bas).\n\n**Pas à pas :**\n\n| | Fonction | Dérivée |\n|---|---|---|\n| $u$ (haut) | $x + 3$ | $u' = 1$ |\n| $v$ (bas) | $x - 2$ | $v' = 1$ |\n\n1. $u'v = 1 \\times (x - 2) = x - 2$.\n2. $uv' = (x + 3) \\times 1 = x + 3$.\n3. Numérateur : $(x - 2) - (x + 3) = x - 2 - x - 3 = -5$ (le moins s'applique aux **deux** termes de la parenthèse).\n4. Dénominateur : $v^2 = (x - 2)^2$.\n5. $h'(x) = \\dfrac{-5}{(x-2)^2}$.\n\n**Erreurs fréquentes :**\n\n- $\\dfrac{5}{(x-2)^2}$ : on a fait $uv' - u'v$, l'ordre inversé change le signe.\n- $\\dfrac{-5}{x-2}$ : on a oublié le carré au dénominateur.\n- $1$ : on a dérivé le haut et le bas séparément ($\\dfrac{1}{1}$), ce qui ne marche pas.\n\n**À retenir :** quotient = $\\dfrac{u'v - uv'}{v^2}$, « dérivée du haut en premier », et le bas au carré."
       },
       {
         "intitule": "$k(x) = \\dfrac{1}{x^2 + 1}$. Donne $k'(x)$.",
         "type": "expression",
         "reponse": "-2x/(x^2+1)^2",
-        "acceptes": ["(-2x)/(x^2+1)^2", "-2x(x^2+1)^(-2)"],
-        "refuses": ["2x/(x^2+1)^2", "-1/(x^2+1)^2", "1/(2x)"]
+        "acceptes": [
+          "(-2x)/(x^2+1)^2",
+          "-2x(x^2+1)^(-2)"
+        ],
+        "refuses": [
+          "2x/(x^2+1)^2",
+          "-1/(x^2+1)^2",
+          "1/(2x)"
+        ],
+        "explication": "**Règle :** $\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2}$, et la dérivée d'une constante vaut 0.\n\n**Pas à pas :**\n\n| | Fonction | Dérivée |\n|---|---|---|\n| $u$ (haut) | $1$ | $u' = 0$ |\n| $v$ (bas) | $x^2 + 1$ | $v' = 2x$ |\n\n1. $u'v = 0 \\times (x^2 + 1) = 0$.\n2. $uv' = 1 \\times 2x = 2x$.\n3. Numérateur : $0 - 2x = -2x$.\n4. $k'(x) = \\dfrac{-2x}{(x^2+1)^2}$.\n\nContrôle : pour $x > 0$, $x^2 + 1$ grandit donc $\\dfrac{1}{x^2+1}$ diminue, la dérivée doit être négative. C'est bien le cas.\n\n**Erreurs fréquentes :**\n\n- $\\dfrac{2x}{(x^2+1)^2}$ : on a perdu le moins de $-uv'$.\n- $\\dfrac{-1}{(x^2+1)^2}$ : on a oublié de multiplier par $v' = 2x$.\n- $\\dfrac{1}{2x}$ : on a dérivé seulement le dénominateur, ce qui n'a pas de sens.\n\n**À retenir :** quand le haut est une constante, $\\left(\\dfrac{1}{v}\\right)' = \\dfrac{-v'}{v^2}$."
       }
     ],
     "indices": [
@@ -139,22 +230,47 @@
         "intitule": "$f(x) = e^{2x^2}$. Donne $f'(x)$.",
         "type": "expression",
         "reponse": "4x e^(2x^2)",
-        "acceptes": ["4x*exp(2x^2)", "e^(2x^2)*4x", "4x e^(2x²)"],
-        "refuses": ["e^(2x^2)", "2x^2 e^(2x^2)", "4x e^(4x)"]
+        "acceptes": [
+          "4x*exp(2x^2)",
+          "e^(2x^2)*4x",
+          "4x e^(2x²)"
+        ],
+        "refuses": [
+          "e^(2x^2)",
+          "2x^2 e^(2x^2)",
+          "4x e^(4x)"
+        ],
+        "explication": "**Règle :** pour une composée, on dérive l'extérieur en gardant l'intérieur, puis on **multiplie par la dérivée de l'intérieur** : $\\left(e^{v}\\right)' = v' \\times e^{v}$.\n\n**Pas à pas :**\n\n1. Extérieur : $e^{\\square}$, qui se dérive en lui-même.\n2. Intérieur : $v(x) = 2x^2$.\n3. Dérivée de l'intérieur : $v'(x) = 2 \\times 2x = 4x$.\n4. On multiplie : $f'(x) = 4x \\times e^{2x^2} = 4x\\,e^{2x^2}$.\n\n**Erreurs fréquentes :**\n\n- $e^{2x^2}$ : on a oublié la dérivée de l'intérieur (le piège le plus courant).\n- $2x^2\\,e^{2x^2}$ : on a multiplié par l'intérieur lui-même au lieu de sa dérivée.\n- $4x\\,e^{4x}$ : on a aussi dérivé ce qui est dans l'exposant ; l'exposant doit rester $2x^2$.\n\n**À retenir :** $\\left(e^{v}\\right)' = v'\\,e^{v}$ : l'exposant ne change pas, on multiplie devant."
       },
       {
         "intitule": "$g(x) = \\ln(3x + 1)$ (pour $x > -\\frac{1}{3}$). Donne $g'(x)$.",
         "type": "expression",
         "reponse": "3/(3x+1)",
-        "acceptes": ["3(3x+1)^(-1)", "1/(x + 1/3)"],
-        "refuses": ["1/(3x+1)", "3/x", "ln(3)"]
+        "acceptes": [
+          "3(3x+1)^(-1)",
+          "1/(x + 1/3)"
+        ],
+        "refuses": [
+          "1/(3x+1)",
+          "3/x",
+          "ln(3)"
+        ],
+        "explication": "**Règle :** $(\\ln x)' = \\dfrac{1}{x}$, donc pour une composée $\\left(\\ln v\\right)' = v' \\times \\dfrac{1}{v} = \\dfrac{v'}{v}$.\n\n**Pas à pas :**\n\n1. Intérieur : $v(x) = 3x + 1$.\n2. Sa dérivée : $v'(x) = 3$.\n3. $g'(x) = \\dfrac{v'}{v} = \\dfrac{3}{3x+1}$.\n\n**Erreurs fréquentes :**\n\n- $\\dfrac{1}{3x+1}$ : on a oublié de multiplier par $v' = 3$.\n- $\\dfrac{3}{x}$ : on a remplacé l'intérieur par $x$ au dénominateur ; il faut garder $3x + 1$.\n- $\\ln 3$ : aucune règle ne donne ça.\n\n**À retenir :** $\\left(\\ln v\\right)' = \\dfrac{v'}{v}$ : dérivée de l'intérieur sur l'intérieur."
       },
       {
         "intitule": "$h(x) = (2x + 1)^4$. Donne $h'(x)$.",
         "type": "expression",
         "reponse": "8(2x+1)^3",
-        "acceptes": ["4(2x+1)^3 * 2", "8 (2x + 1)³"],
-        "refuses": ["4(2x+1)^3", "8x^3", "(2x+1)^3"]
+        "acceptes": [
+          "4(2x+1)^3 * 2",
+          "8 (2x + 1)³"
+        ],
+        "refuses": [
+          "4(2x+1)^3",
+          "8x^3",
+          "(2x+1)^3"
+        ],
+        "explication": "**Règle :** $\\left(v^n\\right)' = n\\,v^{n-1} \\times v'$ : on dérive la puissance comme d'habitude en gardant la parenthèse, puis on multiplie par la dérivée de l'intérieur.\n\n**Pas à pas :**\n\n1. Extérieur : $\\square^4$, de dérivée $4\\,\\square^3$.\n2. Intérieur : $v(x) = 2x + 1$, de dérivée $v'(x) = 2$.\n3. $h'(x) = 4(2x+1)^3 \\times 2 = 8(2x+1)^3$.\n\n**Erreurs fréquentes :**\n\n- $4(2x+1)^3$ : on a oublié de multiplier par 2.\n- $8x^3$ : on a dérivé seulement le $2x$ à l'intérieur et perdu le $+1$.\n- $(2x+1)^3$ : on a baissé la puissance sans la mettre devant.\n\n**À retenir :** ne développe pas $(2x+1)^4$ : applique $n\\,v^{n-1} \\times v'$ directement."
       }
     ],
     "indices": [
@@ -170,11 +286,56 @@
     "difficulte": 1,
     "enonce": "Donne la valeur exacte de chaque expression (un nombre). Aide-toi du cercle trigonométrique : $\\cos$ est l'abscisse du point, $\\sin$ son ordonnée.",
     "questions": [
-      { "intitule": "$\\sin\\left(\\dfrac{\\pi}{2}\\right)$", "type": "nombre", "reponse": 1, "refuses": ["0", "-1"] },
-      { "intitule": "$\\cos\\left(\\dfrac{\\pi}{2}\\right)$", "type": "nombre", "reponse": 0, "refuses": ["1", "-1"] },
-      { "intitule": "$\\cos(\\pi)$", "type": "nombre", "reponse": -1, "refuses": ["1", "0"] },
-      { "intitule": "$\\sin\\left(\\dfrac{3\\pi}{2}\\right)$", "type": "nombre", "reponse": -1, "refuses": ["1", "0"] },
-      { "intitule": "$\\cos(2\\pi)$", "type": "nombre", "reponse": 1, "refuses": ["0", "-1"] }
+      {
+        "intitule": "$\\sin\\left(\\dfrac{\\pi}{2}\\right)$",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": [
+          "0",
+          "-1"
+        ],
+        "explication": "**Règle :** sur le cercle trigonométrique (rayon 1, centré à l'origine), un angle $\\theta$ donne un point $(\\cos\\theta, \\sin\\theta)$ : le **cosinus est l'abscisse** (horizontal), le **sinus est l'ordonnée** (vertical). On part de $(1, 0)$ et on tourne dans le sens inverse des aiguilles d'une montre ; un tour complet vaut $2\\pi$.\n\n**Pas à pas :**\n\n1. $\\dfrac{\\pi}{2}$ est un quart de tour ($\\dfrac{2\\pi}{4}$).\n2. Un quart de tour depuis $(1, 0)$ mène tout en haut : point $(0, 1)$.\n3. L'ordonnée de ce point vaut 1, donc $\\sin\\left(\\dfrac{\\pi}{2}\\right) = 1$.\n\n**Erreurs fréquentes :**\n\n- $0$ : c'est l'abscisse du point, donc $\\cos\\left(\\dfrac{\\pi}{2}\\right)$, pas le sinus.\n- $-1$ : c'est le bas du cercle, atteint en $\\dfrac{3\\pi}{2}$.\n\n**À retenir :** place le point sur le cercle, puis lis l'ordonnée pour le sinus."
+      },
+      {
+        "intitule": "$\\cos\\left(\\dfrac{\\pi}{2}\\right)$",
+        "type": "nombre",
+        "reponse": 0,
+        "refuses": [
+          "1",
+          "-1"
+        ],
+        "explication": "**Règle :** le cosinus d'un angle est l'**abscisse** (la coordonnée horizontale) du point du cercle.\n\n**Pas à pas :**\n\n1. $\\dfrac{\\pi}{2}$ = un quart de tour, le point est tout en haut : $(0, 1)$.\n2. Ce point est exactement au-dessus du centre : sa coordonnée horizontale vaut 0.\n3. Donc $\\cos\\left(\\dfrac{\\pi}{2}\\right) = 0$.\n\n**Erreurs fréquentes :**\n\n- $1$ : c'est $\\cos(0)$ (point de départ), ou c'est le sinus de $\\dfrac{\\pi}{2}$.\n- $-1$ : c'est $\\cos(\\pi)$, le point tout à gauche.\n\n**À retenir :** en haut et en bas du cercle, le cosinus vaut 0."
+      },
+      {
+        "intitule": "$\\cos(\\pi)$",
+        "type": "nombre",
+        "reponse": -1,
+        "refuses": [
+          "1",
+          "0"
+        ],
+        "explication": "**Règle :** $\\cos$ = abscisse du point du cercle. $\\pi$ correspond à un **demi-tour**.\n\n**Pas à pas :**\n\n1. Depuis $(1, 0)$, on fait un demi-tour : on arrive tout à gauche, au point $(-1, 0)$.\n2. L'abscisse de ce point est $-1$.\n3. Donc $\\cos(\\pi) = -1$.\n\n**Erreurs fréquentes :**\n\n- $1$ : on a oublié le signe, ou confondu avec $\\cos(0)$.\n- $0$ : c'est $\\sin(\\pi)$ (l'ordonnée du point $(-1, 0)$).\n\n**À retenir :** demi-tour = point $(-1, 0)$ : $\\cos\\pi = -1$ et $\\sin\\pi = 0$."
+      },
+      {
+        "intitule": "$\\sin\\left(\\dfrac{3\\pi}{2}\\right)$",
+        "type": "nombre",
+        "reponse": -1,
+        "refuses": [
+          "1",
+          "0"
+        ],
+        "explication": "**Règle :** $\\sin$ = ordonnée du point du cercle. $\\dfrac{3\\pi}{2}$ correspond à **trois quarts de tour**.\n\n**Pas à pas :**\n\n1. Un quart de tour : en haut $(0, 1)$. Deux quarts : à gauche $(-1, 0)$. Trois quarts : tout en bas $(0, -1)$.\n2. L'ordonnée de $(0, -1)$ vaut $-1$.\n3. Donc $\\sin\\left(\\dfrac{3\\pi}{2}\\right) = -1$.\n\n**Erreurs fréquentes :**\n\n- $1$ : signe oublié (c'est le haut du cercle, $\\dfrac{\\pi}{2}$).\n- $0$ : c'est $\\cos\\left(\\dfrac{3\\pi}{2}\\right)$, l'abscisse du point.\n\n**À retenir :** sous l'axe horizontal (entre $\\pi$ et $2\\pi$), le sinus est négatif."
+      },
+      {
+        "intitule": "$\\cos(2\\pi)$",
+        "type": "nombre",
+        "reponse": 1,
+        "refuses": [
+          "0",
+          "-1"
+        ],
+        "explication": "**Règle :** $\\cos$ = abscisse. $2\\pi$ est un **tour complet** : on revient au point de départ. C'est la période de $\\cos$ : $\\cos(x + 2\\pi) = \\cos x$.\n\n**Pas à pas :**\n\n1. Un tour complet depuis $(1, 0)$ ramène à $(1, 0)$.\n2. L'abscisse vaut 1.\n3. Donc $\\cos(2\\pi) = \\cos(0) = 1$.\n\n**Erreurs fréquentes :**\n\n- $0$ : confusion avec $\\sin(2\\pi)$, qui vaut 0.\n- $-1$ : c'est $\\cos(\\pi)$, seulement un demi-tour.\n\n**À retenir :** ajouter $2\\pi$ à un angle ne change ni son cosinus ni son sinus."
+      }
     ],
     "indices": [
       "Sur le cercle de rayon 1 : l'angle $0$ donne le point $(1, 0)$, l'angle $\\dfrac{\\pi}{2}$ le point $(0, 1)$.",
@@ -192,22 +353,49 @@
         "intitule": "$f(x) = \\cos(x) + \\sin(3x)$. Donne $f'(x)$.",
         "type": "expression",
         "reponse": "-sin(x) + 3cos(3x)",
-        "acceptes": ["3cos(3x) - sin x", "3 cos(3x) - sin(x)"],
-        "refuses": ["sin(x) + 3cos(3x)", "-sin(x) + cos(3x)", "-sin(x) - 3cos(3x)"]
+        "acceptes": [
+          "3cos(3x) - sin x",
+          "3 cos(3x) - sin(x)"
+        ],
+        "refuses": [
+          "sin(x) + 3cos(3x)",
+          "-sin(x) + cos(3x)",
+          "-sin(x) - 3cos(3x)"
+        ],
+        "explication": "**Règle :** $(\\cos x)' = -\\sin x$, et pour une composée $\\left(\\sin(v)\\right)' = v' \\cos(v)$. Une somme se dérive terme par terme.\n\n**Pas à pas :**\n\n| Terme | Intérieur et sa dérivée | Dérivée du terme |\n|---|---|---|\n| $\\cos x$ | pas d'intérieur | $-\\sin x$ |\n| $\\sin(3x)$ | $v = 3x$, $v' = 3$ | $3\\cos(3x)$ |\n\nOn additionne : $f'(x) = -\\sin x + 3\\cos(3x)$.\n\n**Erreurs fréquentes :**\n\n- $\\sin x + 3\\cos(3x)$ : on a oublié le moins de $(\\cos x)' = -\\sin x$.\n- $-\\sin x + \\cos(3x)$ : on a oublié de multiplier par la dérivée de l'intérieur, 3.\n- $-\\sin x - 3\\cos(3x)$ : on a mis un moins en dérivant $\\sin$, alors que $(\\sin)' = +\\cos$.\n\n**À retenir :** $\\cos$ donne un moins, $\\sin$ non ; et un intérieur $a\\,x$ ajoute un facteur $a$ devant."
       },
       {
         "intitule": "$g(x) = \\sin(4x^2)$. Donne $g'(x)$.",
         "type": "expression",
         "reponse": "8x cos(4x^2)",
-        "acceptes": ["cos(4x^2) * 8x", "8x*cos(4x²)"],
-        "refuses": ["cos(4x^2)", "8x sin(4x^2)", "-8x cos(4x^2)"]
+        "acceptes": [
+          "cos(4x^2) * 8x",
+          "8x*cos(4x²)"
+        ],
+        "refuses": [
+          "cos(4x^2)",
+          "8x sin(4x^2)",
+          "-8x cos(4x^2)"
+        ],
+        "explication": "**Règle :** $\\left(\\sin(v)\\right)' = v' \\times \\cos(v)$ : l'extérieur $\\sin$ devient $\\cos$ (l'intérieur ne change pas), puis on multiplie par la dérivée de l'intérieur.\n\n**Pas à pas :**\n\n1. Extérieur : $\\sin(\\square)$, de dérivée $\\cos(\\square)$.\n2. Intérieur : $v(x) = 4x^2$, de dérivée $v'(x) = 4 \\times 2x = 8x$.\n3. $g'(x) = 8x \\cos(4x^2)$.\n\n**Erreurs fréquentes :**\n\n- $\\cos(4x^2)$ : on a oublié le facteur $8x$.\n- $8x\\sin(4x^2)$ : on a gardé $\\sin$ au lieu de le dériver en $\\cos$.\n- $-8x\\cos(4x^2)$ : le moins appartient à la dérivée de $\\cos$, pas à celle de $\\sin$.\n\n**À retenir :** composée = dérivée de l'extérieur (intérieur gardé) × dérivée de l'intérieur."
       },
       {
         "intitule": "Sur $[0, 2\\pi]$, en quelles valeurs $\\tan$ n'est-elle **pas** définie ? Écris l'ensemble, par exemple `{pi/3, pi}`.",
         "type": "ensemble",
-        "reponse": ["pi/2", "3pi/2"],
-        "acceptes": ["{π/2, 3π/2}", "{3pi/2; pi/2}"],
-        "refuses": ["{pi/2}", "{0, pi}", "{pi/2, 3pi/2, 5pi/2}"]
+        "reponse": [
+          "pi/2",
+          "3pi/2"
+        ],
+        "acceptes": [
+          "{π/2, 3π/2}",
+          "{3pi/2; pi/2}"
+        ],
+        "refuses": [
+          "{pi/2}",
+          "{0, pi}",
+          "{pi/2, 3pi/2, 5pi/2}"
+        ],
+        "explication": "**Règle :** $\\tan x = \\dfrac{\\sin x}{\\cos x}$ n'existe pas quand $\\cos x = 0$. Sur le cercle, $\\cos$ est l'abscisse : elle vaut 0 tout en haut et tout en bas.\n\n**Pas à pas :** on regarde les angles importants de $[0, 2\\pi]$.\n\n| Angle | Point | $\\cos x$ | $\\tan$ définie ? |\n|---|---|---|---|\n| $0$ | $(1, 0)$ | $1$ | oui |\n| $\\frac{\\pi}{2}$ | $(0, 1)$ | $0$ | **non** |\n| $\\pi$ | $(-1, 0)$ | $-1$ | oui |\n| $\\frac{3\\pi}{2}$ | $(0, -1)$ | $0$ | **non** |\n| $2\\pi$ | $(1, 0)$ | $1$ | oui |\n\nRéponse : $\\left\\{\\dfrac{\\pi}{2}, \\dfrac{3\\pi}{2}\\right\\}$.\n\n**Erreurs fréquentes :**\n\n- $\\left\\{\\dfrac{\\pi}{2}\\right\\}$ : on a oublié le bas du cercle.\n- $\\{0, \\pi\\}$ : là c'est $\\sin$ qui vaut 0, donc $\\tan = 0$, elle existe.\n- ajouter $\\dfrac{5\\pi}{2}$ : c'est plus grand que $2\\pi$, hors de l'intervalle demandé.\n\n**À retenir :** $\\tan$ est interdite en $\\dfrac{\\pi}{2} + k\\pi$ ; garde seulement les valeurs qui tombent dans l'intervalle."
       }
     ],
     "indices": [
@@ -226,32 +414,53 @@
       {
         "intitule": "$f$ est-elle continue en $3$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une fonction en morceaux est continue au point de raccord si les deux morceaux donnent la **même valeur** en ce point : pas de saut.\n\n**Pas à pas :**\n\n1. Morceau de gauche ($x < 3$) : $3 - x$. En $x = 3$ il donnerait $3 - 3 = 0$.\n2. Morceau de droite ($x \\geq 3$) : $x - 3$. En $x = 3$ : $3 - 3 = 0$.\n3. Les deux valent 0 : les morceaux se rejoignent, la courbe se trace sans lever le crayon.\n\nRéponse : **Oui**, $f$ est continue en 3.\n\n**Erreur fréquente :** répondre « Non » à cause de la pointe du « V ». Une pointe n'est pas un saut : elle empêche la dérivabilité, pas la continuité.\n\n**À retenir :** continuité en un raccord = calcule les deux morceaux au point, ils doivent être égaux."
       },
       {
         "intitule": "Quelle est la pente de la courbe juste **à gauche** de 3 ? (un nombre)",
         "type": "nombre",
         "reponse": -1,
-        "refuses": ["1", "0"]
+        "refuses": [
+          "1",
+          "0"
+        ],
+        "explication": "**Règle :** une droite $y = a\\,x + b$ a pour pente (coefficient directeur) le nombre $a$ devant $x$. Pente négative = la droite descend.\n\n**Pas à pas :**\n\n1. À gauche de 3, $f(x) = 3 - x$, qu'on réécrit $-1 \\times x + 3$.\n2. Le nombre devant $x$ est $-1$ : la pente vaut $-1$.\n3. Vérification : $f(1) = 2$ et $f(2) = 1$, quand $x$ augmente de 1, $f$ baisse de 1.\n\n**Erreurs fréquentes :**\n\n- $1$ : c'est la pente de l'autre morceau, à droite.\n- $0$ : la valeur de $f$ en 3 est 0, mais ce n'est pas sa pente.\n\n**À retenir :** pente d'une droite = le nombre devant $x$, avec son signe."
       },
       {
         "intitule": "Quelle est la pente de la courbe juste **à droite** de 3 ? (un nombre)",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["-1", "0"]
+        "refuses": [
+          "-1",
+          "0"
+        ],
+        "explication": "**Règle :** pente d'une droite $y = a\\,x + b$ = le coefficient $a$ devant $x$.\n\n**Pas à pas :**\n\n1. À droite de 3, $f(x) = x - 3 = 1 \\times x - 3$.\n2. Le nombre devant $x$ est $1$ : la pente vaut $+1$.\n3. Vérification : $f(4) = 1$ et $f(5) = 2$, quand $x$ augmente de 1, $f$ augmente de 1.\n\n**Erreurs fréquentes :**\n\n- $-1$ : c'est la pente du morceau de gauche.\n- $0$ : confusion avec la valeur $f(3) = 0$.\n\n**À retenir :** à droite comme à gauche, lis la pente sur la formule du morceau concerné."
       },
       {
         "intitule": "$f$ est-elle dérivable en $3$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 1
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une fonction est dérivable en $x_0$ s'il y a **une seule** tangente : la pente à gauche doit être égale à la pente à droite.\n\n**Pas à pas :**\n\n| Côté | Formule | Pente |\n|---|---|---|\n| gauche | $3 - x$ | $-1$ |\n| droite | $x - 3$ | $+1$ |\n\n$-1 \\neq +1$ : la courbe change brusquement de direction en 3 (la pointe du « V »). Réponse : **Non**, $f$ n'est pas dérivable en 3.\n\n**Erreur fréquente :** répondre « Oui » parce que $f$ est continue en 3. La continuité ne suffit pas, il faut en plus des pentes égales.\n\n**À retenir :** dérivable en un raccord = pente à gauche = pente à droite."
       },
       {
         "intitule": "Que peut-on en conclure ?",
         "type": "choix",
-        "choix": ["Continue implique dérivable", "Dérivable implique continue, mais la réciproque est fausse", "Continue et dérivable veulent dire la même chose"],
-        "reponse": 1
+        "choix": [
+          "Continue implique dérivable",
+          "Dérivable implique continue, mais la réciproque est fausse",
+          "Continue et dérivable veulent dire la même chose"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** dérivable ⇒ continue (toujours vrai), mais continue ⇏ dérivable.\n\n**Pas à pas :** on reprend les résultats des questions précédentes.\n\n1. $f$ est **continue** en 3.\n2. $f$ n'est **pas dérivable** en 3.\n3. On a donc une fonction continue mais pas dérivable : la continuité n'entraîne pas la dérivabilité. Le seul énoncé compatible est « Dérivable implique continue, mais la réciproque est fausse ».\n\n**Les autres réponses :**\n\n- « Continue implique dérivable » : $f$ est justement un contre-exemple.\n- « Continue et dérivable veulent dire la même chose » : si c'était le cas, $f$ serait les deux ou aucun des deux.\n\n**À retenir :** un seul contre-exemple suffit pour montrer qu'une implication est fausse."
       }
     ],
     "indices": [
@@ -271,26 +480,48 @@
         "intitule": "Donne $f'(x)$ en fonction de $x$.",
         "type": "expression",
         "reponse": "2x - 4",
-        "acceptes": ["2(x-2)", "-4 + 2x"],
-        "refuses": ["2x", "2x - 4x", "x - 4"]
+        "acceptes": [
+          "2(x-2)",
+          "-4 + 2x"
+        ],
+        "refuses": [
+          "2x",
+          "2x - 4x",
+          "x - 4"
+        ],
+        "explication": "**Règle :** on dérive terme par terme : $(x^n)' = n\\,x^{n-1}$, $(k\\,x)' = k$, (constante)$' = 0$.\n\n**Pas à pas :**\n\n| Terme | Dérivée |\n|---|---|\n| $x^2$ | $2x$ |\n| $-4x$ | $-4$ |\n| $1$ | $0$ |\n\nDonc $f'(x) = 2x - 4$.\n\n**Erreurs fréquentes :**\n\n- $2x$ : on a oublié le terme $-4$.\n- $2x - 4x$ : on a recopié $-4x$ sans le dériver.\n- $x - 4$ : on a oublié le 2 qui descend de la puissance.\n\n**À retenir :** chaque terme se dérive séparément, sans en oublier."
       },
       {
         "intitule": "Calcule $f'(3)$ : la pente de la tangente en $x = 3$ (un nombre).",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["-2", "6"]
+        "refuses": [
+          "-2",
+          "6"
+        ],
+        "explication": "**Règle :** $f'(x_0)$ est la pente de la tangente en $x_0$ : on remplace $x$ par $x_0$ **dans la dérivée** $f'$, pas dans $f$.\n\n**Pas à pas :**\n\n1. $f'(x) = 2x - 4$.\n2. $f'(3) = 2 \\times 3 - 4 = 6 - 4 = 2$.\n3. $2 > 0$ : en $x = 3$, la courbe monte.\n\n**Erreurs fréquentes :**\n\n- $-2$ : c'est $f(3) = 9 - 12 + 1 = -2$, la valeur de la fonction et non la pente.\n- $6$ : on a oublié le $-4$.\n\n**À retenir :** pente en un point = $f'$ (pas $f$) calculée en ce point."
       },
       {
         "intitule": "Pour quelle valeur de $x$ a-t-on $f'(x) = 0$ ?",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["4", "-2", "0"]
+        "refuses": [
+          "4",
+          "-2",
+          "0"
+        ],
+        "explication": "**Règle :** au minimum (ou au maximum) d'une courbe lisse, la tangente est horizontale : sa pente vaut 0. On cherche donc la valeur de $x$ qui annule $f'$.\n\n**Pas à pas :**\n\n1. On résout $2x - 4 = 0$.\n2. On ajoute 4 des deux côtés : $2x = 4$.\n3. On divise par 2 : $x = 2$.\n4. Vérification : $f'(2) = 4 - 4 = 0$.\n\n**Erreurs fréquentes :**\n\n- $4$ : on s'est arrêté à $2x = 4$ sans diviser par 2.\n- $-2$ : erreur de signe en passant le $-4$ de l'autre côté.\n- $0$ : $f'(0) = -4$, ce n'est pas nul.\n\n**À retenir :** pour trouver où la pente est nulle, résous l'équation $f'(x) = 0$."
       },
       {
         "intitule": "Quelle est la valeur minimale du coût, $f(2)$ ?",
         "type": "nombre",
         "reponse": -3,
-        "refuses": ["3", "1", "2"]
+        "refuses": [
+          "3",
+          "1",
+          "2"
+        ],
+        "explication": "**Règle :** la **valeur** du minimum se calcule en remplaçant $x$ par l'abscisse trouvée dans la fonction de départ $f$. Pour vérifier que c'est un minimum, on regarde le signe de $f'$ : négatif avant (ça descend), positif après (ça remonte).\n\n**Pas à pas :**\n\n1. $f(2) = 2^2 - 4 \\times 2 + 1 = 4 - 8 + 1 = -3$.\n2. Signe de $f'$ :\n\n| $x$ | $1$ | $2$ | $3$ |\n|---|---|---|---|\n| $f'(x) = 2x - 4$ | $-2$ (descend) | $0$ | $+2$ (monte) |\n\nLa courbe descend jusqu'à 2 puis remonte : c'est bien un minimum, qui vaut $-3$.\n\n**Erreurs fréquentes :**\n\n- $2$ : c'est l'abscisse du minimum (« où »), pas sa valeur (« combien »).\n- $1$ : c'est $f(0)$, la valeur au départ.\n- $3$ : erreur de signe dans $4 - 8 + 1$.\n\n**À retenir :** $f'(x) = 0$ donne **où** est le minimum ; $f$ en ce point donne **combien** il vaut."
       }
     ],
     "indices": [
@@ -311,32 +542,64 @@
         "type": "expression",
         "reponse": "3x^4",
         "aUneConstantePres": true,
-        "acceptes": ["3x^4 + 7", "12x^4/4"],
-        "refuses": ["36x^2", "12x^4", "3x^3"]
+        "acceptes": [
+          "3x^4 + 7",
+          "12x^4/4"
+        ],
+        "refuses": [
+          "36x^2",
+          "12x^4",
+          "3x^3"
+        ],
+        "explication": "**Règle :** primitive de $x^n$ = $\\dfrac{x^{n+1}}{n+1}$, et un facteur constant reste devant : primitive de $k\\,x^n$ = $k \\times \\dfrac{x^{n+1}}{n+1}$.\n\n**Pas à pas :**\n\n1. $12x^3 = 12 \\times x^3$, donc $n = 3$.\n2. Primitive de $x^3$ : $\\dfrac{x^4}{4}$.\n3. On multiplie par 12 : $12 \\times \\dfrac{x^4}{4} = 3x^4$.\n4. Vérification : $(3x^4)' = 3 \\times 4x^3 = 12x^3$. On retombe sur $f$.\n\n**Erreurs fréquentes :**\n\n- $36x^2$ : on a **dérivé** au lieu de chercher une primitive.\n- $12x^4$ : on a oublié de diviser par 4 (sa dérivée vaut $48x^3$).\n- $3x^3$ : on a divisé sans monter la puissance.\n\n**À retenir :** monte la puissance, divise par la nouvelle, garde le coefficient, puis vérifie en dérivant."
       },
       {
         "intitule": "$g(x) = e^x + 4x$",
         "type": "expression",
         "reponse": "e^x + 2x^2",
         "aUneConstantePres": true,
-        "acceptes": ["exp(x) + 2x^2 - 1", "2x^2 + e^x"],
-        "refuses": ["e^x + 4", "e^x + 4x^2", "e^x"]
+        "acceptes": [
+          "exp(x) + 2x^2 - 1",
+          "2x^2 + e^x"
+        ],
+        "refuses": [
+          "e^x + 4",
+          "e^x + 4x^2",
+          "e^x"
+        ],
+        "explication": "**Règle :** une primitive d'une somme est la somme des primitives. Primitive de $e^x$ = $e^x$, primitive de $k\\,x$ = $k\\,\\dfrac{x^2}{2}$.\n\n**Pas à pas :**\n\n| Terme | Primitive |\n|---|---|\n| $e^x$ | $e^x$ |\n| $4x$ | $4 \\times \\dfrac{x^2}{2} = 2x^2$ |\n\nDonc $G(x) = e^x + 2x^2$. Vérification : $G'(x) = e^x + 4x$.\n\n**Erreurs fréquentes :**\n\n- $e^x + 4x^2$ : on a oublié de diviser par 2 (dérivée : $e^x + 8x$).\n- $e^x + 4$ : on a dérivé $4x$ au lieu d'en chercher une primitive.\n- $e^x$ : on a oublié le terme $4x$.\n\n**À retenir :** traite chaque terme séparément, puis vérifie le tout en dérivant."
       },
       {
         "intitule": "$h(x) = \\dfrac{2}{x} - 1$ (pour $x > 0$)",
         "type": "expression",
         "reponse": "2ln(x) - x",
         "aUneConstantePres": true,
-        "acceptes": ["ln(x^2) - x", "2 ln x - x + 3"],
-        "refuses": ["-2/x^2", "2ln(x)", "2ln(x) - 1"]
+        "acceptes": [
+          "ln(x^2) - x",
+          "2 ln x - x + 3"
+        ],
+        "refuses": [
+          "-2/x^2",
+          "2ln(x)",
+          "2ln(x) - 1"
+        ],
+        "explication": "**Règle :** primitive de $\\dfrac{1}{x}$ (pour $x > 0$) = $\\ln x$ ; primitive d'une constante $k$ = $k\\,x$.\n\n**Pas à pas :**\n\n| Terme | Primitive | Vérification |\n|---|---|---|\n| $\\dfrac{2}{x} = 2 \\times \\dfrac{1}{x}$ | $2\\ln x$ | $(2\\ln x)' = \\dfrac{2}{x}$ |\n| $-1$ | $-x$ | $(-x)' = -1$ |\n\nDonc $H(x) = 2\\ln x - x$.\n\n**Erreurs fréquentes :**\n\n- $-\\dfrac{2}{x^2}$ : c'est la **dérivée** de $\\dfrac{2}{x}$.\n- $2\\ln x$ : on a oublié le terme $-1$.\n- $2\\ln x - 1$ : la primitive de $-1$ est $-x$, pas $-1$ (car $(-1)' = 0$).\n- Appliquer $\\dfrac{x^{n+1}}{n+1}$ avec $n = -1$ donne une division par 0 : c'est le cas spécial du $\\ln$.\n\n**À retenir :** $\\dfrac{1}{x} \\to \\ln x$ et un nombre $k \\to k\\,x$."
       },
       {
         "intitule": "$k(x) = \\cos(x) - \\sin(x)$",
         "type": "expression",
         "reponse": "sin(x) + cos(x)",
         "aUneConstantePres": true,
-        "acceptes": ["cos x + sin x", "sin(x) + cos(x) + 1"],
-        "refuses": ["sin(x) - cos(x)", "-sin(x) - cos(x)", "cos(x) - sin(x)"]
+        "acceptes": [
+          "cos x + sin x",
+          "sin(x) + cos(x) + 1"
+        ],
+        "refuses": [
+          "sin(x) - cos(x)",
+          "-sin(x) - cos(x)",
+          "cos(x) - sin(x)"
+        ],
+        "explication": "**Règle :** comme $(\\sin x)' = \\cos x$, une primitive de $\\cos x$ est $\\sin x$. Comme $(\\cos x)' = -\\sin x$, une primitive de $-\\sin x$ est $\\cos x$.\n\n**Pas à pas :**\n\n| Terme | Primitive | Pourquoi |\n|---|---|---|\n| $\\cos x$ | $\\sin x$ | $(\\sin x)' = \\cos x$ |\n| $-\\sin x$ | $\\cos x$ | $(\\cos x)' = -\\sin x$ |\n\nDonc $K(x) = \\sin x + \\cos x$. Vérification : $K'(x) = \\cos x - \\sin x$.\n\n**Erreurs fréquentes :**\n\n- $\\sin x - \\cos x$ : sa dérivée vaut $\\cos x + \\sin x$, signe faux.\n- $-\\sin x - \\cos x$ : c'est la **dérivée** de $\\cos x - \\sin x$.\n- $\\cos x - \\sin x$ : c'est la fonction de départ recopiée.\n\n**À retenir :** pour $\\sin$ et $\\cos$, lis le tableau des dérivées à l'envers et vérifie les signes en dérivant."
       }
     ],
     "indices": [
@@ -356,25 +619,46 @@
         "intitule": "Calcule $\\displaystyle\\int_0^6 x\\,dx$ (un nombre).",
         "type": "nombre",
         "reponse": 18,
-        "refuses": ["36", "6", "12"]
+        "refuses": [
+          "36",
+          "6",
+          "12"
+        ],
+        "explication": "**Règle :** $\\displaystyle\\int_a^b f(x)\\,dx = F(b) - F(a)$, avec $F$ une primitive de $f$. Primitive de $x$ : $\\dfrac{x^2}{2}$.\n\n**Pas à pas :**\n\n1. $F(x) = \\dfrac{x^2}{2}$. Vérification : $F'(x) = \\dfrac{2x}{2} = x$.\n2. $F(6) = \\dfrac{36}{2} = 18$.\n3. $F(0) = 0$.\n4. $F(6) - F(0) = 18$.\n\n**Erreurs fréquentes :**\n\n- $36$ : on a oublié de diviser par 2 ($6^2$ seul).\n- $6$ : on a fait « borne du haut moins borne du bas » sans primitive.\n- $12$ : c'est $2 \\times 6$, sans lien avec l'aire.\n\n**À retenir :** primitive d'abord, puis $F(b) - F(a)$."
       },
       {
         "intitule": "Cette intégrale est l'aire de quelle figure ?",
         "type": "choix",
-        "choix": ["Un rectangle de côtés 6 et 6", "Un triangle rectangle de base 6 et de hauteur 6", "Un carré de côté 3", "Un demi-disque de rayon 6"],
-        "reponse": 1
+        "choix": [
+          "Un rectangle de côtés 6 et 6",
+          "Un triangle rectangle de base 6 et de hauteur 6",
+          "Un carré de côté 3",
+          "Un demi-disque de rayon 6"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** quand $f$ est positive, l'intégrale $\\displaystyle\\int_a^b f(x)\\,dx$ est l'**aire** de la zone entre la courbe, l'axe horizontal et les verticales $x = a$ et $x = b$.\n\n**Pas à pas :**\n\n1. La droite $y = x$ part de $(0, 0)$ et arrive en $(6, 6)$.\n2. La zone sous elle a trois côtés : l'axe horizontal de 0 à 6 (la base, 6), la verticale $x = 6$ (la hauteur, 6) et la droite elle-même (le côté penché).\n3. C'est un triangle rectangle : aire $= \\dfrac{6 \\times 6}{2} = 18$, comme l'intégrale.\n\n**Les autres réponses :**\n\n- Rectangle $6 \\times 6$ : aire 36, il faudrait une courbe horizontale $y = 6$.\n- Carré de côté 3 : aire 9, ne correspond pas.\n- Demi-disque : il faudrait une courbe arrondie, pas une droite.\n\n**À retenir :** sous une droite qui part de 0, l'aire est un triangle : base × hauteur ÷ 2."
       },
       {
         "intitule": "Calcule $\\displaystyle\\int_{-2}^{0} x\\,dx$ (un nombre).",
         "type": "nombre",
         "reponse": -2,
-        "refuses": ["2", "0", "-4"]
+        "refuses": [
+          "2",
+          "0",
+          "-4"
+        ],
+        "explication": "**Règle :** $\\displaystyle\\int_a^b f(x)\\,dx = F(b) - F(a)$, toujours « borne du **haut** moins borne du **bas** ». Ici le haut est $b = 0$ et le bas $a = -2$.\n\n**Pas à pas :**\n\n1. $F(x) = \\dfrac{x^2}{2}$.\n2. $F(0) = 0$.\n3. $F(-2) = \\dfrac{(-2)^2}{2} = \\dfrac{4}{2} = 2$ (un carré est toujours positif).\n4. $F(0) - F(-2) = 0 - 2 = -2$.\n\n**Erreurs fréquentes :**\n\n- $2$ : on a fait $F(-2) - F(0)$, l'ordre inverse.\n- $0$ : on a cru que $F(-2) = 0$.\n- $-4$ : on a oublié de diviser par 2.\n\n**À retenir :** respecte l'ordre $F(\\text{haut}) - F(\\text{bas})$, même quand une borne est négative."
       },
       {
         "intitule": "Pourquoi ce dernier résultat est-il négatif ?",
         "type": "choix",
-        "choix": ["C'est une erreur : une aire est toujours positive", "Sur $[-2, 0]$, la courbe est sous l'axe horizontal", "Parce que les bornes sont dans le mauvais ordre"],
-        "reponse": 1
+        "choix": [
+          "C'est une erreur : une aire est toujours positive",
+          "Sur $[-2, 0]$, la courbe est sous l'axe horizontal",
+          "Parce que les bornes sont dans le mauvais ordre"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** l'intégrale est une aire **algébrique** : les parties de la courbe au-dessus de l'axe comptent en positif, celles en dessous en négatif.\n\n**Pas à pas :**\n\n1. Sur $[-2, 0]$, $f(x) = x$ prend des valeurs négatives : $f(-2) = -2$, $f(-1) = -1$, $f(0) = 0$.\n2. La courbe est donc sous l'axe horizontal.\n3. La zone est un triangle de base 2 et de hauteur 2, d'aire $\\dfrac{2 \\times 2}{2} = 2$, comptée en négatif : $-2$. C'est bien le résultat du calcul.\n\n**Les autres réponses :**\n\n- « C'est une erreur » : non, une intégrale peut être négative ; c'est l'aire géométrique (sans signe) qui est toujours positive.\n- « Les bornes sont dans le mauvais ordre » : $-2 < 0$, elles sont dans le bon ordre.\n\n**À retenir :** courbe sous l'axe ⇒ intégrale négative, c'est normal."
       }
     ],
     "indices": [
@@ -394,27 +678,54 @@
         "intitule": "$\\displaystyle\\int_0^3 x^2\\,dx$",
         "type": "nombre",
         "reponse": 9,
-        "refuses": ["27", "6", "3"]
+        "refuses": [
+          "27",
+          "6",
+          "3"
+        ],
+        "explication": "**Règle :** primitive de $x^2$ = $\\dfrac{x^3}{3}$, puis $F(b) - F(a)$.\n\n**Pas à pas :**\n\n1. $F(x) = \\dfrac{x^3}{3}$. Vérification : $F'(x) = \\dfrac{3x^2}{3} = x^2$.\n2. $F(3) = \\dfrac{27}{3} = 9$.\n3. $F(0) = 0$.\n4. $F(3) - F(0) = 9$.\n\n**Erreurs fréquentes :**\n\n- $27$ : on a oublié de diviser par 3.\n- $6$ : on a dérivé ($2x$ en 3) au lieu de primitiver.\n- $3$ : on a seulement soustrait les bornes.\n\n**À retenir :** $x^n \\to \\dfrac{x^{n+1}}{n+1}$, puis haut moins bas."
       },
       {
         "intitule": "$\\displaystyle\\int_1^4 \\dfrac{1}{x}\\,dx$",
         "type": "nombre",
         "reponse": "ln(4)",
-        "acceptes": ["2ln(2)", "ln 4", "ln(4) - ln(1)"],
-        "refuses": ["3", "ln(3)", "1/4"]
+        "acceptes": [
+          "2ln(2)",
+          "ln 4",
+          "ln(4) - ln(1)"
+        ],
+        "refuses": [
+          "3",
+          "ln(3)",
+          "1/4"
+        ],
+        "explication": "**Règle :** primitive de $\\dfrac{1}{x}$ = $\\ln x$, et $\\ln 1 = 0$.\n\n**Pas à pas :**\n\n1. $F(x) = \\ln x$.\n2. $F(4) = \\ln 4$.\n3. $F(1) = \\ln 1 = 0$.\n4. $F(4) - F(1) = \\ln 4 - 0 = \\ln 4$.\n\nOn peut aussi l'écrire $2\\ln 2$, car $\\ln 4 = \\ln(2^2) = 2\\ln 2$ ; les deux sont justes ($\\approx 1{,}386$).\n\n**Erreurs fréquentes :**\n\n- $3$ : on a fait $4 - 1$, sans primitive.\n- $\\ln 3$ : on a fait $\\ln(4 - 1)$ au lieu de $\\ln 4 - \\ln 1$.\n- $\\dfrac{1}{4}$ : on a juste calculé la fonction en 4.\n\n**À retenir :** $\\displaystyle\\int_1^b \\dfrac{1}{x}\\,dx = \\ln b$, car $\\ln 1 = 0$."
       },
       {
         "intitule": "$\\displaystyle\\int_0^2 (e^x - 1)\\,dx$",
         "type": "nombre",
         "reponse": "e^2 - 3",
-        "acceptes": ["e^2 - 1 - 2", "e^2-2-1"],
-        "refuses": ["e^2 - 1", "e^2", "e^2 - 2"]
+        "acceptes": [
+          "e^2 - 1 - 2",
+          "e^2-2-1"
+        ],
+        "refuses": [
+          "e^2 - 1",
+          "e^2",
+          "e^2 - 2"
+        ],
+        "explication": "**Règle :** primitive d'une somme = somme des primitives : $e^x \\to e^x$ et $-1 \\to -x$. Et $e^0 = 1$ (pas 0).\n\n**Pas à pas :**\n\n1. $F(x) = e^x - x$. Vérification : $F'(x) = e^x - 1$.\n2. $F(2) = e^2 - 2$.\n3. $F(0) = e^0 - 0 = 1$.\n4. $F(2) - F(0) = (e^2 - 2) - 1 = e^2 - 3$ (environ $4{,}39$).\n\n**Erreurs fréquentes :**\n\n- $e^2 - 2$ : on a cru que $e^0 = 0$.\n- $e^2 - 1$ : on a oublié la primitive du $-1$ (le $-x$).\n- $e^2$ : on a oublié les deux.\n\n**À retenir :** quand la borne du bas vaut 0, calcule quand même $F(0)$ : $e^0 = 1$ ne disparaît pas."
       },
       {
         "intitule": "$\\displaystyle\\int_0^{\\pi} \\sin(x)\\,dx$",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["0", "-2", "1"]
+        "refuses": [
+          "0",
+          "-2",
+          "1"
+        ],
+        "explication": "**Règle :** primitive de $\\sin x$ = $-\\cos x$ (car $(-\\cos x)' = \\sin x$). Valeurs : $\\cos 0 = 1$, $\\cos \\pi = -1$.\n\n**Pas à pas :**\n\n1. $F(x) = -\\cos x$.\n2. $F(\\pi) = -\\cos\\pi = -(-1) = 1$.\n3. $F(0) = -\\cos 0 = -1$.\n4. $F(\\pi) - F(0) = 1 - (-1) = 1 + 1 = 2$.\n\nContrôle : sur $[0, \\pi]$, $\\sin x \\geq 0$ (la courbe est au-dessus de l'axe), le résultat doit être positif. C'est le cas.\n\n**Erreurs fréquentes :**\n\n- $0$ : on a fait $1 - 1$ en perdant un signe moins.\n- $-2$ : on a pris $\\cos x$ comme primitive (sans le moins), ou inversé les bornes.\n- $1$ : on n'a calculé que $F(\\pi)$.\n\n**À retenir :** avec des signes moins en cascade, écris chaque étape entre parenthèses : $1 - (-1)$."
       }
     ],
     "indices": [
@@ -432,37 +743,58 @@
       {
         "intitule": "$C$ est-elle continue en $0$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une fonction en morceaux est continue au raccord si le morceau de gauche et le morceau de droite donnent la **même valeur** au point de raccord.\n\n**Pas à pas :**\n\n1. Morceau de gauche ($x \\leq 0$) : $C(x) = 0$, donc $C(0) = 0$.\n2. Morceau de droite ($x > 0$) : $3x^2$. Quand $x$ se rapproche de 0 ($0{,}1$, puis $0{,}01$...), $3x^2$ vaut $0{,}03$, puis $0{,}0003$... et tend vers $3 \\times 0^2 = 0$.\n3. Les deux côtés arrivent à 0 : pas de saut.\n\nRéponse : **Oui**, $C$ est continue en 0.\n\n**Erreur fréquente :** répondre « Non » parce que la formule change en 0. Changer de formule ne crée pas de saut si les valeurs se rejoignent.\n\n**À retenir :** au raccord, compare les deux morceaux en ce point : égaux = continue."
       },
       {
         "intitule": "Quelle est la dérivée de $C$ juste à gauche de 0 ? (un nombre)",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["3", "6"]
+        "refuses": [
+          "3",
+          "6"
+        ],
+        "explication": "**Règle :** la dérivée d'une constante vaut 0.\n\n**Pas à pas :**\n\n1. Juste à gauche de 0 (par exemple $x = -1$ ou $x = -0{,}1$), on est dans le morceau $C(x) = 0$.\n2. C'est une constante : la courbe est plate.\n3. Sa dérivée vaut 0.\n\n**Erreurs fréquentes :**\n\n- $3$ ou $6$ : on a utilisé la formule $3x^2$, qui ne s'applique qu'à droite de 0.\n\n**À retenir :** pour la pente à gauche, n'utilise que la formule du morceau de gauche."
       },
       {
         "intitule": "Quelle est la dérivée de $3x^2$ en $x = 0$ (la dérivée à droite) ? (un nombre)",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["6", "3"]
+        "refuses": [
+          "6",
+          "3"
+        ],
+        "explication": "**Règle :** pour la pente à droite, on dérive le morceau de droite, puis on **remplace** $x$ par le point de raccord.\n\n**Pas à pas :**\n\n1. Morceau de droite : $3x^2$.\n2. Dérivée : $(3x^2)' = 3 \\times 2x = 6x$.\n3. En $x = 0$ : $6 \\times 0 = 0$.\n\n**Erreurs fréquentes :**\n\n- $6$ : on s'est arrêté à la formule $6x$ sans remplacer $x$ par 0.\n- $3$ : on a pris le coefficient de $3x^2$ comme pente.\n\n**À retenir :** dérive d'abord, remplace ensuite : $f'(x_0)$, c'est $f'$ calculée en $x_0$."
       },
       {
         "intitule": "$C$ est-elle dérivable en $0$ ?",
         "type": "choix",
-        "choix": ["Oui", "Non"],
-        "reponse": 0
+        "choix": [
+          "Oui",
+          "Non"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une fonction en morceaux est dérivable au raccord si elle y est **continue** et si la pente à gauche est **égale** à la pente à droite.\n\n**Pas à pas :**\n\n| Condition | Résultat |\n|---|---|\n| Continue en 0 ? | oui (question 1) |\n| Pente à gauche | $0$ |\n| Pente à droite | $0$ |\n| Pentes égales ? | oui |\n\nLes deux conditions sont remplies : il y a une seule tangente, horizontale. Réponse : **Oui**, $C$ est dérivable en 0 et $C'(0) = 0$.\n\n**Erreur fréquente :** répondre « Non » parce que la fonction est définie en deux morceaux. Ce qui compte, c'est que les morceaux se raccordent en valeur **et** en pente.\n\n**À retenir :** raccord dérivable = même valeur et même pente des deux côtés."
       },
       {
         "intitule": "Une autre entreprise utilise $D(x) = 0$ si $x \\leq 0$ et $D(x) = 2x$ si $x > 0$. $D$ est-elle dérivable en 0 ?",
         "type": "choix",
-        "choix": ["Oui, comme $C$", "Non : la pente vaut 0 à gauche et 2 à droite"],
-        "reponse": 1
+        "choix": [
+          "Oui, comme $C$",
+          "Non : la pente vaut 0 à gauche et 2 à droite"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** même méthode : continuité au raccord, puis comparaison des pentes à gauche et à droite.\n\n**Pas à pas :**\n\n| Condition | Résultat |\n|---|---|\n| Valeur à gauche en 0 | $0$ |\n| Valeur de $2x$ en 0 | $0$, donc continue |\n| Pente à gauche | $0$ (constante) |\n| Pente à droite | $(2x)' = 2$ |\n| Pentes égales ? | **non** |\n\nLa courbe est plate puis monte d'un coup avec une pente 2 : elle fait un coude (une pointe). Réponse : **Non : la pente vaut 0 à gauche et 2 à droite**.\n\n**L'autre réponse :** « Oui, comme $C$ » est faux. Pour $C$, la pente à droite $6x$ valait 0 **en 0** ; pour $D$, la pente $2$ ne dépend pas de $x$, elle vaut 2 même en 0.\n\n**À retenir :** une pente à droite constante non nulle face à une pente nulle à gauche donne toujours une pointe."
       },
       {
         "intitule": "Pourquoi le fait que $C$ soit dérivable partout est-il rassurant pour une descente de gradient ? Réponds en une ou deux phrases.",
         "type": "auto",
-        "reponse": "La dérivée (le gradient) de $C$ existe en tout point, même en 0. L'algorithme peut donc toujours calculer dans quel sens corriger, sans cas particulier. Avec $D$, la dérivée n'existe pas en 0 (comme pour ReLU) : il faudrait choisir une convention à cet endroit."
+        "reponse": "La dérivée (le gradient) de $C$ existe en tout point, même en 0. L'algorithme peut donc toujours calculer dans quel sens corriger, sans cas particulier. Avec $D$, la dérivée n'existe pas en 0 (comme pour ReLU) : il faudrait choisir une convention à cet endroit.",
+        "explication": "**Ce qu'une bonne réponse doit contenir, étape par étape :**\n\n1. **Le lien** : la descente de gradient utilise la dérivée (le gradient) de la fonction de coût pour savoir dans quel sens modifier le paramètre.\n2. **Le constat** : $C$ est dérivable en tout point, y compris au raccord $x = 0$ (question 4), donc sa dérivée existe partout.\n3. **La conséquence** : l'algorithme peut toujours calculer une direction de correction, sans cas particulier à gérer.\n4. **En bonus**, le contraste : avec $D$ (comme avec ReLU), la dérivée n'existe pas en 0, il faudrait choisir une valeur par convention à cet endroit.\n\n**Erreurs fréquentes :**\n\n- Dire seulement « $C$ est continue » : la continuité ne suffit pas, c'est la **dérivabilité** qui garantit que le gradient existe ($D$ est continue mais pas dérivable).\n- Dire que la dérivée doit être non nulle : une dérivée nulle est justement ce que cherche l'algorithme (le minimum).\n\n**À retenir :** descente de gradient = besoin d'une dérivée qui existe partout ; une pointe oblige à une convention."
       }
     ],
     "indices": [
@@ -484,8 +816,17 @@
         "variable": "t",
         "reponse": "25e^(0.04t)",
         "aUneConstantePres": true,
-        "acceptes": ["e^(0.04t)/0.04", "1/0.04 e^(0.04t)", "25 exp(0.04t) + 1"],
-        "refuses": ["e^(0.04t)", "0.04e^(0.04t)", "25e^(0.04)"]
+        "acceptes": [
+          "e^(0.04t)/0.04",
+          "1/0.04 e^(0.04t)",
+          "25 exp(0.04t) + 1"
+        ],
+        "refuses": [
+          "e^(0.04t)",
+          "0.04e^(0.04t)",
+          "25e^(0.04)"
+        ],
+        "explication": "**Règle :** une primitive de $e^{a t}$ (avec $a \\neq 0$) est $\\dfrac{1}{a}\\,e^{a t}$ : on **divise** par $a$, car en dérivant on multipliera par $a$.\n\n**Pas à pas :**\n\n1. Ici $a = 0{,}04$.\n2. $\\dfrac{1}{0{,}04} = \\dfrac{100}{4} = 25$.\n3. Primitive : $25\\,e^{0{,}04t}$.\n4. Vérification : $\\left(25\\,e^{0{,}04t}\\right)' = 25 \\times 0{,}04 \\times e^{0{,}04t} = 1 \\times e^{0{,}04t}$. On retombe sur la fonction de départ.\n\n**Erreurs fréquentes :**\n\n- $e^{0{,}04t}$ : sa dérivée vaut $0{,}04\\,e^{0{,}04t}$, il manque le facteur 25.\n- $0{,}04\\,e^{0{,}04t}$ : on a multiplié par $a$, c'est la **dérivée**, pas une primitive.\n- $25\\,e^{0{,}04}$ : le $t$ a disparu de l'exposant, ce n'est plus une fonction de $t$.\n\n**À retenir :** primitive de $e^{at}$ = divise par $a$ ; dérivée = multiplie par $a$."
       },
       {
         "intitule": "Quelle expression donne le revenu total des 25 premiers jours ?",
@@ -496,15 +837,26 @@
           "$\\displaystyle\\int_0^{25} 0{,}04\\,e^{0{,}04t}\\,dt$",
           "$r'(25)$"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** quand $r(t)$ est un **débit** (des euros par jour), le **total** accumulé entre $t = a$ et $t = b$ est l'intégrale $\\displaystyle\\int_a^b r(t)\\,dt$ : on additionne le revenu de chaque petit instant.\n\n**Pas à pas :**\n\n1. Les 25 premiers jours vont de $t = 0$ à $t = 25$ : ce sont les bornes.\n2. La fonction à accumuler est le revenu par jour, $r(t) = 200\\,e^{0{,}04t}$, en entier (avec le 200).\n3. Le total est donc $\\displaystyle\\int_0^{25} 200\\,e^{0{,}04t}\\,dt$.\n\n**Les autres réponses :**\n\n- $200\\,e^{0{,}04 \\times 25}$ : c'est $r(25)$, le revenu d'**un seul** jour (le 25e), pas le total.\n- $\\displaystyle\\int_0^{25} 0{,}04\\,e^{0{,}04t}\\,dt$ : la fonction intégrée n'est pas $r(t)$, le facteur 200 a disparu.\n- $r'(25)$ : la dérivée dit à quelle vitesse le revenu journalier augmente, pas combien on a gagné.\n\n**À retenir :** total accumulé = intégrale du débit sur la période."
       },
       {
         "intitule": "Calcule ce revenu total, en euros, arrondi à l'euro (ou valeur exacte).",
         "type": "nombre",
         "reponse": "5000(e - 1)",
         "tolerance": 1,
-        "acceptes": ["8591", "5000e - 5000", "8591.41", "8591,4"],
-        "refuses": ["5000", "8600", "5000e"]
+        "acceptes": [
+          "8591",
+          "5000e - 5000",
+          "8591.41",
+          "8591,4"
+        ],
+        "refuses": [
+          "5000",
+          "8600",
+          "5000e"
+        ],
+        "explication": "**Règle :** $\\displaystyle\\int_a^b k\\,f(t)\\,dt = k \\times \\Big[F(t)\\Big]_a^b$, avec la primitive trouvée à la première question, et $e^0 = 1$.\n\n**Pas à pas :**\n\n1. $\\displaystyle\\int_0^{25} 200\\,e^{0{,}04t}\\,dt = 200 \\times \\Big[25\\,e^{0{,}04t}\\Big]_0^{25}$.\n2. En $t = 25$ : $0{,}04 \\times 25 = 1$, donc $25\\,e^{1} = 25e$.\n3. En $t = 0$ : $25\\,e^{0} = 25 \\times 1 = 25$.\n4. Différence : $25e - 25 = 25(e - 1)$.\n5. On multiplie par 200 : $200 \\times 25 \\times (e - 1) = 5000\\,(e - 1)$.\n6. Valeur approchée : $e \\approx 2{,}71828$, donc $5000 \\times 1{,}71828 \\approx 8\\,591$ €.\n\n**Erreurs fréquentes :**\n\n- $5000e \\approx 13\\,591$ : on a oublié de soustraire la valeur en 0 ($e^0 = 1$, pas 0).\n- $5000$ : on a pris $e^1 - e^0$ égal à 1.\n- $8\\,600$ : arrondi trop grossier, l'écart dépasse 1 €.\n\n**À retenir :** calcule $F$ aux deux bornes, même en 0, et ne simplifie pas $e^0$ en 0."
       }
     ],
     "indices": [

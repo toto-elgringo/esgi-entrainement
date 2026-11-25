@@ -1,74 +1,134 @@
 [
   {
     "question": "Que vaut `(|x| x * 3)(4)` ?",
-    "choix": ["`7`", "`12`", "`34`", "Ne compile pas"],
+    "choix": [
+      "`7`",
+      "`12`",
+      "`34`",
+      "Ne compile pas"
+    ],
     "reponse": 1,
-    "explication": "La closure multiplie son paramètre par 3, et on l'appelle immédiatement avec 4 : 12."
+    "explication": "**Règle :** `|x| expression` est une closure : une fonction sans nom. Les parenthèses autour la regroupent, et des parenthèses juste après l'**appellent**, comme `f(4)`.\n\n**Pas à pas :**\n1. `|x| x * 3` prend `x` et renvoie `x * 3`.\n2. `(4)` l'appelle avec `x = 4`.\n3. `4 * 3 = 12`.\n\n**Les autres réponses :**\n- `7` additionne au lieu de multiplier (4 + 3).\n- `34` colle les chiffres comme du texte : on calcule avec des nombres, pas des chaînes.\n- Ne compile pas : si, une closure peut être appelée tout de suite (Clippy trouvera ça inutile, mais c'est du Rust valide).\n\n**À retenir :** une closure s'appelle comme une fonction : on remplace le paramètre par la valeur et on calcule."
   },
   {
     "question": "Qu'est-ce qu'une closure peut faire qu'une fonction `fn` ne peut pas ?",
-    "choix": ["Renvoyer une valeur", "Avoir des paramètres", "Utiliser les variables de l'endroit où elle est écrite", "Être appelée plusieurs fois"],
+    "choix": [
+      "Renvoyer une valeur",
+      "Avoir des paramètres",
+      "Utiliser les variables de l'endroit où elle est écrite",
+      "Être appelée plusieurs fois"
+    ],
     "reponse": 2,
-    "explication": "Une closure capture son environnement : elle peut lire ou modifier les variables qui l'entourent."
+    "explication": "**Règle :** une closure peut **capturer** son environnement : utiliser les variables de l'endroit où elle est écrite, sans les recevoir en paramètre. Une fonction `fn` ne voit que ses paramètres (et les constantes globales).\n\n**Pas à pas :**\n\n```rust\nlet seuil = 10;\nlet grand = |x| x > seuil;   // possible : la closure capture seuil\n// fn grand(x: i32) -> bool { x > seuil }   refusé : une fn ne voit pas seuil\n```\n\n**Les autres réponses :** renvoyer une valeur, avoir des paramètres et être appelée plusieurs fois, une `fn` sait aussi le faire. Ce n'est donc pas ce qui distingue une closure.\n\n**À retenir :** la vraie différence d'une closure, c'est la capture des variables autour d'elle."
   },
   {
     "question": "Pourquoi écrire `move` devant une closure ?",
-    "choix": ["Pour qu'elle soit plus rapide", "Pour qu'elle prenne possession des variables capturées", "Pour pouvoir la modifier", "Pour la copier"],
+    "choix": [
+      "Pour qu'elle soit plus rapide",
+      "Pour qu'elle prenne possession des variables capturées",
+      "Pour pouvoir la modifier",
+      "Pour la copier"
+    ],
     "reponse": 1,
-    "explication": "`move` déplace les variables capturées dans la closure. Utile quand elle doit survivre à la fonction qui la crée."
+    "explication": "**Règle :** `move` devant une closure **déplace** les variables qu'elle capture à l'intérieur : la closure en devient propriétaire. C'est nécessaire quand la closure doit survivre à la fonction qui la crée (la renvoyer, la donner à un thread).\n\n**Pas à pas :**\n\n```rust\nfn creer(nom: String) -> impl Fn() -> String {\n    move || format!(\"Salut {nom}\")\n}\n```\n\nSans `move`, la closure emprunterait `nom`, qui disparaît à la fin de `creer` : erreur E0373. Avec `move`, la `String` vit dans la closure.\n\n**Les autres réponses :**\n- Plus rapide : `move` ne change pas la vitesse, seulement qui possède les variables.\n- Pour pouvoir la modifier : c'est `let mut` sur la closure (closure qui modifie une capture) qui sert à ça.\n- Pour la copier : `move` déplace, il ne copie pas (sauf pour les types simples comme `i32`, qui se copient de toute façon).\n\n**À retenir :** `move` = la closure prend possession de ce qu'elle capture."
   },
   {
     "question": "Que donne `v.iter()` sur un `Vec<i32>` ?",
-    "choix": ["Des `i32`", "Des `&i32`", "Des `&mut i32`", "Un `Vec<i32>`"],
+    "choix": [
+      "Des `i32`",
+      "Des `&i32`",
+      "Des `&mut i32`",
+      "Un `Vec<i32>`"
+    ],
     "reponse": 1,
-    "explication": "`iter()` prête les éléments en lecture : des `&i32`. `iter_mut()` donne des `&mut i32` et `into_iter()` des `i32`."
+    "explication": "**Règle :** `iter()` **prête** les éléments en lecture : il donne des références `&T`. La liste reste intacte.\n\n**Pas à pas :** pour un `Vec<i32>`, `T = i32`, donc `v.iter()` donne des `&i32`. Pour avoir le nombre, on écrit `*x` (ou on utilise `copied()`).\n\n| Méthode | Donne |\n|---|---|\n| `iter()` | `&i32` |\n| `iter_mut()` | `&mut i32` |\n| `into_iter()` | `i32` |\n\n**Les autres réponses :** des `i32` sont donnés par `into_iter()` (qui consomme la liste) ; des `&mut i32` par `iter_mut()` ; et un itérateur n'est pas un `Vec` : il donne les éléments **un par un**.\n\n**À retenir :** `iter()` = références en lecture."
   },
   {
     "question": "Après `let w: Vec<String> = v.into_iter().collect();`, que devient `v` ?",
-    "choix": ["Il est intact", "Il est vide mais utilisable", "Il a été consommé : on ne peut plus l'utiliser", "Il contient des copies"],
+    "choix": [
+      "Il est intact",
+      "Il est vide mais utilisable",
+      "Il a été consommé : on ne peut plus l'utiliser",
+      "Il contient des copies"
+    ],
     "reponse": 2,
-    "explication": "`into_iter()` prend possession de la liste et donne ses éléments par valeur. `v` a été déplacé."
+    "explication": "**Règle :** `into_iter()` prend la **propriété** de la liste et donne ses éléments par valeur. La liste est déplacée : on ne peut plus l'utiliser après.\n\n**Pas à pas :**\n1. `v.into_iter()` déplace `v` dans l'itérateur.\n2. `collect()` range les `String` (les mêmes, sans copie) dans `w`.\n3. Écrire `v.len()` ensuite donnerait « borrow of moved value: `v` ».\n\n**Les autres réponses :**\n- Intact : ce serait le cas avec `iter()`, mais on aurait alors des `&String`.\n- Vide mais utilisable : une variable déplacée n'est pas vide, elle n'existe plus du tout pour le compilateur.\n- Des copies : `into_iter()` ne copie rien, il **déplace** les éléments. C'est tout son intérêt.\n\n**À retenir :** après `into_iter()`, la liste d'origine est consommée."
   },
   {
     "question": "Que fait la ligne `v.iter().map(|x| x * 2);` toute seule ?",
-    "choix": ["Double les éléments de `v`", "Crée un nouveau `Vec`", "Rien : un adaptateur ne calcule rien tant qu'on ne le consomme pas", "Affiche les doubles"],
+    "choix": [
+      "Double les éléments de `v`",
+      "Crée un nouveau `Vec`",
+      "Rien : un adaptateur ne calcule rien tant qu'on ne le consomme pas",
+      "Affiche les doubles"
+    ],
     "reponse": 2,
-    "explication": "Les itérateurs sont paresseux. Il faut un consommateur (`collect`, `sum`, `for`...) pour lancer le calcul. Le compilateur affiche d'ailleurs un avertissement."
+    "explication": "**Règle :** les itérateurs sont **paresseux** : un adaptateur comme `map` décrit un travail mais ne le fait pas. Il faut un **consommateur** (`collect`, `sum`, `count`, une boucle `for`...) pour lancer le calcul.\n\n**Pas à pas :** la ligne crée un itérateur « qui doublerait les éléments », puis le jette aussitôt (le `;` termine l'instruction, rien ne le consomme). Aucun calcul n'a lieu, `v` ne change pas, et le compilateur avertit : « unused `Map` that must be used… iterators are lazy and do nothing unless consumed ».\n\n**Les autres réponses :**\n- Double les éléments de `v` : non, et même consommé, `iter()` ne donne que des références en lecture ; pour modifier, il faudrait `iter_mut()`.\n- Crée un nouveau `Vec` : il faudrait `.collect()` au bout.\n- Affiche les doubles : rien n'affiche, il n'y a pas de `println!`.\n\n**À retenir :** sans consommateur au bout, une chaîne d'adaptateurs ne fait rien."
   },
   {
     "question": "Que vaut `[1, 2, 3, 4].iter().filter(|x| **x > 2).count()` ?",
-    "choix": ["`2`", "`7`", "`[3, 4]`", "`4`"],
+    "choix": [
+      "`2`",
+      "`7`",
+      "`[3, 4]`",
+      "`4`"
+    ],
     "reponse": 0,
-    "explication": "`filter` garde 3 et 4, puis `count` compte les éléments restants : 2."
+    "explication": "**Règle :** `filter` garde les éléments pour lesquels la condition est vraie ; `count` compte combien il en reste (un `usize`). `filter` reçoit un `&&i32`, d'où `**x`.\n\n**Pas à pas :**\n\n| Élément | `**x > 2` ? |\n|---|---|\n| 1 | non |\n| 2 | non (2 n'est pas strictement plus grand que 2) |\n| 3 | oui |\n| 4 | oui |\n\nIl reste 3 et 4 : `count()` donne `2`.\n\n**Les autres réponses :**\n- `7` est la **somme** de 3 et 4 : c'est ce que donnerait `sum()`.\n- `[3, 4]` est ce que donnerait `collect()` : `count` renvoie un nombre, pas une liste.\n- `4` compte tous les éléments, sans filtrer.\n\n**À retenir :** `filter(...).count()` = combien d'éléments vérifient la condition."
   },
   {
     "question": "Que donne `[\"a\", \"b\"].iter().enumerate()` ?",
-    "choix": ["`\"a\", \"b\"`", "`(0, \"a\"), (1, \"b\")`", "`(1, \"a\"), (2, \"b\")`", "`0, 1`"],
+    "choix": [
+      "`\"a\", \"b\"`",
+      "`(0, \"a\"), (1, \"b\")`",
+      "`(1, \"a\"), (2, \"b\")`",
+      "`0, 1`"
+    ],
     "reponse": 1,
-    "explication": "`enumerate` associe à chaque élément son indice, en commençant à 0."
+    "explication": "**Règle :** `enumerate()` transforme chaque élément en un couple `(indice, élément)`, et l'indice commence à **0**.\n\n**Pas à pas :** `\"a\"` est à l'indice 0, `\"b\"` à l'indice 1. On obtient `(0, \"a\")` puis `(1, \"b\")` (avec `iter()`, les éléments sont en fait des références `&&str`, qui s'affichent pareil).\n\n**Les autres réponses :**\n- `\"a\", \"b\"` : c'est ce que donne `iter()` sans `enumerate`.\n- `(1, \"a\"), (2, \"b\")` : l'indice commence à 0, pas à 1. Pour numéroter à partir de 1, on ajoute 1 soi-même (`i + 1`).\n- `0, 1` : `enumerate` garde l'élément à côté de l'indice.\n\n**À retenir :** `enumerate` = `(indice, élément)`, indices à partir de 0."
   },
   {
     "question": "Que vaut `[2, 3, 4].iter().fold(0, |acc, x| acc + x)` ?",
-    "choix": ["`0`", "`24`", "`9`", "`4`"],
+    "choix": [
+      "`0`",
+      "`24`",
+      "`9`",
+      "`4`"
+    ],
     "reponse": 2,
-    "explication": "On part de 0 puis on ajoute chaque élément : 0 + 2 + 3 + 4 = 9. C'est ce que fait `sum`, écrit à la main."
+    "explication": "**Règle :** `fold(depart, |acc, x| ...)` part de la valeur `depart`, puis pour chaque élément calcule le nouvel accumulateur `acc`. Le résultat est le dernier `acc`.\n\n**Pas à pas :**\n\n| Élément `x` | `acc` avant | `acc + x` |\n|---|---|---|\n| 2 | 0 | 2 |\n| 3 | 2 | 5 |\n| 4 | 5 | 9 |\n\nRésultat : `9`. C'est exactement ce que fait `sum()`.\n\n**Les autres réponses :**\n- `0` est seulement la valeur de départ, avant d'avoir lu un élément.\n- `24` est le **produit** 2 × 3 × 4 (il faudrait `fold(1, |acc, x| acc * x)`).\n- `4` est le dernier élément, pas le cumul.\n\n**À retenir :** pour un `fold`, déroule un tableau « acc avant / acc après » en partant de la valeur de départ."
   },
   {
     "question": "Que renvoie `v.iter().all(|x| *x > 0)` si `v` est vide ?",
-    "choix": ["`true`", "`false`", "`None`", "Une panique"],
+    "choix": [
+      "`true`",
+      "`false`",
+      "`None`",
+      "Une panique"
+    ],
     "reponse": 0,
-    "explication": "« Tous les éléments vérifient la condition » est vrai quand il n'y a aucun élément. À l'inverse, `any` renvoie `false` sur une liste vide."
+    "explication": "**Règle :** `all` répond `true` s'il n'existe **aucun contre-exemple**, c'est-à-dire aucun élément qui ne vérifie pas la condition. Sur une liste vide, il n'y a aucun contre-exemple.\n\n**Pas à pas :** `v` est vide : `all` n'a aucun élément à tester, il ne trouve donc aucun élément `<= 0`, et répond `true`. C'est la même logique que « tous les élèves de la salle vide sont majeurs » : impossible de trouver un mineur, la phrase est vraie.\n\n**Les autres réponses :**\n- `false` : c'est la réponse de `any` sur une liste vide (aucun élément ne vérifie la condition).\n- `None` : `all` renvoie toujours un `bool`, jamais une `Option`.\n- Une panique : une liste vide est un cas normal, rien ne plante.\n\n**À retenir :** sur une liste vide, `all` → `true`, `any` → `false`."
   },
   {
     "question": "Quel est le type de `v.iter().max()` pour un `Vec<i32>` ?",
-    "choix": ["`i32`", "`&i32`", "`Option<&i32>`", "`Result<i32, ()>`"],
+    "choix": [
+      "`i32`",
+      "`&i32`",
+      "`Option<&i32>`",
+      "`Result<i32, ()>`"
+    ],
     "reponse": 2,
-    "explication": "La liste peut être vide, donc `max` renvoie une `Option`. Comme `iter()` donne des références, c'est un `Option<&i32>`."
+    "explication": "**Règle :** `max()` peut ne rien trouver (liste vide), donc il renvoie une `Option`. Et `iter()` donne des références, donc l'`Option` contient une référence : `Option<&i32>`.\n\n**Pas à pas :** sur `vec![3, 9, 2]`, `v.iter().max()` vaut `Some(&9)` ; sur une liste vide, `None`. Pour obtenir un `Option<i32>`, on ajoute `.copied()`.\n\n**Les autres réponses :**\n- `i32` ou `&i32` : impossible de répondre « rien » si la liste est vide.\n- `Result<i32, ()>` : `Result` sert aux opérations qui échouent avec une erreur ; une liste vide n'est pas une erreur, c'est l'absence de valeur, représentée par `None`.\n\n**À retenir :** `iter().max()` → `Option<&T>`, et `.copied()` pour avoir la valeur."
   },
   {
     "question": "Pourquoi `let total = v.iter().sum();` ne compile-t-il pas ?",
-    "choix": ["`sum` n'existe pas", "Rust ne sait pas quel type de résultat produire", "Il faut une boucle", "`v` doit être `mut`"],
+    "choix": [
+      "`sum` n'existe pas",
+      "Rust ne sait pas quel type de résultat produire",
+      "Il faut une boucle",
+      "`v` doit être `mut`"
+    ],
     "reponse": 1,
-    "explication": "`sum` peut produire plusieurs types. On l'indique : `let total: i32 = ...` ou `v.iter().sum::<i32>()`."
+    "explication": "**Règle :** `sum` peut produire plusieurs types (`i32`, `i64`, `u32`, `f64`...). Si rien ne dit lequel, Rust refuse : « type annotations needed ».\n\n**Pas à pas :** dans `let total = v.iter().sum();`, la variable `total` n'a pas de type, et `sum` non plus. On corrige au choix :\n\n```rust\nlet v = vec![1, 2, 3];\nlet total: i32 = v.iter().sum();\nlet autre = v.iter().sum::<i32>();\n```\n\n**Les autres réponses :**\n- `sum` n'existe pas : il existe bien, c'est un consommateur d'itérateur.\n- Il faut une boucle : non, `sum` remplace justement la boucle.\n- `v` doit être `mut` : `iter()` et `sum()` ne font que lire, `mut` n'est pas nécessaire.\n\n**À retenir :** « type annotations needed » sur `sum` ou `collect` → type sur la variable ou turbofish `::<>`."
   }
 ]

@@ -7,7 +7,7 @@ const exercice = {
   titre: 'Une dérivée',
   difficulte: 1,
   enonce: 'Dérive $f(x) = x^2$.',
-  questions: [{ intitule: "$f'(x)$", type: 'expression', reponse: '2x', acceptes: ['x + x'], refuses: ['x^2'] }],
+  questions: [{ intitule: "$f'(x)$", type: 'expression', reponse: '2x', acceptes: ['x + x'], refuses: ['x^2'], explication: 'On abaisse l’exposant : $(x^2)' + "'" + ' = 2x$.' }],
   indices: ['La dérivée de $x^n$ est $nx^{n-1}$.'],
   correction: "$f'(x) = 2x$.",
 };
@@ -29,8 +29,13 @@ describe('validation du contenu', () => {
   });
 
   it('détecte une réponse de référence fausse et des exemples incohérents', () => {
-    const casse = { ...exercice, questions: [{ type: 'expression', reponse: '2x', acceptes: ['3x'], refuses: ['2x'] }] };
+    const casse = { ...exercice, questions: [{ type: 'expression', reponse: '2x', acceptes: ['3x'], refuses: ['2x'], explication: 'E' }] };
     assert.equal(validerExercices([casse]).length, 2);
+  });
+
+  it('exige une explication pour chaque question', () => {
+    const sansExplication = { ...exercice, questions: [{ ...exercice.questions[0], explication: undefined }] };
+    assert.match(validerExercices([sansExplication])[0], /explication/);
   });
 
   it('détecte les identifiants en double', () => {

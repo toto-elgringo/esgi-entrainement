@@ -8,37 +8,62 @@
       "$\\det(A) = \\lambda$"
     ],
     "reponse": 0,
-    "explication": "La matrice se contente de multiplier $\\vec v$ par le nombre $\\lambda$ : même direction, longueur changée. Le vecteur nul est exclu."
+    "explication": "**Règle :** $\\vec v$ est un vecteur propre de $A$ quand la matrice se contente de le **multiplier par un nombre** $\\lambda$ : $A\\vec v = \\lambda\\vec v$, et $\\vec v$ doit être **non nul**.\n\n**Pas à pas :** on lit la définition morceau par morceau.\n\n1. $A\\vec v$ : on applique la matrice au vecteur.\n2. $= \\lambda\\vec v$ : le résultat est le même vecteur, multiplié par un nombre (même direction, longueur changée).\n3. $\\vec v \\neq \\vec 0$ : on exclut le vecteur nul, car $A\\vec 0 = \\lambda\\vec 0$ marche pour n'importe quel $\\lambda$.\n\n**Les autres réponses :** $A\\vec v = \\vec 0$ est seulement le cas particulier $\\lambda = 0$ ; $A + \\lambda = \\vec v$ n'a pas de sens (on n'ajoute pas un nombre à une matrice pour obtenir un vecteur) ; $\\det(A) = \\lambda$ confond déterminant et valeur propre (le déterminant est le **produit** des valeurs propres).\n\n**À retenir :** vecteur propre = vecteur non nul que $A$ multiplie simplement par un nombre."
   },
   {
     "question": "Géométriquement, un vecteur propre de $A$ est un vecteur que $A$ :",
-    "choix": ["fait tourner d'un quart de tour", "étire ou rétrécit sans changer sa direction", "envoie toujours sur $\\vec 0$", "laisse toujours inchangé"],
+    "choix": [
+      "fait tourner d'un quart de tour",
+      "étire ou rétrécit sans changer sa direction",
+      "envoie toujours sur $\\vec 0$",
+      "laisse toujours inchangé"
+    ],
     "reponse": 1,
-    "explication": "$A\\vec v = \\lambda\\vec v$ : le vecteur reste sur la même droite. Il est inchangé seulement si $\\lambda = 1$."
+    "explication": "**Règle :** $A\\vec v = \\lambda\\vec v$ veut dire que l'image de $\\vec v$ est **sur la même droite** que $\\vec v$ : elle est seulement étirée ($\\lambda > 1$), rétrécie ($0 < \\lambda < 1$) ou retournée ($\\lambda < 0$).\n\n**Pas à pas :** avec $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ et $\\vec v = (1, 1)$, on trouve $A\\vec v = (3, 3)$ : même direction que $(1, 1)$, trois fois plus long. C'est l'image d'un vecteur propre.\n\n**Les autres réponses :**\n- « fait tourner d'un quart de tour » : un vecteur tourné change de direction, c'est exactement ce qu'un vecteur propre ne fait **pas**.\n- « envoie toujours sur $\\vec 0$ » : seulement si $\\lambda = 0$, ce n'est pas le cas général.\n- « laisse toujours inchangé » : seulement si $\\lambda = 1$.\n\n**À retenir :** vecteur propre = direction que la matrice garde, en changeant seulement la longueur (ou le sens)."
   },
   {
     "question": "Les valeurs propres de $A$ sont les solutions de :",
-    "choix": ["$\\det(A) = \\lambda$", "$\\det(A - \\lambda I) = 0$", "$A - \\lambda = 0$", "$A\\vec v = \\vec 0$"],
+    "choix": [
+      "$\\det(A) = \\lambda$",
+      "$\\det(A - \\lambda I) = 0$",
+      "$A - \\lambda = 0$",
+      "$A\\vec v = \\vec 0$"
+    ],
     "reponse": 1,
-    "explication": "C'est l'équation caractéristique. $(A - \\lambda I)\\vec v = \\vec 0$ a une solution non nulle seulement si $A - \\lambda I$ n'est pas inversible, donc si son déterminant est nul."
+    "explication": "**Règle :** $\\lambda$ est une valeur propre quand $(A - \\lambda I)\\vec v = \\vec 0$ a une solution $\\vec v$ **non nulle**. C'est possible seulement si $A - \\lambda I$ n'est pas inversible, donc si $\\det(A - \\lambda I) = 0$ : c'est l'**équation caractéristique**.\n\n**Pas à pas :**\n\n1. $A\\vec v = \\lambda\\vec v$ se réécrit $A\\vec v - \\lambda I\\vec v = \\vec 0$, soit $(A - \\lambda I)\\vec v = \\vec 0$.\n2. Si $A - \\lambda I$ était inversible, la seule solution serait $\\vec v = \\vec 0$, interdite.\n3. Il faut donc $\\det(A - \\lambda I) = 0$.\n\n**Les autres réponses :** $\\det(A) = \\lambda$ ne donne qu'un nombre, sans lien avec les valeurs propres ; $A - \\lambda = 0$ mélange une matrice et un nombre (il faut $\\lambda I$, et on ne demande pas que la matrice soit nulle) ; $A\\vec v = \\vec 0$ sert à trouver des vecteurs, et seulement pour $\\lambda = 0$.\n\n**À retenir :** valeurs propres = solutions de $\\det(A - \\lambda I) = 0$."
   },
   {
     "question": "Quelles sont les valeurs propres de $\\begin{pmatrix} 4 & 7 \\\\ 0 & -1 \\end{pmatrix}$ ?",
-    "choix": ["$4$ et $-1$", "$4$ et $7$", "$7$ et $-1$", "$3$ et $11$"],
+    "choix": [
+      "$4$ et $-1$",
+      "$4$ et $7$",
+      "$7$ et $-1$",
+      "$3$ et $11$"
+    ],
     "reponse": 0,
-    "explication": "La matrice est triangulaire : les valeurs propres se lisent sur la diagonale, $4$ et $-1$."
+    "explication": "**Règle :** pour une matrice **triangulaire** (que des zéros d'un côté de la diagonale), $\\det(A - \\lambda I)$ est le produit des termes de la diagonale moins $\\lambda$ : les valeurs propres se lisent sur la diagonale.\n\n**Pas à pas :**\n\n1. Sous la diagonale, il y a un $0$ : la matrice est triangulaire supérieure.\n2. $\\det(A - \\lambda I) = (4 - \\lambda)(-1 - \\lambda) - 7 \\times 0 = (4 - \\lambda)(-1 - \\lambda)$.\n3. Ce produit s'annule pour $\\lambda = 4$ et pour $\\lambda = -1$.\n\n**Les autres réponses :** $4$ et $7$ est la 1re ligne ; $7$ et $-1$ prend le nombre hors de la diagonale (il disparaît du calcul car il est multiplié par $0$) ; $3$ et $11$ additionne des nombres de la matrice ($4 + (-1) = 3$ est la trace, c'est-à-dire la **somme** des valeurs propres, pas une valeur propre ; $4 + 7 = 11$ ne sert à rien).\n\n**À retenir :** triangulaire ou diagonale : les valeurs propres sont les nombres de la diagonale, signe compris."
   },
   {
     "question": "$(1, 2)$ est un vecteur propre de $A$ pour la valeur propre $5$. Lequel est aussi un vecteur propre de $A$ pour $5$ ?",
-    "choix": ["$(2, 4)$", "$(2, 1)$", "$(5, 10)$ seulement si $A = 5I$", "$(0, 0)$"],
+    "choix": [
+      "$(2, 4)$",
+      "$(2, 1)$",
+      "$(5, 10)$ seulement si $A = 5I$",
+      "$(0, 0)$"
+    ],
     "reponse": 0,
-    "explication": "Un vecteur propre est défini à un facteur près : $A(2\\vec v) = 2A\\vec v = 5(2\\vec v)$. Le vecteur nul, lui, n'est jamais un vecteur propre."
+    "explication": "**Règle :** un vecteur propre est défini **à un facteur près** : tout multiple **non nul** $k\\vec v$ est encore un vecteur propre, pour la même valeur propre, car $A(k\\vec v) = kA\\vec v = k\\lambda\\vec v = \\lambda(k\\vec v)$.\n\n**Pas à pas :** on cherche un nombre $k$ tel que le vecteur proposé soit $k \\times (1, 2)$.\n\n| Vecteur | $k$ pour la 1re coordonnée | $k$ pour la 2e | Multiple ? |\n|---|---|---|---|\n| $(2, 4)$ | $2 / 1 = 2$ | $4 / 2 = 2$ | oui, $k = 2$ |\n| $(2, 1)$ | $2$ | $1/2$ | non |\n| $(0, 0)$ | $0$ | $0$ | vecteur nul, exclu |\n\n**Les autres réponses :** $(2, 1)$ a les coordonnées inversées, pas multipliées ; $(0, 0)$ n'est jamais un vecteur propre ; « $(5, 10)$ seulement si $A = 5I$ » est faux, car $(5, 10) = 5 \\times (1, 2)$ est un vecteur propre **pour toute** matrice $A$ dont $(1, 2)$ est vecteur propre, sans condition.\n\n**À retenir :** multiplie un vecteur propre par n'importe quel nombre non nul : il reste propre, pour la même valeur propre."
   },
   {
     "question": "Pour trouver les vecteurs propres associés à $\\lambda$, on résout :",
-    "choix": ["$(A - \\lambda I)\\vec v = \\vec 0$", "$A\\vec v = \\vec 0$", "$\\det(A) = 0$", "$A^T\\vec v = \\lambda$"],
+    "choix": [
+      "$(A - \\lambda I)\\vec v = \\vec 0$",
+      "$A\\vec v = \\vec 0$",
+      "$\\det(A) = 0$",
+      "$A^T\\vec v = \\lambda$"
+    ],
     "reponse": 0,
-    "explication": "$A\\vec v = \\lambda\\vec v$ équivaut à $(A - \\lambda I)\\vec v = \\vec 0$ : un système linéaire, qu'on résout par le pivot de Gauss."
+    "explication": "**Règle :** une fois $\\lambda$ connu, les vecteurs propres sont les $\\vec v$ non nuls tels que $A\\vec v = \\lambda\\vec v$, c'est-à-dire $(A - \\lambda I)\\vec v = \\vec 0$.\n\n**Pas à pas :**\n\n1. On écrit $A - \\lambda I$ (on retire $\\lambda$ sur la diagonale).\n2. On résout le système homogène $(A - \\lambda I)\\vec v = \\vec 0$ par le pivot de Gauss : une ligne disparaît, il y a une infinité de solutions.\n3. Exemple : pour $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ et $\\lambda = 3$, $A - 3I = \\begin{pmatrix} -1 & 1 \\\\ 1 & -1 \\end{pmatrix}$ donne $v_1 = v_2$, d'où $(1, 1)$.\n\n**Les autres réponses :** $A\\vec v = \\vec 0$ ne marche que pour $\\lambda = 0$ ; $\\det(A) = 0$ est une condition sur la matrice, pas un système qui donne des vecteurs ; $A^T\\vec v = \\lambda$ compare un vecteur à un nombre, cela n'a pas de sens.\n\n**À retenir :** valeurs propres avec $\\det(A - \\lambda I) = 0$, puis vecteurs propres avec $(A - \\lambda I)\\vec v = \\vec 0$."
   },
   {
     "question": "Dans $A = PDP^{-1}$, que contient la matrice $P$ ?",
@@ -49,13 +74,18 @@
       "La transposée de $A$"
     ],
     "reponse": 0,
-    "explication": "$P$ a les vecteurs propres en **colonnes** ; $D$ a les valeurs propres sur la diagonale, dans le même ordre."
+    "explication": "**Règle :** dans $A = PDP^{-1}$, $P$ contient les vecteurs propres **en colonnes**, et $D$ les valeurs propres sur la diagonale, dans le même ordre.\n\n**Pas à pas :** avec $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$, les vecteurs propres sont $(1, 1)$ (pour $3$) et $(1, -1)$ (pour $1$).\n\n1. On écrit $(1, 1)$ de haut en bas dans la 1re colonne, $(1, -1)$ dans la 2e : $P = \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$.\n2. On met $3$ puis $1$ sur la diagonale de $D$.\n\n**Les autres réponses :** « les valeurs propres, sur la diagonale » décrit $D$, pas $P$ ; « les vecteurs propres, en lignes » donne en général une autre matrice, et $A = PDP^{-1}$ devient faux ; « la transposée de $A$ » n'a rien à voir.\n\n**À retenir :** $P$ = vecteurs propres en colonnes, $D$ = valeurs propres sur la diagonale, même ordre."
   },
   {
     "question": "Si $A = PDP^{-1}$, que vaut $A^n$ ?",
-    "choix": ["$P^n D^n P^{-n}$", "$P D^n P^{-1}$", "$n\\,PDP^{-1}$", "$D^n$"],
+    "choix": [
+      "$P^n D^n P^{-n}$",
+      "$P D^n P^{-1}$",
+      "$n\\,PDP^{-1}$",
+      "$D^n$"
+    ],
     "reponse": 1,
-    "explication": "Dans $A \\times A = PDP^{-1}PDP^{-1}$, le $P^{-1}P$ du milieu vaut $I$. On obtient $A^n = PD^nP^{-1}$, et $D^n$ s'obtient en élevant chaque terme diagonal à la puissance $n$."
+    "explication": "**Règle :** si $A = PDP^{-1}$, alors $A^n = PD^nP^{-1}$, car les $P^{-1}P$ du milieu valent $I$.\n\n**Pas à pas :**\n\n1. $A^2 = (PDP^{-1})(PDP^{-1}) = PD(P^{-1}P)DP^{-1} = PDIDP^{-1} = PD^2P^{-1}$.\n2. Même chose pour $A^3$ : $A^2 \\times A = PD^2P^{-1}PDP^{-1} = PD^3P^{-1}$, et ainsi de suite.\n3. $D^n$ est facile : on élève chaque terme de la diagonale à la puissance $n$.\n\n**Les autres réponses :** $P^nD^nP^{-n}$ élève $P$ à la puissance alors que les $P^{-1}P$ s'annulent ; $n\\,PDP^{-1} = nA$ multiplie par $n$ au lieu d'élever à la puissance ; $D^n$ seul oublie le changement de base ($P$ et $P^{-1}$), et ne vaut $A^n$ que si $A$ est déjà diagonale.\n\n**À retenir :** $A^n = PD^nP^{-1}$ : seule $D$ prend la puissance."
   },
   {
     "question": "Que vaut $\\begin{pmatrix} 2 & 0 \\\\ 0 & -3 \\end{pmatrix}^3$ ?",
@@ -66,13 +96,18 @@
       "$\\begin{pmatrix} 8 & 1 \\\\ 1 & -27 \\end{pmatrix}$"
     ],
     "reponse": 0,
-    "explication": "Matrice diagonale : on élève chaque terme de la diagonale, $2^3 = 8$ et $(-3)^3 = -27$."
+    "explication": "**Règle :** pour une matrice **diagonale**, la puissance s'applique à chaque terme de la diagonale ; les zéros restent des zéros.\n\n**Pas à pas :**\n\n1. Case $(1, 1)$ : $2^3 = 2 \\times 2 \\times 2 = 8$.\n2. Case $(2, 2)$ : $(-3)^3 = (-3) \\times (-3) \\times (-3) = 9 \\times (-3) = -27$ (puissance impaire d'un négatif : négatif).\n3. Cases hors diagonale : $0$.\n\n**Les autres réponses :** la matrice avec $6$ et $-9$ multiplie par $3$ au lieu d'élever au cube ($2 \\times 3$, $-3 \\times 3$) ; celle avec $27$ positif oublie le signe ; celle avec des $1$ hors de la diagonale invente des termes, alors qu'un produit de matrices diagonales reste diagonal.\n\n**À retenir :** diagonale puissance $n$ = chaque terme diagonal puissance $n$, en surveillant le signe."
   },
   {
     "question": "Un processus $\\vec x_{n+1} = A\\vec x_n$ a pour valeurs propres $0{,}9$ et $0{,}4$. Quand $n$ devient grand, $\\vec x_n$ :",
-    "choix": ["explose", "converge vers $\\vec 0$", "oscille sans fin", "reste égal à $\\vec x_0$"],
+    "choix": [
+      "explose",
+      "converge vers $\\vec 0$",
+      "oscille sans fin",
+      "reste égal à $\\vec x_0$"
+    ],
     "reponse": 1,
-    "explication": "Les deux valeurs propres sont inférieures à 1 en valeur absolue : $0{,}9^n$ et $0{,}4^n$ tendent vers 0, comme des suites géométriques."
+    "explication": "**Règle :** pour $\\vec x_{n+1} = A\\vec x_n$, on a $\\vec x_n = A^n\\vec x_0$ ; chaque direction propre est multipliée par $\\lambda^n$. Si **toutes** les valeurs propres vérifient $|\\lambda| < 1$, tout tend vers $\\vec 0$.\n\n**Pas à pas :**\n\n1. $0{,}9^n$ : $1;\\ 0{,}9;\\ 0{,}81;\\ 0{,}729;\\ \\dots$ diminue vers $0$ (lentement).\n2. $0{,}4^n$ : $1;\\ 0{,}4;\\ 0{,}16;\\ \\dots$ diminue vers $0$ (vite).\n3. Les deux parties s'éteignent, donc $\\vec x_n \\to \\vec 0$.\n\n**Les autres réponses :** « explose » demanderait une valeur propre de valeur absolue plus grande que $1$ ; « oscille sans fin » demanderait une valeur propre négative (comme $-1$) ; « reste égal à $\\vec x_0$ » demanderait des valeurs propres égales à $1$.\n\n**À retenir :** toutes les $|\\lambda| < 1$ : convergence vers $\\vec 0$ ; une seule $|\\lambda| > 1$ : explosion."
   },
   {
     "question": "Une matrice qui n'a pas assez de vecteurs propres indépendants pour former une base :",
@@ -83,7 +118,7 @@
       "a un déterminant égal à 1"
     ],
     "reponse": 1,
-    "explication": "Sans base de vecteurs propres, pas de $A = PDP^{-1}$. On peut toutefois écrire $A = PTP^{-1}$ avec $T$ triangulaire."
+    "explication": "**Règle :** diagonaliser une matrice $n \\times n$ demande $n$ vecteurs propres **indépendants** (non alignés) pour remplir $P$. S'il en manque, pas de $A = PDP^{-1}$, mais on peut toujours **trigonaliser** : $A = PTP^{-1}$ avec $T$ triangulaire.\n\n**Pas à pas :** exemple $\\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$.\n\n1. Triangulaire : une seule valeur propre, $1$.\n2. $A - I = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ donne $v_2 = 0$ : tous les vecteurs propres sont sur la droite $(t, 0)$.\n3. Un seul vecteur propre indépendant pour une matrice $2 \\times 2$ : pas diagonalisable. Elle a pourtant bien une valeur propre.\n\n**Les autres réponses :** « n'a aucune valeur propre » est faux (l'exemple en a une) ; « est forcément nulle » est faux (l'exemple n'est pas nulle) ; « a un déterminant égal à 1 » n'est pas une règle (avec $\\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}$, le déterminant vaut $4$).\n\n**À retenir :** pas assez de vecteurs propres indépendants : pas diagonalisable, mais trigonalisable."
   },
   {
     "question": "En PCA, l'importance d'une direction (composante principale) est mesurée par :",
@@ -94,7 +129,7 @@
       "la première colonne du jeu de données"
     ],
     "reponse": 0,
-    "explication": "Les directions sont les vecteurs propres de la matrice de covariance ; plus la valeur propre est grande, plus la direction explique de variance."
+    "explication": "**Règle :** en PCA, les directions principales sont les **vecteurs propres** de la matrice de covariance, et la **valeur propre** associée mesure la variance (l'information) portée par cette direction. Sa part vaut $\\lambda_i$ divisé par la somme des valeurs propres.\n\n**Pas à pas :** avec des valeurs propres $7$, $2$ et $1$ (total $10$) :\n\n1. 1re direction : $7 / 10 = 70\\,\\%$ de la variance.\n2. 2e : $20\\,\\%$ ; 3e : $10\\,\\%$.\n3. La plus grande valeur propre désigne la direction la plus importante.\n\n**Les autres réponses :** le nombre de lignes dit combien de données on a, pas l'importance d'une direction ; le déterminant est un seul nombre pour toute la matrice ; la première colonne est une variable de départ, pas une direction principale.\n\n**À retenir :** PCA : direction = vecteur propre, importance = valeur propre (de la matrice de covariance)."
   },
   {
     "question": "À quoi servent les matrices par blocs en big data ?",
@@ -105,6 +140,6 @@
       "À calculer un déterminant sans multiplication"
     ],
     "reponse": 0,
-    "explication": "On calcule bloc par bloc comme avec des nombres : chaque bloc peut être traité en parallèle ou chargé en mémoire à son tour. C'est la base du calcul matriciel distribué."
+    "explication": "**Règle :** on peut découper une matrice en **blocs** et calculer bloc par bloc comme avec des nombres : $\\begin{pmatrix} A & B \\\\ C & D \\end{pmatrix}\\begin{pmatrix} E \\\\ F \\end{pmatrix} = \\begin{pmatrix} AE + BF \\\\ CE + DF \\end{pmatrix}$. Le résultat est **le même** que le calcul complet.\n\n**Pas à pas :** pour une matrice de millions de lignes :\n\n1. On la coupe en blocs assez petits pour tenir en mémoire.\n2. Chaque produit de blocs ($AE$, $BF$, …) est calculé séparément : sur plusieurs machines en parallèle, ou l'un après l'autre.\n3. On recombine les morceaux ($AE + BF$, …) pour obtenir le résultat final.\n\n**Les autres réponses :** le découpage ne rend pas une matrice diagonalisable (il ne change pas la matrice) ; il ne supprime aucune ligne des données ; il ne fait pas disparaître les multiplications, il les répartit.\n\n**À retenir :** blocs = même calcul, découpé en morceaux traités séparément puis recombinés (calcul distribué)."
   }
 ]

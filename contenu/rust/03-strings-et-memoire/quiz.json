@@ -1,74 +1,134 @@
 [
   {
     "question": "Quel type choisir pour le paramètre d'une fonction qui **lit seulement** du texte ?",
-    "choix": ["`String`", "`&str`", "`char`", "`Box<str>`"],
+    "choix": [
+      "`String`",
+      "`&str`",
+      "`char`",
+      "`Box<str>`"
+    ],
     "reponse": 1,
-    "explication": "`&str` emprunte le texte : il accepte un texte écrit dans le code, une `String` avec `&` ou un morceau de texte, sans rien copier."
+    "explication": "**Règle :** « prendre l'emprunt, rendre le possédé ». Une fonction qui **lit seulement** un texte prend un `&str` : elle l'emprunte, sans le copier et sans en devenir propriétaire.\n\n**Pas à pas :** avec `fn f(t: &str)`, on vérifie ce qu'on peut lui passer.\n\n| Appel | Accepté ? |\n|---|---|\n| `f(\"salut\")` (texte écrit dans le code) | oui, c'est déjà un `&str` |\n| `f(&nom)` avec `nom: String` | oui, `&String` devient tout seul un `&str` |\n| `f(&nom[0..2])` (un morceau) | oui, un morceau est un `&str` |\n\nEt après l'appel, `nom` est toujours utilisable : il a seulement été prêté.\n\n**Les autres réponses :** `String` oblige l'appelant à **donner** son texte (ou à le copier) et refuse `\"salut\"` ; `char` ne contient qu'un seul caractère ; `Box<str>` est un texte possédé, il pose le même problème que `String`.\n\n**À retenir :** paramètre qui lit du texte = `&str`."
   },
   {
     "question": "Quel est le type de `\"Bonjour\"` écrit directement dans le code ?",
-    "choix": ["`String`", "`&'static str`", "`char`", "`Vec<u8>`"],
+    "choix": [
+      "`String`",
+      "`&'static str`",
+      "`char`",
+      "`Vec<u8>`"
+    ],
     "reponse": 1,
-    "explication": "Les octets sont rangés dans le programme lui-même et existent pendant toute l'exécution : c'est un `&'static str`."
+    "explication": "**Règle :** un texte écrit entre guillemets dans le code (un *littéral*) a le type `&'static str` : ses octets sont rangés **dans le fichier du programme** et existent pendant toute l'exécution. `'static` veut dire « vit jusqu'à la fin du programme ».\n\n**Pas à pas :** pour `let s = \"Bonjour\";`\n\n1. `\"Bonjour\"` est écrit dans le code : le compilateur range ces 7 octets dans le programme lui-même ;\n2. `s` ne possède rien, il **emprunte** ces octets : c'est un `&str` ;\n3. comme les octets ne disparaissent jamais, l'emprunt est valable tout le temps : `&'static str`.\n\n**Les autres réponses :** une `String` se fabrique (`String::from(\"Bonjour\")`, `\"Bonjour\".to_string()`) ; un `char` s'écrit avec des guillemets **simples** (`'B'`) et contient un seul caractère ; `Vec<u8>` est une liste d'octets bruts.\n\n**À retenir :** `\"...\"` = `&'static str` ; `String::from(\"...\")` = `String`."
   },
   {
     "question": "Que vaut `\"Hello, 🦀\".len()` ?",
-    "choix": ["8", "11", "9", "12"],
+    "choix": [
+      "8",
+      "11",
+      "9",
+      "12"
+    ],
     "reponse": 1,
-    "explication": "`len()` compte les **octets** : 7 pour `Hello, ` et 4 pour le crabe, soit 11. Il y a seulement 8 caractères."
+    "explication": "**Règle :** `.len()` compte les **octets**, pas les caractères. En UTF-8, une lettre sans accent, un chiffre, une virgule ou un espace prennent 1 octet, un émoji en prend 4.\n\n**Pas à pas :** on découpe `\"Hello, 🦀\"`.\n\n| Morceau | Caractères | Octets |\n|---|---|---|\n| `H`, `e`, `l`, `l`, `o` | 5 | 5 |\n| `,` | 1 | 1 |\n| espace | 1 | 1 |\n| `🦀` | 1 | **4** |\n| **Total** | 8 | **11** |\n\n**Les autres réponses :** 8 est le nombre de **caractères** (`.chars().count()`) ; 9 oublie l'espace ou compte mal le crabe ; 12 compte un octet de trop.\n\n**À retenir :** `len()` = octets ; pour les caractères, `chars().count()`."
   },
   {
     "question": "Combien d'octets prend la lettre `é` en UTF-8 ?",
-    "choix": ["1", "2", "3", "4"],
+    "choix": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
     "reponse": 1,
-    "explication": "Les lettres accentuées prennent 2 octets. L'ASCII en prend 1, `€` en prend 3 et les émojis 4."
+    "explication": "**Règle :** en UTF-8, un caractère prend de 1 à 4 octets : 1 pour l'ASCII (lettres sans accent, chiffres), **2** pour les lettres accentuées, 3 pour des symboles comme `€`, 4 pour les émojis.\n\n**Pas à pas :** on peut le vérifier dans le code :\n\n```rust\nprintln!(\"{}\", \"é\".len());\nprintln!(\"{}\", 'é'.len_utf8());\n```\n\nLes deux affichent 2. Et `\"Hé\".len()` vaut 3 : 1 pour `H`, 2 pour `é`.\n\n**Les autres réponses :** 1 est la taille d'une lettre **sans** accent ; 3 est celle de `€` ; 4 est celle d'un émoji (et aussi la taille d'un `char` en mémoire, à ne pas confondre avec sa taille dans un texte).\n\n**À retenir :** ASCII 1, accent 2, `€` 3, émoji 4."
   },
   {
     "question": "Que se passe-t-il avec `&\"Hello, 🦀\"[0..8]` ?",
-    "choix": ["On obtient `\"Hello, \"`", "Le code ne compile pas", "Le programme panique", "On obtient `None`"],
+    "choix": [
+      "On obtient `\"Hello, \"`",
+      "Le code ne compile pas",
+      "Le programme panique",
+      "On obtient `None`"
+    ],
     "reponse": 2,
-    "explication": "La position 8 tombe au milieu du crabe (octets 7 à 10) : panique `byte index 8 is not a char boundary`."
+    "explication": "**Règle :** `&s[debut..fin]` coupe un texte à des positions en **octets**. Si une position tombe au **milieu** d'un caractère, le programme **panique** (`byte index 8 is not a char boundary`).\n\n**Pas à pas :** on repère les octets de `\"Hello, 🦀\"`.\n\n| Octets | 0 à 6 | 7 | 8 | 9 | 10 |\n|---|---|---|---|---|---|\n| Contenu | `Hello, ` | début du `🦀` | dans le `🦀` | dans le `🦀` | dans le `🦀` |\n\n1. `[0..8]` demande de couper à l'octet 8 ;\n2. l'octet 8 est au milieu du crabe (qui occupe 7, 8, 9, 10) ;\n3. la coupe donnerait la moitié d'un caractère, du texte invalide : Rust panique.\n\n**Les autres réponses :** `\"Hello, \"` serait le résultat de `[0..7]` ; le code compile (les positions ne sont vérifiées qu'à l'exécution) ; `None` est ce que renverrait `get(0..8)`, pas `&s[0..8]`.\n\n**À retenir :** coupe seulement à une position où commence un caractère (vérifie avec `is_char_boundary` ou utilise `get`)."
   },
   {
     "question": "Que renvoie `\"Hello, 🦀\".get(0..8)` ?",
-    "choix": ["`Some(\"Hello, \")`", "`None`", "Une panique", "`\"Hello, 🦀\"`"],
+    "choix": [
+      "`Some(\"Hello, \")`",
+      "`None`",
+      "Une panique",
+      "`\"Hello, 🦀\"`"
+    ],
     "reponse": 1,
-    "explication": "`get` est la version sûre : elle renvoie `None` au lieu de paniquer quand la coupe est impossible."
+    "explication": "**Règle :** `s.get(debut..fin)` est la version **sûre** de `&s[debut..fin]` : elle renvoie `Some(morceau)` si la coupe est possible, et `None` sinon, sans paniquer.\n\n**Pas à pas :**\n\n1. le crabe de `\"Hello, 🦀\"` occupe les octets 7 à 10 ;\n2. la position 8 est au milieu : la coupe est impossible ;\n3. `get(0..8)` renvoie donc `None`.\n\nAvec `get(0..7)`, la coupe est possible (7 est le début du crabe) : on aurait `Some(\"Hello, \")`.\n\n**Les autres réponses :** `Some(\"Hello, \")` est le résultat de `get(0..7)`, pas de `get(0..8)` (`get` ne recule pas tout seul) ; la panique, c'est `&s[0..8]` ; et `get` ne renvoie jamais le texte entier quand on lui demande un morceau.\n\n**À retenir :** `get(..)` = `Some` si la coupe est valide, `None` sinon, jamais de panique."
   },
   {
     "question": "Combien d'octets prend un `char` ?",
-    "choix": ["Toujours 1", "De 1 à 4 selon le caractère", "Toujours 4", "Toujours 2"],
+    "choix": [
+      "Toujours 1",
+      "De 1 à 4 selon le caractère",
+      "Toujours 4",
+      "Toujours 2"
+    ],
     "reponse": 2,
-    "explication": "Un `char` prend toujours 4 octets. C'est dans une `String`, encodée en UTF-8, qu'un caractère prend de 1 à 4 octets."
+    "explication": "**Règle :** un `char` (écrit `'a'`, `'é'`, `'🦀'`) prend **toujours 4 octets** en mémoire, quel que soit le caractère : c'est la place qu'il faut pour le plus gros d'entre eux. C'est **dans un texte** (`&str`, `String`), encodé en UTF-8, qu'un caractère prend de 1 à 4 octets.\n\n**Pas à pas :**\n\n```rust\nprintln!(\"{}\", std::mem::size_of::<char>());\nprintln!(\"{}\", 'a'.len_utf8());\nprintln!(\"{}\", '🦀'.len_utf8());\n```\n\n1. `size_of::<char>()` affiche 4 : la taille d'un `char` en mémoire ;\n2. `'a'.len_utf8()` affiche 1 : la taille de `a` **une fois écrit dans un texte** ;\n3. `'🦀'.len_utf8()` affiche 4.\n\n**Les autres réponses :** « de 1 à 4 selon le caractère » décrit le texte UTF-8, pas le type `char` ; « toujours 1 » est le `char` du C ; « toujours 2 » est le `char` de Java.\n\n**À retenir :** un `char` = 4 octets ; un caractère dans un texte = 1 à 4 octets."
   },
   {
     "question": "Quelle est la différence entre `push` et `push_str` sur une `String` ?",
-    "choix": ["Aucune", "`push` ajoute un `char`, `push_str` ajoute un `&str`", "`push` ajoute au début, `push_str` à la fin", "`push_str` crée une nouvelle `String`"],
+    "choix": [
+      "Aucune",
+      "`push` ajoute un `char`, `push_str` ajoute un `&str`",
+      "`push` ajoute au début, `push_str` à la fin",
+      "`push_str` crée une nouvelle `String`"
+    ],
     "reponse": 1,
-    "explication": "`s.push('a')` ajoute un seul caractère, `s.push_str(\"abc\")` ajoute un texte entier. Les deux ajoutent à la fin."
+    "explication": "**Règle :** `s.push(c)` ajoute **un** caractère (`char`, guillemets simples `'x'`) à la fin. `s.push_str(t)` ajoute un **texte** entier (`&str`, guillemets doubles `\"xyz\"`) à la fin. Les deux modifient la `String` (qui doit être `mut`).\n\n**Pas à pas :**\n\n```rust\nlet mut s = String::from(\"ab\");\ns.push('c');\ns.push_str(\"de\");\nprintln!(\"{s}\");\n```\n\n1. au départ `s` = `\"ab\"` ;\n2. `push('c')` : `\"abc\"` ;\n3. `push_str(\"de\")` : `\"abcde\"`.\n\n`s.push(\"de\")` ne compilerait pas (un texte n'est pas un `char`), ni `s.push_str('c')`.\n\n**Les autres réponses :** il y a bien une différence (le type de ce qu'on ajoute) ; les deux ajoutent **à la fin** (pour le début, c'est `insert(0, c)`) ; aucun des deux ne crée de nouvelle `String`, c'est `format!` qui fait ça.\n\n**À retenir :** `push('x')` pour un caractère, `push_str(\"xyz\")` pour un texte."
   },
   {
     "question": "Quelle est la taille d'une `String` **sur la pile** (machine 64 bits) ?",
-    "choix": ["8 octets", "16 octets", "24 octets", "La longueur du texte"],
+    "choix": [
+      "8 octets",
+      "16 octets",
+      "24 octets",
+      "La longueur du texte"
+    ],
     "reponse": 2,
-    "explication": "Adresse + longueur + capacité = 3 × 8 = 24 octets. Le texte lui-même est sur le tas. Un `&str` fait 16 octets (adresse + longueur)."
+    "explication": "**Règle :** sur la pile, une `String` contient 3 nombres de 8 octets chacun (machine 64 bits) : l'**adresse** du texte sur le tas, sa **longueur** et sa **capacité** (la place réservée). Le texte lui-même est sur le tas.\n\n**Pas à pas :**\n\n1. adresse : 8 octets ;\n2. longueur : un `usize`, 8 octets ;\n3. capacité : un `usize`, 8 octets ;\n4. total : 3 × 8 = **24 octets**, quelle que soit la longueur du texte.\n\nOn le vérifie avec `std::mem::size_of::<String>()`, qui affiche 24.\n\n**Les autres réponses :** 8 octets est la taille d'une `Box` (seulement une adresse) ; 16 octets est celle d'un `&str` (adresse + longueur, pas de capacité car il ne grandit pas) ; la longueur du texte compte pour le **tas**, pas pour la pile.\n\n**À retenir :** `Box` = 8, `&str` = 16, `String` = 24 octets sur la pile."
   },
   {
     "question": "Où est rangée la valeur `42` dans `let b = Box::new(42);` ?",
-    "choix": ["Sur la pile", "Sur le tas", "Dans le fichier du programme", "Nulle part, elle est calculée à chaque fois"],
+    "choix": [
+      "Sur la pile",
+      "Sur le tas",
+      "Dans le fichier du programme",
+      "Nulle part, elle est calculée à chaque fois"
+    ],
     "reponse": 1,
-    "explication": "La boîte (une adresse de 8 octets) est sur la pile, la valeur pointée est sur le tas. Elle est libérée quand `b` disparaît."
+    "explication": "**Règle :** `Box::new(v)` range la valeur `v` **sur le tas**. La variable (la boîte) ne contient qu'une adresse de 8 octets, rangée sur la pile, qui pointe vers la valeur. Quand la boîte disparaît, la valeur est libérée.\n\n**Pas à pas :** pour `let b = Box::new(42);`\n\n1. Rust demande de la place sur le tas et y écrit 42 ;\n2. sur la pile, `b` garde l'adresse de cette place ;\n3. `*b` va lire la valeur à cette adresse : 42 ;\n4. à la fin du bloc, `b` disparaît et la place sur le tas est rendue.\n\n**Les autres réponses :** sur la pile, il y a seulement l'**adresse**, pas 42 ; « dans le fichier du programme », c'est le cas des textes entre guillemets (`&'static str`) ; et la valeur est bien stockée, pas recalculée.\n\n**À retenir :** `Box` = adresse sur la pile, valeur sur le tas."
   },
   {
     "question": "Que se passe-t-il avec `let t = [0u8; 9_000_000];` dans `main` sous Windows ?",
-    "choix": ["Rien de spécial", "Une panique qu'on peut rattraper", "Un débordement de pile qui tue le programme", "Une erreur de compilation"],
+    "choix": [
+      "Rien de spécial",
+      "Une panique qu'on peut rattraper",
+      "Un débordement de pile qui tue le programme",
+      "Une erreur de compilation"
+    ],
     "reponse": 2,
-    "explication": "La pile du thread principal fait 1 Mo sous Windows : 9 Mo ne rentrent pas. Le programme est tué net (stack overflow). Solution : `vec![0u8; 9_000_000]`."
+    "explication": "**Règle :** un tableau `[valeur; n]` est rangé **sur la pile**. La pile du programme principal est petite : **1 Mo sous Windows** (8 Mo sous Linux). Si elle déborde, le programme est **tué net** (*stack overflow*) : ce n'est pas une panique, on ne peut rien rattraper.\n\n**Pas à pas :**\n\n1. `[0u8; 9_000_000]` : 9 000 000 cases × 1 octet = 9 Mo ;\n2. 9 Mo > 1 Mo : ça ne rentre pas sur la pile ;\n3. message : `thread 'main' has overflowed its stack`, puis arrêt immédiat.\n\nSolution : `vec![0u8; 9_000_000]` range les 9 Mo sur le **tas** (il ne reste que 24 octets sur la pile).\n\n**Les autres réponses :** il se passe bien quelque chose (même sous Linux, 9 Mo dépassent les 8 Mo) ; une panique laisserait un message propre et pourrait être gérée, ici le programme est tué ; et le code compile, le compilateur ne connaît pas la taille de la pile.\n\n**À retenir :** gros tableau = `vec![...]` (tas), jamais `[...]` (pile)."
   },
   {
     "question": "Pourquoi un micro-benchmark en `--release` peut-il donner un temps presque nul ?",
-    "choix": ["Le processeur est très rapide", "Le compilateur a pu calculer le résultat à l'avance et supprimer la boucle", "Le mode release ne lance pas le programme", "hyperfine se trompe toujours"],
+    "choix": [
+      "Le processeur est très rapide",
+      "Le compilateur a pu calculer le résultat à l'avance et supprimer la boucle",
+      "Le mode release ne lance pas le programme",
+      "hyperfine se trompe toujours"
+    ],
     "reponse": 1,
-    "explication": "L'optimiseur supprime le travail dont le résultat est connu ou inutile. `std::hint::black_box` l'en empêche."
+    "explication": "**Règle :** en `--release`, l'**optimiseur** du compilateur peut supprimer le travail dont le résultat est connu à l'avance ou jamais utilisé, par exemple remplacer toute une boucle par son résultat final. On mesure alors « rien ». `std::hint::black_box(x)` l'empêche de le faire.\n\n**Pas à pas :** pour une boucle qui additionne les nombres de 0 à 999 999 :\n\n1. tout est connu à la compilation : le compilateur peut calculer lui-même 499 999 500 000 ;\n2. il écrit directement ce nombre dans le programme et supprime la boucle ;\n3. le programme ne fait plus le calcul : le temps mesuré est presque nul.\n\nAvec `total += black_box(i)`, le compilateur doit faire comme s'il ne connaissait pas `i` : la boucle reste, et on mesure vraiment son temps.\n\n**Les autres réponses :** le processeur est rapide, mais pas au point de faire un million d'additions en un temps nul de façon répétée ; le mode release lance bien le programme ; hyperfine mesure correctement ce qu'on lui donne, c'est le programme qui a changé.\n\n**À retenir :** temps presque nul en release = le compilateur a sûrement supprimé le travail ; utilise `black_box` et vérifie l'assembleur."
   }
 ]

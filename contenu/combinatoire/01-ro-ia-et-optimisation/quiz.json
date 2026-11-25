@@ -8,7 +8,7 @@
       "À prouver des théorèmes de logique"
     ],
     "reponse": 0,
-    "explication": "La RO (ou aide à la décision) regroupe les méthodes rationnelles pour trouver la **meilleure décision** selon un objectif chiffré."
+    "explication": "**Règle :** la recherche opérationnelle (RO), aussi appelée **aide à la décision**, regroupe les méthodes rationnelles qui cherchent **la meilleure façon de faire des choix** pour obtenir le meilleur résultat possible, mesuré par un chiffre (coût, distance, délai).\n\n**Pas à pas :** on repère le mot clé de chaque réponse.\n\n- « la meilleure façon de faire des choix » : c'est exactement la définition, la RO **décide**.\n- « imiter le comportement humain » : c'est la référence de l'**IA** (Minsky), pas de la RO.\n- « stocker de grandes quantités de données » : c'est le rôle d'une base de données, rien n'est décidé.\n- « prouver des théorèmes de logique » : c'est de la logique mathématique, pas un choix à optimiser.\n\n**À retenir :** RO = choisir la meilleure décision selon un objectif chiffré."
   },
   {
     "question": "Dans la définition de l'IA de Marvin Minsky, quelle est la **référence** ?",
@@ -19,7 +19,7 @@
       "La solution optimale"
     ],
     "reponse": 0,
-    "explication": "Une tâche relève de l'IA tant que l'humain la réussit mieux que la machine : l'humain est le point de référence."
+    "explication": "**Règle :** pour Marvin Minsky, l'IA construit des programmes qui font des tâches que **les humains réussissent encore mieux que les machines** (apprendre, raisonner, organiser sa mémoire). La référence est donc **l'être humain**.\n\n**Pas à pas :** on se demande « à quoi compare-t-on la machine ? ».\n\n- Dans la définition de Minsky, on la compare à un humain : tant que l'humain fait mieux, la tâche relève de l'IA.\n- Donc la référence est **l'être humain**.\n\n**Les autres réponses :** « un objectif chiffré » et « la solution optimale » sont la référence de la **RO**, pas de l'IA ; « la vitesse de calcul » n'est pas un critère de la définition (une machine calcule déjà bien plus vite que nous, sans que ce soit de l'IA).\n\n**À retenir :** IA = ce que l'humain fait encore mieux ; RO = ce qu'un chiffre permet de mesurer."
   },
   {
     "question": "En IA, l'optimalité de la solution est…",
@@ -30,7 +30,7 @@
       "Garantie par le test de Turing"
     ],
     "reponse": 1,
-    "explication": "La RO vise la meilleure décision, souvent prouvée. L'IA cherche un comportement satisfaisant, sans forcément viser l'optimum."
+    "explication": "**Règle :** l'IA cherche un comportement **satisfaisant**, comparable à celui d'un humain. Viser la meilleure solution possible (l'optimum) n'est souvent **pas** son but : « bon en pratique » suffit. C'est la RO qui vise l'optimum, souvent avec une preuve.\n\n**Pas à pas :** prends un assistant qui répond à une question. On veut une réponse correcte et utile, comme celle d'un humain ; personne ne demande de prouver que c'est « la meilleure réponse possible ». L'optimalité n'est donc pas recherchée.\n\n**Les autres réponses :**\n\n- « toujours prouvée » : c'est plutôt le cas de la RO, et même là pas toujours.\n- « interdite » : rien n'interdit de trouver l'optimum, on ne le cherche juste pas en priorité.\n- « garantie par le test de Turing » : ce test vérifie seulement qu'on ne distingue pas la machine d'un humain en conversation, il ne dit rien d'un optimum.\n\n**À retenir :** RO = optimum (souvent prouvé) ; IA = satisfaisant suffit."
   },
   {
     "question": "Quels sont les trois éléments d'un problème d'optimisation ?",
@@ -41,7 +41,7 @@
       "Hypothèse, preuve, conclusion"
     ],
     "reponse": 0,
-    "explication": "Tout problème d'optimisation se décrit par ses **variables** (ce qu'on choisit), son **objectif** (ce qu'on minimise ou maximise) et ses **contraintes** (ce qu'on doit respecter)."
+    "explication": "**Règle :** tout problème d'optimisation se décrit par trois éléments :\n\n1. les **variables de décision** : ce que l'on choisit ;\n2. la **fonction objectif** : la quantité à minimiser ou maximiser ;\n3. les **contraintes** : les conditions à respecter.\n\n**Pas à pas :** sur un sac à dos, les variables sont « je prends l'objet ou non », l'objectif est « maximiser la valeur emportée », la contrainte est « ne pas dépasser la capacité ». On retrouve bien les trois morceaux.\n\n**Les autres réponses :** « données, algorithme, résultat » et « entrée, sortie, mémoire » décrivent un programme, pas un problème à optimiser (il n'y a ni objectif ni contrainte) ; « hypothèse, preuve, conclusion » décrit une démonstration.\n\n**À retenir :** devant un énoncé, nomme d'abord variables, objectif et contraintes."
   },
   {
     "question": "Une solution est dite **réalisable** quand…",
@@ -52,7 +52,7 @@
       "Elle minimise l'objectif"
     ],
     "reponse": 0,
-    "explication": "Réalisable = toutes les contraintes sont respectées. La solution optimale est la **meilleure** des solutions réalisables."
+    "explication": "**Règle :** une solution est **réalisable** quand elle respecte **toutes** les contraintes. La solution **optimale** est la meilleure des solutions réalisables.\n\n**Pas à pas :** sac de 5 kg, objets X (2 kg, 3 euros) et Z (4 kg, 6 euros).\n\n- Prendre X seul : 2 kg $\\le 5$, la contrainte est respectée, c'est réalisable (même si ce n'est pas le meilleur choix).\n- Prendre X et Z : 6 kg $> 5$, la contrainte est violée, ce n'est pas réalisable, même si la valeur est grande.\n\n**Les autres réponses :** « elle est optimale » et « elle minimise l'objectif » confondent réalisable et optimal (une solution réalisable peut être mauvaise) ; « trouvée en moins d'une seconde » parle du temps de calcul, qui n'a rien à voir avec les contraintes.\n\n**À retenir :** réalisable = respecte les contraintes ; optimale = la meilleure parmi les réalisables."
   },
   {
     "question": "Lequel de ces problèmes est un problème d'optimisation **combinatoire** ?",
@@ -63,7 +63,7 @@
       "Calculer la moyenne d'une classe"
     ],
     "reponse": 1,
-    "explication": "La tournée est choisie parmi un ensemble **fini** (mais immense) d'ordres de visite. Le thermostat est une variable continue ; la conversion n'a rien à optimiser."
+    "explication": "**Règle :** un problème est d'**optimisation combinatoire** quand on choisit la meilleure solution parmi un ensemble **fini** (souvent énorme) de candidats **discrets** (ordres, sous-ensembles, affectations), selon un critère.\n\n**Pas à pas :** on teste chaque situation avec deux questions : « les solutions se comptent-elles ? » et « y a-t-il quelque chose à optimiser ? ».\n\n| Situation | Solutions dénombrables ? | Critère à optimiser ? | Combinatoire ? |\n|---|---|---|---|\n| plus courte tournée entre 15 villes | oui : les ordres de visite | oui : la longueur | **oui** |\n| thermostat d'une pièce | non : la température est continue | oui | non |\n| convertir 100 euros en dollars | rien à choisir | non | non |\n| moyenne d'une classe | rien à choisir | non | non |\n\nLa tournée est choisie parmi $\\dfrac{14!}{2}$ tournées possibles : un nombre fini mais immense.\n\n**À retenir :** combinatoire = candidats en nombre fini et discrets + un critère ; une grandeur continue ou un simple calcul n'en sont pas."
   },
   {
     "question": "Pourquoi parle-t-on d'optimisation **combinatoire** ?",
@@ -74,7 +74,7 @@
       "Parce que les variables sont continues"
     ],
     "reponse": 0,
-    "explication": "Les solutions sont des objets discrets en nombre fini : on ne peut pas dériver pour trouver l'optimum, il faut organiser la recherche."
+    "explication": "**Règle :** « combinatoire » vient des **combinaisons** possibles : l'espace des solutions est **discret**, fait d'objets séparés qu'on peut compter (permutations, sous-ensembles, affectations), et non d'une valeur qui varie en continu.\n\n**Pas à pas :** dans un voyageur de commerce, une solution est un ordre de visite. Entre deux ordres voisins, il n'y a pas « d'ordre intermédiaire » : on saute d'un candidat à l'autre. On ne peut donc pas dériver une fonction pour trouver son minimum, il faut organiser la recherche parmi les candidats.\n\n**Les autres réponses :**\n\n- « on combine plusieurs ordinateurs » : jeu de mots, ça n'a rien à voir.\n- « la fonction objectif est toujours une somme » : c'est souvent le cas, mais ce n'est pas ce qui définit le mot.\n- « les variables sont continues » : c'est exactement l'inverse, les variables sont discrètes.\n\n**À retenir :** combinatoire = solutions discrètes (ordres, choix, affectations), en nombre fini."
   },
   {
     "question": "Combien de tournées **distinctes** pour un voyageur de commerce à $n$ villes ?",
@@ -85,7 +85,7 @@
       "$n^2$"
     ],
     "reponse": 1,
-    "explication": "Il y a $n!$ ordres de visite. La ville de départ ne compte pas (on divise par $n$) ni le sens de parcours (on divise par 2) : $\\dfrac{n!}{2n} = \\dfrac{(n-1)!}{2}$."
+    "explication": "**Règle :** il y a $n!$ ordres de visite de $n$ villes. Une **tournée** est une boucle : on peut fixer la ville de départ (on divise par $n$) et le sens de parcours ne change pas la longueur (on divise par 2). D'où $\\dfrac{n!}{2n} = \\dfrac{(n-1)!}{2}$ tournées distinctes.\n\n**Pas à pas avec $n = 4$** (villes A, B, C, D) :\n\n1. $4! = 24$ ordres.\n2. On fixe le départ en A : $\\dfrac{24}{4} = 6$ ordres (ceux de B, C, D).\n3. A → B → C → D → A et A → D → C → B → A sont la même boucle parcourue dans les deux sens : $\\dfrac{6}{2} = 3$ tournées.\n4. La formule donne $\\dfrac{3!}{2} = 3$ : ça colle.\n\n**Les autres réponses :** $n!$ compte les **ordres**, chaque tournée y apparaît $2n$ fois ; $2^n$ compte les sous-ensembles (c'est le sac à dos) ; $n^2$ n'a pas de lien avec ce comptage.\n\n**À retenir :** tournées distinctes = $\\dfrac{(n-1)!}{2}$ (départ fixé, sens ignoré)."
   },
   {
     "question": "Combien de choix possibles pour un sac à dos à $n$ objets ?",
@@ -96,7 +96,7 @@
       "$n^2$"
     ],
     "reponse": 2,
-    "explication": "Chaque objet est pris ou non : 2 possibilités par objet, donc $2^n$ sous-ensembles."
+    "explication": "**Règle :** dans un sac à dos, chaque objet a **2 possibilités** : pris ou laissé. Avec $n$ objets, on multiplie : $2 \\times 2 \\times \\dots \\times 2 = 2^n$ choix possibles (sac vide compris).\n\n**Pas à pas avec 3 objets** X, Y, Z :\n\n- X : 2 possibilités ; pour chacune, Y : 2 possibilités, soit $2 \\times 2 = 4$ ;\n- pour chacune, Z : 2 possibilités, soit $4 \\times 2 = 8 = 2^3$.\n- Liste : aucun, X, Y, Z, XY, XZ, YZ, XYZ : on en compte bien 8.\n\n**Les autres réponses :** $n$ ne compte que les choix d'**un seul** objet ; $n!$ compte des **ordres** (l'ordre dans le sac ne compte pas) ; $n^2$ n'a pas de sens ici.\n\n**À retenir :** « pris ou non » pour chacun des $n$ éléments = $2^n$ sous-ensembles."
   },
   {
     "question": "Dans un planning d'examens vu comme une **coloration de graphe**, que représentent les couleurs ?",
@@ -107,7 +107,7 @@
       "Les examens"
     ],
     "reponse": 2,
-    "explication": "Sommets = examens, arête = un étudiant passe les deux examens, couleurs = créneaux. Deux examens reliés ne peuvent pas avoir le même créneau."
+    "explication": "**Règle :** pour un planning d'examens vu comme une coloration, les **sommets** sont les examens, une **arête** relie deux examens qu'un même étudiant passe, et les **couleurs** sont les **créneaux horaires**. Deux sommets reliés doivent avoir des couleurs différentes : deux examens en conflit n'ont pas le même créneau.\n\n**Pas à pas :** Maths et Physique sont passés par le même étudiant, donc reliés. On leur donne deux couleurs différentes, par exemple « lundi 9 h » et « lundi 14 h » : l'étudiant peut passer les deux. Ce qu'on attribue à chaque examen, c'est bien un créneau.\n\n**Les autres réponses :** les examens sont les **sommets**, pas les couleurs ; les étudiants servent seulement à décider où mettre les arêtes ; les salles ne font pas partie de ce modèle.\n\n**À retenir :** examens = sommets, conflits = arêtes, créneaux = couleurs."
   },
   {
     "question": "En ordonnancement, que désigne le **makespan** ?",
@@ -118,7 +118,7 @@
       "Le nombre de tâches"
     ],
     "reponse": 0,
-    "explication": "On cherche à finir le chantier au plus tôt : le makespan est la date de fin de la dernière tâche, à minimiser."
+    "explication": "**Règle :** le **makespan** est la date de fin de la **dernière** tâche, c'est-à-dire le moment où tout le travail est fini. En ordonnancement, on cherche à le **minimiser**.\n\n**Pas à pas :** deux machines, M1 fait des tâches de 4 h et 2 h, M2 des tâches de 3 h et 3 h.\n\n- M1 finit à $4 + 2 = 6$ h, M2 finit à $3 + 3 = 6$ h.\n- La dernière tâche se termine à 6 h : le makespan vaut **6 h**.\n\nSi M1 avait fini à 7 h, le makespan serait 7 h : c'est toujours la machine qui finit **en dernier** qui compte.\n\n**Les autres réponses :** le nombre de machines et le nombre de tâches sont des **données** du problème ; la durée de la plus courte tâche ne dit rien de l'heure de fin.\n\n**À retenir :** makespan = heure de fin de la machine la plus chargée."
   },
   {
     "question": "Qu'est-ce qu'un **problème de décision** ?",
@@ -129,6 +129,6 @@
       "Un problème résolu par un humain"
     ],
     "reponse": 0,
-    "explication": "Un problème de décision n'a pas de fonction objectif : il demande seulement oui ou non (« existe-t-il une solution de valeur au moins $K$ ? »)."
+    "explication": "**Règle :** un **problème de décision** n'a pas de fonction objectif : sa réponse est simplement **oui ou non**. Tout problème d'optimisation a une version décision, obtenue en ajoutant un seuil $K$ : « existe-t-il une solution de valeur au moins $K$ ? ».\n\n**Pas à pas :**\n\n- « Trouver la tournée la plus courte » : on attend une tournée, c'est de l'optimisation.\n- « Existe-t-il une tournée de longueur au plus 300 km ? » : on attend oui ou non, c'est un problème de décision.\n\n**Les autres réponses :** « plusieurs objectifs » décrit l'optimisation multi-objectif, pas la décision ; « sans contrainte » est faux, un problème de décision garde ses contraintes ; « résolu par un humain » n'a aucun rapport (c'est plutôt l'idée de l'IA).\n\n**À retenir :** décision = réponse oui/non, souvent « existe-t-il… ? »."
   }
 ]

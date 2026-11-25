@@ -8,32 +8,62 @@
       {
         "intitule": "*Could you ask the ...... if they can deliver the paper on Monday instead?*",
         "type": "choix",
-        "choix": ["supply", "supplier", "supplied", "supplying"],
-        "reponse": 1
+        "choix": [
+          "supply",
+          "supplier",
+          "supplied",
+          "supplying"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** après *the*, il faut un **nom** ; ensuite on choisit entre une **chose** et une **personne / entreprise** selon le sens.\n\n**Pas à pas :**\n\n1. Avant le trou : *the* → un nom. On élimine *supplied* et *supplying* (formes du verbe).\n2. Il reste *supply* (la fourniture) et *supplier* (le fournisseur).\n3. On **demande** à quelqu'un s'il peut livrer le papier lundi : on parle à une entreprise → **supplier**.\n\n**Les autres choix :** *supply* est une chose (ou le verbe « fournir ») : on ne pose pas de question à une fourniture.\n\n**À retenir :** *the* + nom ; *-er* = celui qui fait l'action (*supplier* = celui qui fournit)."
       },
       {
         "intitule": "*The old sofas were ...... down from $900 to $450.*",
         "type": "choix",
-        "choix": ["sold", "closed", "marked", "tried"],
-        "reponse": 2
+        "choix": [
+          "sold",
+          "closed",
+          "marked",
+          "tried"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** **mark down** = baisser un prix. Au passif : *were* + participe passé + particule → *were marked down*.\n\n**Pas à pas :**\n\n1. *from $900 to $450* : le prix est divisé par deux, il **baisse**.\n2. Les canapés **subissent** la baisse (le magasin baisse leur prix) → passif *were* + participe.\n3. Le verbe qui forme « baisser un prix » avec *down* est *mark* → **marked down** (démarqués).\n\n**Les autres choix :** *sold down* n'a pas ce sens (*sold* = vendus) ; *closed down* = fermer définitivement (un magasin, une usine) ; *tried down* n'existe pas.\n\n**À retenir :** *mark down* = baisser le prix ; *mark up* = l'augmenter."
       },
       {
         "intitule": "*The garden centre thanked its customers for their ...... over the past 20 years.*",
         "type": "choix",
-        "choix": ["patron", "patronage", "patronize", "patronized"],
-        "reponse": 1
+        "choix": [
+          "patron",
+          "patronage",
+          "patronize",
+          "patronized"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** après un possessif (*their*), il faut un **nom**. **patronage** = la fidélité des clients à un commerce.\n\n**Pas à pas :**\n\n1. Avant le trou : *their* → un nom. On élimine *patronize* (verbe) et *patronized* (participe).\n2. Il reste *patron* (un client, une personne) et *patronage* (la fidélité).\n3. On remercie les clients **pour leur fidélité depuis 20 ans** → **patronage**.\n\n**Les autres choix :** « remercier les clients pour leur client » (*patron*) n'a pas de sens. Faux ami : *patronage* n'est pas un parrainage (*sponsorship*).\n\n**À retenir :** *thank customers for their patronage* = remercier les clients de leur fidélité."
       },
       {
         "intitule": "*Anyone who leaves their car in the delivery area will have to pay a ......*",
         "type": "choix",
-        "choix": ["fee", "rebate", "fine", "refund"],
-        "reponse": 2
+        "choix": [
+          "fee",
+          "rebate",
+          "fine",
+          "refund"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** une **fine** est une **amende** : de l'argent payé comme **punition** quand on enfreint une règle.\n\n**Pas à pas :**\n\n1. *leaves their car in the delivery area* : se garer dans la zone de livraison est **interdit**.\n2. Ce qu'on paie est une sanction → **fine**.\n\n**Les autres choix :**\n\n| Mot | Sens | Pourquoi faux |\n|---|---|---|\n| *fee* | des frais normaux pour un service | ce n'est pas un service, c'est une infraction |\n| *rebate* | une remise remboursée | de l'argent qu'on **reçoit** |\n| *refund* | un remboursement | de l'argent qu'on **reçoit** |\n\n**À retenir :** punition → *fine* ; frais prévus → *fee* ; argent rendu → *refund / rebate*."
       },
       {
         "intitule": "*I set an alarm on my phone as a ...... to pay the electricity bill.*",
         "type": "choix",
-        "choix": ["remind", "reminded", "reminding", "reminder"],
-        "reponse": 3
+        "choix": [
+          "remind",
+          "reminded",
+          "reminding",
+          "reminder"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** après **as a**, il faut un **nom**.\n\n**Pas à pas :**\n\n1. Avant le trou : *as a* (comme un…).\n2. *a* annonce un nom → on élimine *remind* (verbe), *reminded* (participe) et *reminding* (forme en *-ing*).\n3. Le nom est **reminder** : un rappel, un pense-bête. Phrase : « J'ai mis une alarme comme rappel pour payer la facture d'électricité ».\n\n**Les autres choix :** ce sont toutes des formes du verbe *remind* (rappeler à quelqu'un), impossibles après *a*.\n\n**À retenir :** *a / an* + nom ; *-er* transforme ici le verbe *remind* en nom *reminder*."
       }
     ],
     "indices": [
@@ -51,38 +81,74 @@
       {
         "intitule": "*The new store will be ...... a wide range of kitchen appliances.*",
         "type": "choix",
-        "choix": ["carry", "carrying", "carried", "carrier"],
-        "reponse": 1
+        "choix": [
+          "carry",
+          "carrying",
+          "carried",
+          "carrier"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **will be** + verbe en **-ing** = futur continu : une action qui sera **en cours** dans le futur.\n\n**Pas à pas :**\n\n1. Avant le trou : *will be*.\n2. Le magasin ne **subit** pas l'action, il la fait (il vendra des appareils) → pas de passif, donc pas de participe passé.\n3. *will be* + *-ing* → **carrying**. Ici, *carry* veut dire « avoir en rayon, vendre » (*a wide range of kitchen appliances* = un grand choix d'électroménager).\n\n**Les autres choix :** *will be carry* est impossible ; *will be carried* serait un passif (le magasin serait porté) ; *carrier* est un nom (un transporteur).\n\n**À retenir :** *will be* + *-ing* (actif) ; *will be* + participe passé (passif, le sujet subit)."
       },
       {
         "intitule": "*Customers who are not satisfied can ...... the item within 14 days.*",
         "type": "choix",
-        "choix": ["return", "returned", "returning", "returns"],
-        "reponse": 0
+        "choix": [
+          "return",
+          "returned",
+          "returning",
+          "returns"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** après un **modal** (*can, must, will, should, may*), le verbe est toujours à la **base** : sans *to*, sans *-s*, sans *-ed*, sans *-ing*.\n\n**Pas à pas :**\n\n1. Avant le trou : *can* (modal).\n2. Modal + base → **return** (retourner, rendre l'article).\n3. Phrase : « Les clients pas satisfaits peuvent retourner l'article sous 14 jours ».\n\n**Les autres choix :** *returned* (passé), *returning* (*-ing*) et *returns* (*-s*) ne vont jamais après *can*.\n\n**À retenir :** *can / must / will / should* + verbe de base."
       },
       {
         "intitule": "*Your order has been ...... and should arrive tomorrow.*",
         "type": "choix",
-        "choix": ["dispatch", "dispatcher", "dispatching", "dispatched"],
-        "reponse": 3
+        "choix": [
+          "dispatch",
+          "dispatcher",
+          "dispatching",
+          "dispatched"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** **has been** + **participe passé** = present perfect **passif** : le sujet a subi l'action.\n\n**Pas à pas :**\n\n1. Avant le trou : *has been*.\n2. La commande ne s'expédie pas toute seule : quelqu'un l'expédie → passif.\n3. *be* + participe passé : *dispatch* → **dispatched** (expédiée). Phrase : « Votre commande a été expédiée et devrait arriver demain ».\n\n**Les autres choix :** *dispatch* (base) ne va pas après *has been* ; *dispatching* serait actif (la commande expédierait quelque chose) ; *dispatcher* est un nom de personne (le répartiteur).\n\n**À retenir :** *has been* + participe passé quand le sujet subit l'action."
       },
       {
         "intitule": "*The full amount is payable ...... ten days of receipt of the invoice.*",
         "type": "choix",
-        "choix": ["since", "within", "during", "before of"],
-        "reponse": 1
+        "choix": [
+          "since",
+          "within",
+          "during",
+          "before of"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **within** + durée = **dans un délai de** (au plus tard au bout de).\n\n**Pas à pas :**\n\n1. Après le trou : *ten days of receipt of the invoice* (dix jours après réception de la facture).\n2. Le paiement doit se faire au plus tard dix jours après : c'est un **délai**.\n3. Délai → **within** ten days.\n\n**Les autres choix :** *since* demande un point de départ passé (*since Monday*) ; *during* demande une période où quelque chose se passe (*during the meeting*) ; *before of* n'existe pas (on dit *before*).\n\n**À retenir :** délai à respecter → *within* + durée."
       },
       {
         "intitule": "*This offer cannot be combined with any other ......*",
         "type": "choix",
-        "choix": ["discount", "discounted", "discounting", "discountable"],
-        "reponse": 0
+        "choix": [
+          "discount",
+          "discounted",
+          "discounting",
+          "discountable"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** après **any other**, il faut un **nom**.\n\n**Pas à pas :**\n\n1. Avant le trou : *any other* (aucun autre, n'importe quel autre).\n2. *other* est suivi d'un nom → **discount** (une réduction).\n3. Phrase : « Cette offre n'est pas cumulable avec une autre réduction ».\n\n**Les autres choix :** *discounted* (à prix réduit) et *discountable* (qu'on peut réduire) sont des adjectifs, qui demanderaient un nom derrière ; *discounting* est l'action de réduire les prix.\n\n**À retenir :** *any other* + nom ; l'expression *cannot be combined with any other discount* revient souvent."
       },
       {
         "intitule": "*If you have already settled your account, please ...... this letter.*",
         "type": "choix",
-        "choix": ["regard", "disregard", "remind", "discharge"],
-        "reponse": 1
+        "choix": [
+          "regard",
+          "disregard",
+          "remind",
+          "discharge"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **disregard** = **ne pas tenir compte de**. C'est la formule habituelle des relances : *If you have already paid, please disregard this letter.*\n\n**Pas à pas :**\n\n1. *If you have already settled your account* = si vous avez déjà réglé votre compte.\n2. Dans ce cas, la lettre de rappel ne sert à rien : on demande de ne pas en tenir compte → **disregard**.\n\n**Les autres choix :** *regard* = considérer, regarder (le contraire de ce qu'on veut) ; *remind* = rappeler à quelqu'un ; *discharge* = libérer, décharger.\n\n**À retenir :** déjà payé → *please disregard this letter / reminder*."
       }
     ],
     "indices": [
@@ -100,38 +166,74 @@
       {
         "intitule": "*The ...... of this invoice must be made by bank transfer.*",
         "type": "choix",
-        "choix": ["pay", "payable", "payment", "payee"],
-        "reponse": 2
+        "choix": [
+          "pay",
+          "payable",
+          "payment",
+          "payee"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** entre *The* et *of*, il faut un **nom** ; on choisit ensuite entre une **chose** et une **personne**.\n\n**Pas à pas :**\n\n1. Autour du trou : *The ...... of this invoice* → un nom. On élimine *pay* (verbe) et *payable* (adjectif).\n2. Il reste *payment* (le paiement, une chose) et *payee* (le bénéficiaire, une personne).\n3. Ce qui « se fait par virement » (*must be made by bank transfer*) est le **paiement** → **payment**.\n\n**Les autres choix :** *payee* est celui qui reçoit l'argent : une personne ne « se fait » pas par virement.\n\n**À retenir :** *-ment* = une chose (*payment*) ; *-ee* = une personne (*payee, employee*)."
       },
       {
         "intitule": "*Ms. Ortiz was ...... for the delivery, so she signed the form herself.*",
         "type": "choix",
-        "choix": ["recipient", "receipt", "present", "presence"],
-        "reponse": 2
+        "choix": [
+          "recipient",
+          "receipt",
+          "present",
+          "presence"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** après **was** (sans participe derrière), on décrit le sujet → **adjectif**.\n\n**Pas à pas :**\n\n1. Avant le trou : *Ms. Ortiz was*. Il n'y a pas d'article (*a, the*) avant le trou.\n2. Un nom seul comme *recipient* demanderait *the* ou *a* (*was the recipient*) → on cherche un adjectif.\n3. Sens : elle a signé elle-même, donc elle était **là** → **present** (présente).\n\n**Les autres choix :** *recipient* (destinataire) et *receipt* (reçu) sont des noms sans article ; *presence* est aussi un nom (la présence).\n\n**À retenir :** *was* + adjectif ; un nom après *was* a presque toujours un article."
       },
       {
         "intitule": "*...... the delay, the customer was happy with the quality of the goods.*",
         "type": "choix",
-        "choix": ["Although", "Despite", "Because", "Unless"],
-        "reponse": 1
+        "choix": [
+          "Although",
+          "Despite",
+          "Because",
+          "Unless"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **despite** + **nom** ; **although** + **sujet + verbe**. Les deux veulent dire « malgré / bien que ».\n\n**Pas à pas :**\n\n1. Après le trou : *the delay*, un **nom** seul (pas de verbe).\n2. Sens : il y a eu un retard, **pourtant** le client était content → opposition.\n3. Opposition + nom → **Despite** (malgré le retard).\n\n**Les autres choix :** *Although* demanderait une phrase (*Although the delivery was late*) ; *Because* (sans *of*) demande aussi sujet + verbe, et donne une cause, pas une opposition ; *Unless* (à moins que) donne une condition.\n\n**À retenir :** regarde ce qui suit : nom → *despite* ; sujet + verbe → *although*."
       },
       {
         "intitule": "*Prices are subject to change ...... notice.*",
         "type": "choix",
-        "choix": ["without", "unless", "except", "beside"],
-        "reponse": 0
+        "choix": [
+          "without",
+          "unless",
+          "except",
+          "beside"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** *subject to change without notice* est une **expression figée** : « susceptible d'être modifié **sans préavis** ».\n\n**Pas à pas :**\n\n1. *Prices are subject to change* = les prix peuvent changer.\n2. *notice* = un préavis, un avertissement.\n3. Sans prévenir → **without** notice.\n\n**Les autres choix :** *unless* (à moins que) et *except* (sauf) ne s'emploient pas devant *notice* dans ce sens ; *beside* veut dire « à côté de ».\n\n**À retenir :** *subject to change without notice* s'apprend en bloc (on le voit sur les catalogues et les tarifs)."
       },
       {
         "intitule": "*The goods ...... yesterday, but the invoice hasn't arrived yet.*",
         "type": "choix",
-        "choix": ["was delivered", "were delivered", "has delivered", "delivering"],
-        "reponse": 1
+        "choix": [
+          "was delivered",
+          "were delivered",
+          "has delivered",
+          "delivering"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **goods** (la marchandise) est **toujours pluriel**. Avec *yesterday*, on utilise le **prétérit**, ici au passif.\n\n**Pas à pas :**\n\n1. Le sujet *the goods* est pluriel → *were*, pas *was*.\n2. La marchandise **subit** l'action (quelqu'un l'a livrée) → passif *were* + participe passé.\n3. *yesterday* = un moment passé et terminé → prétérit → **were delivered**.\n\n**Les autres choix :** *was delivered* est au singulier (piège : « la marchandise » est singulier en français) ; *has delivered* est actif et le present perfect ne va pas avec *yesterday* ; *delivering* n'a pas d'auxiliaire.\n\n**À retenir :** *goods* + verbe pluriel ; *yesterday* → prétérit."
       },
       {
         "intitule": "*We offer a 10% discount on orders placed ...... the end of the month.*",
         "type": "choix",
-        "choix": ["by", "until to", "since", "for"],
-        "reponse": 0
+        "choix": [
+          "by",
+          "until to",
+          "since",
+          "for"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **by** + date = **au plus tard à** cette date (une date limite).\n\n**Pas à pas :**\n\n1. Après le trou : *the end of the month* (un moment précis).\n2. La réduction vaut pour les commandes passées **au plus tard** fin du mois → date limite.\n3. Date limite → **by** the end of the month.\n\n**Les autres choix :** *until to* n'existe pas (on dit *until*) ; *since* demande un point de départ passé ; *for* demande une durée (*for a month*).\n\n**À retenir :** date limite → *by* ; durée → *for* ; point de départ → *since*."
       }
     ],
     "indices": [
@@ -149,20 +251,38 @@
       {
         "intitule": "(1)",
         "type": "choix",
-        "choix": ["agree", "agreed", "to agree", "agreeing"],
-        "reponse": 3
+        "choix": [
+          "agree",
+          "agreed",
+          "to agree",
+          "agreeing"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** **thank you for** + verbe en **-ing** : *for* est une préposition, et après une préposition le verbe se met en *-ing*.\n\n**Pas à pas :**\n\n1. Avant le trou : *thank you for*.\n2. Préposition → *-ing* : *agree* → **agreeing**.\n3. Phrase : « merci d'avoir accepté de prendre en charge nos livraisons en urgence » (*at such short notice*).\n\n**Les autres choix :** *agree* et *agreed* ne vont pas après une préposition ; *to agree* donnerait *for to agree*, qui n'existe pas.\n\n**À retenir :** *thank you for* + *-ing*."
       },
       {
         "intitule": "(2)",
         "type": "choix",
-        "choix": ["freight", "freighted", "freighter", "freighting"],
-        "reponse": 0
+        "choix": [
+          "freight",
+          "freighted",
+          "freighter",
+          "freighting"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** en anglais, un **nom** peut décrire un autre nom en se plaçant devant lui, **sans changer de forme** (*a delivery date*, *a shoe shop*).\n\n**Pas à pas :**\n\n1. Autour du trou : *our ...... needs*. *needs* (les besoins) est un nom.\n2. Le trou dit **quel genre** de besoins : un mot qui décrit le nom.\n3. Le nom *freight* (le transport de marchandises) se place devant → **freight needs**.\n\n**Les autres choix :** *freighter* est un cargo (navire ou avion de fret), pas un type de besoin ; *freighted* et *freighting* sont des formes du verbe *freight* (transporter).\n\n**À retenir :** nom + nom : le premier décrit le second et reste au singulier."
       },
       {
         "intitule": "(3)",
         "type": "choix",
-        "choix": ["therefore", "otherwise", "moreover", "as a result"],
-        "reponse": 1
+        "choix": [
+          "therefore",
+          "otherwise",
+          "moreover",
+          "as a result"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **otherwise** = **sinon** : il annonce ce qui arrive si la 1re partie n'est pas respectée.\n\n**Pas à pas :**\n\n1. 1re partie : les clients attendent leur commande sous 48 h.\n2. 2e partie : ils achètent simplement dans un autre magasin.\n3. Lien : « il faut livrer en 48 h ; **sinon**, ils vont ailleurs » → **otherwise**.\n\n**Les autres choix :** *therefore* et *as a result* (donc, par conséquent) voudraient dire qu'ils partent **parce qu'**ils attendent leur commande en 48 h : absurde ; *moreover* (de plus) ajouterait une idée du même sens.\n\n**À retenir :** « X est nécessaire ; sinon Y » → *otherwise*."
       },
       {
         "intitule": "(4)",
@@ -173,7 +293,8 @@
           "Please pay the outstanding invoice within 30 days.",
           "Our new carrier will start on Monday."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une phrase à insérer doit **continuer l'idée d'avant** et garder le **ton** du texte.\n\n**Pas à pas :**\n\n1. Phrase juste avant : l'entreprise offre **15 %** de réduction sur le mobilier d'extérieur pendant six mois.\n2. Le ton : une lettre de **remerciement**.\n3. La suite logique explique **comment profiter de l'offre** : *To use this offer, simply give your name at the checkout…* (*this offer* renvoie à la réduction).\n\n**Les autres choix :** « nous ne pouvons plus utiliser vos services » contredit le remerciement ; « veuillez payer la facture impayée » change de sujet et de ton ; « notre nouveau transporteur commence lundi » contredit la lettre (c'est elle, le nouveau transporteur).\n\n**À retenir :** cherche le mot de lien (*this offer*) qui renvoie à l'idée juste avant."
       }
     ],
     "indices": [
@@ -191,32 +312,62 @@
       {
         "intitule": "(1)",
         "type": "choix",
-        "choix": ["amount due", "due amount of", "amounting", "account"],
-        "reponse": 0
+        "choix": [
+          "amount due",
+          "due amount of",
+          "amounting",
+          "account"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **the amount due** = **la somme due**. En anglais, *due* se place **après** *amount* dans cette expression.\n\n**Pas à pas :**\n\n1. Autour du trou : *the ...... of $640* → un nom qui désigne une **somme**.\n2. La lettre est une relance : on rappelle une somme à payer → **amount due**.\n\n**Les autres choix :** *due amount of* est mal construit (on dit *amount due*) et donnerait *of of* ; *amounting* est une forme du verbe *amount to* (s'élever à) ; *account* veut dire « compte », pas « somme ».\n\n**À retenir :** *the amount due* = la somme à payer."
       },
       {
         "intitule": "(2)",
         "type": "choix",
-        "choix": ["pending", "outstanding", "void", "payable"],
-        "reponse": 1
+        "choix": [
+          "pending",
+          "outstanding",
+          "void",
+          "payable"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **outstanding** = **impayé**, encore dû.\n\n**Pas à pas :**\n\n1. *is still ......* (est toujours…) dans une **relance** de facture.\n2. La phrase suivante rappelle que les factures doivent être payées sous 30 jours : celle-ci ne l'est pas.\n3. Pas encore payée → **outstanding**.\n\n**Les autres choix :** *pending* (en attente) s'emploie pour une décision ou une commande pas encore traitée, moins pour une dette ; *void* (annulée) voudrait dire qu'il n'y a plus rien à payer ; *payable* s'emploie avec *to* (*payable to Pressline*) ou *within* (*payable within 30 days*), pas seul après *still*.\n\n**À retenir :** facture impayée → *outstanding*."
       },
       {
         "intitule": "(3)",
         "type": "choix",
-        "choix": ["fine", "fee", "rebate", "refund"],
-        "reponse": 1
+        "choix": [
+          "fine",
+          "fee",
+          "rebate",
+          "refund"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **fee** = des **frais** prévus (ici, par les conditions de paiement) ; **fine** = une **amende** infligée comme punition par une autorité.\n\n**Pas à pas :**\n\n1. *A late ...... of 2% will be added* : un montant ajouté en cas de retard.\n2. Il est prévu par les **conditions de paiement** de l'entreprise (*As stated in our terms of payment*).\n3. Frais prévus par contrat → **fee** (*a late fee*, frais de retard).\n\n**Les autres choix :** *fine* est une amende (police, administration), pas un frais commercial ; *rebate* et *refund* rendent de l'argent au client, alors qu'ici il paie plus.\n\n**À retenir :** *a late fee* = frais de retard ; *a fine* = amende."
       },
       {
         "intitule": "(4)",
         "type": "choix",
-        "choix": ["disregard", "regard", "reply", "issue"],
-        "reponse": 0
+        "choix": [
+          "disregard",
+          "regard",
+          "reply",
+          "issue"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **disregard** = **ne pas tenir compte de** : formule habituelle à la fin d'une relance.\n\n**Pas à pas :**\n\n1. *If you have already sent the payment* = si vous avez déjà payé.\n2. La relance ne vous concerne plus : on demande de l'ignorer → **disregard** this reminder.\n\n**Les autres choix :** *regard* = considérer (le contraire) ; *reply* demanderait *to* (*reply to this reminder*) et n'a pas de sens si on a déjà payé ; *issue* = émettre (c'est l'entreprise qui émet la relance, pas le client).\n\n**À retenir :** déjà payé → *please disregard this reminder*."
       },
       {
         "intitule": "(5)",
         "type": "choix",
-        "choix": ["For any questions regarding this invoice", "Despite this invoice", "Unless you have questions", "Otherwise the invoice"],
-        "reponse": 0
+        "choix": [
+          "For any questions regarding this invoice",
+          "Despite this invoice",
+          "Unless you have questions",
+          "Otherwise the invoice"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une phrase à compléter doit être **grammaticalement complète** et **logique** avec la suite (*please contact our invoicing department*).\n\n**Pas à pas :**\n\n1. Après le trou : *please contact our invoicing department* (contactez notre service facturation).\n2. On contacte ce service **si on a une question** sur la facture.\n3. **For any questions regarding this invoice** = pour toute question concernant cette facture (*regarding* = au sujet de).\n\n**Les autres choix :** *Despite this invoice* (malgré cette facture) n'a pas de sens ; *Unless you have questions* (à moins que vous ayez des questions) dit le contraire : on appellerait seulement si on n'a **pas** de question ; *Otherwise the invoice* est une phrase incomplète.\n\n**À retenir :** *For any questions regarding…, please contact…* = formule de fin habituelle."
       }
     ],
     "indices": [
@@ -234,28 +385,49 @@
       {
         "intitule": "What kind of business is Marlow & Rose?",
         "type": "choix",
-        "choix": ["A hair salon", "A paint shop", "A clothing store", "A garden centre"],
-        "reponse": 2
+        "choix": [
+          "A hair salon",
+          "A paint shop",
+          "A clothing store",
+          "A garden centre"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** pour deviner le type de commerce, on relève **tous** les indices concrets et on garde le commerce qui les explique **tous**.\n\n**Pas à pas :**\n\n| Indice | Sens | Fait penser à |\n|---|---|---|\n| *outfits* | des tenues | vêtements |\n| *cuts* | des coupes | vêtements ou coiffure |\n| *sizes* | des tailles | vêtements |\n| *colours* | des couleurs | vêtements, peinture, coiffure |\n| *style advisers* | conseillers en style | vêtements |\n\nSeul le **magasin de vêtements** (*clothing store*) explique tous les indices.\n\n**Les autres choix :** un salon de coiffure (*hair salon*) n'explique pas *sizes* ni *outfits* ; une boutique de peinture (*paint shop*) n'explique pas *cuts* ni *sizes* ; une jardinerie (*garden centre*) n'explique rien.\n\n**À retenir :** un seul indice peut tromper ; l'ensemble des indices donne la réponse."
       },
       {
         "intitule": "When can customers shop until 9 p.m.?",
         "type": "choix",
-        "choix": ["Every day", "Monday to Friday", "On Saturdays", "At weekends"],
-        "reponse": 1
+        "choix": [
+          "Every day",
+          "Monday to Friday",
+          "On Saturdays",
+          "At weekends"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **weeknight** = un **soir de semaine**, du **lundi au vendredi**.\n\n**Pas à pas :**\n\n1. *Open 10 a.m. to 9 p.m. every weeknight* → jusqu'à 21 h du lundi au vendredi.\n2. *10 a.m. to 6 p.m. on Saturdays* → le samedi, fermeture à 18 h.\n3. *Closed on Sundays* → fermé le dimanche.\n4. Jusqu'à 21 h : **Monday to Friday**.\n\n**Les autres choix :** *Every day* est faux (samedi 18 h, dimanche fermé) ; *On Saturdays* ferme à 18 h ; *At weekends* est le piège : *weeknight* n'a rien à voir avec *weekend*.\n\n**À retenir :** *weeknight / weekday* = du lundi au vendredi."
       },
       {
         "intitule": "How much does the advice from the style advisers cost?",
         "type": "choix",
-        "choix": ["Nothing", "10% of the purchase", "It depends on the size", "It is not mentioned"],
-        "reponse": 0
+        "choix": [
+          "Nothing",
+          "10% of the purchase",
+          "It depends on the size",
+          "It is not mentioned"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **free of charge** = **gratuit**, sans frais.\n\n**Pas à pas :**\n\n1. La phrase sur les conseillers : *our style advisers will help you… free of charge*.\n2. *free of charge* = gratuitement → les conseils coûtent **Nothing** (rien).\n\n**Les autres choix :** *10% of the purchase* reprend le chiffre de la réduction « venez avec un ami », qui ne concerne pas le prix des conseils (piège) ; *It depends on the size* reprend *sizes* ; *It is not mentioned* est faux, puisque le texte dit *free of charge*.\n\n**À retenir :** *free of charge* = *free* = gratuit."
       },
       {
         "intitule": "What percentage discount do customers get if they come with a friend?",
         "type": "nombre",
-        "reponse": 10
+        "reponse": 10,
+        "explication": "**Règle :** pour une question de chiffre, on cherche la **phrase** qui parle exactement de la situation demandée (ici : venir avec un ami).\n\n**Pas à pas :**\n\n1. Mots-clés de la question : *come with a friend*, *discount*.\n2. Phrase du texte : *Bring a friend and you will both get 10% off your first purchase* (*bring* = amener, *10% off* = 10 % de réduction).\n3. Réponse : **10**.\n\n**Erreur fréquente :** écrire 20 en additionnant les deux personnes : *you will both get 10%* veut dire que **chacun** a 10 %.\n\n**À retenir :** *X% off* = X % de réduction ; *both* = chacun des deux."
       }
     ],
-    "indices": ["*outfits*, *cuts*, *sizes* : on parle de vêtements. *weeknight* = soir de semaine."],
+    "indices": [
+      "*outfits*, *cuts*, *sizes* : on parle de vêtements. *weeknight* = soir de semaine."
+    ],
     "correction": "1. *outfits, cuts and sizes* → un magasin de vêtements. 2. *every weeknight* = du lundi au vendredi (le samedi ferme à 18 h). 3. *free of charge* = gratuit. 4. *10% off*."
   },
   {
@@ -267,26 +439,50 @@
       {
         "intitule": "What is NOT mentioned as a factor affecting delivery times?",
         "type": "choix",
-        "choix": ["The choice of transport company", "The customer's area", "The processing of the order", "The packing of the items"],
-        "reponse": 0
+        "choix": [
+          "The choice of transport company",
+          "The customer's area",
+          "The processing of the order",
+          "The packing of the items"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** question **NOT** : on cherche chaque proposition dans le texte et on **élimine** celles qu'on trouve. La réponse est celle qui reste.\n\n**Pas à pas :** phrase du texte : *Delivery times depend on your area, on how long it takes us to process your order, and on the time needed to wrap the items and take them to our transport partner.*\n\n| Proposition | Dans le texte ? |\n|---|---|\n| *The customer's area* | oui : *your area* |\n| *The processing of the order* | oui : *process your order* |\n| *The packing of the items* | oui : *wrap the items* (emballer) |\n| *The choice of transport company* | **non** |\n\n**Le piège :** le texte parle bien du transporteur, mais pour dire qu'on **apporte** les articles au transporteur (*take them to our transport partner*), pas qu'on le **choisit**.\n\n**À retenir :** une proposition qui reprend un mot du texte avec une autre idée n'est pas « mentionnée »."
       },
       {
         "intitule": "When does the customer choose the delivery day?",
         "type": "choix",
-        "choix": ["When placing the order", "When the order confirmation arrives", "After the transport partner has received the goods", "On the morning of the delivery"],
-        "reponse": 2
+        "choix": [
+          "When placing the order",
+          "When the order confirmation arrives",
+          "After the transport partner has received the goods",
+          "On the morning of the delivery"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** pour une question de **moment** (*When…?*), on trouve la phrase qui parle de l'action demandée et on lit **ce qui la déclenche**.\n\n**Pas à pas :**\n\n1. Action demandée : choisir le jour de livraison.\n2. Réponse de la FAQ : *As soon as our transport partner receives your goods, they will phone you to suggest possible days.*\n3. *As soon as* = dès que : le transporteur appelle **après** avoir reçu la marchandise → **After the transport partner has received the goods**.\n\n**Les autres choix :** on ne choisit pas le jour en passant commande ni à la confirmation (la date de confirmation n'est qu'une estimation) ; et rien ne dit qu'on choisit le jour le matin même (*On the morning of the delivery*) : le transporteur appelle bien avant.\n\n**À retenir :** *as soon as X, Y* = Y arrive juste après X."
       },
       {
         "intitule": "In which position does this sentence best belong? *\"On the day of delivery, the driver will text you a two-hour time slot.\"*",
         "type": "choix",
-        "choix": ["[1]", "[2]", "[3]", "[4]"],
-        "reponse": 3
+        "choix": [
+          "[1]",
+          "[2]",
+          "[3]",
+          "[4]"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** une phrase à insérer se place juste après l'idée qu'elle complète, et souvent juste avant un mot qui la **reprend**.\n\n**Pas à pas :** la phrase : *On the day of delivery, the driver will text you a two-hour time slot.*\n\n1. Elle parle d'un **créneau horaire** (*time slot*) et du **jour de la livraison**.\n2. Le paragraphe sur les horaires (*At what time will I be delivered?*) donne les heures de livraison : la phrase y a sa place.\n3. Juste après [4] : *the time slot you are given* (le créneau qu'on vous donne). *the* montre que ce créneau a **déjà été cité** : c'est celui envoyé par SMS → **[4]**.\n\n**Les autres choix :** [1] parle de la date estimée ; [2] des facteurs de délai ; [3] du choix du **jour**, pas de l'heure : le créneau horaire n'arrive qu'après.\n\n**À retenir :** cherche le mot qui reprend la phrase juste après le trou (*the time slot*)."
       },
       {
         "intitule": "On which day are there no deliveries?",
         "type": "choix",
-        "choix": ["Monday", "Friday", "Saturday", "Sunday"],
-        "reponse": 3
+        "choix": [
+          "Monday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** un jour **jamais cité** dans les jours d'ouverture est un jour sans service.\n\n**Pas à pas :**\n\n1. Phrase : *Deliveries are made between 8 a.m. and 8 p.m., Monday to Saturday.*\n2. *Monday to Saturday* = du lundi au samedi inclus.\n3. Le seul jour en dehors : **Sunday** (dimanche).\n\n**Les autres choix :** *Monday*, *Friday* et *Saturday* font partie de *Monday to Saturday*.\n\n**À retenir :** *Monday to Saturday* = tous les jours sauf le dimanche."
       }
     ],
     "indices": [
@@ -304,31 +500,56 @@
       {
         "intitule": "Why did Ms. Price write the e-mail?",
         "type": "choix",
-        "choix": ["Some items were damaged.", "She was charged for a service she did not ask for.", "She wants to order more chairs.", "The invoice was sent to the wrong address."],
-        "reponse": 1
+        "choix": [
+          "Some items were damaged.",
+          "She was charged for a service she did not ask for.",
+          "She wants to order more chairs.",
+          "The invoice was sent to the wrong address."
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** avec deux documents, on compare ce que dit chacun : la réponse vient souvent d'une **différence** entre les deux.\n\n**Pas à pas :**\n\n1. Facture : une ligne *Rush fee (overnight delivery)*, 40 $ = un supplément pour livraison express en une nuit.\n2. E-mail : *we chose standard delivery* (livraison normale) et *the goods arrived after four days, not overnight*.\n3. Elle paie donc un **service qu'elle n'a pas demandé** (l'express) → *She was charged for a service she did not ask for*.\n\n**Les autres choix :** *Some items were damaged* est contredit par *arrived in perfect condition* ; elle ne commande rien de plus ; l'adresse n'est jamais mise en cause.\n\n**À retenir :** cherche ce qui ne colle pas **entre** les deux documents."
       },
       {
         "intitule": "When did the clinic receive the invoice?",
         "type": "choix",
-        "choix": ["On 3 June", "On 4 June", "On 5 June", "Four days after the order"],
-        "reponse": 1
+        "choix": [
+          "On 3 June",
+          "On 4 June",
+          "On 5 June",
+          "Four days after the order"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** pour une date relative (*yesterday*, *two days ago*), on part de la **date du document** qui l'emploie.\n\n**Pas à pas :**\n\n1. L'e-mail est daté du **5 juin**.\n2. Il dit *we received invoice no. 8841 yesterday* (hier).\n3. Hier par rapport au 5 juin = **4 juin** → *On 4 June*.\n\n**Les autres choix :** le 3 juin est la date d'**émission** de la facture (piège : date écrite sur la facture) ; le 5 juin est la date de l'e-mail ; *Four days after the order* reprend les quatre jours de livraison.\n\n**À retenir :** date relative → pars de la date du document qui l'utilise."
       },
       {
         "intitule": "What will the clinic do after receiving the new invoice?",
         "type": "choix",
-        "choix": ["Return the lamps", "Pay the bill", "Change carrier", "Place a new order"],
-        "reponse": 1
+        "choix": [
+          "Return the lamps",
+          "Pay the bill",
+          "Change carrier",
+          "Place a new order"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** pour « que va-t-il se passer ensuite ? », on cherche une phrase au **futur** ou avec *as soon as / when*.\n\n**Pas à pas :**\n\n1. Fin de l'e-mail : *We will pay as soon as we receive it.*\n2. *it* = la facture corrigée (*a corrected invoice*, phrase d'avant).\n3. Dès réception, la clinique **paiera** → *Pay the bill*.\n\n**Les autres choix :** elle ne renvoie pas les lampes (elles sont *in perfect condition*) ; elle ne parle ni de changer de transporteur ni de nouvelle commande.\n\n**À retenir :** *We will…* à la fin d'un e-mail = la prochaine étape."
       },
       {
         "intitule": "The word *issue* in the e-mail is closest in meaning to...",
         "type": "choix",
-        "choix": ["problem", "send out", "magazine", "discuss"],
-        "reponse": 1
+        "choix": [
+          "problem",
+          "send out",
+          "magazine",
+          "discuss"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** pour un synonyme (*closest in meaning*), on cherche le sens du mot **dans cette phrase**, pas son sens le plus courant.\n\n**Pas à pas :**\n\n1. Phrase : *Could you please issue a corrected invoice?*\n2. *issue* est ici un **verbe** (après *could you please*) et son complément est une facture.\n3. Émettre une facture = l'établir et l'**envoyer** → **send out**.\n4. Vérification : *Could you please send out a corrected invoice?* garde le même sens.\n\n**Les autres choix :** *problem* (un problème) et *magazine* (un numéro de magazine) sont des sens du **nom** *issue* ; *discuss* (discuter) ne va pas : on ne veut pas discuter de la facture, on veut la recevoir.\n\n**À retenir :** remplace le mot par chaque choix dans la phrase et garde celui qui ne change pas le sens."
       },
       {
         "intitule": "What should the corrected amount due be, in dollars?",
         "type": "nombre",
-        "reponse": 620
+        "reponse": 620,
+        "explication": "**Règle :** montant corrigé = total facturé - ce qui est contesté.\n\n**Pas à pas :**\n\n1. Ce qui est contesté : le *Rush fee*, 40 $.\n2. Total facturé : 660 $.\n3. 660 - 40 = **620** $.\n\nVérification avec les lignes restantes : chaises 4 × 120 = 480 $ ; lampes 4 × 35 = 140 $ ; 480 + 140 = 620 $.\n\n**Erreur fréquente :** retirer autre chose que le supplément, ou oublier les lampes.\n\n**À retenir :** retire seulement la ligne contestée, puis vérifie en additionnant ce qui reste."
       }
     ],
     "indices": [
@@ -346,35 +567,63 @@
       {
         "intitule": "*Do you have these shoes in a size 40?*",
         "type": "choix",
-        "choix": ["Yes, they're very comfortable.", "Let me check in the stockroom.", "They cost $40."],
-        "reponse": 1
+        "choix": [
+          "Yes, they're very comfortable.",
+          "Let me check in the stockroom.",
+          "They cost $40."
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** à une question de **disponibilité** (*Do you have… in…?*), la réponse logique est souvent **indirecte** : *Let me check*.\n\n**Pas à pas :**\n\n1. La question : « Avez-vous ces chaussures en 40 ? » → on veut savoir si la taille est **disponible**.\n2. *Let me check in the stockroom* (je vais vérifier en réserve) : réponse naturelle d'un vendeur.\n\n**Les autres choix :** *They cost $40* reprend le chiffre **40** mais parle du prix (piège) ; *Yes, they're very comfortable* commence par oui mais parle du confort, pas de la taille.\n\n**À retenir :** une réponse indirecte (*Let me check*) est souvent la bonne ; un chiffre répété est suspect."
       },
       {
         "intitule": "*When will my order be delivered?*",
         "type": "choix",
-        "choix": ["By courier.", "To your home address.", "Probably on Thursday."],
-        "reponse": 2
+        "choix": [
+          "By courier.",
+          "To your home address.",
+          "Probably on Thursday."
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** **When** (quand) attend un **moment**.\n\n**Pas à pas :**\n\n| Réponse | Type | Répond à |\n|---|---|---|\n| *By courier.* | une manière | *How* |\n| *To your home address.* | un lieu | *Where* |\n| *Probably on Thursday.* | un moment | **When** |\n\nLa bonne réponse est **Probably on Thursday**.\n\n**À retenir :** *When* → un moment ; *How* → une manière ; *Where* → un lieu."
       },
       {
         "intitule": "*Why hasn't the invoice been paid yet?*",
         "type": "choix",
-        "choix": ["We're still waiting for the corrected version.", "Yes, it was paid.", "By bank transfer."],
-        "reponse": 0
+        "choix": [
+          "We're still waiting for the corrected version.",
+          "Yes, it was paid.",
+          "By bank transfer."
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **Why** (pourquoi) attend une **raison** ; jamais *Yes / No*.\n\n**Pas à pas :**\n\n1. *Why hasn't the invoice been paid yet?* = « Pourquoi la facture n'a-t-elle pas encore été payée ? ».\n2. *We're still waiting for the corrected version* = on attend toujours la version corrigée → une **raison**, sans *because*.\n\n**Les autres choix :** *Yes, it was paid* répond oui à une question en *Why* (impossible) et contredit la question ; *By bank transfer* répond à *How* (comment payer).\n\n**À retenir :** *Why* → une raison, avec ou sans *because*."
       },
       {
         "intitule": "*Would you like a bag for that?*",
         "type": "choix",
-        "choix": ["It's in the bag.", "No thanks, I'll carry it.", "I'd like a receipt, please give it to me later."],
-        "reponse": 1
+        "choix": [
+          "It's in the bag.",
+          "No thanks, I'll carry it.",
+          "I'd like a receipt, please give it to me later."
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** à une **proposition** (*Would you like…?*), on répond en **acceptant** ou en **refusant poliment**.\n\n**Pas à pas :**\n\n1. *Would you like a bag for that?* = « Voulez-vous un sac ? ».\n2. *No thanks, I'll carry it* = non merci, je vais le porter : un refus poli et logique.\n\n**Les autres choix :** *It's in the bag* reprend le mot *bag* (piège) et veut dire « c'est dans le sac » (ou, en expression, « c'est dans la poche ») ; la phrase sur le ticket de caisse (*receipt*) est hors sujet.\n\n**À retenir :** *Would you like…?* → *Yes, please* ou *No thanks*."
       },
       {
         "intitule": "*The printer we ordered arrived damaged, didn't it?*",
         "type": "choix",
-        "choix": ["Yes, I've already called the supplier.", "We print every day.", "It arrived from Germany."],
-        "reponse": 0
+        "choix": [
+          "Yes, I've already called the supplier.",
+          "We print every day.",
+          "It arrived from Germany."
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une **question-tag** (affirmation + *didn't it? / isn't it?*) demande de **confirmer** : on répond par oui ou non + une précision.\n\n**Pas à pas :**\n\n1. *The printer we ordered arrived damaged, didn't it?* = « L'imprimante commandée est arrivée abîmée, n'est-ce pas ? ».\n2. *Yes, I've already called the supplier* confirme (oui) et ajoute l'action faite : bonne réponse.\n\n**Les autres choix :** *We print every day* joue sur *printer / print* ; *It arrived from Germany* reprend *arrived* mais ne dit rien du dommage.\n\n**À retenir :** question-tag → oui / non + précision ; méfie-toi des mots repris."
       }
     ],
-    "indices": ["*When* → un moment ; *Why* → une raison.", "Méfie-toi des réponses qui répètent un mot de la question (*bag*, *print*, *arrived*)."],
+    "indices": [
+      "*When* → un moment ; *Why* → une raison.",
+      "Méfie-toi des réponses qui répètent un mot de la question (*bag*, *print*, *arrived*)."
+    ],
     "correction": "1. On va vérifier en réserve. 2. *When* → *on Thursday*. 3. *Why* → la raison : on attend la facture corrigée. 4. Proposition refusée poliment. 5. *didn't it?* attend une confirmation : oui, et on a déjà appelé le fournisseur."
   },
   {
@@ -386,29 +635,56 @@
       {
         "intitule": "What problem does the man have?",
         "type": "choix",
-        "choix": ["He was charged twice.", "Part of his order is missing.", "The paper is the wrong size.", "The driver was late."],
-        "reponse": 1
+        "choix": [
+          "He was charged twice.",
+          "Part of his order is missing.",
+          "The paper is the wrong size.",
+          "The driver was late."
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** pour « quel problème ? », on cherche la phrase de **plainte** au début de la conversation (*but…*, *there are no…*, *it doesn't…*).\n\n**Pas à pas :**\n\n1. L'homme : *We ordered six boxes of printer paper and two toner cartridges, but there are no cartridges in the boxes.*\n2. *but there are no cartridges* = mais il n'y a pas de cartouches → une **partie de la commande manque** (*Part of his order is missing*).\n\n**Les autres choix :** rien ne parle d'une double facturation (*charged twice*), d'un mauvais format de papier ou d'un livreur en retard.\n\n**À retenir :** le problème est souvent annoncé par *but* dans la première réplique."
       },
       {
         "intitule": "Why were the cartridges not delivered?",
         "type": "choix",
-        "choix": ["They were out of stock.", "The man forgot to order them.", "They were damaged.", "The driver lost them."],
-        "reponse": 0
+        "choix": [
+          "They were out of stock.",
+          "The man forgot to order them.",
+          "They were damaged.",
+          "The driver lost them."
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** pour « pourquoi ? », on cherche l'**explication** donnée en réponse au problème.\n\n**Pas à pas :**\n\n1. La femme : *the cartridges were out of stock when your order was packed*.\n2. *out of stock* = en rupture de stock, au moment de préparer la commande → **They were out of stock**.\n\n**Les autres choix :** l'homme a bien commandé les cartouches (*We ordered… two toner cartridges*) ; personne ne parle de cartouches abîmées ou perdues par le livreur.\n\n**À retenir :** *out of stock* = plus en stock (*not available*)."
       },
       {
         "intitule": "When will the driver come?",
         "type": "choix",
-        "choix": ["This afternoon", "Tomorrow morning", "Next week", "In two weeks"],
-        "reponse": 1
+        "choix": [
+          "This afternoon",
+          "Tomorrow morning",
+          "Next week",
+          "In two weeks"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** quand une conversation cite **plusieurs moments**, on associe chaque moment à son action, puis on garde celui de l'action demandée.\n\n**Pas à pas :**\n\n| Moment cité | Action |\n|---|---|\n| *this morning* | la livraison incomplète est arrivée |\n| *this afternoon* | les cartouches sont revenues en stock |\n| *tomorrow morning* | **le livreur les apporte** |\n| *next week* | la relance automatique arrivera |\n\nLa question porte sur la venue du livreur → **Tomorrow morning** (*drop them off* = les déposer).\n\n**À retenir :** relève tous les moments cités et associe chacun à son action."
       },
       {
         "intitule": "What does the woman tell the man to do?",
         "type": "choix",
-        "choix": ["Pay a new invoice", "Return the paper", "Disregard a reminder", "Pick up the cartridges"],
-        "reponse": 2
+        "choix": [
+          "Pay a new invoice",
+          "Return the paper",
+          "Disregard a reminder",
+          "Pick up the cartridges"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** au TOEIC, la bonne réponse **reformule** : *ignore* (ignorer) = **disregard** (ne pas tenir compte de).\n\n**Pas à pas :**\n\n1. La femme : *just ignore the reminder you'll receive next week: it was sent automatically*.\n2. *ignore the reminder* = ne pas tenir compte de la relance → **Disregard a reminder**.\n\n**Les autres choix :** elle dit justement qu'il n'y a **pas** de nouvelle facture à payer (*the invoice already includes them*) ; il ne doit rien renvoyer ; le livreur **apporte** les cartouches, l'homme ne va pas les chercher.\n\n**À retenir :** *ignore* = *disregard* : la bonne réponse change souvent les mots."
       }
     ],
-    "indices": ["*ignore* = *disregard*.", "*drop off* = déposer : c'est le chauffeur qui vient."],
+    "indices": [
+      "*ignore* = *disregard*.",
+      "*drop off* = déposer : c'est le chauffeur qui vient."
+    ],
     "correction": "1. *there are no cartridges in the boxes* : une partie manque. 2. *out of stock when your order was packed*. 3. *our driver can drop them off tomorrow morning*. 4. *just ignore the reminder* = *disregard* la relance."
   },
   {
@@ -420,35 +696,62 @@
       {
         "intitule": "*Thank you for your fast delivery. Please find enclosed a fine of $20 to thank you.* Pourquoi est-ce bizarre ?",
         "type": "choix",
-        "choix": ["Une *fine* est une amende, pas un cadeau", "Il faut *delivering*", "*enclosed* veut dire fermé"],
-        "reponse": 0
+        "choix": [
+          "Une *fine* est une amende, pas un cadeau",
+          "Il faut *delivering*",
+          "*enclosed* veut dire fermé"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **fine** = une **amende** (une punition). Pour remercier, on offre plutôt une réduction (*a discount*) ou un bon d'achat (*a voucher*).\n\n**Pas à pas :**\n\n1. La phrase remercie pour une livraison rapide.\n2. Puis elle « joint une amende de 20 $ pour vous remercier » : une punition pour dire merci, c'est absurde.\n3. Le problème vient donc du mot *fine*.\n\n**Les autres choix :** *thank you for your fast delivery* est correct (*for* + nom, pas besoin de *-ing*) ; *enclosed* veut dire « ci-joint », pas « fermé ».\n\n**À retenir :** *fine* = amende ; ne pas le confondre avec *fine* = bien."
       },
       {
         "intitule": "*The goods was delivered on Monday.* Pourquoi est-ce faux ?",
         "type": "choix",
-        "choix": ["Il faut *in Monday*", "*goods* est toujours pluriel : *were*", "*delivered* doit être *delivering*"],
-        "reponse": 1
+        "choix": [
+          "Il faut *in Monday*",
+          "*goods* est toujours pluriel : *were*",
+          "*delivered* doit être *delivering*"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **goods** (la marchandise) est **toujours pluriel** : *the goods were*, *the goods are*.\n\n**Pas à pas :**\n\n1. Sujet : *The goods* → pluriel.\n2. Verbe : *was* → singulier : erreur d'accord.\n3. Correction : *The goods **were** delivered on Monday.*\n\n**Les autres choix :** *on Monday* est correct (*on* + jour, jamais *in*) ; *delivered* est le bon participe passé pour le passif (*were delivered*).\n\n**À retenir :** *goods* + verbe au pluriel."
       },
       {
         "intitule": "*The shop is open every weeknight, so I'll go on Sunday evening.* Pourquoi est-ce illogique ?",
         "type": "choix",
-        "choix": ["*weeknight* = du lundi au vendredi", "*evening* et *night* sont différents", "Il faut *every weeknights*"],
-        "reponse": 0
+        "choix": [
+          "*weeknight* = du lundi au vendredi",
+          "*evening* et *night* sont différents",
+          "Il faut *every weeknights*"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **weeknight** = un soir de **semaine**, du lundi au vendredi.\n\n**Pas à pas :**\n\n1. *The shop is open every weeknight* → ouvert le soir du lundi au vendredi.\n2. *so I'll go on Sunday evening* → dimanche soir.\n3. Le dimanche ne fait pas partie des soirs de semaine : la conclusion est illogique.\n\n**Les autres choix :** *evening* et *night* veulent dire tous deux « le soir » ici, ce n'est pas le problème ; *every weeknights* serait faux, car *every* est toujours suivi d'un nom **singulier**.\n\n**À retenir :** *weeknight* = lundi à vendredi ; *every* + singulier."
       },
       {
         "intitule": "*Thank you for offer to help us.* Pourquoi est-ce faux ?",
         "type": "choix",
-        "choix": ["Il faut *Thanks*", "Après *thank you for*, il faut un verbe en -ing", "*help* doit être au passé"],
-        "reponse": 1
+        "choix": [
+          "Il faut *Thanks*",
+          "Après *thank you for*, il faut un verbe en -ing",
+          "*help* doit être au passé"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** après **thank you for**, le verbe se met en **-ing** (*for* est une préposition).\n\n**Pas à pas :**\n\n1. *Thank you for offer to help us* : après *for*, on a *offer*, à la base.\n2. Préposition + verbe → *-ing* : *offering*.\n3. Correction : *Thank you for **offering** to help us.*\n\n**Les autres choix :** *Thank you* est tout à fait correct (*Thanks* est juste plus familier) ; *help* reste à la base après *to* (*to help*).\n\n**À retenir :** *thank you for* + *-ing* ; *to* + base."
       },
       {
         "intitule": "*Please keep your recipe: you'll need it for a refund.* Pourquoi est-ce faux ?",
         "type": "choix",
-        "choix": ["*recipe* = recette de cuisine, il faut *receipt*", "*refund* est un verbe seulement", "Il faut *keeping*"],
-        "reponse": 0
+        "choix": [
+          "*recipe* = recette de cuisine, il faut *receipt*",
+          "*refund* est un verbe seulement",
+          "Il faut *keeping*"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **receipt** (le *p* est muet) = le **ticket de caisse**, le reçu. **recipe** = une **recette de cuisine**.\n\n**Pas à pas :**\n\n1. *Please keep your recipe: you'll need it for a refund* : on garde une preuve d'achat pour être remboursé.\n2. La preuve d'achat est le ticket de caisse → **receipt**.\n3. *recipe* (recette de cuisine) n'a rien à faire ici : erreur de vocabulaire.\n\n**Les autres choix :** *refund* est aussi un nom (un remboursement), pas seulement un verbe ; *keep* est correct après *Please* (impératif, verbe de base).\n\n**À retenir :** *receipt* = ticket de caisse ; *recipe* = recette de cuisine."
       }
     ],
-    "indices": ["Ce sont les pièges du chapitre et du mini test."],
+    "indices": [
+      "Ce sont les pièges du chapitre et du mini test."
+    ],
     "correction": "1. Une *fine* punit ; pour remercier, on offre une réduction (*a discount*). 2. *The goods were delivered*. 3. *weeknight* exclut le week-end : le dimanche, c'est fermé (ou pas précisé). 4. *Thank you for offering*. 5. Le ticket de caisse = *receipt* (le *p* est muet)."
   },
   {
@@ -457,14 +760,73 @@
     "difficulte": 2,
     "enonce": "Traduis en anglais.",
     "questions": [
-      { "intitule": "modifier (une commande)", "type": "texte", "reponse": ["alter", "to alter", "change", "to change", "modify", "to modify", "amend", "to amend"] },
-      { "intitule": "la fidélité des clients (un mot en *-age*)", "type": "texte", "reponse": ["patronage"] },
-      { "intitule": "sinon (mot de liaison)", "type": "texte", "reponse": ["otherwise", "or else"] },
-      { "intitule": "un soir de semaine", "type": "texte", "reponse": ["weeknight", "a weeknight", "week night", "a week night"] },
-      { "intitule": "un créneau horaire (deux mots : *time ...*)", "type": "texte", "reponse": ["time window", "a time window", "time slot", "a time slot"] },
-      { "intitule": "abandonner (verbe à particule)", "type": "texte", "reponse": ["give up", "to give up"] }
+      {
+        "intitule": "modifier (une commande)",
+        "type": "texte",
+        "reponse": [
+          "alter",
+          "to alter",
+          "change",
+          "to change",
+          "modify",
+          "to modify",
+          "amend",
+          "to amend"
+        ],
+        "explication": "**Règle :** modifier une commande se dit **alter an order** ; *change*, *modify* et *amend* sont aussi acceptés.\n\n**Pas à pas :** *We need to alter the order: we want blue chairs, not red ones.* = Nous devons modifier la commande : nous voulons des chaises bleues, pas rouges.\n\n**Erreur fréquente :** confondre *alter* (modifier) avec *alternate* (alterner).\n\n**À retenir :** modifier = *alter*, *change*, *modify*, *amend*."
+      },
+      {
+        "intitule": "la fidélité des clients (un mot en *-age*)",
+        "type": "texte",
+        "reponse": [
+          "patronage"
+        ],
+        "explication": "**Règle :** la fidélité des clients à un commerce se dit **patronage**.\n\n**Pas à pas :** *Thank you for your patronage* = merci de votre fidélité. Mot de la même famille : *patron* = un client fidèle.\n\n**Erreur fréquente :** faux ami. En français, « patronage » fait penser à un parrainage ; en anglais, le parrainage se dit *sponsorship*.\n\n**À retenir :** *patronage* = fidélité de la clientèle."
+      },
+      {
+        "intitule": "sinon (mot de liaison)",
+        "type": "texte",
+        "reponse": [
+          "otherwise",
+          "or else"
+        ],
+        "explication": "**Règle :** « sinon » se dit **otherwise** (ou *or else*). Il annonce ce qui arrive si la condition n'est pas remplie.\n\n**Pas à pas :** *Pay before Friday; otherwise, a late fee will be added.* = Payez avant vendredi ; sinon, des frais de retard seront ajoutés.\n\n**Erreur fréquente :** confondre avec *therefore* (donc), qui annonce une conséquence et non une menace.\n\n**À retenir :** « fais X ; sinon Y » → *otherwise*."
+      },
+      {
+        "intitule": "un soir de semaine",
+        "type": "texte",
+        "reponse": [
+          "weeknight",
+          "a weeknight",
+          "week night",
+          "a week night"
+        ],
+        "explication": "**Règle :** un soir de semaine se dit **weeknight** (en un mot ; *week night* est aussi accepté).\n\n**Pas à pas :** *week* (semaine) + *night* (soir) : du lundi au vendredi. De la même façon, *weekday* = un jour de semaine.\n\n**Erreur fréquente :** le confondre avec *weekend* (samedi et dimanche).\n\n**À retenir :** *weeknight* = soir du lundi au vendredi."
+      },
+      {
+        "intitule": "un créneau horaire (deux mots : *time ...*)",
+        "type": "texte",
+        "reponse": [
+          "time window",
+          "a time window",
+          "time slot",
+          "a time slot"
+        ],
+        "explication": "**Règle :** un créneau horaire se dit **time window** ; *time slot* est aussi accepté.\n\n**Pas à pas :** *The technician will come within a two-hour time window* = le technicien viendra dans un créneau de deux heures. *window* garde l'idée d'une « ouverture » dans la journée.\n\n**Erreur fréquente :** traduire mot à mot « créneau » par un autre mot ; c'est l'expression complète qu'il faut retenir.\n\n**À retenir :** créneau horaire = *time window* ou *time slot*."
+      },
+      {
+        "intitule": "abandonner (verbe à particule)",
+        "type": "texte",
+        "reponse": [
+          "give up",
+          "to give up"
+        ],
+        "explication": "**Règle :** abandonner, arrêter d'essayer se dit **give up**. C'est un verbe à particule : *up* change le sens de *give* (donner).\n\n**Pas à pas :** *Don't give up, you're almost there!* = N'abandonne pas, tu y es presque ! Avec un verbe derrière, on met *-ing* : *give up smoking* (arrêter de fumer).\n\n**Erreur fréquente :** confondre avec *give back* (rendre) ou *give in* (céder).\n\n**À retenir :** *give up* = abandonner."
+      }
     ],
-    "indices": ["*otherwise* = sinon ; *give up* = abandonner."],
+    "indices": [
+      "*otherwise* = sinon ; *give up* = abandonner."
+    ],
     "correction": "*alter*, *patronage*, *otherwise*, *weeknight*, *time window* (ou *time slot*), *give up*."
   },
   {
@@ -476,7 +838,8 @@
       {
         "intitule": "Ton e-mail",
         "type": "auto",
-        "reponse": "Exemple :\n\n*Dear Mr. Lewis,*\n\n*Thank you for your message, and please accept our apologies for the late delivery of your sofa bed. I have checked your order, and two parts were indeed missing from the package. We dispatched them this morning by courier, so they should arrive by tomorrow afternoon. To make up for the inconvenience, we will refund the delivery fee. Please do not hesitate to contact me if you have any other questions.*\n\n*Kind regards,*\n*Julia Moss, Customer Service*"
+        "reponse": "Exemple :\n\n*Dear Mr. Lewis,*\n\n*Thank you for your message, and please accept our apologies for the late delivery of your sofa bed. I have checked your order, and two parts were indeed missing from the package. We dispatched them this morning by courier, so they should arrive by tomorrow afternoon. To make up for the inconvenience, we will refund the delivery fee. Please do not hesitate to contact me if you have any other questions.*\n\n*Kind regards,*\n*Julia Moss, Customer Service*",
+        "explication": "**Règle :** un e-mail de service client suit un plan en 5 étapes : **remercier**, **s'excuser**, **reconnaître le problème**, **proposer une solution datée**, **geste commercial + formule de fin**.\n\n**Pas à pas : ce que ton e-mail doit contenir.**\n\n1. **Une formule d'ouverture** : *Dear Mr. / Ms. …,* puis un remerciement (*Thank you for your message*).\n2. **Des excuses** pour le retard : *Please accept our apologies for the late delivery…* ou *We are sorry that…* (au moins *apologize* ou *sorry*, comme demandé).\n3. **Le problème reconnu** : les pièces manquantes (*some parts were missing*), sans accuser le client.\n4. **Une solution avec une date** : *We will send / dispatch the missing parts by courier… by tomorrow / by Friday.*\n5. **Un geste commercial** : *We will refund the delivery fee*, ou *a 10% discount on your next order*.\n6. **Une formule de fin** : *Please do not hesitate to contact me…*, *Kind regards,* + ton nom.\n\nVérifie que les cinq mots imposés apparaissent : *apologize / sorry*, *delivery*, *missing*, *dispatch / send*, *refund / discount*.\n\n**Erreurs fréquentes :** oublier la **date** de la solution (le client veut savoir quand) ; écrire *apologize* sans *for* (*apologize for the delay*) ; mettre le présent au lieu du futur pour la solution (*we send* au lieu de *we will send*) ; un ton trop familier (*Hi*, *Sorry about that*) ; dépasser 5 phrases ou rester trop vague (*we will fix it*).\n\n**À retenir :** merci, excuses, problème reconnu, solution datée, geste commercial, formule de fin."
       }
     ],
     "indices": [

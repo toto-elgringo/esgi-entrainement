@@ -8,7 +8,7 @@
       "$n^3$"
     ],
     "reponse": 2,
-    "explication": "Ordre de croissance : $n^2 \\ll n^3 \\ll 2^n \\ll n!$. À $n = 20$, $n!$ vaut environ $2{,}4 \\times 10^{18}$."
+    "explication": "**Règle :** ordre de croissance quand $n$ grandit : $n^2 \\ll n^3 \\ll 2^n \\ll n!$. Quand $n$ augmente de 1, $2^n$ est multiplié par 2, alors que $n!$ est multiplié par $n + 1$ : de plus en plus fort.\n\n**Pas à pas :** on compare les quatre à $n = 20$.\n\n| Fonction | Valeur à $n = 20$ |\n|---|---|\n| $n^2$ | $400$ |\n| $n^3$ | $8\\,000$ |\n| $2^n$ | $\\approx 10^6$ |\n| $n!$ | $\\approx 2{,}4 \\times 10^{18}$ |\n\n$n!$ est de très loin la plus grande, et l'écart grandit avec $n$.\n\n**Les autres réponses :** $n^2$ et $n^3$ sont polynomiales, elles restent raisonnables ; $2^n$ explose aussi, mais bien moins vite que $n!$ (à $n = 20$, un million contre des milliards de milliards).\n\n**À retenir :** la factorielle bat l'exponentielle, qui bat tous les polynômes."
   },
   {
     "question": "Face à un problème NP-difficile de grande taille, une métaheuristique sert à…",
@@ -19,7 +19,7 @@
       "trouver l'optimum à coup sûr"
     ],
     "reponse": 0,
-    "explication": "Une métaheuristique est une méthode approchée : elle donne une bonne solution rapidement, mais ne prouve pas qu'elle est optimale."
+    "explication": "**Règle :** une **métaheuristique** (recherche locale, recuit simulé, algorithme génétique) est une méthode **approchée** : elle trouve vite une bonne solution, mais sans **prouver** qu'elle est optimale.\n\n**Pas à pas :** sur un problème NP-difficile de grande taille, on ne connaît aucun algorithme polynomial, et une méthode exacte peut prendre un temps énorme. La métaheuristique améliore une solution pas à pas et s'arrête quand le temps est écoulé : on obtient une bonne solution, à temps.\n\n**Les autres réponses :**\n\n- « trouver l'optimum à coup sûr » : c'est la promesse d'une méthode **exacte**, pas d'une métaheuristique ;\n- « énumérer toutes les solutions » : c'est justement ce qu'on veut éviter, c'est impossible à grande taille ;\n- « prouver que le problème est polynomial » : une métaheuristique ne prouve rien sur la difficulté du problème.\n\n**À retenir :** métaheuristique = bonne solution rapide, sans garantie d'optimalité."
   },
   {
     "question": "Que signifie **NP** ?",
@@ -30,7 +30,7 @@
       "Nouvelle programmation"
     ],
     "reponse": 1,
-    "explication": "NP = « non déterministe polynomial » : les problèmes dont une solution proposée se **vérifie** en temps polynomial. Ce n'est pas « non polynomial »."
+    "explication": "**Règle :** **NP** signifie « **non déterministe polynomial** ». Ce sont les problèmes de décision dont une solution proposée se **vérifie** en temps polynomial.\n\n**Pas à pas :** pour le voyageur de commerce (version décision), si on te donne une tournée, tu additionnes ses $n$ distances et tu compares à $K$ : c'est rapide (polynomial). Le problème est donc dans NP, même si **trouver** la tournée est difficile.\n\n**Les autres réponses :** « non polynomial » est le piège classique (NP contient même tous les problèmes faciles de P) ; « nombre de problèmes » et « nouvelle programmation » sont inventés.\n\n**À retenir :** NP = non déterministe polynomial = vérifiable vite."
   },
   {
     "question": "Quelle relation entre P et NP est **certaine** ?",
@@ -41,7 +41,7 @@
       "$NP \\subseteq P$"
     ],
     "reponse": 0,
-    "explication": "Un problème qu'on sait résoudre vite, on sait aussi le vérifier vite : $P \\subseteq NP$. En revanche, savoir si $P = NP$ est une question ouverte."
+    "explication": "**Règle :** si on sait **résoudre** un problème en temps polynomial, on sait aussi **vérifier** une solution proposée en temps polynomial (il suffit de résoudre et de comparer). Donc tout problème de P est dans NP : $P \\subseteq NP$.\n\n**Pas à pas :** trier une liste est dans P. On te propose une liste « triée » : tu refais le tri (rapide) et tu compares. La vérification est rapide, donc le tri est aussi dans NP. Ce raisonnement marche pour **n'importe quel** problème de P.\n\n**Les autres réponses :**\n\n- $P = NP$ et $P \\neq NP$ : personne n'a réussi à prouver l'un ou l'autre, c'est une **question ouverte** ;\n- $NP \\subseteq P$ : avec $P \\subseteq NP$, cela voudrait dire $P = NP$, qui n'est pas prouvé.\n\n**À retenir :** $P \\subseteq NP$ est certain ; $P = NP$ reste inconnu."
   },
   {
     "question": "Un problème **NP-complet** est un problème…",
@@ -52,7 +52,7 @@
       "sans solution"
     ],
     "reponse": 0,
-    "explication": "NP-complet = à la fois dans NP (vérifiable vite) et NP-difficile (au moins aussi dur que tout NP) : ce sont les plus durs de NP."
+    "explication": "**Règle :** un problème **NP-complet** vérifie deux conditions à la fois :\n\n1. il est **dans NP** (une solution proposée se vérifie vite) ;\n2. il est **NP-difficile** (au moins aussi dur que tout problème de NP).\n\n**Pas à pas :** le voyageur de commerce en version décision (« existe-t-il une tournée de coût au plus $K$ ? ») : on vérifie une tournée en $n$ additions, il est dans NP ; et il est NP-difficile. Il est donc NP-complet.\n\n**Les autres réponses :** « qui n'est pas dans NP » contredit la condition 1 ; « résoluble en temps polynomial » : on ne connaît aucun algorithme polynomial pour un problème NP-complet ; « sans solution » confond difficulté et absence de réponse.\n\n**À retenir :** NP-complet = dans NP **et** NP-difficile, les plus durs de NP."
   },
   {
     "question": "Quelle est la version **décision** du voyageur de commerce ?",
@@ -63,7 +63,7 @@
       "Quelle ville visiter en premier ?"
     ],
     "reponse": 0,
-    "explication": "Un problème de décision attend oui ou non. On ajoute un seuil $K$ à la question d'optimisation."
+    "explication": "**Règle :** un problème de décision attend **oui ou non**. On obtient la version décision d'une optimisation en gardant les contraintes et en remplaçant « le meilleur » par un seuil $K$ : pour une minimisation, « existe-t-il une solution de valeur **au plus** $K$ ? ».\n\n**Pas à pas :**\n\n1. Optimisation : trouver la tournée de coût minimum.\n2. On remplace « minimum » par « au plus $K$ ».\n3. Version décision : « existe-t-il une tournée de coût au plus $K$ ? », réponse oui ou non.\n\n**Les autres réponses :** « trouver la tournée la plus courte » est la version **optimisation** ; « combien y a-t-il de tournées ? » demande un nombre (c'est du comptage) ; « quelle ville visiter en premier ? » ne compte pas, toutes les villes peuvent servir de départ.\n\n**À retenir :** version décision = « existe-t-il une solution de valeur au plus (ou au moins) $K$ ? »."
   },
   {
     "question": "Laquelle de ces méthodes est une méthode **exacte** ?",
@@ -74,7 +74,7 @@
       "La recherche locale"
     ],
     "reponse": 0,
-    "explication": "Branch & bound, simplexe, programmation dynamique garantissent l'optimum. Les trois autres sont des méthodes approchées."
+    "explication": "**Règle :** une méthode **exacte** garantit l'**optimum**. Exemples : programmation linéaire, simplexe, **branch & bound**, programmation dynamique. Une méthode **approchée** n'a pas cette garantie : recherche locale, recuit simulé, algorithmes génétiques.\n\n**Pas à pas :** le branch & bound (« séparer et évaluer ») découpe l'ensemble des solutions en morceaux et élimine ceux dont on **prouve** qu'ils ne peuvent pas contenir mieux que la meilleure solution trouvée. À la fin, la solution gardée est prouvée optimale : c'est une méthode exacte.\n\n**Les autres réponses :** le recuit simulé, l'algorithme génétique et la recherche locale sont des **métaheuristiques** : rapides, mais elles peuvent s'arrêter sur une solution qui n'est pas la meilleure.\n\n**À retenir :** branch & bound, simplexe, programmation dynamique = exact ; recuit, génétique, recherche locale = approché."
   },
   {
     "question": "Quel est le principal **défaut** d'une méthode exacte ?",
@@ -85,7 +85,7 @@
       "Elle ne marche que sur des graphes"
     ],
     "reponse": 0,
-    "explication": "Une méthode exacte prouve l'optimum, mais sur un problème NP-difficile son temps de calcul peut devenir exponentiel."
+    "explication": "**Règle :** une méthode exacte **prouve** l'optimum, mais sur un problème NP-difficile son **temps de calcul peut exploser** (devenir exponentiel quand la taille grandit).\n\n**Pas à pas :** pour être sûre d'avoir la meilleure solution, une méthode exacte doit écarter (directement ou par un raisonnement) **toutes** les autres. Quand le nombre de solutions vaut $2^n$ ou $n!$, ce travail peut devenir énorme : la méthode tourne des heures, des jours, voire plus.\n\n**Les autres réponses :**\n\n- « elle ne donne jamais l'optimum » : c'est l'inverse, elle le garantit ;\n- « elle utilise le hasard » : c'est le cas de certaines méthodes approchées (recuit simulé, algorithmes génétiques), pas des méthodes exactes ;\n- « elle ne marche que sur des graphes » : la programmation linéaire ou la programmation dynamique s'appliquent à bien d'autres problèmes.\n\n**À retenir :** exact = optimum garanti, mais temps parfois explosif."
   },
   {
     "question": "Combien vaut environ $2^{20}$ ?",
@@ -96,7 +96,7 @@
       "Environ $2{,}4 \\times 10^{18}$"
     ],
     "reponse": 1,
-    "explication": "$2^{10} = 1\\,024 \\approx 10^3$, donc $2^{20} = (2^{10})^2 \\approx 10^6$, soit environ un million."
+    "explication": "**Règle :** $2^{10} = 1\\,024 \\approx 10^3$ (environ mille), et $2^{a+b} = 2^a \\times 2^b$.\n\n**Pas à pas :**\n\n1. $2^{20} = 2^{10} \\times 2^{10}$.\n2. $\\approx 10^3 \\times 10^3 = 10^6$.\n3. Valeur exacte : $1\\,024 \\times 1\\,024 = 1\\,048\\,576$, soit **environ un million**.\n\n**Les autres réponses :** « environ mille » est $2^{10}$ ; « environ un milliard » est $2^{30}$ ; $2{,}4 \\times 10^{18}$ est $20!$, pas $2^{20}$.\n\n**À retenir :** $2^{10} \\approx$ mille, $2^{20} \\approx$ un million, $2^{30} \\approx$ un milliard."
   },
   {
     "question": "À $10^9$ ordres par seconde, combien de temps pour énumérer les $20! \\approx 2{,}4 \\times 10^{18}$ ordres de 20 villes ?",
@@ -107,7 +107,7 @@
       "Environ 1 000 ans"
     ],
     "reponse": 2,
-    "explication": "$\\dfrac{2{,}4 \\times 10^{18}}{10^9} = 2{,}4 \\times 10^9$ s, et une année fait environ $3{,}15 \\times 10^7$ s : environ 77 ans."
+    "explication": "**Règle :** temps (s) = nombre d'opérations ÷ opérations par seconde ; une année compte environ $3{,}15 \\times 10^7$ secondes. Pour diviser des puissances de 10, on soustrait les exposants.\n\n**Pas à pas :**\n\n1. En secondes : $\\dfrac{2{,}4 \\times 10^{18}}{10^9} = 2{,}4 \\times 10^{18 - 9} = 2{,}4 \\times 10^9$ s.\n2. En années : $\\dfrac{2{,}4 \\times 10^9}{3{,}15 \\times 10^7} = \\dfrac{2{,}4}{3{,}15} \\times 10^{2} \\approx 0{,}76 \\times 100 \\approx 76$ à 77 ans.\n\nRéponse : **environ 77 ans**.\n\n**Les autres réponses :** « environ 1 seconde » oublie l'énorme taille de $20!$ ; « environ 22 minutes » est le temps pour **15** villes ; « environ 1 000 ans » vient d'une erreur de conversion.\n\n**À retenir :** opérations ÷ vitesse = secondes, puis ÷ $3{,}15 \\times 10^7$ pour des années."
   },
   {
     "question": "Qu'est-ce qui décide surtout entre méthode exacte et méthode approchée ?",
@@ -118,6 +118,6 @@
       "La couleur des graphes"
     ],
     "reponse": 0,
-    "explication": "Un TSP pur de milliers de villes se résout encore exactement ; ajouter capacités, horaires et un délai d'une heure change tout."
+    "explication": "**Règle :** le choix entre exact et approché dépend surtout des **contraintes** du problème et du **budget de temps**, pas seulement de la taille.\n\n**Pas à pas :** deux cas de même taille.\n\n- Un voyageur de commerce **pur** de 2 000 villes, sans délai : les solveurs exacts modernes le résolvent souvent. Méthode exacte possible.\n- Des tournées de 2 000 clients avec capacités des camions, horaires des clients, et un résultat attendu en une heure : aucune méthode exacte ne tient dans ce délai. Méthode approchée.\n\nLa taille est la même, la décision change à cause des contraintes et du temps.\n\n**Les autres réponses :** « uniquement le nombre de villes » est le piège (voir l'exemple) ; le langage de programmation ne change pas la nature de la méthode ; « la couleur des graphes » n'a pas de sens ici.\n\n**À retenir :** contraintes + délai décident ; la taille seule ne suffit pas."
   }
 ]

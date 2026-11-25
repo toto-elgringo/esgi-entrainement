@@ -13,7 +13,8 @@
           "the board of directors",
           "board",
           "the board"
-        ]
+        ],
+        "explication": "**Règle :** le conseil d'administration = *the board of directors*, souvent raccourci en *the board*.\n\n**Pas à pas :**\n\n1. conseil → *board* (un groupe de personnes autour d'une table, *board* voulant dire « planche, table »).\n2. d'administration → *of directors* (des administrateurs).\n3. → ***board of directors***.\n\n**Erreurs fréquentes :** *administration council* (calque du français) ; *boardroom* (c'est la **salle** où le conseil se réunit, pas le conseil).\n\n**À retenir :** le conseil = *the board* ; sa salle = *the boardroom*."
       },
       {
         "intitule": "une filiale",
@@ -21,7 +22,8 @@
         "reponse": [
           "subsidiary",
           "a subsidiary"
-        ]
+        ],
+        "explication": "**Règle :** une filiale = *a subsidiary* : une société possédée par une autre.\n\n**Pas à pas :** on pense à « subsidiaire » (qui dépend d'autre chose) → ***subsidiary***.\n\n**Erreurs fréquentes :** *branch* (c'est une agence de la même société, pas une société à part) ; *subsidy* (une subvention) ; *filial* (adjectif « filial », comme dans « amour filial »).\n\n**À retenir :** filiale = *subsidiary* ; succursale = *branch*."
       },
       {
         "intitule": "une agence, une succursale",
@@ -29,7 +31,8 @@
         "reponse": [
           "branch",
           "a branch"
-        ]
+        ],
+        "explication": "**Règle :** une agence, une succursale = *a branch* (une « branche » de l'arbre qu'est l'entreprise).\n\n**Pas à pas :** une banque a un siège (*head office*) et des agences dans chaque ville → ***branch***.\n\n**Erreurs fréquentes :** *agency* veut dire une agence **de services** (*travel agency*, *temp agency*), pas l'agence d'une banque ; *subsidiary* est une filiale.\n\n**À retenir :** l'agence d'une banque, d'un magasin = *a branch*."
       },
       {
         "intitule": "une fusion (d'entreprises)",
@@ -37,7 +40,8 @@
         "reponse": [
           "merger",
           "a merger"
-        ]
+        ],
+        "explication": "**Règle :** une fusion d'entreprises = *a merger* (verbe : *to merge*, fusionner).\n\n**Pas à pas :** deux sociétés deviennent une seule → ***merger***.\n\n**Erreurs fréquentes :** *fusion* (en anglais, c'est la fusion nucléaire) ; *takeover* (rachat : une société en achète une autre).\n\n**À retenir :** fusion = *merger* ; rachat = *takeover*."
       },
       {
         "intitule": "un actionnaire",
@@ -47,7 +51,8 @@
           "a shareholder",
           "stockholder",
           "a stockholder"
-        ]
+        ],
+        "explication": "**Règle :** un actionnaire = *a shareholder* (UK) ou *a stockholder* (US) : celui qui possède des actions.\n\n**Pas à pas :** *share* = une action (une « part ») ; *holder* = celui qui détient → ***shareholder***.\n\n**Erreurs fréquentes :** *actionary* n'existe pas (calque) ; *stakeholder* veut dire « partie prenante » (clients, salariés...), pas forcément un propriétaire d'actions.\n\n**À retenir :** action = *share* → actionnaire = *shareholder*."
       },
       {
         "intitule": "les locaux",
@@ -55,7 +60,8 @@
         "reponse": [
           "premises",
           "the premises"
-        ]
+        ],
+        "explication": "**Règle :** les locaux = *premises*, toujours au pluriel.\n\n**Pas à pas :** on écrit ***premises*** avec le *-s* final, même pour un seul bâtiment.\n\n**Erreurs fréquentes :** *premise* au singulier (c'est un autre mot : une prémisse, une hypothèse) ; *locals* (les habitants du coin).\n\n**À retenir :** les locaux = *the premises* (avec *-s*)."
       },
       {
         "intitule": "le savoir-faire",
@@ -64,7 +70,8 @@
           "know-how",
           "know how",
           "expertise"
-        ]
+        ],
+        "explication": "**Règle :** le savoir-faire = *know-how* (« savoir comment »). Synonyme accepté : *expertise*.\n\n**Pas à pas :** *know* (savoir) + *how* (comment), avec un trait d'union → ***know-how***.\n\n**Erreurs fréquentes :** *savoir-faire* (existe en anglais, mais au sens de « tact, aisance en société ») ; *knowledge* (connaissances en général, pas la façon de faire).\n\n**À retenir :** savoir-faire professionnel = *know-how*."
       },
       {
         "intitule": "interne (une formation ...)",
@@ -73,7 +80,8 @@
           "in-house",
           "in house",
           "internal"
-        ]
+        ],
+        "explication": "**Règle :** interne (fait dans l'entreprise, par ses propres équipes) = *in-house*. *internal* est aussi accepté.\n\n**Pas à pas :** *in* (dans) + *house* (la maison, ici l'entreprise) → ***in-house*** : *in-house training* = formation interne.\n\n**Erreurs fréquentes :** *intern* (c'est un stagiaire, une personne) ; *home-made* (fait maison, en cuisine).\n\n**À retenir :** interne = *in-house* ; stagiaire = *intern*."
       }
     ],
     "indices": [
@@ -95,7 +103,8 @@
           "directeur adjoint",
           "directeur général"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *deputy* = **adjoint**, remplaçant, vice-. *Deputy manager* = directeur adjoint.\n\n**Pas à pas :** *deputy* + nom de poste = le numéro deux de ce poste, qui remplace le chef s'il est absent → **directeur adjoint**.\n\n**Les autres réponses :** « député » est le faux ami (un député se dit *MP*, *Member of Parliament*) ; « directeur général » se dit *CEO* ou *managing director*.\n\n**À retenir :** *deputy* + poste = adjoint."
       },
       {
         "intitule": "*takeover bid*",
@@ -105,7 +114,8 @@
           "prise de poste",
           "offre publique d'achat"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *takeover* = rachat, prise de contrôle ; *bid* = offre. *Takeover bid* = **offre publique d'achat** (OPA).\n\n**Pas à pas :** une société fait une *bid* (offre) pour *take over* (prendre le contrôle) d'une autre → **OPA**.\n\n**Les autres réponses :** « appel d'offres » se dit *call for tenders* ; « prise de poste » se dirait *taking up a position*, le piège est *take*.\n\n**À retenir :** *takeover bid* = OPA."
       },
       {
         "intitule": "*competitive edge*",
@@ -115,7 +125,8 @@
           "concours",
           "limite de la concurrence"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *competitive edge* = **avantage sur la concurrence**. *Edge* = un bord, et au figuré une longueur d'avance.\n\n**Pas à pas :** *competitive* (concurrentiel) + *edge* (avance) → avoir une longueur d'avance sur les concurrents.\n\n**Les autres réponses :** « concours » se dit *competition* (piège du son) ; « limite de la concurrence » est la traduction mot à mot de *edge* au sens de « bord », qui n'a pas de sens ici.\n\n**À retenir :** *have a competitive edge* = être en avance sur la concurrence."
       },
       {
         "intitule": "*benchmarking*",
@@ -125,7 +136,8 @@
           "analyse comparative",
           "notation"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *benchmarking* = **analyse comparative** : on compare ses résultats à ceux des meilleurs.\n\n**Pas à pas :** un *benchmark* est un point de repère, une référence. Faire du *benchmarking*, c'est se comparer à cette référence.\n\n**Les autres réponses :** « aménagement de bancs » vient de *bench* (banc), piège du mot à mot ; « notation » se dit *rating* ou *grading*.\n\n**À retenir :** *benchmarking* = se comparer aux autres."
       },
       {
         "intitule": "*corporate*",
@@ -135,7 +147,8 @@
           "d'entreprise, institutionnel",
           "corporel"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *corporate* = **d'entreprise, institutionnel** (qui concerne la société dans son ensemble).\n\n**Pas à pas :** *corporation* = grande société → *corporate* = de la société. Exemples : *corporate image* (image de marque), *corporate event* (événement d'entreprise).\n\n**Les autres réponses :** « coopératif » se dit *cooperative* ; « corporel » se dit *physical* ou *bodily*, c'est le faux ami.\n\n**À retenir :** *corporate* = d'entreprise."
       },
       {
         "intitule": "*advisory committee*",
@@ -145,7 +158,8 @@
           "comité de publicité",
           "comité consultatif"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *advisory* = **consultatif** (qui donne des conseils). *Advice* = un conseil ; *to advise* = conseiller.\n\n**Pas à pas :** *advisory committee* = un comité qui conseille, sans décider → **comité consultatif**.\n\n**Les autres réponses :** « comité d'avertissement » confond avec *warning* ; « comité de publicité » confond avec *advertising* (le son *adv-* est le piège).\n\n**À retenir :** *advise* = conseiller → *advisory* = consultatif."
       },
       {
         "intitule": "*field*",
@@ -155,7 +169,8 @@
           "domaine (d'activité)",
           "filiale"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *field* = champ, et au figuré **domaine** (d'activité, de compétence).\n\n**Pas à pas :** *a leader in the field of energy* = un leader dans le domaine de l'énergie → **domaine**.\n\n**Les autres réponses :** « fichier » se dit *file* (son proche) ; « filiale » se dit *subsidiary*.\n\n**À retenir :** *in the field of* = dans le domaine de."
       }
     ],
     "indices": [
@@ -178,7 +193,8 @@
           "branch",
           "board"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *branch* = agence d'une banque ou d'un magasin, un **lieu** qu'on ouvre en ville.\n\n**Pas à pas :**\n\n1. Indice : *The bank has just opened a new ...... in the city centre* (la banque vient d'ouvrir un(e) nouveau/nouvelle ... en centre-ville).\n2. Une banque ouvre une **agence** → ***branch***.\n\n**Les autres réponses :** *premises* (locaux) est toujours au pluriel, on ne dit pas *a new premises* ; *field* est un domaine ; *board* est le conseil d'administration.\n\n**À retenir :** ouvrir une agence = *open a new branch*."
       },
       {
         "intitule": "*Smoking is not allowed anywhere on the ......*",
@@ -189,7 +205,8 @@
           "branch",
           "premises"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *on the premises* = dans les locaux, sur place.\n\n**Pas à pas :**\n\n1. *Smoking is not allowed anywhere on the ......* = il est interdit de fumer partout dans/sur ...\n2. Expression figée des panneaux : *on the premises* → ***premises***.\n\n**Les autres réponses :** *branch* irait avec *in the branch*, pas *on the* ; *subsidiary* est une société, pas un lieu où l'on fume ; *benchmark* est un point de comparaison.\n\n**À retenir :** *on the premises* = dans les locaux."
       },
       {
         "intitule": "*The ...... between the two airlines will create the biggest company in Europe.*",
@@ -200,7 +217,8 @@
           "merger",
           "takeover bid"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *merger between A and B* = fusion entre A et B, qui crée une seule entreprise.\n\n**Pas à pas :**\n\n1. Indices : *between the two airlines* (entre les deux compagnies) et *will create the biggest company* (créera la plus grande entreprise).\n2. Deux sociétés → une seule : ***merger***.\n\n**Les autres réponses :** *takeover bid* est une offre de rachat faite **par** une société, on ne dit pas « entre » les deux ; *know-how* est un savoir-faire ; *deputy* est une personne (un adjoint).\n\n**À retenir :** *between* + deux sociétés + une seule à la fin → *merger*."
       },
       {
         "intitule": "*The ...... will vote on the dividend at the annual meeting.*",
@@ -211,7 +229,8 @@
           "shareholders",
           "branches"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *shareholders* (actionnaires) votent à l'assemblée générale et reçoivent les dividendes.\n\n**Pas à pas :**\n\n1. Indices : *will vote* (vont voter) et *the dividend* (le dividende) *at the annual meeting* (à l'assemblée annuelle).\n2. Qui vote sur le dividende ? Les **actionnaires** → ***shareholders***.\n\n**Les autres réponses :** *subsidiaries* et *branches* sont des sociétés ou des agences, elles ne votent pas ; *premises* sont des locaux.\n\n**À retenir :** voter + dividende → *shareholders*."
       },
       {
         "intitule": "*Our ...... training is run by our own experts, not by an outside company.*",
@@ -222,7 +241,8 @@
           "corporate",
           "advisory"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *in-house* = interne, fait par les propres équipes de l'entreprise.\n\n**Pas à pas :**\n\n1. Indice : *run by our own experts, not by an outside company* (assurée par nos propres experts, pas par une société extérieure).\n2. Le contraire de « extérieur » → ***in-house***.\n\n**Les autres réponses :** *corporate* (d'entreprise) ne s'oppose pas à « extérieur » ; *deputy* (adjoint) et *advisory* (consultatif) n'ont pas de sens devant *training* ici.\n\n**À retenir :** *not by an outside company* → *in-house*."
       },
       {
         "intitule": "*Thanks to its unique ......, the company has a strong competitive edge.*",
@@ -233,7 +253,8 @@
           "premises",
           "stockholder"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *know-how* = savoir-faire, ce qui donne un *competitive edge* (avantage sur la concurrence).\n\n**Pas à pas :**\n\n1. *Thanks to its unique ......* = grâce à son ... unique, l'entreprise a un fort avantage sur la concurrence.\n2. Ce qu'une entreprise possède d'**unique** et qui la rend meilleure : son **savoir-faire** → ***know-how***.\n\n**Les autres réponses :** *merger* (fusion) n'est pas une qualité « unique » de l'entreprise ; *premises* est au pluriel et ne se dit pas *its unique premises* pour un avantage ; *stockholder* est une personne (actionnaire).\n\n**À retenir :** avantage durable → *know-how*."
       }
     ],
     "indices": [
@@ -257,7 +278,8 @@
           "a covering letter",
           "motivation letter",
           "a motivation letter"
-        ]
+        ],
+        "explication": "**Règle :** lettre de motivation = *cover letter* (US) ou *covering letter* (UK). *motivation letter* est aussi accepté.\n\n**Pas à pas :** la lettre « couvre » le CV, elle le présente → ***cover letter***.\n\n**Erreurs fréquentes :** *motivated letter* ; *letter of motivation* (compris, mais moins courant) ; oublier *letter*.\n\n**À retenir :** CV + lettre de motivation = *résumé* + *cover letter*."
       },
       {
         "intitule": "un candidat (à un poste)",
@@ -267,14 +289,16 @@
           "an applicant",
           "candidate",
           "a candidate"
-        ]
+        ],
+        "explication": "**Règle :** un candidat (à un poste) = *an applicant* (celui qui fait une *application*, une candidature). *candidate* est accepté.\n\n**Pas à pas :** *to apply* = postuler → *applicant* (*-ant* = la personne) → ***applicant***.\n\n**Erreurs fréquentes :** *application* (c'est la candidature, une chose) ; *applier* (n'existe pas).\n\n**À retenir :** postuler = *apply* ; candidat = *applicant* ; candidature = *application*."
       },
       {
         "intitule": "la formation (professionnelle)",
         "type": "texte",
         "reponse": [
           "training"
-        ]
+        ],
+        "explication": "**Règle :** la formation professionnelle = *training* (verbe *to train*, former).\n\n**Pas à pas :** → ***training***, sans article ni *-s* (*training* est indénombrable : *a training course* pour « une formation »).\n\n**Erreurs fréquentes :** *formation* (faux ami : en anglais, c'est une formation géologique, une disposition) ; *trainings* au pluriel.\n\n**À retenir :** formation = *training* (jamais *formation*)."
       },
       {
         "intitule": "la formation sur le tas",
@@ -282,14 +306,16 @@
         "reponse": [
           "on-the-job training",
           "on the job training"
-        ]
+        ],
+        "explication": "**Règle :** la formation sur le tas = *on-the-job training* : formé **pendant** le travail, en le faisant.\n\n**Pas à pas :** *on the job* (au travail, en situation) + *training* ; on met des traits d'union quand l'expression est placée avant le nom → ***on-the-job training***.\n\n**Erreurs fréquentes :** *training on the pile* (traduction mot à mot de « tas ») ; oublier *training*.\n\n**À retenir :** sur le tas = *on the job*."
       },
       {
         "intitule": "le congé maladie",
         "type": "texte",
         "reponse": [
           "sick leave"
-        ]
+        ],
+        "explication": "**Règle :** le congé maladie = *sick leave* (*sick* = malade, *leave* = congé).\n\n**Pas à pas :** → ***sick leave***. Exemple : *She is on sick leave* = elle est en arrêt maladie.\n\n**Erreurs fréquentes :** *illness holiday* (calque) ; *sick leaves* (pas de *-s*).\n\n**À retenir :** *leave* = congé : *sick leave*, *maternity leave*, *annual leave*."
       },
       {
         "intitule": "le travail posté (en équipes)",
@@ -297,14 +323,16 @@
         "reponse": [
           "shift work",
           "shiftwork"
-        ]
+        ],
+        "explication": "**Règle :** le travail posté (en équipes qui se relaient) = *shift work*. *A shift* = un poste, une équipe (de jour, de nuit).\n\n**Pas à pas :** → ***shift work***. Exemple : *the night shift* = l'équipe de nuit.\n\n**Erreurs fréquentes :** *post work* (calque de « posté ») ; *team work* (travail d'équipe, sens différent).\n\n**À retenir :** travail posté = *shift work*."
       },
       {
         "intitule": "du temps libre, des jours de congé",
         "type": "texte",
         "reponse": [
           "time off"
-        ]
+        ],
+        "explication": "**Règle :** du temps libre, des jours de congé = *time off*.\n\n**Pas à pas :** *time* (temps) + *off* (hors du travail) → ***time off***. Exemple : *four weeks of time off per year*.\n\n**Erreurs fréquentes :** *free time* (temps libre en général, loisirs, pas des jours de congé accordés par l'employeur) ; *off time*.\n\n**À retenir :** jours de congé = *time off* (*a day off* = un jour de congé)."
       },
       {
         "intitule": "gagner (de l'argent, un salaire)",
@@ -314,7 +342,8 @@
           "to earn",
           "make",
           "to make"
-        ]
+        ],
+        "explication": "**Règle :** gagner de l'argent, un salaire = *to earn* (*to make* est accepté).\n\n**Pas à pas :** → ***earn***. Exemple : *She earns 3,000 euros a month.*\n\n**Erreurs fréquentes :** *win* (gagner un match, un prix, pas un salaire) ; *gain* (prendre, augmenter : *gain weight*, *gain experience*).\n\n**À retenir :** salaire → *earn* ; concours → *win*."
       }
     ],
     "indices": [
@@ -336,7 +365,8 @@
           "une assignation au tribunal",
           "une signature"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *an assignment* = **une mission**, une tâche confiée (verbe *to assign*, attribuer).\n\n**Pas à pas :** *She was given a new assignment in Brazil* = on lui a confié une nouvelle mission au Brésil.\n\n**Les autres réponses :** « assignation au tribunal » est le faux ami (*summons* en anglais) ; « signature » se dit *signature*, le son *-sign-* est le piège.\n\n**À retenir :** *assignment* = mission."
       },
       {
         "intitule": "*an allowance*",
@@ -346,7 +376,8 @@
           "une indemnité, une allocation",
           "une alliance"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *an allowance* = **une indemnité, une allocation** : une somme versée pour un besoin précis.\n\n**Pas à pas :** *travel allowance* = indemnité de transport ; *housing allowance* = aide au logement.\n\n**Les autres réponses :** « autorisation de sortie » vient de *allow* (permettre), piège du sens voisin ; « alliance » se dit *alliance* (son proche).\n\n**À retenir :** *allowance* = somme versée (indemnité)."
       },
       {
         "intitule": "*a chore*",
@@ -356,7 +387,8 @@
           "un choix",
           "une chorale"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *a chore* = **une corvée**, une tâche de routine sans intérêt.\n\n**Pas à pas :** *household chores* = les tâches ménagères ; *Filing is a boring chore* = classer est une corvée.\n\n**Les autres réponses :** « un choix » se dit *a choice* ; « une chorale » se dit *a choir*. Les deux sont des pièges de son.\n\n**À retenir :** *chore* = corvée."
       },
       {
         "intitule": "*a grievance*",
@@ -366,7 +398,8 @@
           "un deuil",
           "une réclamation, un grief"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a grievance* = **une réclamation, un grief** (un mécontentement exprimé officiellement par un salarié).\n\n**Pas à pas :** *to file a grievance* = déposer une réclamation.\n\n**Les autres réponses :** « une grève » se dit *a strike* (faux ami du son *grie-*) ; « un deuil » se dit *grief* (proche mais différent).\n\n**À retenir :** *grievance* = réclamation ; grève = *strike*."
       },
       {
         "intitule": "*an achievement*",
@@ -376,7 +409,8 @@
           "un achat",
           "un achèvement de travaux"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *an achievement* = **une réussite**, une réalisation (verbe *to achieve*, accomplir).\n\n**Pas à pas :** *Winning the award was a great achievement* = gagner ce prix a été une grande réussite.\n\n**Les autres réponses :** « un achat » se dit *a purchase* (piège du son *ach-*) ; « un achèvement de travaux » se dit *completion*, le piège est la ressemblance avec « achever ».\n\n**À retenir :** *achievement* = réussite."
       },
       {
         "intitule": "*commitment*",
@@ -386,7 +420,8 @@
           "comité",
           "engagement, implication"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *commitment* = **engagement, implication** (verbe *to commit*, s'engager).\n\n**Pas à pas :** *Thank you for your commitment* = merci pour votre implication.\n\n**Les autres réponses :** « commission » se dit *commission* ; « comité » se dit *committee* (même famille, mais c'est un groupe de personnes).\n\n**À retenir :** *commitment* = engagement ; *committee* = comité."
       },
       {
         "intitule": "*an incentive*",
@@ -396,7 +431,8 @@
           "une motivation, une prime",
           "une incitation à la haine"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *an incentive* = **une motivation, une incitation, une prime** (ce qui pousse à faire plus).\n\n**Pas à pas :** *a sales incentive* = une prime sur les ventes, pour motiver les vendeurs.\n\n**Les autres réponses :** « un incendie » se dit *a fire* (piège du son) ; « une incitation à la haine » se dirait *incitement*, et ce sens négatif n'a rien à voir avec *incentive*.\n\n**À retenir :** *incentive* = ce qui motive (souvent une prime)."
       },
       {
         "intitule": "*duties*",
@@ -406,7 +442,8 @@
           "devoirs scolaires",
           "fonctions, responsabilités"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *duties* (au pluriel) = **fonctions, responsabilités** liées à un poste.\n\n**Pas à pas :** *Duties include preparing invoices* = les fonctions comprennent la préparation des factures.\n\n**Les autres réponses :** « impôts locaux » : *duty* veut dire « taxe » en douane (*duty-free*), mais pas impôts locaux (*council tax*), et pas dans une offre d'emploi ; « devoirs scolaires » se dit *homework*.\n\n**À retenir :** dans une offre d'emploi, *duties* = les tâches du poste."
       }
     ],
     "indices": [
@@ -425,28 +462,32 @@
         "type": "texte",
         "reponse": [
           "for"
-        ]
+        ],
+        "explication": "**Règle :** *to cover for someone* = remplacer quelqu'un (faire son travail pendant son absence).\n\n**Pas à pas :**\n\n1. *I have a doctor's appointment tomorrow* = j'ai un rendez-vous chez le médecin demain.\n2. *Could you cover ...... me?* = Pourrais-tu me remplacer ? → *cover* **for** *me*.\n\n**Erreurs fréquentes :** *cover me* (sans *for*, cela veut dire « me couvrir », me protéger) ; *cover to me*.\n\n**À retenir :** remplacer quelqu'un = *cover for someone*."
       },
       {
         "intitule": "*All full-time staff are entitled ...... 25 days of paid holiday.*",
         "type": "texte",
         "reponse": [
           "to"
-        ]
+        ],
+        "explication": "**Règle :** *to be entitled to* + nom = avoir droit à.\n\n**Pas à pas :**\n\n1. *All full-time staff are entitled ...... 25 days of paid holiday.*\n2. *entitled* appelle toujours *to* → ***to***.\n\n**Erreurs fréquentes :** *entitled for* ou *entitled of* (calque de « droit à », « titulaire de »).\n\n**À retenir :** *be entitled to* = avoir droit à."
       },
       {
         "intitule": "*After the scandal, the CEO stepped ...... .*",
         "type": "texte",
         "reponse": [
           "down"
-        ]
+        ],
+        "explication": "**Règle :** *to step down* = démissionner, quitter un poste de direction.\n\n**Pas à pas :**\n\n1. *After the scandal, the CEO stepped ......* = après le scandale, le PDG a ... .\n2. Après un scandale, un dirigeant **démissionne** → *stepped* **down**.\n\n**Erreurs fréquentes :** *stepped out* (sortir un moment) ; *stepped up* (intensifier ses efforts, presque le contraire).\n\n**À retenir :** *step down* = quitter son poste."
       },
       {
         "intitule": "*Nurses often do ...... work, including nights and weekends.* (travail posté)",
         "type": "texte",
         "reponse": [
           "shift"
-        ]
+        ],
+        "explication": "**Règle :** *shift work* = travail posté (en équipes qui se relaient : matin, après-midi, nuit).\n\n**Pas à pas :**\n\n1. *Nurses often do ...... work, including nights and weekends.*\n2. Les infirmières travaillent par roulement, y compris la nuit → ***shift*** *work*.\n\n**Erreurs fréquentes :** *team* (travail d'équipe, au sens de coopération) ; *night* (trop précis, l'indice parle aussi des week-ends).\n\n**À retenir :** *shift* = un poste dans un roulement."
       },
       {
         "intitule": "*Dr. Klein is on ...... tonight, so call her if there is an emergency.* (de garde)",
@@ -454,7 +495,8 @@
         "reponse": [
           "duty",
           "call"
-        ]
+        ],
+        "explication": "**Règle :** *on duty* = de garde, de service. *On call* (d'astreinte, joignable) est aussi accepté.\n\n**Pas à pas :**\n\n1. *Dr. Klein is on ...... tonight, so call her if there is an emergency.*\n2. Elle est **de garde** ce soir → *on* ***duty***.\n\n**Erreurs fréquentes :** *on guard* (monter la garde, pour un soldat) ; *on service*.\n\n**À retenir :** de garde = *on duty* ; d'astreinte = *on call*."
       },
       {
         "intitule": "*She worked very hard this year: she really ...... a promotion.* (mérite)",
@@ -462,7 +504,8 @@
         "reponse": [
           "deserves",
           "deserved"
-        ]
+        ],
+        "explication": "**Règle :** *to deserve* = mériter. Au présent, 3e personne : *deserves* (*deserved* au passé est accepté).\n\n**Pas à pas :**\n\n1. *She worked very hard this year: she really ...... a promotion.*\n2. Sujet *she*, présent → *deserve* + *-s* = ***deserves***.\n\n**Erreurs fréquentes :** *merits* (existe, mais moins naturel ici) ; *deserve* sans *-s* (oubli de la 3e personne).\n\n**À retenir :** mériter = *deserve* ; *she deserves*."
       }
     ],
     "indices": [
@@ -485,7 +528,8 @@
           "assessor",
           "assessing"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** après *will* (modal), le verbe est à la **base**.\n\n**Pas à pas :**\n\n1. *The panel will ...... each candidate* : après *will*, un verbe à la base.\n2. Base de la famille : ***assess*** (évaluer).\n\n**Les autres réponses :** *assessment* (évaluation) est un nom ; *assessor* (évaluateur) une personne ; *assessing* une forme en -ing, impossible juste après *will*.\n\n**À retenir :** *will* + base verbale."
       },
       {
         "intitule": "*His ...... came as a surprise: he had worked here for 20 years.*",
@@ -496,7 +540,8 @@
           "resign",
           "resigning"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** après un déterminant possessif (*his*, *her*, *their*), il faut un **nom**.\n\n**Pas à pas :**\n\n1. *His ...... came as a surprise* : après *His*, un nom, sujet de *came*.\n2. Le contexte : il travaillait là depuis 20 ans, et son départ surprend → sa **démission** → ***resignation***.\n\n**Les autres réponses :** *resign* est un verbe ; *resigned* un participe ou adjectif (résigné) ; *resigning* une forme en -ing, qui ne va pas avec *came as a surprise*.\n\n**À retenir :** possessif + nom ; démission = *resignation* (*-tion*)."
       },
       {
         "intitule": "*Forty workers were made ...... when the factory closed.*",
@@ -507,7 +552,8 @@
           "redundancies",
           "redundancy"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *to be made redundant* = être licencié pour raison économique. Après *make someone* / *be made*, il faut un **adjectif**.\n\n**Pas à pas :**\n\n1. *Forty workers were made ......* : après *were made*, on décrit l'état des ouvriers → adjectif.\n2. L'adjectif de la famille : ***redundant***.\n\n**Les autres réponses :** *redundancy* et *redundancies* sont des noms (le licenciement) ; *redundantly* est un adverbe.\n\n**À retenir :** *be made redundant* = être licencié."
       },
       {
         "intitule": "*Winning the contract was a great ...... for the team.*",
@@ -518,7 +564,8 @@
           "achievement",
           "achieved"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** après *a great* (article + adjectif), il faut un **nom**.\n\n**Pas à pas :**\n\n1. *Winning the contract was a great ......* : article + adjectif → nom.\n2. Gagner le contrat a été une grande **réussite** (une chose) → ***achievement***.\n\n**Les autres réponses :** *achieve* est un verbe ; *achieved* un participe ; *achiever* est un nom, mais une **personne** : gagner un contrat n'est pas « une personne qui réussit ».\n\n**À retenir :** chose réussie = *achievement* (*-ment*)."
       },
       {
         "intitule": "*Every new ...... receives a laptop and a badge.*",
@@ -529,7 +576,8 @@
           "train",
           "training"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** après *Every new* (déterminant + adjectif), il faut un **nom au singulier**.\n\n**Pas à pas :**\n\n1. *Every new ...... receives a laptop and a badge* : le nom est le sujet de *receives*.\n2. Qui reçoit un ordinateur et un badge ? Une **personne** : le nouveau **stagiaire** → ***trainee***.\n\n**Les autres réponses :** *training* est un nom, mais c'est une chose (la formation), elle ne reçoit pas d'ordinateur ; *train* est un verbe (ou un train) ; *trained* un participe.\n\n**À retenir :** personne formée = *trainee* (*-ee*) ; formation = *training*."
       },
       {
         "intitule": "*We thank you for your ...... to the project.*",
@@ -540,7 +588,8 @@
           "commitment",
           "committee"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** après *your* (possessif), il faut un **nom**.\n\n**Pas à pas :**\n\n1. *We thank you for your ...... to the project* : après *your*, un nom, suivi de *to*.\n2. Merci pour votre **implication** dans le projet → ***commitment*** (*commitment to* = engagement envers).\n\n**Les autres réponses :** *commit* est un verbe ; *committed* un adjectif (engagé) ; *committee* est un nom, mais c'est un **comité** (un groupe), on ne remercie pas quelqu'un « pour son comité ».\n\n**À retenir :** *commitment to* = engagement envers ; *committee* = comité."
       }
     ],
     "indices": [
@@ -561,7 +610,8 @@
         "reponse": [
           "spreadsheet",
           "a spreadsheet"
-        ]
+        ],
+        "explication": "**Règle :** un tableur, une feuille de calcul = *a spreadsheet*.\n\n**Pas à pas :** *spread* (étaler) + *sheet* (feuille) : les chiffres sont étalés sur une grande feuille → ***spreadsheet***.\n\n**Erreurs fréquentes :** *calculation sheet* (calque) ; *table* (un tableau, pas le logiciel).\n\n**À retenir :** Excel, c'est un *spreadsheet*."
       },
       {
         "intitule": "les fournitures de bureau",
@@ -569,7 +619,8 @@
         "reponse": [
           "stationery",
           "office supplies"
-        ]
+        ],
+        "explication": "**Règle :** les fournitures de bureau = *stationery* (avec un *e*) ou *office supplies*.\n\n**Pas à pas :** → ***stationery***, indénombrable (pas de *-s*).\n\n**Erreurs fréquentes :** *stationary* avec un *a* (= immobile) ; *furnitures* (= meubles, et toujours sans *-s*).\n\n**À retenir :** papeterie = *stationery* ; meubles = *furniture*."
       },
       {
         "intitule": "un brouillon",
@@ -577,7 +628,8 @@
         "reponse": [
           "draft",
           "a draft"
-        ]
+        ],
+        "explication": "**Règle :** un brouillon, une première version = *a draft*.\n\n**Pas à pas :** → ***draft***. Exemple : *a first draft of the report* = un premier jet du rapport.\n\n**Erreurs fréquentes :** *brouillon* traduit par *rough* seul (on dit *rough draft*, avec *draft*) ; *outline* (= les grandes lignes, un plan).\n\n**À retenir :** brouillon = *draft*."
       },
       {
         "intitule": "une chemise, un classeur",
@@ -589,7 +641,8 @@
           "a file",
           "binder",
           "a binder"
-        ]
+        ],
+        "explication": "**Règle :** une chemise, un classeur = *a folder* (accepté aussi : *file*, *binder*).\n\n**Pas à pas :** → ***folder*** (chemise cartonnée, ou dossier sur un ordinateur).\n\n**Erreurs fréquentes :** *shirt* (une chemise qu'on porte, faux ami du mot à mot) ; *classifier*.\n\n**À retenir :** chemise de bureau = *folder* ; chemise qu'on porte = *shirt*."
       },
       {
         "intitule": "un casier (vestiaire)",
@@ -597,7 +650,8 @@
         "reponse": [
           "locker",
           "a locker"
-        ]
+        ],
+        "explication": "**Règle :** un casier (dans un vestiaire) = *a locker* (qu'on ferme à clé, *to lock*).\n\n**Pas à pas :** *lock* (fermer à clé) + *-er* → ***locker***.\n\n**Erreurs fréquentes :** *case* ou *box* (trop vagues) ; *cashier* (caissier, piège du son « casier »).\n\n**À retenir :** casier = *locker* ; caissier = *cashier*."
       },
       {
         "intitule": "le destinataire",
@@ -607,7 +661,8 @@
           "the recipient",
           "addressee",
           "the addressee"
-        ]
+        ],
+        "explication": "**Règle :** le destinataire = *the recipient* (celui qui reçoit) ou *the addressee*.\n\n**Pas à pas :** *to receive* (recevoir) → *recipient* → ***recipient***.\n\n**Erreurs fréquentes :** *receiver* (le combiné du téléphone, ou un récepteur) ; *destinatary* (n'existe pas).\n\n**À retenir :** destinataire = *recipient*."
       },
       {
         "intitule": "un rappel (pour penser à quelque chose)",
@@ -615,7 +670,8 @@
         "reponse": [
           "reminder",
           "a reminder"
-        ]
+        ],
+        "explication": "**Règle :** un rappel (pour penser à quelque chose) = *a reminder*.\n\n**Pas à pas :** *to remind* (rappeler à quelqu'un) + *-er* → ***reminder***.\n\n**Erreurs fréquentes :** *recall* (rappel de produits défectueux) ; *call back* (rappeler au téléphone).\n\n**À retenir :** rappel écrit = *reminder*."
       },
       {
         "intitule": "un communiqué de presse",
@@ -623,7 +679,8 @@
         "reponse": [
           "press release",
           "a press release"
-        ]
+        ],
+        "explication": "**Règle :** un communiqué de presse = *a press release*.\n\n**Pas à pas :** *press* (la presse) + *release* (publication, diffusion) → ***press release***.\n\n**Erreurs fréquentes :** *press communication* ou *communiqué* (calques) ; *press conference* (conférence de presse, un événement).\n\n**À retenir :** communiqué de presse = *press release*."
       }
     ],
     "indices": [
@@ -646,7 +703,8 @@
           "dial",
           "digit"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** au téléphone, *the line is busy* = la ligne est occupée.\n\n**Pas à pas :**\n\n1. *I called twice, but the line was ......* = j'ai appelé deux fois, mais la ligne était ... .\n2. Après *was*, un **adjectif** : ***busy*** (occupé).\n\n**Les autres réponses :** *hold* (attendre) et *dial* (composer) sont des verbes ; *digit* (un chiffre) est un nom.\n\n**À retenir :** *the line is busy* = c'est occupé."
       },
       {
         "intitule": "*Could you put me through to ...... 305, please?*",
@@ -657,7 +715,8 @@
           "recipient",
           "digit"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *extension* (*ext.*) = le poste téléphonique d'une personne dans une entreprise. *Put me through to* = passez-moi.\n\n**Pas à pas :**\n\n1. *Could you put me through to ...... 305, please?* = pourriez-vous me passer le ... 305 ?\n2. Un numéro interne → ***extension***.\n\n**Les autres réponses :** *slip* = bordereau ; *recipient* = destinataire (d'un courrier) ; *digit* = un seul chiffre (305 en a trois).\n\n**À retenir :** poste 305 = *extension 305*."
       },
       {
         "intitule": "*I tried to call the supplier all morning, but I couldn't get ...... .*",
@@ -668,7 +727,8 @@
           "up",
           "on"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *to get through* = réussir à joindre quelqu'un au téléphone.\n\n**Pas à pas :**\n\n1. *I tried to call the supplier all morning, but I couldn't get ......* = j'ai essayé toute la matinée mais je n'ai pas réussi à le joindre.\n2. → *get* ***through***.\n\n**Les autres réponses :** *get over* = se remettre de (une maladie) ; *get up* = se lever ; *get on* = s'entendre avec, ou monter dans un bus.\n\n**À retenir :** joindre au téléphone = *get through*."
       },
       {
         "intitule": "*Please ...... the line, I'll check if she is available.*",
@@ -679,7 +739,8 @@
           "dial",
           "forward"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *hold the line* = rester en ligne, patienter.\n\n**Pas à pas :**\n\n1. *Please ...... the line, I'll check if she is available.* = veuillez ... , je vérifie si elle est disponible.\n2. Pendant qu'on vérifie, l'appelant **patiente** → ***hold***.\n\n**Les autres réponses :** *hang* (*hang up*) = raccrocher, le contraire ; *dial* = composer un numéro ; *forward* = transférer, mais on ne dit pas *forward the line*.\n\n**À retenir :** *hold the line* = ne quittez pas."
       },
       {
         "intitule": "*He was so angry that he ...... up without saying goodbye.*",
@@ -690,7 +751,8 @@
           "hung",
           "held"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *to hang up* = raccrocher. Verbe irrégulier : *hang, hung, hung*.\n\n**Pas à pas :**\n\n1. *He was so angry that he ...... up without saying goodbye.* = il était si en colère qu'il a raccroché sans dire au revoir.\n2. Passé de *hang* : ***hung*** (*hung up*).\n\n**Les autres réponses :** *got up* = s'est levé ; *dialled up* n'a pas ce sens ; *held up* = a retardé (ou braqué).\n\n**À retenir :** raccrocher = *hang up* → *hung up* au passé."
       },
       {
         "intitule": "*...... 9 to get an outside line.*",
@@ -701,7 +763,8 @@
           "Hold",
           "Hang"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *to dial* = composer (un numéro).\n\n**Pas à pas :**\n\n1. *...... 9 to get an outside line.* = composez le 9 pour obtenir une ligne extérieure.\n2. → ***Dial***.\n\n**Les autres réponses :** *Enclose* = joindre à une lettre ; *Hold* = patienter ; *Hang* (up) = raccrocher.\n\n**À retenir :** composer le 9 = *dial 9*."
       },
       {
         "intitule": "*My PIN code has four ...... .*",
@@ -712,7 +775,8 @@
           "digits",
           "figures out"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a digit* = un chiffre (de 0 à 9) dans un numéro ou un code.\n\n**Pas à pas :**\n\n1. *My PIN code has four ......* = mon code PIN a quatre ... .\n2. Un code à 4 chiffres → ***digits***.\n\n**Les autres réponses :** *dials* = des cadrans ; *slips* = des bordereaux ; *figures out* est un verbe (comprendre), pas un nom. Attention : *figures* seul peut vouloir dire « chiffres », mais plutôt pour des montants ou des statistiques (*sales figures*).\n\n**À retenir :** chiffre d'un code = *digit*."
       }
     ],
     "indices": [
@@ -733,14 +797,16 @@
         "reponse": [
           "enclosed",
           "attached"
-        ]
+        ],
+        "explication": "**Règle :** *Please find enclosed...* = veuillez trouver ci-joint (dans une lettre). *attached* est accepté (pièce jointe d'un e-mail).\n\n**Pas à pas :**\n\n1. *Please find ...... a copy of your invoice.* (ci-joint)\n2. Formule figée → ***enclosed***.\n\n**Erreurs fréquentes :** *join* ou *joined* (calque de « joindre ») ; *enclose* sans *-d*.\n\n**À retenir :** ci-joint = *enclosed* (lettre) ou *attached* (e-mail)."
       },
       {
         "intitule": "*I'll ...... your e-mail to the sales team so they can answer you.* (faire suivre)",
         "type": "texte",
         "reponse": [
           "forward"
-        ]
+        ],
+        "explication": "**Règle :** *to forward* = faire suivre, transférer un message reçu.\n\n**Pas à pas :**\n\n1. *I'll ...... your e-mail to the sales team so they can answer you.* (faire suivre)\n2. → ***forward***.\n\n**Erreurs fréquentes :** *follow* (traduction mot à mot de « suivre ») ; *send* (envoyer, moins précis).\n\n**À retenir :** faire suivre = *forward* (*Fwd:* dans un e-mail)."
       },
       {
         "intitule": "*Send the contract by ...... mail, so we have proof that it arrived.* (recommandé)",
@@ -749,14 +815,16 @@
           "registered",
           "certified",
           "recorded"
-        ]
+        ],
+        "explication": "**Règle :** *registered mail* ou *certified mail* = courrier recommandé, avec une preuve d'envoi et de réception.\n\n**Pas à pas :**\n\n1. *Send the contract by ...... mail, so we have proof that it arrived.* (recommandé)\n2. → ***registered*** (ou *certified*).\n\n**Erreurs fréquentes :** *recommended mail* (faux ami : *recommend* = conseiller) ; *express mail* (rapide, mais sans preuve).\n\n**À retenir :** recommandé = *registered* / *certified*, jamais *recommended*."
       },
       {
         "intitule": "*Don't forget to put a ...... on the envelope.* (timbre)",
         "type": "texte",
         "reponse": [
           "stamp"
-        ]
+        ],
+        "explication": "**Règle :** *a stamp* = un timbre (sur une enveloppe), et aussi un tampon (sur un document).\n\n**Pas à pas :**\n\n1. *Don't forget to put a ...... on the envelope.* (timbre)\n2. → ***stamp***.\n\n**Erreurs fréquentes :** *timber* (= du bois de construction, piège du son) ; *seal* (un sceau).\n\n**À retenir :** timbre = *stamp* ; on *stamp* aussi un document (tamponner)."
       },
       {
         "intitule": "*Keep the delivery ...... : you will need it if there is a problem.* (bordereau)",
@@ -765,7 +833,8 @@
           "slip",
           "note",
           "receipt"
-        ]
+        ],
+        "explication": "**Règle :** *a slip* = un bordereau, un petit bout de papier (*delivery slip* = bordereau de livraison).\n\n**Pas à pas :**\n\n1. *Keep the delivery ...... : you will need it if there is a problem.* (bordereau)\n2. → ***slip*** (*note* et *receipt* sont acceptés).\n\n**Erreurs fréquentes :** *border* (bord, frontière, piège du son « bordereau ») ; *bill* (une facture).\n\n**À retenir :** bordereau = *slip* (*payslip* = fiche de paie)."
       }
     ],
     "indices": [
@@ -787,7 +856,8 @@
           "un poste vacant",
           "des vacances"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *vacancy* a deux sens : **poste vacant** (RH) ou **chambre libre** (hôtel). C'est le contexte qui choisit.\n\n**Pas à pas :**\n\n1. Indice : *in the accounts department* (dans le service comptabilité).\n2. Un service d'entreprise → sens RH → **un poste vacant**.\n\n**Les autres réponses :** « une chambre libre » est le sens hôtel, mais il n'y a pas d'hôtel ici ; « des vacances » est le faux ami (*holidays*, *vacation*).\n\n**À retenir :** *vacancy* + service, poste → poste vacant."
       },
       {
         "intitule": "*Sorry, the hotel has no vacancies this weekend.*",
@@ -797,7 +867,8 @@
           "chambres libres",
           "postes vacants"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** même mot, autre contexte : *vacancy* dans un hôtel = **chambre libre**.\n\n**Pas à pas :**\n\n1. Indices : *the hotel* et *this weekend*.\n2. Un hôtel qui n'a pas de *vacancies* est complet → **chambres libres**.\n\n**Les autres réponses :** « postes vacants » est le sens RH, qui ne colle pas avec *this weekend* ; « vacances » est le faux ami. Le panneau *No vacancies* devant un hôtel veut dire « Complet ».\n\n**À retenir :** *vacancy* + hôtel → chambre libre."
       },
       {
         "intitule": "*He gave three weeks' notice before leaving.*",
@@ -807,7 +878,8 @@
           "une annonce",
           "un préavis"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *to give notice* = donner son **préavis** (prévenir avant de partir).\n\n**Pas à pas :**\n\n1. *He gave three weeks' notice before leaving.*\n2. Indices : une **durée** (*three weeks'*) et *before leaving* (avant de partir) → **un préavis**.\n\n**Les autres réponses :** « une remarque » se dirait *a remark* ; « une annonce » est l'autre sens de *notice*, mais une annonce n'a pas de durée.\n\n**À retenir :** durée + *notice* = préavis."
       },
       {
         "intitule": "*Read the notice on the door before entering.*",
@@ -817,7 +889,8 @@
           "l'avis, l'affiche",
           "la notice de montage"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *a notice* posé sur un mur ou une porte = un **avis, une affiche**.\n\n**Pas à pas :**\n\n1. *Read the notice on the door before entering.*\n2. Indice : *on the door* (sur la porte) : on lit quelque chose d'affiché → **l'avis, l'affiche**.\n\n**Les autres réponses :** « le préavis » ne s'affiche pas sur une porte ; « la notice de montage » est le faux ami (*instructions*).\n\n**À retenir :** *notice* sur un mur, une porte = avis affiché."
       },
       {
         "intitule": "*Please file these invoices by date.*",
@@ -827,7 +900,8 @@
           "limer",
           "filer"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *to file* (verbe) = **classer** des documents. (*a file* = un dossier ; *a file* veut aussi dire une lime.)\n\n**Pas à pas :**\n\n1. *Please file these invoices by date.*\n2. Indices : *invoices* (factures) et *by date* (par date) → on les range dans l'ordre → **classer**.\n\n**Les autres réponses :** « limer » est le sens de l'outil (*a nail file*), absurde avec des factures ; « filer » est le piège du son.\n\n**À retenir :** *file* + documents = classer."
       },
       {
         "intitule": "*She sent her résumé to five companies.*",
@@ -837,7 +911,8 @@
           "sa démission",
           "son résumé"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *résumé* (avec accents, anglais américain) = **CV**. Faux ami : « un résumé » se dit *a summary*.\n\n**Pas à pas :**\n\n1. *She sent her résumé to five companies.*\n2. On envoie à des entreprises un document pour postuler → **son CV**.\n\n**Les autres réponses :** « sa démission » se dit *her resignation* ; « son résumé » est le faux ami.\n\n**À retenir :** *résumé* (US) = *CV* (UK) = CV."
       }
     ],
     "indices": [
@@ -860,7 +935,8 @@
           "A change of manager",
           "A new branch opening abroad"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour le sujet principal (*mainly about*), on lit l'**objet** (*Re:*) et la première phrase.\n\n**Pas à pas :**\n\n1. Objet : *Re: Move to new premises* (déménagement dans de nouveaux locaux).\n2. Première phrase : *our branch is moving to new premises at 12 Park Lane*.\n3. *new premises* = *a new building* → ***The move to a new building***.\n\n**Les autres réponses :** *New stationery* : les fournitures sont citées, mais seulement comme un détail du déménagement ; aucun nouveau manager n'est cité ; l'agence déménage, elle n'ouvre pas à l'étranger.\n\n**À retenir :** sujet principal = objet + première phrase."
       },
       {
         "intitule": "What must staff do with their lockers?",
@@ -871,7 +947,8 @@
           "Move them to Park Lane",
           "Paint them"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour un détail, on cherche le mot-clé de la question (*lockers*) dans le texte.\n\n**Pas à pas :**\n\n1. Dans la note : *Empty your lockers and return the keys to reception.*\n2. → ***Empty them and return the keys***.\n\n**Les autres réponses :** *Label them* : ce sont les **cartons** (*boxes*) qu'il faut étiqueter, pas les casiers ; on ne déplace ni ne peint les casiers.\n\n**À retenir :** vérifie **à quoi** s'applique chaque consigne (cartons ≠ casiers)."
       },
       {
         "intitule": "What do staff NOT need to pack?",
@@ -882,7 +959,8 @@
           "Their files",
           "Their keys"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** question NOT : on cherche ce que le texte dit qu'on n'a **pas besoin** de faire. *Stationery* = *office supplies*.\n\n**Pas à pas :**\n\n1. Dans la note : *Stationery will be moved by the removal company, so you don't need to pack it.*\n2. *stationery* = fournitures de bureau = ***Office supplies***.\n\n**Les autres réponses :** les dossiers (*files*) doivent être mis en cartons ; les clés doivent être rendues ; les affaires personnelles ne sont pas citées, on ne peut pas dire qu'on n'a pas besoin de les emballer.\n\n**À retenir :** *stationery* = *office supplies* (paraphrase classique)."
       },
       {
         "intitule": "What will staff receive on Thursday?",
@@ -893,12 +971,14 @@
           "Boxes",
           "A pay rise"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour une date, on cherche le jour (*Thursday*) dans le texte.\n\n**Pas à pas :**\n\n1. Dans la note : *A reminder will be sent on Thursday with the new floor plan.*\n2. → ***A reminder with a floor plan*** (un rappel avec le plan de l'étage).\n\n**Les autres réponses :** les nouvelles clés et une augmentation (*pay rise*) ne sont pas citées ; les cartons sont *provided* (fournis), mais sans date.\n\n**À retenir :** cherche le jour cité dans la question, puis lis la phrase entière."
       },
       {
         "intitule": "Which extension number should staff call? (un nombre)",
         "type": "nombre",
-        "reponse": 214
+        "reponse": 214,
+        "explication": "**Règle :** *extension* = poste téléphonique ; le numéro suit le mot.\n\n**Pas à pas :**\n\n1. Dans la note : *call me on extension 214*.\n2. → **214**.\n\n**Erreur fréquente :** répondre 12 (*12 Park Lane* est l'**adresse**, pas un numéro de téléphone).\n\n**À retenir :** le nombre à prendre est celui collé au mot-clé (*extension*)."
       }
     ],
     "indices": [
@@ -921,7 +1001,8 @@
           "A law firm",
           "An energy company"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *a leader in the field of...* = un leader dans le domaine de... C'est là qu'on trouve l'activité de l'entreprise.\n\n**Pas à pas :**\n\n1. Dans l'annonce : *a leader in the field of renewable energy* (énergies renouvelables).\n2. → ***An energy company***.\n\n**Les autres réponses :** *travel* apparaît dans *travel allowance*, mais c'est un avantage, pas l'activité (piège du mot repris) ; banque et cabinet d'avocats (*law firm*) ne sont pas cités. Le poste est comptable, mais l'entreprise n'est pas une banque.\n\n**À retenir :** activité de l'entreprise → *in the field of...*."
       },
       {
         "intitule": "Where will the trainee work?",
@@ -932,7 +1013,8 @@
           "In a branch abroad",
           "At the head office in London"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** le lieu de travail est donné avec le type de structure (*subsidiary*, *branch*, *head office*).\n\n**Pas à pas :**\n\n1. Dans l'annonce : *for its Manchester subsidiary* (pour sa filiale de Manchester).\n2. → ***In a subsidiary in Manchester***.\n\n**Les autres réponses :** télétravail, étranger et siège à Londres ne sont jamais cités. Attention au piège *branch* / *subsidiary* : ce n'est pas une agence à l'étranger.\n\n**À retenir :** *Manchester subsidiary* = filiale à Manchester."
       },
       {
         "intitule": "How will the trainee be trained?",
@@ -943,7 +1025,8 @@
           "At work and with weekly courses",
           "By a temp agency"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *on-the-job training* = formation **au travail** ; *attend courses one day a week* = suivre des cours une fois par semaine.\n\n**Pas à pas :**\n\n1. Dans l'annonce : *You will receive on-the-job training and attend courses one day a week.*\n2. Deux parties : au travail + cours hebdomadaires → ***At work and with weekly courses***.\n\n**Les autres réponses :** *Only online* et *Abroad* ne sont pas cités ; *temp agency* (agence d'intérim) n'apparaît pas.\n\n**À retenir :** *on-the-job* = au travail ; *one day a week* = *weekly*."
       },
       {
         "intitule": "What benefit is mentioned?",
@@ -954,7 +1037,8 @@
           "Free meals",
           "Money for travel"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *allowance* = indemnité, somme versée pour un besoin. *Travel allowance* = argent pour les trajets.\n\n**Pas à pas :**\n\n1. Dans l'annonce : *We offer a travel allowance and four weeks of time off per year.*\n2. *travel allowance* = ***Money for travel***.\n\n**Les autres réponses :** mutuelle (*health insurance*), voiture de fonction (*company car*) et repas gratuits sont des avantages possibles, mais pas cités. Les 4 semaines de congés sont citées, mais elles ne font pas partie des choix.\n\n**À retenir :** *travel allowance* = argent pour se déplacer."
       },
       {
         "intitule": "How should candidates apply?",
@@ -965,7 +1049,8 @@
           "By e-mail",
           "In person"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** la façon de postuler est donnée à la fin de l'annonce (*Applicants should...*).\n\n**Pas à pas :**\n\n1. Dans l'annonce : *send a résumé and a cover letter to hr@northbridge.com*.\n2. Une adresse avec *@* = un e-mail → ***By e-mail***.\n\n**Les autres réponses :** *By phone* est exclu par *No phone calls, please* ; ni courrier postal ni présentation sur place ne sont cités.\n\n**À retenir :** une adresse en *@* = candidature par e-mail."
       }
     ],
     "indices": [
@@ -982,17 +1067,20 @@
       {
         "intitule": "Notre filiale espagnole a fusionné avec un concurrent.",
         "type": "auto",
-        "reponse": "*Our Spanish subsidiary has merged with a competitor.*"
+        "reponse": "*Our Spanish subsidiary has merged with a competitor.*",
+        "explication": "**Ce qu'une bonne traduction doit contenir :**\n\n1. **Notre filiale espagnole** : *subsidiary* (pas *branch*, qui est une agence), avec l'adjectif **avant** le nom et une **majuscule** à la nationalité : *our Spanish subsidiary*.\n2. **a fusionné** : le verbe *to merge* ; c'est un fait récent qui compte aujourd'hui → *present perfect* : *has merged* (le prétérit *merged* est aussi possible).\n3. **avec** : *merge with*.\n4. **un concurrent** : *a competitor* (pas *a concurrent*, qui veut dire « simultané »).\n\n**Erreurs fréquentes :** *Our subsidiary Spanish* (ordre français) ; *spanish* sans majuscule ; *has fusioned* (le verbe n'existe pas) ; *concurrent*.\n\n**À retenir :** adjectif de nationalité avant le nom, avec majuscule ; fusionner = *merge with*."
       },
       {
         "intitule": "Veuillez trouver ci-joint mon CV et ma lettre de motivation.",
         "type": "auto",
-        "reponse": "*Please find enclosed (attached) my résumé (CV) and my cover letter.*"
+        "reponse": "*Please find enclosed (attached) my résumé (CV) and my cover letter.*",
+        "explication": "**Ce qu'une bonne traduction doit contenir :**\n\n1. **Veuillez trouver ci-joint** : formule figée *Please find enclosed* (lettre) ou *Please find attached* (e-mail).\n2. **mon CV** : *my résumé* (US) ou *my CV* (UK).\n3. **et ma lettre de motivation** : *and my cover letter* (*covering letter* au UK).\n\n**Erreurs fréquentes :** *Please find joined* (calque de « joindre ») ; *my summary* (faux ami de « résumé ») ; *my motivation letter* (compris, mais moins naturel) ; oublier *my* devant le second nom.\n\n**À retenir :** *Please find enclosed / attached* + document."
       },
       {
         "intitule": "J'ai essayé de vous joindre, mais la ligne était occupée.",
         "type": "auto",
-        "reponse": "*I tried to call you, but I couldn't get through: the line was busy.*"
+        "reponse": "*I tried to call you, but I couldn't get through: the line was busy.*",
+        "explication": "**Ce qu'une bonne traduction doit contenir :**\n\n1. **J'ai essayé de vous joindre** : *I tried to call you* (ou *to reach you*). Le prétérit va bien, l'action est finie.\n2. **mais** : *but*.\n3. **la ligne était occupée** : *the line was busy*.\n4. Tu peux aussi utiliser *I couldn't get through* (je n'ai pas réussi à vous joindre), l'expression du chapitre.\n\n**Erreurs fréquentes :** *the line was occupied* (calque : *occupied* se dit d'une place ou d'un pays) ; *I tried to join you* (*join* = rejoindre quelqu'un, pas au téléphone).\n\n**À retenir :** joindre au téléphone = *reach*, *call*, *get through* ; occupé = *busy*."
       }
     ],
     "indices": [

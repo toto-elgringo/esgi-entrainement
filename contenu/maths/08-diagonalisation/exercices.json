@@ -8,20 +8,41 @@
       {
         "intitule": "$A = \\begin{pmatrix} 5 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
         "type": "ensemble",
-        "reponse": [5, -1],
-        "refuses": ["{5, 1}", "{5, 0, -1}"]
+        "reponse": [
+          5,
+          -1
+        ],
+        "refuses": [
+          "{5, 1}",
+          "{5, 0, -1}"
+        ],
+        "explication": "**Règle :** pour une matrice **diagonale** (des zéros partout hors de la diagonale), $\\det(A - \\lambda I)$ est le produit des termes diagonaux moins $\\lambda$ : les valeurs propres sont les nombres de la diagonale.\n\n**Pas à pas :**\n\n1. $A - \\lambda I = \\begin{pmatrix} 5 - \\lambda & 0 \\\\ 0 & -1 - \\lambda \\end{pmatrix}$.\n2. $\\det(A - \\lambda I) = (5 - \\lambda)(-1 - \\lambda) - 0 \\times 0 = (5 - \\lambda)(-1 - \\lambda)$.\n3. Un produit est nul quand un des facteurs est nul : $5 - \\lambda = 0$ donne $\\lambda = 5$, et $-1 - \\lambda = 0$ donne $\\lambda = -1$.\n\nEnsemble des valeurs propres : $\\{5, -1\\}$.\n\n**Erreurs fréquentes :** écrire $\\{5, 1\\}$ en perdant le signe moins, ou $\\{5, 0, -1\\}$ en ajoutant les zéros hors de la diagonale (ils ne sont pas des valeurs propres).\n\n**À retenir :** matrice diagonale : recopie la diagonale, avec ses signes, et rien d'autre."
       },
       {
         "intitule": "$B = \\begin{pmatrix} 2 & 7 & 1 \\\\ 0 & -3 & 4 \\\\ 0 & 0 & 6 \\end{pmatrix}$",
         "type": "ensemble",
-        "reponse": [2, -3, 6],
-        "refuses": ["{2, 7, 1}", "{7, 1, 4}"]
+        "reponse": [
+          2,
+          -3,
+          6
+        ],
+        "refuses": [
+          "{2, 7, 1}",
+          "{7, 1, 4}"
+        ],
+        "explication": "**Règle :** une matrice **triangulaire supérieure** (que des zéros sous la diagonale) a pour valeurs propres les nombres de sa diagonale, car $\\det(B - \\lambda I)$ est le produit des $(b_{ii} - \\lambda)$.\n\n**Pas à pas :**\n\n1. Sous la diagonale : $0$, $0$, $0$. $B$ est bien triangulaire supérieure.\n2. Diagonale (de haut à gauche à bas à droite) : $2$, $-3$, $6$.\n3. $\\det(B - \\lambda I) = (2 - \\lambda)(-3 - \\lambda)(6 - \\lambda)$, nul pour $\\lambda = 2$, $-3$ ou $6$.\n\nEnsemble des valeurs propres : $\\{2, -3, 6\\}$.\n\n**Erreurs fréquentes :** prendre la 1re ligne $\\{2, 7, 1\\}$, ou les nombres au-dessus de la diagonale $\\{7, 1, 4\\}$ : ils ne jouent aucun rôle dans le déterminant d'une matrice triangulaire.\n\n**À retenir :** triangulaire : seuls les nombres de la diagonale comptent."
       },
       {
         "intitule": "$C = \\begin{pmatrix} 4 & 0 \\\\ 9 & 1 \\end{pmatrix}$",
         "type": "ensemble",
-        "reponse": [4, 1],
-        "refuses": ["{4, 9}"]
+        "reponse": [
+          4,
+          1
+        ],
+        "refuses": [
+          "{4, 9}"
+        ],
+        "explication": "**Règle :** une matrice avec des zéros **au-dessus** de la diagonale est **triangulaire inférieure** ; la règle est la même : les valeurs propres sont sur la diagonale.\n\n**Pas à pas :**\n\n1. Au-dessus de la diagonale, il y a un $0$ : $C$ est triangulaire inférieure.\n2. $\\det(C - \\lambda I) = (4 - \\lambda)(1 - \\lambda) - 0 \\times 9 = (4 - \\lambda)(1 - \\lambda)$ : le $9$ est multiplié par $0$, il disparaît.\n3. Le produit est nul pour $\\lambda = 4$ ou $\\lambda = 1$.\n\nEnsemble des valeurs propres : $\\{4, 1\\}$.\n\n**Erreur fréquente :** répondre $\\{4, 9\\}$ en prenant la 1re colonne, ou croire que la règle ne marche que pour les zéros en bas.\n\n**À retenir :** zéros en haut ou zéros en bas, c'est triangulaire : lis la diagonale."
       }
     ],
     "indices": [
@@ -39,25 +60,40 @@
       {
         "intitule": "Calcule $A\\vec v$, au format `(a, b)`.",
         "type": "vecteur",
-        "reponse": [3, 3],
-        "refuses": ["(1, 1)"]
+        "reponse": [
+          3,
+          3
+        ],
+        "refuses": [
+          "(1, 1)"
+        ],
+        "explication": "**Règle :** produit matrice × vecteur : chaque coordonnée du résultat est une ligne de la matrice fois le vecteur, $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}(x, y) = (ax + by,\\ cx + dy)$.\n\n**Pas à pas :** avec $A = \\begin{pmatrix} 1 & 2 \\\\ 2 & 1 \\end{pmatrix}$ et $\\vec v = (1, 1)$ :\n\n1. 1re ligne $(1, 2)$ fois $(1, 1)$ : $1 \\times 1 + 2 \\times 1 = 3$.\n2. 2e ligne $(2, 1)$ fois $(1, 1)$ : $2 \\times 1 + 1 \\times 1 = 3$.\n\nDonc $A\\vec v = (3, 3)$.\n\n**Erreur fréquente :** répondre $(1, 1)$ en recopiant $\\vec v$, ou faire colonne × vecteur au lieu de ligne × vecteur (ici le résultat serait le même car $A$ est symétrique, mais pas en général).\n\n**À retenir :** $A\\vec v$ = chaque ligne de $A$ multipliée terme à terme par $\\vec v$, puis additionnée."
       },
       {
         "intitule": "$\\vec v$ est un vecteur propre. Quelle est sa valeur propre ?",
         "type": "nombre",
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** si $A\\vec v = \\lambda\\vec v$, la valeur propre $\\lambda$ est le nombre par lequel **toutes** les coordonnées de $\\vec v$ ont été multipliées.\n\n**Pas à pas :**\n\n1. On compare $A\\vec v = (3, 3)$ et $\\vec v = (1, 1)$.\n2. 1re coordonnée : $3 = \\lambda \\times 1$, donc $\\lambda = 3$.\n3. 2e coordonnée : $3 = \\lambda \\times 1$, donc $\\lambda = 3$. Même nombre : c'est bien un vecteur propre.\n\nLa valeur propre est $3$.\n\n**Erreur fréquente :** prendre un coefficient de la matrice (comme $2$) au lieu du rapport entre $A\\vec v$ et $\\vec v$.\n\n**À retenir :** valeur propre = (coordonnée de $A\\vec v$) divisée par (coordonnée de $\\vec v$), la même pour toutes les coordonnées."
       },
       {
         "intitule": "$\\vec u$ est-il un vecteur propre de $A$ ?",
         "type": "choix",
-        "choix": ["Oui, de valeur propre 1", "Oui, de valeur propre 2", "Non"],
-        "reponse": 2
+        "choix": [
+          "Oui, de valeur propre 1",
+          "Oui, de valeur propre 2",
+          "Non"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** $\\vec u$ est un vecteur propre seulement si $A\\vec u$ est **un même nombre** fois $\\vec u$ sur toutes les coordonnées.\n\n**Pas à pas :**\n\n1. $A\\vec u = (1 \\times 1 + 2 \\times 0,\\ 2 \\times 1 + 1 \\times 0) = (1, 2)$.\n2. On cherche $k$ avec $(1, 2) = k \\times (1, 0) = (k, 0)$.\n3. 1re coordonnée : $k = 1$. 2e coordonnée : il faudrait $2 = 0$. Impossible.\n\nDonc $\\vec u$ n'est **pas** un vecteur propre : réponse « Non ».\n\n**Les autres réponses :** « Oui, de valeur propre 1 » ne regarde que la 1re coordonnée ; « Oui, de valeur propre 2 » prend un coefficient de la matrice. Les deux oublient que **toutes** les coordonnées doivent être multipliées par le même nombre.\n\n**À retenir :** une seule coordonnée qui ne suit pas le même facteur suffit : ce n'est pas un vecteur propre."
       },
       {
         "intitule": "$\\vec w$ est un vecteur propre. Quelle est sa valeur propre ?",
         "type": "nombre",
         "reponse": -1,
-        "refuses": ["1"]
+        "refuses": [
+          "1"
+        ],
+        "explication": "**Règle :** même méthode : on calcule $A\\vec w$ et on cherche le nombre $\\lambda$ tel que $A\\vec w = \\lambda\\vec w$. Une valeur propre peut être **négative** : le vecteur est alors retourné.\n\n**Pas à pas :** avec $\\vec w = (1, -1)$ :\n\n1. 1re ligne : $1 \\times 1 + 2 \\times (-1) = 1 - 2 = -1$.\n2. 2e ligne : $2 \\times 1 + 1 \\times (-1) = 2 - 1 = 1$.\n3. $A\\vec w = (-1, 1)$. Rapports : $-1 / 1 = -1$ et $1 / (-1) = -1$. Même nombre.\n\nLa valeur propre est $-1$.\n\n**Erreur fréquente :** répondre $1$ en oubliant le signe : $(-1, 1)$ est l'**opposé** de $(1, -1)$, pas le même vecteur.\n\n**À retenir :** si $A\\vec w$ est l'opposé de $\\vec w$, la valeur propre vaut $-1$."
       }
     ],
     "indices": [
@@ -76,14 +112,28 @@
         "intitule": "Développe $\\det(A - \\lambda I)$. Écris $\\lambda$ avec la lettre `x`.",
         "type": "expression",
         "reponse": "x^2-7x+6",
-        "acceptes": ["(5-x)(2-x)-4", "(x-1)(x-6)"],
-        "refuses": ["x^2-7x+10", "(5-x)(2-x)"]
+        "acceptes": [
+          "(5-x)(2-x)-4",
+          "(x-1)(x-6)"
+        ],
+        "refuses": [
+          "x^2-7x+10",
+          "(5-x)(2-x)"
+        ],
+        "explication": "**Règle :** $\\det(A - \\lambda I)$ se calcule en retirant $\\lambda$ **seulement sur la diagonale**, puis avec la formule du déterminant $2 \\times 2$ : $ad - bc$.\n\n**Pas à pas :**\n\n1. $A - \\lambda I = \\begin{pmatrix} 5 - \\lambda & 2 \\\\ 2 & 2 - \\lambda \\end{pmatrix}$.\n2. Produit de la diagonale : $(5 - \\lambda)(2 - \\lambda) = 10 - 5\\lambda - 2\\lambda + \\lambda^2 = \\lambda^2 - 7\\lambda + 10$.\n3. Produit de l'autre diagonale : $2 \\times 2 = 4$.\n4. Déterminant : $\\lambda^2 - 7\\lambda + 10 - 4 = \\lambda^2 - 7\\lambda + 6$.\n\nAvec la lettre demandée : `x^2-7x+6`.\n\n**Erreurs fréquentes :** oublier le $- 4$ et trouver $x^2 - 7x + 10$ ; s'arrêter à $(5 - x)(2 - x)$ (c'est seulement la diagonale) ; retirer $\\lambda$ aussi sur les $2$ hors de la diagonale.\n\n**À retenir :** $\\det(A - \\lambda I) = (a - \\lambda)(d - \\lambda) - bc$ pour une matrice $2 \\times 2$."
       },
       {
         "intitule": "L'ensemble des valeurs propres de $A$, au format `{a, b}`",
         "type": "ensemble",
-        "reponse": [1, 6],
-        "refuses": ["{5, 2}", "{2, 5}"]
+        "reponse": [
+          1,
+          6
+        ],
+        "refuses": [
+          "{5, 2}",
+          "{2, 5}"
+        ],
+        "explication": "**Règle :** les valeurs propres sont les solutions de l'équation caractéristique $\\lambda^2 - 7\\lambda + 6 = 0$. Pour $\\lambda^2 + p\\lambda + q = 0$, on cherche deux nombres de somme $-p$ et de produit $q$ (ou on utilise $\\Delta$).\n\n**Pas à pas :**\n\n1. Somme $7$, produit $6$ : on essaie $1$ et $6$ ($1 + 6 = 7$, $1 \\times 6 = 6$). Ça marche.\n2. Avec $\\Delta$ : $\\Delta = 49 - 4 \\times 6 = 25$, $\\sqrt{25} = 5$, $\\lambda = \\frac{7 \\pm 5}{2}$, soit $6$ et $1$.\n3. Contrôle : somme $1 + 6 = 7$ = trace ($5 + 2$) ; produit $1 \\times 6 = 6$ = déterminant ($10 - 4$).\n\nEnsemble des valeurs propres : $\\{1, 6\\}$.\n\n**Erreur fréquente :** répondre $\\{5, 2\\}$ en lisant la diagonale. Ce raccourci ne marche que pour une matrice triangulaire ; ici les $2$ hors de la diagonale ne sont pas nuls.\n\n**À retenir :** résous l'équation caractéristique, puis vérifie : somme = trace, produit = déterminant."
       }
     ],
     "indices": [
@@ -102,20 +152,40 @@
       {
         "intitule": "Un vecteur propre pour $\\lambda = 6$, de la forme `(a, 1)`",
         "type": "vecteur",
-        "reponse": [2, 1],
-        "refuses": ["(1, 2)", "(-2, 1)"]
+        "reponse": [
+          2,
+          1
+        ],
+        "refuses": [
+          "(1, 2)",
+          "(-2, 1)"
+        ],
+        "explication": "**Règle :** les vecteurs propres pour $\\lambda$ sont les solutions non nulles de $(A - \\lambda I)\\vec v = \\vec 0$.\n\n**Pas à pas :** pour $\\lambda = 6$ :\n\n1. $A - 6I = \\begin{pmatrix} 5 - 6 & 2 \\\\ 2 & 2 - 6 \\end{pmatrix} = \\begin{pmatrix} -1 & 2 \\\\ 2 & -4 \\end{pmatrix}$.\n2. 1re ligne : $-v_1 + 2v_2 = 0$, donc $v_1 = 2v_2$. La 2e ligne, $2v_1 - 4v_2 = 0$, est la même équation multipliée par $-2$.\n3. On veut la forme $(a, 1)$ : $v_2 = 1$, donc $v_1 = 2$. Vecteur $(2, 1)$.\n4. Vérification : $A(2, 1) = (5 \\times 2 + 2 \\times 1,\\ 2 \\times 2 + 2 \\times 1) = (12, 6) = 6\\,(2, 1)$.\n\n**Erreurs fréquentes :** inverser les coordonnées et écrire $(1, 2)$, ou se tromper de signe et écrire $(-2, 1)$ : la vérification $A\\vec v = 6\\vec v$ échoue dans les deux cas.\n\n**À retenir :** une ligne de $A - \\lambda I$ donne la relation entre $v_1$ et $v_2$ ; vérifie toujours avec $A\\vec v = \\lambda\\vec v$."
       },
       {
         "intitule": "Un vecteur propre pour $\\lambda = 1$, de la forme `(1, b)`",
         "type": "vecteur",
-        "reponse": [1, -2],
-        "refuses": ["(1, 2)", "(1, -1/2)"]
+        "reponse": [
+          1,
+          -2
+        ],
+        "refuses": [
+          "(1, 2)",
+          "(1, -1/2)"
+        ],
+        "explication": "**Règle :** même méthode avec $\\lambda = 1$ : on résout $(A - I)\\vec v = \\vec 0$.\n\n**Pas à pas :**\n\n1. $A - I = \\begin{pmatrix} 4 & 2 \\\\ 2 & 1 \\end{pmatrix}$.\n2. 2e ligne : $2v_1 + v_2 = 0$, donc $v_2 = -2v_1$ (la 1re ligne, $4v_1 + 2v_2 = 0$, est le double).\n3. Forme $(1, b)$ : $v_1 = 1$, donc $v_2 = -2$. Vecteur $(1, -2)$.\n4. Vérification : $A(1, -2) = (5 - 4,\\ 2 - 4) = (1, -2)$ : le vecteur ne bouge pas, c'est bien $\\lambda = 1$.\n\n**Erreurs fréquentes :** oublier le signe moins et écrire $(1, 2)$ ; écrire $(1, -1/2)$ en résolvant $v_1 = -2v_2$ au lieu de $v_2 = -2v_1$.\n\n**À retenir :** isole la bonne inconnue, remplace par la valeur imposée par le format, puis vérifie."
       },
       {
         "intitule": "Lequel de ces vecteurs est **aussi** un vecteur propre pour $\\lambda = 6$ ?",
         "type": "choix",
-        "choix": ["$(-4, -2)$", "$(1, 2)$", "$(0, 0)$", "$(2, -1)$"],
-        "reponse": 0
+        "choix": [
+          "$(-4, -2)$",
+          "$(1, 2)$",
+          "$(0, 0)$",
+          "$(2, -1)$"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** tout multiple **non nul** d'un vecteur propre est un vecteur propre pour la même valeur : $k(2, 1)$ avec $k \\neq 0$ convient pour $\\lambda = 6$.\n\n**Pas à pas :** on cherche $k$ tel que le vecteur soit $k \\times (2, 1)$.\n\n| Vecteur | Rapport 1re coordonnée | Rapport 2e coordonnée | Multiple de $(2, 1)$ ? |\n|---|---|---|---|\n| $(-4, -2)$ | $-4 / 2 = -2$ | $-2 / 1 = -2$ | oui, $k = -2$ |\n| $(1, 2)$ | $1/2$ | $2$ | non |\n| $(2, -1)$ | $1$ | $-1$ | non |\n| $(0, 0)$ | | | vecteur nul, exclu |\n\n**Les autres réponses :** $(1, 2)$ a les coordonnées échangées ; $(2, -1)$ a un signe changé sur une seule coordonnée (et $A(2, -1) = (8, 2)$, qui n'est pas $6 \\times (2, -1)$) ; $(0, 0)$ n'est jamais un vecteur propre.\n\n**À retenir :** même vecteur propre = même rapport sur toutes les coordonnées (le rapport peut être négatif)."
       }
     ],
     "indices": [
@@ -134,27 +204,57 @@
       {
         "intitule": "$P$, avec le vecteur propre de $6$ en 1re colonne",
         "type": "vecteur",
-        "reponse": [2, 1, 1, -2],
-        "refuses": ["(2, 1, -2, 1)"],
-        "acceptes": ["(2; 1; 1; -2)"]
+        "reponse": [
+          2,
+          1,
+          1,
+          -2
+        ],
+        "refuses": [
+          "(2, 1, -2, 1)"
+        ],
+        "acceptes": [
+          "(2; 1; 1; -2)"
+        ],
+        "explication": "**Règle :** $P$ contient les vecteurs propres **en colonnes** : chaque vecteur s'écrit de haut en bas dans une colonne.\n\n**Pas à pas :**\n\n1. 1re colonne : $(2, 1)$ (vecteur propre de $6$), soit $2$ en haut, $1$ en bas.\n2. 2e colonne : $(1, -2)$, soit $1$ en haut, $-2$ en bas.\n3. $P = \\begin{pmatrix} 2 & 1 \\\\ 1 & -2 \\end{pmatrix}$.\n4. Lecture ligne par ligne : 1re ligne $(2, 1)$, 2e ligne $(1, -2)$, d'où `(2, 1, 1, -2)`.\n\n**Erreur fréquente :** écrire les vecteurs propres en **lignes**. Ici $P$ est symétrique, donc on retombe par chance sur la même matrice, mais en général on obtient une autre matrice. Autre erreur : écrire `(2, 1, -2, 1)`, qui mélange l'ordre des cases.\n\n**À retenir :** vecteurs propres en colonnes ; la 1re ligne de $P$ prend le 1er nombre de chaque vecteur."
       },
       {
         "intitule": "$D$, dans le même ordre",
         "type": "vecteur",
-        "reponse": [6, 0, 0, 1],
-        "refuses": ["(1, 0, 0, 6)"]
+        "reponse": [
+          6,
+          0,
+          0,
+          1
+        ],
+        "refuses": [
+          "(1, 0, 0, 6)"
+        ],
+        "explication": "**Règle :** $D$ est diagonale et porte les valeurs propres **dans le même ordre** que les colonnes de $P$.\n\n**Pas à pas :**\n\n1. 1re colonne de $P$ : vecteur propre de $6$, donc la case $(1, 1)$ de $D$ vaut $6$.\n2. 2e colonne : vecteur propre de $1$, donc la case $(2, 2)$ vaut $1$.\n3. Hors diagonale : $0$.\n4. $D = \\begin{pmatrix} 6 & 0 \\\\ 0 & 1 \\end{pmatrix}$, soit `(6, 0, 0, 1)`.\n\n**Erreur fréquente :** écrire `(1, 0, 0, 6)` en rangeant les valeurs propres par ordre croissant : $D$ ne correspondrait plus à $P$.\n\n**À retenir :** $k$-ième colonne de $P$ ↔ $k$-ième nombre de la diagonale de $D$."
       },
       {
         "intitule": "$\\det(P)$ (il doit être non nul pour que $P^{-1}$ existe)",
         "type": "nombre",
         "reponse": -5,
-        "refuses": ["-3", "5"]
+        "refuses": [
+          "-3",
+          "5"
+        ],
+        "explication": "**Règle :** $\\det\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc$. $P^{-1}$ existe seulement si $\\det(P) \\neq 0$, c'est-à-dire si les vecteurs propres ne sont pas alignés (ils forment une base).\n\n**Pas à pas :**\n\n1. $P = \\begin{pmatrix} 2 & 1 \\\\ 1 & -2 \\end{pmatrix}$.\n2. Diagonale : $2 \\times (-2) = -4$.\n3. Autre diagonale : $1 \\times 1 = 1$.\n4. $\\det(P) = -4 - 1 = -5$.\n\n$-5 \\neq 0$ : $P$ est inversible, et $A$ est diagonalisable.\n\n**Erreurs fréquentes :** calculer $-4 + 1 = -3$ (on **soustrait** $bc$), ou trouver $5$ en perdant le signe de $-2$.\n\n**À retenir :** $ad - bc$, attention aux signes ; non nul = la diagonalisation est possible."
       },
       {
         "intitule": "Si l'on met la valeur propre $1$ en premier dans $D$, que devient $P$ ?",
         "type": "vecteur",
-        "reponse": [1, 2, -2, 1],
-        "refuses": ["(2, 1, 1, -2)"]
+        "reponse": [
+          1,
+          2,
+          -2,
+          1
+        ],
+        "refuses": [
+          "(2, 1, 1, -2)"
+        ],
+        "explication": "**Règle :** l'ordre des colonnes de $P$ doit suivre l'ordre des valeurs propres dans $D$ : si on échange les valeurs de $D$, on échange les **colonnes** de $P$.\n\n**Pas à pas :**\n\n1. Nouvel ordre dans $D$ : $1$ puis $6$.\n2. 1re colonne de $P$ : le vecteur propre de $1$, $(1, -2)$.\n3. 2e colonne : le vecteur propre de $6$, $(2, 1)$.\n4. $P = \\begin{pmatrix} 1 & 2 \\\\ -2 & 1 \\end{pmatrix}$, soit `(1, 2, -2, 1)` ligne par ligne.\n\n**Erreurs fréquentes :** garder l'ancien $P$ `(2, 1, 1, -2)` (il ne va plus avec le nouveau $D$), ou échanger les **lignes** de $P$ au lieu des colonnes.\n\n**À retenir :** ce que tu échanges dans $D$, échange-le dans les colonnes de $P$."
       }
     ],
     "indices": [
@@ -173,21 +273,37 @@
       {
         "intitule": "$M^3$, ligne par ligne au format `(a, b, c, d)`",
         "type": "vecteur",
-        "reponse": [27, 0, 0, -8],
-        "refuses": ["(9, 0, 0, -6)", "(27, 0, 0, 8)"]
+        "reponse": [
+          27,
+          0,
+          0,
+          -8
+        ],
+        "refuses": [
+          "(9, 0, 0, -6)",
+          "(27, 0, 0, 8)"
+        ],
+        "explication": "**Règle :** pour une matrice **diagonale**, $M^n$ s'obtient en élevant chaque terme de la diagonale à la puissance $n$ ; les zéros restent des zéros.\n\n**Pas à pas :**\n\n1. Case $(1, 1)$ : $3^3 = 3 \\times 3 \\times 3 = 27$.\n2. Case $(2, 2)$ : $(-2)^3 = (-2) \\times (-2) \\times (-2) = 4 \\times (-2) = -8$.\n3. Cases hors diagonale : $0$.\n\n$M^3 = \\begin{pmatrix} 27 & 0 \\\\ 0 & -8 \\end{pmatrix}$, soit `(27, 0, 0, -8)`.\n\n**Erreurs fréquentes :** multiplier par $3$ au lieu d'élever au cube (`(9, 0, 0, -6)`), ou oublier que $(-2)^3$ est négatif (`(27, 0, 0, 8)`).\n\n**À retenir :** puissance d'une diagonale = puissance de chaque terme ; puissance impaire d'un négatif = négatif."
       },
       {
         "intitule": "Le coefficient $(2, 2)$ de $M^{10}$",
         "type": "nombre",
         "reponse": 1024,
-        "refuses": ["-1024", "-20"]
+        "refuses": [
+          "-1024",
+          "-20"
+        ],
+        "explication": "**Règle :** le coefficient $(2, 2)$ de $M^{10}$ est $(-2)^{10}$. Un nombre négatif à une puissance **paire** donne un résultat **positif** (les signes moins vont par paires).\n\n**Pas à pas :**\n\n1. $(-2)^{10} = 2^{10}$, car $10$ est pair.\n2. $2^{10}$ : $2, 4, 8, 16, 32, 64, 128, 256, 512, 1024$.\n\nLe coefficient vaut $1024$.\n\n**Erreurs fréquentes :** garder le signe moins ($-1024$), ou calculer $-2 \\times 10 = -20$ (multiplication au lieu de puissance).\n\n**À retenir :** puissance paire : le signe moins disparaît."
       },
       {
         "intitule": "Le coefficient $(1, 1)$ de $M^n$, en fonction de $n$",
         "type": "expression",
         "variable": "n",
         "reponse": "3^n",
-        "refuses": ["3n"]
+        "refuses": [
+          "3n"
+        ],
+        "explication": "**Règle :** pour une matrice diagonale, le coefficient $(1, 1)$ de $M^n$ est le coefficient $(1, 1)$ de $M$ à la puissance $n$.\n\n**Pas à pas :**\n\n1. Coefficient $(1, 1)$ de $M$ : $3$.\n2. À chaque produit par $M$, on le multiplie encore par $3$ : $3$, $3^2$, $3^3$, …\n3. Pour $M^n$ : $3^n$ (à écrire `3^n`).\n\nAucun produit ligne × colonne n'est nécessaire : c'est tout l'intérêt d'une matrice diagonale.\n\n**Erreur fréquente :** écrire $3n$ (`3*n`, multiplication). Pour $n = 3$, $3n = 9$ alors que la bonne valeur est $27$.\n\n**À retenir :** $n$ produits par $3$ donnent $3^n$, pas $3n$."
       }
     ],
     "indices": [
@@ -205,22 +321,40 @@
       {
         "intitule": "Calcule $A^2$ directement, ligne par ligne au format `(a, b, c, d)`.",
         "type": "vecteur",
-        "reponse": [18, 7, 14, 11],
-        "refuses": ["(16, 1, 4, 9)"]
+        "reponse": [
+          18,
+          7,
+          14,
+          11
+        ],
+        "refuses": [
+          "(16, 1, 4, 9)"
+        ],
+        "explication": "**Règle :** produit de deux matrices : la case $(i, j)$ du résultat est la **ligne $i$** de la 1re matrice fois la **colonne $j$** de la 2e. Ce n'est **pas** le carré de chaque case (sauf pour une matrice diagonale).\n\n**Pas à pas :** $A^2 = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}\\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$.\n\n| Case | Ligne de $A$ | Colonne de $A$ | Calcul | Résultat |\n|---|---|---|---|---|\n| $(1, 1)$ | $(4, 1)$ | $(4, 2)$ | $4 \\times 4 + 1 \\times 2$ | $18$ |\n| $(1, 2)$ | $(4, 1)$ | $(1, 3)$ | $4 \\times 1 + 1 \\times 3$ | $7$ |\n| $(2, 1)$ | $(2, 3)$ | $(4, 2)$ | $2 \\times 4 + 3 \\times 2$ | $14$ |\n| $(2, 2)$ | $(2, 3)$ | $(1, 3)$ | $2 \\times 1 + 3 \\times 3$ | $11$ |\n\n$A^2$ = `(18, 7, 14, 11)`.\n\n**Erreur fréquente :** élever chaque case au carré, ce qui donne `(16, 1, 4, 9)` : faux, car $A$ n'est pas diagonale.\n\n**À retenir :** $A^2 = A \\times A$ en ligne × colonne ; la puissance case par case ne vaut que pour une diagonale."
       },
       {
         "intitule": "Avec $A^n = PD^nP^{-1}$, donne le coefficient $(1, 1)$ de $A^n$ en fonction de $n$.",
         "type": "expression",
         "variable": "n",
         "reponse": "(2*5^n+2^n)/3",
-        "acceptes": ["2/3*5^n + 1/3*2^n"],
-        "refuses": ["5^n", "(5^n+2^n)/3"]
+        "acceptes": [
+          "2/3*5^n + 1/3*2^n"
+        ],
+        "refuses": [
+          "5^n",
+          "(5^n+2^n)/3"
+        ],
+        "explication": "**Règle :** $A^n = PD^nP^{-1}$. Multiplier $P$ à droite par la diagonale $D^n$ multiplie chaque **colonne** de $P$ par sa valeur propre puissance $n$. Ensuite, case $(i, j)$ = ligne $i$ de $PD^n$ fois colonne $j$ de $P^{-1}$.\n\n**Pas à pas :**\n\n1. $D^n = \\begin{pmatrix} 5^n & 0 \\\\ 0 & 2^n \\end{pmatrix}$.\n2. $PD^n$ : 1re colonne $(1, 1) \\times 5^n$, 2e colonne $(1, -2) \\times 2^n$, donc $PD^n = \\begin{pmatrix} 5^n & 2^n \\\\ 5^n & -2 \\cdot 2^n \\end{pmatrix}$.\n3. Case $(1, 1)$ : 1re ligne $(5^n, 2^n)$ fois 1re colonne de $P^{-1}$, $\\frac{1}{3}(2, 1)$ : $\\frac{1}{3}(2 \\cdot 5^n + 2^n)$.\n4. Contrôle $n = 1$ : $\\frac{10 + 2}{3} = 4$, la case $(1, 1)$ de $A$. Contrôle $n = 2$ : $\\frac{50 + 4}{3} = 18$, celle de $A^2$.\n\nRéponse : `(2*5^n+2^n)/3`.\n\n**Erreurs fréquentes :** répondre $5^n$ (on oublie $P$ et $P^{-1}$, comme si $A$ était diagonale) ; oublier le $2$ de la 1re colonne de $P^{-1}$ et écrire $\\frac{5^n + 2^n}{3}$ ; oublier le facteur $\\frac{1}{3}$.\n\n**À retenir :** colonnes de $P$ fois $\\lambda^n$, puis ligne × colonne de $P^{-1}$, puis contrôle avec $n = 1$."
       },
       {
         "intitule": "Le coefficient $(1, 2)$ de $A^3$ (un nombre)",
         "type": "nombre",
         "reponse": 39,
-        "refuses": ["117", "1"]
+        "refuses": [
+          "117",
+          "1"
+        ],
+        "explication": "**Règle :** même méthode pour la case $(1, 2)$ : 1re ligne de $PD^n$ fois **2e** colonne de $P^{-1}$, puis on remplace $n$ par $3$.\n\n**Pas à pas :**\n\n1. 1re ligne de $PD^n$ : $(5^n, 2^n)$. 2e colonne de $P^{-1}$ : $\\frac{1}{3}(1, -1)$.\n2. Produit : $\\frac{1}{3}(5^n \\times 1 + 2^n \\times (-1)) = \\frac{5^n - 2^n}{3}$.\n3. Contrôle $n = 1$ : $\\frac{5 - 2}{3} = 1$, c'est bien la case $(1, 2)$ de $A$.\n4. $n = 3$ : $5^3 = 125$, $2^3 = 8$, donc $\\frac{125 - 8}{3} = \\frac{117}{3} = 39$.\n\nVérification directe : $A^3 = A^2 \\times A$, case $(1, 2)$ = $(18, 7)$ fois $(1, 3)$ = $18 + 21 = 39$.\n\n**Erreurs fréquentes :** oublier de diviser par $3$ ($117$), ou se contenter de la case de $A$ ($1$).\n\n**À retenir :** une case de $A^n$ = une ligne de $PD^n$ fois une colonne de $P^{-1}$ ; contrôle avec $n = 1$."
       }
     ],
     "indices": [
@@ -239,20 +373,42 @@
       {
         "intitule": "Écris $M$ ligne par ligne (9 nombres).",
         "type": "vecteur",
-        "reponse": [2, 0, 1, 1, 1, 3, 0, 4, 2],
-        "refuses": ["(2, 0, 1, 1, 0, 4, 1, 3, 2)"]
+        "reponse": [
+          2,
+          0,
+          1,
+          1,
+          1,
+          3,
+          0,
+          4,
+          2
+        ],
+        "refuses": [
+          "(2, 0, 1, 1, 0, 4, 1, 3, 2)"
+        ],
+        "explication": "**Règle :** dans $M = \\begin{pmatrix} A & B \\\\ C & D \\end{pmatrix}$, $B$ a autant de lignes que $A$ et se colle **à droite** de $A$ ; $C$ a autant de colonnes que $A$ et se colle **en dessous** ; $D$ va en bas à droite.\n\n**Pas à pas :**\n\n1. 1re ligne : 1re ligne de $A$ $(2, 0)$, puis 1er nombre de $B$ $(1)$ : $(2, 0, 1)$.\n2. 2e ligne : 2e ligne de $A$ $(1, 1)$, puis 2e nombre de $B$ $(3)$ : $(1, 1, 3)$.\n3. 3e ligne : $C = (0, 4)$, puis $D = 2$ : $(0, 4, 2)$.\n\n$M$ = `(2, 0, 1, 1, 1, 3, 0, 4, 2)`.\n\n**Erreur fréquente :** poser $B$ en ligne sous $A$ et $C$ en colonne à droite, ce qui donne `(2, 0, 1, 1, 0, 4, 1, 3, 2)`. Or $B$ est une colonne de 2 nombres : il complète les **2 lignes** de $A$.\n\n**À retenir :** chaque bloc garde sa forme : une colonne reste une colonne, une ligne reste une ligne."
       },
       {
         "intitule": "Le bloc du haut $AE + BF$, au format `(a, b)`",
         "type": "vecteur",
-        "reponse": [3, 6],
-        "refuses": ["(2, 3)"]
+        "reponse": [
+          3,
+          6
+        ],
+        "refuses": [
+          "(2, 3)"
+        ],
+        "explication": "**Règle :** on calcule par blocs comme avec des nombres : le bloc du haut du résultat est $AE + BF$ (matrice fois vecteur, plus colonne fois nombre).\n\n**Pas à pas :**\n\n1. $AE = \\begin{pmatrix} 2 & 0 \\\\ 1 & 1 \\end{pmatrix}(1, 2) = (2 \\times 1 + 0 \\times 2,\\ 1 \\times 1 + 1 \\times 2) = (2, 3)$.\n2. $BF = (1, 3) \\times 1 = (1, 3)$.\n3. Somme coordonnée par coordonnée : $(2 + 1,\\ 3 + 3) = (3, 6)$.\n\n**Erreur fréquente :** s'arrêter à $AE = (2, 3)$ en oubliant d'ajouter $BF$.\n\n**À retenir :** bloc du haut = $AE + BF$ : les deux morceaux comptent."
       },
       {
         "intitule": "Le bloc du bas $CE + DF$ (un nombre)",
         "type": "nombre",
         "reponse": 10,
-        "refuses": ["8"]
+        "refuses": [
+          "8"
+        ],
+        "explication": "**Règle :** le bloc du bas est $CE + DF$. $C$ est une ligne et $E$ une colonne : ligne × colonne donne **un nombre**.\n\n**Pas à pas :**\n\n1. $CE = (0, 4) \\cdot (1, 2) = 0 \\times 1 + 4 \\times 2 = 8$.\n2. $DF = 2 \\times 1 = 2$.\n3. $CE + DF = 8 + 2 = 10$.\n\nContrôle : 3e ligne de $M$, $(0, 4, 2)$, fois le vecteur complet $(1, 2, 1)$ : $0 + 8 + 2 = 10$.\n\n**Erreur fréquente :** répondre $8$ en oubliant $DF$.\n\n**À retenir :** vérifie un calcul par blocs avec le calcul direct d'une ligne : les deux doivent coïncider."
       },
       {
         "intitule": "Quel est l'intérêt de cette écriture pour une matrice de plusieurs millions de lignes ?",
@@ -263,7 +419,8 @@
           "Rendre la matrice diagonale",
           "Éviter toute multiplication"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** le calcul par blocs donne **exactement le même résultat** que le calcul complet ; son intérêt est de **découper** le travail.\n\n**Pas à pas :** pour une matrice de plusieurs millions de lignes :\n\n1. Elle ne tient pas en mémoire d'un coup : on la coupe en blocs.\n2. Chaque produit de blocs se calcule séparément, sur plusieurs machines en parallèle ou l'un après l'autre.\n3. On additionne et on recolle les morceaux.\n\nBonne réponse : traiter chaque bloc séparément, puis recombiner.\n\n**Les autres réponses :** « obtenir un résultat différent » est faux (on vient de vérifier que c'est le même) ; « rendre la matrice diagonale » est faux (le découpage ne change pas la matrice) ; « éviter toute multiplication » est faux (les multiplications sont toujours là, seulement réparties).\n\n**À retenir :** blocs = même calcul, réparti en morceaux (calcul distribué)."
       }
     ],
     "indices": [
@@ -284,33 +441,65 @@
         "type": "expression",
         "variable": "n",
         "reponse": "8*0.5^n",
-        "acceptes": ["8/2^n", "2^(3-n)"],
-        "refuses": ["0.5^n", "4*0.5^n"]
+        "acceptes": [
+          "8/2^n",
+          "2^(3-n)"
+        ],
+        "refuses": [
+          "0.5^n",
+          "4*0.5^n"
+        ],
+        "explication": "**Règle :** $\\vec x_n = A^n\\vec x_0$, et pour une matrice diagonale $A^n$ a les puissances $n$ des termes diagonaux. Chaque coordonnée vaut donc (sa valeur de départ) $\\times \\lambda^n$ : une suite géométrique.\n\n**Pas à pas :**\n\n1. $A^n = \\begin{pmatrix} 0{,}5^n & 0 \\\\ 0 & 0{,}75^n \\end{pmatrix}$.\n2. 1re coordonnée de $A^n\\vec x_0$ : $0{,}5^n \\times 8 + 0 \\times 4 = 8 \\times 0{,}5^n$.\n3. Contrôle : $n = 0$ donne $8$ (le départ), $n = 1$ donne $4$, $n = 2$ donne $2$ : on divise par $2$ à chaque étape.\n\nRéponse : `8*0.5^n` (ou $\\frac{8}{2^n}$).\n\n**Erreurs fréquentes :** oublier le $8$ de départ (`0.5^n`), prendre la 2e coordonnée de départ (`4*0.5^n`), ou écrire $8 \\times 0{,}5 \\times n$ : chaque étape **multiplie** par $0{,}5$, la puissance est indispensable.\n\n**À retenir :** matrice diagonale : coordonnée $i$ de $\\vec x_n$ = départ $\\times \\lambda_i^n$."
       },
       {
         "intitule": "$\\vec x_3$, au format `(a, b)` (fractions ou décimaux)",
         "type": "vecteur",
-        "reponse": [1, "27/16"],
-        "acceptes": ["(1; 1,6875)", "(1, 1.6875)"],
-        "refuses": ["(1, 3)"]
+        "reponse": [
+          1,
+          "27/16"
+        ],
+        "acceptes": [
+          "(1; 1,6875)",
+          "(1, 1.6875)"
+        ],
+        "refuses": [
+          "(1, 3)"
+        ],
+        "explication": "**Règle :** on applique la formule de chaque coordonnée avec $n = 3$ : $\\vec x_n = (8 \\times 0{,}5^n,\\ 4 \\times 0{,}75^n)$.\n\n**Pas à pas :**\n\n1. $0{,}5^3 = 0{,}125$, donc $8 \\times 0{,}125 = 1$.\n2. $0{,}75 = \\frac{3}{4}$, donc $0{,}75^3 = \\frac{27}{64}$.\n3. $4 \\times \\frac{27}{64} = \\frac{108}{64} = \\frac{27}{16} = 1{,}6875$.\n\n$\\vec x_3 = (1,\\ 27/16)$.\n\n**Erreur fréquente :** écrire $(1, 3)$ en ne multipliant la 2e coordonnée qu'une seule fois par $0{,}75$ ($4 \\times 0{,}75 = 3$) au lieu de trois fois.\n\n**À retenir :** $\\vec x_3$ = trois multiplications successives par la valeur propre, pour chaque coordonnée."
       },
       {
         "intitule": "Vers quoi tend $\\vec x_n$ quand $n$ devient très grand ? Format `(a, b)`.",
         "type": "vecteur",
-        "reponse": [0, 0],
-        "refuses": ["(8, 4)"]
+        "reponse": [
+          0,
+          0
+        ],
+        "refuses": [
+          "(8, 4)"
+        ],
+        "explication": "**Règle :** une suite géométrique $c \\times \\lambda^n$ tend vers $0$ quand $-1 < \\lambda < 1$. Si **toutes** les valeurs propres sont dans cet intervalle, $\\vec x_n \\to \\vec 0$.\n\n**Pas à pas :**\n\n1. 1re coordonnée : $8 \\times 0{,}5^n$, avec $0{,}5$ entre $-1$ et $1$ : tend vers $0$.\n2. 2e coordonnée : $4 \\times 0{,}75^n$, avec $0{,}75$ entre $-1$ et $1$ : tend vers $0$ (plus lentement).\n3. Donc $\\vec x_n \\to (0, 0)$, quel que soit le point de départ.\n\n**Erreur fréquente :** répondre $(8, 4)$ : c'est le point de départ, mais chaque étape le rétrécit.\n\n**À retenir :** toutes les valeurs propres entre $-1$ et $1$ : le processus s'éteint vers $\\vec 0$."
       },
       {
         "intitule": "Avec plutôt $A = \\begin{pmatrix} 0{,}5 & 0 \\\\ 0 & 1{,}5 \\end{pmatrix}$, le processus :",
         "type": "choix",
-        "choix": ["converge vers $(0, 0)$", "explose", "oscille en changeant de signe"],
-        "reponse": 1
+        "choix": [
+          "converge vers $(0, 0)$",
+          "explose",
+          "oscille en changeant de signe"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une seule valeur propre plus grande que $1$ en valeur absolue suffit à faire **exploser** la coordonnée correspondante, donc tout le vecteur.\n\n**Pas à pas :**\n\n1. 1re coordonnée : $8 \\times 0{,}5^n \\to 0$.\n2. 2e coordonnée : $4 \\times 1{,}5^n$ : $4;\\ 6;\\ 9;\\ 13{,}5;\\ \\dots$ elle grandit sans limite.\n3. Le vecteur $\\vec x_n$ explose, à cause de la 2e coordonnée.\n\nRéponse : « explose ».\n\n**Les autres réponses :** « converge vers $(0, 0)$ » demanderait que **toutes** les valeurs propres soient entre $-1$ et $1$ ; ici $1{,}5$ ne l'est pas. « oscille en changeant de signe » demanderait une valeur propre négative : $0{,}5$ et $1{,}5$ sont positives.\n\n**À retenir :** pour converger, il faut que toutes les valeurs propres soient petites ; une seule grande suffit pour exploser."
       },
       {
         "intitule": "Avec $A = \\begin{pmatrix} -1 & 0 \\\\ 0 & 0{,}5 \\end{pmatrix}$, la 1re coordonnée :",
         "type": "choix",
-        "choix": ["converge vers 0", "explose", "oscille en changeant de signe"],
-        "reponse": 2
+        "choix": [
+          "converge vers 0",
+          "explose",
+          "oscille en changeant de signe"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** avec $\\lambda = -1$, $(-1)^n$ vaut $1$ pour $n$ pair et $-1$ pour $n$ impair : le signe change à chaque étape, mais la taille reste la même.\n\n**Pas à pas :**\n\n1. 1re coordonnée : $8 \\times (-1)^n$.\n2. $n = 0, 1, 2, 3$ : $8,\\ -8,\\ 8,\\ -8$.\n3. Elle saute sans fin entre $8$ et $-8$ : elle **oscille**.\n\nRéponse : « oscille en changeant de signe ».\n\n**Les autres réponses :** « converge vers 0 » est faux, la taille reste $8$ (il faudrait $|\\lambda| < 1$) ; « explose » est faux, la taille ne grandit pas (il faudrait $|\\lambda| > 1$).\n\n**À retenir :** valeur propre négative = changement de signe à chaque étape ; $-1$ exactement = taille constante."
       }
     ],
     "indices": [
@@ -329,25 +518,37 @@
       {
         "intitule": "La variance totale (somme des valeurs propres)",
         "type": "nombre",
-        "reponse": 10
+        "reponse": 10,
+        "explication": "**Règle :** la variance totale d'un jeu de données est la **somme des valeurs propres** de sa matrice de covariance.\n\n**Pas à pas :**\n\n1. On additionne les quatre valeurs propres : $6 + 2{,}5 = 8{,}5$.\n2. $8{,}5 + 1 = 9{,}5$.\n3. $9{,}5 + 0{,}5 = 10$.\n\nLa variance totale vaut $10$.\n\n**Erreur fréquente :** oublier la plus petite valeur ($0{,}5$) et trouver $9{,}5$ : toutes les valeurs propres comptent dans le total.\n\n**À retenir :** variance totale = somme de toutes les valeurs propres."
       },
       {
         "intitule": "Le pourcentage de variance gardé par la 1re composante seule (un nombre, sans le signe %)",
         "type": "nombre",
         "reponse": 60,
-        "refuses": ["0.6", "6"]
+        "refuses": [
+          "0.6",
+          "6"
+        ],
+        "explication": "**Règle :** la part de variance gardée par une composante vaut sa valeur propre **divisée par la variance totale**, exprimée en pourcentage.\n\n**Pas à pas :**\n\n1. Valeur propre de la 1re composante : $6$.\n2. Variance totale : $10$.\n3. Part : $\\frac{6}{10} = 0{,}6$, soit $0{,}6 \\times 100 = 60\\,\\%$.\n\nRéponse : $60$.\n\n**Erreurs fréquentes :** répondre $6$ (on oublie de diviser par le total) ou $0{,}6$ (on oublie de passer en pourcentage : la question demande un nombre « sans le signe % », donc $60$).\n\n**À retenir :** part = $\\lambda_i$ / somme, puis $\\times 100$ pour un pourcentage."
       },
       {
         "intitule": "Combien de composantes faut-il garder pour conserver au moins 80 % de la variance ?",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["3"]
+        "refuses": [
+          "3"
+        ],
+        "explication": "**Règle :** pour savoir combien de composantes garder, on additionne les parts **dans l'ordre décroissant** des valeurs propres et on s'arrête dès que le seuil est atteint.\n\n**Pas à pas :**\n\n| Composantes gardées | Somme des $\\lambda$ | Part cumulée | Au moins $80\\,\\%$ ? |\n|---|---|---|---|\n| 1 | $6$ | $60\\,\\%$ | non |\n| 2 | $6 + 2{,}5 = 8{,}5$ | $85\\,\\%$ | oui |\n\nOn s'arrête à la première ligne qui atteint le seuil : **2** composantes.\n\n**Erreur fréquente :** répondre $3$ : avec 3 composantes on dépasse aussi $80\\,\\%$, mais on cherche le **plus petit** nombre qui suffit.\n\n**À retenir :** cumule les parts des plus grandes valeurs propres et arrête-toi au premier passage du seuil."
       },
       {
         "intitule": "Et pour au moins 90 % ?",
         "type": "nombre",
         "reponse": 3,
-        "refuses": ["2", "4"]
+        "refuses": [
+          "2",
+          "4"
+        ],
+        "explication": "**Règle :** même méthode avec le seuil de $90\\,\\%$ : on cumule les parts jusqu'à l'atteindre.\n\n**Pas à pas :**\n\n| Composantes gardées | Somme des $\\lambda$ | Part cumulée | Au moins $90\\,\\%$ ? |\n|---|---|---|---|\n| 1 | $6$ | $60\\,\\%$ | non |\n| 2 | $8{,}5$ | $85\\,\\%$ | non |\n| 3 | $8{,}5 + 1 = 9{,}5$ | $95\\,\\%$ | oui |\n\nIl faut **3** composantes.\n\n**Erreurs fréquentes :** répondre $2$ ($85\\,\\%$ est en dessous de $90\\,\\%$) ou $4$ (la 4e n'est pas nécessaire, on a déjà $95\\,\\%$ avec 3).\n\n**À retenir :** plus le seuil est haut, plus il faut de composantes ; prends toujours le plus petit nombre qui suffit."
       }
     ],
     "indices": [
@@ -362,11 +563,56 @@
     "difficulte": 1,
     "enonce": "Dis si chaque affirmation est vraie ou fausse.",
     "questions": [
-      { "intitule": "Le vecteur nul est un vecteur propre de toute matrice.", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 1 },
-      { "intitule": "Une valeur propre peut valoir $0$.", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 0 },
-      { "intitule": "Si $\\vec v$ est un vecteur propre pour $\\lambda$, alors $3\\vec v$ aussi.", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 0 },
-      { "intitule": "Toute matrice carrée est diagonalisable.", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 1 },
-      { "intitule": "Dans $A = PDP^{-1}$, on peut ranger les colonnes de $P$ dans n'importe quel ordre sans toucher à $D$.", "type": "choix", "choix": ["Vrai", "Faux"], "reponse": 1 }
+      {
+        "intitule": "Le vecteur nul est un vecteur propre de toute matrice.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** la définition d'un vecteur propre exige $\\vec v \\neq \\vec 0$.\n\n**Pas à pas :**\n\n1. Pour le vecteur nul, $A\\vec 0 = \\vec 0 = \\lambda\\vec 0$ pour **n'importe quel** nombre $\\lambda$.\n2. Il n'aurait donc pas de valeur propre bien définie : $0$, $1$, $-7$… tout marcherait.\n3. C'est pour éviter ça qu'on l'exclut.\n\nL'affirmation est **fausse**.\n\n**Erreur fréquente :** croire que, puisque $A\\vec 0 = \\lambda\\vec 0$ est vrai, le vecteur nul est propre. La condition $\\vec v \\neq \\vec 0$ fait partie de la définition.\n\n**À retenir :** un vecteur propre n'est jamais nul."
+      },
+      {
+        "intitule": "Une valeur propre peut valoir $0$.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** $\\lambda = 0$ est une valeur propre quand il existe $\\vec v$ **non nul** avec $A\\vec v = 0 \\times \\vec v = \\vec 0$, c'est-à-dire quand $\\det(A - 0I) = \\det(A) = 0$.\n\n**Pas à pas :** exemple $A = \\begin{pmatrix} 1 & 1 \\\\ 1 & 1 \\end{pmatrix}$.\n\n1. $\\det(A) = 1 - 1 = 0$.\n2. Avec $\\vec v = (1, -1)$ : $A\\vec v = (1 - 1,\\ 1 - 1) = (0, 0) = 0 \\times \\vec v$.\n3. $\\vec v$ est non nul, donc $0$ est bien une valeur propre.\n\nL'affirmation est **vraie**.\n\n**Erreur fréquente :** confondre les deux interdits : c'est le **vecteur** qui ne peut pas être nul, la valeur propre peut l'être.\n\n**À retenir :** valeur propre $0$ ⇔ $\\det(A) = 0$ (matrice non inversible)."
+      },
+      {
+        "intitule": "Si $\\vec v$ est un vecteur propre pour $\\lambda$, alors $3\\vec v$ aussi.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** un vecteur propre est défini à un facteur près : tout multiple non nul reste propre, pour la même valeur.\n\n**Pas à pas :**\n\n1. On sait que $A\\vec v = \\lambda\\vec v$.\n2. $A(3\\vec v) = 3A\\vec v$ (on peut sortir un nombre d'un produit matrice × vecteur).\n3. $3A\\vec v = 3\\lambda\\vec v = \\lambda(3\\vec v)$.\n4. Et $3\\vec v \\neq \\vec 0$ puisque $\\vec v \\neq \\vec 0$.\n\nL'affirmation est **vraie**.\n\n**Erreur fréquente :** croire que la valeur propre de $3\\vec v$ devient $3\\lambda$ : non, c'est le vecteur qui est multiplié par $3$, la valeur propre reste $\\lambda$.\n\n**À retenir :** $k\\vec v$ ($k \\neq 0$) a la même valeur propre que $\\vec v$."
+      },
+      {
+        "intitule": "Toute matrice carrée est diagonalisable.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une matrice $n \\times n$ est diagonalisable seulement si elle a $n$ vecteurs propres **indépendants** (non alignés) pour remplir $P$.\n\n**Pas à pas :** contre-exemple $\\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$.\n\n1. Triangulaire : une seule valeur propre, $1$.\n2. $A - I = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ donne $v_2 = 0$ : tous les vecteurs propres sont de la forme $(t, 0)$.\n3. Une seule direction pour une matrice $2 \\times 2$ : $P$ ne peut pas être inversible.\n\nL'affirmation est **fausse** (on se contente alors de trigonaliser).\n\n**Erreur fréquente :** croire qu'avoir une valeur propre suffit. Il faut **assez** de vecteurs propres indépendants.\n\n**À retenir :** un seul contre-exemple suffit à montrer qu'un « toute matrice » est faux."
+      },
+      {
+        "intitule": "Dans $A = PDP^{-1}$, on peut ranger les colonnes de $P$ dans n'importe quel ordre sans toucher à $D$.",
+        "type": "choix",
+        "choix": [
+          "Vrai",
+          "Faux"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** dans $A = PDP^{-1}$, la $k$-ième colonne de $P$ est le vecteur propre de la $k$-ième valeur de $D$. L'ordre est libre, mais il doit être **le même** des deux côtés.\n\n**Pas à pas :** avec $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$, $(1, 1)$ pour $3$ et $(1, -1)$ pour $1$.\n\n1. Bon rangement : $P = \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$, $D = \\begin{pmatrix} 3 & 0 \\\\ 0 & 1 \\end{pmatrix}$.\n2. Si on échange les colonnes de $P$ sans toucher à $D$, $D$ dirait que $(1, -1)$ est étiré par $3$ : or $A(1, -1) = (1, -1)$, il est étiré par $1$.\n3. L'égalité devient fausse.\n\nL'affirmation est **fausse**.\n\n**Erreur fréquente :** croire que l'ordre n'a pas d'importance. Il n'en a pas **à condition** d'échanger aussi les valeurs dans $D$.\n\n**À retenir :** colonnes de $P$ et diagonale de $D$ se rangent ensemble."
+      }
     ],
     "indices": [
       "Relis la définition : elle exige $\\vec v \\neq \\vec 0$, mais ne dit rien contre $\\lambda = 0$.",
