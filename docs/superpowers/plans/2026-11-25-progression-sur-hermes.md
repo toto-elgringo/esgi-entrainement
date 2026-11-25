@@ -32,7 +32,7 @@
 
 ---
 
-### Tâche 1 : fusion partagée
+### Task 1: fusion partagée
 
 **Fichiers :**
 - Créer : `js/fusion-progression.js`
@@ -63,7 +63,7 @@
   - Une valeur retenue efface aussi l'entrée `supprimes` de la clé.
 - [ ] **Étape 4 :** `node --test tests/fusion-progression.test.js` → tout passe.
 
-### Tâche 2 : fichier et routes sur le serveur
+### Task 2: fichier et routes sur le serveur
 
 **Fichiers :**
 - Créer : `serveur/progression.js`
@@ -104,7 +104,7 @@
   - `installer.sh` ajoute `"$HOME/.local/share/esgi-entrainement"` à son `mkdir -p`.
 - [ ] **Étape 4 :** `npm test` → tout passe.
 
-### Tâche 3 : le stockage signale ses changements
+### Task 3: le stockage signale ses changements
 
 **Fichiers :**
 - Modifier : `js/stockage.js`
@@ -130,7 +130,7 @@
   - `importer` ne garde que les clés du fichier et ne produit pas de `null`. Après l'import, la page se recharge (`app.js`), puis la synchronisation remet les clés de hermes que le fichier n'a pas.
 - [ ] **Étape 4 :** `npm test` → tout passe.
 
-### Tâche 4 : synchronisation de la page
+### Task 4: synchronisation de la page
 
 **Fichiers :**
 - Créer : `js/synchro-progression.js`
@@ -181,7 +181,7 @@
   - Ouvrir `http://localhost:3100/`, réussir un exercice, puis vérifier que le fichier contient `exercices/<cle>` avec `reussi:true`.
   - Remettre l'exercice à zéro, et vérifier que la clé disparaît et qu'elle est notée dans `supprimes`.
 
-### Tâche 5 : quiz de Hermes branchés sur le fichier (après le déploiement)
+### Task 5: quiz de Hermes branchés sur le fichier (après le déploiement)
 
 À faire seulement quand Antoine a fusionné et déployé (`/commit -merge`), puis ouvert `http://hermes/esgi-entrainement/` dans son navigateur, ce qui remplit le fichier.
 
