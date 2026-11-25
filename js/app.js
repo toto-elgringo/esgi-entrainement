@@ -7,6 +7,7 @@ import { notifier } from './notification.js';
 import { chargerFormules, echapper } from './outils.js';
 import { chapitresDeMatiere } from './parcours.js';
 import { MESSAGE_STOCKAGE_PLEIN, stockage } from './stockage.js';
+import { creerSynchroProgression } from './synchro-progression.js';
 import { afficherAccueil } from './vues/accueil.js';
 import { afficherCours } from './vues/cours.js';
 import { afficherQuiz } from './vues/quiz.js';
@@ -269,6 +270,27 @@ appliquerMenuRange();
 
 window.addEventListener('hashchange', afficherRoute);
 stockage.surErreurEcriture(() => notifier(MESSAGE_STOCKAGE_PLEIN, { duree: 0 }));
+
+async function requeteProgression(methode, corps, { keepalive = false } = {}) {
+  const reponse = await fetch('api/progression', {
+    method: methode,
+    cache: 'no-store',
+    keepalive,
+    headers: corps === undefined ? { Accept: 'application/json' } : { Accept: 'application/json', 'Content-Type': 'application/json' },
+    body: corps === undefined ? undefined : JSON.stringify(corps),
+  });
+  const donnees = await reponse.json().catch(() => null);
+  return { statut: reponse.status, donnees };
+}
+
+creerSynchroProgression({
+  stockage,
+  memoire: localStorage,
+  requete: requeteProgression,
+  renouvelerJeton: () => fetch('./', { cache: 'no-store' }),
+  maintenant: Date.now,
+  signalerErreur: () => notifier('Progression non enregistrée sur hermes : elle sera renvoyée au prochain changement.'),
+}).demarrer().catch(() => {});
 stockage.surChangementExterne(() => {
   remplirChoixMatiere();
   rafraichirMenu();
