@@ -4,7 +4,7 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { argumentsEnfermement, modeEnfermement } from './enfermement.js';
+import { argumentsEnfermement, corrigerErreurEnfermee, modeEnfermement } from './enfermement.js';
 
 export const DELAI_EXECUTION = 10_000;
 export const TAILLE_MAX_FLUX = 20_000;
@@ -147,14 +147,14 @@ function dossierSansAtelier() {
 }
 
 function preparerLancement(commande, args, dossier, env) {
-  if (modeEnfermement() !== 'bwrap') return { commande, args, dossier, env: { ...process.env, ...env } };
+  if (modeEnfermement() !== 'bwrap') return { commande, args, dossier, env: { ...process.env, ...env }, enferme: false };
   const travail = dossier ?? dossierSansAtelier();
-  return { ...argumentsEnfermement({ commande, args, dossier: travail, env }), dossier: travail, env: {} };
+  return { ...argumentsEnfermement({ commande, args, dossier: travail, env }), dossier: travail, env: {}, enferme: true };
 }
 
 export function lancer(commandeDemandee, argsDemandes, { delai, dossier: dossierDemande, entree = '', env: envDemande = {}, signal } = {}) {
   if (signal?.aborted) return Promise.resolve(resultatLancement(null, { arret: 'annule' }));
-  const { commande, args, dossier, env } = preparerLancement(commandeDemandee, argsDemandes, dossierDemande, envDemande);
+  const { commande, args, dossier, env, enferme } = preparerLancement(commandeDemandee, argsDemandes, dossierDemande, envDemande);
   return new Promise((resoudre) => {
     let arret = null;
     let minuteur = null;
@@ -169,7 +169,7 @@ export function lancer(commandeDemandee, argsDemandes, { delai, dossier: dossier
     function terminer(erreur, stdout, stderr) {
       clearTimeout(minuteur);
       signal?.removeEventListener('abort', annuler);
-      resoudre(resultatLancement(erreur, { arret, stdout, stderr }));
+      resoudre(resultatLancement(enferme ? corrigerErreurEnfermee(erreur, stderr) : erreur, { arret, stdout, stderr }));
     }
 
     try {

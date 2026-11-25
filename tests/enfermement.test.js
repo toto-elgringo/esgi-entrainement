@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { afterEach, describe, it } from 'node:test';
-import { argumentsEnfermement, BWRAP, modeEnfermement, verifierEnfermement } from '../serveur/enfermement.js';
+import { argumentsEnfermement, BWRAP, corrigerErreurEnfermee, modeEnfermement, verifierEnfermement } from '../serveur/enfermement.js';
 import { lancer } from '../serveur/processus.js';
 import { executerProgramme as executerC } from '../serveur/c.js';
 import { executerProgramme as executerPython } from '../serveur/python.js';
@@ -52,6 +52,24 @@ describe('enfermement des programmes', () => {
     assert.ok(texte.indexOf('--tmpfs /home') < texte.indexOf('--bind /home/hermes/atelier /home/hermes/atelier'));
   });
 
+  it('retrouve le signal d’un programme tué dans bwrap', () => {
+    const erreur = corrigerErreurEnfermee({ code: 139, signal: null, message: 'x' }, '');
+    assert.equal(erreur.signal, 'SIGSEGV');
+    assert.equal(corrigerErreurEnfermee({ code: 136, signal: null }, '').signal, 'SIGFPE');
+  });
+
+  it('reconnaît un programme introuvable ou refusé dans bwrap', () => {
+    assert.equal(corrigerErreurEnfermee({ code: 1, signal: null }, 'bwrap: execvp gcc: No such file or directory\n').code, 'ENOENT');
+    assert.equal(corrigerErreurEnfermee({ code: 1, signal: null }, 'bwrap: execvp /tmp/a/package.json: Permission denied\n').code, 'EACCES');
+  });
+
+  it('laisse les autres erreurs telles quelles', () => {
+    const erreur = { code: 1, signal: null };
+    assert.equal(corrigerErreurEnfermee(erreur, 'Traceback'), erreur);
+    assert.equal(corrigerErreurEnfermee({ code: 2, signal: null }, '').signal, null);
+    assert.equal(corrigerErreurEnfermee(null, ''), null);
+  });
+
   it('lit le mode dans ESGI_ENFERMEMENT', () => {
     delete process.env.ESGI_ENFERMEMENT;
     assert.equal(modeEnfermement(), null);
@@ -75,9 +93,12 @@ describe('enfermement des programmes', () => {
   });
 
   it('cache le dossier personnel à un programme Python', { skip: enfermementReel }, async () => {
-    const resultat = await executerPython('import os\nprint(os.listdir("/home"))\n');
+    const code = 'import os\nvus = sorted(n for d in os.listdir("/home") for n in os.listdir(os.path.join("/home", d)))\nprint(vus)\nprint(os.path.exists("/home/hermes/.ssh"), os.path.exists("/home/hermes/.hermes"), os.path.exists("/home/hermes/.config"))\n';
+    const resultat = await executerPython(code);
     assert.equal(resultat.statut, 'execute', resultat.sortie);
-    assert.equal(resultat.sortie.trim(), '[]');
+    const [vus, secrets] = resultat.sortie.trim().split('\n');
+    assert.ok(["[]", "['.cargo']", "['.rustup']", "['.cargo', '.rustup']"].includes(vus), vus);
+    assert.equal(secrets, 'False False False');
   });
 
   it('coupe le réseau d’un programme Python', { skip: enfermementReel }, async () => {
@@ -86,7 +107,7 @@ describe('enfermement des programmes', () => {
   });
 
   it('empêche un programme C de lire les clés SSH', { skip: enfermementReel }, async () => {
-    const code = '#include <stdio.h>\nint main(void) {\n  FILE *f = fopen("/home/hermes/.ssh/id_ed25519", "r");\n  printf(f == NULL ? "cache\n" : "lu\n");\n  return 0;\n}\n';
+    const code = '#include <stdio.h>\nint main(void) {\n  FILE *f = fopen("/home/hermes/.ssh/id_ed25519", "r");\n  puts(f == NULL ? "cache" : "lu");\n  return 0;\n}\n';
     const resultat = await executerC(code);
     assert.equal(resultat.statut, 'execute', resultat.sortie);
     assert.equal(resultat.sortie.trim(), 'cache');

@@ -24,6 +24,7 @@
 
 ## Site
 
+- [ ] Linux : les tests « archives » / « téléchargement » de la synchro MyGES échouent (le tar GNU n'ouvre pas les .zip) et « arrête tout l'arbre de processus » échoue sans bwrap (seul le processus est tué). Sans effet sur hermes (synchro désactivée, programmes enfermés par bwrap qui tue tout l'arbre)
 - [ ] Hermes : première mise en ligne sur http://hermes/esgi-entrainement/ (Rust installé, essai enfermé, fusion dans main), puis import de l'avancement
 - [ ] Supports : ajouter ceux des nouveaux chapitres dans `chapitre.json` (`supports`) au fil du cours
 

@@ -61,3 +61,14 @@ export function argumentsEnfermement({ commande, args, dossier, env = {}, maison
     ],
   };
 }
+
+const SIGNAUX = Object.fromEntries(Object.entries(os.constants.signals).map(([nom, numero]) => [numero, nom]));
+
+export function corrigerErreurEnfermee(erreur, stderr = '') {
+  if (!erreur || typeof erreur.code !== 'number') return erreur;
+  const echec = /^bwrap: execvp [^\n]*: (No such file or directory|Permission denied)$/m.exec(stderr);
+  if (echec) return { ...erreur, code: echec[1] === 'Permission denied' ? 'EACCES' : 'ENOENT', message: echec[0] };
+  const signal = erreur.code > 128 ? SIGNAUX[erreur.code - 128] : undefined;
+  if (signal && !erreur.signal) return { ...erreur, signal };
+  return erreur;
+}
