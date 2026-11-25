@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { rendreEtatMyges } from '../js/vues/myges.js';
+import { rendreEtatMyges, rendreEtatSynchro, SOURCES } from '../js/vues/myges.js';
 
 const base = { etape: 'repos', total: 0, dejaPresents: 0, telecharges: [], rates: [], matieresCreees: [], lignes: [], bilan: null, erreur: null };
 
@@ -64,5 +64,24 @@ describe('encadré MyGES', () => {
     assert.match(rendreEtatMyges({ ...base, etape: 'erreur', erreur: { code: 'identifiants_manquants', message: 'x' } }), /MYGES_IDENTIFIANT/);
     assert.match(rendreEtatMyges({ ...base, etape: 'erreur', erreur: { code: 'identifiants_refuses', message: 'x' } }), /identifiant MyGES/);
     assert.match(rendreEtatMyges({ ...base, etape: 'erreur', erreur: { code: 'autre', message: 'Détail <b>' } }), /Détail &lt;b&gt;/);
+  });
+
+  it('grise les boutons quand la synchro est désactivée', () => {
+    for (const source of [SOURCES.myges, SOURCES.schooding]) {
+      const html = rendreEtatSynchro({ etape: 'desactivee' }, source);
+      assert.match(html, /class="bouton grise"/);
+      assert.match(html, new RegExp(`data-${source.cle}-action="desactivee"`));
+      assert.ok(html.includes(source.boutonLancer));
+      assert.doesNotMatch(html, /disabled/);
+      assert.doesNotMatch(html, /Synchro impossible sur hermes/);
+    }
+  });
+
+  it('affiche le message au clic quand la synchro est désactivée', () => {
+    for (const source of [SOURCES.myges, SOURCES.schooding]) {
+      const html = rendreEtatSynchro({ etape: 'desactivee', avertir: true }, source);
+      assert.ok(html.includes('Synchro impossible sur hermes, à faire en local'));
+      assert.match(html, /class="bouton grise"/);
+    }
   });
 });

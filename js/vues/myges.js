@@ -1,6 +1,6 @@
 import { appelerApi, SERVEUR_ARRETE } from '../api.js';
 import { echapper } from '../outils.js';
-import { AUCUN_NOUVEAU_COURS, ETAPES_ACTIVES } from '../synchro-etats.js';
+import { AUCUN_NOUVEAU_COURS, ETAPE_DESACTIVEE, ETAPES_ACTIVES, MESSAGE_SYNCHRO_DESACTIVEE } from '../synchro-etats.js';
 
 const INTERVALLE = 2000;
 const REPRISE_CLAUDE = 'Si Claude n’avait pas fini d’intégrer les cours, il reprendra tout seul.';
@@ -57,6 +57,13 @@ const notes = (etat) => (etat.notes ?? []).map((note) => `<p class="myges-note">
 
 function contenu(etat, source) {
   const bouton = (action, texte, classe = 'bouton') => `<button class="${classe}" data-${source.cle}-action="${action}">${texte}</button>`;
+  if (etat.etape === ETAPE_DESACTIVEE) {
+    return {
+      texte: source.intro,
+      details: etat.avertir ? `<p class="myges-note">${MESSAGE_SYNCHRO_DESACTIVEE}</p>` : '',
+      actions: bouton(ETAPE_DESACTIVEE, source.boutonLancer, 'bouton grise'),
+    };
+  }
   const nombreEnAttente = enAttente(etat).length;
   const enSuspens = nombreEnAttente
     ? {
@@ -226,6 +233,7 @@ export function brancherSynchro(zone, source) {
     if (action === 'arreter') executer('POST', `${api}/arreter`);
     if (action === 'rafraichir') rafraichir();
     if (action === 'recharger') location.reload();
+    if (action === ETAPE_DESACTIVEE) dessiner(rendreEtatSynchro({ etape: ETAPE_DESACTIVEE, avertir: true }, source));
   });
 
   document.addEventListener('visibilitychange', changementVisibilite);
