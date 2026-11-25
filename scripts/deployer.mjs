@@ -1,4 +1,5 @@
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
+import { createReadStream } from 'node:fs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -35,7 +36,7 @@ export async function listerSupports(dossierContenu) {
   const fichiers = new Set();
   for (const chemin of await chapitres(dossierContenu)) {
     const chapitre = JSON.parse(await fs.readFile(chemin, 'utf8'));
-    for (const support of chapitre.supports ?? []) fichiers.add(support.fichier);
+    for (const support of chapitre.supports ?? []) if (support.fichier) fichiers.add(support.fichier);
   }
   return [...fichiers].sort();
 }
@@ -44,17 +45,41 @@ export function supportsAEnvoyer(locaux, distants) {
   return locaux.filter(({ chemin, taille }) => distants.get(chemin) !== taille).map(({ chemin }) => chemin);
 }
 
-export function lotSftp(chemins, dossierLocal, dossierDistant) {
-  const dossiers = new Set([dossierDistant]);
-  const envois = [];
-  for (const chemin of chemins) {
-    if (chemin.includes('"')) throw new Error(`Nom de support refusé (guillemet) : ${chemin}`);
-    const morceaux = chemin.split('/');
-    for (let fin = 1; fin < morceaux.length; fin += 1) dossiers.add(`${dossierDistant}/${morceaux.slice(0, fin).join('/')}`);
-    envois.push(`put "${dossierLocal}/${chemin}" "${dossierDistant}/${chemin}"`);
-  }
-  return [...[...dossiers].map((dossier) => `-mkdir "${dossier}"`), ...envois, ''].join('\n');
+export function enteteEnvoi(chemin, taille) {
+  const morceaux = chemin.split('/');
+  const interdit = /[\n\r\\]/.test(chemin) || morceaux.some((morceau) => morceau === '' || morceau === '.' || morceau === '..');
+  if (!chemin || chemin.startsWith('/') || interdit) throw new Error(`Chemin de support refusé : ${JSON.stringify(chemin)}`);
+  return `${taille} ${chemin}\n`;
 }
+
+export const RECEPTEUR = String.raw`
+import os, sys
+base = os.path.realpath(sys.argv[1])
+entree = sys.stdin.buffer
+recus = 0
+while True:
+    ligne = entree.readline()
+    if not ligne:
+        break
+    taille, chemin = ligne.decode("utf-8").rstrip("\n").split(" ", 1)
+    taille = int(taille)
+    destination = os.path.realpath(os.path.join(base, chemin))
+    if os.path.isabs(chemin) or not destination.startswith(base + os.sep):
+        sys.exit("Chemin refusé : " + chemin)
+    os.makedirs(os.path.dirname(destination), exist_ok=True)
+    temporaire = destination + ".envoi"
+    with open(temporaire, "wb") as sortie:
+        reste = taille
+        while reste:
+            bloc = entree.read(min(reste, 1 << 20))
+            if not bloc:
+                sys.exit("Envoi coupé : " + chemin)
+            sortie.write(bloc)
+            reste -= len(bloc)
+    os.replace(temporaire, destination)
+    recus += 1
+print(str(recus) + " support(s) reçu(s)")
+`;
 
 export function commandeDistante({ dossier, branche }) {
   const miseDeCote = 'git diff --quiet && git diff --cached --quiet || git stash push -q -m avant-deploiement-$(date +%F-%H%M%S)';
@@ -94,8 +119,29 @@ function lireDistants(hote) {
   return distants;
 }
 
+function envoyer(hote, dossierLocal, aEnvoyer) {
+  const recepteur = RECEPTEUR.replaceAll("'", `'\\''`);
+  return new Promise((resoudre, rejeter) => {
+    const ssh = spawn('ssh', [...OPTIONS_SSH, hote, `python3 -c '${recepteur}' ~/${DOSSIER_SUPPORTS_DISTANT}`], { stdio: ['pipe', 'inherit', 'inherit'] });
+    ssh.on('error', rejeter);
+    ssh.on('close', (code) => (code === 0 ? resoudre() : rejeter(new Error(`Échec de l'envoi des supports (code ${code})`))));
+    (async () => {
+      for (const { chemin, taille } of aEnvoyer) {
+        ssh.stdin.write(enteteEnvoi(chemin, taille));
+        for await (const bloc of createReadStream(path.join(dossierLocal, chemin))) {
+          if (!ssh.stdin.write(bloc)) await new Promise((suite) => ssh.stdin.once('drain', suite));
+        }
+      }
+      ssh.stdin.end();
+    })().catch((erreur) => {
+      ssh.kill();
+      rejeter(erreur);
+    });
+  });
+}
+
 async function envoyerSupports(hote) {
-  const dossierLocal = (process.env.DOSSIER_SUPPORTS || path.join(os.homedir(), 'Obsidian', 'Claude Note', 'Cours - ESGI')).replaceAll('\\', '/');
+  const dossierLocal = process.env.DOSSIER_SUPPORTS || path.join(os.homedir(), 'Obsidian', 'Claude Note', 'Cours - ESGI');
   const locaux = [];
   for (const chemin of await listerSupports(path.join(RACINE, 'contenu'))) {
     try {
@@ -104,10 +150,10 @@ async function envoyerSupports(hote) {
       console.warn(`Support absent sur ce PC, ignoré : ${chemin}`);
     }
   }
-  const aEnvoyer = supportsAEnvoyer(locaux, lireDistants(hote));
+  const chemins = new Set(supportsAEnvoyer(locaux, lireDistants(hote)));
+  const aEnvoyer = locaux.filter(({ chemin }) => chemins.has(chemin));
   console.log(`Supports : ${aEnvoyer.length} à envoyer sur ${locaux.length}.`);
-  if (aEnvoyer.length === 0) return;
-  lancer('sftp', [...OPTIONS_SSH, '-b', '-', hote], { input: lotSftp(aEnvoyer, dossierLocal, DOSSIER_SUPPORTS_DISTANT), stdio: ['pipe', 'inherit', 'inherit'] });
+  if (aEnvoyer.length > 0) await envoyer(hote, dossierLocal, aEnvoyer);
 }
 
 async function deployer() {

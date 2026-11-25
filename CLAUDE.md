@@ -122,7 +122,7 @@ CONTENU.md          format exact du contenu (code et réponses)
 
 ## Déploiement sur hermes
 
-- `scripts/deployer.mjs` : envoie par `sftp` les supports déclarés dans les `chapitre.json` absents ou changés (taille) vers `~/esgi-entrainement-supports/`, puis sur hermes dans `~/dev/esgi-entrainement` : `git fetch`, mise de côté des modifications suivies (`git stash`, jamais les fichiers non suivis), `checkout` + `pull --ff-only` de `main`, `bash scripts/hermes/installer.sh`.
+- `scripts/deployer.mjs` : envoie les supports déclarés dans les `chapitre.json` (champ `fichier`) absents ou changés (taille) vers `~/esgi-entrainement-supports/`, dans un seul flux SSH (une ligne « taille chemin » puis les octets, rangés par le petit programme Python `RECEPTEUR`, qui refuse tout chemin sortant du dossier), puis sur hermes dans `~/dev/esgi-entrainement` : `git fetch`, mise de côté des modifications suivies (`git stash`, jamais les fichiers non suivis), `checkout` + `pull --ff-only` de `main`, `bash scripts/hermes/installer.sh`.
 - `scripts/hermes/` : fiches du hub (`esgi-entrainement.caddy`, `.json`), service systemd utilisateur (`esgi-entrainement.service`, réglages ci-dessus) et `installer.sh` (installe, redémarre, `sites-hermes-appliquer`, vérifie `http://100.75.25.89/esgi-entrainement/`).
 - Rust sur hermes : rustup dans `~/.cargo` et `~/.rustup` (sans sudo).
 - Avancement : propre à chaque adresse (`localStorage`) : utiliser toujours `http://hermes/esgi-entrainement/` et importer la sauvegarde JSON une fois.
