@@ -4,11 +4,19 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creerSynchro } from './myges/synchro.js';
 import { creerSynchroSchooding } from './schooding/synchro.js';
+import { verifierEnfermement } from './enfermement.js';
 import { prechauffer } from './rust.js';
 import { lireAdresses } from './reglages.js';
 import { creerServeur } from './serveur.js';
 import { creerSynchroDesactivee } from './synchro-desactivee.js';
 import { creerVerrou } from './synchro.js';
+
+try {
+  verifierEnfermement();
+} catch (erreur) {
+  console.error(erreur.message);
+  process.exit(1);
+}
 
 const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const port = Number(process.env.PORT) || 3000;

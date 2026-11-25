@@ -4,6 +4,7 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import { argumentsEnfermement, modeEnfermement } from './enfermement.js';
 
 export const DELAI_EXECUTION = 10_000;
 export const TAILLE_MAX_FLUX = 20_000;
@@ -138,8 +139,22 @@ function resultatLancement(erreur, { arret = null, stdout = '', stderr = '' } = 
   };
 }
 
-export function lancer(commande, args, { delai, dossier, entree = '', env = {}, signal } = {}) {
+let dossierSondes = null;
+
+function dossierSansAtelier() {
+  dossierSondes ??= fsSync.mkdtempSync(path.join(os.tmpdir(), 'esgi-entrainement-sondes-'));
+  return dossierSondes;
+}
+
+function preparerLancement(commande, args, dossier, env) {
+  if (modeEnfermement() !== 'bwrap') return { commande, args, dossier, env: { ...process.env, ...env } };
+  const travail = dossier ?? dossierSansAtelier();
+  return { ...argumentsEnfermement({ commande, args, dossier: travail, env }), dossier: travail, env: {} };
+}
+
+export function lancer(commandeDemandee, argsDemandes, { delai, dossier: dossierDemande, entree = '', env: envDemande = {}, signal } = {}) {
   if (signal?.aborted) return Promise.resolve(resultatLancement(null, { arret: 'annule' }));
+  const { commande, args, dossier, env } = preparerLancement(commandeDemandee, argsDemandes, dossierDemande, envDemande);
   return new Promise((resoudre) => {
     let arret = null;
     let minuteur = null;
@@ -161,7 +176,7 @@ export function lancer(commande, args, { delai, dossier, entree = '', env = {}, 
       processus = execFile(
         commande,
         args,
-        { cwd: dossier, maxBuffer: TAILLE_MAX_SORTIE, windowsHide: true, env: { ...process.env, ...env } },
+        { cwd: dossier, maxBuffer: TAILLE_MAX_SORTIE, windowsHide: true, env },
         terminer,
       );
     } catch (erreur) {
