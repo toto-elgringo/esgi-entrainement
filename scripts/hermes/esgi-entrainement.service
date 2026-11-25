@@ -10,6 +10,7 @@ Environment=ESGI_ADRESSES=hermes,100.75.25.89,hermes.tail8c471a.ts.net
 Environment=ESGI_SYNCHRO=desactivee
 Environment=ESGI_ENFERMEMENT=bwrap
 Environment=DOSSIER_SUPPORTS=%h/esgi-entrainement-supports
+Environment=ESGI_PROGRESSION=%h/.local/share/esgi-entrainement/progression.json
 Environment=PATH=%h/.cargo/bin:/usr/local/bin:/usr/bin:/bin
 Restart=always
 RestartSec=5

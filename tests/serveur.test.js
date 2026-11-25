@@ -7,6 +7,7 @@ import { DOMAINES_CODE, langageDe } from '../js/domaines.js';
 import { outilsC } from '../serveur/c.js';
 import { outilsPython } from '../serveur/python.js';
 import { outilsRust } from '../serveur/rust.js';
+import { creerProgression } from '../serveur/progression.js';
 import { creerServeur, EXECUTEURS, lirePlage, politiquePage, scriptsEnLigne } from '../serveur/serveur.js';
 import {
   C_DEPART,
@@ -305,5 +306,69 @@ describe('exécuteurs du serveur', () => {
         assert.equal(typeof EXECUTEURS[langage][fonction], 'function', `${domaine} : ${fonction}`);
       }
     }
+  });
+});
+
+describe('routes de la progression', () => {
+  let racine;
+  const serveurs = [];
+
+  async function demarrer(options) {
+    const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), ...options });
+    serveurs.push(serveur);
+    await new Promise((resoudre) => serveur.listen(0, '127.0.0.1', resoudre));
+    const port = serveur.address().port;
+    return { adresse: `http://127.0.0.1:${port}`, cookie: await obtenirCookie(port) };
+  }
+
+  before(async () => {
+    racine = await creerDossierTemporaire();
+    await fs.writeFile(path.join(racine, 'index.html'), PAGE);
+    await fs.mkdir(path.join(racine, 'contenu'));
+  });
+
+  after(async () => {
+    for (const serveur of serveurs) await new Promise((resoudre) => serveur.close(resoudre));
+    await supprimerDossier(racine);
+  });
+
+  it('répond inactive sans progression', async () => {
+    const { adresse, cookie } = await demarrer({});
+    const reponse = await fetch(`${adresse}/api/progression`);
+    assert.deepEqual(await reponse.json(), { active: false });
+    const ecriture = await fetch(`${adresse}/api/progression`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Cookie: cookie },
+      body: JSON.stringify({ changements: [] }),
+    });
+    assert.equal(ecriture.status, 404);
+    assert.deepEqual(await ecriture.json(), { erreur: 'Route inconnue' });
+  });
+
+  it('refuse l’écriture sans cookie, puis enregistre avec', async () => {
+    const progression = creerProgression(path.join(racine, 'donnees', 'progression.json'));
+    const { adresse, cookie } = await demarrer({ progression });
+    const corps = JSON.stringify({ changements: [{ partie: 'saisies', cle: 'k', valeur: 'v', faitLe: 5 }] });
+    const sansCookie = await fetch(`${adresse}/api/progression`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: corps });
+    assert.equal(sansCookie.status, 403);
+
+    const vide = await (await fetch(`${adresse}/api/progression`)).json();
+    assert.equal(vide.active, true);
+    assert.equal(vide.existe, false);
+
+    const ecriture = await fetch(`${adresse}/api/progression`, { method: 'POST', headers: { 'Content-Type': 'application/json', Cookie: cookie }, body: corps });
+    assert.equal(ecriture.status, 200);
+    assert.deepEqual(await ecriture.json(), { retenus: [{ partie: 'saisies', cle: 'k', valeur: 'v' }] });
+
+    const lu = await (await fetch(`${adresse}/api/progression`)).json();
+    assert.equal(lu.existe, true);
+    assert.equal(lu.progression.saisies.k, 'v');
+    assert.equal(lu.dates['saisies/k'], 5);
+
+    const ancien = await fetch(`${adresse}/api/progression`, { method: 'POST', headers: { 'Content-Type': 'application/json', Cookie: cookie }, body: JSON.stringify({ changements: [{ partie: 'saisies', cle: 'k', valeur: 'ancien', faitLe: 4 }] }) });
+    assert.deepEqual(await ancien.json(), { retenus: [{ partie: 'saisies', cle: 'k', valeur: 'v' }] });
+
+    const invalide = await fetch(`${adresse}/api/progression`, { method: 'POST', headers: { 'Content-Type': 'application/json', Cookie: cookie }, body: JSON.stringify({ changements: [{ partie: 'x', cle: 'k', valeur: 1, faitLe: 1 }] }) });
+    assert.equal(invalide.status, 400);
   });
 });

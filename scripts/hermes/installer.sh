@@ -12,7 +12,7 @@ if [[ ! -x "$APPLIQUER" ]]; then
   exit 1
 fi
 
-mkdir -p "$SITES" "$UNITES" "$HOME/esgi-entrainement-supports"
+mkdir -p "$SITES" "$UNITES" "$HOME/esgi-entrainement-supports" "$HOME/.local/share/esgi-entrainement"
 install -m 644 "$SOURCE/esgi-entrainement.caddy" "$SITES/esgi-entrainement.caddy"
 install -m 644 "$SOURCE/esgi-entrainement.json" "$SITES/esgi-entrainement.json"
 install -m 644 "$SOURCE/esgi-entrainement.service" "$UNITES/esgi-entrainement.service"

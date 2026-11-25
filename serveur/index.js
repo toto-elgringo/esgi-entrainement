@@ -7,6 +7,7 @@ import { creerSynchroSchooding } from './schooding/synchro.js';
 import { verifierEnfermement } from './enfermement.js';
 import { prechauffer } from './rust.js';
 import { lireAdresses } from './reglages.js';
+import { creerProgression } from './progression.js';
 import { creerServeur } from './serveur.js';
 import { creerSynchroDesactivee } from './synchro-desactivee.js';
 import { creerVerrou } from './synchro.js';
@@ -57,7 +58,8 @@ const schooding = synchroDesactivee ? creerSynchroDesactivee('Schooding') : cree
   claude: commandeClaude(),
   verrou,
 });
-const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchros: { myges, schooding }, adresses: lireAdresses(process.env.ESGI_ADRESSES) });
+const progression = process.env.ESGI_PROGRESSION ? creerProgression(process.env.ESGI_PROGRESSION) : null;
+const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchros: { myges, schooding }, adresses: lireAdresses(process.env.ESGI_ADRESSES), progression });
 
 function quitter() {
   myges.couper();
