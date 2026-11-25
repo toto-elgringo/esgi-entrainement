@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { creerAteliers, creerVerificateurs, DELAI_EXECUTION, lancer, problemeCompilation, problemeExecution } from './processus.js';
+import { creerAteliers, creerVerificateurs, DELAI_EXECUTION, ecrireFichierNeuf, lancer, problemeCompilation, problemeExecution, recreerDossier } from './processus.js';
 import { analyserTestsRust } from './tests-rust.js';
 
 export { creerReserve, normaliserSortie } from './processus.js';
@@ -65,10 +65,7 @@ export function outilsRust() {
   });
 }
 
-const avecAtelier = creerAteliers('cargo', async (dossier) => {
-  await fs.mkdir(path.join(dossier, 'src'), { recursive: true });
-  await fs.writeFile(path.join(dossier, 'Cargo.toml'), CARGO_TOML, 'utf8');
-});
+const avecAtelier = creerAteliers('cargo');
 
 function cargo(dossier, sousCommande, options = [], signal) {
   return lancer('cargo', [sousCommande, '--quiet', '--color', 'always', ...options], {
@@ -90,7 +87,9 @@ async function analyser(dossier, signal) {
 }
 
 async function compiler(dossier, code, { test = false, avecAnalyse = true, signal } = {}) {
-  await fs.writeFile(path.join(dossier, 'src', 'main.rs'), code, 'utf8');
+  await ecrireFichierNeuf(path.join(dossier, 'Cargo.toml'), CARGO_TOML);
+  await recreerDossier(path.join(dossier, 'src'));
+  await ecrireFichierNeuf(path.join(dossier, 'src', 'main.rs'), code);
   let avertissements = null;
   if (avecAnalyse) {
     const analyse = await analyser(dossier, signal);

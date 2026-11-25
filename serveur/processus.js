@@ -111,6 +111,16 @@ export function creerReserve(dossiers, { attenteMax = ATTENTE_MAX } = {}) {
   };
 }
 
+export async function ecrireFichierNeuf(fichier, contenu) {
+  await fs.rm(fichier, { recursive: true, force: true, maxRetries: 3 });
+  await fs.writeFile(fichier, contenu, { encoding: 'utf8', flag: 'wx' });
+}
+
+export async function recreerDossier(dossier) {
+  await fs.rm(dossier, { recursive: true, force: true, maxRetries: 3 });
+  await fs.mkdir(dossier);
+}
+
 export function tuerArbre(processus) {
   if (!processus?.pid || processus.exitCode !== null || processus.signalCode !== null) return;
   if (process.platform !== 'win32') {
