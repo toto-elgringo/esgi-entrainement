@@ -6,6 +6,7 @@ import {
   creerMarqueur,
   creerVerificateurs,
   DELAI_EXECUTION,
+  ecrireFichierNeuf,
   extraireTests,
   lancer,
   problemeCompilation,
@@ -252,10 +253,11 @@ export function outilsC() {
   });
 }
 
-const avecAtelier = creerAteliers('gcc', (dossier) => fs.writeFile(path.join(dossier, FICHIER_AMORCE), AMORCE, 'utf8'));
+const avecAtelier = creerAteliers('gcc');
 
 async function compiler(dossier, source, signal) {
-  await fs.writeFile(path.join(dossier, FICHIER_SOURCE), source, 'utf8');
+  await ecrireFichierNeuf(path.join(dossier, FICHIER_AMORCE), AMORCE);
+  await ecrireFichierNeuf(path.join(dossier, FICHIER_SOURCE), source);
   await fs.rm(path.join(dossier, NOM_BINAIRE), { force: true });
   const compilation = await lancer(
     'gcc',

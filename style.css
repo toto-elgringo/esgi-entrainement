@@ -437,6 +437,13 @@ h1 {
   cursor: wait;
 }
 
+.bouton.grise,
+.bouton.grise:hover {
+  border-color: var(--bordure);
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .bouton.principal {
   background: var(--accent);
   border-color: var(--accent);

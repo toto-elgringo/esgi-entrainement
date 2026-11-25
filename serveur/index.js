@@ -4,9 +4,19 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creerSynchro } from './myges/synchro.js';
 import { creerSynchroSchooding } from './schooding/synchro.js';
+import { verifierEnfermement } from './enfermement.js';
 import { prechauffer } from './rust.js';
+import { lireAdresses } from './reglages.js';
 import { creerServeur } from './serveur.js';
+import { creerSynchroDesactivee } from './synchro-desactivee.js';
 import { creerVerrou } from './synchro.js';
+
+try {
+  verifierEnfermement();
+} catch (erreur) {
+  console.error(erreur.message);
+  process.exit(1);
+}
 
 const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const port = Number(process.env.PORT) || 3000;
@@ -26,7 +36,8 @@ function commandeClaude() {
 }
 
 const verrou = creerVerrou();
-const myges = creerSynchro({
+const synchroDesactivee = process.env.ESGI_SYNCHRO === 'desactivee';
+const myges = synchroDesactivee ? creerSynchroDesactivee('MyGES') : creerSynchro({
   vault: dossierSupports,
   fichierEnv: path.join(racine, '.env'),
   fichierSuivi: path.join(racine, 'myges-suivi.json'),
@@ -36,7 +47,7 @@ const myges = creerSynchro({
   claude: commandeClaude(),
   verrou,
 });
-const schooding = creerSynchroSchooding({
+const schooding = synchroDesactivee ? creerSynchroDesactivee('Schooding') : creerSynchroSchooding({
   vault: dossierSupports,
   fichierEnv: path.join(racine, '.env'),
   fichierSuivi: path.join(racine, 'schooding-suivi.json'),
@@ -46,7 +57,7 @@ const schooding = creerSynchroSchooding({
   claude: commandeClaude(),
   verrou,
 });
-const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchros: { myges, schooding } });
+const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchros: { myges, schooding }, adresses: lireAdresses(process.env.ESGI_ADRESSES) });
 
 function quitter() {
   myges.couper();

@@ -113,7 +113,7 @@ describe('processus : lancement des programmes', () => {
     assert.equal(resultat.lancementBloque, false);
   });
 
-  it('signale un lancement refusé par le système avec le code de l’erreur', async () => {
+  it('signale un lancement refusé par le système avec le code de l’erreur', { skip: process.env.ESGI_ENFERMEMENT === 'bwrap' && 'fichier hors de la zone enfermée : invisible pour bwrap' }, async () => {
     const resultat = await lancer(path.join(racine, 'package.json'), []);
     assert.equal(resultat.lancementBloque, true);
     assert.equal(typeof resultat.erreur.code, 'string');

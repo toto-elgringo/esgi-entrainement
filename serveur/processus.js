@@ -4,6 +4,7 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import { argumentsEnfermement, corrigerErreurEnfermee, modeEnfermement } from './enfermement.js';
 
 export const DELAI_EXECUTION = 10_000;
 export const TAILLE_MAX_FLUX = 20_000;
@@ -110,6 +111,16 @@ export function creerReserve(dossiers, { attenteMax = ATTENTE_MAX } = {}) {
   };
 }
 
+export async function ecrireFichierNeuf(fichier, contenu) {
+  await fs.rm(fichier, { recursive: true, force: true, maxRetries: 3 });
+  await fs.writeFile(fichier, contenu, { encoding: 'utf8', flag: 'wx' });
+}
+
+export async function recreerDossier(dossier) {
+  await fs.rm(dossier, { recursive: true, force: true, maxRetries: 3 });
+  await fs.mkdir(dossier);
+}
+
 export function tuerArbre(processus) {
   if (!processus?.pid || processus.exitCode !== null || processus.signalCode !== null) return;
   if (process.platform !== 'win32') {
@@ -138,8 +149,22 @@ function resultatLancement(erreur, { arret = null, stdout = '', stderr = '' } = 
   };
 }
 
-export function lancer(commande, args, { delai, dossier, entree = '', env = {}, signal } = {}) {
+let dossierSondes = null;
+
+function dossierSansAtelier() {
+  dossierSondes ??= fsSync.mkdtempSync(path.join(os.tmpdir(), 'esgi-entrainement-sondes-'));
+  return dossierSondes;
+}
+
+function preparerLancement(commande, args, dossier, env) {
+  if (modeEnfermement() !== 'bwrap') return { commande, args, dossier, env: { ...process.env, ...env }, enferme: false };
+  const travail = dossier ?? dossierSansAtelier();
+  return { ...argumentsEnfermement({ commande, args, dossier: travail, env }), dossier: travail, env: {}, enferme: true };
+}
+
+export function lancer(commandeDemandee, argsDemandes, { delai, dossier: dossierDemande, entree = '', env: envDemande = {}, signal } = {}) {
   if (signal?.aborted) return Promise.resolve(resultatLancement(null, { arret: 'annule' }));
+  const { commande, args, dossier, env, enferme } = preparerLancement(commandeDemandee, argsDemandes, dossierDemande, envDemande);
   return new Promise((resoudre) => {
     let arret = null;
     let minuteur = null;
@@ -154,14 +179,14 @@ export function lancer(commande, args, { delai, dossier, entree = '', env = {}, 
     function terminer(erreur, stdout, stderr) {
       clearTimeout(minuteur);
       signal?.removeEventListener('abort', annuler);
-      resoudre(resultatLancement(erreur, { arret, stdout, stderr }));
+      resoudre(resultatLancement(enferme ? corrigerErreurEnfermee(erreur, stderr) : erreur, { arret, stdout, stderr }));
     }
 
     try {
       processus = execFile(
         commande,
         args,
-        { cwd: dossier, maxBuffer: TAILLE_MAX_SORTIE, windowsHide: true, env: { ...process.env, ...env } },
+        { cwd: dossier, maxBuffer: TAILLE_MAX_SORTIE, windowsHide: true, env },
         terminer,
       );
     } catch (erreur) {

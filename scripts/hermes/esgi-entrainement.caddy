@@ -1,0 +1,6 @@
+redir /esgi-entrainement /esgi-entrainement/ 308
+
+handle /esgi-entrainement/* {
+	uri strip_prefix /esgi-entrainement
+	reverse_proxy 127.0.0.1:3000
+}
