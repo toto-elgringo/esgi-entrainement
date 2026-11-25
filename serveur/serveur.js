@@ -359,13 +359,33 @@ function routesSynchros(synchros, gardes) {
   );
 }
 
+function routesProgression(progression, gardes) {
+  const lecture = {
+    methode: 'GET',
+    chemin: '/api/progression',
+    garde: gardes.lecture,
+    action: async () => (progression ? { active: true, ...(await progression.lire()) } : { active: false }),
+  };
+  if (!progression) return [lecture];
+  return [
+    lecture,
+    {
+      methode: 'POST',
+      chemin: '/api/progression',
+      garde: gardes.ecriture,
+      action: async ({ requete }) => progression.appliquer((await lireCorpsJson(requete)).changements),
+    },
+  ];
+}
+
 function creerRoutes(options) {
-  const { dossierContenu, dossierSupports, synchros, sommaires, gardes } = options;
+  const { dossierContenu, dossierSupports, synchros, sommaires, gardes, progression } = options;
   return [
     { methode: 'GET', chemin: '/api/etat', garde: gardes.lecture, action: ({ url }) => etatOutils(url.searchParams.has('rafraichir')) },
     { methode: 'GET', motif: /^\/api\/sommaire\/([^/]+)$/, garde: gardes.lecture, action: ({ parametres }) => sommaires.lire(parametres[0]) },
     ...routesLangages(dossierContenu, gardes),
     ...routesSynchros(synchros, gardes),
+    ...routesProgression(progression, gardes),
     { methode: 'GET', motif: /^\/supports\/(.+)$/, garde: gardes.aucune, brut: true, action: (contexte) => servirSupport(contexte, dossierSupports) },
     { methode: 'GET', motif: /^\/(?!api\/)/, garde: gardes.aucune, brut: true, action: (contexte) => servirFichier(contexte, options) },
   ];
@@ -396,14 +416,14 @@ function lireUrl(requete) {
   }
 }
 
-export function creerServeur({ racine, dossierContenu, dossierSupports, synchros = {}, adresses = [] }) {
+export function creerServeur({ racine, dossierContenu, dossierSupports, synchros = {}, adresses = [], progression = null }) {
   const jeton = randomUUID();
   const gardes = creerGardes(jeton, adresses);
   const sommaires = creerSommaires(dossierContenu);
   const fichiersPrives = new Set(
     [...Object.values(synchros).flatMap((synchro) => synchro?.fichiersPrives ?? []), FICHIER_OBSIDIAN].map((nom) => nom.toLowerCase()),
   );
-  const routes = creerRoutes({ racine, dossierContenu, dossierSupports, synchros, sommaires, gardes, fichiersPrives, jeton });
+  const routes = creerRoutes({ racine, dossierContenu, dossierSupports, synchros, sommaires, gardes, fichiersPrives, jeton, progression });
 
   const serveur = http.createServer(async (requete, reponse) => {
     for (const [nom, valeur] of Object.entries(ENTETES_SECURITE)) reponse.setHeader(nom, valeur);
