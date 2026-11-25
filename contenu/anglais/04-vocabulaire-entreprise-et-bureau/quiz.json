@@ -8,7 +8,7 @@
       "actionnaire"
     ],
     "reponse": 1,
-    "explication": "*Subsidiary* = filiale. Ne pas confondre avec *subsidy* (subvention) ni *branch* (agence, succursale)."
+    "explication": "**Règle :** une *subsidiary* est une **filiale** : une société à part entière, possédée par une autre (la maison mère).\n\n**Pas à pas :**\n\n1. *subsidiary* ressemble à « subsidiaire » (secondaire) : c'est bien une société « secondaire », qui dépend d'une maison mère.\n2. Exemple : *Our Spanish subsidiary* = notre filiale espagnole (une société espagnole qui nous appartient).\n\n**Les autres réponses :** « succursale » se dit *branch* (un lieu de la **même** société, sans existence propre) ; « subvention » se dit *subsidy* (le piège est la ressemblance) ; « actionnaire » se dit *shareholder*.\n\n**À retenir :** filiale = *subsidiary* (autre société) ; agence, succursale = *branch* (même société)."
   },
   {
     "question": "Que veut dire *merger* ?",
@@ -19,7 +19,7 @@
       "marché"
     ],
     "reponse": 0,
-    "explication": "*Merger* = fusion de deux entreprises. *Takeover* = rachat, prise de contrôle."
+    "explication": "**Règle :** un *merger* est une **fusion** : deux entreprises qui n'en forment plus qu'une. Verbe : *to merge*.\n\n**Pas à pas :** *the merger between A and B* = A et B mettent tout en commun et deviennent une seule société.\n\n**Les autres réponses :** « rachat » se dit *takeover* (une société en achète une autre, elle ne fusionne pas d'égal à égal) ; « faillite » se dit *bankruptcy* ; « marché » se dit *market*, le son proche est un piège.\n\n**À retenir :** fusion = *merger* ; rachat = *takeover*."
   },
   {
     "question": "*Premises* désigne...",
@@ -30,7 +30,7 @@
       "un prix"
     ],
     "reponse": 0,
-    "explication": "*Premises* = locaux, bâtiment. Le mot est toujours au pluriel : *No smoking on the premises.*"
+    "explication": "**Règle :** *premises* = les **locaux** d'une entreprise (le bâtiment et ce qui l'entoure). Le mot est **toujours au pluriel**.\n\n**Pas à pas :** *on the premises* = dans les locaux, sur place. Exemple : *No smoking on the premises* (interdit de fumer dans les locaux).\n\n**Les autres réponses :** « les premiers clients » vient d'une confusion avec *premier* (premier) ; « une promesse » se dit *a promise* ; « un prix » se dit *a price* ou *a prize*. Aucun n'a de lien avec *premises* dans le monde du travail.\n\n**À retenir :** *premises* = locaux, toujours avec un *-s*."
   },
   {
     "question": "Que veut dire *executive* ?",
@@ -41,7 +41,7 @@
       "stagiaire"
     ],
     "reponse": 1,
-    "explication": "Faux ami : *an executive* est un cadre, un membre de la direction."
+    "explication": "**Règle :** *executive* est un **faux ami** : il veut dire **cadre**, membre de la direction (pas « exécutant »).\n\n**Pas à pas :** *Chief Executive Officer* (CEO) = le directeur général, le plus haut des cadres. Un *executive* prend des décisions, il ne fait pas qu'exécuter.\n\n**Les autres réponses :** « exécutant » est le piège du son ; « huissier » se dit *bailiff* ; « stagiaire » se dit *intern* ou *trainee*.\n\n**À retenir :** *executive* = cadre ; *CEO* = directeur général."
   },
   {
     "question": "Une *cover letter*, c'est...",
@@ -52,7 +52,7 @@
       "une couverture"
     ],
     "reponse": 0,
-    "explication": "On envoie un *résumé* (CV) et une *cover letter* (lettre de motivation)."
+    "explication": "**Règle :** une *cover letter* (ou *covering letter* en anglais britannique) est une **lettre de motivation**, envoyée avec le CV.\n\n**Pas à pas :** *cover* veut dire « couvrir » : la lettre « couvre » le CV, elle est posée dessus et le présente. *Send a résumé and a cover letter* = envoyer un CV et une lettre de motivation.\n\n**Les autres réponses :** « une enveloppe » se dit *an envelope* ; « une lettre de licenciement » se dit *a dismissal letter* ; « une couverture » (de livre, de lit) traduit *cover* seul, pas *cover letter*.\n\n**À retenir :** CV + lettre de motivation = *résumé* + *cover letter*."
   },
   {
     "question": "*Redundancy* (UK) signifie...",
@@ -63,7 +63,7 @@
       "retraite"
     ],
     "reponse": 1,
-    "explication": "*Redundancy* = licenciement ; *to be made redundant* = être licencié."
+    "explication": "**Règle :** en anglais britannique, *redundancy* veut dire **licenciement économique** (le poste n'est plus utile). *To be made redundant* = être licencié pour raison économique.\n\n**Pas à pas :** *There were 200 redundancies* = il y a eu 200 licenciements économiques. Le sens « redondance » existe, mais pas dans le monde du travail.\n\n**Les autres réponses :** « redondance » est le piège du son (faux ami en contexte RH) ; « démission » se dit *resignation* ; « retraite » se dit *retirement*.\n\n**À retenir :** *redundancy* = licenciement économique ; *made redundant* = licencié."
   },
   {
     "question": "*She is entitled to five weeks of holiday* veut dire...",
@@ -74,7 +74,7 @@
       "Elle a pris cinq semaines"
     ],
     "reponse": 0,
-    "explication": "*Be entitled to* = avoir droit à."
+    "explication": "**Règle :** *to be entitled to* + nom = **avoir droit à**.\n\n**Pas à pas :**\n\n1. *She is entitled to* = elle a droit à.\n2. *five weeks of holiday* = cinq semaines de congés.\n3. Phrase : **Elle a droit à cinq semaines de congés.**\n\n**Les autres réponses :** « s'intituler » est le piège du son (*entitled* ressemble à « intitulé ») ; « demander » se dirait *ask for* ; « avoir pris » se dirait *has taken*. *Entitled to* parle d'un **droit**, pas d'une action déjà faite.\n\n**À retenir :** *be entitled to* = avoir droit à."
   },
   {
     "question": "Que veut dire *stationery* ?",
@@ -85,7 +85,7 @@
       "immobile"
     ],
     "reponse": 1,
-    "explication": "*Stationery* (avec un *e*) = papeterie, fournitures. *Stationary* (avec un *a*) = immobile."
+    "explication": "**Règle :** *stationery* (avec un *e*) = **fournitures de bureau**, papeterie. À ne pas confondre avec *stationary* (avec un *a*) = immobile.\n\n**Pas à pas :** stylos, papier, enveloppes, agrafes : tout ça, c'est de la *stationery*. Synonyme : *office supplies*.\n\n**Les autres réponses :** « stationnement » se dit *parking* ; « gare » se dit *station* ; « immobile » se dit *stationary* (avec un *a*), le piège de l'orthographe.\n\n**À retenir :** stationery = papeterie (pense au *e* de *envelope*)."
   },
   {
     "question": "Au téléphone, *The line is busy* veut dire...",
@@ -96,7 +96,7 @@
       "Restez en ligne"
     ],
     "reponse": 0,
-    "explication": "*Busy* = occupé. *Please hold* = restez en ligne."
+    "explication": "**Règle :** au téléphone, *busy* = **occupé**, en parlant de la **ligne**.\n\n**Pas à pas :** *The line is busy* = la ligne est occupée (quelqu'un d'autre est déjà en communication). On peut rappeler ou patienter (*hold*).\n\n**Les autres réponses :** « la ligne est coupée » se dirait *the line is dead* ou *we were cut off* ; « le patron est occupé » parle d'une personne, pas de la ligne (*the boss is busy*) ; « restez en ligne » se dit *please hold*.\n\n**À retenir :** *busy* (téléphone) = occupé ; *hold* = patienter."
   },
   {
     "question": "*Please find enclosed a copy of the contract.* Que veut dire *enclosed* ?",
@@ -107,7 +107,7 @@
       "signé"
     ],
     "reponse": 1,
-    "explication": "*Enclose* = joindre (à une lettre). *Please find enclosed* = veuillez trouver ci-joint."
+    "explication": "**Règle :** *Please find enclosed...* = **veuillez trouver ci-joint**. *To enclose* = joindre à une lettre (mettre dans l'enveloppe).\n\n**Pas à pas :**\n\n1. *Please find enclosed a copy of the contract.*\n2. = Veuillez trouver **ci-joint** une copie du contrat.\n\n**Les autres réponses :** « fermé » est le sens général de *enclosed* (enclos), mais pas dans cette formule de courrier ; « envoyé » se dit *sent* ; « signé » se dit *signed*.\n\n**À retenir :** *Please find enclosed / attached* = veuillez trouver ci-joint."
   },
   {
     "question": "*To step down as CEO*, c'est...",
@@ -118,7 +118,7 @@
       "remplacer le PDG"
     ],
     "reponse": 1,
-    "explication": "*Step down as* = quitter, démissionner d'un poste."
+    "explication": "**Règle :** *to step down as* + poste = **démissionner de ce poste**, quitter une fonction de direction.\n\n**Pas à pas :**\n\n1. *step down* = « descendre de la marche » : on quitte sa place en haut.\n2. *To step down as CEO* = **démissionner du poste de PDG**.\n\n**Les autres réponses :** « être promu » est le contraire (*be promoted*) ; « descendre voir le PDG » est la traduction mot à mot, le piège ; « remplacer » se dit *replace* ou *cover for*.\n\n**À retenir :** *step down* = démissionner d'un poste de direction (synonyme : *resign*)."
   },
   {
     "question": "Quel mot désigne la **charge de travail** ?",
@@ -129,6 +129,6 @@
       "workforce"
     ],
     "reponse": 1,
-    "explication": "*Workload* = charge de travail. *Workshop* = atelier, *workforce* = main-d'oeuvre."
+    "explication": "**Règle :** *workload* = la **charge de travail** : *work* (travail) + *load* (charge).\n\n**Pas à pas :** *load* veut dire « charge » (comme le chargement d'un camion). *A heavy workload* = une grosse charge de travail.\n\n**Les autres réponses :** *workshop* = atelier ; *worktime* n'est pas un mot courant (on dit *working hours*) ; *workforce* = les effectifs, la main-d'œuvre (les **personnes**, pas la quantité de travail).\n\n**À retenir :** *load* = charge → *workload* ; *force* = les personnes → *workforce*."
   }
 ]

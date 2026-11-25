@@ -1,74 +1,134 @@
 [
   {
     "question": "Sur quel ensemble la fonction $g(x) = \\dfrac{1}{x-2}$ est-elle continue ?",
-    "choix": ["$\\mathbb{R}$", "$\\mathbb{R} \\setminus \\{2\\}$", "$]2, +\\infty[$", "$\\mathbb{R} \\setminus \\{0\\}$"],
+    "choix": [
+      "$\\mathbb{R}$",
+      "$\\mathbb{R} \\setminus \\{2\\}$",
+      "$]2, +\\infty[$",
+      "$\\mathbb{R} \\setminus \\{0\\}$"
+    ],
     "reponse": 1,
-    "explication": "Une fraction est continue partout où elle est définie : on enlève seulement la valeur qui annule le dénominateur, $x = 2$."
+    "explication": "**Règle :** une fraction $\\dfrac{A}{B}$ n'existe pas quand son dénominateur $B$ vaut 0 (on ne divise jamais par 0). Partout ailleurs, elle est continue : sa courbe n'a pas de saut.\n\n**Pas à pas :**\n\n1. Le dénominateur de $g$ est $x - 2$.\n2. On cherche quand il vaut 0 : $x - 2 = 0$, donc $x = 2$.\n3. On enlève cette seule valeur : $g$ est définie, et continue, sur $\\mathbb{R} \\setminus \\{2\\}$ (« R privé de 2 », tous les réels sauf 2).\n\nVérification : $g(0) = \\dfrac{1}{-2}$ existe, $g(5) = \\dfrac{1}{3}$ existe, mais $g(2) = \\dfrac{1}{0}$ n'existe pas.\n\n**Les autres réponses :**\n\n- $\\mathbb{R}$ : faux, en $x = 2$ on diviserait par 0.\n- $]2, +\\infty[$ : enlève aussi tous les nombres plus petits que 2, alors que $g(0)$ existe très bien. C'est un réflexe venu de $\\ln$, pas des fractions.\n- $\\mathbb{R} \\setminus \\{0\\}$ : c'est la valeur interdite de $\\dfrac{1}{x}$, pas de $\\dfrac{1}{x-2}$.\n\n**À retenir :** pour une fraction, résous « dénominateur $= 0$ » et enlève seulement ces valeurs-là."
   },
   {
     "question": "Quelle affirmation est vraie ?",
-    "choix": ["Toute fonction dérivable est continue", "Toute fonction continue est dérivable", "Continue et dérivable veulent dire la même chose", "Une fonction dérivable peut avoir un saut"],
+    "choix": [
+      "Toute fonction dérivable est continue",
+      "Toute fonction continue est dérivable",
+      "Continue et dérivable veulent dire la même chose",
+      "Une fonction dérivable peut avoir un saut"
+    ],
     "reponse": 0,
-    "explication": "Dérivable ⇒ continue. La réciproque est fausse : $|x|$ est continue en 0 mais pas dérivable (sa courbe fait une pointe)."
+    "explication": "**Règle :** une fonction **dérivable** en un point a une tangente bien définie, donc sa courbe ne peut pas y faire de saut : **dérivable ⇒ continue**. Mais l'inverse est faux : une courbe sans saut peut quand même faire une pointe.\n\n**Pas à pas :** on teste chaque phrase sur l'exemple $|x|$ en 0.\n\n- $|x|$ est continue en 0 : à gauche elle vaut $-x$, à droite $x$, et les deux valent 0 en 0, il n'y a pas de saut.\n- $|x|$ n'est pas dérivable en 0 : pente $-1$ à gauche, $+1$ à droite, la courbe fait une pointe.\n\nDonc « Toute fonction dérivable est continue » est la seule phrase vraie.\n\n**Les autres réponses :**\n\n- « Toute fonction continue est dérivable » : $|x|$ est un contre-exemple (continue mais pas dérivable en 0).\n- « Continue et dérivable veulent dire la même chose » : même contre-exemple, les deux notions sont différentes.\n- « Une fonction dérivable peut avoir un saut » : impossible, un saut empêche déjà la continuité, donc la dérivabilité.\n\n**À retenir :** dérivable ⇒ continue, mais continue ⇏ dérivable (pense à la pointe de $|x|$)."
   },
   {
     "question": "Pourquoi $|x|$ n'est-elle pas dérivable en 0 ?",
-    "choix": ["Elle n'est pas définie en 0", "Elle fait un saut en 0", "La pente vaut $-1$ à gauche et $+1$ à droite", "Elle vaut 0 en 0"],
+    "choix": [
+      "Elle n'est pas définie en 0",
+      "Elle fait un saut en 0",
+      "La pente vaut $-1$ à gauche et $+1$ à droite",
+      "Elle vaut 0 en 0"
+    ],
     "reponse": 2,
-    "explication": "Les deux demi-tangentes n'ont pas la même pente : il n'y a pas de tangente unique, donc pas de nombre dérivé."
+    "explication": "**Règle :** une fonction est dérivable en $x_0$ s'il y a **une seule** tangente en ce point, c'est-à-dire si la pente juste à gauche est égale à la pente juste à droite.\n\n**Pas à pas :**\n\n1. Pour $x < 0$, $|x| = -x$ : c'est une droite de pente $-1$ (elle descend).\n2. Pour $x > 0$, $|x| = x$ : c'est une droite de pente $+1$ (elle monte).\n3. En 0, les pentes $-1$ et $+1$ sont différentes : la courbe fait une pointe en « V », il n'y a pas de tangente unique, donc pas de nombre dérivé.\n\n**Les autres réponses :**\n\n- « Elle n'est pas définie en 0 » : faux, $|0| = 0$ existe.\n- « Elle fait un saut en 0 » : faux, les deux morceaux valent 0 en 0, la courbe se trace sans lever le crayon (elle est continue).\n- « Elle vaut 0 en 0 » : c'est vrai, mais ce n'est pas une raison. $x^2$ vaut aussi 0 en 0 et elle est dérivable.\n\n**À retenir :** pour une fonction en morceaux, compare la pente à gauche et la pente à droite : différentes = pointe = pas dérivable."
   },
   {
     "question": "Quelle est la règle de dérivation d'un produit $uv$ ?",
-    "choix": ["$u'v'$", "$u'v - uv'$", "$\\dfrac{u'v - uv'}{v^2}$", "$u'v + uv'$"],
+    "choix": [
+      "$u'v'$",
+      "$u'v - uv'$",
+      "$\\dfrac{u'v - uv'}{v^2}$",
+      "$u'v + uv'$"
+    ],
     "reponse": 3,
-    "explication": "$(uv)' = u'v + uv'$. La formule avec $v^2$ au dénominateur est celle du quotient."
+    "explication": "**Règle :** la dérivée d'un produit est $(uv)' = u'v + uv'$ : on dérive le premier facteur en gardant le second, **plus** le premier facteur gardé fois le second dérivé.\n\n**Pas à pas :** exemple avec $u = x^2$ et $v = x^3$, donc $uv = x^5$.\n\n- $u' = 2x$ et $v' = 3x^2$.\n- $u'v + uv' = 2x \\times x^3 + x^2 \\times 3x^2 = 2x^4 + 3x^4 = 5x^4$.\n- On vérifie directement : $(x^5)' = 5x^4$. La formule marche.\n\n**Les autres réponses :**\n\n- $u'v'$ donnerait $2x \\times 3x^2 = 6x^3$, ce qui est faux : on ne dérive **pas** chaque facteur séparément.\n- $u'v - uv'$ : c'est le numérateur de la règle du quotient (avec un moins), pas la règle du produit.\n- $\\dfrac{u'v - uv'}{v^2}$ : c'est la règle complète du **quotient** $\\dfrac{u}{v}$.\n\n**À retenir :** produit = $u'v + uv'$ (un plus, deux termes, pas de dénominateur)."
   },
   {
     "question": "Quelle est la dérivée de $e^{5x}$ ?",
-    "choix": ["$5e^{5x}$", "$e^{5x}$", "$5x\\,e^{5x}$", "$\\dfrac{1}{5}e^{5x}$"],
+    "choix": [
+      "$5e^{5x}$",
+      "$e^{5x}$",
+      "$5x\\,e^{5x}$",
+      "$\\dfrac{1}{5}e^{5x}$"
+    ],
     "reponse": 0,
-    "explication": "C'est une composée : on garde $e^{5x}$ et on multiplie par la dérivée de l'intérieur $5x$, qui vaut 5."
+    "explication": "**Règle :** pour une composée $e^{v(x)}$, on garde $e^{v(x)}$ et on multiplie par la dérivée de l'intérieur : $\\left(e^{v}\\right)' = v' \\times e^{v}$.\n\n**Pas à pas :**\n\n1. L'intérieur est $v(x) = 5x$.\n2. Sa dérivée : $v'(x) = 5$.\n3. On multiplie : $\\left(e^{5x}\\right)' = 5 \\times e^{5x} = 5e^{5x}$.\n\nVérification en $x = 0$ : la pente vaut $5e^0 = 5$, la courbe de $e^{5x}$ monte bien 5 fois plus vite que celle de $e^x$ (pente 1).\n\n**Les autres réponses :**\n\n- $e^{5x}$ : on a oublié de multiplier par la dérivée de l'intérieur (le piège le plus courant).\n- $5x\\,e^{5x}$ : on a multiplié par l'intérieur $5x$ lui-même au lieu de sa dérivée $5$.\n- $\\dfrac{1}{5}e^{5x}$ : c'est une **primitive** de $e^{5x}$ (on divise), pas sa dérivée (on multiplie).\n\n**À retenir :** $\\left(e^{ax}\\right)' = a\\,e^{ax}$ : on multiplie par $a$ (pour une primitive, on divise par $a$)."
   },
   {
     "question": "Quelle est la dérivée de $\\cos x$ ?",
-    "choix": ["$\\sin x$", "$-\\sin x$", "$-\\cos x$", "$\\tan x$"],
+    "choix": [
+      "$\\sin x$",
+      "$-\\sin x$",
+      "$-\\cos x$",
+      "$\\tan x$"
+    ],
     "reponse": 1,
-    "explication": "$(\\sin)' = \\cos$ et $(\\cos)' = -\\sin$. Attention au signe moins."
+    "explication": "**Règle :** les deux dérivées à connaître par cœur sont $(\\sin x)' = \\cos x$ et $(\\cos x)' = -\\sin x$ (avec un signe moins).\n\n**Pas à pas :** on vérifie le signe sur la courbe de $\\cos$.\n\n- En $x = 0$, $\\cos$ vaut 1, son maximum : la pente y est nulle, et $-\\sin 0 = 0$. Cohérent.\n- Juste après 0 (par exemple $x = \\dfrac{\\pi}{2}$), $\\cos$ descend de 1 vers 0 : la pente est négative, et $-\\sin\\left(\\dfrac{\\pi}{2}\\right) = -1$. Cohérent.\n\nDonc $(\\cos x)' = -\\sin x$.\n\n**Les autres réponses :**\n\n- $\\sin x$ : bon terme, mauvais signe. Il donnerait une pente $+1$ en $\\dfrac{\\pi}{2}$, alors que $\\cos$ y descend.\n- $-\\cos x$ : c'est la dérivée **seconde** de $\\cos$ (on dérive deux fois).\n- $\\tan x$ : aucun rapport, $\\tan x = \\dfrac{\\sin x}{\\cos x}$.\n\n**À retenir :** $\\sin \\to \\cos \\to -\\sin \\to -\\cos \\to \\sin$ : à chaque dérivation on avance d'une case, le moins apparaît en dérivant $\\cos$."
   },
   {
     "question": "En quelles valeurs de $[0, 2\\pi]$ la fonction $\\tan$ n'est-elle pas définie ?",
-    "choix": ["$0$ et $\\pi$", "$\\dfrac{\\pi}{4}$ et $\\dfrac{3\\pi}{4}$", "Elle est définie partout", "$\\dfrac{\\pi}{2}$ et $\\dfrac{3\\pi}{2}$"],
+    "choix": [
+      "$0$ et $\\pi$",
+      "$\\dfrac{\\pi}{4}$ et $\\dfrac{3\\pi}{4}$",
+      "Elle est définie partout",
+      "$\\dfrac{\\pi}{2}$ et $\\dfrac{3\\pi}{2}$"
+    ],
     "reponse": 3,
-    "explication": "$\\tan x = \\dfrac{\\sin x}{\\cos x}$ n'existe pas quand $\\cos x = 0$, soit en $\\dfrac{\\pi}{2}$ et $\\dfrac{3\\pi}{2}$ sur $[0, 2\\pi]$."
+    "explication": "**Règle :** $\\tan x = \\dfrac{\\sin x}{\\cos x}$ est une fraction : elle n'existe pas quand son dénominateur $\\cos x$ vaut 0.\n\n**Pas à pas :** on cherche sur $[0, 2\\pi]$ les angles où $\\cos x = 0$. Sur le cercle trigonométrique, $\\cos$ est l'abscisse du point.\n\n| Angle | Point du cercle | $\\cos x$ | $\\tan$ définie ? |\n|---|---|---|---|\n| $0$ | $(1, 0)$ | $1$ | oui |\n| $\\frac{\\pi}{2}$ | $(0, 1)$ | $0$ | **non** |\n| $\\pi$ | $(-1, 0)$ | $-1$ | oui |\n| $\\frac{3\\pi}{2}$ | $(0, -1)$ | $0$ | **non** |\n| $2\\pi$ | $(1, 0)$ | $1$ | oui |\n\nDonc $\\tan$ n'est pas définie en $\\dfrac{\\pi}{2}$ et $\\dfrac{3\\pi}{2}$.\n\n**Les autres réponses :**\n\n- $0$ et $\\pi$ : c'est là que $\\sin x = 0$, donc $\\tan x = 0$. Elle existe très bien (elle vaut 0).\n- $\\dfrac{\\pi}{4}$ et $\\dfrac{3\\pi}{4}$ : $\\cos$ n'y vaut pas 0 ($\\tan\\frac{\\pi}{4} = 1$, $\\tan\\frac{3\\pi}{4} = -1$).\n- « Elle est définie partout » : faux, une fraction ne supporte pas un dénominateur nul.\n\n**À retenir :** $\\tan$ est interdite là où $\\cos = 0$, c'est-à-dire en haut et en bas du cercle : $\\dfrac{\\pi}{2} + k\\pi$."
   },
   {
     "question": "Quelle est une primitive de $x^4$ ?",
-    "choix": ["$4x^3$", "$x^5$", "$\\dfrac{x^5}{5}$", "$\\dfrac{x^4}{4}$"],
+    "choix": [
+      "$4x^3$",
+      "$x^5$",
+      "$\\dfrac{x^5}{5}$",
+      "$\\dfrac{x^4}{4}$"
+    ],
     "reponse": 2,
-    "explication": "On augmente la puissance de 1 et on divise par la nouvelle puissance : $\\dfrac{x^{4+1}}{4+1} = \\dfrac{x^5}{5}$. On vérifie en dérivant."
+    "explication": "**Règle :** une primitive de $x^n$ (avec $n \\neq -1$) est $\\dfrac{x^{n+1}}{n+1}$ : on **augmente** la puissance de 1, puis on **divise** par la nouvelle puissance.\n\n**Pas à pas :**\n\n1. Ici $n = 4$.\n2. Nouvelle puissance : $4 + 1 = 5$, donc $x^5$.\n3. On divise par 5 : $\\dfrac{x^5}{5}$.\n4. Vérification en dérivant : $\\left(\\dfrac{x^5}{5}\\right)' = \\dfrac{5x^4}{5} = x^4$. On retombe sur la fonction de départ.\n\n**Les autres réponses :**\n\n- $4x^3$ : c'est la **dérivée** de $x^4$, l'opération inverse.\n- $x^5$ : on a oublié de diviser par 5. Sa dérivée vaut $5x^4$, pas $x^4$.\n- $\\dfrac{x^4}{4}$ : on a divisé sans augmenter la puissance. Sa dérivée vaut $x^3$.\n\n**À retenir :** primitive de $x^n$ = monte la puissance de 1, divise par la nouvelle, puis vérifie en dérivant."
   },
   {
     "question": "Quelle est une primitive de $\\dfrac{1}{x}$ pour $x > 0$ ?",
-    "choix": ["$\\dfrac{x^0}{0}$", "$-\\dfrac{1}{x^2}$", "$\\ln x$", "$e^x$"],
+    "choix": [
+      "$\\dfrac{x^0}{0}$",
+      "$-\\dfrac{1}{x^2}$",
+      "$\\ln x$",
+      "$e^x$"
+    ],
     "reponse": 2,
-    "explication": "La formule $\\dfrac{x^{n+1}}{n+1}$ ne marche pas pour $n = -1$ (division par 0). La primitive de $\\dfrac{1}{x}$ est $\\ln x$."
+    "explication": "**Règle :** la formule $\\dfrac{x^{n+1}}{n+1}$ ne marche pas pour $n = -1$. Pour ce cas, il faut savoir que $(\\ln x)' = \\dfrac{1}{x}$ : une primitive de $\\dfrac{1}{x}$ (pour $x > 0$) est donc $\\ln x$.\n\n**Pas à pas :**\n\n1. $\\dfrac{1}{x} = x^{-1}$, donc $n = -1$.\n2. La formule donnerait $\\dfrac{x^{0}}{0}$ : une division par 0, impossible.\n3. On utilise le tableau des dérivées à l'envers : comme $(\\ln x)' = \\dfrac{1}{x}$, $\\ln x$ est une primitive de $\\dfrac{1}{x}$.\n\n**Les autres réponses :**\n\n- $\\dfrac{x^0}{0}$ : la formule appliquée là où elle est interdite (division par 0).\n- $-\\dfrac{1}{x^2}$ : c'est la **dérivée** de $\\dfrac{1}{x}$, pas une primitive.\n- $e^x$ : c'est une primitive de $e^x$, rien à voir. Sa dérivée vaut $e^x$, pas $\\dfrac{1}{x}$.\n\n**À retenir :** primitive de $\\dfrac{1}{x}$ = $\\ln x$, le seul cas où « monter la puissance » ne marche pas."
   },
   {
     "question": "Deux primitives d'une même fonction...",
-    "choix": ["diffèrent d'une constante", "sont toujours égales", "diffèrent d'un facteur multiplicatif", "n'ont aucun lien"],
+    "choix": [
+      "diffèrent d'une constante",
+      "sont toujours égales",
+      "diffèrent d'un facteur multiplicatif",
+      "n'ont aucun lien"
+    ],
     "reponse": 0,
-    "explication": "Si $F$ est une primitive, toutes les autres s'écrivent $F + C$. Cette constante disparaît dans $F(b) - F(a)$."
+    "explication": "**Règle :** si $F$ est une primitive de $f$, alors $F + C$ en est aussi une pour toute constante $C$, car la dérivée d'une constante vaut 0. Toutes les primitives de $f$ sont de cette forme.\n\n**Pas à pas :** prenons $f(x) = 2x$.\n\n- $F_1(x) = x^2$ : $F_1' = 2x$, c'est une primitive.\n- $F_2(x) = x^2 + 7$ : $F_2' = 2x + 0 = 2x$, c'est aussi une primitive.\n- Leur différence : $F_2 - F_1 = 7$, une constante.\n\n**Les autres réponses :**\n\n- « sont toujours égales » : $x^2$ et $x^2 + 7$ sont deux primitives différentes de $2x$.\n- « diffèrent d'un facteur multiplicatif » : $3x^2$ a pour dérivée $6x$, pas $2x$. Multiplier change la dérivée.\n- « n'ont aucun lien » : elles ont la même dérivée, donc elles ne diffèrent que d'une constante.\n\n**À retenir :** deux primitives d'une même fonction diffèrent d'une constante $C$, qui disparaît dans $F(b) - F(a)$."
   },
   {
     "question": "Que vaut $\\displaystyle\\int_0^2 3x^2\\,dx$ ?",
-    "choix": ["$6$", "$12$", "$8$", "$4$"],
+    "choix": [
+      "$6$",
+      "$12$",
+      "$8$",
+      "$4$"
+    ],
     "reponse": 2,
-    "explication": "Une primitive de $3x^2$ est $x^3$. Donc $2^3 - 0^3 = 8$."
+    "explication": "**Règle :** $\\displaystyle\\int_a^b f(x)\\,dx = F(b) - F(a)$, où $F$ est une primitive de $f$.\n\n**Pas à pas :**\n\n1. Primitive de $3x^2$ : $3 \\times \\dfrac{x^3}{3} = x^3$. Vérification : $(x^3)' = 3x^2$.\n2. $F(2) = 2^3 = 8$.\n3. $F(0) = 0^3 = 0$.\n4. $F(2) - F(0) = 8 - 0 = 8$.\n\n**Les autres réponses :**\n\n- $12$ : c'est $3 \\times 2^2$, la valeur de la fonction en 2, pas l'intégrale.\n- $6$ : c'est $3 \\times 2$, on a oublié la puissance.\n- $4$ : c'est $2^2$, on a pris $x^2$ comme primitive au lieu de $x^3$ (puissance pas augmentée).\n\n**À retenir :** intégrale = primitive, puis « borne du haut moins borne du bas »."
   },
   {
     "question": "En IA, à quoi sert la dérivée d'une fonction de perte ?",
-    "choix": ["À mesurer l'aire sous la courbe ROC", "À rendre la fonction continue", "À compter le nombre d'erreurs", "À savoir dans quel sens corriger les paramètres du modèle"],
+    "choix": [
+      "À mesurer l'aire sous la courbe ROC",
+      "À rendre la fonction continue",
+      "À compter le nombre d'erreurs",
+      "À savoir dans quel sens corriger les paramètres du modèle"
+    ],
     "reponse": 3,
-    "explication": "La descente de gradient utilise la dérivée (le gradient) pour savoir dans quelle direction modifier les paramètres afin de diminuer la perte. L'aire sous la courbe ROC, elle, est une intégrale."
+    "explication": "**Règle :** la dérivée donne la **pente** de la courbe. Pour une fonction de perte (l'erreur du modèle), elle dit si la perte monte ou descend quand on change un paramètre. La descente de gradient fait un petit pas dans le sens où la perte **diminue**.\n\n**Pas à pas :** perte $L(w) = (w - 3)^2$ avec $w = 5$.\n\n- $L'(w) = 2(w - 3)$, donc $L'(5) = 4 > 0$ : la perte augmente quand $w$ augmente.\n- Il faut donc **diminuer** $w$ (aller vers 3) pour réduire la perte. La dérivée a donné le sens de la correction.\n\n**Les autres réponses :**\n\n- « mesurer l'aire sous la courbe ROC » : une aire se calcule avec une **intégrale**, pas une dérivée.\n- « rendre la fonction continue » : dériver ne change pas la fonction, et il faut déjà qu'elle soit dérivable pour calculer sa dérivée.\n- « compter le nombre d'erreurs » : c'est la perte elle-même qui mesure l'erreur, pas sa dérivée.\n\n**À retenir :** dérivée positive = la perte monte, on recule ; dérivée négative = la perte descend, on avance."
   }
 ]

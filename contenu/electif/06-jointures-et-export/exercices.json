@@ -5,11 +5,46 @@
     "difficulte": 1,
     "enonce": "Tu joins un CSV de statistiques à la couche COMMUNE. Les deux contiennent le code INSEE.",
     "questions": [
-      { "intitule": "Quel champ sert de champ commun ?", "type": "choix", "choix": ["Le code INSEE", "La géométrie", "La couleur", "Le nom du fichier"], "reponse": 0 },
-      { "intitule": "Dans quel onglet ajoutes-tu la jointure ?", "type": "choix", "choix": ["Jointures", "Symbologie", "Diagrammes", "Variables"], "reponse": 0 },
-      { "intitule": "Que fais-tu pour vérifier la jointure ?", "type": "choix", "choix": ["J'ouvre la table d'attributs de COMMUNE", "Je zoome sur la carte", "J'exporte en PNG", "Je ferme QGIS"], "reponse": 0 }
+      {
+        "intitule": "Quel champ sert de champ commun ?",
+        "type": "choix",
+        "choix": [
+          "Le code INSEE",
+          "La géométrie",
+          "La couleur",
+          "Le nom du fichier"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le **champ commun** d'une jointure est une colonne qui existe dans les **deux** tables et qui contient **les mêmes valeurs** pour le même objet. On choisit un code, unique pour chaque objet.\n\n**Pas à pas :**\n\n1. Côté couche COMMUNE : il y a une colonne avec le code INSEE de chaque commune.\n2. Côté CSV : chaque ligne de statistiques a aussi le code INSEE de la commune concernée.\n3. Les deux colonnes contiennent les mêmes codes : c'est le champ commun.\n\n**Les autres réponses :** la géométrie est la forme sur la carte, et le CSV n'en a pas, donc elle ne peut pas servir à relier les deux ; la couleur dépend de la symbologie et n'est pas une colonne ; le nom du fichier est le même pour toutes les lignes, il ne permet pas de retrouver une commune précise.\n\n**À retenir :** le champ commun = la colonne présente des deux côtés avec les mêmes valeurs, de préférence un code."
+      },
+      {
+        "intitule": "Dans quel onglet ajoutes-tu la jointure ?",
+        "type": "choix",
+        "choix": [
+          "Jointures",
+          "Symbologie",
+          "Diagrammes",
+          "Variables"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une jointure se crée dans les propriétés de la couche qui reçoit les colonnes : double-clic sur la couche, onglet **Jointures**, bouton **+**.\n\n**Pas à pas :**\n\n1. Double-clic sur COMMUNE (c'est elle qui reçoit les colonnes).\n2. Onglet **Jointures**, bouton **+**.\n3. Couche à joindre : le CSV ; champ de jointure : le code INSEE du CSV ; champ cible : le code INSEE de COMMUNE.\n\n**Les autres réponses :** Symbologie règle les couleurs ; Diagrammes pose de petits graphiques sur les objets ; Variables contient des réglages pour les expressions. Aucun ne relie deux tables.\n\n**À retenir :** Propriétés de la couche > Jointures > +."
+      },
+      {
+        "intitule": "Que fais-tu pour vérifier la jointure ?",
+        "type": "choix",
+        "choix": [
+          "J'ouvre la table d'attributs de COMMUNE",
+          "Je zoome sur la carte",
+          "J'exporte en PNG",
+          "Je ferme QGIS"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une jointure ajoute des **colonnes** à la couche : on la vérifie dans la **table d'attributs**, en regardant si les nouvelles colonnes sont là **et** remplies.\n\n**Pas à pas :**\n\n1. Clic droit sur COMMUNE > Ouvrir la table d'attributs.\n2. Cherche les colonnes du CSV, préfixées par son nom.\n3. Trie sur l'une d'elles : si beaucoup de lignes affichent `NULL`, beaucoup de communes n'ont pas trouvé leur ligne dans le CSV.\n\n**Les autres réponses :** zoomer ne montre que les formes, pas les colonnes ; exporter en PNG donne une image où les colonnes n'apparaissent pas ; fermer QGIS ne vérifie rien (et la jointure n'est gardée que si le projet est enregistré).\n\n**À retenir :** vérifier une jointure = table d'attributs, colonnes présentes et sans `NULL`."
+      }
     ],
-    "indices": ["Il faut une colonne identique dans les deux tables."],
+    "indices": [
+      "Il faut une colonne identique dans les deux tables."
+    ],
     "correction": "**Code INSEE**, onglet **Jointures**, puis **table d'attributs**."
   },
   {
@@ -18,10 +53,28 @@
     "difficulte": 2,
     "enonce": "Après la jointure, toutes les colonnes du CSV sont vides (NULL).",
     "questions": [
-      { "intitule": "Quelle est la cause la plus probable ?", "type": "choix", "choix": ["Les valeurs des champs communs ne sont pas identiques (format, espaces, zéros)", "Le CSV est trop petit", "La couche est en Lambert 93", "Le projet n'est pas enregistré"], "reponse": 0 },
-      { "intitule": "Que vérifies-tu en premier ?", "type": "auto", "reponse": "Je compare les deux colonnes de jointure (CSV et couche) : type (texte ou nombre), zéros de début, espaces et majuscules. Si besoin, je réimporte le CSV en forçant le champ en texte." }
+      {
+        "intitule": "Quelle est la cause la plus probable ?",
+        "type": "choix",
+        "choix": [
+          "Les valeurs des champs communs ne sont pas identiques (format, espaces, zéros)",
+          "Le CSV est trop petit",
+          "La couche est en Lambert 93",
+          "Le projet n'est pas enregistré"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une jointure n'associe deux lignes que si les valeurs du champ commun sont **strictement identiques** : mêmes caractères et même type (texte ou nombre). Une colonne jointe vide (`NULL`) veut dire « aucune ligne trouvée ».\n\n**Pas à pas :**\n\n1. **Toutes** les colonnes sont vides pour **toutes** les communes : aucune commune n'a trouvé sa ligne.\n2. Les lignes existent pourtant dans le CSV, donc ce sont les valeurs qui ne se ressemblent pas.\n3. Causes typiques : code lu comme un nombre (`01001` devient `1001`), espaces en trop (`\"92040 \"`), types différents (texte d'un côté, nombre de l'autre).\n\n**Les autres réponses :** un petit CSV laisserait des communes sans données, mais celles qui sont dedans seraient remplies ; le Lambert 93 concerne les coordonnées, pas la comparaison de deux colonnes ; un projet non enregistré peut perdre la jointure à la fermeture, mais tant qu'il est ouvert, il ne vide pas les colonnes.\n\n**À retenir :** colonnes jointes toutes vides = les valeurs du champ commun ne sont pas identiques des deux côtés."
+      },
+      {
+        "intitule": "Que vérifies-tu en premier ?",
+        "type": "auto",
+        "reponse": "Je compare les deux colonnes de jointure (CSV et couche) : type (texte ou nombre), zéros de début, espaces et majuscules. Si besoin, je réimporte le CSV en forçant le champ en texte.",
+        "explication": "**Ce qu'une bonne réponse doit contenir, étape par étape :**\n\n1. **Comparer** les deux colonnes de jointure côte à côte : celle du CSV et celle de la couche (ouvre les deux tables d'attributs et regarde quelques lignes).\n2. Vérifier le **type** de chaque champ : texte ou nombre. Si l'un est un nombre et l'autre un texte, ils ne seront jamais égaux.\n3. Chercher les **zéros de début** perdus : `01001` d'un côté, `1001` de l'autre.\n4. Chercher les **espaces** en trop et les différences de **majuscules** (`2A` et `2a`).\n5. Proposer la **correction** : réimporter le CSV en forçant le champ du code en **texte**, puis refaire la jointure et revérifier la table.\n\n**Erreurs fréquentes :** refaire la jointure à l'identique sans rien changer ; accuser la projection ou la taille du fichier ; vérifier seulement que les colonnes portent le même nom (ce sont les **valeurs** qui doivent être identiques, pas les noms).\n\n**À retenir :** quand une jointure rate, compare les valeurs des deux champs avant tout, et lis les codes en texte."
+      }
     ],
-    "indices": ["01001 n'est pas égal à 1001."],
+    "indices": [
+      "01001 n'est pas égal à 1001."
+    ],
     "correction": "Les deux champs doivent contenir **exactement les mêmes valeurs** et le **même type**. Réimporter le code en **texte** règle souvent le problème."
   },
   {
@@ -30,9 +83,22 @@
     "difficulte": 2,
     "enonce": "Tu as joint un CSV à COMMUNE et tu veux fournir une couche contenant ces colonnes à un camarade.",
     "questions": [
-      { "intitule": "Que fais-tu ?", "type": "choix", "choix": ["J'exporte la couche sous un nouveau fichier", "J'envoie seulement le projet", "Je supprime le CSV", "Je change le fond de carte"], "reponse": 0 }
+      {
+        "intitule": "Que fais-tu ?",
+        "type": "choix",
+        "choix": [
+          "J'exporte la couche sous un nouveau fichier",
+          "J'envoie seulement le projet",
+          "Je supprime le CSV",
+          "Je change le fond de carte"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une jointure est **temporaire** : elle est enregistrée dans le **projet**, pas dans le fichier de la couche. Pour écrire les colonnes pour de bon, il faut **exporter** la couche dans un nouveau fichier.\n\n**Pas à pas :**\n\n1. Clic droit sur COMMUNE > Exporter > Sauvegarder les objets sous…\n2. Choisis le format (GeoPackage) et un nom de fichier.\n3. Le nouveau fichier contient les colonnes de la couche **et** celles du CSV.\n4. Tu envoies ce fichier : ton camarade a tout, sans avoir besoin du CSV ni de ton projet.\n\n**Les autres réponses :** le projet seul ne contient pas les données, juste la consigne de jointure (et des chemins vers des fichiers que ton camarade n'a pas) ; supprimer le CSV casse la jointure, les colonnes disparaissent ; le fond de carte est une image d'arrière-plan, il ne touche pas aux colonnes.\n\n**À retenir :** pour partager des colonnes jointes, exporte la couche ; le projet ne suffit jamais."
+      }
     ],
-    "indices": ["La jointure vit dans le projet."],
+    "indices": [
+      "La jointure vit dans le projet."
+    ],
     "correction": "On **exporte** la couche (Exporter > Sauvegarder les objets sous…) pour que les colonnes soient écrites dans le fichier."
   },
   {
@@ -41,10 +107,28 @@
     "difficulte": 1,
     "enonce": "Tu prépares l'export `Issy les moulineaux.png`.",
     "questions": [
-      { "intitule": "Quel menu ouvre la mise en page ?", "type": "choix", "choix": ["Projet > Nouvelle mise en page", "Couche > Ajouter", "Vecteur > Tampon", "Extensions"], "reponse": 0 },
-      { "intitule": "Combien d'éléments minimum parmi titre, légende, échelle, source ? (nombre)", "type": "nombre", "reponse": 4 }
+      {
+        "intitule": "Quel menu ouvre la mise en page ?",
+        "type": "choix",
+        "choix": [
+          "Projet > Nouvelle mise en page",
+          "Couche > Ajouter",
+          "Vecteur > Tampon",
+          "Extensions"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** la **mise en page** est la page qu'on prépare pour exporter une carte en image ou en PDF. Elle s'ouvre par **Projet > Nouvelle mise en page**.\n\n**Pas à pas :**\n\n1. Menu **Projet** > **Nouvelle mise en page**.\n2. QGIS demande un nom (par exemple « Issy »), puis ouvre une fenêtre avec une page blanche.\n3. On y ajoute la carte, le titre, la légende, l'échelle…, puis Mise en page > Exporter comme image.\n\n**Les autres réponses :** Couche > Ajouter charge des données dans le projet ; Vecteur > Tampon est un outil d'analyse ; Extensions installe ou gère des outils supplémentaires. Aucun n'ouvre de page à exporter.\n\n**À retenir :** préparer une carte à exporter = Projet > Nouvelle mise en page."
+      },
+      {
+        "intitule": "Combien d'éléments minimum parmi titre, légende, échelle, source ? (nombre)",
+        "type": "nombre",
+        "reponse": 4,
+        "explication": "**Règle :** une carte doit se lire seule. Chacun des éléments cités répond à une question du lecteur, et aucun ne peut être retiré.\n\n**Pas à pas :** on compte les éléments, un par un.\n\n| Élément | Indispensable ? | Pourquoi |\n|---|---|---|\n| Titre | oui | dit de quoi parle la carte |\n| Légende | oui | explique les couleurs et symboles |\n| Échelle | oui | donne les distances réelles |\n| Source | oui | dit d'où viennent les données |\n\nLes 4 sont indispensables : la réponse est **4**.\n\n**Erreur fréquente :** répondre 2 ou 3 en jugeant la source ou l'échelle « facultatives ». Sans source, on ne peut pas juger si les données sont fiables ; sans échelle, on ne sait pas si un parc fait 100 m ou 2 km.\n\n**À retenir :** titre, légende, échelle, source : les 4 sont obligatoires (la date et la flèche du nord en plus, c'est encore mieux)."
+      }
     ],
-    "indices": ["Une carte doit être lisible sans explication."],
+    "indices": [
+      "Une carte doit être lisible sans explication."
+    ],
     "correction": "**Projet > Nouvelle mise en page**, avec les **4** éléments : titre, légende, échelle, source."
   }
 ]

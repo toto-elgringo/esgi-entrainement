@@ -8,7 +8,7 @@
       "Il ne plante jamais"
     ],
     "reponse": 1,
-    "explication": "La stabilité compte quand on trie des fiches selon un seul champ : pour une même note, l'ordre d'avant (par exemple alphabétique) est conservé. « Sans deuxième tableau », c'est un tri **en place**."
+    "explication": "**Règle :** un tri est **stable** si deux valeurs **égales** sortent dans le même ordre qu'au départ.\n\n**Pas à pas :** des fiches rangées par nom, `Anna 14`, `Marc 10`, `Sami 14`, triées par note :\n\n| Résultat | Les deux 14 | Stable ? |\n|---|---|---|\n| `Marc 10`, `Anna 14`, `Sami 14` | Anna reste avant Sami | oui |\n| `Marc 10`, `Sami 14`, `Anna 14` | Sami passe devant Anna | non |\n\nLes deux résultats sont triés : seule la place des valeurs égales change.\n\n**Les autres réponses :** « même temps d'exécution » ne veut rien dire ici (le temps dépend de l'ordre de départ, et ce n'est pas la stabilité) ; « pas de deuxième tableau », c'est un tri **en place** ; « ne plante jamais » n'est pas une propriété de tri.\n\n**À retenir :** stable = regarde seulement les valeurs égales, ont-elles gardé leur ordre ?"
   },
   {
     "question": "On applique le tri par sélection à `4 1 3 2`. Quel est le tableau après la **première** étape ?",
@@ -19,7 +19,7 @@
       "`4 1 2 3`"
     ],
     "reponse": 0,
-    "explication": "Le minimum de tout le tableau (1, en position 1) est échangé avec la case 0. Le reste ne bouge pas."
+    "explication": "**Règle :** une étape du tri par sélection cherche le **minimum** de la partie non triée et l'échange avec la **première case** de cette partie. Rien d'autre ne bouge.\n\n**Pas à pas** sur `4 1 3 2`, étape 0 :\n\n1. On cherche le minimum des cases 0 à 3 : on compare 4 à 1 (1 plus petit), puis 1 à 3, puis 1 à 2. Minimum : 1, en case 1.\n2. On échange la case 0 (4) et la case 1 (1) : `1 4 3 2`.\n3. Les cases 2 et 3 (3 et 2) ne bougent pas.\n\n**Les autres réponses :** `1 2 3 4` est le résultat **final**, pas celui de la première étape ; `1 3 2 4` est le résultat du premier passage du **tri à bulles** (le 4 remonte au bout) ; `4 1 2 3` ne correspond à aucune étape de sélection : la case 0 n'a pas reçu le minimum.\n\n**À retenir :** une étape de sélection = un seul échange, entre la première case non triée et le minimum du reste."
   },
   {
     "question": "Combien de comparaisons fait le tri par sélection sur un tableau **déjà trié** de `n` valeurs ?",
@@ -30,7 +30,7 @@
       "`n log n`"
     ],
     "reponse": 1,
-    "explication": "Il cherche le minimum du reste à chaque étape sans savoir que le tableau est trié : `(n - 1) + (n - 2) + … + 1` comparaisons. Son meilleur cas est aussi en O(n²)."
+    "explication": "**Règle :** le tri par sélection cherche le minimum de la partie restante à chaque étape, **sans jamais regarder** si le tableau est déjà trié. Il compare donc `(n - 1) + (n - 2) + … + 1 = n(n - 1) / 2` fois, quel que soit l'ordre de départ.\n\n**Pas à pas** sur `1 2 3 4 5` (n = 5) :\n\n| Étape | Cases regardées | Comparaisons |\n|---|---|---|\n| 0 | 1 à 4 contre la case 0 | 4 |\n| 1 | 2 à 4 | 3 |\n| 2 | 3 et 4 | 2 |\n| 3 | 4 | 1 |\n\nTotal : 4 + 3 + 2 + 1 = 10 = 5 × 4 / 2. Le minimum est chaque fois déjà en place : 0 échange, mais toutes les comparaisons sont faites.\n\n**Les autres réponses :** `n - 1` est le meilleur cas du tri à bulles **avec arrêt anticipé** ou du tri par insertion, pas de la sélection ; 0 est impossible, il faut bien regarder les valeurs pour savoir qu'elles sont rangées ; `n log n` est l'ordre des tris rapides (tri fusion), pas de ce tri.\n\n**À retenir :** sélection = O(n²) comparaisons même sur un tableau trié ; seul le nombre d'échanges change (0 ici)."
   },
   {
     "question": "Quel tri simple fait **le moins d'échanges** dans le pire cas ?",
@@ -41,7 +41,7 @@
       "Le tri pair-impair"
     ],
     "reponse": 1,
-    "explication": "Il fait un seul échange par étape (le minimum va à sa place). Les tris par voisins font autant d'échanges que d'inversions, jusqu'à `n(n - 1) / 2`."
+    "explication": "**Règle :** le tri par sélection fait **au plus un échange par étape** (le minimum va à sa place), donc au plus `n - 1` échanges. Les tris par voisins (bulles, cocktail, pair-impair) font **un échange par inversion**, jusqu'à `n(n - 1) / 2`.\n\n**Pas à pas** sur le pire cas `5 4 3 2 1` :\n\n- Sélection : étape 0, minimum 1 échangé avec 5 : `1 4 3 2 5` ; étape 1, minimum 2 échangé avec 4 : `1 2 3 4 5` ; étapes 2 et 3, minimum déjà en place. **2 échanges** (jamais plus de 4 pour 5 cases).\n- Bulles : chaque paire est une inversion, il y en a 4 + 3 + 2 + 1 = 10, donc **10 échanges**.\n\n**Les autres réponses :** le tri à bulles, le tri cocktail et le tri pair-impair échangent seulement des voisins : chaque échange retire une seule inversion, ils en font donc 10 ici, comme le nombre d'inversions.\n\n**À retenir :** peu d'échanges = tri par sélection (au plus `n - 1`) ; tri par voisins = autant d'échanges que d'inversions."
   },
   {
     "question": "Pourquoi le tri par sélection n'est-il **pas** stable ?",
@@ -52,7 +52,7 @@
       "Il est stable"
     ],
     "reponse": 1,
-    "explication": "Avec `2a 2b 1`, le minimum 1 est échangé avec la case 0 : on obtient `1 2b 2a`. Les deux 2 ont changé d'ordre."
+    "explication": "**Règle :** un tri n'est pas stable s'il peut faire passer une valeur **par-dessus** une valeur égale.\n\n**Pas à pas** sur `2a 2b 1` (deux 2, notés a et b pour les suivre) :\n\n1. Étape 0 : le minimum est 1, en case 2. On échange la case 0 et la case 2 : `1 2b 2a`. Le 2a a sauté par-dessus le 2b.\n2. Étape 1 : minimum de `2b 2a` : 2b (le premier, car `2a < 2b` est faux). Il est déjà en case 1 : pas d'échange.\n3. Résultat : `1 2b 2a`. Au départ, a était avant b : l'ordre des égaux a changé.\n\n**Les autres réponses :** comparer avec `<` n'est pas la cause, c'est même ce qui garde le premier minimum trouvé ; être en O(n²) parle de la vitesse, pas de la stabilité (le tri à bulles est aussi en O(n²) et il est stable) ; « il est stable » est faux, l'exemple ci-dessus le prouve.\n\n**À retenir :** un échange à longue distance peut sauter par-dessus une valeur égale : c'est ce qui casse la stabilité."
   },
   {
     "question": "Après le premier passage du tri à bulles (du début vers la fin), que sait-on ?",
@@ -63,7 +63,7 @@
       "La moitié du tableau est triée"
     ],
     "reponse": 1,
-    "explication": "La plus grande valeur gagne toutes ses comparaisons et remonte jusqu'au bout, comme une bulle. Le passage suivant peut s'arrêter une case plus tôt."
+    "explication": "**Règle :** pendant un passage du tri à bulles, la plus grande valeur gagne toutes ses comparaisons : elle est échangée à chaque fois et avance jusqu'à la dernière case.\n\n**Pas à pas** sur `6 3 8 2 5` :\n\n| Comparaison | Valeurs | Tableau après |\n|---|---|---|\n| cases 0 et 1 | 6 > 3 : échange | 3 6 8 2 5 |\n| cases 1 et 2 | 6 < 8 | 3 6 8 2 5 |\n| cases 2 et 3 | 8 > 2 : échange | 3 6 2 8 5 |\n| cases 3 et 4 | 8 > 5 : échange | 3 6 2 5 8 |\n\nLe 8 (le maximum) est au bout. Le passage suivant peut donc s'arrêter une case plus tôt.\n\n**Les autres réponses :** la plus petite valeur (2) n'est **pas** en case 0 : elle n'a reculé que d'une case ; le tableau `3 6 2 5 8` n'est pas trié ; seule **une** case (la dernière) est sûre d'être à sa place, pas la moitié.\n\n**À retenir :** après le passage k, les k dernières cases sont définitives."
   },
   {
     "question": "Avec l'arrêt anticipé, quelle est la complexité du tri à bulles sur un tableau **déjà trié** ?",
@@ -74,7 +74,7 @@
       "O(n²)"
     ],
     "reponse": 1,
-    "explication": "Le premier passage compare les `n - 1` paires de voisins sans faire d'échange : on s'arrête aussitôt. Sans l'arrêt anticipé, on ferait tous les passages : O(n²)."
+    "explication": "**Règle :** avec l'arrêt anticipé, le tri à bulles s'arrête après le premier passage qui ne fait **aucun échange**.\n\n**Pas à pas** sur `1 3 4 7 9` (n = 5) :\n\n1. Passage 1 : on compare 1-3, 3-4, 4-7, 7-9. Aucune paire n'est mal rangée : 4 comparaisons, 0 échange.\n2. `echange` vaut 0 à la fin du passage : on s'arrête.\n\nTotal : `n - 1` comparaisons, donc O(n).\n\n**Les autres réponses :** O(1) est impossible, il faut regarder chaque paire de voisins au moins une fois pour savoir que le tableau est trié ; O(n log n) est l'ordre des tris rapides, pas d'un passage ; O(n²), c'est le tri à bulles **sans** arrêt anticipé (tous les passages sont faits) ou son pire cas.\n\n**À retenir :** arrêt anticipé = un passage sans échange suffit pour conclure, d'où O(n) sur un tableau trié."
   },
   {
     "question": "Dans un tri à bulles, la boucle intérieure s'écrit `for (size_t j = 0; j < fin; j++)` et compare `tab[j]` à `tab[j + 1]`. Quel est le problème ?",
@@ -85,7 +85,7 @@
       "La boucle ne s'arrête jamais"
     ],
     "reponse": 1,
-    "explication": "`j + 1` doit rester une vraie case de la zone : la condition est `j + 1 < fin`."
+    "explication": "**Règle :** la boucle compare `tab[j]` et `tab[j + 1]` : il faut que **`j + 1`** soit encore une case de la zone, donc `j + 1 < fin`.\n\n**Pas à pas** avec un tableau de 4 cases (cases 0 à 3), premier passage, `fin = 4` :\n\n| `j` | `j < fin` ? | Cases lues |\n|---|---|---|\n| 0 | oui | 0 et 1 |\n| 1 | oui | 1 et 2 |\n| 2 | oui | 2 et 3 |\n| 3 | oui | 3 et **4** : la case 4 n'existe pas |\n\nAvec `j + 1 < fin`, la boucle s'arrête après `j = 2` : la dernière paire lue est (2, 3).\n\n**Les autres réponses :** « aucun » est faux, on lit hors du tableau ; la première case est bien comparée (à `j = 0`) ; la boucle s'arrête, puisque `j` augmente jusqu'à `fin`, le problème est seulement ce qu'elle lit au dernier tour.\n\n**À retenir :** quand une boucle lit `tab[j + 1]`, écris la borne sur `j + 1` : `j + 1 < fin`."
   },
   {
     "question": "Qu'est-ce qu'une « tortue » pour le tri à bulles ?",
@@ -96,7 +96,7 @@
       "Un tableau déjà trié"
     ],
     "reponse": 1,
-    "explication": "Sur `2 3 4 5 6 1`, le 1 met 5 passages à arriver au début. Le tri cocktail (passages retour) et le tri à peigne (grands écarts) règlent ce problème."
+    "explication": "**Règle :** dans le tri à bulles, une petite valeur placée à la fin ne peut reculer que **d'une case par passage** (elle n'est échangée qu'une fois avec sa voisine de gauche). On l'appelle une **tortue**.\n\n**Pas à pas** sur `2 3 4 5 6 1`, on suit le 1 :\n\n| Passage | Tableau après | Case du 1 |\n|---|---|---|\n| 1 | 2 3 4 5 1 6 | 4 |\n| 2 | 2 3 4 1 5 6 | 3 |\n| 3 | 2 3 1 4 5 6 | 2 |\n| 4 | 2 1 3 4 5 6 | 1 |\n| 5 | 1 2 3 4 5 6 | 0 |\n\n5 passages pour une seule valeur mal placée.\n\n**Les autres réponses :** une grande valeur au début est un **lièvre**, elle remonte jusqu'au bout en un seul passage ; une valeur en double ne gêne pas le tri ; un tableau déjà trié est le meilleur cas, pas une tortue.\n\n**À retenir :** tortue = petite valeur au bout, lente pour les bulles ; le tri cocktail et le tri à peigne la font avancer vite."
   },
   {
     "question": "Dans le tri par insertion, pourquoi met-on `tab[i]` de côté dans une variable `valeur` avant la boucle de décalage ?",
@@ -107,7 +107,7 @@
       "Ce n'est pas nécessaire"
     ],
     "reponse": 1,
-    "explication": "Le premier décalage fait `tab[i] = tab[i - 1]` : sans copie, la valeur à insérer serait perdue."
+    "explication": "**Règle :** le premier décalage écrit `tab[i] = tab[i - 1]` : il écrase la case `i`, qui contenait justement la valeur à insérer. Il faut donc la copier avant.\n\n**Pas à pas** : on insère le 5 de `4 7 5` (i = 2).\n\n- Sans copie : 7 > 5, on décale, `tab[2] = tab[1]` donne `4 7 7`. Le 5 a disparu : on ne sait plus quoi écrire dans le trou.\n- Avec `valeur = 5` : après le décalage `4 7 7`, on compare 4 > 5 (non), on s'arrête et on écrit `tab[1] = valeur` : `4 5 7`.\n\n**Les autres réponses :** ce n'est pas une question de vitesse, c'est une question de valeur perdue ; `tab[i]` n'est pas `const`, on l'écrase justement ; « ce n'est pas nécessaire » est faux dès qu'il y a au moins un décalage.\n\n**À retenir :** avant de décaler, mets de côté la valeur que le décalage va écraser."
   },
   {
     "question": "Quelle est la complexité du tri par insertion (décalage depuis la droite) sur un tableau **presque trié** ?",
@@ -118,7 +118,7 @@
       "O(n log n)"
     ],
     "reponse": 0,
-    "explication": "La boucle de décalage s'arrête dès qu'elle trouve une valeur plus petite. Sur un tableau déjà trié, elle ne tourne jamais : O(n)."
+    "explication": "**Règle :** la boucle de décalage s'arrête dès que la valeur de gauche n'est **pas** plus grande. Si chaque valeur est près de sa place, chaque insertion ne fait qu'une ou deux comparaisons.\n\n**Pas à pas** sur `1 2 4 3 5` (une seule paire mal rangée) :\n\n| Valeur insérée | Comparaisons | Décalages |\n|---|---|---|\n| 2 | 1 (1 > 2 ? non) | 0 |\n| 4 | 1 | 0 |\n| 3 | 2 (4 > 3 oui, 2 > 3 non) | 1 |\n| 5 | 1 | 0 |\n\n5 comparaisons pour 5 cases : le travail grandit comme n.\n\n**Les autres réponses :** « toujours O(n²) » est le **pire** cas (tableau à l'envers), pas celui d'un tableau presque trié ; O(log n) est impossible, il faut au moins regarder chaque valeur une fois ; O(n log n) est l'ordre des tris rapides, pas celui-ci sur ce type d'entrée.\n\n**À retenir :** insertion en partant de la droite = presque gratuit sur un tableau presque trié."
   },
   {
     "question": "Un tri par insertion cherche la place depuis le début avec `while (pos < i && tab[pos] < valeur) pos++;`. Que perd-on ?",
@@ -129,7 +129,7 @@
       "Le tableau n'est plus trié"
     ],
     "reponse": 1,
-    "explication": "Avec `<`, on s'arrête devant la première valeur égale : il faudrait `<=`. Et même sur un tableau trié, on parcourt toute la partie triée à chaque fois : O(n²)."
+    "explication": "**Règle :** pour garder O(n) sur un tableau trié et la stabilité, on cherche la place **en partant de la droite** et on s'arrête sur une valeur **égale**.\n\n**Pas à pas**, deux défauts de la recherche depuis le début :\n\n1. **Meilleur cas perdu.** Sur `1 2 3 4`, pour insérer 4 (i = 3), `pos` passe par 0, 1, 2 : on compare 1, 2 et 3 à 4 avant de trouver la place. Les insertions coûtent 1 + 2 + 3 = 6 comparaisons, soit `n(n - 1) / 2` : O(n²), alors que la version depuis la droite fait 1 comparaison par valeur.\n2. **Stabilité perdue.** Partie triée `2a 5`, on insère `2b`. À `pos = 0`, `2a < 2b` est faux (ils sont égaux) : on s'arrête et on place 2b **devant** 2a. Il faudrait `<=` pour passer derrière.\n\n**Les autres réponses :** « rien » est faux, on vient de voir deux pertes ; « seulement la stabilité » oublie le meilleur cas ; le tableau **est** bien trié à la fin, le résultat reste correct.\n\n**À retenir :** insertion efficace et stable = chercher depuis la droite, décaler seulement sur `>` strict."
   },
   {
     "question": "Dans le tri pair-impair, que fait la phase **impaire** ?",
@@ -140,7 +140,7 @@
       "Elle échange toutes les cases impaires"
     ],
     "reponse": 1,
-    "explication": "La phase paire compare `(0, 1)`, `(2, 3)`… et la phase impaire `(1, 2)`, `(3, 4)`… Les paires d'une même phase ne se touchent pas : on peut les traiter en même temps."
+    "explication": "**Règle :** « pair » et « impair » désignent l'**indice de la première case** de chaque paire de voisins. Phase paire : (0, 1), (2, 3), (4, 5)… Phase impaire : (1, 2), (3, 4), (5, 6)…\n\n**Pas à pas** pour 6 cases (0 à 5), phase impaire avec `i` qui part de 1 et avance de 2 :\n\n| `i` | `i + 1 < 6` ? | Paire comparée |\n|---|---|---|\n| 1 | oui | (1, 2) |\n| 3 | oui | (3, 4) |\n| 5 | non | aucune : la case 6 n'existe pas |\n\nChaque paire mal rangée est échangée, les autres restent.\n\n**Les autres réponses :** le tri ne s'intéresse pas à la parité des **valeurs**, seulement aux indices ; il compare des **voisins** (1 et 2), pas deux cases d'indices impairs (1 et 3) ; il n'échange une paire que si elle est dans le désordre, pas systématiquement.\n\n**À retenir :** phase paire = paires qui commencent aux indices pairs, phase impaire = paires qui commencent aux indices impairs."
   },
   {
     "question": "Qu'apporte le tri cocktail par rapport au tri à bulles ?",
@@ -151,7 +151,7 @@
       "Il utilise moins de mémoire"
     ],
     "reponse": 1,
-    "explication": "Le passage aller monte le maximum au bout, le passage retour descend le minimum au début. Le pire cas reste en O(n²)."
+    "explication": "**Règle :** le tri cocktail ajoute un passage **retour** (de droite à gauche) qui fait descendre la plus petite valeur au début en un seul passage.\n\n**Pas à pas** sur la tortue `3 4 5 6 7 2` :\n\n| Passage | Comparaisons | Tableau après |\n|---|---|---|\n| aller | 5 | 3 4 5 6 2 7 |\n| retour | 4 | 2 3 4 5 6 7 |\n| aller | 3, sans échange : fin | 2 3 4 5 6 7 |\n\n12 comparaisons, contre 15 pour le tri à bulles (5 passages pour faire reculer le 2 d'une case à chaque fois).\n\n**Les autres réponses :** le pire cas reste en O(n²), le cocktail ne change pas d'ordre de grandeur ; le tri à bulles est **déjà** stable, il n'y a rien à gagner de ce côté ; les deux sont en place, avec la même mémoire (O(1)).\n\n**À retenir :** cocktail = bulles aller-retour, la tortue traverse en un seul retour."
   },
   {
     "question": "Dans le tri à peigne, que vaut le nouvel écart après un écart de 10, avec `ecart = ecart * 10 / 13` ?",
@@ -162,7 +162,7 @@
       "1"
     ],
     "reponse": 0,
-    "explication": "`100 / 13` vaut 7 en division entière : c'est 10 divisé par 1,3, arrondi vers le bas. Ensuite viennent 5, 3, 2, 1."
+    "explication": "**Règle :** en C, `/` entre deux entiers est une **division entière** : elle garde le quotient et jette le reste (elle arrondit vers le bas pour des nombres positifs). `ecart * 10 / 13` revient à diviser par 1,3.\n\n**Pas à pas** avec `ecart = 10` :\n\n1. `ecart * 10` = 100.\n2. `100 / 13` : 13 × 7 = 91 et 13 × 8 = 104 (trop grand). Le quotient est 7 (reste 9).\n3. Nouvel écart : **7**. En vrai, 10 / 1,3 = 7,69…, arrondi vers le bas : 7.\n\nLa suite : 70 / 13 = 5, puis 50 / 13 = 3, 30 / 13 = 2, 20 / 13 = 1.\n\n**Les autres réponses :** 8 arrondit 7,69 vers le haut, mais la division entière arrondit vers le bas ; 13 multiplie par 1,3 au lieu de diviser ; 1 serait l'écart après plusieurs passages, pas après un seul.\n\n**À retenir :** `a * 10 / 13` en entiers = diviser par 1,3 et arrondir vers le bas."
   },
   {
     "question": "Quand le tri à peigne s'arrête-t-il ?",
@@ -173,6 +173,6 @@
       "Quand l'écart vaut 0"
     ],
     "reponse": 1,
-    "explication": "Arrivé à l'écart 1, c'est un tri à bulles sur un tableau presque trié : il faut continuer jusqu'à un passage sans échange."
+    "explication": "**Règle :** le tri à peigne continue **tant que** `ecart > 1 || echange`. Il ne s'arrête que si l'écart vaut 1 **et** que le dernier passage n'a fait aucun échange.\n\n**Pas à pas** sur `3 2 4 5 6 7 1` (écarts 5, 3, 2, 1) : après le premier passage à l'écart 1, on obtient `1 3 2 4 5 6 7`. Ce passage a fait des échanges, on continue :\n\n| Passage à l'écart 1 | Échanges | Tableau après | On continue ? |\n|---|---|---|---|\n| premier | 3 | 1 3 2 4 5 6 7 | oui |\n| deuxième | 1 (3 et 2) | 1 2 3 4 5 6 7 | oui |\n| troisième | 0 | 1 2 3 4 5 6 7 | non |\n\n**Les autres réponses :** s'arrêter dès que l'écart vaut 1 laisserait `1 3 2 4 5 6 7`, pas trié : un seul passage à l'écart 1 ne suffit pas toujours ; « après n passages » n'est pas la règle (le nombre de passages dépend des échanges) ; l'écart ne vaut jamais 0, il est remis à 1 dès qu'il descend dessous.\n\n**À retenir :** peigne = on continue tant que l'écart est plus grand que 1 **ou** qu'il y a eu un échange."
   }
 ]

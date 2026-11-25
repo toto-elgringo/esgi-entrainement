@@ -1,68 +1,123 @@
 [
   {
     "question": "Quelle est la seule opération que le tri fusion sait faire « directement » ?",
-    "choix": ["Trier un tableau de 10 cases", "Fusionner deux tableaux déjà triés", "Trouver le minimum", "Échanger deux cases voisines"],
+    "choix": [
+      "Trier un tableau de 10 cases",
+      "Fusionner deux tableaux déjà triés",
+      "Trouver le minimum",
+      "Échanger deux cases voisines"
+    ],
     "reponse": 1,
-    "explication": "Le tri fusion ne sait trier que des morceaux de 0 ou 1 case (déjà triés). Tout le travail se fait en fusionnant des morceaux triés."
+    "explication": "**Règle :** le tri fusion ne « trie » vraiment que des morceaux de 0 ou 1 case, qui sont déjà triés sans rien faire. Tout le travail est fait par la **fusion** de deux morceaux déjà triés.\n\n**Pas à pas** sur `4 1 3 2` :\n\n1. On coupe jusqu'aux cases seules : `4`, `1`, `3`, `2` (rien à faire, chacune est triée).\n2. On fusionne `4` et `1` : `1 4` ; on fusionne `3` et `2` : `2 3`.\n3. On fusionne `1 4` et `2 3` : `1 2 3 4`.\n\nÀ aucun moment on n'a trié autrement qu'en fusionnant.\n\n**Les autres réponses :** trier 10 cases d'un coup n'existe pas dans l'algorithme, on coupe jusqu'à 1 case ; chercher le minimum est l'opération du **tri par sélection** ; échanger deux voisins est celle du **tri à bulles**.\n\n**À retenir :** tri fusion = couper jusqu'aux cases seules, puis tout reconstruire par des fusions."
   },
   {
     "question": "On fusionne `a = 1 4 8` et `b = 2 3 9`. Quelles sont les trois premières valeurs du résultat ?",
-    "choix": ["`1 4 8`", "`1 2 3`", "`1 2 4`", "`2 3 9`"],
+    "choix": [
+      "`1 4 8`",
+      "`1 2 3`",
+      "`1 2 4`",
+      "`2 3 9`"
+    ],
     "reponse": 1,
-    "explication": "On compare à chaque fois les deux premières valeurs restantes : 1 < 2 (on prend 1), puis 4 > 2 (on prend 2), puis 4 > 3 (on prend 3)."
+    "explication": "**Règle :** pour fusionner, on compare à chaque tour les **premières valeurs restantes** des deux tableaux et on prend la plus petite.\n\n**Pas à pas** avec `a = 1 4 8` et `b = 2 3 9` :\n\n| Tour | Première de `a` | Première de `b` | On prend | Résultat |\n|---|---|---|---|---|\n| 1 | 1 | 2 | 1 | 1 |\n| 2 | 4 | 2 | 2 | 1 2 |\n| 3 | 4 | 3 | 3 | 1 2 3 |\n\nLes trois premières valeurs sont `1 2 3` (la suite donne `1 2 3 4 8 9`).\n\n**Les autres réponses :** `1 4 8` recopie `a` en entier sans comparer avec `b` ; `1 2 4` oublie de comparer 4 au **nouveau** premier de `b` (3) au tour 3 ; `2 3 9` est simplement `b`.\n\n**À retenir :** à chaque tour, compare les deux valeurs « du dessus » et prends la plus petite."
   },
   {
     "question": "Quelle est la complexité de la fusion de deux tableaux triés de tailles `na` et `nb` ?",
-    "choix": ["O(1)", "O(log(na + nb))", "O(na + nb)", "O(na × nb)"],
+    "choix": [
+      "O(1)",
+      "O(log(na + nb))",
+      "O(na + nb)",
+      "O(na × nb)"
+    ],
     "reponse": 2,
-    "explication": "À chaque tour de boucle, une valeur passe dans le résultat : il y a na + nb tours en tout, donc un temps linéaire."
+    "explication": "**Règle :** à chaque tour de la fusion, **une** valeur est écrite dans le résultat, et chaque valeur n'est écrite qu'une seule fois. Il y a donc `na + nb` écritures : le temps est **linéaire**, O(na + nb).\n\n**Pas à pas** avec deux tableaux de 3 cases (`3 7 9` et `2 3 6`) : 4 tours avec comparaison, puis on recopie les 2 dernières valeurs de `3 7 9`. En tout 6 écritures = 3 + 3. Avec deux tableaux de 1 000 cases : 2 000 écritures, au plus 1 999 comparaisons.\n\n**Les autres réponses :** O(1) est impossible, il faut au moins recopier chaque valeur ; O(log(na + nb)) est le coût d'une **recherche dichotomique**, qui ne regarde que quelques cases ; O(na × nb) serait de comparer chaque valeur de `a` à chaque valeur de `b`, ce que la fusion évite justement parce que les deux tableaux sont triés.\n\n**À retenir :** fusion = une écriture par valeur, donc O(na + nb)."
   },
   {
     "question": "Quel est le cas de base de la fonction récursive du tri fusion ?",
-    "choix": ["Le tableau est vide ou n'a qu'une case", "Le tableau a deux cases", "Le tableau est trié à l'envers", "Il n'y en a pas, la fonction s'arrête toute seule"],
+    "choix": [
+      "Le tableau est vide ou n'a qu'une case",
+      "Le tableau a deux cases",
+      "Le tableau est trié à l'envers",
+      "Il n'y en a pas, la fonction s'arrête toute seule"
+    ],
     "reponse": 0,
-    "explication": "Un tableau de 0 ou 1 case est forcément trié : la fonction s'arrête sans s'appeler. Sans ce cas, les appels ne s'arrêteraient jamais."
+    "explication": "**Règle :** une fonction récursive doit avoir un **cas de base** qui répond sans s'appeler. Pour le tri fusion, c'est un tableau de **0 ou 1 case** : il est trié sans rien faire.\n\n**Pas à pas** sur `trierPartie(t, aux, 0, 2)` (2 cases) :\n\n1. `fin - debut = 2` : ce n'est pas le cas de base, on coupe au milieu 1.\n2. `trierPartie(0, 1)` : 1 case, cas de base, on s'arrête.\n3. `trierPartie(1, 2)` : 1 case, cas de base, on s'arrête.\n4. On fusionne les deux cases.\n\n**Les autres réponses :** un tableau de 2 cases n'est pas forcément trié (`5 3`), il faut encore le couper et fusionner ; « trié à l'envers » n'est pas un cas particulier pour le tri fusion, il coupe toujours de la même façon ; sans cas de base, la fonction s'appelle à l'infini et la pile d'appels déborde (le programme plante).\n\n**À retenir :** cas de base du tri fusion = 0 ou 1 case (`fin - debut <= 1`)."
   },
   {
     "question": "Combien de niveaux de découpage pour un tableau de 1024 cases ?",
-    "choix": ["2", "10", "512", "1024"],
+    "choix": [
+      "2",
+      "10",
+      "512",
+      "1024"
+    ],
     "reponse": 1,
-    "explication": "On coupe en deux à chaque niveau : 1024, 512, 256, ..., 2, 1. Cela fait log₂(1024) = 10 niveaux."
+    "explication": "**Règle :** chaque niveau coupe les morceaux en deux. Le nombre de niveaux est le nombre de fois qu'on peut diviser `n` par 2 avant d'arriver à 1 : c'est **log₂ n**.\n\n**Pas à pas** pour 1024 cases :\n\n| Découpage | Taille des morceaux |\n|---|---|\n| 1 | 512 |\n| 2 | 256 |\n| 3 | 128 |\n| 4 | 64 |\n| 5 | 32 |\n| 6 | 16 |\n| 7 | 8 |\n| 8 | 4 |\n| 9 | 2 |\n| 10 | 1 |\n\n10 découpages : en effet 2¹⁰ = 1024, donc log₂(1024) = 10.\n\n**Les autres réponses :** 2 ne coupe que deux fois (morceaux de 256) ; 512 est la taille d'une moitié après **un** découpage, pas un nombre de niveaux ; 1024 est le nombre de cases.\n\n**À retenir :** niveaux = combien de fois on divise par 2 pour arriver à 1, soit log₂ n."
   },
   {
     "question": "Quelle est la complexité du tri fusion dans le **pire** cas ?",
-    "choix": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+    "choix": [
+      "O(n)",
+      "O(n log n)",
+      "O(n²)",
+      "O(log n)"
+    ],
     "reponse": 1,
-    "explication": "Le tri fusion coupe toujours exactement en deux, quel que soit le contenu du tableau : log n niveaux de O(n) chacun, donc O(n log n) dans tous les cas."
+    "explication": "**Règle :** le tri fusion coupe **toujours** au milieu, quel que soit le contenu. Il y a log₂ n niveaux, et à chaque niveau les fusions écrivent les n valeurs une fois : **n × log₂ n** dans tous les cas.\n\n**Pas à pas** pour 8 cases : 3 niveaux (log₂ 8 = 3), et à chaque niveau 8 valeurs écrites, soit 3 × 8 = 24, que le tableau soit trié, à l'envers ou mélangé. Le pire cas est donc le même que le meilleur : O(n log n).\n\n**Les autres réponses :** O(n) est le coût d'**une** fusion, pas du tri entier ; O(n²) est le pire cas des tris simples (bulles, insertion, sélection) ; O(log n) est seulement le nombre de niveaux, il manque le travail de chaque niveau.\n\n**À retenir :** tri fusion = log n niveaux × n par niveau = O(n log n), toujours."
   },
   {
     "question": "Quel est le principal défaut du tri fusion ?",
-    "choix": ["Il est en O(n²) sur un tableau déjà trié", "Il a besoin d'un tableau auxiliaire de n cases", "Il n'est pas stable", "Il ne marche pas avec des valeurs égales"],
+    "choix": [
+      "Il est en O(n²) sur un tableau déjà trié",
+      "Il a besoin d'un tableau auxiliaire de n cases",
+      "Il n'est pas stable",
+      "Il ne marche pas avec des valeurs égales"
+    ],
     "reponse": 1,
-    "explication": "Pour fusionner, il faut un brouillon de la taille du tableau : O(n) de mémoire en plus. Le tri fusion n'est pas en place."
+    "explication": "**Règle :** la fusion a besoin d'un **brouillon** : on ne peut pas écrire le résultat directement dans le tableau sans écraser des valeurs pas encore lues. Le tri fusion réserve donc un tableau auxiliaire de **n** cases : O(n) de mémoire en plus, il n'est **pas en place**.\n\n**Pas à pas** : fusionner `[0, 2)` = `5 8` et `[2, 4)` = `1 3` directement dans `t`. Le 1 doit aller en case 0 : on écrit `t[0] = 1`, et le 5, pas encore recopié, est écrasé. Avec `aux`, on écrit `1 3 5 8` dans le brouillon, puis on recopie dans `t`.\n\n**Les autres réponses :** il n'est **pas** en O(n²) sur un tableau trié, il est en O(n log n) dans tous les cas ; il **est** stable si la fusion prend à gauche en cas d'égalité (`<=`) ; les valeurs égales ne posent aucun problème, elles sont toutes gardées.\n\n**À retenir :** le prix du tri fusion = n cases de mémoire en plus (pas en place)."
   },
   {
     "question": "Dans la fusion, on écrit `if (t[i] < t[j])` au lieu de `if (t[i] <= t[j])`. Que se passe-t-il ?",
-    "choix": ["Le tableau n'est plus trié", "Le programme plante sur les valeurs égales", "Le tableau est trié, mais le tri n'est plus stable", "Rien du tout, c'est équivalent"],
+    "choix": [
+      "Le tableau n'est plus trié",
+      "Le programme plante sur les valeurs égales",
+      "Le tableau est trié, mais le tri n'est plus stable",
+      "Rien du tout, c'est équivalent"
+    ],
     "reponse": 2,
-    "explication": "En cas d'égalité, la valeur de droite passe d'abord : deux valeurs égales échangent leur ordre de départ. Le résultat reste trié, mais la stabilité est perdue."
+    "explication": "**Règle :** en cas d'égalité, la fusion doit prendre la valeur de **gauche** (placée avant au départ) pour être stable. Avec `<`, l'égalité donne « faux » et c'est la droite qui passe d'abord.\n\n**Pas à pas** : on note les valeurs égales pour les suivre. Gauche `4a 9`, droite `4b 6`.\n\n| Tour | Comparaison avec `<` | On prend | Résultat |\n|---|---|---|---|\n| 1 | 4a < 4b ? faux (égaux) | 4b (droite) | 4b |\n| 2 | 4a < 6 ? vrai | 4a | 4b 4a |\n| 3 | 9 < 6 ? faux | 6 | 4b 4a 6 |\n| fin | droite vide | 9 | 4b 4a 6 9 |\n\nLes valeurs sont triées, mais 4b est passé devant 4a : la stabilité est perdue.\n\n**Les autres réponses :** le tableau **reste** trié (seul l'ordre entre égaux change) ; le programme ne plante pas, les égalités sont traitées par la branche `else` ; ce n'est pas équivalent, la différence se voit dès qu'on trie des fiches (par note, avec des noms).\n\n**À retenir :** `<=` dans la fusion = stable ; `<` = trié mais pas stable."
   },
   {
     "question": "Pourquoi le tri fusion se parallélise-t-il bien ?",
-    "choix": ["Parce qu'il est récursif", "Parce que les deux moitiés se trient indépendamment l'une de l'autre", "Parce qu'il utilise un tableau auxiliaire", "Parce qu'il ne fait pas d'échanges"],
+    "choix": [
+      "Parce qu'il est récursif",
+      "Parce que les deux moitiés se trient indépendamment l'une de l'autre",
+      "Parce qu'il utilise un tableau auxiliaire",
+      "Parce qu'il ne fait pas d'échanges"
+    ],
     "reponse": 1,
-    "explication": "Trier la gauche n'a pas besoin de la droite : deux cœurs peuvent travailler en même temps. Seule la fusion finale attend les deux résultats."
+    "explication": "**Règle :** deux tâches se font en parallèle si aucune n'a besoin du résultat de l'autre. Dans le tri fusion, trier la moitié gauche ne lit **jamais** la moitié droite (et inversement).\n\n**Pas à pas** pour 8 cases et 2 cœurs :\n\n1. Cœur A : trie `[0, 4)`. Cœur B, en même temps : trie `[4, 8)`.\n2. Quand les deux ont fini, un cœur fait la dernière fusion.\n\nSeule cette fusion finale doit attendre.\n\n**Les autres réponses :** être récursif ne suffit pas : `nombreChiffres(n)` est récursive, mais chaque appel attend le suivant, rien ne se fait en parallèle ; le tableau auxiliaire sert à fusionner, pas à paralléliser ; ne pas faire d'échanges n'a rien à voir avec le fait de pouvoir partager le travail.\n\n**À retenir :** parallélisable = des sous-problèmes indépendants ; ici, les deux moitiés."
   },
   {
     "question": "Dans `trierPartie(t, aux, debut, fin)` qui trie la portion `[debut, fin)`, où se trouve le milieu ?",
-    "choix": ["`fin / 2`", "`(fin - debut) / 2`", "`debut + (fin - debut) / 2`", "`debut + fin`"],
+    "choix": [
+      "`fin / 2`",
+      "`(fin - debut) / 2`",
+      "`debut + (fin - debut) / 2`",
+      "`debut + fin`"
+    ],
     "reponse": 2,
-    "explication": "La portion commence à `debut` : on avance de la moitié de sa taille (`fin - debut`). Pour `[4, 8)`, cela donne 6."
+    "explication": "**Règle :** la portion `[debut, fin)` commence à `debut` et a `fin - debut` cases. Son milieu est à **la moitié de sa taille, à partir de `debut`** : `debut + (fin - debut) / 2`.\n\n**Pas à pas** avec la portion `[4, 8)` (cases 4, 5, 6, 7) :\n\n| Formule | Calcul | Résultat | Correct ? |\n|---|---|---|---|\n| `fin / 2` | 8 / 2 | 4 | non : c'est `debut`, la moitié gauche serait vide |\n| `(fin - debut) / 2` | 4 / 2 | 2 | non : la case 2 n'est même pas dans la portion |\n| `debut + (fin - debut) / 2` | 4 + 2 | 6 | oui : `[4, 6)` et `[6, 8)` |\n| `debut + fin` | 4 + 8 | 12 | non : hors de la portion |\n\n**Les autres réponses :** `fin / 2` ne marche que si `debut` vaut 0 ; `(fin - debut) / 2` donne une demi-taille, pas une position ; `debut + fin` oublie de diviser (et `(debut + fin) / 2` donnerait le bon milieu, mais `debut + fin` peut dépasser la capacité d'un `int` sur d'énormes tableaux).\n\n**À retenir :** milieu = début + moitié de la taille."
   },
   {
     "question": "Comment s'appelle la méthode qui découpe un problème en sous-problèmes du même type, les résout, puis combine les réponses ?",
-    "choix": ["Glouton", "Force brute", "Diviser pour régner", "Programmation linéaire"],
+    "choix": [
+      "Glouton",
+      "Force brute",
+      "Diviser pour régner",
+      "Programmation linéaire"
+    ],
     "reponse": 2,
-    "explication": "Diviser (couper en deux), régner (trier chaque moitié de la même façon), combiner (fusionner) : c'est le schéma « diviser pour régner »."
+    "explication": "**Règle :** **diviser pour régner** = découper un problème en sous-problèmes **du même type** plus petits, les résoudre de la même façon, puis **combiner** leurs réponses.\n\n**Pas à pas** pour le tri fusion :\n\n1. Diviser : couper le tableau en deux moitiés.\n2. Régner : trier chaque moitié avec le tri fusion lui-même.\n3. Combiner : fusionner les deux moitiés triées.\n\n**Les autres réponses :** un algorithme **glouton** fait à chaque étape le choix qui paraît le meilleur tout de suite, sans revenir en arrière (exemple : rendre la monnaie avec la plus grosse pièce possible) ; la **force brute** essaie toutes les possibilités une par une ; la **programmation linéaire** cherche le meilleur choix d'une fonction linéaire sous des contraintes, ce n'est pas un découpage en sous-problèmes.\n\n**À retenir :** découper en plus petits problèmes du même type + combiner = diviser pour régner."
   }
 ]

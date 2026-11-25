@@ -1,38 +1,68 @@
 [
   {
     "question": "À quoi sert une **extension** QGIS ?",
-    "choix": ["Ajouter des fonctions au logiciel", "Changer le format d'un fichier", "Sauvegarder les données", "Supprimer une couche"],
+    "choix": [
+      "Ajouter des fonctions au logiciel",
+      "Changer le format d'un fichier",
+      "Sauvegarder les données",
+      "Supprimer une couche"
+    ],
     "reponse": 0,
-    "explication": "Menu Extensions > Installer/Gérer les extensions."
+    "explication": "**Règle :** une **extension** (plugin) **ajoute des fonctions** à QGIS, comme une application qu'on installe sur un téléphone. On les gère dans le menu **Extensions > Installer/Gérer les extensions**.\n\n**Pas à pas :** par exemple, QGIS de base ne sait pas ajouter un fond OpenStreetMap en un clic ; on installe QuickMapServices et la fonction apparaît.\n\n**Les autres réponses :** changer le format d'un fichier, sauvegarder ou supprimer une couche sont des actions **déjà présentes** dans QGIS (exporter, enregistrer, clic droit > supprimer) : pas besoin d'extension pour ça.\n\n**À retenir :** extension = une fonction en plus, installée depuis le menu Extensions."
   },
   {
     "question": "Que fait **QuickOSM** ?",
-    "choix": ["Télécharge des données OpenStreetMap dans QGIS", "Convertit en Lambert 93", "Imprime la carte", "Crée des tampons"],
+    "choix": [
+      "Télécharge des données OpenStreetMap dans QGIS",
+      "Convertit en Lambert 93",
+      "Imprime la carte",
+      "Crée des tampons"
+    ],
     "reponse": 0,
-    "explication": "QuickOSM interroge OpenStreetMap par type d'objet (restaurant, gare…)."
+    "explication": "**Règle :** **QuickOSM** télécharge des **données** OpenStreetMap (restaurants, gares…) directement dans QGIS, sous forme de vraie couche avec ses attributs.\n\n**Pas à pas :** on choisit un type d'objet (par exemple « gare ») et une zone (une ville) ; QuickOSM interroge OpenStreetMap et crée une couche de points qu'on peut compter et sélectionner.\n\n**Les autres réponses :** la conversion en Lambert 93 se fait avec les outils de reprojection de QGIS ; l'impression passe par la mise en page de QGIS ; les tampons sont un outil de géotraitement. Aucun n'est le rôle de QuickOSM.\n\n**À retenir :** QuickOSM = récupérer des objets OSM ; QuickMapServices = afficher un fond."
   },
   {
     "question": "Un message **API key required** apparaît sur la carte. Que faire ?",
-    "choix": ["Choisir un fond libre comme OpenStreetMap standard", "Réinstaller QGIS", "Supprimer le projet", "Changer de projection"],
+    "choix": [
+      "Choisir un fond libre comme OpenStreetMap standard",
+      "Réinstaller QGIS",
+      "Supprimer le projet",
+      "Changer de projection"
+    ],
     "reponse": 0,
-    "explication": "Le fond choisi demande une clé d'accès. Un fond libre n'en demande pas."
+    "explication": "**Règle :** « API key required » veut dire que le **fond de carte** choisi demande une clé d'accès (un mot de passe du service de cartes). Un fond **libre** n'en demande pas.\n\n**Pas à pas :**\n\n1. Le message vient du service du fond de carte.\n2. On retire ce fond.\n3. On ajoute un fond libre, comme **OpenStreetMap standard** (avec QuickMapServices).\n\n**Les autres réponses :** réinstaller QGIS ou supprimer le projet ne change rien, le service demande toujours sa clé ; changer de projection ne touche pas au besoin de clé.\n\n**À retenir :** clé demandée → changer de fond pour un fond libre."
   },
   {
     "question": "Le fichier `.qgz` contient…",
-    "choix": ["Le projet (couches, ordre, styles) mais pas les données", "Toutes les données", "Seulement le fond de carte", "Uniquement les attributs"],
+    "choix": [
+      "Le projet (couches, ordre, styles) mais pas les données",
+      "Toutes les données",
+      "Seulement le fond de carte",
+      "Uniquement les attributs"
+    ],
     "reponse": 0,
-    "explication": "Le projet garde les chemins vers les données : ne les déplace pas."
+    "explication": "**Règle :** le fichier projet `.qgz` garde la **liste des couches** (avec le chemin vers leurs fichiers), leur **ordre** et leur **style**, mais **pas les données** elles-mêmes.\n\n**Pas à pas :** quand tu rouvres le projet, QGIS lit le `.qgz`, suit les chemins enregistrés et recharge les fichiers de données (par exemple `BATIMENT.shp`). Si tu as déplacé ces fichiers, il ne les trouve plus.\n\n**Les autres réponses :** « toutes les données » est le piège : envoyer seulement le `.qgz` à quelqu'un ne lui donne pas les couches ; « seulement le fond de carte » et « uniquement les attributs » sont trop restreints, le projet garde toutes les couches et leur mise en forme.\n\n**À retenir :** `.qgz` = la recette (quelles couches, dans quel ordre, avec quelles couleurs), pas les ingrédients."
   },
   {
     "question": "Pour mesurer des distances en mètres sur Paris, quel système choisir ?",
-    "choix": ["EPSG:2154 (Lambert 93)", "EPSG:4326 (WGS 84)", "Aucun", "N'importe lequel"],
+    "choix": [
+      "EPSG:2154 (Lambert 93)",
+      "EPSG:4326 (WGS 84)",
+      "Aucun",
+      "N'importe lequel"
+    ],
     "reponse": 0,
-    "explication": "Le Lambert 93 est en mètres. Le WGS 84 est en degrés."
+    "explication": "**Règle :** pour mesurer en mètres, il faut un système **projeté en mètres**. En France métropolitaine, c'est le **Lambert 93**, EPSG:2154.\n\n**Pas à pas :**\n\n1. Paris est en France métropolitaine.\n2. Le système officiel en mètres y est le Lambert 93.\n3. Code : **EPSG:2154**.\n\n**Les autres réponses :** l'EPSG:4326 (WGS 84) est en **degrés**, pas en mètres ; « aucun » est impossible, QGIS a toujours besoin d'un système pour placer et mesurer ; « n'importe lequel » est faux, l'unité change tout le résultat.\n\n**À retenir :** mesurer en France → EPSG:2154."
   },
   {
     "question": "Quelle couleur représente habituellement l'eau sur une carte ?",
-    "choix": ["Bleu", "Rouge", "Jaune", "Noir"],
+    "choix": [
+      "Bleu",
+      "Rouge",
+      "Jaune",
+      "Noir"
+    ],
     "reponse": 0,
-    "explication": "Bleu pour l'eau, vert pour la végétation, gris pour le bâti."
+    "explication": "**Règle :** par convention, l'**eau** est en **bleu** sur les cartes (vert pour la végétation, gris pour le bâti, rouge ou orange pour les grands axes routiers).\n\n**Pas à pas :** le lecteur reconnaît une rivière bleue sans regarder la légende : c'est tout l'intérêt d'une convention.\n\n**Les autres réponses :** le rouge sert plutôt aux grands axes routiers ; le jaune et le noir n'évoquent pas l'eau et obligeraient à lire la légende.\n\n**À retenir :** bleu = eau."
   }
 ]

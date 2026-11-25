@@ -1,51 +1,91 @@
 [
   {
     "question": "Avec `nom = \"Ada\"`, qu'affiche `print(f\"{nom} a {30 + 6} ans\")` ?",
-    "choix": ["`{nom} a {30 + 6} ans`", "`Ada a 36 ans`", "`Ada a 30 + 6 ans`", "Une erreur"],
+    "choix": [
+      "`{nom} a {30 + 6} ans`",
+      "`Ada a 36 ans`",
+      "`Ada a 30 + 6 ans`",
+      "Une erreur"
+    ],
     "reponse": 1,
-    "explication": "Dans une f-string, ce qui est entre accolades est calculé : `nom` vaut `Ada` et `30 + 6` vaut `36`."
+    "explication": "**Règle :** dans une f-string (une chaîne qui commence par `f`), tout ce qui est entre accolades `{ }` est **calculé** par Python, puis le résultat est inséré dans le texte.\n\n**Pas à pas :**\n\n1. `{nom}` : la variable `nom` vaut `\"Ada\"`, on écrit `Ada`.\n2. `{30 + 6}` : Python fait le calcul, 30 + 6 = 36, on écrit `36`.\n3. Le reste (` a `, ` ans`) est recopié tel quel.\n\nRésultat : `Ada a 36 ans`.\n\n**Les autres réponses :** `{nom} a {30 + 6} ans` serait affiché **sans** le `f` devant les guillemets (les accolades restent alors du texte ordinaire) ; `Ada a 30 + 6 ans` oublie que le contenu des accolades est calculé, pas recopié ; il n'y a aucune erreur, car un calcul est permis entre accolades.\n\n**À retenir :** `f\"...\"` + `{expression}` = la valeur de l'expression insérée dans le texte."
   },
   {
     "question": "Que donne `f\"{3.14159:.2f}\"` ?",
-    "choix": ["`3.14159`", "`3.14`", "`3.1`", "`3`"],
+    "choix": [
+      "`3.14159`",
+      "`3.14`",
+      "`3.1`",
+      "`3`"
+    ],
     "reponse": 1,
-    "explication": "`.2f` affiche le nombre avec exactement 2 décimales (arrondi)."
+    "explication": "**Règle :** dans une f-string, `:.2f` affiche un nombre à virgule avec **exactement 2 décimales**, en arrondissant.\n\n**Pas à pas :**\n\n1. Le nombre est `3.14159`.\n2. On garde 2 chiffres après le point : `3.14`, et on regarde le chiffre suivant (`1`) pour arrondir : il est inférieur à 5, on ne monte pas.\n3. Résultat : `3.14`.\n\n**Les autres réponses :** `3.14159` est le nombre sans mise en forme ; `3.1` correspondrait à `:.1f` (une décimale) ; `3` correspondrait à `:.0f` (aucune décimale) ou à `int(3.14159)`.\n\n**À retenir :** `:.Nf` = N chiffres après le point, arrondis."
   },
   {
     "question": "Que donne `f\"{42:05d}\"` ?",
-    "choix": ["`42000`", "`00042`", "`   42`", "`42`"],
+    "choix": [
+      "`42000`",
+      "`00042`",
+      "`   42`",
+      "`42`"
+    ],
     "reponse": 1,
-    "explication": "`05d` : un entier sur 5 caractères, complété à gauche par des zéros."
+    "explication": "**Règle :** `:05d` affiche un entier (`d`) sur une largeur d'**au moins 5** caractères, et le `0` devant le 5 demande de compléter **à gauche** par des zéros.\n\n**Pas à pas :**\n\n1. `42` s'écrit avec 2 chiffres.\n2. Il en faut 5 : il manque 5 - 2 = 3 caractères.\n3. On ajoute 3 zéros à gauche : `00042`.\n\n**Les autres réponses :** `42000` met les zéros du mauvais côté (cela changerait la valeur du nombre) ; `   42` correspond à `:5d` sans le `0` (complété par des espaces) ; `42` serait le résultat sans mise en forme.\n\n**À retenir :** `:0Nd` = au moins N chiffres, zéros ajoutés à gauche (pratique pour `007` ou `08h05`)."
   },
   {
     "question": "Après `s = \"abc\"` puis `s.upper()`, que vaut `s` ?",
-    "choix": ["`\"ABC\"`", "`\"abc\"`", "`None`", "`\"Abc\"`"],
+    "choix": [
+      "`\"ABC\"`",
+      "`\"abc\"`",
+      "`None`",
+      "`\"Abc\"`"
+    ],
     "reponse": 1,
-    "explication": "Une `str` n'est pas modifiable : `upper()` renvoie une nouvelle chaîne, qu'il faut ranger (`s = s.upper()`)."
+    "explication": "**Règle :** une `str` n'est **pas modifiable**. `upper()` ne change pas la chaîne : il en **renvoie** une nouvelle, qu'il faut ranger dans une variable.\n\n**Pas à pas :**\n\n1. `s = \"abc\"` : `s` désigne la chaîne `\"abc\"`.\n2. `s.upper()` fabrique la nouvelle chaîne `\"ABC\"`, mais on ne la range nulle part : elle est perdue aussitôt.\n3. `s` n'a pas été touché : il vaut toujours `\"abc\"`.\n\nPour garder le résultat, il faut écrire `s = s.upper()`.\n\n**Les autres réponses :** `\"ABC\"` serait la bonne réponse après `s = s.upper()` ; `None` est ce que renvoient certaines méthodes de **listes** qui modifient sur place (comme `sort`), pas les méthodes de chaînes ; `\"Abc\"` est le résultat de `capitalize()`.\n\n**À retenir :** avec une chaîne, écris toujours `x = x.methode()` pour garder le résultat."
   },
   {
     "question": "Que renvoie `\"banane\".find(\"z\")` ?",
-    "choix": ["`None`", "`-1`", "`0`", "Une `ValueError`"],
+    "choix": [
+      "`None`",
+      "`-1`",
+      "`0`",
+      "Une `ValueError`"
+    ],
     "reponse": 1,
-    "explication": "`find` renvoie `-1` quand la sous-chaîne est absente. C'est `index` qui lèverait une `ValueError`."
+    "explication": "**Règle :** `texte.find(morceau)` renvoie la **position** de la première apparition de `morceau`, ou **`-1`** s'il n'apparaît pas.\n\n**Pas à pas :**\n\n1. On cherche `\"z\"` dans `\"banane\"`.\n2. Les lettres sont `b`, `a`, `n`, `a`, `n`, `e` : aucun `z`.\n3. Le morceau est absent : `find` renvoie `-1`.\n\n**Les autres réponses :** `None` n'est jamais renvoyé par `find` ; `0` voudrait dire « trouvé à la toute première position » (c'est ce que donnerait `\"banane\".find(\"b\")`) ; une `ValueError` est levée par `index`, la méthode cousine de `find`, quand le morceau est absent.\n\n**À retenir :** `find` renvoie `-1` si absent (à tester avant de s'en servir), `index` lève `ValueError`."
   },
   {
     "question": "Que renvoie `\"a=b=c\".split(\"=\", 1)` ?",
-    "choix": ["`[\"a\", \"b\", \"c\"]`", "`[\"a\", \"b=c\"]`", "`[\"a=b\", \"c\"]`", "`[\"a\"]`"],
+    "choix": [
+      "`[\"a\", \"b\", \"c\"]`",
+      "`[\"a\", \"b=c\"]`",
+      "`[\"a=b\", \"c\"]`",
+      "`[\"a\"]`"
+    ],
     "reponse": 1,
-    "explication": "Le deuxième argument limite le nombre de découpes : une seule, au premier `=`."
+    "explication": "**Règle :** `texte.split(sep, maxsplit)` découpe aux séparateurs `sep`, mais au plus `maxsplit` fois, en partant de la gauche. Le reste du texte reste dans le dernier morceau.\n\n**Pas à pas :**\n\n1. Le texte `\"a=b=c\"` contient deux `=`.\n2. `maxsplit` vaut 1 : on ne coupe qu'**une** fois, au **premier** `=`.\n3. À gauche de ce `=` : `\"a\"` ; à droite, tout le reste, sans le découper : `\"b=c\"`.\n\nRésultat : `[\"a\", \"b=c\"]`.\n\n**Les autres réponses :** `[\"a\", \"b\", \"c\"]` est le résultat de `split(\"=\")` sans limite ; `[\"a=b\", \"c\"]` coupe au **dernier** `=`, c'est ce que fait `rsplit(\"=\", 1)` ; `[\"a\"]` perdrait la fin du texte, ce que `split` ne fait jamais.\n\n**À retenir :** `split(sep, 1)` coupe au premier séparateur, `rsplit(sep, 1)` au dernier."
   },
   {
     "question": "Comment remplacer les espaces multiples d'un texte par un seul espace (et enlever ceux des bouts) ?",
-    "choix": ["`texte.strip()`", "`texte.replace(\"  \", \" \")`", "`\" \".join(texte.split())`", "`texte.split(\" \")`"],
+    "choix": [
+      "`texte.strip()`",
+      "`texte.replace(\"  \", \" \")`",
+      "`\" \".join(texte.split())`",
+      "`texte.split(\" \")`"
+    ],
     "reponse": 2,
-    "explication": "`split()` sans argument découpe sur tous les espaces et ignore les vides ; `join` recolle avec un seul espace."
+    "explication": "**Règle :** `split()` **sans argument** coupe le texte sur toutes les suites d'espaces et ne garde aucun morceau vide ; `\" \".join(liste)` recolle les morceaux avec **un** espace entre chacun.\n\n**Pas à pas** avec `\"  un   deux \"` :\n\n1. `\"  un   deux \".split()` donne `[\"un\", \"deux\"]` : les espaces des bouts et les espaces multiples disparaissent.\n2. `\" \".join([\"un\", \"deux\"])` donne `\"un deux\"`.\n\n**Les autres réponses :**\n\n- `texte.strip()` enlève seulement les espaces **des bouts** : `\"un   deux\"` garde ses trois espaces au milieu.\n- `texte.replace(\"  \", \" \")` remplace chaque paire d'espaces par un espace, en une seule passe : trois espaces deviennent deux, et les bouts ne sont pas nettoyés.\n- `texte.split(\" \")` coupe à **chaque** espace et laisse des morceaux vides : `[\"\", \"\", \"un\", \"\", \"\", \"deux\", \"\"]`, et ce n'est même pas un texte.\n\n**À retenir :** `\" \".join(texte.split())` = un seul espace entre les mots, aucun aux bouts."
   },
   {
     "question": "Que vaut `chr(ord(\"a\") + 1)` ?",
-    "choix": ["`\"a1\"`", "`98`", "`\"b\"`", "`\"A\"`"],
+    "choix": [
+      "`\"a1\"`",
+      "`98`",
+      "`\"b\"`",
+      "`\"A\"`"
+    ],
     "reponse": 2,
-    "explication": "`ord(\"a\")` vaut 97, `chr(98)` est `\"b\"`."
+    "explication": "**Règle :** `ord(c)` donne le **code** (Unicode) d'un caractère, `chr(n)` donne le **caractère** d'un code. Les lettres ont des codes qui se suivent : `a` = 97, `b` = 98, `c` = 99…\n\n**Pas à pas :**\n\n1. `ord(\"a\")` vaut `97`.\n2. `97 + 1` vaut `98`.\n3. `chr(98)` est le caractère de code 98 : `\"b\"`.\n\n**Les autres réponses :** `\"a1\"` confond avec le collage de textes, mais `ord(\"a\")` est un nombre, on fait donc une addition ; `98` est le résultat intermédiaire, avant `chr` ; `\"A\"` a le code 65, qui n'a rien à voir avec 98.\n\n**À retenir :** `chr(ord(c) + k)` = la lettre `k` rangs plus loin que `c`."
   },
   {
     "question": "Pourquoi `\"Zoé\" < \"anna\"` vaut-il `True` ?",
@@ -56,48 +96,83 @@
       "C'est faux, ça vaut `False`"
     ],
     "reponse": 1,
-    "explication": "Les chaînes se comparent par code de caractère : `\"Z\"` (90) est avant `\"a\"` (97). Pour ignorer la casse, compare `s.lower()`."
+    "explication": "**Règle :** deux chaînes se comparent **caractère par caractère**, selon le code de chaque caractère. On s'arrête au premier caractère différent. Toutes les majuscules (codes 65 à 90) ont un code **plus petit** que les minuscules (97 à 122).\n\n**Pas à pas :**\n\n1. Premier caractère de `\"Zoé\"` : `Z`, code 90.\n2. Premier caractère de `\"anna\"` : `a`, code 97.\n3. Ils sont différents, on compare : 90 < 97, donc `\"Zoé\" < \"anna\"` vaut `True`. La suite des mots n'est même pas regardée.\n\n**Les autres réponses :** la longueur ne compte que si une chaîne est le début de l'autre, ce qui n'est pas le cas ici ; Python n'ignore **pas** la casse, c'est justement elle qui décide ici ; le résultat est bien `True`, pas `False`.\n\n**À retenir :** majuscules avant minuscules ; pour comparer sans la casse, compare `a.lower()` et `b.lower()` (ou trie avec `key=str.lower`)."
   },
   {
     "question": "Combien vaut `len(r\"a\\nb\")` (chaîne brute contenant `a`, `\\`, `n`, `b`) ?",
-    "choix": ["3", "4", "2", "1"],
+    "choix": [
+      "3",
+      "4",
+      "2",
+      "1"
+    ],
     "reponse": 1,
-    "explication": "Dans une chaîne brute, `\\n` n'est pas un retour à la ligne mais deux caractères : `\\` et `n`. On a donc 4 caractères."
+    "explication": "**Règle :** dans une chaîne normale, `\\n` est **un seul** caractère (le retour à la ligne). Dans une chaîne **brute** `r\"...\"`, les `\\` ne sont pas interprétés : `\\n` reste deux caractères, `\\` puis `n`.\n\n**Pas à pas :** on compte les caractères de `r\"a\\nb\"` un par un.\n\n| Position | Caractère |\n|---|---|\n| 0 | `a` |\n| 1 | `\\` |\n| 2 | `n` |\n| 3 | `b` |\n\nIl y en a **4**.\n\n**Les autres réponses :** 3 est la longueur de `\"a\\nb\"` **sans** le `r` (`a`, retour à la ligne, `b`) ; 2 ne compterait que les lettres `a` et `b` ; 1 ne correspond à rien ici (c'est `len(\"\\n\")`).\n\n**À retenir :** avec `r` devant, chaque `\\` compte comme un caractère ordinaire."
   },
   {
     "question": "Comment obtient-on une chaîne `s` écrite en minuscules ?",
-    "choix": ["`s.toLowerCase()`", "`s.lower()`", "`lower(s)`", "`s.toLower()`"],
+    "choix": [
+      "`s.toLowerCase()`",
+      "`s.lower()`",
+      "`lower(s)`",
+      "`s.toLower()`"
+    ],
     "reponse": 1,
-    "explication": "`lower()` est une **méthode** des chaînes ; elle renvoie une nouvelle chaîne (`s` ne change pas). Son contraire est `upper()`."
+    "explication": "**Règle :** `lower()` est une **méthode** des chaînes : on l'écrit après la chaîne et un point, `s.lower()`. Elle renvoie une **nouvelle** chaîne en minuscules ; `s` ne change pas.\n\n**Pas à pas :** avec `s = \"PyThOn\"`, `s.lower()` renvoie `\"python\"`. Pour garder le résultat : `s = s.lower()`. Son contraire est `upper()`.\n\n**Les autres réponses :** `s.toLowerCase()` est l'écriture de JavaScript et `s.toLower()` celle d'autres langages : elles n'existent pas en Python (`AttributeError`) ; `lower(s)` n'existe pas non plus, car `lower` n'est pas une fonction à part, c'est une méthode qu'on appelle **sur** la chaîne.\n\n**À retenir :** en Python, les transformations de texte s'écrivent `chaine.methode()` : `lower()`, `upper()`, `strip()`…"
   },
   {
     "question": "Comment teste-t-on si le texte `\"py\"` apparaît dans une chaîne `s` ?",
-    "choix": ["`s.contains(\"py\")`", "`\"py\" in s`", "`s.includes(\"py\")`", "`s.has(\"py\")`"],
+    "choix": [
+      "`s.contains(\"py\")`",
+      "`\"py\" in s`",
+      "`s.includes(\"py\")`",
+      "`s.has(\"py\")`"
+    ],
     "reponse": 1,
-    "explication": "`in` cherche une sous-chaîne. `s.find(\"py\")` donne en plus sa position (`-1` si absente). Les chaînes n'ont pas de méthode `contains`."
+    "explication": "**Règle :** l'opérateur `in` teste si un morceau apparaît dans une chaîne : `morceau in texte` vaut `True` ou `False`. Il tient compte des majuscules.\n\n**Pas à pas :** avec `s = \"j'aime python\"`, `\"py\" in s` vaut `True` (les lettres `p` puis `y` se suivent dans `python`). Avec `s = \"Python\"`, `\"py\" in s` vaut `False`, car le `P` est majuscule : il faudrait `\"py\" in s.lower()`. Pour connaître en plus la **position**, on utilise `s.find(\"py\")`, qui vaut `-1` si le morceau est absent.\n\n**Les autres réponses :** `s.contains(\"py\")`, `s.includes(\"py\")` (JavaScript) et `s.has(\"py\")` ne sont pas des méthodes des chaînes Python : elles provoquent une `AttributeError`.\n\n**À retenir :** « est-ce que ça contient ? » s'écrit `morceau in texte`."
   },
   {
     "question": "Comment récupère-t-on les **3 derniers** caractères d'une chaîne `s` ?",
-    "choix": ["`s[-3:]`", "`s[:-3]`", "`s.substr(-3)`", "`s[-3]`"],
+    "choix": [
+      "`s[-3:]`",
+      "`s[:-3]`",
+      "`s.substr(-3)`",
+      "`s[-3]`"
+    ],
     "reponse": 0,
-    "explication": "`s[-3:]` part du 3e caractère avant la fin et va jusqu'au bout. `s[:-3]` donne tout **sauf** les 3 derniers, et `s[-3]` un seul caractère."
+    "explication": "**Règle :** les indices négatifs comptent depuis la fin (`-1` est le dernier caractère). Dans une tranche `s[debut:fin]`, le début est inclus et la fin exclue ; sans `fin`, on va jusqu'au bout.\n\n**Pas à pas** avec `s = \"bonjour\"` :\n\n| Caractère | `b` | `o` | `n` | `j` | `o` | `u` | `r` |\n|---|---|---|---|---|---|---|---|\n| Indice négatif | -7 | -6 | -5 | -4 | -3 | -2 | -1 |\n\n`s[-3:]` part de l'indice -3 (`o`) et va jusqu'au bout : `\"our\"`, les 3 derniers caractères.\n\n**Les autres réponses :** `s[:-3]` donne tout **sauf** les 3 derniers (`\"bonj\"`) ; `s[-3]` donne **un seul** caractère (`\"o\"`) ; `s.substr(-3)` n'existe pas en Python (c'est du JavaScript).\n\n**À retenir :** `s[-n:]` = les n derniers, `s[:-n]` = tout sauf les n derniers."
   },
   {
     "question": "Comment colle-t-on les mots de la liste `mots` en une seule chaîne, séparés par des virgules ?",
-    "choix": ["`mots.join(\",\")`", "`\",\".join(mots)`", "`join(mots, \",\")`", "`mots + \",\"`"],
+    "choix": [
+      "`mots.join(\",\")`",
+      "`\",\".join(mots)`",
+      "`join(mots, \",\")`",
+      "`mots + \",\"`"
+    ],
     "reponse": 1,
-    "explication": "`join` est une méthode du **séparateur** : `\",\".join([\"a\", \"b\"])` donne `\"a,b\"`. Tous les éléments doivent être des chaînes."
+    "explication": "**Règle :** `join` est une méthode du **séparateur** : `sep.join(liste)` colle les éléments de la liste en mettant `sep` **entre** chacun. Les éléments doivent tous être des chaînes.\n\n**Pas à pas** avec `mots = [\"a\", \"b\", \"c\"]` :\n\n1. Le séparateur est `\",\"`.\n2. On écrit `a`, puis `,`, puis `b`, puis `,`, puis `c` : pas de virgule après le dernier.\n3. Résultat : `\"a,b,c\"`.\n\n**Les autres réponses :** `mots.join(\",\")` inverse les rôles (c'est l'ordre de JavaScript) : les listes n'ont pas de méthode `join`, `AttributeError` ; `join(mots, \",\")` n'existe pas comme fonction ; `mots + \",\"` essaie d'ajouter un texte à une liste, ce qui lève une `TypeError`.\n\n**À retenir :** le séparateur d'abord, puis `.join(liste)` : `\" \".join(mots)`, `\"\\n\".join(lignes)`."
   },
   {
     "question": "Comment écrit-on une chaîne qui s'étend sur plusieurs lignes du code ?",
-    "choix": ["Entre triples guillemets : `\"\"\"...\"\"\"`", "Entre accents graves, comme en JavaScript", "Entre `<<<` et `>>>`", "C'est impossible, il faut concaténer avec `+`"],
+    "choix": [
+      "Entre triples guillemets : `\"\"\"...\"\"\"`",
+      "Entre accents graves, comme en JavaScript",
+      "Entre `<<<` et `>>>`",
+      "C'est impossible, il faut concaténer avec `+`"
+    ],
     "reponse": 0,
-    "explication": "Les triples guillemets (`\"\"\"` ou `'''`) gardent les retours à la ligne. Les accents graves n'ont pas ce rôle en Python."
+    "explication": "**Règle :** une chaîne entre **triples guillemets** (`\"\"\"...\"\"\"` ou `'''...'''`) peut s'étendre sur plusieurs lignes du code. Les passages à la ligne sont gardés dans la chaîne (ce sont des `\\n`).\n\n**Pas à pas :**\n\n```python\ntexte = \"\"\"ligne 1\nligne 2\"\"\"\nprint(len(texte.splitlines()))\n```\n\nLa chaîne contient `ligne 1`, un retour à la ligne, puis `ligne 2` : `splitlines()` donne 2 lignes.\n\n**Les autres réponses :** les accents graves servent aux textes sur plusieurs lignes en JavaScript, mais n'ont aucun rôle en Python ; `<<<` et `>>>` n'existent pas pour les chaînes (`>>>` est seulement l'invite de l'interpréteur) ; ce n'est pas impossible, et concaténer avec `+` et des `\\n` marche aussi mais est bien moins lisible.\n\n**À retenir :** texte sur plusieurs lignes = `\"\"\"...\"\"\"`."
   },
   {
     "question": "Comment convertit-on le texte `\"42\"` en nombre entier ?",
-    "choix": ["`int(\"42\")`", "`parseInt(\"42\")`", "`\"42\".toInt()`", "`(int) \"42\"`"],
+    "choix": [
+      "`int(\"42\")`",
+      "`parseInt(\"42\")`",
+      "`\"42\".toInt()`",
+      "`(int) \"42\"`"
+    ],
     "reponse": 0,
-    "explication": "`int(texte)` convertit (et lève `ValueError` si le texte n'est pas un entier). Dans l'autre sens, `str(42)` donne `\"42\"`."
+    "explication": "**Règle :** pour transformer un texte en entier, on appelle la fonction `int(texte)`. Si le texte ne représente pas un entier, elle lève une `ValueError`. L'inverse est `str(nombre)`.\n\n**Pas à pas :**\n\n1. `\"42\"` est un texte : `\"42\" + 1` lève une `TypeError`.\n2. `int(\"42\")` donne le nombre `42`.\n3. Maintenant `int(\"42\") + 1` vaut `43`.\n\nAttention : `int(\"4.2\")` échoue (il faudrait `float(\"4.2\")`), et `int(\"12a\")` aussi.\n\n**Les autres réponses :** `parseInt(\"42\")` vient de JavaScript, `\"42\".toInt()` de Kotlin, et `(int) \"42\"` est l'écriture du C ou de Java : aucune n'existe en Python.\n\n**À retenir :** texte → entier avec `int(...)`, texte → nombre à virgule avec `float(...)`, nombre → texte avec `str(...)`."
   }
 ]

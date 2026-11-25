@@ -13,7 +13,8 @@
           "an account",
           "bank account",
           "a bank account"
-        ]
+        ],
+        "explication": "**Règle :** un compte (bancaire) = *an account*, ou plus précis *a bank account*.\n\n**Pas à pas :** le mot *account* sert de base à toute une famille : *account* (compte) → *accountant* (comptable, la personne) → *accounting* (la comptabilité) → *account balance* (le solde du compte).\n\n**Erreurs fréquentes :** écrire *count* (compter, ou un comte) ou *compte* à la française ; confondre avec *accountant*, qui désigne la personne.\n\n**À retenir :** *account* = compte ; *accountant* = comptable."
       },
       {
         "intitule": "un relevé de compte",
@@ -23,7 +24,8 @@
           "a statement",
           "bank statement",
           "a bank statement"
-        ]
+        ],
+        "explication": "**Règle :** un relevé de compte = *a statement*, ou *a bank statement* : le document qui liste toutes les opérations (paiements, dépôts, retraits) d'une période.\n\n**Pas à pas :** *statement* vient de *to state* (déclarer) : la banque « déclare » ce qui s'est passé sur ton compte. On dit *a monthly statement* pour le relevé de chaque mois.\n\n**Erreurs fréquentes :** traduire mot à mot par *a reading* ou *a list of the account* ; oublier que *statement* veut aussi dire « déclaration » dans un autre contexte (*a press statement*).\n\n**À retenir :** relevé de compte = *(bank) statement*."
       },
       {
         "intitule": "un découvert",
@@ -31,7 +33,8 @@
         "reponse": [
           "overdraft",
           "an overdraft"
-        ]
+        ],
+        "explication": "**Règle :** un découvert = *an overdraft* : le compte est passé sous zéro.\n\n**Pas à pas :** *over* (trop) + *draft* (de *to draw*, retirer de l'argent) : tu as retiré plus que ce que tu avais. Expressions liées : *to be overdrawn* (être à découvert), *to be in the red* (être dans le rouge).\n\n**Erreurs fréquentes :** écrire *a draft* seul (c'est un brouillon) ou *a discovery* (une découverte, sans rapport avec la banque).\n\n**À retenir :** découvert = *overdraft* ; brouillon = *draft*."
       },
       {
         "intitule": "un prêt",
@@ -39,7 +42,8 @@
         "reponse": [
           "loan",
           "a loan"
-        ]
+        ],
+        "explication": "**Règle :** un prêt = *a loan* (*to take out a loan* = contracter un prêt, *to repay a loan* = rembourser un prêt).\n\n**Pas à pas :** *loan* est le **nom**. Pour les verbes, on choisit selon le rôle : la banque prête (*lends*), le client emprunte (*borrows*). Si le prêt sert à acheter un logement, on dit *a mortgage*.\n\n**Erreurs fréquentes :** écrire *lend* (c'est le verbe « prêter », pas le nom « un prêt ») ou *lone* (seul, qui se prononce pareil).\n\n**À retenir :** *a loan* = un prêt ; *a mortgage* = un prêt immobilier."
       },
       {
         "intitule": "emprunter",
@@ -51,7 +55,8 @@
         "refuses": [
           "lend",
           "to lend"
-        ]
+        ],
+        "explication": "**Règle :** emprunter = *to borrow* : tu **reçois** quelque chose que tu devras rendre (*to borrow money from the bank*).\n\n**Pas à pas :** on se demande « qui reçoit l'argent ? ». Ici c'est le sujet (« j'emprunte » = je reçois) : c'est donc *borrow*. Si le sujet donnait l'argent (« je prête »), ce serait *lend*.\n\n**Erreurs fréquentes :** *lend* / *to lend* est refusé parce qu'il veut dire **prêter**, le sens inverse. C'est l'erreur la plus courante du TOEIC sur ce thème.\n\n**À retenir :** *borrow from* = emprunter à ; *lend to* = prêter à."
       },
       {
         "intitule": "un prêt immobilier",
@@ -61,7 +66,8 @@
           "a mortgage",
           "home loan",
           "a home loan"
-        ]
+        ],
+        "explication": "**Règle :** un prêt immobilier = *a mortgage* (le **t** est muet : « mor-guidj ») ; *a home loan* est accepté aussi.\n\n**Pas à pas :** c'est un *loan* (prêt) spécial : il sert à acheter une maison (*home*), et la maison sert de garantie à la banque (c'est l'hypothèque). *To pay off a mortgage* = finir de rembourser son prêt immobilier.\n\n**Erreurs fréquentes :** écrire *real estate loan* à la française (compréhensible mais peu employé) ou *hypothec* (mot très rare en anglais).\n\n**À retenir :** prêt immobilier = *mortgage*."
       },
       {
         "intitule": "un retrait (d'argent)",
@@ -69,7 +75,8 @@
         "reponse": [
           "withdrawal",
           "a withdrawal"
-        ]
+        ],
+        "explication": "**Règle :** un retrait d'argent = *a withdrawal* ; le verbe est *to withdraw* (retirer).\n\n**Pas à pas :** *with* + *draw* (tirer) : on « tire » l'argent hors du compte. On construit : *to withdraw 100 euros from an ATM* (retirer 100 euros au distributeur). Le contraire est *a deposit* (un dépôt).\n\n**Erreurs fréquentes :** écrire *a retreat* (une retraite militaire) ou oublier le **a** du milieu (*withdrawl*).\n\n**À retenir :** retrait = *withdrawal* (*from* un compte) ; dépôt = *deposit* (*into* un compte)."
       },
       {
         "intitule": "un distributeur de billets",
@@ -81,7 +88,8 @@
           "a cash dispenser",
           "cash machine",
           "a cash machine"
-        ]
+        ],
+        "explication": "**Règle :** un distributeur de billets = *an ATM* (*Automated Teller Machine*, surtout US), ou *a cash dispenser* / *a cash machine* (UK).\n\n**Pas à pas :** on décode le sigle : *automated* (automatique) + *teller* (guichetier, l'employé qui compte l'argent) + *machine*. C'est donc un « guichetier automatique ». *To dispense* = distribuer, d'où *cash dispenser*.\n\n**Erreurs fréquentes :** écrire *a distributor* (c'est un distributeur au sens commercial, une société qui distribue des produits) ou *DAB*.\n\n**À retenir :** distributeur de billets = *ATM* ou *cash machine*."
       }
     ],
     "indices": [
@@ -104,7 +112,8 @@
           "borrow",
           "lend"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *to borrow* = emprunter (recevoir) ; *to lend* = prêter (donner) ; *a loan* = un prêt (nom).\n\n**Pas à pas :**\n1. Il faut un **verbe** après *I need to*.\n2. Le sujet est *I*, qui va **recevoir** l'argent *from the bank* (de la banque) pour acheter une voiture.\n3. Recevoir pour rendre plus tard = emprunter, donc *borrow*.\n\n**Les autres réponses :** *lend* dit l'inverse (c'est la banque qui prête, *the bank lends*) ; *loan* est surtout un nom (*I need a loan*) ; *deposit* (déposer) ne va pas avec *from the bank*.\n\n**À retenir :** demande-toi qui reçoit l'argent : le sujet reçoit → *borrow from*."
       },
       {
         "intitule": "*She made a ...... of 500 euros into her savings account.*",
@@ -115,7 +124,8 @@
           "withdrawal",
           "statement"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *to make a deposit into an account* = faire un dépôt sur un compte (on **ajoute** de l'argent).\n\n**Pas à pas :**\n1. *She made a ......* : il faut un nom après *a*.\n2. L'indice est *into her savings account* : l'argent **entre** (*into*) dans son compte épargne.\n3. Ajouter de l'argent sur un compte = *a deposit*.\n\n**Les autres réponses :** *withdrawal* (retrait) fait **sortir** l'argent et se construit avec *from* ; *overdraft* (découvert) et *statement* (relevé) ne se « font » pas pour 500 euros sur un compte épargne.\n\n**À retenir :** *deposit into* (mettre sur) ↔ *withdrawal from* (retirer de)."
       },
       {
         "intitule": "*My account is 200 euros in the red: I have an ......*",
@@ -126,7 +136,8 @@
           "asset",
           "estimate"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *to be in the red* = être dans le rouge, à découvert ; ce découvert se dit *an overdraft*.\n\n**Pas à pas :**\n1. *My account is 200 euros in the red* = mon compte est à −200 euros.\n2. *I have an ......* : il faut un nom qui commence par une voyelle (*an*).\n3. Un solde négatif = un découvert = *an overdraft*.\n\n**Les autres réponses :** *income* (revenus) est de l'argent qui rentre ; *asset* (bien, actif) est ce qu'on possède ; *estimate* (devis) est un prix proposé. Aucun ne décrit un solde négatif.\n\n**À retenir :** *in the red* = à découvert = *overdraft* ; *in the black* = positif."
       },
       {
         "intitule": "*Enter your ...... and press OK.*",
@@ -137,7 +148,8 @@
           "PIN",
           "CPA"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a PIN* (*Personal Identification Number*) = le code confidentiel d'une carte bancaire.\n\n**Pas à pas :** *Enter your ...... and press OK* = « tape ton ...... et appuie sur OK ». Ce qu'on tape avant de valider, c'est le code secret : *PIN*.\n\n**Les autres réponses :**\n- *ATM* est la machine elle-même (on ne la « tape » pas) ;\n- *GNP* (*Gross National Product*) est le produit national brut d'un pays ;\n- *CPA* (*Certified Public Accountant*) est un expert-comptable.\n\n**À retenir :** *PIN* = code ; *ATM* = distributeur."
       },
       {
         "intitule": "*Check your monthly ...... to see all your payments.*",
@@ -148,7 +160,8 @@
           "statement",
           "grant"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a (monthly) statement* = un relevé (mensuel) : il liste tous les paiements de la période.\n\n**Pas à pas :**\n1. *Check your monthly ......* : il faut un nom après l'adjectif *monthly* (mensuel).\n2. L'indice est *to see all your payments* (pour voir tous tes paiements).\n3. Le document qui montre tous les paiements = *statement*.\n\n**Les autres réponses :** *mortgage* (prêt immobilier), *quotation* (devis) et *grant* (subvention) ne sont pas des listes de paiements.\n\n**À retenir :** voir ses opérations = lire son *statement*."
       },
       {
         "intitule": "*Can I ...... this to my credit card?*",
@@ -159,7 +172,8 @@
           "charge",
           "deposit"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *to charge something to a card* = payer quelque chose par carte, mettre sur le compte de la carte.\n\n**Pas à pas :**\n1. *Can I ...... this to my credit card?* : il faut un verbe qui se construit avec *something to my credit card*.\n2. Seul *charge* accepte cette construction : *charge this to my card* = « débitez-le sur ma carte ».\n\n**Les autres réponses :** *borrow* (emprunter) se construit avec *from* ; *earn* (gagner un salaire) ne va pas avec une carte ; *deposit* (déposer) se construit avec *into an account*.\n\n**À retenir :** payer par carte = *charge it to my card* ou *pay by card*."
       }
     ],
     "indices": [
@@ -182,7 +196,8 @@
           "devis",
           "reçu"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *an invoice* = **une facture** : le document envoyé **après** la vente pour demander le paiement.\n\n**Pas à pas :** on place les trois documents dans l'ordre d'un achat :\n\n| Moment | Document | Anglais |\n|---|---|---|\n| Avant la commande | devis | *quotation, quote, estimate* |\n| Après la vente | facture | ***invoice*** |\n| Après le paiement | reçu | *receipt* |\n\n**Les autres réponses :** « devis » est *quotation* (avant l'achat) ; « reçu » est *receipt* (la preuve qu'on a payé).\n\n**À retenir :** devis → *invoice* (facture) → *receipt* (reçu)."
       },
       {
         "intitule": "*quotation* (ou *quote*)",
@@ -192,7 +207,8 @@
           "citation boursière",
           "devis"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a quotation* (ou *a quote*) = **un devis** : le prix qu'un fournisseur propose avant une commande.\n\n**Pas à pas :** *to quote a price* = indiquer un prix. Quand on demande *Could you send us a quote?*, on demande un devis. C'est le sens du vocabulaire commercial du TOEIC.\n\n**Les autres réponses :**\n- « quota » est le piège de ressemblance (un quota se dit *a quota*) ;\n- « citation boursière » : *a share quotation* existe (le cours d'une action), mais ce n'est pas le sens courant en commerce.\n\n**À retenir :** *quote / quotation* = devis (et aussi citation d'un texte)."
       },
       {
         "intitule": "*refund*",
@@ -202,7 +218,8 @@
           "remboursement",
           "refus"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *a refund* = **un remboursement** (nom) ; *to refund* = rembourser (verbe).\n\n**Pas à pas :** *re-* (de nouveau) + *fund* (fonds, argent) : l'argent revient vers toi. *If the product is faulty, you will get a full refund* = si le produit est défectueux, tu seras remboursé entièrement.\n\n**Les autres réponses :** « refonte » est un piège de ressemblance (une refonte se dit *an overhaul* ou *a redesign*) ; « refus » se dit *a refusal*.\n\n**À retenir :** *refund* = remboursement ; *refundable* = remboursable."
       },
       {
         "intitule": "*remainder*",
@@ -212,7 +229,8 @@
           "reste, solde",
           "rappel"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *the remainder* = **le reste, le solde** : ce qui reste à payer ou à faire.\n\n**Pas à pas :** il vient de *to remain* (rester). Exemple : *We paid 30% in advance and will pay the remainder on delivery* = nous avons payé 30 % d'avance et paierons le reste à la livraison.\n\n**Les autres réponses :**\n- « rappel » est le grand piège : c'est *a reminder* (sans le **a** de *remain*), de *to remind* (rappeler) ;\n- « remise » (réduction) se dit *a discount*.\n\n**À retenir :** *remainder* = reste (*remain*) ; *reminder* = rappel (*remind*)."
       },
       {
         "intitule": "*income*",
@@ -222,7 +240,8 @@
           "incident",
           "revenus"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *income* = **les revenus**, l'argent qui rentre (salaire, recettes).\n\n**Pas à pas :** *in* + *come* = « ce qui entre ». *Annual income* = revenu annuel ; *income tax* = impôt sur le revenu. Le contraire, ce qui sort, est *expenses* (les dépenses).\n\n**Les autres réponses :** « arrivée » se dit *arrival* ; « incident » se dit *incident*. Le mot ressemble aux deux, mais ne veut dire ni l'un ni l'autre.\n\n**À retenir :** *income* = revenus ; *expenses* = dépenses."
       },
       {
         "intitule": "*to incur costs*",
@@ -232,7 +251,8 @@
           "calculer les coûts",
           "engager des dépenses"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *to incur costs* = **engager des dépenses**, avoir des frais (souvent sans le vouloir). On dit aussi *to incur a debt* (contracter une dette), *to incur losses* (subir des pertes).\n\n**Pas à pas :** *incur* veut dire « s'exposer à, se retrouver avec ». *The company incurred high costs during the move* = l'entreprise a engagé des frais élevés pendant le déménagement.\n\n**Les autres réponses :** « réduire les coûts » se dit *to cut* ou *to reduce costs* (le contraire, presque) ; « calculer les coûts » se dit *to calculate costs*.\n\n**À retenir :** *incur* + coûts, dette, pertes = « se retrouver avec »."
       },
       {
         "intitule": "*cost-effective*",
@@ -242,7 +262,8 @@
           "efficace mais cher",
           "rentable"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *cost-effective* = **rentable** : qui donne un bon résultat pour ce qu'il coûte.\n\n**Pas à pas :** *cost* (coût) + *effective* (efficace) : « efficace par rapport au coût ». *Buying in bulk is more cost-effective* = acheter en gros est plus rentable.\n\n**Les autres réponses :** « coûteux » dit l'inverse (*costly, expensive*) ; « efficace mais cher » est un mauvais découpage du mot : justement, *cost-effective* veut dire que le prix est intéressant.\n\n**À retenir :** *cost-effective* = rentable, bon rapport coût / résultat."
       },
       {
         "intitule": "*accountant*",
@@ -252,7 +273,8 @@
           "comptable",
           "client"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *an accountant* = **un comptable** (la personne). *A bookkeeper* aussi ; *a CPA* est un expert-comptable.\n\n**Pas à pas :** le suffixe *-ant* (comme *-er*) désigne souvent une personne : *assist* → *assistant*, *account* → ***accountant***.\n\n**Les autres réponses :** « compte » est *account* (sans *-ant*) ; « client » est *customer* ou *client*.\n\n**À retenir :** *account* = compte ; *accountant* = la personne qui tient les comptes."
       }
     ],
     "indices": [
@@ -269,12 +291,14 @@
       {
         "intitule": "Combien de mois dure *a quarter* ?",
         "type": "nombre",
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *a quarter* = un trimestre = **3** mois (un quart de l'année).\n\n**Pas à pas :** une année a 12 mois. Un quart de 12 : 12 ÷ 4 = **3** mois. Les entreprises parlent de *Q1, Q2, Q3, Q4* (*first quarter*… *fourth quarter*).\n\n**Erreurs fréquentes :** répondre 4 (c'est le nombre de trimestres dans l'année, pas la durée d'un trimestre) ou 15 (un quart d'heure, *a quarter of an hour*, se compte en minutes).\n\n**À retenir :** *quarter* = 3 mois ; *Q1* = janvier à mars."
       },
       {
         "intitule": "Combien de *quarterly reports* une entreprise publie-t-elle par an ?",
         "type": "nombre",
-        "reponse": 4
+        "reponse": 4,
+        "explication": "**Règle :** *quarterly* = trimestriel, « une fois par trimestre ».\n\n**Pas à pas :** un trimestre dure 3 mois ; dans 12 mois il y en a 12 ÷ 3 = **4**. Une entreprise publie donc 4 *quarterly reports* (un par trimestre).\n\n**Erreurs fréquentes :** répondre 3 (la durée en mois d'un trimestre, pas le nombre de rapports) ou 12 (ce serait *monthly*, mensuel).\n\n**À retenir :** *quarterly* = 4 fois par an."
       },
       {
         "intitule": "Écris *two billion* en chiffres (sans espace).",
@@ -282,17 +306,20 @@
         "reponse": 2000000000,
         "refuses": [
           "2000000000000"
-        ]
+        ],
+        "explication": "**Règle :** *billion* = un milliard = 1 000 000 000 (**9** zéros). Le « billion » français (12 zéros) se dit *trillion*.\n\n**Pas à pas :**\n1. *one billion* = 1 suivi de 9 zéros.\n2. *two billion* = 2 suivi de 9 zéros : **2000000000**.\n3. Attention : après un nombre, *billion* ne prend **pas** de **s** (*two billion*, pas *two billions*).\n\n**Erreurs fréquentes :** écrire 2000000000000 (12 zéros), c'est-à-dire *two trillion* : c'est le piège du faux ami, d'où le refus.\n\n**À retenir :** *billion* = 9 zéros, *trillion* = 12 zéros."
       },
       {
         "intitule": "Une facture de 1 200 dollars : tu as déjà payé 800. Quel est *the remainder* ?",
         "type": "nombre",
-        "reponse": 400
+        "reponse": 400,
+        "explication": "**Règle :** *the remainder* = ce qui reste à payer (de *to remain*, rester).\n\n**Pas à pas :**\n1. Total de la facture : 1 200 dollars.\n2. Déjà payé : 800 dollars.\n3. Reste : 1 200 − 800 = **400** dollars.\n\n**Erreurs fréquentes :** additionner (2 000) au lieu de soustraire, ou répondre 800 (c'est ce qui est déjà payé). Ne confonds pas avec *a reminder* (une lettre de rappel).\n\n**À retenir :** *remainder* = total − déjà payé."
       },
       {
         "intitule": "*A refund of 25%* sur un achat de 80 euros : combien te rembourse-t-on ?",
         "type": "nombre",
-        "reponse": 20
+        "reponse": 20,
+        "explication": "**Règle :** *a refund of 25%* = un remboursement de 25 % du prix. Pour calculer un pourcentage : prix × pourcentage ÷ 100.\n\n**Pas à pas :**\n1. Prix : 80 euros.\n2. 25 % = 25 ÷ 100 = 0,25 (c'est aussi un quart).\n3. 80 × 0,25 = **20** euros remboursés.\n\n**Erreurs fréquentes :** répondre 60 (c'est ce que tu as finalement payé : 80 − 20) ou 25 (le pourcentage lui-même, pas la somme).\n\n**À retenir :** *a refund of X%* = prix × X ÷ 100."
       }
     ],
     "indices": [
@@ -313,7 +340,8 @@
         "reponse": [
           "insurance policy",
           "an insurance policy"
-        ]
+        ],
+        "explication": "**Règle :** une police d'assurance = *an insurance policy* : le contrat qui te lie à l'assureur.\n\n**Pas à pas :** en anglais, l'ordre est inversé : le mot qui précise vient **devant**. « Police **d'assurance** » devient *insurance policy* (assurance + police).\n\n**Erreurs fréquentes :** écrire *insurance police* (*police* = les policiers) ou *policy of insurance*. Attention aussi : *policy* veut dire « politique, règle » dans *company policy* (la règle de l'entreprise).\n\n**À retenir :** *policy* = contrat d'assurance ou règle, jamais la police (*police*)."
       },
       {
         "intitule": "une déclaration de sinistre",
@@ -323,7 +351,8 @@
           "an insurance claim",
           "claim",
           "a claim"
-        ]
+        ],
+        "explication": "**Règle :** une déclaration de sinistre = *an insurance claim* (ou simplement *a claim*) : la demande d'indemnisation envoyée à l'assureur.\n\n**Pas à pas :** *to claim* = réclamer, demander ce à quoi on a droit. Après un accident : *to make (to file) a claim* = déclarer le sinistre ; l'assureur verse ensuite l'argent.\n\n**Erreurs fréquentes :** traduire mot à mot par *sinister declaration* (*sinister* = sinistre au sens « inquiétant ») ou confondre avec *policy* (le contrat, pas la demande).\n\n**À retenir :** *policy* = le contrat ; *claim* = la demande après un sinistre."
       },
       {
         "intitule": "une déclaration d'impôts",
@@ -331,7 +360,8 @@
         "reponse": [
           "tax return",
           "a tax return"
-        ]
+        ],
+        "explication": "**Règle :** une déclaration d'impôts (de revenus) = *a tax return* ; *to file a tax return* = remplir et envoyer sa déclaration.\n\n**Pas à pas :** *tax* = impôt ; *return* veut ici dire « document qu'on renvoie » à l'administration. Ce n'est pas un remboursement.\n\n**Erreurs fréquentes :** écrire *tax declaration* (rare) ou croire que *tax return* veut dire « remboursement d'impôts » (ça se dit *tax refund*).\n\n**À retenir :** *tax return* = déclaration ; *tax refund* = remboursement d'impôts."
       },
       {
         "intitule": "la fraude fiscale",
@@ -339,7 +369,8 @@
         "reponse": [
           "tax evasion",
           "tax fraud"
-        ]
+        ],
+        "explication": "**Règle :** la fraude fiscale = *tax evasion* (ou *tax fraud*) : ne pas payer un impôt dû, ce qui est **illégal**.\n\n**Pas à pas :** *to evade* = échapper à, se soustraire à. *Tax evasion* = se soustraire à l'impôt.\n\n**Erreurs fréquentes :** écrire *tax avoidance* : c'est l'optimisation fiscale (réduire ses impôts avec des moyens **légaux**), donc un autre sens. Ne pas traduire par *fiscal fraud*, peu employé.\n\n**À retenir :** *evasion* = illégal ; *avoidance* = légal."
       },
       {
         "intitule": "une subvention",
@@ -349,7 +380,8 @@
           "a grant",
           "subsidy",
           "a subsidy"
-        ]
+        ],
+        "explication": "**Règle :** une subvention = *a grant* ou *a subsidy* : de l'argent donné (souvent par l'État) qu'on n'a pas à rembourser.\n\n**Pas à pas :** *grant* vient de *to grant* (accorder) : une somme « accordée ». *A research grant* = une subvention de recherche ; *a student grant* = une bourse d'études.\n\n**Erreurs fréquentes :** confondre *subsidy* (subvention) avec *subsidiary* (filiale d'une entreprise) ; écrire *a loan*, qui est un prêt (à rembourser).\n\n**À retenir :** *grant / subsidy* = subvention (gratuite) ; *loan* = prêt (à rembourser)."
       },
       {
         "intitule": "faire faillite",
@@ -360,7 +392,8 @@
           "go bust",
           "to go bust",
           "go out of business"
-        ]
+        ],
+        "explication": "**Règle :** faire faillite = *to go bankrupt* ; la faillite (le nom) = *bankruptcy*.\n\n**Pas à pas :** on utilise le verbe *go* (devenir) + l'adjectif *bankrupt* (en faillite). *The company went bankrupt in 2020* (prétérit *went*). Autres formules acceptées : *to go bust* (familier), *to go out of business* (cesser son activité).\n\n**Erreurs fréquentes :** écrire *to make bankruptcy* (calque du français « faire ») ou *to fail* seul (échouer, trop vague).\n\n**À retenir :** faire faillite = *go bankrupt* ; la faillite = *bankruptcy*."
       }
     ],
     "indices": [
@@ -380,7 +413,8 @@
         "reponse": [
           "sample",
           "a sample"
-        ]
+        ],
+        "explication": "**Règle :** un échantillon = *a sample* (*a free sample* = un échantillon gratuit).\n\n**Pas à pas :** on l'emploie pour un petit morceau de produit qu'on donne pour essayer : *Could you send us a sample before we order?* Le verbe *to sample* veut dire « goûter, essayer ».\n\n**Erreurs fréquentes :** écrire *a simple* (simple) ou *an example* (un exemple, sans rapport avec un produit).\n\n**À retenir :** échantillon = *sample*."
       },
       {
         "intitule": "une garantie (sur un produit)",
@@ -390,7 +424,8 @@
           "a warranty",
           "guarantee",
           "a guarantee"
-        ]
+        ],
+        "explication": "**Règle :** une garantie sur un produit = *a warranty* ; *a guarantee* est accepté aussi.\n\n**Pas à pas :** on la retrouve surtout dans *under warranty* (sous garantie) : *The phone is under a two-year warranty* = le téléphone est garanti deux ans.\n\n**Erreurs fréquentes :** écrire *warehouse* (entrepôt) ou *warning* (avertissement), qui commencent aussi par *war-*.\n\n**À retenir :** garantie = *warranty* ; *under warranty* = sous garantie."
       },
       {
         "intitule": "un bon d'achat",
@@ -401,7 +436,8 @@
           "coupon",
           "a coupon",
           "gift card"
-        ]
+        ],
+        "explication": "**Règle :** un bon d'achat = *a voucher* ; *a coupon* et *a gift card* (carte cadeau) sont acceptés aussi.\n\n**Pas à pas :** *a voucher* est un papier ou un code qui donne droit à un produit ou à une réduction : *a 20-euro voucher*, *a meal voucher* (un bon repas).\n\n**Erreurs fréquentes :** écrire *a good of purchase* (calque mot à mot de « bon d'achat ») ou *a receipt* (un reçu, qui prouve seulement le paiement).\n\n**À retenir :** bon d'achat = *voucher*."
       },
       {
         "intitule": "un salon professionnel",
@@ -411,7 +447,8 @@
           "a trade fair",
           "trade show",
           "a trade show"
-        ]
+        ],
+        "explication": "**Règle :** un salon professionnel = *a trade fair* ou *a trade show* : un grand événement où les entreprises exposent leurs produits.\n\n**Pas à pas :** *trade* = le commerce ; *fair* = une foire. Donc « foire du commerce ». On *attends a trade fair* (on y assiste) ou on y a *a stand* (un stand).\n\n**Erreurs fréquentes :** écrire *a professional salon* (*salon* = salon de coiffure ou de beauté) ou *a fair trade* : l'ordre est inversé et cela veut dire « commerce équitable ».\n\n**À retenir :** *trade fair* = salon ; *fair trade* = commerce équitable."
       },
       {
         "intitule": "un détaillant",
@@ -419,7 +456,8 @@
         "reponse": [
           "retailer",
           "a retailer"
-        ]
+        ],
+        "explication": "**Règle :** un détaillant = *a retailer* : il vend au détail (*retail*), au client final.\n\n**Pas à pas :** la chaîne est *manufacturer* (fabricant) → *wholesaler* (grossiste) → ***retailer*** (détaillant) → *customer* (client). Le suffixe *-er* désigne celui qui fait l'action.\n\n**Erreurs fréquentes :** écrire *wholesaler* (le grossiste, l'étape d'avant) ou *detailer* (calque du français, qui n'a pas ce sens).\n\n**À retenir :** *retail* = au détail, *retailer* = détaillant."
       },
       {
         "intitule": "une vente aux enchères",
@@ -427,7 +465,8 @@
         "reponse": [
           "auction",
           "an auction"
-        ]
+        ],
+        "explication": "**Règle :** une vente aux enchères = *an auction* ; *to sell at auction* = vendre aux enchères.\n\n**Pas à pas :** à une *auction*, chaque acheteur fait une offre, *a bid* ; le plus offrant gagne. *The painting was sold at auction for 2 million dollars.*\n\n**Erreurs fréquentes :** écrire *a bid* (une offre, une enchère, pas la vente entière) ou *a sale* (une vente simple, ou des soldes).\n\n**À retenir :** *auction* = la vente aux enchères ; *bid* = une offre."
       },
       {
         "intitule": "le stock, l'inventaire",
@@ -437,7 +476,8 @@
           "the inventory",
           "stock",
           "the stock"
-        ]
+        ],
+        "explication": "**Règle :** le stock = *inventory* (surtout US) ou *stock* (UK). *Inventory* veut aussi dire « inventaire » (la liste du stock).\n\n**Pas à pas :** *We keep a large inventory* = nous avons un gros stock. *Out of stock* = en rupture de stock. *To take inventory* = faire l'inventaire.\n\n**Erreurs fréquentes :** écrire *storage* (le stockage, l'action de ranger) ou *store* (un magasin).\n\n**À retenir :** stock = *inventory* ou *stock* ; *out of stock* = en rupture."
       },
       {
         "intitule": "une campagne publicitaire",
@@ -447,7 +487,8 @@
           "an ad campaign",
           "advertising campaign",
           "an advertising campaign"
-        ]
+        ],
+        "explication": "**Règle :** une campagne publicitaire = *an ad campaign* ou *an advertising campaign* (*ad* = *advertisement*, une publicité).\n\n**Pas à pas :** *to advertise* = faire de la publicité → *advertising* (la publicité en général) → *an advertisement / an ad* (une publicité précise). Le mot qui précise vient devant : *advertising campaign*.\n\n**Erreurs fréquentes :** écrire *publicity campaign* : *publicity* veut dire « le fait qu'on parle de quelque chose dans les médias », pas la publicité commerciale ; écrire *advertisement campaign* est rare.\n\n**À retenir :** publicité commerciale = *advertising / an ad*, pas *publicity*."
       }
     ],
     "indices": [
@@ -470,7 +511,8 @@
           "sold out",
           "on display"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *sold out* = épuisé, complet : il ne reste plus rien à vendre.\n\n**Pas à pas :**\n1. *The concert is ......* : il faut un adjectif ou une expression après *is*.\n2. L'indice est *there are no tickets left* (il ne reste plus de billets).\n3. Plus de billets = le concert est complet = *sold out*.\n\n**Les autres réponses :**\n- *on sale* = en vente (le contraire : il y aurait des billets) ;\n- *in bulk* = en grande quantité ;\n- *on display* = exposé en vitrine.\n\n**À retenir :** *no ... left* (plus aucun) → *sold out*."
       },
       {
         "intitule": "*Restaurants usually buy rice ...... because it is cheaper.*",
@@ -481,7 +523,8 @@
           "upmarket",
           "in bulk"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *to buy in bulk* = acheter en grande quantité (en gros), ce qui coûte moins cher à l'unité.\n\n**Pas à pas :**\n1. *Restaurants usually buy rice ......* : il faut une manière d'acheter.\n2. L'indice est *because it is cheaper* (parce que c'est moins cher).\n3. Ce qui est moins cher pour un restaurant, c'est d'acheter de grosses quantités : *in bulk*.\n\n**Les autres réponses :** *sold out* (épuisé) et *upmarket* (haut de gamme) ne décrivent pas une façon d'acheter ; *on hand* (sous la main, disponible) ne s'explique pas par le prix.\n\n**À retenir :** *in bulk* = en gros, en grosses quantités."
       },
       {
         "intitule": "*This hotel is very ......: rooms cost over 800 dollars a night.*",
@@ -492,7 +535,8 @@
           "affordable",
           "disposable"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *upmarket* = haut de gamme (cher, de luxe) ; *downmarket* = bas de gamme.\n\n**Pas à pas :**\n1. *This hotel is very ......* : il faut un adjectif.\n2. L'indice est *rooms cost over 800 dollars a night* (plus de 800 dollars la nuit) : c'est très cher.\n3. Très cher = haut de gamme = *upmarket*.\n\n**Les autres réponses :** *downmarket* (bas de gamme) et *affordable* (abordable) disent le contraire ; *disposable* (jetable) ne s'applique pas à un hôtel.\n\n**À retenir :** *up* = vers le haut (luxe), *down* = vers le bas (bon marché)."
       },
       {
         "intitule": "*The new phone is powerful but still ......: it costs only 199 dollars.*",
@@ -503,7 +547,8 @@
           "mandatory",
           "overdue"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *affordable* = abordable, qu'on peut se payer (de *to afford*, avoir les moyens).\n\n**Pas à pas :**\n1. *The new phone is powerful but still ......* : *but* annonce une opposition avec *powerful* (puissant, donc on s'attendrait à un prix élevé).\n2. *still* = « quand même » et *it costs only 199 dollars* = il ne coûte que 199 dollars.\n3. Puissant mais pas cher = *affordable*.\n\n**Les autres réponses :** *upmarket* (haut de gamme) contredit *only 199 dollars* ; *mandatory* (obligatoire) et *overdue* (en retard) n'ont rien à voir avec un prix.\n\n**À retenir :** *affordable* = pas cher ; *can't afford it* = je n'ai pas les moyens."
       },
       {
         "intitule": "*The latest models are ...... in the shop window.*",
@@ -514,7 +559,8 @@
           "on display",
           "on hold"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *on display* = exposé, présenté (en vitrine, en rayon).\n\n**Pas à pas :**\n1. *The latest models are ......* : il faut une expression qui décrit des produits.\n2. L'indice est *in the shop window* (dans la vitrine).\n3. Des produits qu'on voit dans une vitrine sont exposés : *on display*.\n\n**Les autres réponses :**\n- *on duty* = de service (pour une personne, un policier, une infirmière) ;\n- *on hold* = en attente (au téléphone, ou un projet suspendu) ;\n- *sold out* = épuisé : on ne verrait plus les produits.\n\n**À retenir :** *on display* = exposé ; *on duty* = de service ; *on hold* = en attente."
       },
       {
         "intitule": "*Guests receive a ...... bottle of water in their room.*",
@@ -525,7 +571,8 @@
           "competitive",
           "compulsory"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *complimentary* (avec un **i**) = offert, gratuit. *Complementary* (avec un **e**) = complémentaire.\n\n**Pas à pas :**\n1. *Guests receive a ...... bottle of water in their room* : il faut un adjectif devant *bottle*.\n2. Dans un hôtel, une bouteille d'eau qu'on « reçoit » dans la chambre est un cadeau : elle est offerte.\n3. Offert = *complimentary* (avec un **i**, comme un compliment fait au client).\n\n**Les autres réponses :** *complementary* (avec un **e**) veut dire complémentaire, c'est le piège d'orthographe ; *competitive* (compétitif) et *compulsory* (obligatoire) n'ont pas de sens ici.\n\n**À retenir :** compl**i**mentary = gratu**i**t ; compl**e**mentary = compl**é**mentaire."
       },
       {
         "intitule": "*Because of a ...... of chips, the factory can't produce enough cars.*",
@@ -536,7 +583,8 @@
           "supply",
           "feature"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *a shortage of* = une pénurie de, un manque de.\n\n**Pas à pas :**\n1. *Because of a ...... of chips* : à cause d'un ...... de puces électroniques.\n2. Conséquence : *the factory can't produce enough cars* (l'usine ne peut pas produire assez de voitures).\n3. Ne pas produire assez à cause des puces = il en manque : *a shortage*.\n\n**Les autres réponses :** *surplus* (excédent) et *supply* (approvisionnement) voudraient dire qu'il y a assez de puces, le contraire ; *feature* (caractéristique) n'a pas de sens ici.\n\n**À retenir :** *shortage* = manque ; *supply* = approvisionnement ; *surplus* = trop."
       }
     ],
     "indices": [
@@ -556,7 +604,8 @@
         "type": "texte",
         "reponse": [
           "wholesale"
-        ]
+        ],
+        "explication": "**Règle :** *retail* (vente au détail, au client final) ↔ *wholesale* (vente en gros, aux professionnels).\n\n**Pas à pas :** la chaîne de vente aide à retrouver le contraire : le *wholesaler* (grossiste) vend **en gros** au *retailer* (détaillant), qui vend **au détail** au *customer*. *Whole* = entier, on vend le lot entier.\n\n**Erreurs fréquentes :** répondre *in bulk* (acheter en gros : c'est une expression proche, mais pas le mot attendu de la liste) ou *sale* (vente en général).\n\n**À retenir :** *retail* ↔ *wholesale*."
       },
       {
         "intitule": "*downmarket* ↔ ......",
@@ -565,7 +614,8 @@
           "upmarket",
           "up-market",
           "high-end"
-        ]
+        ],
+        "explication": "**Règle :** *downmarket* (bas de gamme) ↔ *upmarket* (haut de gamme) ; *high-end* est accepté aussi.\n\n**Pas à pas :** on remplace simplement *down* (vers le bas) par *up* (vers le haut) : *an upmarket restaurant* = un restaurant haut de gamme.\n\n**Erreurs fréquentes :** écrire *expensive* (cher : c'est une conséquence, pas le niveau de gamme) ou *upmarketing*.\n\n**À retenir :** *down* ↔ *up* : *downmarket* ↔ *upmarket*."
       },
       {
         "intitule": "*sale* (vente) ↔ ...... (achat)",
@@ -573,7 +623,8 @@
         "reponse": [
           "purchase",
           "buying"
-        ]
+        ],
+        "explication": "**Règle :** *sale* (vente) ↔ *purchase* (achat) ; le verbe *to purchase* = acheter (plus formel que *to buy*). *Buying* est accepté aussi.\n\n**Pas à pas :** dans une même transaction, le vendeur fait *a sale* et l'acheteur fait *a purchase*. *Keep your receipt as proof of purchase* = garde ton ticket comme preuve d'achat.\n\n**Erreurs fréquentes :** écrire *buy* seul (c'est un verbe, et le nom attendu est *purchase*) ou *shopping* (faire les courses, plus large).\n\n**À retenir :** vendeur = *sale* ; acheteur = *purchase*."
       },
       {
         "intitule": "*shortage* (pénurie) ↔ ...... (approvisionnement, réserves)",
@@ -582,7 +633,8 @@
           "supply",
           "surplus",
           "abundance"
-        ]
+        ],
+        "explication": "**Règle :** *shortage* (pénurie, manque) ↔ *supply* (approvisionnement, réserves) ; *surplus* (excédent) et *abundance* sont acceptés aussi.\n\n**Pas à pas :** on cherche un mot qui dit qu'il y a **assez** (ou trop). L'indice entre parenthèses donne « approvisionnement, réserves » : c'est *supply* (*a good supply of water* = de bonnes réserves d'eau).\n\n**Erreurs fréquentes :** écrire *supplier* (le fournisseur, une personne ou une entreprise) ou *stock* (le mot de la liste demandé est *supply*).\n\n**À retenir :** *shortage* ↔ *supply* ; *supplier* = fournisseur."
       },
       {
         "intitule": "*turn off* ↔ ......",
@@ -590,7 +642,8 @@
         "reponse": [
           "turn on",
           "switch on"
-        ]
+        ],
+        "explication": "**Règle :** *turn off* (éteindre) ↔ *turn on* (allumer) ; *switch on* est accepté aussi.\n\n**Pas à pas :** on garde le verbe *turn* et on remplace la particule : *off* (coupé) devient *on* (en marche). *Turn on the lights* = allume la lumière.\n\n**Erreurs fréquentes :** écrire *turn up* (augmenter le volume, ou arriver) ou *open* (ouvrir : on n'ouvre pas une lampe en anglais).\n\n**À retenir :** *on* = en marche, *off* = arrêté."
       },
       {
         "intitule": "*assets* (actif) ↔ ......",
@@ -599,7 +652,8 @@
           "liabilities",
           "liability",
           "debts"
-        ]
+        ],
+        "explication": "**Règle :** *assets* (l'actif : ce que l'entreprise possède) ↔ *liabilities* (le passif : ce qu'elle doit, ses dettes).\n\n**Pas à pas :** dans un bilan, on met d'un côté les *assets* (bâtiments, argent, machines) et de l'autre les *liabilities* (prêts, factures à payer). Au singulier, *liability* veut aussi dire « responsabilité légale ».\n\n**Erreurs fréquentes :** écrire *passive* (passif au sens grammatical ou « inactif », jamais en comptabilité) ou *debits*.\n\n**À retenir :** *assets* = ce qu'on a ; *liabilities* = ce qu'on doit."
       }
     ],
     "indices": [
@@ -621,7 +675,8 @@
           "a plant",
           "factory",
           "a factory"
-        ]
+        ],
+        "explication": "**Règle :** une usine = *a plant* (vocabulaire de l'industrie : *a car plant*, *a power plant* = une centrale électrique) ou *a factory*.\n\n**Pas à pas :** *plant* a deux sens : « plante » dans un jardin, « usine » dans un texte d'entreprise. Au TOEIC, dans un contexte de production, c'est toujours l'usine.\n\n**Erreurs fréquentes :** écrire *a usine* (mot français) ou *a manufacture* (fabrication, rarement un lieu en anglais moderne).\n\n**À retenir :** usine = *plant* ou *factory*."
       },
       {
         "intitule": "un entrepôt",
@@ -629,7 +684,8 @@
         "reponse": [
           "warehouse",
           "a warehouse"
-        ]
+        ],
+        "explication": "**Règle :** un entrepôt = *a warehouse* : le bâtiment où l'on stocke les marchandises.\n\n**Pas à pas :** *ware* = marchandise (comme dans *software*, *hardware*) + *house* = bâtiment. Donc « bâtiment des marchandises ». *The goods are stored in our warehouse.*\n\n**Erreurs fréquentes :** écrire *warranty* (garantie) ou *storehouse* (existe mais rare au TOEIC) ; *depot* est possible mais n'est pas le mot de la liste.\n\n**À retenir :** *warehouse* = entrepôt ; *warranty* = garantie."
       },
       {
         "intitule": "le fret, les marchandises",
@@ -638,7 +694,8 @@
           "freight",
           "goods",
           "cargo"
-        ]
+        ],
+        "explication": "**Règle :** le fret, les marchandises transportées = *freight* ; *goods* (marchandises) et *cargo* (cargaison) sont acceptés aussi.\n\n**Pas à pas :** *freight* se prononce « frèïte » (le **gh** est muet, comme dans *eight*). *Air freight* = fret aérien, *a freight train* = un train de marchandises.\n\n**Erreurs fréquentes :** écrire *fret* à la française ou *fright* (la peur), qui se prononce autrement.\n\n**À retenir :** fret = *freight* ; marchandises = *goods*."
       },
       {
         "intitule": "une flotte (de véhicules)",
@@ -646,7 +703,8 @@
         "reponse": [
           "fleet",
           "a fleet"
-        ]
+        ],
+        "explication": "**Règle :** une flotte (de véhicules) = *a fleet* : l'ensemble des camions, voitures ou avions d'une entreprise.\n\n**Pas à pas :** *The company has a fleet of 200 trucks* = l'entreprise a une flotte de 200 camions. Le mot vient du vocabulaire des bateaux (une flotte de navires).\n\n**Erreurs fréquentes :** écrire *a flot* ou *a float* (un flotteur, un char de défilé).\n\n**À retenir :** flotte, parc de véhicules = *fleet*."
       },
       {
         "intitule": "un sous-traitant",
@@ -655,7 +713,8 @@
           "subcontractor",
           "a subcontractor",
           "sub-contractor"
-        ]
+        ],
+        "explication": "**Règle :** un sous-traitant = *a subcontractor* (ou *sub-contractor*).\n\n**Pas à pas :** on construit le mot en deux morceaux :\n1. *a contractor* = un prestataire, une entreprise qui travaille sous contrat (souvent dans le bâtiment) ;\n2. *sub-* = sous (comme dans *subway*, *submarine*) ;\n3. *subcontractor* = celui qui travaille pour le prestataire principal : le sous-traitant.\n\n**Erreurs fréquentes :** écrire *under-trader* (calque mot à mot) ou *contractor* seul (le prestataire principal).\n\n**À retenir :** *sub-* + *contractor* = sous-traitant."
       },
       {
         "intitule": "un appareil, un dispositif",
@@ -665,7 +724,8 @@
           "a device",
           "appliance",
           "an appliance"
-        ]
+        ],
+        "explication": "**Règle :** un appareil, un dispositif = *a device* ; *an appliance* (appareil électroménager) est accepté aussi.\n\n**Pas à pas :** *device* est très général : *a mobile device* (un appareil mobile), *a safety device* (un dispositif de sécurité). *Appliance* sert surtout pour la maison : *household appliances* (lave-linge, frigo).\n\n**Erreurs fréquentes :** écrire *a dispositive* (calque du français) ou *a devise* (une devise, *currency* en anglais).\n\n**À retenir :** appareil = *device* ; électroménager = *appliance*."
       },
       {
         "intitule": "une panne",
@@ -675,7 +735,8 @@
           "a failure",
           "breakdown",
           "a breakdown"
-        ]
+        ],
+        "explication": "**Règle :** une panne = *a failure* (*a power failure* = une panne de courant) ou *a breakdown* (surtout pour une voiture ou une machine).\n\n**Pas à pas :** *failure* vient de *to fail* (échouer, ne pas fonctionner) : il veut dire panne, mais aussi échec ou faillite selon le contexte. *My car broke down* → *a breakdown*.\n\n**Erreurs fréquentes :** écrire *a pane* (une vitre) ou *a fault* seul (un défaut, une faute, pas exactement la panne).\n\n**À retenir :** panne = *failure* ou *breakdown*."
       },
       {
         "intitule": "une fuite (d'eau)",
@@ -683,7 +744,8 @@
         "reponse": [
           "leak",
           "a leak"
-        ]
+        ],
+        "explication": "**Règle :** une fuite (d'eau, de gaz) = *a leak* ; *to leak* = fuir. Le même mot sert pour une fuite d'informations.\n\n**Pas à pas :** *There is a leak in the roof* = il y a une fuite dans le toit. *The report was leaked to the press* = le rapport a été divulgué à la presse.\n\n**Erreurs fréquentes :** écrire *a flight* (un vol, de *to fly*) : en anglais, la « fuite » d'une personne qui s'enfuit peut se dire *flight*, mais pas celle de l'eau ; écrire *a lake* (un lac).\n\n**À retenir :** fuite d'eau ou d'informations = *leak*."
       }
     ],
     "indices": [
@@ -706,7 +768,8 @@
           "ship",
           "shipping"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** le passif se forme avec *be* + **participe passé** : *was shipped* = a été expédiée.\n\n**Pas à pas :**\n1. Le sujet est *Your order* (ta commande) : la commande ne s'expédie pas toute seule, quelqu'un l'expédie. C'est donc un passif.\n2. On a déjà *was* (prétérit de *be*, car *yesterday*).\n3. Il manque le participe passé de *to ship* : *shipped*.\n\n**Les autres réponses :** *shipment* est un nom (l'expédition) ; *ship* est la base verbale (impossible après *was*) ; *shipping* (forme en -ing) donnerait *was shipping*, « était en train d'expédier », un sens actif impossible pour une commande.\n\n**À retenir :** *was / were / will be* + participe passé = passif."
       },
       {
         "intitule": "*The ...... of 500 laptops arrived damaged.*",
@@ -717,7 +780,8 @@
           "shipped",
           "ship"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** après un article (*The*) et avant *of*, il faut un **nom**. *A shipment* = une expédition, une cargaison (la chose envoyée).\n\n**Pas à pas :**\n1. *The ...... of 500 laptops* : « le/la ...... de 500 ordinateurs portables ».\n2. Le verbe est *arrived damaged* (est arrivé abîmé) : c'est une chose qui arrive.\n3. Un nom de chose formé sur *ship* : *shipment* (suffixe *-ment*).\n\n**Les autres réponses :** *shipper* est un nom aussi, mais il désigne l'expéditeur (une personne ou une société, suffixe *-er*), qui n'est pas « de 500 ordinateurs » ; *shipped* et *ship* sont des formes du verbe.\n\n**À retenir :** *-ment* = la chose ou l'action ; *-er* = la personne qui fait l'action."
       },
       {
         "intitule": "*We are going to ...... our software to the latest version.*",
@@ -728,7 +792,8 @@
           "leak",
           "refurbish"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *to upgrade* = améliorer, mettre à niveau (un logiciel, un équipement, une chambre d'hôtel).\n\n**Pas à pas :**\n1. *We are going to ...... our software to the latest version* : il faut un verbe.\n2. L'indice est *to the latest version* (vers la version la plus récente).\n3. Passer un logiciel à la dernière version = le mettre à niveau : *upgrade* (*up* = vers le haut, *grade* = niveau).\n\n**Les autres réponses :** *dispose* (jeter) demande *of* et ne va pas avec un logiciel ; *leak* (fuir, divulguer) n'a pas de sens ici ; *refurbish* (remettre à neuf) concerne un bâtiment ou un objet physique, pas une version de logiciel.\n\n**À retenir :** *upgrade to* + nouvelle version = mettre à niveau."
       },
       {
         "intitule": "*The old hotel will be ...... and reopened next year.*",
@@ -739,7 +804,8 @@
           "dispatched",
           "upgraded to"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *to refurbish* = remettre à neuf, rénover (un bâtiment, un appareil). Au passif : *will be refurbished*.\n\n**Pas à pas :**\n1. *The old hotel will be ...... and reopened next year* : passif futur, il faut un participe passé.\n2. Indices : *old hotel* (vieil hôtel) et *reopened* (rouvert) : on le rénove avant de le rouvrir.\n3. Rénover = *refurbish*, participe passé *refurbished*.\n\n**Les autres réponses :**\n- *disposed* demande *of* (*disposed of* = jeté, éliminé) ;\n- *dispatched* = expédié (on n'expédie pas un hôtel) ;\n- *upgraded to* attend une suite après *to* (*upgraded to a five-star hotel*), or la phrase continue par *and*.\n\n**À retenir :** *refurbish* = remettre à neuf ; *upgrade* = monter de niveau."
       },
       {
         "intitule": "*The lab uses ...... equipment: it is the most advanced in the country.*",
@@ -750,7 +816,8 @@
           "second-hand",
           "state-of-the-art"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *state-of-the-art* = de pointe, dernier cri, ce qui se fait de mieux.\n\n**Pas à pas :**\n1. *The lab uses ...... equipment* : il faut un adjectif devant *equipment*.\n2. L'indice après les deux-points : *it is the most advanced in the country* (le plus avancé du pays).\n3. Le plus avancé = à la pointe = *state-of-the-art*.\n\n**Les autres réponses :** *outdated* (dépassé) et *second-hand* (d'occasion) disent le contraire ; *disposable* (jetable) ne parle pas du niveau technique.\n\n**À retenir :** *state-of-the-art* = de pointe ; *outdated* = dépassé."
       },
       {
         "intitule": "*Please use ...... gloves and throw them away after use.*",
@@ -761,7 +828,8 @@
           "reusable",
           "durable"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *disposable* = jetable (qu'on utilise une fois puis qu'on jette ; de *to dispose of*, se débarrasser de).\n\n**Pas à pas :**\n1. *Please use ...... gloves* : il faut un adjectif devant *gloves* (gants).\n2. L'indice est *and throw them away after use* (et jetez-les après usage).\n3. Des gants qu'on jette = des gants jetables : *disposable*.\n\n**Les autres réponses :** *reusable* (réutilisable) et *durable* (solide, qui dure) disent le contraire ; *refurbished* (remis à neuf) n'a pas de sens pour des gants.\n\n**À retenir :** *-able* = « qui peut être » : *disposable* = qui peut être jeté."
       },
       {
         "intitule": "*A ...... failure stopped the machines for two hours.*",
@@ -772,7 +840,8 @@
           "powerful",
           "empower"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *a power failure* = une panne de courant. Ici, le nom *power* (électricité) sert d'adjectif devant le nom *failure*.\n\n**Pas à pas :**\n1. *A ...... failure stopped the machines* : quelque chose a arrêté les machines pendant deux heures.\n2. En anglais, un nom peut en préciser un autre en se plaçant devant lui, sans changer de forme (*power failure*, *car plant*).\n3. Une panne qui arrête les machines = une panne d'électricité : *power failure*.\n\n**Les autres réponses :** *powerful* (puissant) et *powerless* (impuissant) sont des adjectifs qui changent le sens (« une panne puissante » ne veut rien dire) ; *empower* (donner du pouvoir) est un verbe.\n\n**À retenir :** nom + nom : le premier précise le second (*power failure* = panne de courant)."
       }
     ],
     "indices": [
@@ -795,7 +864,8 @@
           "mensuel",
           "obligatoire"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *mandatory* = **obligatoire** (*mandatory training* = formation obligatoire).\n\n**Pas à pas :** on peut le remplacer par *compulsory* ou *required* sans changer le sens. Son contraire est *optional* (facultatif).\n\n**Les autres réponses :** « mandaté » est le piège : le mot ressemble à « mandat », mais n'a pas ce sens ; « mensuel » se dit *monthly*.\n\n**À retenir :** *mandatory* = *compulsory* = obligatoire."
       },
       {
         "intitule": "*compliance*",
@@ -805,7 +875,8 @@
           "compliment",
           "complicité"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *compliance* = **conformité**, le respect des règles ; verbe : *to comply with* (se conformer à).\n\n**Pas à pas :** dans une entreprise, le *compliance department* vérifie qu'on respecte les lois. *In compliance with the law* = conformément à la loi.\n\n**Les autres réponses :** « compliment » se dit *a compliment* ; « complicité » se dit *complicity*. Les trois mots se ressemblent, mais seul *compliance* parle de règles.\n\n**À retenir :** *comply with* (verbe) → *compliance* (nom) → *compliant* (adjectif) : conformité."
       },
       {
         "intitule": "*to sue*",
@@ -815,7 +886,8 @@
           "poursuivre en justice",
           "transpirer"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *to sue* = **poursuivre en justice** (*to sue someone for damages* = réclamer des dommages et intérêts en justice).\n\n**Pas à pas :** le procès se dit *a lawsuit* ; *to file a lawsuit against* = intenter un procès à.\n\n**Les autres réponses :** « suivre » est le faux ami du son (*to follow*) ; « transpirer » se dit *to sweat* (le piège vient du français « suer »).\n\n**À retenir :** *sue* = attaquer en justice ; *follow* = suivre."
       },
       {
         "intitule": "*a settlement*",
@@ -825,7 +897,8 @@
           "une installation",
           "un règlement, un accord"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** dans le vocabulaire juridique, *a settlement* = **un règlement, un accord** (souvent à l'amiable, pour éviter un procès). Verbe : *to settle*.\n\n**Pas à pas :** *The two companies reached a settlement* = les deux sociétés ont trouvé un accord. *To settle a bill* = régler une facture : c'est le même verbe.\n\n**Les autres réponses :** « une installation » est un autre sens de *settlement* (une colonie, un village fondé), mais pas celui du droit ; « un établissement scolaire » se dit *a school*.\n\n**À retenir :** *settle* = régler (un conflit, une facture) ; *settlement* = accord."
       },
       {
         "intitule": "*to disclose*",
@@ -835,7 +908,8 @@
           "révéler, divulguer",
           "conclure"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *to disclose* = **révéler, divulguer** (une information).\n\n**Pas à pas :** on découpe le mot : *dis-* (le contraire) + *close* (fermer) = « ouvrir, faire sortir ». *The company did not disclose the price* = l'entreprise n'a pas révélé le prix.\n\n**Les autres réponses :** « fermer » se dit *to close* (sans *dis-*, c'est justement le contraire) ; « conclure » se dit *to conclude*.\n\n**À retenir :** *disclose* = révéler ; *confidential* = à ne pas divulguer."
       },
       {
         "intitule": "*liability*",
@@ -845,7 +919,8 @@
           "fiabilité",
           "liberté"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *liability* = **responsabilité (légale)** : le fait de devoir répondre d'un dommage. Au pluriel, *liabilities* = le passif (les dettes).\n\n**Pas à pas :** *a limited liability company* = une société à responsabilité limitée (une SARL). *The hotel accepts no liability for lost items* = l'hôtel n'est pas responsable des objets perdus.\n\n**Les autres réponses :** « fiabilité » est le piège : il se dit *reliability* (de *to rely on*, compter sur) ; « liberté » se dit *liberty* ou *freedom*.\n\n**À retenir :** *liability* = responsabilité ; *reliability* = fiabilité."
       },
       {
         "intitule": "*to enforce*",
@@ -855,7 +930,8 @@
           "forcer une porte",
           "faire appliquer"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *to enforce* = **faire appliquer** (une loi, une règle) : faire en sorte qu'elle soit respectée.\n\n**Pas à pas :** *The police enforce the law* = la police fait respecter la loi. *Law enforcement* = les forces de l'ordre.\n\n**Les autres réponses :** « renforcer » est le piège : il se dit *to reinforce* ou *to strengthen* ; « forcer une porte » se dit *to force a door*.\n\n**À retenir :** *enforce* = faire appliquer ; *reinforce* = renforcer."
       }
     ],
     "indices": [
@@ -874,7 +950,8 @@
         "type": "texte",
         "reponse": [
           "with"
-        ]
+        ],
+        "explication": "**Règle :** le verbe *to comply* (se conformer, respecter) se construit toujours avec ***with***.\n\n**Pas à pas :** *All our products comply ...... European standards* = tous nos produits respectent les normes européennes. Après *comply* vient *with*, puis ce qu'on respecte.\n\n**Erreurs fréquentes :** écrire *to* (calque de « se conformer **à** ») ou *by* (qui va avec un autre verbe, *to abide by*).\n\n**À retenir :** *comply with*, *compliance with* : toujours *with*."
       },
       {
         "intitule": "*Wearing a helmet on the site is ......: you cannot enter without one.* (obligatoire)",
@@ -884,14 +961,16 @@
           "compulsory",
           "required",
           "obligatory"
-        ]
+        ],
+        "explication": "**Règle :** *mandatory* = obligatoire ; synonymes acceptés : *compulsory*, *required*, *obligatory*.\n\n**Pas à pas :**\n1. *Wearing a helmet on the site is ......* : il faut un adjectif après *is*.\n2. L'indice est *you cannot enter without one* (tu ne peux pas entrer sans casque).\n3. Pas le choix = obligatoire = *mandatory*.\n\n**Erreurs fréquentes :** écrire *obligated* (« obligé », pour une personne : *I am obligated to*) ou *necessary* (moins fort, pas un mot de la liste).\n\n**À retenir :** une règle sans exception → *mandatory*."
       },
       {
         "intitule": "*The customer decided to ...... the airline for losing his luggage.* (poursuivre en justice)",
         "type": "texte",
         "reponse": [
           "sue"
-        ]
+        ],
+        "explication": "**Règle :** *to sue someone for something* = poursuivre quelqu'un en justice pour quelque chose.\n\n**Pas à pas :**\n1. *The customer decided to ...... the airline* : après *decided to*, il faut un verbe à la base.\n2. L'aide en français dit « poursuivre en justice » : c'est *sue*.\n3. *for losing his luggage* donne la raison : *for* + verbe en -ing.\n\n**Erreurs fréquentes :** écrire *follow* (suivre : le piège du mot français « poursuivre ») ou *sued* (après *to*, le verbe reste à la base).\n\n**À retenir :** *sue* + personne + *for* + motif."
       },
       {
         "intitule": "*After months of talks, both sides reached a ......* (accord)",
@@ -900,7 +979,8 @@
           "settlement",
           "deal",
           "agreement"
-        ]
+        ],
+        "explication": "**Règle :** *to reach a settlement* = parvenir à un accord ; *deal* et *agreement* sont acceptés aussi.\n\n**Pas à pas :**\n1. *After months of talks, both sides reached a ......* : après des mois de discussions, les deux camps sont arrivés à un ......\n2. L'aide dit « accord » : le mot de la liste est *settlement* (accord qui met fin à un conflit).\n3. *a* devant demande un nom qui commence par une consonne : *a settlement*.\n\n**Erreurs fréquentes :** écrire *accord* (mot français, rare en anglais courant) ou *settle* (le verbe, pas le nom).\n\n**À retenir :** *reach a settlement / an agreement* = trouver un accord."
       },
       {
         "intitule": "*Employees must not ...... confidential information.* (divulguer)",
@@ -910,7 +990,8 @@
           "reveal",
           "share",
           "leak"
-        ]
+        ],
+        "explication": "**Règle :** *to disclose* = divulguer, révéler ; *reveal*, *share* et *leak* sont acceptés aussi.\n\n**Pas à pas :**\n1. *Employees must not ...... confidential information* : après *must not*, il faut un verbe à la base.\n2. L'aide dit « divulguer » : *disclose* (*dis-* = le contraire de *close*, fermer).\n\n**Erreurs fréquentes :** écrire *divulge* (existe mais rare) ou *discloses* (après *must not*, pas de **s**).\n\n**À retenir :** après un modal (*must*, *can*, *should*), le verbe reste à la base."
       }
     ],
     "indices": [
@@ -933,7 +1014,8 @@
           "purchaser",
           "purchases"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** pour choisir la forme d'un mot, on regarde sa **place** dans la phrase. Après *All* et avant un verbe, il faut un **nom sujet**.\n\n**Pas à pas :**\n1. Le verbe est *are delivered* : *are* est au pluriel, donc le sujet est un nom **pluriel**.\n2. Nom de la famille de *purchase* : *purchase* (un achat) ; au pluriel, *purchases*.\n3. *All purchases over 50 dollars are delivered free* = tous les achats de plus de 50 dollars sont livrés gratuitement.\n\n**Les autres réponses :** *purchase* est au singulier (il faudrait *is*) ; *purchaser* désigne l'acheteur (on livre des achats, pas des acheteurs) ; *purchased* est un participe, pas un nom.\n\n**À retenir :** verbe au pluriel (*are*) → sujet au pluriel (nom + **s**)."
       },
       {
         "intitule": "*Tickets are not ...... once the show has started.*",
@@ -944,7 +1026,8 @@
           "refundable",
           "refunding"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** après *be* (*are not*), on met souvent un **adjectif**. Le suffixe *-able* fabrique un adjectif qui veut dire « qui peut être… ».\n\n**Pas à pas :**\n1. *Tickets are not ......* : il faut décrire les billets.\n2. *refund* (rembourser) + *-able* = *refundable* (qui peut être remboursé).\n3. *Tickets are not refundable once the show has started* = les billets ne sont pas remboursables une fois le spectacle commencé.\n\n**Les autres réponses :** *refund* et *refunds* sont des noms ou des verbes (*tickets are not refund* n'est pas correct) ; *refunding* donnerait « ne sont pas en train de rembourser », un sens impossible pour des billets.\n\n**À retenir :** *be* + adjectif ; *-able* = « qui peut être »."
       },
       {
         "intitule": "*Please read the safety ...... before using the machine.*",
@@ -955,7 +1038,8 @@
           "required",
           "require"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** après *the* + un nom qui sert d'adjectif (*safety*), il faut un **nom**. *Requirement(s)* = exigence(s), consigne(s).\n\n**Pas à pas :**\n1. *Please read the safety ......* : on lit quelque chose, donc un nom.\n2. Nom de la famille de *require* : *requirement* (suffixe *-ment*), ici au pluriel *requirements*.\n3. *Safety requirements* = les consignes de sécurité.\n\n**Les autres réponses :** *require* est le verbe, *requiring* (-ing) et *required* (participe) sont aussi des formes du verbe : on ne « lit » pas un verbe.\n\n**À retenir :** *the* + (nom) + ...... → un nom ; *-ment* fabrique un nom."
       },
       {
         "intitule": "*The company was fined for its lack of ...... with the new rules.*",
@@ -966,7 +1050,8 @@
           "compliance",
           "compliant"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** après une préposition (*of*), il faut un **nom** (ou un verbe en -ing). *Compliance* = conformité.\n\n**Pas à pas :**\n1. *its lack of ......* = son manque de ......\n2. Nom de la famille de *comply* : *compliance* (suffixe *-ance*).\n3. La suite *with the new rules* confirme : *compliance with* (comme *comply with*).\n\n**Les autres réponses :** *comply* et *complied* sont des verbes (impossibles directement après *of*) ; *compliant* est l'adjectif (conforme), qui ne peut pas suivre *lack of*.\n\n**À retenir :** préposition + nom ; *-ance* / *-ence* fabriquent des noms."
       },
       {
         "intitule": "*The goods will be ...... from our warehouse in Lyon.*",
@@ -977,7 +1062,8 @@
           "dispatched",
           "dispatch"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *will be* + **participe passé** = passif futur (« sera / seront … »).\n\n**Pas à pas :**\n1. *The goods will be ......* : les marchandises ne s'expédient pas toutes seules, quelqu'un les expédie : c'est un passif.\n2. Participe passé de *to dispatch* (expédier) : *dispatched*.\n3. *The goods will be dispatched from our warehouse in Lyon* = les marchandises seront expédiées depuis notre entrepôt de Lyon.\n\n**Les autres réponses :** *dispatching* (-ing) donnerait un sens actif (« seront en train d'expédier ») ; *dispatcher* est une personne ; *dispatch* (la base) ne peut pas suivre *will be*.\n\n**À retenir :** *be* (à tous les temps) + participe passé = passif."
       },
       {
         "intitule": "*Our sales ...... are published every quarter.*",
@@ -988,7 +1074,8 @@
           "figure",
           "figured"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un nom pluriel est nécessaire quand le verbe est au pluriel. *Sales figures* = les chiffres de vente.\n\n**Pas à pas :**\n1. *Our sales ......* est le sujet du verbe *are published* : *are* est au pluriel.\n2. Il faut donc un nom pluriel : *figures* (des chiffres). *Sales* sert ici d'adjectif devant ce nom.\n3. *Our sales figures are published every quarter* = nos chiffres de vente sont publiés chaque trimestre.\n\n**Les autres réponses :** *figure* est au singulier (il faudrait *is*) ; *figuring* et *figured* sont des formes du verbe *to figure* (comprendre, calculer).\n\n**À retenir :** regarde le verbe : *are* → sujet pluriel."
       }
     ],
     "indices": [
@@ -1012,7 +1099,8 @@
           "To ask for a job",
           "To complain about a problem with his order"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** pour trouver le **but** d'un e-mail (*Why is … writing?*), on lit le début et on repère les problèmes ou les demandes.\n\n**Pas à pas :**\n1. *one of the four chairs was broken* = une des quatre chaises était cassée : premier problème.\n2. *we should not have been charged for it* = on n'aurait pas dû nous facturer la livraison : deuxième problème.\n3. Il demande une chaise de remplacement et une nouvelle facture : il se plaint d'un problème de commande, *To complain about a problem with his order*.\n\n**Les autres réponses :** il ne passe pas de nouvelle commande (*place a new order*) ; il ne l'annule pas (*cancel*), il veut même la payer (*We will pay the remainder*) ; il ne cherche pas un emploi.\n\n**À retenir :** but d'un e-mail = résume en un mot ce que l'auteur demande ou reproche."
       },
       {
         "intitule": "What does he want for the broken chair?",
@@ -1023,12 +1111,14 @@
           "A replacement",
           "A new warranty"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** pour une question précise, on cherche la phrase de l'e-mail qui en parle et on repère le **verbe de demande** (*could you…?*).\n\n**Pas à pas :**\n1. On cherche *chair* : *one of the four chairs was broken*.\n2. La phrase suivante : *As the chairs are still under warranty, could you send a replacement?*\n3. *A replacement* = un remplacement (une autre chaise), possible car elles sont sous garantie.\n\n**Les autres réponses :** il ne demande ni réduction (*discount*) ni remboursement (*refund*) ; la garantie (*warranty*) est citée comme raison, pas comme demande : il n'en veut pas une nouvelle.\n\n**À retenir :** repère *could you…* : ce qui suit est la demande exacte."
       },
       {
         "intitule": "According to Mr. Martins, how much should the new invoice be? (en dollars, sans le symbole)",
         "type": "nombre",
-        "reponse": 740
+        "reponse": 740,
+        "explication": "**Règle :** pour un calcul à partir de deux documents, on prend le total sur la facture et on applique ce que dit l'e-mail.\n\n**Pas à pas :**\n1. Facture (Document 1) : total **780** dollars, dont *Delivery* : **40** dollars.\n2. E-mail : la livraison devait être gratuite (*we should not have been charged for it*).\n3. Nouvelle facture selon lui : 780 − 40 = **740** dollars.\n4. Vérification : 180 + 560 = 740, c'est bien le total sans livraison.\n\n**Erreurs fréquentes :** enlever aussi le prix d'une chaise (560 ÷ 4 = 140) : il ne demande pas de remboursement, mais un remplacement ; répondre 780 (on oublie la demande).\n\n**À retenir :** question « combien » avec deux documents : chiffres dans l'un, règle dans l'autre."
       },
       {
         "intitule": "Why does he think delivery should be free?",
@@ -1039,7 +1129,8 @@
           "The chairs were broken.",
           "The order is over $500."
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** on cherche la phrase qui donne la **raison** (*because*, *as*, ou un fait cité) et on la compare aux chiffres.\n\n**Pas à pas :**\n1. L'e-mail dit *your website said delivery was free for orders over $500* (livraison gratuite au-dessus de 500 dollars).\n2. Montant de la commande sans livraison : 180 + 560 = 740 dollars.\n3. 740 est plus grand que 500 : la commande dépasse 500 dollars, d'où *The order is over $500*.\n\n**Les autres réponses :** il ne dit jamais être un client fidèle (*regular customer*) ; il ne parle pas de retard (*late*) ; la chaise cassée justifie le remplacement, pas la livraison gratuite.\n\n**À retenir :** une bonne réponse s'appuie sur une phrase du texte, pas sur une idée logique non écrite."
       },
       {
         "intitule": "What is NOT mentioned?",
@@ -1050,7 +1141,8 @@
           "A delivery charge",
           "A broken chair"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour une question *NOT mentioned*, on vérifie **chaque** réponse dans le texte : celle qu'on ne trouve pas est la bonne.\n\n**Pas à pas :**\n\n| Réponse | Dans l'e-mail ? |\n|---|---|\n| *The warranty* | oui : *still under warranty* |\n| *A delivery charge* | oui : *we should not have been charged for it* (la livraison) |\n| *A broken chair* | oui : *one of the four chairs was broken* |\n| *A late delivery* | **non** : *We received our order yesterday*, sans plainte sur la date |\n\n**Erreurs fréquentes :** choisir un élément qu'on a lu (c'est le contraire de la question) ; lire trop vite *NOT*.\n\n**À retenir :** question *NOT* = coche chaque option dans le texte, garde celle qui manque."
       }
     ],
     "indices": [
@@ -1068,17 +1160,20 @@
       {
         "intitule": "Pouvez-vous nous envoyer un devis avant vendredi ?",
         "type": "auto",
-        "reponse": "*Could you send us a quotation (a quote) by Friday?*"
+        "reponse": "*Could you send us a quotation (a quote) by Friday?*",
+        "explication": "**Règle :** une demande polie commence par *Could you…?* ; une date limite (« avant, au plus tard ») se dit *by* + date ; devis = *a quotation* ou *a quote*.\n\n**Pas à pas :** une bonne réponse contient, dans l'ordre :\n1. *Could you* (pouvez-vous, poli) ;\n2. *send us* (nous envoyer : la personne qui reçoit vient juste après le verbe, sans *to*) ;\n3. *a quotation* ou *a quote* (un devis) ;\n4. *by Friday* (avant vendredi, au plus tard vendredi).\n\n**Erreurs fréquentes :** traduire « devis » par *estimate* reste acceptable, mais *a devis* non ; écrire *before Friday* est compréhensible mais *by* est la tournure habituelle d'une échéance ; *send to us a quote* est maladroit.\n\n**À retenir :** échéance = *by* + date ; demande polie = *Could you…?*."
       },
       {
         "intitule": "La facture est en retard : merci de la régler rapidement.",
         "type": "auto",
-        "reponse": "*The invoice is overdue: please pay (settle) it as soon as possible.*"
+        "reponse": "*The invoice is overdue: please pay (settle) it as soon as possible.*",
+        "explication": "**Règle :** une facture en retard de paiement = *an overdue invoice* ; régler une facture = *to pay* ou *to settle an invoice* ; rapidement = *as soon as possible* ou *promptly*.\n\n**Pas à pas :** une bonne réponse contient :\n1. *The invoice is overdue* (*overdue* = la date de paiement est dépassée) ;\n2. *please pay it* ou *please settle it* (l'impératif poli commence par *please*) ;\n3. *as soon as possible* (dès que possible) ou *promptly*.\n\n**Erreurs fréquentes :** écrire *late* (*the invoice is late* : moins précis, on comprend mal que c'est un impayé) ; écrire *regulate* (réglementer, faux ami de « régler ») ; oublier le pronom *it*.\n\n**À retenir :** facture impayée = *overdue* ; régler = *pay* ou *settle*."
       },
       {
         "intitule": "Notre entrepôt expédie 2 000 colis par jour.",
         "type": "auto",
-        "reponse": "*Our warehouse ships (dispatches) 2,000 parcels (packages) a day.*"
+        "reponse": "*Our warehouse ships (dispatches) 2,000 parcels (packages) a day.*",
+        "explication": "**Règle :** un fait habituel se met au **présent simple**, avec un **-s** à la 3e personne du singulier ; entrepôt = *warehouse* ; expédier = *ship* ou *dispatch* ; colis = *parcel* ou *package*.\n\n**Pas à pas :** une bonne réponse contient :\n1. *Our warehouse* (le sujet, « notre entrepôt » = *it*, 3e personne) ;\n2. *ships* ou *dispatches* (avec **-s**, ou **-es** après *ch*) ;\n3. *2,000 parcels* : en anglais, les milliers se séparent par une **virgule** (2,000) et les décimales par un point (2.5) ;\n4. *a day* ou *per day* (par jour).\n\n**Erreurs fréquentes :** oublier le **-s** du verbe (*our warehouse ship*) ; écrire *2.000*, qui se lirait « deux virgule zéro » en anglais ; écrire *by day* (pour « par jour », on dit *a day*).\n\n**À retenir :** il / elle / *it* au présent simple → verbe + **s** ; 2,000 = deux mille."
       }
     ],
     "indices": [

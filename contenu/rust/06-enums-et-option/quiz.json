@@ -1,146 +1,266 @@
 [
   {
     "question": "Quelle est la différence entre une struct et une enum ?",
-    "choix": ["Aucune", "Une struct contient tous ses champs (ET), une enum vaut une seule variante parmi plusieurs (OU)", "Une enum ne peut pas avoir de méthodes", "Une struct ne peut pas contenir de texte"],
+    "choix": [
+      "Aucune",
+      "Une struct contient tous ses champs (ET), une enum vaut une seule variante parmi plusieurs (OU)",
+      "Une enum ne peut pas avoir de méthodes",
+      "Une struct ne peut pas contenir de texte"
+    ],
     "reponse": 1,
-    "explication": "Une struct regroupe plusieurs valeurs en même temps ; une enum représente un choix entre plusieurs possibilités."
+    "explication": "**Règle :** une **struct** regroupe plusieurs champs qui existent **tous en même temps** (ET). Une **enum** vaut **une seule** de ses variantes à la fois (OU).\n\n**Pas à pas :**\n\n- `struct Eleve { nom: String, age: u32 }` : chaque élève a un nom **et** un âge.\n- `enum Feu { Rouge, Orange, Vert }` : un feu est rouge **ou** orange **ou** vert, jamais deux à la fois.\n\n**Les autres réponses :** « Aucune » est faux, ce sont deux façons opposées de combiner des valeurs. Une enum **peut** avoir des méthodes (bloc `impl`, comme une struct). Une struct peut très bien contenir un `String`.\n\n**À retenir :** plusieurs choses à la fois → struct ; un choix parmi plusieurs → enum."
   },
   {
     "question": "Comment créer la valeur `Rouge` de l'enum `Feu` ?",
-    "choix": ["`Feu.Rouge`", "`Feu::Rouge`", "`Rouge::Feu`", "`new Feu(Rouge)`"],
+    "choix": [
+      "`Feu.Rouge`",
+      "`Feu::Rouge`",
+      "`Rouge::Feu`",
+      "`new Feu(Rouge)`"
+    ],
     "reponse": 1,
-    "explication": "On écrit le nom de l'enum, `::`, puis le nom de la variante."
+    "explication": "**Règle :** une valeur d'enum s'écrit `NomDeLEnum::Variante`, avec deux deux-points.\n\n**Pas à pas :** l'enum s'appelle `Feu`, la variante `Rouge` : on écrit `Feu`, puis `::`, puis `Rouge`, soit `let feu = Feu::Rouge;`.\n\n**Les autres réponses :**\n\n- `Feu.Rouge` : le point sert à lire un champ ou appeler une méthode sur une **valeur**, pas à choisir une variante d'un **type**.\n- `Rouge::Feu` : l'ordre est inversé, c'est le type d'abord.\n- `new Feu(Rouge)` : le mot-clé `new` n'existe pas en Rust (c'est du Java ou du C++).\n\n**À retenir :** `Type::Variante`, le type à gauche du `::`."
   },
   {
     "question": "Un `match` sur une enum oublie une variante (sans `_`). Que se passe-t-il ?",
-    "choix": ["Le programme panique si ce cas arrive", "Le code ne compile pas (erreur E0004)", "La variante oubliée est ignorée", "Seulement un avertissement"],
+    "choix": [
+      "Le programme panique si ce cas arrive",
+      "Le code ne compile pas (erreur E0004)",
+      "La variante oubliée est ignorée",
+      "Seulement un avertissement"
+    ],
     "reponse": 1,
-    "explication": "Le `match` est exhaustif : le compilateur refuse le code et indique la variante non couverte."
+    "explication": "**Règle :** un `match` doit être **exhaustif** : chaque valeur possible doit tomber dans un bras. Le compilateur le vérifie avant même de lancer le programme.\n\n**Pas à pas :** avec `enum Feu { Rouge, Orange, Vert }` et un `match` qui ne traite que `Rouge` et `Orange`, le compilateur cherche ce que deviendrait `Feu::Vert`. Aucun bras ne l'attrape : il refuse de compiler et affiche `error[E0004]: non-exhaustive patterns: Feu::Vert not covered`. Pour corriger, on ajoute le bras `Feu::Vert => ...`.\n\n**Les autres réponses :** il n'y a pas de panique, car le programme n'est jamais construit ; la variante n'est pas ignorée en silence ; et ce n'est pas un simple avertissement, c'est une **erreur** qui bloque.\n\n**À retenir :** variante oubliée dans un `match` = erreur E0004 à la compilation ; lis le nom cité et ajoute son bras."
   },
   {
     "question": "Pourquoi éviter un `_ =>` sur ses propres enums ?",
-    "choix": ["Il rend le programme plus lent", "Si on ajoute une variante plus tard, le compilateur ne signalera plus ce `match`", "Il est interdit sur les enums", "Il ne marche qu'avec les nombres"],
+    "choix": [
+      "Il rend le programme plus lent",
+      "Si on ajoute une variante plus tard, le compilateur ne signalera plus ce `match`",
+      "Il est interdit sur les enums",
+      "Il ne marche qu'avec les nombres"
+    ],
     "reponse": 1,
-    "explication": "Sans `_`, ajouter une variante fait échouer la compilation de chaque `match` à compléter : une aide précieuse."
+    "explication": "**Règle :** `_ =>` attrape **tout ce qui reste**, y compris les variantes qui seront ajoutées plus tard.\n\n**Pas à pas :**\n\n1. Tu écris `match feu { Feu::Rouge => \"stop\", _ => \"rouler\" }`.\n2. Un jour, tu ajoutes `Feu::Clignotant` à l'enum.\n3. Sans `_`, le compilateur signalerait ce `match` (E0004) pour que tu décides quoi faire du clignotant.\n4. Avec `_`, il se tait : le clignotant tombe dans « rouler », peut-être à tort, et personne n'est prévenu.\n\n**Les autres réponses :** `_` ne ralentit rien ; il n'est pas interdit sur les enums (il compile) ; il marche avec tous les types, pas seulement les nombres.\n\n**À retenir :** sur tes propres enums, écris chaque variante (regroupe-les avec `|` si besoin) ; garde `_` pour les nombres et les textes."
   },
   {
     "question": "Dans `Forme::Rectangle(l, h) => l * h`, que sont `l` et `h` ?",
-    "choix": ["Des constantes globales", "Les données sorties de la variante (déstructuration)", "Des types", "Des fonctions"],
+    "choix": [
+      "Des constantes globales",
+      "Les données sorties de la variante (déstructuration)",
+      "Des types",
+      "Des fonctions"
+    ],
     "reponse": 1,
-    "explication": "Le motif extrait les données transportées par la variante dans de nouvelles variables."
+    "explication": "**Règle :** dans un motif, des noms placés entre les parenthèses d'une variante **créent des variables** qui reçoivent les données de cette variante : c'est la **déstructuration**.\n\n**Pas à pas :** avec `Forme::Rectangle(3.0, 4.0)`, le bras `Forme::Rectangle(l, h)` correspond. `l` reçoit la première donnée (3.0) et `h` la seconde (4.0), dans l'ordre. Le bras calcule `l * h` = 12.0. Les noms sont libres : `Forme::Rectangle(largeur, hauteur)` ferait la même chose.\n\n**Les autres réponses :** ce ne sont pas des constantes globales (elles n'existent que dans ce bras) ; ce ne sont pas des types (les types sont `f64`, écrits dans la définition de l'enum) ; ce ne sont pas des fonctions (on ne les appelle pas).\n\n**À retenir :** le motif a la même forme que la valeur ; chaque nom dans le motif devient une variable avec la donnée correspondante."
   },
   {
     "question": "Que remplace `Option<T>` en Rust ?",
-    "choix": ["Les exceptions", "La valeur `null` des autres langages", "Les boucles", "Les tableaux"],
+    "choix": [
+      "Les exceptions",
+      "La valeur `null` des autres langages",
+      "Les boucles",
+      "Les tableaux"
+    ],
     "reponse": 1,
-    "explication": "Rust n'a pas de `null` : une valeur qui peut manquer a le type `Option<T>`, et le compilateur oblige à traiter `None`."
+    "explication": "**Règle :** Rust n'a **pas** de `null`. Une valeur qui peut manquer a le type `Option<T>`, qui vaut `Some(valeur)` ou `None`.\n\n**Pas à pas :** en Java, une fonction de recherche renvoie un objet ou `null`, et oublier de tester `null` plante le programme à l'exécution. En Rust, la même fonction renvoie `Option<T>` : le type dit « peut-être rien », et le compilateur refuse qu'on utilise la valeur sans avoir traité `None`.\n\n**Les autres réponses :** les exceptions sont remplacées par `Result` (pour les erreurs avec une raison), pas par `Option` ; `Option` n'a rien à voir avec les boucles ni les tableaux.\n\n**À retenir :** « peut-être rien » s'écrit `Option<T>` ; l'absence (`None`) est une vraie valeur que le compilateur oblige à traiter."
   },
   {
     "question": "Quel est le type de `Some(5)` ?",
-    "choix": ["`i32`", "`Option<i32>`", "`Result<i32>`", "`Some<i32>`"],
+    "choix": [
+      "`i32`",
+      "`Option<i32>`",
+      "`Result<i32>`",
+      "`Some<i32>`"
+    ],
     "reponse": 1,
-    "explication": "`Some` est une variante de l'enum `Option`. Ici `T` vaut `i32`."
+    "explication": "**Règle :** `Some` est une **variante** de l'enum `Option<T>`. `Some(5)` est donc une valeur du type `Option<...>`, où `T` est le type de ce qu'il contient.\n\n**Pas à pas :** `5` tout seul est un entier ; sans autre indication, Rust choisit `i32`. Donc `T = i32`, et `Some(5)` est de type `Option<i32>`.\n\n**Les autres réponses :**\n\n- `i32` : c'est le type du contenu, pas de l'enveloppe. Il faut ouvrir l'`Option` pour avoir l'`i32`.\n- `Result<i32>` : `Result` a deux paramètres (`Result<T, E>`) et ses variantes sont `Ok` et `Err`.\n- `Some<i32>` : `Some` n'est pas un type, c'est une variante (comme `Feu::Rouge` n'est pas un type).\n\n**À retenir :** le type d'une variante, c'est le type de son enum : `Some(x)` et `None` sont des `Option<...>`."
   },
   {
     "question": "Avec `let x: Option<i32> = Some(2);`, peut-on écrire `let y = x + 1;` ?",
-    "choix": ["Oui, y vaut 3", "Non : il faut d'abord sortir la valeur de l'`Option` en traitant le cas `None`", "Oui, y vaut `Some(3)`", "Oui, mais seulement en mode release"],
+    "choix": [
+      "Oui, y vaut 3",
+      "Non : il faut d'abord sortir la valeur de l'`Option` en traitant le cas `None`",
+      "Oui, y vaut `Some(3)`",
+      "Oui, mais seulement en mode release"
+    ],
     "reponse": 1,
-    "explication": "Un `Option<i32>` n'est pas un `i32`. On utilise `match`, `if let`, `map` ou `unwrap_or`."
+    "explication": "**Règle :** un `Option<i32>` n'est **pas** un `i32`. L'addition `+ 1` est définie sur les nombres, pas sur une enveloppe qui peut être vide.\n\n**Pas à pas :** si `x` valait `None`, que donnerait `None + 1` ? Rien de sensé. Le compilateur refuse donc `x + 1` (erreur de type) et oblige à dire quoi faire dans les deux cas :\n\n```rust\nlet y = x.map(|v| v + 1);        // Some(3), reste une Option\nlet z = x.unwrap_or(0) + 1;      // 3, avec 0 si x était None\n```\n\n**Les autres réponses :** « y vaut 3 » et « y vaut Some(3) » supposent que le code compile, or il ne compile pas (`map` donnerait bien `Some(3)`, mais il faut l'écrire). Le mode release ne change pas les règles de types.\n\n**À retenir :** pour calculer avec le contenu d'un `Option`, ouvre-le d'abord (`match`, `if let`, `map`, `unwrap_or`)."
   },
   {
     "question": "Que vaut `x.unwrap_or(7)` quand `x` vaut `None` ?",
-    "choix": ["`None`", "`0`", "`7`", "Une panique"],
+    "choix": [
+      "`None`",
+      "`0`",
+      "`7`",
+      "Une panique"
+    ],
     "reponse": 2,
-    "explication": "`unwrap_or` donne la valeur si elle existe, sinon la valeur par défaut fournie."
+    "explication": "**Règle :** `x.unwrap_or(defaut)` renvoie la valeur contenue si `x` est `Some(valeur)`, et `defaut` si `x` est `None`.\n\n**Pas à pas :** `x` vaut `None`, il n'y a pas de valeur à l'intérieur : on prend la valeur de secours donnée entre parenthèses, `7`. (Avec `Some(2)`, on aurait obtenu `2`.)\n\n**Les autres réponses :** `None` n'est pas possible, `unwrap_or` renvoie toujours un `i32`, jamais un `Option` ; `0` serait le résultat de `unwrap_or(0)` ou `unwrap_or_default()`, pas de `unwrap_or(7)` ; il n'y a pas de panique, c'est justement l'intérêt par rapport à `unwrap()`.\n\n**À retenir :** `unwrap_or(d)` = « la valeur, ou `d` s'il n'y en a pas », sans jamais paniquer."
   },
   {
     "question": "Que vaut `Some(3).map(|x| x * 2)` ?",
-    "choix": ["`6`", "`Some(6)`", "`Some(3)`", "`None`"],
+    "choix": [
+      "`6`",
+      "`Some(6)`",
+      "`Some(3)`",
+      "`None`"
+    ],
     "reponse": 1,
-    "explication": "`map` transforme la valeur à l'intérieur et garde l'enveloppe `Some`. Sur `None`, il renvoie `None`."
+    "explication": "**Règle :** `map` applique la closure à la valeur **à l'intérieur** du `Some` et remet le résultat dans un `Some`. Sur `None`, elle ne fait rien et renvoie `None`.\n\n**Pas à pas :**\n\n1. On ouvre `Some(3)` : `x` vaut 3.\n2. On calcule `x * 2` = 6.\n3. On referme : `Some(6)`.\n\n**Les autres réponses :** `6` oublie que `map` garde l'enveloppe (il faudrait ajouter `.unwrap_or(0)` pour sortir 6) ; `Some(3)` oublie d'appliquer la closure ; `None` n'arrive que si on partait de `None`.\n\n**À retenir :** `map` transforme le contenu sans ouvrir l'enveloppe : `Some(v)` → `Some(f(v))`, `None` → `None`."
   },
   {
     "question": "Quand utiliser `if let` plutôt que `match` ?",
-    "choix": ["Jamais", "Quand un seul cas nous intéresse", "Seulement avec des nombres", "Quand il y a plus de trois cas"],
+    "choix": [
+      "Jamais",
+      "Quand un seul cas nous intéresse",
+      "Seulement avec des nombres",
+      "Quand il y a plus de trois cas"
+    ],
     "reponse": 1,
-    "explication": "`if let Some(v) = x { ... }` est un `match` raccourci quand on ne traite qu'un motif (avec un `else` éventuel)."
+    "explication": "**Règle :** `if let Motif = valeur { ... }` exécute le bloc seulement si la valeur correspond au motif. C'est un `match` raccourci quand **un seul** cas nous intéresse vraiment (avec un `else` facultatif pour tout le reste).\n\n**Pas à pas :** pour afficher un âge seulement s'il est connu :\n\n```rust\nif let Some(age) = chercher_age(nom) {\n    println!(\"{nom} a {age} ans\");\n}\n```\n\nAvec `match`, il faudrait aussi écrire un bras `None => {}` qui ne fait rien.\n\n**Les autres réponses :** « jamais » est faux, `if let` est très courant ; il marche avec n'importe quel motif (`Option`, enums, `Result`), pas seulement les nombres ; et quand il y a **plusieurs** cas à traiter, c'est au contraire `match` qu'il faut, car il vérifie qu'aucun cas n'est oublié.\n\n**À retenir :** un cas qui compte → `if let` ; plusieurs cas à traiter → `match`."
   },
   {
     "question": "Que fait `unwrap()` sur un `None` ?",
-    "choix": ["Renvoie 0", "Renvoie `None`", "Fait paniquer le programme", "Ne compile pas"],
+    "choix": [
+      "Renvoie 0",
+      "Renvoie `None`",
+      "Fait paniquer le programme",
+      "Ne compile pas"
+    ],
     "reponse": 2,
-    "explication": "`unwrap()` suppose qu'il y a une valeur : s'il n'y en a pas, le programme s'arrête avec une panique."
+    "explication": "**Règle :** `unwrap()` suppose qu'il y a une valeur. Sur `Some(v)` il renvoie `v` ; sur `None`, il n'a rien à renvoyer et fait **paniquer** le programme (arrêt immédiat avec un message `called Option::unwrap() on a None value`).\n\n**Pas à pas :** `let x: Option<i32> = None; let v = x.unwrap();` compile sans problème (le type est correct), mais à l'exécution, arrivé à cette ligne, le programme s'arrête.\n\n**Les autres réponses :** il ne renvoie pas 0 (ça, c'est `unwrap_or(0)`) ; il ne renvoie pas `None` (son résultat est un `i32`, pas un `Option`) ; et ça compile, car le compilateur ne sait pas à l'avance si la valeur sera `None`.\n\n**À retenir :** `unwrap()` sur `None` = panique à l'exécution ; préfère `unwrap_or`, `if let` ou `match` quand l'absence est possible."
   },
   {
     "question": "`enum Couleur { Rouge, Vert, Bleu }`. Combien de valeurs différentes peut prendre `struct Lampe { allumee: bool, couleur: Couleur }` ?",
-    "choix": ["4", "5", "6", "8"],
+    "choix": [
+      "4",
+      "5",
+      "6",
+      "8"
+    ],
     "reponse": 2,
-    "explication": "Une struct est un type **produit** : 2 valeurs pour `bool` × 3 pour `Couleur` = 6 combinaisons."
+    "explication": "**Règle :** une struct est un type **produit** : son nombre de valeurs est le **produit** des nombres de valeurs de ses champs (chaque champ peut prendre n'importe quelle valeur, indépendamment des autres).\n\n**Pas à pas :**\n\n| Champ | Valeurs possibles | Nombre |\n|---|---|---|\n| `allumee: bool` | `true`, `false` | 2 |\n| `couleur: Couleur` | `Rouge`, `Vert`, `Bleu` | 3 |\n\nTotal : 2 × 3 = **6** combinaisons (éteinte rouge, éteinte verte, éteinte bleue, allumée rouge, allumée verte, allumée bleue).\n\n**Les autres réponses :** 4 est le nombre de valeurs de l'enum `EtatLampe` (une somme) ; 5 additionne 2 + 3 (on a confondu produit et somme) ; 8 serait 2 × 2 × 2, comme trois booléens.\n\n**À retenir :** struct = on multiplie les possibilités de chaque champ."
   },
   {
     "question": "Et combien pour `enum EtatLampe { Eteinte, Allumee(Couleur) }` ?",
-    "choix": ["3", "4", "6", "7"],
+    "choix": [
+      "3",
+      "4",
+      "6",
+      "7"
+    ],
     "reponse": 1,
-    "explication": "Une enum est un type **somme** : 1 (`Eteinte`) + 3 (`Allumee` avec chaque couleur) = 4, exactement les états réels. « Éteinte mais rouge » n'existe plus."
+    "explication": "**Règle :** une enum est un type **somme** : son nombre de valeurs est la **somme** des valeurs de chaque variante. Une variante sans donnée compte pour 1 ; une variante avec une donnée compte autant que cette donnée a de valeurs.\n\n**Pas à pas :**\n\n| Variante | Valeurs | Nombre |\n|---|---|---|\n| `Eteinte` | `Eteinte` | 1 |\n| `Allumee(Couleur)` | `Allumee(Rouge)`, `Allumee(Vert)`, `Allumee(Bleu)` | 3 |\n\nTotal : 1 + 3 = **4**, exactement les états réels d'une lampe. « Éteinte mais rouge » ne peut plus s'écrire.\n\n**Les autres réponses :** 3 oublie `Eteinte` ; 6 est le résultat de la struct `Lampe` (produit) ; 7 additionne mal (1 + 6).\n\n**À retenir :** enum = on additionne les possibilités de chaque variante."
   },
   {
     "question": "Combien de valeurs a `Option<bool>` ?",
-    "choix": ["2", "3", "4", "Une infinité"],
+    "choix": [
+      "2",
+      "3",
+      "4",
+      "Une infinité"
+    ],
     "reponse": 1,
-    "explication": "Les valeurs de `bool` plus `None` : `Some(true)`, `Some(false)` et `None`."
+    "explication": "**Règle :** `Option<T>` est une enum à deux variantes : `Some(T)`, qui compte autant que `T` a de valeurs, et `None`, qui compte pour 1. Donc nombre de valeurs = (valeurs de `T`) + 1.\n\n**Pas à pas :** `T = bool` a 2 valeurs. On les liste :\n\n1. `Some(true)`\n2. `Some(false)`\n3. `None`\n\nTotal : 2 + 1 = **3**.\n\n**Les autres réponses :** 2 oublie `None` ; 4 multiplie au lieu d'additionner (2 × 2) ; « une infinité » est faux, `bool` n'a que deux valeurs.\n\n**À retenir :** `Option<T>` a toujours une valeur de plus que `T` : la valeur `None`."
   },
   {
     "question": "Pourquoi préférer `enum Connexion { Deconnecte, EnCours { depuis_ms: u64 }, Connecte { session: u64, pseudo: String } }` à une struct avec deux `bool` et deux `Option` ?",
-    "choix": ["Elle est plus rapide à afficher", "Les états incohérents (connecté sans session…) deviennent impossibles à écrire", "Une struct ne peut pas contenir de `String`", "Les enums prennent toujours moins de mémoire"],
+    "choix": [
+      "Elle est plus rapide à afficher",
+      "Les états incohérents (connecté sans session…) deviennent impossibles à écrire",
+      "Une struct ne peut pas contenir de `String`",
+      "Les enums prennent toujours moins de mémoire"
+    ],
     "reponse": 1,
-    "explication": "La version struct a 16 combinaisons dont la plupart n'ont aucun sens ; l'enum en a exactement 3. « Make illegal states unrepresentable »."
+    "explication": "**Règle :** « *make illegal states unrepresentable* » : on choisit un type où une valeur incohérente **ne peut pas** être construite, au lieu de devoir la refuser par des vérifications.\n\n**Pas à pas :**\n\n- Version struct : `connecte: bool`, `en_cours: bool`, `session: Option<u64>`, `pseudo: Option<String>` → 2 × 2 × 2 × 2 = 16 combinaisons de « remplis / vides ». Beaucoup sont absurdes : connecté **et** en cours, connecté sans session, une session sans pseudo…\n- Version enum : `Deconnecte`, `EnCours { depuis_ms }`, `Connecte { session, pseudo }` → exactement 3 états. Être connecté **oblige** à avoir une session et un pseudo, et un `match` doit traiter les 3 cas.\n\n**Les autres réponses :** l'affichage n'a rien à voir ; une struct peut contenir un `String` ; et une enum ne prend pas « toujours » moins de mémoire (sa taille est celle de la plus grosse variante + l'étiquette), ce n'est pas le but.\n\n**À retenir :** si plusieurs booléens et `Option` doivent « aller ensemble », remplace-les par une enum dont chaque variante porte ses données."
   },
   {
     "question": "Dans `match objet { Objet::Arme(Arme::Arc { degats, portee }) => …, Objet::Arme(_) => …, … }`, que fait le premier bras ?",
-    "choix": ["Il attrape toutes les armes", "Il ouvre deux niveaux d'enum d'un coup et sort `degats` et `portee` d'un arc", "Il ne compile pas : on ne peut pas imbriquer les motifs", "Il crée un nouvel arc"],
+    "choix": [
+      "Il attrape toutes les armes",
+      "Il ouvre deux niveaux d'enum d'un coup et sort `degats` et `portee` d'un arc",
+      "Il ne compile pas : on ne peut pas imbriquer les motifs",
+      "Il crée un nouvel arc"
+    ],
     "reponse": 1,
-    "explication": "Les motifs vont en profondeur. Les bras sont testés dans l'ordre : l'arc est pris avant le `Objet::Arme(_)` qui récupère les autres armes."
+    "explication": "**Règle :** un motif peut s'imbriquer : on ouvre une enum, puis l'enum qu'elle contient, dans le **même** bras. Les bras sont testés de haut en bas, le premier qui correspond gagne.\n\n**Pas à pas :** avec `Objet::Arme(Arme::Arc { degats: 7, portee: 40 })` :\n\n1. `Objet::Arme(...)` : c'est bien une arme, on regarde ce qu'il y a dedans.\n2. `Arme::Arc { degats, portee }` : c'est bien un arc ; `degats` reçoit 7 et `portee` reçoit 40.\n3. Le premier bras gagne. Pour une épée, l'étape 2 échoue et on passe au bras `Objet::Arme(_)`.\n\n**Les autres réponses :** il n'attrape **pas** toutes les armes, seulement les arcs (c'est le bras suivant qui attrape les autres) ; les motifs imbriqués compilent très bien ; et un motif ne crée pas de valeur, il en examine une.\n\n**À retenir :** écris le motif niveau par niveau comme la valeur ; place le cas précis (l'arc) avant le cas général (`Arme(_)`)."
   },
   {
     "question": "Combien d'octets occupe `Option<&u8>` sur une machine 64 bits ?",
-    "choix": ["8, comme `&u8`", "9", "16", "1"],
+    "choix": [
+      "8, comme `&u8`",
+      "9",
+      "16",
+      "1"
+    ],
     "reponse": 0,
-    "explication": "Une référence n'est jamais nulle : la valeur 0 sert à coder `None` (niche filling). L'absence ne coûte rien."
+    "explication": "**Règle :** une enum a besoin d'une étiquette pour savoir quelle variante est présente, **sauf** si le type contenu a des valeurs qu'il n'utilise jamais (des **niches**) : `None` en prend une, gratuitement (*niche filling*).\n\n**Pas à pas :**\n\n1. `&u8` est une adresse mémoire : 8 octets sur une machine 64 bits.\n2. Une référence Rust n'est **jamais** nulle : l'adresse 0 n'est jamais utilisée.\n3. `Option<&u8>` code donc `None` avec l'adresse 0, et `Some(r)` avec l'adresse elle-même. Pas besoin d'octet en plus : **8** octets.\n\n**Les autres réponses :** 9 ajouterait un octet d'étiquette sans profiter de la niche ; 16 arrondirait ces 9 octets à l'alignement 8 (ce qui arrive pour `Option<u64>`, pas pour une référence) ; 1 est la taille d'un `u8`, pas d'une référence vers lui.\n\n**À retenir :** `Option<&T>` = taille de `&T`, car 0 n'est jamais une référence valide."
   },
   {
     "question": "Et `Option<u8>` ?",
-    "choix": ["1 octet", "2 octets", "4 octets", "8 octets"],
+    "choix": [
+      "1 octet",
+      "2 octets",
+      "4 octets",
+      "8 octets"
+    ],
     "reponse": 1,
-    "explication": "Un `u8` utilise ses 256 valeurs : aucune niche libre, il faut un octet d'étiquette en plus."
+    "explication": "**Règle :** le *niche filling* ne marche que si le type contenu a des valeurs inutilisées. Sinon, il faut une étiquette en plus, et la taille est arrondie à l'alignement du contenu.\n\n**Pas à pas :**\n\n1. Un `u8` fait 1 octet et utilise **ses 256 valeurs** (0 à 255) : aucune n'est libre pour coder `None`.\n2. Il faut donc 1 octet d'étiquette (« `Some` ou `None` ») + 1 octet de donnée.\n3. L'alignement d'un `u8` est 1 : pas d'arrondi. Total : **2** octets.\n\n**Les autres réponses :** 1 octet supposerait une niche (c'est le cas de `Option<bool>`, pas de `Option<u8>`) ; 4 octets est la taille de `Option<u16>` ; 8 octets celle de `Option<u32>` ou `Option<&u8>`.\n\n**À retenir :** `T` utilise toutes ses valeurs → `Option<T>` = étiquette + `T`, arrondi à l'alignement de `T`."
   },
   {
     "question": "Que fait `let f = File::open(chemin)?;` si l'ouverture échoue ?",
-    "choix": ["Le programme panique", "`f` vaut `None`", "La fonction s'arrête et renvoie tout de suite le `Err` à l'appelant", "L'erreur est ignorée"],
+    "choix": [
+      "Le programme panique",
+      "`f` vaut `None`",
+      "La fonction s'arrête et renvoie tout de suite le `Err` à l'appelant",
+      "L'erreur est ignorée"
+    ],
     "reponse": 2,
-    "explication": "`?` déballe le `Ok`, ou renvoie immédiatement le `Err` (en convertissant le type d'erreur si possible)."
+    "explication": "**Règle :** `expression?` sur un `Result` : si c'est `Ok(v)`, ça donne `v` et on continue ; si c'est `Err(e)`, la fonction s'**arrête** et renvoie `Err(e)` à son appelant.\n\n**Pas à pas :**\n\n1. `File::open(chemin)` renvoie `Err(erreur « fichier introuvable »)`.\n2. `?` voit un `Err` : la ligne `let f = ...` n'est jamais terminée, `f` n'existe pas.\n3. La fonction renvoie aussitôt ce `Err` (converti si besoin vers le type d'erreur de la fonction). C'est l'appelant qui décide quoi faire.\n\nC'est l'équivalent de `match File::open(chemin) { Ok(f) => f, Err(e) => return Err(e) }`.\n\n**Les autres réponses :** pas de panique (c'est `unwrap` qui panique) ; `f` ne vaut pas `None` (on parle de `Result`, et `f` n'est jamais créé) ; l'erreur n'est pas ignorée, elle est transmise.\n\n**À retenir :** `?` = « déballe le `Ok`, ou renvoie le `Err` tout de suite à l'appelant »."
   },
   {
     "question": "Pourquoi `?` est-il refusé dans un `fn main()` qui ne renvoie rien ?",
-    "choix": ["`?` est interdit dans `main`", "`?` doit pouvoir renvoyer l'erreur : la fonction doit renvoyer un `Result` (ou un `Option`)", "Il faut importer `std::question`", "Ce n'est pas refusé"],
+    "choix": [
+      "`?` est interdit dans `main`",
+      "`?` doit pouvoir renvoyer l'erreur : la fonction doit renvoyer un `Result` (ou un `Option`)",
+      "Il faut importer `std::question`",
+      "Ce n'est pas refusé"
+    ],
     "reponse": 1,
-    "explication": "Sans type de retour `Result`, `?` n'a nulle part où renvoyer l'erreur. D'où `fn main() -> std::io::Result<()>`."
+    "explication": "**Règle :** `?` renvoie l'erreur à l'appelant. Pour ça, la fonction qui l'utilise doit **pouvoir renvoyer** une erreur : son type de retour doit être un `Result` (ou un `Option` si on utilise `?` sur des `Option`).\n\n**Pas à pas :** dans `fn main()`, le type de retour est `()` (rien). Si `read_to_string(...)?` échouait, `?` devrait faire `return Err(e)`, mais `main` ne peut pas renvoyer un `Err` : le compilateur refuse. Solution :\n\n```rust\nfn main() -> std::io::Result<()> {\n    let texte = std::fs::read_to_string(\"notes.txt\")?;\n    println!(\"{texte}\");\n    Ok(())\n}\n```\n\n**Les autres réponses :** `?` n'est pas interdit dans `main` (il marche avec le bon type de retour) ; `std::question` n'existe pas ; et c'est bien refusé, par une erreur de compilation.\n\n**À retenir :** `?` seulement dans une fonction qui renvoie `Result` (ou `Option`) ; pour `main`, écris `-> std::io::Result<()>` et finis par `Ok(())`."
   },
   {
     "question": "Une fonction renvoie un `Result` et l'appelant écrit `lire(\"a.txt\");` sans rien en faire. Que se passe-t-il ?",
-    "choix": ["Rien du tout", "Un avertissement : `Result` est marqué `#[must_use]`", "Une erreur de compilation", "Le programme panique"],
+    "choix": [
+      "Rien du tout",
+      "Un avertissement : `Result` est marqué `#[must_use]`",
+      "Une erreur de compilation",
+      "Le programme panique"
+    ],
     "reponse": 1,
-    "explication": "On ne peut pas ignorer une erreur par distraction : le compilateur avertit (`unused_must_use`)."
+    "explication": "**Règle :** `Result` est marqué `#[must_use]` : si on calcule un `Result` et qu'on le jette sans le regarder, le compilateur affiche un **avertissement** (`unused_must_use`).\n\n**Pas à pas :** `lire(\"a.txt\");` appelle la fonction, puis le `;` jette le `Result` renvoyé. Si la lecture a échoué, personne ne le saura. Le compilateur prévient : « unused `Result` that must be used ». Pour l'enlever, il faut traiter le résultat (`match`, `?`, `if let Err(e) = ...`) ou dire explicitement qu'on l'ignore avec `let _ = lire(\"a.txt\");`.\n\n**Les autres réponses :** « Rien du tout » oublie `#[must_use]` ; ce n'est pas une erreur de compilation, le programme se construit quand même ; et il n'y a pas de panique, car rien n'appelle `unwrap`.\n\n**À retenir :** un `Result` ignoré déclenche un avertissement : traite-le ou écris `let _ =` pour assumer."
   },
   {
     "question": "Quelle taille a `enum Arme { Epee { degats: u8 }, Hache { degats: u8 }, Arc { degats: u8, portee: u32 } }` ?",
-    "choix": ["1 octet", "5 octets", "8 octets", "12 octets"],
+    "choix": [
+      "1 octet",
+      "5 octets",
+      "8 octets",
+      "12 octets"
+    ],
     "reponse": 2,
-    "explication": "La plus grosse variante (`u8` + `u32`) plus l'étiquette, alignée sur 4 : 8 octets, quelle que soit la variante. En C, avec une étiquette `int`, on obtient 12."
+    "explication": "**Règle :** taille d'une enum = taille de la plus grosse variante (étiquette comprise), arrondie au multiple de l'alignement du plus gros champ.\n\n**Pas à pas :**\n\n| Variante | Placement | Octets |\n|---|---|---|\n| `Epee { degats: u8 }` | étiquette (0), degats (1) | 2 |\n| `Hache { degats: u8 }` | étiquette (0), degats (1) | 2 |\n| `Arc { degats: u8, portee: u32 }` | étiquette (0), degats (1), vide (2-3), portee alignée sur 4 (4 à 7) | 8 |\n\nLa plus grosse variante fait 8 octets, et 8 est un multiple de 4 (alignement du `u32`) : **8 octets**, quelle que soit la variante rangée.\n\n**Les autres réponses :** 1 octet ne compte que l'étiquette ; 5 octets additionne étiquette + `u32` sans le `u8` ni l'alignement ; 12 octets est la version C, où l'étiquette est un `int` de 4 octets.\n\n**À retenir :** mesure la plus grosse variante avec son étiquette, place chaque champ sur un multiple de sa taille, puis arrondis."
   },
   {
     "question": "Quelle est la grande différence entre une `union` du C et une enum Rust ?",
-    "choix": ["L'union est plus sûre", "Dans l'union, rien n'indique le membre valide ; en Rust l'étiquette fait partie de la valeur et le `match` l'examine", "L'enum Rust alloue sur le tas", "Il n'y en a aucune"],
+    "choix": [
+      "L'union est plus sûre",
+      "Dans l'union, rien n'indique le membre valide ; en Rust l'étiquette fait partie de la valeur et le `match` l'examine",
+      "L'enum Rust alloue sur le tas",
+      "Il n'y en a aucune"
+    ],
     "reponse": 1,
-    "explication": "En C, lire le mauvais membre compile sans avertissement. En Rust, lire la mauvaise variante est impossible ; les `union` de Rust, elles, demandent `unsafe`."
+    "explication": "**Règle :** une `union` du C range plusieurs membres dans les **mêmes** octets, mais ne retient **pas** lequel a été écrit. Une enum Rust garde une **étiquette** dans la valeur, et on n'atteint les données qu'à travers un `match` qui la vérifie.\n\n**Pas à pas :**\n\n- En C : on écrit `donnees.arc.portee`, puis on lit `donnees.epee.degats` sur le même objet. Ça compile sans un avertissement et lit des octets qui ne veulent rien dire. C'est au programmeur de gérer l'étiquette à la main.\n- En Rust : `match arme { Arme::Epee { degats } => ..., ... }` lit l'étiquette d'abord. Sur un arc, le bras `Epee` ne correspond simplement pas : lire la mauvaise variante est impossible.\n- Rust a aussi des `union` sans étiquette, mais lire un de leurs champs exige un bloc `unsafe`.\n\n**Les autres réponses :** l'union n'est pas plus sûre, c'est l'inverse ; l'enum Rust n'alloue rien sur le tas (tout tient dans la valeur) ; et il y a bien une différence, celle de la vérification.\n\n**À retenir :** enum Rust = union + étiquette vérifiée par le compilateur."
   }
 ]

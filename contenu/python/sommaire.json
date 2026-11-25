@@ -258,7 +258,7 @@
             "Avec des points-virgules"
           ],
           "reponse": 1,
-          "explication": "Les blocs sont définis par l'indentation (4 espaces par niveau). La ligne qui ouvre le bloc se termine par `:`."
+          "explication": "**Règle :** en Python, un bloc (le corps d'un `if`, d'une boucle, d'une fonction) est fait de toutes les lignes **décalées** sous la ligne qui l'ouvre. Cette ligne se termine par `:`, et le décalage habituel est de 4 espaces.\n\n**Pas à pas :**\n\n```python\nif x > 0:\n    print(\"positif\")\n    print(\"toujours dans le if\")\nprint(\"après le if\")\n```\n\n- `if x > 0:` ouvre le bloc (les deux-points).\n- Les deux lignes décalées de 4 espaces font partie du bloc : elles ne s'exécutent que si `x > 0`.\n- La dernière ligne est revenue au bord gauche : elle est **après** le bloc et s'exécute toujours.\n\n**Les autres réponses :** les accolades `{ }` délimitent les blocs en C, Java ou Rust, pas en Python (en Python, `{}` sert aux dictionnaires et aux ensembles). `begin` / `end` viennent de Pascal ou Ruby. Le point-virgule sépare des instructions dans d'autres langages ; en Python on écrit simplement une instruction par ligne.\n\n**À retenir :** en Python, c'est l'indentation qui fait le bloc ; un mauvais décalage change le sens du programme ou donne une `IndentationError`."
         },
         {
           "question": "Que vaut `10 // 2.5` ?",
@@ -269,7 +269,7 @@
             "`2.5`"
           ],
           "reponse": 1,
-          "explication": "`//` est le quotient de la division entière, mais dès qu'un des nombres est un `float`, le résultat est un `float` : `4.0`."
+          "explication": "**Règle :** `//` donne le **quotient** de la division (le nombre de fois que le second nombre « rentre » dans le premier, arrondi vers le bas). Si l'un des deux nombres est un `float`, le résultat est écrit en `float`.\n\n**Pas à pas :**\n\n1. Combien de fois 2.5 rentre dans 10 ? 2.5 × 4 = 10 tout juste : le quotient est 4.\n2. Le reste est 10 − 4 × 2.5 = 0, rien ne dépasse.\n3. 2.5 est un `float` : le résultat est le `float` `4.0`, pas l'entier `4`.\n\n**Les autres réponses :** `4` serait le résultat avec deux entiers (par exemple `12 // 3`), mais ici 2.5 est un `float`. `4.5` n'est pas possible : `//` ne garde jamais de partie après la virgule. `2.5` est le diviseur, pas le résultat.\n\n**À retenir :** `//` et `%` gardent le type `float` dès qu'un des nombres est un `float` ; `/` donne toujours un `float`."
         },
         {
           "question": "Que vaut `10 / 2` ?",
@@ -280,7 +280,7 @@
             "Une erreur"
           ],
           "reponse": 1,
-          "explication": "La division `/` renvoie toujours un `float`, même quand le résultat tombe juste."
+          "explication": "**Règle :** l'opérateur `/` fait la vraie division et renvoie **toujours** un `float`, même quand la division tombe juste.\n\n**Pas à pas :**\n\n1. 10 divisé par 2 vaut 5 : la division tombe juste.\n2. Mais `/` écrit toujours son résultat en `float` : Python affiche `5.0`.\n3. Pour obtenir l'entier `5`, il faut le quotient : `10 // 2`.\n\n**Les autres réponses :** `5` est le résultat de `10 // 2` (ou de Python 2, plus utilisé). `2` est le reste ou le quotient d'une autre opération (`10 % 4` vaut 2, `10 // 4` vaut 2). Il n'y a pas d'erreur : seule une division **par zéro** lève une `ZeroDivisionError`.\n\n**À retenir :** `/` → toujours un `float` ; `//` → le quotient entier (en `int` si les deux nombres sont des `int`)."
         },
         {
           "question": "Laquelle de ces valeurs est considérée comme **vraie** dans un `if` ?",
@@ -291,7 +291,7 @@
             "`None`"
           ],
           "reponse": 2,
-          "explication": "`[0]` est une liste qui contient un élément : elle n'est pas vide, donc vraie. `0`, `\"\"` et `None` sont faux."
+          "explication": "**Règle :** dans un `if`, une valeur est **fausse** si elle est nulle (`0`, `0.0`, `False`, `None`) ou **vide** (`\"\"`, `[]`, `()`, `{}`, `set()`). Tout le reste est vrai.\n\n**Pas à pas :** on teste chaque proposition.\n\n| Valeur | Nulle ou vide ? | Dans un `if` |\n|---|---|---|\n| `0` | nulle | faux |\n| `\"\"` | chaîne vide | faux |\n| `None` | « rien » | faux |\n| `[0]` | liste avec **une** case | **vrai** |\n\n`[0]` contient un élément : la liste n'est pas vide, donc elle est vraie. Peu importe que cet élément soit lui-même `0` : on regarde la liste, pas ce qu'il y a dedans.\n\n**Les autres réponses :** `0`, `\"\"` et `None` sont exactement les cas « nul ou vide » de la règle : ils sont faux.\n\n**À retenir :** un conteneur (liste, chaîne, dictionnaire...) est vrai dès qu'il contient au moins un élément."
         },
         {
           "question": "Quelles valeurs produit `range(2, 6)` ?",
@@ -302,7 +302,7 @@
             "0, 1, 2, 3, 4, 5"
           ],
           "reponse": 1,
-          "explication": "Le début est inclus et la fin est exclue : 2, 3, 4, 5."
+          "explication": "**Règle :** `range(debut, fin)` compte de `debut` (inclus) jusqu'à `fin` **exclue**, de 1 en 1.\n\n**Pas à pas :** on part de 2 et on avance tant qu'on reste strictement en dessous de 6.\n\n- 2 < 6 : on garde 2.\n- 3 < 6 : on garde 3.\n- 4 < 6 : on garde 4.\n- 5 < 6 : on garde 5.\n- 6 < 6 est faux : on s'arrête, 6 n'est pas produit.\n\nRésultat : 2, 3, 4, 5, soit 6 − 2 = 4 valeurs.\n\n**Les autres réponses :** 2, 3, 4, 5, 6 inclut la fin, alors qu'elle est exclue. 3, 4, 5, 6 décale tout d'un cran (début exclu, fin incluse : c'est l'inverse de la règle). 0, 1, 2, 3, 4, 5 ignore le début : c'est `range(6)`.\n\n**À retenir :** dans `range(a, b)`, `a` est inclus, `b` jamais atteint, et il y a `b - a` valeurs."
         },
         {
           "question": "Avec `l = [1, 2, 3, 4, 5]`, que vaut `l[1:4]` ?",
@@ -313,7 +313,7 @@
             "`[1, 2, 3]`"
           ],
           "reponse": 2,
-          "explication": "On part de l'indice 1 (la valeur 2) et on s'arrête **avant** l'indice 4 : `[2, 3, 4]`."
+          "explication": "**Règle :** dans une tranche `l[debut:fin]`, l'indice `debut` est **inclus**, l'indice `fin` est **exclu**, et les indices commencent à 0.\n\n**Pas à pas :** on numérote `l = [1, 2, 3, 4, 5]`.\n\n| Indice | 0 | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|---|\n| Valeur | 1 | 2 | 3 | 4 | 5 |\n\n`l[1:4]` prend les indices 1, 2 et 3 (on s'arrête **avant** 4), donc les valeurs 2, 3, 4 : `[2, 3, 4]`. On vérifie le nombre d'éléments : 4 − 1 = 3.\n\n**Les autres réponses :** `[1, 2, 3, 4]` compte les positions à partir de 1 au lieu de 0. `[2, 3, 4, 5]` inclut l'indice 4, alors que la fin est exclue. `[1, 2, 3]` est `l[0:3]` : il décale tout d'un cran.\n\n**À retenir :** pour une tranche, numérote depuis 0, prends le début, et arrête-toi juste avant la fin."
         },
         {
           "question": "Que donne `s = \"Hello\"` puis `s[0] = \"J\"` ?",
@@ -324,7 +324,7 @@
             "`s` vaut `\"J\"`"
           ],
           "reponse": 1,
-          "explication": "Une `str` n'est pas modifiable. Il faut créer une nouvelle chaîne : `s = \"J\" + s[1:]`."
+          "explication": "**Règle :** une `str` est **non modifiable** : on ne peut pas changer un de ses caractères. Toute tentative d'écrire `s[i] = ...` lève une `TypeError` (« 'str' object does not support item assignment »).\n\n**Pas à pas :**\n\n1. `s = \"Hello\"` : `s` désigne une chaîne.\n2. `s[0] = \"J\"` demande de remplacer le caractère d'indice 0 : c'est interdit pour une chaîne, Python lève une `TypeError` et `s` reste `\"Hello\"`.\n3. La bonne façon : construire une **nouvelle** chaîne, `s = \"J\" + s[1:]`, qui vaut `\"Jello\"`.\n\n**Les autres réponses :** `\"Jello\"` serait le résultat avec une liste de caractères, pas avec une chaîne. `IndexError` signale un indice qui n'existe pas ; ici l'indice 0 existe bien. `\"J\"` voudrait dire que tout le texte a été remplacé, ce que `s[0] = ...` ne fait jamais.\n\n**À retenir :** on ne modifie pas une chaîne, on en fabrique une nouvelle (tranches et `+`, ou `replace`)."
         },
         {
           "question": "Quel est le type de `(\"one\")` ?",
@@ -335,7 +335,7 @@
             "`set`"
           ],
           "reponse": 1,
-          "explication": "Les parenthèses seules ne font pas un tuple : c'est la virgule. Le tuple à un élément s'écrit `(\"one\",)`."
+          "explication": "**Règle :** ce sont les **virgules** qui fabriquent un tuple, pas les parenthèses. Des parenthèses sans virgule servent seulement à grouper, comme dans `(2 + 3) * 4`.\n\n**Pas à pas :**\n\n1. `(\"one\")` : il n'y a aucune virgule. Les parenthèses entourent juste la chaîne `\"one\"`.\n2. C'est donc exactement la même chose que `\"one\"` : `type((\"one\"))` affiche `<class 'str'>`.\n3. Avec une virgule, `(\"one\",)` (ou même `\"one\",`) est un tuple d'un élément : `<class 'tuple'>`.\n\n**Les autres réponses :** `tuple` est le piège : il faudrait la virgule. `list` s'écrit avec des crochets `[\"one\"]`. `set` s'écrit avec des accolades `{\"one\"}`.\n\n**À retenir :** un tuple d'un seul élément s'écrit avec une virgule finale : `(\"one\",)`."
         },
         {
           "question": "Comment crée-t-on un ensemble **vide** ?",
@@ -346,7 +346,7 @@
             "`()`"
           ],
           "reponse": 1,
-          "explication": "`{}` crée un dictionnaire vide. L'ensemble vide s'écrit `set()`."
+          "explication": "**Règle :** `{}` (accolades vides) crée un **dictionnaire** vide, pas un ensemble. L'ensemble vide n'a pas d'écriture avec des symboles : on appelle `set()`.\n\n**Pas à pas :**\n\n```python\nprint(type({}))\nprint(type(set()))\nprint(type({1, 2}))\n```\n\nAffiche `<class 'dict'>`, puis `<class 'set'>`, puis `<class 'set'>`. Les accolades donnent un ensemble seulement quand elles contiennent des valeurs **sans** `:` (comme `{1, 2}`). Vides, Python choisit le dictionnaire, plus ancien dans le langage.\n\n**Les autres réponses :** `{}` est le piège (dictionnaire vide). `[]` est une liste vide. `()` est un tuple vide.\n\n**À retenir :** ensemble vide = `set()`, dictionnaire vide = `{}`."
         },
         {
           "question": "Que vaut `len({1, 45, 8, 45})` ?",
@@ -357,7 +357,7 @@
             "Une erreur"
           ],
           "reponse": 1,
-          "explication": "Un ensemble ne garde pas les doublons : il contient 1, 45 et 8, donc 3 éléments."
+          "explication": "**Règle :** un ensemble ne garde **pas les doublons**, et `len` compte les éléments différents qu'il contient.\n\n**Pas à pas :** on lit les valeurs de `{1, 45, 8, 45}` une par une.\n\n- 1 : nouvelle, gardée.\n- 45 : nouvelle, gardée.\n- 8 : nouvelle, gardée.\n- 45 : déjà présente, ignorée.\n\nL'ensemble vaut `{1, 45, 8}` (dans un ordre quelconque) : `len` donne **3**.\n\n**Les autres réponses :** 4 compte les valeurs écrites, doublon compris. 2 enlève une valeur de trop (les deux 45 ne disparaissent pas, il en reste un). Il n'y a pas d'erreur : écrire un doublon dans un ensemble est permis, il est simplement ignoré.\n\n**À retenir :** pour la taille d'un ensemble, raye les doublons puis compte ce qui reste."
         },
         {
           "question": "Avec `d = {\"a\": 1}`, que renvoie `d.get(\"z\", 0)` ?",
@@ -368,7 +368,7 @@
             "`\"z\"`"
           ],
           "reponse": 2,
-          "explication": "`get` renvoie la valeur par défaut donnée (ici `0`) quand la clé est absente, sans erreur. `d[\"z\"]` lèverait une `KeyError`."
+          "explication": "**Règle :** `d.get(cle, defaut)` renvoie la valeur associée à `cle` si la clé existe, sinon la valeur `defaut`, **sans jamais lever d'erreur**.\n\n**Pas à pas :**\n\n1. `d = {\"a\": 1}` n'a qu'une clé, `\"a\"`.\n2. `d.get(\"z\", 0)` : `\"z\"` n'est pas une clé de `d`.\n3. `get` renvoie donc la valeur par défaut donnée en second argument : `0`.\n\n**Les autres réponses :** `None` est ce que renverrait `d.get(\"z\")` **sans** second argument ; ici on a donné `0`. La `KeyError` est levée par `d[\"z\"]` (avec des crochets), pas par `get`. `\"z\"` est la clé cherchée, `get` ne la renvoie pas.\n\n**À retenir :** `d[cle]` plante si la clé manque, `d.get(cle, defaut)` renvoie `defaut` ; d'où le schéma de comptage `d[x] = d.get(x, 0) + 1`."
         },
         {
           "question": "À quoi sert `if __name__ == \"__main__\":` ?",
@@ -379,7 +379,7 @@
             "À accélérer le programme"
           ],
           "reponse": 1,
-          "explication": "`__name__` vaut `\"__main__\"` seulement quand le fichier est lancé directement. Quand il est importé (comme par les tests du site), le bloc n'est pas exécuté."
+          "explication": "**Règle :** la variable spéciale `__name__` vaut `\"__main__\"` quand le fichier est **lancé directement** (`python fichier.py`), et le nom du module quand il est **importé** par un autre fichier.\n\n**Pas à pas :**\n\n1. Tu lances le fichier : `__name__ == \"__main__\"` est vrai, le bloc s'exécute (affichages, `input()`, essais).\n2. Un autre fichier fait `import fichier` (c'est ce que font les tests du site) : `__name__` vaut `\"fichier\"`, la condition est fausse, le bloc est sauté. Les fonctions sont quand même définies et utilisables.\n\n**Les autres réponses :** ce n'est pas une fonction principale obligatoire : un programme Python marche très bien sans ce `if` (rien à voir avec le `main` obligatoire du C). Il n'importe aucun module `main` : c'est une simple comparaison de texte. Il ne rend rien plus rapide.\n\n**À retenir :** mets sous `if __name__ == \"__main__\":` tout ce qui ne doit se lancer que quand tu exécutes le fichier toi-même."
         },
         {
           "question": "Comment obtient-on le nombre de clés d'un dictionnaire `d` en Python ?",
@@ -390,7 +390,7 @@
             "`d.count()`"
           ],
           "reponse": 2,
-          "explication": "`len()` est une **fonction** qui marche sur tous les conteneurs : liste, chaîne, tuple, ensemble, dictionnaire. `length` et `size()` viennent d'autres langages."
+          "explication": "**Règle :** en Python, la taille d'un conteneur se demande avec la **fonction** `len(...)`, qui marche pour les listes, chaînes, tuples, ensembles et dictionnaires. Pour un dictionnaire, elle compte les items, donc les clés.\n\n**Pas à pas :**\n\n```python\nd = {\"nom\": \"Ada\", \"age\": 20, \"ville\": \"Paris\"}\nprint(len(d))\n```\n\nIl y a trois couples clé-valeur (`nom`, `age`, `ville`) : `len(d)` vaut `3`.\n\n**Les autres réponses :** `d.length` vient de JavaScript, `d.size()` de Java : ils n'existent pas en Python (`AttributeError`). `d.count()` n'existe pas pour un dictionnaire ; pour une liste, `count(x)` compte les occurrences d'**une** valeur, ce n'est pas la taille.\n\n**À retenir :** la taille de n'importe quel conteneur, c'est `len(conteneur)`."
         },
         {
           "question": "Comment teste-t-on si la clé `\"nom\"` existe dans un dictionnaire `d` ?",
@@ -401,7 +401,7 @@
             "`d.indexOf(\"nom\") != -1`"
           ],
           "reponse": 2,
-          "explication": "L'opérateur `in` teste l'appartenance : aux clés pour un dictionnaire, aux éléments pour une liste ou un ensemble, aux sous-chaînes pour une chaîne."
+          "explication": "**Règle :** l'opérateur `in` teste l'appartenance. Sur un dictionnaire, il regarde **les clés** (pas les valeurs). Il marche aussi sur une liste (les éléments), un ensemble (les éléments) et une chaîne (les morceaux de texte).\n\n**Pas à pas :**\n\n```python\nd = {\"nom\": \"Ada\", \"age\": 20}\nprint(\"nom\" in d)\nprint(\"Ada\" in d)\nprint(\"Ada\" in d.values())\n```\n\n1. `\"nom\"` est une clé : `True`.\n2. `\"Ada\"` est une **valeur**, pas une clé : `False`.\n3. Pour chercher parmi les valeurs, on écrit `in d.values()` : `True`.\n\n**Les autres réponses :** `d.contains(...)`, `d.has(...)` et `indexOf` viennent d'autres langages (Java, JavaScript) : aucune de ces méthodes n'existe sur un dictionnaire Python.\n\n**À retenir :** « la clé est-elle là ? » s'écrit `cle in d` ; c'est aussi le test à faire avant `d[cle]` pour éviter une `KeyError`."
         },
         {
           "question": "Laquelle de ces boucles **n'existe pas** en Python ?",
@@ -412,7 +412,7 @@
             "`for i in range(5):`"
           ],
           "reponse": 2,
-          "explication": "Python n'a que `while` et `for`. Pour exécuter le corps au moins une fois, on écrit `while True:` avec un `break` quand la condition est remplie."
+          "explication": "**Règle :** Python n'a que **deux** boucles : `while condition:` (tant que la condition est vraie) et `for x in sequence:` (pour chaque élément). Il n'y a pas de `do ... while`.\n\n**Pas à pas :** pour imiter un `do ... while` (corps exécuté au moins une fois, test à la fin), on écrit une boucle sans fin et on sort avec `break` :\n\n```python\nn = 0\nwhile True:\n    n += 1\n    print(n)\n    if n >= 3:\n        break\n```\n\nLe corps s'exécute (1, 2, 3), et c'est seulement **après** chaque tour que le `if` décide de sortir.\n\n**Les autres réponses :** `while condition:` existe. `for x in liste:` existe. `for i in range(5):` est aussi un `for`, qui parcourt les nombres 0 à 4.\n\n**À retenir :** pas de `do ... while` en Python : `while True:` + `if ...: break` à la fin du corps."
         },
         {
           "question": "Avec `s = \"Bonjour\"`, comment récupère-t-on `\"jour\"` ?",
@@ -423,7 +423,7 @@
             "`s[3, 7]`"
           ],
           "reponse": 0,
-          "explication": "Une tranche s'écrit entre crochets avec `:` : `s[debut:fin]`, la fin étant exclue. `s[3:]` marche aussi. `s[3, 7]` cherche l'indice `(3, 7)` et lève `TypeError`."
+          "explication": "**Règle :** une tranche s'écrit entre **crochets** avec deux-points : `s[debut:fin]`. Le début est inclus, la fin exclue, les indices partent de 0.\n\n**Pas à pas :** on numérote `\"Bonjour\"`.\n\n| Indice | 0 | 1 | 2 | 3 | 4 | 5 | 6 |\n|---|---|---|---|---|---|---|---|\n| Lettre | B | o | n | j | o | u | r |\n\n`\"jour\"` occupe les indices 3, 4, 5, 6. On commence à 3 et on s'arrête **avant** 7 : `s[3:7]`. Comme 6 est le dernier indice, `s[3:]` (« de 3 jusqu'au bout ») donne aussi `\"jour\"`.\n\n**Les autres réponses :** `s.slice(3, 7)` vient de JavaScript, les chaînes Python n'ont pas de méthode `slice`. `s(3:7)` utilise des parenthèses : c'est une erreur de syntaxe. `s[3, 7]` avec une virgule cherche l'indice `(3, 7)` (un tuple) et lève une `TypeError`.\n\n**À retenir :** tranche = crochets et deux-points, `s[debut:fin]`, avec `fin` = dernier indice voulu + 1."
         },
         {
           "question": "Comment calcule-t-on 2 puissance 10 en Python ?",
@@ -434,7 +434,7 @@
             "`2 ^^ 10`"
           ],
           "reponse": 1,
-          "explication": "La puissance s'écrit `**` (ou `pow(2, 10)`). `^` existe mais c'est le « ou exclusif » sur les bits : `2 ^ 10` vaut 8, sans aucune erreur."
+          "explication": "**Règle :** la puissance s'écrit `**` (ou avec la fonction `pow(2, 10)`). Le symbole `^` existe, mais il fait le **ou exclusif bit à bit**, une tout autre opération.\n\n**Pas à pas :**\n\n1. `2 ** 10` = 2 × 2 × ... × 2 (dix fois) = `1024`.\n2. `2 ^ 10` : on écrit les nombres en binaire, 2 = `0010` et 10 = `1010`. On garde un 1 là où les bits sont **différents** : `1000`, soit 8.\n3. `2 ^ 10` vaut donc 8, sans aucune erreur : le piège est qu'on ne s'aperçoit de rien.\n\n**Les autres réponses :** `2 ^ 10` donne 8, pas une puissance. `pow[2, 10]` utilise des crochets : `pow` est une fonction, il faut des parenthèses, `pow(2, 10)`. `2 ^^ 10` n'existe pas (erreur de syntaxe).\n\n**À retenir :** puissance = `**` ; `^` n'est jamais une puissance en Python."
         },
         {
           "question": "Laquelle de ces instructions ne crée **pas** une liste vide ?",
@@ -445,7 +445,7 @@
             "`l = [x for x in \"\"]`"
           ],
           "reponse": 2,
-          "explication": "`{}` crée un **dictionnaire** vide. `[]` et `list()` créent tous les deux une liste vide, tout comme une compréhension sur une chaîne vide."
+          "explication": "**Règle :** une liste vide s'écrit `[]` ou `list()`. Les accolades vides `{}` créent un **dictionnaire** vide.\n\n**Pas à pas :** on vérifie chaque instruction.\n\n| Instruction | Ce qu'elle crée |\n|---|---|\n| `l = []` | une liste vide (littéral) |\n| `l = list()` | une liste vide (appel du type `list` sans rien) |\n| `l = [x for x in \"\"]` | une compréhension sur une chaîne vide : aucun tour, donc une liste vide |\n| `l = {}` | un **dictionnaire** vide (`type(l)` affiche `<class 'dict'>`) |\n\n**Les autres réponses :** `[]`, `list()` et la compréhension donnent toutes une vraie liste vide ; seule `{}` donne autre chose. Le nom `l` ne change rien : c'est la valeur qui a un type, pas la variable.\n\n**À retenir :** `[]` = liste, `{}` = dictionnaire, `set()` = ensemble, `()` = tuple."
         }
       ]
     },
@@ -782,7 +782,7 @@
             "Une erreur : il manque un argument"
           ],
           "reponse": 1,
-          "explication": "`a` reçoit 1, `b` reçoit 2, et `c` garde sa valeur par défaut `\"toto\"`."
+          "explication": "**Règle :** Python remplit les paramètres dans l'ordre avec les arguments par position ; ceux qui restent vides prennent leur **valeur par défaut**.\n\n**Pas à pas :** avec `def foo(a, b=4, c=\"toto\")` et l'appel `foo(1, 2)` :\n\n| Paramètre | Reçoit | Pourquoi |\n|---|---|---|\n| `a` | 1 | premier argument par position |\n| `b` | 2 | deuxième argument par position (le défaut 4 est remplacé) |\n| `c` | `\"toto\"` | aucun troisième argument : valeur par défaut |\n\n**Les autres réponses :** `2` va dans `b`, pas dans `c` (on remplit dans l'ordre) ; `None` n'apparaît que si on l'écrit comme défaut ; aucune erreur, car seul `a` est obligatoire (il n'a pas de défaut) et il est bien donné.\n\n**À retenir :** positions d'abord, dans l'ordre ; ce qui n'est pas donné prend son défaut."
         },
         {
           "question": "Quel appel est **invalide** pour `def foo(a, b=4)` ?",
@@ -793,7 +793,7 @@
             "`foo(1, b=2)`"
           ],
           "reponse": 2,
-          "explication": "Les arguments par position doivent venir avant ceux par mot-clé : `foo(a=1, 2)` est une erreur de syntaxe."
+          "explication": "**Règle :** à l'appel, les arguments **par position** viennent toujours **avant** ceux **par mot-clé**. Un argument par position écrit après un mot-clé est une erreur de syntaxe.\n\n**Pas à pas :** pour `def foo(a, b=4)` :\n\n| Appel | Valide ? | `a` | `b` |\n|---|---|---|---|\n| `foo(1)` | oui | 1 | 4 (défaut) |\n| `foo(b=2, a=1)` | oui : par mot-clé, l'ordre ne compte pas | 1 | 2 |\n| `foo(1, b=2)` | oui : position puis mot-clé | 1 | 2 |\n| `foo(a=1, 2)` | **non** : `2` (position) arrive après `a=1` (mot-clé) | | |\n\nPython refuse `foo(a=1, 2)` avant même d'exécuter le programme (`SyntaxError`).\n\n**À retenir :** dans un appel, jamais d'argument par position après un `nom=valeur`."
         },
         {
           "question": "Que contient `args` dans `def foo(*args)` appelée par `foo(1, 2)` ?",
@@ -804,7 +804,7 @@
             "Seulement `1`"
           ],
           "reponse": 1,
-          "explication": "`*args` range les arguments par position en trop dans un **tuple**."
+          "explication": "**Règle :** `*args` ramasse les arguments par position en trop dans un **tuple** (entre parenthèses, non modifiable).\n\n**Pas à pas :** `def foo(*args)` n'a aucun autre paramètre. `foo(1, 2)` : 1 et 2 sont « en trop », ils vont tous les deux dans `args`, dans l'ordre : `args = (1, 2)`.\n\n**Les autres réponses :** ce n'est pas une liste `[1, 2]` (on ne peut pas faire `args.append(...)`) ; un dictionnaire, c'est ce que donne `**kwargs` pour les mots-clés, et ses clés seraient des noms, pas des indices ; `args` reçoit **tous** les arguments en trop, pas seulement le premier.\n\n**À retenir :** une étoile = tuple des positions ; deux étoiles = dictionnaire des mots-clés."
         },
         {
           "question": "Que contient `kwargs` dans `def foo(x=0, **kwargs)` appelée par `foo(a=\"A\", x=\"X\")` ?",
@@ -815,7 +815,7 @@
             "`{}`"
           ],
           "reponse": 1,
-          "explication": "`x` est un paramètre connu : il reçoit `\"X\"`. Seul `a`, inconnu, va dans le dictionnaire `kwargs`."
+          "explication": "**Règle :** `**kwargs` ne reçoit que les arguments par mot-clé qui ne correspondent à **aucun** paramètre déclaré.\n\n**Pas à pas :** `def foo(x=0, **kwargs)` appelée par `foo(a=\"A\", x=\"X\")` :\n\n| Argument | Un paramètre porte ce nom ? | Va dans |\n|---|---|---|\n| `a=\"A\"` | pas de paramètre `a` | `kwargs` |\n| `x=\"X\"` | `x` est un paramètre | `x` (qui vaut donc `\"X\"`) |\n\nDonc `kwargs = {'a': 'A'}`.\n\n**Les autres réponses :** `{'a': 'A', 'x': 'X'}` oublie que `x` est un paramètre connu ; `('A', 'X')` est un tuple, c'est la forme de `*args` (et il n'y a aucun argument par position) ; `{}` serait vrai seulement si tous les mots-clés étaient connus.\n\n**À retenir :** `kwargs` = les mots-clés « inconnus » ; un mot-clé qui porte le nom d'un paramètre va dans ce paramètre."
         },
         {
           "question": "Pourquoi `def ajoute(x, l=[])` est-il un piège ?",
@@ -826,7 +826,7 @@
             "`l` vaudra toujours `None`"
           ],
           "reponse": 1,
-          "explication": "La valeur par défaut est créée une seule fois, à la définition. Les éléments ajoutés s'accumulent d'un appel à l'autre. On écrit plutôt `l=None` puis `if l is None: l = []`."
+          "explication": "**Règle :** la valeur par défaut est créée **une seule fois**, quand Python lit le `def`, pas à chaque appel.\n\n**Pas à pas :**\n\n```python\ndef ajoute(x, l=[]):\n    l.append(x)\n    return l\n```\n\n1. Au `def`, une liste vide est créée et rangée comme défaut de `l`.\n2. `ajoute(1)` : `l` est cette liste, elle devient `[1]`.\n3. `ajoute(2)` : `l` est **la même** liste, elle devient `[1, 2]` au lieu de `[2]`.\n\nCorrection : `def ajoute(x, l=None):` puis `if l is None: l = []`, une liste neuve à chaque appel sans liste.\n\n**Les autres réponses :** une liste vide est une valeur par défaut tout à fait autorisée (c'est justement pour ça que le piège existe) ; elle n'est **pas** copiée à chaque appel, c'est le contraire ; et `l` ne vaut `None` que si on écrit `l=None`.\n\n**À retenir :** pas de liste ni de dictionnaire en défaut : `=None`, puis on crée l'objet dans la fonction."
         },
         {
           "question": "Qu'affiche `print(plus10(5))` avec `plus10 = create_adder(10)`, où `create_adder(n)` renvoie `adder(x)` qui fait `return x + n` ?",
@@ -837,7 +837,7 @@
             "Une erreur : `n` n'existe plus"
           ],
           "reponse": 1,
-          "explication": "`adder` est une closure : elle a gardé en mémoire `n = 10`, même après la fin de `create_adder`."
+          "explication": "**Règle :** une **closure** est une fonction interne renvoyée qui garde en mémoire les variables de la fonction qui l'a créée, même quand celle-ci est terminée.\n\n**Pas à pas :**\n\n1. `create_adder(10)` crée `adder` avec `n = 10` attaché, et la renvoie : `plus10` est cette fonction.\n2. `plus10(5)` exécute `return x + n` avec `x = 5` et `n = 10`.\n3. 5 + 10 = **15**.\n\n**Les autres réponses :** `10` est seulement `n`, et `5` seulement `x` : la fonction fait la somme des deux ; aucune erreur, car `n` n'a pas disparu à la fin de `create_adder` : la closure l'a gardé.\n\n**À retenir :** une fabrique « fige » ses paramètres dans la fonction qu'elle renvoie."
         },
         {
           "question": "À quoi équivaut `@decor` écrit au-dessus de `def f(): ...` ?",
@@ -848,7 +848,7 @@
             "`f = decor()`"
           ],
           "reponse": 1,
-          "explication": "La syntaxe `@` remplace la fonction par ce que renvoie le décorateur appliqué à elle : `f = decor(f)`."
+          "explication": "**Règle :** `@decor` au-dessus de `def f` remplace `f` par **ce que renvoie** `decor` quand on lui donne `f`.\n\n**Pas à pas :**\n\n```python\n@decor\ndef f(): ...\n```\n\nrevient à écrire `def f(): ...` puis `f = decor(f)` : `decor` reçoit la fonction d'origine, et le nom `f` désigne désormais le résultat (en général le wrapper).\n\n**Les autres réponses :** `f = decor` jetterait la fonction d'origine sans jamais la donner au décorateur ; `decor = f(decor)` inverse les rôles ; `f = decor()` appelle le décorateur **sans** lui passer `f` (c'est la forme d'un décorateur à paramètres, `@decor()`, qui est une autre chose).\n\n**À retenir :** `@d` + `def f` = `f = d(f)`."
         },
         {
           "question": "Pourquoi le `wrapper` d'un décorateur générique prend-il `*args, **kwargs` ?",
@@ -859,7 +859,7 @@
             "Pour que le décorateur puisse prendre un paramètre"
           ],
           "reponse": 1,
-          "explication": "Sans eux, on ne pourrait décorer que des fonctions sans paramètre. `func(*args, **kwargs)` redonne tout à la fonction d'origine."
+          "explication": "**Règle :** le wrapper remplace la fonction décorée : il reçoit **tous** ses appels. `*args, **kwargs` ramassent n'importe quels arguments, et `func(*args, **kwargs)` les redonne tels quels.\n\n**Pas à pas :** avec `def wrapper(*args, **kwargs): return func(*args, **kwargs)` :\n\n- appel `f(2, 3)` : `args = (2, 3)`, `kwargs = {}`, puis `func(2, 3)` ;\n- appel `f(2, b=3)` : `args = (2,)`, `kwargs = {'b': 3}`, puis `func(2, b=3)`.\n\nAvec `def wrapper():`, l'appel `f(2, 3)` lèverait une `TypeError` (le wrapper n'accepte aucun argument).\n\n**Les autres réponses :** ça n'accélère rien ; une fonction interne peut avoir n'importe quels paramètres, rien n'est obligatoire ; et le paramètre d'un décorateur (`@decor(\"debug\")`) passe par une couche de plus, pas par `*args`.\n\n**À retenir :** wrapper générique = `def wrapper(*args, **kwargs)` + `func(*args, **kwargs)`."
         },
         {
           "question": "Que se passe-t-il quand on appelle une fonction qui contient `yield` ?",
@@ -870,7 +870,7 @@
             "Elle lève une erreur si on n'utilise pas `next`"
           ],
           "reponse": 1,
-          "explication": "L'appel crée un générateur. Le code ne s'exécute qu'au premier `next()` (ou au premier tour d'une boucle `for`), jusqu'au premier `yield`."
+          "explication": "**Règle :** une fonction qui contient `yield` est une fonction **génératrice** : l'appeler crée un générateur, **sans exécuter** son corps.\n\n**Pas à pas :**\n\n```python\ndef gen():\n    print(\"démarrage\")\n    yield 1\n\n\ng = gen()\n```\n\nAprès `g = gen()`, rien n'est affiché. Au premier `next(g)` (ou au premier tour d'un `for`), le code démarre : `démarrage` s'affiche, puis la fonction s'arrête au `yield` et fournit 1.\n\n**Les autres réponses :** elle ne fabrique pas de liste (les valeurs sont produites une par une, à la demande) ; la première valeur n'arrive qu'au premier `next`, pas à l'appel ; aucune erreur sans `next` : un générateur non parcouru ne fait simplement rien.\n\n**À retenir :** appel = création du générateur ; `next` = exécution jusqu'au prochain `yield`."
         },
         {
           "question": "Dans un `try`, quand le bloc `else` est-il exécuté ?",
@@ -881,7 +881,7 @@
             "Jamais avec `finally`"
           ],
           "reponse": 2,
-          "explication": "`else` s'exécute seulement si le `try` s'est déroulé sans exception. C'est `finally` qui s'exécute dans tous les cas."
+          "explication": "**Règle :** dans `try / except / else / finally`, le bloc `else` s'exécute **seulement si le `try` n'a levé aucune exception**.\n\n**Pas à pas :**\n\n| Cas | `except` | `else` | `finally` |\n|---|---|---|---|\n| le `try` se passe bien | non | **oui** | oui |\n| le `try` lève une erreur interceptée | oui | non | oui |\n\n**Les autres réponses :** « toujours », c'est `finally` ; « seulement si une exception a été levée », c'est le rôle de `except` ; `else` et `finally` vont très bien ensemble (l'un pour le cas réussi, l'autre pour tous les cas).\n\n**À retenir :** `except` = en cas d'erreur, `else` = sans erreur, `finally` = dans tous les cas."
         },
         {
           "question": "`except LookupError:` intercepte-t-il une `KeyError` ?",
@@ -892,7 +892,7 @@
             "Seulement dans un dictionnaire vide"
           ],
           "reponse": 0,
-          "explication": "Les exceptions forment une hiérarchie : `KeyError` et `IndexError` héritent de `LookupError`. Intercepter le parent intercepte les enfants."
+          "explication": "**Règle :** les exceptions forment une **famille** : `except Parent:` intercepte aussi toutes les exceptions « enfants » de ce parent.\n\n**Pas à pas :**\n\n```text\nLookupError\n├── KeyError     (clé absente d'un dictionnaire)\n└── IndexError   (indice hors d'une liste)\n```\n\n`KeyError` est une sorte de `LookupError` : `except LookupError:` l'attrape. Un seul `except LookupError` couvre donc `{\"a\": 1}[\"b\"]` **et** `[1, 2][5]`.\n\n**Les autres réponses :** écrire `KeyError` marche aussi, mais ce n'est pas **obligatoire** ; `as e` sert seulement à récupérer l'exception, il ne change pas ce qui est intercepté ; le contenu du dictionnaire n'a aucune importance.\n\n**À retenir :** intercepter un parent (`LookupError`, `ArithmeticError`...) intercepte tous ses enfants."
         },
         {
           "question": "Comment signaler soi-même qu'une valeur est invalide ?",
@@ -903,7 +903,7 @@
             "`except ValueError`"
           ],
           "reponse": 1,
-          "explication": "`raise` lève une exception. `return ValueError` renverrait juste la classe, sans interrompre quoi que ce soit."
+          "explication": "**Règle :** `raise` **lève** une exception : la fonction s'arrête immédiatement et l'erreur remonte jusqu'à un `except` (ou arrête le programme).\n\n**Pas à pas :**\n\n```python\ndef verifier_age(age):\n    if age < 0:\n        raise ValueError(\"âge négatif\")\n    return age\n```\n\nAvec `verifier_age(-1)`, le `raise` crée l'exception avec son message et la lance : le `return` n'est jamais atteint.\n\n**Les autres réponses :** `return ValueError` **renvoie** la classe comme une valeur normale, rien n'est signalé et le programme continue ; `throw` n'existe pas en Python (c'est du Java / JavaScript) ; `except ValueError` **intercepte** une erreur, il ne la crée pas.\n\n**À retenir :** pour refuser une valeur : `raise ValueError(\"message\")`."
         },
         {
           "question": "Avec `def chercher(texte, motif, *, ignorer_casse=False)`, que fait l'appel `chercher(\"Ab\", \"a\", True)` ?",
@@ -914,7 +914,7 @@
             "Il range `True` dans `motif`"
           ],
           "reponse": 1,
-          "explication": "Les paramètres placés après le `*` seul sont nommés obligatoires : il faut écrire `ignorer_casse=True`."
+          "explication": "**Règle :** les paramètres placés après un `*` seul sont **nommés obligatoires** : ils ne peuvent être donnés que par `nom=valeur`.\n\n**Pas à pas :** `def chercher(texte, motif, *, ignorer_casse=False)` et l'appel `chercher(\"Ab\", \"a\", True)` :\n\n1. `\"Ab\"` va dans `texte`, `\"a\"` dans `motif`.\n2. Le `*` dit : plus aucun argument par position après `motif`.\n3. Le troisième argument, `True`, est par position : il n'a pas de place. Python lève une `TypeError` (« takes 2 positional arguments but 3 were given »).\n\nLe bon appel est `chercher(\"Ab\", \"a\", ignorer_casse=True)`.\n\n**Les autres réponses :** il ne renvoie rien du tout, puisqu'il plante avant ; Python n'ignore jamais un argument en trop ; `motif` a déjà reçu `\"a\"`, `True` ne peut pas aller dedans.\n\n**À retenir :** après `*`, uniquement `nom=valeur`, sinon `TypeError`."
         },
         {
           "question": "Que vaut `h` après `h, m, s = vers_hms(4203)`, si `vers_hms` fait `return heures, minutes, secondes` ?",
@@ -925,7 +925,7 @@
             "Une erreur : on ne renvoie qu'une valeur"
           ],
           "reponse": 1,
-          "explication": "`return a, b, c` renvoie un tuple, que l'affectation multiple déballe : `h` reçoit le premier élément, 1."
+          "explication": "**Règle :** `return a, b, c` renvoie **un tuple** `(a, b, c)`. L'affectation `x, y, z = tuple` le **déballe** : chaque variable reçoit l'élément à sa place.\n\n**Pas à pas :**\n\n1. `divmod(4203, 60)` : 4203 = 70 × 60 + 3, donc `minutes = 70`, `secondes = 3`.\n2. `divmod(70, 60)` : 70 = 1 × 60 + 10, donc `heures = 1`, `minutes = 10`.\n3. La fonction renvoie `(1, 10, 3)`.\n4. `h, m, s = (1, 10, 3)` : `h` reçoit le premier élément, **1**.\n\n**Les autres réponses :** le tuple entier, on l'aurait avec une seule variable (`h = vers_hms(4203)`) ; `4203` est l'argument de départ, pas un résultat ; aucune erreur : une fonction peut « renvoyer plusieurs valeurs » sous forme de tuple.\n\n**À retenir :** autant de variables à gauche que d'éléments dans le tuple, et chacune prend l'élément à sa place."
         },
         {
           "question": "Sans `functools.wraps`, que vaut `f.__name__` pour une fonction `f` décorée par un décorateur dont l'enveloppe s'appelle `wrapper` ?",
@@ -936,7 +936,7 @@
             "`None`"
           ],
           "reponse": 1,
-          "explication": "Le nom `f` désigne maintenant l'enveloppe. `@functools.wraps(func)` recopie le nom et la docstring de la fonction d'origine."
+          "explication": "**Règle :** après la décoration, le nom de la fonction désigne **le wrapper**. Sans `functools.wraps`, ses informations (`__name__`, `__doc__`) sont celles du wrapper.\n\n**Pas à pas :**\n\n1. `@decor` sur `def f` fait `f = decor(f)`.\n2. `decor` renvoie la fonction interne nommée `wrapper`.\n3. Le nom `f` désigne maintenant cette fonction, dont le nom propre est `\"wrapper\"` : `f.__name__` vaut `\"wrapper\"`.\n\nAvec `@functools.wraps(func)` juste au-dessus du `def wrapper`, le nom `\"f\"` et la docstring sont recopiés sur le wrapper.\n\n**Les autres réponses :** `\"f\"` est ce qu'on obtient **avec** `wraps` ; `\"decor\"` est le nom du décorateur, qui n'est pas la fonction renvoyée ; une fonction a toujours un `__name__`, jamais `None`.\n\n**À retenir :** décorateur sans `wraps` = fonction déguisée en `wrapper` ; mets toujours `@functools.wraps(func)`."
         },
         {
           "question": "Avec `@a` écrit au-dessus de `@b`, lui-même au-dessus de `def f`, à quoi équivaut la décoration ?",
@@ -947,7 +947,7 @@
             "`f = a(f) + b(f)`"
           ],
           "reponse": 0,
-          "explication": "Les décorateurs s'appliquent de bas en haut : `b`, le plus proche du `def`, enveloppe `f` en premier."
+          "explication": "**Règle :** plusieurs décorateurs s'appliquent **de bas en haut** : le plus proche du `def` enveloppe la fonction en premier.\n\n**Pas à pas :**\n\n```python\n@a\n@b\ndef f(): ...\n```\n\n1. D'abord `@b`, le plus proche : `f = b(f)`.\n2. Puis `@a` enveloppe le résultat : `f = a(b(f))`.\n\nÀ l'appel, c'est donc l'enveloppe de `a` qui démarre ; elle appelle l'enveloppe de `b`, qui appelle le vrai `f`. Sur le résultat, `b` agit en premier, `a` en dernier.\n\n**Les autres réponses :** `b(a(f))` inverse l'ordre (ce serait `@b` au-dessus de `@a`) ; aucun décorateur n'est ignoré ; et on n'additionne pas des fonctions.\n\n**À retenir :** lis les décorateurs du bas vers le haut : `@a @b def f` = `a(b(f))`."
         },
         {
           "question": "Pourquoi `fibo(n - 1) + fibo(n - 2)` sans cache est-il très lent pour `n = 40` ?",
@@ -958,7 +958,7 @@
             "Python recopie la pile à chaque appel"
           ],
           "reponse": 1,
-          "explication": "Le nombre d'appels grandit presque comme Fibonacci lui-même. `@lru_cache(maxsize=None)` retient chaque résultat : chaque valeur n'est calculée qu'une fois."
+          "explication": "**Règle :** sans cache, une fonction récursive recalcule chaque valeur **autant de fois** qu'elle est demandée.\n\n**Pas à pas :** `fibo(5)` appelle `fibo(4)` et `fibo(3)` ; `fibo(4)` rappelle `fibo(3)` et `fibo(2)`...\n\n| Valeur | Nombre de calculs dans `fibo(5)` |\n|---|---|\n| `fibo(4)` | 1 |\n| `fibo(3)` | 2 |\n| `fibo(2)` | 3 |\n| `fibo(1)` | 5 |\n\nLe nombre d'appels grandit presque comme la suite de Fibonacci elle-même : environ 330 millions d'appels pour `fibo(40)`. Avec `@lru_cache(maxsize=None)`, chaque valeur n'est calculée qu'une fois, puis lue dans le cache : 41 calculs suffisent.\n\n**Les autres réponses :** la limite de récursion de Python est d'environ 1000 niveaux de profondeur, et `fibo(40)` ne descend qu'à 40 niveaux ; les entiers Python n'ont pas de taille maximale, et `fibo(40)` (102 334 155) reste petit ; la pile n'est pas recopiée à chaque appel.\n\n**À retenir :** lent + mêmes valeurs recalculées = ajoute un cache (`@lru_cache(maxsize=None)`)."
         },
         {
           "question": "Une fonction contient `if n < 0: raise ValueError()` puis une boucle avec `yield`. Quand l'erreur apparaît-elle pour l'appel `g = f(-1)` ?",
@@ -969,7 +969,7 @@
             "À la fin du programme"
           ],
           "reponse": 1,
-          "explication": "Appeler une fonction génératrice n'exécute rien de son corps. Pour vérifier dès l'appel, une fonction normale vérifie puis renvoie le générateur."
+          "explication": "**Règle :** une fonction qui contient `yield` n'exécute **aucune** ligne de son corps à l'appel, même pas les vérifications du début.\n\n**Pas à pas :**\n\n1. `g = f(-1)` : `f` contient `yield`, Python crée un générateur **sans** lancer le code. Pas d'erreur.\n2. `next(g)` (ou le premier tour d'un `for`) démarre le code : `if n < 0` est vrai, `raise ValueError()` part **à ce moment-là**.\n\nPour une erreur dès l'appel : une fonction normale (sans `yield`) vérifie `n`, puis renvoie le générateur qui fait le travail.\n\n**Les autres réponses :** « dès la ligne `g = f(-1)` » serait vrai pour une fonction sans `yield` ; « jamais » : l'erreur sort dès qu'on parcourt ; rien n'attend la fin du programme.\n\n**À retenir :** dans un générateur, les vérifications ne tournent qu'au premier `next`."
         },
         {
           "question": "Que fournit `yield from [1, 2]` dans un générateur ?",
@@ -980,7 +980,7 @@
             "Rien, c'est une erreur"
           ],
           "reponse": 1,
-          "explication": "`yield from` délègue : il fournit une par une les valeurs de l'itérable, comme `for x in [1, 2]: yield x`."
+          "explication": "**Règle :** `yield from iterable` fournit **une par une** toutes les valeurs de l'itérable, comme `for x in iterable: yield x`.\n\n**Pas à pas :**\n\n```python\ndef g():\n    yield from [1, 2]\n    yield 3\n```\n\n`list(g())` : `yield from` fournit 1, puis 2, puis la fonction continue et fournit 3 : `[1, 2, 3]`.\n\n**Les autres réponses :** fournir la liste `[1, 2]` en une seule valeur, c'est ce que fait `yield [1, 2]` (sans `from`) ; `yield from` ne s'arrête pas au premier élément ; et c'est une écriture tout à fait valide.\n\n**À retenir :** `yield x` fournit `x` en un bloc ; `yield from x` fournit chacun de ses éléments."
         },
         {
           "question": "Que se passe-t-il avec `list(islice(g, 3))` si `g` fait `elements = list(it)` puis `while True: for x in elements: yield x`, et que `it` est vide ?",
@@ -991,7 +991,7 @@
             "`StopIteration` est affichée"
           ],
           "reponse": 1,
-          "explication": "La boucle `while True` tourne sans fin sans jamais atteindre de `yield`. Il faut `if not elements: return` avant."
+          "explication": "**Règle :** un générateur ne s'arrête qu'en atteignant la fin de sa fonction, et ne fournit une valeur qu'en atteignant un `yield`. Une boucle qui n'atteint jamais ni l'un ni l'autre tourne pour toujours.\n\n**Pas à pas :** avec `it` vide :\n\n1. `elements = list(it)` donne `[]`.\n2. `while True:` commence un tour ; `for x in elements:` n'a rien à parcourir, aucun `yield`.\n3. Retour au `while True:` : même chose, encore et encore.\n4. `islice(g, 3)` attend sa première valeur, qui ne vient jamais : le programme reste **bloqué**.\n\nCorrection : `if not elements: return` avant la boucle, pour terminer tout de suite.\n\n**Les autres réponses :** `[]` serait le bon résultat... après la correction ; aucun `None` n'est fourni (il n'y a aucun `yield` atteint) ; et `StopIteration` n'est levée que quand le générateur se **termine**, ce qui n'arrive jamais ici.\n\n**À retenir :** une boucle infinie dans un générateur doit forcément passer par un `yield` à chaque tour, sinon elle bloque."
         },
         {
           "question": "Pourquoi faut-il trier avant `itertools.groupby` ?",
@@ -1002,7 +1002,7 @@
             "Ce n'est pas nécessaire"
           ],
           "reponse": 1,
-          "explication": "Sur `a, b, a`, `groupby` fait trois paquets. Après un tri sur la même clé, les éléments égaux se suivent et forment un seul paquet."
+          "explication": "**Règle :** `groupby` regroupe seulement les éléments **consécutifs** qui ont la même clé. Il ne cherche pas plus loin.\n\n**Pas à pas :** sur `[\"ane\", \"bus\", \"avion\"]` avec la clé « première lettre » :\n\n| Sans tri | Après `sorted(..., key=...)` |\n|---|---|\n| `a` : `['ane']` | `a` : `['ane', 'avion']` |\n| `b` : `['bus']` | `b` : `['bus']` |\n| `a` : `['avion']` (nouveau paquet !) | |\n\nSans tri, `a` apparaît deux fois. Le tri (stable : l'ordre d'origine est gardé dans chaque groupe) met les éléments de même clé côte à côte.\n\n**Les autres réponses :** `groupby` ne lève aucune erreur sur une liste non triée, il donne juste des paquets coupés ; la vitesse n'a rien à voir ; et le tri est bien nécessaire dès que des éléments de même clé peuvent être séparés.\n\n**À retenir :** `sorted(x, key=k)` puis `groupby(..., key=k)`, avec la même clé."
         },
         {
           "question": "Que vaut `isinstance(True, int)` ?",
@@ -1013,7 +1013,7 @@
             "`None`"
           ],
           "reponse": 0,
-          "explication": "`bool` est une sous-classe d'`int` (`True` vaut 1). Pour refuser les booléens, il faut les tester à part : `isinstance(n, bool)`."
+          "explication": "**Règle :** `bool` est une **sous-classe** d'`int` : `True` vaut 1 et `False` vaut 0. `isinstance(x, int)` est donc vrai pour un booléen.\n\n**Pas à pas :**\n\n| Test | Résultat |\n|---|---|\n| `isinstance(True, int)` | `True` (un `bool` est une sorte d'`int`) |\n| `type(True) is int` | `False` (le type exact est `bool`) |\n| `True + True` | `2` |\n\nPour accepter les entiers mais refuser les booléens : `isinstance(n, int) and not isinstance(n, bool)`.\n\n**Les autres réponses :** `False` serait la réponse de `type(True) is int`, pas d'`isinstance` ; `isinstance` ne lève pas d'erreur avec un type valide ; et il renvoie toujours `True` ou `False`, jamais `None`.\n\n**À retenir :** pour « un vrai entier », teste `bool` à part."
         },
         {
           "question": "Dans un `except ValueError as erreur:`, à quoi sert `raise TypeError(\"...\") from erreur` ?",
@@ -1024,7 +1024,7 @@
             "À transformer l'erreur en avertissement"
           ],
           "reponse": 0,
-          "explication": "`from erreur` range l'exception d'origine dans `__cause__` : le message final montre les deux, on ne perd pas l'information."
+          "explication": "**Règle :** `raise Nouvelle(...) from ancienne` lève une nouvelle exception, plus claire, et range l'ancienne dans `__cause__` : on garde l'information d'origine.\n\n**Pas à pas :**\n\n```python\ntry:\n    float(\"abc\")\nexcept ValueError as erreur:\n    raise TypeError(\"pas un nombre : 'abc'\") from erreur\n```\n\n1. `float(\"abc\")` lève une `ValueError`, rangée dans `erreur`.\n2. On lève une `TypeError` avec un message adapté.\n3. `from erreur` attache la `ValueError` : celui qui intercepte la `TypeError` la retrouve dans `e.__cause__`, et le message d'erreur affiché montre les deux.\n\n**Les autres réponses :** l'erreur d'origine n'est pas ignorée, au contraire elle est gardée ; ce n'est pas la même `ValueError` qui repart (pour ça, on écrirait `raise` tout seul) ; et il n'y a aucun avertissement, c'est une vraie exception qui arrête le programme si personne ne l'intercepte.\n\n**À retenir :** pour remplacer une erreur sans perdre sa cause : `raise Nouvelle(\"...\") from ancienne`."
         },
         {
           "question": "Comment écrit-on une fonction `aire` qui renvoie le produit de `largeur` et `hauteur` ?",
@@ -1035,7 +1035,7 @@
             "`aire = def(largeur, hauteur): largeur * hauteur`"
           ],
           "reponse": 1,
-          "explication": "`def`, le nom, les paramètres entre parenthèses, `:` puis le corps (sur la même ligne s'il est court, sinon indenté). `->` sert seulement à annoncer le type renvoyé."
+          "explication": "**Règle :** une fonction Python s'écrit `def`, le nom, les paramètres entre parenthèses, `:`, puis le corps (sur la même ligne s'il est très court, sinon en dessous, indenté). `return` donne le résultat.\n\n**Pas à pas :** `def aire(largeur, hauteur): return largeur * hauteur`\n\n1. `def aire` : on définit une fonction nommée `aire`.\n2. `(largeur, hauteur)` : ses deux paramètres.\n3. `:` ouvre le corps.\n4. `return largeur * hauteur` : renvoie le produit. `aire(3, 4)` vaut 12.\n\n**Les autres réponses :** `function ... { ... }` est du JavaScript ; `-> largeur * hauteur` n'est pas un calcul : `->` sert seulement à **annoncer le type** renvoyé (`-> int`), et il faut quand même `:` et un corps ; `aire = def(...)` n'existe pas (la fonction sans nom de Python s'écrit `lambda largeur, hauteur: largeur * hauteur`).\n\n**À retenir :** `def nom(paramètres):` puis `return résultat`."
         },
         {
           "question": "Comment écrit-on une fonction qui accepte **autant d'arguments par position** qu'on veut ?",
@@ -1046,7 +1046,7 @@
             "`def f(**args):`"
           ],
           "reponse": 1,
-          "explication": "`*args` rassemble les arguments par position dans un **tuple**. `**args` rassemblerait les arguments **par mot-clé** dans un dictionnaire."
+          "explication": "**Règle :** une étoile devant un paramètre (`*args`) ramasse **tous** les arguments par position en trop dans un tuple.\n\n**Pas à pas :**\n\n```python\ndef f(*args):\n    return len(args)\n\n\nprint(f(), f(1), f(1, 2, 3))\n```\n\n`f()` : `args = ()`, 0 ; `f(1)` : `args = (1,)`, 1 ; `f(1, 2, 3)` : `args = (1, 2, 3)`, 3. On peut donner autant d'arguments qu'on veut.\n\n**Les autres réponses :** `...args` est l'écriture de JavaScript, pas de Python ; `args[]` n'est pas une syntaxe valide pour un paramètre ; `**args` (deux étoiles) ramasse les arguments **par mot-clé** dans un dictionnaire : `f(1, 2)` serait alors refusé.\n\n**À retenir :** `*` = positions en nombre libre (tuple), `**` = mots-clés en nombre libre (dictionnaire)."
         },
         {
           "question": "Comment donne-t-on la valeur par défaut `2` au paramètre `puissance` ?",
@@ -1057,7 +1057,7 @@
             "`def f(x, default puissance = 2):`"
           ],
           "reponse": 0,
-          "explication": "La valeur par défaut s'écrit avec `=`. `puissance: 2` est accepté par Python, mais c'est une **annotation** (une indication de type), pas une valeur par défaut : le paramètre reste obligatoire."
+          "explication": "**Règle :** une valeur par défaut s'écrit `paramètre=valeur` dans la définition.\n\n**Pas à pas :** `def f(x, puissance=2):`\n\n- `f(3)` : `puissance` n'est pas donnée, elle vaut 2 ;\n- `f(3, 5)` ou `f(3, puissance=5)` : elle vaut 5.\n\n**Les autres réponses :** `puissance: 2` est accepté par Python, mais c'est une **annotation** (une indication pour le lecteur) : `puissance` reste obligatoire, `f(3)` lève une `TypeError` ; `==` est une comparaison, interdite à cet endroit (`SyntaxError`) ; `default` n'est pas un mot-clé de Python.\n\n**À retenir :** défaut = `=` ; annotation = `:`."
         },
         {
           "question": "Comment lève-t-on soi-même une `ValueError` avec un message ?",
@@ -1068,7 +1068,7 @@
             "`error ValueError(\"négatif\")`"
           ],
           "reponse": 1,
-          "explication": "Le mot-clé est `raise`, suivi de l'exception créée comme un appel de fonction. Pas de `new` en Python, ni pour les exceptions ni pour les objets."
+          "explication": "**Règle :** on lève une exception avec le mot-clé `raise`, suivi de l'exception créée comme un appel de fonction : `raise ValueError(\"message\")`.\n\n**Pas à pas :**\n\n```python\ndef racine(x):\n    if x < 0:\n        raise ValueError(\"négatif\")\n    return x ** 0.5\n```\n\n`racine(-4)` : la condition est vraie, `ValueError(\"négatif\")` crée l'exception avec son message, `raise` la lance et la fonction s'arrête. Un `except ValueError as e` récupère le message dans `e`.\n\n**Les autres réponses :** `throw` est le mot de Java / JavaScript, inconnu en Python ; `new` n'existe pas en Python, ni pour les exceptions ni pour les objets (on écrit directement `ValueError(...)`) ; `error` n'est pas un mot-clé : `SyntaxError`.\n\n**À retenir :** `raise TypeDErreur(\"message\")`, sans `new` ni `throw`."
         }
       ]
     },
@@ -1322,7 +1322,7 @@
             "`[0, 4]`"
           ],
           "reponse": 1,
-          "explication": "On garde les `x` impairs (1 et 3) et on met leur double dans la liste : `[2, 6]`."
+          "explication": "**Règle :** `[traitement for x in source if condition]` parcourt la source, garde les `x` qui respectent la condition, et met `traitement` dans la liste.\n\n**Pas à pas :** `range(4)` donne 0, 1, 2, 3 (le 4 est exclu).\n\n| `x` | `x % 2 == 1` (impair) ? | Ajouté `x * 2` |\n|---|---|---|\n| 0 | non | |\n| 1 | oui | 2 |\n| 2 | non | |\n| 3 | oui | 6 |\n\nRésultat : `[2, 6]`.\n\n**Les autres réponses :** `[0, 2, 4, 6]` oublie le filtre (tous les doubles) ; `[1, 3]` garde les bons `x` mais oublie de les doubler ; `[0, 4]` double les **pairs** (le test `== 1` garde les impairs).\n\n**À retenir :** lis le `for`, puis le `if`, et applique le traitement du début seulement aux valeurs gardées."
         },
         {
           "question": "Quel est le type de `{m: len(m) for m in [\"a\", \"bb\"]}` ?",
@@ -1333,7 +1333,7 @@
             "`tuple`"
           ],
           "reponse": 1,
-          "explication": "Des accolades avec des éléments `cle: valeur` : c'est un dictionnaire en compréhension, ici `{'a': 1, 'bb': 2}`."
+          "explication": "**Règle :** des accolades avec `clé: valeur` donnent un **dictionnaire** ; des accolades sans `:` donnent un **ensemble** ; des crochets, une liste ; des parenthèses, un générateur (pas un tuple).\n\n**Pas à pas :** `{m: len(m) for m in [\"a\", \"bb\"]}` contient un deux-points : pour chaque mot `m`, la clé est le mot et la valeur sa longueur. On obtient `{'a': 1, 'bb': 2}`, de type `dict`.\n\n**Les autres réponses :** `set` serait `{len(m) for m in ...}` (sans `:`) ; `list` demande des crochets ; `tuple` n'a pas de compréhension directe (il faut `tuple(... for ...)`).\n\n**À retenir :** accolades + deux-points = `dict` ; accolades sans deux-points = `set`."
         },
         {
           "question": "Quelle est la différence entre `[x * x for x in l]` et `(x * x for x in l)` ?",
@@ -1344,7 +1344,7 @@
             "La première est plus économe en mémoire"
           ],
           "reponse": 1,
-          "explication": "Avec des parenthèses, on obtient une expression génératrice : rien n'est stocké, chaque valeur est calculée au moment où on la demande, une seule fois."
+          "explication": "**Règle :** avec des crochets, la liste est calculée **tout de suite** et stockée en entier. Avec des parenthèses, on obtient une **expression génératrice** : les valeurs sont calculées une par une, au moment où on les demande, et le générateur ne se parcourt qu'**une fois**.\n\n**Pas à pas :** `[x * x for x in l]` crée immédiatement la liste de tous les carrés en mémoire. `(x * x for x in l)` ne calcule rien au départ : c'est `for`, `sum`, `next`... qui demandent les valeurs une à une.\n\n**Les autres réponses :** « aucune » est faux, la mémoire utilisée et le moment du calcul changent ; « un tuple » est le piège classique (`(...)` autour d'une compréhension n'est **pas** un tuple, il faudrait `tuple(...)`) ; c'est la **seconde** qui économise la mémoire, pas la première.\n\n**À retenir :** `[...]` = liste stockée, `(...)` = générateur calculé à la demande, utilisable une seule fois."
         },
         {
           "question": "Que vaut `len(list(zip([1, 2, 3, 4], \"ab\")))` ?",
@@ -1355,7 +1355,7 @@
             "Une erreur : longueurs différentes"
           ],
           "reponse": 1,
-          "explication": "`zip` s'arrête à la fin du plus court des itérables : ici `\"ab\"`, donc 2 couples."
+          "explication": "**Règle :** `zip` avance rang par rang dans toutes les sources et **s'arrête dès que la plus courte est finie**, sans erreur.\n\n**Pas à pas :**\n\n| Rang | `[1, 2, 3, 4]` | `\"ab\"` | Couple |\n|---|---|---|---|\n| 0 | 1 | `'a'` | `(1, 'a')` |\n| 1 | 2 | `'b'` | `(2, 'b')` |\n| 2 | 3 | plus rien | arrêt |\n\n`list(zip(...))` vaut `[(1, 'a'), (2, 'b')]`, donc `len` vaut **2**.\n\n**Les autres réponses :** 4 est la longueur de la liste la plus longue ; 6 additionne les deux longueurs ; il n'y a **pas** d'erreur, `zip` accepte des longueurs différentes.\n\n**À retenir :** le nombre de résultats de `zip` est la longueur de la source **la plus courte**."
         },
         {
           "question": "Qu'affiche `print(map(int, [\"1\", \"2\"]))` ?",
@@ -1366,7 +1366,7 @@
             "`12`"
           ],
           "reponse": 2,
-          "explication": "`map` renvoie un itérable paresseux, pas une liste. `list(map(...))` permet de voir le contenu."
+          "explication": "**Règle :** `map` ne renvoie pas une liste mais un objet **paresseux** (il calcule à la demande). L'afficher directement montre l'objet lui-même, pas son contenu.\n\n**Pas à pas :** `map(int, [\"1\", \"2\"])` n'a encore rien converti. `print(...)` affiche donc quelque chose comme `<map object at 0x...>` (le nombre est une adresse en mémoire, il change à chaque exécution). Pour voir les valeurs : `print(list(map(int, [\"1\", \"2\"])))` affiche `[1, 2]`.\n\n**Les autres réponses :** `[1, 2]` est ce qu'on obtient **avec** `list(...)` ; `(1, 2)` **avec** `tuple(...)` ; `12` mélange une concaténation de chaînes et une conversion, ce que `map` ne fait jamais.\n\n**À retenir :** `map`, `filter`, `zip`, `enumerate` → entoure de `list(...)` pour voir le contenu."
         },
         {
           "question": "Que fournit `enumerate([\"a\", \"b\"], start=1)` ?",
@@ -1377,7 +1377,7 @@
             "`1` puis `2`"
           ],
           "reponse": 0,
-          "explication": "`enumerate` fournit des couples `(compteur, élément)`, avec un compteur qui démarre à `start`."
+          "explication": "**Règle :** `enumerate(l, start=s)` fournit des couples `(compteur, élément)` ; le compteur commence à `s` (0 si on ne met rien).\n\n**Pas à pas :** avec `start=1`, le premier élément `\"a\"` reçoit le numéro 1, le deuxième `\"b\"` le numéro 2 : on obtient `(1, 'a')` puis `(2, 'b')`. On les découpe d'habitude avec `for i, x in enumerate(...)`.\n\n**Les autres réponses :** `(0, 'a')` puis `(1, 'b')` est le résultat **sans** `start=1` ; `'a'` puis `'b'` est ce que donne la liste seule, sans `enumerate` ; `1` puis `2` oublie que l'élément accompagne toujours le compteur.\n\n**À retenir :** `enumerate` = couples `(numéro, élément)`, numéro qui part de `start`."
         },
         {
           "question": "Après `l = [3, 1, 2]` puis `l = l.sort()`, que vaut `l` ?",
@@ -1388,7 +1388,7 @@
             "`[3, 2, 1]`"
           ],
           "reponse": 2,
-          "explication": "`sort()` trie sur place et renvoie `None` : on a remplacé la liste par `None`. Il fallait écrire `l.sort()` seul, ou `l = sorted(l)`."
+          "explication": "**Règle :** `l.sort()` trie la liste **sur place** (il modifie `l` elle-même) et **renvoie `None`**. `sorted(l)`, au contraire, renvoie une nouvelle liste triée.\n\n**Pas à pas :**\n\n1. `l.sort()` range `l` : elle devient `[1, 2, 3]`.\n2. La méthode renvoie `None`.\n3. `l = ...` range ce `None` dans `l` : la liste triée est perdue, `l` vaut `None`.\n\n**Les autres réponses :** `[1, 2, 3]` serait vrai avec `l.sort()` seul sur sa ligne, ou `l = sorted(l)` ; `[3, 1, 2]` supposerait que rien n'a changé ; `[3, 2, 1]` serait un tri décroissant (`reverse=True`).\n\n**À retenir :** jamais `l = l.sort()` : soit `l.sort()` seul, soit `l = sorted(l)`."
         },
         {
           "question": "Que vaut `sorted([\"poire\", \"kiwi\", \"banane\"], key=len)` ?",
@@ -1399,7 +1399,7 @@
             "`[4, 5, 6]`"
           ],
           "reponse": 1,
-          "explication": "`key=len` trie selon la longueur des mots : kiwi (4), poire (5), banane (6)."
+          "explication": "**Règle :** avec `key=len`, `sorted` calcule `len` de chaque élément, trie selon ces nombres (du plus petit au plus grand), mais renvoie **les éléments d'origine**.\n\n**Pas à pas :**\n\n| Mot | `len` |\n|---|---|\n| `\"poire\"` | 5 |\n| `\"kiwi\"` | 4 |\n| `\"banane\"` | 6 |\n\nOrdre des longueurs : 4, 5, 6, donc `['kiwi', 'poire', 'banane']`.\n\n**Les autres réponses :** `['banane', 'kiwi', 'poire']` est l'ordre **alphabétique** (le tri sans `key`) ; `['banane', 'poire', 'kiwi']` est l'ordre des longueurs décroissantes (`reverse=True`) ; `[4, 5, 6]` confond la clé de tri avec le résultat : `sorted` renvoie les mots, pas les longueurs.\n\n**À retenir :** `key` sert à **comparer**, le résultat contient toujours les éléments de départ."
         },
         {
           "question": "Que valent `any([])` et `all([])` ?",
@@ -1410,7 +1410,7 @@
             "Une erreur"
           ],
           "reponse": 2,
-          "explication": "Aucun élément n'est vrai, donc `any` est faux ; aucun élément n'est faux, donc `all` est vrai."
+          "explication": "**Règle :** `any` vaut `True` s'il trouve **au moins un** élément vrai ; `all` vaut `False` s'il trouve **au moins un** élément faux, et `True` sinon.\n\n**Pas à pas :** la liste vide n'a aucun élément.\n\n- `any([])` : on cherche un élément vrai, il n'y en a aucun → `False`.\n- `all([])` : on cherche un élément faux qui ferait échouer « tous », il n'y en a aucun → `True`.\n\n**Les autres réponses :** `False` et `False` ou `True` et `True` supposent que les deux fonctions se comportent pareil sur le vide ; il n'y a pas d'erreur, une liste vide est un itérable tout à fait valable.\n\n**À retenir :** sur du vide, `any` → `False` (rien à trouver), `all` → `True` (aucune exception)."
         },
         {
           "question": "Laquelle de ces lambdas est **invalide** ?",
@@ -1421,7 +1421,7 @@
             "`lambda x: y = x + 1`"
           ],
           "reponse": 3,
-          "explication": "Une lambda ne contient qu'une expression : une affectation `y = ...` n'est pas permise."
+          "explication": "**Règle :** une lambda s'écrit `lambda paramètres: expression`, avec **une seule expression** dont la valeur est renvoyée. Une expression produit une valeur ; une affectation (`y = ...`), une boucle ou un `return` n'en sont pas.\n\n**Pas à pas :** on vérifie chaque proposition.\n\n- `lambda x: x * 2` : `x * 2` est une expression → valide.\n- `lambda x, y: x + y` : deux paramètres, une expression → valide.\n- `lambda x: x if x > 0 else -x` : l'expression conditionnelle `a if cond else b` produit une valeur → valide (c'est la valeur absolue).\n- `lambda x: y = x + 1` : `y = x + 1` est une **affectation** → erreur de syntaxe.\n\n**À retenir :** après les deux-points d'une lambda, uniquement quelque chose qu'on pourrait écrire après un `return`."
         },
         {
           "question": "Que fait `open(\"notes.txt\", \"w\")` si `notes.txt` contient déjà du texte ?",
@@ -1432,7 +1432,7 @@
             "Il ouvre en lecture"
           ],
           "reponse": 1,
-          "explication": "Le mode `\"w\"` vide le fichier dès l'ouverture. Pour ajouter à la fin, on utilise `\"a\"`."
+          "explication": "**Règle :** le mode `\"w\"` (*write*, écrire) ouvre le fichier en écriture et **vide son contenu dès l'ouverture** (ou le crée s'il n'existe pas).\n\n**Pas à pas :** `open(\"notes.txt\", \"w\")` : le fichier existe et contient du texte ; au moment même de l'ouverture, ce texte est effacé, avant d'avoir écrit quoi que ce soit. Ce qu'on écrira ensuite remplacera l'ancien contenu.\n\n**Les autres réponses :** ajouter à la fin, c'est le mode `\"a\"` (*append*) ; il n'y a pas d'erreur, `\"w\"` accepte un fichier existant ; ouvrir en lecture, c'est `\"r\"` (le mode par défaut).\n\n**À retenir :** `\"w\"` remplace tout, `\"a\"` ajoute à la fin, `\"r\"` lit."
         },
         {
           "question": "Quel est l'intérêt principal de `with open(...) as f:` ?",
@@ -1443,7 +1443,7 @@
             "On peut écrire et lire en même temps"
           ],
           "reponse": 1,
-          "explication": "`with` lie la durée de vie du fichier au bloc : il est fermé quoi qu'il arrive (fin normale, `return` ou exception)."
+          "explication": "**Règle :** `with open(...) as f:` lie la durée de vie du fichier au bloc indenté : à la sortie du bloc (fin normale, `return` ou exception), le fichier est **fermé automatiquement**.\n\n**Pas à pas :** sans `with`, si une erreur survient entre `open` et `close`, la ligne `close()` n'est jamais atteinte et le fichier reste ouvert. Avec `with`, Python appelle la fermeture pour toi dans tous les cas, comme un `try` / `finally`.\n\n**Les autres réponses :** la lecture n'est pas plus rapide, `with` ne change pas la vitesse ; c'est le **mode** (`\"w\"`, `\"a\"`) qui crée un fichier absent, pas `with` ; lire et écrire à la fois dépend aussi du mode, pas de `with`.\n\n**À retenir :** `with` = fermeture garantie du fichier, même en cas d'erreur."
         },
         {
           "question": "Comment crée-t-on la liste des cubes des nombres de 1 à 5 inclus, avec une liste en compréhension ?",
@@ -1454,7 +1454,7 @@
             "`[x**3 in range(1, 6)]`"
           ],
           "reponse": 0,
-          "explication": "La puissance s'écrit `**` (`^` est le ou exclusif) et `range(1, 6)` va de 1 à 5 : la fin est exclue. `range(5)` irait de 0 à 4."
+          "explication": "**Règle :** en Python, la puissance s'écrit `**` ; `range(a, b)` va de `a` à `b - 1` (la fin est exclue) ; une compréhension a la forme `[traitement for x in source]`.\n\n**Pas à pas :** on veut 1, 2, 3, 4, 5, donc `range(1, 6)` ; le cube de `x` est `x**3`. D'où `[x**3 for x in range(1, 6)]`, qui vaut `[1, 8, 27, 64, 125]`.\n\n**Les autres réponses :** `x^3` n'est pas une puissance (`^` est le « ou exclusif » bit à bit : `2 ^ 3` vaut 1) ; `range(5)` va de 0 à 4, ce qui ajoute 0 et oublie 5 ; `[x**3 in range(1, 6)]` n'a pas de `for` : ce n'est pas une compréhension (et `x` n'est pas défini).\n\n**À retenir :** `**` pour la puissance, et `range(1, n + 1)` pour aller de 1 à `n` inclus."
         },
         {
           "question": "Comment garde-t-on seulement les mots de plus de 3 lettres d'une liste `mots` ?",
@@ -1465,7 +1465,7 @@
             "`[m for len(m) > 3 in mots]`"
           ],
           "reponse": 1,
-          "explication": "Le filtre se met **après** le `for`. La première version renvoie une liste de `True` / `False` ; la troisième est une erreur de syntaxe (un `if` placé avant le `for` exige un `else`)."
+          "explication": "**Règle :** dans une compréhension, le filtre se met **après** le `for` : `[x for x in source if condition]`. Un `if` placé avant le `for` est une expression conditionnelle qui exige un `else`.\n\n**Pas à pas :** on veut les mots eux-mêmes (`m` au début), pris dans `mots` (`for m in mots`), seulement si `len(m) > 3` (à la fin) : `[m for m in mots if len(m) > 3]`. Avec `[\"chat\", \"ou\", \"souris\"]`, on obtient `['chat', 'souris']`.\n\n**Les autres réponses :** `[len(m) > 3 for m in mots]` ne filtre rien, il met le résultat du test dans la liste : `[True, False, True]` ; `[m if len(m) > 3 for m in mots]` est une erreur de syntaxe (il manque le `else`) ; `[m for len(m) > 3 in mots]` met une condition à la place de la variable de boucle : erreur de syntaxe.\n\n**À retenir :** `[ce qu'on garde  for x in source  if condition]`, dans cet ordre."
         },
         {
           "question": "Comment crée-t-on un tableau 2D de 3 lignes et 4 colonnes rempli de 0, dont les lignes sont **indépendantes** ?",
@@ -1476,7 +1476,7 @@
             "`[[0 for _ in range(3)]] * 4`"
           ],
           "reponse": 1,
-          "explication": "La compréhension fabrique une **nouvelle** ligne à chaque tour. `[[0] * 4] * 3` répète trois fois la même ligne : changer une case change toute la colonne. `[0] * 4 * 3` donne une liste simple de 12 zéros."
+          "explication": "**Règle :** `[liste] * n` répète **la même** liste `n` fois (la même référence, pas des copies). Une compréhension, elle, recalcule l'expression à chaque tour : chaque ligne est une liste neuve.\n\n**Pas à pas :** `[[0] * 4 for _ in range(3)]` exécute `[0] * 4` trois fois et fabrique trois listes `[0, 0, 0, 0]` différentes. Après `t[0][0] = 1`, seule la première ligne change : `[[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]`.\n\n**Les autres réponses :** `[[0] * 4] * 3` met trois fois **la même** ligne : `t[0][0] = 1` donnerait un 1 au début des trois lignes ; `[0] * 4 * 3` donne une liste simple de 12 zéros, pas un tableau 2D ; `[[0 for _ in range(3)]] * 4` a le même défaut que la première (lignes partagées) et en plus 4 lignes de 3 colonnes au lieu de l'inverse.\n\n**À retenir :** tableau 2D = `[[valeur] * colonnes for _ in range(lignes)]`."
         },
         {
           "question": "Comment obtient-on la transposée d'une matrice `mat` (liste de listes) ?",
@@ -1487,7 +1487,7 @@
             "`[list(c) for c in zip(mat)]`"
           ],
           "reponse": 1,
-          "explication": "`zip(*mat)` passe chaque ligne comme un argument séparé, puis regroupe les premiers éléments, les deuxièmes... Sans `*`, `zip` reçoit un seul itérable et emballe chaque ligne seule dans un tuple."
+          "explication": "**Règle :** la transposée échange lignes et colonnes. `zip(*mat)` : l'étoile passe chaque ligne comme un argument séparé, puis `zip` regroupe les 1ers éléments de chaque ligne, puis les 2es...\n\n**Pas à pas :** avec `mat = [[1, 2], [3, 4]]`, `zip(*mat)` devient `zip([1, 2], [3, 4])`, qui fournit `(1, 3)` puis `(2, 4)`. `[list(c) for c in ...]` remet chaque tuple en liste : `[[1, 3], [2, 4]]`.\n\n**Les autres réponses :** `zip(mat)` sans étoile ne reçoit qu'**un** itérable : il emballe chaque ligne seule dans un tuple (`([1, 2],)`...), et en plus c'est un objet paresseux, pas une liste ; `mat.transpose()` n'existe pas pour une liste Python ; `[list(c) for c in zip(mat)]` a le même défaut d'étoile manquante (`[[[1, 2]], [[3, 4]]]`).\n\n**À retenir :** transposée = `[list(c) for c in zip(*mat)]`, l'étoile est indispensable."
         },
         {
           "question": "Comment crée-t-on un dictionnaire à partir d'une liste de clés `k` et d'une liste de valeurs `v` de même longueur ?",
@@ -1498,7 +1498,7 @@
             "`k.zip(v)`"
           ],
           "reponse": 2,
-          "explication": "`zip(k, v)` fournit les couples `(clé, valeur)` rang par rang, et `dict(...)` les transforme en dictionnaire. `{k: v}` essaie d'utiliser la liste `k` comme clé : `TypeError`."
+          "explication": "**Règle :** `zip(k, v)` fournit les couples `(clé, valeur)` rang par rang, et `dict(...)` transforme une suite de couples en dictionnaire.\n\n**Pas à pas :** avec `k = [\"a\", \"b\"]` et `v = [1, 2]`, `zip(k, v)` fournit `('a', 1)` puis `('b', 2)` ; `dict(zip(k, v))` vaut `{'a': 1, 'b': 2}`. La compréhension `{x: y for x, y in zip(k, v)}` donne la même chose.\n\n**Les autres réponses :** `dict(k, v)` refuse deux listes (`TypeError` : `dict` attend une seule suite de couples) ; `{k: v}` essaie de prendre la liste `k` entière comme clé, ce qui lève `TypeError` (une liste ne peut pas être une clé) ; `k.zip(v)` n'existe pas, `zip` est une fonction, pas une méthode de liste.\n\n**À retenir :** deux listes → dictionnaire : `dict(zip(cles, valeurs))`."
         },
         {
           "question": "Comment vérifie-t-on que **tous** les nombres d'une liste `l` sont strictement positifs ?",
@@ -1509,7 +1509,7 @@
             "`x > 0 for all x in l`"
           ],
           "reponse": 0,
-          "explication": "`all` vaut `True` si chaque élément est vrai, `any` si au moins un l'est. Ce sont des fonctions, pas des méthodes de liste."
+          "explication": "**Règle :** `all(condition for x in l)` vaut `True` si **chaque** élément respecte la condition ; `any(...)` vaut `True` si **au moins un** la respecte. Ce sont des fonctions qu'on appelle avec un itérable.\n\n**Pas à pas :** avec `l = [4, 1, -2]`, `all(x > 0 for x in l)` teste 4 (vrai), 1 (vrai), -2 (faux) et s'arrête : `False`. Avec `[4, 1]`, tous les tests sont vrais : `True`.\n\n**Les autres réponses :** `any(x > 0 for x in l)` vaudrait `True` pour `[4, 1, -2]` alors que -2 n'est pas positif ; `l.all(x > 0)` n'existe pas (pas de méthode `all` sur une liste) ; `x > 0 for all x in l` n'est pas du Python, c'est l'écriture mathématique.\n\n**À retenir :** « tous » → `all(...)`, « au moins un » → `any(...)`, avec un générateur à l'intérieur."
         },
         {
           "question": "Que contient `input().split()` si l'utilisateur tape `3 7 12` ?",
@@ -1520,7 +1520,7 @@
             "`(3, 7, 12)`"
           ],
           "reponse": 1,
-          "explication": "`input()` renvoie toujours une chaîne, et `split()` la coupe en une liste de **chaînes**. Pour avoir des entiers : `[int(x) for x in input().split()]`."
+          "explication": "**Règle :** `input()` renvoie **toujours une chaîne**, et `split()` (sans argument) coupe cette chaîne sur les espaces : on obtient une liste de **chaînes**.\n\n**Pas à pas :** l'utilisateur tape `3 7 12`, `input()` renvoie `\"3 7 12\"` ; `\"3 7 12\".split()` coupe aux espaces : `[\"3\", \"7\", \"12\"]`. Ce sont des textes : `\"3\" + \"7\"` donnerait `\"37\"`. Pour des entiers : `[int(x) for x in input().split()]`.\n\n**Les autres réponses :** `[3, 7, 12]` suppose une conversion en `int` qui n'a pas eu lieu ; `\"3 7 12\"` est la valeur de `input()` **avant** `split()` ; `(3, 7, 12)` est un tuple d'entiers, `split` renvoie une liste de chaînes.\n\n**À retenir :** `input()` = une chaîne, `.split()` = une liste de chaînes, `int(...)` pour convertir chaque morceau."
         },
         {
           "question": "Que vaut `{p[0]: p for p in [\"Ana\", \"Alex\", \"Bob\"]}` ?",
@@ -1531,7 +1531,7 @@
             "Une erreur : la clé `\"A\"` apparaît deux fois"
           ],
           "reponse": 1,
-          "explication": "Un dictionnaire ne garde qu'une valeur par clé : la deuxième clé `\"A\"` écrase la première, sans erreur. Il reste la dernière valeur, `\"Alex\"`."
+          "explication": "**Règle :** un dictionnaire ne garde qu'**une** valeur par clé. Si la même clé est produite deux fois, la nouvelle valeur **remplace** l'ancienne, sans erreur.\n\n**Pas à pas :** la clé est `p[0]`, la première lettre.\n\n| `p` | Clé `p[0]` | Dictionnaire après ce tour |\n|---|---|---|\n| `\"Ana\"` | `\"A\"` | `{\"A\": \"Ana\"}` |\n| `\"Alex\"` | `\"A\"` (déjà là) | `{\"A\": \"Alex\"}` |\n| `\"Bob\"` | `\"B\"` | `{\"A\": \"Alex\", \"B\": \"Bob\"}` |\n\n**Les autres réponses :** `{\"A\": \"Ana\", \"B\": \"Bob\"}` garde la première valeur, mais c'est la **dernière** qui reste ; `{\"A\": [\"Ana\", \"Alex\"], ...}` regrouperait les valeurs dans des listes, ce qu'une compréhension ne fait pas toute seule ; il n'y a pas d'erreur, une clé répétée est simplement écrasée.\n\n**À retenir :** même clé deux fois → la dernière valeur gagne."
         }
       ]
     },
@@ -1699,7 +1699,7 @@
             "Une variable partagée par tous les objets"
           ],
           "reponse": 1,
-          "explication": "La classe est le modèle ; une instance est un objet concret créé à partir de ce modèle, par exemple `emp1 = Employee(\"Tom\", 2000)`."
+          "explication": "**Règle :** la **classe** est le modèle (le moule) ; une **instance** est un objet concret fabriqué à partir de ce modèle.\n\n**Pas à pas :** dans `emp1 = Employee(\"Tom\", 2000)`, `Employee` est la classe. L'appel `Employee(...)` fabrique un objet, rangé dans `emp1` : `emp1` est **une instance** de `Employee`. Avec `emp2 = Employee(\"Bob\", 5000)`, on obtient une deuxième instance, différente, de la même classe.\n\n**Les autres réponses :** « le modèle qui décrit les objets », c'est la définition de la **classe** ; une méthode spéciale est une méthode comme `__init__` ou `__add__` ; une variable partagée par tous les objets est une **variable de classe**.\n\n**À retenir :** classe = modèle, instance = un objet fabriqué avec `Classe(...)`."
         },
         {
           "question": "Que représente `self` dans une méthode ?",
@@ -1710,7 +1710,7 @@
             "La classe parente"
           ],
           "reponse": 1,
-          "explication": "`self` est une référence vers l'instance. Python le passe automatiquement : `emp1.display()` équivaut à `Employee.display(emp1)`."
+          "explication": "**Règle :** `self` est le premier paramètre de chaque méthode : il désigne **l'objet** sur lequel la méthode est appelée. Python le remplit tout seul.\n\n**Pas à pas :** `emp1.display()` est traduit par Python en `Employee.display(emp1)` : dans `display`, `self` vaut `emp1`, donc `self.name` est le nom de `emp1`. Pour `emp2.display()`, `self` vaut `emp2`. C'est grâce à `self` qu'une même méthode travaille sur des objets différents.\n\n**Les autres réponses :** `self` n'est pas la classe (la classe est `Employee`, commune à tous) ; ce n'est pas le module ; la classe parente s'atteint avec `super()`, pas avec `self`.\n\n**À retenir :** `self` = « l'objet qui est devant le point » dans `objet.methode()`."
         },
         {
           "question": "Comment crée-t-on un employé avec `def __init__(self, name, salary)` ?",
@@ -1721,7 +1721,7 @@
             "`new Employee(\"Tom\", 2000)`"
           ],
           "reponse": 1,
-          "explication": "On appelle la classe avec les paramètres de `__init__`, **sans** `self` : Python crée l'objet puis appelle `__init__` en lui passant l'objet comme `self`."
+          "explication": "**Règle :** pour créer une instance, on **appelle la classe** comme une fonction, avec les paramètres de `__init__` **sauf `self`** : Python crée l'objet puis appelle `__init__` en lui donnant cet objet comme `self`.\n\n**Pas à pas :** `__init__(self, name, salary)` attend `name` et `salary` en plus de `self`. On écrit donc `Employee(\"Tom\", 2000)` : Python fait `__init__(nouvel_objet, \"Tom\", 2000)`.\n\n**Les autres réponses :** `Employee(self, \"Tom\", 2000)` passe un argument de trop (et `self` n'existe pas en dehors d'une méthode) ; `Employee.__init__(\"Tom\", 2000)` appelle l'initialiseur sans objet : `\"Tom\"` serait pris pour `self` et il manquerait `salary` ; `new Employee(...)` est la syntaxe de Java ou JavaScript, pas de Python (erreur de syntaxe).\n\n**À retenir :** `objet = Classe(arguments de __init__ sans self)`."
         },
         {
           "question": "Dans `class Employee:`, où se trouve une **variable de classe** ?",
@@ -1732,7 +1732,7 @@
             "Dans les paramètres de `__init__`"
           ],
           "reponse": 1,
-          "explication": "Une variable écrite directement dans le corps de la classe (comme `emp_count = 0`) est partagée par toutes les instances. `self.x` crée une variable d'instance."
+          "explication": "**Règle :** une **variable de classe** s'écrit directement dans le corps de la classe, en dehors de toute méthode ; elle est partagée par toutes les instances. Ce qui s'écrit `self.x = ...` dans une méthode est une **variable d'instance**, propre à chaque objet.\n\n**Pas à pas :**\n\n```text\nclass Employee:\n    emp_count = 0              # variable de classe : corps de la classe\n    def __init__(self, name):\n        self.name = name       # variable d'instance : dans une méthode, avec self\n```\n\n`Employee.emp_count` est unique et commun à tous les employés ; `emp1.name` et `emp2.name` sont deux valeurs différentes.\n\n**Les autres réponses :** `self.x = ...` dans `__init__` crée une variable d'**instance** ; une variable globale du module n'appartient pas à la classe ; les paramètres de `__init__` sont de simples variables locales, perdues après l'appel si on ne les range pas dans `self`.\n\n**À retenir :** dans le corps de la classe = partagé ; `self.x` = propre à chaque objet."
         },
         {
           "question": "Après `emp1.emp_count = 100`, que vaut `Employee.emp_count` s'il valait 2 ?",
@@ -1743,7 +1743,7 @@
             "Une erreur"
           ],
           "reponse": 1,
-          "explication": "Écrire via l'instance crée une variable d'instance sur `emp1`, qui masque la variable de classe pour cet objet seulement. `Employee.emp_count` reste à 2."
+          "explication": "**Règle :** **lire** `obj.attr` cherche d'abord dans l'objet, puis dans la classe. Mais **écrire** `obj.attr = valeur` crée (ou modifie) un attribut **sur l'objet** seulement : la variable de classe n'est pas touchée.\n\n**Pas à pas :**\n\n| Après `emp1.emp_count = 100` | Valeur |\n|---|---|\n| `Employee.emp_count` (dans la classe) | 2, inchangé |\n| `emp1.emp_count` (emp1 a maintenant le sien) | 100 |\n| `emp2.emp_count` (rien sur emp2, on lit la classe) | 2 |\n\n**Les autres réponses :** 100 supposerait que l'écriture par l'instance modifie la classe ; 102 additionne alors qu'il s'agit d'une affectation `=` ; il n'y a pas d'erreur, Python permet d'ajouter un attribut à un objet à tout moment.\n\n**À retenir :** une variable de classe se modifie par la classe (`Employee.emp_count += 1`), jamais par une instance."
         },
         {
           "question": "Que devient l'attribut `self.__code` d'une classe `Secret` ?",
@@ -1754,7 +1754,7 @@
             "Il provoque une erreur de syntaxe"
           ],
           "reponse": 1,
-          "explication": "Le double `_` déclenche le renommage (*name mangling*) : `obj.__code` ne marche plus de l'extérieur, mais `obj._Secret__code` reste accessible. Python n'a pas d'encapsulation stricte."
+          "explication": "**Règle :** un attribut qui commence par **deux** `_` (et ne finit pas par deux `_`) est **renommé** par Python en `_NomDeLaClasse__attribut`. C'est le *name mangling*. Python n'a pas d'encapsulation stricte : rien n'est vraiment interdit.\n\n**Pas à pas :** dans la classe `Secret`, `self.__code` devient en réalité `self._Secret__code`. Depuis l'extérieur, `obj.__code` lève une `AttributeError` (ce nom n'existe pas), mais `obj._Secret__code` donne la valeur. À l'intérieur des méthodes de `Secret`, on écrit toujours `self.__code`.\n\n**Les autres réponses :** « totalement inaccessible » est faux, le nom déformé marche ; ce n'est pas une variable de classe, il est créé avec `self`, donc sur l'objet ; ce n'est pas une erreur de syntaxe, c'est une écriture tout à fait permise.\n\n**À retenir :** `__x` dans la classe `C` = `_C__x` vu de dehors : caché, pas protégé."
         },
         {
           "question": "Dans le getter d'une propriété `name`, pourquoi écrire `return self._name` et pas `return self.name` ?",
@@ -1765,7 +1765,7 @@
             "Pour que l'attribut soit privé"
           ],
           "reponse": 1,
-          "explication": "`self.name` passe par la propriété, donc par le getter, qui repasserait par la propriété... jusqu'à une `RecursionError`. La donnée réelle est stockée sous un autre nom."
+          "explication": "**Règle :** une fois la propriété `name` définie, **toute** écriture `self.name` passe par elle : une lecture appelle le getter, une écriture le setter. La vraie donnée doit donc être rangée sous un autre nom, par convention `_name`.\n\n**Pas à pas :** si le getter contient `return self.name` :\n\n1. lire `e.name` appelle le getter ;\n2. le getter lit `self.name`, ce qui rappelle le getter ;\n3. qui relit `self.name`... sans fin, jusqu'à la `RecursionError` (trop d'appels imbriqués).\n\nAvec `return self._name`, on lit l'attribut normal `_name`, qui n'est pas une propriété : pas de boucle.\n\n**Les autres réponses :** ce n'est pas qu'une convention, le programme planterait ; ce n'est pas que l'attribut n'existe pas encore (le setter le crée dans `__init__`) ; un seul `_` ne rend rien privé, c'est juste un autre nom.\n\n**À retenir :** propriété `x` → donnée rangée dans `self._x`, et le getter renvoie `self._x`."
         },
         {
           "question": "Quelle méthode faut-il écrire pour pouvoir faire `a + b` avec deux objets de sa classe ?",
@@ -1776,7 +1776,7 @@
             "`add`"
           ],
           "reponse": 1,
-          "explication": "`a + b` est traduit par Python en `a.__add__(b)`."
+          "explication": "**Règle :** les opérateurs sont traduits en appels de **méthodes spéciales** : `a + b` devient `a.__add__(b)`, `a - b` devient `a.__sub__(b)`, `a * b` devient `a.__mul__(b)`.\n\n**Pas à pas :** pour écrire `Vecteur(1, 2) + Vecteur(3, 4)`, la classe définit :\n\n```text\ndef __add__(self, autre):\n    return Vecteur(self.x + autre.x, self.y + autre.y)\n```\n\nPython appelle `Vecteur(1, 2).__add__(Vecteur(3, 4))`, qui renvoie `Vecteur(4, 6)`.\n\n**Les autres réponses :** `__plus__` et `__sum__` n'existent pas : Python ne les appellera jamais ; `add` est une méthode normale, qu'on peut appeler avec `a.add(b)`, mais `a + b` ne la déclenche pas.\n\n**À retenir :** `+` → `__add__`, `-` → `__sub__`, `*` → `__mul__`, `==` → `__eq__`, `<` → `__lt__`."
         },
         {
           "question": "Quelle méthode est utilisée par `print(obj)` ?",
@@ -1787,7 +1787,7 @@
             "`__init__`"
           ],
           "reponse": 1,
-          "explication": "`print` utilise `__str__`, le texte lisible. Sans `__str__`, Python se rabat sur `__repr__`."
+          "explication": "**Règle :** `print(obj)` et `str(obj)` utilisent `__str__`, le texte lisible. Si la classe n'a pas de `__str__`, Python se rabat sur `__repr__`. Dans une liste affichée, c'est `__repr__` qui sert pour chaque élément.\n\n**Pas à pas :** une classe qui n'a que `__repr__` (renvoyant `\"Carte('As', 'pique')\"`) : `print(c)` affiche ce texte, faute de `__str__`. Si on ajoute un `__str__` qui renvoie `\"As de pique\"`, `print(c)` affiche `As de pique`, et `print([c])` affiche toujours `[Carte('As', 'pique')]`.\n\n**Les autres réponses :** « `__repr__` uniquement » est faux dès que `__str__` existe ; `__print__` n'existe pas ; `__init__` sert à initialiser l'objet à sa création, pas à l'afficher.\n\n**À retenir :** `print` → `__str__`, sinon `__repr__` ; liste et interpréteur → `__repr__`."
         },
         {
           "question": "Dans `class ITGuy(Employee):`, que doit faire `ITGuy.__init__` pour que `name` et `salary` existent ?",
@@ -1798,7 +1798,7 @@
             "Déclarer `name` et `salary` comme variables de classe"
           ],
           "reponse": 1,
-          "explication": "Quand l'enfant redéfinit `__init__`, celui du parent n'est plus appelé tout seul : il faut l'appeler explicitement pour initialiser la partie héritée."
+          "explication": "**Règle :** quand la classe enfant écrit son propre `__init__`, celui du parent **n'est plus appelé automatiquement**. Il faut l'appeler soi-même, avec `Parent.__init__(self, ...)` ou `super().__init__(...)` (sans `self`).\n\n**Pas à pas :**\n\n```text\nclass ITGuy(Employee):\n    def __init__(self, name, salary, computer):\n        super().__init__(name, salary)   # crée self.name et self.salary\n        self.computer = computer         # ajoute l'attribut propre à ITGuy\n```\n\nSans la ligne `super().__init__`, un `ITGuy` n'aurait que `computer` : `bob.name` lèverait `AttributeError`.\n\n**Les autres réponses :** « rien, c'est automatique » n'est vrai que si l'enfant **n'a pas** d'`__init__` ; `Employee(name, salary)` fabrique un **autre** objet, qui est aussitôt perdu, sans toucher à `self` ; des variables de classe seraient partagées par tous les `ITGuy`, alors que chacun a son nom et son salaire.\n\n**À retenir :** `__init__` dans l'enfant → première ligne `super().__init__(...)`."
         },
         {
           "question": "Avec `class ITGuy(Employee, Geek):`, si les deux parents ont une méthode `presentation`, laquelle est utilisée par un `ITGuy` ?",
@@ -1809,7 +1809,7 @@
             "Aucune : erreur d'ambiguïté"
           ],
           "reponse": 1,
-          "explication": "Python suit le MRO : `ITGuy`, puis les parents de gauche à droite. `Employee` est listé en premier."
+          "explication": "**Règle :** pour trouver une méthode, Python parcourt le **MRO** (*Method Resolution Order*) : la classe elle-même, puis ses parents **de gauche à droite** dans l'ordre où ils sont écrits, puis `object`. Il prend la **première** méthode trouvée.\n\n**Pas à pas :** `class ITGuy(Employee, Geek):` donne le MRO `ITGuy`, `Employee`, `Geek`, `object`.\n\n1. `ITGuy` a-t-il `presentation` ? Non.\n2. `Employee` ? Oui : on s'arrête, c'est celle-là.\n3. `Geek` n'est même pas consulté.\n\n**Les autres réponses :** celle de `Geek` serait choisie avec `class ITGuy(Geek, Employee):` ; Python n'appelle jamais les deux à la suite ; il n'y a pas d'erreur d'ambiguïté, le MRO décide toujours.\n\n**À retenir :** héritage multiple = le parent écrit **le plus à gauche** gagne (vérifiable avec `Classe.__mro__`)."
         },
         {
           "question": "Que signifie « toutes les méthodes sont virtuelles » en Python ?",
@@ -1820,7 +1820,7 @@
             "Il faut écrire le mot-clé `virtual`"
           ],
           "reponse": 1,
-          "explication": "Si `Chien` redéfinit `parler`, `animal.parler()` appelle la version de `Chien` quand l'objet est un `Chien`, même dans du code qui ne connaît que `Animal`. C'est le polymorphisme."
+          "explication": "**Règle :** en Python, la méthode appelée est toujours celle de la **classe réelle** de l'objet, même si le code a été écrit en pensant au parent. C'est le **polymorphisme** : on dit que toutes les méthodes sont « virtuelles ».\n\n**Pas à pas :** avec `Animal.parler()` qui renvoie `\"...\"` et `Chien.parler()` qui renvoie `\"Wouf\"` :\n\n```text\ndef faire_parler(animal):\n    return animal.parler()\n```\n\n`faire_parler(Chien())` renvoie `\"Wouf\"` : Python regarde le type réel (`Chien`) et trouve sa version, même si la fonction ne parle que d'« animal ».\n\n**Les autres réponses :** « n'existent qu'à l'exécution » ne veut rien dire de précis ici ; les méthodes peuvent justement être redéfinies, c'est tout l'intérêt ; il n'y a pas de mot-clé `virtual` en Python (il existe en C++ ou C#).\n\n**À retenir :** `objet.methode()` → la version de la classe **de l'objet**, cherchée d'abord chez lui, puis chez ses parents."
         },
         {
           "question": "Comment définit-on une classe `Chat` en Python ?",
@@ -1831,7 +1831,7 @@
             "`new class Chat {}`"
           ],
           "reponse": 2,
-          "explication": "Le mot-clé `class`, le nom (en CamelCase par convention), `:`, puis le corps indenté. Pas d'accolades en Python."
+          "explication": "**Règle :** une classe se définit avec le mot-clé `class`, le nom (par convention une majuscule au début de chaque mot), deux-points, puis le corps **indenté**.\n\n**Pas à pas :**\n\n```text\nclass Chat:\n    def __init__(self, nom):\n        self.nom = nom\n```\n\n`class` + `Chat` + `:`, puis tout le contenu décalé de 4 espaces.\n\n**Les autres réponses :** `Chat = class:` mélange une affectation et un mot-clé : erreur de syntaxe ; `def class Chat:` confond avec la définition d'une fonction (`def`) ; `new class Chat {}` utilise des accolades et `new`, qui n'existent pas en Python.\n\n**À retenir :** `class NomDeClasse:` puis un bloc indenté, comme pour un `if` ou un `def`."
         },
         {
           "question": "Comment accède-t-on à l'attribut `nom` d'un objet `c` ?",
@@ -1842,7 +1842,7 @@
             "`c::nom`"
           ],
           "reponse": 1,
-          "explication": "On utilise le point : `c.nom`, en lecture comme en écriture (`c.nom = \"Félix\"`). Les crochets servent aux dictionnaires et aux listes."
+          "explication": "**Règle :** on accède à un attribut ou à une méthode d'un objet avec le **point** : `objet.attribut`, `objet.methode()`. Ça marche en lecture et en écriture.\n\n**Pas à pas :** si `c = Chat(\"Félix\")` et que `__init__` fait `self.nom = nom`, alors `c.nom` vaut `\"Félix\"`. On le change avec `c.nom = \"Tom\"`.\n\n**Les autres réponses :** `c->nom` est la syntaxe du C ou du C++ avec des pointeurs ; `c[\"nom\"]` est la syntaxe des dictionnaires (sur un objet normal, c'est une `TypeError`) ; `c::nom` est la syntaxe d'autres langages (C++, Rust) pour les espaces de noms.\n\n**À retenir :** objet + point + nom : `c.nom`."
         },
         {
           "question": "Comment indique-t-on que la classe `Chat` hérite de la classe `Animal` ?",
@@ -1853,7 +1853,7 @@
             "`class Chat inherits Animal:`"
           ],
           "reponse": 1,
-          "explication": "Les classes parentes se mettent entre parenthèses après le nom : `class Chat(Animal):`, ou `class Chat(A, B):` pour un héritage multiple."
+          "explication": "**Règle :** pour hériter, on écrit la ou les classes parentes **entre parenthèses** après le nom : `class Enfant(Parent):`. Plusieurs parents se séparent par des virgules.\n\n**Pas à pas :** `class Chat(Animal):` : `Chat` récupère toutes les méthodes d'`Animal`, et peut en ajouter ou en redéfinir. Pour deux parents : `class Chat(Animal, Domestique):`.\n\n**Les autres réponses :** `extends` est le mot-clé de Java ou JavaScript ; `class Chat : Animal` est l'écriture de C++ ou C# ; `inherits` n'est un mot-clé dans aucun langage courant, et en Python c'est une erreur de syntaxe.\n\n**À retenir :** héritage en Python = parenthèses : `class Chat(Animal):`."
         },
         {
           "question": "Dans le `__init__` d'une classe enfant, comment appelle-t-on le constructeur du parent ?",
@@ -1864,7 +1864,7 @@
             "`this.super(nom)`"
           ],
           "reponse": 1,
-          "explication": "`super()` est un **appel de fonction** qui donne accès aux méthodes du parent. Sans les parenthèses, `super.__init__` désigne le constructeur de la classe `super` elle-même : l'appel lève `TypeError`."
+          "explication": "**Règle :** `super()` est une **fonction** : on l'appelle avec des parenthèses, et elle donne accès aux méthodes de la classe parente pour l'objet courant. On n'ajoute pas `self` dans l'appel : `super().__init__(nom)`.\n\n**Pas à pas :**\n\n```text\nclass Chat(Animal):\n    def __init__(self, nom, couleur):\n        super().__init__(nom)      # exécute Animal.__init__(self, nom)\n        self.couleur = couleur\n```\n\n**Les autres réponses :** `super.__init__(nom)` oublie les parenthèses : `super` désigne alors la classe `super` elle-même, et l'appel lève une `TypeError` ; `parent(nom)` n'existe pas en Python (`NameError`) ; `this.super(nom)` vient d'autres langages, et `this` n'existe pas en Python.\n\n**À retenir :** toujours `super().` avec les parenthèses, puis la méthode du parent, sans `self`."
         },
         {
           "question": "Comment écrit-on une méthode `parler` dans une classe ?",
@@ -1875,7 +1875,7 @@
             "`self.def parler():`"
           ],
           "reponse": 1,
-          "explication": "Une méthode reçoit toujours l'objet en premier paramètre, nommé `self` par convention. Sans lui, `c.parler()` lève `TypeError` : Python passe l'objet mais la méthode n'attend aucun argument."
+          "explication": "**Règle :** une méthode est une fonction définie dans la classe, dont le **premier paramètre** est l'objet, appelé `self` par convention.\n\n**Pas à pas :**\n\n```text\nclass Chat:\n    def parler(self):\n        return \"Miaou\"\n```\n\nL'appel `c.parler()` devient `Chat.parler(c)` : `self` reçoit `c`, aucun autre argument n'est donné.\n\n**Les autres réponses :** `def parler():` n'a pas de place pour l'objet : `c.parler()` lève `TypeError` (*takes 0 positional arguments but 1 was given*) ; `function ... (this)` est du JavaScript ; `self.def parler():` est une erreur de syntaxe, `def` ne se met jamais après un point.\n\n**À retenir :** chaque méthode commence par `def nom(self, ...)`."
         },
         {
           "question": "Comment teste-t-on si `c` est un objet de la classe `Animal` **ou d'une de ses sous-classes** ?",
@@ -1886,7 +1886,7 @@
             "`c.is(Animal)`"
           ],
           "reponse": 1,
-          "explication": "`isinstance` tient compte de l'héritage : un `Chat` est aussi un `Animal`. `type(c) is Animal` est vrai seulement si `c` a été créé directement avec `Animal(...)`."
+          "explication": "**Règle :** `isinstance(objet, Classe)` vaut `True` si l'objet est de cette classe **ou d'une classe qui en hérite**. `type(objet) is Classe` ne regarde que le type **exact**.\n\n**Pas à pas :** avec `class Chat(Animal):` et `c = Chat()` :\n\n| Test | Résultat | Pourquoi |\n|---|---|---|\n| `isinstance(c, Chat)` | True | c'est un `Chat` |\n| `isinstance(c, Animal)` | True | un `Chat` **est un** `Animal` (héritage) |\n| `type(c) is Animal` | False | son type exact est `Chat` |\n\n**Les autres réponses :** `instanceof` est l'opérateur de Java et JavaScript, erreur de syntaxe en Python ; `type(c) is Animal` oublie les sous-classes, ce que la question demande justement de prendre en compte ; `c.is(Animal)` n'existe pas (et `is` est un mot-clé, il ne peut même pas servir de nom de méthode).\n\n**À retenir :** « est de ce type, sous-classes comprises » = `isinstance(objet, Classe)`."
         }
       ]
     },
@@ -2023,7 +2023,7 @@
             "Une erreur"
           ],
           "reponse": 1,
-          "explication": "Dans une f-string, ce qui est entre accolades est calculé : `nom` vaut `Ada` et `30 + 6` vaut `36`."
+          "explication": "**Règle :** dans une f-string (une chaîne qui commence par `f`), tout ce qui est entre accolades `{ }` est **calculé** par Python, puis le résultat est inséré dans le texte.\n\n**Pas à pas :**\n\n1. `{nom}` : la variable `nom` vaut `\"Ada\"`, on écrit `Ada`.\n2. `{30 + 6}` : Python fait le calcul, 30 + 6 = 36, on écrit `36`.\n3. Le reste (` a `, ` ans`) est recopié tel quel.\n\nRésultat : `Ada a 36 ans`.\n\n**Les autres réponses :** `{nom} a {30 + 6} ans` serait affiché **sans** le `f` devant les guillemets (les accolades restent alors du texte ordinaire) ; `Ada a 30 + 6 ans` oublie que le contenu des accolades est calculé, pas recopié ; il n'y a aucune erreur, car un calcul est permis entre accolades.\n\n**À retenir :** `f\"...\"` + `{expression}` = la valeur de l'expression insérée dans le texte."
         },
         {
           "question": "Que donne `f\"{3.14159:.2f}\"` ?",
@@ -2034,7 +2034,7 @@
             "`3`"
           ],
           "reponse": 1,
-          "explication": "`.2f` affiche le nombre avec exactement 2 décimales (arrondi)."
+          "explication": "**Règle :** dans une f-string, `:.2f` affiche un nombre à virgule avec **exactement 2 décimales**, en arrondissant.\n\n**Pas à pas :**\n\n1. Le nombre est `3.14159`.\n2. On garde 2 chiffres après le point : `3.14`, et on regarde le chiffre suivant (`1`) pour arrondir : il est inférieur à 5, on ne monte pas.\n3. Résultat : `3.14`.\n\n**Les autres réponses :** `3.14159` est le nombre sans mise en forme ; `3.1` correspondrait à `:.1f` (une décimale) ; `3` correspondrait à `:.0f` (aucune décimale) ou à `int(3.14159)`.\n\n**À retenir :** `:.Nf` = N chiffres après le point, arrondis."
         },
         {
           "question": "Que donne `f\"{42:05d}\"` ?",
@@ -2045,7 +2045,7 @@
             "`42`"
           ],
           "reponse": 1,
-          "explication": "`05d` : un entier sur 5 caractères, complété à gauche par des zéros."
+          "explication": "**Règle :** `:05d` affiche un entier (`d`) sur une largeur d'**au moins 5** caractères, et le `0` devant le 5 demande de compléter **à gauche** par des zéros.\n\n**Pas à pas :**\n\n1. `42` s'écrit avec 2 chiffres.\n2. Il en faut 5 : il manque 5 - 2 = 3 caractères.\n3. On ajoute 3 zéros à gauche : `00042`.\n\n**Les autres réponses :** `42000` met les zéros du mauvais côté (cela changerait la valeur du nombre) ; `   42` correspond à `:5d` sans le `0` (complété par des espaces) ; `42` serait le résultat sans mise en forme.\n\n**À retenir :** `:0Nd` = au moins N chiffres, zéros ajoutés à gauche (pratique pour `007` ou `08h05`)."
         },
         {
           "question": "Après `s = \"abc\"` puis `s.upper()`, que vaut `s` ?",
@@ -2056,7 +2056,7 @@
             "`\"Abc\"`"
           ],
           "reponse": 1,
-          "explication": "Une `str` n'est pas modifiable : `upper()` renvoie une nouvelle chaîne, qu'il faut ranger (`s = s.upper()`)."
+          "explication": "**Règle :** une `str` n'est **pas modifiable**. `upper()` ne change pas la chaîne : il en **renvoie** une nouvelle, qu'il faut ranger dans une variable.\n\n**Pas à pas :**\n\n1. `s = \"abc\"` : `s` désigne la chaîne `\"abc\"`.\n2. `s.upper()` fabrique la nouvelle chaîne `\"ABC\"`, mais on ne la range nulle part : elle est perdue aussitôt.\n3. `s` n'a pas été touché : il vaut toujours `\"abc\"`.\n\nPour garder le résultat, il faut écrire `s = s.upper()`.\n\n**Les autres réponses :** `\"ABC\"` serait la bonne réponse après `s = s.upper()` ; `None` est ce que renvoient certaines méthodes de **listes** qui modifient sur place (comme `sort`), pas les méthodes de chaînes ; `\"Abc\"` est le résultat de `capitalize()`.\n\n**À retenir :** avec une chaîne, écris toujours `x = x.methode()` pour garder le résultat."
         },
         {
           "question": "Que renvoie `\"banane\".find(\"z\")` ?",
@@ -2067,7 +2067,7 @@
             "Une `ValueError`"
           ],
           "reponse": 1,
-          "explication": "`find` renvoie `-1` quand la sous-chaîne est absente. C'est `index` qui lèverait une `ValueError`."
+          "explication": "**Règle :** `texte.find(morceau)` renvoie la **position** de la première apparition de `morceau`, ou **`-1`** s'il n'apparaît pas.\n\n**Pas à pas :**\n\n1. On cherche `\"z\"` dans `\"banane\"`.\n2. Les lettres sont `b`, `a`, `n`, `a`, `n`, `e` : aucun `z`.\n3. Le morceau est absent : `find` renvoie `-1`.\n\n**Les autres réponses :** `None` n'est jamais renvoyé par `find` ; `0` voudrait dire « trouvé à la toute première position » (c'est ce que donnerait `\"banane\".find(\"b\")`) ; une `ValueError` est levée par `index`, la méthode cousine de `find`, quand le morceau est absent.\n\n**À retenir :** `find` renvoie `-1` si absent (à tester avant de s'en servir), `index` lève `ValueError`."
         },
         {
           "question": "Que renvoie `\"a=b=c\".split(\"=\", 1)` ?",
@@ -2078,7 +2078,7 @@
             "`[\"a\"]`"
           ],
           "reponse": 1,
-          "explication": "Le deuxième argument limite le nombre de découpes : une seule, au premier `=`."
+          "explication": "**Règle :** `texte.split(sep, maxsplit)` découpe aux séparateurs `sep`, mais au plus `maxsplit` fois, en partant de la gauche. Le reste du texte reste dans le dernier morceau.\n\n**Pas à pas :**\n\n1. Le texte `\"a=b=c\"` contient deux `=`.\n2. `maxsplit` vaut 1 : on ne coupe qu'**une** fois, au **premier** `=`.\n3. À gauche de ce `=` : `\"a\"` ; à droite, tout le reste, sans le découper : `\"b=c\"`.\n\nRésultat : `[\"a\", \"b=c\"]`.\n\n**Les autres réponses :** `[\"a\", \"b\", \"c\"]` est le résultat de `split(\"=\")` sans limite ; `[\"a=b\", \"c\"]` coupe au **dernier** `=`, c'est ce que fait `rsplit(\"=\", 1)` ; `[\"a\"]` perdrait la fin du texte, ce que `split` ne fait jamais.\n\n**À retenir :** `split(sep, 1)` coupe au premier séparateur, `rsplit(sep, 1)` au dernier."
         },
         {
           "question": "Comment remplacer les espaces multiples d'un texte par un seul espace (et enlever ceux des bouts) ?",
@@ -2089,7 +2089,7 @@
             "`texte.split(\" \")`"
           ],
           "reponse": 2,
-          "explication": "`split()` sans argument découpe sur tous les espaces et ignore les vides ; `join` recolle avec un seul espace."
+          "explication": "**Règle :** `split()` **sans argument** coupe le texte sur toutes les suites d'espaces et ne garde aucun morceau vide ; `\" \".join(liste)` recolle les morceaux avec **un** espace entre chacun.\n\n**Pas à pas** avec `\"  un   deux \"` :\n\n1. `\"  un   deux \".split()` donne `[\"un\", \"deux\"]` : les espaces des bouts et les espaces multiples disparaissent.\n2. `\" \".join([\"un\", \"deux\"])` donne `\"un deux\"`.\n\n**Les autres réponses :**\n\n- `texte.strip()` enlève seulement les espaces **des bouts** : `\"un   deux\"` garde ses trois espaces au milieu.\n- `texte.replace(\"  \", \" \")` remplace chaque paire d'espaces par un espace, en une seule passe : trois espaces deviennent deux, et les bouts ne sont pas nettoyés.\n- `texte.split(\" \")` coupe à **chaque** espace et laisse des morceaux vides : `[\"\", \"\", \"un\", \"\", \"\", \"deux\", \"\"]`, et ce n'est même pas un texte.\n\n**À retenir :** `\" \".join(texte.split())` = un seul espace entre les mots, aucun aux bouts."
         },
         {
           "question": "Que vaut `chr(ord(\"a\") + 1)` ?",
@@ -2100,7 +2100,7 @@
             "`\"A\"`"
           ],
           "reponse": 2,
-          "explication": "`ord(\"a\")` vaut 97, `chr(98)` est `\"b\"`."
+          "explication": "**Règle :** `ord(c)` donne le **code** (Unicode) d'un caractère, `chr(n)` donne le **caractère** d'un code. Les lettres ont des codes qui se suivent : `a` = 97, `b` = 98, `c` = 99…\n\n**Pas à pas :**\n\n1. `ord(\"a\")` vaut `97`.\n2. `97 + 1` vaut `98`.\n3. `chr(98)` est le caractère de code 98 : `\"b\"`.\n\n**Les autres réponses :** `\"a1\"` confond avec le collage de textes, mais `ord(\"a\")` est un nombre, on fait donc une addition ; `98` est le résultat intermédiaire, avant `chr` ; `\"A\"` a le code 65, qui n'a rien à voir avec 98.\n\n**À retenir :** `chr(ord(c) + k)` = la lettre `k` rangs plus loin que `c`."
         },
         {
           "question": "Pourquoi `\"Zoé\" < \"anna\"` vaut-il `True` ?",
@@ -2111,7 +2111,7 @@
             "C'est faux, ça vaut `False`"
           ],
           "reponse": 1,
-          "explication": "Les chaînes se comparent par code de caractère : `\"Z\"` (90) est avant `\"a\"` (97). Pour ignorer la casse, compare `s.lower()`."
+          "explication": "**Règle :** deux chaînes se comparent **caractère par caractère**, selon le code de chaque caractère. On s'arrête au premier caractère différent. Toutes les majuscules (codes 65 à 90) ont un code **plus petit** que les minuscules (97 à 122).\n\n**Pas à pas :**\n\n1. Premier caractère de `\"Zoé\"` : `Z`, code 90.\n2. Premier caractère de `\"anna\"` : `a`, code 97.\n3. Ils sont différents, on compare : 90 < 97, donc `\"Zoé\" < \"anna\"` vaut `True`. La suite des mots n'est même pas regardée.\n\n**Les autres réponses :** la longueur ne compte que si une chaîne est le début de l'autre, ce qui n'est pas le cas ici ; Python n'ignore **pas** la casse, c'est justement elle qui décide ici ; le résultat est bien `True`, pas `False`.\n\n**À retenir :** majuscules avant minuscules ; pour comparer sans la casse, compare `a.lower()` et `b.lower()` (ou trie avec `key=str.lower`)."
         },
         {
           "question": "Combien vaut `len(r\"a\\nb\")` (chaîne brute contenant `a`, `\\`, `n`, `b`) ?",
@@ -2122,7 +2122,7 @@
             "1"
           ],
           "reponse": 1,
-          "explication": "Dans une chaîne brute, `\\n` n'est pas un retour à la ligne mais deux caractères : `\\` et `n`. On a donc 4 caractères."
+          "explication": "**Règle :** dans une chaîne normale, `\\n` est **un seul** caractère (le retour à la ligne). Dans une chaîne **brute** `r\"...\"`, les `\\` ne sont pas interprétés : `\\n` reste deux caractères, `\\` puis `n`.\n\n**Pas à pas :** on compte les caractères de `r\"a\\nb\"` un par un.\n\n| Position | Caractère |\n|---|---|\n| 0 | `a` |\n| 1 | `\\` |\n| 2 | `n` |\n| 3 | `b` |\n\nIl y en a **4**.\n\n**Les autres réponses :** 3 est la longueur de `\"a\\nb\"` **sans** le `r` (`a`, retour à la ligne, `b`) ; 2 ne compterait que les lettres `a` et `b` ; 1 ne correspond à rien ici (c'est `len(\"\\n\")`).\n\n**À retenir :** avec `r` devant, chaque `\\` compte comme un caractère ordinaire."
         },
         {
           "question": "Comment obtient-on une chaîne `s` écrite en minuscules ?",
@@ -2133,7 +2133,7 @@
             "`s.toLower()`"
           ],
           "reponse": 1,
-          "explication": "`lower()` est une **méthode** des chaînes ; elle renvoie une nouvelle chaîne (`s` ne change pas). Son contraire est `upper()`."
+          "explication": "**Règle :** `lower()` est une **méthode** des chaînes : on l'écrit après la chaîne et un point, `s.lower()`. Elle renvoie une **nouvelle** chaîne en minuscules ; `s` ne change pas.\n\n**Pas à pas :** avec `s = \"PyThOn\"`, `s.lower()` renvoie `\"python\"`. Pour garder le résultat : `s = s.lower()`. Son contraire est `upper()`.\n\n**Les autres réponses :** `s.toLowerCase()` est l'écriture de JavaScript et `s.toLower()` celle d'autres langages : elles n'existent pas en Python (`AttributeError`) ; `lower(s)` n'existe pas non plus, car `lower` n'est pas une fonction à part, c'est une méthode qu'on appelle **sur** la chaîne.\n\n**À retenir :** en Python, les transformations de texte s'écrivent `chaine.methode()` : `lower()`, `upper()`, `strip()`…"
         },
         {
           "question": "Comment teste-t-on si le texte `\"py\"` apparaît dans une chaîne `s` ?",
@@ -2144,7 +2144,7 @@
             "`s.has(\"py\")`"
           ],
           "reponse": 1,
-          "explication": "`in` cherche une sous-chaîne. `s.find(\"py\")` donne en plus sa position (`-1` si absente). Les chaînes n'ont pas de méthode `contains`."
+          "explication": "**Règle :** l'opérateur `in` teste si un morceau apparaît dans une chaîne : `morceau in texte` vaut `True` ou `False`. Il tient compte des majuscules.\n\n**Pas à pas :** avec `s = \"j'aime python\"`, `\"py\" in s` vaut `True` (les lettres `p` puis `y` se suivent dans `python`). Avec `s = \"Python\"`, `\"py\" in s` vaut `False`, car le `P` est majuscule : il faudrait `\"py\" in s.lower()`. Pour connaître en plus la **position**, on utilise `s.find(\"py\")`, qui vaut `-1` si le morceau est absent.\n\n**Les autres réponses :** `s.contains(\"py\")`, `s.includes(\"py\")` (JavaScript) et `s.has(\"py\")` ne sont pas des méthodes des chaînes Python : elles provoquent une `AttributeError`.\n\n**À retenir :** « est-ce que ça contient ? » s'écrit `morceau in texte`."
         },
         {
           "question": "Comment récupère-t-on les **3 derniers** caractères d'une chaîne `s` ?",
@@ -2155,7 +2155,7 @@
             "`s[-3]`"
           ],
           "reponse": 0,
-          "explication": "`s[-3:]` part du 3e caractère avant la fin et va jusqu'au bout. `s[:-3]` donne tout **sauf** les 3 derniers, et `s[-3]` un seul caractère."
+          "explication": "**Règle :** les indices négatifs comptent depuis la fin (`-1` est le dernier caractère). Dans une tranche `s[debut:fin]`, le début est inclus et la fin exclue ; sans `fin`, on va jusqu'au bout.\n\n**Pas à pas** avec `s = \"bonjour\"` :\n\n| Caractère | `b` | `o` | `n` | `j` | `o` | `u` | `r` |\n|---|---|---|---|---|---|---|---|\n| Indice négatif | -7 | -6 | -5 | -4 | -3 | -2 | -1 |\n\n`s[-3:]` part de l'indice -3 (`o`) et va jusqu'au bout : `\"our\"`, les 3 derniers caractères.\n\n**Les autres réponses :** `s[:-3]` donne tout **sauf** les 3 derniers (`\"bonj\"`) ; `s[-3]` donne **un seul** caractère (`\"o\"`) ; `s.substr(-3)` n'existe pas en Python (c'est du JavaScript).\n\n**À retenir :** `s[-n:]` = les n derniers, `s[:-n]` = tout sauf les n derniers."
         },
         {
           "question": "Comment colle-t-on les mots de la liste `mots` en une seule chaîne, séparés par des virgules ?",
@@ -2166,7 +2166,7 @@
             "`mots + \",\"`"
           ],
           "reponse": 1,
-          "explication": "`join` est une méthode du **séparateur** : `\",\".join([\"a\", \"b\"])` donne `\"a,b\"`. Tous les éléments doivent être des chaînes."
+          "explication": "**Règle :** `join` est une méthode du **séparateur** : `sep.join(liste)` colle les éléments de la liste en mettant `sep` **entre** chacun. Les éléments doivent tous être des chaînes.\n\n**Pas à pas** avec `mots = [\"a\", \"b\", \"c\"]` :\n\n1. Le séparateur est `\",\"`.\n2. On écrit `a`, puis `,`, puis `b`, puis `,`, puis `c` : pas de virgule après le dernier.\n3. Résultat : `\"a,b,c\"`.\n\n**Les autres réponses :** `mots.join(\",\")` inverse les rôles (c'est l'ordre de JavaScript) : les listes n'ont pas de méthode `join`, `AttributeError` ; `join(mots, \",\")` n'existe pas comme fonction ; `mots + \",\"` essaie d'ajouter un texte à une liste, ce qui lève une `TypeError`.\n\n**À retenir :** le séparateur d'abord, puis `.join(liste)` : `\" \".join(mots)`, `\"\\n\".join(lignes)`."
         },
         {
           "question": "Comment écrit-on une chaîne qui s'étend sur plusieurs lignes du code ?",
@@ -2177,7 +2177,7 @@
             "C'est impossible, il faut concaténer avec `+`"
           ],
           "reponse": 0,
-          "explication": "Les triples guillemets (`\"\"\"` ou `'''`) gardent les retours à la ligne. Les accents graves n'ont pas ce rôle en Python."
+          "explication": "**Règle :** une chaîne entre **triples guillemets** (`\"\"\"...\"\"\"` ou `'''...'''`) peut s'étendre sur plusieurs lignes du code. Les passages à la ligne sont gardés dans la chaîne (ce sont des `\\n`).\n\n**Pas à pas :**\n\n```python\ntexte = \"\"\"ligne 1\nligne 2\"\"\"\nprint(len(texte.splitlines()))\n```\n\nLa chaîne contient `ligne 1`, un retour à la ligne, puis `ligne 2` : `splitlines()` donne 2 lignes.\n\n**Les autres réponses :** les accents graves servent aux textes sur plusieurs lignes en JavaScript, mais n'ont aucun rôle en Python ; `<<<` et `>>>` n'existent pas pour les chaînes (`>>>` est seulement l'invite de l'interpréteur) ; ce n'est pas impossible, et concaténer avec `+` et des `\\n` marche aussi mais est bien moins lisible.\n\n**À retenir :** texte sur plusieurs lignes = `\"\"\"...\"\"\"`."
         },
         {
           "question": "Comment convertit-on le texte `\"42\"` en nombre entier ?",
@@ -2188,7 +2188,7 @@
             "`(int) \"42\"`"
           ],
           "reponse": 0,
-          "explication": "`int(texte)` convertit (et lève `ValueError` si le texte n'est pas un entier). Dans l'autre sens, `str(42)` donne `\"42\"`."
+          "explication": "**Règle :** pour transformer un texte en entier, on appelle la fonction `int(texte)`. Si le texte ne représente pas un entier, elle lève une `ValueError`. L'inverse est `str(nombre)`.\n\n**Pas à pas :**\n\n1. `\"42\"` est un texte : `\"42\" + 1` lève une `TypeError`.\n2. `int(\"42\")` donne le nombre `42`.\n3. Maintenant `int(\"42\") + 1` vaut `43`.\n\nAttention : `int(\"4.2\")` échoue (il faudrait `float(\"4.2\")`), et `int(\"12a\")` aussi.\n\n**Les autres réponses :** `parseInt(\"42\")` vient de JavaScript, `\"42\".toInt()` de Kotlin, et `(int) \"42\"` est l'écriture du C ou de Java : aucune n'existe en Python.\n\n**À retenir :** texte → entier avec `int(...)`, texte → nombre à virgule avec `float(...)`, nombre → texte avec `str(...)`."
         }
       ]
     },
@@ -2343,7 +2343,7 @@
             "`config.json`"
           ],
           "reponse": 1,
-          "explication": "Une image contient des octets qu'il faut décoder. CSV, code source et JSON sont des fichiers texte, lisibles par un humain."
+          "explication": "**Règle :** un fichier **texte** contient des caractères lisibles par un humain (même si ce sont du code ou des données). Un fichier **binaire** contient des octets qui n'ont de sens qu'une fois décodés par un programme (image, son, vidéo, exécutable).\n\n**Pas à pas :** on se demande pour chaque fichier « est-ce lisible dans le Bloc-notes ? ».\n\n| Fichier | Lisible ? | Type |\n|---|---|---|\n| `notes.csv` | oui, des valeurs séparées par `;` ou `,` | texte |\n| `photo.png` | non, des symboles sans sens | **binaire** |\n| `script.py` | oui, du code | texte |\n| `config.json` | oui, des accolades et des guillemets | texte |\n\n**Les autres réponses :** CSV et JSON sont des **données**, mais écrites en texte ; un fichier de code source est toujours du texte.\n\n**À retenir :** images, sons, vidéos, programmes = binaire (`\"rb\"`, des `bytes`) ; tout le reste qu'on lit à l'œil = texte."
         },
         {
           "question": "Que se passe-t-il avec `open(\"absent.txt\")` si le fichier n'existe pas ?",
@@ -2354,7 +2354,7 @@
             "On obtient un fichier en mode ajout"
           ],
           "reponse": 2,
-          "explication": "Sans mode, `open` lit (`\"r\"`) : lire un fichier qui n'existe pas lève `FileNotFoundError`. Seuls `\"w\"`, `\"a\"` et `\"x\"` créent le fichier."
+          "explication": "**Règle :** sans mode, `open` ouvre en **lecture** (`\"r\"`). Lire un fichier qui n'existe pas est impossible : Python lève `FileNotFoundError`. Seuls les modes d'écriture `\"w\"`, `\"a\"` et `\"x\"` créent le fichier s'il manque.\n\n**Pas à pas :**\n\n1. `open(\"absent.txt\")` équivaut à `open(\"absent.txt\", \"r\")`.\n2. Python cherche le fichier, ne le trouve pas.\n3. Il lève `FileNotFoundError: [Errno 2] No such file or directory: 'absent.txt'` : le programme s'arrête, sauf si on intercepte l'erreur avec `try` / `except FileNotFoundError`.\n\n**Les autres réponses :** « le fichier est créé vide » est ce que fait `open(\"absent.txt\", \"w\")` (ou `\"a\"`, `\"x\"`) ; `open` ne renvoie jamais `None` : soit il réussit (objet fichier), soit il lève une exception ; le mode ajout ne s'active pas tout seul, il faut écrire `\"a\"`.\n\n**À retenir :** `\"r\"` (le mode par défaut) exige que le fichier existe ; pour lire un fichier qui peut manquer, `try` / `except FileNotFoundError`."
         },
         {
           "question": "Quel mode ajoute du texte **à la fin** d'un fichier sans effacer son contenu ?",
@@ -2365,7 +2365,7 @@
             "`\"x\"`"
           ],
           "reponse": 2,
-          "explication": "`\"a\"` (*append*) écrit à la suite. `\"w\"` vide le fichier dès l'ouverture, `\"x\"` refuse un fichier qui existe déjà."
+          "explication": "**Règle :** le mode `\"a\"` (*append*, ajouter) ouvre le fichier pour écrire **à la fin**, sans toucher à ce qu'il contient déjà (et le crée s'il n'existe pas).\n\n**Pas à pas :** si `journal.txt` contient `lundi\\n` :\n\n1. `open(\"journal.txt\", \"a\")` puis `f.write(\"mardi\\n\")` : le fichier contient `lundi\\nmardi\\n`.\n2. Avec `\"w\"` à la place, il ne contiendrait plus que `mardi\\n` : `\"w\"` vide le fichier **dès l'ouverture**.\n\n**Les autres réponses :** `\"w\"` efface tout avant d'écrire ; `\"r\"` ouvre seulement en lecture, `write` lèverait une erreur ; `\"x\"` sert à **créer** un nouveau fichier et lève `FileExistsError` si le fichier existe déjà.\n\n**À retenir :** compléter = `\"a\"`, remplacer = `\"w\"`, créer sans écraser = `\"x\"`, lire = `\"r\"`."
         },
         {
           "question": "Que renvoie `f.readline()` quand on est arrivé à la fin du fichier ?",
@@ -2376,7 +2376,7 @@
             "Une `EOFError`"
           ],
           "reponse": 2,
-          "explication": "Une ligne vide au milieu du fichier vaut `\"\\n\"`. La chaîne vide `\"\"` signifie qu'il n'y a plus rien à lire."
+          "explication": "**Règle :** `readline()` renvoie la ligne suivante **avec** son `\"\\n\"`. Quand il n'y a plus rien à lire, il renvoie la chaîne vide `\"\"`.\n\n**Pas à pas** avec un fichier qui contient `a\\n\\nb\\n` :\n\n| Appel | Résultat |\n|---|---|\n| 1er `readline()` | `\"a\\n\"` |\n| 2e | `\"\\n\"` (la ligne vide du milieu) |\n| 3e | `\"b\\n\"` |\n| 4e | `\"\"` : fin du fichier |\n\nUne ligne vide au milieu contient encore son retour à la ligne, `\"\\n\"`, donc on ne la confond pas avec la fin.\n\n**Les autres réponses :** `None` n'est jamais renvoyé par `readline` ; `\"\\n\"` est une ligne vide **au milieu** du fichier, pas la fin ; `EOFError` est levée par `input()` quand il n'y a plus d'entrée, pas par la lecture d'un fichier.\n\n**À retenir :** `readline()` qui renvoie `\"\"` = fin du fichier ; c'est la condition d'arrêt d'une boucle `while`."
         },
         {
           "question": "Pourquoi `for ligne in f: print(ligne)` affiche-t-il une ligne vide entre chaque ligne ?",
@@ -2387,7 +2387,7 @@
             "Il faut écrire `f.readlines()`"
           ],
           "reponse": 1,
-          "explication": "Les lignes lues se terminent par `\"\\n\"`. On l'enlève avec `ligne.rstrip(\"\\n\")`, ou on écrit `print(ligne, end=\"\")`."
+          "explication": "**Règle :** chaque ligne lue dans un fichier **garde** son retour à la ligne `\"\\n\"` à la fin. Et `print` ajoute **toujours** son propre retour à la ligne.\n\n**Pas à pas** avec la ligne `\"un\\n\"` :\n\n1. `print(\"un\\n\")` affiche `un`, puis le `\\n` de la ligne (passage à la ligne), puis le `\\n` de `print` (deuxième passage).\n2. Deux passages à la ligne = une ligne vide entre chaque ligne du fichier.\n\nSolutions : `print(ligne.rstrip(\"\\n\"))` (on enlève celui de la ligne) ou `print(ligne, end=\"\")` (on enlève celui de `print`).\n\n**Les autres réponses :** `print` n'a rien à voir avec la lecture, il n'en fait qu'une par tour de boucle ; en mode binaire on lirait des `bytes`, affichés sous la forme `b'...'` ; `readlines()` donne exactement les mêmes lignes, avec leurs `\"\\n\"`, le problème serait le même.\n\n**À retenir :** ligne lue = texte + `\"\\n\"` : nettoie avec `rstrip(\"\\n\")` avant de l'utiliser."
         },
         {
           "question": "Quel est l'avantage de `with open(chemin) as f:` sur `f = open(chemin)` suivi de `f.close()` ?",
@@ -2398,7 +2398,7 @@
             "Il n'y a plus besoin de préciser l'encodage"
           ],
           "reponse": 1,
-          "explication": "`with` est un gestionnaire de contexte : en sortant du bloc, quelle que soit la façon, il appelle `close()` pour toi."
+          "explication": "**Règle :** `with` est un **gestionnaire de contexte** : en sortant du bloc, de **n'importe quelle** façon (fin normale, `return`, exception), il ferme le fichier tout seul.\n\n**Pas à pas :**\n\n1. Avec `f = open(chemin)` puis du code puis `f.close()` : si le code fait un `return` ou plante au milieu, la ligne `f.close()` n'est jamais atteinte, le fichier reste ouvert.\n2. Avec `with open(chemin) as f:`, la fermeture a lieu quoi qu'il arrive. On n'a plus à écrire `close()`.\n\n**Les autres réponses :** la lecture n'est pas plus rapide, on lit exactement de la même façon ; le mode d'ouverture ne change pas (c'est toujours le deuxième argument de `open`) ; l'encodage reste à préciser avec `encoding=\"utf-8\"`, `with` n'y change rien.\n\n**À retenir :** `with` sert à **fermer automatiquement** : c'est la façon normale d'ouvrir un fichier."
         },
         {
           "question": "Après `contenu = f.read()`, que renvoie un deuxième `f.read()` ?",
@@ -2409,7 +2409,7 @@
             "Une erreur : le fichier est fermé"
           ],
           "reponse": 1,
-          "explication": "Chaque lecture avance le curseur. Pour relire depuis le début, on fait `f.seek(0)`."
+          "explication": "**Règle :** un fichier ouvert a un **curseur** : chaque lecture part du curseur et l'avance. `read()` lit **tout ce qui reste** et laisse le curseur à la fin.\n\n**Pas à pas :**\n\n1. Premier `f.read()` : lit du début jusqu'à la fin, le curseur est maintenant au bout.\n2. Deuxième `f.read()` : il ne reste plus rien après le curseur, on obtient `\"\"`.\n3. Pour relire, on remet le curseur au début avec `f.seek(0)`, puis `f.read()` redonne tout.\n\n**Les autres réponses :** on ne relit pas le même contenu, car le curseur ne revient pas au début tout seul ; `read` ne renvoie jamais `None` ; le fichier n'est pas fermé par une lecture, il reste ouvert jusqu'à la fin du `with` ou au `close()`.\n\n**À retenir :** une lecture avance le curseur ; `\"\"` = plus rien à lire ; `f.seek(0)` pour recommencer."
         },
         {
           "question": "Pourquoi écrire `open(chemin, encoding=\"utf-8\")` plutôt que `open(chemin)` ?",
@@ -2420,7 +2420,7 @@
             "C'est obligatoire pour écrire"
           ],
           "reponse": 1,
-          "explication": "Sans encodage, Python prend celui du système (souvent cp1252 sur un vieux Windows) : `été` peut devenir `Ã©tÃ©` ou lever `UnicodeDecodeError`."
+          "explication": "**Règle :** sans `encoding=`, `open` utilise l'encodage **par défaut du système**, qui change d'un ordinateur à l'autre (souvent cp1252 sur un vieux Windows, UTF-8 sur Linux et macOS).\n\n**Pas à pas :**\n\n1. Un fichier écrit en UTF-8 contient `été` sous la forme de 5 octets (`é` en prend 2).\n2. Relu en cp1252, chaque octet devient un caractère : `été` s'affiche `Ã©tÃ©`, ou la lecture plante avec `UnicodeDecodeError`.\n3. Avec `encoding=\"utf-8\"` à l'écriture **et** à la lecture, le fichier se lit pareil partout.\n\n**Les autres réponses :** le mode binaire vient de `\"b\"` dans le mode (`\"rb\"`), pas de l'encodage ; préciser l'encodage ne rend pas le fichier plus petit, il fixe seulement la façon de lire les caractères ; ce n'est pas obligatoire pour écrire, `open(chemin, \"w\")` fonctionne, mais avec l'encodage du système.\n\n**À retenir :** `encoding=\"utf-8\"` à **chaque** `open` d'un fichier texte, pour que les accents soient lus pareil sur tous les ordinateurs."
         },
         {
           "question": "Que fournit `csv.reader(f, delimiter=\";\")` pour chaque ligne du fichier ?",
@@ -2431,7 +2431,7 @@
             "Un dictionnaire"
           ],
           "reponse": 1,
-          "explication": "Toutes les valeurs restent du texte : il faut convertir soi-même avec `int(...)` ou `float(...)`. C'est `csv.DictReader` qui donne des dictionnaires."
+          "explication": "**Règle :** `csv.reader` découpe chaque ligne du fichier selon le délimiteur et donne une **liste de chaînes**. Il ne convertit **rien** : un nombre reste un texte.\n\n**Pas à pas :** la ligne `Lina;Lyon;24` devient `[\"Lina\", \"Lyon\", \"24\"]`. Le `\"24\"` est un texte : pour calculer, il faut `int(ligne[2])` (ou `float(...)`).\n\n**Les autres réponses :**\n\n- une chaîne : c'est ce qu'on aurait en lisant la ligne **sans** le module `csv` (`for ligne in f`) ;\n- des nombres déjà convertis : non, le module `csv` ne devine pas les types ;\n- un dictionnaire : c'est `csv.DictReader` qui en donne un par ligne, avec les noms de colonnes en clés.\n\n**À retenir :** `csv.reader` → liste de **textes** par ligne ; convertis toi-même les nombres."
         },
         {
           "question": "Pourquoi utiliser le module `csv` plutôt que `ligne.split(\";\")` ?",
@@ -2442,7 +2442,7 @@
             "`split` enlève les accents"
           ],
           "reponse": 1,
-          "explication": "Avec `\"Brest; Finistère\";31`, `split(\";\")` donne trois morceaux au lieu de deux. Le module `csv` sait lire les valeurs entre guillemets."
+          "explication": "**Règle :** dans un CSV, une valeur qui contient le délimiteur est écrite **entre guillemets**. Le module `csv` comprend ces guillemets ; `split` ne les connaît pas et coupe à chaque délimiteur.\n\n**Pas à pas** avec la ligne `Marc;\"Brest; Finistère\";31` :\n\n1. `ligne.split(\";\")` coupe à chacun des 3 `;` : `['Marc', '\"Brest', ' Finistère\"', '31']`, soit 4 morceaux pour 3 colonnes.\n2. `csv.reader(f, delimiter=\";\")` voit les guillemets et garde `Brest; Finistère` en **une** valeur : `['Marc', 'Brest; Finistère', '31']`.\n\n**Les autres réponses :** `split` marche très bien sur une ligne lue dans un fichier (c'est une chaîne comme une autre) ; le module `csv` ne convertit pas les nombres, ils restent des textes ; `split` ne touche pas aux accents.\n\n**À retenir :** dès qu'une valeur peut contenir le délimiteur ou des guillemets, lis et écris avec le module `csv`."
         },
         {
           "question": "Avec `csv.DictReader(f)`, d'où viennent les clés des dictionnaires ?",
@@ -2453,7 +2453,7 @@
             "Il faut toujours les donner avec `fieldnames`"
           ],
           "reponse": 0,
-          "explication": "Par défaut, la première ligne est lue comme l'en-tête. On peut aussi donner `fieldnames=[...]` quand le fichier n'a pas d'en-tête."
+          "explication": "**Règle :** par défaut, `csv.DictReader` lit la **première ligne** du fichier comme l'en-tête : ses valeurs deviennent les clés des dictionnaires des lignes suivantes.\n\n**Pas à pas** avec le fichier :\n\n```text\narticle,prix\nstylo,1.5\n```\n\n1. La première ligne donne les clés `\"article\"` et `\"prix\"`.\n2. La deuxième ligne devient `{\"article\": \"stylo\", \"prix\": \"1.5\"}`.\n\nSi le fichier n'a pas d'en-tête, on donne les noms soi-même : `csv.DictReader(f, fieldnames=[\"article\", \"prix\"])`, et alors la première ligne est lue comme une donnée.\n\n**Les autres réponses :** les numéros 0, 1, 2 correspondent aux positions dans les listes de `csv.reader`, pas aux clés de `DictReader` ; `delimiter` indique seulement le séparateur ; `fieldnames` n'est **pas** obligatoire, il ne sert que sans en-tête.\n\n**À retenir :** `DictReader` = la première ligne fournit les clés (ou `fieldnames=` s'il n'y a pas d'en-tête)."
         },
         {
           "question": "Après `csv.Sniffer().sniff(f.read(1024))`, pourquoi faut-il faire `f.seek(0)` ?",
@@ -2464,7 +2464,7 @@
             "Pour vider le tampon d'écriture"
           ],
           "reponse": 2,
-          "explication": "Le `Sniffer` a besoin d'un extrait, et le lire a déplacé le curseur. `seek(0)` revient au début avant la vraie lecture."
+          "explication": "**Règle :** chaque lecture avance le curseur du fichier. Pour relire depuis le début, il faut revenir en arrière avec `f.seek(0)`.\n\n**Pas à pas :**\n\n1. `f.read(1024)` lit un **extrait** (jusqu'à 1024 caractères) pour que le `Sniffer` devine le délimiteur.\n2. Le curseur se trouve maintenant **après** cet extrait (à la fin, pour un petit fichier).\n3. Sans retour en arrière, `csv.reader(f, ...)` commencerait au curseur et raterait le début, voire tout le fichier.\n4. `f.seek(0)` remet le curseur à la position 0 : la vraie lecture commence au début.\n\n**Les autres réponses :** `seek` ne ferme rien, c'est `close()` (ou la fin du `with`) ; le dialecte se choisit en le passant à `csv.reader`, pas avec `seek` ; il n'y a aucune écriture en cours, donc aucun tampon à vider.\n\n**À retenir :** après une lecture « pour voir », `f.seek(0)` avant la vraie lecture."
         },
         {
           "question": "Quelle fonction transforme une **chaîne** JSON en objet Python ?",
@@ -2475,7 +2475,7 @@
             "`json.dumps`"
           ],
           "reponse": 1,
-          "explication": "Le `s` final veut dire *string* : `loads` lit une chaîne, `load` lit un fichier ouvert, `dump` et `dumps` font le chemin inverse."
+          "explication": "**Règle :** le module `json` a quatre fonctions. Le `s` final veut dire *string* (chaîne) : `loads` et `dumps` travaillent sur des **chaînes**, `load` et `dump` sur des **fichiers** ouverts.\n\n**Pas à pas :**\n\n| Fonction | Reçoit | Donne |\n|---|---|---|\n| `json.loads(texte)` | une chaîne JSON | un objet Python |\n| `json.load(f)` | un fichier ouvert | un objet Python |\n| `json.dumps(donnees)` | un objet Python | une chaîne JSON |\n| `json.dump(donnees, f)` | un objet Python et un fichier | rien (écrit dans le fichier) |\n\nOn cherche « chaîne → Python » : `json.loads('{\"a\": 1}')` donne `{'a': 1}`.\n\n**Les autres réponses :** `json.load` attend un fichier ouvert, pas une chaîne ; `json.dump` et `json.dumps` font le chemin inverse (Python → JSON).\n\n**À retenir :** chaîne → `loads` / `dumps`, fichier → `load` / `dump`."
         },
         {
           "question": "Que vaut `json.loads(json.dumps({1: (2, 3)}))` ?",
@@ -2486,7 +2486,7 @@
             "Une `TypeError`"
           ],
           "reponse": 1,
-          "explication": "En JSON, les clés sont toujours du texte, et un tuple devient un tableau, relu comme une liste."
+          "explication": "**Règle :** en JSON, les clés d'un objet sont **toujours des textes**, et il n'existe pas de tuple : seulement des tableaux, relus comme des **listes**.\n\n**Pas à pas :**\n\n1. `json.dumps({1: (2, 3)})` : la clé `1` est écrite `\"1\"`, le tuple `(2, 3)` est écrit `[2, 3]`. Le texte obtenu est `{\"1\": [2, 3]}`.\n2. `json.loads(...)` relit ce texte : la clé reste le texte `\"1\"`, le tableau devient la liste `[2, 3]`.\n3. Résultat : `{\"1\": [2, 3]}`.\n\n**Les autres réponses :** `{1: (2, 3)}` supposerait que JSON garde les types Python, ce qui est faux ; `{1: [2, 3]}` garde à tort la clé entière ; il n'y a pas de `TypeError`, car les entiers en clé et les tuples sont acceptés (convertis) à l'écriture.\n\n**À retenir :** après un aller-retour JSON, les clés sont des textes et les tuples sont des listes."
         },
         {
           "question": "Quelle valeur Python correspond au `null` de JSON ?",
@@ -2497,7 +2497,7 @@
             "`False`"
           ],
           "reponse": 2,
-          "explication": "`null` ↔ `None`, `true` / `false` ↔ `True` / `False`, objet ↔ `dict`, tableau ↔ `list`."
+          "explication": "**Règle :** les types JSON se traduisent en Python ainsi : objet → `dict`, tableau → `list`, texte → `str`, nombre → `int` / `float`, `true` / `false` → `True` / `False`, `null` → `None`.\n\n**Pas à pas :** `json.loads('{\"tel\": null}')` donne `{'tel': None}`. Dans l'autre sens, `json.dumps({\"tel\": None})` écrit `{\"tel\": null}`.\n\n**Les autres réponses :** `0` est un nombre (JSON l'écrit `0`) ; `\"\"` est un texte vide (JSON l'écrit `\"\"`) ; `False` correspond à `false`. Ce sont des valeurs différentes de « aucune valeur ».\n\n**À retenir :** `null` ↔ `None`, `true` ↔ `True`, `false` ↔ `False`."
         },
         {
           "question": "Que se passe-t-il avec `json.dumps({\"tags\": {\"a\", \"b\"}})` ?",
@@ -2508,7 +2508,7 @@
             "Les doublons sont gardés"
           ],
           "reponse": 2,
-          "explication": "JSON ne connaît pas les ensembles. Il faut d'abord les convertir, par exemple avec `sorted(tags)`."
+          "explication": "**Règle :** JSON ne connaît que les objets, les tableaux, les textes, les nombres, `true` / `false` et `null`. Un `set` n'a pas d'équivalent : `json.dumps` refuse de l'écrire et lève `TypeError`.\n\n**Pas à pas :**\n\n1. `{\"tags\": {\"a\", \"b\"}}` est un dictionnaire dont la valeur est un **ensemble**.\n2. `json.dumps` arrive sur l'ensemble et ne sait pas l'écrire : `TypeError: Object of type set is not JSON serializable`.\n3. Solution : convertir avant, par exemple `json.dumps({\"tags\": sorted(tags)})`, qui écrit `{\"tags\": [\"a\", \"b\"]}`.\n\n**Les autres réponses :** l'ensemble ne devient pas une liste tout seul (c'est le tuple qui devient une liste) ; il ne devient pas non plus un texte ; la question des doublons ne se pose pas, puisque rien n'est écrit.\n\n**À retenir :** `set`, dates et objets de tes classes → convertis-les (en liste, en texte, en dictionnaire) avant `json.dump`."
         },
         {
           "question": "Comment ouvre-t-on en Python le fichier `rapport.txt` pour l'écrire en remplaçant son contenu ?",
@@ -2519,7 +2519,7 @@
             "`file.open(\"rapport.txt\")`"
           ],
           "reponse": 1,
-          "explication": "C'est `open(nom, \"w\")`. `fopen` est la fonction du C, et `\"r\"` ouvre en lecture."
+          "explication": "**Règle :** en Python, on ouvre un fichier avec la fonction `open(nom, mode)`. Pour écrire en **remplaçant** le contenu, le mode est `\"w\"`.\n\n**Pas à pas :**\n\n```python\nwith open(\"rapport.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Nouveau rapport\\n\")\n```\n\nLe fichier est vidé à l'ouverture (ou créé s'il n'existe pas), puis on y écrit.\n\n**Les autres réponses :** `open(\"rapport.txt\", \"r\")` ouvre en **lecture** : `write` lèverait une erreur ; `fopen` est la fonction du langage C, elle n'existe pas en Python ; `file.open(...)` n'existe pas non plus.\n\n**À retenir :** écrire en remplaçant = `open(nom, \"w\")`, à la suite = `open(nom, \"a\")`."
         },
         {
           "question": "Comment récupère-t-on en Python la **liste** des lignes restantes d'un fichier `f` ?",
@@ -2530,7 +2530,7 @@
             "`f.getLines()`"
           ],
           "reponse": 2,
-          "explication": "`readlines()` renvoie une liste (chaque ligne garde son `\"\\n\"`). `readline()` ne renvoie qu'**une** ligne."
+          "explication": "**Règle :** `f.readlines()` lit toutes les lignes **restantes** et les renvoie dans une **liste**, chaque ligne avec son `\"\\n\"`.\n\n**Pas à pas :** avec un fichier qui contient `un\\ndeux\\n`, `f.readlines()` renvoie `['un\\n', 'deux\\n']`. Pour des lignes propres : `[ligne.rstrip(\"\\n\") for ligne in f.readlines()]`.\n\n**Les autres réponses :** `f.readline()` (sans `s`) ne renvoie qu'**une** ligne, sous forme de chaîne ; `f.lines()` et `f.getLines()` n'existent pas (`AttributeError`).\n\n**À retenir :** `readline()` = une ligne, `readlines()` = la liste de toutes les lignes ; pour un gros fichier, préfère `for ligne in f`."
         },
         {
           "question": "Comment écrit-on le texte `bonjour` suivi d'un retour à la ligne dans un fichier `f` ouvert en écriture ?",
@@ -2541,7 +2541,7 @@
             "`f.writeline(\"bonjour\")`"
           ],
           "reponse": 1,
-          "explication": "`write` écrit le texte tel quel, sans ajouter de retour à la ligne : il faut mettre le `\"\\n\"` soi-même. `print(\"bonjour\", file=f)` marche aussi."
+          "explication": "**Règle :** `f.write(texte)` écrit le texte **exactement tel quel** : il n'ajoute **pas** de retour à la ligne. Pour passer à la ligne, il faut écrire `\"\\n\"` soi-même.\n\n**Pas à pas :**\n\n1. `f.write(\"bonjour\")` écrit `bonjour` sans passer à la ligne : un `write` suivant serait collé à la suite (`bonjourau revoir`).\n2. `f.write(\"bonjour\\n\")` écrit `bonjour` puis le retour à la ligne.\n3. Autre écriture possible : `print(\"bonjour\", file=f)`, car `print` ajoute le `\\n` lui-même.\n\n**Les autres réponses :** `f.write(\"bonjour\")` oublie le retour à la ligne ; `f.print(...)` et `f.writeline(...)` n'existent pas (seul `writelines`, avec un `s`, existe, et il n'ajoute pas de `\\n` non plus).\n\n**À retenir :** avec `write`, le `\"\\n\"` est toujours à ta charge."
         },
         {
           "question": "Comment charge-t-on en Python le contenu d'un fichier JSON ouvert dans `f` ?",
@@ -2552,7 +2552,7 @@
             "`json.loads(f)`"
           ],
           "reponse": 1,
-          "explication": "`json.load` prend un fichier ouvert. `json.parse` et `JSON.read` n'existent pas (`JSON.parse` est du JavaScript), et `loads` attend une chaîne."
+          "explication": "**Règle :** `json.load(f)` lit un **fichier ouvert** et renvoie l'objet Python correspondant (dictionnaire, liste…).\n\n**Pas à pas :**\n\n```python\nimport json\n\nwith open(\"donnees.json\", \"w\", encoding=\"utf-8\") as f:\n    f.write('{\"a\": 1}')\nwith open(\"donnees.json\", encoding=\"utf-8\") as f:\n    print(json.load(f))\n```\n\nOn obtient `{'a': 1}`.\n\n**Les autres réponses :** `json.parse` n'existe pas (c'est `JSON.parse` en JavaScript) ; `JSON.read` n'existe pas non plus ; `json.loads(f)` attend une **chaîne**, pas un fichier : il lèverait `TypeError`. On pourrait écrire `json.loads(f.read())`, mais `json.load(f)` fait la même chose directement.\n\n**À retenir :** fichier ouvert → `json.load(f)`, chaîne → `json.loads(texte)`."
         },
         {
           "question": "Comment lit-on en Python un fichier CSV dont les colonnes sont séparées par des points-virgules ?",
@@ -2563,7 +2563,7 @@
             "`f.csv(\";\")`"
           ],
           "reponse": 1,
-          "explication": "Le paramètre s'appelle `delimiter`. `sep` est le nom utilisé par la bibliothèque pandas, pas par le module `csv`."
+          "explication": "**Règle :** le séparateur de colonnes se donne à `csv.reader` avec le paramètre nommé `delimiter`.\n\n**Pas à pas :**\n\n```python\nimport csv\n\nwith open(\"v.csv\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Lyon;24\\n\")\nwith open(\"v.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for ligne in csv.reader(f, delimiter=\";\"):\n        print(ligne)\n```\n\nOn obtient `['Lyon', '24']`. Sans `delimiter=\";\"`, le séparateur par défaut est la virgule, et la ligne entière resterait en une seule valeur : `['Lyon;24']`.\n\n**Les autres réponses :** `sep=\";\"` est le nom utilisé par la bibliothèque pandas (`read_csv`), le module `csv` ne le connaît pas (`TypeError`) ; `csv.read` n'existe pas ; un fichier n'a pas de méthode `csv`.\n\n**À retenir :** `csv.reader(f, delimiter=\";\")` et `csv.writer(f, delimiter=\";\")`."
         }
       ]
     }

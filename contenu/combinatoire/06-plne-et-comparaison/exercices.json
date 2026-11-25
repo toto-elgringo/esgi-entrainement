@@ -12,7 +12,8 @@
         "refuses": [
           "45",
           "21"
-        ]
+        ],
+        "explication": "**Règle :** le profit d'une production $(x, y)$ s'obtient en remplaçant $x$ et $y$ dans l'**objectif** $z = 6x + 9y$.\n\n**Pas à pas :** $(x, y) = (2, 3)$.\n\n1. $6 \\times 2 = 12$ (profit des produits $x$).\n2. $9 \\times 3 = 27$ (profit des produits $y$).\n3. $z = 12 + 27 = 39$.\n\n**Erreurs fréquentes :** utiliser les coefficients d'une contrainte au lieu de ceux de l'objectif (avec la matière, $2 \\times 2 + 5 \\times 3 = 19$) ; répondre 45, le profit de $(3, 3)$.\n\n**À retenir :** profit = coefficients de l'objectif × valeurs des variables, puis on additionne."
       },
       {
         "intitule": "Matière consommée par $(x, y) = (3, 3)$.",
@@ -21,7 +22,8 @@
         "refuses": [
           "22",
           "45"
-        ]
+        ],
+        "explication": "**Règle :** la matière consommée se calcule avec la contrainte de matière : $2x + 5y$.\n\n**Pas à pas :** $(x, y) = (3, 3)$.\n\n1. $2 \\times 3 = 6$ (matière des produits $x$).\n2. $5 \\times 3 = 15$ (matière des produits $y$).\n3. Total : $6 + 15 = 21$, sous les 22 disponibles.\n\n**Erreurs fréquentes :** répondre 45, c'est le **profit** $6 \\times 3 + 9 \\times 3$ ; répondre 22, c'est la matière **disponible**, pas celle consommée.\n\n**À retenir :** chaque ressource se calcule avec les coefficients de **sa** ligne."
       },
       {
         "intitule": "La production $(4, 3)$ est-elle réalisable ?",
@@ -30,7 +32,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une production est **réalisable** si elle respecte **toutes** les contraintes. Une seule contrainte violée suffit à la rendre irréalisable.\n\n**Pas à pas :** $(4, 3)$.\n\n| Contrainte | Calcul | Limite | Respectée ? |\n|---|---|---|---|\n| Matière | $2 \\times 4 + 5 \\times 3 = 8 + 15 = 23$ | 22 | non |\n| Heures | $4 + 3 = 7$ | 6 | non |\n\nLes deux contraintes sont violées : la production est irréalisable (une seule aurait suffi).\n\n**Erreur fréquente :** répondre « Oui » en regardant seulement que $x$ et $y$ sont des entiers positifs : il faut aussi vérifier les ressources.\n\n**À retenir :** teste chaque contrainte une par une ; un seul « non » rend le point irréalisable."
       },
       {
         "intitule": "La production $(6, 0)$ est-elle réalisable ?",
@@ -39,7 +42,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** même test, contrainte par contrainte. Une contrainte « $\\le$ » tout juste atteinte (égalité) est **respectée**.\n\n**Pas à pas :** $(6, 0)$.\n\n| Contrainte | Calcul | Limite | Respectée ? |\n|---|---|---|---|\n| Matière | $2 \\times 6 + 5 \\times 0 = 12$ | 22 | oui |\n| Heures | $6 + 0 = 6$ | 6 | oui (égalité) |\n\nLes deux sont respectées : la production est réalisable.\n\n**Erreur fréquente :** répondre « Non » parce que les heures valent exactement 6. Le signe est « $\\le$ » : 6 est autorisé, seul 7 ou plus serait interdit.\n\n**À retenir :** « $\\le$ » accepte l'égalité."
       },
       {
         "intitule": "Profit de $(6, 0)$.",
@@ -48,7 +52,8 @@
         "refuses": [
           "54",
           "12"
-        ]
+        ],
+        "explication": "**Règle :** profit = objectif $z = 6x + 9y$.\n\n**Pas à pas :** $(6, 0)$.\n\n1. $6 \\times 6 = 36$.\n2. $9 \\times 0 = 0$.\n3. $z = 36 + 0 = 36$.\n\n**Erreurs fréquentes :** appliquer le profit de $y$ (9) aux produits $x$ ($9 \\times 6 = 54$) ; répondre 12, la matière consommée.\n\n**À retenir :** chaque variable a son propre coefficient dans l'objectif."
       }
     ],
     "indices": [
@@ -70,7 +75,8 @@
         "refuses": [
           "3",
           "3.3"
-        ]
+        ],
+        "explication": "**Règle :** l'optimum continu est au point où les deux contraintes sont **serrées** (égalités). On résout le système par **substitution** : on isole une variable dans une équation et on la remplace dans l'autre.\n\n**Pas à pas :**\n\n1. Système : $2x + 5y = 22$ et $x + y = 6$.\n2. La 2ᵉ équation donne $x = 6 - y$.\n3. On remplace dans la 1ʳᵉ : $2(6 - y) + 5y = 22$, soit $12 - 2y + 5y = 22$, soit $12 + 3y = 22$.\n4. Donc $3y = 10$ et $y = \\frac{10}{3}$ (environ 3,33).\n\n**Erreurs fréquentes :** arrondir à 3 ou 3,3, alors que la valeur exacte est demandée ; se tromper de signe en développant $2(6 - y) = 12 - 2y$.\n\n**À retenir :** contraintes serrées → système → on isole une variable et on substitue."
       },
       {
         "intitule": "Valeur de $x$ à l'optimum continu.",
@@ -79,7 +85,8 @@
         "refuses": [
           "3",
           "2.6"
-        ]
+        ],
+        "explication": "**Règle :** une fois $y$ connu, on revient à l'équation la plus simple pour trouver $x$.\n\n**Pas à pas :**\n\n1. $x = 6 - y = 6 - \\frac{10}{3} = \\frac{18}{3} - \\frac{10}{3} = \\frac{8}{3}$ (environ 2,67).\n2. Vérification dans la matière : $2 \\times \\frac{8}{3} + 5 \\times \\frac{10}{3} = \\frac{16}{3} + \\frac{50}{3} = \\frac{66}{3} = 22$. La contrainte est bien serrée.\n\n**Erreurs fréquentes :** répondre 3 (arrondi) ou 2,6 (valeur coupée après la 1ʳᵉ décimale, pas exacte : $8/3 \\approx 2{,}67$).\n\n**À retenir :** écris $6$ sous la forme $\\frac{18}{3}$ pour soustraire des tiers, puis vérifie dans l'autre contrainte."
       },
       {
         "intitule": "Profit à l'optimum continu.",
@@ -88,7 +95,8 @@
         "refuses": [
           "45",
           "45.9"
-        ]
+        ],
+        "explication": "**Règle :** profit = objectif $6x + 9y$ au point continu $(\\frac{8}{3}, \\frac{10}{3})$.\n\n**Pas à pas :**\n\n1. $6 \\times \\frac{8}{3} = \\frac{48}{3} = 16$.\n2. $9 \\times \\frac{10}{3} = \\frac{90}{3} = 30$.\n3. $z = 16 + 30 = 46$, une valeur exacte.\n\nPour être sûr que c'est le maximum continu, on compare aux autres coins : $(6, 0)$ donne 36 et $(0 ; 4{,}4)$ donne $9 \\times 4{,}4 = 39{,}6$. Le coin $(\\frac{8}{3}, \\frac{10}{3})$ est bien le meilleur.\n\n**Erreurs fréquentes :** répondre 45 (l'optimum **entier**) ; répondre 45,9 en calculant avec des valeurs arrondies ($6 \\times 2{,}67 + 9 \\times 3{,}33 = 45{,}99$).\n\n**À retenir :** calcule avec les fractions exactes pour éviter les erreurs d'arrondi."
       },
       {
         "intitule": "Que représente ce profit pour le problème en nombres entiers ?",
@@ -98,7 +106,8 @@
           "L'optimum entier",
           "Un minimum"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** la relaxation a **plus de choix** que le problème entier (elle accepte aussi les valeurs à virgule). En maximisation, son optimum est donc une **borne supérieure** : l'optimum entier ne peut pas le dépasser.\n\n**Pas à pas :**\n\n1. Tout point entier réalisable est aussi un point réalisable de la relaxation.\n2. Le meilleur point de la relaxation vaut 46.\n3. Donc tout point entier vaut au plus 46 : l'optimum entier est $\\le 46$ (il vaut 45).\n\n**Les autres réponses :** « l'optimum entier » est faux, 46 est atteint en $(\\frac{8}{3}, \\frac{10}{3})$, qui n'est pas entier ; « un minimum » est faux, on **maximise**, et 46 est une limite par le haut.\n\n**À retenir :** en maximisation, relaxation = plafond de l'optimum entier."
       }
     ],
     "indices": [
@@ -120,7 +129,8 @@
         "refuses": [
           "6",
           "3"
-        ]
+        ],
+        "explication": "**Règle :** pour un $y$ fixé, chaque contrainte donne une limite sur $x$. On doit respecter **toutes** les contraintes, donc on prend la **plus petite** limite (arrondie vers le bas, car $x$ est entier).\n\n**Pas à pas :** $y = 2$.\n\n| Contrainte | Calcul | Limite sur $x$ |\n|---|---|---|\n| Matière | $2x + 5 \\times 2 \\le 22$, donc $2x \\le 12$ | $x \\le 6$ |\n| Heures | $x + 2 \\le 6$ | $x \\le 4$ |\n\nLa plus petite limite est 4 : meilleur $x = 4$ (profit $24 + 18 = 42$).\n\n**Erreurs fréquentes :** ne regarder que la matière (6) : $(6, 2)$ demanderait 8 heures ; répondre 3 (on peut aller jusqu'à 4).\n\n**À retenir :** pour chaque $y$, la plus petite limite sur $x$ gagne."
       },
       {
         "intitule": "Meilleur $x$ pour $y = 4$.",
@@ -129,7 +139,8 @@
         "refuses": [
           "2",
           "0"
-        ]
+        ],
+        "explication": "**Règle :** même méthode : la plus petite limite sur $x$, arrondie vers le bas.\n\n**Pas à pas :** $y = 4$.\n\n| Contrainte | Calcul | Limite sur $x$ |\n|---|---|---|\n| Matière | $2x + 20 \\le 22$, donc $2x \\le 2$ | $x \\le 1$ |\n| Heures | $x + 4 \\le 6$ | $x \\le 2$ |\n\nLa plus petite limite est 1 : meilleur $x = 1$ (profit $6 + 36 = 42$).\n\n**Erreurs fréquentes :** ne regarder que les heures (2) : $(2, 4)$ demanderait 24 unités de matière ; répondre 0 (on peut prendre $x = 1$).\n\n**À retenir :** cette fois c'est la matière qui limite : la contrainte qui bloque change selon $y$."
       },
       {
         "intitule": "Peut-on prendre $y = 5$ ?",
@@ -138,7 +149,8 @@
           "Non : même avec $x = 0$, la matière vaut 25",
           "Oui, avec $x = 1$"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une valeur de $y$ est possible seulement s'il existe au moins un $x \\ge 0$ qui respecte toutes les contraintes. Le plus favorable est $x = 0$ : si même $x = 0$ échoue, $y$ est impossible.\n\n**Pas à pas :** $y = 5$ avec $x = 0$.\n\n- Matière : $2 \\times 0 + 5 \\times 5 = 25 > 22$ : violée.\n- Ajouter des $x$ ne peut qu'augmenter la matière consommée.\n\nDonc $y = 5$ est impossible.\n\n**L'autre réponse :** « Oui, avec $x = 1$ » donne une matière de $2 + 25 = 27$, encore pire.\n\n**À retenir :** pour savoir si un $y$ est possible, teste-le avec $x = 0$."
       },
       {
         "intitule": "Optimum entier $(x, y)$ (écris `(x, y)`).",
@@ -154,7 +166,8 @@
         "refuses": [
           "(1, 4)",
           "(4, 2)"
-        ]
+        ],
+        "explication": "**Règle :** l'énumération calcule le profit du meilleur $x$ pour **chaque** $y$ possible, puis garde le plus grand.\n\n**Pas à pas :**\n\n| $y$ | Limite matière | Limite heures | Meilleur $x$ | Profit $6x + 9y$ |\n|---|---|---|---|---|\n| 0 | $x \\le 11$ | $x \\le 6$ | 6 | 36 |\n| 1 | $x \\le 8{,}5$ | $x \\le 5$ | 5 | 39 |\n| 2 | $x \\le 6$ | $x \\le 4$ | 4 | 42 |\n| 3 | $x \\le 3{,}5$ | $x \\le 3$ | 3 | **45** |\n| 4 | $x \\le 1$ | $x \\le 2$ | 1 | 42 |\n\nLe maximum est 45, atteint en $(3, 3)$.\n\n**Erreurs fréquentes :** répondre $(1, 4)$ (profit 42) : c'est là que la descente s'arrête, pas l'optimum ; répondre $(4, 2)$ (profit 42 aussi).\n\n**À retenir :** une ligne par $y$, puis on garde la ligne au plus grand profit."
       },
       {
         "intitule": "Profit optimal.",
@@ -163,7 +176,8 @@
         "refuses": [
           "46",
           "42"
-        ]
+        ],
+        "explication": "**Règle :** profit optimal = objectif au point optimal $(3, 3)$.\n\n**Pas à pas :**\n\n1. $6 \\times 3 = 18$ et $9 \\times 3 = 27$.\n2. $z = 18 + 27 = 45$.\n3. Comparaison : la borne continue vaut 46, donc l'optimum entier est 1 en dessous. La borne n'est atteinte qu'avec des valeurs à virgule.\n\n**Erreurs fréquentes :** répondre 46 (la borne continue, pas atteignable en entiers) ; répondre 42 (l'optimum local de la descente).\n\n**À retenir :** optimum entier ≤ borne continue (ici $45 \\le 46$)."
       }
     ],
     "indices": [
@@ -191,7 +205,8 @@
         "refuses": [
           "(3, 3)",
           "(3, 4)"
-        ]
+        ],
+        "explication": "**Règle :** arrondir **vers le bas**, c'est garder la partie entière (on enlève tout ce qui est après la virgule), même si la décimale est grande.\n\n**Pas à pas :**\n\n1. $x \\approx 2{,}67$ : partie entière 2.\n2. $y \\approx 3{,}33$ : partie entière 3.\n3. Arrondi vers le bas : $(2, 3)$.\n\n**Erreurs fréquentes :** répondre $(3, 3)$, c'est l'arrondi **au plus proche** ($2{,}67$ est plus près de 3) ; répondre $(3, 4)$, c'est l'arrondi **vers le haut**.\n\n**À retenir :** vers le bas = partie entière ; au plus proche = l'entier le plus près ; vers le haut = l'entier juste au-dessus."
       },
       {
         "intitule": "Profit de cet arrondi.",
@@ -200,7 +215,8 @@
         "refuses": [
           "45",
           "46"
-        ]
+        ],
+        "explication": "**Règle :** profit = $6x + 9y$.\n\n**Pas à pas :** $(2, 3)$.\n\n1. $6 \\times 2 = 12$ et $9 \\times 3 = 27$.\n2. $z = 12 + 27 = 39$.\n3. Réalisable : matière $4 + 15 = 19 \\le 22$ et heures $5 \\le 6$.\n\nL'arrondi vers le bas reste réalisable (on a baissé les quantités), mais il perd beaucoup de profit.\n\n**Erreurs fréquentes :** répondre 45 (l'optimum entier) ou 46 (la borne continue).\n\n**À retenir :** un arrondi vers le bas est souvent réalisable, mais rarement optimal."
       },
       {
         "intitule": "Écart entre ce profit et l'optimum entier.",
@@ -209,7 +225,8 @@
         "refuses": [
           "7",
           "1"
-        ]
+        ],
+        "explication": "**Règle :** l'écart entre deux profits est une simple soustraction : le plus grand moins le plus petit.\n\n**Pas à pas :**\n\n1. Optimum entier : 45.\n2. Profit de l'arrondi vers le bas : 39.\n3. Écart : $45 - 39 = 6$.\n\n**Erreurs fréquentes :** comparer avec la borne 46 au lieu de l'optimum entier ($46 - 39 = 7$) ; répondre 1 (c'est l'écart borne − optimum, la question suivante).\n\n**À retenir :** lis bien entre quoi et quoi on mesure l'écart."
       },
       {
         "intitule": "Écart entre la borne continue et l'optimum entier.",
@@ -218,7 +235,8 @@
         "refuses": [
           "0",
           "6"
-        ]
+        ],
+        "explication": "**Règle :** même soustraction, cette fois entre la borne continue et l'optimum entier.\n\n**Pas à pas :**\n\n1. Borne continue : 46.\n2. Optimum entier : 45.\n3. Écart : $46 - 45 = 1$.\n\nLa borne est ici très proche de l'optimum, mais elle ne dit pas **où** il se trouve : c'est en $(3, 3)$ qu'on le trouve, pas en arrondissant au hasard.\n\n**Erreurs fréquentes :** répondre 0 (la borne n'est pas atteinte en entiers) ; répondre 6 (l'écart de la question précédente).\n\n**À retenir :** borne − optimum entier $\\ge 0$ en maximisation."
       },
       {
         "intitule": "L'arrondi vers le haut $(3, 4)$ est-il réalisable ?",
@@ -227,7 +245,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** un point est réalisable s'il respecte toutes les contraintes ; un arrondi vers le haut augmente les quantités, donc peut dépasser les ressources.\n\n**Pas à pas :** $(3, 4)$.\n\n| Contrainte | Calcul | Limite | Respectée ? |\n|---|---|---|---|\n| Matière | $2 \\times 3 + 5 \\times 4 = 6 + 20 = 26$ | 22 | non |\n| Heures | $3 + 4 = 7$ | 6 | non |\n\nIrréalisable : arrondir vers le haut fait sortir des contraintes.\n\n**Erreur fréquente :** répondre « Oui » parce que le profit ($18 + 36 = 54$) est grand. Un point irréalisable ne compte pas, quel que soit son profit.\n\n**À retenir :** après un arrondi, vérifie toujours les contraintes."
       }
     ],
     "indices": [
@@ -255,7 +274,8 @@
         "refuses": [
           "(1, 3)",
           "(4, 0)"
-        ]
+        ],
+        "explication": "**Règle :** en **meilleure amélioration**, on calcule tous les voisins réalisables et on va sur celui qui a le plus grand profit, s'il améliore.\n\n**Pas à pas :** depuis $(0, 0)$.\n\n| Pas | Point | Voisins utiles (profit) | Choix |\n|---|---|---|---|\n| 1 | $(0, 0)$, profit 0 | $(1, 0)$ : 6 ; $(0, 1)$ : 9 | $(0, 1)$ |\n| 2 | $(0, 1)$, profit 9 | $(1, 1)$ : 15 ; $(0, 2)$ : 18 | $(0, 2)$ |\n| 3 | $(0, 2)$, profit 18 | $(1, 2)$ : 24 ; $(0, 3)$ : 27 | $(0, 3)$ |\n| 4 | $(0, 3)$, profit 27 | $(1, 3)$ : 33 ; $(0, 4)$ : 36 | $(0, 4)$ |\n\nÀ chaque pas, $+y$ rapporte 9 et $+x$ seulement 6 : on prend $+y$. Après 4 pas : $(0, 4)$ (matière 20, heures 4, réalisable).\n\n**Erreurs fréquentes :** répondre $(4, 0)$ en prenant $+x$ à chaque pas (moins bon gain) ; répondre $(1, 3)$ en mélangeant les mouvements.\n\n**À retenir :** meilleure amélioration = on compare tous les voisins et on prend le plus grand gain."
       },
       {
         "intitule": "Matière consommée par le voisin $(0, 5)$, refusé.",
@@ -264,7 +284,8 @@
         "refuses": [
           "22",
           "5"
-        ]
+        ],
+        "explication": "**Règle :** un voisin est rejeté s'il viole une contrainte. On calcule sa matière avec $2x + 5y$.\n\n**Pas à pas :** $(0, 5)$.\n\n1. $2 \\times 0 = 0$ et $5 \\times 5 = 25$.\n2. Matière : $0 + 25 = 25$.\n3. $25 > 22$ : ce voisin est irréalisable, donc refusé.\n\n**Erreurs fréquentes :** répondre 22 (la matière disponible) ; répondre 5 (la valeur de $y$).\n\n**À retenir :** un voisin qui dépasse une ressource est rayé avant de comparer les profits."
       },
       {
         "intitule": "Point où la descente s'arrête.",
@@ -279,7 +300,8 @@
         "refuses": [
           "(3, 3)",
           "(0, 4)"
-        ]
+        ],
+        "explication": "**Règle :** la descente s'arrête quand aucun voisin réalisable n'améliore le profit.\n\n**Pas à pas :**\n\n1. Depuis $(0, 4)$ (profit 36) : $(0, 5)$ est interdit (matière 25), $(1, 4)$ vaut 42 (matière $2 + 20 = 22$, heures 5) ; on va en $(1, 4)$.\n2. Voisins de $(1, 4)$ :\n\n| Voisin | Matière (≤ 22) | Profit |\n|---|---|---|\n| $(2, 4)$ | 24 : non | — |\n| $(1, 5)$ | 27 : non | — |\n| $(0, 4)$ | 20 | 36 |\n| $(1, 3)$ | 17 | 33 |\n\nAucun voisin ne dépasse 42 : la descente s'arrête en $(1, 4)$.\n\n**Erreurs fréquentes :** répondre $(3, 3)$ : la descente ne l'atteint pas, il faudrait passer par des points moins bons ; répondre $(0, 4)$ : on peut encore y améliorer en allant en $(1, 4)$.\n\n**À retenir :** arrêt = aucun voisin réalisable meilleur que le point actuel."
       },
       {
         "intitule": "Profit en ce point.",
@@ -288,7 +310,8 @@
         "refuses": [
           "45",
           "36"
-        ]
+        ],
+        "explication": "**Règle :** profit = $6x + 9y$.\n\n**Pas à pas :** $(1, 4)$.\n\n1. $6 \\times 1 = 6$ et $9 \\times 4 = 36$.\n2. $z = 6 + 36 = 42$.\n\n**Erreurs fréquentes :** répondre 45, l'optimum global, que la descente n'atteint pas ; répondre 36, le profit de $(0, 4)$, un pas trop tôt.\n\n**À retenir :** la descente s'arrête à 42, 3 de moins que l'optimum."
       },
       {
         "intitule": "Ce point est…",
@@ -298,7 +321,8 @@
           "l'optimum global",
           "irréalisable"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un **optimum local** n'a aucun voisin meilleur ; l'**optimum global** est le meilleur point de tout le problème. Un point peut être local sans être global.\n\n**Pas à pas :**\n\n1. Aucun voisin de $(1, 4)$ ne dépasse 42 : optimum **local**.\n2. $(3, 3)$ vaut 45 > 42 : ce n'est pas l'optimum **global**.\n3. Réalisabilité : matière $22 \\le 22$ et heures $5 \\le 6$, le point est réalisable.\n\n**Les autres réponses :** « l'optimum global » est faux puisque $(3, 3)$ fait mieux ; « irréalisable » est faux, les deux contraintes sont respectées (la matière tout juste).\n\n**À retenir :** bloqué ≠ optimal ; c'est tout le piège de la descente."
       }
     ],
     "indices": [
@@ -320,7 +344,8 @@
         "refuses": [
           "-9",
           "33"
-        ]
+        ],
+        "explication": "**Règle :** en maximisation, une dégradation est une **baisse** du profit : baisse = profit actuel − profit du voisin, un nombre **positif**.\n\n**Pas à pas :**\n\n1. Profit de $(1, 4)$ : 42.\n2. Profit de $(1, 3)$ : $6 \\times 1 + 9 \\times 3 = 6 + 27 = 33$.\n3. Baisse : $42 - 33 = 9$.\n\n**Erreurs fréquentes :** répondre $-9$ (on a fait $33 - 42$, mais la « baisse » se donne en positif) ; répondre 33 (le nouveau profit, pas la baisse).\n\n**À retenir :** baisse = ancien − nouveau, toujours positive pour une dégradation."
       },
       {
         "intitule": "Probabilité de l'accepter à $T = 10$ (arrondie au millième).",
@@ -334,7 +359,8 @@
         "refuses": [
           "0.9",
           "0.011"
-        ]
+        ],
+        "explication": "**Règle :** le recuit accepte une dégradation avec la probabilité $P = e^{-\\text{baisse}/T}$.\n\n**Pas à pas :** baisse 9, $T = 10$.\n\n1. Exposant : $-\\dfrac{9}{10} = -0{,}9$.\n2. $P = e^{-0{,}9} \\approx 0{,}407$ (valeur donnée dans l'énoncé).\n3. Environ 41 % de chances d'accepter : à haute température, une dégradation passe souvent.\n\n**Erreurs fréquentes :** répondre $0{,}9$, c'est l'exposant et non la probabilité ; répondre $0{,}011$, c'est la valeur pour $T = 2$.\n\n**À retenir :** divise la baisse par $T$, puis prends $e^{-\\dots}$."
       },
       {
         "intitule": "Probabilité de l'accepter à $T = 2$ (arrondie au millième).",
@@ -346,7 +372,8 @@
         ],
         "refuses": [
           "0.407"
-        ]
+        ],
+        "explication": "**Règle :** même formule $P = e^{-\\text{baisse}/T}$, avec une température plus basse.\n\n**Pas à pas :** baisse 9, $T = 2$.\n\n1. Exposant : $-\\dfrac{9}{2} = -4{,}5$.\n2. $P = e^{-4{,}5} \\approx 0{,}011$, soit environ 1 %.\n\nLa même dégradation, acceptée 41 % du temps à $T = 10$, ne l'est plus qu'1 % du temps à $T = 2$ : il faut franchir ce « col » tant que la température est encore haute.\n\n**Erreurs fréquentes :** répondre $0{,}407$ (la valeur à $T = 10$) ; répondre $4{,}5$ (l'exposant).\n\n**À retenir :** plus $T$ est basse, plus l'exposant est grand en valeur absolue et plus la probabilité est petite."
       },
       {
         "intitule": "Algorithme génétique : enfant qui prend le $x$ du parent $(3, 2)$ et le $y$ du parent $(2, 3)$.",
@@ -361,12 +388,14 @@
         "refuses": [
           "(2, 2)",
           "(2, 3)"
-        ]
+        ],
+        "explication": "**Règle :** un enfant de croisement prend une coordonnée de chaque parent ; ici le $x$ de $(3, 2)$ et le $y$ de $(2, 3)$.\n\n**Pas à pas :**\n\n1. $x$ du parent $(3, 2)$ : 3.\n2. $y$ du parent $(2, 3)$ : 3.\n3. Enfant : $(3, 3)$.\n4. Vérification : matière 21 ≤ 22, heures 6 ≤ 6, profit 45, meilleur que les parents (36 et 39).\n\n**Erreurs fréquentes :** prendre le $x$ et le $y$ « dans l'autre sens » : le $x$ de $(2, 3)$ et le $y$ de $(3, 2)$ donnent $(2, 2)$ ; recopier un parent tel quel, comme $(2, 3)$.\n\n**À retenir :** lis bien de quel parent vient chaque coordonnée."
       },
       {
         "intitule": "Explique en une phrase pourquoi le croisement réussit là où la descente échoue.",
         "type": "auto",
-        "reponse": "Le croisement combine des morceaux de deux bonnes solutions différentes : il peut sauter directement vers $(3, 3)$ sans passer par des solutions moins bonnes, alors que la descente refuse toute dégradation."
+        "reponse": "Le croisement combine des morceaux de deux bonnes solutions différentes : il peut sauter directement vers $(3, 3)$ sans passer par des solutions moins bonnes, alors que la descente refuse toute dégradation.",
+        "explication": "Une bonne réponse contient deux idées :\n\n1. **Le croisement :** il combine des morceaux de **deux solutions différentes** (le $x$ de l'une, le $y$ de l'autre). Il peut ainsi **sauter directement** vers $(3, 3)$, un point éloigné de chaque parent.\n2. **La descente :** elle n'avance que d'**un pas à la fois** et **refuse toute dégradation**. Or, pour aller de $(1, 4)$ à $(3, 3)$ pas à pas, il faut passer par $(1, 3)$ ou un autre point moins bon : la descente ne le fera jamais.\n\n**Erreurs fréquentes :** dire seulement « le croisement est aléatoire » (le hasard seul n'explique rien) ; dire que la descente « ne voit pas $(3, 3)$ » sans parler du refus des dégradations.\n\n**À retenir :** croisement = saut entre deux bonnes solutions ; descente = petits pas sans jamais redescendre."
       }
     ],
     "indices": [
@@ -389,7 +418,8 @@
           "Recuit simulé",
           "Algorithme génétique"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** la **recherche locale** (descente) s'arrête au premier optimum local : elle n'a **aucun** mécanisme pour en sortir. Seule rustine : la relancer depuis plusieurs points de départ (**multi-start**).\n\n**Pas à pas :** on cherche quel outil chaque méthode a contre les optima locaux.\n\n| Méthode | Outil contre les optima locaux |\n|---|---|\n| Recherche locale | aucun (d'où le multi-start) |\n| Recuit simulé | accepter des dégradations ($e^{-\\Delta E/T}$) |\n| Algorithme génétique | diversité, croisements, mutations |\n\n**Les autres réponses :** le recuit a la température, l'AG a sa population : tous deux ont un mécanisme d'échappement.\n\n**À retenir :** multi-start → recherche locale."
       },
       {
         "intitule": "Acceptation aléatoire des dégradations avec $e^{-\\Delta E/T}$.",
@@ -399,7 +429,8 @@
           "Recuit simulé",
           "Algorithme génétique"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** la formule $e^{-\\Delta E/T}$ contient une **température** $T$ : c'est la règle d'acceptation du **recuit simulé**.\n\n**Pas à pas :** $\\Delta E$ est la dégradation du coût, $T$ la température. Plus $T$ est grande, plus la probabilité d'accepter est grande. Aucune autre méthode du cours n'utilise de température.\n\n**Les autres réponses :** la recherche locale refuse toute dégradation ; l'algorithme génétique ne travaille pas avec une température mais avec une population.\n\n**À retenir :** température → recuit simulé."
       },
       {
         "intitule": "Diversité, croisements et mutations.",
@@ -409,7 +440,8 @@
           "Recuit simulé",
           "Algorithme génétique"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** diversité, croisements et mutations n'ont de sens que pour une **population** de solutions : c'est l'**algorithme génétique**.\n\n**Pas à pas :** un croisement demande **deux** parents, donc plusieurs solutions en même temps. La recherche locale et le recuit n'en suivent qu'une seule : ils ne peuvent pas croiser.\n\n**Les autres réponses :** la recherche locale et le recuit simulé manipulent une seule solution.\n\n**À retenir :** croisement et mutation → algorithme génétique."
       },
       {
         "intitule": "Exploration large et facilement parallélisable.",
@@ -419,7 +451,8 @@
           "Recuit simulé",
           "Algorithme génétique"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** une méthode est **parallélisable** si son travail se découpe en morceaux indépendants qu'on peut faire en même temps sur plusieurs processeurs.\n\n**Pas à pas :** dans un AG, la fitness de chaque individu se calcule sans regarder les autres : 100 individus peuvent être évalués sur 100 processeurs à la fois. Et la population explore plusieurs régions en même temps : l'exploration est **large**.\n\n**Les autres réponses :** la recherche locale et le recuit suivent un seul chemin, chaque pas dépend du précédent : on ne peut pas faire les pas en même temps.\n\n**À retenir :** exploration large et parallélisable → algorithme génétique."
       },
       {
         "intitule": "Faiblesse : le gel en fin de course quand $T$ devient très petite.",
@@ -429,7 +462,8 @@
           "Recuit simulé",
           "Algorithme génétique"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** le **gel** arrive en fin de recuit : la température $T$ est si petite que $e^{-\\Delta E/T}$ est presque nul, plus aucune dégradation n'est acceptée.\n\n**Pas à pas :** avec $\\Delta E = 5$ : à $T = 10$, $e^{-0{,}5} \\approx 0{,}61$ ; à $T = 0{,}5$, $e^{-10} \\approx 0{,}00005$. Le recuit ne fait plus que des améliorations : il se comporte comme une descente et reste bloqué là où il est.\n\n**Les autres réponses :** la recherche locale et l'AG n'ont pas de température, ils ne peuvent pas « geler ».\n\n**À retenir :** gel = $T$ trop petite → recuit simulé."
       }
     ],
     "indices": [
@@ -451,7 +485,8 @@
         "refuses": [
           "98",
           "102"
-        ]
+        ],
+        "explication": "**Règle :** la **moyenne** est la somme des résultats divisée par le nombre de lancements.\n\n**Pas à pas :** méthode A.\n\n1. Somme : $102 + 98 + 100 + 101 + 99 = 500$.\n2. Nombre de lancements : 5.\n3. Moyenne : $500 / 5 = 100$.\n\n**Erreurs fréquentes :** donner le minimum (98) ou le maximum (102) au lieu de la moyenne.\n\n**À retenir :** moyenne = somme ÷ nombre de valeurs."
       },
       {
         "intitule": "Moyenne de la méthode B.",
@@ -460,7 +495,8 @@
         "refuses": [
           "90",
           "110"
-        ]
+        ],
+        "explication": "**Règle :** même calcul de moyenne.\n\n**Pas à pas :** méthode B.\n\n1. Somme : $95 + 110 + 90 + 105 + 100 = 500$.\n2. Moyenne : $500 / 5 = 100$.\n\nMême moyenne que A : la moyenne seule ne permet pas de dire laquelle est meilleure.\n\n**Erreurs fréquentes :** donner le meilleur résultat (90) ou le pire (110).\n\n**À retenir :** deux moyennes égales → regarde la dispersion."
       },
       {
         "intitule": "Étendue (maximum − minimum) de la méthode B.",
@@ -469,7 +505,8 @@
         "refuses": [
           "10",
           "15"
-        ]
+        ],
+        "explication": "**Règle :** l'**étendue** mesure la dispersion : plus grand résultat − plus petit résultat.\n\n**Pas à pas :** méthode B : 95, 110, 90, 105, 100.\n\n1. Plus grand : 110.\n2. Plus petit : 90.\n3. Étendue : $110 - 90 = 20$.\n\n**Erreurs fréquentes :** calculer l'écart entre deux lancements voisins ($110 - 95 = 15$, ou $100 - 90 = 10$) au lieu du plus grand moins le plus petit.\n\n**À retenir :** étendue = max − min, sur toutes les valeurs."
       },
       {
         "intitule": "Quelle méthode est la plus **régulière** ?",
@@ -478,7 +515,8 @@
           "A",
           "B"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une méthode est **régulière** si ses résultats varient peu : petite étendue.\n\n**Pas à pas :**\n\n| Méthode | Plus grand | Plus petit | Étendue |\n|---|---|---|---|\n| A | 102 | 98 | 4 |\n| B | 110 | 90 | 20 |\n\nA a la plus petite étendue : **A** est la plus régulière.\n\n**L'autre réponse :** B a fait le meilleur résultat (90), mais aussi le pire (110) : elle est imprévisible. À moyenne égale, on préfère souvent la méthode régulière.\n\n**À retenir :** régulière = petite étendue."
       },
       {
         "intitule": "Si on n'avait fait qu'un lancement de chaque (le 3ᵉ), qu'aurait-on conclu ?",
@@ -488,7 +526,8 @@
           "Que A est meilleure",
           "Qu'elles sont identiques"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une méthode aléatoire donne un résultat différent à chaque lancement ; un seul lancement peut être un coup de chance.\n\n**Pas à pas :**\n\n1. Lancement 3 : A = 100, B = 90.\n2. On **minimise** : 90 est meilleur que 100, on conclurait que B est meilleure.\n3. Mais sur les 5 lancements, les moyennes sont égales (100 et 100) : cette conclusion est **fausse**, B a eu de la chance ce coup-là.\n\n**Les autres réponses :** « A est meilleure » est l'inverse de ce que montre le lancement 3 ; « identiques » est faux, 90 ≠ 100.\n\n**À retenir :** un seul lancement peut tromper ; il faut plusieurs lancements."
       },
       {
         "intitule": "Combien de lancements recommande le cours comme standard ?",
@@ -497,7 +536,8 @@
         "refuses": [
           "1",
           "5"
-        ]
+        ],
+        "explication": "**Règle :** le cours recommande **30 lancements** par méthode, sur les mêmes instances et avec le même budget de temps, en rapportant la moyenne et la dispersion.\n\n**Pas à pas :** avec 5 lancements comme ici, la moyenne bouge encore beaucoup d'une série à l'autre. Avec 30, elle devient assez stable pour comparer deux méthodes.\n\n**Erreurs fréquentes :** répondre 1 (un seul lancement ne prouve rien) ; répondre 5 (le nombre de lancements du tableau, trop peu).\n\n**À retenir :** 30 lancements, c'est le standard."
       }
     ],
     "indices": [
@@ -519,7 +559,8 @@
         "refuses": [
           "46",
           "42"
-        ]
+        ],
+        "explication": "**Règle :** dans une branche, on résout la relaxation continue **avec la contrainte de la branche en plus**. Si sa solution est entière, la branche est résolue.\n\n**Pas à pas :** branche $y \\le 3$.\n\n1. Le profit gagne 9 par unité de $y$ et 6 par unité de $x$. Le long de la contrainte des heures ($x + y = 6$), échanger un $x$ contre un $y$ rapporte $9 - 6 = 3$ : on veut le plus grand $y$ possible, donc $y = 3$.\n2. Avec $y = 3$ : heures $x \\le 3$, matière $2x \\le 22 - 15 = 7$, soit $x \\le 3{,}5$. La plus petite limite : $x = 3$.\n3. Point $(3, 3)$, entier, profit $18 + 27 = 45$.\n\n**Erreurs fréquentes :** répondre 46, la borne **avant** séparation (le point $(\\frac{8}{3}, \\frac{10}{3})$ a $y > 3$, il n'est plus dans cette branche) ; répondre 42.\n\n**À retenir :** une branche = la relaxation + la nouvelle contrainte ; si la solution est entière, la branche est terminée."
       },
       {
         "intitule": "Branche $y \\ge 4$ : profit de la relaxation (atteint en $(1, 4)$).",
@@ -528,7 +569,8 @@
         "refuses": [
           "46",
           "39.6"
-        ]
+        ],
+        "explication": "**Règle :** même méthode, avec cette fois $y \\ge 4$.\n\n**Pas à pas :**\n\n1. À $y = 4$ : matière $2x \\le 22 - 20 = 2$, donc $x \\le 1$ ; heures $x \\le 2$. On prend $x = 1$ : $z = 6 + 36 = 42$.\n2. Si on monte $y$ au-dessus de 4, la matière oblige à baisser $x$ : chaque unité de $y$ en plus (+9) coûte 2,5 unités de $x$ ($-15$). Le profit baisse. Exemple : $y = 4{,}4$ et $x = 0$ donnent $9 \\times 4{,}4 = 39{,}6$.\n3. Le maximum de la branche est donc 42, en $(1, 4)$.\n\n**Erreurs fréquentes :** répondre 46 (borne d'avant la séparation) ; répondre 39,6 (un autre coin de la branche, moins bon).\n\n**À retenir :** compare les coins de la branche et garde le meilleur."
       },
       {
         "intitule": "Faut-il explorer davantage la branche $y \\ge 4$ ?",
@@ -537,7 +579,8 @@
           "Non : sa borne 42 est inférieure à la solution entière 45 déjà trouvée",
           "Oui, toujours"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** on **coupe** une branche si sa borne est inférieure à la meilleure solution entière déjà trouvée : elle ne peut rien contenir de mieux.\n\n**Pas à pas :**\n\n1. Meilleure solution entière connue : $(3, 3)$ avec 45 (branche $y \\le 3$).\n2. Borne de la branche $y \\ge 4$ : 42. Aucun point de cette branche ne dépasse 42.\n3. $42 < 45$ : la branche est **coupée**, inutile de l'explorer.\n\n**L'autre réponse :** « Oui, toujours » ferait perdre tout l'intérêt du branch & bound, qui gagne du temps justement en coupant.\n\n**À retenir :** borne de la branche < meilleure solution connue → on coupe."
       },
       {
         "intitule": "Le résultat $(3, 3)$, 45 est-il prouvé optimal ?",
@@ -546,7 +589,8 @@
           "Oui",
           "Non, ce n'est qu'une bonne solution"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** le branch & bound est une méthode **exacte** : quand toutes les branches sont résolues ou coupées, la meilleure solution trouvée est **prouvée** optimale.\n\n**Pas à pas :**\n\n1. Branche $y \\le 3$ : résolue, meilleur point $(3, 3)$ à 45.\n2. Branche $y \\ge 4$ : coupée, rien au-dessus de 42.\n3. Ces deux branches couvrent tous les entiers possibles (un $y$ entier est soit $\\le 3$, soit $\\ge 4$).\n\nDonc aucun point entier ne dépasse 45 : $(3, 3)$ est **prouvé** optimal.\n\n**L'autre réponse :** « ce n'est qu'une bonne solution » décrit le résultat d'une **métaheuristique** (descente, recuit, AG), qui ne prouve rien.\n\n**À retenir :** branch & bound = optimum **prouvé** ; métaheuristique = bonne solution sans preuve."
       }
     ],
     "indices": [

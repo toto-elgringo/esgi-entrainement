@@ -5,12 +5,58 @@
     "difficulte": 2,
     "enonce": "Tu veux les restaurants à moins de 200 m d'une gare.",
     "questions": [
-      { "intitule": "Quelle est la première étape après le chargement des couches ?", "type": "choix", "choix": ["Vérifier que les couches sont en EPSG:2154", "Exporter en PNG", "Créer la jointure", "Changer la symbologie"], "reponse": 0 },
-      { "intitule": "Quel outil entoure les gares d'une zone de 200 m ?", "type": "choix", "choix": ["Tampon", "Jointure", "Filtre", "Fusion"], "reponse": 0 },
-      { "intitule": "Quel outil sélectionne ensuite les restaurants dans cette zone ?", "type": "choix", "choix": ["Sélectionner par localisation", "Sélectionner par expression", "Table d'attributs", "Mise en page"], "reponse": 0 },
-      { "intitule": "Quelle relation spatiale choisir ?", "type": "choix", "choix": ["Intersecte", "Est disjoint", "Égale", "Ne touche pas"], "reponse": 0 }
+      {
+        "intitule": "Quelle est la première étape après le chargement des couches ?",
+        "type": "choix",
+        "choix": [
+          "Vérifier que les couches sont en EPSG:2154",
+          "Exporter en PNG",
+          "Créer la jointure",
+          "Changer la symbologie"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** un tampon mesure sa distance dans l'**unité du système de coordonnées** de la couche. Pour parler en mètres, la couche doit être en **EPSG:2154** (Lambert 93). On vérifie donc le système **avant** toute mesure.\n\n**Pas à pas :**\n\n1. Les couches (gares, restaurants) viennent d'être chargées. Celles de QuickOSM arrivent souvent en EPSG:4326, en degrés.\n2. L'étape suivante sera un tampon de 200 m : elle a besoin de mètres.\n3. Donc on regarde d'abord le code EPSG de chaque couche, et on reprojette en EPSG:2154 si besoin.\n\n**Les autres réponses :** exporter en PNG vient tout à la fin (et ne donne qu'une image) ; une jointure relie un tableau par une colonne commune, elle ne sert pas ici ; la symbologie change les couleurs. Aucun de ces trois ne règle l'unité de mesure.\n\n**À retenir :** avant de mesurer une distance, vérifie que tout est en EPSG:2154."
+      },
+      {
+        "intitule": "Quel outil entoure les gares d'une zone de 200 m ?",
+        "type": "choix",
+        "choix": [
+          "Tampon",
+          "Jointure",
+          "Filtre",
+          "Fusion"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** l'outil **Tampon** (Vecteur > Géotraitement > Tampon) dessine une surface à une distance donnée autour de chaque objet.\n\n**Pas à pas :**\n\n1. Couche d'entrée : les gares (des points).\n2. Distance : 200 (la couche est en mètres).\n3. Résultat : une nouvelle couche avec un disque de 200 m de rayon autour de chaque gare.\n\n**Les autres réponses :** la jointure rattache les colonnes d'un tableau à une couche ; le filtre cache des objets d'après leurs attributs ; la fusion assemble plusieurs couches en une seule. Aucun de ces outils ne crée de zone autour d'un objet.\n\n**À retenir :** « une zone de N m autour de… » = Tampon."
+      },
+      {
+        "intitule": "Quel outil sélectionne ensuite les restaurants dans cette zone ?",
+        "type": "choix",
+        "choix": [
+          "Sélectionner par localisation",
+          "Sélectionner par expression",
+          "Table d'attributs",
+          "Mise en page"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **Sélectionner par localisation** garde les objets d'une couche A selon leur **position** par rapport à une couche B. **Sélectionner par expression** ne regarde que les **colonnes** de la table.\n\n**Pas à pas :**\n\n1. Couche A, celle dont on veut des objets : les restaurants.\n2. Couche B, celle qui sert de comparaison : les tampons de 200 m.\n3. La question « le restaurant est-il dans un tampon ? » dépend de sa position, pas d'une colonne : c'est la sélection par localisation.\n\n**Les autres réponses :** Sélectionner par expression ne peut pas savoir si un restaurant est dans un tampon (cette information n'est écrite nulle part dans sa table) ; la table d'attributs affiche les données sans rien chercher sur la carte ; la mise en page sert à préparer une carte à imprimer.\n\n**À retenir :** une condition de position entre deux couches = Sélectionner par localisation."
+      },
+      {
+        "intitule": "Quelle relation spatiale choisir ?",
+        "type": "choix",
+        "choix": [
+          "Intersecte",
+          "Est disjoint",
+          "Égale",
+          "Ne touche pas"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** la relation **intersecte** garde les objets qui ont au moins un point commun avec la zone : dedans, à cheval ou sur le bord. **Est disjoint** garde l'inverse : aucun point commun.\n\n**Pas à pas :** trois restaurants et le tampon de 200 m d'une gare.\n\n| Restaurant | Distance à la gare | intersecte ? |\n|---|---|---|\n| R1 | 80 m | oui (dedans) |\n| R2 | 200 m pile | oui (sur le bord) |\n| R3 | 350 m | non (dehors) |\n\n« Intersecte » donne R1 et R2 : exactement les restaurants à 200 m ou moins.\n\n**Les autres réponses :** « est disjoint » et « ne touche pas » donneraient R3, les restaurants **hors** de la zone (l'inverse de ce qu'on veut) ; « égale » demande deux formes identiques, et un point n'est jamais égal à un disque, donc rien ne serait sélectionné.\n\n**À retenir :** pour « les objets dans la zone », choisis **intersecte**."
+      }
     ],
-    "indices": ["Mesurer en mètres demande la bonne projection."],
+    "indices": [
+      "Mesurer en mètres demande la bonne projection."
+    ],
     "correction": "**EPSG:2154** → **Tampon** de 200 m → **Sélectionner par localisation** → relation **intersecte**."
   },
   {
@@ -19,10 +65,22 @@
     "difficulte": 1,
     "enonce": "Tes gares sont en Lambert 93.",
     "questions": [
-      { "intitule": "Quelle valeur saisis-tu comme distance (en unités de la couche) pour 200 m ?", "type": "nombre", "reponse": 200 },
-      { "intitule": "Et pour un tampon de 1,5 km ?", "type": "nombre", "reponse": 1500 }
+      {
+        "intitule": "Quelle valeur saisis-tu comme distance (en unités de la couche) pour 200 m ?",
+        "type": "nombre",
+        "reponse": 200,
+        "explication": "**Règle :** la distance d'un tampon est dans **l'unité du système de coordonnées** de la couche. Le Lambert 93 (EPSG:2154) est en **mètres**.\n\n**Pas à pas :**\n\n1. Les gares sont en Lambert 93 : l'unité est le mètre.\n2. On veut 200 m.\n3. 200 m exprimés en mètres = 200 : on saisit **200**.\n\n**Erreur fréquente :** croire qu'il faut convertir (en km : 0,2). La couche compte en mètres, donc 0,2 ferait un tampon de 20 cm.\n\n**À retenir :** en Lambert 93, la valeur saisie est le nombre de mètres."
+      },
+      {
+        "intitule": "Et pour un tampon de 1,5 km ?",
+        "type": "nombre",
+        "reponse": 1500,
+        "explication": "**Règle :** la couche est en mètres, donc la distance se saisit **en mètres**. Pour passer des kilomètres aux mètres : 1 km = 1 000 m, on multiplie par 1 000.\n\n**Pas à pas :**\n\n1. Distance demandée : 1,5 km.\n2. Conversion : 1,5 × 1 000 = 1 500.\n3. On saisit **1500** (sans espace ni unité).\n\n**Erreurs fréquentes :** saisir 1,5 (ce serait un tampon de 1,5 m, à peine visible) ; saisir 150 en multipliant par 100 au lieu de 1 000 (150 m seulement).\n\n**À retenir :** en Lambert 93, des km se saisissent en mètres : multiplie par 1 000."
+      }
     ],
-    "indices": ["Le Lambert 93 est en mètres."],
+    "indices": [
+      "Le Lambert 93 est en mètres."
+    ],
     "correction": "**200** et **1500**, car l'unité de la couche est le mètre."
   },
   {
@@ -31,10 +89,28 @@
     "difficulte": 2,
     "enonce": "Avec QuickOSM, tu veux les restaurants italiens de Montreuil.",
     "questions": [
-      { "intitule": "Clé et valeur pour tous les restaurants (clé=valeur)", "type": "texte", "reponse": ["amenity=restaurant", "amenity = restaurant"] },
-      { "intitule": "Clé et valeur pour garder seulement les italiens (clé=valeur)", "type": "texte", "reponse": ["cuisine=italian", "cuisine = italian"] }
+      {
+        "intitule": "Clé et valeur pour tous les restaurants (clé=valeur)",
+        "type": "texte",
+        "reponse": [
+          "amenity=restaurant",
+          "amenity = restaurant"
+        ],
+        "explication": "**Règle :** dans OpenStreetMap, chaque objet porte des étiquettes `clé=valeur`, en **anglais** et en **minuscules**. Les restaurants, cafés, pharmacies… sont rangés sous la clé `amenity` (« équipement, service »).\n\n**Pas à pas :**\n\n1. On cherche un restaurant : c'est un service, donc la clé est `amenity`.\n2. La valeur précise le type de service : `restaurant`.\n3. On saisit : `amenity=restaurant`.\n\n**Erreurs fréquentes :** écrire `amenity=restaurants` (au pluriel), `Amenity=Restaurant` (avec majuscules), ou utiliser la clé `shop`, qui est pour les commerces (boulangerie, supermarché…), pas pour les restaurants.\n\n**À retenir :** une étiquette OSM = `clé=valeur`, en anglais, minuscules, au singulier."
+      },
+      {
+        "intitule": "Clé et valeur pour garder seulement les italiens (clé=valeur)",
+        "type": "texte",
+        "reponse": [
+          "cuisine=italian",
+          "cuisine = italian"
+        ],
+        "explication": "**Règle :** pour resserrer une requête QuickOSM, on ajoute une **deuxième condition** : l'objet doit porter les deux étiquettes. Le type de cuisine est rangé sous la clé `cuisine`, avec une valeur en anglais.\n\n**Pas à pas :**\n\n1. Première condition (déjà là) : `amenity=restaurant`.\n2. On veut les italiens : la clé est `cuisine`.\n3. La valeur est le mot anglais pour « italien » : `italian`.\n4. On saisit : `cuisine=italian`.\n\n**Erreurs fréquentes :** écrire la valeur en français (`cuisine=italien`) ou avec une majuscule (`Italian`) : OSM ne trouve rien. Et même avec la bonne requête, un restaurant italien dont personne n'a rempli la clé `cuisine` dans OSM ne sortira pas.\n\n**À retenir :** chaque condition `clé=valeur` ajoutée réduit le résultat ; les valeurs OSM sont toujours en anglais."
+      }
     ],
-    "indices": ["amenity = commodité ; cuisine = type de cuisine, en anglais."],
+    "indices": [
+      "amenity = commodité ; cuisine = type de cuisine, en anglais."
+    ],
     "correction": "`amenity=restaurant` puis `cuisine=italian`."
   },
   {
@@ -43,10 +119,34 @@
     "difficulte": 1,
     "enonce": "Tu dois rendre un fichier `restaurant_italien_montreuil.gpkg`.",
     "questions": [
-      { "intitule": "Quel format choisis-tu dans la fenêtre d'export ?", "type": "choix", "choix": ["GeoPackage", "Shapefile", "PDF", "JPEG"], "reponse": 0 },
-      { "intitule": "Quelle case cocher pour n'exporter que ta sélection ?", "type": "choix", "choix": ["Sauvegarder seulement les objets sélectionnés", "Ajouter le fichier sauvegardé à la carte", "Remplacer le style", "Créer un tampon"], "reponse": 0 }
+      {
+        "intitule": "Quel format choisis-tu dans la fenêtre d'export ?",
+        "type": "choix",
+        "choix": [
+          "GeoPackage",
+          "Shapefile",
+          "PDF",
+          "JPEG"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** l'extension d'un fichier indique son format. `.gpkg` = **GeoPackage** : une couche complète (formes et attributs) dans un seul fichier, avec noms longs et accents acceptés.\n\n**Pas à pas :**\n\n1. Le fichier demandé se termine par `.gpkg`.\n2. Dans la fenêtre d'export, le format qui produit un `.gpkg` est GeoPackage.\n3. On le choisit, puis on donne le nom exact `restaurant_italien_montreuil`.\n\n**Les autres réponses :** le Shapefile produit un `.shp` accompagné d'autres fichiers (`.shx`, `.dbf`…), pas un `.gpkg` ; le PDF et le JPEG ne sont que des images de carte, sans données qu'on peut analyser.\n\n**À retenir :** lis l'extension demandée : elle te donne directement le format à choisir."
+      },
+      {
+        "intitule": "Quelle case cocher pour n'exporter que ta sélection ?",
+        "type": "choix",
+        "choix": [
+          "Sauvegarder seulement les objets sélectionnés",
+          "Ajouter le fichier sauvegardé à la carte",
+          "Remplacer le style",
+          "Créer un tampon"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** sans précaution, un export enregistre **toute** la couche. La case **Sauvegarder seulement les objets sélectionnés** limite le fichier aux objets surlignés par ta requête.\n\n**Pas à pas :**\n\n1. Ta couche contient tous les restaurants de Montreuil.\n2. Ta requête n'en a sélectionné qu'une partie (les italiens près d'une gare, par exemple).\n3. Tu coches la case : le fichier ne contient que ces objets-là.\n4. Vérification : la table d'attributs du nouveau fichier a autant de lignes que d'objets sélectionnés.\n\n**Les autres réponses :** « Ajouter le fichier sauvegardé à la carte » affiche le nouveau fichier dans le projet, mais ne filtre rien ; « Remplacer le style » touche aux couleurs ; « Créer un tampon » est un outil d'analyse, pas une option d'export.\n\n**À retenir :** pour rendre un résultat de requête, coche toujours « Sauvegarder seulement les objets sélectionnés »."
+      }
     ],
-    "indices": ["L'extension `.gpkg` indique le format."],
+    "indices": [
+      "L'extension `.gpkg` indique le format."
+    ],
     "correction": "Format **GeoPackage**, et cocher **Sauvegarder seulement les objets sélectionnés**."
   }
 ]

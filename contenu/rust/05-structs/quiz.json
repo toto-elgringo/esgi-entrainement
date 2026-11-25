@@ -1,146 +1,266 @@
 [
   {
     "question": "Comment lire le champ `age` d'une variable `eleve` de type `Eleve` ?",
-    "choix": ["`eleve::age`", "`eleve.age`", "`eleve[age]`", "`eleve->age`"],
+    "choix": [
+      "`eleve::age`",
+      "`eleve.age`",
+      "`eleve[age]`",
+      "`eleve->age`"
+    ],
     "reponse": 1,
-    "explication": "On accède à un champ avec un point : `eleve.age`. Le `::` sert pour les fonctions associées comme `Eleve::new`."
+    "explication": "**Règle :** on lit un champ d'une struct avec un **point** : `valeur.champ`.\n\n**Pas à pas :**\n\n```rust\nstruct Eleve {\n    nom: String,\n    age: u32,\n}\n\nlet eleve = Eleve { nom: String::from(\"Inès\"), age: 21 };\nprintln!(\"{}\", eleve.age);   // 21\n```\n\n1. `eleve` est la variable (la valeur de type `Eleve`).\n2. `.age` choisit le champ `age` dans cette valeur.\n3. Le résultat est un `u32` : 21.\n\n**Les autres réponses :**\n\n- `eleve::age` : `::` sert à aller chercher quelque chose **dans un type ou un module** (`Eleve::new`, `std::mem`), pas dans une valeur.\n- `eleve[age]` : les crochets servent à lire une **case par sa position** dans un tableau ou un `Vec` (`v[0]`).\n- `eleve->age` : c'est la syntaxe du C pour un pointeur. Rust n'en a pas besoin : le point marche aussi à travers une référence (`(&eleve).age`).\n\n**À retenir :** champ = `valeur.champ` ; `::` est pour les types et les modules."
   },
   {
     "question": "Comment rendre modifiable **un seul** champ d'une struct ?",
-    "choix": ["Écrire `mut age: u32` dans la struct", "C'est impossible : c'est toute la variable qui est `mut` ou non", "Écrire `let mut eleve.age`", "Ajouter `#[derive(Mut)]`"],
+    "choix": [
+      "Écrire `mut age: u32` dans la struct",
+      "C'est impossible : c'est toute la variable qui est `mut` ou non",
+      "Écrire `let mut eleve.age`",
+      "Ajouter `#[derive(Mut)]`"
+    ],
     "reponse": 1,
-    "explication": "La mutabilité concerne la variable entière : `let mut eleve = ...` rend tous les champs modifiables."
+    "explication": "**Règle :** en Rust, la mutabilité appartient à la **variable** (ou à la référence), jamais à un champ. `let mut eleve = …` rend **tous** les champs modifiables ; `let eleve = …` n'en laisse modifier **aucun**.\n\n**Pas à pas :**\n\n```rust\nstruct Eleve {\n    nom: String,\n    age: u32,\n}\n\nlet mut eleve = Eleve { nom: String::from(\"Inès\"), age: 21 };\neleve.age += 1;                    // permis\neleve.nom.push_str(\" B.\");         // permis aussi : tout est modifiable\n```\n\n1. `let mut` porte sur `eleve` entier.\n2. Du coup, `age` et `nom` sont modifiables tous les deux.\n3. Sans `mut`, `eleve.age += 1` donne E0594 (*cannot assign to `eleve.age`, as `eleve` is not declared as mutable*).\n\n**Les autres réponses :**\n\n- `mut age: u32` dans la struct : ce n'est pas une syntaxe valide, la déclaration d'une struct ne parle pas de mutabilité.\n- `let mut eleve.age` : `let` crée une variable, on ne peut pas créer « un champ ».\n- `#[derive(Mut)]` : ce trait n'existe pas.\n\n**À retenir :** pour modifier un champ, rends la variable `mut` (ou passe un `&mut`) : c'est tout ou rien."
   },
   {
     "question": "Quel premier paramètre choisir pour une méthode qui **lit** la struct sans la modifier ?",
-    "choix": ["`self`", "`&self`", "`&mut self`", "Aucun"],
+    "choix": [
+      "`self`",
+      "`&self`",
+      "`&mut self`",
+      "Aucun"
+    ],
     "reponse": 1,
-    "explication": "`&self` emprunte la valeur en lecture : elle reste utilisable après l'appel."
+    "explication": "**Règle :** le premier paramètre d'une méthode dit ce qu'elle fait de la valeur : `&self` **lit** (emprunt en lecture), `&mut self` **modifie**, `self` **prend** la valeur.\n\n**Pas à pas :** une méthode qui calcule l'aire d'un rectangle lit `largeur` et `hauteur` sans rien changer.\n\n```rust\nstruct Rectangle {\n    largeur: u32,\n    hauteur: u32,\n}\n\nimpl Rectangle {\n    fn aire(&self) -> u32 {\n        self.largeur * self.hauteur\n    }\n}\n\nlet r = Rectangle { largeur: 2, hauteur: 5 };\nprintln!(\"{}\", r.aire());   // 10\nprintln!(\"{}\", r.aire());   // 10 : r est toujours là\n```\n\n`r` n'a pas besoin d'être `mut`, et on peut appeler `aire` autant de fois qu'on veut.\n\n**Les autres réponses :**\n\n- `self` : la méthode **prendrait** la valeur ; après un seul appel, `r` serait inutilisable (E0382).\n- `&mut self` : demande un droit d'écriture inutile ; la variable devrait être `mut`, et aucun autre lecteur ne pourrait exister pendant l'appel.\n- Aucun : ce serait une fonction associée, elle n'aurait pas accès à la valeur (`r.aire()` ne marcherait pas).\n\n**À retenir :** par défaut `&self` ; `&mut self` seulement si des champs changent."
   },
   {
     "question": "On appelle `panier.vider()` où `vider` prend `&mut self`, avec `let panier = Panier::new();`. Que se passe-t-il ?",
-    "choix": ["Ça marche", "Erreur : `panier` doit être déclaré avec `let mut`", "Le panier est détruit", "Erreur : il faut écrire `Panier::vider()`"],
+    "choix": [
+      "Ça marche",
+      "Erreur : `panier` doit être déclaré avec `let mut`",
+      "Le panier est détruit",
+      "Erreur : il faut écrire `Panier::vider()`"
+    ],
     "reponse": 1,
-    "explication": "Une méthode `&mut self` modifie la valeur : la variable doit être déclarée `mut`."
+    "explication": "**Règle :** appeler une méthode `&mut self` revient à écrire `Type::methode(&mut valeur)`. On ne peut prendre un `&mut` que sur une variable déclarée `mut`.\n\n**Pas à pas :**\n\n1. `let panier = Panier::new();` : `panier` n'est **pas** `mut`.\n2. `panier.vider()` devient `Panier::vider(&mut panier)`.\n3. `&mut panier` est interdit sur une variable non `mut` :\n\n```text\nerror[E0596]: cannot borrow `panier` as mutable, as it is not declared as mutable\nhelp: consider changing this to be mutable\n```\n\n4. Correction : `let mut panier = Panier::new();`.\n\n**Les autres réponses :**\n\n- « Ça marche » : non, le compilateur vérifie la mutabilité même si l'emprunt est caché derrière le point.\n- « Le panier est détruit » : seule une méthode qui prend `self` (par valeur) consomme la valeur ; `&mut self` l'emprunte seulement.\n- « Il faut écrire `Panier::vider()` » : cette forme sans argument est fausse ; la forme longue serait `Panier::vider(&mut panier)`, avec la même exigence de `mut`.\n\n**À retenir :** méthode `&mut self` → la variable doit être `let mut`."
   },
   {
     "question": "Après `let ticket = commande.payer();` où `payer` prend `self`, peut-on encore utiliser `commande` ?",
-    "choix": ["Oui, toujours", "Non : la méthode a pris possession de la commande (move)", "Oui, mais seulement en lecture", "Seulement avec `&commande`"],
+    "choix": [
+      "Oui, toujours",
+      "Non : la méthode a pris possession de la commande (move)",
+      "Oui, mais seulement en lecture",
+      "Seulement avec `&commande`"
+    ],
     "reponse": 1,
-    "explication": "`self` par valeur déplace la commande dans la méthode. L'utiliser ensuite donne l'erreur E0382 (borrow of moved value)."
+    "explication": "**Règle :** une méthode qui prend `self` (sans `&`) **reçoit la valeur elle-même** : c'est un **move**, comme passer une `String` à une fonction. Après l'appel, l'ancienne variable est inutilisable.\n\n**Pas à pas :**\n\n```text\nlet commande = Commande::new();\nlet ticket = commande.payer();   // la commande part dans payer\ncommande.ajouter(4);             // error[E0382]: use of moved value: `commande`\n```\n\n1. `commande.payer()` s'écrit en entier `Commande::payer(commande)` : la commande est **donnée** à la méthode.\n2. `payer` fabrique un `Ticket` avec, puis la commande est détruite à la fin de la méthode.\n3. Toute utilisation de `commande` ensuite donne E0382.\n\nC'est voulu : une commande payée ne doit plus pouvoir recevoir de plats, et c'est le compilateur qui le garantit.\n\n**Les autres réponses :**\n\n- « Oui, toujours » : ce serait vrai avec `&self`.\n- « Oui, mais seulement en lecture » : un move ne laisse **aucun** droit, ni lecture ni écriture.\n- « Seulement avec `&commande` » : emprunter une valeur déjà déplacée est aussi refusé.\n\n**À retenir :** `self` par valeur = la méthode consomme ; la variable n'existe plus après."
   },
   {
     "question": "Comment appelle-t-on la fonction associée `fn new(nom: &str) -> Self` du type `Eleve` ?",
-    "choix": ["`Eleve.new(\"Alice\")`", "`new Eleve(\"Alice\")`", "`Eleve::new(\"Alice\")`", "`eleve.new(\"Alice\")`"],
+    "choix": [
+      "`Eleve.new(\"Alice\")`",
+      "`new Eleve(\"Alice\")`",
+      "`Eleve::new(\"Alice\")`",
+      "`eleve.new(\"Alice\")`"
+    ],
     "reponse": 2,
-    "explication": "Une fonction sans `self` s'appelle sur le type avec `::`."
+    "explication": "**Règle :** une fonction écrite dans `impl` **sans** paramètre `self` est une **fonction associée** : elle appartient au type, pas à une valeur. On l'appelle avec `Type::fonction(…)`.\n\n**Pas à pas :**\n\n1. `fn new(nom: &str) -> Self` n'a pas de `self` : elle n'a besoin d'aucune valeur existante (et pour cause, c'est elle qui en fabrique une).\n2. On passe donc par le type : `Eleve::new(\"Alice\")`.\n3. Elle renvoie `Self`, c'est-à-dire un `Eleve` : `let alice = Eleve::new(\"Alice\");`.\n\n**Les autres réponses :**\n\n- `Eleve.new(\"Alice\")` : le point s'utilise sur une **valeur**, et `Eleve` est un type.\n- `new Eleve(\"Alice\")` : c'est la syntaxe de Java ou de C++. En Rust, `new` n'est pas un mot-clé.\n- `eleve.new(\"Alice\")` : le point appelle une **méthode** (avec `self`) sur une valeur ; `new` n'en est pas une, et `eleve` n'existe pas encore.\n\n**À retenir :** pas de `self` → `Type::fonction(…)` ; avec `self` → `valeur.methode(…)`."
   },
   {
     "question": "Dans un bloc `impl Rectangle`, que désigne `Self` (avec une majuscule) ?",
-    "choix": ["La valeur sur laquelle on appelle la méthode", "Le type `Rectangle` lui-même", "Le fichier courant", "Une copie de la valeur"],
+    "choix": [
+      "La valeur sur laquelle on appelle la méthode",
+      "Le type `Rectangle` lui-même",
+      "Le fichier courant",
+      "Une copie de la valeur"
+    ],
     "reponse": 1,
-    "explication": "`Self` est le type du bloc `impl`. `self` (minuscule) est la valeur."
+    "explication": "**Règle :** dans un bloc `impl Rectangle`, `Self` (majuscule) est un **raccourci pour le nom du type**, ici `Rectangle`. `self` (minuscule) est la **valeur** sur laquelle on appelle la méthode.\n\n**Pas à pas :**\n\n```rust\nstruct Rectangle {\n    largeur: u32,\n    hauteur: u32,\n}\n\nimpl Rectangle {\n    fn carre(cote: u32) -> Self {                    // Self = Rectangle\n        Self { largeur: cote, hauteur: cote }        // = Rectangle { … }\n    }\n\n    fn aire(&self) -> u32 {                          // self = la valeur\n        self.largeur * self.hauteur\n    }\n}\n```\n\n- `-> Self` veut dire `-> Rectangle`.\n- `Self { … }` veut dire `Rectangle { … }`.\n- Si on renomme le type, tout ce qui utilise `Self` suit automatiquement.\n\n**Les autres réponses :**\n\n- « La valeur sur laquelle on appelle la méthode » : c'est `self`, en minuscule.\n- « Le fichier courant » : un fichier est un module, que l'on désigne par `self::` dans un chemin, ce qui est une autre notion.\n- « Une copie de la valeur » : `Self` n'est pas une valeur du tout, c'est un type.\n\n**À retenir :** `Self` = le type, `self` = la valeur."
   },
   {
     "question": "`new` est-il un mot-clé de Rust ?",
-    "choix": ["Oui, c'est le constructeur obligatoire", "Non, c'est seulement une convention de nom", "Oui, mais seulement dans un `impl`", "Oui, il réserve la mémoire sur le tas"],
+    "choix": [
+      "Oui, c'est le constructeur obligatoire",
+      "Non, c'est seulement une convention de nom",
+      "Oui, mais seulement dans un `impl`",
+      "Oui, il réserve la mémoire sur le tas"
+    ],
     "reponse": 1,
-    "explication": "Rust n'a pas de constructeur spécial. `new` est une fonction associée comme les autres, nommée ainsi par habitude."
+    "explication": "**Règle :** Rust n'a **pas** de constructeur spécial. `new` est une fonction associée ordinaire, que tout le monde appelle `new` par **convention**, pour dire « fabriquer une nouvelle valeur ».\n\n**Pas à pas :**\n\n1. On peut appeler la fonction comme on veut : `Rectangle::carre(5)`, `PileFixe::depuis_tableau(…)`, `Reservoir::plein(40)` sont des « constructeurs » aussi valables que `new`.\n2. Rien n'oblige à en écrire un : on peut toujours créer la valeur directement avec `Type { champ: valeur, … }`.\n3. `new` ne fait rien de magique : il fabrique la struct sur la pile et la renvoie, comme n'importe quelle fonction.\n\n**Les autres réponses :**\n\n- « C'est le constructeur obligatoire » : faux, il est facultatif.\n- « Seulement dans un `impl` » : `new` n'est un mot-clé nulle part, ni dans un `impl` ni ailleurs.\n- « Il réserve la mémoire sur le tas » : une struct vit sur la pile ; seuls `Box`, `Vec`, `String`… prennent du tas.\n\n**À retenir :** `new` = simple habitude de nommage pour une fonction associée qui renvoie `Self`."
   },
   {
     "question": "Quel `derive` faut-il pour afficher une struct avec `{:?}` ?",
-    "choix": ["`Display`", "`Debug`", "`Clone`", "`Print`"],
+    "choix": [
+      "`Display`",
+      "`Debug`",
+      "`Clone`",
+      "`Print`"
+    ],
     "reponse": 1,
-    "explication": "`#[derive(Debug)]` permet `{:?}` et `{:#?}`. `Display` (pour `{}`) ne peut pas être dérivé, il faut l'écrire."
+    "explication": "**Règle :** `{:?}` demande le trait **`Debug`** (affichage pour le développeur). On l'obtient gratuitement avec `#[derive(Debug)]` au-dessus de la struct.\n\n**Pas à pas :**\n\n```rust\n#[derive(Debug)]\nstruct Livre {\n    titre: String,\n    pages: u32,\n}\n\nlet l = Livre { titre: String::from(\"Dune\"), pages: 896 };\nprintln!(\"{:?}\", l);    // Livre { titre: \"Dune\", pages: 896 }\nprintln!(\"{:#?}\", l);   // un champ par ligne\n```\n\nSans le `derive`, le compilateur refuse : *`Livre` doesn't implement `Debug`*, et propose lui-même d'ajouter `#[derive(Debug)]`.\n\n**Les autres réponses :**\n\n- `Display` : c'est le trait de `{}` (sans `?`). Il ne peut **pas** être dérivé : on doit écrire soi-même comment afficher la valeur pour un utilisateur.\n- `Clone` : sert à copier avec `.clone()`, pas à afficher.\n- `Print` : ce trait n'existe pas.\n\n**À retenir :** `{:?}` et `{:#?}` → `#[derive(Debug)]` ; `{}` → `Display`, à écrire à la main."
   },
   {
     "question": "Que faut-il pour écrire `assert_eq!(p1, p2)` avec deux `Point` ?",
-    "choix": ["`#[derive(PartialEq)]` seulement", "`#[derive(Debug, PartialEq)]`", "`#[derive(Clone)]`", "Rien, ça marche toujours"],
+    "choix": [
+      "`#[derive(PartialEq)]` seulement",
+      "`#[derive(Debug, PartialEq)]`",
+      "`#[derive(Clone)]`",
+      "Rien, ça marche toujours"
+    ],
     "reponse": 1,
-    "explication": "`assert_eq!` compare les valeurs (`PartialEq`) et les affiche si le test échoue (`Debug`)."
+    "explication": "**Règle :** `assert_eq!(a, b)` fait deux choses : il **compare** `a` et `b` avec `==` (il faut `PartialEq`), et si elles sont différentes, il **affiche** les deux valeurs dans le message d'échec (il faut `Debug`).\n\n**Pas à pas :** si le test échoue, on voit :\n\n```text\nassertion `left == right` failed\n  left: Point { x: 1, y: 2 }\n right: Point { x: 1, y: 3 }\n```\n\n1. Pour savoir si le test échoue, il faut comparer : `PartialEq`.\n2. Pour écrire `left: Point { x: 1, y: 2 }`, il faut savoir afficher un `Point` : `Debug`.\n3. Donc la ligne est `#[derive(Debug, PartialEq)]`.\n\n**Les autres réponses :**\n\n- `PartialEq` seulement : la comparaison marche, mais `assert_eq!` refuse de compiler (*`Point` doesn't implement `Debug`*).\n- `Clone` : ne sert ni à comparer ni à afficher.\n- « Rien, ça marche toujours » : une struct ne sait ni se comparer ni s'afficher sans `derive`.\n\n**À retenir :** `assert_eq!` sur une struct → `#[derive(Debug, PartialEq)]`."
   },
   {
     "question": "Avec `struct Couleur(u8, u8, u8);` et `let c = Couleur(255, 128, 0);`, comment lire `128` ?",
-    "choix": ["`c.1`", "`c[1]`", "`c.vert`", "`c.2`"],
+    "choix": [
+      "`c.1`",
+      "`c[1]`",
+      "`c.vert`",
+      "`c.2`"
+    ],
     "reponse": 0,
-    "explication": "Les champs d'une struct tuple sont numérotés à partir de 0 : `c.0`, `c.1`, `c.2`."
+    "explication": "**Règle :** les champs d'une **struct tuple** n'ont pas de nom : on les désigne par leur **numéro**, à partir de **0**, avec un point : `.0`, `.1`, `.2`.\n\n**Pas à pas :** `let c = Couleur(255, 128, 0);`\n\n| Champ | Position | Valeur |\n|---|---|---|\n| `c.0` | 1re | 255 |\n| `c.1` | 2e | **128** |\n| `c.2` | 3e | 0 |\n\n128 est la deuxième valeur, donc le numéro 1 (on commence à compter à 0).\n\n**Les autres réponses :**\n\n- `c[1]` : les crochets sont pour les tableaux et les `Vec`, pas pour une struct.\n- `c.vert` : une struct tuple n'a pas de noms de champs ; il faudrait une struct à champs nommés `struct Couleur { rouge: u8, vert: u8, bleu: u8 }`.\n- `c.2` : c'est la **troisième** valeur, 0. Erreur fréquente : compter à partir de 1.\n\n**À retenir :** struct tuple → `.0`, `.1`, `.2`… en comptant depuis 0."
   },
   {
     "question": "Que signifie `Eleve { nom, age }` quand des variables `nom` et `age` existent déjà ?",
-    "choix": ["Une erreur de syntaxe", "Un raccourci pour `Eleve { nom: nom, age: age }`", "Une copie d'un autre élève", "Un tuple"],
+    "choix": [
+      "Une erreur de syntaxe",
+      "Un raccourci pour `Eleve { nom: nom, age: age }`",
+      "Une copie d'un autre élève",
+      "Un tuple"
+    ],
     "reponse": 1,
-    "explication": "Quand la variable a le même nom que le champ, on peut l'écrire une seule fois."
+    "explication": "**Règle :** quand on crée une struct et qu'une variable porte **exactement** le même nom qu'un champ, on peut écrire ce nom une seule fois : `Eleve { nom }` veut dire `Eleve { nom: nom }` (*field init shorthand*).\n\n**Pas à pas :**\n\n```rust\nstruct Eleve {\n    nom: String,\n    age: u32,\n}\n\nfn creer(nom: String, age: u32) -> Eleve {\n    Eleve { nom, age }          // = Eleve { nom: nom, age: age }\n}\n```\n\n1. Le champ `nom` reçoit la variable `nom` (le paramètre).\n2. Le champ `age` reçoit la variable `age`.\n3. Si le paramètre s'appelait `n`, il faudrait écrire `Eleve { nom: n, age }`.\n\n**Les autres réponses :**\n\n- « Une erreur de syntaxe » : c'est une syntaxe parfaitement valide, très utilisée dans les `new`.\n- « Une copie d'un autre élève » : ça, c'est `..autre` (*struct update syntax*), qui prend les champs manquants dans une autre valeur.\n- « Un tuple » : un tuple s'écrit avec des parenthèses, `(nom, age)`, sans nom de type devant.\n\n**À retenir :** `{ nom }` = `{ nom: nom }`, quand la variable et le champ ont le même nom."
   },
   {
     "question": "Dans la version « tableau + compteur » du cours (`empiler(cases, valeur, &mut taille)`), quel est le principal défaut ?",
-    "choix": ["Elle alloue sur le tas", "Le tableau et sa longueur voyagent séparément : rien n'empêche de passer la longueur d'un autre tableau", "Elle ne compile pas", "Elle est forcément plus lente qu'un `Vec`"],
+    "choix": [
+      "Elle alloue sur le tas",
+      "Le tableau et sa longueur voyagent séparément : rien n'empêche de passer la longueur d'un autre tableau",
+      "Elle ne compile pas",
+      "Elle est forcément plus lente qu'un `Vec`"
+    ],
     "reponse": 1,
-    "explication": "Tout est bien sur la pile, mais deux données qui vont ensemble sont passées séparément et l'idée n'a pas de nom. Une struct les réunit."
+    "explication": "**Règle :** une struct sert à donner **un nom et une seule place** à des données qui vont ensemble. Sans elle, on les passe séparément, et rien ne garantit qu'elles correspondent.\n\n**Pas à pas :** avec `empiler(cases, valeur, &mut taille)` :\n\n1. `cases` (le tableau) et `taille` (le compteur) sont deux variables indépendantes.\n2. Rien n'empêche d'appeler `empiler(&mut tableau_a, 5, &mut taille_de_b)` : la taille d'un autre tableau, et la pile devient incohérente.\n3. Il faut **trois** paramètres pour une seule idée, et cette idée (« une pile bornée ») n'a pas de nom dans le code.\n4. Une struct `PileFixe3 { cases, taille }` réunit les deux : `pile.empiler(5)` ne peut plus se tromper de compteur.\n\n**Les autres réponses :**\n\n- « Elle alloue sur le tas » : non, un tableau `[u8; 3]` et un entier sont sur la pile.\n- « Elle ne compile pas » : elle compile et marche très bien ; le problème est la conception, pas la compilation.\n- « Elle est forcément plus lente qu'un `Vec` » : les mesures du cours montrent que la vitesse dépend surtout de l'inlining, pas de cette forme.\n\n**À retenir :** des données qui vont ensemble et voyagent séparément → regroupe-les dans une struct."
   },
   {
     "question": "`pile.depiler()` où `depiler` prend `&mut self` est le même appel que…",
-    "choix": ["`PileFixe3::depiler(pile)`", "`PileFixe3::depiler(&mut pile)`", "`depiler(&pile)`", "`pile::depiler()`"],
+    "choix": [
+      "`PileFixe3::depiler(pile)`",
+      "`PileFixe3::depiler(&mut pile)`",
+      "`depiler(&pile)`",
+      "`pile::depiler()`"
+    ],
     "reponse": 1,
-    "explication": "Une méthode est une fonction dont le premier paramètre est la valeur. Le point passe automatiquement `&mut pile`."
+    "explication": "**Règle :** une méthode n'est qu'une fonction dont le premier paramètre est la valeur. La notation avec un point passe ce premier paramètre **à ta place**, sous la forme demandée par la signature (`&`, `&mut` ou par valeur).\n\n**Pas à pas :**\n\n1. `depiler` est déclarée `fn depiler(&mut self) -> Option<u8>`.\n2. Son premier paramètre attend donc un `&mut PileFixe3`.\n3. `pile.depiler()` = `PileFixe3::depiler(&mut pile)` : Rust ajoute le `&mut` tout seul.\n\n| Signature | `pile.m()` équivaut à |\n|---|---|\n| `fn m(&self)` | `PileFixe3::m(&pile)` |\n| `fn m(&mut self)` | `PileFixe3::m(&mut pile)` |\n| `fn m(self)` | `PileFixe3::m(pile)` |\n\n**Les autres réponses :**\n\n- `PileFixe3::depiler(pile)` : ce serait la forme pour `self` par valeur ; ici le type attendu est `&mut PileFixe3`, ça ne compile pas.\n- `depiler(&pile)` : `depiler` n'existe pas comme fonction libre, et `&pile` est une lecture, pas une écriture.\n- `pile::depiler()` : `::` s'utilise sur un type ou un module, pas sur une variable.\n\n**À retenir :** `x.m()` = `Type::m(&x)`, `Type::m(&mut x)` ou `Type::m(x)` selon le `self` de la signature."
   },
   {
     "question": "À quoi sert `#[must_use]` au-dessus de `fn empiler(&mut self, v: u8) -> bool` ?",
-    "choix": ["À rendre la méthode plus rapide", "À avertir si on ignore le `bool` renvoyé", "À interdire d'appeler la méthode deux fois", "À rendre le résultat obligatoirement `true`"],
+    "choix": [
+      "À rendre la méthode plus rapide",
+      "À avertir si on ignore le `bool` renvoyé",
+      "À interdire d'appeler la méthode deux fois",
+      "À rendre le résultat obligatoirement `true`"
+    ],
     "reponse": 1,
-    "explication": "Ignorer le résultat déclenche l'avertissement `unused_must_use`. Pour le jeter volontairement : `let _ = pile.empiler(v);`."
+    "explication": "**Règle :** `#[must_use]` est un **attribut** placé au-dessus d'une fonction : si quelqu'un appelle la fonction et **ignore** sa valeur de retour, le compilateur affiche un avertissement (`unused_must_use`).\n\n**Pas à pas :**\n\n```text\npile.empiler(4);           // warning: unused return value of `PileFixe3::empiler` that must be used\nlet ok = pile.empiler(4);  // pas d'avertissement : on garde le résultat\nlet _ = pile.empiler(4);   // pas d'avertissement : on le jette exprès\n```\n\n1. `empiler` renvoie `false` quand la pile est pleine : l'élément **n'a pas** été ajouté.\n2. Ignorer ce `bool` sans le vouloir, c'est perdre une valeur sans le savoir.\n3. `#[must_use]` force à **choisir** : utiliser le résultat (`if !pile.empiler(4) { … }`) ou dire explicitement qu'on s'en moque (`let _ =`).\n\n**Les autres réponses :**\n\n- « Plus rapide » : l'attribut ne change rien au code produit, il sert seulement aux avertissements.\n- « Interdire d'appeler deux fois » : aucune règle de ce genre.\n- « Résultat obligatoirement `true` » : l'attribut ne touche pas à la valeur renvoyée.\n\n**À retenir :** `#[must_use]` = « ne m'ignore pas » ; pour jeter exprès, `let _ = …;`."
   },
   {
     "question": "Une boucle de 100 millions de tours passe de 66 ms à 0,73 ms quand on retire son `black_box`. Que s'est-il passé ?",
-    "choix": ["La struct est devenue plus efficace", "Le compilateur a supprimé toute la boucle, car personne ne lisait le résultat", "Le processeur a mis le résultat en cache", "Le programme a planté sans rien dire"],
+    "choix": [
+      "La struct est devenue plus efficace",
+      "Le compilateur a supprimé toute la boucle, car personne ne lisait le résultat",
+      "Le processeur a mis le résultat en cache",
+      "Le programme a planté sans rien dire"
+    ],
     "reponse": 1,
-    "explication": "0,73 ms, c'est le temps de lancer un programme vide : `main` ne contient plus qu'un `ret`. Rien n'était observable, donc rien n'avait besoin d'exister."
+    "explication": "**Règle :** le compilateur a le droit de **supprimer** tout calcul dont personne n'observe le résultat. `std::hint::black_box(x)` lui dit « quelqu'un pourrait regarder `x` » : il est alors obligé de faire le calcul.\n\n**Pas à pas :**\n\n1. Avec `black_box` : la boucle tourne vraiment, 100 millions de tours en 66 ms.\n2. Sans `black_box` : le résultat n'est ni affiché, ni renvoyé, ni passé à `black_box`. Pour le compilateur, la boucle ne sert à rien.\n3. Il la supprime : `main` se réduit à `ret` (« reviens tout de suite »).\n4. Les 0,73 ms mesurées sont le temps de **lancer** un programme vide, pas le temps de la boucle.\n\nVérifier : 100 millions de tours en 0,73 ms feraient plus de 100 milliards de tours par seconde, impossible pour un processeur.\n\n**Les autres réponses :**\n\n- « La struct est devenue plus efficace » : rien n'a changé dans la struct, seule la mesure a changé.\n- « Le processeur a mis le résultat en cache » : le cache accélère les accès mémoire, il ne fait pas disparaître 100 millions de tours.\n- « Le programme a planté sans rien dire » : il s'est terminé normalement, simplement sans rien calculer.\n\n**À retenir :** un temps trop beau = le compilateur a sans doute supprimé le calcul ; protège le résultat avec `black_box`."
   },
   {
     "question": "Dans `struct PileFixe<T, const N: usize>`, qu'est-ce que `N` ?",
-    "choix": ["Un type", "Une valeur connue à la compilation (un const générique)", "Une variable modifiable", "Le nombre d'éléments actuellement dans la pile"],
+    "choix": [
+      "Un type",
+      "Une valeur connue à la compilation (un const générique)",
+      "Une variable modifiable",
+      "Le nombre d'éléments actuellement dans la pile"
+    ],
     "reponse": 1,
-    "explication": "`const N: usize` est un paramètre de valeur. `PileFixe<u8, 3>` et `PileFixe<u8, 4>` sont deux types différents."
+    "explication": "**Règle :** dans `struct PileFixe<T, const N: usize>`, il y a deux paramètres génériques de nature différente : `T` est un **type**, et `const N: usize` est un **const générique**, une **valeur** (ici un `usize`) connue à la compilation.\n\n**Pas à pas :**\n\n1. `const N: usize` se lit : « N est une constante de type `usize` ».\n2. Elle sert de taille au tableau : `cases: [T; N]`.\n3. Avec `PileFixe::depuis_tableau([0u8; 3])`, le compilateur déduit `T = u8` et `N = 3`.\n4. `PileFixe<u8, 3>` et `PileFixe<u8, 4>` sont **deux types différents** : on ne peut pas passer l'un à la place de l'autre.\n\n**Les autres réponses :**\n\n- « Un type » : c'est le rôle de `T`. `N` est un nombre.\n- « Une variable modifiable » : `N` est fixé une fois pour toutes à la compilation, il ne change jamais pendant l'exécution.\n- « Le nombre d'éléments actuellement dans la pile » : c'est le champ `taille`, qui varie. `N` est la **capacité** (le nombre de cases).\n\n**À retenir :** `T` = un type, `const N: usize` = une taille fixée à la compilation (la capacité, pas le remplissage)."
   },
   {
     "question": "Que fait le compilateur avec `PileFixe<u8, 3>` et `PileFixe<f64, 8>` dans le même programme ?",
-    "choix": ["Il partage un seul code avec une indirection, comme Java", "Il écrit une version spécialisée de chaque méthode pour chacun (monomorphisation)", "Il refuse : un générique ne peut être utilisé qu'une fois", "Il choisit à l'exécution"],
+    "choix": [
+      "Il partage un seul code avec une indirection, comme Java",
+      "Il écrit une version spécialisée de chaque méthode pour chacun (monomorphisation)",
+      "Il refuse : un générique ne peut être utilisé qu'une fois",
+      "Il choisit à l'exécution"
+    ],
     "reponse": 1,
-    "explication": "La monomorphisation ne coûte rien à l'exécution, mais grossit le binaire et allonge la compilation."
+    "explication": "**Règle :** pour chaque combinaison de paramètres génériques vraiment utilisée, Rust écrit une **version spécialisée** du code : c'est la **monomorphisation**.\n\n**Pas à pas :**\n\n1. Le programme utilise `PileFixe<u8, 3>` et `PileFixe<f64, 8>` : deux combinaisons `(T, N)`.\n2. Le compilateur écrit deux versions de `empiler` : une où `T = u8` et `N = 3` sont écrits en dur, une où `T = f64` et `N = 8`.\n3. À l'exécution, chaque appel va directement à sa version : aucune décision, aucune indirection.\n4. Le prix : plus de code machine (binaire plus gros) et une compilation plus longue.\n\n**Les autres réponses :**\n\n- « Un seul code avec une indirection, comme Java » : c'est l'**effacement** des génériques de Java ; Rust fait le contraire.\n- « Il refuse » : un générique sert justement à être utilisé avec plusieurs types.\n- « Il choisit à l'exécution » : tout est décidé à la compilation.\n\n**À retenir :** génériques Rust = une copie du code par combinaison utilisée, rapide à l'exécution, plus longue à compiler."
   },
   {
     "question": "Pourquoi le `depiler` générique du cours renvoie-t-il `Option<&T>` et pas `Option<T>` ?",
-    "choix": ["Parce qu'une référence est plus rapide à copier", "Sortir la valeur laisserait un trou que `[T; N]` ne sait pas représenter", "Parce que `Option<T>` n'existe pas pour les génériques", "Pour pouvoir modifier l'élément"],
+    "choix": [
+      "Parce qu'une référence est plus rapide à copier",
+      "Sortir la valeur laisserait un trou que `[T; N]` ne sait pas représenter",
+      "Parce que `Option<T>` n'existe pas pour les génériques",
+      "Pour pouvoir modifier l'élément"
+    ],
     "reponse": 1,
-    "explication": "Renvoyer `T` demanderait `T: Copy`, ou un tableau `[Option<T>; N]` avec `.take()`. La référence marche pour tous les types."
+    "explication": "**Règle :** sortir (déplacer) une valeur d'une case de tableau y laisserait une case **vide**, et un `[T; N]` n'a aucun moyen d'écrire « cette case est vide ». Rust refuse donc ce déplacement (E0507, *cannot move out of index*) pour un `T` quelconque.\n\n**Pas à pas :**\n\n1. `T` peut être n'importe quoi, par exemple une `String`.\n2. `Some(self.cases[self.taille])` voudrait **déplacer** la `String` hors du tableau.\n3. Le tableau resterait avec une case dont la `String` est partie : à la destruction de la pile, Rust libérerait une `String` qui n'est plus là.\n4. Renvoyer `Some(&self.cases[self.taille])` ne sort rien : on prête la case, le tableau reste complet. Ça marche pour **tous** les `T`.\n\nLes deux autres façons d'obtenir `Option<T>` : exiger `T: Copy` (on copie au lieu de déplacer), ou ranger des `[Option<T>; N]` et vider la case avec `.take()`.\n\n**Les autres réponses :**\n\n- « Une référence est plus rapide à copier » : la vraie raison est l'ownership, pas la vitesse.\n- « `Option<T>` n'existe pas pour les génériques » : faux, `Option<T>` marche pour tout `T`.\n- « Pour pouvoir modifier l'élément » : `&T` est une référence en **lecture** ; pour modifier, il faudrait `&mut T`.\n\n**À retenir :** on ne peut pas sortir une valeur d'un `[T; N]` : on la prête (`&T`), on la copie (`T: Copy`) ou on range des `Option<T>`."
   },
   {
     "question": "Que fait `case.take()` quand `case` vaut `Some(\"crabe\".to_string())` ?",
-    "choix": ["Renvoie une copie et laisse `case` intact", "Renvoie `Some(\"crabe\")` et laisse `None` dans `case`", "Panique", "Renvoie `\"crabe\"` sans `Some`"],
+    "choix": [
+      "Renvoie une copie et laisse `case` intact",
+      "Renvoie `Some(\"crabe\")` et laisse `None` dans `case`",
+      "Panique",
+      "Renvoie `\"crabe\"` sans `Some`"
+    ],
     "reponse": 1,
-    "explication": "`take` retire la valeur et laisse `None` à sa place : le trou est représentable."
+    "explication": "**Règle :** `option.take()` **sort** la valeur d'un `Option` et laisse `None` à sa place. Il demande un emprunt `&mut` (la variable doit être `mut`), puisqu'il modifie l'`Option`.\n\n**Pas à pas :**\n\n```rust\nlet mut case = Some(String::from(\"crabe\"));\nlet sortie = case.take();\nprintln!(\"{sortie:?}\");   // Some(\"crabe\")\nprintln!(\"{case:?}\");     // None\n```\n\n1. Avant : `case` contient `Some(\"crabe\")`.\n2. `take()` retire la `String` et la renvoie, emballée dans un `Some`.\n3. Après : `case` vaut `None`. La `String` appartient maintenant à `sortie`, sans aucune copie.\n\nSi `case` valait déjà `None`, `take()` renverrait `None` et laisserait `None`.\n\n**Les autres réponses :**\n\n- « Renvoie une copie et laisse `case` intact » : ça, c'est `case.clone()`.\n- « Panique » : `take()` ne panique jamais, même sur `None`.\n- « Renvoie `\"crabe\"` sans `Some` » : le résultat est toujours un `Option`, pour pouvoir représenter le cas vide.\n\n**À retenir :** `take()` = « je prends ce qu'il y a et je laisse `None` »."
   },
   {
     "question": "Un programme met un tableau de 40 Go dans une struct sur la pile. Que se passe-t-il à l'exécution ?",
-    "choix": ["Une panique qu'on peut rattraper avec `catch_unwind`", "`stack overflow` : le processus est arrêté net (abort), sans trace", "Rust le déplace tout seul sur le tas", "Une erreur de compilation"],
+    "choix": [
+      "Une panique qu'on peut rattraper avec `catch_unwind`",
+      "`stack overflow` : le processus est arrêté net (abort), sans trace",
+      "Rust le déplace tout seul sur le tas",
+      "Une erreur de compilation"
+    ],
     "reponse": 1,
-    "explication": "Un débordement de pile n'est pas une panique : le runtime affiche deux lignes puis abandonne. Ce qui est gros va sur le tas (`Box`, `Vec`)."
+    "explication": "**Règle :** la pile d'un programme est **petite** (environ 8 Mo). Si une valeur est trop grosse pour elle, le programme fait un **débordement de pile** (*stack overflow*) : ce n'est pas une panique, le processus est **arrêté net** (*abort*).\n\n**Pas à pas :**\n\n1. Un tableau de 40 Go mis dans une struct sans `Box` ni `Vec` doit tenir **sur la pile**.\n2. 40 Go est 5 000 fois plus grand que 8 Mo.\n3. À l'exécution, le runtime affiche seulement :\n\n```text\nthread 'main' has overflowed its stack\nfatal runtime error: stack overflow, aborting\n```\n\n4. Puis tout s'arrête (code 134) : pas de trace des appels, et `catch_unwind` ne peut rien intercepter.\n\nLa solution : mettre ce qui est gros sur le **tas**, avec `Vec` ou `Box`.\n\n**Les autres réponses :**\n\n- « Une panique qu'on peut rattraper » : une panique se déroule proprement ; un débordement de pile n'est pas une panique.\n- « Rust le déplace tout seul sur le tas » : Rust ne change jamais l'endroit où tu as rangé une valeur.\n- « Une erreur de compilation » : le compilateur ne connaît pas la taille de la pile de la machine qui lancera le programme, l'erreur arrive à l'exécution.\n\n**À retenir :** trop gros pour la pile → arrêt net à l'exécution ; ce qui est gros va dans un `Vec` ou une `Box`."
   },
   {
     "question": "Avec `let texte = include_str!(\"../entree.txt\");`, quand le fichier est-il lu ?",
-    "choix": ["À chaque lancement du programme", "À la compilation : son contenu est copié dans le binaire", "Au premier appel de `texte.len()`", "Jamais, c'est seulement un chemin"],
+    "choix": [
+      "À chaque lancement du programme",
+      "À la compilation : son contenu est copié dans le binaire",
+      "Au premier appel de `texte.len()`",
+      "Jamais, c'est seulement un chemin"
+    ],
     "reponse": 1,
-    "explication": "Le fichier n'a plus besoin d'exister à l'exécution. `texte` est un `&'static str` : les données ne sont jamais libérées."
+    "explication": "**Règle :** `include_str!(\"chemin\")` est une **macro** exécutée par le compilateur : il lit le fichier **pendant la compilation** et copie son contenu dans le programme, sous forme de `&'static str`.\n\n**Pas à pas :**\n\n1. `cargo build` rencontre `include_str!(\"../entree.txt\")`.\n2. Il ouvre `entree.txt` (chemin relatif au fichier `.rs`) et colle son texte dans l'exécutable. Si le fichier manque, c'est une **erreur de compilation**.\n3. Au lancement, le programme n'ouvre aucun fichier : le texte fait partie de l'exécutable.\n4. `texte` est un `&'static str` : une référence valable jusqu'à la fin du programme, jamais libérée.\n\n**Les autres réponses :**\n\n- « À chaque lancement » : c'est ce que ferait `std::fs::read_to_string`, qui peut échouer si le fichier n'est pas là.\n- « Au premier appel de `texte.len()` » : rien n'est chargé paresseusement par le programme ; le texte est déjà dans l'exécutable.\n- « Jamais, c'est seulement un chemin » : la macro remplace l'appel par le contenu, pas par le chemin.\n\n**À retenir :** `include_str!` = lecture **à la compilation** ; le fichier n'est plus nécessaire à l'exécution."
   },
   {
     "question": "Quelle taille occupe `#[repr(C)] struct S { a: u8, b: u32, c: u8 }` ?",
-    "choix": ["6 octets", "8 octets", "12 octets", "16 octets"],
+    "choix": [
+      "6 octets",
+      "8 octets",
+      "12 octets",
+      "16 octets"
+    ],
     "reponse": 2,
-    "explication": "`b` doit commencer à un multiple de 4 (octet 4), et la taille doit être un multiple de 4 : 1 + 3 vides + 4 + 1 + 3 vides = 12. Sans `repr(C)`, Rust réordonne et obtient 8."
+    "explication": "**Règle :** avec `#[repr(C)]`, les champs sont posés **dans l'ordre écrit**. Chacun doit commencer à une position **multiple de son alignement** (1 pour `u8`, 4 pour `u32`), et la taille totale est arrondie au multiple de l'**alignement le plus grand** (ici 4).\n\n**Pas à pas :**\n\n| Champ | Taille | Alignement | Position libre | Octets vides avant | Position du champ |\n|---|---|---|---|---|---|\n| `a: u8` | 1 | 1 | 0 | 0 | 0 |\n| `b: u32` | 4 | 4 | 1 | 3 (on saute à 4) | 4 |\n| `c: u8` | 1 | 1 | 8 | 0 | 8 |\n\nLa fin est à 9. On arrondit au multiple de 4 suivant : **12**. Donc 1 + 3 vides + 4 + 1 + 3 vides = 12 octets.\n\nLes 3 octets de fin servent dans un tableau de `S` : le deuxième élément commence à l'octet 12, et son `b` à 16, toujours un multiple de 4.\n\n**Les autres réponses :**\n\n- 6 octets : c'est la somme des données seules, sans remplissage (ce serait `#[repr(C, packed)]`).\n- 8 octets : c'est la taille **sans** `repr(C)`, quand Rust réordonne les champs (`b` en premier, puis `a` et `c`, puis 2 octets de fin).\n- 16 octets : on aurait arrondi à un multiple de 8, mais aucun champ n'a un alignement de 8.\n\n**À retenir :** `repr(C)` : chaque champ à un multiple de son alignement, puis taille arrondie au multiple du plus grand alignement."
   },
   {
     "question": "Pourquoi `let r = &p.b;` est-il refusé quand `p` est une struct `#[repr(C, packed)]` ?",
-    "choix": ["Les structs packed sont immuables", "Le champ peut être mal aligné, et créer une référence non alignée est un comportement indéfini", "Il faut écrire `&mut p.b`", "Les champs packed sont privés"],
+    "choix": [
+      "Les structs packed sont immuables",
+      "Le champ peut être mal aligné, et créer une référence non alignée est un comportement indéfini",
+      "Il faut écrire `&mut p.b`",
+      "Les champs packed sont privés"
+    ],
     "reponse": 1,
-    "explication": "Erreur E0793. La solution : copier le champ, `let b = p.b;`."
+    "explication": "**Règle :** dans une struct `#[repr(C, packed)]`, il n'y a **aucun remplissage** : les champs se suivent octet par octet, donc un `u32` peut commencer à une adresse qui n'est pas un multiple de 4. Or en Rust, **créer** une référence mal alignée est déjà un comportement indéfini (le programme peut faire n'importe quoi).\n\n**Pas à pas :**\n\n1. Avec `#[repr(C, packed)] struct S { a: u8, b: u32 }`, `b` est à l'octet 1.\n2. `&p.b` créerait un `&u32` qui pointe à une adresse impaire : mal aligné.\n3. Le compilateur refuse :\n\n```text\nerror[E0793]: reference to field of packed struct is unaligned\n```\n\n4. Correction : **copier** le champ, `let b = p.b;`. La copie est rangée dans une variable bien alignée, et on peut l'emprunter sans risque.\n\n**Les autres réponses :**\n\n- « Les structs packed sont immuables » : on peut très bien les modifier (`p.b = 5;` est accepté).\n- « Il faut écrire `&mut p.b` » : une référence `&mut` mal alignée pose exactement le même problème.\n- « Les champs packed sont privés » : `packed` change la disposition en mémoire, pas la visibilité.\n\n**À retenir :** struct `packed` → ne prends jamais `&` d'un champ, copie-le (`let b = p.b;`)."
   }
 ]

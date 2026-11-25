@@ -1,62 +1,112 @@
 [
   {
     "question": "Qu'est-ce qu'une macro ?",
-    "choix": ["Une fonction plus rapide", "Du code qui écrit du code, déplié à la compilation", "Un type de donnée", "Un commentaire spécial"],
+    "choix": [
+      "Une fonction plus rapide",
+      "Du code qui écrit du code, déplié à la compilation",
+      "Un type de donnée",
+      "Un commentaire spécial"
+    ],
     "reponse": 1,
-    "explication": "Le compilateur remplace l'appel de la macro par le code qu'elle produit, avant même de vérifier les types."
+    "explication": "**Règle :** une macro est du **code qui écrit du code**. Le compilateur remplace l'appel (`vec![1, 2]`, `println!(...)`) par le code que la macro produit : c'est le **dépliage**. Il a lieu à la compilation, avant la vérification des types.\n\n**Pas à pas :** quand tu écris `vec![4, 5, 6]` :\n\n1. le compilateur voit le `!` : c'est une macro ;\n2. il la déplie en un code qui crée un `Vec` et y range 4, 5 et 6 ;\n3. ensuite seulement, il vérifie les types et compile ce code, comme si tu l'avais tapé.\n\n**Les autres réponses :**\n\n- « une fonction plus rapide » : une macro n'est pas une fonction, elle n'est pas appelée pendant l'exécution, elle disparaît dès la compilation ;\n- « un type de donnée » : une macro ne décrit pas de valeurs, elle produit du code ;\n- « un commentaire spécial » : un commentaire est ignoré, alors que le code produit par une macro est bien compilé et exécuté.\n\n**À retenir :** macro = un modèle de code, remplacé par du vrai code à la compilation."
   },
   {
     "question": "Comment reconnaît-on l'appel d'une macro déclarative ?",
-    "choix": ["Un `!` après le nom (`vec!`)", "Un `$` devant le nom", "Un `@` après le nom", "Des doubles deux-points"],
+    "choix": [
+      "Un `!` après le nom (`vec!`)",
+      "Un `$` devant le nom",
+      "Un `@` après le nom",
+      "Des doubles deux-points"
+    ],
     "reponse": 0,
-    "explication": "Les macros s'appellent avec un `!` : `println!`, `vec!`, `carre!`. Les `$` servent seulement à l'intérieur de la définition."
+    "explication": "**Règle :** on appelle une macro avec son nom suivi d'un **`!`**, puis des parenthèses, crochets ou accolades : `println!(...)`, `vec![...]`, `hashmap!{...}`.\n\n**Pas à pas :** on regarde où apparaît chaque symbole.\n\n| Symbole | Où on le trouve | Rôle |\n|---|---|---|\n| `!` après le nom | à l'**appel** : `carre!(3)` | dit « ceci est une macro » |\n| `$` devant un nom | **dans la définition** : `$x:expr` | marque une variable de macro |\n| `::` | `Vec::new()`, `std::fmt` | chemin vers un élément (module, type) |\n\n**Les autres réponses :**\n\n- `$` ne s'écrit jamais à l'appel : il sert seulement à l'intérieur de `macro_rules!` ;\n- `@` n'a pas ce rôle en Rust (on le croise dans les motifs `n @ 1..=5`) ;\n- les doubles deux-points `::` séparent les morceaux d'un chemin, ils n'indiquent pas une macro.\n\n**À retenir :** `nom!(...)` = un appel de macro ; `$x` = une variable dans sa définition."
   },
   {
     "question": "Que capture le fragment `$x:expr` ?",
-    "choix": ["Un seul mot", "Un type", "Une expression complète", "Un bloc d'instructions"],
+    "choix": [
+      "Un seul mot",
+      "Un type",
+      "Une expression complète",
+      "Un bloc d'instructions"
+    ],
     "reponse": 2,
-    "explication": "`expr` capture une expression entière, par exemple `1 + 2`, et la garde en un seul morceau."
+    "explication": "**Règle :** le fragment `expr` capture une **expression complète** : un calcul, un appel, une variable, un littéral (`1 + 2`, `f(x)`, `n`, `42`). Elle est gardée comme **un seul morceau** groupé.\n\n**Pas à pas :** avec le motif `($x:expr)` :\n\n- `macro!(7)` : `$x = 7` ;\n- `macro!(a * 2 + 1)` : `$x = a * 2 + 1`, en entier ;\n- `macro!(longueur(&v))` : `$x = longueur(&v)`.\n\nÀ chaque fois, `$x` reçoit **tout** le calcul, pas seulement le premier mot.\n\n**Les autres réponses :**\n\n- « un seul mot » : c'est `ident` (un nom) ou `tt` (un seul jeton) ;\n- « un type » : c'est `ty` (`Vec<i32>`, `String`) ;\n- « un bloc d'instructions » : c'est `block`, qui exige des accolades `{ ... }`.\n\n**À retenir :** `expr` = un calcul entier, gardé groupé."
   },
   {
     "question": "Avec `macro_rules! carre { ($x:expr) => { $x * $x }; }`, que vaut `carre!(1 + 2)` ?",
-    "choix": ["5", "9", "3", "Erreur de compilation"],
+    "choix": [
+      "5",
+      "9",
+      "3",
+      "Erreur de compilation"
+    ],
     "reponse": 1,
-    "explication": "`$x` est une expression entière, donc le calcul est `(1 + 2) * (1 + 2)` = 9. En C, une macro de texte donnerait 5."
+    "explication": "**Règle :** `$x:expr` capture l'expression **entière**, et quand elle est recopiée dans le code produit, elle reste **groupée**, comme si elle était entre parenthèses.\n\n**Pas à pas :** dépliage de `carre!(1 + 2)` :\n\n1. le bras `($x:expr)` correspond : `$x = 1 + 2` ;\n2. le code produit `$x * $x` devient `(1 + 2) * (1 + 2)` ;\n3. calcul : `3 * 3 = 9`.\n\n**Les autres réponses :**\n\n- `5` : c'est ce que donnerait une copie de **texte** à la manière du C : `1 + 2 * 1 + 2`, où la multiplication passe d'abord : `1 + 2 + 2 = 5`. Rust ne copie pas du texte, il manipule des expressions déjà analysées ;\n- `3` : c'est la valeur de `1 + 2`, pas son carré ;\n- « erreur de compilation » : `1 + 2` est une expression tout à fait valide pour un fragment `expr`.\n\n**À retenir :** en Rust, `$x` remplacé garde ses parenthèses invisibles : pas de piège de priorité comme en C."
   },
   {
     "question": "Quel fragment permet de recevoir un nom (de fonction, de champ...) ?",
-    "choix": ["`expr`", "`ty`", "`ident`", "`lit`"],
+    "choix": [
+      "`expr`",
+      "`ty`",
+      "`ident`",
+      "`lit`"
+    ],
     "reponse": 2,
-    "explication": "`ident` capture un identifiant. Grâce à lui, une macro peut générer des fonctions ou des champs avec le nom voulu."
+    "explication": "**Règle :** le fragment `ident` capture un **identifiant**, c'est-à-dire un nom : nom de variable, de fonction, de champ, de type. Grâce à lui, une macro peut **créer** des fonctions ou des champs portant le nom voulu.\n\n**Pas à pas :** avec `($nom:ident: $type:ty) => { fn $nom(&self) -> $type { self.$nom } }`, l'appel `getter!(age: u32)` :\n\n1. `age` est un nom : `$nom = age` ;\n2. `u32` est un type : `$type = u32` ;\n3. le code produit est `fn age(&self) -> u32 { self.age }` : `age` sert de nom de méthode **et** de nom de champ.\n\n**Les autres réponses :**\n\n- `expr` capture un calcul, on ne peut pas s'en servir pour nommer une fonction (`fn 1 + 2()` n'a pas de sens) ;\n- `ty` capture un type (`u32`, `Vec<String>`), pas un nom de fonction ;\n- `lit` n'existe pas : le fragment des valeurs littérales s'appelle `literal`, et il capture `42` ou `\"texte\"`, pas un nom.\n\n**À retenir :** pour générer un nom (fonction, champ, type), utilise `$n:ident`."
   },
   {
     "question": "Que signifie `$( $x:expr ),*` dans un motif ?",
-    "choix": ["Exactement une expression", "Zéro, une ou plusieurs expressions séparées par des virgules", "Au moins une expression", "Un tableau de taille fixe"],
+    "choix": [
+      "Exactement une expression",
+      "Zéro, une ou plusieurs expressions séparées par des virgules",
+      "Au moins une expression",
+      "Un tableau de taille fixe"
+    ],
     "reponse": 1,
-    "explication": "`*` veut dire zéro ou plus, `+` un ou plus, `?` zéro ou un. La virgule est le séparateur."
+    "explication": "**Règle :** une répétition s'écrit `$( motif ) séparateur opérateur`. L'opérateur dit combien de fois :\n\n| Opérateur | Nombre de répétitions |\n|---|---|\n| `*` | zéro ou plus |\n| `+` | une ou plus |\n| `?` | zéro ou une |\n\n**Pas à pas :** dans `$( $x:expr ),*` :\n\n- `$x:expr` : chaque élément est une expression ;\n- `,` (entre la parenthèse fermante et l'opérateur) : les éléments sont séparés par des virgules ;\n- `*` : il peut y en avoir **zéro**, une ou plusieurs.\n\nDonc `m!()`, `m!(1)` et `m!(1, 2 + 3, x)` correspondent tous.\n\n**Les autres réponses :**\n\n- « exactement une expression » : ce serait `$x:expr` tout seul, sans `$( )` ;\n- « au moins une expression » : ce serait `+` au lieu de `*` ;\n- « un tableau de taille fixe » : une répétition n'a pas de taille imposée, et ne crée pas de tableau par elle-même.\n\n**À retenir :** `*` = 0 ou plus, `+` = 1 ou plus, `?` = 0 ou 1 ; le symbole juste avant est le séparateur."
   },
   {
     "question": "Pourquoi une macro peut-elle faire ce qu'une fonction ne peut pas, comme `vec![1, 2, 3]` ?",
-    "choix": ["Elle est plus rapide", "Elle accepte un nombre variable d'arguments", "Elle n'est jamais vérifiée", "Elle s'exécute en parallèle"],
+    "choix": [
+      "Elle est plus rapide",
+      "Elle accepte un nombre variable d'arguments",
+      "Elle n'est jamais vérifiée",
+      "Elle s'exécute en parallèle"
+    ],
     "reponse": 1,
-    "explication": "Une fonction a un nombre fixe de paramètres. Une macro peut accepter autant d'éléments qu'on veut grâce aux répétitions."
+    "explication": "**Règle :** une fonction a un **nombre fixe** de paramètres, décidé une fois pour toutes. Une macro, grâce aux répétitions `$( ... ),*`, accepte **autant d'arguments qu'on veut**, et produit un code adapté à chaque appel.\n\n**Pas à pas :** comparons.\n\n- `fn trois(a: i32, b: i32, c: i32)` : `trois(1, 2)` ou `trois(1, 2, 3, 4)` ne compilent pas ;\n- `vec![1, 2, 3]` comme `vec![1]` ou `vec![1, 2, 3, 4, 5]` compilent : la macro est dépliée en un code qui range exactement les éléments donnés.\n\n**Les autres réponses :**\n\n- « plus rapide » : le code produit par une macro n'est pas plus rapide qu'une fonction bien écrite, ce n'est pas la raison ;\n- « jamais vérifiée » : c'est faux, le code produit est vérifié (types, emprunts) comme tout le reste ;\n- « s'exécute en parallèle » : une macro n'a rien à voir avec les threads, elle disparaît à la compilation.\n\n**À retenir :** nombre variable d'arguments = travail de macro (répétitions), impossible pour une fonction."
   },
   {
     "question": "Que fait `#[derive(Debug)]` ?",
-    "choix": ["Lance le programme en mode debug", "Génère automatiquement l'implémentation du trait `Debug`", "Désactive les avertissements", "Copie la structure"],
+    "choix": [
+      "Lance le programme en mode debug",
+      "Génère automatiquement l'implémentation du trait `Debug`",
+      "Désactive les avertissements",
+      "Copie la structure"
+    ],
     "reponse": 1,
-    "explication": "`derive` est une macro procédurale : elle lit la structure et écrit l'`impl` du trait à notre place."
+    "explication": "**Règle :** `#[derive(Trait)]` est une **macro** (procédurale, de la famille derive) : elle lit la définition de la structure (ses champs) et **écrit l'`impl` du trait** à ta place.\n\n**Pas à pas :** sur `#[derive(Debug)] struct Point { x: i32, y: i32 }` :\n\n1. la macro voit les champs `x` et `y` ;\n2. elle écrit une `impl Debug for Point` qui affiche le nom du type et chaque champ ;\n3. tu peux alors écrire `println!(\"{:?}\", p)`, qui affiche `Point { x: 1, y: 2 }`.\n\n**Les autres réponses :**\n\n- « lance le programme en mode debug » : le mode debug se choisit avec `cargo build` (contre `cargo build --release`), pas avec un attribut ;\n- « désactive les avertissements » : c'est le rôle de `#[allow(...)]` ;\n- « copie la structure » : copier, c'est le trait `Clone` (ou `Copy`), qu'on peut aussi dériver, mais `Debug` sert seulement à l'affichage `{:?}`.\n\n**À retenir :** `derive(X)` = « écris l'`impl X` pour moi » ; `Debug` = affichage avec `{:?}`."
   },
   {
     "question": "Que veut dire « hygiène » des macros ?",
-    "choix": ["Le code est formaté automatiquement", "Les variables créées dans la macro ne se mélangent pas avec celles de l'appelant", "La macro supprime le code inutile", "La macro vérifie les noms de fonctions"],
+    "choix": [
+      "Le code est formaté automatiquement",
+      "Les variables créées dans la macro ne se mélangent pas avec celles de l'appelant",
+      "La macro supprime le code inutile",
+      "La macro vérifie les noms de fonctions"
+    ],
     "reponse": 1,
-    "explication": "Un `let x` écrit dans la macro n'est pas le même `x` que celui de l'appelant : pas de collision de noms par accident."
+    "explication": "**Règle :** l'**hygiène** veut dire que les variables créées **dans** une macro (`let x = ...`) sont séparées de celles de l'appelant, même si elles ont le même nom. Aucune collision par accident.\n\n**Pas à pas :** avec `macro_rules! m { ($e:expr) => {{ let x = 2; $e * x }}; }` et dans `main` `let x = 10; m!(x)` :\n\n1. `$e` est le `x` **de `main`** : 10 ;\n2. le `let x = 2` de la macro crée une **autre** variable : 2 ;\n3. résultat : `10 * 2 = 20`. Sans hygiène, les deux `x` se confondraient et on aurait `2 * 2 = 4`.\n\n**Les autres réponses :**\n\n- « le code est formaté automatiquement » : c'est le rôle de `rustfmt` (`cargo fmt`) ;\n- « supprime le code inutile » : ce n'est pas lié aux macros (le compilateur optimise, clippy signale) ;\n- « vérifie les noms de fonctions » : au contraire, l'hygiène **ne protège pas** les noms d'items (fonctions, structures) générés, qui restent visibles normalement.\n\n**À retenir :** un `let` dans une macro ne touche jamais aux variables de l'appelant."
   },
   {
     "question": "Quand vaut-il mieux écrire une fonction plutôt qu'une macro ?",
-    "choix": ["Quand le nombre d'arguments est variable", "Quand on veut générer des noms de fonctions", "Quand une fonction (éventuellement générique) suffit", "Jamais"],
+    "choix": [
+      "Quand le nombre d'arguments est variable",
+      "Quand on veut générer des noms de fonctions",
+      "Quand une fonction (éventuellement générique) suffit",
+      "Jamais"
+    ],
     "reponse": 2,
-    "explication": "Une fonction est plus simple à lire, à déboguer et donne de meilleurs messages d'erreur. On passe à la macro seulement quand la fonction ne peut pas faire le travail."
+    "explication": "**Règle :** une fonction est plus simple à lire, à tester et donne des messages d'erreur plus clairs. On écrit une **fonction** dès qu'elle suffit (éventuellement **générique**, comme `fn plus_grand<T: PartialOrd>(a: T, b: T) -> T`), et une macro seulement quand la fonction ne peut pas faire le travail.\n\n**Pas à pas :** pour chaque besoin, on se demande si une fonction peut le faire.\n\n| Besoin | Une fonction peut ? |\n|---|---|\n| comparer deux valeurs de n'importe quel type | oui, avec un générique |\n| accepter 1, 2, 3... arguments écrits à la suite | non : macro |\n| créer une méthode dont le nom est donné | non : macro |\n\n**Les autres réponses :**\n\n- « nombre d'arguments variable » et « générer des noms de fonctions » : ce sont justement les deux cas où il **faut** une macro ;\n- « jamais » : faux, la fonction est le choix par défaut.\n\n**À retenir :** fonction d'abord ; macro seulement pour un nombre variable d'arguments, des noms générés ou une syntaxe sur mesure."
   }
 ]

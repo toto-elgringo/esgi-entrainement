@@ -5,10 +5,43 @@
     "difficulte": 1,
     "enonce": "Soit la matrice\n\n$$M = \\begin{pmatrix} 5 & 0 & -3 \\\\ 2 & 7 & 1 \\end{pmatrix}$$",
     "questions": [
-      { "intitule": "Combien $M$ a-t-elle de lignes ? (un nombre)", "type": "nombre", "reponse": 2, "refuses": ["3"] },
-      { "intitule": "Combien $M$ a-t-elle de colonnes ? (un nombre)", "type": "nombre", "reponse": 3, "refuses": ["2"] },
-      { "intitule": "Que vaut $a_{13}$ ? (un nombre)", "type": "nombre", "reponse": -3, "refuses": ["0", "3"] },
-      { "intitule": "Que vaut $a_{21}$ ? (un nombre)", "type": "nombre", "reponse": 2, "refuses": ["0"] }
+      {
+        "intitule": "Combien $M$ a-t-elle de lignes ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": [
+          "3"
+        ],
+        "explication": "**Règle :** une **ligne** est une rangée horizontale de la matrice. La taille s'écrit « lignes $\\times$ colonnes ».\n\n**Pas à pas :** on lit $M$ de haut en bas, rangée par rangée.\n\n1. 1re rangée horizontale : $(5, 0, -3)$.\n2. 2e rangée horizontale : $(2, 7, 1)$.\n3. Il n'y en a pas d'autre : $M$ a **2** lignes.\n\n**Erreur fréquente :** répondre 3, qui est le nombre de nombres **dans** chaque ligne, c'est-à-dire le nombre de colonnes.\n\n**À retenir :** nombre de lignes = nombre de rangées horizontales ; c'est le premier nombre de la taille $2 \\times 3$."
+      },
+      {
+        "intitule": "Combien $M$ a-t-elle de colonnes ? (un nombre)",
+        "type": "nombre",
+        "reponse": 3,
+        "refuses": [
+          "2"
+        ],
+        "explication": "**Règle :** une **colonne** est une rangée verticale. Le nombre de colonnes est aussi le nombre de coefficients dans chaque ligne.\n\n**Pas à pas :**\n\n1. 1re colonne (de haut en bas) : $(5, 2)$.\n2. 2e colonne : $(0, 7)$.\n3. 3e colonne : $(-3, 1)$.\n\nIl y a **3** colonnes ; on vérifie que chaque ligne contient bien 3 nombres. La taille de $M$ est $2 \\times 3$.\n\n**Erreur fréquente :** répondre 2, le nombre de lignes : on a inversé lignes et colonnes.\n\n**À retenir :** nombre de colonnes = combien de nombres dans une ligne ; c'est le second nombre de la taille."
+      },
+      {
+        "intitule": "Que vaut $a_{13}$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": -3,
+        "refuses": [
+          "0",
+          "3"
+        ],
+        "explication": "**Règle :** $a_{ij}$ est le coefficient de la ligne $i$, colonne $j$ : le premier indice donne la ligne, le second la colonne.\n\n**Pas à pas :** $a_{13}$, donc $i = 1$ et $j = 3$.\n\n1. On va à la ligne 1 : $(5, 0, -3)$.\n2. On prend le 3e nombre : $-3$.\n\nDonc $a_{13} = -3$.\n\n**Erreurs fréquentes :** répondre $3$ en oubliant le signe moins ; répondre $0$ en prenant le 2e nombre au lieu du 3e.\n\n**À retenir :** recopie le coefficient **avec son signe**."
+      },
+      {
+        "intitule": "Que vaut $a_{21}$ ? (un nombre)",
+        "type": "nombre",
+        "reponse": 2,
+        "refuses": [
+          "0"
+        ],
+        "explication": "**Règle :** $a_{21}$ se lit ligne 2, colonne 1 (ligne d'abord, colonne ensuite).\n\n**Pas à pas :**\n\n1. On va à la ligne 2 : $(2, 7, 1)$.\n2. On prend le 1er nombre : $2$.\n\nDonc $a_{21} = 2$.\n\n**Erreur fréquente :** lire la colonne d'abord (colonne 2, ligne 1) : on tombe alors sur $a_{12} = 0$.\n\n**À retenir :** $a_{21}$ et $a_{12}$ ne sont pas la même case : le premier indice choisit toujours la **ligne**."
+      }
     ],
     "indices": [
       "La taille s'écrit toujours « lignes × colonnes ».",
@@ -25,21 +58,50 @@
       {
         "intitule": "$A + B$",
         "type": "vecteur",
-        "reponse": [4, 3, 0, 5],
-        "acceptes": ["(4; 3; 0; 5)"],
-        "refuses": ["(4, 0, 3, 5)", "(2, -5, 4, -5)"]
+        "reponse": [
+          4,
+          3,
+          0,
+          5
+        ],
+        "acceptes": [
+          "(4; 3; 0; 5)"
+        ],
+        "refuses": [
+          "(4, 0, 3, 5)",
+          "(2, -5, 4, -5)"
+        ],
+        "explication": "**Règle :** on additionne deux matrices de même taille **case par case** : $(A + B)_{ij} = a_{ij} + b_{ij}$.\n\n**Pas à pas :**\n\n| Case | $A$ | $B$ | $A + B$ |\n|---|---|---|---|\n| (1, 1) | $3$ | $1$ | $3 + 1 = 4$ |\n| (1, 2) | $-1$ | $4$ | $-1 + 4 = 3$ |\n| (2, 1) | $2$ | $-2$ | $2 + (-2) = 0$ |\n| (2, 2) | $0$ | $5$ | $0 + 5 = 5$ |\n\n$A + B = \\begin{pmatrix} 4 & 3 \\\\ 0 & 5 \\end{pmatrix}$, qu'on écrit ligne par ligne $(4, 3, 0, 5)$.\n\n**Erreurs fréquentes :** écrire colonne par colonne, ce qui donne $(4, 0, 3, 5)$ ; calculer $A - B$ par erreur, ce qui donne $(2, -5, 4, -5)$.\n\n**À retenir :** addition case par case, puis on recopie la 1re ligne, ensuite la 2e."
       },
       {
         "intitule": "$2A$",
         "type": "vecteur",
-        "reponse": [6, -2, 4, 0],
-        "refuses": ["(6, -1, 2, 0)", "(5, 1, 4, 2)"]
+        "reponse": [
+          6,
+          -2,
+          4,
+          0
+        ],
+        "refuses": [
+          "(6, -1, 2, 0)",
+          "(5, 1, 4, 2)"
+        ],
+        "explication": "**Règle :** multiplier une matrice par un nombre, c'est multiplier **chaque** coefficient par ce nombre.\n\n**Pas à pas :** $2A$ avec $A = \\begin{pmatrix} 3 & -1 \\\\ 2 & 0 \\end{pmatrix}$.\n\n- $2 \\times 3 = 6$\n- $2 \\times (-1) = -2$\n- $2 \\times 2 = 4$\n- $2 \\times 0 = 0$\n\n$2A = \\begin{pmatrix} 6 & -2 \\\\ 4 & 0 \\end{pmatrix}$, soit $(6, -2, 4, 0)$.\n\n**Erreurs fréquentes :** ne multiplier que la 1re case, ce qui donne $(6, -1, 2, 0)$ ; ajouter 2 au lieu de multiplier, ce qui donne $(5, 1, 4, 2)$.\n\n**À retenir :** $\\lambda A$ = chaque case multipliée par $\\lambda$, sans exception."
       },
       {
         "intitule": "$2A - B$",
         "type": "vecteur",
-        "reponse": [5, -6, 6, -5],
-        "refuses": ["(5, 2, 2, -5)", "(2, -5, 4, -5)"]
+        "reponse": [
+          5,
+          -6,
+          6,
+          -5
+        ],
+        "refuses": [
+          "(5, 2, 2, -5)",
+          "(2, -5, 4, -5)"
+        ],
+        "explication": "**Règle :** on calcule d'abord $2A$ (chaque case multipliée par 2), puis on soustrait $B$ case par case : $(2A - B)_{ij} = 2a_{ij} - b_{ij}$.\n\n**Pas à pas :** $2A = \\begin{pmatrix} 6 & -2 \\\\ 4 & 0 \\end{pmatrix}$ (question précédente).\n\n| Case | $2A$ | $B$ | $2A - B$ |\n|---|---|---|---|\n| (1, 1) | $6$ | $1$ | $6 - 1 = 5$ |\n| (1, 2) | $-2$ | $4$ | $-2 - 4 = -6$ |\n| (2, 1) | $4$ | $-2$ | $4 - (-2) = 4 + 2 = 6$ |\n| (2, 2) | $0$ | $5$ | $0 - 5 = -5$ |\n\n$2A - B = (5, -6, 6, -5)$.\n\n**Erreurs fréquentes :** écrire $4 - (-2) = 2$ (retirer un nombre négatif revient à **ajouter**) et $-2 - 4 = 2$, ce qui donne $(5, 2, 2, -5)$ ; oublier le 2 devant $A$, ce qui donne $A - B = (2, -5, 4, -5)$.\n\n**À retenir :** fais une case à la fois et surveille les signes : $a - (-b) = a + b$."
       }
     ],
     "indices": [
@@ -57,26 +119,49 @@
       {
         "intitule": "Le produit $AB$ :",
         "type": "choix",
-        "choix": ["existe, de taille $3 \\times 4$", "existe, de taille $2 \\times 2$", "existe, de taille $4 \\times 3$", "n'existe pas"],
-        "reponse": 0
+        "choix": [
+          "existe, de taille $3 \\times 4$",
+          "existe, de taille $2 \\times 2$",
+          "existe, de taille $4 \\times 3$",
+          "n'existe pas"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** $(m \\times n)(n \\times p)$ : le produit existe si les deux nombres du **milieu** sont égaux, et le résultat a pour taille les deux nombres du **bord**, $m \\times p$.\n\n**Pas à pas :**\n\n1. $AB$ s'écrit $(3 \\times 2)(2 \\times 4)$.\n2. Milieu : 2 et 2, égaux, donc $AB$ existe.\n3. Bords : 3 et 4, donc $AB$ est $3 \\times 4$.\n\n**Les autres réponses :**\n\n- $2 \\times 2$ garde le milieu, qui disparaît toujours du résultat.\n- $4 \\times 3$ prend les bords à l'envers.\n- « N'existe pas » est faux puisque $2 = 2$.\n\n**À retenir :** milieu égal pour exister, bords dans l'ordre pour la taille."
       },
       {
         "intitule": "Le produit $BA$ :",
         "type": "choix",
-        "choix": ["existe, de taille $2 \\times 2$", "existe, de taille $4 \\times 3$", "n'existe pas"],
-        "reponse": 2
+        "choix": [
+          "existe, de taille $2 \\times 2$",
+          "existe, de taille $4 \\times 3$",
+          "n'existe pas"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** pour $BA$, il faut que le nombre de **colonnes de $B$** soit égal au nombre de **lignes de $A$**.\n\n**Pas à pas :**\n\n1. $BA$ s'écrit $(2 \\times 4)(3 \\times 2)$.\n2. Milieu : 4 et 3.\n3. $4 \\neq 3$ : chaque ligne de $B$ a 4 nombres, chaque colonne de $A$ en a 3, on ne peut pas les multiplier deux à deux. $BA$ **n'existe pas**.\n\n**Les autres réponses :** « $2 \\times 2$ » et « $4 \\times 3$ » donnent une taille alors que la condition du milieu n'est pas remplie. $AB$ existe mais pas $BA$ : l'ordre compte.\n\n**À retenir :** change l'ordre, et tu changes les nombres du milieu ; revérifie à chaque fois."
       },
       {
         "intitule": "Le produit $ABC$ :",
         "type": "choix",
-        "choix": ["existe, de taille $3 \\times 3$", "existe, de taille $4 \\times 4$", "existe, de taille $2 \\times 3$", "n'existe pas"],
-        "reponse": 0
+        "choix": [
+          "existe, de taille $3 \\times 3$",
+          "existe, de taille $4 \\times 4$",
+          "existe, de taille $2 \\times 3$",
+          "n'existe pas"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** pour un produit de trois matrices, on avance deux par deux : on calcule la taille de $AB$, puis celle de $(AB)C$.\n\n**Pas à pas :**\n\n1. $AB$ : $(3 \\times 2)(2 \\times 4)$, milieu égal, taille $3 \\times 4$.\n2. $(AB)C$ : $(3 \\times 4)(4 \\times 3)$, milieu 4 et 4 égal, donc le produit existe.\n3. Bords : 3 et 3, donc $ABC$ est $3 \\times 3$.\n\nAstuce : en écrivant tout d'un coup $(3 \\times 2)(2 \\times 4)(4 \\times 3)$, les nombres intérieurs se « simplifient » deux à deux et il reste le premier (3) et le dernier (3).\n\n**Les autres réponses :** $4 \\times 4$ et $2 \\times 3$ ne correspondent pas aux bords extérieurs $3$ et $3$ ; « n'existe pas » est faux, chaque étape a un milieu égal.\n\n**À retenir :** dans une chaîne de produits, chaque raccord doit concorder, et la taille finale = première ligne, dernière colonne."
       },
       {
         "intitule": "Le produit $CA$ :",
         "type": "choix",
-        "choix": ["existe, de taille $4 \\times 2$", "existe, de taille $3 \\times 3$", "existe, de taille $2 \\times 4$", "n'existe pas"],
-        "reponse": 0
+        "choix": [
+          "existe, de taille $4 \\times 2$",
+          "existe, de taille $3 \\times 3$",
+          "existe, de taille $2 \\times 4$",
+          "n'existe pas"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** $CA$ existe si le nombre de colonnes de $C$ est égal au nombre de lignes de $A$.\n\n**Pas à pas :**\n\n1. $CA$ s'écrit $(4 \\times 3)(3 \\times 2)$.\n2. Milieu : 3 et 3, égaux, donc $CA$ existe.\n3. Bords : 4 et 2, donc $CA$ est $4 \\times 2$.\n\n**Les autres réponses :**\n\n- $3 \\times 3$ garde le milieu.\n- $2 \\times 4$ prend les bords à l'envers.\n- « N'existe pas » vient d'une confusion avec $AC$ : $(3 \\times 2)(4 \\times 3)$ a un milieu $2 \\neq 4$, c'est $AC$ qui n'existe pas.\n\n**À retenir :** écris toujours les tailles **dans l'ordre du produit** avant de comparer."
       }
     ],
     "indices": [
@@ -94,20 +179,42 @@
       {
         "intitule": "$AB$",
         "type": "vecteur",
-        "reponse": [4, 5, 12, 1],
-        "refuses": ["(0, 2, -4, 3)", "(-2, 6, 7, 7)"]
+        "reponse": [
+          4,
+          5,
+          12,
+          1
+        ],
+        "refuses": [
+          "(0, 2, -4, 3)",
+          "(-2, 6, 7, 7)"
+        ],
+        "explication": "**Règle (ligne × colonne) :** la case $(i, j)$ de $AB$ se calcule avec la **ligne $i$ de $A$** et la **colonne $j$ de $B$** : on multiplie les nombres deux à deux, puis on additionne.\n\n**Pas à pas :** les lignes de $A$ sont $(2, 1)$ et $(-1, 3)$ ; les colonnes de $B$ (lues de haut en bas) sont $(0, 4)$ et $(2, 1)$.\n\n| Case | Ligne de $A$ | Colonne de $B$ | Calcul | Résultat |\n|---|---|---|---|---|\n| (1, 1) | $(2, 1)$ | $(0, 4)$ | $2 \\times 0 + 1 \\times 4$ | $4$ |\n| (1, 2) | $(2, 1)$ | $(2, 1)$ | $2 \\times 2 + 1 \\times 1$ | $5$ |\n| (2, 1) | $(-1, 3)$ | $(0, 4)$ | $-1 \\times 0 + 3 \\times 4$ | $12$ |\n| (2, 2) | $(-1, 3)$ | $(2, 1)$ | $-1 \\times 2 + 3 \\times 1$ | $1$ |\n\n$AB = \\begin{pmatrix} 4 & 5 \\\\ 12 & 1 \\end{pmatrix}$, soit $(4, 5, 12, 1)$.\n\n**Erreurs fréquentes :** multiplier case par case ($2 \\times 0$, $1 \\times 2$, $-1 \\times 4$, $3 \\times 1$), ce qui donne $(0, 2, -4, 3)$ ; prendre les lignes de $B$ au lieu de ses colonnes ; calculer $BA$ au lieu de $AB$, ce qui donne $(-2, 6, 7, 7)$.\n\n**À retenir :** chaque case du produit est une **somme** de produits « ligne de gauche × colonne de droite »."
       },
       {
         "intitule": "$BA$",
         "type": "vecteur",
-        "reponse": [-2, 6, 7, 7],
-        "refuses": ["(4, 5, 12, 1)"]
+        "reponse": [
+          -2,
+          6,
+          7,
+          7
+        ],
+        "refuses": [
+          "(4, 5, 12, 1)"
+        ],
+        "explication": "**Règle :** pour $BA$, on prend cette fois les **lignes de $B$** et les **colonnes de $A$**.\n\n**Pas à pas :** les lignes de $B$ sont $(0, 2)$ et $(4, 1)$ ; les colonnes de $A$ sont $(2, -1)$ et $(1, 3)$.\n\n| Case | Ligne de $B$ | Colonne de $A$ | Calcul | Résultat |\n|---|---|---|---|---|\n| (1, 1) | $(0, 2)$ | $(2, -1)$ | $0 \\times 2 + 2 \\times (-1)$ | $-2$ |\n| (1, 2) | $(0, 2)$ | $(1, 3)$ | $0 \\times 1 + 2 \\times 3$ | $6$ |\n| (2, 1) | $(4, 1)$ | $(2, -1)$ | $4 \\times 2 + 1 \\times (-1)$ | $7$ |\n| (2, 2) | $(4, 1)$ | $(1, 3)$ | $4 \\times 1 + 1 \\times 3$ | $7$ |\n\n$BA = (-2, 6, 7, 7)$.\n\n**Erreur fréquente :** recopier $AB = (4, 5, 12, 1)$ en croyant que l'ordre ne compte pas.\n\n**À retenir :** pour $BA$, tout recommencer : c'est la matrice de **gauche** qui fournit les lignes."
       },
       {
         "intitule": "Que montre la comparaison de $AB$ et $BA$ ?",
         "type": "choix",
-        "choix": ["Le produit est commutatif", "Le produit n'est pas commutatif", "$B$ est l'inverse de $A$"],
-        "reponse": 1
+        "choix": [
+          "Le produit est commutatif",
+          "Le produit n'est pas commutatif",
+          "$B$ est l'inverse de $A$"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** le produit est **commutatif** seulement si $AB = BA$ pour toutes les matrices. Un seul contre-exemple suffit à montrer qu'il ne l'est pas. $B$ serait l'inverse de $A$ si $AB = I_2 = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$.\n\n**Pas à pas :**\n\n1. $AB = \\begin{pmatrix} 4 & 5 \\\\ 12 & 1 \\end{pmatrix}$ et $BA = \\begin{pmatrix} -2 & 6 \\\\ 7 & 7 \\end{pmatrix}$.\n2. Dès la case (1, 1), $4 \\neq -2$ : les deux produits sont différents.\n3. Conclusion : le produit **n'est pas commutatif**.\n\n**Les autres réponses :**\n\n- « Le produit est commutatif » : l'exemple montre exactement le contraire.\n- « $B$ est l'inverse de $A$ » : il faudrait $AB = I_2$, or $AB$ contient 4, 5, 12 et 1, pas $\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$.\n\n**À retenir :** $AB \\neq BA$ en général ; l'inverse se reconnaît à $AB = I$."
       }
     ],
     "indices": [
@@ -126,25 +233,43 @@
       {
         "intitule": "Calcule $AB$, ligne par ligne au format `(a, b, c, d)`.",
         "type": "vecteur",
-        "reponse": [4, 9, -1, 0],
-        "refuses": ["(4, -1, 9, 0)"]
+        "reponse": [
+          4,
+          9,
+          -1,
+          0
+        ],
+        "refuses": [
+          "(4, -1, 9, 0)"
+        ],
+        "explication": "**Règle :** $(2 \\times 3)(3 \\times 2)$ donne une matrice $2 \\times 2$. Chaque ligne de $A$ et chaque colonne de $B$ contiennent **3** nombres, donc chaque case est une somme de **trois** produits.\n\n**Pas à pas :** lignes de $A$ : $(1, 0, 2)$ et $(-1, 3, 1)$ ; colonnes de $B$ : $(2, 0, 1)$ et $(1, -1, 4)$.\n\n| Case | Ligne de $A$ | Colonne de $B$ | Calcul | Résultat |\n|---|---|---|---|---|\n| (1, 1) | $(1, 0, 2)$ | $(2, 0, 1)$ | $2 + 0 + 2$ | $4$ |\n| (1, 2) | $(1, 0, 2)$ | $(1, -1, 4)$ | $1 + 0 + 8$ | $9$ |\n| (2, 1) | $(-1, 3, 1)$ | $(2, 0, 1)$ | $-2 + 0 + 1$ | $-1$ |\n| (2, 2) | $(-1, 3, 1)$ | $(1, -1, 4)$ | $-1 - 3 + 4$ | $0$ |\n\n$AB = \\begin{pmatrix} 4 & 9 \\\\ -1 & 0 \\end{pmatrix}$, soit $(4, 9, -1, 0)$ ligne par ligne.\n\n**Erreurs fréquentes :** écrire colonne par colonne, $(4, -1, 9, 0)$ ; lire la colonne 2 de $B$ comme $(1, 0)$ au lieu de $(1, -1, 4)$ ; oublier un des trois produits.\n\n**À retenir :** une colonne se lit de haut en bas, et on fait autant de produits qu'elle a de nombres."
       },
       {
         "intitule": "Quelle est la taille de $BA$ ?",
         "type": "choix",
-        "choix": ["$2 \\times 2$", "$3 \\times 3$", "$2 \\times 3$", "$BA$ n'existe pas"],
-        "reponse": 1
+        "choix": [
+          "$2 \\times 2$",
+          "$3 \\times 3$",
+          "$2 \\times 3$",
+          "$BA$ n'existe pas"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $(m \\times n)(n \\times p) = m \\times p$.\n\n**Pas à pas :**\n\n1. $BA$ s'écrit $(3 \\times 2)(2 \\times 3)$.\n2. Milieu : 2 et 2, égaux, donc $BA$ existe.\n3. Bords : 3 et 3, donc $BA$ est $3 \\times 3$.\n\n**Les autres réponses :**\n\n- $2 \\times 2$ est la taille de $AB$ : changer l'ordre change aussi la taille.\n- $2 \\times 3$ est la taille de $A$ seule.\n- « N'existe pas » est faux : le milieu concorde.\n\n**À retenir :** $AB$ et $BA$ peuvent exister tous les deux et ne pas avoir la même taille."
       },
       {
         "intitule": "Que vaut le coefficient $(BA)_{11}$ ? (un nombre)",
         "type": "nombre",
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** $(BA)_{11}$ = ligne 1 de $B$ « fois » colonne 1 de $A$.\n\n**Pas à pas :**\n\n1. Ligne 1 de $B$ : $(2, 1)$.\n2. Colonne 1 de $A$, de haut en bas : $(1, -1)$.\n3. $2 \\times 1 + 1 \\times (-1) = 2 - 1 = 1$.\n\nDonc $(BA)_{11} = 1$.\n\n**Erreurs fréquentes :** prendre la ligne 1 de $A$ $(1, 0, 2)$ (elle a 3 nombres, ça ne colle pas avec les 2 de la ligne de $B$) ; oublier le signe de $-1$ et trouver 3.\n\n**À retenir :** pour une seule case, il suffit d'une ligne et d'une colonne : pas besoin de calculer toute la matrice."
       },
       {
         "intitule": "Que vaut le coefficient $(BA)_{32}$ ? (un nombre)",
         "type": "nombre",
         "reponse": 12,
-        "refuses": ["4"]
+        "refuses": [
+          "4"
+        ],
+        "explication": "**Règle :** $(BA)_{32}$ = ligne **3** de $B$ « fois » colonne **2** de $A$.\n\n**Pas à pas :**\n\n1. Ligne 3 de $B$ : $(1, 4)$.\n2. Colonne 2 de $A$, de haut en bas : $(0, 3)$.\n3. $1 \\times 0 + 4 \\times 3 = 0 + 12 = 12$.\n\nDonc $(BA)_{32} = 12$.\n\n**Erreurs fréquentes :** prendre la **ligne** 2 de $A$ $(-1, 3, 1)$ au lieu de sa colonne 2 ; lire la colonne 2 de $A$ comme $(0, 2)$ ou $(1, 0)$ ; trouver 4 en ne gardant que $1 \\times 4$.\n\n**À retenir :** le premier indice choisit la ligne dans la matrice de gauche, le second la colonne dans celle de droite."
       }
     ],
     "indices": [
@@ -162,20 +287,44 @@
       {
         "intitule": "Écris $A^T$ ligne par ligne (6 nombres).",
         "type": "vecteur",
-        "reponse": [2, 3, -1, 4, 0, 5],
-        "refuses": ["(2, -1, 0, 3, 4, 5)"]
+        "reponse": [
+          2,
+          3,
+          -1,
+          4,
+          0,
+          5
+        ],
+        "refuses": [
+          "(2, -1, 0, 3, 4, 5)"
+        ],
+        "explication": "**Règle :** la transposée $A^T$ échange lignes et colonnes : la ligne $i$ de $A$ devient la colonne $i$ de $A^T$. Une $2 \\times 3$ devient une $3 \\times 2$.\n\n**Pas à pas :**\n\n1. La 1re ligne $(2, -1, 0)$ s'écrit debout : c'est la 1re colonne de $A^T$.\n2. La 2e ligne $(3, 4, 5)$ devient la 2e colonne.\n3. $A^T = \\begin{pmatrix} 2 & 3 \\\\ -1 & 4 \\\\ 0 & 5 \\end{pmatrix}$.\n4. Ligne par ligne : $(2, 3)$, puis $(-1, 4)$, puis $(0, 5)$, soit $(2, 3, -1, 4, 0, 5)$.\n\nVérification : $(A^T)_{21}$ doit valoir $a_{12} = -1$, c'est bien le cas.\n\n**Erreur fréquente :** recopier $A$ telle quelle, $(2, -1, 0, 3, 4, 5)$ : c'est l'ordre de lecture de $A$, pas de $A^T$.\n\n**À retenir :** transposer = les lignes deviennent les colonnes ; puis on relit le résultat ligne par ligne."
       },
       {
         "intitule": "Quelle est la taille de $A^T A$ ?",
         "type": "choix",
-        "choix": ["$2 \\times 2$", "$3 \\times 3$", "$2 \\times 3$", "$A^T A$ n'existe pas"],
-        "reponse": 1
+        "choix": [
+          "$2 \\times 2$",
+          "$3 \\times 3$",
+          "$2 \\times 3$",
+          "$A^T A$ n'existe pas"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** $(m \\times n)(n \\times p) = m \\times p$. $A^T$ est $3 \\times 2$ et $A$ est $2 \\times 3$.\n\n**Pas à pas :**\n\n1. $A^T A$ s'écrit $(3 \\times 2)(2 \\times 3)$.\n2. Milieu : 2 et 2, égaux, le produit existe.\n3. Bords : 3 et 3, donc $A^T A$ est $3 \\times 3$.\n\n**Les autres réponses :**\n\n- $2 \\times 2$ est la taille de $A A^T$, le produit dans l'autre ordre : $(2 \\times 3)(3 \\times 2)$.\n- $2 \\times 3$ est la taille de $A$.\n- « N'existe pas » : une matrice et sa transposée se multiplient **toujours**, dans les deux ordres.\n\n**À retenir :** $A^TA$ et $AA^T$ existent toujours ; $A^TA$ a la taille « colonnes × colonnes » de $A$."
       },
       {
         "intitule": "Calcule $A A^T$, ligne par ligne au format `(a, b, c, d)`.",
         "type": "vecteur",
-        "reponse": [5, 2, 2, 50],
-        "refuses": ["(4, -3, 0, 20)"]
+        "reponse": [
+          5,
+          2,
+          2,
+          50
+        ],
+        "refuses": [
+          "(4, -3, 0, 20)"
+        ],
+        "explication": "**Règle :** $AA^T$ est $(2 \\times 3)(3 \\times 2) = 2 \\times 2$. La colonne $j$ de $A^T$ est la ligne $j$ de $A$, donc la case $(i, j)$ de $AA^T$ multiplie la **ligne $i$ de $A$** par la **ligne $j$ de $A$**.\n\n**Pas à pas :** lignes de $A$ : $L_1 = (2, -1, 0)$ et $L_2 = (3, 4, 5)$.\n\n| Case | Lignes utilisées | Calcul | Résultat |\n|---|---|---|---|\n| (1, 1) | $L_1$ et $L_1$ | $4 + 1 + 0$ | $5$ |\n| (1, 2) | $L_1$ et $L_2$ | $6 - 4 + 0$ | $2$ |\n| (2, 1) | $L_2$ et $L_1$ | $6 - 4 + 0$ | $2$ |\n| (2, 2) | $L_2$ et $L_2$ | $9 + 16 + 25$ | $50$ |\n\n$AA^T = \\begin{pmatrix} 5 & 2 \\\\ 2 & 50 \\end{pmatrix}$, soit $(5, 2, 2, 50)$. Elle est symétrique : les cases (1, 2) et (2, 1) sont égales.\n\n**Erreurs fréquentes :** multiplier case par case, ce qui donne des nombres comme $(4, -3, 0, 20)$ ; oublier que $(-1) \\times (-1) = +1$ dans la case (1, 1).\n\n**À retenir :** case $(i, j)$ de $AA^T$ = ligne $i$ de $A$ « fois » ligne $j$ de $A$."
       }
     ],
     "indices": [
@@ -190,10 +339,46 @@
     "difficulte": 1,
     "enonce": "Pour chaque application de $\\mathbb{R}^2$ dans $\\mathbb{R}^2$, dis si elle est linéaire.",
     "questions": [
-      { "intitule": "$f(x, y) = (2y,\\ -x)$", "type": "choix", "choix": ["Linéaire", "Pas linéaire"], "reponse": 0 },
-      { "intitule": "$g(x, y) = (x + y,\\ 2)$", "type": "choix", "choix": ["Linéaire", "Pas linéaire"], "reponse": 1 },
-      { "intitule": "$h(x, y) = (xy,\\ x)$", "type": "choix", "choix": ["Linéaire", "Pas linéaire"], "reponse": 1 },
-      { "intitule": "$k(x, y) = (x - 3y,\\ 4x + y)$", "type": "choix", "choix": ["Linéaire", "Pas linéaire"], "reponse": 0 }
+      {
+        "intitule": "$f(x, y) = (2y,\\ -x)$",
+        "type": "choix",
+        "choix": [
+          "Linéaire",
+          "Pas linéaire"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une application est linéaire si chaque coordonnée ne contient que des termes « nombre $\\times$ variable », sans constante ni produit de variables ni carré.\n\n**Pas à pas :** $f(x, y) = (2y,\\ -x)$.\n\n1. 1re coordonnée $2y$ : c'est $2 \\times y$, un « nombre × variable ».\n2. 2e coordonnée $-x$ : c'est $(-1) \\times x$, aussi.\n3. Test du zéro : $f(0, 0) = (0, 0)$, cohérent.\n\nDonc $f$ est **linéaire**. Sa matrice : $f(e_1) = f(1, 0) = (0, -1)$ et $f(e_2) = f(0, 1) = (2, 0)$, rangés en colonnes : $\\begin{pmatrix} 0 & 2 \\\\ -1 & 0 \\end{pmatrix}$.\n\n**Erreur fréquente :** croire qu'une coordonnée doit contenir $x$ et $y$ à la fois : $2y$ seul est très bien.\n\n**À retenir :** que des « nombre × variable » = linéaire."
+      },
+      {
+        "intitule": "$g(x, y) = (x + y,\\ 2)$",
+        "type": "choix",
+        "choix": [
+          "Linéaire",
+          "Pas linéaire"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** une application linéaire envoie toujours le vecteur nul sur le vecteur nul : $g(0, 0)$ doit valoir $(0, 0)$.\n\n**Pas à pas :** $g(x, y) = (x + y,\\ 2)$.\n\n1. On calcule $g(0, 0) = (0 + 0,\\ 2) = (0, 2)$.\n2. $(0, 2) \\neq (0, 0)$ : le test échoue.\n3. Donc $g$ n'est **pas linéaire**. La faute vient de la 2e coordonnée, qui vaut toujours 2 : c'est une constante, pas un « nombre × variable ».\n\n**Erreur fréquente :** regarder seulement la 1re coordonnée $x + y$, qui est bien linéaire. Il faut que **toutes** les coordonnées le soient.\n\n**À retenir :** une constante dans une coordonnée suffit à casser la linéarité."
+      },
+      {
+        "intitule": "$h(x, y) = (xy,\\ x)$",
+        "type": "choix",
+        "choix": [
+          "Linéaire",
+          "Pas linéaire"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** le test $h(0, 0) = (0, 0)$ sert à **éliminer**, il ne suffit pas à prouver la linéarité. Il faut aussi $h(\\lambda \\vec u) = \\lambda h(\\vec u)$ : doubler l'entrée doit doubler la sortie.\n\n**Pas à pas :** $h(x, y) = (xy,\\ x)$.\n\n1. $h(0, 0) = (0, 0)$ : le test du zéro passe, on ne peut pas conclure.\n2. On double l'entrée : $h(2x, 2y) = ((2x)(2y),\\ 2x) = (4xy,\\ 2x)$.\n3. Le double de la sortie : $2h(x, y) = (2xy,\\ 2x)$.\n4. $4xy \\neq 2xy$ (par exemple pour $x = y = 1$ : 4 contre 2). Donc $h$ n'est **pas linéaire**.\n\n**Erreur fréquente :** répondre « linéaire » parce que $h(0, 0) = (0, 0)$. Le produit de variables $xy$ casse la linéarité.\n\n**À retenir :** un produit de variables comme $xy$ = pas linéaire, même si $0$ est envoyé sur $0$."
+      },
+      {
+        "intitule": "$k(x, y) = (x - 3y,\\ 4x + y)$",
+        "type": "choix",
+        "choix": [
+          "Linéaire",
+          "Pas linéaire"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** que des termes « nombre $\\times$ variable » dans chaque coordonnée = linéaire.\n\n**Pas à pas :** $k(x, y) = (x - 3y,\\ 4x + y)$.\n\n1. 1re coordonnée : $1 \\times x$ et $(-3) \\times y$.\n2. 2e coordonnée : $4 \\times x$ et $1 \\times y$.\n3. Ni constante, ni produit, ni carré : $k$ est **linéaire**.\n\nSa matrice : $k(e_1) = (1, 4)$ et $k(e_2) = (-3, 1)$ en colonnes, soit $\\begin{pmatrix} 1 & -3 \\\\ 4 & 1 \\end{pmatrix}$ (chaque ligne reprend les coefficients d'une coordonnée).\n\n**Erreur fréquente :** croire que le signe moins de $-3y$ empêche la linéarité : $-3$ est un nombre comme un autre.\n\n**À retenir :** les coefficients peuvent être négatifs ; seuls comptent l'absence de constante, de produit et de puissance."
+      }
     ],
     "indices": [
       "Test rapide : une application linéaire envoie toujours $(0, 0)$ sur $(0, 0)$.",
@@ -210,26 +395,54 @@
       {
         "intitule": "$f(e_1)$, au format `(a, b)`",
         "type": "vecteur",
-        "reponse": [3, 1],
-        "refuses": ["(3, -1)"]
+        "reponse": [
+          3,
+          1
+        ],
+        "refuses": [
+          "(3, -1)"
+        ],
+        "explication": "**Règle :** $e_1 = (1, 0)$ ; pour calculer $f(e_1)$, on remplace $x$ par 1 et $y$ par 0 dans la formule.\n\n**Pas à pas :** $f(x, y) = (3x - y,\\ x + 2y)$.\n\n1. 1re coordonnée : $3 \\times 1 - 0 = 3$.\n2. 2e coordonnée : $1 + 2 \\times 0 = 1$.\n\nDonc $f(e_1) = (3, 1)$.\n\n**Erreur fréquente :** répondre $(3, -1)$, qui sont les coefficients de la 1re **coordonnée** $3x - y$ (une ligne de la matrice), pas l'image de $e_1$.\n\n**À retenir :** $f(e_1)$ = on remplace $(x, y)$ par $(1, 0)$, coordonnée par coordonnée."
       },
       {
         "intitule": "$f(e_2)$, au format `(a, b)`",
         "type": "vecteur",
-        "reponse": [-1, 2],
-        "refuses": ["(1, 2)", "(3, -1)"]
+        "reponse": [
+          -1,
+          2
+        ],
+        "refuses": [
+          "(1, 2)",
+          "(3, -1)"
+        ],
+        "explication": "**Règle :** $e_2 = (0, 1)$ ; pour $f(e_2)$, on remplace $x$ par 0 et $y$ par 1.\n\n**Pas à pas :**\n\n1. 1re coordonnée : $3 \\times 0 - 1 = -1$.\n2. 2e coordonnée : $0 + 2 \\times 1 = 2$.\n\nDonc $f(e_2) = (-1, 2)$.\n\n**Erreurs fréquentes :** oublier le signe moins de $-y$ et répondre $(1, 2)$ ; recopier les coefficients de la 1re coordonnée, $(3, -1)$.\n\n**À retenir :** $f(e_2)$ récupère les coefficients de $y$ dans chaque coordonnée, avec leurs signes."
       },
       {
         "intitule": "La matrice $A$ de $f$, ligne par ligne au format `(a, b, c, d)`",
         "type": "vecteur",
-        "reponse": [3, -1, 1, 2],
-        "refuses": ["(3, 1, -1, 2)"]
+        "reponse": [
+          3,
+          -1,
+          1,
+          2
+        ],
+        "refuses": [
+          "(3, 1, -1, 2)"
+        ],
+        "explication": "**Règle :** les **colonnes** de la matrice de $f$ sont $f(e_1)$ puis $f(e_2)$.\n\n**Pas à pas :**\n\n1. 1re colonne : $f(e_1) = (3, 1)$, écrite debout.\n2. 2e colonne : $f(e_2) = (-1, 2)$, écrite debout.\n3. $A = \\begin{pmatrix} 3 & -1 \\\\ 1 & 2 \\end{pmatrix}$.\n4. Ligne par ligne : $(3, -1)$ puis $(1, 2)$, soit $(3, -1, 1, 2)$.\n\nVérification : la 1re ligne $(3, -1)$ contient bien les coefficients de $3x - y$, la 2e ligne $(1, 2)$ ceux de $x + 2y$.\n\n**Erreur fréquente :** ranger les images en **lignes**, ce qui donne $(3, 1, -1, 2)$ : c'est la transposée de la bonne matrice.\n\n**À retenir :** images des vecteurs de base en colonnes ; chaque ligne de la matrice = coefficients d'une coordonnée."
       },
       {
         "intitule": "L'image $f(2, -1)$, au format `(a, b)`",
         "type": "vecteur",
-        "reponse": [7, 0],
-        "refuses": ["(5, 0)", "(7, 4)"]
+        "reponse": [
+          7,
+          0
+        ],
+        "refuses": [
+          "(5, 0)",
+          "(7, 4)"
+        ],
+        "explication": "**Règle :** pour calculer une image, on remplace $(x, y)$ dans la formule, ou on fait le produit $A\\begin{pmatrix} x \\\\ y \\end{pmatrix}$ : les deux donnent le même résultat.\n\n**Pas à pas :** $f(2, -1)$, donc $x = 2$ et $y = -1$.\n\n1. 1re coordonnée : $3 \\times 2 - (-1) = 6 + 1 = 7$.\n2. 2e coordonnée : $2 + 2 \\times (-1) = 2 - 2 = 0$.\n\nDonc $f(2, -1) = (7, 0)$. Avec la matrice : ligne 1 $(3, -1)$ avec $(2, -1)$ donne $6 + 1 = 7$ ; ligne 2 $(1, 2)$ avec $(2, -1)$ donne $2 - 2 = 0$.\n\n**Erreurs fréquentes :** écrire $3 \\times 2 - 1 = 5$ en oubliant que $-(-1) = +1$ ; écrire $2 + 2 = 4$ en oubliant le signe de $y$, ce qui donne $(7, 4)$.\n\n**À retenir :** remplace avec des parenthèses : $-(-1) = +1$."
       }
     ],
     "indices": [
@@ -247,26 +460,47 @@
       {
         "intitule": "$W\\vec x$, au format `(a, b, c)`",
         "type": "vecteur",
-        "reponse": [0, 3, 5],
-        "refuses": ["(4, 3, 5)", "(1, 2, 5)"]
+        "reponse": [
+          0,
+          3,
+          5
+        ],
+        "refuses": [
+          "(4, 3, 5)",
+          "(1, 2, 5)"
+        ],
+        "explication": "**Règle :** $W\\vec x$ : chaque coordonnée du résultat est une ligne de $W$ « fois » $\\vec x$ (on multiplie deux à deux, puis on additionne).\n\n**Pas à pas :** $\\vec x = (2, 1)$.\n\n| Ligne de $W$ | Calcul | Résultat |\n|---|---|---|\n| $(1, -2)$ | $1 \\times 2 + (-2) \\times 1$ | $0$ |\n| $(0, 3)$ | $0 \\times 2 + 3 \\times 1$ | $3$ |\n| $(2, 1)$ | $2 \\times 2 + 1 \\times 1$ | $5$ |\n\n$W\\vec x = (0, 3, 5)$.\n\n**Erreurs fréquentes :** oublier le signe de $-2$ et trouver $2 + 2 = 4$ pour la 1re coordonnée, soit $(4, 3, 5)$ ; ajouter déjà le biais, ce qui donne $(1, 2, 5)$ (c'est la question suivante).\n\n**À retenir :** une ligne de $W$ donne une coordonnée de $W\\vec x$."
       },
       {
         "intitule": "$\\vec y = W\\vec x + \\vec b$, au format `(a, b, c)`",
         "type": "vecteur",
-        "reponse": [1, 2, 5],
-        "refuses": ["(0, 3, 5)"]
+        "reponse": [
+          1,
+          2,
+          5
+        ],
+        "refuses": [
+          "(0, 3, 5)"
+        ],
+        "explication": "**Règle :** le biais $\\vec b$ s'ajoute **coordonnée par coordonnée** au résultat de $W\\vec x$.\n\n**Pas à pas :** $W\\vec x = (0, 3, 5)$ et $\\vec b = (1, -1, 0)$.\n\n1. $0 + 1 = 1$\n2. $3 + (-1) = 2$\n3. $5 + 0 = 5$\n\n$\\vec y = (1, 2, 5)$.\n\n**Erreur fréquente :** s'arrêter à $W\\vec x = (0, 3, 5)$ en oubliant $\\vec b$.\n\n**À retenir :** couche dense = produit $W\\vec x$, **puis** ajout du biais."
       },
       {
         "intitule": "Combien de valeurs la couche reçoit-elle en entrée ? (un nombre)",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["3"]
+        "refuses": [
+          "3"
+        ],
+        "explication": "**Règle :** $W\\vec x$ existe si $\\vec x$ a autant de coordonnées que $W$ a de **colonnes** : $(3 \\times 2)(n \\times 1)$ demande $n = 2$.\n\n**Pas à pas :**\n\n1. $W$ a 3 lignes et 2 colonnes : c'est une $3 \\times 2$.\n2. Chaque ligne de $W$ a 2 nombres, qu'on multiplie avec les 2 coordonnées de $\\vec x$.\n3. La couche reçoit donc **2** valeurs en entrée (on le voit aussi : $\\vec x = (2, 1)$).\n\n**Erreur fréquente :** répondre 3, le nombre de **lignes**, qui correspond à la sortie.\n\n**À retenir :** entrées = colonnes de $W$."
       },
       {
         "intitule": "Combien de valeurs sort-elle ? (un nombre)",
         "type": "nombre",
         "reponse": 3,
-        "refuses": ["2"]
+        "refuses": [
+          "2"
+        ],
+        "explication": "**Règle :** le résultat $W\\vec x$ a une coordonnée par **ligne** de $W$ : $(3 \\times 2)(2 \\times 1) = 3 \\times 1$.\n\n**Pas à pas :**\n\n1. $W$ a 3 lignes.\n2. Chaque ligne donne une coordonnée de $W\\vec x$, et $\\vec b$ en a aussi 3.\n3. La couche sort donc **3** valeurs : $\\vec y = (1, 2, 5)$.\n\n**Erreur fréquente :** répondre 2 en inversant entrée et sortie.\n\n**À retenir :** sorties = lignes de $W$, entrées = colonnes de $W$."
       }
     ],
     "indices": [
@@ -284,20 +518,43 @@
       {
         "intitule": "La matrice de $g \\circ f$ (« $f$ puis $g$ »)",
         "type": "vecteur",
-        "reponse": [0, -1, 1, 2],
-        "refuses": ["(2, -1, 1, 0)"]
+        "reponse": [
+          0,
+          -1,
+          1,
+          2
+        ],
+        "refuses": [
+          "(2, -1, 1, 0)"
+        ],
+        "explication": "**Règle :** « $f$ puis $g$ » s'écrit $g \\circ f$ et veut dire $g(f(\\vec x)) = B(A\\vec x) = (BA)\\vec x$. La matrice de la première étape ($A$) est **à droite**.\n\n**Pas à pas :** on calcule $BA$ avec les lignes de $B$, $(0, -1)$ et $(1, 0)$, et les colonnes de $A$, $(1, 0)$ et $(2, 1)$.\n\n| Case | Ligne de $B$ | Colonne de $A$ | Calcul | Résultat |\n|---|---|---|---|---|\n| (1, 1) | $(0, -1)$ | $(1, 0)$ | $0 + 0$ | $0$ |\n| (1, 2) | $(0, -1)$ | $(2, 1)$ | $0 - 1$ | $-1$ |\n| (2, 1) | $(1, 0)$ | $(1, 0)$ | $1 + 0$ | $1$ |\n| (2, 2) | $(1, 0)$ | $(2, 1)$ | $2 + 0$ | $2$ |\n\n$BA = \\begin{pmatrix} 0 & -1 \\\\ 1 & 2 \\end{pmatrix}$, soit $(0, -1, 1, 2)$.\n\n**Erreur fréquente :** lire « $f$ puis $g$ » de gauche à droite et calculer $AB = (2, -1, 1, 0)$.\n\n**À retenir :** « $f$ puis $g$ » = $BA$ : la première étape s'écrit à droite."
       },
       {
         "intitule": "La matrice de $f \\circ g$ (« $g$ puis $f$ »)",
         "type": "vecteur",
-        "reponse": [2, -1, 1, 0],
-        "refuses": ["(0, -1, 1, 2)"]
+        "reponse": [
+          2,
+          -1,
+          1,
+          0
+        ],
+        "refuses": [
+          "(0, -1, 1, 2)"
+        ],
+        "explication": "**Règle :** « $g$ puis $f$ » s'écrit $f \\circ g$, soit $f(g(\\vec x)) = A(B\\vec x) = (AB)\\vec x$.\n\n**Pas à pas :** lignes de $A$ : $(1, 2)$ et $(0, 1)$ ; colonnes de $B$ : $(0, 1)$ et $(-1, 0)$.\n\n| Case | Ligne de $A$ | Colonne de $B$ | Calcul | Résultat |\n|---|---|---|---|---|\n| (1, 1) | $(1, 2)$ | $(0, 1)$ | $0 + 2$ | $2$ |\n| (1, 2) | $(1, 2)$ | $(-1, 0)$ | $-1 + 0$ | $-1$ |\n| (2, 1) | $(0, 1)$ | $(0, 1)$ | $0 + 1$ | $1$ |\n| (2, 2) | $(0, 1)$ | $(-1, 0)$ | $0 + 0$ | $0$ |\n\n$AB = (2, -1, 1, 0)$, différent de $BA = (0, -1, 1, 2)$ : l'ordre des étapes change la transformation.\n\n**Erreur fréquente :** redonner $BA$, la réponse de la question précédente.\n\n**À retenir :** échanger l'ordre des étapes échange l'ordre des matrices, et le résultat change."
       },
       {
         "intitule": "L'image de $(1, 1)$ par $g \\circ f$, au format `(a, b)`",
         "type": "vecteur",
-        "reponse": [-1, 3],
-        "refuses": ["(1, 1)", "(-1, 1)"]
+        "reponse": [
+          -1,
+          3
+        ],
+        "refuses": [
+          "(1, 1)",
+          "(-1, 1)"
+        ],
+        "explication": "**Règle :** l'image par $g \\circ f$ se calcule en deux étapes, d'abord $f$, puis $g$ sur le résultat. On peut aussi faire directement $BA\\vec x$.\n\n**Pas à pas :**\n\n1. $f(1, 1) = A\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$ : ligne $(1, 2)$ donne $1 + 2 = 3$, ligne $(0, 1)$ donne $1$. Donc $f(1, 1) = (3, 1)$.\n2. $g(3, 1) = B\\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix}$ : ligne $(0, -1)$ donne $0 - 1 = -1$, ligne $(1, 0)$ donne $3$. Donc $g(3, 1) = (-1, 3)$.\n3. Vérification avec $BA = \\begin{pmatrix} 0 & -1 \\\\ 1 & 2 \\end{pmatrix}$ : $(0 - 1,\\ 1 + 2) = (-1, 3)$.\n\n**Erreurs fréquentes :** appliquer $g$ en premier ($g(1, 1) = (-1, 1)$, puis $f$ donne $(1, 1)$) ; s'arrêter après $g$ appliquée seule, $(-1, 1)$.\n\n**À retenir :** « $f$ puis $g$ » : calcule $f$ d'abord, puis $g$ sur le résultat."
       }
     ],
     "indices": [
@@ -315,26 +572,48 @@
       {
         "intitule": "Écris $A$ ligne par ligne (9 nombres).",
         "type": "vecteur",
-        "reponse": [0, 1, 0, 1, 0, 1, 0, 1, 0],
-        "refuses": ["(0, 1, 1, 1, 0, 1, 1, 1, 0)"]
+        "reponse": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "refuses": [
+          "(0, 1, 1, 1, 0, 1, 1, 1, 0)"
+        ],
+        "explication": "**Règle :** $A_{ij} = 1$ si $i$ et $j$ sont reliés, 0 sinon. Le graphe est **non orienté** : si 1 est relié à 2, alors 2 est relié à 1, donc on met un 1 en $(1, 2)$ **et** en $(2, 1)$. Un sommet n'est pas relié à lui-même : la diagonale vaut 0.\n\n**Pas à pas :**\n\n| Paire | Reliés ? | Cases |\n|---|---|---|\n| 1 et 2 | oui | $A_{12} = A_{21} = 1$ |\n| 2 et 3 | oui | $A_{23} = A_{32} = 1$ |\n| 1 et 3 | non | $A_{13} = A_{31} = 0$ |\n| chaque sommet avec lui-même | non | $A_{11} = A_{22} = A_{33} = 0$ |\n\n$A = \\begin{pmatrix} 0 & 1 & 0 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{pmatrix}$, soit $(0, 1, 0, 1, 0, 1, 0, 1, 0)$.\n\n**Erreur fréquente :** mettre 1 partout hors de la diagonale, $(0, 1, 1, 1, 0, 1, 1, 1, 0)$, comme si 1 et 3 étaient reliés.\n\n**À retenir :** une case par paire de sommets, deux fois (dans les deux sens) si le graphe n'est pas orienté."
       },
       {
         "intitule": "Que vaut $(A^2)_{13}$ ? (un nombre)",
         "type": "nombre",
         "reponse": 1,
-        "refuses": ["0"]
+        "refuses": [
+          "0"
+        ],
+        "explication": "**Règle :** $(A^2)_{ij}$ = ligne $i$ de $A$ « fois » colonne $j$ de $A$. Chaque terme $A_{ik}A_{kj}$ vaut 1 seulement si $i \\to k \\to j$ est un chemin : $(A^2)_{ij}$ compte les chemins de **deux pas** de $i$ à $j$.\n\n**Pas à pas :**\n\n1. Ligne 1 de $A$ : $(0, 1, 0)$.\n2. Colonne 3 de $A$ : $(0, 1, 0)$.\n3. $0 \\times 0 + 1 \\times 1 + 0 \\times 0 = 1$.\n\n$(A^2)_{13} = 1$ : le seul chemin est $1 \\to 2 \\to 3$ (le terme qui vaut 1 est celui de $k = 2$).\n\n**Erreur fréquente :** répondre 0 en lisant $A_{13}$ (pas de lien **direct**). $A^2$ compte les chemins en deux pas, pas les liens directs.\n\n**À retenir :** $(A^2)_{ij}$ = nombre de sommets intermédiaires $k$ avec $i \\to k \\to j$."
       },
       {
         "intitule": "Que vaut $(A^2)_{22}$ ? (un nombre)",
         "type": "nombre",
         "reponse": 2,
-        "refuses": ["0"]
+        "refuses": [
+          "0"
+        ],
+        "explication": "**Règle :** $(A^2)_{22}$ compte les chemins en deux pas qui partent de 2 et reviennent en 2.\n\n**Pas à pas :**\n\n1. Ligne 2 de $A$ : $(1, 0, 1)$.\n2. Colonne 2 de $A$ : $(1, 0, 1)$.\n3. $1 \\times 1 + 0 \\times 0 + 1 \\times 1 = 2$.\n\nDeux chemins : $2 \\to 1 \\to 2$ et $2 \\to 3 \\to 2$.\n\n**Erreur fréquente :** répondre 0 en lisant la diagonale de $A$ ($A_{22} = 0$, pas de boucle). Un aller-retour est bien un chemin de longueur 2.\n\n**À retenir :** la diagonale de $A^2$ compte les allers-retours, c'est-à-dire le nombre de voisins du sommet."
       },
       {
         "intitule": "Que vaut $(A^2)_{12}$ ? (un nombre)",
         "type": "nombre",
         "reponse": 0,
-        "refuses": ["1"]
+        "refuses": [
+          "1"
+        ],
+        "explication": "**Règle :** $(A^2)_{12}$ compte les chemins de **exactement** deux pas de 1 à 2.\n\n**Pas à pas :**\n\n1. Ligne 1 de $A$ : $(0, 1, 0)$.\n2. Colonne 2 de $A$ : $(1, 0, 1)$.\n3. $0 \\times 1 + 1 \\times 0 + 0 \\times 1 = 0$.\n\nAvec des mots : depuis 1, le premier pas mène forcément en 2 ; depuis 2, le second pas mène en 1 ou en 3, jamais en 2. Aucun chemin de deux pas ne finit en 2.\n\n**Erreur fréquente :** répondre 1 en pensant au lien direct $1 - 2$ : c'est $A_{12} = 1$, un chemin d'**un** seul pas.\n\n**À retenir :** $A$ compte les chemins d'un pas, $A^2$ ceux de deux pas ; ne mélange pas les deux."
       }
     ],
     "indices": [
@@ -353,25 +632,38 @@
       {
         "intitule": "Combien d'images sont bien classées ? (un nombre)",
         "type": "nombre",
-        "reponse": 125
+        "reponse": 125,
+        "explication": "**Règle :** case $(i, j)$ = nombre d'images de classe réelle $i$ prédites en classe $j$. Une image est bien classée quand prédite = réelle, c'est-à-dire sur la **diagonale** ($i = j$).\n\n**Pas à pas :**\n\n| Case | Signification | Valeur |\n|---|---|---|\n| (1, 1) | chats prédits chats | 38 |\n| (2, 2) | chiens prédits chiens | 41 |\n| (3, 3) | oiseaux prédits oiseaux | 46 |\n\n$38 + 41 + 46 = 125$ images bien classées.\n\n**Erreur fréquente :** additionner une ligne ou une colonne, ou toute la matrice (qui donne le total de 140 images, erreurs comprises).\n\n**À retenir :** bien classés = somme de la diagonale."
       },
       {
         "intitule": "Combien d'images sont réellement des chiens ? (un nombre)",
         "type": "nombre",
         "reponse": 50,
-        "refuses": ["46"]
+        "refuses": [
+          "46"
+        ],
+        "explication": "**Règle :** les **lignes** correspondent aux classes **réelles**. Le nombre d'images qui sont vraiment des chiens est la somme de la ligne « chien », la ligne 2.\n\n**Pas à pas :** ligne 2 : $(4, 41, 5)$.\n\n- 4 chiens prédits « chat » ;\n- 41 chiens prédits « chien » ;\n- 5 chiens prédits « oiseau ».\n\nTotal : $4 + 41 + 5 = 50$ chiens réels.\n\n**Erreurs fréquentes :** répondre 41, qui ne compte que les chiens bien reconnus ; répondre 46 (la case (3, 3)) ; additionner la colonne 2 ($2 + 41 + 3 = 46$), qui compte les images **prédites** « chien ».\n\n**À retenir :** classe réelle = somme de la **ligne**."
       },
       {
         "intitule": "Combien d'images ont été prédites « oiseau » ? (un nombre)",
         "type": "nombre",
         "reponse": 51,
-        "refuses": ["50"]
+        "refuses": [
+          "50"
+        ],
+        "explication": "**Règle :** les **colonnes** correspondent aux classes **prédites**. Les images prédites « oiseau » sont dans la colonne 3.\n\n**Pas à pas :** colonne 3, de haut en bas : $(0, 5, 46)$.\n\n- 0 chat prédit « oiseau » ;\n- 5 chiens prédits « oiseau » ;\n- 46 oiseaux prédits « oiseau ».\n\nTotal : $0 + 5 + 46 = 51$.\n\n**Erreur fréquente :** additionner la ligne 3 $(1, 3, 46)$, qui donne 50 : ce sont les oiseaux **réels**.\n\n**À retenir :** classe prédite = somme de la **colonne**."
       },
       {
         "intitule": "Dans la transposée $M^T$, une **ligne** correspond à :",
         "type": "choix",
-        "choix": ["une classe réelle", "une classe prédite", "une image", "une erreur"],
-        "reponse": 1
+        "choix": [
+          "une classe réelle",
+          "une classe prédite",
+          "une image",
+          "une erreur"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** la transposée échange lignes et colonnes : la ligne $i$ de $M^T$ est la colonne $i$ de $M$.\n\n**Pas à pas :**\n\n1. Dans $M$, une colonne = une classe **prédite**.\n2. Transposer transforme chaque colonne en ligne.\n3. Donc une ligne de $M^T$ = une classe **prédite**. Par exemple, la ligne 3 de $M^T$ est $(0, 5, 46)$ : les images prédites « oiseau ».\n\n**Les autres réponses :**\n\n- « Une classe réelle » : c'est le sens des lignes de $M$, avant transposition.\n- « Une image » : chaque case compte **plusieurs** images, une ligne ne représente pas une seule image.\n- « Une erreur » : les erreurs sont les cases hors de la diagonale, pas une ligne entière.\n\n**À retenir :** transposer échange aussi le **sens** des lignes et des colonnes."
       }
     ],
     "indices": [

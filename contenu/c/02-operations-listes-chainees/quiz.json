@@ -8,7 +8,7 @@
       "`void afficherListe(...)`"
     ],
     "reponse": 2,
-    "explication": "Supprimer le premier maillon change le début de la liste : la fonction doit pouvoir modifier la variable de l'appelant, donc recevoir son adresse. Les trois autres ne font que lire la liste."
+    "explication": "**Règle :** une fonction reçoit une **copie** de ce qu'on lui passe. Si elle doit changer **le premier maillon** (donc la variable `start` de l'appelant), elle doit recevoir l'**adresse** de cette variable : `Cell **start`. Si elle ne fait que lire la liste, `Cell *start` suffit.\n\n**Pas à pas :** on regarde, pour chaque fonction, si le début de la liste peut changer.\n\n| Fonction | Que fait-elle ? | Le début change ? |\n|---|---|---|\n| `taille` | compte les maillons | non |\n| `rechercher` | lit les valeurs, renvoie un maillon | non |\n| `afficherListe` | lit et affiche | non |\n| `supprimerDebut` | retire le 1er maillon : le 2e devient le début | **oui** |\n\nAvec un simple `Cell *`, `supprimerDebut` modifierait seulement sa copie : la variable de l'appelant pointerait encore sur le maillon libéré.\n\n**Les autres réponses :** `taille`, `rechercher` et `afficherListe` se contentent de **lire** : un `Cell *` leur suffit.\n\n**À retenir :** « le premier maillon peut changer » → `Cell **start` (ou renvoyer le nouveau début)."
   },
   {
     "question": "Dans `supprimerDebut`, pourquoi range-t-on le premier maillon dans une variable `ancien` avant de faire `*start = ancien->next;` ?",
@@ -19,7 +19,7 @@
       "Ce n'est pas utile"
     ],
     "reponse": 0,
-    "explication": "Une fois `*start` avancé, plus rien ne pointe sur l'ancien premier maillon. Sans `ancien`, on ne pourrait plus le libérer : ce serait une fuite mémoire."
+    "explication": "**Règle :** pour rendre un maillon avec `free`, il faut connaître son **adresse**. Dès qu'une adresse n'est plus rangée nulle part, le maillon est perdu.\n\n**Pas à pas :** liste `1 -> 2`, le maillon 1 est à l'adresse `A`.\n\n1. `ancien = *start;` : `ancien` garde `A`.\n2. `*start = ancien->next;` : le début passe au maillon 2. Plus rien dans la liste ne pointe sur `A`, mais `ancien` la connaît encore.\n3. `free(ancien);` : le maillon 1 est rendu.\n\nSans l'étape 1, après l'étape 2 plus personne ne connaît `A` : impossible de faire le `free`, c'est une **fuite mémoire**.\n\n**Les autres réponses :** on ne remet pas le maillon en fin de liste (on le supprime) ; `*start` peut tout à fait changer, c'est justement le but du `Cell **` ; et c'est indispensable, pas inutile.\n\n**À retenir :** avant de décrocher un maillon, garde son adresse dans une variable pour pouvoir le `free`."
   },
   {
     "question": "Que fait ce code ? `while (cur != NULL) { free(cur); cur = cur->next; }`",
@@ -30,7 +30,7 @@
       "Il ne compile pas"
     ],
     "reponse": 1,
-    "explication": "Après `free(cur)`, le maillon n'appartient plus au programme : lire `cur->next` est interdit. Il faut sauvegarder `suivant = cur->next` avant le `free`."
+    "explication": "**Règle :** après `free(p)`, la mémoire de `p` est rendue au système : on n'a **plus le droit** de lire ou d'écrire dedans (`p->next`, `p->value`).\n\n**Pas à pas :** au premier tour, sur `cur` = premier maillon :\n\n1. `free(cur);` : le premier maillon est rendu.\n2. `cur = cur->next;` : on lit `next` **dans le maillon qu'on vient de rendre**. Son contenu peut déjà avoir été écrasé.\n\nC'est un comportement indéfini : ça peut sembler marcher sur ta machine et planter ailleurs. La version correcte : `Cell *suivant = cur->next; free(cur); cur = suivant;`.\n\n**Les autres réponses :** il ne libère pas « correctement » (lecture interdite à chaque tour) ; il essaie bien de libérer tous les maillons, pas seulement le premier ; et le code **compile** sans problème : le compilateur ne voit pas l'erreur, elle arrive à l'exécution.\n\n**À retenir :** toujours `suivant = cur->next;` **avant** `free(cur);`."
   },
   {
     "question": "Pour insérer en fin de liste, avec quelle condition fait-on avancer `cur` ?",
@@ -41,7 +41,7 @@
       "`while (cur->next->next != NULL)`"
     ],
     "reponse": 1,
-    "explication": "On veut s'arrêter **sur** le dernier maillon pour modifier son `next`. Avec `cur != NULL`, on sortirait avec `cur == NULL`, sans accès au dernier maillon."
+    "explication": "**Règle :** pour ajouter en fin, il faut **modifier le `next` du dernier maillon**. Il faut donc que `cur` s'arrête **sur** le dernier, celui dont `next` vaut `NULL`.\n\n**Pas à pas :** liste `3 -> 8`.\n\n| Condition | `cur` passe par | Valeur de `cur` à la sortie |\n|---|---|---|\n| `cur->next != NULL` | 3, puis 8 (`8->next` vaut `NULL` : arrêt) | le maillon **8** : on peut faire `cur->next = nouveau` |\n| `cur != NULL` | 3, 8, puis `NULL` | `NULL` : trop tard, on n'a plus accès au maillon 8 |\n\n**Les autres réponses :** `cur != NULL` sort avec `cur == NULL` ; `cur->value != 0` n'a rien à voir avec la fin de la liste (une valeur peut valoir 0 n'importe où) ; `cur->next->next != NULL` s'arrête sur l'**avant-dernier**, c'est la condition de la suppression en fin.\n\n**À retenir :** s'arrêter **sur** le dernier maillon = `while (cur->next != NULL)`."
   },
   {
     "question": "Quelle est la complexité de l'insertion en fin d'une liste chaînée dont on ne connaît que le premier maillon ?",
@@ -52,7 +52,7 @@
       "O(N²)"
     ],
     "reponse": 2,
-    "explication": "Il faut parcourir toute la liste pour trouver le dernier maillon. Avec un pointeur supplémentaire sur la fin, elle passerait en O(1)."
+    "explication": "**Règle :** une liste simplement chaînée ne connaît que son **premier** maillon. Pour atteindre le dernier, il faut suivre les `next` un par un.\n\n**Pas à pas :** avec N maillons, `cur` part du 1er et avance jusqu'au N-ième : N - 1 pas. Puis l'accrochage du nouveau maillon prend un temps fixe. Le total grandit comme N : **O(N)**.\n\n| Taille de la liste | Pas pour atteindre la fin |\n|---|---|\n| 10 | 9 |\n| 1 000 | 999 |\n| 1 000 000 | 999 999 |\n\n**Les autres réponses :** O(1) serait vrai seulement avec un pointeur supplémentaire sur le dernier maillon ; O(log N) demanderait de couper le problème en deux à chaque étape, impossible dans une liste ; O(N²) serait une boucle dans une boucle, il n'y en a qu'une.\n\n**À retenir :** insertion en fin = marche jusqu'au bout = O(N), sauf avec un pointeur de fin (O(1))."
   },
   {
     "question": "Pour insérer `nouveau` juste après le maillon `m`, quel ordre est correct ?",
@@ -63,7 +63,7 @@
       "L'ordre n'a pas d'importance"
     ],
     "reponse": 1,
-    "explication": "On accroche d'abord la suite de la liste au nouveau maillon, puis on fait pointer `m` sur lui. Dans l'autre ordre, `nouveau->next` recevrait `nouveau` lui-même et la fin de la liste serait perdue."
+    "explication": "**Règle :** pour insérer après `m`, le nouveau maillon doit d'abord **récupérer la suite** (`m->next`), et seulement ensuite `m` pointe sur lui. Sinon la suite est écrasée avant d'être sauvée.\n\n**Pas à pas :** liste `3 -> 7`, `m` est le maillon 3.\n\n- Bon ordre : `nouveau->next = m->next;` (le nouveau pointe sur 7), puis `m->next = nouveau;` (3 pointe sur le nouveau). Résultat : `3 -> nouveau -> 7`.\n- Ordre inverse : `m->next = nouveau;` (l'adresse de 7 est écrasée), puis `nouveau->next = m->next;` donne `nouveau->next = nouveau` : le maillon pointe sur **lui-même**, et 7 est perdu.\n\n**Les autres réponses :** l'ordre « `m->next = nouveau` d'abord » perd la fin ; `nouveau->next = m` puis `m->next = NULL` crée un cycle et coupe la liste ; et l'ordre compte, comme on vient de le voir.\n\n**À retenir :** insérer = **accrocher d'abord** la suite au nouveau, **modifier ensuite** le maillon d'avant."
   },
   {
     "question": "Pour supprimer un maillon au milieu d'une liste simplement chaînée, de quel maillon a-t-on besoin ?",
@@ -74,7 +74,7 @@
       "D'aucun, `free` suffit"
     ],
     "reponse": 1,
-    "explication": "Il faut modifier le `next` du maillon précédent pour qu'il saute la cible. Un maillon ne connaît pas son précédent : on avance donc avec un pointeur `prev`."
+    "explication": "**Règle :** supprimer un maillon, c'est faire en sorte que la chaîne le **saute**. C'est le `next` du maillon **précédent** qui doit changer : `prev->next = cible->next`.\n\n**Pas à pas :** liste `4 -> 9 -> 2`, on veut retirer 9.\n\n1. Qui pointe sur 9 ? Le maillon 4. C'est son `next` qu'il faut modifier.\n2. `4->next = 9->next`, donc 4 pointe sur 2 : la liste devient `4 -> 2`.\n3. `free` du maillon 9.\n\nUn maillon ne connaît que son **suivant**, pas son précédent : on avance donc un pointeur `prev` qui s'arrête juste avant la cible (il regarde `prev->next`).\n\n**Les autres réponses :** le dernier maillon ne sert à rien ici ; celui d'après seul ne permet pas de modifier le lien qui arrive sur la cible ; et `free` seul laisserait le maillon 4 pointer sur une mémoire rendue.\n\n**À retenir :** pour supprimer (ou insérer) au milieu, il faut le maillon **d'avant**."
   },
   {
     "question": "Quelle est la complexité de l'accès au maillon en position i ?",
@@ -85,7 +85,7 @@
       "O(N²)"
     ],
     "reponse": 1,
-    "explication": "Il faut suivre i pointeurs `next` depuis le début. Un tableau, lui, calcule directement l'adresse de `t[i]`."
+    "explication": "**Règle :** dans une liste, le seul moyen d'aller au maillon i est de partir du premier et de suivre les `next` un par un. Un tableau, lui, calcule directement l'adresse de `t[i]`.\n\n**Pas à pas :** pour atteindre la position i (0 = le premier) :\n\n| Position voulue | Pointeurs `next` à suivre |\n|---|---|\n| 0 | 0 |\n| 1 | 1 |\n| 5 | 5 |\n| i | i |\n\nLe travail est proportionnel à i : **O(i)**, et au pire (le dernier maillon) **O(N)**.\n\n**Les autres réponses :** O(1) est le cas du tableau, pas de la liste ; O(log N) demanderait de sauter au milieu, impossible sans accès direct ; O(N²) arriverait seulement si on appelait cet accès dans une boucle sur toutes les positions.\n\n**À retenir :** accès à la position i dans une liste = i pas = O(N) au pire."
   },
   {
     "question": "Pour calculer le maximum d'une liste non vide, par quelle valeur initialiser le maximum ?",
@@ -96,7 +96,7 @@
       "La taille de la liste"
     ],
     "reponse": 1,
-    "explication": "Avec 0, une liste qui ne contient que des nombres négatifs donnerait 0, qui n'est même pas dans la liste. On part du premier maillon."
+    "explication": "**Règle :** le maximum doit démarrer à une valeur **qui est dans la liste**, sinon la valeur de départ peut « gagner » à tort. On prend donc la valeur du premier maillon (la liste n'est pas vide).\n\n**Pas à pas :** liste `-7 -> -3 -> -5`.\n\n| Départ | Après -7 | Après -3 | Après -5 | Résultat |\n|---|---|---|---|---|\n| `max = -7` (1er maillon) | -7 | -3 | -3 | **-3**, juste |\n| `max = 0` | 0 | 0 | 0 | 0, faux : 0 n'est pas dans la liste |\n\n**Les autres réponses :** 0 se trompe dès que toutes les valeurs sont négatives ; -1 se trompe de la même façon (ici il donnerait -1) ; la taille de la liste n'a aucun rapport avec les valeurs.\n\n**À retenir :** maximum (ou minimum) = démarrer à la valeur du **premier** maillon."
   },
   {
     "question": "Dans l'inversion d'une liste avec `prev`, `cur` et `suivant`, à quoi sert `suivant` ?",
@@ -107,7 +107,7 @@
       "À rien, on peut s'en passer"
     ],
     "reponse": 1,
-    "explication": "`cur->next = prev` écrase le lien vers la suite. Il faut donc avoir rangé `cur->next` dans `suivant` juste avant, sinon le reste de la liste est perdu."
+    "explication": "**Règle :** dans l'inversion, chaque tour fait `cur->next = prev`, ce qui **écrase** l'adresse du maillon qui suivait `cur`. Si cette adresse n'est rangée nulle part avant, tout le reste de la liste est perdu.\n\n**Pas à pas :** liste `1 -> 2 -> 3`, premier tour avec `cur` sur 1 et `prev` à `NULL`.\n\n1. `suivant = cur->next;` : `suivant` garde l'adresse du maillon 2.\n2. `cur->next = prev;` : 1 pointe maintenant sur `NULL`. Le lien vers 2 a disparu du maillon 1...\n3. `prev = cur; cur = suivant;` : ... mais grâce à `suivant`, `cur` passe bien au maillon 2.\n\nSans `suivant`, après l'étape 2 on n'aurait plus aucun moyen d'atteindre 2 et 3.\n\n**Les autres réponses :** on ne compte rien pendant l'inversion ; le premier maillon n'a pas besoin d'être mémorisé (il devient le dernier) ; et on ne peut pas s'en passer, comme le montre l'étape 2.\n\n**À retenir :** avant de modifier `cur->next`, range la suite dans `suivant`."
   },
   {
     "question": "Que renvoie la fonction d'inversion à la fin ?",
@@ -118,7 +118,7 @@
       "`suivant`"
     ],
     "reponse": 1,
-    "explication": "La boucle s'arrête quand `cur` vaut `NULL`. `prev` est alors l'ancien dernier maillon, devenu le premier. L'ancien `start` est maintenant le dernier."
+    "explication": "**Règle :** la boucle d'inversion tourne tant que `cur != NULL`. Quand elle s'arrête, `prev` est le dernier maillon traité, c'est-à-dire l'ancien **dernier** maillon, devenu le **premier**.\n\n**Pas à pas :** liste `1 -> 2 -> 3`.\n\n| Après le tour | `prev` | `cur` |\n|---|---|---|\n| 1 | 1 | 2 |\n| 2 | 2 | 3 |\n| 3 | 3 | `NULL` : fin |\n\nOn renvoie `prev` = maillon 3, et la liste se lit `3 -> 2 -> 1`.\n\n**Les autres réponses :** `cur` vaut `NULL` à la fin, le renvoyer donnerait une liste vide ; l'ancien `start` (le maillon 1) est maintenant le **dernier**, son `next` vaut `NULL` ; `suivant` vaut aussi `NULL` au dernier tour.\n\n**À retenir :** l'inversion renvoie `prev`, et on l'appelle avec `liste = inverser(liste);`."
   },
   {
     "question": "Pour supprimer le **dernier** maillon d'une liste simplement chaînée, sur quel maillon faut-il s'arrêter ?",
@@ -129,7 +129,7 @@
       "Sur `NULL`"
     ],
     "reponse": 1,
-    "explication": "C'est le `next` de l'avant-dernier qui doit passer à `NULL`. Le dernier, lui, ne sait pas qui le précède : on ne peut pas reculer dans une liste simplement chaînée."
+    "explication": "**Règle :** supprimer le dernier maillon, c'est faire passer le `next` de **l'avant-dernier** à `NULL` (après avoir libéré le dernier). Dans une liste simplement chaînée, on ne peut pas reculer.\n\n**Pas à pas :** liste `4 -> 6 -> 9`.\n\n1. Le maillon à retirer est 9.\n2. Le lien à couper est celui qui arrive sur 9 : le `next` du maillon 6, l'avant-dernier.\n3. On avance donc `prev` tant que `prev->next->next != NULL` : `prev` s'arrête sur 6, puis `free(prev->next)` et `prev->next = NULL` : `4 -> 6`.\n\n**Les autres réponses :** arrêté sur le dernier (9), on ne peut pas modifier le `next` de 6, car 9 ne sait pas qui le précède ; le premier ne convient que si la liste a deux maillons ; arrêté sur `NULL`, on n'a plus accès à aucun maillon.\n\n**À retenir :** supprimer en fin = s'arrêter sur l'**avant-dernier** (`prev->next->next == NULL`)."
   },
   {
     "question": "`supprimerFin` est appelée sur une liste d'**un seul** maillon. Que doit-il se passer ?",
@@ -140,7 +140,7 @@
       "Le programme doit s'arrêter"
     ],
     "reponse": 1,
-    "explication": "Le seul maillon est aussi le dernier : on le libère et la liste devient vide. Comme le début change, la fonction a besoin de `Cell **` (ou doit renvoyer le nouveau début)."
+    "explication": "**Règle :** une liste d'un seul maillon : ce maillon est **à la fois** le premier et le dernier. Le supprimer vide la liste, donc le début doit devenir `NULL`.\n\n**Pas à pas :** liste `7`.\n\n1. `(*start)->next` vaut `NULL` : c'est le cas « un seul maillon ».\n2. `free(*start);` : le maillon 7 est rendu.\n3. `*start = NULL;` : la variable de l'appelant indique une liste vide.\n\nIl faut traiter ce cas à part : la boucle `prev->next->next` lirait dans `NULL` et planterait.\n\n**Les autres réponses :** « rien » laisserait le maillon dans la liste alors qu'on a demandé de le retirer ; libérer sans changer le début laisse `start` pointer sur une mémoire rendue (la prochaine lecture est interdite) ; arrêter le programme n'a aucune raison d'être, c'est un cas normal.\n\n**À retenir :** quand le seul maillon disparaît, le début devient `NULL` : d'où le `Cell **` (ou `return NULL`)."
   },
   {
     "question": "Quelle est la complexité de la suppression en fin, même si l'on garde un pointeur sur le dernier maillon ?",
@@ -151,7 +151,7 @@
       "O(N²)"
     ],
     "reponse": 2,
-    "explication": "Le pointeur de fin donne le dernier, pas l'avant-dernier. Il faut toujours le chercher depuis le début. Seule une liste doublement chaînée permet O(1)."
+    "explication": "**Règle :** pour supprimer le dernier, il faut modifier le `next` de l'**avant-dernier**. Un pointeur de fin donne le dernier maillon, mais le dernier ne connaît pas son précédent.\n\n**Pas à pas :** liste `1 -> 2 -> ... -> N` avec un pointeur `fin` sur N.\n\n1. On veut faire passer `(N-1)->next` à `NULL`.\n2. `fin` donne le maillon N, mais N ne contient aucun lien vers N - 1.\n3. Il faut donc repartir du début et avancer jusqu'à l'avant-dernier : environ N pas, **O(N)**.\n\n**Les autres réponses :** O(1) est le cas de l'**insertion** en fin avec pointeur de fin, pas de la suppression ; O(log N) n'a pas de sens sans accès direct ; O(N²) serait une boucle dans une boucle. Seule une liste **doublement chaînée** (chaque maillon connaît aussi le précédent) supprime en fin en O(1).\n\n**À retenir :** suppression en fin dans une liste simple = O(N), même avec un pointeur de fin."
   },
   {
     "question": "Que fait ce code ? `Cell *deleteFirst(Cell *c) { if (!c) return c; return c->next; }`",
@@ -162,7 +162,7 @@
       "Il supprime le deuxième maillon"
     ],
     "reponse": 1,
-    "explication": "Le résultat a l'air juste (la liste commence au deuxième maillon), mais l'ancien premier reste réservé et plus personne ne connaît son adresse. Il faut garder `c->next`, faire `free(c)`, puis renvoyer le suivant."
+    "explication": "**Règle :** retirer un maillon de la liste ne suffit pas : il a été réservé avec `malloc`, il doit être rendu avec `free`. Sinon il reste réservé et plus personne ne connaît son adresse : **fuite mémoire**.\n\n**Pas à pas :** liste `1 -> 2 -> 3`, `l = deleteFirst(l);`.\n\n1. `c` n'est pas `NULL`.\n2. On renvoie `c->next` : `l` vaut maintenant le maillon 2, la liste affichée est `2 -> 3`, ça a l'air juste.\n3. Mais le maillon 1 n'a jamais reçu de `free` et plus aucune variable ne connaît son adresse.\n\nVersion correcte : `Cell *suite = c->next; free(c); return suite;`.\n\n**Les autres réponses :** « correctement » est faux à cause de la fuite ; sur une liste vide, `if (!c) return c;` renvoie `NULL` sans rien lire, donc pas de plantage ; et c'est bien le premier maillon qui est retiré, pas le deuxième.\n\n**À retenir :** chaque maillon retiré de la liste doit recevoir son `free`, même si l'affichage semble juste."
   },
   {
     "question": "Pour insérer une valeur en **position 3** (0 = premier), sur quel maillon `prev` doit-il s'arrêter ?",
@@ -173,7 +173,7 @@
       "Le dernier"
     ],
     "reponse": 0,
-    "explication": "On insère **après** `prev` : pour que le nouveau maillon soit en position 3, `prev` doit être en position 2."
+    "explication": "**Règle :** pour insérer en position `pos` (0 = le premier), on insère **après** le maillon `prev`. Pour que le nouveau maillon arrive en position `pos`, `prev` doit être en position **`pos - 1`**.\n\n**Pas à pas :** liste `10 -> 20 -> 30 -> 40` (positions 0, 1, 2, 3), on insère 25 en position 3.\n\n1. `pos - 1 = 2` : `prev` doit s'arrêter sur le maillon 30 (position 2).\n2. Insertion après 30 : `10 -> 20 -> 30 -> 25 -> 40`.\n3. Vérification : 25 est bien en position 3 (on compte 0, 1, 2, 3).\n\n**Les autres réponses :** arrêté en position 3 (sur 40), le nouveau arriverait en position 4, une case trop loin ; en position 4, encore plus loin ; « le dernier » ne vaut que si la position demandée dépasse la fin.\n\n**À retenir :** insérer en position `pos` = s'arrêter sur le maillon `pos - 1`."
   },
   {
     "question": "Lors de la fusion de deux listes triées, que fait-on quand l'une des deux listes est terminée ?",
@@ -184,7 +184,7 @@
       "On trie à nouveau le résultat"
     ],
     "reponse": 2,
-    "explication": "Le reste de l'autre liste est déjà trié et chaîné : un seul `fin->next = reste;` suffit."
+    "explication": "**Règle :** dans une fusion, chaque liste est **déjà triée et chaînée**. Quand l'une est finie, tous les maillons qui restent dans l'autre sont plus grands (ou égaux) que ceux déjà accrochés, et déjà dans le bon ordre.\n\n**Pas à pas :** `a = 2 -> 4`, `b = 3 -> 7 -> 9`.\n\n1. On prend 2 (de `a`), puis 3 (de `b`), puis 4 (de `a`) : `a` est vide.\n2. Il reste `7 -> 9` dans `b`, déjà trié et déjà relié.\n3. Un seul `fin->next = b;` accroche tout ce reste d'un coup : `2 -> 3 -> 4 -> 7 -> 9`.\n\n**Les autres réponses :** s'arrêter perdrait 7 et 9 ; recopier avec `malloc` créerait des maillons en double (et des fuites), alors que la fusion réutilise les maillons existants ; retrier serait inutile et bien plus lent.\n\n**À retenir :** une liste finie → `fin->next = reste de l'autre;`, une seule instruction."
   },
   {
     "question": "Après `Cell *r = fusionner(a, b);`, que faut-il libérer à la fin ?",
@@ -195,7 +195,7 @@
       "Rien, la fusion libère tout"
     ],
     "reponse": 1,
-    "explication": "La fusion réutilise les maillons de `a` et de `b` : ils font tous partie de `r`. Libérer aussi `a` ou `b` reviendrait à libérer deux fois les mêmes maillons."
+    "explication": "**Règle :** la fusion ne crée aucun maillon : elle **réutilise** ceux de `a` et de `b` en changeant leurs `next`. Après l'appel, tous ces maillons font partie de `r`, et chacun doit être libéré **une seule fois**.\n\n**Pas à pas :** `a = 1 -> 5`, `b = 3`.\n\n1. `r = fusionner(a, b)` donne `1 -> 3 -> 5`, avec les **mêmes** maillons.\n2. `a` pointe encore sur le maillon 1, qui est maintenant le début de `r`. `b` pointe sur le maillon 3, au milieu de `r`.\n3. Libérer `r` rend les 3 maillons. Libérer en plus `a` rendrait une 2e fois les maillons 1, 3 et 5 : **double `free`**, interdit.\n\n**Les autres réponses :** `a`, `b` et `r` ensemble → doubles `free` ; seulement `a` et `b` → `a` libérerait toute la liste fusionnée, puis `b` relibérerait un maillon déjà rendu ; « rien » → fuite de tous les maillons.\n\n**À retenir :** après une fusion, on libère **uniquement** le résultat."
   },
   {
     "question": "Pourquoi utiliser un **maillon bidon** (variable locale) au début de la fusion ?",
@@ -206,6 +206,6 @@
       "Pour trier la liste"
     ],
     "reponse": 1,
-    "explication": "Avec le bidon, il y a toujours un maillon « d'avant » où accrocher le suivant. Le résultat est `bidon.next`. Le bidon n'a pas été réservé avec `malloc` : on ne le libère pas."
+    "explication": "**Règle :** pour accrocher un maillon au résultat, on écrit `fin->next = ...`. Il faut donc toujours un maillon « d'avant ». Au tout début, le résultat est vide : il n'y en a pas. Le **maillon bidon** joue ce rôle.\n\n**Pas à pas :**\n\n1. `Cell bidon; bidon.next = NULL; Cell *fin = &bidon;` : `fin` pointe sur le bidon.\n2. Premier maillon choisi : `fin->next = ...` l'accroche derrière le bidon, exactement comme tous les suivants. Aucun `if` pour « est-ce le premier ? ».\n3. À la fin, le vrai début est le maillon qui suit le bidon : on renvoie `bidon.next`.\n\nLe bidon est une variable locale (sur la pile), pas un maillon réservé avec `malloc` : on ne le libère pas.\n\n**Les autres réponses :** on ne gagne pas de mémoire (on utilise un maillon de plus) ; `malloc` n'est pas interdit en général, c'est juste inutile ici ; et le bidon ne trie rien, c'est la comparaison des têtes qui garde l'ordre.\n\n**À retenir :** maillon bidon = un « maillon d'avant » toujours présent, le résultat est `bidon.next`."
   }
 ]

@@ -1,15 +1,25 @@
 [
   {
     "question": "Que veut dire LIFO ?",
-    "choix": ["Last In, First Out", "List In, File Out", "Last Input, Final Output", "Linked Items For Ordering"],
+    "choix": [
+      "Last In, First Out",
+      "List In, File Out",
+      "Last Input, Final Output",
+      "Linked Items For Ordering"
+    ],
     "reponse": 0,
-    "explication": "Dernier entré, premier sorti : c'est le comportement d'une pile, comme une pile d'assiettes."
+    "explication": "**Règle :** LIFO est l'abréviation anglaise de *Last In, First Out*, « dernier entré, premier sorti ». C'est le comportement d'une **pile**.\n\n**Pas à pas :** on lit les lettres une par une.\n\n- **L** = *Last* : le dernier...\n- **I** = *In* : ... entré...\n- **F** = *First* : ... est le premier...\n- **O** = *Out* : ... sorti.\n\nSur une pile d'assiettes : on pose A, puis B, puis C. La première qu'on reprend est C, la dernière posée.\n\n**Les autres réponses :** « List In, File Out », « Last Input, Final Output » et « Linked Items For Ordering » sont des mots inventés qui ressemblent à l'abréviation. Le contraire de LIFO existe, c'est FIFO (*First In, First Out*), le principe d'une **file**.\n\n**À retenir :** LIFO = dernier entré, premier sorti = pile."
   },
   {
     "question": "Quel est l'autre nom d'une pile ?",
-    "choix": ["queue", "stack", "FIFO", "liste circulaire"],
+    "choix": [
+      "queue",
+      "stack",
+      "FIFO",
+      "liste circulaire"
+    ],
     "reponse": 1,
-    "explication": "Une pile se dit *stack* en anglais (d'où *Stack Overflow*). *Queue* et FIFO désignent la **file**."
+    "explication": "**Règle :** en anglais, une pile se dit *stack* (d'où le site *Stack Overflow*, du nom du débordement de la pile d'exécution).\n\n**Pas à pas :** on classe chaque mot proposé.\n\n| Mot | Ce qu'il désigne |\n|---|---|\n| *stack* | une **pile** (LIFO) |\n| *queue* | une **file**, comme une file d'attente |\n| FIFO | « premier entré, premier sorti », le principe de la **file** |\n| liste circulaire | une liste chaînée dont le dernier maillon pointe vers le premier |\n\n**Les autres réponses :** *queue* et FIFO décrivent la file, qui fait l'inverse d'une pile (on retire le plus **ancien**). Une liste circulaire est une façon de ranger des maillons, pas un autre nom de la pile.\n\n**À retenir :** pile = *stack* = LIFO ; file = *queue* = FIFO."
   },
   {
     "question": "Pourquoi dit-on que la pile est une structure de données **abstraite** ?",
@@ -20,25 +30,40 @@
       "Parce qu'on ne peut pas l'afficher"
     ],
     "reponse": 1,
-    "explication": "Peu importe qu'elle soit faite avec un tableau ou une liste chaînée : si `empiler`, `depiler`, `sommet` et `estVide` se comportent comme prévu, c'est une pile."
+    "explication": "**Règle :** une structure de données **abstraite** se définit par **ses opérations et leur comportement**, pas par la façon dont elle est construite en mémoire.\n\n**Pas à pas :** pour une pile, la définition est :\n\n1. `empiler` pose une valeur au-dessus ;\n2. `depiler` retire la valeur du dessus ;\n3. `sommet` lit la valeur du dessus sans la retirer ;\n4. `estVide` dit s'il reste des valeurs.\n\nRien ne dit « avec un tableau » ou « avec une liste chaînée ». Le cours en construit justement deux versions (tableau avec `size`, liste chaînée avec le sommet au premier maillon) : ce sont deux piles, car les opérations se comportent pareil.\n\n**Les autres réponses :** une pile existe bien en C (on l'écrit soi-même) ; elle peut contenir des entiers, des caractères, n'importe quoi, pas seulement des pointeurs ; et on peut l'afficher (en parcourant le tableau), même si ce n'est pas une opération de pile.\n\n**À retenir :** abstrait = « ce que ça fait », pas « comment c'est fait »."
   },
   {
     "question": "On empile 4, puis 7, puis 1, puis on dépile une fois. Que renvoie `sommet` ?",
-    "choix": ["4", "7", "1", "La pile est vide"],
+    "choix": [
+      "4",
+      "7",
+      "1",
+      "La pile est vide"
+    ],
     "reponse": 1,
-    "explication": "Le dépilement retire 1 (le dernier arrivé). Le nouveau sommet est 7."
+    "explication": "**Règle :** une pile rend toujours la **dernière** valeur posée en premier (LIFO). `sommet` lit la valeur du dessus sans la retirer.\n\n**Pas à pas :** on note la pile (fond à gauche, sommet à droite) après chaque opération.\n\n| Opération | Pile après | Sommet |\n|---|---|---|\n| empiler 4 | `4` | 4 |\n| empiler 7 | `4 7` | 7 |\n| empiler 1 | `4 7 1` | 1 |\n| dépiler (sort 1) | `4 7` | **7** |\n\n`sommet` renvoie donc 7.\n\n**Les autres réponses :** 1 est la valeur qui vient d'être retirée ; 4 est au **fond**, c'est ce qu'on aurait avec une file (premier arrivé) ; la pile n'est pas vide, il reste deux valeurs.\n\n**À retenir :** écris la pile après chaque opération ; dépiler enlève toujours la valeur la plus à droite."
   },
   {
     "question": "Quelle est la complexité de `empiler` et `depiler` dans une pile faite avec un tableau (sans agrandissement) ?",
-    "choix": ["O(1) pour les deux", "O(N) pour les deux", "empiler O(1), depiler O(N)", "O(log N) pour les deux"],
+    "choix": [
+      "O(1) pour les deux",
+      "O(N) pour les deux",
+      "empiler O(1), depiler O(N)",
+      "O(log N) pour les deux"
+    ],
     "reponse": 0,
-    "explication": "On écrit ou on lit une seule case, `tab[size]` ou `tab[size - 1]`, et on change `size` : rien ne dépend du nombre de valeurs."
+    "explication": "**Règle :** une opération est en O(1) quand son coût ne dépend **pas** du nombre N de valeurs rangées.\n\n**Pas à pas :** on compte ce que fait chaque opération dans une pile en tableau.\n\n- `empiler` : une écriture dans `tab[size]`, puis `size++`. Deux actions, que la pile contienne 3 ou 3 millions de valeurs.\n- `depiler` : `size--`, puis une lecture de `tab[size]`. Encore deux actions.\n\nAucune boucle, aucun parcours : O(1) pour les deux.\n\n**Les autres réponses :** O(N) supposerait de parcourir toute la pile (ce serait le cas si on décalait toutes les valeurs, ce qu'on ne fait jamais) ; « dépiler en O(N) » confond avec une suppression en fin de liste chaînée ; O(log N) est le coût d'une recherche dichotomique, sans rapport ici.\n\n**À retenir :** empiler et dépiler ne touchent qu'une case et `size` : O(1)."
   },
   {
     "question": "Dans `typedef struct { int *tab; int size; int capacity; } Stack;`, où se trouve le sommet d'une pile non vide ?",
-    "choix": ["`tab[0]`", "`tab[size]`", "`tab[size - 1]`", "`tab[capacity - 1]`"],
+    "choix": [
+      "`tab[0]`",
+      "`tab[size]`",
+      "`tab[size - 1]`",
+      "`tab[capacity - 1]`"
+    ],
     "reponse": 2,
-    "explication": "`size` est le nombre de valeurs, donc aussi l'indice de la première case libre. La dernière valeur posée est juste en dessous : `tab[size - 1]`."
+    "explication": "**Règle :** `size` est le **nombre** de valeurs, donc aussi l'indice de la **première case libre**. Les valeurs occupent `tab[0]` à `tab[size - 1]`.\n\n**Pas à pas :** avec la pile `7 2 9` (fond à gauche) :\n\n| Indice | 0 | 1 | 2 | 3 |\n|---|---|---|---|---|\n| Contenu | 7 | 2 | 9 | libre |\n| Rôle | fond | | **sommet** | `size = 3` |\n\nLe sommet (9, le dernier posé) est en `tab[2]`, c'est-à-dire `tab[size - 1]`.\n\n**Les autres réponses :** `tab[0]` est le **fond** (la première valeur posée) ; `tab[size]` est la première case libre, son contenu n'a pas de sens ; `tab[capacity - 1]` est la dernière case du tableau, qui n'est le sommet que si la pile est pleine.\n\n**À retenir :** sommet = `tab[size - 1]`, première case libre = `tab[size]`."
   },
   {
     "question": "Que se passe-t-il si on appelle `void empiler(Stack *s, int v) { s->tab[s->size] = v; s->size++; }` sur une pile **pleine** ?",
@@ -49,7 +74,7 @@
       "La pile s'agrandit toute seule"
     ],
     "reponse": 2,
-    "explication": "En C, rien ne vérifie les indices : `tab[capacity]` est la case après la fin. Il faut tester `estPleine` avant, ou renvoyer un code d'erreur."
+    "explication": "**Règle :** en C, **rien ne vérifie les indices** d'un tableau. Écrire dans une case qui n'existe pas ne provoque aucune erreur sur le moment.\n\n**Pas à pas :** pile pleine avec `capacity = 3`, donc `size = 3`.\n\n1. `s->tab[s->size] = v` écrit dans `tab[3]`.\n2. Les cases valides sont `tab[0]`, `tab[1]`, `tab[2]` : `tab[3]` est **après la fin** du tableau.\n3. Cette mémoire appartient peut-être à une autre variable : elle est écrasée.\n4. `size` passe à 4, et le programme continue comme si de rien n'était, jusqu'à se tromper ou planter beaucoup plus loin.\n\n**Les autres réponses :** la valeur n'est pas ignorée (il faudrait un test `estPleine` pour ça) ; C n'affiche aucune erreur claire ; la pile ne s'agrandit pas seule, il faudrait appeler `realloc` soi-même.\n\n**À retenir :** avant d'empiler dans une pile en tableau, teste `estPleine` (ou renvoie un code d'erreur)."
   },
   {
     "question": "Après `depiler`, la valeur retirée est-elle effacée du tableau ?",
@@ -60,13 +85,18 @@
       "Non, et elle est encore comptée dans la pile"
     ],
     "reponse": 1,
-    "explication": "Seul `size` compte. La vieille valeur sera écrasée au prochain `empiler`."
+    "explication": "**Règle :** dans une pile en tableau, seul `size` dit quelles cases font partie de la pile. Dépiler **diminue `size`**, sans rien effacer.\n\n**Pas à pas :** pile `5 8` (`size = 2`), on dépile.\n\n| | `tab[0]` | `tab[1]` | `size` |\n|---|---|---|---|\n| avant | 5 | 8 | 2 |\n| après `depiler` | 5 | 8 (toujours là) | 1 |\n\nLe 8 est encore dans la case, mais comme `size = 1`, seule `tab[0]` compte. Au prochain `empiler`, `tab[1]` sera simplement réécrite.\n\n**Les autres réponses :** rien ne remet la case à 0 (inutile, ce serait du travail en plus) ; `free` ne sert qu'à rendre un bloc obtenu par `malloc`, pas une case d'un tableau ; et la valeur n'est **plus** comptée dans la pile, puisque `size` a baissé.\n\n**À retenir :** une case au-delà de `size - 1` est libre, peu importe ce qu'elle contient."
   },
   {
     "question": "Ce code affiche une pile depuis le fond : `for (int i = 0; i < s->size; i++) printf(\"%d \", s->tab[i]);`. Que lui manque-t-il pour afficher « sur une seule ligne » ?",
-    "choix": ["Un `printf(\"\\n\")` après la boucle", "Rien du tout", "Un `i <= s->size`", "Commencer à `i = 1`"],
+    "choix": [
+      "Un `printf(\"\\n\")` après la boucle",
+      "Rien du tout",
+      "Un `i <= s->size`",
+      "Commencer à `i = 1`"
+    ],
     "reponse": 0,
-    "explication": "Sans retour à la ligne final, l'affichage suivant se colle derrière. Une correction automatique compte alors la sortie fausse."
+    "explication": "**Règle :** « afficher sur une seule ligne » veut dire : toutes les valeurs, **puis** un retour à la ligne `\\n`.\n\n**Pas à pas :** avec la pile `1 2 3`, la boucle affiche `1 `, puis `2 `, puis `3 `. Sans rien d'autre :\n\n```text\n1 2 3 3 2 1\n```\n\nsi on affiche ensuite la pile depuis le dessus : les deux affichages se collent sur la même ligne. Avec `printf(\"\\n\");` après la boucle, on obtient bien deux lignes.\n\n**Les autres réponses :** « rien du tout » oublie ce problème ; `i <= s->size` lirait `tab[size]`, une case libre en trop ; commencer à `i = 1` oublierait le fond `tab[0]`. La boucle donnée est correcte, seul le `\\n` final manque.\n\n**À retenir :** une ligne affichée = des valeurs + un `\\n` à la fin, après la boucle."
   },
   {
     "question": "Pour faire une pile avec une liste chaînée, où place-t-on le sommet ?",
@@ -77,13 +107,18 @@
       "N'importe où, cela ne change rien"
     ],
     "reponse": 0,
-    "explication": "Insérer et supprimer en début de liste coûtent O(1). Supprimer en fin demande l'avant-dernier : O(N)."
+    "explication": "**Règle :** dans une liste chaînée, insérer et supprimer **en début** coûtent O(1) ; supprimer **en fin** demande de trouver l'avant-dernier maillon, donc O(N).\n\n**Pas à pas :** on compare les deux choix pour une pile de N valeurs.\n\n| Sommet placé sur | Empiler | Dépiler |\n|---|---|---|\n| le **premier** maillon | insérer en début : O(1) | supprimer en début : O(1) |\n| le **dernier** maillon | insérer en fin : O(N) sans pointeur de fin | supprimer en fin : O(N) (il faut l'avant-dernier) |\n\nSeul le premier choix garde toutes les opérations en O(1).\n\n**Les autres réponses :** le dernier maillon rend au moins le dépilement lent ; le milieu n'a aucun sens (on ne sait même pas l'atteindre vite) ; et la position change tout, comme le montre le tableau.\n\n**À retenir :** pile chaînée = sommet au premier maillon, empiler et dépiler en tête."
   },
   {
     "question": "Quelle opération n'a **pas** de sens pour une pile faite avec une liste chaînée ?",
-    "choix": ["estVide", "sommet", "estPleine", "depiler"],
+    "choix": [
+      "estVide",
+      "sommet",
+      "estPleine",
+      "depiler"
+    ],
     "reponse": 2,
-    "explication": "Une liste chaînée n'a pas de capacité fixe : on peut empiler tant qu'il reste de la mémoire."
+    "explication": "**Règle :** `estPleine` ne sert que si la pile a une **capacité fixe** (un tableau de taille donnée).\n\n**Pas à pas :** on regarde chaque opération pour une pile chaînée.\n\n- `estVide` : a du sens, la pile vide est le pointeur `NULL`.\n- `sommet` : a du sens, c'est la valeur du premier maillon.\n- `depiler` : a du sens, c'est la suppression en début.\n- `estPleine` : une liste chaînée fait un `malloc` par valeur, il n'y a pas de nombre de cases prévu à l'avance. Elle n'est jamais « pleine » (seule la mémoire de l'ordinateur peut manquer, et `malloc` renvoie alors `NULL`).\n\n**Les autres réponses :** `estVide`, `sommet` et `depiler` sont les opérations de base de toute pile, quelle que soit sa construction.\n\n**À retenir :** pas de capacité, pas de `estPleine`."
   },
   {
     "question": "Lequel de ces usages repose sur une **pile** ?",
@@ -94,25 +129,40 @@
       "Distribuer des tâches à des serveurs dans l'ordre"
     ],
     "reponse": 1,
-    "explication": "« Retour » ramène à la **dernière** page visitée : dernier entré, premier sorti. Les trois autres sont des files (premier arrivé, premier servi)."
+    "explication": "**Règle :** une pile sert quand le **dernier arrivé** doit être traité en premier (LIFO). Une file sert quand c'est le **premier arrivé** (FIFO).\n\n**Pas à pas :** pour chaque usage, qui sort en premier ?\n\n| Usage | Qui sort en premier ? | Structure |\n|---|---|---|\n| bouton « Retour » | la **dernière** page visitée | **pile** |\n| clients d'un guichet | le premier arrivé | file |\n| documents à l'imprimante | le premier envoyé | file |\n| tâches distribuées dans l'ordre | la plus ancienne | file |\n\nSi tu visites A, puis B, puis C, « Retour » ramène à B (la page juste avant C), puis à A.\n\n**Les autres réponses :** les trois autres traitent dans l'**ordre d'arrivée** : ce sont des files, le sujet du chapitre suivant.\n\n**À retenir :** demande-toi « qui sort en premier ? » : le plus récent → pile, le plus ancien → file."
   },
   {
     "question": "Que vaut le calcul en notation polonaise inverse `2 3 4 x +` ?",
-    "choix": ["20", "14", "24", "9"],
+    "choix": [
+      "20",
+      "14",
+      "24",
+      "9"
+    ],
     "reponse": 1,
-    "explication": "On empile 2, 3, 4. `x` dépile 4 et 3, empile 12. `+` dépile 12 et 2, empile 14."
+    "explication": "**Règle :** en notation polonaise inverse, un nombre est empilé ; un opérateur dépile deux nombres (droite d'abord, puis gauche), calcule, et empile le résultat.\n\n**Pas à pas :**\n\n| Lu | Action | Pile (fond → sommet) |\n|---|---|---|\n| `2` | empiler | `2` |\n| `3` | empiler | `2 3` |\n| `4` | empiler | `2 3 4` |\n| `x` | dépiler 4 puis 3, empiler 3 × 4 = 12 | `2 12` |\n| `+` | dépiler 12 puis 2, empiler 2 + 12 = 14 | `14` |\n\nRésultat : **14**. C'est `2 + 3 × 4`.\n\n**Les autres réponses :** 20 vient de `(2 + 3) × 4`, qui s'écrirait `2 3 + 4 x` ; 24 multiplie les trois nombres ; 9 les additionne. Ces erreurs viennent de lire les opérateurs dans le mauvais ordre ou de ne pas les appliquer aux deux **derniers** nombres de la pile.\n\n**À retenir :** chaque opérateur agit sur les deux nombres du dessus de la pile, au moment où on le lit."
   },
   {
     "question": "En notation polonaise inverse, on lit `-` et on dépile d'abord `a`, puis `b`. Que faut-il empiler ?",
-    "choix": ["`a - b`", "`b - a`", "`a + b`", "Cela dépend de la taille de la pile"],
+    "choix": [
+      "`a - b`",
+      "`b - a`",
+      "`a + b`",
+      "Cela dépend de la taille de la pile"
+    ],
     "reponse": 1,
-    "explication": "Le premier nombre dépilé est celui de **droite**. Pour `8 3 -`, on dépile 3 puis 8 et on calcule `8 - 3`."
+    "explication": "**Règle :** le **premier** nombre dépilé est celui de **droite** (le dernier écrit), le second est celui de gauche. On calcule `gauche - droite`.\n\n**Pas à pas :** on dépile d'abord `a`, donc `a` est à droite ; puis `b`, donc `b` est à gauche. Le calcul est `b - a`.\n\nVérification avec `8 3 -` : la pile est `8 3` ; on dépile 3 (`a = 3`), puis 8 (`b = 8`) ; `b - a = 8 - 3 = 5`, ce qui est bien « 8 moins 3 ».\n\n**Les autres réponses :** `a - b` donnerait 3 - 8 = -5, l'ordre inversé ; `a + b` change d'opération ; la taille de la pile ne change pas l'ordre des deux nombres.\n\n**À retenir :** droite = premier dépilé ; pour `-` (et `/`), calcule toujours « second dépilé moins premier dépilé »."
   },
   {
     "question": "Quel résultat doit donner la calculette pour `1 2 3 +` ?",
-    "choix": ["6", "5", "Pas assez de nombres", "Trop de nombres"],
+    "choix": [
+      "6",
+      "5",
+      "Pas assez de nombres",
+      "Trop de nombres"
+    ],
     "reponse": 3,
-    "explication": "Après `+`, la pile contient `1 5` : il reste deux nombres au lieu d'un seul à la fin."
+    "explication": "**Règle :** à la fin d'un calcul en notation polonaise inverse, il doit rester **exactement un** nombre. Plus d'un : il manque un opérateur, c'est « trop de nombres ».\n\n**Pas à pas :**\n\n| Lu | Action | Pile |\n|---|---|---|\n| `1` | empiler | `1` |\n| `2` | empiler | `1 2` |\n| `3` | empiler | `1 2 3` |\n| `+` | dépiler 3 puis 2, empiler 5 | `1 5` |\n| fin | deux nombres restent | `1 5` → **trop de nombres** |\n\n**Les autres réponses :** 6 additionne tout, comme s'il y avait deux `+` ; 5 ne regarde que le sommet et oublie le 1 resté au fond ; « pas assez de nombres » arrive quand un opérateur trouve moins de deux nombres, ou quand la pile est vide à la fin, ce qui n'est pas le cas ici.\n\n**À retenir :** à la fin, 0 nombre → pas assez, 1 → résultat, plus de 1 → trop."
   },
   {
     "question": "Une fonction récursive plante sur une entrée très grande avec « débordement de pile ». De quelle pile parle-t-on ?",
@@ -123,7 +173,7 @@
       "D'une pile d'entiers déclarée dans `main`"
     ],
     "reponse": 1,
-    "explication": "Chaque appel ajoute un cadre sur la pile d'exécution, retiré quand l'appel se termine. Trop d'appels imbriqués la font déborder : c'est le *stack overflow*."
+    "explication": "**Règle :** la **pile d'exécution** garde un « cadre » par appel de fonction en cours (ses variables locales et l'endroit où reprendre). Un appel empile un cadre, la fin de la fonction le dépile. Sa taille est limitée.\n\n**Pas à pas :** une fonction récursive sur une grande entrée, par exemple `f(1000000)` qui appelle `f(999999)`, qui appelle `f(999998)`...\n\n1. Chaque appel empile un cadre, et aucun ne se termine avant que le dernier soit atteint.\n2. Un million de cadres doivent tenir en même temps dans la pile d'exécution (quelques mégaoctets).\n3. La place manque : la pile **déborde**, le programme plante. C'est le *stack overflow*.\n\n**Les autres réponses :** une pile créée avec `malloc` est dans le **tas** et n'est pas utilisée par les appels de fonction ; le tas est la zone de `malloc`, pas celle des appels ; une pile d'entiers déclarée dans `main` est une variable du programme, qui ne grandit pas toute seule à chaque appel.\n\n**À retenir :** « débordement de pile » = trop d'appels imbriqués dans la pile d'exécution (souvent une récursion sans fin ou trop profonde)."
   },
   {
     "question": "En algorithmique, une pile est :",
@@ -134,25 +184,40 @@
       "une batterie qui alimente le processeur"
     ],
     "reponse": 0,
-    "explication": "Une pile est LIFO : on ajoute et on retire du même côté, le sommet. La deuxième réponse décrit une file."
+    "explication": "**Règle :** une pile est **LIFO** : on ajoute et on retire **du même côté**, le sommet, donc la dernière valeur ajoutée est la première retirée.\n\n**Pas à pas :** on ajoute 1, 2, 3 puis on retire une valeur.\n\n- Pile (LIFO) : sort **3**, la dernière ajoutée.\n- File (FIFO) : sortirait 1, la première ajoutée.\n\n**Les autres réponses :** « la première ajoutée est la première retirée » décrit une **file** ; « un tableau toujours trié » ne correspond à rien (une pile ne trie pas, elle garde l'ordre d'arrivée) ; la « batterie » joue sur l'autre sens du mot pile en français.\n\n**À retenir :** pile = dernière ajoutée, première retirée."
   },
   {
     "question": "Quelle est la complexité de la lecture du sommet d'une pile ?",
-    "choix": ["O(N log N)", "O(log N)", "O(1)", "O(N²)"],
+    "choix": [
+      "O(N log N)",
+      "O(log N)",
+      "O(1)",
+      "O(N²)"
+    ],
     "reponse": 2,
-    "explication": "Le sommet est en `tab[size - 1]` (tableau) ou sur le premier maillon (liste chaînée) : on y accède directement."
+    "explication": "**Règle :** le sommet est toujours à une place connue : `tab[size - 1]` dans un tableau, le premier maillon dans une liste chaînée. On y accède **directement**.\n\n**Pas à pas :**\n\n- Tableau : un calcul `size - 1` et une lecture de case. Pas de boucle.\n- Liste chaînée : on lit `sommet->value`. Pas de boucle non plus.\n\nLe nombre d'actions ne dépend pas du nombre de valeurs : **O(1)**.\n\n**Les autres réponses :** O(log N), O(N log N) et O(N²) supposent une recherche, un tri ou des boucles imbriquées : lire le sommet n'en fait aucun.\n\n**À retenir :** sommet, empiler, dépiler, vide : toutes les opérations de pile sont en O(1)."
   },
   {
     "question": "Quelle est la complexité de la recherche d'une valeur quelconque dans une pile de N valeurs ?",
-    "choix": ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+    "choix": [
+      "O(1)",
+      "O(log N)",
+      "O(N)",
+      "O(N²)"
+    ],
     "reponse": 2,
-    "explication": "Une pile ne range pas ses valeurs dans l'ordre : il faut toutes les regarder dans le pire cas. Ce n'est d'ailleurs pas une opération de pile."
+    "explication": "**Règle :** une pile ne range pas ses valeurs dans un ordre utile pour chercher (pas de tri) : pour savoir si une valeur est présente, il faut les regarder **une par une**.\n\n**Pas à pas :** on cherche 4 dans la pile `4 9 1 6` (fond à gauche), en partant du sommet comme dans une liste chaînée :\n\n1. 6 : non.\n2. 1 : non.\n3. 9 : non.\n4. 4 : trouvé, après 4 comparaisons.\n\nDans le pire cas (valeur au fond ou absente), on compare les N valeurs : **O(N)**.\n\n**Les autres réponses :** O(1) vaut seulement pour le sommet ; O(log N) demanderait des valeurs triées et un accès au milieu (recherche dichotomique) ; O(N²) supposerait une double boucle, inutile ici.\n\n**À retenir :** chercher une valeur quelconque, c'est tout parcourir : O(N). Ce n'est d'ailleurs pas une opération de pile."
   },
   {
     "question": "Quelle est la complexité de `depiler` dans une pile faite avec une liste chaînée dont le sommet est le premier maillon ?",
-    "choix": ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+    "choix": [
+      "O(1)",
+      "O(log N)",
+      "O(N)",
+      "O(N²)"
+    ],
     "reponse": 0,
-    "explication": "C'est une suppression en début de liste : on avance le pointeur de tête et on libère l'ancien maillon."
+    "explication": "**Règle :** quand le sommet est le premier maillon, dépiler revient à **supprimer en début de liste**.\n\n**Pas à pas :** pile `sommet --> [5|*] --> [2|*] --> NULL`.\n\n1. `ancien = sommet` : on garde le maillon 5.\n2. `valeur = ancien->value` : 5.\n3. `sommet = ancien->next` : le sommet devient le maillon 2.\n4. `free(ancien)`.\n\nQuatre actions, peu importe la longueur de la liste : **O(1)**.\n\n**Les autres réponses :** O(N) serait le coût si le sommet était le **dernier** maillon (il faudrait chercher l'avant-dernier) ; O(log N) et O(N²) ne correspondent à aucun parcours fait ici.\n\n**À retenir :** pile chaînée, sommet en tête : dépiler = avancer la tête et faire `free`, O(1)."
   },
   {
     "question": "Pour quelle opération une pile en tableau et une pile en liste chaînée ont-elles la même complexité ?",
@@ -163,6 +228,6 @@
       "Recopier la pile dans un tableau deux fois plus grand"
     ],
     "reponse": 0,
-    "explication": "Empiler coûte O(1) dans les deux cas. Lire la i-ème valeur depuis le fond est O(1) dans un tableau mais O(N) dans une liste, et `estPleine` n'existe pas pour une liste."
+    "explication": "**Règle :** les opérations de **pile** coûtent O(1) dans les deux versions ; les différences apparaissent pour ce qui sort du rôle d'une pile.\n\n**Pas à pas :** on compare chaque proposition.\n\n| Opération | Tableau | Liste chaînée | Même coût ? |\n|---|---|---|---|\n| empiler (sans agrandissement) | O(1) : écrire `tab[size]` | O(1) : insérer en tête | **oui** |\n| lire la i-ème valeur depuis le fond | O(1) : `tab[i]` | O(N) : suivre les `next` depuis le sommet | non |\n| tester si la pile est pleine | O(1) : `size >= capacity` | n'existe pas (pas de capacité) | non |\n| recopier dans un tableau deux fois plus grand | O(N) : `realloc` recopie tout | n'existe pas | non |\n\n**Les autres réponses :** l'accès à la i-ème valeur est direct dans un tableau mais demande un parcours dans une liste ; `estPleine` et l'agrandissement n'ont de sens que pour un tableau.\n\n**À retenir :** pour les opérations de pile (empiler, dépiler, sommet, vide), tableau et liste chaînée se valent."
   }
 ]

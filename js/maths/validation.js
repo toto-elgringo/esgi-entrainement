@@ -111,6 +111,7 @@ function validerFormeReponse(question) {
 
 function validerQuestion(question, prefixe) {
   const problemes = validerFormeReponse(question).map((probleme) => `${prefixe} : ${probleme}`);
+  if (!texteRempli(question.explication)) problemes.push(`${prefixe} : « explication » manquante`);
   if (problemes.length > 0 || question.type === 'auto') return problemes;
 
   const reference = verifierQuestion(question, ecritureDeReference(question));
@@ -149,7 +150,7 @@ export function validerExercices(exercices, { formules = true } = {}) {
     } else {
       exercice.questions.forEach((question, position) => {
         problemes.push(...validerQuestion(question, `${nom}, question ${position + 1}`));
-        textes.push(question.intitule ?? '', ...(question.choix ?? []), question.type === 'auto' ? question.reponse : '');
+        textes.push(question.intitule ?? '', question.explication ?? '', ...(question.choix ?? []), question.type === 'auto' ? question.reponse : '');
       });
     }
     if (formules && !textesCorrects(textes)) problemes.push(`${nom} : formule cassée (« $ » non fermé ou « \\ » non doublé dans le JSON)`);

@@ -1,9 +1,14 @@
 [
   {
     "question": "On enfile A, puis B, puis C, puis on défile une fois. Que renvoie `tete` ?",
-    "choix": ["A", "B", "C", "La file est vide"],
+    "choix": [
+      "A",
+      "B",
+      "C",
+      "La file est vide"
+    ],
     "reponse": 1,
-    "explication": "Le défilement retire A, le premier arrivé. La nouvelle tête est B, et C reste à la fin."
+    "explication": "**Règle :** une file est FIFO : premier entré, premier sorti. `defiler` retire la valeur la plus **ancienne** (la tête), `tete` lit la nouvelle tête sans la retirer.\n\n**Pas à pas :** on note la file (tête à gauche, fin à droite) après chaque opération.\n\n| Opération | File après | Tête |\n|---|---|---|\n| enfiler A | `A` | A |\n| enfiler B | `A B` | A |\n| enfiler C | `A B C` | A |\n| défiler (sort A) | `B C` | **B** |\n\n`tete` renvoie donc B.\n\n**Les autres réponses :** A vient d'être retiré ; C est la **fin** de la file (c'est ce qu'on lirait avec une pile, qui rend le dernier arrivé) ; la file n'est pas vide, il reste B et C.\n\n**À retenir :** dans une file, on retire à gauche (le plus ancien) et on ajoute à droite."
   },
   {
     "question": "Pourquoi ne range-t-on pas une file dans un tableau en gardant toujours la tête en `tab[0]` ?",
@@ -14,19 +19,29 @@
       "Parce que le tableau serait toujours plein"
     ],
     "reponse": 1,
-    "explication": "Retirer `tab[0]` oblige à recopier chaque valeur une case plus à gauche. Avec un indice `start` qui avance, défiler ne coûte plus que O(1)."
+    "explication": "**Règle :** retirer la première case d'un tableau en gardant la tête toujours en `tab[0]` oblige à **décaler** toutes les autres valeurs d'une case vers la gauche.\n\n**Pas à pas :** file `A B C D` rangée en `tab[0]` à `tab[3]`, on défile A.\n\n1. `tab[0] = tab[1]` (B)\n2. `tab[1] = tab[2]` (C)\n3. `tab[2] = tab[3]` (D)\n\nTrois recopies pour quatre valeurs ; pour N valeurs, N − 1 recopies à **chaque** défilement : O(N). Avec un indice `start` qu'on fait avancer (et le modulo pour faire le tour), défiler ne touche plus qu'un indice : O(1).\n\n**Les autres réponses :** `tab[0]` existe bien en C (les indices commencent à 0) ; enfiler reste possible (on écrit en `tab[size]`) ; le tableau n'est pas plein pour autant, c'est seulement le défilement qui coûte cher.\n\n**À retenir :** pour une file en tableau, on ne déplace pas les valeurs, on déplace l'indice de la tête."
   },
   {
     "question": "Dans une file de capacité 4, `start` vaut 3. Que vaut `start` après un défilement ?",
-    "choix": ["4", "0", "3", "-1"],
+    "choix": [
+      "4",
+      "0",
+      "3",
+      "-1"
+    ],
     "reponse": 1,
-    "explication": "`start = (3 + 1) % 4 = 0` : la tête revient au début du tableau. Avec un simple `start++`, elle vaudrait 4, une case qui n'existe pas."
+    "explication": "**Règle :** défiler fait avancer la tête **en tournant** : `start = (start + 1) % capacity`. Le modulo `%` donne le reste de la division entière.\n\n**Pas à pas :** `start = 3`, `capacity = 4`.\n\n1. `start + 1 = 4`.\n2. `4 % 4` : 4 = 1 × 4 + **0**, le reste vaut 0.\n3. `start` devient **0** : la tête revient à la première case du tableau.\n\n**Les autres réponses :** 4 est ce que donnerait un simple `start++` sans modulo, une case qui n'existe pas (les cases vont de 0 à 3) ; 3 voudrait dire que la tête n'a pas bougé ; -1 n'a pas de sens, `start` ne recule jamais.\n\n**À retenir :** tout indice de file circulaire avance avec `% capacity`, c'est ce qui fait « faire le tour »."
   },
   {
     "question": "Une file a `capacity = 5`, `start = 3` et `size = 4`. Dans quelle case le prochain `enfiler` écrit-il ?",
-    "choix": ["`tab[7]`", "`tab[2]`", "`tab[4]`", "`tab[0]`"],
+    "choix": [
+      "`tab[7]`",
+      "`tab[2]`",
+      "`tab[4]`",
+      "`tab[0]`"
+    ],
     "reponse": 1,
-    "explication": "La première case libre est `(start + size) % capacity = 7 % 5 = 2`. La file occupe les cases 3, 4, 0 et 1."
+    "explication": "**Règle :** la première case libre (la fin de la file) est en `(start + size) % capacity`.\n\n**Pas à pas :** `capacity = 5`, `start = 3`, `size = 4`.\n\n| Valeur de la file | Case `(3 + i) % 5` |\n|---|---|\n| tête, `i = 0` | 3 |\n| `i = 1` | 4 |\n| `i = 2` | 5 % 5 = 0 |\n| `i = 3` | 6 % 5 = 1 |\n| première case libre | (3 + 4) % 5 = 7 % 5 = **2** |\n\nLa file occupe les cases 3, 4, 0, 1 ; le prochain `enfiler` écrit en `tab[2]`.\n\n**Les autres réponses :** `tab[7]` oublie le modulo (case hors du tableau) ; `tab[4]` est déjà occupée par la 2e valeur ; `tab[0]` aussi, par la 3e valeur.\n\n**À retenir :** fin = `(start + size) % capacity` ; pour vérifier, liste les cases occupées en tournant."
   },
   {
     "question": "Pourquoi la structure `Queue` garde-t-elle le champ `size` en plus de `start` ?",
@@ -37,7 +52,7 @@
       "Pour pouvoir trier la file"
     ],
     "reponse": 1,
-    "explication": "Dans les deux cas, la fin `(start + size) % capacity` retombe sur `start`. `size` dit tout de suite si la file est vide (0) ou pleine (`capacity`). La taille du tableau, c'est `capacity`."
+    "explication": "**Règle :** dans un tableau circulaire, la fin est en `(start + size) % capacity`. Il faut `size` pour savoir combien de valeurs sont rangées.\n\n**Pas à pas :** capacité 4, `start = 1`.\n\n- File vide : `size = 0`, la fin est en (1 + 0) % 4 = **1**.\n- File pleine : `size = 4`, la fin est en (1 + 4) % 4 = **1**.\n\nDans les deux cas, la fin tombe sur la case de la tête. Avec seulement « l'indice de la tête » et « l'indice de la fin », on ne saurait pas si la file est vide ou pleine. `size` règle la question : 0 → vide, `capacity` → pleine.\n\n**Les autres réponses :** `start` seul ne dit pas combien il y a de valeurs ; la taille du tableau est dans `capacity`, pas dans `size` ; une file ne se trie pas, elle garde l'ordre d'arrivée.\n\n**À retenir :** `start` dit où commence la file, `size` dit combien elle contient ; les deux sont nécessaires."
   },
   {
     "question": "Que se passe-t-il si on appelle `enfiler` (avec le modulo, sans aucun test) sur une file **pleine** ?",
@@ -48,7 +63,7 @@
       "La file s'agrandit toute seule"
     ],
     "reponse": 2,
-    "explication": "Quand `size == capacity`, `(start + size) % capacity` vaut `start`. Le modulo évite de sortir du tableau, mais on écrase la tête. Il faut tester `estPleine` avant."
+    "explication": "**Règle :** quand la file est pleine, `size == capacity`, donc la « première case libre » `(start + size) % capacity` vaut `start` : c'est la case de la tête.\n\n**Pas à pas :** capacité 3, file `1 2 3` avec `start = 0`, `size = 3`.\n\n1. `enfiler(4)` calcule la fin : (0 + 3) % 3 = 0.\n2. Il écrit 4 dans `tab[0]`, par-dessus la tête 1.\n3. `size` passe à 4 : la file prétend contenir 4 valeurs dans 3 cases.\n\nLa valeur 1 est perdue, sans aucun message.\n\n**Les autres réponses :** la valeur n'est pas ignorée (il faudrait un test `estPleine`) ; grâce au modulo, on reste **dans** le tableau, on n'écrit pas après sa fin ; et rien n'agrandit la file tout seul.\n\n**À retenir :** avec le modulo, une file pleine n'écrit pas hors du tableau, elle écrase la tête : teste `estPleine` avant d'enfiler."
   },
   {
     "question": "Ce `defiler` est faux : `q->start = (q->start + 1) % q->capacity; q->size--; return q->tab[q->start];`. Que renvoie-t-il ?",
@@ -59,7 +74,7 @@
       "Toujours 0"
     ],
     "reponse": 1,
-    "explication": "On lit la case **après** avoir avancé `start` : c'est la nouvelle tête qui est renvoyée. Il faut garder `tab[start]` dans une variable avant de bouger `start`."
+    "explication": "**Règle :** dans `defiler`, il faut lire `tab[start]` **avant** de faire avancer `start`.\n\n**Pas à pas :** file `[10][20][30]`, `start = 0`, `size = 3`, capacité 3.\n\n1. `start = (0 + 1) % 3 = 1`.\n2. `size` passe à 2.\n3. `return tab[start]`, c'est-à-dire `tab[1]` = **20**.\n\nLa fonction renvoie 20 alors que c'est 10 qui a été retiré : elle renvoie la **valeur qui suit** la tête (la nouvelle tête). La bonne version garde `int valeur = tab[start];` en premier, puis avance `start`, puis renvoie `valeur`.\n\n**Les autres réponses :** ce n'est pas la tête (10) ; ce n'est pas la dernière valeur (30) ; et ce n'est pas toujours 0, c'est une vraie valeur de la file, juste la mauvaise.\n\n**À retenir :** lire, puis bouger : garde la valeur dans une variable avant de modifier `start`."
   },
   {
     "question": "Que reproche-t-on à cet affichage ? `for (int i = q->start; i < q->start + q->size; i++) printf(\"%d \", q->tab[i]);`",
@@ -70,7 +85,7 @@
       "Il affiche les valeurs à l'envers"
     ],
     "reponse": 2,
-    "explication": "Sans modulo, `i` dépasse `capacity - 1`. La bonne boucle va de 0 à `size` et lit `tab[(start + i) % capacity]`. Il manque aussi le `printf(\"\\n\")` final."
+    "explication": "**Règle :** les valeurs d'une file circulaire ne sont pas forcément dans les cases `start` à `start + size - 1` : quand la file a fait le tour, la suite est au **début** du tableau. Il faut le modulo.\n\n**Pas à pas :** capacité 4, `start = 2`, `size = 3` : la file est en cases 2, 3, puis 0.\n\n| `i` | Case lue par ce code | Existe ? |\n|---|---|---|\n| 2 | `tab[2]` | oui |\n| 3 | `tab[3]` | oui |\n| 4 | `tab[4]` | **non** : après la fin du tableau |\n\nLa bonne boucle : `for (int i = 0; i < q->size; i++)` et `q->tab[(q->start + i) % q->capacity]`, qui lit les cases 2, 3, 0. Il manque aussi le `printf(\"\\n\")` après la boucle.\n\n**Les autres réponses :** le code n'est pas juste dès que la file a tourné ; il n'oublie pas la tête (il commence à `start`) ; il affiche dans le bon sens, de la tête vers la fin.\n\n**À retenir :** pour parcourir une file circulaire, `i` va de 0 à `size - 1` et la case est `(start + i) % capacity`."
   },
   {
     "question": "Dans une file faite avec une liste chaînée, où enfile-t-on et où défile-t-on ?",
@@ -81,13 +96,18 @@
       "On enfile et on défile à la fin"
     ],
     "reponse": 0,
-    "explication": "Retirer le premier maillon coûte O(1), ajouter derrière le dernier aussi grâce au pointeur `dernier`. Retirer le dernier demanderait l'avant-dernier : O(N). Enfiler et défiler du même côté, c'est une pile."
+    "explication": "**Règle :** dans une liste chaînée, retirer le **premier** maillon coûte O(1), et ajouter **derrière le dernier** aussi, grâce au pointeur `dernier`. Retirer le dernier coûterait O(N) (il faut l'avant-dernier).\n\n**Pas à pas :** on compare les choix possibles.\n\n| Choix | Enfiler | Défiler | Est-ce une file ? |\n|---|---|---|---|\n| derrière le dernier / le premier | O(1) | O(1) | **oui** |\n| avant le premier / le dernier | O(1) | O(N) | oui, mais lente |\n| les deux au début | O(1) | O(1) | non : c'est une **pile** |\n| les deux à la fin | O(1) | O(N) | non : c'est une pile |\n\n**Les autres réponses :** défiler le dernier maillon oblige à parcourir la liste ; enfiler et défiler du même côté fait sortir la valeur la plus récente, ce qui est le comportement d'une pile.\n\n**À retenir :** file chaînée = enfiler derrière `dernier`, défiler `premier`."
   },
   {
     "question": "Sans pointeur vers le dernier maillon, quelle est la complexité d'`enfiler` dans une file en liste chaînée ?",
-    "choix": ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+    "choix": [
+      "O(1)",
+      "O(log N)",
+      "O(N)",
+      "O(N²)"
+    ],
     "reponse": 2,
-    "explication": "Pour accrocher le nouveau maillon, il faut d'abord parcourir toute la liste jusqu'au dernier. Le pointeur `dernier` ramène cette opération à O(1)."
+    "explication": "**Règle :** pour ajouter un maillon à la fin, il faut connaître le dernier maillon. Sans pointeur vers lui, il faut le chercher.\n\n**Pas à pas :** file de N maillons, seul `premier` est connu.\n\n1. On part de `premier`.\n2. On suit `next` tant que le `next` du maillon courant n'est pas `NULL` : N − 1 pas.\n3. On accroche le nouveau maillon au dernier trouvé.\n\nLe nombre de pas grandit avec N : **O(N)**. Avec le pointeur `dernier`, on saute directement à l'étape 3 : O(1).\n\n**Les autres réponses :** O(1) n'est vrai qu'avec le pointeur de fin ; O(log N) supposerait de pouvoir sauter au milieu (impossible dans une liste chaînée) ; O(N²) supposerait une boucle dans une boucle.\n\n**À retenir :** sans pointeur de fin, ajouter à la fin d'une liste chaînée demande un parcours : O(N)."
   },
   {
     "question": "On défile le **seul** maillon d'une file chaînée (`premier`, `dernier`). Que faut-il faire en plus de `premier = premier->next` et du `free` ?",
@@ -98,7 +118,7 @@
       "Mettre `dernier = premier->next`"
     ],
     "reponse": 1,
-    "explication": "`dernier` pointe encore vers le maillon qu'on vient de libérer. Au prochain `enfiler`, on écrirait dans cette mémoire rendue, et `premier` resterait `NULL`."
+    "explication": "**Règle :** une file chaînée vide doit avoir `premier == NULL` **et** `dernier == NULL`.\n\n**Pas à pas :** file d'un seul maillon M, `premier = M`, `dernier = M`.\n\n1. `premier = premier->next` : `premier` vaut `NULL`.\n2. `free(M)` : le maillon est rendu.\n3. `dernier` vaut toujours M, une adresse rendue.\n4. Au prochain `enfiler`, le code voit `dernier != NULL`, écrit dans `dernier->next` (mémoire rendue) et ne met jamais à jour `premier` : la valeur est perdue.\n\nIl faut donc ajouter `if (f->premier == NULL) f->dernier = NULL;`.\n\n**Les autres réponses :** « rien de plus » laisse `dernier` pointer dans le vide ; `free(dernier)` libérerait **une seconde fois** le même maillon (double libération, interdit) ; `dernier = premier->next` lit dans `premier`, qui vaut `NULL` : plantage.\n\n**À retenir :** quand une file chaînée devient vide, remets **les deux** pointeurs à `NULL`."
   },
   {
     "question": "Lequel de ces usages repose sur une **file** ?",
@@ -109,7 +129,7 @@
       "Revenir à la page précédente d'un navigateur"
     ],
     "reponse": 1,
-    "explication": "Premier envoyé, premier imprimé : c'est FIFO. Les trois autres usages reprennent toujours le **dernier** élément ajouté : ce sont des piles."
+    "explication": "**Règle :** une file sert quand le **premier arrivé** doit être traité en premier (FIFO). Une pile sert quand c'est le **dernier arrivé** (LIFO).\n\n**Pas à pas :** pour chaque usage, qui passe en premier ?\n\n| Usage | Qui passe en premier ? | Structure |\n|---|---|---|\n| imprimante partagée | le premier document envoyé | **file** |\n| « Annuler » | la dernière action | pile |\n| parenthèses bien fermées | la dernière ouvrante encore ouverte | pile |\n| page précédente | la dernière page visitée | pile |\n\n**Les autres réponses :** « Annuler », les parenthèses et « Retour » reprennent toujours l'élément **le plus récent** : ce sont des piles (chapitre précédent).\n\n**À retenir :** ordre d'arrivée respecté → file ; le plus récent d'abord → pile."
   },
   {
     "question": "Pour faire jouer des joueurs à tour de rôle avec une file, que fait-on du joueur qui vient de jouer et n'a pas fini ?",
@@ -120,7 +140,7 @@
       "On le supprime de la file"
     ],
     "reponse": 2,
-    "explication": "Il repasse derrière tous ceux qui attendent : chacun joue une fois avant qu'il rejoue. C'est le principe du tourniquet (*round robin*)."
+    "explication": "**Règle :** dans un tour de rôle avec une file, celui qui joue est toujours la tête ; après son tour, s'il reste en jeu, il est **renfilé à la fin**.\n\n**Pas à pas :** joueurs `A B C`, chacun a plusieurs coups à jouer.\n\n| Tour | Joue | File après |\n|---|---|---|\n| 1 | A (défilé, puis renfilé) | `B C A` |\n| 2 | B | `C A B` |\n| 3 | C | `A B C` |\n| 4 | A | `B C A` |\n\nChacun joue une fois avant que quelqu'un rejoue : c'est le tourniquet (*round robin*).\n\n**Les autres réponses :** le remettre en tête le ferait rejouer tout de suite, les autres n'auraient jamais leur tour ; le défiler une seconde fois retirerait le joueur suivant ; le supprimer n'est juste que s'il a **fini**, ce qui n'est pas le cas ici.\n\n**À retenir :** défiler, jouer, renfiler à la fin tant qu'on n'a pas fini."
   },
   {
     "question": "Une file dans un tableau circulaire de capacité 4 qui a fait le tour (`start = 2`) est pleine. Pourquoi un simple `realloc` vers 8 cases ne suffit-il pas pour l'agrandir ?",
@@ -131,31 +151,51 @@
       "Il suffit, à condition de remettre `start` à 0"
     ],
     "reponse": 1,
-    "explication": "La file lit `tab[2], tab[3]`, puis les cases 4 et 5... qui sont vides : la suite de la file est restée en cases 0 et 1. Il faut recopier les valeurs dans l'ordre de la file."
+    "explication": "**Règle :** `realloc` garde les cases à leur place et ajoute les nouvelles cases **après**. Une file circulaire qui a fait le tour est rangée en deux morceaux : de `start` à la fin du tableau, puis au début.\n\n**Pas à pas :** capacité 4, `start = 2`, file `A B C D` rangée `[C][D][A][B]`.\n\n1. `realloc` vers 8 cases : `[C][D][A][B][ ][ ][ ][ ]`, `start = 2`.\n2. La file se lit en cases (2 + i) % 8 : 2, 3, 4, 5, soit `A B ? ?`.\n3. C et D sont restées en cases 0 et 1 : il faudrait qu'elles soient en cases 4 et 5, **après la case 3**.\n\nLa solution : recopier dans un nouveau tableau dans l'ordre de la file (`nouveau[i] = tab[(start + i) % 4]`), puis `start = 0`.\n\n**Les autres réponses :** `realloc` n'efface rien, il recopie les anciennes valeurs ; il marche pour n'importe quel bloc de `malloc`, pas seulement les piles ; remettre `start` à 0 sans déplacer les valeurs lirait `C D A B`, dans le désordre.\n\n**À retenir :** pour agrandir une file circulaire, recopie les valeurs dans l'ordre de la file, de la tête à la fin."
   },
   {
     "question": "Une structure de données FIFO est :",
-    "choix": ["une pile", "une file", "un tableau trié", "un arbre"],
+    "choix": [
+      "une pile",
+      "une file",
+      "un tableau trié",
+      "un arbre"
+    ],
     "reponse": 1,
-    "explication": "FIFO (*First In, First Out*) : le premier entré est le premier sorti. C'est la file, *queue* en anglais. La pile est LIFO."
+    "explication": "**Règle :** FIFO veut dire *First In, First Out*, « premier entré, premier sorti ». C'est le principe de la **file** (*queue* en anglais).\n\n**Pas à pas :** on enfile 1, 2, 3, puis on retire une valeur.\n\n- File (FIFO) : sort **1**, la première entrée.\n- Pile (LIFO) : sortirait 3, la dernière entrée.\n\n**Les autres réponses :** la pile est LIFO, l'inverse ; un tableau trié range ses valeurs par ordre de grandeur, pas par ordre d'arrivée ; un arbre est une autre structure, organisée en branches, sans règle « premier entré, premier sorti ».\n\n**À retenir :** FIFO = file = *queue* ; LIFO = pile = *stack*."
   },
   {
     "question": "Quelle est la complexité de l'opération `defiler` dans une file en tableau circulaire ?",
-    "choix": ["O(N log N)", "O(log N)", "O(1)", "O(N²)"],
+    "choix": [
+      "O(N log N)",
+      "O(log N)",
+      "O(1)",
+      "O(N²)"
+    ],
     "reponse": 2,
-    "explication": "On lit `tab[start]`, on avance `start` avec le modulo et on diminue `size` : trois opérations, quelle que soit la taille de la file."
+    "explication": "**Règle :** une opération est en O(1) si son coût ne dépend pas du nombre de valeurs dans la file.\n\n**Pas à pas :** `defiler` dans un tableau circulaire fait :\n\n1. `valeur = tab[start]` : une lecture ;\n2. `start = (start + 1) % capacity` : un calcul ;\n3. `size--` : une soustraction.\n\nTrois actions, que la file contienne 3 ou 3 millions de valeurs, et aucune valeur n'est décalée : **O(1)**.\n\n**Les autres réponses :** O(log N), O(N log N) et O(N²) supposent des boucles, des recherches ou des tris : `defiler` n'en fait aucun. C'est justement pour éviter le décalage en O(N) qu'on utilise le tableau circulaire.\n\n**À retenir :** dans un tableau circulaire, enfiler, défiler et lire la tête sont en O(1)."
   },
   {
     "question": "Quelle est la complexité de l'affichage de toutes les valeurs d'une file qui en contient N ?",
-    "choix": ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+    "choix": [
+      "O(1)",
+      "O(log N)",
+      "O(N)",
+      "O(N²)"
+    ],
     "reponse": 2,
-    "explication": "Il faut passer une fois sur chaque valeur : N tours de boucle."
+    "explication": "**Règle :** afficher toutes les valeurs demande de passer **une fois** sur chacune.\n\n**Pas à pas :** la boucle `for (int i = 0; i < q->size; i++)` fait exactement `size` tours, un par valeur, avec une lecture de case par tour. Pour N valeurs : N tours, donc **O(N)**.\n\n| Nombre de valeurs | Tours de boucle |\n|---|---|\n| 10 | 10 |\n| 1 000 | 1 000 |\n| N | N |\n\n**Les autres réponses :** O(1) est impossible, il faut bien afficher chaque valeur ; O(log N) n'en afficherait qu'une partie ; O(N²) supposerait une boucle dans la boucle, qui n'existe pas ici.\n\n**À retenir :** une boucle qui passe une fois sur chaque valeur coûte O(N)."
   },
   {
     "question": "Dans une file, la valeur qui sort en premier est :",
-    "choix": ["la plus récente", "la plus ancienne", "la plus petite", "la plus grande"],
+    "choix": [
+      "la plus récente",
+      "la plus ancienne",
+      "la plus petite",
+      "la plus grande"
+    ],
     "reponse": 1,
-    "explication": "Comme dans une file d'attente : le premier arrivé est le premier servi. Une file ne regarde jamais les valeurs elles-mêmes."
+    "explication": "**Règle :** une file est FIFO : la valeur qui sort est celle qui attend **depuis le plus longtemps**. La file ne compare jamais les valeurs entre elles.\n\n**Pas à pas :** on enfile 9, puis 2, puis 5.\n\n- Plus ancienne : 9 → c'est elle qui sort en premier.\n- Plus récente : 5 (sortirait d'une pile).\n- Plus petite : 2, plus grande : 9. Ici la plus grande sort, mais par hasard : avec 2, 9, 5, c'est 2 qui sortirait.\n\n**Les autres réponses :** « la plus récente » décrit une pile ; « la plus petite » ou « la plus grande » décrivent une file de **priorité**, une autre structure qui regarde les valeurs.\n\n**À retenir :** file = ordre d'arrivée, rien d'autre."
   },
   {
     "question": "Pour quelle opération une file en liste chaînée avec pointeur de fin est-elle plus pratique qu'une file en tableau circulaire ?",
@@ -166,6 +206,6 @@
       "Tester si la file est vide"
     ],
     "reponse": 2,
-    "explication": "Les quatre opérations coûtent O(1) dans les deux cas, mais le tableau a une capacité fixe. La liste chaînée n'est jamais pleine : on peut enfiler tant qu'il reste de la mémoire."
+    "explication": "**Règle :** les opérations de file coûtent O(1) dans les deux versions. La seule vraie différence : le tableau a une **capacité fixe**, pas la liste chaînée.\n\n**Pas à pas :** on compare chaque proposition.\n\n| Opération | Tableau circulaire | Liste chaînée avec pointeur de fin |\n|---|---|---|\n| défiler | O(1) | O(1) |\n| lire la tête | O(1) | O(1) |\n| tester si la file est vide | O(1) | O(1) |\n| enfiler sans connaître le maximum | impossible sans agrandir (le tableau se remplit) | possible tant qu'il reste de la mémoire |\n\n**Les autres réponses :** défiler, lire la tête et tester si la file est vide sont aussi simples et aussi rapides dans les deux versions : la liste chaînée n'y gagne rien.\n\n**À retenir :** liste chaînée quand on ne connaît pas le nombre maximum de valeurs ; sinon, les deux se valent."
   }
 ]

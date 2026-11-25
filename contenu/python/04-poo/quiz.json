@@ -1,21 +1,36 @@
 [
   {
     "question": "Qu'est-ce qu'une **instance** ?",
-    "choix": ["Le modèle qui décrit les objets", "Un objet fabriqué à partir d'une classe", "Une méthode spéciale", "Une variable partagée par tous les objets"],
+    "choix": [
+      "Le modèle qui décrit les objets",
+      "Un objet fabriqué à partir d'une classe",
+      "Une méthode spéciale",
+      "Une variable partagée par tous les objets"
+    ],
     "reponse": 1,
-    "explication": "La classe est le modèle ; une instance est un objet concret créé à partir de ce modèle, par exemple `emp1 = Employee(\"Tom\", 2000)`."
+    "explication": "**Règle :** la **classe** est le modèle (le moule) ; une **instance** est un objet concret fabriqué à partir de ce modèle.\n\n**Pas à pas :** dans `emp1 = Employee(\"Tom\", 2000)`, `Employee` est la classe. L'appel `Employee(...)` fabrique un objet, rangé dans `emp1` : `emp1` est **une instance** de `Employee`. Avec `emp2 = Employee(\"Bob\", 5000)`, on obtient une deuxième instance, différente, de la même classe.\n\n**Les autres réponses :** « le modèle qui décrit les objets », c'est la définition de la **classe** ; une méthode spéciale est une méthode comme `__init__` ou `__add__` ; une variable partagée par tous les objets est une **variable de classe**.\n\n**À retenir :** classe = modèle, instance = un objet fabriqué avec `Classe(...)`."
   },
   {
     "question": "Que représente `self` dans une méthode ?",
-    "choix": ["La classe", "L'objet sur lequel la méthode est appelée", "Le module courant", "La classe parente"],
+    "choix": [
+      "La classe",
+      "L'objet sur lequel la méthode est appelée",
+      "Le module courant",
+      "La classe parente"
+    ],
     "reponse": 1,
-    "explication": "`self` est une référence vers l'instance. Python le passe automatiquement : `emp1.display()` équivaut à `Employee.display(emp1)`."
+    "explication": "**Règle :** `self` est le premier paramètre de chaque méthode : il désigne **l'objet** sur lequel la méthode est appelée. Python le remplit tout seul.\n\n**Pas à pas :** `emp1.display()` est traduit par Python en `Employee.display(emp1)` : dans `display`, `self` vaut `emp1`, donc `self.name` est le nom de `emp1`. Pour `emp2.display()`, `self` vaut `emp2`. C'est grâce à `self` qu'une même méthode travaille sur des objets différents.\n\n**Les autres réponses :** `self` n'est pas la classe (la classe est `Employee`, commune à tous) ; ce n'est pas le module ; la classe parente s'atteint avec `super()`, pas avec `self`.\n\n**À retenir :** `self` = « l'objet qui est devant le point » dans `objet.methode()`."
   },
   {
     "question": "Comment crée-t-on un employé avec `def __init__(self, name, salary)` ?",
-    "choix": ["`Employee(self, \"Tom\", 2000)`", "`Employee(\"Tom\", 2000)`", "`Employee.__init__(\"Tom\", 2000)`", "`new Employee(\"Tom\", 2000)`"],
+    "choix": [
+      "`Employee(self, \"Tom\", 2000)`",
+      "`Employee(\"Tom\", 2000)`",
+      "`Employee.__init__(\"Tom\", 2000)`",
+      "`new Employee(\"Tom\", 2000)`"
+    ],
     "reponse": 1,
-    "explication": "On appelle la classe avec les paramètres de `__init__`, **sans** `self` : Python crée l'objet puis appelle `__init__` en lui passant l'objet comme `self`."
+    "explication": "**Règle :** pour créer une instance, on **appelle la classe** comme une fonction, avec les paramètres de `__init__` **sauf `self`** : Python crée l'objet puis appelle `__init__` en lui donnant cet objet comme `self`.\n\n**Pas à pas :** `__init__(self, name, salary)` attend `name` et `salary` en plus de `self`. On écrit donc `Employee(\"Tom\", 2000)` : Python fait `__init__(nouvel_objet, \"Tom\", 2000)`.\n\n**Les autres réponses :** `Employee(self, \"Tom\", 2000)` passe un argument de trop (et `self` n'existe pas en dehors d'une méthode) ; `Employee.__init__(\"Tom\", 2000)` appelle l'initialiseur sans objet : `\"Tom\"` serait pris pour `self` et il manquerait `salary` ; `new Employee(...)` est la syntaxe de Java ou JavaScript, pas de Python (erreur de syntaxe).\n\n**À retenir :** `objet = Classe(arguments de __init__ sans self)`."
   },
   {
     "question": "Dans `class Employee:`, où se trouve une **variable de classe** ?",
@@ -26,13 +41,18 @@
       "Dans les paramètres de `__init__`"
     ],
     "reponse": 1,
-    "explication": "Une variable écrite directement dans le corps de la classe (comme `emp_count = 0`) est partagée par toutes les instances. `self.x` crée une variable d'instance."
+    "explication": "**Règle :** une **variable de classe** s'écrit directement dans le corps de la classe, en dehors de toute méthode ; elle est partagée par toutes les instances. Ce qui s'écrit `self.x = ...` dans une méthode est une **variable d'instance**, propre à chaque objet.\n\n**Pas à pas :**\n\n```text\nclass Employee:\n    emp_count = 0              # variable de classe : corps de la classe\n    def __init__(self, name):\n        self.name = name       # variable d'instance : dans une méthode, avec self\n```\n\n`Employee.emp_count` est unique et commun à tous les employés ; `emp1.name` et `emp2.name` sont deux valeurs différentes.\n\n**Les autres réponses :** `self.x = ...` dans `__init__` crée une variable d'**instance** ; une variable globale du module n'appartient pas à la classe ; les paramètres de `__init__` sont de simples variables locales, perdues après l'appel si on ne les range pas dans `self`.\n\n**À retenir :** dans le corps de la classe = partagé ; `self.x` = propre à chaque objet."
   },
   {
     "question": "Après `emp1.emp_count = 100`, que vaut `Employee.emp_count` s'il valait 2 ?",
-    "choix": ["100", "2", "102", "Une erreur"],
+    "choix": [
+      "100",
+      "2",
+      "102",
+      "Une erreur"
+    ],
     "reponse": 1,
-    "explication": "Écrire via l'instance crée une variable d'instance sur `emp1`, qui masque la variable de classe pour cet objet seulement. `Employee.emp_count` reste à 2."
+    "explication": "**Règle :** **lire** `obj.attr` cherche d'abord dans l'objet, puis dans la classe. Mais **écrire** `obj.attr = valeur` crée (ou modifie) un attribut **sur l'objet** seulement : la variable de classe n'est pas touchée.\n\n**Pas à pas :**\n\n| Après `emp1.emp_count = 100` | Valeur |\n|---|---|\n| `Employee.emp_count` (dans la classe) | 2, inchangé |\n| `emp1.emp_count` (emp1 a maintenant le sien) | 100 |\n| `emp2.emp_count` (rien sur emp2, on lit la classe) | 2 |\n\n**Les autres réponses :** 100 supposerait que l'écriture par l'instance modifie la classe ; 102 additionne alors qu'il s'agit d'une affectation `=` ; il n'y a pas d'erreur, Python permet d'ajouter un attribut à un objet à tout moment.\n\n**À retenir :** une variable de classe se modifie par la classe (`Employee.emp_count += 1`), jamais par une instance."
   },
   {
     "question": "Que devient l'attribut `self.__code` d'une classe `Secret` ?",
@@ -43,7 +63,7 @@
       "Il provoque une erreur de syntaxe"
     ],
     "reponse": 1,
-    "explication": "Le double `_` déclenche le renommage (*name mangling*) : `obj.__code` ne marche plus de l'extérieur, mais `obj._Secret__code` reste accessible. Python n'a pas d'encapsulation stricte."
+    "explication": "**Règle :** un attribut qui commence par **deux** `_` (et ne finit pas par deux `_`) est **renommé** par Python en `_NomDeLaClasse__attribut`. C'est le *name mangling*. Python n'a pas d'encapsulation stricte : rien n'est vraiment interdit.\n\n**Pas à pas :** dans la classe `Secret`, `self.__code` devient en réalité `self._Secret__code`. Depuis l'extérieur, `obj.__code` lève une `AttributeError` (ce nom n'existe pas), mais `obj._Secret__code` donne la valeur. À l'intérieur des méthodes de `Secret`, on écrit toujours `self.__code`.\n\n**Les autres réponses :** « totalement inaccessible » est faux, le nom déformé marche ; ce n'est pas une variable de classe, il est créé avec `self`, donc sur l'objet ; ce n'est pas une erreur de syntaxe, c'est une écriture tout à fait permise.\n\n**À retenir :** `__x` dans la classe `C` = `_C__x` vu de dehors : caché, pas protégé."
   },
   {
     "question": "Dans le getter d'une propriété `name`, pourquoi écrire `return self._name` et pas `return self.name` ?",
@@ -54,19 +74,29 @@
       "Pour que l'attribut soit privé"
     ],
     "reponse": 1,
-    "explication": "`self.name` passe par la propriété, donc par le getter, qui repasserait par la propriété... jusqu'à une `RecursionError`. La donnée réelle est stockée sous un autre nom."
+    "explication": "**Règle :** une fois la propriété `name` définie, **toute** écriture `self.name` passe par elle : une lecture appelle le getter, une écriture le setter. La vraie donnée doit donc être rangée sous un autre nom, par convention `_name`.\n\n**Pas à pas :** si le getter contient `return self.name` :\n\n1. lire `e.name` appelle le getter ;\n2. le getter lit `self.name`, ce qui rappelle le getter ;\n3. qui relit `self.name`... sans fin, jusqu'à la `RecursionError` (trop d'appels imbriqués).\n\nAvec `return self._name`, on lit l'attribut normal `_name`, qui n'est pas une propriété : pas de boucle.\n\n**Les autres réponses :** ce n'est pas qu'une convention, le programme planterait ; ce n'est pas que l'attribut n'existe pas encore (le setter le crée dans `__init__`) ; un seul `_` ne rend rien privé, c'est juste un autre nom.\n\n**À retenir :** propriété `x` → donnée rangée dans `self._x`, et le getter renvoie `self._x`."
   },
   {
     "question": "Quelle méthode faut-il écrire pour pouvoir faire `a + b` avec deux objets de sa classe ?",
-    "choix": ["`__plus__`", "`__add__`", "`__sum__`", "`add`"],
+    "choix": [
+      "`__plus__`",
+      "`__add__`",
+      "`__sum__`",
+      "`add`"
+    ],
     "reponse": 1,
-    "explication": "`a + b` est traduit par Python en `a.__add__(b)`."
+    "explication": "**Règle :** les opérateurs sont traduits en appels de **méthodes spéciales** : `a + b` devient `a.__add__(b)`, `a - b` devient `a.__sub__(b)`, `a * b` devient `a.__mul__(b)`.\n\n**Pas à pas :** pour écrire `Vecteur(1, 2) + Vecteur(3, 4)`, la classe définit :\n\n```text\ndef __add__(self, autre):\n    return Vecteur(self.x + autre.x, self.y + autre.y)\n```\n\nPython appelle `Vecteur(1, 2).__add__(Vecteur(3, 4))`, qui renvoie `Vecteur(4, 6)`.\n\n**Les autres réponses :** `__plus__` et `__sum__` n'existent pas : Python ne les appellera jamais ; `add` est une méthode normale, qu'on peut appeler avec `a.add(b)`, mais `a + b` ne la déclenche pas.\n\n**À retenir :** `+` → `__add__`, `-` → `__sub__`, `*` → `__mul__`, `==` → `__eq__`, `<` → `__lt__`."
   },
   {
     "question": "Quelle méthode est utilisée par `print(obj)` ?",
-    "choix": ["`__repr__` uniquement", "`__str__` (ou `__repr__` s'il n'y a pas de `__str__`)", "`__print__`", "`__init__`"],
+    "choix": [
+      "`__repr__` uniquement",
+      "`__str__` (ou `__repr__` s'il n'y a pas de `__str__`)",
+      "`__print__`",
+      "`__init__`"
+    ],
     "reponse": 1,
-    "explication": "`print` utilise `__str__`, le texte lisible. Sans `__str__`, Python se rabat sur `__repr__`."
+    "explication": "**Règle :** `print(obj)` et `str(obj)` utilisent `__str__`, le texte lisible. Si la classe n'a pas de `__str__`, Python se rabat sur `__repr__`. Dans une liste affichée, c'est `__repr__` qui sert pour chaque élément.\n\n**Pas à pas :** une classe qui n'a que `__repr__` (renvoyant `\"Carte('As', 'pique')\"`) : `print(c)` affiche ce texte, faute de `__str__`. Si on ajoute un `__str__` qui renvoie `\"As de pique\"`, `print(c)` affiche `As de pique`, et `print([c])` affiche toujours `[Carte('As', 'pique')]`.\n\n**Les autres réponses :** « `__repr__` uniquement » est faux dès que `__str__` existe ; `__print__` n'existe pas ; `__init__` sert à initialiser l'objet à sa création, pas à l'afficher.\n\n**À retenir :** `print` → `__str__`, sinon `__repr__` ; liste et interpréteur → `__repr__`."
   },
   {
     "question": "Dans `class ITGuy(Employee):`, que doit faire `ITGuy.__init__` pour que `name` et `salary` existent ?",
@@ -77,13 +107,18 @@
       "Déclarer `name` et `salary` comme variables de classe"
     ],
     "reponse": 1,
-    "explication": "Quand l'enfant redéfinit `__init__`, celui du parent n'est plus appelé tout seul : il faut l'appeler explicitement pour initialiser la partie héritée."
+    "explication": "**Règle :** quand la classe enfant écrit son propre `__init__`, celui du parent **n'est plus appelé automatiquement**. Il faut l'appeler soi-même, avec `Parent.__init__(self, ...)` ou `super().__init__(...)` (sans `self`).\n\n**Pas à pas :**\n\n```text\nclass ITGuy(Employee):\n    def __init__(self, name, salary, computer):\n        super().__init__(name, salary)   # crée self.name et self.salary\n        self.computer = computer         # ajoute l'attribut propre à ITGuy\n```\n\nSans la ligne `super().__init__`, un `ITGuy` n'aurait que `computer` : `bob.name` lèverait `AttributeError`.\n\n**Les autres réponses :** « rien, c'est automatique » n'est vrai que si l'enfant **n'a pas** d'`__init__` ; `Employee(name, salary)` fabrique un **autre** objet, qui est aussitôt perdu, sans toucher à `self` ; des variables de classe seraient partagées par tous les `ITGuy`, alors que chacun a son nom et son salaire.\n\n**À retenir :** `__init__` dans l'enfant → première ligne `super().__init__(...)`."
   },
   {
     "question": "Avec `class ITGuy(Employee, Geek):`, si les deux parents ont une méthode `presentation`, laquelle est utilisée par un `ITGuy` ?",
-    "choix": ["Celle de `Geek`", "Celle de `Employee`", "Les deux, l'une après l'autre", "Aucune : erreur d'ambiguïté"],
+    "choix": [
+      "Celle de `Geek`",
+      "Celle de `Employee`",
+      "Les deux, l'une après l'autre",
+      "Aucune : erreur d'ambiguïté"
+    ],
     "reponse": 1,
-    "explication": "Python suit le MRO : `ITGuy`, puis les parents de gauche à droite. `Employee` est listé en premier."
+    "explication": "**Règle :** pour trouver une méthode, Python parcourt le **MRO** (*Method Resolution Order*) : la classe elle-même, puis ses parents **de gauche à droite** dans l'ordre où ils sont écrits, puis `object`. Il prend la **première** méthode trouvée.\n\n**Pas à pas :** `class ITGuy(Employee, Geek):` donne le MRO `ITGuy`, `Employee`, `Geek`, `object`.\n\n1. `ITGuy` a-t-il `presentation` ? Non.\n2. `Employee` ? Oui : on s'arrête, c'est celle-là.\n3. `Geek` n'est même pas consulté.\n\n**Les autres réponses :** celle de `Geek` serait choisie avec `class ITGuy(Geek, Employee):` ; Python n'appelle jamais les deux à la suite ; il n'y a pas d'erreur d'ambiguïté, le MRO décide toujours.\n\n**À retenir :** héritage multiple = le parent écrit **le plus à gauche** gagne (vérifiable avec `Classe.__mro__`)."
   },
   {
     "question": "Que signifie « toutes les méthodes sont virtuelles » en Python ?",
@@ -94,42 +129,72 @@
       "Il faut écrire le mot-clé `virtual`"
     ],
     "reponse": 1,
-    "explication": "Si `Chien` redéfinit `parler`, `animal.parler()` appelle la version de `Chien` quand l'objet est un `Chien`, même dans du code qui ne connaît que `Animal`. C'est le polymorphisme."
+    "explication": "**Règle :** en Python, la méthode appelée est toujours celle de la **classe réelle** de l'objet, même si le code a été écrit en pensant au parent. C'est le **polymorphisme** : on dit que toutes les méthodes sont « virtuelles ».\n\n**Pas à pas :** avec `Animal.parler()` qui renvoie `\"...\"` et `Chien.parler()` qui renvoie `\"Wouf\"` :\n\n```text\ndef faire_parler(animal):\n    return animal.parler()\n```\n\n`faire_parler(Chien())` renvoie `\"Wouf\"` : Python regarde le type réel (`Chien`) et trouve sa version, même si la fonction ne parle que d'« animal ».\n\n**Les autres réponses :** « n'existent qu'à l'exécution » ne veut rien dire de précis ici ; les méthodes peuvent justement être redéfinies, c'est tout l'intérêt ; il n'y a pas de mot-clé `virtual` en Python (il existe en C++ ou C#).\n\n**À retenir :** `objet.methode()` → la version de la classe **de l'objet**, cherchée d'abord chez lui, puis chez ses parents."
   },
   {
     "question": "Comment définit-on une classe `Chat` en Python ?",
-    "choix": ["`Chat = class:`", "`def class Chat:`", "`class Chat:`", "`new class Chat {}`"],
+    "choix": [
+      "`Chat = class:`",
+      "`def class Chat:`",
+      "`class Chat:`",
+      "`new class Chat {}`"
+    ],
     "reponse": 2,
-    "explication": "Le mot-clé `class`, le nom (en CamelCase par convention), `:`, puis le corps indenté. Pas d'accolades en Python."
+    "explication": "**Règle :** une classe se définit avec le mot-clé `class`, le nom (par convention une majuscule au début de chaque mot), deux-points, puis le corps **indenté**.\n\n**Pas à pas :**\n\n```text\nclass Chat:\n    def __init__(self, nom):\n        self.nom = nom\n```\n\n`class` + `Chat` + `:`, puis tout le contenu décalé de 4 espaces.\n\n**Les autres réponses :** `Chat = class:` mélange une affectation et un mot-clé : erreur de syntaxe ; `def class Chat:` confond avec la définition d'une fonction (`def`) ; `new class Chat {}` utilise des accolades et `new`, qui n'existent pas en Python.\n\n**À retenir :** `class NomDeClasse:` puis un bloc indenté, comme pour un `if` ou un `def`."
   },
   {
     "question": "Comment accède-t-on à l'attribut `nom` d'un objet `c` ?",
-    "choix": ["`c->nom`", "`c.nom`", "`c[\"nom\"]`", "`c::nom`"],
+    "choix": [
+      "`c->nom`",
+      "`c.nom`",
+      "`c[\"nom\"]`",
+      "`c::nom`"
+    ],
     "reponse": 1,
-    "explication": "On utilise le point : `c.nom`, en lecture comme en écriture (`c.nom = \"Félix\"`). Les crochets servent aux dictionnaires et aux listes."
+    "explication": "**Règle :** on accède à un attribut ou à une méthode d'un objet avec le **point** : `objet.attribut`, `objet.methode()`. Ça marche en lecture et en écriture.\n\n**Pas à pas :** si `c = Chat(\"Félix\")` et que `__init__` fait `self.nom = nom`, alors `c.nom` vaut `\"Félix\"`. On le change avec `c.nom = \"Tom\"`.\n\n**Les autres réponses :** `c->nom` est la syntaxe du C ou du C++ avec des pointeurs ; `c[\"nom\"]` est la syntaxe des dictionnaires (sur un objet normal, c'est une `TypeError`) ; `c::nom` est la syntaxe d'autres langages (C++, Rust) pour les espaces de noms.\n\n**À retenir :** objet + point + nom : `c.nom`."
   },
   {
     "question": "Comment indique-t-on que la classe `Chat` hérite de la classe `Animal` ?",
-    "choix": ["`class Chat extends Animal:`", "`class Chat(Animal):`", "`class Chat : Animal`", "`class Chat inherits Animal:`"],
+    "choix": [
+      "`class Chat extends Animal:`",
+      "`class Chat(Animal):`",
+      "`class Chat : Animal`",
+      "`class Chat inherits Animal:`"
+    ],
     "reponse": 1,
-    "explication": "Les classes parentes se mettent entre parenthèses après le nom : `class Chat(Animal):`, ou `class Chat(A, B):` pour un héritage multiple."
+    "explication": "**Règle :** pour hériter, on écrit la ou les classes parentes **entre parenthèses** après le nom : `class Enfant(Parent):`. Plusieurs parents se séparent par des virgules.\n\n**Pas à pas :** `class Chat(Animal):` : `Chat` récupère toutes les méthodes d'`Animal`, et peut en ajouter ou en redéfinir. Pour deux parents : `class Chat(Animal, Domestique):`.\n\n**Les autres réponses :** `extends` est le mot-clé de Java ou JavaScript ; `class Chat : Animal` est l'écriture de C++ ou C# ; `inherits` n'est un mot-clé dans aucun langage courant, et en Python c'est une erreur de syntaxe.\n\n**À retenir :** héritage en Python = parenthèses : `class Chat(Animal):`."
   },
   {
     "question": "Dans le `__init__` d'une classe enfant, comment appelle-t-on le constructeur du parent ?",
-    "choix": ["`super.__init__(nom)`", "`super().__init__(nom)`", "`parent(nom)`", "`this.super(nom)`"],
+    "choix": [
+      "`super.__init__(nom)`",
+      "`super().__init__(nom)`",
+      "`parent(nom)`",
+      "`this.super(nom)`"
+    ],
     "reponse": 1,
-    "explication": "`super()` est un **appel de fonction** qui donne accès aux méthodes du parent. Sans les parenthèses, `super.__init__` désigne le constructeur de la classe `super` elle-même : l'appel lève `TypeError`."
+    "explication": "**Règle :** `super()` est une **fonction** : on l'appelle avec des parenthèses, et elle donne accès aux méthodes de la classe parente pour l'objet courant. On n'ajoute pas `self` dans l'appel : `super().__init__(nom)`.\n\n**Pas à pas :**\n\n```text\nclass Chat(Animal):\n    def __init__(self, nom, couleur):\n        super().__init__(nom)      # exécute Animal.__init__(self, nom)\n        self.couleur = couleur\n```\n\n**Les autres réponses :** `super.__init__(nom)` oublie les parenthèses : `super` désigne alors la classe `super` elle-même, et l'appel lève une `TypeError` ; `parent(nom)` n'existe pas en Python (`NameError`) ; `this.super(nom)` vient d'autres langages, et `this` n'existe pas en Python.\n\n**À retenir :** toujours `super().` avec les parenthèses, puis la méthode du parent, sans `self`."
   },
   {
     "question": "Comment écrit-on une méthode `parler` dans une classe ?",
-    "choix": ["`def parler():`", "`def parler(self):`", "`function parler(this):`", "`self.def parler():`"],
+    "choix": [
+      "`def parler():`",
+      "`def parler(self):`",
+      "`function parler(this):`",
+      "`self.def parler():`"
+    ],
     "reponse": 1,
-    "explication": "Une méthode reçoit toujours l'objet en premier paramètre, nommé `self` par convention. Sans lui, `c.parler()` lève `TypeError` : Python passe l'objet mais la méthode n'attend aucun argument."
+    "explication": "**Règle :** une méthode est une fonction définie dans la classe, dont le **premier paramètre** est l'objet, appelé `self` par convention.\n\n**Pas à pas :**\n\n```text\nclass Chat:\n    def parler(self):\n        return \"Miaou\"\n```\n\nL'appel `c.parler()` devient `Chat.parler(c)` : `self` reçoit `c`, aucun autre argument n'est donné.\n\n**Les autres réponses :** `def parler():` n'a pas de place pour l'objet : `c.parler()` lève `TypeError` (*takes 0 positional arguments but 1 was given*) ; `function ... (this)` est du JavaScript ; `self.def parler():` est une erreur de syntaxe, `def` ne se met jamais après un point.\n\n**À retenir :** chaque méthode commence par `def nom(self, ...)`."
   },
   {
     "question": "Comment teste-t-on si `c` est un objet de la classe `Animal` **ou d'une de ses sous-classes** ?",
-    "choix": ["`c instanceof Animal`", "`isinstance(c, Animal)`", "`type(c) is Animal`", "`c.is(Animal)`"],
+    "choix": [
+      "`c instanceof Animal`",
+      "`isinstance(c, Animal)`",
+      "`type(c) is Animal`",
+      "`c.is(Animal)`"
+    ],
     "reponse": 1,
-    "explication": "`isinstance` tient compte de l'héritage : un `Chat` est aussi un `Animal`. `type(c) is Animal` est vrai seulement si `c` a été créé directement avec `Animal(...)`."
+    "explication": "**Règle :** `isinstance(objet, Classe)` vaut `True` si l'objet est de cette classe **ou d'une classe qui en hérite**. `type(objet) is Classe` ne regarde que le type **exact**.\n\n**Pas à pas :** avec `class Chat(Animal):` et `c = Chat()` :\n\n| Test | Résultat | Pourquoi |\n|---|---|---|\n| `isinstance(c, Chat)` | True | c'est un `Chat` |\n| `isinstance(c, Animal)` | True | un `Chat` **est un** `Animal` (héritage) |\n| `type(c) is Animal` | False | son type exact est `Chat` |\n\n**Les autres réponses :** `instanceof` est l'opérateur de Java et JavaScript, erreur de syntaxe en Python ; `type(c) is Animal` oublie les sous-classes, ce que la question demande justement de prendre en compte ; `c.is(Animal)` n'existe pas (et `is` est un mot-clé, il ne peut même pas servir de nom de méthode).\n\n**À retenir :** « est de ce type, sous-classes comprises » = `isinstance(objet, Classe)`."
   }
 ]

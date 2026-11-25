@@ -8,7 +8,7 @@
       "réserver une chambre"
     ],
     "reponse": 1,
-    "explication": "*Check in* = s'enregistrer à l'arrivée ; *check out* = régler et quitter l'hôtel."
+    "explication": "**Règle :** à l'hôtel, *to check in* = s'enregistrer **à l'arrivée** ; *to check out* = régler sa note et quitter l'hôtel **au départ**.\n\n**Pas à pas :** on suit un séjour dans l'ordre :\n\n| Moment | Action | Anglais |\n|---|---|---|\n| Avant | réserver | *to book* |\n| Arrivée | s'enregistrer à la réception | *to check in* |\n| Départ | payer et rendre la chambre | ***to check out*** |\n\n*Out* = dehors : on sort de l'hôtel.\n\n**Les autres réponses :** « arriver et s'enregistrer » est *check in* (le contraire) ; « réserver une chambre » est *to book a room* ; « vérifier sa chambre » est un piège : *to check* seul veut dire vérifier, mais *check out* d'un hôtel a un sens précis.\n\n**À retenir :** *check in* = arrivée ; *check out* = départ."
   },
   {
     "question": "Que veut dire *jet lag* ?",
@@ -19,7 +19,7 @@
       "jet privé"
     ],
     "reponse": 1,
-    "explication": "*Jet lag* = la fatigue du décalage horaire après un long vol."
+    "explication": "**Règle :** *jet lag* = **le décalage horaire**, et surtout la fatigue qu'il provoque après un long vol.\n\n**Pas à pas :** on découpe : *jet* = avion à réaction ; *lag* = retard, décalage. Ton corps est « en retard » sur l'heure locale. *I'm suffering from jet lag* = je subis le décalage horaire.\n\n**Les autres réponses :** « retard d'avion » se dit *a flight delay* ; « mal de l'air » se dit *airsickness* ; « jet privé » se dit *a private jet*.\n\n**À retenir :** *jet lag* = fatigue du décalage horaire ; *delay* = retard."
   },
   {
     "question": "Quel est l'équivalent britannique de *elevator* ?",
@@ -30,7 +30,7 @@
       "subway"
     ],
     "reponse": 1,
-    "explication": "*Elevator* (US) = *lift* (UK) = ascenseur."
+    "explication": "**Règle :** l'ascenseur se dit *elevator* en anglais **américain** et *lift* en anglais **britannique**.\n\n**Pas à pas :** au TOEIC, les deux versions apparaissent. On associe chaque paire : *elevator* (US) = ***lift*** (UK) = ascenseur ; de même *subway* (US) = *underground* (UK) = métro.\n\n**Les autres réponses :** *escalator* est un escalator (escalier roulant), un autre appareil ; *stairs* sont les escaliers ; *subway* est le métro en américain.\n\n**À retenir :** *elevator* (US) = *lift* (UK)."
   },
   {
     "question": "Un *commuter*, c'est...",
@@ -41,7 +41,7 @@
       "un employé de mairie"
     ],
     "reponse": 1,
-    "explication": "*To commute* = faire le trajet quotidien entre son domicile et son travail."
+    "explication": "**Règle :** *a commuter* = une personne qui fait chaque jour le trajet **domicile-travail** (souvent assez long, depuis la banlieue). Verbe : *to commute*.\n\n**Pas à pas :** *She commutes to London every day by train* = elle fait la navette jusqu'à Londres chaque jour en train. *Commuter trains* = les trains de banlieue, pleins aux heures de pointe.\n\n**Les autres réponses :** « un ordinateur » est *a computer* (piège de ressemblance) ; « un commutateur » (interrupteur) se dit *a switch* ; « un employé de mairie » n'a rien à voir.\n\n**À retenir :** *commute* = faire la navette ; *commuter* = celui qui la fait."
   },
   {
     "question": "*Domestic flights* sont des vols...",
@@ -52,7 +52,7 @@
       "annulés"
     ],
     "reponse": 1,
-    "explication": "*Domestic* = national, intérieur. Le contraire est *international*."
+    "explication": "**Règle :** *domestic* = **national, intérieur** (dans le même pays). *Domestic flights* = vols intérieurs ; le contraire est *international flights*.\n\n**Pas à pas :** *domestic* vient du latin « maison » : ce qui reste « à la maison », dans le pays. Un vol Paris-Nice est un *domestic flight* ; un vol Paris-New York est un *international flight*.\n\n**Les autres réponses :** « domestiques » est le faux ami (un employé de maison se dit *a servant*) ; « privés » se dit *private* ; « annulés » se dit *cancelled*.\n\n**À retenir :** *domestic* = intérieur au pays (aussi *domestic appliances* = électroménager)."
   },
   {
     "question": "Un *caterer*, c'est...",
@@ -63,7 +63,7 @@
       "un organisateur de congrès"
     ],
     "reponse": 0,
-    "explication": "*Caterer* (ou *catering firm*) = traiteur."
+    "explication": "**Règle :** *a caterer* (ou *a catering firm*) = **un traiteur** : une entreprise qui prépare et sert les repas d'un événement.\n\n**Pas à pas :** *to cater for* = fournir les repas pour. *The caterer will provide lunch for 200 guests* = le traiteur fournira le déjeuner pour 200 invités. *Catering* = la restauration (le service des repas).\n\n**Les autres réponses :** « un serveur » se dit *a waiter* ; « un cuisinier de cantine » se dit *a cook* ; « un organisateur de congrès » se dit *an event organizer*.\n\n**À retenir :** *caterer* = traiteur ; *catering* = restauration."
   },
   {
     "question": "Que veut dire *landlord* ?",
@@ -74,7 +74,7 @@
       "agent immobilier"
     ],
     "reponse": 0,
-    "explication": "Le *landlord* loue son logement au *tenant* (locataire)."
+    "explication": "**Règle :** *a landlord* = **le propriétaire** d'un logement qui le **loue** ; *a tenant* = le locataire qui paie le loyer (*rent*).\n\n**Pas à pas :** on place les deux rôles :\n\n| Rôle | Anglais | Il… |\n|---|---|---|\n| propriétaire | ***landlord*** (*landlady* pour une femme) | loue et reçoit le loyer |\n| locataire | *tenant* | habite et paie le loyer |\n\n**Les autres réponses :** « seigneur » est un faux ami du découpage (*land* = terre, *lord* = seigneur : c'était le sens ancien) ; « locataire » est *tenant*, l'autre rôle ; « agent immobilier » est *real estate agent*.\n\n**À retenir :** *landlord* loue, *tenant* paie le loyer."
   },
   {
     "question": "Un *physician*, c'est...",
@@ -85,7 +85,7 @@
       "un pharmacien"
     ],
     "reponse": 1,
-    "explication": "Faux ami : *physician* = médecin. Un physicien = *a physicist*."
+    "explication": "**Règle :** *a physician* = **un médecin**. C'est un faux ami : un physicien se dit *a physicist*.\n\n**Pas à pas :** on compare les mots de la même famille :\n\n| Anglais | Français |\n|---|---|\n| *physician* | médecin |\n| *physicist* | physicien |\n| *physics* | la physique |\n| *physiotherapist* | kinésithérapeute |\n\n**Les autres réponses :** « un physicien » est le piège ; « un kiné » est *a physiotherapist* ; « un pharmacien » est *a pharmacist* (ou *chemist*, UK).\n\n**À retenir :** *physician* = médecin ; *physicist* = physicien."
   },
   {
     "question": "La *deadline*, c'est...",
@@ -96,7 +96,7 @@
       "le planning"
     ],
     "reponse": 0,
-    "explication": "*Deadline* = heure ou date limite. Attention : *delay* = retard."
+    "explication": "**Règle :** *the deadline* = **la date (ou l'heure) limite** : après, c'est trop tard.\n\n**Pas à pas :** *dead* (mort) + *line* (ligne) : la ligne à ne pas dépasser. *The deadline for the report is Friday* = la date limite du rapport est vendredi. Le « délai » français se traduit souvent par *deadline* ou *time limit*.\n\n**Les autres réponses :** « le délai de livraison » se dit *delivery time* ; « la fin de la ligne » est une traduction mot à mot qui n'a pas ce sens ; « le planning » se dit *the schedule*.\n\n**À retenir :** *deadline* = date limite ; *delay* = retard (faux ami de « délai »)."
   },
   {
     "question": "*Pending* signifie...",
@@ -107,7 +107,7 @@
       "payé"
     ],
     "reponse": 1,
-    "explication": "*Your request is pending* = votre demande est en cours de traitement."
+    "explication": "**Règle :** *pending* = **en attente, en cours** (pas encore traité ou décidé).\n\n**Pas à pas :** *Your request is pending* = votre demande est en cours de traitement ; *a pending order* = une commande en attente. Le mot vient de l'idée « suspendu » : la décision n'est pas encore prise.\n\n**Les autres réponses :** « pendant » est le piège du son (pendant se dit *during*) ; « pendu » n'a pas de sens ici ; « payé » se dit *paid*.\n\n**À retenir :** *pending* = en attente ; *during* = pendant."
   },
   {
     "question": "*The shop is open around the clock* veut dire...",
@@ -118,7 +118,7 @@
       "seulement le matin"
     ],
     "reponse": 1,
-    "explication": "*Around the clock* = jour et nuit, sans arrêt."
+    "explication": "**Règle :** *(a)round the clock* = **24 heures sur 24**, jour et nuit sans arrêt.\n\n**Pas à pas :** on imagine les aiguilles qui font **le tour** (*around*) de l'horloge (*the clock*) deux fois : toute la journée. *The shop is open around the clock* = le magasin est ouvert 24 h sur 24.\n\n**Les autres réponses :** « autour de midi » se dit *around noon* ; « à heures fixes » se dit *at set times* ; « seulement le matin » se dit *only in the morning*.\n\n**À retenir :** *around the clock* = 24 h / 24."
   },
   {
     "question": "*Noon* désigne...",
@@ -129,6 +129,6 @@
       "le soir"
     ],
     "reponse": 1,
-    "explication": "*Noon* = midi (12 h). Minuit = *midnight*."
+    "explication": "**Règle :** *noon* = **midi** (12 h) ; *midnight* = minuit (0 h).\n\n**Pas à pas :** *at noon* = à midi ; *in the afternoon* = l'après-midi (après *noon*, *after noon*) ; *in the evening* = le soir. Ce découpage aide : l'après-midi est littéralement « après midi ».\n\n**Les autres réponses :** « minuit » se dit *midnight* ; « l'après-midi » se dit *afternoon* ; « le soir » se dit *evening*.\n\n**À retenir :** *noon* = 12 h ; *afternoon* = après midi ; *midnight* = minuit."
   }
 ]

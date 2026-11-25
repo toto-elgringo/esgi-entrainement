@@ -1,33 +1,58 @@
 [
   {
     "question": "Une matrice de taille $3 \\times 5$ a :",
-    "choix": ["3 lignes et 5 colonnes", "5 lignes et 3 colonnes", "15 lignes", "3 colonnes et 5 lignes"],
+    "choix": [
+      "3 lignes et 5 colonnes",
+      "5 lignes et 3 colonnes",
+      "15 lignes",
+      "3 colonnes et 5 lignes"
+    ],
     "reponse": 0,
-    "explication": "On donne toujours le nombre de **lignes** d'abord, puis le nombre de **colonnes**."
+    "explication": "**Règle :** la taille d'une matrice s'écrit toujours « nombre de **lignes** $\\times$ nombre de **colonnes** », dans cet ordre.\n\n**Pas à pas :** dans $3 \\times 5$, le premier nombre (3) est le nombre de lignes (rangées horizontales), le second (5) le nombre de colonnes (rangées verticales). La matrice a donc 3 lignes de 5 nombres chacune, soit $3 \\times 5 = 15$ coefficients.\n\n**Les autres réponses :**\n\n- « 5 lignes et 3 colonnes » et « 3 colonnes et 5 lignes » disent la même chose : on a lu la taille à l'envers (colonnes d'abord).\n- « 15 lignes » confond le nombre de **coefficients** (15) avec le nombre de lignes.\n\n**À retenir :** $m \\times n$ = $m$ lignes, puis $n$ colonnes ; la ligne vient toujours en premier."
   },
   {
     "question": "Dans $M = \\begin{pmatrix} 4 & -2 & 7 \\\\ 0 & 1 & 3 \\end{pmatrix}$, que vaut $a_{12}$ ?",
-    "choix": ["$0$", "$-2$", "$7$", "$1$"],
+    "choix": [
+      "$0$",
+      "$-2$",
+      "$7$",
+      "$1$"
+    ],
     "reponse": 1,
-    "explication": "$a_{12}$ est à la ligne 1, colonne 2 : c'est $-2$. Le coefficient $0$ est $a_{21}$ (ligne 2, colonne 1)."
+    "explication": "**Règle :** $a_{ij}$ est le coefficient de la **ligne $i$** et de la **colonne $j$** : le premier indice choisit la ligne, le second la colonne.\n\n**Pas à pas :** pour $a_{12}$, on a $i = 1$ et $j = 2$.\n\n1. On va à la ligne 1 : $(4, -2, 7)$.\n2. On avance jusqu'à la colonne 2 : le 2e nombre de cette ligne est $-2$.\n\nDonc $a_{12} = -2$ (avec son signe moins).\n\n**Les autres réponses :**\n\n- $0$ est $a_{21}$ (ligne 2, colonne 1) : on a lu les indices à l'envers.\n- $7$ est $a_{13}$ (3e nombre de la ligne 1).\n- $1$ est $a_{22}$ (2e nombre de la ligne 2).\n\n**À retenir :** dans $a_{ij}$, descends d'abord à la ligne $i$, puis avance jusqu'à la colonne $j$."
   },
   {
     "question": "$A$ est de taille $2 \\times 3$ et $B$ de taille $3 \\times 4$. Quelle est la taille de $AB$ ?",
-    "choix": ["$3 \\times 3$", "$2 \\times 4$", "$4 \\times 2$", "Le produit n'existe pas"],
+    "choix": [
+      "$3 \\times 3$",
+      "$2 \\times 4$",
+      "$4 \\times 2$",
+      "Le produit n'existe pas"
+    ],
     "reponse": 1,
-    "explication": "Les tailles du milieu sont égales ($3 = 3$), donc $AB$ existe. Les tailles du bord donnent le résultat : $2 \\times 4$."
+    "explication": "**Règle :** $AB$ existe si le nombre de colonnes de $A$ est égal au nombre de lignes de $B$. Avec $(m \\times n)(n \\times p)$, le résultat est $m \\times p$ : on garde les tailles du **bord**.\n\n**Pas à pas :**\n\n1. On écrit les tailles côte à côte : $(2 \\times 3)(3 \\times 4)$.\n2. Les tailles du milieu : 3 et 3, elles sont égales, donc le produit existe.\n3. Les tailles du bord : 2 et 4, donc $AB$ est $2 \\times 4$.\n\n**Les autres réponses :**\n\n- $3 \\times 3$ garde les tailles du **milieu** : elles servent seulement à vérifier que le produit existe, elles disparaissent du résultat.\n- $4 \\times 2$ prend les bords dans le mauvais ordre : le nombre de lignes de $AB$ vient de $A$ (2).\n- « Le produit n'existe pas » est faux puisque $3 = 3$.\n\n**À retenir :** milieu égal = le produit existe ; les bords, dans l'ordre, donnent la taille."
   },
   {
     "question": "Avec les mêmes tailles ($A$ : $2 \\times 3$, $B$ : $3 \\times 4$), le produit $BA$ :",
-    "choix": ["existe et vaut $AB$", "existe, de taille $4 \\times 3$", "n'existe pas", "existe, de taille $3 \\times 3$"],
+    "choix": [
+      "existe et vaut $AB$",
+      "existe, de taille $4 \\times 3$",
+      "n'existe pas",
+      "existe, de taille $3 \\times 3$"
+    ],
     "reponse": 2,
-    "explication": "$B$ a 4 colonnes et $A$ a 2 lignes : $4 \\neq 2$, le produit $BA$ n'est pas défini."
+    "explication": "**Règle :** $BA$ existe seulement si le nombre de **colonnes de $B$** est égal au nombre de **lignes de $A$**. Changer l'ordre change les tailles du milieu.\n\n**Pas à pas :**\n\n1. On écrit dans l'ordre $B$ puis $A$ : $(3 \\times 4)(2 \\times 3)$.\n2. Les tailles du milieu : 4 (colonnes de $B$) et 2 (lignes de $A$).\n3. $4 \\neq 2$ : chaque ligne de $B$ a 4 nombres, chaque colonne de $A$ n'en a que 2, on ne peut pas les multiplier deux à deux. $BA$ n'existe pas.\n\n**Les autres réponses :**\n\n- « Existe et vaut $AB$ » : même quand les deux existent, $AB$ et $BA$ sont en général différents ; ici $BA$ n'existe même pas.\n- « $4 \\times 3$ » et « $3 \\times 3$ » inventent une taille alors que la condition du milieu n'est pas respectée.\n\n**À retenir :** pour $BA$, ce sont les colonnes de $B$ et les lignes de $A$ qu'on compare ; $AB$ peut exister sans que $BA$ existe."
   },
   {
     "question": "Pour deux matrices carrées $A$ et $B$ de même taille, on a en général :",
-    "choix": ["$AB = BA$", "$AB \\neq BA$", "$AB = -BA$", "$AB = I$"],
+    "choix": [
+      "$AB = BA$",
+      "$AB \\neq BA$",
+      "$AB = -BA$",
+      "$AB = I$"
+    ],
     "reponse": 1,
-    "explication": "Le produit matriciel n'est **pas commutatif** : l'ordre compte, comme l'ordre des couches d'un réseau de neurones."
+    "explication": "**Règle :** le produit matriciel n'est **pas commutatif** : en général $AB \\neq BA$, même pour deux matrices carrées de même taille (où les deux produits existent).\n\n**Pas à pas avec un exemple :** $A = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$ et $B = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\end{pmatrix}$.\n\n- $AB$ : case (1, 1) = $(1, 1)$ avec $(1, 1)$ = 2 ; case (1, 2) = $(1, 1)$ avec $(0, 1)$ = 1 ; case (2, 1) = $(0, 1)$ avec $(1, 1)$ = 1 ; case (2, 2) = $(0, 1)$ avec $(0, 1)$ = 1. Donc $AB = \\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \\end{pmatrix}$.\n- $BA$ : case (1, 1) = $(1, 0)$ avec $(1, 0)$ = 1 ; case (1, 2) = $(1, 0)$ avec $(1, 1)$ = 1 ; case (2, 1) = $(1, 1)$ avec $(1, 0)$ = 1 ; case (2, 2) = $(1, 1)$ avec $(1, 1)$ = 2. Donc $BA = \\begin{pmatrix} 1 & 1 \\\\ 1 & 2 \\end{pmatrix}$.\n\nLes deux résultats sont différents.\n\n**Les autres réponses :**\n\n- $AB = BA$ arrive parfois (par exemple avec $I_n$), mais pas « en général ».\n- $AB = -BA$ et $AB = I$ ne sont vrais que pour des matrices très particulières : dans l'exemple, aucun des deux n'est vrai.\n\n**À retenir :** l'ordre compte dans un produit de matrices ; un seul exemple où $AB \\neq BA$ le prouve."
   },
   {
     "question": "Comment calcule-t-on le coefficient $(AB)_{21}$ ?",
@@ -38,48 +63,83 @@
       "Avec la ligne 1 de $A$ et la colonne 2 de $B$"
     ],
     "reponse": 0,
-    "explication": "Règle ligne × colonne : $(AB)_{ij}$ utilise la ligne $i$ de $A$ et la colonne $j$ de $B$. On multiplie terme à terme puis on additionne."
+    "explication": "**Règle (ligne × colonne) :** $(AB)_{ij}$ se calcule avec la **ligne $i$ de $A$** et la **colonne $j$ de $B$** : on multiplie les nombres deux à deux, puis on additionne. $(AB)_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \\dots$\n\n**Pas à pas :** pour $(AB)_{21}$, on a $i = 2$ et $j = 1$ : il faut la **ligne 2** de $A$ et la **colonne 1** de $B$. Par exemple avec $A = \\begin{pmatrix} 1 & 3 \\\\ 2 & -1 \\end{pmatrix}$ et $B = \\begin{pmatrix} 2 & 0 \\\\ 1 & 4 \\end{pmatrix}$ : ligne 2 de $A$ = $(2, -1)$, colonne 1 de $B$ = $(2, 1)$, donc $(AB)_{21} = 2 \\times 2 + (-1) \\times 1 = 3$.\n\n**Les autres réponses :**\n\n- « La colonne 2 de $A$ et la ligne 1 de $B$ » inverse lignes et colonnes : on prend toujours une **ligne** dans la matrice de gauche.\n- « $a_{21} \\times b_{21}$ » multiplie case par case : c'est l'erreur classique, un coefficient du produit est une **somme** de plusieurs produits.\n- « La ligne 1 de $A$ et la colonne 2 de $B$ » calcule $(AB)_{12}$ : les indices sont lus à l'envers.\n\n**À retenir :** $(AB)_{ij}$ = ligne $i$ de la matrice de gauche, colonne $j$ de celle de droite."
   },
   {
     "question": "Que vaut $A I_n$ (avec $A$ de taille $n \\times n$) ?",
-    "choix": ["$I_n$", "$0$", "$A$", "$A^T$"],
+    "choix": [
+      "$I_n$",
+      "$0$",
+      "$A$",
+      "$A^T$"
+    ],
     "reponse": 2,
-    "explication": "La matrice identité est l'élément neutre du produit : $A I_n = I_n A = A$, comme $x \\times 1 = x$ pour les nombres."
+    "explication": "**Règle :** la matrice identité $I_n$ (des 1 sur la diagonale, des 0 ailleurs) est **neutre** pour le produit : $A I_n = I_n A = A$, comme $x \\times 1 = x$.\n\n**Pas à pas avec $A = \\begin{pmatrix} 3 & 5 \\\\ -2 & 7 \\end{pmatrix}$ et $I_2 = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ :**\n\n- case (1, 1) : $(3, 5)$ avec $(1, 0)$ donne $3$ ;\n- case (1, 2) : $(3, 5)$ avec $(0, 1)$ donne $5$ ;\n- case (2, 1) : $(-2, 7)$ avec $(1, 0)$ donne $-2$ ;\n- case (2, 2) : $(-2, 7)$ avec $(0, 1)$ donne $7$.\n\nOn retrouve $A$.\n\n**Les autres réponses :**\n\n- $I_n$ serait le résultat de $A A^{-1}$, pas de $A I_n$.\n- $0$ serait le résultat d'un produit par la matrice nulle.\n- $A^T$ : multiplier par $I_n$ ne déplace aucun coefficient, il n'échange pas lignes et colonnes.\n\n**À retenir :** multiplier par $I_n$ ne change rien."
   },
   {
     "question": "La transposée d'une matrice $2 \\times 3$ est de taille :",
-    "choix": ["$2 \\times 3$", "$3 \\times 2$", "$3 \\times 3$", "$2 \\times 2$"],
+    "choix": [
+      "$2 \\times 3$",
+      "$3 \\times 2$",
+      "$3 \\times 3$",
+      "$2 \\times 2$"
+    ],
     "reponse": 1,
-    "explication": "Transposer échange lignes et colonnes : une matrice $2 \\times 3$ devient $3 \\times 2$."
+    "explication": "**Règle :** transposer échange lignes et colonnes : la 1re ligne devient la 1re colonne, etc. Une matrice $m \\times n$ devient $n \\times m$.\n\n**Pas à pas :** une matrice $2 \\times 3$ a 2 lignes de 3 nombres. Chaque ligne devient une colonne : on obtient 2 colonnes de 3 nombres, c'est-à-dire 3 lignes et 2 colonnes. Exemple : $\\begin{pmatrix} 1 & 0 & 5 \\\\ 2 & -3 & 4 \\end{pmatrix}^T = \\begin{pmatrix} 1 & 2 \\\\ 0 & -3 \\\\ 5 & 4 \\end{pmatrix}$, qui est $3 \\times 2$.\n\n**Les autres réponses :**\n\n- $2 \\times 3$ : c'est la taille de départ, rien n'aurait été échangé.\n- $3 \\times 3$ et $2 \\times 2$ : la transposée a exactement les mêmes coefficients (6 ici), seulement rangés autrement ; $3 \\times 3$ en demanderait 9 et $2 \\times 2$ seulement 4.\n\n**À retenir :** la transposée d'une $m \\times n$ est une $n \\times m$ : on échange les deux nombres."
   },
   {
     "question": "Laquelle de ces applications est **linéaire** ?",
-    "choix": ["$f(x) = x + 1$", "$f(x) = x^2$", "$f(x, y) = (2x - y,\\ 5y)$", "$f(x, y) = (xy,\\ x)$"],
+    "choix": [
+      "$f(x) = x + 1$",
+      "$f(x) = x^2$",
+      "$f(x, y) = (2x - y,\\ 5y)$",
+      "$f(x, y) = (xy,\\ x)$"
+    ],
     "reponse": 2,
-    "explication": "$(2x - y,\\ 5y)$ n'utilise que des sommes de termes « nombre × variable » : elle respecte les combinaisons linéaires. $x + 1$ n'envoie pas $0$ sur $0$, et $x^2$ ou $xy$ ne sont pas linéaires."
+    "explication": "**Règle :** une application est linéaire si chaque coordonnée du résultat ne contient que des termes « nombre $\\times$ variable » : ni constante ajoutée, ni produit de variables, ni carré. Test rapide : une application linéaire envoie toujours $0$ sur $0$.\n\n**Pas à pas, application par application :**\n\n| Application | Ce qu'on voit | Linéaire ? |\n|---|---|---|\n| $x + 1$ | une constante $+1$ : $f(0) = 1 \\neq 0$ | non |\n| $x^2$ | un carré : $f(2) = 4$ mais $2 f(1) = 2$ | non |\n| $(2x - y,\\ 5y)$ | $2x$, $-y$, $5y$ : que des « nombre × variable » | **oui** |\n| $(xy,\\ x)$ | un produit de variables $xy$ | non |\n\nPour $(xy,\\ x)$, le test du zéro passe ($f(0, 0) = (0, 0)$), mais en doublant le vecteur, $xy$ devient $(2x)(2y) = 4xy$ au lieu de $2xy$ : ce n'est pas linéaire.\n\n**À retenir :** constante, carré ou produit de variables = pas linéaire ; seulement des « nombre × variable » = linéaire."
   },
   {
     "question": "Les **colonnes** de la matrice d'une application linéaire $f$ (dans la base canonique) sont :",
-    "choix": ["les vecteurs de base", "les images des vecteurs de base par $f$", "les valeurs de $f(0)$", "les lignes de $f$"],
+    "choix": [
+      "les vecteurs de base",
+      "les images des vecteurs de base par $f$",
+      "les valeurs de $f(0)$",
+      "les lignes de $f$"
+    ],
     "reponse": 1,
-    "explication": "La $j$-ième colonne est $f(e_j)$. Par exemple, pour $f(x, y) = (x + 2y,\\ 3x - y)$ : $f(e_1) = (1, 3)$ et $f(e_2) = (2, -1)$."
+    "explication": "**Règle :** la matrice d'une application linéaire $f$ (dans la base canonique) a pour **$j$-ième colonne** l'image $f(e_j)$ du $j$-ième vecteur de base.\n\n**Pas à pas avec $f(x, y) = (x + 2y,\\ 3x - y)$ :**\n\n1. $f(e_1) = f(1, 0) = (1 + 0,\\ 3 - 0) = (1, 3)$ : c'est la 1re colonne.\n2. $f(e_2) = f(0, 1) = (0 + 2,\\ 0 - 1) = (2, -1)$ : c'est la 2e colonne.\n3. Donc la matrice est $\\begin{pmatrix} 1 & 2 \\\\ 3 & -1 \\end{pmatrix}$.\n\n**Les autres réponses :**\n\n- « Les vecteurs de base » : $e_1$ et $e_2$ en colonnes donneraient $I_2$, la même matrice pour toutes les applications.\n- « Les valeurs de $f(0)$ » : pour une application linéaire, $f(0) = 0$ toujours, ça ne donnerait que des zéros.\n- « Les lignes de $f$ » ne veut rien dire : une application n'a pas de lignes, c'est sa matrice qui en a.\n\n**À retenir :** colonne $j$ = $f(e_j)$ ; calcule les images de $(1, 0)$ et $(0, 1)$ puis range-les debout."
   },
   {
     "question": "$f$ a pour matrice $A$ et $g$ a pour matrice $B$. Quelle est la matrice de « $f$ puis $g$ » ($g \\circ f$) ?",
-    "choix": ["$AB$", "$BA$", "$A + B$", "$A^T B$"],
+    "choix": [
+      "$AB$",
+      "$BA$",
+      "$A + B$",
+      "$A^T B$"
+    ],
     "reponse": 1,
-    "explication": "On applique d'abord $f$, donc $A$ est à droite (au contact du vecteur) : $g(f(\\vec x)) = B(A\\vec x) = (BA)\\vec x$."
+    "explication": "**Règle :** « $f$ puis $g$ » s'écrit $g \\circ f$ et veut dire $g(f(\\vec x))$. On applique d'abord $f$ (matrice $A$) au vecteur, puis $g$ (matrice $B$) au résultat : $g(f(\\vec x)) = B(A\\vec x) = (BA)\\vec x$.\n\n**Pas à pas :**\n\n1. $f(\\vec x) = A\\vec x$ : $A$ est collée au vecteur.\n2. On applique $g$ à ce résultat : $B \\times (A\\vec x)$.\n3. On regroupe : $(BA)\\vec x$. La matrice de $g \\circ f$ est donc $BA$ : la première étape ($A$) est **à droite**.\n\n**Les autres réponses :**\n\n- $AB$ est la matrice de « $g$ puis $f$ » ($f \\circ g$) : c'est le piège de la lecture de gauche à droite. Comme $AB \\neq BA$ en général, ce n'est pas la même chose.\n- $A + B$ additionne les deux transformations au lieu de les enchaîner.\n- $A^T B$ n'a rien à voir avec la composition.\n\n**À retenir :** « $f$ puis $g$ » = $BA$ ; la matrice de la première étape s'écrit à droite, au contact du vecteur."
   },
   {
     "question": "Une couche de réseau de neurones calcule $\\vec y = W\\vec x + \\vec b$ avec $W$ de taille $4 \\times 3$. Combien de valeurs la couche reçoit-elle en entrée ?",
-    "choix": ["$4$", "$3$", "$12$", "$7$"],
+    "choix": [
+      "$4$",
+      "$3$",
+      "$12$",
+      "$7$"
+    ],
     "reponse": 1,
-    "explication": "$W\\vec x$ n'existe que si $\\vec x$ a autant de coordonnées que $W$ a de colonnes : 3 en entrée. La sortie a autant de coordonnées que $W$ a de lignes : 4."
+    "explication": "**Règle :** $W\\vec x$ n'existe que si $\\vec x$ a autant de coordonnées que $W$ a de **colonnes**. Le résultat a autant de coordonnées que $W$ a de **lignes**.\n\n**Pas à pas :**\n\n1. $W$ est $4 \\times 3$ : 4 lignes et 3 colonnes.\n2. $\\vec x$ est une colonne $n \\times 1$ ; pour que $(4 \\times 3)(n \\times 1)$ existe, il faut $n = 3$.\n3. La couche reçoit donc **3** valeurs en entrée. Le résultat est $(4 \\times 3)(3 \\times 1) = 4 \\times 1$ : elle sort 4 valeurs ($\\vec b$ a aussi 4 coordonnées).\n\n**Les autres réponses :**\n\n- $4$ est le nombre de **sorties** (lignes de $W$) : on a inversé entrée et sortie.\n- $12 = 4 \\times 3$ est le nombre de poids (coefficients de $W$), pas le nombre d'entrées.\n- $7 = 4 + 3$ ne correspond à rien.\n\n**À retenir :** colonnes de $W$ = entrées, lignes de $W$ = sorties."
   },
   {
     "question": "Dans une matrice de confusion (ligne = classe réelle, colonne = classe prédite), où lit-on les exemples **bien classés** ?",
-    "choix": ["Sur la première ligne", "Sur la dernière colonne", "Sur la diagonale", "Hors de la diagonale"],
+    "choix": [
+      "Sur la première ligne",
+      "Sur la dernière colonne",
+      "Sur la diagonale",
+      "Hors de la diagonale"
+    ],
     "reponse": 2,
-    "explication": "Sur la diagonale, la classe prédite est égale à la classe réelle : ce sont les bonnes réponses du classifieur."
+    "explication": "**Règle :** dans une matrice de confusion, la case $(i, j)$ compte les exemples de classe réelle $i$ prédits en classe $j$. Un exemple est **bien classé** quand la classe prédite est la classe réelle, c'est-à-dire quand $i = j$ : ce sont les cases de la **diagonale**.\n\n**Pas à pas avec 2 classes, chat (1) et chien (2) :** $\\begin{pmatrix} 40 & 3 \\\\ 6 & 51 \\end{pmatrix}$.\n\n- Case (1, 1) = 40 : vrais chats prédits chats, bien classés.\n- Case (1, 2) = 3 : vrais chats prédits chiens, erreurs.\n- Case (2, 1) = 6 : vrais chiens prédits chats, erreurs.\n- Case (2, 2) = 51 : vrais chiens prédits chiens, bien classés.\n\nBien classés : $40 + 51 = 91$, la diagonale.\n\n**Les autres réponses :**\n\n- La première ligne contient tous les exemples de la classe réelle 1, bien ou mal classés.\n- La dernière colonne contient tous les exemples prédits dans la dernière classe, bien ou mal classés.\n- Hors de la diagonale, ce sont justement les **erreurs**.\n\n**À retenir :** ligne = vérité, colonne = prédiction, diagonale = bonnes réponses."
   }
 ]

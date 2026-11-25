@@ -1,80 +1,145 @@
 [
   {
     "question": "Que vaut $e^{a+b}$ ?",
-    "choix": ["$e^a + e^b$", "$e^a \\times e^b$", "$e^{ab}$", "$a\\,e^b$"],
+    "choix": [
+      "$e^a + e^b$",
+      "$e^a \\times e^b$",
+      "$e^{ab}$",
+      "$a\\,e^b$"
+    ],
     "reponse": 1,
-    "explication": "L'exponentielle transforme une somme dans l'exposant en produit : $e^{a+b} = e^a \\times e^b$."
+    "explication": "**Règle :** l'exponentielle transforme une **somme** dans l'exposant en **produit** : $e^{a+b} = e^a \\times e^b$.\n\n**Pas à pas :** on vérifie sur des nombres simples, $a = 1$ et $b = 2$.\n\n- $e^{1+2} = e^3 \\approx 20{,}09$.\n- $e^1 \\times e^2 \\approx 2{,}718 \\times 7{,}389 \\approx 20{,}09$ : c'est bien la même chose.\n- $e^1 + e^2 \\approx 2{,}718 + 7{,}389 \\approx 10{,}11$ : ce n'est pas égal.\n\n**Les autres réponses :** $e^a + e^b$ est le piège classique (une somme en haut ne donne pas une somme en bas) ; $e^{ab}$ correspond à $(e^a)^b$, une puissance de puissance ; $a\\,e^b$ fait sortir $a$ de l'exposant, ce qu'aucune règle ne permet.\n\n**À retenir :** exposants **additionnés** ↔ exponentielles **multipliées**."
   },
   {
     "question": "Que vaut $\\ln(e^5)$ ?",
-    "choix": ["$5$", "$e^5$", "$\\ln 5$", "$5e$"],
+    "choix": [
+      "$5$",
+      "$e^5$",
+      "$\\ln 5$",
+      "$5e$"
+    ],
     "reponse": 0,
-    "explication": "$\\ln$ et $\\exp$ sont réciproques : $\\ln(e^x) = x$ pour tout réel $x$."
+    "explication": "**Règle :** $\\ln$ est la **réciproque** de l'exponentielle : elle défait ce que fait $\\exp$. Pour tout réel $x$, $\\ln(e^x) = x$.\n\n**Pas à pas :** $\\ln(e^5)$ demande « à quelle puissance faut-il élever $e$ pour obtenir $e^5$ ? ». La réponse est 5. Autre chemin : $\\ln(e^5) = 5 \\ln e = 5 \\times 1 = 5$.\n\n**Les autres réponses :** $e^5$ revient à n'avoir rien fait (on oublie que le $\\ln$ défait l'exponentielle) ; $\\ln 5$ applique le $\\ln$ au 5 au lieu de $e^5$ ; $5e$ mélange les deux.\n\n**À retenir :** $\\ln(e^{\\text{truc}}) = \\text{truc}$ : le $\\ln$ et le $e$ s'annulent."
   },
   {
     "question": "Pour quelles valeurs de $x$ le nombre $\\ln x$ existe-t-il ?",
-    "choix": ["Pour tout réel $x$", "Pour $x \\ge 0$", "Pour $x \\neq 0$", "Pour $x > 0$"],
+    "choix": [
+      "Pour tout réel $x$",
+      "Pour $x \\ge 0$",
+      "Pour $x \\neq 0$",
+      "Pour $x > 0$"
+    ],
     "reponse": 3,
-    "explication": "Le logarithme n'est défini que sur $]0, +\\infty[$ : $\\ln 0$ et le logarithme d'un nombre négatif n'existent pas."
+    "explication": "**Règle :** $\\ln x$ n'existe que pour $x$ **strictement positif** : son domaine est $]0, +\\infty[$.\n\n**Pas à pas :** $\\ln x$ est la puissance de $e$ qui donne $x$. Or $e^{\\text{n'importe quoi}}$ est toujours $> 0$.\n\n- Pour $x = 5$ : il existe une puissance de $e$ qui donne 5 ($\\ln 5 \\approx 1{,}61$). OK.\n- Pour $x = 0$ : aucune puissance de $e$ ne donne 0. $\\ln 0$ n'existe pas.\n- Pour $x = -3$ : aucune puissance de $e$ ne donne un nombre négatif. $\\ln(-3)$ n'existe pas.\n\n**Les autres réponses :** « pour tout réel » et « $x \\neq 0$ » acceptent les négatifs ; « $x \\ge 0$ » accepte 0, alors que $\\ln 0$ n'existe pas (le crochet est **ouvert** en 0).\n\n**À retenir :** devant un $\\ln$, écris toujours « intérieur $> 0$ », strictement."
   },
   {
     "question": "Laquelle de ces égalités est **fausse** (avec $a, b > 0$) ?",
-    "choix": ["$\\ln(ab) = \\ln a + \\ln b$", "$\\ln(a^3) = 3\\ln a$", "$\\ln(a+b) = \\ln a + \\ln b$", "$\\ln\\frac{a}{b} = \\ln a - \\ln b$"],
+    "choix": [
+      "$\\ln(ab) = \\ln a + \\ln b$",
+      "$\\ln(a^3) = 3\\ln a$",
+      "$\\ln(a+b) = \\ln a + \\ln b$",
+      "$\\ln\\frac{a}{b} = \\ln a - \\ln b$"
+    ],
     "reponse": 2,
-    "explication": "Il n'existe aucune formule pour le logarithme d'une somme. Le logarithme transforme un **produit** en somme, pas l'inverse."
+    "explication": "**Règle :** pour $a, b > 0$, $\\ln(ab) = \\ln a + \\ln b$, $\\ln(a^n) = n \\ln a$ et $\\ln\\frac{a}{b} = \\ln a - \\ln b$. Il n'existe **aucune** formule pour $\\ln(a + b)$.\n\n**Pas à pas :** on teste l'égalité suspecte $\\ln(a+b) = \\ln a + \\ln b$ avec $a = b = 1$.\n\n- À gauche : $\\ln(1 + 1) = \\ln 2 \\approx 0{,}69$.\n- À droite : $\\ln 1 + \\ln 1 = 0 + 0 = 0$.\n- $0{,}69 \\neq 0$ : l'égalité est **fausse**.\n\n**Les autres réponses :** $\\ln(ab) = \\ln a + \\ln b$, $\\ln(a^3) = 3 \\ln a$ et $\\ln\\frac{a}{b} = \\ln a - \\ln b$ sont trois règles du cours, toutes vraies.\n\n**À retenir :** le $\\ln$ transforme un **produit** en somme ; le $\\ln$ d'une somme ne se simplifie pas."
   },
   {
     "question": "Quelle est la dérivée de $x \\mapsto \\ln x$ ?",
-    "choix": ["$\\ln x$", "$e^x$", "$\\dfrac{1}{x}$", "$x \\ln x - x$"],
+    "choix": [
+      "$\\ln x$",
+      "$e^x$",
+      "$\\dfrac{1}{x}$",
+      "$x \\ln x - x$"
+    ],
     "reponse": 2,
-    "explication": "$(\\ln x)' = \\dfrac{1}{x}$ pour $x > 0$. Attention : $x \\ln x - x$ est une **primitive** de $\\ln x$, pas sa dérivée."
+    "explication": "**Règle :** pour $x > 0$, $(\\ln x)' = \\dfrac{1}{x}$.\n\n**Pas à pas :** on peut le vérifier sur la pente. En $x = 2$, la courbe de $\\ln$ a une pente $\\frac{1}{2}$ ; en $x = 10$, une pente $\\frac{1}{10}$, plus faible. C'est cohérent : $\\ln$ monte de moins en moins vite.\n\n**Les autres réponses :**\n\n- $\\ln x$ : c'est la fonction elle-même. Seule l'exponentielle est sa propre dérivée.\n- $e^x$ : c'est la dérivée de $e^x$, pas de $\\ln x$.\n- $x \\ln x - x$ : c'est une **primitive** de $\\ln x$ (la fonction dont la dérivée est $\\ln x$), le chemin inverse.\n\n**À retenir :** $(\\ln x)' = \\frac{1}{x}$ et $(e^x)' = e^x$, à savoir par cœur."
   },
   {
     "question": "Comment écrire $\\log_2(x)$ avec le logarithme népérien ?",
-    "choix": ["$\\dfrac{\\ln x}{\\ln 2}$", "$\\dfrac{\\ln 2}{\\ln x}$", "$\\ln x - \\ln 2$", "$2 \\ln x$"],
+    "choix": [
+      "$\\dfrac{\\ln x}{\\ln 2}$",
+      "$\\dfrac{\\ln 2}{\\ln x}$",
+      "$\\ln x - \\ln 2$",
+      "$2 \\ln x$"
+    ],
     "reponse": 0,
-    "explication": "Formule du changement de base : $\\log_a(x) = \\dfrac{\\ln x}{\\ln a}$."
+    "explication": "**Règle :** changement de base : $\\log_a(x) = \\dfrac{\\ln x}{\\ln a}$. Le nombre dont on prend le log va **en haut**, la base **en bas**.\n\n**Pas à pas :** avec $a = 2$, $\\log_2(x) = \\dfrac{\\ln x}{\\ln 2}$. Vérification avec $x = 8 = 2^3$ : $\\dfrac{\\ln 8}{\\ln 2} = \\dfrac{3 \\ln 2}{\\ln 2} = 3$, et on sait que $\\log_2(8) = 3$.\n\n**Les autres réponses :** $\\dfrac{\\ln 2}{\\ln x}$ met la fraction à l'envers (avec $x = 8$, on trouverait $\\frac{1}{3}$) ; $\\ln x - \\ln 2$ vaut $\\ln\\frac{x}{2}$, ce n'est pas un quotient de logarithmes ; $2 \\ln x$ vaut $\\ln(x^2)$.\n\n**À retenir :** $\\log_a x = \\dfrac{\\ln(\\text{le nombre})}{\\ln(\\text{la base})}$."
   },
   {
     "question": "Quelle est la solution de $e^x = 12$ ?",
-    "choix": ["$x = e^{12}$", "$x = \\dfrac{12}{e}$", "$x = \\sqrt{12}$", "$x = \\ln 12$"],
+    "choix": [
+      "$x = e^{12}$",
+      "$x = \\dfrac{12}{e}$",
+      "$x = \\sqrt{12}$",
+      "$x = \\ln 12$"
+    ],
     "reponse": 3,
-    "explication": "On applique $\\ln$ des deux côtés : $\\ln(e^x) = \\ln 12$, donc $x = \\ln 12$."
+    "explication": "**Règle :** pour « enlever » une exponentielle, on applique $\\ln$ des deux côtés : $e^x = a \\iff x = \\ln a$ (pour $a > 0$).\n\n**Pas à pas :**\n\n1. $e^x = 12$.\n2. On applique $\\ln$ : $\\ln(e^x) = \\ln 12$.\n3. Le $\\ln$ défait l'exponentielle : $x = \\ln 12 \\approx 2{,}48$.\n4. Vérification : $e^{2{,}48} \\approx 12$.\n\n**Les autres réponses :** $e^{12}$ applique l'exponentielle une deuxième fois au lieu de la défaire ; $\\frac{12}{e}$ divise par $e$ comme si $e^x$ était $e \\times x$ ; $\\sqrt{12}$ traite $e^x$ comme $x^2$.\n\n**À retenir :** $e^x = a$ → $x = \\ln a$ ; $\\ln x = b$ → $x = e^b$."
   },
   {
     "question": "Quand $x \\to +\\infty$, quel classement est correct (du plus lent au plus rapide) ?",
-    "choix": ["$x \\ll \\ln x \\ll e^x$", "$\\ln x \\ll x \\ll e^x$", "$e^x \\ll x \\ll \\ln x$", "$\\ln x \\ll e^x \\ll x$"],
+    "choix": [
+      "$x \\ll \\ln x \\ll e^x$",
+      "$\\ln x \\ll x \\ll e^x$",
+      "$e^x \\ll x \\ll \\ln x$",
+      "$\\ln x \\ll e^x \\ll x$"
+    ],
     "reponse": 1,
-    "explication": "Croissances comparées : le logarithme est négligeable devant $x$, qui est lui-même négligeable devant l'exponentielle."
+    "explication": "**Règle :** croissances comparées en $+\\infty$ : $\\ln x \\ll x \\ll e^x$ (« $\\ll$ » = est négligeable devant). Les trois tendent vers $+\\infty$, mais à des vitesses très différentes.\n\n**Pas à pas :** on compare pour $x = 100$.\n\n| Fonction | Valeur en $x = 100$ |\n|---|---|\n| $\\ln x$ | $\\approx 4{,}6$ |\n| $x$ | $100$ |\n| $e^x$ | nombre à 44 chiffres |\n\nDu plus lent au plus rapide : $\\ln x$, puis $x$, puis $e^x$.\n\n**Les autres réponses :** « $x \\ll \\ln x \\ll e^x$ » place $\\ln$ au-dessus de $x$ (faux, $4{,}6 < 100$) ; « $e^x \\ll x \\ll \\ln x$ » est le classement à l'envers ; « $\\ln x \\ll e^x \\ll x$ » place $x$ au-dessus de $e^x$.\n\n**À retenir :** $\\ln$ est la plus lente, $\\exp$ la plus rapide, $x$ entre les deux."
   },
   {
     "question": "Quand $x \\to +\\infty$, vers quoi tend $\\dfrac{\\ln x}{\\sqrt{x}}$ ?",
-    "choix": ["$0$", "$1$", "$+\\infty$", "$\\dfrac{1}{2}$"],
+    "choix": [
+      "$0$",
+      "$1$",
+      "$+\\infty$",
+      "$\\dfrac{1}{2}$"
+    ],
     "reponse": 0,
-    "explication": "Le logarithme grandit moins vite que toute puissance de $x$, même $\\sqrt{x}$ : par exemple $\\ln(10^6) \\approx 13{,}8$ contre $\\sqrt{10^6} = 1\\,000$."
+    "explication": "**Règle :** $\\ln x$ est négligeable devant **toute** puissance $x^a$ avec $a > 0$, même $\\sqrt{x} = x^{1/2}$. Donc $\\dfrac{\\ln x}{x^a} \\to 0$ en $+\\infty$.\n\n**Pas à pas :** en haut $\\ln x \\to +\\infty$, en bas $\\sqrt{x} \\to +\\infty$ : c'est une forme « $\\frac{\\infty}{\\infty}$ », il faut voir qui gagne.\n\n| $x$ | $\\ln x$ | $\\sqrt{x}$ | $\\frac{\\ln x}{\\sqrt{x}}$ |\n|---|---|---|---|\n| $10^2$ | $\\approx 4{,}6$ | $10$ | $\\approx 0{,}46$ |\n| $10^6$ | $\\approx 13{,}8$ | $1\\,000$ | $\\approx 0{,}014$ |\n\nLe bas grandit bien plus vite : la fraction tend vers **0**.\n\n**Les autres réponses :** 1 suppose que « $\\frac{\\infty}{\\infty} = 1$ », ce qui n'a pas de sens ; $+\\infty$ voudrait dire que $\\ln$ gagne ; $\\frac{1}{2}$ vient de l'exposant de $\\sqrt{x}$, qui n'a rien à voir ici.\n\n**À retenir :** $\\ln$ en haut, une puissance de $x$ en bas → limite 0."
   },
   {
     "question": "Environ combien de comparaisons fait une recherche dichotomique dans un tableau trié de $1\\,000\\,000$ éléments ?",
-    "choix": ["$20$", "$1\\,000$", "$500\\,000$", "$1\\,000\\,000$"],
+    "choix": [
+      "$20$",
+      "$1\\,000$",
+      "$500\\,000$",
+      "$1\\,000\\,000$"
+    ],
     "reponse": 0,
-    "explication": "Une recherche dichotomique fait environ $\\log_2(n)$ comparaisons, et $\\log_2(10^6) \\approx 20$."
+    "explication": "**Règle :** une recherche dichotomique coupe le tableau en deux à chaque comparaison : elle en fait environ $\\log_2(n)$. Et $2^{10} = 1\\,024 \\approx 10^3$.\n\n**Pas à pas :**\n\n1. $1\\,000\\,000 = 10^6 = (10^3)^2$.\n2. $10^3 \\approx 2^{10}$, donc $10^6 \\approx (2^{10})^2 = 2^{20}$.\n3. Donc $\\log_2(10^6) \\approx 20$ : environ **20** comparaisons.\n\n**Les autres réponses :** $1\\,000\\,000$ est le pire cas de la recherche **linéaire** (case par case) ; $500\\,000$ est la moyenne de cette recherche linéaire ; $1\\,000$ est $\\sqrt{10^6}$, pas un logarithme.\n\n**À retenir :** dichotomie = $\\log_2 n$ étapes, et $\\log_2(10^{3k}) \\approx 10k$."
   },
   {
     "question": "La fonction $\\ln$ est :",
-    "choix": ["convexe", "affine", "constante", "concave"],
+    "choix": [
+      "convexe",
+      "affine",
+      "constante",
+      "concave"
+    ],
     "reponse": 3,
-    "explication": "Sa dérivée seconde vaut $-\\dfrac{1}{x^2} < 0$ : $\\ln$ est concave. En revanche $-\\ln$ est convexe, ce qui rend la log-loss facile à optimiser."
+    "explication": "**Règle :** une fonction est **concave** quand sa dérivée seconde est négative (courbe au-dessus de ses cordes), **convexe** quand elle est positive.\n\n**Pas à pas :**\n\n1. $(\\ln x)' = \\frac{1}{x} = x^{-1}$.\n2. $(\\ln x)'' = (x^{-1})' = -x^{-2} = -\\frac{1}{x^2}$.\n3. $x^2 > 0$, donc $-\\frac{1}{x^2} < 0$ : $\\ln$ est **concave**.\n\n**Les autres réponses :** « convexe » est la forme de $e^x$ et de $-\\ln x$ (le signe moins retourne la courbe, ce qui rend la log-loss facile à optimiser) ; « affine » voudrait dire une droite, or $\\ln$ se courbe ; « constante » est faux puisque $\\ln$ est strictement croissante.\n\n**À retenir :** dérive deux fois : $f'' < 0$ → concave, $f'' > 0$ → convexe."
   },
   {
     "question": "Si $y = a\\,e^{bx}$, que devient la relation quand on pose $z = \\ln y$ ?",
-    "choix": ["$z = a\\,b\\,x$", "$z = e^{a+bx}$", "$z = \\ln a + b\\,x$", "$z = a + \\ln(bx)$"],
+    "choix": [
+      "$z = a\\,b\\,x$",
+      "$z = e^{a+bx}$",
+      "$z = \\ln a + b\\,x$",
+      "$z = a + \\ln(bx)$"
+    ],
     "reponse": 2,
-    "explication": "$\\ln(a\\,e^{bx}) = \\ln a + \\ln(e^{bx}) = \\ln a + bx$ : une droite en fonction de $x$. C'est le principe de l'échelle logarithmique."
+    "explication": "**Règle :** $\\ln(ab) = \\ln a + \\ln b$ et $\\ln(e^u) = u$.\n\n**Pas à pas :**\n\n1. $z = \\ln y = \\ln(a\\,e^{bx})$.\n2. Produit → somme : $z = \\ln a + \\ln(e^{bx})$.\n3. Le $\\ln$ défait l'exponentielle : $z = \\ln a + bx$.\n\nC'est une **droite** en fonction de $x$ : pente $b$, ordonnée à l'origine $\\ln a$. C'est le principe de l'échelle logarithmique.\n\n**Les autres réponses :** $z = a\\,b\\,x$ oublie le $\\ln$ sur $a$ et transforme la somme en produit ; $z = e^{a+bx}$ ajoute une exponentielle au lieu de l'enlever ; $z = a + \\ln(bx)$ met le $\\ln$ sur le mauvais morceau.\n\n**À retenir :** $\\ln(a\\,e^{bx}) = \\ln a + bx$, une droite."
   },
   {
     "question": "Avec la log-loss et $y = 1$, que se passe-t-il quand le modèle prédit $\\hat{p}$ très proche de $0$ ?",
-    "choix": ["La perte est presque nulle", "La perte devient énorme", "La perte vaut exactement $1$", "La perte devient négative"],
+    "choix": [
+      "La perte est presque nulle",
+      "La perte devient énorme",
+      "La perte vaut exactement $1$",
+      "La perte devient négative"
+    ],
     "reponse": 1,
-    "explication": "La perte vaut $-\\ln \\hat{p}$, qui tend vers $+\\infty$ quand $\\hat{p} \\to 0$. Un modèle sûr de lui et qui se trompe est lourdement pénalisé."
+    "explication": "**Règle :** avec $y = 1$, le terme $(1 - y)\\ln(1 - \\hat{p})$ disparaît et la perte vaut $-\\ln \\hat{p}$. Quand $\\hat{p} \\to 0$, $\\ln \\hat{p} \\to -\\infty$, donc $-\\ln \\hat{p} \\to +\\infty$.\n\n**Pas à pas :**\n\n| $\\hat{p}$ | perte $-\\ln \\hat{p}$ |\n|---|---|\n| $0{,}9$ | $\\approx 0{,}11$ |\n| $0{,}1$ | $\\approx 2{,}30$ |\n| $0{,}01$ | $\\approx 4{,}61$ |\n| $0{,}0001$ | $\\approx 9{,}21$ |\n\nPlus $\\hat{p}$ se rapproche de 0, plus la perte grandit, sans limite : elle devient **énorme**. Le modèle était sûr que ce n'était pas la classe 1, et il s'est trompé.\n\n**Les autres réponses :** une perte presque nulle correspond à $\\hat{p}$ proche de **1** (bonne prédiction) ; la perte ne vaut jamais exactement 1 ici ; elle n'est jamais négative, grâce au signe moins ($\\ln \\hat{p} < 0$ pour $\\hat{p} < 1$).\n\n**À retenir :** log-loss $= -\\ln(\\text{proba donnée à la vraie classe})$ : énorme quand le modèle est sûr de lui et se trompe."
   }
 ]

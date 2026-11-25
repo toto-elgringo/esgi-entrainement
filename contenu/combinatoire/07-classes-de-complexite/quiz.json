@@ -8,7 +8,7 @@
       "Des ordinateurs"
     ],
     "reponse": 0,
-    "explication": "P et NP ne contiennent que des problèmes de décision. Un problème d'optimisation est classé via sa version décision."
+    "explication": "**Règle :** P et NP sont des ensembles de **problèmes de décision** : chaque instance a pour réponse **oui** ou **non**.\n\n**Pas à pas :**\n\n1. Une classe de complexité regroupe des **problèmes** (des questions générales, comme « ce graphe est-il 3-coloriable ? »), pas des objets matériels.\n2. Pour P et NP, il faut que la réponse soit oui ou non : « existe-t-il une tournée de coût au plus $K$ ? » convient.\n3. Un problème d'optimisation (« trouve la tournée la plus courte ») est d'abord transformé en version décision en ajoutant un seuil $K$.\n\n**Les autres réponses :** les problèmes d'optimisation ne sont pas dans NP (leur réponse est une solution, pas oui / non) ; un programme est un **algorithme** qui résout un problème, ce n'est pas le problème lui-même ; un ordinateur n'a rien à voir avec une classe de problèmes.\n\n**À retenir :** P et NP ne contiennent que des questions à réponse oui / non."
   },
   {
     "question": "Comment mesure-t-on la **taille** d'une instance ?",
@@ -19,7 +19,7 @@
       "Par le nombre de solutions"
     ],
     "reponse": 0,
-    "explication": "C'est la longueur de l'écriture de l'instance. D'où le piège du pseudo-polynomial : $C$ s'écrit avec environ $\\log_2 C$ bits."
+    "explication": "**Règle :** la taille d'une instance est le **nombre de bits** (de symboles) qu'il faut pour l'écrire. Un nombre $N$ prend environ $\\log_2 N$ bits.\n\n**Pas à pas :** pour une liste de 10 nombres écrits sur 16 bits chacun, la taille est $10 \\times 16 = 160$ bits. Le nombre $1\\,000$ ne prend que 10 bits, car $2^{10} = 1\\,024 > 1\\,000$.\n\n**Les autres réponses :**\n\n- « La valeur du plus grand nombre » : c'est justement le piège du **pseudo-polynomial**. Une capacité $C$ peut valoir presque $2^{64}$ tout en ne prenant que 64 bits ; mesurer par la valeur grossit énormément la taille.\n- « Le temps de calcul » : c'est ce qu'on veut exprimer **en fonction** de la taille, pas la taille elle-même.\n- « Le nombre de solutions » : il ne dit rien de la longueur de l'écriture.\n\n**À retenir :** taille = longueur de l'écriture en bits ; un nombre compte pour ses bits, pas pour sa valeur."
   },
   {
     "question": "Un problème est dans **NP** si…",
@@ -30,7 +30,7 @@
       "il se résout en temps exponentiel"
     ],
     "reponse": 0,
-    "explication": "NP = vérifiable en temps polynomial, grâce à un certificat. Ce n'est pas « non polynomial »."
+    "explication": "**Règle :** un problème de décision est dans **NP** si chaque instance de réponse **oui** possède un **certificat** (une preuve courte) qu'un algorithme **vérifie** en temps polynomial.\n\n**Pas à pas :** pour « existe-t-il une tournée de coût au plus $K$ ? », on te donne une tournée : tu vérifies que chaque ville apparaît une fois, tu additionnes les $n$ distances (retour compris) et tu compares à $K$. C'est rapide : le problème est dans NP.\n\n**Les autres réponses :**\n\n- « Aucun algorithme polynomial ne le résout » : c'est l'erreur classique « NP = non polynomial ». NP veut dire **N**on déterministe **P**olynomial, et P est inclus dans NP (des problèmes faciles sont dans NP).\n- « Il n'a pas de solution » : rien à voir, NP parle de vérifier des réponses oui.\n- « Il se résout en temps exponentiel » : la définition parle de **vérification** polynomiale, pas de temps de résolution.\n\n**À retenir :** NP = « un oui se vérifie vite si on donne la preuve »."
   },
   {
     "question": "Pour « existe-t-il une tournée de coût au plus $K$ ? », quel est le certificat d'une réponse oui ?",
@@ -41,7 +41,7 @@
       "Le nombre de villes"
     ],
     "reponse": 0,
-    "explication": "On vérifie vite qu'elle passe une fois par chaque ville et qu'elle coûte au plus $K$."
+    "explication": "**Règle :** le certificat d'une réponse oui est l'objet qui **prouve** ce oui et qu'on peut vérifier vite : ici, une solution qui marche.\n\n**Pas à pas :** la question est « existe-t-il une tournée de coût au plus $K$ ? ». Pour prouver oui, on montre **une** tournée de coût au plus $K$. Vérification :\n\n1. chaque ville est visitée exactement une fois ;\n2. on additionne les $n$ distances, retour à la ville de départ compris ;\n3. on compare la somme à $K$.\n\nCes étapes demandent un temps polynomial.\n\n**Les autres réponses :** « la liste de toutes les tournées » est énorme ($\\frac{(n-1)!}{2}$ tournées), ce n'est pas une preuve courte ; « la valeur de $K$ » et « le nombre de villes » sont déjà dans l'instance et ne prouvent rien.\n\n**À retenir :** le certificat d'un problème « existe-t-il… ? » est presque toujours l'objet dont on demande l'existence."
   },
   {
     "question": "Que signifie $A \\le_p B$ ?",
@@ -52,7 +52,7 @@
       "A est dans P et B dans NP"
     ],
     "reponse": 0,
-    "explication": "Une transformation polynomiale envoie les instances de A sur des instances de B de même réponse : savoir résoudre B, c'est savoir résoudre A."
+    "explication": "**Règle :** $A \\le_p B$ (« A se réduit à B ») veut dire qu'une transformation $f$, calculable en temps polynomial, envoie chaque instance de A sur une instance de B **de même réponse**.\n\n**Pas à pas :** pour résoudre une instance $x$ de A, on calcule $f(x)$, puis on résout $f(x)$ avec un algorithme pour B : sa réponse est celle de $x$. Donc **savoir résoudre B suffit pour résoudre A** : B est au moins aussi difficile que A.\n\n**Les autres réponses :**\n\n- « A est plus difficile que B » : c'est le sens inverse. Le symbole $\\le$ se lit comme « A est **au plus** aussi difficile que B ».\n- « A et B ont la même taille » : la réduction ne parle pas de taille, elle transforme des instances.\n- « A est dans P et B dans NP » : une réduction ne dit rien de la classe de chacun tant qu'on ne sait rien de B.\n\n**À retenir :** dans $A \\le_p B$, le problème du côté **grand** du $\\le$ (B) est le plus difficile."
   },
   {
     "question": "Un problème NP-difficile est-il forcément dans NP ?",
@@ -61,7 +61,7 @@
       "Oui"
     ],
     "reponse": 0,
-    "explication": "NP-difficile veut seulement dire que tout NP s'y réduit. Le TSP en optimisation et le problème de l'arrêt sont NP-difficiles mais hors de NP."
+    "explication": "**Règle :** **NP-difficile** = tout problème de NP se réduit à lui. La définition ne demande **pas** d'être dans NP. **NP-complet** = NP-difficile **et** dans NP.\n\n**Pas à pas :** on cherche un NP-difficile hors de NP.\n\n- Le voyageur de commerce en **optimisation** : NP-difficile (le résoudre répond à la version décision), mais sa réponse est une tournée, pas oui / non : il n'est pas dans NP.\n- Le problème de l'**arrêt** : on y réduit SAT, donc NP-difficile ; mais il est indécidable, donc hors de NP.\n\nUn seul contre-exemple suffit : la réponse est non.\n\n**Erreur fréquente :** confondre NP-difficile et NP-complet. Seul NP-complet impose d'être dans NP.\n\n**À retenir :** NP-difficile parle seulement de difficulté ; « dans NP » est une condition en plus, celle qui fait passer à NP-complet."
   },
   {
     "question": "Un problème d'optimisation (trouver la meilleure tournée) peut-il être dans NP ?",
@@ -72,7 +72,7 @@
       "Seulement s'il a moins de 20 villes"
     ],
     "reponse": 0,
-    "explication": "NP ne contient que des problèmes de décision. Le TSP en optimisation est NP-difficile « au sens large »."
+    "explication": "**Règle :** NP ne contient que des **problèmes de décision** (réponse oui / non).\n\n**Pas à pas :**\n\n1. « Trouver la meilleure tournée » : la réponse attendue est une tournée.\n2. Une tournée n'est ni oui ni non : ce n'est pas un problème de décision.\n3. Donc il ne peut pas être dans NP, quelle que soit sa difficulté ou le nombre de villes.\n\nCe problème est NP-difficile « au sens large » : connaître la meilleure tournée répond tout de suite à « existe-t-il une tournée de coût au plus $K$ ? » (on compare son coût à $K$).\n\n**Les autres réponses :** « oui, toujours » contredit la définition ; « seulement s'il est facile » et « seulement s'il a moins de 20 villes » confondent la classe d'un **problème** avec la facilité d'une **instance** : le format de la réponse ne change pas avec la taille.\n\n**À retenir :** pour savoir si un problème peut être dans NP, regarde d'abord le format de la réponse : oui / non ou pas."
   },
   {
     "question": "Quel est le premier problème prouvé NP-complet (Cook 1971, Levin 1973) ?",
@@ -83,7 +83,7 @@
       "Le problème de l'arrêt"
     ],
     "reponse": 0,
-    "explication": "Théorème de Cook-Levin : SAT est NP-complet. Karp en a déduit 20 autres problèmes NP-complets en 1972."
+    "explication": "**Règle :** le **théorème de Cook-Levin** (Cook 1971, Levin 1973) dit que **SAT** est NP-complet. SAT demande si une formule logique (variables vrai / faux, « et », « ou », « non ») peut être rendue vraie.\n\n**Pas à pas :** Cook et Levin ont montré **directement** que tout problème de NP se réduit à SAT. Ensuite, Karp (1972) a obtenu 20 autres NP-complets en réduisant SAT (ou un problème déjà obtenu) vers eux : on part d'un NP-complet connu et on le transforme **en** le nouveau problème.\n\n**Les autres réponses :** le voyageur de commerce (en décision) et le sac à dos sont NP-complets, mais prouvés **après**, par réduction (ils sont dans la liste de Karp) ; le problème de l'arrêt n'est même pas dans NP (il est indécidable), il ne peut pas être NP-complet.\n\n**À retenir :** SAT est le premier NP-complet ; les suivants s'obtiennent par réduction depuis lui."
   },
   {
     "question": "Que dit le théorème de **Ladner** (1975) ?",
@@ -94,7 +94,7 @@
       "Tout problème de NP est NP-complet"
     ],
     "reponse": 0,
-    "explication": "Ce sont les problèmes NP-intermédiaires. On n'en connaît aucun avec certitude ; la factorisation et l'isomorphisme de graphes sont les candidats cités."
+    "explication": "**Règle :** le **théorème de Ladner** (1975) dit : **si** $P \\neq NP$, alors il existe des problèmes de NP qui ne sont ni dans P ni NP-complets. On les appelle **NP-intermédiaires**.\n\n**Pas à pas :** le théorème est conditionnel (« si $P \\neq NP$ »). Il ne tranche pas la question P = NP, il décrit ce qui se passerait dans ce cas : NP aurait trois zones (P, NP-intermédiaires, NP-complets). On n'en connaît aucun de façon sûre ; les candidats cités sont la **factorisation** et l'**isomorphisme de graphes**.\n\n**Les autres réponses :** « P = NP » et « SAT est dans P » : personne ne l'a prouvé, c'est la question ouverte ; « tout problème de NP est NP-complet » est faux dans tous les cas (« toujours oui » n'est jamais NP-complet).\n\n**À retenir :** Ladner = « si $P \\neq NP$, il y a des problèmes entre P et NP-complet »."
   },
   {
     "question": "Si on prouvait P = NP, que deviendrait le chemin eulérien ?",
@@ -105,7 +105,7 @@
       "Il ne changerait pas de statut et resterait non NP-complet"
     ],
     "reponse": 0,
-    "explication": "Si P = NP, tout problème non trivial de P devient NP-complet : la réduction peut résoudre l'instance elle-même en temps polynomial."
+    "explication": "**Règle :** si $P = NP$, tout problème **non trivial** de P (au moins une instance oui **et** une instance non) devient NP-complet.\n\n**Pas à pas :** pour réduire SAT au chemin eulérien :\n\n1. Comme $P = NP$, SAT se résout en temps polynomial : la réduction a le droit de le faire elle-même.\n2. On choisit à l'avance un graphe qui a un chemin eulérien (réponse oui) et un graphe qui n'en a pas (réponse non). Ils existent, car le problème est non trivial.\n3. Formule satisfiable : on renvoie le graphe « oui » ; sinon, le graphe « non ». Même réponse, temps polynomial.\n\nDonc le chemin eulérien est NP-difficile, et il est dans NP : il devient **NP-complet**.\n\n**Les autres réponses :** « indécidable » est impossible (Euler donne un algorithme rapide) ; « hors de NP » aussi (P est inclus dans NP) ; « il ne changerait pas de statut » oublie que la réduction peut résoudre SAT elle-même quand $P = NP$.\n\n**À retenir :** si $P = NP$, tout problème de P qui a des oui et des non est NP-complet."
   },
   {
     "question": "Où se trouve le **problème de l'arrêt** ?",
@@ -116,7 +116,7 @@
       "NP-intermédiaire"
     ],
     "reponse": 0,
-    "explication": "On y réduit SAT, donc il est NP-difficile ; mais aucun algorithme ne le décide (Turing, 1936), donc il n'est pas dans NP."
+    "explication": "**Règle :** pour être **NP-complet**, il faut être NP-difficile **et** dans NP. Tout problème de NP est **décidable** (on peut essayer ses certificats, en nombre fini).\n\n**Pas à pas :**\n\n1. **NP-difficile ?** Oui : on y réduit SAT. À une formule, on associe un programme qui essaie toutes les affectations et s'arrête s'il en trouve une qui rend la formule vraie, et boucle sinon. Il s'arrête exactement quand la formule est satisfiable.\n2. **Dans NP ?** Non : Turing (1936) a montré qu'aucun algorithme ne décide l'arrêt (il est **indécidable**). Or tout problème de NP se décide.\n3. Conclusion : NP-difficile, mais hors de NP.\n\n**Les autres réponses :** « dans P » et « NP-intermédiaire » supposent qu'il est dans NP ; « NP-complet » aussi (NP-complet impose d'être dans NP).\n\n**À retenir :** indécidable ⇒ hors de NP ; on peut être NP-difficile sans être dans NP."
   },
   {
     "question": "Si un seul problème NP-complet était résolu en temps polynomial…",
@@ -127,6 +127,6 @@
       "seul ce problème changerait de classe"
     ],
     "reponse": 0,
-    "explication": "Tout NP se réduit à un problème NP-complet, et les réductions transportent la facilité : tout NP serait dans P."
+    "explication": "**Règle :** si $A \\le_p B$ et que B se résout en temps polynomial, alors A aussi. Un problème NP-complet est NP-difficile : **tout** problème de NP se réduit à lui.\n\n**Pas à pas :**\n\n1. Soit B le problème NP-complet, résolu en temps polynomial.\n2. Soit A n'importe quel problème de NP. Par définition de NP-difficile, $A \\le_p B$.\n3. On résout A en transformant son instance (polynomial) puis en appliquant l'algorithme de B (polynomial) : c'est polynomial, donc A est dans P.\n4. Comme A était quelconque, tout NP est dans P. Avec $P \\subseteq NP$, on obtient $P = NP$.\n\n**Les autres réponses :** « P ≠ NP » est l'inverse ; « cela ne changerait rien » et « seul ce problème changerait de classe » oublient que les réductions **transportent** la facilité à tout NP d'un coup.\n\n**À retenir :** un seul NP-complet en temps polynomial entraîne $P = NP$."
   }
 ]

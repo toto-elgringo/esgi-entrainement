@@ -8,13 +8,18 @@
       "Une fonction qui ajoute un élément à une liste reçue en `&mut`"
     ],
     "reponse": 1,
-    "explication": "Une fonction pure renvoie toujours le même résultat pour les mêmes paramètres et ne fait rien d'autre. Afficher, lire l'heure ou modifier une liste reçue en `&mut` sont des effets de bord."
+    "explication": "**Règle :** une fonction est **pure** si (1) elle donne toujours le même résultat pour les mêmes paramètres et (2) elle ne fait rien d'autre que calculer ce résultat (pas d'affichage, pas de lecture de l'extérieur, pas de modification d'une valeur reçue). Tout ce qu'elle fait « en plus » s'appelle un **effet de bord**.\n\n**Pas à pas :** on pose les deux questions à chaque proposition.\n\n| Proposition | Même résultat à chaque fois ? | Fait autre chose ? | Pure ? |\n|---|---|---|---|\n| `aire` avec seulement `l * h` | oui : `aire(2, 3)` vaut toujours `6` | non | **oui** |\n| `aire` avec `println!(\"calcul\")` | oui | elle **affiche** | non |\n| la fonction qui renvoie l'heure | non : le résultat change à chaque appel | elle lit l'horloge | non |\n| la fonction qui ajoute à une liste en `&mut` | | elle **modifie** la liste de l'appelant | non |\n\n**Les autres réponses :** la version avec `println!` est le piège : son résultat est juste, mais l'affichage est un effet de bord. L'heure dépend du moment de l'appel, pas des paramètres. Modifier une liste reçue en `&mut` change une valeur qui appartient à quelqu'un d'autre.\n\n**À retenir :** pure = même entrée, même sortie, **et** aucun effet visible à l'extérieur."
   },
   {
     "question": "Que vaut `[1, 2, 3].iter().fold(10, |acc, x| acc - x)` ?",
-    "choix": ["`-4`", "`6`", "`4`", "`10`"],
+    "choix": [
+      "`-4`",
+      "`6`",
+      "`4`",
+      "`10`"
+    ],
     "reponse": 2,
-    "explication": "On part de 10, puis on retire chaque élément : 10 - 1 = 9, 9 - 2 = 7, 7 - 3 = 4."
+    "explication": "**Règle :** `fold(depart, |acc, x| ...)` part de `depart`, puis pour chaque élément remplace l'accumulateur par ce que renvoie la closure. Le résultat est le dernier accumulateur.\n\n**Pas à pas :** départ `acc = 10`, et la closure fait `acc - x`.\n\n| Élément `x` | `acc` avant | `acc - x` |\n|---|---|---|\n| `1` | `10` | `9` |\n| `2` | `9` | `7` |\n| `3` | `7` | `4` |\n\nRésultat : **`4`** (c'est `10 - 1 - 2 - 3`).\n\n**Les autres réponses :** `-4` vient d'un calcul qui part de 0 au lieu de 10, ou qui inverse la soustraction ; `6` est la somme `1 + 2 + 3`, qui oublie la valeur de départ et le signe ; `10` est la valeur de départ, comme si aucun élément n'avait été lu.\n\n**À retenir :** pour un `fold`, fais un tableau « élément / acc avant / acc après » en partant de la valeur de départ."
   },
   {
     "question": "Quelle est la différence entre `fold` et `reduce` ?",
@@ -25,25 +30,40 @@
       "`reduce` n'a pas de valeur de départ : il part du premier élément et renvoie une `Option`"
     ],
     "reponse": 3,
-    "explication": "`reduce` utilise le premier élément comme accumulateur de départ. Sur une liste vide, il n'y a pas de premier élément : il renvoie alors `None`."
+    "explication": "**Règle :** `fold(depart, f)` reçoit une valeur de départ et peut fabriquer un résultat de **n'importe quel type**. `reduce(f)` n'a **pas** de valeur de départ : le premier élément sert d'accumulateur, et le résultat est une `Option` (`None` si la liste est vide, car il n'y a pas de premier élément).\n\n**Pas à pas :** sur `[3, 8, 5]` avec « garder le plus grand » :\n- `fold(0, |a, &x| a.max(x))` part de `0` : `0 → 3 → 8 → 8`, résultat `8` ;\n- `reduce(|a, x| a.max(x))` part de `3` (le premier élément) : `3 → 8 → 8`, résultat `Some(8)` ;\n- sur une liste vide, `fold` renvoie `0` (le départ) et `reduce` renvoie `None`.\n\n**Les autres réponses :** ce ne sont pas deux noms de la même méthode (signatures et types de retour différents). `reduce` n'est pas « plus rapide » : les deux lisent chaque élément une fois. Et `reduce` marche avec n'importe quel type (des textes, des structs...), pas seulement des nombres, tant que l'accumulateur a le même type que les éléments.\n\n**À retenir :** `reduce` = `fold` qui démarre sur le premier élément et renvoie une `Option`."
   },
   {
     "question": "Que donne `[1, 2, 3].iter().scan(0, |s, x| { *s += x; Some(*s) }).collect::<Vec<i32>>()` ?",
-    "choix": ["`[1, 3, 6]`", "`[6]`", "`[0, 1, 3]`", "`6`"],
+    "choix": [
+      "`[1, 3, 6]`",
+      "`[6]`",
+      "`[0, 1, 3]`",
+      "`6`"
+    ],
     "reponse": 0,
-    "explication": "`scan` produit l'état après chaque élément : 1, puis 1 + 2 = 3, puis 3 + 3 = 6. Un `fold` n'aurait donné que le résultat final, 6."
+    "explication": "**Règle :** `scan(etat_initial, |etat, x| ...)` est un adaptateur : pour chaque élément, la closure modifie l'état (reçu en `&mut`) et renvoie `Some(valeur à produire)`. On obtient un **nouvel itérateur** avec une valeur par élément lu.\n\n**Pas à pas :** l'état `s` part de `0`.\n\n| `x` | `*s` avant | `*s += x` | Produit |\n|---|---|---|---|\n| `1` | `0` | `1` | `1` |\n| `2` | `1` | `3` | `3` |\n| `3` | `3` | `6` | `6` |\n\n`collect` rassemble les valeurs produites : **`[1, 3, 6]`**.\n\n**Les autres réponses :** `6` (ou `[6]`) est ce que donnerait un `fold` : seulement le résultat final, alors que `scan` garde chaque étape. `[0, 1, 3]` ajoute la valeur de départ et oublie la dernière : or l'état initial n'est pas produit, on produit l'état **après** chaque élément.\n\n**À retenir :** `scan` produit l'état après chaque élément (autant de valeurs que d'éléments), `fold` seulement le dernier."
   },
   {
     "question": "Que vaut `[2, 4, 5, 6].iter().take_while(|x| **x % 2 == 0).count()` ?",
-    "choix": ["`3`", "`2`", "`4`", "`1`"],
+    "choix": [
+      "`3`",
+      "`2`",
+      "`4`",
+      "`1`"
+    ],
     "reponse": 1,
-    "explication": "`take_while` s'arrête pour de bon au premier élément qui ne passe pas (5) : le 6 n'est jamais regardé. Avec `filter`, le résultat aurait été 3."
+    "explication": "**Règle :** `take_while(condition)` garde les éléments **tant que** la condition est vraie, et s'arrête **pour de bon** au premier élément qui ne la vérifie pas. `count()` compte ensuite ce qui a été gardé.\n\n**Pas à pas :** la condition est « pair » (`**x % 2 == 0` : deux étoiles car la closure reçoit une référence vers une référence).\n\n| Élément | Pair ? | `take_while` |\n|---|---|---|\n| `2` | oui | gardé |\n| `4` | oui | gardé |\n| `5` | **non** | arrêt |\n| `6` | oui | jamais lu |\n\nDeux éléments gardés : **`2`**.\n\n**Les autres réponses :** `3` serait le résultat de `filter`, qui regarde tous les éléments et garde aussi le `6`. `4` compte toute la liste. `1` s'arrêterait trop tôt (le `4` est bien pair).\n\n**À retenir :** `take_while` = le début de la suite, jusqu'au premier élément qui échoue (exclu, et rien après)."
   },
   {
     "question": "Que donne `[\"4\", \"x\", \"7\"].iter().filter_map(|s| s.parse::<i32>().ok()).collect::<Vec<_>>()` ?",
-    "choix": ["`[Some(4), None, Some(7)]`", "Une panique à cause de `\"x\"`", "`[4, 7]`", "`Err(...)`"],
+    "choix": [
+      "`[Some(4), None, Some(7)]`",
+      "Une panique à cause de `\"x\"`",
+      "`[4, 7]`",
+      "`Err(...)`"
+    ],
     "reponse": 2,
-    "explication": "`parse` échoue sur `\"x\"`, donc `ok()` donne `None` et `filter_map` le jette. Il ne reste que ce qui était dans les `Some` : 4 et 7."
+    "explication": "**Règle :** `filter_map(f)` appelle `f` sur chaque élément ; `f` renvoie une `Option`. Les `Some(v)` donnent `v`, les `None` sont jetés. `s.parse::<i32>()` renvoie un `Result`, et `.ok()` le change en `Option` (`Ok(v)` → `Some(v)`, `Err` → `None`).\n\n**Pas à pas :**\n\n| Texte | `parse::<i32>()` | `.ok()` | Gardé ? |\n|---|---|---|---|\n| `\"4\"` | `Ok(4)` | `Some(4)` | oui : `4` |\n| `\"x\"` | `Err(...)` | `None` | non |\n| `\"7\"` | `Ok(7)` | `Some(7)` | oui : `7` |\n\nRésultat : **`[4, 7]`**.\n\n**Les autres réponses :** `[Some(4), None, Some(7)]` serait le résultat d'un simple `map` (rien n'est déballé ni jeté). Il n'y a pas de panique : `parse` ne panique jamais, il renvoie un `Err` ; seul un `unwrap` paniquerait. `Err(...)` serait le résultat d'un `collect` vers un `Result<Vec<_>, _>`, pas d'un `filter_map`.\n\n**À retenir :** `filter_map(|x| ... .ok())` = « transforme, et ignore silencieusement ce qui échoue »."
   },
   {
     "question": "Pourquoi utiliser `Box<dyn Fn(i32) -> i32>` plutôt que `impl Fn(i32) -> i32` ?",
@@ -54,25 +74,40 @@
       "Parce que `impl Fn` est interdit comme type de retour"
     ],
     "reponse": 1,
-    "explication": "`impl Fn` désigne un seul type précis. Deux closures n'ont jamais le même type : impossible d'en renvoyer une dans le `if` et une autre dans le `else`, ou de les mettre dans le même `Vec`. `Box<dyn Fn>` leur donne un type commun."
+    "explication": "**Règle :** chaque closure a **son propre type**, unique et sans nom, même si deux closures s'écrivent pareil. `impl Fn(i32) -> i32` veut dire « **un** type précis qui implémente ce trait » : la fonction doit renvoyer toujours le même type. `Box<dyn Fn(i32) -> i32>` est une boîte qui peut contenir **n'importe quelle** closure de cette forme : toutes les boîtes ont le même type.\n\n**Pas à pas :** dans `if cond { |x| x + 1 } else { |x| x * 2 }`, les deux closures ont deux types différents, donc le compilateur refuse avec `impl Fn` (« `if` and `else` have incompatible types »). En écrivant `Box::new(|x| x + 1)` et `Box::new(|x| x * 2)`, les deux branches ont le type `Box<dyn Fn(i32) -> i32>` : ça compile. Même chose pour ranger plusieurs closures dans un `Vec`.\n\n**Les autres réponses :** une closure renvoyée en `impl Fn` peut très bien capturer des variables (avec `move`). `Box<dyn Fn>` n'est pas plus rapide : il ajoute une allocation et un appel indirect (léger, mais c'est un coût). Et `impl Fn` est tout à fait permis en type de retour : c'est même le choix par défaut.\n\n**À retenir :** `impl Fn` pour une seule closure ; `Box<dyn Fn>` dès qu'il faut **mélanger** des closures différentes (branches, liste)."
   },
   {
     "question": "Combien de morceaux donne `[1, 2, 3, 4].windows(2)` ?",
-    "choix": ["`2` : `[1, 2]` et `[3, 4]`", "`4`", "`1`", "`3` : `[1, 2]`, `[2, 3]` et `[3, 4]`"],
+    "choix": [
+      "`2` : `[1, 2]` et `[3, 4]`",
+      "`4`",
+      "`1`",
+      "`3` : `[1, 2]`, `[2, 3]` et `[3, 4]`"
+    ],
     "reponse": 3,
-    "explication": "`windows` fait glisser une fenêtre d'une case à la fois. C'est `chunks(2)` qui découpe en paquets séparés `[1, 2]` et `[3, 4]`."
+    "explication": "**Règle :** `windows(n)` fait glisser une fenêtre de `n` cases, **d'une case à la fois**. Une tranche de longueur `L` donne `L - n + 1` fenêtres. `chunks(n)`, lui, découpe en paquets séparés.\n\n**Pas à pas :** sur `[1, 2, 3, 4]` avec `windows(2)` :\n- la fenêtre commence à l'indice 0 : `[1, 2]` ;\n- elle glisse d'une case : `[2, 3]` ;\n- encore une : `[3, 4]` ;\n- une case de plus déborderait de la tranche : fin.\n\nSoit `4 - 2 + 1 =` **3** morceaux : `[1, 2]`, `[2, 3]` et `[3, 4]`.\n\n**Les autres réponses :** `2` morceaux `[1, 2]` et `[3, 4]`, c'est `chunks(2)` (paquets sans chevauchement). `4` compterait une fenêtre par élément, mais le dernier élément n'a pas de voisin après lui. `1` correspondrait à une fenêtre de 4 cases.\n\n**À retenir :** `windows(2)` sur `n` éléments donne `n - 1` paires de voisins qui se chevauchent."
   },
   {
     "question": "Que vaut `[\"1\", \"x\", \"3\"].iter().map(|s| s.parse::<i32>()).collect::<Result<Vec<i32>, _>>()` ?",
-    "choix": ["Un `Err` : l'erreur de lecture de `\"x\"`", "`Ok([1, 3])`", "`Ok([1, 0, 3])`", "`[Ok(1), Err(...), Ok(3)]`"],
+    "choix": [
+      "Un `Err` : l'erreur de lecture de `\"x\"`",
+      "`Ok([1, 3])`",
+      "`Ok([1, 0, 3])`",
+      "`[Ok(1), Err(...), Ok(3)]`"
+    ],
     "reponse": 0,
-    "explication": "Collecter vers un `Result<Vec<_>, _>` donne `Ok(liste)` seulement si **tous** les éléments sont `Ok`. Sinon, on obtient la première erreur rencontrée, et la suite n'est même pas lue."
+    "explication": "**Règle :** `collect` vers un `Result<Vec<T>, E>` lit des `Result<T, E>`. Si **tous** sont `Ok`, on obtient `Ok(liste des valeurs)`. Dès qu'il rencontre un `Err`, il s'arrête et renvoie **cette** erreur.\n\n**Pas à pas :**\n1. `\"1\"` → `Ok(1)` : on continue.\n2. `\"x\"` → `Err(...)` : `collect` s'arrête et renvoie cette erreur.\n3. `\"3\"` n'est même pas lu.\n\nRésultat : **un `Err`**, l'erreur de lecture de `\"x\"`.\n\n**Les autres réponses :** `Ok([1, 3])` voudrait dire qu'on ignore les erreurs : c'est ce que ferait `filter_map(|s| s.parse().ok())`, pas ce `collect`. `Ok([1, 0, 3])` invente une valeur par défaut qui n'existe nulle part. `[Ok(1), Err(...), Ok(3)]` serait le résultat d'un `collect` vers `Vec<Result<i32, _>>`, mais ici le type demandé est `Result<Vec<i32>, _>`.\n\n**À retenir :** vers `Result<Vec<_>, _>`, c'est « tout ou rien » : une seule erreur et tout le résultat est cette erreur."
   },
   {
     "question": "Que vaut `Some(4).map(|x| x * 2).filter(|x| *x > 10)` ?",
-    "choix": ["`Some(8)`", "`Some(4)`", "`false`", "`None`"],
+    "choix": [
+      "`Some(8)`",
+      "`Some(4)`",
+      "`false`",
+      "`None`"
+    ],
     "reponse": 3,
-    "explication": "`map` donne `Some(8)`, puis `filter` ne garde la valeur que si elle dépasse 10. Ce n'est pas le cas : on obtient `None`."
+    "explication": "**Règle :** sur une `Option`, `map(f)` transforme la valeur dans le `Some` ; `filter(condition)` garde `Some(x)` si la condition est vraie et donne `None` sinon. Sur un `None`, les deux ne font rien.\n\n**Pas à pas :**\n1. On part de `Some(4)`.\n2. `map(|x| x * 2)` : `4 × 2 = 8`, on a `Some(8)`.\n3. `filter(|x| *x > 10)` : est-ce que `8 > 10` ? Non. Le `Some(8)` devient `None`.\n\nRésultat : **`None`**.\n\n**Les autres réponses :** `Some(8)` oublie le `filter` (ou croit que `filter` garde la valeur quand la condition est fausse) ; `Some(4)` oublie le `map` ; `false` confond le résultat de la condition avec celui de `filter` : `filter` renvoie toujours une `Option`, pas un booléen.\n\n**À retenir :** une chaîne d'`Option` se lit étape par étape, de gauche à droite ; un `filter` qui échoue donne `None`."
   },
   {
     "question": "Que se passe-t-il à la ligne `let carres = (1..).map(|n| n * n);` ?",
@@ -83,7 +118,7 @@
       "Erreur de compilation : `(1..)` n'a pas de fin"
     ],
     "reponse": 1,
-    "explication": "Les itérateurs sont paresseux. On peut ensuite écrire `carres.take(5)` pour n'en calculer que 5. Seul un consommateur sans fin, comme `sum()`, tournerait à l'infini."
+    "explication": "**Règle :** les itérateurs sont **paresseux** : une chaîne comme `(1..).map(...)` ne calcule rien. Elle décrit seulement une recette. Les calculs ont lieu quand un **consommateur** (`collect`, `sum`, `count`, `next`...) demande des éléments, un par un.\n\n**Pas à pas :**\n1. `let carres = (1..).map(|n| n * n);` : on fabrique l'itérateur, aucun carré n'est calculé.\n2. `carres.take(3).collect::<Vec<_>>()` demanderait trois éléments : on calculerait `1`, `4`, `9`, puis tout s'arrêterait.\n3. Seul un consommateur sans fin (`sum()` sur cette suite infinie) tournerait sans s'arrêter.\n\n**Les autres réponses :** « le programme calcule à l'infini » et « il calcule jusqu'à la limite » imaginent un calcul immédiat, qui n'a pas lieu. Il n'y a pas d'erreur de compilation : `(1..)`, un intervalle sans fin, est parfaitement permis.\n\n**À retenir :** une ligne d'adaptateurs ne fait rien ; c'est le consommateur qui fait tourner la chaîne, et `take` limite une suite infinie."
   },
   {
     "question": "Quelles listes acceptent le motif `[premier, reste @ ..]` ?",
@@ -94,6 +129,6 @@
       "Seulement la liste vide"
     ],
     "reponse": 2,
-    "explication": "`premier` prend le premier élément (il en faut donc au moins un), et `reste @ ..` nomme la tranche qui suit, qui peut être vide. Pour `[7]`, `premier` vaut 7 et `reste` vaut `[]`."
+    "explication": "**Règle :** dans un motif de tranche, chaque nom simple (`premier`) prend **exactement un** élément, et `..` veut dire « n'importe combien d'éléments, même zéro ». `reste @ ..` donne le nom `reste` à cette partie.\n\n**Pas à pas :** le motif `[premier, reste @ ..]` demande 1 élément pour `premier`, plus 0 ou plus pour `reste`, donc **au moins 1** élément.\n\n| Liste | Accepte ? | `premier` | `reste` |\n|---|---|---|---|\n| `[]` | non (pas de premier) | | |\n| `[7]` | oui | `7` | `[]` |\n| `[7, 2]` | oui | `7` | `[2]` |\n| `[7, 2, 9]` | oui | `7` | `[2, 9]` |\n\n**Les autres réponses :** « toutes les listes, même vides » : faux, une liste vide n'a pas de premier élément (c'est le motif `[]` qui l'accepte). « Seulement 2 éléments » : c'est le motif `[a, b]`. « Seulement la liste vide » : c'est `[]`.\n\n**À retenir :** compte les noms simples du motif : c'est le nombre minimum d'éléments ; `..` en accepte autant qu'on veut en plus (même zéro)."
   }
 ]

@@ -8,7 +8,7 @@
       "held"
     ],
     "reponse": 3,
-    "explication": "Passif au futur : *will be* + participe passé. *Take place* ne se met jamais au passif."
+    "explication": "**Règle :** au passif, le sujet subit l'action : *will be* + **participe passé**. *Take place* (avoir lieu) ne se met **jamais** au passif.\n\n**Pas à pas :**\n\n1. Le trou suit *will be* : il faut un participe passé.\n2. Une conférence ne s'organise pas toute seule : quelqu'un la **tient**. Le verbe *hold* (tenir une réunion) a pour participe passé ***held***.\n3. Phrase complète : *The conference will be held in the main hall.* (La conférence aura lieu dans la grande salle.)\n\n**Les autres réponses :** *take place* et *took place* sont impossibles après *be* (il faudrait écrire *will take place*, sans *be*) ; *hold* est la base du verbe, pas le participe passé.\n\n**À retenir :** *will be* + participe passé (*held*) ; *take place* toujours **sans** *be*."
   },
   {
     "question": "*Have you read the ...... for tomorrow's meeting?*",
@@ -19,7 +19,7 @@
       "résumé"
     ],
     "reponse": 1,
-    "explication": "La réunion n'a pas encore eu lieu : on lit l'ordre du jour (*agenda*). Les *minutes* sont rédigées pendant et après."
+    "explication": "**Règle :** l'***agenda*** est l'ordre du jour, écrit **avant** la réunion. Les ***minutes*** sont le compte-rendu, écrit **pendant et après**.\n\n**Pas à pas :**\n\n1. Indice de temps : *tomorrow's meeting*, la réunion de **demain**. Elle n'a pas encore eu lieu.\n2. Avant une réunion, on peut seulement lire la liste des sujets prévus : l'***agenda***.\n\n**Les autres réponses :** *minutes* (compte-rendu) n'existe pas encore pour une réunion à venir ; *outcome* veut dire « résultat », lui aussi connu seulement après ; *résumé* est un faux ami : en anglais c'est un **CV**.\n\n**À retenir :** réunion à venir → *agenda* ; réunion passée → *minutes*."
   },
   {
     "question": "*The rate of ...... in the region has fallen to 6%.*",
@@ -30,7 +30,7 @@
       "employed"
     ],
     "reponse": 2,
-    "explication": "Après *the rate of*, il faut un nom : *unemployment* (le chômage)."
+    "explication": "**Règle :** après *the rate of* (le taux de), il faut un **nom**. Les noms en *-ment* désignent une chose.\n\n**Pas à pas :** on classe les quatre mots.\n\n| Mot | Nature |\n|---|---|\n| *employ* | verbe (employer) |\n| *unemployed* | adjectif (au chômage) |\n| ***unemployment*** | **nom** (le chômage) |\n| *employed* | adjectif ou participe (employé) |\n\nSeul *unemployment* est un nom : *The rate of unemployment has fallen to 6%.* (Le taux de chômage est tombé à 6 %.)\n\n**Les autres réponses :** *unemployed* et *employed* décrivent des personnes (*the unemployed people*) ; *employ* est un verbe.\n\n**À retenir :** *of* devant le trou → un **nom**, souvent en *-ment*, *-tion*, *-ance*."
   },
   {
     "question": "*After the coffee break, the presentation will ...... at 11.*",
@@ -41,7 +41,7 @@
       "postpone"
     ],
     "reponse": 0,
-    "explication": "*Resume* = reprendre. *Sum up* = résumer, *break up* = se séparer, *postpone* = reporter."
+    "explication": "**Règle :** ***resume*** = reprendre après une pause (faux ami : ce n'est pas « résumer »). *Sum up* = résumer, *break up* = se séparer / se terminer, *postpone* = reporter.\n\n**Pas à pas :**\n\n1. Indice : *After the coffee break* (après la pause-café).\n2. Après une pause, la présentation **reprend** : *will resume at 11*.\n\n**Les autres réponses :** *sum up* (résumer) ne colle pas avec une heure de reprise ; *break up* voudrait dire que la présentation se termine ou que le groupe se sépare ; *postpone* (reporter) demanderait un nouveau jour (*postpone until Monday*), pas une heure juste après la pause.\n\n**À retenir :** *after the break* → *resume* ; *until later* → *postpone*."
   },
   {
     "question": "*We look forward ...... from you.*",
@@ -52,7 +52,7 @@
       "to hearing"
     ],
     "reponse": 3,
-    "explication": "*Look forward to* + -ing."
+    "explication": "**Règle :** dans *look forward to* (avoir hâte de), *to* est une **préposition** : le verbe qui suit prend **-ing**.\n\n**Pas à pas :**\n\n1. L'expression est *look forward* : il faut toujours *to* après.\n2. Après la préposition *to*, verbe en -ing : *hearing*.\n3. Phrase complète : *We look forward to hearing from you.* (Dans l'attente de vous lire.)\n\n**Les autres réponses :** *to hear* utilise le *to* de l'infinitif (erreur très fréquente) ; *hearing* oublie *to* ; *hear* oublie les deux.\n\n**À retenir :** *look forward* **to** + **-ing**, toujours les deux ensemble."
   },
   {
     "question": "Dans une question *What is NOT mentioned?*, la bonne réponse est...",
@@ -63,7 +63,7 @@
       "la plus longue réponse"
     ],
     "reponse": 1,
-    "explication": "On élimine les trois réponses qu'on retrouve dans les documents."
+    "explication": "**Règle :** dans une question *What is NOT mentioned?*, trois propositions sont **dans** les documents et une seule n'y est pas : c'est elle la réponse.\n\n**Pas à pas :**\n\n1. On prend chaque proposition une par une.\n2. On la cherche dans les documents (souvent dite avec d'autres mots).\n3. Trouvée → on l'élimine. La seule proposition qu'on ne trouve **nulle part** est la bonne réponse.\n\n**Les autres réponses :** la première information du texte, une information répétée ou la réponse la plus longue sont justement **présentes** dans le texte : ce sont des infos mentionnées, donc éliminées.\n\n**À retenir :** question NOT = tableau « trouvé ? oui / non » ; la réponse est le seul « non »."
   },
   {
     "question": "Pour une question « Que va-t-il se passer le lendemain de l'e-mail ? », il faut...",
@@ -74,7 +74,7 @@
       "chercher le mot *tomorrow*"
     ],
     "reponse": 1,
-    "explication": "Les questions de partie 7 à plusieurs documents demandent de croiser les informations."
+    "explication": "**Règle :** en partie 7 avec plusieurs documents, l'information est souvent **coupée en deux** : un morceau dans chaque document.\n\n**Pas à pas :**\n\n1. On lit la **date de l'e-mail** (par exemple le 15).\n2. « Le lendemain » = cette date + 1 (le 16).\n3. On cherche ce qui est prévu ce jour-là dans **un autre document** (par exemple « prochaine réunion : le 16 » dans un compte-rendu).\n\n**Les autres réponses :** lire seulement l'e-mail ne donne pas l'événement (il n'y est pas daté) ; répondre au hasard n'est pas une méthode ; le mot *tomorrow* n'apparaît souvent nulle part, l'épreuve teste justement la capacité à **croiser** les dates.\n\n**À retenir :** date du document + calcul, puis vérification dans l'autre document."
   },
   {
     "question": "*Please call me at your earliest ......*",
@@ -85,7 +85,7 @@
       "convene"
     ],
     "reponse": 1,
-    "explication": "Expression figée : *at your earliest convenience* = dès que possible."
+    "explication": "**Règle :** *at your earliest convenience* (dès que possible, formule polie) est une **expression figée** : *your* + *earliest* + le **nom** *convenience*.\n\n**Pas à pas :**\n\n1. Avant le trou : *your earliest*. *earliest* est un adjectif (le plus tôt), il doit être suivi d'un **nom**.\n2. Parmi les choix, le seul nom est ***convenience*** (la commodité).\n\n**Les autres réponses :** *convenient* est un adjectif (pratique, qui arrange) ; *conveniently* est un adverbe ; *convene* est un verbe (convoquer une réunion).\n\n**À retenir :** *at your earliest convenience* = dès que possible ; à apprendre en bloc."
   },
   {
     "question": "*Could you ...... the names of two referees?*",
@@ -96,7 +96,7 @@
       "distribute"
     ],
     "reponse": 2,
-    "explication": "*Provide* = fournir. *Provide a reference* est une collocation des RH."
+    "explication": "**Règle :** *provide* = fournir. *Provide the names / the contact details of two referees* (fournir les noms de deux personnes qui donnent une référence) est une collocation des ressources humaines.\n\n**Pas à pas :**\n\n1. Le complément est *the names of two referees* : des informations qu'on **donne** au recruteur.\n2. Donner une information demandée = ***provide***.\n\n**Les autres réponses :** *issue* (émettre, délivrer) s'emploie pour un document officiel (*issue a passport, an invoice*) ; *promote* (promouvoir, donner une promotion) ne va pas avec des noms ; *distribute* (distribuer) veut dire donner à **beaucoup** de gens.\n\n**À retenir :** fournir une info, une référence → *provide*."
   },
   {
     "question": "*Management is worried because staff ...... is very low.*",
@@ -107,6 +107,6 @@
       "absentee"
     ],
     "reponse": 1,
-    "explication": "Une présence **basse** inquiète la direction. Un absentéisme bas serait une bonne nouvelle. *Attendee* et *absentee* sont des personnes."
+    "explication": "**Règle :** *attendance* = la présence (une chose), *absenteeism* = l'absentéisme (une chose). *Attendee* et *absentee* sont des **personnes** (un participant, un absent).\n\n**Pas à pas :**\n\n1. Après *staff*, il faut un nom de **chose** qui peut être *very low* (très bas) : une présence ou un absentéisme, pas une personne.\n2. Le sens : la direction est **inquiète** (*worried*).\n3. Une **présence** très basse est inquiétante → ***attendance***.\n\n**Les autres réponses :** *absenteeism* très bas serait une **bonne** nouvelle, la direction ne serait pas inquiète (c'est le piège du mini test) ; *attendee* et *absentee* sont des personnes, on ne dit pas qu'une personne est *very low* ici.\n\n**À retenir :** lis toute la phrase : « bas » + « inquiet » → présence (*attendance*)."
   }
 ]

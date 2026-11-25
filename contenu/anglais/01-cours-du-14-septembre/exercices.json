@@ -8,17 +8,20 @@
       {
         "intitule": "Combien de questions compte la section Listening ?",
         "type": "nombre",
-        "reponse": 100
+        "reponse": 100,
+        "explication": "**Règle :** le TOEIC a deux sections de même taille : le Listening (écoute) et le Reading (lecture), avec **100 questions** chacune.\n\n**Pas à pas :** 200 questions au total, partagées en deux moitiés égales : 200 / 2 = **100** questions de Listening.\n\nContrôle avec les parties d'écoute : 6 (partie 1) + 25 (partie 2) + 39 (partie 3) + 30 (partie 4) = 100.\n\n**Erreur fréquente :** répondre 200, qui est le total des **deux** sections.\n\n**À retenir :** Listening = 100 questions, Reading = 100 questions."
       },
       {
         "intitule": "Combien de minutes dure la section Listening ?",
         "type": "nombre",
-        "reponse": 45
+        "reponse": 45,
+        "explication": "**Règle :** le Listening dure **45 minutes** : c'est la partie la plus courte, car l'enregistrement impose son rythme.\n\n**Pas à pas :** on additionne les durées des parties d'écoute : environ 4 + 8 + 18 + 15 = 45 minutes, soit **45**.\n\n**Erreur fréquente :** répondre 75 (la durée du Reading) ou 120 (le test entier, 2 heures).\n\n**À retenir :** Listening = 45 min, Reading = 75 min, total = 2 h."
       },
       {
         "intitule": "Combien de minutes dure la section Reading ?",
         "type": "nombre",
-        "reponse": 75
+        "reponse": 75,
+        "explication": "**Règle :** le test entier dure **2 heures** ; le Listening en prend 45 minutes, le reste est pour le Reading.\n\n**Pas à pas :**\n\n1. 2 heures = 2 × 60 = 120 minutes.\n2. On enlève l'écoute : 120 - 45 = **75** minutes de lecture.\n\n**Erreur fréquente :** répondre 45 (c'est l'écoute) ou 60 (on a cru que les deux sections faisaient une heure chacune).\n\n**À retenir :** Reading = 120 - 45 = 75 minutes."
       },
       {
         "intitule": "Quel est le score total minimum ?",
@@ -27,7 +30,8 @@
         "refuses": [
           "5",
           "0"
-        ]
+        ],
+        "explication": "**Règle :** chaque section est notée **de 5 à 495**. Le score total est la **somme** des deux notes, donc le minimum total est la somme des deux minimums.\n\n**Pas à pas :**\n\n1. Minimum du Listening : 5.\n2. Minimum du Reading : 5.\n3. Minimum total : 5 + 5 = **10**.\n\nMême avec toutes les réponses fausses, on n'a jamais 0 : chaque section donne au moins 5 points.\n\n**Erreurs fréquentes :** répondre 5 (le minimum d'**une seule** section) ou 0 (on croit qu'on part de zéro).\n\n**À retenir :** minimum total = 5 + 5 = 10."
       },
       {
         "intitule": "Quel est le score total maximum ?",
@@ -35,12 +39,14 @@
         "reponse": 990,
         "refuses": [
           "495"
-        ]
+        ],
+        "explication": "**Règle :** chaque section est notée au maximum **495** ; le score total est la somme des deux.\n\n**Pas à pas :**\n\n1. Maximum du Listening : 495.\n2. Maximum du Reading : 495.\n3. Maximum total : 495 + 495 = **990**.\n\n**Erreurs fréquentes :** répondre 495 (une seule section) ou 1 000 (un chiffre rond, mais faux).\n\n**À retenir :** score total de 10 à 990 ; l'ESGI demande 750."
       },
       {
         "intitule": "Combien de questions compte la partie 7 ?",
         "type": "nombre",
-        "reponse": 54
+        "reponse": 54,
+        "explication": "**Règle :** la partie 7 (lecture de 1, 2 ou 3 documents) est la plus longue du test : **54 questions**, sur 45 à 50 minutes.\n\n**Pas à pas :** le Reading compte 100 questions ; on enlève les parties 5 (30 questions) et 6 (16 questions) : 100 - 30 - 16 = **54**.\n\n**Erreurs fréquentes :** répondre 30 (partie 5) ou 39 (partie 3, la plus longue de l'écoute).\n\n**À retenir :** partie 7 = 54 questions, presque la moitié du temps du test."
       }
     ],
     "indices": [
@@ -64,7 +70,8 @@
           "Partie 4",
           "Partie 5"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** les photos sont dans la **partie 1** (Listening) : on regarde une photo, on entend 4 phrases et on choisit celle qui la décrit.\n\n**Pas à pas :** on trie avec les questions de la méthode.\n\n1. Écoute ou lecture ? On **entend** des phrases : écoute, donc parties 1 à 4.\n2. Y a-t-il une image ? Oui : seule la partie 1 en a. Réponse : **Partie 1**.\n\n**Les autres réponses :** partie 2 = une question entendue et ses répliques, sans photo ; partie 4 = une annonce ou un exposé ; partie 5 = des phrases écrites à compléter.\n\n**À retenir :** photo = partie 1."
       },
       {
         "intitule": "On complète un e-mail ou une note de service qui contient 4 trous.",
@@ -75,7 +82,8 @@
           "Partie 6",
           "Partie 7"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** un **texte entier** (e-mail, note de service, lettre) avec des trous, c'est la **partie 6** du Reading, avec 4 trous par texte.\n\n**Pas à pas :**\n\n1. On lit et on complète : c'est la lecture, parties 5 à 7.\n2. Ce n'est pas une phrase seule (partie 5), c'est un texte entier.\n3. On ne répond pas à des questions sur le texte (partie 7), on remplit des trous. Réponse : **Partie 6**.\n\n**Les autres réponses :** partie 5 = une phrase isolée avec un seul trou ; partie 7 = des documents suivis de questions ; partie 3 = une conversation à l'écoute.\n\n**À retenir :** texte à trous = partie 6 ; phrase à trou = partie 5."
       },
       {
         "intitule": "On entend une conversation entre 2 ou 3 personnes.",
@@ -86,7 +94,8 @@
           "Partie 4",
           "Partie 6"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une **conversation** entre 2 ou 3 personnes, suivie de 3 questions écrites, c'est la **partie 3** du Listening.\n\n**Pas à pas :**\n\n1. On entend : écoute, parties 1 à 4.\n2. Plusieurs personnes parlent **entre elles** : c'est un dialogue, donc la partie 3.\n\n**Les autres réponses :** partie 2 = une seule question suivie d'une réplique, pas une vraie conversation ; partie 4 = **une seule** personne parle (annonce, exposé) ; partie 6 = un texte écrit à compléter.\n\n**À retenir :** plusieurs voix qui discutent = partie 3 ; une seule voix = partie 4."
       },
       {
         "intitule": "On complète une phrase isolée avec le bon mot.",
@@ -97,7 +106,8 @@
           "Partie 7",
           "Partie 2"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une **phrase seule** avec un trou à remplir (grammaire ou vocabulaire), c'est la **partie 5** du Reading (30 questions).\n\n**Pas à pas :**\n\n1. On complète un écrit : lecture, parties 5 à 7.\n2. Il n'y a qu'**une phrase**, pas un texte entier : partie 5.\n\n**Les autres réponses :** partie 6 = un texte complet avec 4 trous ; partie 7 = des documents à lire puis des questions ; partie 2 = une question à l'écoute.\n\n**À retenir :** une phrase = partie 5, un texte = partie 6, des documents = partie 7."
       },
       {
         "intitule": "On entend une annonce ou un message enregistré.",
@@ -108,7 +118,8 @@
           "Partie 4",
           "Partie 7"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** une **annonce** ou un message enregistré, où **une seule** personne parle, c'est la **partie 4** du Listening (30 questions).\n\n**Pas à pas :**\n\n1. On entend : écoute, parties 1 à 4.\n2. Pas de photo (partie 1), pas de question-réponse (partie 2).\n3. Une seule personne, pas un dialogue : partie 4 et non partie 3.\n\n**Les autres réponses :** partie 1 = photos ; partie 3 = conversation à 2 ou 3 personnes ; partie 7 = documents écrits.\n\n**À retenir :** annonce, message, exposé (une seule voix) = partie 4."
       },
       {
         "intitule": "On lit un ou plusieurs documents (publicité, article, formulaire).",
@@ -119,7 +130,8 @@
           "Partie 7",
           "Partie 4"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** lire un ou plusieurs **documents** (publicité, article, formulaire, e-mail), puis répondre à des questions, c'est la **partie 7**, la dernière du Reading.\n\n**Pas à pas :**\n\n1. On lit : lecture, parties 5 à 7.\n2. On ne complète pas de trous (parties 5 et 6) : on répond à des **questions** sur le document. Réponse : **Partie 7**.\n\n**Les autres réponses :** partie 5 = phrases à trou ; partie 6 = textes à trous ; partie 4 = annonce à l'écoute.\n\n**À retenir :** documents + questions = partie 7."
       }
     ],
     "indices": [
@@ -142,7 +154,8 @@
           "The man is placing a box on a shelf.",
           "The man is driving a forklift."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** en partie 1, la bonne phrase décrit ce qu'on **voit vraiment** : le bon sujet, la bonne action et le bon objet.\n\n**Pas à pas :** la photo montre un homme qui **pose** un carton sur une étagère. On vérifie chaque phrase.\n\n| Phrase | Traduction | Correspond à la photo ? |\n|---|---|---|\n| *The boxes are being loaded onto a truck.* | On charge les cartons dans un camion. | non : il n'y a pas de camion |\n| *The man is leaning against a shelf.* | L'homme s'appuie contre une étagère. | non : il pose un carton, il ne s'appuie pas |\n| *The man is placing a box on a shelf.* | L'homme pose un carton sur une étagère. | **oui** |\n| *The man is driving a forklift.* | L'homme conduit un chariot élévateur. | non : le chariot est garé derrière lui |\n\n**Les pièges :** chaque mauvaise phrase reprend un élément **visible** (les cartons, l'étagère, le chariot) avec une **action fausse**. Ne choisis pas une phrase juste parce qu'elle contient un mot de la photo.\n\n**À retenir :** vérifie sujet, action et objet ; un mot de la photo ne suffit pas."
       },
       {
         "intitule": "Laquelle décrit correctement un **détail secondaire** ?",
@@ -153,7 +166,8 @@
           "The warehouse is empty.",
           "A forklift is parked in the background."
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** la bonne phrase de la partie 1 peut décrire un **détail secondaire** (un objet au fond, une position) plutôt que l'action principale. Elle doit simplement être **vraie**.\n\n**Pas à pas :** on compare chaque phrase avec la scène (un homme pose un carton, un chariot élévateur est **garé** derrière lui).\n\n| Phrase | Traduction | Vrai ? |\n|---|---|---|\n| *A forklift is lifting some boxes.* | Un chariot soulève des cartons. | non : il est garé, il ne fait rien |\n| *The man is taking off his vest.* | L'homme enlève son gilet. | non : il le porte |\n| *The warehouse is empty.* | L'entrepôt est vide. | non : il y a un homme, des cartons, un chariot |\n| *A forklift is parked in the background.* | Un chariot est garé à l'arrière-plan. | **oui** |\n\nVocabulaire utile : *in the background* = à l'arrière-plan ; *parked* = garé ; *forklift* = chariot élévateur.\n\n**Le piège :** chercher seulement l'action de l'homme et rater cette phrase, qui parle d'un détail mais qui est juste.\n\n**À retenir :** observe **tout** sur la photo, pas seulement la personne au centre."
       },
       {
         "intitule": "Pourquoi *The man is leaning against a shelf* est-il un piège ?",
@@ -164,7 +178,8 @@
           "Parce qu'il n'y a pas d'étagère",
           "Parce que la phrase est au passé"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** en partie 1, les phrases sont **entendues** une seule fois. Un mot qui sonne comme un autre peut tromper : on croit entendre une action et on choisit une phrase fausse.\n\n**Pas à pas :**\n\n1. *leaning* (s'appuyer) se prononce presque comme *cleaning* (nettoyer) et ressemble à *leaving* (partir).\n2. À l'oral, on risque de mal comprendre l'action, ou de garder la phrase parce qu'elle contient *shelf*, un objet bien visible.\n3. Or l'homme ne s'appuie pas : il **pose** un carton. La phrase est fausse, mais elle a l'air plausible.\n\n**Les autres réponses :**\n\n- *shelf* (étagère) est bien un mot anglais.\n- Il y a bien une étagère sur la photo : c'est justement ce qui rend la phrase tentante.\n- La phrase est au présent continu (*is leaning*), pas au passé.\n\n**À retenir :** à l'écoute, méfie-toi des mots qui se ressemblent (*leaning / cleaning / leaving*) et vérifie que l'action est vraiment celle de la photo."
       }
     ],
     "indices": [
@@ -187,7 +202,8 @@
           "The pill is on the table.",
           "Yes, the payment arrived this morning."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** en partie 2, la bonne réponse répond au **sens** de la question ; les mauvaises reprennent souvent un **son** de la question.\n\n**Pas à pas :**\n\n1. *Has the client paid the bill yet?* = Le client a-t-il **déjà payé la facture** ? (*bill* = facture).\n2. On attend « oui / non » + une information sur le paiement.\n3. *Yes, the payment arrived this morning.* = Oui, le paiement est arrivé ce matin : ça répond.\n\n**Les autres réponses :**\n\n- *I haven't seen Bill this week.* : *Bill* est ici un prénom, sans rapport avec la facture.\n- *The pill is on the table.* : *pill* (pilule) sonne comme *bill*, mais ça n'a aucun sens ici.\n\n**À retenir :** si une réponse répète un son de la question sans parler du même sujet, c'est presque toujours un piège."
       },
       {
         "intitule": "*When does the training session start?*",
@@ -197,7 +213,8 @@
           "Because the trainer is ill.",
           "In the main conference room."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** le premier mot de la question dit quel **type** de réponse on attend. *When* = quand : il faut un **moment** (une heure, un jour).\n\n**Pas à pas :**\n\n| Réponse | Répond à… |\n|---|---|\n| *At nine o'clock tomorrow.* (à 9 h demain) | **When** (quand) |\n| *Because the trainer is ill.* (parce que le formateur est malade) | *Why* (pourquoi) |\n| *In the main conference room.* (dans la grande salle de réunion) | *Where* (où) |\n\nLa question commence par *When* : la bonne réponse est *At nine o'clock tomorrow*.\n\n**Le piège :** les trois réponses parlent de la formation, mais une seule donne un moment.\n\n**À retenir :** *When* → un moment, *Why* → une raison, *Where* → un lieu."
       },
       {
         "intitule": "*Why was the meeting postponed?*",
@@ -207,7 +224,8 @@
           "The director is still abroad.",
           "Yes, it was."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *Why* = pourquoi : on attend une **raison** (souvent avec ou sans *because*). Une question en *Wh-* ne se répond jamais par *yes* ou *no*.\n\n**Pas à pas :**\n\n1. *Why was the meeting postponed?* = Pourquoi la réunion a-t-elle été reportée ? (*postponed* = reportée à plus tard).\n2. Il faut une raison : *The director is still abroad.* = Le directeur est encore à l'étranger. C'est une raison valable : sans lui, on reporte.\n\n**Les autres réponses :**\n\n- *Next Tuesday, I think.* donne un moment : ça répond à *When*.\n- *Yes, it was.* répond à une question fermée (*Was it postponed?*), pas à *Why*.\n\n**À retenir :** à *Why*, la réponse est une raison, même sans le mot *because*."
       },
       {
         "intitule": "*Would you like some coffee before we begin?*",
@@ -217,7 +235,8 @@
           "Yes, please, with a little milk.",
           "It began at ten."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *Would you like…?* = Voulez-vous… ? C'est une **proposition polie** : on l'accepte (*Yes, please*) ou on la refuse (*No, thank you*).\n\n**Pas à pas :**\n\n1. *Would you like some coffee before we begin?* = Voulez-vous un café avant de commencer ?\n2. *Yes, please, with a little milk.* = Oui, volontiers, avec un peu de lait : on accepte la proposition.\n\n**Les autres réponses :**\n\n- *The coffee machine is new.* (la machine à café est neuve) reprend le mot *coffee* sans accepter ni refuser.\n- *It began at ten.* (ça a commencé à 10 h) reprend *begin* au passé (*began*), mais ne répond pas à la proposition.\n\n**À retenir :** *Would you like…?* → *Yes, please* ou *No, thank you*."
       },
       {
         "intitule": "*You've already sent the contract, haven't you?*",
@@ -227,7 +246,8 @@
           "No, I don't contract.",
           "I sent it yesterday."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** un **question tag** (*…, haven't you?*, *…, isn't it?*) transforme une affirmation en demande de **confirmation**. On répond en confirmant (ou en corrigeant).\n\n**Pas à pas :**\n\n1. *You've already sent the contract, haven't you?* = Tu as déjà envoyé le contrat, n'est-ce pas ?\n2. On attend une confirmation sur l'envoi du contrat.\n3. *I sent it yesterday.* = Je l'ai envoyé hier : ça confirme.\n\n**Les autres réponses :**\n\n- *The contractor is late.* : *contractor* (un entrepreneur, un sous-traitant) sonne comme *contract*, mais parle d'autre chose.\n- *No, I don't contract.* : *contract* est employé comme un verbe (« contracter »), la phrase n'a pas de sens ici.\n\n**À retenir :** à un question tag, réponds sur le fond (oui c'est fait / non pas encore), et écarte les mots qui ressemblent seulement au son."
       }
     ],
     "indices": [
@@ -251,7 +271,8 @@
           "In a hotel",
           "At an airport"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour la question « où ? » (*Where does the conversation take place?*), on cherche les **mots du lieu** dans la conversation.\n\n**Pas à pas :** on relève les indices.\n\n| Mot entendu | Traduction | Lieu |\n|---|---|---|\n| *train ticket* | billet de train | gare |\n| *a train at 7:15* | un train à 7 h 15 | gare |\n| *the café on platform 2* | le café du quai 2 | gare |\n\nTous les indices désignent une **gare** : *At a train station*.\n\n**Les autres réponses :** il n'y a ni avion ni porte d'embarquement (aéroport), ni chambre (hôtel), ni compte (banque). Le paiement par carte ne suffit pas à dire « banque ».\n\n**À retenir :** pour « où ? », additionne les indices de lieu ; un seul mot (comme *pay by card*) ne suffit pas."
       },
       {
         "intitule": "Why does the woman want to change her ticket?",
@@ -262,7 +283,8 @@
           "Her train was cancelled.",
           "She missed her train."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour « pourquoi ? » (*Why…?*), on cherche la phrase qui donne la **raison** ; la bonne réponse la reformule souvent avec d'autres mots.\n\n**Pas à pas :**\n\n1. La femme dit : *my meeting has been moved to the morning* = ma réunion a été déplacée au matin.\n2. Reformulation : l'heure de sa réunion a changé, *Her meeting time has changed*.\n\n**Les autres réponses :**\n\n- *The ticket is too expensive.* : le prix du billet n'est jamais un problème (elle accepte même les frais).\n- *Her train was cancelled.* : rien n'est annulé, c'est elle qui veut changer.\n- *She missed her train.* : son train est à 16 h, elle ne l'a pas raté.\n\n**À retenir :** trouve la phrase qui répond, puis cherche la réponse qui dit **la même chose** avec d'autres mots."
       },
       {
         "intitule": "What does the man say about the change?",
@@ -273,7 +295,8 @@
           "It costs 10 pounds.",
           "It is free."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *fee* = des **frais** (une somme à payer pour un service). *There's a fee of 10 pounds* = il y a des frais de 10 livres.\n\n**Pas à pas :**\n\n1. L'homme dit : *There's a fee of 10 pounds to change the ticket, though.* (*though* en fin de phrase = « par contre »).\n2. Donc changer le billet **coûte 10 livres** : *It costs 10 pounds*.\n\n**Les autres réponses :**\n\n- *It is free.* : faux, il y a des frais.\n- *It is impossible.* : faux, il dit *No problem* et propose un train.\n- *It must be paid in cash.* : faux, elle demande si elle peut payer par carte et il répond *Of course*.\n\n**À retenir :** *a fee of X* = « ça coûte X » ; *though* en fin de phrase = « par contre »."
       },
       {
         "intitule": "What does the man suggest?",
@@ -284,7 +307,8 @@
           "Travelling the next week",
           "Getting a coffee on platform 2"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** une **suggestion** se repère à des tournures comme *if you need…*, *you should…*, *why don't you…?*, *you could…*.\n\n**Pas à pas :**\n\n1. L'homme dit : *if you need a coffee, the café on platform 2 opens at 6:30* = si vous voulez un café, le café du quai 2 ouvre à 6 h 30.\n2. Il lui suggère donc de **prendre un café au quai 2** : *Getting a coffee on platform 2*.\n\n**Les autres réponses :**\n\n- *Taking a taxi* : le taxi n'est jamais cité.\n- *Calling her company* : il ne parle pas de son entreprise.\n- *Travelling the next week* : le train proposé part **le lendemain matin** (*tomorrow morning*), pas la semaine suivante.\n\n**À retenir :** pour « que suggère-t-il ? », cherche *if you…*, *you should…*, *why don't you…*."
       }
     ],
     "indices": [
@@ -308,7 +332,8 @@
           "Bicycles",
           "Books"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** pour « que vend ce commerce ? », on regroupe les **produits** cités dans l'annonce.\n\n**Pas à pas :**\n\n1. *We sell road bikes, electric bikes and all the accessories you need.* = Nous vendons des vélos de route, des vélos électriques et tous les accessoires.\n2. *bike* est le mot courant pour *bicycle* (vélo). Le nom du magasin le confirme : *Fitzroy Cycles*.\n3. Réponse : *Bicycles*.\n\n**Les autres réponses :** pas de vêtements de sport (seuls les casques et accessoires sont cités), pas de voitures, pas de livres.\n\n**À retenir :** la bonne réponse utilise souvent un **synonyme** du texte (*bike* → *bicycle*)."
       },
       {
         "intitule": "What is available until April 15th?",
@@ -319,7 +344,8 @@
           "A longer warranty",
           "A discount on helmets"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *X percent off* = « X % de réduction ». Une réduction se dit *a discount*.\n\n**Pas à pas :**\n\n1. On cherche la date dans l'annonce : *until April 15th, all helmets are 15 percent off*.\n2. Traduction : jusqu'au 15 avril, tous les casques (*helmets*) sont à -15 %.\n3. Reformulation : *A discount on helmets*.\n\n**Les autres réponses :**\n\n- *A free bike* : ce qui est gratuit, c'est le **contrôle** du vélo (*free check-up*), pas un vélo.\n- *Free delivery* et *A longer warranty* (une garantie plus longue) ne sont jamais mentionnés.\n\n**À retenir :** *percent off* = *discount* ; repère la date dans la question pour trouver la bonne phrase."
       },
       {
         "intitule": "What is said about the store in the Riverside Mall?",
@@ -330,12 +356,14 @@
           "It has been expanded.",
           "It has just opened."
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *brand-new* = **tout neuf**. Un magasin *brand-new* vient d'ouvrir.\n\n**Pas à pas :**\n\n1. L'annonce dit : *our brand-new store in the Riverside Mall* = notre tout nouveau magasin du centre commercial Riverside.\n2. Reformulation : *It has just opened.* (il vient d'ouvrir ; *has just* + participe = « vient de »).\n\n**Les autres réponses :**\n\n- *It has been expanded.* (il a été agrandi) : piège, un magasin agrandi existait déjà, il n'est pas neuf.\n- *It is the biggest store.* : la taille n'est pas mentionnée.\n- *It is closed on Sundays.* : les horaires ne sont pas mentionnés.\n\n**À retenir :** *brand-new* = tout neuf = *has just opened* ; *have just* + participe = venir de."
       },
       {
         "intitule": "How many shops does Fitzroy Cycles have? (un nombre)",
         "type": "nombre",
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** pour une question « combien ? » (*How many…?*), on cherche le **nombre** dans le texte, écrit souvent en toutes lettres.\n\n**Pas à pas :**\n\n1. L'annonce dit : *Fitzroy Cycles has three shops in the city* = trois magasins en ville.\n2. *three* = **3**.\n3. Le magasin du Riverside Mall fait partie de ces trois (*including* = dont, y compris) : on ne l'ajoute pas une deuxième fois.\n\n**Erreur fréquente :** répondre 4 en comptant le nouveau magasin en plus, alors que *including* veut dire qu'il est déjà compté.\n\n**À retenir :** *including* = « dont, y compris » : l'élément cité est déjà dans le total."
       }
     ],
     "indices": [
@@ -358,7 +386,8 @@
           "en fait",
           "actuellement"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *actually* est un **faux ami** : il ressemble à « actuellement », mais il veut dire **en fait** (on corrige ou on précise ce qui vient d'être dit).\n\n**Pas à pas :** *She looks young, but actually she's fifty.* = Elle a l'air jeune, mais **en fait** elle a cinquante ans. « Actuellement elle a cinquante ans » ne colle pas avec le *but* qui oppose les deux idées.\n\n**Les autres réponses :**\n\n- « actuellement » : c'est le piège ; il se dit *currently*.\n- « activement » se dit *actively*.\n\n**À retenir :** *actually* = en fait."
       },
       {
         "intitule": "*currently*",
@@ -368,7 +397,8 @@
           "actuellement",
           "couramment"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *currently* = **actuellement**, en ce moment (comme *at the moment*, *now*). C'est le mot à utiliser à la place du faux ami *actually*.\n\n**Pas à pas :** *He is currently working in London.* = Il travaille **actuellement** à Londres (en ce moment, pour l'instant).\n\n**Les autres réponses :**\n\n- « en fait » se dit *actually*.\n- « couramment » (parler une langue) se dit *fluently* : *She speaks English fluently.* Le *current* de *currently* fait penser à « courant », mais c'est un piège.\n\n**À retenir :** actuellement = *currently* ; en fait = *actually*."
       },
       {
         "intitule": "*a delay*",
@@ -378,7 +408,8 @@
           "un délai",
           "un retard"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a delay* est un **faux ami** : il veut dire **un retard**. Un « délai » (date limite pour rendre quelque chose) se dit *a deadline*.\n\n**Pas à pas :** *The flight has a two-hour delay.* = Le vol a **deux heures de retard**. On le retrouve dans le verbe : *The train was delayed* = le train a été retardé.\n\n**Les autres réponses :**\n\n- « un délai » : c'est le piège, il se dit *a deadline* (*The deadline is Friday* = la date limite est vendredi).\n- « une livraison » se dit *a delivery*.\n\n**À retenir :** *delay* = retard ; délai = *deadline*."
       },
       {
         "intitule": "*a library*",
@@ -388,7 +419,8 @@
           "une bibliothèque",
           "une librairie"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *a library* est un lieu où l'on **emprunte** des livres : **une bibliothèque**. Le lieu où l'on **achète** des livres (une librairie) se dit *a bookshop* (*bookstore* en américain).\n\n**Pas à pas :** *I borrowed this novel from the library.* = J'ai emprunté ce roman à la **bibliothèque** (*to borrow* = emprunter : on ne paie pas).\n\n**Les autres réponses :**\n\n- « une librairie » : c'est le piège, elle se dit *a bookshop*.\n- « une liberté » se dit *freedom* ou *liberty*.\n\n**À retenir :** *library* = bibliothèque ; librairie = *bookshop*."
       },
       {
         "intitule": "*sensible*",
@@ -398,7 +430,8 @@
           "sensuel",
           "sensible"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *sensible* en anglais veut dire **raisonnable**, plein de bon sens. Le « sensible » français (qui ressent fort, fragile) se dit *sensitive*.\n\n**Pas à pas :** *Taking an umbrella is a sensible idea.* = Prendre un parapluie est une idée **raisonnable**. Une idée ne peut pas être « sensible » au sens français.\n\n**Les autres réponses :**\n\n- « sensible » : c'est le piège, il se dit *sensitive* (*sensitive skin* = peau sensible).\n- « sensuel » se dit *sensual*.\n\n**À retenir :** *sensible* = raisonnable ; sensible = *sensitive*."
       },
       {
         "intitule": "*a location*",
@@ -408,7 +441,8 @@
           "une location",
           "un emplacement"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *a location* veut dire **un emplacement**, un endroit. La « location » française (louer quelque chose) se dit *a rental* (*to rent* = louer).\n\n**Pas à pas :** *The new office has a great location, near the station.* = Le nouveau bureau a un très bon **emplacement**, près de la gare.\n\n**Les autres réponses :**\n\n- « une location » : c'est le piège, elle se dit *a rental* (*a car rental* = une location de voiture).\n- « une localité » (une petite ville) se dit *a town*, *a village* ou *a locality*.\n\n**À retenir :** *location* = emplacement ; location = *rental*."
       },
       {
         "intitule": "*to demand*",
@@ -418,7 +452,8 @@
           "démontrer",
           "exiger"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *to demand* veut dire **exiger** : c'est beaucoup plus fort que « demander ». « Demander » se dit *to ask*.\n\n**Pas à pas :** *The customer demanded a refund.* = Le client **a exigé** un remboursement (il ne l'a pas demandé gentiment, il l'a réclamé).\n\n**Les autres réponses :**\n\n- « demander » : c'est le piège, il se dit *to ask* (*to ask for a refund* = demander un remboursement).\n- « démontrer » se dit *to demonstrate* ou *to show*.\n\n**À retenir :** *to demand* = exiger ; demander = *to ask*."
       },
       {
         "intitule": "*a journey*",
@@ -428,7 +463,8 @@
           "un journal",
           "une journée"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *a journey* veut dire **un trajet**, un voyage (le fait d'aller d'un endroit à un autre). « Une journée » se dit *a day*.\n\n**Pas à pas :** *The journey from Paris to Lyon takes two hours.* = Le **trajet** de Paris à Lyon dure deux heures. On parle bien d'un déplacement, pas d'un jour.\n\n**Les autres réponses :**\n\n- « une journée » : c'est le piège, elle se dit *a day*.\n- « un journal » se dit *a newspaper* (ou *a journal* pour une revue spécialisée).\n\n**À retenir :** *journey* = trajet ; journée = *day*."
       }
     ],
     "indices": [
@@ -451,7 +487,8 @@
         ],
         "refuses": [
           "currently"
-        ]
+        ],
+        "explication": "**Règle :** « en fait » se dit *actually*, ou *in fact*. On les met souvent en début de phrase pour corriger une idée.\n\n**Pas à pas :** « En fait, je ne viens pas » → *Actually, I'm not coming.* / *In fact, I'm not coming.* Réponses acceptées : *actually*, *in fact*.\n\n**Erreur fréquente :** écrire *currently*, qui veut dire « actuellement » : c'est le faux ami dans l'autre sens.\n\n**À retenir :** en fait = *actually* (ou *in fact*)."
       },
       {
         "intitule": "actuellement",
@@ -465,7 +502,8 @@
         ],
         "refuses": [
           "actually"
-        ]
+        ],
+        "explication": "**Règle :** « actuellement » (en ce moment) se dit *currently*. Synonymes acceptés : *at the moment*, *at present*, *presently*, *now*.\n\n**Pas à pas :** « Actuellement, nous recrutons » → *We are currently hiring.* (ou *At the moment, we are hiring.*).\n\n**Erreur fréquente :** écrire *actually*, qui ressemble à « actuellement » mais veut dire « en fait ». C'est justement le faux ami à éviter.\n\n**À retenir :** actuellement = *currently*, jamais *actually*."
       },
       {
         "intitule": "une librairie",
@@ -479,7 +517,8 @@
         "refuses": [
           "library",
           "a library"
-        ]
+        ],
+        "explication": "**Règle :** une librairie (où l'on **achète** des livres) se dit *a bookshop* en anglais britannique, *a bookstore* en américain. Les deux sont acceptés, avec ou sans *a*.\n\n**Pas à pas :** *book* (livre) + *shop* (magasin) = le magasin de livres. C'est logique mot à mot.\n\n**Erreur fréquente :** écrire *a library*, qui ressemble à « librairie » mais veut dire **bibliothèque** (où l'on emprunte les livres gratuitement).\n\n**À retenir :** librairie = *bookshop* / *bookstore* ; *library* = bibliothèque."
       },
       {
         "intitule": "assister à (une réunion)",
@@ -491,7 +530,8 @@
         "refuses": [
           "assist",
           "to assist"
-        ]
+        ],
+        "explication": "**Règle :** « assister à » (être présent à une réunion, un cours, un événement) se dit *to attend*, directement suivi du nom, **sans** préposition.\n\n**Pas à pas :** « assister à une réunion » → *to attend a meeting* (pas *attend to*, ni *attend at*). Réponses acceptées : *attend*, *to attend*.\n\n**Erreur fréquente :** écrire *to assist*, qui ressemble à « assister » mais veut dire **aider**.\n\n**À retenir :** assister à = *to attend* ; *to assist* = aider."
       },
       {
         "intitule": "aider",
@@ -501,7 +541,8 @@
           "to help",
           "assist",
           "to assist"
-        ]
+        ],
+        "explication": "**Règle :** « aider » se dit *to help* (courant) ou *to assist* (plus formel, au travail). Ici, *assist* n'est **pas** un piège : c'est son vrai sens.\n\n**Pas à pas :** *Can I help you?* = Puis-je vous aider ? - *An assistant assists the manager.* = Un assistant aide le responsable. Réponses acceptées : *help*, *to help*, *assist*, *to assist*.\n\n**Erreur fréquente :** croire que *assist* est toujours faux parce qu'il est faux pour « assister à ». Il est faux pour « être présent », mais juste pour « aider ».\n\n**À retenir :** *to assist* = aider (et non assister à)."
       },
       {
         "intitule": "supposer",
@@ -511,7 +552,8 @@
           "to assume",
           "suppose",
           "to suppose"
-        ]
+        ],
+        "explication": "**Règle :** « supposer » se dit *to assume* (ou *to suppose*). *to assume* est un faux ami : il ne veut **pas** dire « assumer ».\n\n**Pas à pas :** *I assume you're tired after the trip.* = Je **suppose** que tu es fatigué après le voyage. Réponses acceptées : *assume*, *to assume*, *suppose*, *to suppose*.\n\n**Erreur fréquente :** réserver *to assume* pour traduire « assumer » ; « assumer (une responsabilité) » se dit *to take responsibility*.\n\n**À retenir :** *to assume* = supposer ; assumer = *to take responsibility*."
       },
       {
         "intitule": "tromper (quelqu'un)",
@@ -523,7 +565,8 @@
           "to trick",
           "fool",
           "to fool"
-        ]
+        ],
+        "explication": "**Règle :** « tromper quelqu'un » (lui mentir, le duper) se dit *to deceive*. Synonymes plus familiers acceptés : *to trick*, *to fool*.\n\n**Pas à pas :** *The advert deceived customers about the price.* = La publicité **a trompé** les clients sur le prix. Réponses acceptées : *deceive*, *trick*, *fool*, avec ou sans *to*.\n\n**Erreur fréquente :** croire que *to deceive* veut dire « décevoir » parce qu'il lui ressemble ; « décevoir » se dit *to disappoint*.\n\n**À retenir :** *to deceive* = tromper ; décevoir = *to disappoint*."
       },
       {
         "intitule": "décevoir",
@@ -535,7 +578,8 @@
         "refuses": [
           "deceive",
           "to deceive"
-        ]
+        ],
+        "explication": "**Règle :** « décevoir » se dit *to disappoint*. « Déçu » se dit *disappointed*, « décevant » *disappointing*.\n\n**Pas à pas :** *The results disappointed the team.* = Les résultats **ont déçu** l'équipe. - *I'm disappointed.* = Je suis déçu. Réponses acceptées : *disappoint*, *to disappoint*.\n\n**Erreur fréquente :** écrire *to deceive*, qui ressemble à « décevoir » mais veut dire **tromper**.\n\n**À retenir :** décevoir = *to disappoint* ; *to deceive* = tromper."
       }
     ],
     "indices": [
@@ -558,7 +602,8 @@
           "comprehensive",
           "complimentary"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** deux mots se prononcent pareil mais s'écrivent différemment : *complimentary* (avec un **i**) = **gratuit, offert** ; *complementary* (avec un **e**) = complémentaire.\n\n**Pas à pas :**\n\n1. L'indice entre parenthèses dit « gratuit » : un petit-déjeuner offert à tous les clients.\n2. Gratuit = *complimentary* (avec un i) : *a complimentary breakfast*.\n\n**Les autres réponses :**\n\n- *complementary* (avec un e) veut dire « complémentaire » : un petit-déjeuner « complémentaire » n'a pas de sens.\n- *comprehensive* veut dire « complet, détaillé » (*a comprehensive report*).\n\n**À retenir :** *compl**i**mentary* = gratuit (pense à « compl**i**ment » : c'est un cadeau) ; *compl**e**mentary* = complémentaire."
       },
       {
         "intitule": "*Over 200 people ...... the conference last week.*",
@@ -568,7 +613,8 @@
           "waited",
           "assisted"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** « assister à » (être présent) se dit *to attend*, suivi directement du nom : *to attend a conference*.\n\n**Pas à pas :**\n\n1. Le sens : plus de 200 personnes **étaient présentes** à la conférence la semaine dernière.\n2. *last week* impose le passé : *attended*.\n3. Phrase : *Over 200 people attended the conference last week.*\n\n**Les autres réponses :**\n\n- *assisted* : faux ami, veut dire « ont aidé ».\n- *waited* (ont attendu) n'a pas le bon sens, et demanderait de toute façon *for* (*to wait for something*).\n\n**À retenir :** assister à = *to attend* (sans préposition)."
       },
       {
         "intitule": "*The music was so loud that I could ...... hear her.*",
@@ -578,7 +624,8 @@
           "harder",
           "hard"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *hardly* = **à peine**, presque pas. Ce n'est **pas** l'adverbe de *hard* : *hard* veut dire « dur » ou « durement » (*to work hard* = travailler dur).\n\n**Pas à pas :**\n\n1. Le sens : la musique était si forte que je l'entendais **à peine**.\n2. « à peine » = *hardly* : *I could hardly hear her.*\n\n**Les autres réponses :**\n\n- *hard* : « je pouvais l'entendre durement » n'a pas de sens.\n- *harder* (plus dur) est le comparatif de *hard*, même problème.\n\n**À retenir :** *hardly* = à peine ; *hard* = dur, durement."
       },
       {
         "intitule": "*The report is very ......: it covers every aspect of the project.*",
@@ -588,7 +635,8 @@
           "comprehensive",
           "comprehensible"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *comprehensive* est un faux ami : il veut dire **complet, détaillé** (qui couvre tout). « Compréhensif » (qui comprend les autres) se dit *understanding*.\n\n**Pas à pas :**\n\n1. L'indice après les deux-points : *it covers every aspect of the project* = il couvre tous les aspects du projet.\n2. Un rapport qui couvre tout est **complet** : *comprehensive*.\n\n**Les autres réponses :**\n\n- *understanding* veut dire « compréhensif » : il s'emploie pour une **personne** (*an understanding boss*), pas pour un rapport.\n- *comprehensible* veut dire « compréhensible » (facile à comprendre) : ça ne correspond pas à l'indice « couvre tous les aspects ».\n\n**À retenir :** *comprehensive* = complet ; compréhensif = *understanding*."
       },
       {
         "intitule": "*After three hours in traffic, we ...... arrived at the airport.*",
@@ -598,7 +646,8 @@
           "eventually",
           "possibly"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *eventually* = **finalement**, au bout du compte, après une attente. C'est un faux ami : « éventuellement » (peut-être) se dit *possibly*.\n\n**Pas à pas :**\n\n1. Le sens : après trois heures dans les bouchons, nous sommes **finalement** arrivés à l'aéroport.\n2. Après une longue attente, « finalement » = *eventually*.\n\n**Les autres réponses :**\n\n- *actually* (en fait) ne correspond pas à l'idée d'attente.\n- *possibly* (peut-être) ne va pas avec un fait sûr au passé : ils sont bien arrivés.\n\n**À retenir :** *eventually* = finalement ; éventuellement = *possibly*."
       },
       {
         "intitule": "*She ...... her exam with a very good mark.* (réussir)",
@@ -608,7 +657,8 @@
           "spent",
           "passed"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** **réussir** un examen se dit *to pass an exam*. **Passer** un examen (s'y présenter, sans dire le résultat) se dit *to take an exam*.\n\n**Pas à pas :**\n\n1. L'indice entre parenthèses dit « réussir ».\n2. Elle l'a réussi **avec une très bonne note** (*with a very good mark*) : *She passed her exam.*\n\n**Les autres réponses :**\n\n- *took* (de *to take*) veut dire « a passé » : elle s'est présentée, mais la phrase ne dirait pas qu'elle a réussi. Ici, l'indice demande « réussir ».\n- *spent* (a passé **du temps**) s'emploie avec une durée (*spent two hours*), pas avec *exam*.\n\n**À retenir :** *to pass an exam* = réussir ; *to take an exam* = passer."
       }
     ],
     "indices": [
@@ -631,7 +681,8 @@
           "ajouter",
           "illustrer"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *moreover* = **de plus**, en outre. Il **ajoute** un argument qui va dans le même sens que le précédent.\n\n**Pas à pas :** *The hotel is cheap. Moreover, it's close to the station.* = L'hôtel est bon marché. **De plus**, il est près de la gare : deux avantages qui s'ajoutent.\n\n**Les autres réponses :**\n\n- « opposer » : *moreover* ne dit pas le contraire de ce qui précède (ce serait *however*, *whereas*).\n- « illustrer » : il ne donne pas d'exemple (ce serait *for example*).\n\n**À retenir :** *moreover* = de plus = ajouter (comme *furthermore*, *in addition*)."
       },
       {
         "intitule": "*therefore*",
@@ -641,7 +692,8 @@
           "ordonner",
           "comparer"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *therefore* = **par conséquent**, donc. Il introduit une **conséquence** de ce qui vient d'être dit.\n\n**Pas à pas :** *The printer is broken; therefore, we can't print the report.* = L'imprimante est cassée, **donc** on ne peut pas imprimer le rapport.\n\n**Les autres réponses :**\n\n- « ordonner » : il ne range pas des étapes dans le temps (ce serait *first*, *then*, *finally*).\n- « comparer » : il ne dit pas que deux choses se ressemblent (ce serait *likewise*, *similarly*).\n\n**À retenir :** *therefore* = conséquence (comme *so*, *thus*, *consequently*)."
       },
       {
         "intitule": "*for instance*",
@@ -651,7 +703,8 @@
           "insister",
           "illustrer"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *for instance* = **par exemple**, exactement comme *for example*. Il sert à **illustrer** une idée.\n\n**Pas à pas :** *We offer many drinks, for instance tea, coffee and juice.* = Nous proposons beaucoup de boissons, **par exemple** du thé, du café et du jus.\n\n**Les autres réponses :**\n\n- « ajouter » : il ne donne pas un nouvel argument, il montre des cas de l'idée déjà dite.\n- « insister » : il ne met pas un point en avant (ce serait *above all*, *especially*).\n\n**À retenir :** *for instance* = *for example* = illustrer."
       },
       {
         "intitule": "*whereas*",
@@ -661,7 +714,8 @@
           "opposer",
           "ajouter"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *whereas* = **alors que** (au sens d'opposition). Il met deux faits **opposés** côte à côte.\n\n**Pas à pas :** *My manager prefers e-mails, whereas I prefer phone calls.* = Mon responsable préfère les e-mails, **alors que** je préfère le téléphone : deux préférences contraires.\n\n**Les autres réponses :**\n\n- « ordonner » : *whereas* ne parle pas d'ordre dans le temps (attention, le « alors que » de temps, « pendant que », se dirait *while*).\n- « ajouter » : il ne dit pas « de plus », il oppose.\n\n**À retenir :** *whereas* = alors que = opposer."
       },
       {
         "intitule": "*meanwhile*",
@@ -671,7 +725,8 @@
           "ordonner (pendant ce temps)",
           "insister"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *meanwhile* = **pendant ce temps**, entre-temps. Il situe un événement **dans le temps** par rapport à un autre : il sert à **ordonner** un récit.\n\n**Pas à pas :** *I prepared the slides. Meanwhile, my colleague booked the room.* = J'ai préparé les diapos. **Pendant ce temps**, ma collègue a réservé la salle : deux actions placées l'une par rapport à l'autre.\n\n**Les autres réponses :**\n\n- « cause » : *meanwhile* ne dit pas pourquoi une chose arrive.\n- « insister » : il ne met rien en avant.\n\n**À retenir :** *meanwhile* = pendant ce temps = ordonner, comme *first*, *then*, *finally*."
       },
       {
         "intitule": "*likewise*",
@@ -681,7 +736,8 @@
           "opposer",
           "conséquence"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *likewise* = **de même**, de la même façon. Il **compare** deux choses qui se ressemblent.\n\n**Pas à pas :** *Paul was very helpful. Likewise, his team answered all our questions.* = Paul a été très serviable. **De même**, son équipe a répondu à toutes nos questions : deux comportements semblables.\n\n**Les autres réponses :**\n\n- « opposer » : c'est le contraire, *likewise* montre une **ressemblance**.\n- « conséquence » : la deuxième idée n'est pas causée par la première.\n\n**À retenir :** *likewise* = de même = comparer (comme *similarly*, *in the same way*)."
       },
       {
         "intitule": "*above all*",
@@ -691,7 +747,8 @@
           "illustrer",
           "nuancer"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *above all* = **surtout**, avant tout. Il sert à **insister** sur le point le plus important.\n\n**Pas à pas :** *Be polite, be on time and, above all, listen to the customer.* = Sois poli, sois à l'heure et, **surtout**, écoute le client : le dernier point est mis en avant.\n\n**Les autres réponses :**\n\n- « illustrer » : il ne donne pas d'exemple.\n- « nuancer » : il ne limite pas l'idée (ce serait *however*, *although*), il la renforce.\n\n**À retenir :** *above all* = surtout = insister (comme *especially*, *in particular*)."
       }
     ],
     "indices": [
@@ -714,7 +771,8 @@
           "unless",
           "although"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Méthode :** trouve le **lien logique** entre les deux morceaux, puis le mot qui l'exprime.\n\n**Pas à pas :**\n\n1. Morceau 1 : *The hotel was fully booked* = l'hôtel était complet.\n2. Morceau 2 : *we stayed somewhere else* = on a dormi ailleurs.\n3. Lien : l'hôtel complet est la **cause**, dormir ailleurs est la **conséquence** (« donc »).\n4. Mot de conséquence : *therefore*. Le point-virgule puis la virgule (*; therefore,*) sont la construction normale.\n\n**Les autres réponses :**\n\n- *whereas* (alors que) oppose deux faits, il n'y a pas d'opposition ici.\n- *unless* (à moins que) pose une condition : « à moins que l'hôtel soit complet » ne colle pas.\n- *although* (bien que) dirait le contraire de la logique : « bien que l'hôtel soit complet, on a dormi ailleurs ».\n\n**À retenir :** cause → conséquence = *therefore* (*so*, *thus*)."
       },
       {
         "intitule": "*...... it was raining, the outdoor event went ahead.*",
@@ -725,7 +783,8 @@
           "Although",
           "Because of"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Méthode :** trouve le sens, puis regarde **ce qui suit** le trou (sujet + verbe, ou nom / -ing).\n\n**Pas à pas :**\n\n1. Le sens : « …… il pleuvait, l'événement en plein air a eu lieu » : on s'attendait à une annulation, c'est une opposition, « **bien que** ».\n2. Après le trou : *it was raining*, un **sujet** (*it*) et un **verbe** (*was raining*).\n3. « bien que » + sujet + verbe = *Although*.\n\n**Les autres réponses :**\n\n- *Despite* a le bon sens, mais demande un nom : il faudrait *Despite the rain*.\n- *Because of* (à cause de) a le mauvais sens et demande aussi un nom.\n- *Instead of* (au lieu de) n'a pas de sens ici et demande un nom ou un -ing.\n\n**À retenir :** *although* + sujet + verbe ; *despite* + nom."
       },
       {
         "intitule": "*Sales increased in Europe, ...... they fell in Asia.*",
@@ -736,7 +795,8 @@
           "moreover",
           "so"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Méthode :** compare les deux faits : vont-ils dans le même sens, ou en sens contraire ?\n\n**Pas à pas :**\n\n1. Fait 1 : *Sales increased in Europe* = les ventes ont augmenté en Europe.\n2. Fait 2 : *they fell in Asia* = elles ont baissé en Asie.\n3. Augmenter / baisser : deux faits **opposés**, « **alors que** » = *whereas*.\n\n**Les autres réponses :**\n\n- *unless* (à moins que) exprime une condition.\n- *moreover* (de plus) ajoute une idée **dans le même sens**.\n- *so* (donc) introduit une conséquence : la baisse en Asie n'est pas causée par la hausse en Europe.\n\n**À retenir :** deux faits contraires côte à côte = *whereas*."
       },
       {
         "intitule": "*You cannot enter the building ...... you have a badge.*",
@@ -747,7 +807,8 @@
           "unless",
           "moreover"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *unless* = « **à moins que** », c'est-à-dire *if… not* (« si… ne… pas »).\n\n**Pas à pas :**\n\n1. Le sens : on ne peut pas entrer dans le bâtiment **si on n'a pas** de badge.\n2. *if you don't have a badge* = *unless you have a badge*.\n3. Phrase : *You cannot enter the building unless you have a badge.*\n\n**Les autres réponses :**\n\n- *whereas* (alors que) oppose deux faits : il n'y a pas d'opposition.\n- *therefore* (donc) : avoir un badge n'est pas la conséquence de ne pas pouvoir entrer.\n- *moreover* (de plus) ajoute une idée.\n\n**À retenir :** *unless* = *if… not* = à moins que."
       },
       {
         "intitule": "*...... calling the supplier, please send them an e-mail.*",
@@ -758,7 +819,8 @@
           "Unless",
           "Instead of"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Méthode :** regarde la forme du mot qui suit le trou.\n\n**Pas à pas :**\n\n1. Après le trou : *calling*, un verbe en **-ing**, sans sujet.\n2. Le sens : « **Au lieu d'**appeler le fournisseur, envoie-lui un e-mail ».\n3. *Instead of* + -ing : *Instead of calling the supplier, please send them an e-mail.*\n\n**Les autres réponses :** *Whereas*, *Although* et *Unless* doivent être suivis d'un **sujet + verbe** (*Although you called…*), jamais d'un -ing seul. Et leur sens (alors que, bien que, à moins que) ne va pas ici.\n\n**À retenir :** *instead of* + nom ou -ing = au lieu de."
       },
       {
         "intitule": "*The new software is faster. ......, it is cheaper.*",
@@ -769,7 +831,8 @@
           "Unless",
           "Whereas"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Méthode :** les deux idées vont-elles dans le même sens ?\n\n**Pas à pas :**\n\n1. Idée 1 : *The new software is faster* = le nouveau logiciel est plus rapide (un avantage).\n2. Idée 2 : *it is cheaper* = il est moins cher (un autre avantage).\n3. Deux avantages qui s'**ajoutent** : « **de plus** » = *Moreover*.\n\n**Les autres réponses :**\n\n- *Otherwise* (sinon) annonce ce qui arrive si on ne fait pas quelque chose.\n- *Unless* (à moins que) pose une condition et demande un sujet + verbe juste après.\n- *Whereas* (alors que) oppose deux faits : ici, rien ne s'oppose.\n\n**À retenir :** deux arguments dans le même sens = *moreover*."
       },
       {
         "intitule": "*Please confirm your booking today; ......, the room will be released.*",
@@ -780,7 +843,8 @@
           "likewise",
           "although"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *otherwise* = **sinon**, dans le cas contraire. Il annonce ce qui va se passer **si on ne fait pas** ce qui vient d'être demandé.\n\n**Pas à pas :**\n\n1. Idée 1 : *Please confirm your booking today* = merci de confirmer votre réservation aujourd'hui.\n2. Idée 2 : *the room will be released* = la chambre sera remise en vente.\n3. Lien : si vous ne confirmez pas, la chambre est libérée : « **sinon** » = *otherwise*.\n\n**Les autres réponses :**\n\n- *moreover* (de plus) ajoute une idée dans le même sens : ce n'est pas un avantage.\n- *likewise* (de même) compare deux choses semblables.\n- *although* (bien que) n'a pas le bon sens.\n\n**À retenir :** une consigne suivie de sa menace = *otherwise* (sinon)."
       }
     ],
     "indices": [
@@ -806,7 +870,8 @@
           "besides",
           "what is more",
           "what's more"
-        ]
+        ],
+        "explication": "**Règle :** « de plus » (ajouter un argument) se dit *moreover*. Synonymes acceptés : *furthermore*, *in addition*, *additionally*, *besides*, *what is more* / *what's more*.\n\n**Pas à pas :** « Le loyer est bas. De plus, le quartier est calme. » → *The rent is low. Moreover, the area is quiet.* On met le mot en début de phrase, suivi d'une virgule.\n\n**Erreur fréquente :** écrire *more* tout seul (« plus ») ou *plus* : ce n'est pas un mot de liaison en anglais.\n\n**À retenir :** de plus = *moreover* (*furthermore*, *in addition*)."
       },
       {
         "intitule": "bien que",
@@ -815,14 +880,16 @@
           "although",
           "even though",
           "though"
-        ]
+        ],
+        "explication": "**Règle :** « bien que » se dit *although* (aussi *even though*, *though*). Il est suivi d'un **sujet + verbe**, au mode normal : pas de subjonctif en anglais.\n\n**Pas à pas :** « Bien qu'il soit malade, il travaille » → *Although he is ill, he works.* Le « soit » français devient un simple *is*.\n\n**Erreur fréquente :** écrire *despite* : il veut dire « malgré » et se construit avec un nom (*despite his illness*), pas avec une phrase.\n\n**À retenir :** bien que = *although* + sujet + verbe."
       },
       {
         "intitule": "à moins que",
         "type": "texte",
         "reponse": [
           "unless"
-        ]
+        ],
+        "explication": "**Règle :** « à moins que » se dit *unless*, et c'est la seule réponse attendue. *unless* a le sens de *if… not* (« si… ne… pas »).\n\n**Pas à pas :** « Nous partirons à 8 h, à moins qu'il ne neige » → *We'll leave at 8 unless it snows.* = nous partirons à 8 h **s'il ne neige pas**.\n\n**Erreur fréquente :** écrire *except* (« sauf ») : il se met devant un nom (*except Monday*), pas devant une phrase avec un verbe.\n\n**À retenir :** à moins que = *unless* = *if… not*."
       },
       {
         "intitule": "alors que (opposition)",
@@ -831,7 +898,8 @@
           "whereas",
           "while",
           "whilst"
-        ]
+        ],
+        "explication": "**Règle :** « alors que » au sens d'**opposition** se dit *whereas*. Synonymes acceptés : *while*, *whilst* (britannique).\n\n**Pas à pas :** « Je travaille le matin, alors que mon frère travaille la nuit » → *I work in the morning, whereas my brother works at night.*\n\n**Attention :** *while* a deux sens, « alors que » (opposition) et « pendant que » (temps). *whereas* n'a que le sens d'opposition, c'est le plus sûr.\n\n**À retenir :** alors que (opposition) = *whereas* (*while*)."
       },
       {
         "intitule": "sinon",
@@ -839,7 +907,8 @@
         "reponse": [
           "otherwise",
           "or else"
-        ]
+        ],
+        "explication": "**Règle :** « sinon » (dans le cas contraire) se dit *otherwise*, ou *or else*. Il annonce ce qui arrive si on ne fait pas l'action.\n\n**Pas à pas :** « Prends ta veste, sinon tu auras froid » → *Take your jacket, otherwise you'll be cold.* (ou *or else you'll be cold*).\n\n**Erreur fréquente :** écrire *unless* (à moins que) : il pose une condition **avant** la conséquence (*Unless you take your jacket, you'll be cold*), alors que *otherwise* vient **après** la consigne.\n\n**À retenir :** sinon = *otherwise* (*or else*)."
       },
       {
         "intitule": "contrairement à",
@@ -847,7 +916,8 @@
         "reponse": [
           "unlike",
           "contrary to"
-        ]
+        ],
+        "explication": "**Règle :** « contrairement à » se dit *unlike* (ou *contrary to*), suivi d'un **nom** ou d'un pronom.\n\n**Pas à pas :** « Contrairement à sa sœur, elle adore voyager » → *Unlike her sister, she loves travelling.* *her sister* est un nom : la construction est correcte.\n\n**Erreur fréquente :** écrire *whereas* : le sens est proche (opposition), mais *whereas* demande un sujet + verbe, alors que « contrairement à » est suivi d'un nom.\n\n**À retenir :** contrairement à = *unlike* + nom."
       },
       {
         "intitule": "par conséquent",
@@ -859,7 +929,8 @@
           "thus",
           "hence",
           "as a consequence"
-        ]
+        ],
+        "explication": "**Règle :** « par conséquent » se dit *therefore*. Synonymes acceptés : *consequently*, *as a result*, *thus*, *hence*, *as a consequence*.\n\n**Pas à pas :** « Les conducteurs de train sont en grève. Par conséquent, la réunion est annulée. » → *The train drivers are on strike. Therefore, the meeting is cancelled.*\n\n**Erreur fréquente :** écrire *because* : il donne la **cause** (« parce que »), pas la conséquence. On dirait *The meeting is cancelled because there's a strike.*\n\n**À retenir :** par conséquent = *therefore* (*consequently*, *as a result*)."
       }
     ],
     "indices": [
@@ -881,7 +952,8 @@
           "fee",
           "rate"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** demande-toi **ce qu'on paie**. Un trajet en transport = *fare* ; un taux ou un tarif d'hôtel = *rate* ; des frais ou honoraires = *fee*.\n\n**Pas à pas :**\n\n1. *The bus ......* : on parle du prix pour **voyager en bus**.\n2. Un trajet en transport (bus, train, taxi, avion) = *fare*.\n3. Phrase : *The bus fare has gone up to 2 euros.* (le prix du ticket de bus est passé à 2 euros).\n\n**Les autres réponses :** *fee* = frais administratifs ou honoraires (pas un ticket de bus) ; *rate* = taux ou tarif d'hôtel.\n\n**À retenir :** transport = *fare*."
       },
       {
         "intitule": "*The hotel's weekend ...... includes breakfast.*",
@@ -891,7 +963,8 @@
           "fare",
           "rate"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** le tarif d'une **chambre d'hôtel** se dit *rate* (*room rate*, *weekend rate*, *daily rate*).\n\n**Pas à pas :**\n\n1. *The hotel's weekend ......* : le prix de l'hôtel pour le week-end.\n2. Hôtel = *rate*.\n3. Phrase : *The hotel's weekend rate includes breakfast.* (le tarif week-end de l'hôtel comprend le petit-déjeuner).\n\n**Les autres réponses :** *fee* = frais ou honoraires ; *fare* = prix d'un **trajet**, et on ne voyage pas dans un hôtel.\n\n**À retenir :** hôtel ou taux = *rate*."
       },
       {
         "intitule": "*The lawyer's ...... was very high.*",
@@ -901,7 +974,8 @@
           "fare",
           "fee"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** ce que l'on paie à un professionnel (avocat, médecin, consultant) pour son travail s'appelle des **honoraires** : *fee* (ou *fees*).\n\n**Pas à pas :**\n\n1. *The lawyer's ......* : ce que l'avocat (*lawyer*) fait payer.\n2. Honoraires = *fee*.\n3. Phrase : *The lawyer's fee was very high.* (les honoraires de l'avocat étaient très élevés).\n\n**Les autres réponses :** *rate* = un taux (même si on peut parler du *hourly rate* d'un avocat, « tarif horaire », il faudrait alors le mot *hourly*) ; *fare* = prix d'un trajet.\n\n**À retenir :** honoraires, frais = *fee*."
       },
       {
         "intitule": "*The bank has lowered its interest ......*",
@@ -911,7 +985,8 @@
           "fees",
           "rates"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** « taux d'intérêt » se dit *interest rate* : *rate* = **taux**.\n\n**Pas à pas :**\n\n1. *The bank has lowered its interest ......* : la banque a baissé son taux d'intérêt.\n2. Taux = *rate*, ici au pluriel *rates* (la banque a plusieurs taux).\n3. Phrase : *The bank has lowered its interest rates.*\n\n**Les autres réponses :** *fares* = prix de trajets ; *fees* = frais (une banque a des frais, *bank fees*, mais pas des « frais d'intérêt »).\n\n**À retenir :** *interest rate* = taux d'intérêt."
       },
       {
         "intitule": "*There is a registration ...... of 50 dollars for the conference.*",
@@ -921,7 +996,8 @@
           "fare",
           "fee"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** des **frais d'inscription** se disent *a registration fee* : *fee* s'emploie pour les frais, droits d'entrée et inscriptions.\n\n**Pas à pas :**\n\n1. *There is a registration ...... of 50 dollars* : il faut payer 50 dollars pour s'inscrire à la conférence.\n2. Frais d'inscription = *registration fee*.\n\n**Les autres réponses :** *rate* = taux ou tarif d'hôtel ; *fare* = prix d'un trajet : on ne voyage pas, on s'inscrit.\n\n**À retenir :** inscription, entrée, service = *fee*."
       },
       {
         "intitule": "*The taxi driver asked for the ...... at the end of the ride.*",
@@ -931,7 +1007,8 @@
           "fare",
           "rate"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** le prix d'une **course de taxi** est un prix de transport : *fare* (*taxi fare*).\n\n**Pas à pas :**\n\n1. *The taxi driver asked for the ...... at the end of the ride* : à la fin de la course (*ride*), le chauffeur demande le prix.\n2. Taxi = transport = *fare*.\n\n**Les autres réponses :** *fee* = des frais administratifs ou des honoraires, pas le prix du trajet ; *rate* = un taux.\n\n**À retenir :** bus, train, taxi, avion = *fare*."
       }
     ],
     "indices": [
@@ -953,7 +1030,8 @@
           "economical",
           "economic"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** deux questions : quelle **nature** de mot (nom ou adjectif) ? quel **sens** ?\n\n- *economic* (adj.) = lié à l'économie ; *economical* (adj.) = qui fait économiser ;\n- *economy* (nom) = l'économie d'un pays ; *economics* (nom) = la science économique.\n\n**Pas à pas :**\n\n1. *strong ...... growth* : le trou est entre un adjectif et un nom, il faut un **adjectif** : *economic* ou *economical*.\n2. Le sens : la croissance (*growth*) **de l'économie** du pays, pas une croissance « qui fait économiser ».\n3. Donc *economic growth* = la croissance économique.\n\n**Les autres réponses :** *economical* = qui fait économiser (une voiture, un appareil) ; *economics* est un nom (la matière qu'on étudie).\n\n**À retenir :** croissance, crise, politique **de l'économie** = *economic*."
       },
       {
         "intitule": "*Buying in bulk is more ...... for small shops.*",
@@ -963,7 +1041,8 @@
           "economic",
           "economical"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *economical* = qui **fait économiser** de l'argent, de l'énergie. *economic* = lié à l'économie en général.\n\n**Pas à pas :**\n\n1. *Buying in bulk is more ......* : après *is more*, il faut un **adjectif** (comparatif « plus … »). On élimine le nom *economy*.\n2. Le sens : acheter en gros (*in bulk*) revient **moins cher** pour les petits magasins : ça fait économiser.\n3. Donc *economical*.\n\n**Les autres réponses :** *economic* parle de l'économie d'un pays, pas d'un achat qui coûte moins ; *economy* est un nom.\n\n**À retenir :** moins cher, consomme peu = *economical*."
       },
       {
         "intitule": "*The ...... of the country depends on tourism.*",
@@ -973,7 +1052,8 @@
           "economics",
           "economy"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *the economy* (nom) = **l'économie d'un pays**, son activité (production, emploi, commerce).\n\n**Pas à pas :**\n\n1. *The ...... of the country* : après *The* et avant *of*, il faut un **nom**. On élimine l'adjectif *economical*.\n2. Le sens : l'économie **du pays** dépend du tourisme : c'est l'activité du pays, *the economy*.\n\n**Les autres réponses :**\n\n- *economical* est un adjectif, impossible ici.\n- *economics* est un nom, mais c'est la **science** qu'on étudie à l'université, pas l'économie d'un pays.\n\n**À retenir :** l'économie d'un pays = *the economy*."
       },
       {
         "intitule": "*She has a degree in ......*",
@@ -983,7 +1063,8 @@
           "economics",
           "economical"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *economics* (nom, avec un *-s*) = **l'économie, la science** : la matière qu'on étudie. Comme *mathematics* ou *physics*, le *-s* ne veut pas dire pluriel.\n\n**Pas à pas :**\n\n1. *a degree in ......* : un diplôme **en** une matière.\n2. La matière s'appelle *economics* : *She has a degree in economics.* (elle a un diplôme d'économie).\n\n**Les autres réponses :** *economy* = l'économie d'un pays, pas une matière ; *economical* est un adjectif.\n\n**À retenir :** la matière = *economics* ; l'économie d'un pays = *the economy*."
       }
     ],
     "indices": [
@@ -1007,7 +1088,8 @@
         ],
         "refuses": [
           "fer"
-        ]
+        ],
+        "explication": "**Règle :** *steel* = **acier**. *iron* = **fer**. L'acier est un métal fabriqué à partir du fer (avec un peu de carbone).\n\n**Pas à pas :** *a steel bridge* = un pont en **acier** ; *the steel industry* = la sidérurgie (l'industrie de l'acier). Réponses acceptées : « acier », « l'acier ».\n\n**Erreur fréquente :** répondre « fer », qui se dit *iron*. Les deux métaux sont proches mais les mots sont différents.\n\n**À retenir :** *steel* = acier, *iron* = fer."
       },
       {
         "intitule": "*iron*",
@@ -1015,7 +1097,8 @@
         "reponse": [
           "fer",
           "le fer"
-        ]
+        ],
+        "explication": "**Règle :** *iron* = **fer** (le métal). Le même mot veut aussi dire « fer à repasser », et *to iron* = repasser.\n\n**Pas à pas :** *an iron gate* = un portail en **fer** ; *iron ore* = du minerai de fer. Réponses acceptées : « fer », « le fer ».\n\n**Erreur fréquente :** confondre avec *steel* (acier). On prononce *iron* « aï-eun » (le *r* ne s'entend presque pas).\n\n**À retenir :** *iron* = fer (et fer à repasser)."
       },
       {
         "intitule": "*coal*",
@@ -1023,7 +1106,8 @@
         "reponse": [
           "charbon",
           "le charbon"
-        ]
+        ],
+        "explication": "**Règle :** *coal* = **charbon** (le combustible noir qu'on extrait des mines).\n\n**Pas à pas :** *a coal mine* = une mine de **charbon**. Réponses acceptées : « charbon », « le charbon ».\n\n**Erreur fréquente :** confondre *coal* avec *cool* (frais), qui se ressemblent à l'écrit, ou avec *oil* (pétrole), autre énergie de la même liste.\n\n**À retenir :** *coal* = charbon, *oil* = pétrole, *cool* = frais."
       },
       {
         "intitule": "*invoice*",
@@ -1031,7 +1115,8 @@
         "reponse": [
           "facture",
           "une facture"
-        ]
+        ],
+        "explication": "**Règle :** *invoice* = **facture** : le document qu'une entreprise envoie à son client pour qu'il paie. Synonyme fréquent : *bill*.\n\n**Pas à pas :** *Please find attached the invoice for your order.* = Veuillez trouver ci-joint la **facture** de votre commande. Réponses acceptées : « facture », « une facture ».\n\n**Erreur fréquente :** répondre « commande » (*order*) ou « reçu » (*receipt*) : la facture demande le paiement, le reçu prouve qu'on a payé.\n\n**À retenir :** *invoice* = *bill* = facture."
       },
       {
         "intitule": "*lawsuit*",
@@ -1042,7 +1127,8 @@
           "poursuite",
           "poursuite judiciaire",
           "action en justice"
-        ]
+        ],
+        "explication": "**Règle :** *lawsuit* = **procès**, poursuite judiciaire. Le mot est formé de *law* (la loi) + *suit* (ici, une action en justice).\n\n**Pas à pas :** *The company is facing a lawsuit.* = L'entreprise fait face à un **procès**. Réponses acceptées : « procès », « poursuite (judiciaire) », « action en justice ».\n\n**Erreur fréquente :** traduire seulement *suit* (un costume) : c'est *law* qui donne le sens judiciaire.\n\n**À retenir :** *lawsuit* = procès ; *a suit* = un costume."
       },
       {
         "intitule": "*thunderstorm*",
@@ -1053,7 +1139,8 @@
         ],
         "refuses": [
           "tempête"
-        ]
+        ],
+        "explication": "**Règle :** *thunderstorm* = **orage**. Le mot est formé de *thunder* (le tonnerre) + *storm* (la tempête) : une tempête avec du tonnerre.\n\n**Pas à pas :** *A thunderstorm is expected tonight.* = Un **orage** est prévu ce soir. Réponses acceptées : « orage », « un orage ».\n\n**Erreur fréquente :** répondre « tempête », qui traduit seulement *storm*. La partie *thunder* (tonnerre) fait toute la différence.\n\n**À retenir :** *storm* = tempête, *thunderstorm* = orage."
       },
       {
         "intitule": "*weather forecast*",
@@ -1065,7 +1152,8 @@
           "prévision météo",
           "bulletin météo",
           "les prévisions météo"
-        ]
+        ],
+        "explication": "**Règle :** *weather forecast* = **la météo**, les prévisions météo. *weather* = le temps qu'il fait, *forecast* = la prévision (*to forecast* = prévoir).\n\n**Pas à pas :** *According to the weather forecast, it will rain tomorrow.* = D'après **la météo**, il pleuvra demain. Réponses acceptées : « météo », « la météo », « prévisions météo », « bulletin météo ».\n\n**Erreur fréquente :** confondre *weather* (le temps qu'il fait) et *whether* (si), qui se prononcent pareil.\n\n**À retenir :** *weather forecast* = la météo."
       },
       {
         "intitule": "*to ship*",
@@ -1074,7 +1162,8 @@
           "expédier",
           "envoyer",
           "livrer"
-        ]
+        ],
+        "explication": "**Règle :** *to ship* = **expédier**, envoyer une marchandise (par bateau, camion ou avion, peu importe). Le nom *a ship* veut dire « un navire ».\n\n**Pas à pas :** *We ship orders within 24 hours.* = Nous **expédions** les commandes sous 24 heures. Réponses acceptées : « expédier », « envoyer », « livrer ».\n\n**Erreur fréquente :** croire que *to ship* veut seulement dire « envoyer par bateau ». Aujourd'hui, il s'emploie pour tout envoi (*shipping costs* = frais d'expédition).\n\n**À retenir :** *to ship* = expédier ; *shipping* = l'expédition."
       }
     ],
     "indices": [
@@ -1095,7 +1184,8 @@
         "reponse": [
           "load",
           "to load"
-        ]
+        ],
+        "explication": "**Règle :** « charger » (mettre des marchandises dans un véhicule) se dit *to load*. Le contraire, « décharger », se dit *to unload* (*un-* = le contraire).\n\n**Pas à pas :** « Ils chargent le camion » → *They are loading the truck.* Réponses acceptées : *load*, *to load*.\n\n**Erreur fréquente :** écrire *to charge*, qui veut dire « faire payer » (*They charge 10 euros*) ou « recharger » une batterie, pas charger un camion.\n\n**À retenir :** charger = *to load* ; décharger = *to unload*."
       },
       {
         "intitule": "commander (un produit)",
@@ -1103,7 +1193,8 @@
         "reponse": [
           "order",
           "to order"
-        ]
+        ],
+        "explication": "**Règle :** « commander » (acheter un produit) se dit *to order*. Le nom *an order* veut dire « une commande ».\n\n**Pas à pas :** « J'ai commandé des fournitures » → *I ordered some supplies.* Réponses acceptées : *order*, *to order*.\n\n**Erreur fréquente :** écrire *to command*, qui veut dire « commander » au sens militaire (donner des ordres à des soldats), pas acheter.\n\n**À retenir :** commander un produit = *to order* ; une commande = *an order*."
       },
       {
         "intitule": "prévoir (la météo, les ventes)",
@@ -1113,7 +1204,8 @@
           "to forecast",
           "predict",
           "to predict"
-        ]
+        ],
+        "explication": "**Règle :** « prévoir » (annoncer ce qui va arriver) se dit *to forecast*, ou *to predict*.\n\n**Pas à pas :** « Nous prévoyons une hausse des ventes » → *We forecast an increase in sales.* On le retrouve dans *weather forecast* (la météo). Réponses acceptées : *forecast*, *predict*, avec ou sans *to*.\n\n**Erreur fréquente :** écrire *to prevent*, qui ressemble à « prévenir » mais veut dire « empêcher ».\n\n**À retenir :** prévoir = *to forecast* (*to predict*)."
       },
       {
         "intitule": "le pétrole",
@@ -1122,7 +1214,8 @@
           "oil",
           "petroleum",
           "crude oil"
-        ]
+        ],
+        "explication": "**Règle :** « le pétrole » se dit *oil* (aussi *petroleum*, ou *crude oil* pour le pétrole brut). Attention, *oil* veut aussi dire « huile ».\n\n**Pas à pas :** « Le prix du pétrole a augmenté » → *The price of oil has increased.* Le contexte dit s'il s'agit de pétrole ou d'huile : *olive oil* = huile d'olive, *oil company* = compagnie pétrolière.\n\n**Erreur fréquente :** écrire *petrol*, qui veut dire « essence » en anglais britannique (le carburant à la pompe).\n\n**À retenir :** pétrole = *oil* ; essence = *petrol* (UK) ou *gas* (US)."
       },
       {
         "intitule": "convenir (à quelqu'un)",
@@ -1130,7 +1223,8 @@
         "reponse": [
           "suit",
           "to suit"
-        ]
+        ],
+        "explication": "**Règle :** « convenir à quelqu'un » se dit *to suit* (+ la personne, sans préposition). Le même mot donne *a suit* (un costume).\n\n**Pas à pas :** « Mardi me convient » → *Tuesday suits me.* - « Est-ce que 15 h vous convient ? » → *Does 3 p.m. suit you?* Réponses acceptées : *suit*, *to suit*.\n\n**Erreur fréquente :** écrire *to convene* (« convoquer une réunion ») ou *to agree* (« être d'accord »), qui n'ont pas ce sens.\n\n**À retenir :** ça me convient = *it suits me*."
       },
       {
         "intitule": "affaiblir",
@@ -1138,7 +1232,8 @@
         "reponse": [
           "weaken",
           "to weaken"
-        ]
+        ],
+        "explication": "**Règle :** « affaiblir » se dit *to weaken*. Le verbe est formé sur *weak* (faible) + *-en* (rendre) : « rendre faible ».\n\n**Pas à pas :** « La crise a affaibli l'entreprise » → *The crisis weakened the company.* Même logique : *strong* → *to strengthen* (renforcer), *short* → *to shorten* (raccourcir). Réponses acceptées : *weaken*, *to weaken*.\n\n**Erreur fréquente :** écrire *to weak* : *weak* est un adjectif, il faut ajouter *-en* pour en faire un verbe.\n\n**À retenir :** adjectif + *-en* = rendre… (*weaken*, *strengthen*, *shorten*)."
       },
       {
         "intitule": "jusqu'à (dans le temps)",
@@ -1147,7 +1242,8 @@
           "until",
           "till",
           "up to"
-        ]
+        ],
+        "explication": "**Règle :** « jusqu'à » (dans le temps) se dit *until* (ou *till*, plus familier) : *until Friday* = jusqu'à vendredi.\n\n**Pas à pas :** « Le magasin est ouvert jusqu'à 20 h » → *The shop is open until 8 p.m.* Réponses acceptées : *until*, *till*, et aussi *up to* (plus utilisé pour une quantité : *up to 50 people* = jusqu'à 50 personnes, ou dans *up to now* = jusqu'à maintenant).\n\n**Erreur fréquente :** écrire *to* tout seul (« à ») : *from 9 to 5* existe, mais « jusqu'à vendredi » se dit *until Friday*.\n\n**À retenir :** jusqu'à (temps) = *until*."
       }
     ],
     "indices": [
@@ -1170,7 +1266,8 @@
           "yesterday",
           "already"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *yet* = « déjà » dans une **question** au present perfect (et « pas encore » dans une négation). Il se met toujours en **fin** de phrase.\n\n**Pas à pas :**\n\n1. *Have you replied…?* : c'est une question au present perfect (*have* + participe *replied*).\n2. Le trou est en **fin** de phrase.\n3. « déjà » dans une question, en fin de phrase = *yet* : *Have you replied to the client yet?* (As-tu déjà répondu au client ?)\n\n**Les autres réponses :**\n\n- *already* se place surtout dans les phrases **affirmatives**, avant le participe (*I have already replied*).\n- *still* veut dire « encore, toujours » (quelque chose qui dure).\n- *yesterday* est un moment précis du passé : il impose le prétérit (*Did you reply yesterday?*), jamais le present perfect.\n\n**À retenir :** question au present perfect + fin de phrase = *yet*."
       },
       {
         "intitule": "*Next year, the new factory ...... 300 people.*",
@@ -1181,7 +1278,8 @@
           "to employ",
           "had employed"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un **indice de temps** dans la phrase impose le temps du verbe. *Next year* (l'an prochain) = le futur : *will* + verbe à la base.\n\n**Pas à pas :**\n\n1. Indice : *Next year* → futur.\n2. Futur = *will* + base verbale : *will employ*.\n3. Phrase : *Next year, the new factory will employ 300 people.* (l'an prochain, la nouvelle usine emploiera 300 personnes).\n\n**Les autres réponses :**\n\n- *employed* est au prétérit (passé) : impossible avec *next year*.\n- *had employed* est au plus-que-parfait (passé encore plus ancien).\n- *to employ* est un infinitif : il ne peut pas être le verbe principal de la phrase.\n\n**À retenir :** *next…*, *tomorrow*, *in + année future* → *will* + verbe."
       },
       {
         "intitule": "*I was told that the manager ...... in the Paris office.*",
@@ -1192,7 +1290,8 @@
           "worked",
           "work"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** au **discours indirect**, quand le verbe d'introduction est au passé (*I was told that…* = on m'a dit que…), le verbe rapporté **recule d'un temps** : le présent devient prétérit.\n\n**Pas à pas :**\n\n1. Phrase d'origine : *The manager works in the Paris office.* (présent)\n2. Verbe d'introduction : *I was told* (passé).\n3. Le présent *works* recule au prétérit : *worked*.\n4. Phrase : *I was told that the manager worked in the Paris office.*\n\n**Les autres réponses :**\n\n- *works* reste au présent : il ne recule pas.\n- *work* oublie en plus le *-s* de la 3e personne (*the manager*).\n- *working* n'est pas un verbe conjugué (il faudrait *was working*).\n\n**À retenir :** *said / told* au passé → présent → prétérit."
       },
       {
         "intitule": "*Do you know when the train ......?*",
@@ -1203,7 +1302,8 @@
           "is it leaving",
           "leave"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** dans une **question indirecte** (après *Do you know…?*, *Can you tell me…?*), on remet l'ordre normal **sujet + verbe**, sans inversion et sans *do / does*.\n\n**Pas à pas :**\n\n1. Question directe : *When **does the train leave**?*\n2. Dans une question indirecte, *does* disparaît et le sujet revient devant le verbe : *when the train leaves*.\n3. Le *-s* de la 3e personne revient sur le verbe (il était porté par *does*) : *leaves*.\n4. Phrase : *Do you know when the train leaves?*\n\n**Les autres réponses :**\n\n- *does it leave* et *is it leaving* gardent l'ordre d'une question **directe**.\n- *leave* oublie le *-s* : *the train* est à la 3e personne du singulier.\n\n**À retenir :** question indirecte = ordre normal sujet + verbe, comme une phrase affirmative."
       },
       {
         "intitule": "*Neither the CEO ...... the CFO attended the meeting.*",
@@ -1214,7 +1314,8 @@
           "either",
           "nor"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** certains mots vont par **paires fixes** : *neither… nor* (ni… ni), *either… or* (soit… soit), *both… and* (les deux).\n\n**Pas à pas :**\n\n1. La phrase commence par *Neither the CEO…* : le mot *neither* annonce « ni… ».\n2. Sa paire obligatoire est *nor* : *Neither the CEO nor the CFO attended the meeting.* (Ni le PDG ni le directeur financier n'ont assisté à la réunion.)\n\n**Les autres réponses :**\n\n- *or* va avec *either* (*either… or*), pas avec *neither*.\n- *and* va avec *both* (*both… and*).\n- *either* est le début d'une autre paire, il ne peut pas être la deuxième moitié.\n\n**À retenir :** *neither* → *nor*, *either* → *or*, *both* → *and*."
       }
     ],
     "indices": [
@@ -1238,12 +1339,14 @@
           "To show what the customer paid",
           "To advertise a product"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** pour « quel est le but du document ? » (*What is the purpose…?*), on regarde ce que le document **contient** et à quoi il sert.\n\n**Pas à pas :**\n\n1. Le document 1 contient : une liste de produits, un prix par produit, un sous-total (*Subtotal*), la livraison (*Delivery*) et un total.\n2. Un document avec des prix et un total à payer, c'est une **facture** : il montre **ce que le client a payé**.\n\n**Les autres réponses :**\n\n- *To confirm a booking* : il n'y a ni date ni réservation.\n- *To ask for a review* (demander un avis) : c'est le but du document 2, le questionnaire.\n- *To advertise a product* : une publicité vante un produit, elle ne fait pas l'addition d'une commande.\n\n**À retenir :** liste + prix + total = facture ; questions sur l'avis = questionnaire de satisfaction."
       },
       {
         "intitule": "How much did the customer spend on frozen food? (en dollars, sans le symbole)",
         "type": "nombre",
-        "reponse": 5.5
+        "reponse": 5.5,
+        "explication": "**Règle :** sur une facture, *2 bags @ $2.75* veut dire « 2 sachets **à** 2,75 dollars **pièce** » : on multiplie la quantité par le prix unitaire.\n\n**Pas à pas :**\n\n1. On cherche les produits surgelés (*frozen* = surgelé) : seule la ligne *Frozen vegetables* en contient.\n2. Calcul : 2 × 2,75 = **5,50** dollars (la facture affiche bien 5.50 en face).\n3. On répond **5.5** (le point sert de virgule en anglais).\n\n**Erreurs fréquentes :**\n\n- répondre 2,75 : c'est le prix d'**un seul** sachet ;\n- ajouter le fromage (*Cheddar cheese*) ou le jus : ils ne sont pas surgelés.\n\n**À retenir :** *quantité @ prix* = quantité × prix ; vérifie avec le montant de la ligne."
       },
       {
         "intitule": "Is the delivery free?",
@@ -1252,7 +1355,8 @@
           "Yes",
           "No, it costs $4"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *free* = **gratuit**. Pour savoir si la livraison est gratuite, on cherche sa ligne sur la facture.\n\n**Pas à pas :**\n\n1. Ligne *Delivery* : *$4.00*.\n2. La livraison coûte donc **4 dollars** : *No, it costs $4*.\n3. Contrôle : sous-total 18,00 + livraison 4,00 = 22,00, c'est bien le total.\n\n**Le piège :** croire que la livraison est comprise parce qu'elle n'est pas dans la liste des produits. Elle est sur une ligne à part, après le sous-total.\n\n**À retenir :** *subtotal* = les produits seuls ; les frais (*delivery*) s'ajoutent ensuite."
       },
       {
         "intitule": "What was NOT a problem?",
@@ -1263,7 +1367,8 @@
           "The state of the frozen vegetables",
           "The time of delivery"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** dans une question avec **NOT** (*What was NOT a problem?*), trois réponses sont des problèmes cités dans le texte : la bonne est celle qui **n'en est pas un**.\n\n**Pas à pas :** on vérifie chaque proposition dans le questionnaire.\n\n| Proposition | Dans le document 2 | Problème ? |\n|---|---|---|\n| *The time of delivery* | *about 45 minutes late* (45 min de retard) | oui |\n| *The state of the frozen vegetables* | *had started to thaw* (avaient commencé à décongeler) | oui |\n| *A missing item* | *The bananas were missing* (les bananes manquaient) | oui |\n| *The driver's attitude* | *very polite and apologised* (très poli, il s'est excusé) | **non** |\n\nLa seule chose qui s'est bien passée : **l'attitude du chauffeur**.\n\n**Le piège :** lire trop vite et choisir le premier problème trouvé ; avec NOT, il faut rayer les trois problèmes et garder celui qui reste.\n\n**À retenir :** pour NOT, raye ce qui est dans le texte, garde ce qui n'y est pas."
       },
       {
         "intitule": "What does the customer suggest?",
@@ -1274,7 +1379,8 @@
           "A faster website",
           "More delivery times"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** une **suggestion** se repère à des verbes comme *should* (devrait), *could*, *it would be better…*.\n\n**Pas à pas :**\n\n1. Phrase du client : *frozen items should travel in a cooler bag.*\n2. Traduction : les produits surgelés **devraient** voyager dans un **sac isotherme** (*cooler bag*).\n3. Il propose donc un **meilleur emballage** pour les surgelés : *Better packaging for frozen products*.\n\n**Les autres réponses :** il ne parle ni du prix de la livraison, ni du site web, ni des créneaux horaires (*delivery times*). Le retard est signalé, mais il ne demande pas plus de créneaux.\n\n**À retenir :** *should* = la personne suggère ; la bonne réponse reformule (*cooler bag* → *packaging*)."
       },
       {
         "intitule": "Overall, is the customer satisfied?",
@@ -1284,7 +1390,8 @@
           "Yes, very",
           "Completely dissatisfied"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** sur un questionnaire, la note cochée donne l'avis général. *Somewhat* = **plutôt**, un peu : *somewhat dissatisfied* = plutôt insatisfait.\n\n**Pas à pas :**\n\n1. Les quatre notes, de la meilleure à la pire : *Very satisfied* / *Satisfied* / *Somewhat dissatisfied* / *Very dissatisfied*.\n2. Le client a coché la 3e : **plutôt insatisfait**.\n3. Donc il n'est **pas vraiment** satisfait : *Not really*.\n\n**Les autres réponses :**\n\n- *Yes, very* : faux, il n'a pas coché *Very satisfied*.\n- *Completely dissatisfied* : trop fort, il aurait coché *Very dissatisfied* ; d'ailleurs il écrit que le reste de la commande allait bien (*the rest of the order was fine*).\n\n**À retenir :** *somewhat* = plutôt ; ne choisis pas une réponse plus forte que ce que dit le texte."
       }
     ],
     "indices": [
@@ -1302,22 +1409,26 @@
       {
         "intitule": "En fait, la réunion a été annulée.",
         "type": "auto",
-        "reponse": "*Actually, the meeting has been cancelled.* (ou *was cancelled*)"
+        "reponse": "*Actually, the meeting has been cancelled.* (ou *was cancelled*)",
+        "explication": "**Ce qu'une bonne réponse doit contenir :**\n\n1. **« En fait »** → *Actually*, en début de phrase, suivi d'une virgule. C'est le faux ami du chapitre : *actually* = en fait.\n2. **« la réunion »** → *the meeting*.\n3. **« a été annulée »** → un **passif** : *has been cancelled* (present perfect) ou *was cancelled* (prétérit). Les deux sont acceptés. *cancelled* s'écrit avec deux *l* en anglais britannique (*canceled* en américain).\n\n**Erreurs fréquentes :**\n\n- écrire *Currently* : il veut dire « actuellement », pas « en fait » ;\n- oublier le passif (*the meeting cancelled*) : la réunion ne s'annule pas toute seule, quelqu'un l'a annulée ;\n- traduire « réunion » par *reunion* (des retrouvailles entre anciens amis).\n\n**À retenir :** en fait = *actually* ; « a été + participe » = *has been* / *was* + participe."
       },
       {
         "intitule": "Finalement, nous avons signé le contrat après trois semaines.",
         "type": "auto",
-        "reponse": "*Eventually, we signed the contract after three weeks.*"
+        "reponse": "*Eventually, we signed the contract after three weeks.*",
+        "explication": "**Ce qu'une bonne réponse doit contenir :**\n\n1. **« Finalement »** (au bout d'un certain temps) → *Eventually*, en début de phrase. Faux ami : « éventuellement » se dirait *possibly*.\n2. **« nous avons signé le contrat »** → au **prétérit** : *we signed the contract*. L'action est terminée et située dans le passé (après trois semaines), donc pas de present perfect.\n3. **« après trois semaines »** → *after three weeks*.\n\n**Erreurs fréquentes :**\n\n- écrire *Finally* : il est compris, mais il sert plutôt à annoncer le dernier point d'une liste ; *Eventually* insiste sur « au bout du compte, après une attente » ;\n- écrire *Possibly* (peut-être), qui change complètement le sens ;\n- écrire *we have signed … after three weeks* : avec un moment précis du passé, l'anglais préfère le prétérit.\n\n**À retenir :** finalement (après une attente) = *eventually* + prétérit pour une action finie."
       },
       {
         "intitule": "Bien que le billet de train soit cher, je préfère le train à l'avion.",
         "type": "auto",
-        "reponse": "*Although the train fare is expensive, I prefer the train to the plane.*"
+        "reponse": "*Although the train fare is expensive, I prefer the train to the plane.*",
+        "explication": "**Ce qu'une bonne réponse doit contenir :**\n\n1. **« Bien que »** → *Although*, suivi d'un sujet + verbe au mode normal : *Although the train fare **is** expensive*. Pas de subjonctif en anglais.\n2. **« le billet de train »** (son prix) → *the train fare* : *fare* = prix d'un trajet. (*the train ticket is expensive* est aussi compréhensible.)\n3. **« je préfère le train à l'avion »** → *I prefer the train **to** the plane* : la construction est *prefer A to B*.\n\n**Erreurs fréquentes :**\n\n- écrire *Despite the train fare is expensive* : *despite* demande un nom seul (*Despite the high fare*) ;\n- écrire *fee* ou *rate* : pour un trajet, c'est *fare* ;\n- écrire *prefer the train than the plane* : avec *prefer*, c'est *to*, pas *than*.\n\n**À retenir :** bien que = *although* + phrase normale ; *prefer A to B*."
       },
       {
         "intitule": "Je n'ai pas pu assister à la conférence à cause d'un retard.",
         "type": "auto",
-        "reponse": "*I couldn't attend the lecture (conference) because of a delay.*"
+        "reponse": "*I couldn't attend the lecture (conference) because of a delay.*",
+        "explication": "**Ce qu'une bonne réponse doit contenir :**\n\n1. **« Je n'ai pas pu »** → *I couldn't* (ou *I wasn't able to*) : passé de *can* à la forme négative.\n2. **« assister à la conférence »** → *attend the lecture* (ou *the conference*) : *to attend* sans préposition. Faux ami : *to assist* = aider.\n3. **« à cause d'un retard »** → *because of a delay* : *because of* + nom ; *delay* = retard (faux ami : un « délai » est une *deadline*).\n\n**Erreurs fréquentes :**\n\n- écrire *assist the conference* (aider la conférence) ;\n- écrire *because a delay* : sans *of*, *because* demande un sujet + verbe (*because my train was late*) ;\n- écrire *a deadline* pour « un retard ».\n\n**À retenir :** assister à = *attend* ; à cause de + nom = *because of* ; retard = *delay*."
       }
     ],
     "indices": [

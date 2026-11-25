@@ -5,10 +5,30 @@
     "difficulte": 1,
     "enonce": "Quelle extension utiliser ?",
     "questions": [
-      { "intitule": "Afficher un fond de carte OpenStreetMap", "type": "choix", "choix": ["QuickMapServices", "QuickOSM"], "reponse": 0 },
-      { "intitule": "Récupérer tous les restaurants d'une ville", "type": "choix", "choix": ["QuickMapServices", "QuickOSM"], "reponse": 1 }
+      {
+        "intitule": "Afficher un fond de carte OpenStreetMap",
+        "type": "choix",
+        "choix": [
+          "QuickMapServices",
+          "QuickOSM"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **QuickMapServices** ajoute un **fond de carte** (une image placée sous les couches, comme OpenStreetMap) en quelques clics.\n\n**Pas à pas :**\n\n1. Le besoin : **afficher** un fond pour se repérer.\n2. Un fond est une image, pas des objets à analyser.\n3. L'extension qui ajoute des fonds est **QuickMapServices** (menu Internet > QuickMapServices > OSM > OSM Standard).\n\n**Autre réponse :** QuickOSM, malgré son nom proche d'OSM, n'affiche pas de fond : il télécharge des objets un par un.\n\n**À retenir :** voir un fond → QuickMapServices."
+      },
+      {
+        "intitule": "Récupérer tous les restaurants d'une ville",
+        "type": "choix",
+        "choix": [
+          "QuickMapServices",
+          "QuickOSM"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **QuickOSM** télécharge des **données** OpenStreetMap (restaurants, gares…) sous forme de vraie couche, avec une table d'attributs.\n\n**Pas à pas :**\n\n1. Le besoin : **récupérer** tous les restaurants, donc des objets qu'on peut compter et sélectionner.\n2. Il faut une couche de points, pas une image.\n3. L'extension qui fait ça est **QuickOSM** (on choisit le type « restaurant » et la ville).\n\n**Autre réponse :** QuickMapServices n'afficherait qu'une image : on verrait les restaurants dessinés sur le fond, sans pouvoir les compter ni les sélectionner.\n\n**À retenir :** récupérer des objets OSM → QuickOSM."
+      }
     ],
-    "indices": ["Une extension affiche une carte, l'autre télécharge des données."],
+    "indices": [
+      "Une extension affiche une carte, l'autre télécharge des données."
+    ],
     "correction": "**QuickMapServices** pour le fond de carte, **QuickOSM** pour télécharger des données OSM."
   },
   {
@@ -17,11 +37,46 @@
     "difficulte": 1,
     "enonce": "Que faire dans chaque situation ?",
     "questions": [
-      { "intitule": "Un message « API key required » apparaît sur la carte", "type": "choix", "choix": ["Changer de fond de carte", "Désinstaller QGIS", "Supprimer la couche", "Changer le nom du projet"], "reponse": 0 },
-      { "intitule": "La couche BATIMENT ne répond plus", "type": "choix", "choix": ["Fermer les couches inutiles et attendre ou filtrer", "Renommer le fichier", "Changer de couleur", "Passer en WGS 84"], "reponse": 0 },
-      { "intitule": "Les couches ne se superposent pas bien", "type": "choix", "choix": ["Vérifier le système de coordonnées du projet", "Redémarrer l'ordinateur", "Supprimer le .prj", "Agrandir la fenêtre"], "reponse": 0 }
+      {
+        "intitule": "Un message « API key required » apparaît sur la carte",
+        "type": "choix",
+        "choix": [
+          "Changer de fond de carte",
+          "Désinstaller QGIS",
+          "Supprimer la couche",
+          "Changer le nom du projet"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** « API key required » veut dire que le **fond de carte** demande une clé d'accès. La solution est de **changer de fond** pour un fond libre (OpenStreetMap standard).\n\n**Pas à pas :**\n\n1. Qui affiche le message ? Le service du fond de carte.\n2. Que veut-il ? Une clé qu'on n'a pas.\n3. On retire ce fond et on en met un qui n'en demande pas.\n\n**Les autres réponses :** désinstaller QGIS, supprimer une couche ou renommer le projet ne règle rien : c'est le fond qui pose problème, et il demandera toujours sa clé.\n\n**À retenir :** clé demandée → autre fond, libre."
+      },
+      {
+        "intitule": "La couche BATIMENT ne répond plus",
+        "type": "choix",
+        "choix": [
+          "Fermer les couches inutiles et attendre ou filtrer",
+          "Renommer le fichier",
+          "Changer de couleur",
+          "Passer en WGS 84"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** une couche très lourde (comme BATIMENT, des centaines de milliers de bâtiments) peut **figer** QGIS : il faut lui donner **moins à dessiner**.\n\n**Pas à pas :**\n\n1. On **ferme** (ou décoche) les couches inutiles pour libérer la mémoire.\n2. On **attend** la fin du chargement.\n3. Si c'est encore trop lourd, on **filtre** la couche pour n'afficher qu'une partie (par exemple un seul arrondissement).\n\n**Les autres réponses :** renommer le fichier ou changer la couleur ne réduit pas la quantité de données ; passer en WGS 84 ne l'allège pas non plus, et fausserait les mesures (degrés au lieu de mètres).\n\n**À retenir :** couche lente → moins de couches ouvertes, patience, filtre."
+      },
+      {
+        "intitule": "Les couches ne se superposent pas bien",
+        "type": "choix",
+        "choix": [
+          "Vérifier le système de coordonnées du projet",
+          "Redémarrer l'ordinateur",
+          "Supprimer le .prj",
+          "Agrandir la fenêtre"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** des couches qui ne se superposent pas (décalées ou très loin l'une de l'autre), c'est presque toujours un problème de **système de coordonnées**.\n\n**Pas à pas :**\n\n1. On regarde le code EPSG du projet, en bas à droite (EPSG:2154 pour la BD TOPO).\n2. On regarde le système de chaque couche (Propriétés > Information).\n3. On corrige celui qui n'est pas le bon.\n\n**Les autres réponses :** redémarrer l'ordinateur ou agrandir la fenêtre ne change pas les coordonnées ; supprimer le `.prj` aggraverait le problème, car QGIS ne saurait plus du tout où placer la couche.\n\n**À retenir :** couches décalées → vérifier les systèmes de coordonnées."
+      }
     ],
-    "indices": ["Pense à la clé d'accès, à la taille des couches et aux projections."],
+    "indices": [
+      "Pense à la clé d'accès, à la taille des couches et aux projections."
+    ],
     "correction": "Fond libre ; moins de couches ou filtre ; vérifier l'EPSG du projet."
   },
   {
@@ -30,10 +85,28 @@
     "difficulte": 2,
     "enonce": "Tu veux créer une zone tampon de 200 m autour de gares à Paris.",
     "questions": [
-      { "intitule": "Quel code EPSG utiliser pour les couches ?", "type": "nombre", "reponse": 2154 },
-      { "intitule": "Pourquoi pas EPSG:4326 ?", "type": "choix", "choix": ["Il est en degrés, pas en mètres", "Il n'existe plus", "Il est trop précis", "Il est réservé aux cartes papier"], "reponse": 0 }
+      {
+        "intitule": "Quel code EPSG utiliser pour les couches ?",
+        "type": "nombre",
+        "reponse": 2154,
+        "explication": "**Règle :** une zone tampon (*buffer*) se calcule dans l'**unité de la couche**. Pour 200 **mètres**, il faut un système en mètres : en France métropolitaine, le **Lambert 93, EPSG:2154**.\n\n**Pas à pas :**\n\n1. Le besoin : une distance de 200 m.\n2. Il faut donc des coordonnées en mètres.\n3. Paris est en France métropolitaine : sa projection officielle en mètres est le Lambert 93.\n4. Code : **2154**.\n\n**Erreurs fréquentes :** répondre 4326 (WGS 84, en degrés) ; répondre 3857 (le Web Mercator des fonds web, en mètres mais avec des distances déformées) ; répondre 93 (le nom, pas le code).\n\n**À retenir :** mesurer ou faire un tampon en France → EPSG:2154."
+      },
+      {
+        "intitule": "Pourquoi pas EPSG:4326 ?",
+        "type": "choix",
+        "choix": [
+          "Il est en degrés, pas en mètres",
+          "Il n'existe plus",
+          "Il est trop précis",
+          "Il est réservé aux cartes papier"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** l'EPSG:4326 (WGS 84) donne des coordonnées en **degrés**. Un tampon de « 200 » y vaudrait 200 **degrés**.\n\n**Pas à pas :**\n\n1. QGIS lit la distance dans l'unité de la couche.\n2. En EPSG:4326, l'unité est le degré.\n3. 200 degrés, c'est plus de la moitié du tour de la Terre (360 degrés) : le tampon couvrirait presque toute la planète.\n\n**Les autres réponses :** il existe toujours (c'est celui du GPS) ; il n'a rien à voir avec la précision ni avec les cartes papier. Le seul problème, c'est l'**unité**.\n\n**À retenir :** EPSG:4326 = degrés, donc inutilisable pour des distances en mètres."
+      }
     ],
-    "indices": ["200 m : il faut une unité en mètres."],
+    "indices": [
+      "200 m : il faut une unité en mètres."
+    ],
     "correction": "**2154** (Lambert 93, en mètres). Le 4326 est en degrés : « 200 » voudrait dire 200 degrés."
   },
   {
@@ -42,11 +115,46 @@
     "difficulte": 1,
     "enonce": "Choisis la couleur la plus conventionnelle.",
     "questions": [
-      { "intitule": "Les cours d'eau", "type": "choix", "choix": ["Bleu", "Rouge", "Marron", "Rose"], "reponse": 0 },
-      { "intitule": "Les parcs et forêts", "type": "choix", "choix": ["Vert", "Bleu", "Orange", "Violet"], "reponse": 0 },
-      { "intitule": "Les bâtiments", "type": "choix", "choix": ["Gris", "Vert vif", "Bleu", "Jaune fluo"], "reponse": 0 }
+      {
+        "intitule": "Les cours d'eau",
+        "type": "choix",
+        "choix": [
+          "Bleu",
+          "Rouge",
+          "Marron",
+          "Rose"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** par convention, l'**eau** est en **bleu** sur les cartes.\n\n**Pas à pas :** un cours d'eau est de l'eau : **bleu**. Le lecteur le comprend sans lire la légende.\n\n**Les autres réponses :** le rouge sert plutôt aux grands axes routiers ; le marron au relief ; le rose n'a pas de sens habituel et ferait chercher la légende.\n\n**À retenir :** eau → bleu."
+      },
+      {
+        "intitule": "Les parcs et forêts",
+        "type": "choix",
+        "choix": [
+          "Vert",
+          "Bleu",
+          "Orange",
+          "Violet"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** la **végétation** (parcs, forêts, jardins) est en **vert**.\n\n**Pas à pas :** parcs et forêts sont couverts de plantes : **vert**, la couleur que tout le monde associe à la nature.\n\n**Les autres réponses :** le bleu est réservé à l'eau (on croirait à un lac) ; l'orange et le violet n'ont pas de sens particulier pour la nature.\n\n**À retenir :** végétation → vert."
+      },
+      {
+        "intitule": "Les bâtiments",
+        "type": "choix",
+        "choix": [
+          "Gris",
+          "Vert vif",
+          "Bleu",
+          "Jaune fluo"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le **bâti** est en **gris**, une couleur neutre qui ne gêne pas la lecture des autres couches.\n\n**Pas à pas :** les bâtiments couvrent une grande partie d'une ville comme Paris : en gris, ils restent discrets et laissent ressortir l'eau, les parcs et les routes.\n\n**Les autres réponses :** le vert vif ferait penser à de la végétation ; le bleu à de l'eau ; le jaune fluo attirerait l'œil sans raison sur l'élément le plus courant de la carte.\n\n**À retenir :** bâti → gris neutre."
+      }
     ],
-    "indices": ["Une carte doit se lire sans légende pour les éléments évidents."],
+    "indices": [
+      "Une carte doit se lire sans légende pour les éléments évidents."
+    ],
     "correction": "Eau **bleu**, végétation **vert**, bâti **gris**."
   }
 ]

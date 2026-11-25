@@ -1,9 +1,14 @@
 [
   {
     "question": "Que vaut $2(1, -3) + (0, 4)$ ?",
-    "choix": ["$(2, -6)$", "$(1, 1)$", "$(2, -2)$", "$(2, 1)$"],
+    "choix": [
+      "$(2, -6)$",
+      "$(1, 1)$",
+      "$(2, -2)$",
+      "$(2, 1)$"
+    ],
     "reponse": 2,
-    "explication": "$2(1, -3) = (2, -6)$, puis on ajoute coordonnée par coordonnée : $(2 + 0, -6 + 4) = (2, -2)$."
+    "explication": "**Règle :** multiplier un vecteur par un nombre, c'est multiplier **chaque** coordonnée par ce nombre ; additionner deux vecteurs, c'est additionner coordonnée par coordonnée. On fait la multiplication d'abord, l'addition ensuite.\n\n**Pas à pas :**\n\n| Coordonnée | $2 \\times (1, -3)$ | On ajoute $(0, 4)$ | Résultat |\n|---|---|---|---|\n| 1re | $2 \\times 1 = 2$ | $2 + 0 = 2$ | $2$ |\n| 2e | $2 \\times (-3) = -6$ | $-6 + 4 = -2$ | $-2$ |\n\nDonc $2(1, -3) + (0, 4) = (2, -2)$.\n\n**Les autres réponses :** $(2, -6)$ s'arrête après $2(1, -3)$ et oublie d'ajouter $(0, 4)$ ; $(1, 1)$ fait $(1, -3) + (0, 4)$ en oubliant le facteur 2 ; $(2, 1)$ n'a multiplié par 2 que la 1re coordonnée.\n\n**À retenir :** une ligne par coordonnée : on multiplie, puis on additionne."
   },
   {
     "question": "Une famille de vecteurs est **libre** si...",
@@ -14,37 +19,62 @@
       "elle engendre tout l'espace"
     ],
     "reponse": 0,
-    "explication": "C'est la définition : $\\lambda_1 v_1 + \\dots + \\lambda_k v_k = 0$ oblige tous les $\\lambda_i$ à valoir 0. Des vecteurs non nuls et différents peuvent quand même être liés, comme $(1, 2)$ et $(2, 4)$."
+    "explication": "**Règle :** une famille $(v_1, \\dots, v_k)$ est **libre** si $\\lambda_1 v_1 + \\dots + \\lambda_k v_k = 0$ **oblige** tous les coefficients à valoir 0. Autrement dit, la seule façon d'obtenir le vecteur nul est la combinaison triviale (tous les coefficients nuls).\n\n**Pas à pas sur un exemple :** $(1, 2)$ et $(2, 4)$ sont non nuls et différents. Pourtant $2 \\times (1, 2) - 1 \\times (2, 4) = (2 - 2, 4 - 4) = (0, 0)$ avec des coefficients $2$ et $-1$ non nuls : la famille est **liée**. Être non nuls et différents ne suffit donc pas.\n\n**Les autres réponses :**\n\n- « tous ses vecteurs sont non nuls » et « ses vecteurs sont tous différents » : nécessaires dans certains cas, mais pas suffisants, l'exemple ci-dessus le montre.\n- « elle engendre tout l'espace » : c'est la définition de **génératrice**, une autre notion. $(1, 0), (0, 1), (1, 1)$ engendre $\\mathbb{R}^2$ mais est liée.\n\n**À retenir :** libre = la seule combinaison qui donne 0 est celle où tous les coefficients valent 0."
   },
   {
     "question": "La famille $(1, 2), (3, 6)$ est :",
-    "choix": ["libre", "une base de $\\mathbb{R}^2$", "génératrice de $\\mathbb{R}^2$", "liée"],
+    "choix": [
+      "libre",
+      "une base de $\\mathbb{R}^2$",
+      "génératrice de $\\mathbb{R}^2$",
+      "liée"
+    ],
     "reponse": 3,
-    "explication": "$(3, 6) = 3(1, 2)$ : un vecteur est un multiple de l'autre, donc la famille est liée (et ne peut pas être une base)."
+    "explication": "**Règle :** deux vecteurs sont liés si et seulement si l'un est un multiple de l'autre (on passe de l'un à l'autre en multipliant **toutes** les coordonnées par le même nombre).\n\n**Pas à pas :** on divise les coordonnées de $(3, 6)$ par celles de $(1, 2)$ :\n\n| Coordonnée | Calcul | Résultat |\n|---|---|---|\n| 1re | $3 \\div 1$ | $3$ |\n| 2e | $6 \\div 2$ | $3$ |\n\nLe même nombre partout : $(3, 6) = 3 \\times (1, 2)$. La famille est **liée**.\n\n**Les autres réponses :** « libre » est faux puisqu'on a trouvé la combinaison $3(1, 2) - (3, 6) = 0$ avec des coefficients non nuls. « Une base de $\\mathbb{R}^2$ » est faux, car une base doit être libre. « Génératrice de $\\mathbb{R}^2$ » est faux : toutes les combinaisons de ces deux vecteurs sont des multiples de $(1, 2)$, on reste sur une droite et on n'atteint jamais $(1, 0)$, par exemple.\n\n**À retenir :** deux vecteurs proportionnels = famille liée, donc ni libre ni base."
   },
   {
     "question": "Qu'est-ce qu'une **base** ?",
-    "choix": ["Une famille libre", "Une famille libre et génératrice", "Une famille génératrice", "Une famille de vecteurs non nuls"],
+    "choix": [
+      "Une famille libre",
+      "Une famille libre et génératrice",
+      "Une famille génératrice",
+      "Une famille de vecteurs non nuls"
+    ],
     "reponse": 1,
-    "explication": "Une base est à la fois libre (pas de redondance) et génératrice (elle permet d'obtenir tout l'espace). Chaque vecteur s'y écrit alors de façon unique."
+    "explication": "**Règle :** une **base** est une famille à la fois **libre** (aucun vecteur en trop) **et génératrice** (aucun vecteur qui manque : on fabrique tout l'espace). Chaque vecteur s'y écrit alors d'une seule façon.\n\n**Pas à pas avec des exemples dans $\\mathbb{R}^2$ :**\n\n| Famille | Libre ? | Génératrice ? | Base ? |\n|---|---|---|---|\n| $(1, 0)$ seul | oui | non (on n'obtient que $(a, 0)$) | non |\n| $(1, 0), (0, 1), (1, 1)$ | non ($(1, 1)$ est la somme) | oui | non |\n| $(1, 0), (0, 1)$ | oui | oui | **oui** |\n\n**Les autres réponses :** « une famille libre » ou « une famille génératrice » ne donnent qu'une des deux conditions (le tableau montre qu'une seule ne suffit pas). « Une famille de vecteurs non nuls » ne dit rien : $(1, 2), (2, 4)$ sont non nuls mais liés.\n\n**À retenir :** base = libre **et** génératrice, les deux à la fois."
   },
   {
     "question": "Quelle est la dimension de $\\mathbb{R}^4$ ?",
-    "choix": ["$1$", "$2$", "$4$", "$16$"],
+    "choix": [
+      "$1$",
+      "$2$",
+      "$4$",
+      "$16$"
+    ],
     "reponse": 2,
-    "explication": "$\\dim \\mathbb{R}^n = n$ : la base canonique de $\\mathbb{R}^4$ contient 4 vecteurs."
+    "explication": "**Règle :** la dimension est le nombre de vecteurs d'une base, et $\\dim \\mathbb{R}^n = n$.\n\n**Pas à pas :** la base canonique de $\\mathbb{R}^4$ est\n\n$$e_1 = (1, 0, 0, 0),\\ e_2 = (0, 1, 0, 0),\\ e_3 = (0, 0, 1, 0),\\ e_4 = (0, 0, 0, 1)$$\n\nOn compte : 4 vecteurs. Donc $\\dim \\mathbb{R}^4 = 4$ (le nombre de coordonnées d'un vecteur).\n\n**Les autres réponses :** $16 = 4^2$ est une confusion (on ne met pas $n$ au carré) ; $1$ et $2$ ne correspondent à rien : avec moins de 4 vecteurs, on ne peut pas fabriquer tous les vecteurs à 4 coordonnées.\n\n**À retenir :** $\\dim \\mathbb{R}^n = n$ = le nombre de coordonnées."
   },
   {
     "question": "Une famille de 4 vecteurs dans $\\mathbb{R}^3$ est :",
-    "choix": ["forcément libre", "forcément liée", "forcément une base", "forcément génératrice"],
+    "choix": [
+      "forcément libre",
+      "forcément liée",
+      "forcément une base",
+      "forcément génératrice"
+    ],
     "reponse": 1,
-    "explication": "Dans $\\mathbb{R}^n$, une famille libre a au plus $n$ vecteurs. Avec 4 vecteurs dans $\\mathbb{R}^3$, elle est forcément liée. Elle peut être génératrice, mais pas forcément."
+    "explication": "**Règle :** dans $\\mathbb{R}^n$, une famille libre a **au plus** $n$ vecteurs. Avec plus de $n$ vecteurs, elle est forcément liée.\n\n**Pas à pas :** ici $n = 3$ et la famille a 4 vecteurs. $4 > 3$, donc elle est **forcément liée** : l'un des vecteurs s'écrit avec les autres.\n\n**Les autres réponses :**\n\n- « forcément libre » : c'est l'inverse de la règle.\n- « forcément une base » : une base de $\\mathbb{R}^3$ a exactement 3 vecteurs, et doit être libre.\n- « forcément génératrice » : elle **peut** l'être, mais pas toujours. Exemple : $(1, 0, 0), (2, 0, 0), (0, 1, 0), (0, 2, 0)$ a 4 vecteurs, mais leur 3e coordonnée vaut toujours 0 : on n'obtient jamais $(0, 0, 1)$.\n\n**À retenir :** plus de $n$ vecteurs dans $\\mathbb{R}^n$ = liée à coup sûr ; « génératrice » se vérifie à part."
   },
   {
     "question": "Une famille qui contient le vecteur nul est :",
-    "choix": ["toujours liée", "toujours libre", "toujours une base", "libre ou liée selon les autres vecteurs"],
+    "choix": [
+      "toujours liée",
+      "toujours libre",
+      "toujours une base",
+      "libre ou liée selon les autres vecteurs"
+    ],
     "reponse": 0,
-    "explication": "Il suffit de prendre le coefficient 1 devant le vecteur nul et 0 devant les autres : on obtient le vecteur nul avec un coefficient non nul."
+    "explication": "**Règle :** une famille est liée s'il existe une combinaison égale au vecteur nul avec au moins un coefficient **non nul**.\n\n**Pas à pas :** prenons la famille $(0, u_2, \\dots, u_k)$, dont le premier vecteur est le vecteur nul. On met le coefficient $1$ devant lui et $0$ devant tous les autres :\n\n$$1 \\times 0 + 0 \\times u_2 + \\dots + 0 \\times u_k = 0$$\n\nLe résultat est bien le vecteur nul, et le coefficient $1$ n'est pas nul : la famille est **liée**, quels que soient les autres vecteurs.\n\n**Les autres réponses :** « toujours libre » et « toujours une base » contredisent ce calcul (une base doit être libre). « Libre ou liée selon les autres vecteurs » est le piège : les autres vecteurs ne changent rien, on leur met simplement le coefficient 0.\n\n**À retenir :** le vecteur nul dans une famille la rend toujours liée."
   },
   {
     "question": "Lequel de ces ensembles est un sous-espace vectoriel de $\\mathbb{R}^2$ ?",
@@ -55,25 +85,40 @@
       "$\\{(x, y) \\mid y = -2x\\}$"
     ],
     "reponse": 3,
-    "explication": "$y = -2x$ est une droite qui passe par l'origine. Les autres : $y = x + 1$ ne contient pas $(0, 0)$, $x \\geq 0$ n'est pas stable par multiplication par $-1$, et $y = x^2$ n'est pas une droite."
+    "explication": "**Règle :** un sous-espace vectoriel contient le vecteur nul **et** est stable par combinaison linéaire. Dans $\\mathbb{R}^2$, ce sont les droites qui passent par l'origine (plus $\\{(0, 0)\\}$ et $\\mathbb{R}^2$ lui-même).\n\n**Pas à pas :** on teste chaque ensemble.\n\n| Ensemble | Contient $(0, 0)$ ? | Stable ? | Sous-espace ? |\n|---|---|---|---|\n| $y = -2x$ | oui : $0 = -2 \\times 0$ | oui : $\\lambda(a, -2a) + \\mu(b, -2b) = (X, -2X)$ | **oui** |\n| $y = x + 1$ | non : $0 \\neq 0 + 1$ | inutile de tester | non |\n| $x \\geq 0$ | oui | non : $(1, 0)$ y est, $-1 \\times (1, 0) = (-1, 0)$ non | non |\n| $y = x^2$ | oui : $0 = 0^2$ | non : $(1, 1)$ y est, $2 \\times (1, 1) = (2, 2)$ non car $2 \\neq 2^2 = 4$ | non |\n\n**Les autres réponses :** $y = x + 1$ a un terme constant qui l'éloigne de l'origine ; $x \\geq 0$ n'est pas stable par multiplication par un nombre négatif ; $y = x^2$ est une parabole, pas une droite : le carré casse la stabilité.\n\n**À retenir :** teste d'abord le vecteur nul, puis cherche un multiple ou une somme qui sort de l'ensemble."
   },
   {
     "question": "Quelle est la dimension du plan d'équation $x + y + z = 0$ dans $\\mathbb{R}^3$ ?",
-    "choix": ["$1$", "$2$", "$3$", "$0$"],
+    "choix": [
+      "$1$",
+      "$2$",
+      "$3$",
+      "$0$"
+    ],
     "reponse": 1,
-    "explication": "C'est un hyperplan de $\\mathbb{R}^3$ : sa dimension vaut $3 - 1 = 2$. Par exemple, $(1, -1, 0)$ et $(1, 0, -1)$ en forment une base."
+    "explication": "**Règle :** un **hyperplan** de $\\mathbb{R}^n$ (une seule équation $a_1 x_1 + \\dots + a_n x_n = 0$, sans terme constant) est un sous-espace de dimension $n - 1$.\n\n**Pas à pas :**\n\n1. On est dans $\\mathbb{R}^3$, donc $n = 3$, et il y a **une** équation : $3 - 1 = 2$.\n2. Vérification par une base : $z = -x - y$, donc tout vecteur du plan s'écrit $(x, y, -x - y) = x(1, 0, -1) + y(0, 1, -1)$. Ces deux vecteurs sont dans le plan ($1 + 0 - 1 = 0$ et $0 + 1 - 1 = 0$) et ne sont pas proportionnels : c'est une base de **2** vecteurs.\n\n**Les autres réponses :** $3$ serait tout $\\mathbb{R}^3$, or $(1, 1, 1)$ n'est pas dans le plan ($1 + 1 + 1 = 3 \\neq 0$) ; $1$ serait une droite ; $0$ serait le seul vecteur nul, or $(1, 0, -1)$ est dans le plan.\n\n**À retenir :** une équation dans $\\mathbb{R}^n$ enlève une dimension : $n - 1$."
   },
   {
     "question": "Dans une régression linéaire, deux colonnes proportionnelles provoquent :",
-    "choix": ["une meilleure précision", "rien de particulier", "de la multicolinéarité", "une division par zéro à coup sûr"],
+    "choix": [
+      "une meilleure précision",
+      "rien de particulier",
+      "de la multicolinéarité",
+      "une division par zéro à coup sûr"
+    ],
     "reponse": 2,
-    "explication": "Les colonnes forment une famille liée : c'est la multicolinéarité. Les coefficients du modèle deviennent instables, il vaut mieux retirer la colonne redondante."
+    "explication": "**Règle :** si une colonne est une combinaison linéaire des autres (ici un simple multiple), la famille des colonnes est **liée** : c'est la **multicolinéarité**. Les poids de la régression deviennent instables et impossibles à interpréter.\n\n**Pas à pas :** supposons $c_2 = 2 c_1$ sur toutes les lignes.\n\n1. Les colonnes $c_1$ et $c_2$ sont proportionnelles : famille liée.\n2. Les prédictions $\\hat{y} = 4 c_1$, $\\hat{y} = 2 c_2$ et $\\hat{y} = 2 c_1 + c_2$ sont exactement les mêmes sur toutes les lignes.\n3. Le modèle a une infinité de réglages possibles pour la même prédiction : il ne sait pas lequel choisir, et un petit changement des données fait beaucoup varier les poids.\n\n**Les autres réponses :** « une meilleure précision » est faux, la colonne en double n'apporte aucune information nouvelle ; « rien de particulier » ignore l'instabilité des poids ; « une division par zéro à coup sûr » est trop fort : le calcul exact n'a plus de solution unique, mais selon l'outil on obtient une erreur, un avertissement ou des poids énormes, pas forcément une division par zéro.\n\n**À retenir :** colonnes proportionnelles = multicolinéarité = poids instables : on retire la colonne redondante."
   },
   {
     "question": "Dans $\\mathbb{R}^3$, une famille **libre** de 3 vecteurs forme :",
-    "choix": ["une base", "une famille liée", "un plan", "rien de particulier"],
+    "choix": [
+      "une base",
+      "une famille liée",
+      "un plan",
+      "rien de particulier"
+    ],
     "reponse": 0,
-    "explication": "Résultat admis du cours : en dimension $n$, une famille libre de $n$ vecteurs est automatiquement une base."
+    "explication": "**Règle (admise) :** en dimension $n$, une famille **libre** de **$n$** vecteurs est automatiquement une **base** (elle est aussi génératrice).\n\n**Pas à pas :**\n\n1. $\\dim \\mathbb{R}^3 = 3$, donc $n = 3$.\n2. La famille a 3 vecteurs : exactement $n$.\n3. Elle est libre : d'après la règle, c'est une **base** de $\\mathbb{R}^3$.\n\n**Les autres réponses :** « une famille liée » contredit l'énoncé, qui dit qu'elle est libre ; « un plan » est faux, trois vecteurs libres engendrent tout $\\mathbb{R}^3$ (un plan n'a besoin que de 2 vecteurs) ; « rien de particulier » oublie la règle ci-dessus.\n\n**À retenir :** dans $\\mathbb{R}^n$, $n$ vecteurs libres = une base, inutile de vérifier « génératrice »."
   },
   {
     "question": "La relation $\\text{ttc} = \\text{ht} \\times (1 + \\text{taux})$, avec un taux qui change d'une ligne à l'autre, est :",
@@ -84,6 +129,6 @@
       "une relation non linéaire (produit de deux colonnes)"
     ],
     "reponse": 3,
-    "explication": "On multiplie deux colonnes entre elles ($\\text{ht} \\times \\text{taux}$) : ce n'est pas une somme pondérée. La relation ne devient linéaire que si le taux est constant."
+    "explication": "**Règle :** une relation est **linéaire** si chaque colonne est multipliée par un **nombre fixe**, puis on additionne. Multiplier une colonne par une autre colonne n'est pas linéaire.\n\n**Pas à pas :**\n\n1. On développe : $\\text{ttc} = \\text{ht} \\times (1 + \\text{taux}) = \\text{ht} + \\text{ht} \\times \\text{taux}$.\n2. Le morceau $\\text{ht} \\times \\text{taux}$ multiplie la colonne `ht` par la colonne `taux`, qui change d'une ligne à l'autre : c'est un **produit de deux colonnes**.\n3. La relation n'est donc **pas** linéaire.\n\nSi le taux était toujours le même (par exemple 10 %, soit $0{,}1$), on aurait $\\text{ttc} = 1{,}1 \\times \\text{ht}$, et là ce serait linéaire.\n\n**Les autres réponses :** « une combinaison linéaire de ht et taux » et « une relation linéaire entre les trois colonnes » sont fausses à cause du produit ; « une base de l'espace des colonnes » ne veut rien dire ici : une relation n'est pas une famille de vecteurs.\n\n**À retenir :** colonne $\\times$ nombre fixe = linéaire ; colonne $\\times$ colonne = non linéaire."
   }
 ]

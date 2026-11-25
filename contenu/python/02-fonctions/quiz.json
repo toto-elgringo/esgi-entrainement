@@ -1,164 +1,299 @@
 [
   {
     "question": "Avec `def foo(a, b=4, c=\"toto\")`, que reçoit `c` lors de l'appel `foo(1, 2)` ?",
-    "choix": ["`2`", "`\"toto\"`", "`None`", "Une erreur : il manque un argument"],
+    "choix": [
+      "`2`",
+      "`\"toto\"`",
+      "`None`",
+      "Une erreur : il manque un argument"
+    ],
     "reponse": 1,
-    "explication": "`a` reçoit 1, `b` reçoit 2, et `c` garde sa valeur par défaut `\"toto\"`."
+    "explication": "**Règle :** Python remplit les paramètres dans l'ordre avec les arguments par position ; ceux qui restent vides prennent leur **valeur par défaut**.\n\n**Pas à pas :** avec `def foo(a, b=4, c=\"toto\")` et l'appel `foo(1, 2)` :\n\n| Paramètre | Reçoit | Pourquoi |\n|---|---|---|\n| `a` | 1 | premier argument par position |\n| `b` | 2 | deuxième argument par position (le défaut 4 est remplacé) |\n| `c` | `\"toto\"` | aucun troisième argument : valeur par défaut |\n\n**Les autres réponses :** `2` va dans `b`, pas dans `c` (on remplit dans l'ordre) ; `None` n'apparaît que si on l'écrit comme défaut ; aucune erreur, car seul `a` est obligatoire (il n'a pas de défaut) et il est bien donné.\n\n**À retenir :** positions d'abord, dans l'ordre ; ce qui n'est pas donné prend son défaut."
   },
   {
     "question": "Quel appel est **invalide** pour `def foo(a, b=4)` ?",
-    "choix": ["`foo(1)`", "`foo(b=2, a=1)`", "`foo(a=1, 2)`", "`foo(1, b=2)`"],
+    "choix": [
+      "`foo(1)`",
+      "`foo(b=2, a=1)`",
+      "`foo(a=1, 2)`",
+      "`foo(1, b=2)`"
+    ],
     "reponse": 2,
-    "explication": "Les arguments par position doivent venir avant ceux par mot-clé : `foo(a=1, 2)` est une erreur de syntaxe."
+    "explication": "**Règle :** à l'appel, les arguments **par position** viennent toujours **avant** ceux **par mot-clé**. Un argument par position écrit après un mot-clé est une erreur de syntaxe.\n\n**Pas à pas :** pour `def foo(a, b=4)` :\n\n| Appel | Valide ? | `a` | `b` |\n|---|---|---|---|\n| `foo(1)` | oui | 1 | 4 (défaut) |\n| `foo(b=2, a=1)` | oui : par mot-clé, l'ordre ne compte pas | 1 | 2 |\n| `foo(1, b=2)` | oui : position puis mot-clé | 1 | 2 |\n| `foo(a=1, 2)` | **non** : `2` (position) arrive après `a=1` (mot-clé) | | |\n\nPython refuse `foo(a=1, 2)` avant même d'exécuter le programme (`SyntaxError`).\n\n**À retenir :** dans un appel, jamais d'argument par position après un `nom=valeur`."
   },
   {
     "question": "Que contient `args` dans `def foo(*args)` appelée par `foo(1, 2)` ?",
-    "choix": ["La liste `[1, 2]`", "Le tuple `(1, 2)`", "Le dict `{0: 1, 1: 2}`", "Seulement `1`"],
+    "choix": [
+      "La liste `[1, 2]`",
+      "Le tuple `(1, 2)`",
+      "Le dict `{0: 1, 1: 2}`",
+      "Seulement `1`"
+    ],
     "reponse": 1,
-    "explication": "`*args` range les arguments par position en trop dans un **tuple**."
+    "explication": "**Règle :** `*args` ramasse les arguments par position en trop dans un **tuple** (entre parenthèses, non modifiable).\n\n**Pas à pas :** `def foo(*args)` n'a aucun autre paramètre. `foo(1, 2)` : 1 et 2 sont « en trop », ils vont tous les deux dans `args`, dans l'ordre : `args = (1, 2)`.\n\n**Les autres réponses :** ce n'est pas une liste `[1, 2]` (on ne peut pas faire `args.append(...)`) ; un dictionnaire, c'est ce que donne `**kwargs` pour les mots-clés, et ses clés seraient des noms, pas des indices ; `args` reçoit **tous** les arguments en trop, pas seulement le premier.\n\n**À retenir :** une étoile = tuple des positions ; deux étoiles = dictionnaire des mots-clés."
   },
   {
     "question": "Que contient `kwargs` dans `def foo(x=0, **kwargs)` appelée par `foo(a=\"A\", x=\"X\")` ?",
-    "choix": ["`{'a': 'A', 'x': 'X'}`", "`{'a': 'A'}`", "`('A', 'X')`", "`{}`"],
+    "choix": [
+      "`{'a': 'A', 'x': 'X'}`",
+      "`{'a': 'A'}`",
+      "`('A', 'X')`",
+      "`{}`"
+    ],
     "reponse": 1,
-    "explication": "`x` est un paramètre connu : il reçoit `\"X\"`. Seul `a`, inconnu, va dans le dictionnaire `kwargs`."
+    "explication": "**Règle :** `**kwargs` ne reçoit que les arguments par mot-clé qui ne correspondent à **aucun** paramètre déclaré.\n\n**Pas à pas :** `def foo(x=0, **kwargs)` appelée par `foo(a=\"A\", x=\"X\")` :\n\n| Argument | Un paramètre porte ce nom ? | Va dans |\n|---|---|---|\n| `a=\"A\"` | pas de paramètre `a` | `kwargs` |\n| `x=\"X\"` | `x` est un paramètre | `x` (qui vaut donc `\"X\"`) |\n\nDonc `kwargs = {'a': 'A'}`.\n\n**Les autres réponses :** `{'a': 'A', 'x': 'X'}` oublie que `x` est un paramètre connu ; `('A', 'X')` est un tuple, c'est la forme de `*args` (et il n'y a aucun argument par position) ; `{}` serait vrai seulement si tous les mots-clés étaient connus.\n\n**À retenir :** `kwargs` = les mots-clés « inconnus » ; un mot-clé qui porte le nom d'un paramètre va dans ce paramètre."
   },
   {
     "question": "Pourquoi `def ajoute(x, l=[])` est-il un piège ?",
-    "choix": ["Une liste vide n'est pas une valeur autorisée", "La même liste est réutilisée à chaque appel", "La liste est copiée à chaque appel, c'est lent", "`l` vaudra toujours `None`"],
+    "choix": [
+      "Une liste vide n'est pas une valeur autorisée",
+      "La même liste est réutilisée à chaque appel",
+      "La liste est copiée à chaque appel, c'est lent",
+      "`l` vaudra toujours `None`"
+    ],
     "reponse": 1,
-    "explication": "La valeur par défaut est créée une seule fois, à la définition. Les éléments ajoutés s'accumulent d'un appel à l'autre. On écrit plutôt `l=None` puis `if l is None: l = []`."
+    "explication": "**Règle :** la valeur par défaut est créée **une seule fois**, quand Python lit le `def`, pas à chaque appel.\n\n**Pas à pas :**\n\n```python\ndef ajoute(x, l=[]):\n    l.append(x)\n    return l\n```\n\n1. Au `def`, une liste vide est créée et rangée comme défaut de `l`.\n2. `ajoute(1)` : `l` est cette liste, elle devient `[1]`.\n3. `ajoute(2)` : `l` est **la même** liste, elle devient `[1, 2]` au lieu de `[2]`.\n\nCorrection : `def ajoute(x, l=None):` puis `if l is None: l = []`, une liste neuve à chaque appel sans liste.\n\n**Les autres réponses :** une liste vide est une valeur par défaut tout à fait autorisée (c'est justement pour ça que le piège existe) ; elle n'est **pas** copiée à chaque appel, c'est le contraire ; et `l` ne vaut `None` que si on écrit `l=None`.\n\n**À retenir :** pas de liste ni de dictionnaire en défaut : `=None`, puis on crée l'objet dans la fonction."
   },
   {
     "question": "Qu'affiche `print(plus10(5))` avec `plus10 = create_adder(10)`, où `create_adder(n)` renvoie `adder(x)` qui fait `return x + n` ?",
-    "choix": ["`10`", "`15`", "`5`", "Une erreur : `n` n'existe plus"],
+    "choix": [
+      "`10`",
+      "`15`",
+      "`5`",
+      "Une erreur : `n` n'existe plus"
+    ],
     "reponse": 1,
-    "explication": "`adder` est une closure : elle a gardé en mémoire `n = 10`, même après la fin de `create_adder`."
+    "explication": "**Règle :** une **closure** est une fonction interne renvoyée qui garde en mémoire les variables de la fonction qui l'a créée, même quand celle-ci est terminée.\n\n**Pas à pas :**\n\n1. `create_adder(10)` crée `adder` avec `n = 10` attaché, et la renvoie : `plus10` est cette fonction.\n2. `plus10(5)` exécute `return x + n` avec `x = 5` et `n = 10`.\n3. 5 + 10 = **15**.\n\n**Les autres réponses :** `10` est seulement `n`, et `5` seulement `x` : la fonction fait la somme des deux ; aucune erreur, car `n` n'a pas disparu à la fin de `create_adder` : la closure l'a gardé.\n\n**À retenir :** une fabrique « fige » ses paramètres dans la fonction qu'elle renvoie."
   },
   {
     "question": "À quoi équivaut `@decor` écrit au-dessus de `def f(): ...` ?",
-    "choix": ["`f = decor`", "`f = decor(f)`", "`decor = f(decor)`", "`f = decor()`"],
+    "choix": [
+      "`f = decor`",
+      "`f = decor(f)`",
+      "`decor = f(decor)`",
+      "`f = decor()`"
+    ],
     "reponse": 1,
-    "explication": "La syntaxe `@` remplace la fonction par ce que renvoie le décorateur appliqué à elle : `f = decor(f)`."
+    "explication": "**Règle :** `@decor` au-dessus de `def f` remplace `f` par **ce que renvoie** `decor` quand on lui donne `f`.\n\n**Pas à pas :**\n\n```python\n@decor\ndef f(): ...\n```\n\nrevient à écrire `def f(): ...` puis `f = decor(f)` : `decor` reçoit la fonction d'origine, et le nom `f` désigne désormais le résultat (en général le wrapper).\n\n**Les autres réponses :** `f = decor` jetterait la fonction d'origine sans jamais la donner au décorateur ; `decor = f(decor)` inverse les rôles ; `f = decor()` appelle le décorateur **sans** lui passer `f` (c'est la forme d'un décorateur à paramètres, `@decor()`, qui est une autre chose).\n\n**À retenir :** `@d` + `def f` = `f = d(f)`."
   },
   {
     "question": "Pourquoi le `wrapper` d'un décorateur générique prend-il `*args, **kwargs` ?",
-    "choix": ["Pour aller plus vite", "Pour accepter et retransmettre n'importe quels arguments à la fonction décorée", "C'est obligatoire pour toute fonction interne", "Pour que le décorateur puisse prendre un paramètre"],
+    "choix": [
+      "Pour aller plus vite",
+      "Pour accepter et retransmettre n'importe quels arguments à la fonction décorée",
+      "C'est obligatoire pour toute fonction interne",
+      "Pour que le décorateur puisse prendre un paramètre"
+    ],
     "reponse": 1,
-    "explication": "Sans eux, on ne pourrait décorer que des fonctions sans paramètre. `func(*args, **kwargs)` redonne tout à la fonction d'origine."
+    "explication": "**Règle :** le wrapper remplace la fonction décorée : il reçoit **tous** ses appels. `*args, **kwargs` ramassent n'importe quels arguments, et `func(*args, **kwargs)` les redonne tels quels.\n\n**Pas à pas :** avec `def wrapper(*args, **kwargs): return func(*args, **kwargs)` :\n\n- appel `f(2, 3)` : `args = (2, 3)`, `kwargs = {}`, puis `func(2, 3)` ;\n- appel `f(2, b=3)` : `args = (2,)`, `kwargs = {'b': 3}`, puis `func(2, b=3)`.\n\nAvec `def wrapper():`, l'appel `f(2, 3)` lèverait une `TypeError` (le wrapper n'accepte aucun argument).\n\n**Les autres réponses :** ça n'accélère rien ; une fonction interne peut avoir n'importe quels paramètres, rien n'est obligatoire ; et le paramètre d'un décorateur (`@decor(\"debug\")`) passe par une couche de plus, pas par `*args`.\n\n**À retenir :** wrapper générique = `def wrapper(*args, **kwargs)` + `func(*args, **kwargs)`."
   },
   {
     "question": "Que se passe-t-il quand on appelle une fonction qui contient `yield` ?",
-    "choix": ["Elle s'exécute en entier et renvoie une liste", "Elle renvoie un générateur sans rien exécuter encore", "Elle renvoie la première valeur", "Elle lève une erreur si on n'utilise pas `next`"],
+    "choix": [
+      "Elle s'exécute en entier et renvoie une liste",
+      "Elle renvoie un générateur sans rien exécuter encore",
+      "Elle renvoie la première valeur",
+      "Elle lève une erreur si on n'utilise pas `next`"
+    ],
     "reponse": 1,
-    "explication": "L'appel crée un générateur. Le code ne s'exécute qu'au premier `next()` (ou au premier tour d'une boucle `for`), jusqu'au premier `yield`."
+    "explication": "**Règle :** une fonction qui contient `yield` est une fonction **génératrice** : l'appeler crée un générateur, **sans exécuter** son corps.\n\n**Pas à pas :**\n\n```python\ndef gen():\n    print(\"démarrage\")\n    yield 1\n\n\ng = gen()\n```\n\nAprès `g = gen()`, rien n'est affiché. Au premier `next(g)` (ou au premier tour d'un `for`), le code démarre : `démarrage` s'affiche, puis la fonction s'arrête au `yield` et fournit 1.\n\n**Les autres réponses :** elle ne fabrique pas de liste (les valeurs sont produites une par une, à la demande) ; la première valeur n'arrive qu'au premier `next`, pas à l'appel ; aucune erreur sans `next` : un générateur non parcouru ne fait simplement rien.\n\n**À retenir :** appel = création du générateur ; `next` = exécution jusqu'au prochain `yield`."
   },
   {
     "question": "Dans un `try`, quand le bloc `else` est-il exécuté ?",
-    "choix": ["Toujours", "Seulement si une exception a été levée", "Seulement si aucune exception n'a été levée", "Jamais avec `finally`"],
+    "choix": [
+      "Toujours",
+      "Seulement si une exception a été levée",
+      "Seulement si aucune exception n'a été levée",
+      "Jamais avec `finally`"
+    ],
     "reponse": 2,
-    "explication": "`else` s'exécute seulement si le `try` s'est déroulé sans exception. C'est `finally` qui s'exécute dans tous les cas."
+    "explication": "**Règle :** dans `try / except / else / finally`, le bloc `else` s'exécute **seulement si le `try` n'a levé aucune exception**.\n\n**Pas à pas :**\n\n| Cas | `except` | `else` | `finally` |\n|---|---|---|---|\n| le `try` se passe bien | non | **oui** | oui |\n| le `try` lève une erreur interceptée | oui | non | oui |\n\n**Les autres réponses :** « toujours », c'est `finally` ; « seulement si une exception a été levée », c'est le rôle de `except` ; `else` et `finally` vont très bien ensemble (l'un pour le cas réussi, l'autre pour tous les cas).\n\n**À retenir :** `except` = en cas d'erreur, `else` = sans erreur, `finally` = dans tous les cas."
   },
   {
     "question": "`except LookupError:` intercepte-t-il une `KeyError` ?",
-    "choix": ["Oui, `KeyError` est une sorte de `LookupError`", "Non, il faut écrire `KeyError`", "Seulement avec `as e`", "Seulement dans un dictionnaire vide"],
+    "choix": [
+      "Oui, `KeyError` est une sorte de `LookupError`",
+      "Non, il faut écrire `KeyError`",
+      "Seulement avec `as e`",
+      "Seulement dans un dictionnaire vide"
+    ],
     "reponse": 0,
-    "explication": "Les exceptions forment une hiérarchie : `KeyError` et `IndexError` héritent de `LookupError`. Intercepter le parent intercepte les enfants."
+    "explication": "**Règle :** les exceptions forment une **famille** : `except Parent:` intercepte aussi toutes les exceptions « enfants » de ce parent.\n\n**Pas à pas :**\n\n```text\nLookupError\n├── KeyError     (clé absente d'un dictionnaire)\n└── IndexError   (indice hors d'une liste)\n```\n\n`KeyError` est une sorte de `LookupError` : `except LookupError:` l'attrape. Un seul `except LookupError` couvre donc `{\"a\": 1}[\"b\"]` **et** `[1, 2][5]`.\n\n**Les autres réponses :** écrire `KeyError` marche aussi, mais ce n'est pas **obligatoire** ; `as e` sert seulement à récupérer l'exception, il ne change pas ce qui est intercepté ; le contenu du dictionnaire n'a aucune importance.\n\n**À retenir :** intercepter un parent (`LookupError`, `ArithmeticError`...) intercepte tous ses enfants."
   },
   {
     "question": "Comment signaler soi-même qu'une valeur est invalide ?",
-    "choix": ["`return ValueError`", "`raise ValueError(\"message\")`", "`throw ValueError(\"message\")`", "`except ValueError`"],
+    "choix": [
+      "`return ValueError`",
+      "`raise ValueError(\"message\")`",
+      "`throw ValueError(\"message\")`",
+      "`except ValueError`"
+    ],
     "reponse": 1,
-    "explication": "`raise` lève une exception. `return ValueError` renverrait juste la classe, sans interrompre quoi que ce soit."
+    "explication": "**Règle :** `raise` **lève** une exception : la fonction s'arrête immédiatement et l'erreur remonte jusqu'à un `except` (ou arrête le programme).\n\n**Pas à pas :**\n\n```python\ndef verifier_age(age):\n    if age < 0:\n        raise ValueError(\"âge négatif\")\n    return age\n```\n\nAvec `verifier_age(-1)`, le `raise` crée l'exception avec son message et la lance : le `return` n'est jamais atteint.\n\n**Les autres réponses :** `return ValueError` **renvoie** la classe comme une valeur normale, rien n'est signalé et le programme continue ; `throw` n'existe pas en Python (c'est du Java / JavaScript) ; `except ValueError` **intercepte** une erreur, il ne la crée pas.\n\n**À retenir :** pour refuser une valeur : `raise ValueError(\"message\")`."
   },
   {
     "question": "Avec `def chercher(texte, motif, *, ignorer_casse=False)`, que fait l'appel `chercher(\"Ab\", \"a\", True)` ?",
-    "choix": ["Il renvoie `True`", "Il lève une `TypeError`", "Il ignore le `True`", "Il range `True` dans `motif`"],
+    "choix": [
+      "Il renvoie `True`",
+      "Il lève une `TypeError`",
+      "Il ignore le `True`",
+      "Il range `True` dans `motif`"
+    ],
     "reponse": 1,
-    "explication": "Les paramètres placés après le `*` seul sont nommés obligatoires : il faut écrire `ignorer_casse=True`."
+    "explication": "**Règle :** les paramètres placés après un `*` seul sont **nommés obligatoires** : ils ne peuvent être donnés que par `nom=valeur`.\n\n**Pas à pas :** `def chercher(texte, motif, *, ignorer_casse=False)` et l'appel `chercher(\"Ab\", \"a\", True)` :\n\n1. `\"Ab\"` va dans `texte`, `\"a\"` dans `motif`.\n2. Le `*` dit : plus aucun argument par position après `motif`.\n3. Le troisième argument, `True`, est par position : il n'a pas de place. Python lève une `TypeError` (« takes 2 positional arguments but 3 were given »).\n\nLe bon appel est `chercher(\"Ab\", \"a\", ignorer_casse=True)`.\n\n**Les autres réponses :** il ne renvoie rien du tout, puisqu'il plante avant ; Python n'ignore jamais un argument en trop ; `motif` a déjà reçu `\"a\"`, `True` ne peut pas aller dedans.\n\n**À retenir :** après `*`, uniquement `nom=valeur`, sinon `TypeError`."
   },
   {
     "question": "Que vaut `h` après `h, m, s = vers_hms(4203)`, si `vers_hms` fait `return heures, minutes, secondes` ?",
-    "choix": ["Le tuple `(1, 10, 3)`", "`1`", "`4203`", "Une erreur : on ne renvoie qu'une valeur"],
+    "choix": [
+      "Le tuple `(1, 10, 3)`",
+      "`1`",
+      "`4203`",
+      "Une erreur : on ne renvoie qu'une valeur"
+    ],
     "reponse": 1,
-    "explication": "`return a, b, c` renvoie un tuple, que l'affectation multiple déballe : `h` reçoit le premier élément, 1."
+    "explication": "**Règle :** `return a, b, c` renvoie **un tuple** `(a, b, c)`. L'affectation `x, y, z = tuple` le **déballe** : chaque variable reçoit l'élément à sa place.\n\n**Pas à pas :**\n\n1. `divmod(4203, 60)` : 4203 = 70 × 60 + 3, donc `minutes = 70`, `secondes = 3`.\n2. `divmod(70, 60)` : 70 = 1 × 60 + 10, donc `heures = 1`, `minutes = 10`.\n3. La fonction renvoie `(1, 10, 3)`.\n4. `h, m, s = (1, 10, 3)` : `h` reçoit le premier élément, **1**.\n\n**Les autres réponses :** le tuple entier, on l'aurait avec une seule variable (`h = vers_hms(4203)`) ; `4203` est l'argument de départ, pas un résultat ; aucune erreur : une fonction peut « renvoyer plusieurs valeurs » sous forme de tuple.\n\n**À retenir :** autant de variables à gauche que d'éléments dans le tuple, et chacune prend l'élément à sa place."
   },
   {
     "question": "Sans `functools.wraps`, que vaut `f.__name__` pour une fonction `f` décorée par un décorateur dont l'enveloppe s'appelle `wrapper` ?",
-    "choix": ["`\"f\"`", "`\"wrapper\"`", "`\"decor\"`", "`None`"],
+    "choix": [
+      "`\"f\"`",
+      "`\"wrapper\"`",
+      "`\"decor\"`",
+      "`None`"
+    ],
     "reponse": 1,
-    "explication": "Le nom `f` désigne maintenant l'enveloppe. `@functools.wraps(func)` recopie le nom et la docstring de la fonction d'origine."
+    "explication": "**Règle :** après la décoration, le nom de la fonction désigne **le wrapper**. Sans `functools.wraps`, ses informations (`__name__`, `__doc__`) sont celles du wrapper.\n\n**Pas à pas :**\n\n1. `@decor` sur `def f` fait `f = decor(f)`.\n2. `decor` renvoie la fonction interne nommée `wrapper`.\n3. Le nom `f` désigne maintenant cette fonction, dont le nom propre est `\"wrapper\"` : `f.__name__` vaut `\"wrapper\"`.\n\nAvec `@functools.wraps(func)` juste au-dessus du `def wrapper`, le nom `\"f\"` et la docstring sont recopiés sur le wrapper.\n\n**Les autres réponses :** `\"f\"` est ce qu'on obtient **avec** `wraps` ; `\"decor\"` est le nom du décorateur, qui n'est pas la fonction renvoyée ; une fonction a toujours un `__name__`, jamais `None`.\n\n**À retenir :** décorateur sans `wraps` = fonction déguisée en `wrapper` ; mets toujours `@functools.wraps(func)`."
   },
   {
     "question": "Avec `@a` écrit au-dessus de `@b`, lui-même au-dessus de `def f`, à quoi équivaut la décoration ?",
-    "choix": ["`f = a(b(f))`", "`f = b(a(f))`", "`f = a(f)` puis `b` est ignoré", "`f = a(f) + b(f)`"],
+    "choix": [
+      "`f = a(b(f))`",
+      "`f = b(a(f))`",
+      "`f = a(f)` puis `b` est ignoré",
+      "`f = a(f) + b(f)`"
+    ],
     "reponse": 0,
-    "explication": "Les décorateurs s'appliquent de bas en haut : `b`, le plus proche du `def`, enveloppe `f` en premier."
+    "explication": "**Règle :** plusieurs décorateurs s'appliquent **de bas en haut** : le plus proche du `def` enveloppe la fonction en premier.\n\n**Pas à pas :**\n\n```python\n@a\n@b\ndef f(): ...\n```\n\n1. D'abord `@b`, le plus proche : `f = b(f)`.\n2. Puis `@a` enveloppe le résultat : `f = a(b(f))`.\n\nÀ l'appel, c'est donc l'enveloppe de `a` qui démarre ; elle appelle l'enveloppe de `b`, qui appelle le vrai `f`. Sur le résultat, `b` agit en premier, `a` en dernier.\n\n**Les autres réponses :** `b(a(f))` inverse l'ordre (ce serait `@b` au-dessus de `@a`) ; aucun décorateur n'est ignoré ; et on n'additionne pas des fonctions.\n\n**À retenir :** lis les décorateurs du bas vers le haut : `@a @b def f` = `a(b(f))`."
   },
   {
     "question": "Pourquoi `fibo(n - 1) + fibo(n - 2)` sans cache est-il très lent pour `n = 40` ?",
-    "choix": ["La récursion est interdite au-delà de 30", "Les mêmes valeurs sont recalculées un nombre énorme de fois", "Les entiers deviennent trop grands", "Python recopie la pile à chaque appel"],
+    "choix": [
+      "La récursion est interdite au-delà de 30",
+      "Les mêmes valeurs sont recalculées un nombre énorme de fois",
+      "Les entiers deviennent trop grands",
+      "Python recopie la pile à chaque appel"
+    ],
     "reponse": 1,
-    "explication": "Le nombre d'appels grandit presque comme Fibonacci lui-même. `@lru_cache(maxsize=None)` retient chaque résultat : chaque valeur n'est calculée qu'une fois."
+    "explication": "**Règle :** sans cache, une fonction récursive recalcule chaque valeur **autant de fois** qu'elle est demandée.\n\n**Pas à pas :** `fibo(5)` appelle `fibo(4)` et `fibo(3)` ; `fibo(4)` rappelle `fibo(3)` et `fibo(2)`...\n\n| Valeur | Nombre de calculs dans `fibo(5)` |\n|---|---|\n| `fibo(4)` | 1 |\n| `fibo(3)` | 2 |\n| `fibo(2)` | 3 |\n| `fibo(1)` | 5 |\n\nLe nombre d'appels grandit presque comme la suite de Fibonacci elle-même : environ 330 millions d'appels pour `fibo(40)`. Avec `@lru_cache(maxsize=None)`, chaque valeur n'est calculée qu'une fois, puis lue dans le cache : 41 calculs suffisent.\n\n**Les autres réponses :** la limite de récursion de Python est d'environ 1000 niveaux de profondeur, et `fibo(40)` ne descend qu'à 40 niveaux ; les entiers Python n'ont pas de taille maximale, et `fibo(40)` (102 334 155) reste petit ; la pile n'est pas recopiée à chaque appel.\n\n**À retenir :** lent + mêmes valeurs recalculées = ajoute un cache (`@lru_cache(maxsize=None)`)."
   },
   {
     "question": "Une fonction contient `if n < 0: raise ValueError()` puis une boucle avec `yield`. Quand l'erreur apparaît-elle pour l'appel `g = f(-1)` ?",
-    "choix": ["Dès la ligne `g = f(-1)`", "Au premier `next(g)` (ou au début du `for`)", "Jamais", "À la fin du programme"],
+    "choix": [
+      "Dès la ligne `g = f(-1)`",
+      "Au premier `next(g)` (ou au début du `for`)",
+      "Jamais",
+      "À la fin du programme"
+    ],
     "reponse": 1,
-    "explication": "Appeler une fonction génératrice n'exécute rien de son corps. Pour vérifier dès l'appel, une fonction normale vérifie puis renvoie le générateur."
+    "explication": "**Règle :** une fonction qui contient `yield` n'exécute **aucune** ligne de son corps à l'appel, même pas les vérifications du début.\n\n**Pas à pas :**\n\n1. `g = f(-1)` : `f` contient `yield`, Python crée un générateur **sans** lancer le code. Pas d'erreur.\n2. `next(g)` (ou le premier tour d'un `for`) démarre le code : `if n < 0` est vrai, `raise ValueError()` part **à ce moment-là**.\n\nPour une erreur dès l'appel : une fonction normale (sans `yield`) vérifie `n`, puis renvoie le générateur qui fait le travail.\n\n**Les autres réponses :** « dès la ligne `g = f(-1)` » serait vrai pour une fonction sans `yield` ; « jamais » : l'erreur sort dès qu'on parcourt ; rien n'attend la fin du programme.\n\n**À retenir :** dans un générateur, les vérifications ne tournent qu'au premier `next`."
   },
   {
     "question": "Que fournit `yield from [1, 2]` dans un générateur ?",
-    "choix": ["La liste `[1, 2]` en une seule valeur", "`1` puis `2`", "Seulement `1`", "Rien, c'est une erreur"],
+    "choix": [
+      "La liste `[1, 2]` en une seule valeur",
+      "`1` puis `2`",
+      "Seulement `1`",
+      "Rien, c'est une erreur"
+    ],
     "reponse": 1,
-    "explication": "`yield from` délègue : il fournit une par une les valeurs de l'itérable, comme `for x in [1, 2]: yield x`."
+    "explication": "**Règle :** `yield from iterable` fournit **une par une** toutes les valeurs de l'itérable, comme `for x in iterable: yield x`.\n\n**Pas à pas :**\n\n```python\ndef g():\n    yield from [1, 2]\n    yield 3\n```\n\n`list(g())` : `yield from` fournit 1, puis 2, puis la fonction continue et fournit 3 : `[1, 2, 3]`.\n\n**Les autres réponses :** fournir la liste `[1, 2]` en une seule valeur, c'est ce que fait `yield [1, 2]` (sans `from`) ; `yield from` ne s'arrête pas au premier élément ; et c'est une écriture tout à fait valide.\n\n**À retenir :** `yield x` fournit `x` en un bloc ; `yield from x` fournit chacun de ses éléments."
   },
   {
     "question": "Que se passe-t-il avec `list(islice(g, 3))` si `g` fait `elements = list(it)` puis `while True: for x in elements: yield x`, et que `it` est vide ?",
-    "choix": ["On obtient `[]`", "Le programme reste bloqué", "On obtient `[None, None, None]`", "`StopIteration` est affichée"],
+    "choix": [
+      "On obtient `[]`",
+      "Le programme reste bloqué",
+      "On obtient `[None, None, None]`",
+      "`StopIteration` est affichée"
+    ],
     "reponse": 1,
-    "explication": "La boucle `while True` tourne sans fin sans jamais atteindre de `yield`. Il faut `if not elements: return` avant."
+    "explication": "**Règle :** un générateur ne s'arrête qu'en atteignant la fin de sa fonction, et ne fournit une valeur qu'en atteignant un `yield`. Une boucle qui n'atteint jamais ni l'un ni l'autre tourne pour toujours.\n\n**Pas à pas :** avec `it` vide :\n\n1. `elements = list(it)` donne `[]`.\n2. `while True:` commence un tour ; `for x in elements:` n'a rien à parcourir, aucun `yield`.\n3. Retour au `while True:` : même chose, encore et encore.\n4. `islice(g, 3)` attend sa première valeur, qui ne vient jamais : le programme reste **bloqué**.\n\nCorrection : `if not elements: return` avant la boucle, pour terminer tout de suite.\n\n**Les autres réponses :** `[]` serait le bon résultat... après la correction ; aucun `None` n'est fourni (il n'y a aucun `yield` atteint) ; et `StopIteration` n'est levée que quand le générateur se **termine**, ce qui n'arrive jamais ici.\n\n**À retenir :** une boucle infinie dans un générateur doit forcément passer par un `yield` à chaque tour, sinon elle bloque."
   },
   {
     "question": "Pourquoi faut-il trier avant `itertools.groupby` ?",
-    "choix": ["`groupby` ne marche que sur des listes triées, sinon il lève une erreur", "`groupby` ne regroupe que les éléments consécutifs de même clé", "Pour aller plus vite", "Ce n'est pas nécessaire"],
+    "choix": [
+      "`groupby` ne marche que sur des listes triées, sinon il lève une erreur",
+      "`groupby` ne regroupe que les éléments consécutifs de même clé",
+      "Pour aller plus vite",
+      "Ce n'est pas nécessaire"
+    ],
     "reponse": 1,
-    "explication": "Sur `a, b, a`, `groupby` fait trois paquets. Après un tri sur la même clé, les éléments égaux se suivent et forment un seul paquet."
+    "explication": "**Règle :** `groupby` regroupe seulement les éléments **consécutifs** qui ont la même clé. Il ne cherche pas plus loin.\n\n**Pas à pas :** sur `[\"ane\", \"bus\", \"avion\"]` avec la clé « première lettre » :\n\n| Sans tri | Après `sorted(..., key=...)` |\n|---|---|\n| `a` : `['ane']` | `a` : `['ane', 'avion']` |\n| `b` : `['bus']` | `b` : `['bus']` |\n| `a` : `['avion']` (nouveau paquet !) | |\n\nSans tri, `a` apparaît deux fois. Le tri (stable : l'ordre d'origine est gardé dans chaque groupe) met les éléments de même clé côte à côte.\n\n**Les autres réponses :** `groupby` ne lève aucune erreur sur une liste non triée, il donne juste des paquets coupés ; la vitesse n'a rien à voir ; et le tri est bien nécessaire dès que des éléments de même clé peuvent être séparés.\n\n**À retenir :** `sorted(x, key=k)` puis `groupby(..., key=k)`, avec la même clé."
   },
   {
     "question": "Que vaut `isinstance(True, int)` ?",
-    "choix": ["`True`", "`False`", "Une `TypeError`", "`None`"],
+    "choix": [
+      "`True`",
+      "`False`",
+      "Une `TypeError`",
+      "`None`"
+    ],
     "reponse": 0,
-    "explication": "`bool` est une sous-classe d'`int` (`True` vaut 1). Pour refuser les booléens, il faut les tester à part : `isinstance(n, bool)`."
+    "explication": "**Règle :** `bool` est une **sous-classe** d'`int` : `True` vaut 1 et `False` vaut 0. `isinstance(x, int)` est donc vrai pour un booléen.\n\n**Pas à pas :**\n\n| Test | Résultat |\n|---|---|\n| `isinstance(True, int)` | `True` (un `bool` est une sorte d'`int`) |\n| `type(True) is int` | `False` (le type exact est `bool`) |\n| `True + True` | `2` |\n\nPour accepter les entiers mais refuser les booléens : `isinstance(n, int) and not isinstance(n, bool)`.\n\n**Les autres réponses :** `False` serait la réponse de `type(True) is int`, pas d'`isinstance` ; `isinstance` ne lève pas d'erreur avec un type valide ; et il renvoie toujours `True` ou `False`, jamais `None`.\n\n**À retenir :** pour « un vrai entier », teste `bool` à part."
   },
   {
     "question": "Dans un `except ValueError as erreur:`, à quoi sert `raise TypeError(\"...\") from erreur` ?",
-    "choix": ["À lever une erreur plus claire en gardant l'erreur d'origine comme cause", "À ignorer l'erreur d'origine", "À relancer exactement la même `ValueError`", "À transformer l'erreur en avertissement"],
+    "choix": [
+      "À lever une erreur plus claire en gardant l'erreur d'origine comme cause",
+      "À ignorer l'erreur d'origine",
+      "À relancer exactement la même `ValueError`",
+      "À transformer l'erreur en avertissement"
+    ],
     "reponse": 0,
-    "explication": "`from erreur` range l'exception d'origine dans `__cause__` : le message final montre les deux, on ne perd pas l'information."
+    "explication": "**Règle :** `raise Nouvelle(...) from ancienne` lève une nouvelle exception, plus claire, et range l'ancienne dans `__cause__` : on garde l'information d'origine.\n\n**Pas à pas :**\n\n```python\ntry:\n    float(\"abc\")\nexcept ValueError as erreur:\n    raise TypeError(\"pas un nombre : 'abc'\") from erreur\n```\n\n1. `float(\"abc\")` lève une `ValueError`, rangée dans `erreur`.\n2. On lève une `TypeError` avec un message adapté.\n3. `from erreur` attache la `ValueError` : celui qui intercepte la `TypeError` la retrouve dans `e.__cause__`, et le message d'erreur affiché montre les deux.\n\n**Les autres réponses :** l'erreur d'origine n'est pas ignorée, au contraire elle est gardée ; ce n'est pas la même `ValueError` qui repart (pour ça, on écrirait `raise` tout seul) ; et il n'y a aucun avertissement, c'est une vraie exception qui arrête le programme si personne ne l'intercepte.\n\n**À retenir :** pour remplacer une erreur sans perdre sa cause : `raise Nouvelle(\"...\") from ancienne`."
   },
   {
     "question": "Comment écrit-on une fonction `aire` qui renvoie le produit de `largeur` et `hauteur` ?",
-    "choix": ["`function aire(largeur, hauteur) { return largeur * hauteur }`", "`def aire(largeur, hauteur): return largeur * hauteur`", "`def aire(largeur, hauteur) -> largeur * hauteur`", "`aire = def(largeur, hauteur): largeur * hauteur`"],
+    "choix": [
+      "`function aire(largeur, hauteur) { return largeur * hauteur }`",
+      "`def aire(largeur, hauteur): return largeur * hauteur`",
+      "`def aire(largeur, hauteur) -> largeur * hauteur`",
+      "`aire = def(largeur, hauteur): largeur * hauteur`"
+    ],
     "reponse": 1,
-    "explication": "`def`, le nom, les paramètres entre parenthèses, `:` puis le corps (sur la même ligne s'il est court, sinon indenté). `->` sert seulement à annoncer le type renvoyé."
+    "explication": "**Règle :** une fonction Python s'écrit `def`, le nom, les paramètres entre parenthèses, `:`, puis le corps (sur la même ligne s'il est très court, sinon en dessous, indenté). `return` donne le résultat.\n\n**Pas à pas :** `def aire(largeur, hauteur): return largeur * hauteur`\n\n1. `def aire` : on définit une fonction nommée `aire`.\n2. `(largeur, hauteur)` : ses deux paramètres.\n3. `:` ouvre le corps.\n4. `return largeur * hauteur` : renvoie le produit. `aire(3, 4)` vaut 12.\n\n**Les autres réponses :** `function ... { ... }` est du JavaScript ; `-> largeur * hauteur` n'est pas un calcul : `->` sert seulement à **annoncer le type** renvoyé (`-> int`), et il faut quand même `:` et un corps ; `aire = def(...)` n'existe pas (la fonction sans nom de Python s'écrit `lambda largeur, hauteur: largeur * hauteur`).\n\n**À retenir :** `def nom(paramètres):` puis `return résultat`."
   },
   {
     "question": "Comment écrit-on une fonction qui accepte **autant d'arguments par position** qu'on veut ?",
-    "choix": ["`def f(...args):`", "`def f(*args):`", "`def f(args[]):`", "`def f(**args):`"],
+    "choix": [
+      "`def f(...args):`",
+      "`def f(*args):`",
+      "`def f(args[]):`",
+      "`def f(**args):`"
+    ],
     "reponse": 1,
-    "explication": "`*args` rassemble les arguments par position dans un **tuple**. `**args` rassemblerait les arguments **par mot-clé** dans un dictionnaire."
+    "explication": "**Règle :** une étoile devant un paramètre (`*args`) ramasse **tous** les arguments par position en trop dans un tuple.\n\n**Pas à pas :**\n\n```python\ndef f(*args):\n    return len(args)\n\n\nprint(f(), f(1), f(1, 2, 3))\n```\n\n`f()` : `args = ()`, 0 ; `f(1)` : `args = (1,)`, 1 ; `f(1, 2, 3)` : `args = (1, 2, 3)`, 3. On peut donner autant d'arguments qu'on veut.\n\n**Les autres réponses :** `...args` est l'écriture de JavaScript, pas de Python ; `args[]` n'est pas une syntaxe valide pour un paramètre ; `**args` (deux étoiles) ramasse les arguments **par mot-clé** dans un dictionnaire : `f(1, 2)` serait alors refusé.\n\n**À retenir :** `*` = positions en nombre libre (tuple), `**` = mots-clés en nombre libre (dictionnaire)."
   },
   {
     "question": "Comment donne-t-on la valeur par défaut `2` au paramètre `puissance` ?",
-    "choix": ["`def f(x, puissance=2):`", "`def f(x, puissance: 2):`", "`def f(x, puissance == 2):`", "`def f(x, default puissance = 2):`"],
+    "choix": [
+      "`def f(x, puissance=2):`",
+      "`def f(x, puissance: 2):`",
+      "`def f(x, puissance == 2):`",
+      "`def f(x, default puissance = 2):`"
+    ],
     "reponse": 0,
-    "explication": "La valeur par défaut s'écrit avec `=`. `puissance: 2` est accepté par Python, mais c'est une **annotation** (une indication de type), pas une valeur par défaut : le paramètre reste obligatoire."
+    "explication": "**Règle :** une valeur par défaut s'écrit `paramètre=valeur` dans la définition.\n\n**Pas à pas :** `def f(x, puissance=2):`\n\n- `f(3)` : `puissance` n'est pas donnée, elle vaut 2 ;\n- `f(3, 5)` ou `f(3, puissance=5)` : elle vaut 5.\n\n**Les autres réponses :** `puissance: 2` est accepté par Python, mais c'est une **annotation** (une indication pour le lecteur) : `puissance` reste obligatoire, `f(3)` lève une `TypeError` ; `==` est une comparaison, interdite à cet endroit (`SyntaxError`) ; `default` n'est pas un mot-clé de Python.\n\n**À retenir :** défaut = `=` ; annotation = `:`."
   },
   {
     "question": "Comment lève-t-on soi-même une `ValueError` avec un message ?",
-    "choix": ["`throw ValueError(\"négatif\")`", "`raise ValueError(\"négatif\")`", "`raise new ValueError(\"négatif\")`", "`error ValueError(\"négatif\")`"],
+    "choix": [
+      "`throw ValueError(\"négatif\")`",
+      "`raise ValueError(\"négatif\")`",
+      "`raise new ValueError(\"négatif\")`",
+      "`error ValueError(\"négatif\")`"
+    ],
     "reponse": 1,
-    "explication": "Le mot-clé est `raise`, suivi de l'exception créée comme un appel de fonction. Pas de `new` en Python, ni pour les exceptions ni pour les objets."
+    "explication": "**Règle :** on lève une exception avec le mot-clé `raise`, suivi de l'exception créée comme un appel de fonction : `raise ValueError(\"message\")`.\n\n**Pas à pas :**\n\n```python\ndef racine(x):\n    if x < 0:\n        raise ValueError(\"négatif\")\n    return x ** 0.5\n```\n\n`racine(-4)` : la condition est vraie, `ValueError(\"négatif\")` crée l'exception avec son message, `raise` la lance et la fonction s'arrête. Un `except ValueError as e` récupère le message dans `e`.\n\n**Les autres réponses :** `throw` est le mot de Java / JavaScript, inconnu en Python ; `new` n'existe pas en Python, ni pour les exceptions ni pour les objets (on écrit directement `ValueError(...)`) ; `error` n'est pas un mot-clé : `SyntaxError`.\n\n**À retenir :** `raise TypeDErreur(\"message\")`, sans `new` ni `throw`."
   }
 ]

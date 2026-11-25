@@ -1,62 +1,112 @@
 [
   {
     "question": "Que veut dire **SIG** ?",
-    "choix": ["Système d'Information Géographique", "Service d'Imagerie Géologique", "Système Informatique de Gestion", "Schéma d'Implantation Géométrique"],
+    "choix": [
+      "Système d'Information Géographique",
+      "Service d'Imagerie Géologique",
+      "Système Informatique de Gestion",
+      "Schéma d'Implantation Géométrique"
+    ],
     "reponse": 0,
-    "explication": "Un SIG stocke, affiche et analyse des données liées à un lieu sur la Terre."
+    "explication": "**Règle :** SIG = **S**ystème d'**I**nformation **G**éographique : un logiciel qui stocke, affiche et analyse des données liées à un **lieu** sur la Terre.\n\n**Pas à pas :** on décode chaque lettre.\n\n- S = Système (un ensemble d'outils) ;\n- I = d'Information (des données) ;\n- G = Géographique (liées à un endroit sur la carte).\n\n**Les autres réponses :** « Service d'Imagerie Géologique » parle de roches et d'images, pas de cartes de données ; « Système Informatique de Gestion » est un logiciel de gestion d'entreprise, sans lien avec un lieu ; « Schéma d'Implantation Géométrique » n'existe pas, il reprend juste le mot « géométrie ».\n\n**À retenir :** le G de SIG veut dire **géographique** : chaque donnée est rattachée à un endroit."
   },
   {
     "question": "Dans QGIS, que contient une **couche** ?",
-    "choix": ["Un seul type d'objet (par exemple tous les bâtiments)", "Toute la carte d'un coup", "Seulement une image satellite", "Uniquement les coordonnées du projet"],
+    "choix": [
+      "Un seul type d'objet (par exemple tous les bâtiments)",
+      "Toute la carte d'un coup",
+      "Seulement une image satellite",
+      "Uniquement les coordonnées du projet"
+    ],
     "reponse": 0,
-    "explication": "On empile les couches : une pour les bâtiments, une pour les routes, une pour les communes…"
+    "explication": "**Règle :** dans QGIS, une **couche** contient **un seul type d'objet** (tous les bâtiments, ou toutes les routes…). La carte, c'est plusieurs couches empilées comme des calques.\n\n**Pas à pas :** pour faire une carte de Paris, on ouvre la couche `BATIMENT`, puis `TRONCON_DE_ROUTE`, puis `COMMUNE` : chacune apporte une sorte d'objet, et on les superpose.\n\n**Les autres réponses :** « toute la carte d'un coup », c'est l'inverse, la carte est faite de **plusieurs** couches ; « seulement une image satellite », c'est un type de couche possible (une image), pas la définition ; « uniquement les coordonnées du projet », non, le système de coordonnées est un réglage du projet, pas le contenu d'une couche.\n\n**À retenir :** une couche = une seule catégorie d'objets ; une carte = des couches empilées."
   },
   {
     "question": "Une **route** est représentée le plus souvent par…",
-    "choix": ["une ligne", "un point", "une surface", "un tableau sans géométrie"],
+    "choix": [
+      "une ligne",
+      "un point",
+      "une surface",
+      "un tableau sans géométrie"
+    ],
     "reponse": 0,
-    "explication": "Les tronçons de route, les cours d'eau et les voies ferrées sont des lignes. Un bâtiment est une surface, une adresse un point."
+    "explication": "**Règle :** on choisit la géométrie selon l'objet : une **aire** → surface, surtout une **longueur** (un tracé) → ligne, une simple **position** → point.\n\n**Pas à pas :** une route se suit d'un bout à l'autre : ce qui compte, c'est son **tracé**. Sa largeur est petite par rapport à sa longueur. C'est donc une **ligne** (dans la BD TOPO : `TRONCON_DE_ROUTE`).\n\n**Les autres réponses :** un point ne donnerait qu'un endroit, sans le chemin ; une surface sert aux objets avec une aire (bâtiment, commune) ; un tableau sans géométrie ne pourrait pas être dessiné sur la carte.\n\n**À retenir :** route, cours d'eau, voie ferrée = lignes ; bâtiment = surface ; adresse = point."
   },
   {
     "question": "Dans un Shapefile, quel fichier contient la **table des attributs** ?",
-    "choix": ["`.dbf`", "`.shp`", "`.shx`", "`.prj`"],
+    "choix": [
+      "`.dbf`",
+      "`.shp`",
+      "`.shx`",
+      "`.prj`"
+    ],
     "reponse": 0,
-    "explication": "`.shp` = les formes, `.shx` = l'index des formes, `.dbf` = les attributs, `.prj` = le système de coordonnées, `.cpg` = l'encodage."
+    "explication": "**Règle :** un Shapefile est fait de plusieurs fichiers de même nom : `.shp` = formes, `.shx` = index des formes, `.dbf` = **table des attributs**, `.prj` = système de coordonnées, `.cpg` = encodage.\n\n**Pas à pas :** la table des attributs est un tableau de données (nom, hauteur…). Le fichier qui la contient est celui de « base de données » : `.dbf`, pour *database file*.\n\n**Les autres réponses :** `.shp` contient les formes (*shape*), pas le tableau ; `.shx` est seulement l'index qui aide à retrouver les formes ; `.prj` décrit la projection (le système de coordonnées).\n\n**À retenir :** **dbf** = *database file* = les attributs."
   },
   {
     "question": "Que se passe-t-il si on copie seulement le fichier `BATIMENT.shp`, sans les autres ?",
-    "choix": ["La couche est inutilisable", "Rien, le `.shp` suffit", "QGIS recrée les fichiers manquants", "On perd seulement les couleurs"],
+    "choix": [
+      "La couche est inutilisable",
+      "Rien, le `.shp` suffit",
+      "QGIS recrée les fichiers manquants",
+      "On perd seulement les couleurs"
+    ],
     "reponse": 0,
-    "explication": "Les fichiers d'une même couche vont ensemble : sans `.shx` ni `.dbf`, le `.shp` ne s'ouvre pas correctement."
+    "explication": "**Règle :** une couche Shapefile a **3 fichiers obligatoires** : `.shp` (formes), `.shx` (index) et `.dbf` (attributs). Il leur faut tous les trois pour fonctionner.\n\n**Pas à pas :** on vérifie ce qu'on a copié.\n\n| Fichier obligatoire | Copié ? |\n|---|---|\n| `BATIMENT.shp` | oui |\n| `BATIMENT.shx` | non |\n| `BATIMENT.dbf` | non |\n\nDeux obligatoires manquent : la couche est **inutilisable**.\n\n**Les autres réponses :** « le `.shp` suffit » est le piège classique, il porte le nom du format mais n'est qu'une partie de la couche ; QGIS ne recrée pas des fichiers absents (il ne peut pas inventer les attributs) ; on ne perd pas « seulement les couleurs » : les couleurs ne sont même pas stockées dans ces fichiers.\n\n**À retenir :** on copie toujours **tous** les fichiers de même nom ensemble."
   },
   {
     "question": "Qui produit la **BD TOPO** ?",
-    "choix": ["L'IGN", "L'INSEE", "Météo-France", "OpenStreetMap"],
+    "choix": [
+      "L'IGN",
+      "L'INSEE",
+      "Météo-France",
+      "OpenStreetMap"
+    ],
     "reponse": 0,
-    "explication": "L'IGN (Institut national de l'information géographique et forestière) produit les données géographiques de référence en France."
+    "explication": "**Règle :** la **BD TOPO** est produite par l'**IGN** (Institut national de l'information géographique et forestière), qui fait les données géographiques de référence en France.\n\n**Pas à pas :** « BD TOPO » = base de données topographique (la forme du territoire : bâtiments, routes, eau…). C'est le métier de l'IGN, celui qui fait aussi les cartes de randonnée.\n\n**Les autres réponses :** l'INSEE produit des **statistiques** (population, revenus), pas des cartes détaillées ; Météo-France fait la météo ; OpenStreetMap est une carte **collaborative** remplie par des bénévoles, pas un institut officiel.\n\n**À retenir :** BD TOPO = IGN."
   },
   {
     "question": "Le **Lambert 93** est…",
-    "choix": ["une projection plane avec des coordonnées en mètres", "un système en degrés de latitude et longitude", "un format de fichier", "un logiciel SIG"],
+    "choix": [
+      "une projection plane avec des coordonnées en mètres",
+      "un système en degrés de latitude et longitude",
+      "un format de fichier",
+      "un logiciel SIG"
+    ],
     "reponse": 0,
-    "explication": "Lambert 93 (EPSG:2154) est la projection officielle de la France métropolitaine. Ses coordonnées sont en mètres, pratiques pour mesurer distances et surfaces."
+    "explication": "**Règle :** le **Lambert 93** (EPSG:2154) est un système **projeté** : la Terre est aplatie sur un plan, et les coordonnées sont en **mètres**.\n\n**Pas à pas :** un point de Paris en Lambert 93 ressemble à (652 000 ; 6 862 000). Ces grands nombres sont des mètres : on peut directement calculer une distance ou une surface.\n\n**Les autres réponses :** « un système en degrés de latitude et longitude », c'est le WGS 84 du GPS, l'autre famille ; « un format de fichier », non, le format c'est par exemple le Shapefile, le Lambert 93 dit seulement **où** sont les objets ; « un logiciel SIG », non, le logiciel c'est QGIS.\n\n**À retenir :** Lambert 93 = projection plane, en mètres, officielle en France métropolitaine."
   },
   {
     "question": "Quel est le code EPSG du Lambert 93 ?",
-    "choix": ["2154", "4326", "3857", "75"],
+    "choix": [
+      "2154",
+      "4326",
+      "3857",
+      "75"
+    ],
     "reponse": 0,
-    "explication": "EPSG:2154 = RGF93 / Lambert-93. EPSG:4326 est le WGS 84 du GPS (en degrés), 3857 la projection des cartes web."
+    "explication": "**Règle :** chaque système de coordonnées a un code **EPSG**. Le Lambert 93 (RGF93 / Lambert-93) a le code **2154**.\n\n**Pas à pas :** dans QGIS, en bas à droite, le projet affiche par exemple `EPSG:2154` : c'est le Lambert 93, celui des données de la BD TOPO.\n\n**Les autres réponses :** 4326 est le WGS 84 du GPS (en degrés) ; 3857 est le Web Mercator des fonds de carte du web (OpenStreetMap, Google Maps) ; 75 est le numéro du département de Paris, pas un code EPSG.\n\n**À retenir :** 2154 = Lambert 93 ; 4326 = GPS en degrés ; 3857 = cartes web."
   },
   {
     "question": "Dans quel ordre ranger les couches dans QGIS pour bien tout voir ?",
-    "choix": ["Points en haut, puis lignes, puis surfaces", "Surfaces en haut, puis lignes, puis points", "Par ordre alphabétique", "L'ordre n'a aucune importance"],
+    "choix": [
+      "Points en haut, puis lignes, puis surfaces",
+      "Surfaces en haut, puis lignes, puis points",
+      "Par ordre alphabétique",
+      "L'ordre n'a aucune importance"
+    ],
     "reponse": 0,
-    "explication": "Une grande surface placée au-dessus cache tout ce qu'il y a dessous : on met les objets les plus fins en haut."
+    "explication": "**Règle :** dans QGIS, la couche **du haut est dessinée par-dessus** les autres. On met donc les objets les plus fins en haut : **points, puis lignes, puis surfaces**.\n\n**Pas à pas :**\n\n1. Les points sont tout petits : en haut, ils ne cachent rien.\n2. Les lignes sont fines : au milieu, elles cachent peu.\n3. Les surfaces couvrent de grandes zones : en bas, elles servent de fond sans rien recouvrir.\n\n**Les autres réponses :** surfaces en haut, c'est l'ordre inverse, et une grande surface pleine cacherait tout le reste ; l'ordre alphabétique n'a aucun rapport avec ce qui se cache ; dire que l'ordre n'a pas d'importance est faux, c'est justement lui qui décide ce qui est visible.\n\n**À retenir :** du haut vers le bas : points, lignes, surfaces."
   },
   {
     "question": "Dans quel thème de la BD TOPO trouve-t-on la couche `TRONCON_DE_ROUTE` ?",
-    "choix": ["TRANSPORT", "ADRESSES", "BATI", "ADMINISTRATIF"],
+    "choix": [
+      "TRANSPORT",
+      "ADRESSES",
+      "BATI",
+      "ADMINISTRATIF"
+    ],
     "reponse": 0,
-    "explication": "TRANSPORT regroupe routes, voies ferrées, aérodromes… ADRESSES contient les adresses (ADRESSE_BAN) et les voies nommées."
+    "explication": "**Règle :** les thèmes de la BD TOPO sont parlants : on se demande **de quoi parle** la couche. TRANSPORT regroupe les voies de circulation (routes, voies ferrées, aérodromes).\n\n**Pas à pas :** `TRONCON_DE_ROUTE` = un morceau de route. Une route sert à circuler : thème **TRANSPORT**.\n\n**Les autres réponses :** ADRESSES contient les adresses (`ADRESSE_BAN`) et les noms de rues (`VOIE_NOMMEE`), pas le tracé des routes ; BATI contient les constructions ; ADMINISTRATIF contient les limites officielles (communes, départements).\n\n**À retenir :** route, rail, aérodrome → TRANSPORT ; nom de rue → ADRESSES."
   }
 ]

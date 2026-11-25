@@ -8,7 +8,7 @@
       "Un langage de programmation"
     ],
     "reponse": 0,
-    "explication": "Une métaheuristique guide la recherche vers de bonnes solutions quel que soit le problème, sans prouver qu'elles sont optimales."
+    "explication": "**Règle :** une **métaheuristique** est une méthode d'optimisation **générique** (elle marche sur beaucoup de problèmes), souvent **aléatoire**, qui cherche de bonnes solutions **sans garantie** que ce soit la meilleure.\n\n**Pas à pas :** on reprend les trois mots clés de la définition.\n\n1. « méthode d'optimisation » : elle cherche une solution de coût le plus bas possible.\n2. « générique » : on la réutilise sur le voyageur de commerce, un emploi du temps, le casse-tête des cubes… en changeant seulement le codage, le coût et le mouvement.\n3. « sans garantie d'optimalité » : la solution trouvée est bonne, mais on ne peut pas prouver qu'elle est la meilleure.\n\n**Les autres réponses :**\n\n- « Un algorithme exact qui prouve l'optimum » : c'est justement le contraire, les méthodes exactes prouvent l'optimum, les métaheuristiques non.\n- « Une formule qui donne directement la solution » : une métaheuristique **cherche** pas à pas, elle ne calcule pas la réponse d'un coup.\n- « Un langage de programmation » : c'est une méthode, qu'on peut écrire dans n'importe quel langage.\n\n**À retenir :** métaheuristique = générique + souvent aléatoire + sans preuve d'optimum."
   },
   {
     "question": "Que signifie le préfixe « méta » dans métaheuristique ?",
@@ -19,7 +19,7 @@
       "« Aléatoire »"
     ],
     "reponse": 0,
-    "explication": "La métaheuristique est un cadre qui pilote une heuristique de bas niveau (le voisinage, un croisement…) au lieu de résoudre le problème lui-même."
+    "explication": "**Règle :** « méta » veut dire **« au-dessus »**. Une métaheuristique est placée au-dessus d'une heuristique de bas niveau (le mouvement de voisinage, un croisement…) et la **pilote** : elle décide quel mouvement essayer et lequel garder.\n\n**Pas à pas :** dans le recuit simulé, la brique de bas niveau est le mouvement (par exemple un échange 2-opt). Le cadre « au-dessus » décide, à chaque pas, si on garde le voisin proposé ou non. Le cadre ne connaît rien au problème : il ne fait que commander la brique.\n\n**Les autres réponses :**\n\n- « Après » : on ne l'applique pas après une méthode exacte ; elle sert justement quand la méthode exacte est trop chère.\n- « Rapide » et « Aléatoire » : une métaheuristique est souvent rapide et souvent aléatoire, mais ce n'est pas ce que veut dire le mot « méta ».\n\n**À retenir :** méta = au-dessus : la méthode pilote une heuristique de bas niveau."
   },
   {
     "question": "Quels sont les trois ingrédients communs aux métaheuristiques du cours ?",
@@ -30,7 +30,7 @@
       "Une preuve, un lemme, un théorème"
     ],
     "reponse": 0,
-    "explication": "On code les solutions, on les note avec une fonction de coût, et on passe de l'une à l'autre par des mouvements élémentaires (le voisinage)."
+    "explication": "**Règle :** toutes les métaheuristiques du cours ont besoin de trois ingrédients : un **codage** (comment écrire une solution), une **fonction de coût** (une note pour chaque solution) et des **mouvements élémentaires** (comment passer d'une solution à une voisine).\n\n**Pas à pas :** sur le casse-tête des 27 cubes :\n\n1. codage : la position de chaque cube (une permutation des 27 cubes) ;\n2. fonction de coût : l'erreur, qui vaut 0 quand chaque ligne a une seule couleur ;\n3. mouvement élémentaire : échanger deux cubes voisins.\n\nSur le voyageur de commerce : codage = l'ordre des villes, coût = la longueur de la tournée, mouvement = un échange 2-opt.\n\n**Les autres réponses :** « graphe, matrice, solveur », « base de données, requête, index » et « preuve, lemme, théorème » sont des outils d'autres domaines. Une métaheuristique ne prouve rien et n'a pas besoin d'un solveur.\n\n**À retenir :** codage + coût + mouvement : avec ces trois choses, n'importe quelle métaheuristique peut tourner."
   },
   {
     "question": "Dans le casse-tête des 27 cubes, pourquoi un échange **horizontal** ne change-t-il pas l'erreur ?",
@@ -41,7 +41,7 @@
       "Parce qu'on ne peut pas faire d'échange horizontal"
     ],
     "reponse": 0,
-    "explication": "L'erreur additionne des écarts de **lignes** : échanger deux cubes d'une même ligne ne change aucune ligne. C'est un plateau."
+    "explication": "**Règle :** l'erreur est $E = \\sum |y_i - y_j|$ sur les paires de même couleur, où $y_i$ est le **numéro de ligne** du cube $i$. Elle ne dépend donc que des lignes, pas des colonnes.\n\n**Pas à pas :**\n\n1. Un échange horizontal prend deux cubes **sur la même ligne**, par exemple la ligne 2.\n2. Après l'échange, les deux cubes sont toujours sur la ligne 2 : leur $y$ ne change pas.\n3. Aucun $y_i$ ne change, donc aucun écart $|y_i - y_j|$ ne change, donc l'erreur reste la même.\n\nUne zone où le coût ne bouge pas s'appelle un **plateau**.\n\n**Les autres réponses :**\n\n- « Parce que les cubes ont la même couleur » : les deux cubes échangés peuvent être de couleurs différentes, l'erreur ne bouge quand même pas.\n- « Parce que l'erreur vaut toujours 0 » : faux, elle vaut 0 seulement quand le casse-tête est résolu.\n- « On ne peut pas faire d'échange horizontal » : si, il y en a 24 ; ils préparent les échanges verticaux.\n\n**À retenir :** l'erreur ne regarde que les lignes : un mouvement qui ne change aucune ligne ne change pas l'erreur."
   },
   {
     "question": "La recherche locale naïve s'arrête sur un minimum local quand…",
@@ -52,7 +52,7 @@
       "on a essayé toutes les solutions"
     ],
     "reponse": 0,
-    "explication": "Un minimum local est un état dont aucun voisin n'est meilleur : la descente y reste bloquée, même si l'erreur n'est pas nulle."
+    "explication": "**Règle :** un **minimum local** est un état dont **aucun** voisin n'a une erreur strictement plus petite. La recherche locale n'accepte que des mouvements qui n'augmentent pas l'erreur : sur un minimum local, elle ne trouve plus rien à faire.\n\n**Pas à pas :** la descente teste les voisins de l'état courant.\n\n1. S'il existe un voisin d'erreur plus petite, elle y va et recommence.\n2. Si tous les voisins ont une erreur égale ou plus grande, elle est **bloquée** : c'est un minimum local. Exemple du cours : un état d'erreur 112 dont les 42 échanges laissent l'erreur égale ou la font monter.\n\n**Les autres réponses :**\n\n- « le critère d'arrêt de temps est atteint » : ça arrête l'algorithme, mais n'importe où, pas forcément sur un minimum local.\n- « l'erreur vaut exactement 0 » : c'est le minimum **global** (problème résolu). Un minimum local peut avoir une erreur bien plus grande que 0.\n- « on a essayé toutes les solutions » : la recherche locale n'essaie jamais tout, c'est ce qui la rend rapide.\n\n**À retenir :** la descente s'arrête quand aucun voisin n'est meilleur, même si le problème n'est pas résolu."
   },
   {
     "question": "Un **optimum local** (en minimisation) est une solution…",
@@ -63,7 +63,7 @@
       "qui viole une contrainte"
     ],
     "reponse": 0,
-    "explication": "Optimum local : $c(s') \\ge c(s)$ pour tout voisin $s'$. L'optimum **global** est le meilleur de tous ; un optimum local peut être bien moins bon."
+    "explication": "**Règle :** en minimisation, $s$ est un **optimum local** si $c(s') \\ge c(s)$ pour **tout** voisin $s'$ : aucun voisin n'est **strictement** moins cher. L'**optimum global** est la solution la moins chère parmi **toutes** les solutions.\n\n**Pas à pas :** sur un petit paysage de coûts alignés 4, 2, 5, 1 (chaque solution a pour voisines celle de gauche et celle de droite) :\n\n- la solution de coût 2 a des voisines à 4 et 5 : aucune n'est moins chère, c'est un optimum local ;\n- la solution de coût 1 a une voisine à 5 : c'est un optimum local, et aussi le global ;\n- le coût 2 est un optimum local qui n'est **pas** global.\n\n**Les autres réponses :**\n\n- « de coût minimal parmi toutes les solutions » : c'est la définition de l'optimum **global**, pas local.\n- « trouvée au hasard » : la façon de la trouver ne compte pas, seule la comparaison avec les voisins compte.\n- « qui viole une contrainte » : une solution qui viole une contrainte n'est pas réalisable, ce n'est pas un optimum.\n\n**À retenir :** local = comparé à ses voisins seulement ; global = comparé à tout le monde."
   },
   {
     "question": "Qu'est-ce que le **multi-start** ?",
@@ -74,7 +74,7 @@
       "Accepter des dégradations"
     ],
     "reponse": 0,
-    "explication": "La solution trouvée dépend de l'état initial : en multipliant les départs, on explore plusieurs vallées. C'est bon marché mais sans garantie."
+    "explication": "**Règle :** le **multi-start** consiste à relancer la descente depuis **plusieurs états initiaux** tirés au hasard, puis à garder la meilleure solution trouvée.\n\n**Pas à pas :**\n\n1. Une descente s'arrête sur le minimum local de la « vallée » où elle a démarré.\n2. Deux départs différents peuvent tomber dans deux vallées différentes, donc donner deux résultats différents.\n3. En multipliant les départs, on visite plusieurs vallées et on garde la plus profonde trouvée.\n\nC'est bon marché (on relance le même algorithme) et souvent efficace, mais **sans garantie** : tous les départs peuvent rater la meilleure vallée.\n\n**Les autres réponses :**\n\n- « Lancer plusieurs ordinateurs » : on peut le faire en parallèle, mais l'idée est de multiplier les **points de départ**, pas les machines.\n- « Commencer par la solution optimale » : on ne la connaît pas, sinon le problème serait déjà résolu.\n- « Accepter des dégradations » : c'est l'idée du **recuit simulé**, pas du multi-start (chaque descente reste une descente).\n\n**À retenir :** multi-start = plusieurs descentes depuis des départs au hasard, on garde la meilleure."
   },
   {
     "question": "Quelle différence entre **première** et **meilleure** amélioration ?",
@@ -85,7 +85,7 @@
       "La meilleure accepte les dégradations"
     ],
     "reponse": 0,
-    "explication": "La meilleure amélioration est plus chère par pas (tout le voisinage) mais fait en général moins de pas."
+    "explication": "**Règle :** les deux variantes de la descente diffèrent par la façon de choisir le voisin.\n\n- **Première amélioration** : on parcourt les voisins et on prend **le premier** qui est meilleur, sans regarder les suivants.\n- **Meilleure amélioration** : on examine **tous** les voisins et on prend le meilleur d'entre eux.\n\n**Pas à pas :** depuis une solution de coût 7 dont les voisins coûtent (dans l'ordre de parcours) 3 puis 1 :\n\n- première amélioration : 3 est meilleur que 7, on le prend tout de suite ;\n- meilleure amélioration : on regarde 3 et 1, on prend 1.\n\nChaque pas de la meilleure amélioration coûte plus cher (tout le voisinage est évalué), mais il descend plus fort, donc il faut en général moins de pas. Les deux variantes peuvent même finir sur des minima locaux différents.\n\n**Les autres réponses :**\n\n- « La première est exacte, la meilleure approchée » : aucune des deux n'est exacte, ce sont deux descentes.\n- « Aucune différence » : faux, le voisin choisi n'est pas le même.\n- « La meilleure accepte les dégradations » : non, les deux n'acceptent que des améliorations.\n\n**À retenir :** première = le premier voisin meilleur ; meilleure = le meilleur de tout le voisinage."
   },
   {
     "question": "Que fait un mouvement **2-opt** sur une tournée ?",
@@ -96,7 +96,7 @@
       "Il trie les villes par ordre alphabétique"
     ],
     "reponse": 0,
-    "explication": "Supprimer deux arêtes coupe la tournée en deux morceaux ; on les reconnecte dans l'autre sens, ce qui revient à inverser un segment."
+    "explication": "**Règle :** un mouvement **2-opt** supprime **deux arêtes** de la tournée et reconnecte les deux morceaux dans l'autre sens. Cela revient à **inverser un segment** de la tournée.\n\n**Pas à pas :** tournée A → B → C → D → E → A, on inverse le segment B…D.\n\n1. Nouvelle tournée : A → D → C → B → E → A (B, C, D écrits à l'envers).\n2. Arêtes supprimées : (A,B), qui entrait dans le segment, et (D,E), qui en sortait.\n3. Arêtes ajoutées : (A,D) et (B,E).\n4. Les arêtes à l'intérieur du segment, (B,C) et (C,D), restent : elles sont seulement parcourues à l'envers.\n\n**Les autres réponses :**\n\n- « Il échange deux villes au hasard » : c'est un autre mouvement (échanger deux villes éloignées change en général quatre arêtes, pas deux).\n- « Il ajoute deux villes » : le nombre de villes ne change jamais, chaque ville est visitée une fois.\n- « Il trie les villes par ordre alphabétique » : l'ordre alphabétique n'a rien à voir avec la longueur.\n\n**À retenir :** 2-opt = retirer 2 arêtes, inverser le segment entre elles, reconnecter."
   },
   {
     "question": "Une tournée **2-optimale** est…",
@@ -107,7 +107,7 @@
       "une tournée construite au plus proche voisin"
     ],
     "reponse": 0,
-    "explication": "Aucun échange 2-opt ne la raccourcit : c'est la définition d'un optimum local pour ce voisinage. Elle n'est pas forcément globalement optimale."
+    "explication": "**Règle :** une tournée est **2-optimale** quand **aucun** échange 2-opt ne la raccourcit. Par définition, c'est un **optimum local** pour le voisinage 2-opt.\n\n**Pas à pas :**\n\n1. On calcule le gain de chacun des $\\dfrac{n(n-3)}{2}$ échanges 2-opt possibles.\n2. Si tous les gains sont négatifs ou nuls, aucun voisin n'est plus court : la tournée est 2-optimale.\n3. Mais on n'a comparé la tournée qu'à ses **voisines**, pas aux autres tournées : une tournée plus courte peut exister ailleurs, atteignable seulement par d'autres mouvements.\n\n**Les autres réponses :**\n\n- « toujours la tournée la plus courte » : c'est confondre optimum local et optimum global. Sur l'exemple du cours, la tournée 2-optimale est aussi la plus courte, mais ce n'est pas garanti en général.\n- « une tournée de 2 villes » : le « 2 » est le nombre d'arêtes retirées, pas le nombre de villes.\n- « une tournée construite au plus proche voisin » : la tournée gloutonne du cours (14,00) n'est pas 2-optimale, puisque le 2-opt l'améliore.\n\n**À retenir :** 2-optimale = aucun échange 2-opt n'améliore = optimum local, pas forcément global."
   },
   {
     "question": "Le **plus proche voisin** est une heuristique…",
@@ -118,7 +118,7 @@
       "à population"
     ],
     "reponse": 0,
-    "explication": "Il **crée** une tournée de toutes pièces. Le 2-opt, lui, est une heuristique d'amélioration : il répare une tournée existante."
+    "explication": "**Règle :** une heuristique de **construction** fabrique une solution à partir de rien ; une heuristique d'**amélioration** part d'une solution existante et la retouche.\n\n**Pas à pas :** le plus proche voisin part d'une ville seule, puis ajoute à chaque étape la ville non visitée la plus proche, jusqu'à avoir une tournée complète. Il part de **rien** et finit avec une tournée : c'est une construction (et une méthode gloutonne).\n\n**Les autres réponses :**\n\n- « d'amélioration » : c'est le rôle du 2-opt, qui a besoin d'une tournée déjà construite.\n- « exacte » : le plus proche voisin ne garantit pas la meilleure tournée (14,00 dans le cours, alors que l'optimum vaut 12,61).\n- « à population » : c'est le principe des algorithmes génétiques, qui manipulent beaucoup de solutions à la fois.\n\n**À retenir :** construction = crée une solution ; amélioration = répare une solution existante."
   },
   {
     "question": "Pourquoi retient-on la modélisation « cubes uniques » ($27!$ états) plutôt que « coloriages libres » ($3^{27}$) ?",
@@ -129,6 +129,6 @@
       "Parce qu'il n'y a que deux couleurs"
     ],
     "reponse": 0,
-    "explication": "Les coloriages libres comptent des états impossibles (27 cubes rouges) : ils décrivent un autre problème, où l'on choisirait les couleurs."
+    "explication": "**Règle :** un modèle doit décrire **exactement** les états possibles du problème. Ici, les couleurs des cubes sont **données** : il y a 9 cubes de chaque couleur, on les déplace mais on ne les repeint pas.\n\n**Pas à pas :**\n\n1. Coloriages libres : on choisit une couleur parmi 3 pour chacune des 27 places, soit $3^{27}$ états. Parmi eux, il y a « 27 cubes rouges », impossible puisqu'on n'a que 9 rouges.\n2. Cubes uniques : on range les 27 vrais cubes dans les 27 places, soit $27!$ permutations. Chaque état correspond à une vraie situation du casse-tête.\n3. Le modèle B décrit donc un **autre** problème (où l'on pourrait repeindre) : on le rejette.\n\n**Les autres réponses :**\n\n- « $27!$ est plus petit » : c'est faux, $27! \\approx 1{,}1 \\times 10^{28}$ est bien plus grand que $3^{27} \\approx 7{,}6 \\times 10^{12}$.\n- « plus rapide à énumérer » : faux aussi, il y a plus d'états à énumérer.\n- « il n'y a que deux couleurs » : il y en a trois.\n\n**À retenir :** on choisit le modèle qui respecte les contraintes du problème, même s'il a plus d'états."
   }
 ]

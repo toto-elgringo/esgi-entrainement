@@ -1,74 +1,134 @@
 [
   {
     "question": "Quelle commande vérifie les erreurs le plus rapidement, sans produire de programme ?",
-    "choix": ["`cargo build`", "`cargo run`", "`cargo check`", "`cargo test`"],
+    "choix": [
+      "`cargo build`",
+      "`cargo run`",
+      "`cargo check`",
+      "`cargo test`"
+    ],
     "reponse": 2,
-    "explication": "`cargo check` analyse le code sans générer le programme final, c'est l'étape la plus rapide quand on corrige des erreurs."
+    "explication": "**Règle :** `cargo check` analyse le code (syntaxe, types, emprunts) **sans fabriquer** le programme final. Il s'arrête avant l'étape la plus longue, la génération du code machine : c'est la commande la plus rapide pour corriger des erreurs.\n\n**Pas à pas :** on compare ce que fait chaque commande.\n\n| Commande | Analyse le code | Fabrique le programme | Le lance |\n|---|---|---|---|\n| `cargo check` | oui | **non** | non |\n| `cargo build` | oui | oui | non |\n| `cargo run` | oui | oui | oui |\n| `cargo test` | oui | oui (avec les tests) | lance les tests |\n\nCelle qui en fait le moins, tout en trouvant les erreurs, est `cargo check`.\n\n**Les autres réponses :** `cargo build` et `cargo run` produisent un programme (plus lent) ; `cargo test` compile en plus les tests.\n\n**À retenir :** pour savoir vite si ça compile, `cargo check`."
   },
   {
     "question": "Pourquoi `println!` a-t-il un point d'exclamation ?",
-    "choix": ["C'est une fonction importante", "C'est une macro", "Il affiche en rouge", "Il peut paniquer"],
+    "choix": [
+      "C'est une fonction importante",
+      "C'est une macro",
+      "Il affiche en rouge",
+      "Il peut paniquer"
+    ],
     "reponse": 1,
-    "explication": "Le `!` indique une macro : du code qui écrit du code à la compilation. Elle accepte un nombre variable d'arguments et vérifie le texte de format."
+    "explication": "**Règle :** en Rust, un nom suivi de `!` est une **macro** : du code qui écrit du code au moment de la compilation. `println!` peut ainsi recevoir un nombre variable d'arguments et vérifier, avant que le programme tourne, que chaque `{}` du texte a bien une valeur.\n\n**Pas à pas :** dans `println!(\"{} a {} ans\", nom, age)` :\n\n1. le compilateur voit `!` : c'est une macro, il la « déplie » en code normal ;\n2. il compte deux `{}` et deux valeurs (`nom`, `age`) : ça correspond ;\n3. avec un seul argument, il refuserait de compiler. Une fonction normale ne pourrait pas faire cette vérification, ni accepter 1, 2 ou 10 arguments.\n\n**Les autres réponses :** le `!` ne dit rien sur l'importance, la couleur ou une panique. D'autres macros que tu verras : `format!`, `vec!`, `todo!`, `assert_eq!`.\n\n**À retenir :** `nom!(...)` = une macro, pas une fonction."
   },
   {
     "question": "Que vaut le bloc `{ let x = 3; x + 1; }` ?",
-    "choix": ["4", "3", "`()`", "Il ne compile pas"],
+    "choix": [
+      "4",
+      "3",
+      "`()`",
+      "Il ne compile pas"
+    ],
     "reponse": 2,
-    "explication": "La dernière ligne finit par `;` : c'est une instruction, donc le bloc vaut `()`, le « rien » de Rust."
+    "explication": "**Règle :** un bloc `{ }` vaut sa **dernière expression**, à condition qu'elle n'ait **pas** de `;`. Une ligne qui finit par `;` est une **instruction** : elle ne renvoie rien, c'est-à-dire `()` (le type *unit*, le « rien » de Rust).\n\n**Pas à pas :** dans `{ let x = 3; x + 1; }` :\n\n1. `let x = 3;` : on crée `x`, qui vaut 3 ;\n2. `x + 1;` : on calcule 4, mais le `;` jette le résultat ;\n3. il n'y a plus rien après : le bloc vaut `()`.\n\nSans le dernier `;` (`{ let x = 3; x + 1 }`), le bloc vaudrait 4.\n\n**Les autres réponses :** 4 est le piège : c'est ce qu'on obtiendrait sans le `;` ; 3 est la valeur de `x`, pas du bloc ; et le code compile très bien, il vaut simplement `()`. C'est ce qui donne l'erreur « expected `i32`, found `()` » quand ce bloc est le corps d'une fonction qui doit renvoyer un `i32`.\n\n**À retenir :** pour qu'un bloc ou une fonction renvoie une valeur, la dernière ligne ne doit pas finir par `;`."
   },
   {
     "question": "Quel est le type entier utilisé par défaut quand on écrit `let x = 5;` ?",
-    "choix": ["`u32`", "`i32`", "`i64`", "`usize`"],
+    "choix": [
+      "`u32`",
+      "`i32`",
+      "`i64`",
+      "`usize`"
+    ],
     "reponse": 1,
-    "explication": "Sans autre information, Rust choisit `i32` pour un entier et `f64` pour un nombre à virgule."
+    "explication": "**Règle :** quand rien n'indique le type d'un entier, Rust choisit **`i32`** (entier signé sur 32 bits). Pour un nombre à virgule, il choisit `f64`.\n\n**Pas à pas :** dans `let x = 5;` :\n\n1. `5` est un entier (pas de virgule) ;\n2. on n'a pas écrit de type (`let x: u8 = 5;` en imposerait un) ;\n3. si `x` n'est jamais utilisé là où un autre type est demandé, Rust prend la valeur par défaut : `i32`.\n\n**Les autres réponses :** `u32` est non signé (pas de négatif), ce n'est pas le choix par défaut ; `i64` est plus grand que nécessaire ; `usize` est réservé aux indices et aux longueurs (Rust le choisit seulement si on utilise `x` comme indice, par exemple `v[x]`).\n\n**À retenir :** entier sans précision = `i32`, nombre à virgule = `f64`."
   },
   {
     "question": "Quel type faut-il pour l'indice `i` dans `v[i]` ?",
-    "choix": ["`i32`", "`u64`", "`usize`", "N'importe quel entier"],
+    "choix": [
+      "`i32`",
+      "`u64`",
+      "`usize`",
+      "N'importe quel entier"
+    ],
     "reponse": 2,
-    "explication": "Les indices et les longueurs utilisent `usize`, dont la taille dépend de la machine (64 bits sur une machine 64 bits)."
+    "explication": "**Règle :** les **indices** (`v[i]`) et les **longueurs** (`v.len()`) ont le type **`usize`** : un entier positif dont la taille est celle d'une adresse mémoire (64 bits sur une machine 64 bits).\n\n**Pas à pas :**\n\n```rust\nlet v = [10, 20, 30];\nlet i: usize = 2;\nprintln!(\"{}\", v[i]);\n```\n\n1. `v` a 3 cases, indices 0, 1, 2 ;\n2. `i` est un `usize` : `v[i]` compile et affiche 30 ;\n3. avec `let i: i32 = 2;`, `v[i]` est refusé (erreur E0277 : « cannot be indexed by `i32` », puis « slice indices are of type `usize` ») ; il faudrait convertir.\n\n**Les autres réponses :** `i32` est accepté pour des calculs mais pas comme indice ; `u64` non plus, même s'il a la même taille sur ta machine ; « n'importe quel entier » est faux, Rust ne convertit jamais tout seul.\n\n**À retenir :** indice ou longueur = `usize`, rien d'autre."
   },
   {
     "question": "Que donne `300u32 as u8` ?",
-    "choix": ["255", "Une panique", "44", "Une erreur de compilation"],
+    "choix": [
+      "255",
+      "Une panique",
+      "44",
+      "Une erreur de compilation"
+    ],
     "reponse": 2,
-    "explication": "`as` coupe les bits en trop sans prévenir : 300 - 256 = 44. Pour une conversion qui peut échouer proprement, utiliser `u8::try_from`."
+    "explication": "**Règle :** `as u8` convertit **toujours**, en gardant seulement les 8 bits du bas : le résultat est le **reste de la division par 256**. Pas d'erreur, pas de panique, pas d'avertissement.\n\n**Pas à pas :**\n\n1. un `u8` va de 0 à 255 (256 valeurs) ;\n2. 300 est trop grand ;\n3. 300 = 1 × 256 + 44 ;\n4. on garde le reste : `300u32 as u8` vaut **44**.\n\n**Les autres réponses :** 255 serait le résultat d'une conversion « plafonnée », ce que `as` ne fait pas ; `as` ne panique jamais ; et le code compile (c'est justement le danger : la perte est silencieuse). Pour une conversion qui signale l'échec, on utilise `u8::try_from(300u32)`, qui renvoie `Err`.\n\n**À retenir :** `x as u8` = reste de `x` divisé par 256, sans prévenir."
   },
   {
     "question": "En mode **debug**, que se passe-t-il si `250u8 + 10` est calculé à l'exécution ?",
-    "choix": ["Le résultat vaut 4", "Le résultat vaut 255", "Le programme panique", "Le résultat vaut 260"],
+    "choix": [
+      "Le résultat vaut 4",
+      "Le résultat vaut 255",
+      "Le programme panique",
+      "Le résultat vaut 260"
+    ],
     "reponse": 2,
-    "explication": "En debug, un débordement provoque une panique (`attempt to add with overflow`). En release, le calcul repart de zéro et donne 4."
+    "explication": "**Règle :** en mode **debug** (le mode par défaut de `cargo run`), un calcul entier qui dépasse la valeur maximale du type fait **paniquer** le programme : `attempt to add with overflow`. En mode release, le calcul repart de zéro sans prévenir.\n\n**Pas à pas :**\n\n1. un `u8` va jusqu'à 255 ;\n2. 250 + 10 = 260, qui ne tient pas ;\n3. en debug, Rust vérifie chaque addition : il s'arrête avec la panique.\n\n**Les autres réponses :** 4 est le résultat en **release** (260 − 256 = 4, le calcul « fait le tour ») ou avec `wrapping_add` ; 255 est le résultat de `saturating_add` ; 260 est impossible, un `u8` ne peut pas contenir cette valeur.\n\n**À retenir :** débordement = panique en debug, valeur fausse en release ; pour choisir, `checked_`, `saturating_` ou `wrapping_`."
   },
   {
     "question": "Que renvoie `200u8.checked_add(100)` ?",
-    "choix": ["`Some(44)`", "`None`", "`255`", "Une panique"],
+    "choix": [
+      "`Some(44)`",
+      "`None`",
+      "`255`",
+      "Une panique"
+    ],
     "reponse": 1,
-    "explication": "`checked_add` renvoie `None` si le résultat ne tient pas dans le type, sinon `Some(résultat)`."
+    "explication": "**Règle :** `a.checked_add(b)` renvoie `Some(a + b)` si le résultat tient dans le type, et `None` s'il déborde. Le programme ne panique pas, il te laisse décider quoi faire.\n\n**Pas à pas :**\n\n1. le type est `u8` (maximum 255) ;\n2. 200 + 100 = 300 ;\n3. 300 > 255 : ça déborde, le résultat est `None`.\n\nAvec `200u8.checked_add(50)`, on aurait 250 ≤ 255 et donc `Some(250)`.\n\n**Les autres réponses :** `Some(44)` mélange deux comportements : 44 est le résultat de `wrapping_add` (300 − 256), mais `checked_add` ne fait jamais le tour ; 255 est celui de `saturating_add` ; `checked_add` ne panique jamais, c'est tout son intérêt.\n\n**À retenir :** `checked_` = `Some(résultat)` si ça tient, `None` sinon."
   },
   {
     "question": "Que signifie « `match` est exhaustif » ?",
-    "choix": ["Il est lent", "Il doit couvrir tous les cas possibles", "Il teste tous les bras en même temps", "Il ne marche qu'avec des nombres"],
+    "choix": [
+      "Il est lent",
+      "Il doit couvrir tous les cas possibles",
+      "Il teste tous les bras en même temps",
+      "Il ne marche qu'avec des nombres"
+    ],
     "reponse": 1,
-    "explication": "Si un cas n'est pas couvert, le code ne compile pas (erreur E0004). Le joker `_` couvre « tout le reste »."
+    "explication": "**Règle :** un `match` est **exhaustif** : chaque valeur possible doit correspondre à au moins un bras. S'il en manque une, le code ne compile pas (erreur E0004). Le joker `_` couvre « tout le reste ».\n\n**Pas à pas :** avec une variable `n: u8` (valeurs de 0 à 255) :\n\n```rust\nlet n: u8 = 7;\nlet taille = match n {\n    0..=9 => \"petit\",\n    10..=99 => \"moyen\",\n    _ => \"grand\",\n};\nprintln!(\"{taille}\");\n```\n\n1. 0 à 9 et 10 à 99 sont couverts ;\n2. sans le `_`, les valeurs 100 à 255 ne seraient prises par aucun bras : erreur E0004 « non-exhaustive patterns » ;\n3. avec `_`, tout est couvert : ça compile.\n\n**Les autres réponses :** « exhaustif » ne parle pas de vitesse ; les bras sont testés **dans l'ordre**, pas en même temps ; et `match` marche avec des nombres, des textes, des `Option`, etc.\n\n**À retenir :** un `match` doit couvrir toutes les valeurs ; mets `_` en dernier pour « le reste »."
   },
   {
     "question": "Dans FizzBuzz, pourquoi le test « multiple de 15 » doit-il être le premier bras ?",
-    "choix": ["Pour aller plus vite", "Parce que les bras sont testés dans l'ordre", "Parce que 15 est le plus grand", "Ce n'est pas obligatoire"],
+    "choix": [
+      "Pour aller plus vite",
+      "Parce que les bras sont testés dans l'ordre",
+      "Parce que 15 est le plus grand",
+      "Ce n'est pas obligatoire"
+    ],
     "reponse": 1,
-    "explication": "Le premier bras qui correspond gagne. Si « multiple de 3 » est avant, 15 affichera seulement Fizz."
+    "explication": "**Règle :** dans un `match`, les bras sont testés **de haut en bas**, et le **premier** qui correspond gagne. Les suivants ne sont même pas regardés.\n\n**Pas à pas :** avec n = 15 et le mauvais ordre (3, puis 5, puis 15) :\n\n1. 15 % 3 == 0 ? oui : on prend ce bras, résultat `\"Fizz\"` ;\n2. le bras « multiple de 15 » n'est jamais atteint, alors que 15 devait donner `\"FizzBuzz\"`.\n\nAvec le bon ordre (15 d'abord) : 15 % 15 == 0, oui, résultat `\"FizzBuzz\"`. Et pour 9 : pas multiple de 15, multiple de 3, `\"Fizz\"`, comme prévu.\n\nTout multiple de 15 est aussi multiple de 3 et de 5 : le cas le plus **précis** doit donc passer **avant** les cas plus larges.\n\n**Les autres réponses :** la vitesse ne change rien ; « 15 est le plus grand » n'est pas la raison (c'est qu'il est le plus précis) ; et c'est bien obligatoire, sinon le résultat est faux.\n\n**À retenir :** dans un `match` avec des gardes, du cas le plus précis au plus général."
   },
   {
     "question": "Quelle erreur obtient-on en modifiant une variable déclarée sans `mut` ?",
-    "choix": ["E0382", "E0384", "E0499", "E0004"],
+    "choix": [
+      "E0382",
+      "E0384",
+      "E0499",
+      "E0004"
+    ],
     "reponse": 1,
-    "explication": "E0384 : cannot assign twice to immutable variable. Le `help:` propose d'ajouter `mut`."
+    "explication": "**Règle :** une variable déclarée avec `let` (sans `mut`) ne peut pas changer. La modifier donne l'erreur **E0384** : *cannot assign twice to immutable variable*. Le `help:` propose d'ajouter `mut`.\n\n**Pas à pas :**\n\n```text\nlet total = 0;\ntotal += 5;\n```\n\n1. `total` est créé sans `mut` : il est immuable ;\n2. `total += 5` essaie de le changer ;\n3. le compilateur répond `error[E0384]` et propose `let mut total = 0;`.\n\n**Les autres réponses :** E0004 est le `match` non exhaustif ; E0382 et E0499 sont des erreurs d'ownership et d'emprunt (« valeur déjà déplacée », « deux emprunts modifiables à la fois ») que tu verras dans les chapitres suivants.\n\n**À retenir :** E0384 = tu modifies une variable sans `mut`."
   },
   {
     "question": "Que produit `for i in 0..3` ?",
-    "choix": ["0, 1, 2, 3", "1, 2, 3", "0, 1, 2", "1, 2"],
+    "choix": [
+      "0, 1, 2, 3",
+      "1, 2, 3",
+      "0, 1, 2",
+      "1, 2"
+    ],
     "reponse": 2,
-    "explication": "`..` exclut la fin. Pour l'inclure, on écrit `0..=3`."
+    "explication": "**Règle :** `a..b` va de `a` inclus à `b` **exclu**. Pour inclure la fin, on écrit `a..=b`.\n\n**Pas à pas :** `0..3` :\n\n1. on part de 0 (inclus) ;\n2. on avance de 1 : 0, 1, 2 ;\n3. on s'arrête **avant** 3.\n\nIl y a 3 tours (3 − 0 = 3), ce qui est pratique pour parcourir les indices d'un tableau de 3 cases.\n\n**Les autres réponses :** « 0, 1, 2, 3 » est `0..=3` (fin incluse) ; « 1, 2, 3 » est `1..=3` ; « 1, 2 » est `1..3`.\n\n**À retenir :** `..` exclut la fin, `..=` l'inclut."
   }
 ]

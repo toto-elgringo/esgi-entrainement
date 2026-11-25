@@ -1,74 +1,134 @@
 [
   {
     "question": "Que devient une variable à la fin du bloc `{ }` où elle a été créée ?",
-    "choix": ["Elle reste en mémoire jusqu'à la fin du programme", "Elle est détruite (drop) et sa mémoire est rendue", "Le ramasse-miettes la libérera plus tard", "Il faut appeler `free` soi-même"],
+    "choix": [
+      "Elle reste en mémoire jusqu'à la fin du programme",
+      "Elle est détruite (drop) et sa mémoire est rendue",
+      "Le ramasse-miettes la libérera plus tard",
+      "Il faut appeler `free` soi-même"
+    ],
     "reponse": 1,
-    "explication": "À la fin de sa portée, la valeur est détruite automatiquement : c'est le RAII. Rust n'a pas de ramasse-miettes."
+    "explication": "**Règle :** la **portée** d'une variable est le bloc `{ }` où se trouve son `let`. À l'accolade `}` qui ferme ce bloc, la valeur est **détruite** (*drop*) et sa mémoire est rendue tout de suite. C'est le RAII : la vie de la ressource est la vie de la variable.\n\n**Pas à pas :**\n\n```rust\n{\n    let nom = String::from(\"Ferris\");   // la String est créée\n    println!(\"{nom}\");\n}                                       // ici : drop de nom, mémoire rendue\n```\n\n1. Le `let` crée `nom` : il existe à partir de cette ligne.\n2. On sort du bloc à l'accolade `}` : Rust ajoute lui-même la destruction à cet endroit.\n3. Après le bloc, `nom` n'existe plus (l'utiliser donnerait E0425).\n\n**Les autres réponses :**\n\n- « Elle reste en mémoire jusqu'à la fin du programme » : ce serait une fuite de mémoire, justement ce que Rust évite.\n- « Le ramasse-miettes la libérera plus tard » : Rust n'a **pas** de ramasse-miettes, et la libération n'arrive pas « plus tard », mais à un moment précis.\n- « Il faut appeler `free` soi-même » : c'est le C. En Rust on n'écrit rien.\n\n**À retenir :** fin du bloc `{ }` = drop automatique, à un moment prévisible."
   },
   {
     "question": "Avec `let _a = A; let _b = B; let _c = C;` dans `main`, dans quel ordre sont-ils détruits ?",
-    "choix": ["A, B, C", "C, B, A", "B, A, C", "Dans un ordre aléatoire"],
+    "choix": [
+      "A, B, C",
+      "C, B, A",
+      "B, A, C",
+      "Dans un ordre aléatoire"
+    ],
     "reponse": 1,
-    "explication": "Ordre inverse de création : une variable peut dépendre d'une variable créée avant elle, donc on détruit d'abord la plus récente."
+    "explication": "**Règle :** les variables d'un même bloc sont détruites dans l'**ordre inverse** de leur création : la dernière créée est la première détruite (comme une pile d'assiettes).\n\n**Pas à pas :**\n\n| Moment | Ce qui se passe |\n|---|---|\n| `let _a = A;` | A est créé |\n| `let _b = B;` | B est créé |\n| `let _c = C;` | C est créé |\n| fin de `main` | on détruit le plus récent : **C** |\n| | puis **B** |\n| | puis **A** |\n\nLes noms commencent par `_` : ça évite seulement l'avertissement « variable inutilisée ». `_a` reste un vrai nom, la valeur est gardée jusqu'à la fin du bloc.\n\nPourquoi à l'envers ? B ou C peuvent avoir été construits **à partir de** A (en l'empruntant). Si A disparaissait en premier, ils pointeraient vers une valeur morte.\n\n**Les autres réponses :** « A, B, C » est l'ordre de création, pas de destruction ; « B, A, C » ne suit aucune règle ; « dans un ordre aléatoire » est faux, l'ordre est toujours le même et connu à la compilation.\n\n**À retenir :** à la fin d'un bloc, on détruit de la plus récente à la plus ancienne."
   },
   {
     "question": "Que fait `let _ = Bruyant::new(\"X\");` ?",
-    "choix": ["Garde la valeur jusqu'à la fin du bloc", "Détruit la valeur immédiatement", "Ne compile pas", "Crée une variable nommée `_`"],
+    "choix": [
+      "Garde la valeur jusqu'à la fin du bloc",
+      "Détruit la valeur immédiatement",
+      "Ne compile pas",
+      "Crée une variable nommée `_`"
+    ],
     "reponse": 1,
-    "explication": "`_` n'est pas un nom : c'est un motif qui jette la valeur, détruite tout de suite. `let _x = ...` la garderait jusqu'à la fin du bloc."
+    "explication": "**Règle :** `_` tout seul n'est **pas** un nom de variable : c'est un motif qui veut dire « je ne garde pas cette valeur ». Rien ne la retient, donc elle est détruite **immédiatement**, à la fin de la ligne. Au contraire, `_x` est un vrai nom (le `_` évite seulement l'avertissement « inutilisée ») : la valeur vit jusqu'à la fin du bloc.\n\n**Pas à pas :** avec un `Bruyant` qui affiche un message à sa création et à sa destruction :\n\n```rust\nlet _ = Bruyant::new(\"X\");   // affiche « création de X » puis « drop X »\nlet _y = Bruyant::new(\"Y\");  // affiche « création de Y »\nprintln!(\"fin\");             // affiche « fin »\n                             // fin du bloc : « drop Y »\n```\n\n1. Ligne 1 : X est créé, personne ne le garde, il est détruit tout de suite.\n2. Ligne 2 : Y est créé et rangé dans `_y`.\n3. Y n'est détruit qu'à la fin du bloc, **après** « fin ».\n\n**Les autres réponses :**\n\n- « Garde la valeur jusqu'à la fin du bloc » : c'est le comportement de `let _x = …`, pas de `let _ = …`.\n- « Ne compile pas » : c'est parfaitement valide, on s'en sert pour jeter volontairement un résultat.\n- « Crée une variable nommée `_` » : `_` ne peut pas être utilisé comme une variable, on ne peut pas écrire `println!(\"{_}\")`.\n\n**À retenir :** `let _ =` jette tout de suite ; `let _x =` garde jusqu'à la fin du bloc."
   },
   {
     "question": "Que se passe-t-il avec `let x = \"5\"; let x: u32 = x.parse().unwrap();` ?",
-    "choix": ["Erreur : on ne peut pas changer le type de x", "Erreur E0384 : il manque `mut`", "Ça compile : le deuxième `let` crée une nouvelle variable qui masque l'ancienne", "x vaut \"5\" à la fin"],
+    "choix": [
+      "Erreur : on ne peut pas changer le type de x",
+      "Erreur E0384 : il manque `mut`",
+      "Ça compile : le deuxième `let` crée une nouvelle variable qui masque l'ancienne",
+      "x vaut \"5\" à la fin"
+    ],
     "reponse": 2,
-    "explication": "C'est le masquage (shadowing) : un nouveau binding avec le même nom, qui peut avoir un autre type."
+    "explication": "**Règle :** écrire `let x = …;` une deuxième fois crée une **nouvelle** variable qui porte le même nom et **masque** l'ancienne (*shadowing*). La nouvelle peut avoir un **autre type**. Ce n'est pas une modification, donc `mut` n'est pas nécessaire.\n\n**Pas à pas :**\n\n1. `let x = \"5\";` : `x` est un `&str` qui contient le texte `\"5\"`.\n2. `x.parse()` lit ce texte et essaie d'en faire un nombre. L'annotation `: u32` dit quel type de nombre on veut.\n3. `.unwrap()` récupère le nombre (le texte est bien un nombre, donc pas de plantage).\n4. `let x: u32 = …;` range ce nombre dans un **nouveau** `x`, de type `u32`. À partir de là, `x` vaut le nombre 5, et l'ancien `x` (le texte) n'est plus accessible par ce nom.\n\n**Les autres réponses :**\n\n- « On ne peut pas changer le type de x » : vrai pour une affectation `x = …`, mais ici il y a un `let`, donc c'est une nouvelle variable.\n- « E0384 : il manque `mut` » : E0384 arrive quand on **réaffecte** sans `let` (`x = 6;`). Avec `let`, rien n'est réaffecté.\n- « x vaut \"5\" à la fin » : à la fin, `x` désigne la deuxième variable, le nombre `5` (un `u32`), pas le texte.\n\n**À retenir :** un nouveau `let` avec le même nom = nouvelle variable, et le type peut changer."
   },
   {
     "question": "Combien de propriétaires une valeur peut-elle avoir en même temps ?",
-    "choix": ["Un seul", "Deux", "Autant qu'on veut", "Zéro"],
+    "choix": [
+      "Un seul",
+      "Deux",
+      "Autant qu'on veut",
+      "Zéro"
+    ],
     "reponse": 0,
-    "explication": "Règle n°1 : un seul propriétaire. C'est ce qui empêche de libérer deux fois la même mémoire."
+    "explication": "**Règle n°1 de l'ownership :** une valeur a **un seul propriétaire** à la fois. Le propriétaire est la variable (ou la struct, ou la fonction) chargée de détruire la valeur quand elle disparaît.\n\n**Pas à pas :**\n\n```rust\nlet a = String::from(\"salut\");   // a est le propriétaire\nlet b = a;                       // la propriété passe à b, a ne possède plus rien\n```\n\nAprès la deuxième ligne, il y a toujours **un** propriétaire : `b`. À la fin du bloc, seul `b` détruit la `String`, une seule fois.\n\n**Pourquoi un seul ?** Si `a` et `b` possédaient tous les deux la même mémoire, chacun la libérerait en disparaissant : la mémoire serait libérée **deux fois** (*double free*), un bug grave en C.\n\n**Les autres réponses :**\n\n- « Deux » ou « autant qu'on veut » : on confond posséder et **emprunter**. On peut avoir beaucoup de lecteurs `&` en même temps, mais ils ne possèdent rien.\n- « Zéro » : une valeur qui existe a toujours un propriétaire ; sans lui, personne ne la libérerait.\n\n**À retenir :** un seul propriétaire, qui libère la valeur en disparaissant ; les autres ne font qu'emprunter."
   },
   {
     "question": "Après `let s1 = String::from(\"a\"); let s2 = s1;`, que peut-on faire avec `s1` ?",
-    "choix": ["L'utiliser normalement", "Plus rien : la valeur a été déplacée dans s2", "La lire mais pas la modifier", "La modifier mais pas la lire"],
+    "choix": [
+      "L'utiliser normalement",
+      "Plus rien : la valeur a été déplacée dans s2",
+      "La lire mais pas la modifier",
+      "La modifier mais pas la lire"
+    ],
     "reponse": 1,
-    "explication": "Une `String` n'est pas `Copy` : `let s2 = s1;` la déplace (move). Utiliser `s1` ensuite donne l'erreur E0382."
+    "explication": "**Règle :** une `String` n'est **pas** `Copy` (elle possède de la mémoire sur le tas). `let s2 = s1;` ne copie donc pas le texte : il **déplace** (*move*) la propriété de `s1` vers `s2`. Après un move, l'ancienne variable est inutilisable.\n\n**Pas à pas :**\n\n1. `let s1 = String::from(\"a\");` : `s1` possède la `String`.\n2. `let s2 = s1;` : la propriété passe à `s2`. `s1` ne pointe plus vers rien de valide.\n3. `println!(\"{s1}\");` serait refusé :\n\n```text\nerror[E0382]: borrow of moved value: `s1`\n```\n\nLe compilateur interdit **toute** utilisation de `s1` : lire, modifier, emprunter. On peut seulement lui redonner une valeur neuve si elle est `mut` (`s1 = String::from(\"b\");`).\n\n**Les autres réponses :**\n\n- « L'utiliser normalement » : ce serait vrai pour un entier (`Copy`), pas pour une `String`.\n- « La lire mais pas la modifier » et « la modifier mais pas la lire » : un move n'est pas un emprunt, il ne laisse **aucun** droit à l'ancienne variable.\n\nPour garder les deux, il faut une vraie copie : `let s2 = s1.clone();`.\n\n**À retenir :** pour un type qui n'est pas `Copy`, `let b = a;` déplace : `a` est mort, seul `b` compte."
   },
   {
     "question": "Après `let a = 5; let b = a;`, peut-on encore utiliser `a` ?",
-    "choix": ["Oui, car les entiers sont `Copy`", "Non, `a` a été déplacé", "Seulement avec `a.clone()`", "Seulement si `a` est `mut`"],
+    "choix": [
+      "Oui, car les entiers sont `Copy`",
+      "Non, `a` a été déplacé",
+      "Seulement avec `a.clone()`",
+      "Seulement si `a` est `mut`"
+    ],
     "reponse": 0,
-    "explication": "Les types simples (entiers, flottants, bool, char) sont `Copy` : la valeur est copiée et l'original reste utilisable."
+    "explication": "**Règle :** les types **`Copy`** sont copiés automatiquement quand on les affecte ou qu'on les passe à une fonction. L'original reste utilisable. Les entiers, les flottants, `bool` et `char` sont `Copy`.\n\n**Pas à pas :**\n\n1. `let a = 5;` : `a` vaut 5 (un `i32`).\n2. `let b = a;` : comme `i32` est `Copy`, `b` reçoit une **copie** de 5. `a` n'est pas touché.\n3. `println!(\"{a} {b}\");` affiche `5 5` : les deux variables sont valides.\n\nCopier un entier coûte autant que le déplacer (quelques octets), et il n'a aucune mémoire sur le tas à libérer : aucun risque de double libération, donc Rust copie.\n\n**Les autres réponses :**\n\n- « Non, `a` a été déplacé » : c'est ce qui arrive avec une `String`, pas avec un entier.\n- « Seulement avec `a.clone()` » : inutile, la copie est déjà automatique (`clone` marcherait, mais ne sert à rien).\n- « Seulement si `a` est `mut` » : `mut` sert à **changer** la valeur de `a`, ça n'a rien à voir avec la copie.\n\n**À retenir :** type `Copy` (nombres, `bool`, `char`) → `let b = a;` copie et les deux restent utilisables."
   },
   {
     "question": "Lequel de ces types ne peut **pas** être `Copy` ?",
-    "choix": ["`i32`", "`bool`", "`(i32, char)`", "`String`"],
+    "choix": [
+      "`i32`",
+      "`bool`",
+      "`(i32, char)`",
+      "`String`"
+    ],
     "reponse": 3,
-    "explication": "Un type `Copy` ne doit rien avoir à libérer. Une `String` possède de la mémoire sur le tas : elle ne peut pas être `Copy`."
+    "explication": "**Règle :** un type peut être `Copy` seulement si on peut le dupliquer en recopiant ses octets **et** qu'il n'a **rien à libérer**. Un type qui possède de la mémoire sur le tas ne peut pas l'être.\n\n**Pas à pas :** on teste chaque type proposé.\n\n| Type | Possède du tas ? | `Copy` ? |\n|---|---|---|\n| `i32` | non (4 octets sur la pile) | oui |\n| `bool` | non (1 octet) | oui |\n| `(i32, char)` | non : un tuple dont **tous** les éléments sont `Copy` | oui |\n| `String` | **oui** : le texte est sur le tas | **non** |\n\nSi une `String` était copiée octet par octet, les deux copies pointeraient vers **le même** texte sur le tas, et chacune le libérerait à sa fin : double libération. Pour dupliquer une `String`, il faut `.clone()`, qui réserve un **nouveau** morceau de tas et y recopie le texte.\n\n**Erreur fréquente :** croire qu'un tuple n'est jamais `Copy`. Un tuple ou un tableau est `Copy` dès que tout ce qu'il contient l'est.\n\n**À retenir :** quelque chose sur le tas à libérer (`String`, `Vec`, `Box`) → jamais `Copy`."
   },
   {
     "question": "Combien de références `&mut` vers une même valeur peuvent être vivantes en même temps ?",
-    "choix": ["Aucune", "Une seule", "Deux", "Autant qu'on veut"],
+    "choix": [
+      "Aucune",
+      "Une seule",
+      "Deux",
+      "Autant qu'on veut"
+    ],
     "reponse": 1,
-    "explication": "Un seul écrivain à la fois. Deux `&mut` vivants en même temps donnent l'erreur E0499."
+    "explication": "**Règle n°3 :** on peut avoir **un seul** emprunt en écriture `&mut` vivant à la fois vers une même valeur (et aucun lecteur `&` pendant ce temps). Deux `&mut` vivants en même temps donnent l'erreur **E0499**.\n\n**Pas à pas :**\n\n```text\nlet mut s = String::new();\nlet r1 = &mut s;\nlet r2 = &mut s;   // E0499 : r1 est encore utilisé plus bas\nr1.push('a');\nr2.push('b');\n```\n\n1. `r1` sert jusqu'à la ligne `r1.push('a')`.\n2. `r2` est créé **avant** cette ligne : pendant un moment, `r1` et `r2` sont vivants en même temps. Refusé.\n3. Si on place `r1.push('a')` avant `let r2`, `r1` meurt avant la naissance de `r2` : c'est accepté. Une seule à la fois, mais plusieurs **à la suite**, c'est permis.\n\nPourquoi ? Avec deux écrivains, l'un pourrait agrandir la `String` (et la déplacer en mémoire) pendant que l'autre écrit à l'ancienne adresse.\n\n**Les autres réponses :** « Aucune » est faux (on modifie bien des valeurs par `&mut`) ; « deux » et « autant qu'on veut » confondent avec les lecteurs `&`, eux illimités.\n\n**À retenir :** un seul `&mut` vivant à la fois ; enchaîner plusieurs `&mut` qui ne se chevauchent pas est permis."
   },
   {
     "question": "Que signifie l'erreur E0502 ?",
-    "choix": ["Une valeur a été déplacée puis utilisée", "On veut écrire dans une valeur pendant que quelqu'un la lit", "Il manque `mut`", "Un `match` n'est pas exhaustif"],
+    "choix": [
+      "Une valeur a été déplacée puis utilisée",
+      "On veut écrire dans une valeur pendant que quelqu'un la lit",
+      "Il manque `mut`",
+      "Un `match` n'est pas exhaustif"
+    ],
     "reponse": 1,
-    "explication": "E0502 : cannot borrow as mutable because it is also borrowed as immutable. Un emprunt `&mut` arrive pendant qu'un `&` est encore utilisé."
+    "explication": "**Règle :** E0502 (*cannot borrow as mutable because it is also borrowed as immutable*) arrive quand on prend un emprunt en **écriture** (`&mut`, souvent caché dans un appel comme `push`) alors qu'un emprunt en **lecture** (`&`) est encore utilisé plus loin.\n\n**Pas à pas :**\n\n```text\nlet mut v = vec![1, 2];\nlet premier = &v[0];     // lecture\nv.push(3);               // écriture (push prend &mut v) : E0502\nprintln!(\"{premier}\");   // la lecture sert encore ici\n```\n\n1. `premier` emprunte `v` en lecture, jusqu'à sa dernière utilisation (le `println!`).\n2. `v.push(3)` emprunte `v` en écriture **pendant** cette lecture.\n3. Lecture + écriture en même temps : E0502. Le danger est réel : `push` peut déplacer la liste, et `premier` pointerait vers une zone libérée.\n\nCorrection : afficher `premier` avant le `push`, ou copier la valeur (`let premier = v[0];`).\n\n**Les autres réponses :**\n\n- « Une valeur a été déplacée puis utilisée » : c'est E0382.\n- « Il manque `mut` » : c'est E0384 (réaffectation) ; pour un emprunt `&mut` d'une variable non `mut`, c'est E0596.\n- « Un `match` n'est pas exhaustif » : c'est E0004, sans rapport avec les emprunts.\n\n**À retenir :** E0502 = un écrivain arrive pendant qu'un lecteur est encore utilisé."
   },
   {
     "question": "Jusqu'à quand dure un emprunt `let r = &v;` ?",
-    "choix": ["Jusqu'à la fin du bloc", "Jusqu'à la fin du programme", "Jusqu'à la dernière utilisation de `r`", "Jusqu'au prochain `;`"],
+    "choix": [
+      "Jusqu'à la fin du bloc",
+      "Jusqu'à la fin du programme",
+      "Jusqu'à la dernière utilisation de `r`",
+      "Jusqu'au prochain `;`"
+    ],
     "reponse": 2,
-    "explication": "Depuis 2018 (non-lexical lifetimes), un emprunt s'arrête à sa dernière utilisation réelle."
+    "explication": "**Règle :** depuis Rust 2018 (*non-lexical lifetimes*, NLL), un emprunt ne dure **pas** jusqu'à la fin du bloc : il s'arrête à la **dernière ligne qui l'utilise**.\n\n**Pas à pas :**\n\n```rust\nlet mut v = vec![1, 2, 3];\nlet r = &v;\nprintln!(\"{}\", r.len());   // dernière utilisation de r : l'emprunt s'arrête ici\nv.push(4);                 // accepté : plus aucun lecteur\nprintln!(\"{v:?}\");\n```\n\n1. `r` naît à la ligne 2.\n2. Sa dernière utilisation est à la ligne 3. Après, personne ne lit `r`.\n3. À la ligne 4, l'emprunt est terminé : `push` (une écriture) est autorisé, alors qu'on est **encore dans le même bloc**.\n\nSi on ajoutait `println!(\"{r:?}\");` tout en bas, l'emprunt durerait jusque-là et le `push` deviendrait une erreur E0502.\n\n**Les autres réponses :**\n\n- « Jusqu'à la fin du bloc » : c'était la règle **avant** 2018 ; beaucoup de vieux tutoriels le disent encore.\n- « Jusqu'à la fin du programme » : aucun emprunt ne dure plus que la valeur empruntée.\n- « Jusqu'au prochain `;` » : l'emprunt peut servir sur plusieurs lignes, tant qu'on l'utilise.\n\n**À retenir :** un emprunt vit de son `&` jusqu'à sa dernière utilisation, pas plus."
   },
   {
     "question": "Quel est le meilleur type de paramètre pour une fonction qui **lit** une liste d'entiers ?",
-    "choix": ["`Vec<i32>`", "`&Vec<i32>`", "`&[i32]`", "`&mut Vec<i32>`"],
+    "choix": [
+      "`Vec<i32>`",
+      "`&Vec<i32>`",
+      "`&[i32]`",
+      "`&mut Vec<i32>`"
+    ],
     "reponse": 2,
-    "explication": "`&[i32]` (une tranche) emprunte en lecture et accepte un `Vec`, un tableau ou un morceau de liste. `Vec<i32>` déplacerait la liste."
+    "explication": "**Règle :** une fonction qui veut seulement **lire** une valeur doit l'**emprunter** en lecture, avec le type le plus général possible. Pour une suite d'entiers, c'est la **tranche** `&[i32]`, comme `&str` pour du texte.\n\n**Pas à pas :** on compare les quatre signatures pour `fn total(nombres: …)`.\n\n| Paramètre | Effet sur la liste de l'appelant | Accepte un tableau `[1, 2, 3]` ? |\n|---|---|---|\n| `Vec<i32>` | **déplacée** : l'appelant la perd | non |\n| `&Vec<i32>` | empruntée en lecture | non, seulement un `Vec` |\n| `&[i32]` | empruntée en lecture | **oui**, et aussi un `&Vec`, ou un morceau `&v[1..3]` |\n| `&mut Vec<i32>` | empruntée en **écriture** | non |\n\n`&[i32]` emprunte (l'appelant garde sa liste) **et** accepte toutes les formes de listes : `total(&v)`, `total(&[1, 2, 3])`, `total(&v[..2])`. Rust convertit `&Vec<i32>` en `&[i32]` tout seul à l'appel.\n\n**Les autres réponses :**\n\n- `Vec<i32>` : la fonction prend la liste ; après l'appel, l'utiliser donne E0382.\n- `&Vec<i32>` : marche, mais refuse un tableau ou un morceau de liste, sans raison (Clippy le signale).\n- `&mut Vec<i32>` : demande le droit d'écrire, alors qu'on lit seulement ; l'appelant devrait avoir `let mut` et aucun autre lecteur.\n\n**À retenir :** pour lire une liste, `&[T]` ; pour lire du texte, `&str`."
   }
 ]

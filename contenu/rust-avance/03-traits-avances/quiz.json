@@ -1,62 +1,112 @@
 [
   {
     "question": "Dans `trait Iterator { type Item; ... }`, que représente `Item` ?",
-    "choix": ["Un paramètre générique choisi à chaque appel", "Un type associé : le type fixé une seule fois par chaque implémentation", "Une constante", "Un champ de la structure"],
+    "choix": [
+      "Un paramètre générique choisi à chaque appel",
+      "Un type associé : le type fixé une seule fois par chaque implémentation",
+      "Une constante",
+      "Un champ de la structure"
+    ],
     "reponse": 1,
-    "explication": "Un type associé est un type « rempli » par l'implémentation. Un type donné n'implémente `Iterator` qu'une fois, donc `Item` est unique."
+    "explication": "**Règle :** un **type associé** se déclare dans un trait avec `type Nom;` et chaque `impl` le remplit avec `type Nom = UnType;`. Il est fixé **une fois** par implémentation.\n\n**Pas à pas :**\n\n1. Dans `trait Iterator { type Item; fn next(&mut self) -> Option<Self::Item>; }`, `Item` n'a pas encore de valeur : c'est une place vide.\n2. Un itérateur la remplit : `impl Iterator for Saut { type Item = u32; ... }`.\n3. Un type n'implémente `Iterator` qu'**une seule fois**, donc il n'a qu'un seul `Item`. C'est pour ça qu'on n'écrit jamais `iter.next::<u32>()` : Rust connaît déjà le type.\n\n**Les autres réponses :** « un paramètre générique choisi à chaque appel » décrit `trait Convertir<T>`, où c'est l'appel qui choisit ; ce n'est pas une constante (une constante s'écrit `const N: usize;` et contient une valeur, pas un type) ; ce n'est pas un champ (un trait n'a pas de champs, seule une structure en a).\n\n**À retenir :** `type X;` dans un trait = un type que chaque `impl` choisit une seule fois."
   },
   {
     "question": "Quelle est la différence principale entre `trait Convertir<T>` et `trait Convertir { type Sortie; }` ?",
-    "choix": ["Aucune", "Avec le générique, un même type peut implémenter le trait plusieurs fois (avec des `T` différents) ; avec le type associé, une seule fois", "Le type associé est plus lent", "Le générique ne marche qu'avec les nombres"],
+    "choix": [
+      "Aucune",
+      "Avec le générique, un même type peut implémenter le trait plusieurs fois (avec des `T` différents) ; avec le type associé, une seule fois",
+      "Le type associé est plus lent",
+      "Le générique ne marche qu'avec les nombres"
+    ],
     "reponse": 1,
-    "explication": "`From<i32>` et `From<f64>` peuvent coexister sur un même type. Avec un type associé, il n'y a qu'un seul choix possible, donc moins d'annotations."
+    "explication": "**Règle :** un trait générique `Convertir<T>` est en réalité une famille de traits (`Convertir<String>`, `Convertir<f64>`...) ; un trait avec type associé est **un seul** trait.\n\n**Pas à pas :**\n\n1. Avec `trait Convertir<T>`, on peut écrire `impl Convertir<String> for Age` **et** `impl Convertir<f64> for Age` : ce sont deux traits différents pour Rust.\n2. À l'appel, on précise lequel avec une annotation : `let t: String = a.convertir();`.\n3. Avec `trait Convertir { type Sortie; }`, `Age` ne peut avoir qu'**un** `impl Convertir for Age`, donc une seule `Sortie`. En échange, aucune annotation n'est nécessaire.\n4. La bibliothèque standard utilise le générique pour `From<T>` : un même type peut avoir `From<i32>` et `From<f64>`.\n\n**Les autres réponses :** il y a bien une différence (« aucune » est faux) ; le type associé n'est pas plus lent, tout est décidé à la compilation dans les deux cas ; le générique marche avec n'importe quel type, pas seulement les nombres.\n\n**À retenir :** plusieurs `impl` possibles pour un même type → générique ; un seul choix logique → type associé."
   },
   {
     "question": "Quel trait faut-il implémenter pour que `a + b` marche sur ton type ?",
-    "choix": ["`std::ops::Add`", "`std::fmt::Add`", "`Plus`", "`Sum`"],
+    "choix": [
+      "`std::ops::Add`",
+      "`std::fmt::Add`",
+      "`Plus`",
+      "`Sum`"
+    ],
     "reponse": 0,
-    "explication": "Chaque opérateur a son trait dans `std::ops` : `Add` pour `+`, `Sub` pour `-`, `Mul` pour `*`, `Neg` pour le `-` unaire, `Index` pour `[]`."
+    "explication": "**Règle :** chaque opérateur correspond à un trait du module `std::ops`. `a + b` est traduit par Rust en `a.add(b)`, qui n'existe que si le type implémente `std::ops::Add`.\n\n**Pas à pas :**\n\n1. On importe le trait : `use std::ops::Add;`.\n2. On l'implémente : `impl Add for Point { type Output = Point; fn add(self, autre: Point) -> Point { ... } }`.\n3. `a + b` marche alors : `self` est `a` (à gauche), `autre` est `b` (à droite), et le résultat est du type `Output`.\n\nMême logique pour les autres : `Sub` pour `-`, `Mul` pour `*`, `Neg` pour le `-` devant une seule valeur, `Index` pour `[]`.\n\n**Les autres réponses :** `std::fmt::Add` n'existe pas (`std::fmt` sert à l'affichage : `Display`, `Debug`) ; `Plus` n'existe pas en Rust ; `Sum` existe, mais il sert à `iter.sum()` (additionner tous les éléments d'un itérateur), pas au `+` entre deux valeurs.\n\n**À retenir :** opérateur = trait de `std::ops` (`+` → `Add`, `-` → `Sub`, `*` → `Mul`, `[]` → `Index`)."
   },
   {
     "question": "Que signifie `trait Article: Display` ?",
-    "choix": ["`Article` hérite des champs de `Display`", "Tout type qui implémente `Article` doit aussi implémenter `Display` (supertrait)", "`Display` implémente automatiquement `Article`", "C'est une erreur de syntaxe"],
+    "choix": [
+      "`Article` hérite des champs de `Display`",
+      "Tout type qui implémente `Article` doit aussi implémenter `Display` (supertrait)",
+      "`Display` implémente automatiquement `Article`",
+      "C'est une erreur de syntaxe"
+    ],
     "reponse": 1,
-    "explication": "`Display` est un supertrait : c'est une condition. Les méthodes par défaut de `Article` peuvent donc utiliser `{}` sur `self`."
+    "explication": "**Règle :** `trait A: B` déclare que `B` est un **supertrait** de `A` : pour implémenter `A`, un type doit **aussi** implémenter `B`. C'est une condition, pas un héritage.\n\n**Pas à pas :**\n\n1. `trait Article: Display` : tout type qui veut être un `Article` doit d'abord savoir s'afficher avec `{}`.\n2. Si on écrit `impl Article for Livre` sans `impl Display for Livre`, le compilateur refuse (« `Livre` doesn't implement `std::fmt::Display` »).\n3. En échange, dans le trait, les méthodes par défaut peuvent utiliser `{}` sur `self` : `format!(\"{} : {:.2} €\", self, ...)` marche, car tout `Article` est forcément `Display`.\n\n**Les autres réponses :** il n'y a pas de champs hérités (un trait n'a pas de champs, et Rust n'a pas d'héritage de classes) ; `Display` n'implémente pas `Article` tout seul, c'est l'inverse : il faut écrire les deux `impl` ; la syntaxe est tout à fait valide.\n\n**À retenir :** `trait A: B` = « pour être `A`, il faut être `B` », et les méthodes de `A` peuvent utiliser celles de `B`."
   },
   {
     "question": "Pourquoi `Box<dyn Clonable>` ne compile-t-il pas avec `trait Clonable { fn copie(&self) -> Self; }` ?",
-    "choix": ["`Box` est interdit avec les traits", "Le trait n'est pas « sûr pour les objets » : une méthode qui renvoie `Self` ne peut pas être appelée via `dyn`", "Il manque `pub`", "Il faut `unsafe`"],
+    "choix": [
+      "`Box` est interdit avec les traits",
+      "Le trait n'est pas « sûr pour les objets » : une méthode qui renvoie `Self` ne peut pas être appelée via `dyn`",
+      "Il manque `pub`",
+      "Il faut `unsafe`"
+    ],
     "reponse": 1,
-    "explication": "Avec `dyn`, le type concret est oublié. Une méthode qui renvoie `Self` ou qui est générique empêche de créer un objet-trait."
+    "explication": "**Règle :** un trait n'est utilisable en `dyn` (« sûr pour les objets ») que si ses méthodes prennent un `self`, ne renvoient pas `Self` et n'ont pas de paramètre générique.\n\n**Pas à pas :**\n\n1. Derrière un `Box<dyn Clonable>`, le vrai type est oublié : il reste un pointeur vers la valeur et un pointeur vers la table des méthodes.\n2. `fn copie(&self) -> Self` doit renvoyer une valeur du vrai type. Mais lequel ? Ce peut être un type de 1 octet ou de 1 000 octets : Rust ne peut pas réserver la place du résultat.\n3. Le compilateur refuse donc le trait en `dyn` : « the trait `Clonable` cannot be made into an object » (ou « is not dyn compatible »).\n\nUne solution classique : renvoyer `Box<dyn Clonable>` au lieu de `Self`, ce qui a une taille connue.\n\n**Les autres réponses :** `Box<dyn Trait>` est autorisé, c'est même l'usage normal (`Vec<Box<dyn Forme>>`) ; `pub` règle la visibilité entre modules, pas ce problème ; `unsafe` ne change pas les règles des objets-traits.\n\n**À retenir :** une méthode qui renvoie `Self` ou qui est générique empêche le trait de devenir `dyn`."
   },
   {
     "question": "Quelle est la différence entre `fn f(x: impl Trait)` et `fn f(x: &dyn Trait)` ?",
-    "choix": ["Aucune", "`impl Trait` est résolu à la compilation (un code par type) ; `dyn Trait` est résolu à l'exécution (appel via une table)", "`dyn` est toujours plus rapide", "`impl` ne marche qu'en retour"],
+    "choix": [
+      "Aucune",
+      "`impl Trait` est résolu à la compilation (un code par type) ; `dyn Trait` est résolu à l'exécution (appel via une table)",
+      "`dyn` est toujours plus rapide",
+      "`impl` ne marche qu'en retour"
+    ],
     "reponse": 1,
-    "explication": "`impl Trait` en argument est du générique (monomorphisation). `dyn Trait` permet de mélanger plusieurs types dans une même collection, au prix d'un appel indirect."
+    "explication": "**Règle :** `impl Trait` en argument est un générique : le compilateur fabrique une copie de la fonction pour chaque type utilisé (**monomorphisation**). `&dyn Trait` est un objet-trait : une seule fonction, qui trouve la bonne méthode à l'exécution dans une table (vtable).\n\n**Pas à pas :** avec `f(Carre(2.0))` puis `f(Rectangle(2.0, 3.0))` :\n\n| | `fn f(x: impl Forme)` | `fn f(x: &dyn Forme)` |\n|---|---|---|\n| Fonctions dans le programme | deux (une pour `Carre`, une pour `Rectangle`) | une seule |\n| Appel de `x.aire()` | direct, connu à la compilation | via la table, choisi à l'exécution |\n| Mélanger les types dans un `Vec` | non | oui (`Vec<Box<dyn Forme>>`) |\n\n**Les autres réponses :** il y a bien une différence (« aucune » est faux) ; `dyn` n'est pas plus rapide, au contraire : l'appel indirect a un petit coût ; `impl Trait` marche aussi bien en argument qu'en retour.\n\n**À retenir :** `impl` = résolu à la compilation (rapide, une copie par type) ; `dyn` = résolu à l'exécution (types mélangés, appel indirect)."
   },
   {
     "question": "Que permet `fn pairs() -> impl Iterator<Item = u32>` ?",
-    "choix": ["Renvoyer n'importe quel type, choisi par l'appelant", "Cacher le type exact renvoyé (une chaîne d'itérateurs par exemple) tout en promettant qu'il est un itérateur de `u32`", "Renvoyer plusieurs types différents selon un `if`", "Rien, c'est interdit"],
+    "choix": [
+      "Renvoyer n'importe quel type, choisi par l'appelant",
+      "Cacher le type exact renvoyé (une chaîne d'itérateurs par exemple) tout en promettant qu'il est un itérateur de `u32`",
+      "Renvoyer plusieurs types différents selon un `if`",
+      "Rien, c'est interdit"
+    ],
     "reponse": 1,
-    "explication": "Le type est choisi par la fonction, pas l'appelant. Un seul type concret possible : deux branches de types différents ne compilent pas (il faudrait `Box<dyn Iterator>`)."
+    "explication": "**Règle :** `-> impl Trait` en retour veut dire « je renvoie **un** type précis, que je choisis et que je cache ; tu sais seulement qu'il implémente `Trait` ».\n\n**Pas à pas :**\n\n1. `fn pairs() -> impl Iterator<Item = u32> { (0..10).filter(|n| n % 2 == 0) }` renvoie en réalité un `Filter<Range<u32>, {closure}>`, un type impossible à écrire à la main (la closure n'a pas de nom).\n2. Grâce à `impl Iterator<Item = u32>`, on n'a pas à l'écrire : l'appelant peut faire `pairs().collect()`, `pairs().sum()`, comme avec n'importe quel itérateur de `u32`.\n3. C'est la **fonction** qui choisit le type, et elle n'en choisit qu'**un**.\n\n**Les autres réponses :** « n'importe quel type, choisi par l'appelant » décrit un générique en argument, pas un retour ; « plusieurs types différents selon un `if` » est justement interdit : deux branches de types différents donnent « `if` and `else` have incompatible types », il faudrait `Box<dyn Iterator<Item = u32>>` ; et ce n'est pas interdit, c'est très courant.\n\n**À retenir :** `-> impl Trait` cache un seul type concret, choisi par la fonction."
   },
   {
     "question": "Si tu implémentes `From<A> for B`, que reçois-tu gratuitement ?",
-    "choix": ["`TryFrom<A> for B` seulement", "`Into<B> for A` : tu peux écrire `a.into()`", "`Display` pour `B`", "Rien"],
+    "choix": [
+      "`TryFrom<A> for B` seulement",
+      "`Into<B> for A` : tu peux écrire `a.into()`",
+      "`Display` pour `B`",
+      "Rien"
+    ],
     "reponse": 1,
-    "explication": "Il existe une implémentation générale `impl<T, U: From<T>> Into<U> for T`. On implémente `From`, et `Into` suit."
+    "explication": "**Règle :** la bibliothèque standard contient l'implémentation générale `impl<T, U: From<T>> Into<U> for T`. Dès que `From<A> for B` existe, `A` reçoit automatiquement `into()` vers `B`.\n\n**Pas à pas :** avec `impl From<Kilometres> for Metres` :\n\n1. `Metres::from(Kilometres(2.5))` marche : c'est ce qu'on a écrit.\n2. La blanket impl se lit avec `T = Kilometres` et `U = Metres` : la condition `Metres: From<Kilometres>` est remplie, donc `Kilometres` a `Into<Metres>`.\n3. `let m: Metres = Kilometres(2.5).into();` marche, sans une ligne de plus. L'annotation `: Metres` dit à Rust vers quel type convertir.\n\n**Les autres réponses :** « `TryFrom` seulement » est faux à cause du mot « seulement » : on reçoit bien `into()` (et, au passage, un `TryFrom` qui ne peut jamais échouer, mais ce n'est pas le cadeau principal) ; `Display` n'a aucun rapport avec les conversions ; « rien » est faux, c'est tout l'intérêt d'écrire `From`.\n\n**À retenir :** implémente toujours `From`, jamais `Into` : `into()` vient tout seul."
   },
   {
     "question": "Qu'est-ce que la règle des orphelins interdit ?",
-    "choix": ["Utiliser un type sans trait", "Implémenter un trait étranger sur un type étranger (ex. `Display` pour `Vec<String>`)", "Écrire deux `impl` du même trait", "Utiliser `dyn` sans `Box`"],
+    "choix": [
+      "Utiliser un type sans trait",
+      "Implémenter un trait étranger sur un type étranger (ex. `Display` pour `Vec<String>`)",
+      "Écrire deux `impl` du même trait",
+      "Utiliser `dyn` sans `Box`"
+    ],
     "reponse": 1,
-    "explication": "Au moins le trait ou le type doit être défini dans ta crate. Le newtype (`struct Liste(Vec<String>);`) rend le type local et contourne la règle."
+    "explication": "**Règle des orphelins :** on ne peut écrire `impl Trait for Type` que si le trait **ou** le type est défini dans ta crate (ton projet).\n\n**Pas à pas :** on regarde d'où vient chaque morceau.\n\n| `impl` | Trait vient de | Type vient de | Permis ? |\n|---|---|---|---|\n| `impl Display for Livre` | std | ta crate | oui |\n| `impl Crier for i32` | ta crate | std | oui |\n| `impl Display for Vec<String>` | std | std | **non** |\n\nPour le dernier cas, la solution est le **newtype** : `struct Liste(Vec<String>);` est un type de ta crate, donc `impl Display for Liste` est permis. La règle existe pour éviter que deux bibliothèques écrivent chacune leur propre `Display` pour `Vec<String>` : Rust ne saurait pas laquelle choisir.\n\n**Les autres réponses :** un type sans trait est parfaitement utilisable ; écrire deux `impl` du même trait pour le même type est interdit, mais c'est une autre erreur (« conflicting implementations ») ; `dyn` sans `Box` est possible avec une référence (`&dyn Trait`), et ça n'a rien à voir avec les orphelins.\n\n**À retenir :** trait étranger + type étranger = interdit ; enveloppe le type dans un newtype."
   },
   {
     "question": "Que fait `impl<T: Display> Resumer for T { ... }` ?",
-    "choix": ["Implémente `Resumer` pour un seul type `T`", "Implémente `Resumer` pour tous les types qui implémentent `Display` (blanket impl)", "Crée un nouveau type `T`", "Supprime `Display`"],
+    "choix": [
+      "Implémente `Resumer` pour un seul type `T`",
+      "Implémente `Resumer` pour tous les types qui implémentent `Display` (blanket impl)",
+      "Crée un nouveau type `T`",
+      "Supprime `Display`"
+    ],
     "reponse": 1,
-    "explication": "C'est une implémentation générale. La bibliothèque standard l'utilise : tout type `Display` a `.to_string()` grâce à `ToString`."
+    "explication": "**Règle :** une **blanket impl** (implémentation générale) donne un trait à **tous** les types qui remplissent une condition : `impl<T: Condition> MonTrait for T`.\n\n**Pas à pas :**\n\n1. `impl<T: Display>` : « pour tout type `T`, à condition que `T` implémente `Display` ».\n2. `Resumer for T` : après `for`, il n'y a pas un type précis mais le `T` lui-même. Donc tous les types concernés reçoivent `Resumer`.\n3. Conséquence : `42_i32.resume()`, `\"salut\".resume()`, et même un type à toi qui implémente `Display` (un newtype par exemple) ont `resume()` sans une ligne de plus.\n\nC'est exactement ce que fait la bibliothèque standard avec `impl<T: Display> ToString for T` : c'est pour ça que tout ce qui est `Display` a `.to_string()`.\n\n**Les autres réponses :** ce n'est pas un seul type, `T` représente n'importe quel type qui respecte la condition ; aucun nouveau type n'est créé, `T` est juste un nom de paramètre ; `Display` n'est pas supprimé, c'est la condition demandée.\n\n**À retenir :** `impl<T: Condition> Trait for T` = le trait pour tous les types qui remplissent la condition."
   }
 ]

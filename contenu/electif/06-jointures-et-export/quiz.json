@@ -1,38 +1,68 @@
 [
   {
     "question": "Qu'est-ce qu'une **jointure attributaire** ?",
-    "choix": ["Rattacher les colonnes d'un tableau à une couche grâce à un champ commun", "Fusionner deux géométries", "Découper une couche", "Changer de projection"],
+    "choix": [
+      "Rattacher les colonnes d'un tableau à une couche grâce à un champ commun",
+      "Fusionner deux géométries",
+      "Découper une couche",
+      "Changer de projection"
+    ],
     "reponse": 0,
-    "explication": "On relie deux tables par un champ qui contient les mêmes valeurs, par exemple le code INSEE."
+    "explication": "**Règle :** une **jointure attributaire** ajoute à une couche les colonnes d'un **tableau** (souvent un CSV), en associant les lignes qui ont la **même valeur** dans un **champ commun** (un code, par exemple le code INSEE).\n\n**Pas à pas :** une commune de la couche a le code `92040`.\n\n1. QGIS cherche dans le CSV la ligne dont le code vaut aussi `92040`.\n2. Il recopie les colonnes de cette ligne (population, revenus…) à côté de la commune.\n3. Il fait pareil pour chaque commune : la table de la couche gagne de nouvelles colonnes.\n\n**Les autres réponses :** fusionner deux géométries assemble des formes (rien à voir avec un tableau) ; découper une couche coupe des formes selon une autre couche ; changer de projection modifie le système de coordonnées. Une jointure attributaire ne touche jamais aux formes : elle n'ajoute que des colonnes.\n\n**À retenir :** jointure attributaire = des colonnes en plus, trouvées grâce à un code identique des deux côtés."
   },
   {
     "question": "Dans quel onglet des propriétés de la couche crée-t-on une jointure ?",
-    "choix": ["Jointures", "Symbologie", "Étiquettes", "Source"],
+    "choix": [
+      "Jointures",
+      "Symbologie",
+      "Étiquettes",
+      "Source"
+    ],
     "reponse": 0,
-    "explication": "Propriétés de la couche > Jointures > bouton +."
+    "explication": "**Règle :** on crée une jointure dans les **propriétés de la couche** qui doit recevoir les colonnes, onglet **Jointures**, bouton **+**.\n\n**Pas à pas :**\n\n1. Double-clic sur la couche (par exemple `COMMUNE`) : la fenêtre des propriétés s'ouvre.\n2. Dans la liste à gauche, onglet **Jointures**.\n3. Bouton **+** : on choisit la couche à joindre (le CSV), le champ de jointure (côté CSV) et le champ cible (côté couche).\n\n**Les autres réponses :** Symbologie règle les couleurs et symboles ; Étiquettes affiche des textes sur la carte ; Source montre le fichier d'origine et le système de coordonnées. Aucun ne relie deux tables.\n\n**À retenir :** relier un tableau à une couche = Propriétés > Jointures > +."
   },
   {
     "question": "Comment vérifier qu'une jointure a fonctionné ?",
-    "choix": ["Ouvrir la table d'attributs et regarder les colonnes jointes", "Regarder la couleur de la carte", "Relancer QGIS", "Compter les fichiers du dossier"],
+    "choix": [
+      "Ouvrir la table d'attributs et regarder les colonnes jointes",
+      "Regarder la couleur de la carte",
+      "Relancer QGIS",
+      "Compter les fichiers du dossier"
+    ],
     "reponse": 0,
-    "explication": "Les colonnes du CSV doivent apparaître, remplies, dans la table de la couche."
+    "explication": "**Règle :** une jointure ajoute des **colonnes** : pour la vérifier, il faut regarder les colonnes, donc la **table d'attributs** de la couche.\n\n**Pas à pas :**\n\n1. Clic droit sur la couche > Ouvrir la table d'attributs.\n2. Les colonnes du CSV doivent apparaître, préfixées par le nom du CSV.\n3. Elles doivent être **remplies** : trie sur une colonne jointe ; beaucoup de `NULL` veut dire que beaucoup d'objets n'ont pas trouvé leur ligne.\n\n**Les autres réponses :** la couleur de la carte ne change pas avec une jointure (elle dépend de la symbologie) ; relancer QGIS ne prouve rien ; le nombre de fichiers du dossier reste le même, car la jointure ne crée aucun fichier.\n\n**À retenir :** une jointure se vérifie dans la table d'attributs : colonnes présentes **et** remplies."
   },
   {
     "question": "Le code INSEE `01001` devient `1001` dans le CSV. Pourquoi ?",
-    "choix": ["Le champ a été lu comme un nombre", "Le fichier est trop gros", "QGIS ne gère pas les zéros", "La projection est mauvaise"],
+    "choix": [
+      "Le champ a été lu comme un nombre",
+      "Le fichier est trop gros",
+      "QGIS ne gère pas les zéros",
+      "La projection est mauvaise"
+    ],
     "reponse": 0,
-    "explication": "Un code doit être importé en texte, sinon le zéro de début disparaît."
+    "explication": "**Règle :** un **nombre** ne garde jamais de zéro au début : pour lui, `01001` et `1001` sont la même valeur, et il s'écrit `1001`. Un **texte**, lui, garde chaque caractère.\n\n**Pas à pas :**\n\n1. Le CSV contient `01001` (code INSEE d'une commune de l'Ain).\n2. À l'import, QGIS devine le type de la colonne. Il ne voit que des chiffres et choisit « nombre ».\n3. Le nombre `01001` est rangé comme 1001 : le zéro disparaît.\n4. Dans la couche, le code est un texte `01001`. Les deux ne sont plus identiques, la jointure échoue pour cette commune.\n5. Solution : réimporter le CSV en forçant la colonne en **texte**.\n\n**Les autres réponses :** la taille du fichier ne fait pas disparaître de caractères ; QGIS gère très bien les zéros quand le champ est en texte ; la projection concerne les coordonnées, pas les colonnes d'un tableau.\n\n**À retenir :** un code (INSEE, postal, département) se lit toujours en texte, jamais en nombre."
   },
   {
     "question": "Une jointure est-elle permanente dans la couche ?",
-    "choix": ["Non, elle est stockée dans le projet", "Oui, toujours", "Seulement en GeoPackage", "Seulement en CSV"],
+    "choix": [
+      "Non, elle est stockée dans le projet",
+      "Oui, toujours",
+      "Seulement en GeoPackage",
+      "Seulement en CSV"
+    ],
     "reponse": 0,
-    "explication": "Pour garder les colonnes, il faut exporter la couche."
+    "explication": "**Règle :** une jointure est une **consigne enregistrée dans le projet** (« relier cette couche à ce CSV »). Le fichier de la couche, lui, n'est pas modifié.\n\n**Pas à pas :**\n\n1. Tu fais la jointure : les colonnes apparaissent dans QGIS.\n2. Le projet `.qgz` retient la jointure ; le fichier `COMMUNE.shp` reste tel qu'il était.\n3. Si tu ouvres `COMMUNE.shp` dans un autre projet, les colonnes jointes ne sont pas là.\n4. Pour les garder : Exporter > Sauvegarder les objets sous… Le nouveau fichier contient les colonnes pour de bon.\n\n**Les autres réponses :** « oui, toujours » est le piège classique (on voit les colonnes, donc on croit qu'elles sont dans le fichier) ; le format GeoPackage ou CSV de la couche ne change rien, la jointure reste dans le projet tant qu'on n'exporte pas.\n\n**À retenir :** jointure = temporaire (projet) ; pour la rendre permanente, exporte la couche."
   },
   {
     "question": "Quels éléments d'une bonne carte ?",
-    "choix": ["Titre, légende, échelle, source", "Seulement la carte", "Seulement le titre", "Une photo du logiciel"],
+    "choix": [
+      "Titre, légende, échelle, source",
+      "Seulement la carte",
+      "Seulement le titre",
+      "Une photo du logiciel"
+    ],
     "reponse": 0,
-    "explication": "Titre, légende, échelle, flèche du nord, source et date."
+    "explication": "**Règle :** une carte doit se comprendre **sans personne pour l'expliquer**. Pour cela, elle a un **titre**, une **légende**, une **échelle** et la **source** des données (et idéalement la date et une flèche du nord).\n\n**Pas à pas :** ce que chaque élément apprend au lecteur.\n\n| Élément | Il répond à… |\n|---|---|\n| Titre | de quoi parle la carte ? |\n| Légende | que veulent dire les couleurs ? |\n| Échelle | quelles distances en vrai ? |\n| Source | d'où viennent les données ? |\n\nSans l'un d'eux, le lecteur doit deviner : la carte est incomplète.\n\n**Les autres réponses :** la carte seule ne dit ni ce qu'elle montre ni ce que veulent dire ses couleurs ; un titre seul ne donne ni les distances ni la source ; une photo du logiciel n'est pas une carte, c'est une capture d'écran.\n\n**À retenir :** avant d'exporter, coche la liste : titre, légende, échelle, source (et date)."
   }
 ]

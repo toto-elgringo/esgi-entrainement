@@ -14,7 +14,8 @@
           "attendee",
           "attendance"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *attendance* = la présence (une chose) ; *attendee* = un participant et *absentee* = un absent (des personnes) ; *attend* = assister à (un verbe).\n\n**Pas à pas :**\n\n1. Après *staff*, il faut un **nom de chose** : *staff attendance* (la présence du personnel).\n2. Le sens : elle *has dropped* (a baissé) et les RH sont *worried* (inquiètes). Une présence qui baisse, c'est bien un souci.\n3. Réponse : ***attendance***.\n\n**Les autres réponses :** *absentee* et *attendee* sont des personnes, on ne s'inquiète pas d'« un participant qui a baissé » ; *attend* est un verbe, impossible après *staff* ici.\n\n**À retenir :** nom de chose en *-ance* ; personne en *-ee*."
       },
       {
         "intitule": "*The high level of ...... in the town makes it easy to recruit workers.*",
@@ -25,7 +26,8 @@
           "employed",
           "unemployed"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** après *the level of* (le niveau de), il faut un **nom**. *Unemployment* = le chômage.\n\n**Pas à pas :**\n\n1. *The high level of ......* : entre *of* et *in the town*, un nom.\n2. Seul *unemployment* est un nom (fin en *-ment*).\n3. Le sens : beaucoup de chômage = beaucoup de gens disponibles → *it is easy to recruit workers* (facile de recruter). C'est logique.\n\n**Les autres réponses :** *employ* est un verbe ; *employed* et *unemployed* sont des adjectifs (il faudrait un nom après : *unemployed people*).\n\n**À retenir :** *of* + trou → un nom, souvent en *-ment*."
       },
       {
         "intitule": "*The board meeting will be ...... on the fifth floor.*",
@@ -36,7 +38,8 @@
           "held",
           "hold"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** passif au futur : *will be* + **participe passé**. *Take place* n'a pas de passif.\n\n**Pas à pas :**\n\n1. Le trou suit *will be* : il faut un participe passé.\n2. La réunion du conseil est **tenue** par quelqu'un : passif de *hold* → ***held***.\n3. Phrase : *The board meeting will be held on the fifth floor.* (La réunion du conseil se tiendra au 5e étage.)\n\n**Les autres réponses :** *will be take place* et *will be took place* sont faux, car *take place* s'emploie sans *be* (*will take place*) ; *hold* est la base, pas le participe.\n\n**À retenir :** *will be held* = *will take place* ; jamais *will be take place*."
       },
       {
         "intitule": "*Did you receive the ...... for Friday's meeting?*",
@@ -47,7 +50,8 @@
           "outcome",
           "minutes"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *agenda* = ordre du jour (avant la réunion) ; *minutes* = compte-rendu (après) ; *outcome* = résultat ; *summary* = résumé.\n\n**Pas à pas :**\n\n1. Indice : *Friday's meeting*. La question *Did you receive...?* montre qu'on l'a envoyé à l'avance pour préparer la réunion.\n2. Ce qu'on reçoit avant une réunion : l'***agenda***.\n\n**Les autres réponses :** *minutes*, *outcome* et *summary* supposent que la réunion a déjà eu lieu (on résume, on donne un résultat). Le document qu'on envoie à tous les participants pour préparer une réunion, c'est l'ordre du jour.\n\n**À retenir :** pour une réunion à préparer → *agenda*."
       },
       {
         "intitule": "*After a short lunch break, the workshop will ...... at 2 p.m.*",
@@ -58,7 +62,8 @@
           "sum up",
           "resume"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *resume* = reprendre après une pause ; *postpone* = reporter ; *sum up* = résumer ; *break up* = se séparer, se terminer.\n\n**Pas à pas :**\n\n1. Indice de temps : *After a short lunch break* (après une courte pause déjeuner) et *at 2 p.m.* (à 14 h).\n2. Après une pause, l'atelier **reprend** à 14 h → ***resume***.\n\n**Les autres réponses :** *postpone* demande un report à un autre moment (*postponed until Friday*), pas une reprise après la pause ; *sum up* veut dire résumer ; *break up* voudrait dire que l'atelier se termine.\n\n**À retenir :** pause + heure de reprise → *resume* (faux ami : pas « résumer »)."
       }
     ],
     "indices": [
@@ -82,7 +87,8 @@
           "clocking",
           "clock"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** après un verbe modal (*must*, *can*, *should*, *will*), le verbe est à la **base**, sans *-s*, *-ed* ni *-ing*. *To clock in* = pointer à l'arrivée.\n\n**Pas à pas :**\n\n1. Avant le trou : *must*.\n2. Après *must*, la base du verbe : ***clock*** (*must clock in*).\n\n**Les autres réponses :** *clocks* (avec *-s* de la 3e personne), *clocked* (passé) et *clocking* (forme en -ing) sont impossibles après un modal.\n\n**À retenir :** modal + **base verbale**, toujours."
       },
       {
         "intitule": "*Ms. Ito has been ...... head of the Tokyo branch.*",
@@ -93,7 +99,8 @@
           "appointee",
           "appoint"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *has been* + participe passé = passif au present perfect. *To appoint someone head of...* = nommer quelqu'un à la tête de.\n\n**Pas à pas :**\n\n1. Avant le trou : *has been*. Ms. Ito **subit** l'action (quelqu'un l'a nommée) → passif.\n2. Participe passé de *appoint* : ***appointed***.\n3. Phrase : *Ms. Ito has been appointed head of the Tokyo branch.* (Mme Ito a été nommée directrice de l'agence de Tokyo.)\n\n**Les autres réponses :** *appointment* (la nomination) et *appointee* (la personne nommée) sont des noms ; *appoint* est la base. *has been appointee* n'aurait pas de sens avec *head of* juste après.\n\n**À retenir :** *has been* + participe passé en *-ed*."
       },
       {
         "intitule": "*Three ...... were invited for a second interview.*",
@@ -104,7 +111,8 @@
           "applies",
           "applicants"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *applicant* = candidat (une personne) ; *application* = candidature (une chose) ; *applied* / *applies* = formes du verbe *apply*.\n\n**Pas à pas :**\n\n1. *Three ......* : après un nombre, un **nom au pluriel**.\n2. Qui est *invited for a second interview* (invité à un second entretien) ? Des **personnes**.\n3. Le nom de personne : ***applicants***.\n\n**Les autres réponses :** *applications* est aussi un nom pluriel, mais on n'invite pas des candidatures (des papiers) à un entretien ; *applied* et *applies* sont des verbes.\n\n**À retenir :** si le nom fait ou subit une action humaine (être invité), c'est une personne : *-ant*, *-ee*, *-er*."
       },
       {
         "intitule": "*The company plans to ...... its workforce by 10% next year.*",
@@ -115,7 +123,8 @@
           "resign",
           "retire"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *reduce the workforce* = réduire les effectifs. *Lay off* (licencier) a besoin de *off* ; *resign* (démissionner) et *retire* (prendre sa retraite) ne prennent pas de complément de ce type.\n\n**Pas à pas :**\n\n1. Le complément est *its workforce by 10%* : un **effectif** qu'on diminue d'un pourcentage.\n2. Diminuer un nombre = ***reduce***.\n\n**Les autres réponses :** *lay* seul (poser) ne veut pas dire licencier, il faut *lay off* et un complément de personnes (*lay off 50 workers*) ; *resign* et *retire* décrivent ce que fait le salarié lui-même, l'entreprise ne « démissionne » pas ses effectifs.\n\n**À retenir :** un total ou un pourcentage → *reduce* ; des personnes → *lay off*."
       },
       {
         "intitule": "*Our contract is ...... for both parties.*",
@@ -126,7 +135,8 @@
           "binding",
           "binder"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** après *is*, pour décrire le sujet, il faut un **adjectif**. *A binding contract* = un contrat qui engage (obligatoire).\n\n**Pas à pas :**\n\n1. *Our contract is ......* : après *is*, un adjectif qui décrit le contrat.\n2. Parmi les choix, l'adjectif est ***binding*** (qui lie, qui engage).\n3. Phrase : *Our contract is binding for both parties.* (Notre contrat engage les deux parties.)\n\n**Les autres réponses :** *bind* est un verbe (lier) ; *bound* est son participe passé (*is bound* = est obligé, mais il faudrait *bound to*, et le sujet serait une personne) ; *binder* est un nom (un classeur).\n\n**À retenir :** contrat qui engage → *binding*."
       },
       {
         "intitule": "*Part-time workers are not ...... for the annual bonus.*",
@@ -137,7 +147,8 @@
           "illegible",
           "legible"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *eligible for* = qui a droit à (adjectif). Paronymes : *illegible* = illisible, *legible* = lisible (pour une écriture). *Eligibility* = le droit (nom).\n\n**Pas à pas :**\n\n1. *are not ...... for* : après *are*, un **adjectif**, et la préposition *for* suit.\n2. Le sens : les temps partiels n'**ont pas droit** à la prime annuelle → ***eligible***.\n\n**Les autres réponses :** *eligibility* est un nom (*-ity*) ; *illegible* et *legible* parlent d'une écriture lisible ou non, ce qui n'a rien à voir avec une prime (piège des mots qui se ressemblent).\n\n**À retenir :** avoir droit à → *be eligible for*."
       }
     ],
     "indices": [
@@ -161,7 +172,8 @@
           "resumed",
           "took place"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *to chair a meeting* = présider une réunion. *Attend to* = s'occuper de (pas « assister à ») ; *resume* = reprendre ; *take place* = avoir lieu (sans complément de personne).\n\n**Pas à pas :**\n\n1. *Ms. Lopez ...... the meeting* : elle fait une action **sur** la réunion.\n2. Le directeur était malade (*was ill*) : quelqu'un doit le **remplacer pour diriger** la réunion → ***chaired***.\n\n**Les autres réponses :** *attended to* = s'occuper de (on dirait *attended the meeting* sans *to* pour « assister à ») ; *resumed* (reprendre) supposerait une pause, et le lien avec la maladie du directeur n'est pas logique ; *took place* ne peut pas avoir de sujet humain (*the meeting took place*, pas *Ms. Lopez took place the meeting*).\n\n**À retenir :** remplacer le chef pendant la réunion → *chair the meeting*."
       },
       {
         "intitule": "*The ...... of the new manager will be announced on Monday.*",
@@ -172,7 +184,8 @@
           "appointed",
           "appointment"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** après *The* et avant *of*, il faut un **nom**. *Appointment* = la nomination (nom de chose, en *-ment*).\n\n**Pas à pas :**\n\n1. *The ...... of the new manager* : place d'un nom.\n2. Ce qui sera annoncé lundi, c'est **la nomination** du nouveau manager → ***appointment***.\n\n**Les autres réponses :** *appointing* (forme en -ing) et *appoint* (base) sont des verbes ; *appointed* est un participe. Aucun n'est un nom après *The*.\n\n**À retenir :** *The ...... of* → nom ; ici le nom en *-ment*."
       },
       {
         "intitule": "*We are pleased to offer you the ...... of sales assistant.*",
@@ -183,7 +196,8 @@
           "vacant",
           "availability"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *the position of* = le poste de. *Appointment* = nomination ou rendez-vous ; *vacant* = vacant (adjectif) ; *availability* = disponibilité.\n\n**Pas à pas :**\n\n1. *offer you the ...... of sales assistant* : il faut un **nom** après *the*, et ce qu'on offre à quelqu'un, c'est un **poste**.\n2. Collocation : *the position of sales assistant* → ***position***.\n\n**Les autres réponses :** *appointment* est un nom, mais on n'« offre pas la nomination de vendeur » en anglais : c'est le piège plus fin de la série ; *vacant* est un adjectif (*a vacant position*), il ne peut pas suivre *the* seul ; *availability* (disponibilité) n'a pas de sens ici.\n\n**À retenir :** offrir un poste → *offer the position of*."
       },
       {
         "intitule": "*Please let us know ...... you can attend the training session.*",
@@ -194,7 +208,8 @@
           "despite",
           "unless"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *whether* = si (... ou non), après *know*, *tell*, *ask*, *let us know*. *Although* = bien que ; *despite* = malgré (+ nom) ; *unless* = à moins que.\n\n**Pas à pas :**\n\n1. *Please let us know ...... you can attend* = « dites-nous **si** vous pouvez venir ».\n2. C'est une question indirecte (oui ou non) → ***whether***.\n\n**Les autres réponses :** *although* (bien que) et *unless* (à moins que) donnent des phrases absurdes (« dites-nous bien que vous pouvez venir ») ; *despite* est suivi d'un nom, pas d'une phrase avec un sujet *you*.\n\n**À retenir :** « dis-moi si... » → *let me know whether...*."
       },
       {
         "intitule": "*The trainees are looking forward ...... the factory next week.*",
@@ -205,7 +220,8 @@
           "visiting",
           "visit"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *look forward to* + verbe en **-ing** (*to* est une préposition).\n\n**Pas à pas :**\n\n1. On repère *looking forward* : il faut *to*.\n2. Après *to* préposition, verbe en -ing : ***to visiting***.\n3. Phrase : *The trainees are looking forward to visiting the factory next week.* (Les stagiaires ont hâte de visiter l'usine.)\n\n**Les autres réponses :** *to visit* utilise l'infinitif (erreur classique) ; *visiting* et *visit* oublient *to*.\n\n**À retenir :** *look forward to* + **-ing**."
       },
       {
         "intitule": "*...... the heavy snow, all employees came to work.*",
@@ -216,7 +232,8 @@
           "Unless",
           "Although"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *despite* (malgré) + **nom** ; *although* (bien que), *because* (parce que), *unless* (à moins que) + **phrase** (sujet + verbe).\n\n**Pas à pas :**\n\n1. Ce qui suit le trou : *the heavy snow*, un **nom** (pas de verbe avant la virgule).\n2. Le sens : il a beaucoup neigé **et pourtant** tout le monde est venu → opposition.\n3. Opposition + nom → ***Despite***.\n\n**Les autres réponses :** *Although* a le bon sens mais demande une phrase (*Although it snowed heavily*) ; *Because* demande aussi une phrase et donne le mauvais sens (cause) ; *Unless* (à moins que) n'a pas de sens.\n\n**À retenir :** opposition + nom → *despite* ; opposition + phrase → *although*."
       }
     ],
     "indices": [
@@ -240,7 +257,8 @@
           "availability",
           "location"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *an application for the position of...* = une candidature au poste de... C'est la collocation des offres d'emploi.\n\n**Pas à pas :**\n\n1. *for the (1) ...... of warehouse supervisor* : un **nom** après *the*, qui désigne un **poste** (chef d'entrepôt).\n2. → ***position***.\n\n**Les autres réponses :** *appointee* est une personne (la personne nommée) ; *availability* = disponibilité ; *location* = emplacement. Aucun ne désigne un poste.\n\n**À retenir :** *the position of* + nom du métier."
       },
       {
         "intitule": "(2)",
@@ -251,7 +269,8 @@
           "shortlist",
           "short list of"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *shortlist* (nom) = la liste des candidats retenus. *To be on the shortlist* = être sur la liste. *Shortlisted* est l'adjectif (retenu).\n\n**Pas à pas :**\n\n1. *you are now on our (2) ......* : après *our*, il faut un **nom**, et la phrase s'arrête après le trou.\n2. Le nom est ***shortlist*** : *on our shortlist*.\n\n**Les autres réponses :** *shortlisting* est la forme en -ing (l'action de sélectionner) ; *shortlisted* est un adjectif (on dirait *you have been shortlisted*, sans *on our*) ; *short list of* attend un nom après *of*, alors que la phrase s'arrête.\n\n**À retenir :** *be on the shortlist* = *be shortlisted*."
       },
       {
         "intitule": "(3)",
@@ -262,7 +281,8 @@
           "whether you are free",
           "even if it suits you"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *whichever is more convenient for you* = ce qui vous arrange le mieux (entre deux choix). *Convenient* = pratique, qui arrange.\n\n**Pas à pas :**\n\n1. Avant le trou, on propose **deux jours** : *next Tuesday or Wednesday*.\n2. On laisse le candidat **choisir le jour qui lui convient** → ***whichever is more convenient for you***.\n3. Le ton reste poli, ce qu'on attend d'un e-mail RH.\n\n**Les autres réponses :** *unless you are available* (à moins que vous soyez disponible) dit le contraire ; *whether you are free* (si vous êtes libre) ne peut pas finir la phrase tout seul ; *even if it suits you* (même si cela vous convient) n'a pas de sens.\n\n**À retenir :** deux propositions → *whichever is more convenient for you*."
       },
       {
         "intitule": "(4)",
@@ -273,7 +293,8 @@
           "promote",
           "issue"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *provide* = fournir. *Provide the names / the contact details of references* est une collocation RH.\n\n**Pas à pas :**\n\n1. *could you (4) ...... the names of two former employers* : le candidat doit **donner** des noms.\n2. Donner une information demandée → ***provide***.\n\n**Les autres réponses :** *distribute* = distribuer à beaucoup de monde ; *promote* = promouvoir ; *issue* = délivrer un document officiel (passeport, facture).\n\n**À retenir :** fournir des références → *provide*."
       },
       {
         "intitule": "(5)",
@@ -284,7 +305,8 @@
           "to meet",
           "to meeting"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** *look forward to* + verbe en **-ing**.\n\n**Pas à pas :**\n\n1. *I look forward (5) ...... you* : il faut *to* puis un verbe en -ing.\n2. → ***to meeting*** : *I look forward to meeting you.* (J'ai hâte de vous rencontrer.)\n\n**Les autres réponses :** *meet* et *meeting* oublient *to* ; *to meet* utilise l'infinitif, erreur la plus fréquente.\n\n**À retenir :** formule de fin d'e-mail : *I look forward to meeting you / to hearing from you*."
       }
     ],
     "indices": [
@@ -308,7 +330,8 @@
           "outing",
           "outed"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** après *staff* et avant le verbe *will take place*, il faut un **nom**. *Outing* = sortie (d'un groupe), nom en *-ing*.\n\n**Pas à pas :**\n\n1. *This year's staff (1) ...... will take place* : le trou est le **sujet** de *will take place* → un nom.\n2. La suite parle d'une journée au lac avec pique-nique : c'est la **sortie du personnel** → ***outing***.\n\n**Les autres réponses :** *out of* est une préposition ; *outer* est un adjectif (extérieur) ; *outed* est un participe passé.\n\n**À retenir :** *staff outing* = sortie du personnel."
       },
       {
         "intitule": "(2)",
@@ -319,7 +342,8 @@
           "provided",
           "providing"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** passif au futur : *will be* + **participe passé**.\n\n**Pas à pas :**\n\n1. *a picnic lunch will be (2) ......* : le pique-nique **est fourni** par quelqu'un → passif.\n2. Participe passé de *provide* : ***provided***.\n\n**Les autres réponses :** *provide* est la base ; *provider* est un nom (un fournisseur) ; *providing* donnerait *will be providing* (sera en train de fournir), mais un pique-nique ne fournit rien.\n\n**À retenir :** *will be provided* = sera fourni."
       },
       {
         "intitule": "(3)",
@@ -330,7 +354,8 @@
           "Therefore",
           "Because"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *alternatively* = sinon, autre possibilité (en début de phrase, suivi d'une virgule). *Therefore* = donc ; *unless* = à moins que ; *because* = parce que.\n\n**Pas à pas :**\n\n1. Phrase avant : le bus part à 9 h. Phrase après : ceux qui préfèrent conduire peuvent venir directement au lac.\n2. Ce sont **deux possibilités** pour venir → ***Alternatively***.\n\n**Les autres réponses :** *Therefore* (donc) ferait de la voiture une conséquence du bus ; *Unless* et *Because* demandent une phrase complète derrière, et ne se mettent pas seuls avant une virgule.\n\n**À retenir :** proposer une autre solution → *Alternatively, ...*."
       },
       {
         "intitule": "(4)",
@@ -341,7 +366,8 @@
           "although",
           "despite"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *tell someone whether...* = dire à quelqu'un si (oui ou non).\n\n**Pas à pas :**\n\n1. *Please tell Mia Clark (4) ...... you will join us* = « dites à Mia **si** vous venez ».\n2. Question indirecte oui / non → ***whether***.\n\n**Les autres réponses :** *unless* (à moins que) et *although* (bien que) n'ont pas de sens ici ; *despite* demande un nom, pas une phrase avec *you will join*.\n\n**À retenir :** *tell / let me know* + *whether* = dire si."
       },
       {
         "intitule": "(5)",
@@ -352,7 +378,8 @@
           "appraisal",
           "minutes"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** *schedule* = programme, planning (de la journée). *Appraisal* = entretien d'évaluation ; *minutes* = compte-rendu ; *résumé* = CV.\n\n**Pas à pas :**\n\n1. *The (5) ...... of the day will be posted on the noticeboard next week* : ce qu'on affiche avant une sortie, c'est le **déroulé de la journée**.\n2. → ***schedule***.\n\n**Les autres réponses :** *résumé* est un CV (faux ami) ; *appraisal* est l'évaluation d'un salarié ; *minutes* est le compte-rendu d'une **réunion**, écrit après.\n\n**À retenir :** programme d'une journée → *schedule*."
       }
     ],
     "indices": [
@@ -370,7 +397,8 @@
       {
         "intitule": "How many hours per week is the job?",
         "type": "nombre",
-        "reponse": 16
+        "reponse": 16,
+        "explication": "**Règle :** pour une question de détail, on cherche le **mot-clé** de la question dans le texte.\n\n**Pas à pas :**\n\n1. Mot-clé : *hours per week*.\n2. Dans l'annonce : *Saturdays and Sundays (16 hours per week)*.\n3. Réponse : **16**.\n\n**Erreurs fréquentes :** répondre 2 (le nombre de jours) ou 15 (c'est le **salaire** de 15 dollars par heure, pas un nombre d'heures).\n\n**À retenir :** repère l'unité demandée (*hours*) et prends le nombre qui va avec."
       },
       {
         "intitule": "What is said about experience?",
@@ -381,7 +409,8 @@
           "It is required.",
           "It is not mentioned."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** la réponse reprend l'idée du texte **avec d'autres mots** (paraphrase).\n\n**Pas à pas :**\n\n1. Dans le texte : *Experience in a hotel is an advantage but not required*.\n2. *an advantage* = un atout, donc **utile** ; *not required* = pas exigé, donc **pas nécessaire**.\n3. → ***It is useful but not necessary.***\n\n**Les autres réponses :** *It is required* dit l'inverse de *not required* ; *At least two years are needed* invente une durée ; *It is not mentioned* est faux, l'expérience est bien citée.\n\n**À retenir :** *advantage but not required* = utile mais pas obligatoire."
       },
       {
         "intitule": "What benefit is mentioned?",
@@ -392,7 +421,8 @@
           "Health insurance",
           "A company car"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un *benefit* est un avantage lié à l'emploi. On ne choisit que ce qui est **écrit** dans le texte.\n\n**Pas à pas :**\n\n1. On cherche un avantage dans l'annonce : *staff meals are included* (les repas du personnel sont compris).\n2. Repas compris = ***Free meals***.\n\n**Les autres réponses :** *Extra holidays*, *Health insurance* et *A company car* sont des avantages possibles dans un emploi, mais l'annonce ne les cite pas.\n\n**À retenir :** un avantage logique mais absent du texte n'est jamais la réponse."
       },
       {
         "intitule": "What will happen in early May?",
@@ -403,7 +433,8 @@
           "The hotel will open.",
           "The job will be advertised."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour une question de date, on cherche la date dans le texte et on lit la phrase entière.\n\n**Pas à pas :**\n\n1. *early May* = début mai.\n2. Dans le texte : *Shortlisted candidates will be interviewed in the first week of May.*\n3. *Shortlisted candidates* = des candidats retenus, donc **certains** candidats → ***Some candidates will be interviewed.***\n\n**Les autres réponses :** la formation (*training*) est citée, mais sans date ; l'hôtel est déjà ouvert ; l'annonce est déjà publiée (on la lit).\n\n**À retenir :** *first week of May* = *early May* : même date, autres mots."
       }
     ],
     "indices": [
@@ -426,7 +457,8 @@
           "The room was not available.",
           "Too few people registered."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** on cherche la **cause**, souvent introduite par *because*.\n\n**Pas à pas :**\n\n1. Dans l'e-mail : *postponed by one day because the trainer's flight was cancelled*.\n2. Le vol du formateur est annulé = le formateur **ne peut pas voyager** → ***The trainer could not travel.***\n\n**Les autres réponses :** personne n'est malade ; le problème de salle (peinture) explique le **changement de salle**, pas le report de date ; le nombre d'inscrits n'est pas cité.\n\n**À retenir :** cherche *because* : ce qui suit est la cause."
       },
       {
         "intitule": "On what day will the training take place?",
@@ -437,7 +469,8 @@
           "Wednesday 5 March",
           "Thursday 6 March"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** pour une date « reportée de X jours », on **calcule** avec le premier document puis on **vérifie** dans le second.\n\n**Pas à pas :**\n\n1. Jour prévu : *Wednesday*. Dans le planning, mercredi = **5 mars**.\n2. *postponed by one day* = un jour plus tard : mercredi 5 + 1 = **jeudi 6 mars**.\n3. Vérification dans le planning : jeudi 6, *Room 4* est *free* (libre). La salle prévue (Room 4) est bien disponible ce jour-là.\n\n**Les autres réponses :** *Wednesday 5 March* est la date **d'avant** le report ; *Monday 3 March* est la date de l'e-mail ; *Friday 7 March* ferait deux jours de report, et la salle 4 y est prise par une visite client.\n\n**À retenir :** date de départ + report, puis contrôle dans le planning."
       },
       {
         "intitule": "Why can't the session take place in Room 2?",
@@ -448,7 +481,8 @@
           "It is being painted.",
           "It is too small."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *is being painted* = est en train d'être repeinte (passif au présent continu).\n\n**Pas à pas :**\n\n1. Dans l'e-mail : *Room 4 instead of Room 2, which is being painted*.\n2. Le planning confirme : Room 2 *closed (painting)* mercredi et jeudi.\n3. → ***It is being painted.***\n\n**Les autres réponses :** la réunion du conseil a lieu en salle 2 le **vendredi**, pas le jour de la formation (piège du planning) ; les ordinateurs et la taille de la salle ne sont pas cités.\n\n**À retenir :** une info du planning n'est la bonne que si c'est **le bon jour**."
       },
       {
         "intitule": "What is NOT mentioned about the training?",
@@ -459,7 +493,8 @@
           "Lunch",
           "The new date"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** question NOT : on cherche chaque proposition dans les documents ; la réponse est la seule **introuvable**.\n\n**Pas à pas :**\n\n| Proposition | Trouvée ? |\n|---|---|\n| *The new room* | oui : *Room 4 instead of Room 2* |\n| *Lunch* | oui : *Lunch will be provided* |\n| *The new date* | oui : *postponed by one day* (on peut la calculer) |\n| *The name of the trainer* | **non** : on parle de *the trainer*, sans nom |\n\nRéponse : ***The name of the trainer***.\n\n**Erreur fréquente :** croire que la nouvelle date n'est pas donnée parce qu'elle n'est pas écrite en toutes lettres ; elle est donnée par le calcul (*by one day*).\n\n**À retenir :** question NOT = tableau « trouvé ? » ; le seul « non » est la réponse."
       }
     ],
     "indices": [
@@ -483,7 +518,8 @@
           "To keep the pool open later",
           "To reduce costs on equipment"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** la raison d'une décision est dans le document où elle est **proposée** (ici, le compte-rendu), souvent après *so* (pour que, donc).\n\n**Pas à pas :**\n\n1. Problème : *the swimming pool closes too early* (la piscine ferme trop tôt).\n2. Proposition d'Alice Moreau : embaucher des étudiants *so the pool can stay open later* (pour que la piscine reste ouverte plus tard).\n3. → ***To keep the pool open later***.\n\n**Les autres réponses :** le ménage, des compétitions ou les coûts de matériel ne sont jamais cités. Le budget est cité, mais pour les maîtres-nageurs, pas pour du matériel.\n\n**À retenir :** *so* + phrase donne le **but** d'une action."
       },
       {
         "intitule": "Who most likely wrote the advertisement?",
@@ -494,7 +530,8 @@
           "Sam Patel",
           "Nina Lee"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *Who most likely...?* : la réponse n'est pas écrite mot pour mot, on la **déduit** en reliant deux documents.\n\n**Pas à pas :**\n\n1. Compte-rendu : *Sam Patel agreed to write a job advertisement* (Sam Patel a accepté d'écrire l'annonce).\n2. E-mail de Nina à Sam : *thanks for the advert* (merci pour l'annonce). Cela confirme.\n3. → ***Sam Patel***.\n\n**Les autres réponses :** Alice Moreau a eu l'**idée** d'embaucher des étudiants, mais n'écrit pas l'annonce ; Tom Reyes parle du budget ; Nina Lee **reçoit** les candidatures (son adresse est dans l'annonce), ce qui ne veut pas dire qu'elle l'a écrite.\n\n**À retenir :** qui a fait quoi → cherche *agreed to*, *offered to* dans le compte-rendu."
       },
       {
         "intitule": "Who is Nina Lee?",
@@ -505,7 +542,8 @@
           "The manager of the centre",
           "A journalist"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** le rôle d'une personne est souvent écrit à côté de son nom, dans **un seul** des documents.\n\n**Pas à pas :**\n\n1. Compte-rendu : *Absent: Nina Lee* (elle est membre du comité).\n2. Annonce : *Send your résumé to Nina Lee, Centre Manager* → elle est la **directrice du centre**.\n3. E-mail : elle travaille à l'accueil aujourd'hui, ce qui colle avec quelqu'un du centre.\n4. → ***The manager of the centre***.\n\n**Les autres réponses :** les étudiants sont les **candidats** ; les maîtres-nageurs sont les postes à pourvoir ; aucun journaliste n'est cité.\n\n**À retenir :** cherche le nom propre dans chaque document : le titre (*Manager*) est souvent juste après."
       },
       {
         "intitule": "What is NOT stated about the job?",
@@ -516,7 +554,8 @@
           "The salary",
           "The working hours"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** question NOT : on cherche chaque proposition dans l'annonce ; la réponse est la seule introuvable.\n\n**Pas à pas :**\n\n| Proposition | Trouvée dans l'annonce ? |\n|---|---|\n| *The field of study* | oui : *studying sports science* |\n| *A certificate needed* | oui : *hold a lifesaving certificate* |\n| *The working hours* | oui : *6 p.m. - 9 p.m., three evenings a week* |\n| *The salary* | **non** |\n\nRéponse : ***The salary***.\n\n**Erreur fréquente :** penser au budget du compte-rendu (*the budget does not allow more lifeguards*) : ce n'est pas un salaire.\n\n**À retenir :** le seul « non » du tableau est la réponse."
       },
       {
         "intitule": "What will happen on the day after the e-mail?",
@@ -527,12 +566,14 @@
           "The students will start work.",
           "The pool will close."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** « le lendemain de l'e-mail » = date de l'e-mail + 1, puis on cherche cette date dans **un autre** document.\n\n**Pas à pas :**\n\n1. Date de l'e-mail : **15 April**.\n2. Le lendemain : **16 April**.\n3. Compte-rendu : *Next meeting: 16 April*. Nina le confirme : *we can compare our lists at the committee meeting*.\n4. → ***The committee will meet.***\n\n**Les autres réponses :** l'annonce est **déjà** publiée (30 candidatures reçues) ; les étudiants ne sont pas encore choisis, ils ne commencent pas le lendemain ; la piscine ne ferme pas, on veut au contraire l'ouvrir plus tard.\n\n**À retenir :** date de l'e-mail + 1, puis cherche cette date dans le compte-rendu."
       },
       {
         "intitule": "How many lifeguards does the centre want to take on?",
         "type": "nombre",
-        "reponse": 4
+        "reponse": 4,
+        "explication": "**Règle :** pour un nombre, on cherche le mot-clé de la question (*lifeguards*) et le nombre placé juste avant.\n\n**Pas à pas :**\n\n1. Dans l'annonce : *We are taking on four lifeguards* (*take on* = embaucher).\n2. *four* = **4**.\n\n**Erreurs fréquentes :** répondre 3 (*three evenings a week*, le nombre de soirs) ou 30 (*30 applications*, le nombre de candidatures).\n\n**À retenir :** prends le nombre collé au mot-clé, pas un autre nombre du texte."
       }
     ],
     "indices": [
@@ -555,7 +596,8 @@
           "In the boardroom.",
           "Ms. Grant, I think."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** à une question en *Who...?*, on répond par **une personne**.\n\n**Pas à pas :**\n\n1. *Who is going to chair the meeting tomorrow?* = Qui va présider la réunion demain ?\n2. Seule réponse avec une personne : ***Ms. Grant, I think.***\n\n**Les autres réponses :** *Yes, the chairs are new* répond oui à une question en *Who* et joue sur *chair* (présider) / *chairs* (chaises) ; *In the boardroom* est un lieu (réponse à *Where*).\n\n**À retenir :** *Who* → une personne ; méfie-toi du mot qui sonne pareil."
       },
       {
         "intitule": "*Has the agenda been sent out yet?*",
@@ -565,7 +607,8 @@
           "The agent is on the phone.",
           "Yes, it's in your inbox."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** à une question fermée (*Has... yet?*), on répond par oui / non, ou par une info qui en tient lieu.\n\n**Pas à pas :**\n\n1. *Has the agenda been sent out yet?* = L'ordre du jour a-t-il déjà été envoyé ?\n2. ***Yes, it's in your inbox.*** répond oui et précise où il est (dans ta boîte de réception).\n\n**Les autres réponses :** *Next Monday at ten* donne un moment (réponse à *When*), pas un oui / non ; *The agent is on the phone* joue sur le son *agenda* / *agent*.\n\n**À retenir :** question fermée → oui / non + précision."
       },
       {
         "intitule": "*Why don't we postpone the training until May?*",
@@ -575,7 +618,8 @@
           "Because the trainer is here.",
           "That's a good idea."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *Why don't we...?* n'est pas une vraie question sur la cause : c'est une **proposition** (« et si on... ? »). On répond en acceptant ou en refusant.\n\n**Pas à pas :**\n\n1. *Why don't we postpone the training until May?* = Et si on reportait la formation à mai ?\n2. Réponse à une proposition : ***That's a good idea.***\n\n**Les autres réponses :** *Because the trainer is here* répond à un vrai « pourquoi » (piège du mot *Why*) ; *It started in March* parle du passé et ne réagit pas à la proposition.\n\n**À retenir :** *Why don't we...?* = proposition → *Good idea* / *Sure* / *I'd rather not*."
       },
       {
         "intitule": "*Where should I send my résumé?*",
@@ -585,7 +629,8 @@
           "To the HR department.",
           "Yes, I resumed it."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** à une question en *Where...?*, on répond par **un lieu** ou une destination.\n\n**Pas à pas :**\n\n1. *Where should I send my résumé?* = Où dois-je envoyer mon CV ?\n2. Destination : ***To the HR department.*** (Au service RH.)\n\n**Les autres réponses :** *Last week* est un moment (réponse à *When*) ; *Yes, I resumed it* répond oui à une question en *Where* et joue sur *résumé* (CV) / *resumed* (repris).\n\n**À retenir :** *Where* → un lieu ; *résumé* = CV, *resume* = reprendre."
       },
       {
         "intitule": "*You'll be at the retirement party, won't you?*",
@@ -595,7 +640,8 @@
           "He retired last year.",
           "Of course, I wouldn't miss it."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** *..., won't you?* est une question tag : on demande une **confirmation**. On répond en confirmant (ou en corrigeant).\n\n**Pas à pas :**\n\n1. *You'll be at the retirement party, won't you?* = Tu seras au pot de départ à la retraite, n'est-ce pas ?\n2. Confirmation : ***Of course, I wouldn't miss it.*** (Bien sûr, je ne le raterais pas.)\n\n**Les autres réponses :** *The party is a political group* joue sur les deux sens de *party* (fête / parti politique) ; *He retired last year* reprend le mot *retire* mais parle de quelqu'un d'autre et ne répond pas.\n\n**À retenir :** question tag → on confirme ou on corrige, sur le même sujet."
       }
     ],
     "indices": [
@@ -619,7 +665,8 @@
           "9 a.m.",
           "8 a.m."
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** dans un dialogue, la première info est souvent **corrigée** ensuite (*Actually, no...*).\n\n**Pas à pas :**\n\n1. L'homme dit : *still at 9 tomorrow, right?* (toujours à 9 h ?).\n2. La femme corrige : *Actually, no. It's been moved to 10.* (En fait non, elle a été déplacée à 10 h.)\n3. → ***10 a.m.***\n\n**Les autres réponses :** 9 h est l'**ancienne** heure, c'est le piège ; midi et 8 h ne sont jamais cités.\n\n**À retenir :** après *Actually, no*, c'est la nouvelle info qui compte."
       },
       {
         "intitule": "Why was the time changed?",
@@ -630,7 +677,8 @@
           "The manager is ill.",
           "The room is not available."
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** la cause suit l'annonce du changement ; on la reformule avec d'autres mots.\n\n**Pas à pas :**\n\n1. *Several people are coming back from the trade fair tonight, and their train arrives very late.*\n2. Des collègues rentrent d'un salon ce soir avec un train qui arrive très tard = ***Some colleagues will return late the night before.***\n\n**Les autres réponses :** la stagiaire commence demain, mais ce n'est pas la cause du changement ; personne n'est malade ; la salle n'est pas citée.\n\n**À retenir :** *tonight* + *arrives very late* = la veille au soir, tard."
       },
       {
         "intitule": "What does the woman mean by \"nobody should skip it\"?",
@@ -641,7 +689,8 @@
           "Everyone should come to the meeting.",
           "Nobody should be late."
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** pour le sens d'une expression, on la remplace par une phrase simple. *To skip a meeting* = ne pas aller à une réunion, la sécher.\n\n**Pas à pas :**\n\n1. *nobody should skip it* : *it* = la réunion.\n2. « Personne ne doit la sécher » = **tout le monde doit venir** → ***Everyone should come to the meeting.***\n3. Le contexte le confirme : *it's important: we'll be discussing the summer schedule*.\n\n**Les autres réponses :** *Nobody should speak* (personne ne doit parler) et *Everyone should read the schedule* changent le sens ; *Nobody should be late* est proche, mais *skip* veut dire **ne pas venir du tout**, pas arriver en retard.\n\n**À retenir :** *skip a meeting* = ne pas y aller."
       },
       {
         "intitule": "What will the man do?",
@@ -652,7 +701,8 @@
           "Call the trainer",
           "Inform the new intern"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** pour « que va faire quelqu'un », on cherche *I'll...* ou *I'm going to...* dans ses répliques.\n\n**Pas à pas :**\n\n1. L'homme dit : *I'll tell the new intern* (je vais prévenir la nouvelle stagiaire).\n2. *tell* = *inform* → ***Inform the new intern***.\n\n**Les autres réponses :** le planning d'été sera **discuté** en réunion, personne ne dit qu'il le prépare ; le train concerne les collègues ; aucun formateur n'est cité.\n\n**À retenir :** *I'll* + verbe = ce que la personne va faire."
       }
     ],
     "indices": [
@@ -675,7 +725,8 @@
           "*take place* ne se met pas au passif",
           "*Room* doit être au pluriel"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *take place* (avoir lieu) ne se met **jamais** au passif : pas de *be* devant.\n\n**Pas à pas :**\n\n1. *will be take place* : on a mis *be* devant *take place*, comme pour un passif.\n2. Correction possible : *will take place* (sans *be*) ou *will be held* (passif de *hold*).\n\n**Les autres réponses :** *will* est tout à fait possible (futur) ; *Room C* est une seule salle, le singulier est juste.\n\n**À retenir :** *will take place* ou *will be held*, jamais *will be take place*."
       },
       {
         "intitule": "*Have you seen the minutes of next week's meeting?* Pourquoi est-ce bizarre ?",
@@ -685,7 +736,8 @@
           "*minutes* veut dire secondes",
           "Les *minutes* sont rédigées après une réunion"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** les *minutes* sont le compte-rendu, rédigé **pendant et après** une réunion.\n\n**Pas à pas :**\n\n1. *next week's meeting* = la réunion de la semaine **prochaine** : elle n'a pas eu lieu.\n2. On ne peut pas avoir son compte-rendu → la phrase est bizarre. Il faudrait *the agenda of next week's meeting*.\n\n**Les autres réponses :** *minutes* dans ce sens est **toujours** au pluriel, donc *minute* au singulier serait faux ; *minutes* veut bien dire aussi « minutes » de temps, mais pas « secondes », et le problème ici est le moment de la réunion.\n\n**À retenir :** réunion à venir → *agenda* ; passée → *minutes*."
       },
       {
         "intitule": "*I look forward to meet you.* Pourquoi est-ce faux ?",
@@ -695,7 +747,8 @@
           "Après *look forward to*, il faut un verbe en -ing",
           "*meet* doit être au passé"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** *look forward to* + verbe en **-ing**.\n\n**Pas à pas :**\n\n1. *I look forward to meet you* : après *to*, on a la base *meet*.\n2. *to* est une préposition ici : il faut ***meeting***. Correction : *I look forward to meeting you.*\n\n**Les autres réponses :** *will* n'a rien à faire ici (*look forward* est déjà au présent) ; *meet* au passé (*met*) n'aurait pas de sens pour une rencontre à venir.\n\n**À retenir :** *look forward to* + **-ing**."
       },
       {
         "intitule": "*Staff absenteeism is very low, so the director is worried.* Pourquoi est-ce illogique ?",
@@ -705,7 +758,8 @@
           "*low* doit être *lowly*",
           "*absenteeism* n'existe pas"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** lire **toute** la phrase : la deuxième partie doit être logique avec la première.\n\n**Pas à pas :**\n\n1. *Staff absenteeism is very low* = l'absentéisme est très bas, donc presque tout le monde est présent.\n2. C'est une **bonne** nouvelle : un directeur n'a pas de raison d'être *worried* (inquiet).\n3. Phrase logique : *Staff attendance is very low, so the director is worried.*\n\n**Les autres réponses :** *low* est bien un adjectif après *is* (*lowly* veut dire « modeste ») ; *absenteeism* existe bien (absentéisme).\n\n**À retenir :** « bas + inquiet » → présence (*attendance*) ; « haut + inquiet » → absentéisme."
       }
     ],
     "indices": [
@@ -724,14 +778,16 @@
         "type": "texte",
         "reponse": [
           "unemployment"
-        ]
+        ],
+        "explication": "**Règle :** *unemployment* = le chômage. On le forme avec *un-* (contraire) + *employ* + *-ment* (nom).\n\n**Pas à pas :**\n\n1. *employ* = employer → *employment* = l'emploi.\n2. Le contraire avec *un-* : ***unemployment***.\n\n**Erreurs fréquentes :** écrire *unemployed* (adjectif : au chômage) ou *chomage* traduit mot à mot ; oublier le *-ment* final.\n\n**À retenir :** chômage = *unemployment* ; chômeur = *unemployed person*."
       },
       {
         "intitule": "l'absentéisme",
         "type": "texte",
         "reponse": [
           "absenteeism"
-        ]
+        ],
+        "explication": "**Règle :** *absenteeism* = l'absentéisme. *absent* + *-ee* + *-ism*.\n\n**Pas à pas :**\n\n1. *absentee* = un absent (une personne).\n2. On ajoute *-ism* pour le phénomène : ***absenteeism*** (avec deux *e* au milieu).\n\n**Erreurs fréquentes :** *absentism* (calqué sur le français, il manque *-ee-*), ou *absentee* (c'est la personne).\n\n**À retenir :** absentéisme = *absenteeism*, contraire de *attendance*."
       },
       {
         "intitule": "dès que possible (formule polie, 4 mots : *at your earliest ...*)",
@@ -739,7 +795,8 @@
         "reponse": [
           "at your earliest convenience",
           "convenience"
-        ]
+        ],
+        "explication": "**Règle :** formule polie figée : *at your earliest convenience* = dès que possible (quand cela vous arrangera le plus tôt).\n\n**Pas à pas :**\n\n1. On part de l'indice : *at your earliest ...*.\n2. Après l'adjectif *earliest*, le **nom** *convenience* : ***at your earliest convenience***.\n\n**Erreurs fréquentes :** *at your earliest convenient* (adjectif à la place du nom) ou *as soon as possible* (juste, mais ce n'est pas la formule demandée, et elle est moins polie).\n\n**À retenir :** dès que possible (poli) = *at your earliest convenience*."
       },
       {
         "intitule": "au nom de (la bibliothèque)",
@@ -747,7 +804,8 @@
         "reponse": [
           "on behalf of",
           "in behalf of"
-        ]
+        ],
+        "explication": "**Règle :** *on behalf of* = au nom de, de la part de (*on behalf of the library* = au nom de la bibliothèque).\n\n**Pas à pas :**\n\n1. « au nom de » ne se traduit pas mot à mot (*in the name of* existe, mais au sens solennel).\n2. L'expression professionnelle est ***on behalf of***.\n\n**Erreurs fréquentes :** écrire *in name of* ou *at the name of*. *In behalf of* est accepté (forme américaine ancienne), mais *on behalf of* est celle à retenir pour le TOEIC.\n\n**À retenir :** au nom de = *on behalf of*."
       },
       {
         "intitule": "la charge de travail",
@@ -755,7 +813,8 @@
         "reponse": [
           "workload",
           "the workload"
-        ]
+        ],
+        "explication": "**Règle :** *workload* = la charge de travail, un seul mot : *work* (travail) + *load* (charge).\n\n**Pas à pas :**\n\n1. On colle les deux mots : ***workload***.\n2. Exemple : *a heavy workload* = une grosse charge de travail.\n\n**Erreurs fréquentes :** *work charge* (calque du français) ou *work load* en deux mots.\n\n**À retenir :** charge de travail = *workload*."
       },
       {
         "intitule": "la liste des candidats retenus",
@@ -765,7 +824,8 @@
           "the shortlist",
           "short list",
           "the short list"
-        ]
+        ],
+        "explication": "**Règle :** *shortlist* = la liste courte des candidats retenus pour un entretien. *Shortlisted* = retenu.\n\n**Pas à pas :**\n\n1. *short* (court) + *list* (liste) = ***shortlist***.\n2. Exemple : *You are on our shortlist.* = Vous faites partie des candidats retenus.\n\n**Erreurs fréquentes :** *list of selected candidates* (juste, mais trop long : le mot existe), ou *shortlisted* (c'est l'adjectif).\n\n**À retenir :** liste des candidats retenus = *shortlist*."
       }
     ],
     "indices": [
@@ -782,7 +842,8 @@
       {
         "intitule": "Ta réponse",
         "type": "auto",
-        "reponse": "Exemple :\n\n*Dear Ms. Benson,*\n\n*Thank you for your e-mail and for shortlisting me. Wednesday would be the most convenient day for me, ideally in the morning. Please find attached the contact details of two former employers who can provide a reference. I look forward to meeting you.*\n\n*Kind regards,*\n*Daniel Okafor*"
+        "reponse": "Exemple :\n\n*Dear Ms. Benson,*\n\n*Thank you for your e-mail and for shortlisting me. Wednesday would be the most convenient day for me, ideally in the morning. Please find attached the contact details of two former employers who can provide a reference. I look forward to meeting you.*\n\n*Kind regards,*\n*Daniel Okafor*",
+        "explication": "**Ce qu'une bonne réponse doit contenir, dans l'ordre :**\n\n1. **Une formule d'appel** avec le nom de famille : *Dear Ms. Benson,* (pas *Hi Laura*, c'est un e-mail professionnel).\n2. **Un remerciement** : pour l'e-mail et pour la sélection, par exemple avec *Thank you for...* + nom ou verbe en -ing (*for shortlisting me*).\n3. **Le choix d'un jour** parmi ceux proposés (mardi ou mercredi) : *Tuesday / Wednesday would suit me best*, *would be the most convenient for me*. Tu peux ajouter un moment de la journée.\n4. **Les références** : dire que tu les envoies, par exemple *Please find attached...* (veuillez trouver ci-joint) ou *I can provide the names of two former employers*. Réutilise *provide* et *reference*.\n5. **Une formule de fin** : *I look forward to meeting you.* (avec *to* + **-ing**), puis *Kind regards,* et ton nom.\n\n**Erreurs fréquentes :**\n\n- *I look forward to meet you* : il faut *meeting*.\n- Choisir un jour qui n'est pas proposé (lundi, jeudi) : la réponse doit coller à l'e-mail reçu.\n- Oublier une des trois tâches demandées (remercier, choisir un jour, parler des références).\n- Ton trop familier (*Hi*, *Thanks a lot*, *See you*).\n\n**À retenir :** remercier → choisir parmi les propositions → répondre à la demande → *I look forward to meeting you*."
       }
     ],
     "indices": [

@@ -8,7 +8,7 @@
       "Des réseaux de neurones"
     ],
     "reponse": 0,
-    "explication": "Refroidi lentement, un métal forme un cristal régulier de basse énergie ; refroidi brutalement (trempe), il garde des défauts."
+    "explication": "**Règle :** le recuit simulé imite le **recuit** des métallurgistes : on chauffe un métal, puis on le refroidit **lentement**. Les atomes ont le temps de se ranger en un cristal régulier, de basse énergie.\n\n**Pas à pas :** la comparaison avec l'optimisation :\n\n1. le métal chaud bouge beaucoup : la recherche accepte beaucoup de dégradations (elle explore) ;\n2. le métal refroidit lentement : la recherche accepte de moins en moins de dégradations ;\n3. le métal froid est figé dans un état de basse énergie : la recherche est devenue une descente, elle a trouvé une solution de faible coût.\n\nSi on refroidit brutalement (la **trempe**), le métal se fige avec des défauts : la recherche reste bloquée dans un mauvais minimum local.\n\n**Les autres réponses :** la sélection naturelle (biologie) est l'idée des **algorithmes génétiques** ; la finance et les réseaux de neurones n'ont rien à voir avec ce nom.\n\n**À retenir :** recuit = refroidir lentement pour atteindre une énergie basse ; trempe = refroidir trop vite."
   },
   {
     "question": "En optimisation, à quoi correspond l'**énergie** du métal ?",
@@ -19,7 +19,7 @@
       "Au voisinage"
     ],
     "reponse": 0,
-    "explication": "L'énergie devient le coût à minimiser ; la température devient le paramètre qui règle l'acceptation des dégradations."
+    "explication": "**Règle :** dans la comparaison métal / optimisation, l'**énergie** du métal correspond au **coût** (l'erreur) de la solution, la quantité qu'on veut rendre la plus petite possible.\n\n**Pas à pas :**\n\n| Métallurgie | Optimisation |\n|---|---|\n| énergie | coût (erreur) |\n| température | paramètre qui règle l'acceptation des dégradations |\n| cristal régulier, énergie basse | bonne solution, coût bas |\n\nUn métal refroidi lentement atteint une énergie basse ; un recuit bien réglé atteint un coût bas.\n\n**Les autres réponses :**\n\n- « À la température » : la température reste la température, c'est le paramètre de réglage.\n- « Au nombre d'itérations » : c'est le temps de l'algorithme, pas l'énergie.\n- « Au voisinage » : c'est l'ensemble des mouvements possibles, pas une mesure de qualité.\n\n**À retenir :** énergie = coût à minimiser."
   },
   {
     "question": "Au recuit simulé, quand la température $T$ est très élevée…",
@@ -30,7 +30,7 @@
       "l'algorithme s'arrête"
     ],
     "reponse": 0,
-    "explication": "Avec $T$ grand, $e^{-\\Delta E/T}$ est proche de 1 : presque toutes les dégradations passent, la recherche explore."
+    "explication": "**Règle :** une dégradation $\\Delta E > 0$ est acceptée avec la probabilité $P = e^{-\\Delta E/T}$. Quand $T$ est grand, le rapport $\\Delta E / T$ est proche de 0, donc $P$ est proche de $e^0 = 1$.\n\n**Pas à pas :** avec une dégradation $\\Delta E = 5$ :\n\n- à $T = 1\\,000$ : $\\Delta E / T = 0{,}005$, $P = e^{-0{,}005} \\approx 0{,}995$, accepté 995 fois sur 1 000 ;\n- à $T = 1$ : $\\Delta E / T = 5$, $P = e^{-5} \\approx 0{,}007$, presque toujours refusé.\n\nÀ haute température, presque toutes les dégradations passent : la recherche se promène partout, elle **explore**.\n\n**Les autres réponses :**\n\n- « on refuse tout : descente pure » : c'est ce qui se passe à **basse** température.\n- « on n'accepte que les améliorations, mais plus souvent » : les améliorations sont toujours acceptées, quelle que soit $T$ ; c'est l'acceptation des **dégradations** qui change.\n- « l'algorithme s'arrête » : au contraire, la recherche est très active.\n\n**À retenir :** $T$ grand donne $P$ proche de 1 : on explore."
   },
   {
     "question": "Un voisin **meilleur** que la solution courante ($\\Delta E \\le 0$) est…",
@@ -41,7 +41,7 @@
       "accepté seulement si $T$ est grand"
     ],
     "reponse": 0,
-    "explication": "Si $\\Delta E \\le 0$, alors $e^{-\\Delta E/T} \\ge 1$ : quel que soit $r$, on a $r < P$. Les améliorations passent toujours, comme en descente."
+    "explication": "**Règle :** pour un voisin meilleur, $\\Delta E \\le 0$, donc $-\\Delta E / T \\ge 0$ et $P = e^{-\\Delta E/T} \\ge e^0 = 1$. On accepte si $r < P$, et $r$ est toujours strictement plus petit que 1.\n\n**Pas à pas :** solution courante d'erreur 50, voisin d'erreur 46, $T = 10$.\n\n1. $\\Delta E = 46 - 50 = -4$.\n2. $P = e^{4/10} = e^{0{,}4} \\approx 1{,}49$.\n3. Le tirage $r$ est dans $[0, 1[$, donc toujours sous 1,49 : on accepte, même avec $r = 0{,}99$.\n\n**Les autres réponses :**\n\n- « accepté avec la probabilité $e^{-\\Delta E/T}$, donc parfois refusé » : cette « probabilité » dépasse 1, donc le refus est impossible.\n- « toujours refusé » : ce serait absurde, le recuit garde toutes les améliorations, comme une descente.\n- « accepté seulement si $T$ est grand » : non, l'acceptation d'une amélioration ne dépend pas de $T$.\n\n**À retenir :** une amélioration est toujours acceptée ; le hasard ne sert que pour les dégradations."
   },
   {
     "question": "Quelle est la règle d'acceptation (Metropolis) d'une dégradation $\\Delta E > 0$ ?",
@@ -52,7 +52,7 @@
       "Accepter si $r > e^{-\\Delta E/T}$"
     ],
     "reponse": 0,
-    "explication": "On tire $r$ uniformément dans $[0, 1[$ et on accepte si $r < e^{-\\Delta E/T}$ : la dégradation passe avec la probabilité $e^{-\\Delta E/T}$."
+    "explication": "**Règle :** **règle de Metropolis** : on tire $r$ au hasard, uniformément, dans $[0, 1[$, et on accepte la dégradation si $r < e^{-\\Delta E/T}$. Comme $r$ tombe sous une valeur $P$ avec la probabilité $P$, la dégradation passe exactement avec la probabilité $e^{-\\Delta E/T}$.\n\n**Pas à pas :** $\\Delta E = 10$, $T = 10$ : $P = e^{-1} \\approx 0{,}368$.\n\n- tirage $r = 0{,}20$ : $0{,}20 < 0{,}368$, accepté ;\n- tirage $r = 0{,}50$ : $0{,}50 > 0{,}368$, refusé.\n\n**Les autres réponses :**\n\n- « Accepter si $\\Delta E < T$ » : règle sans hasard, qui accepterait **toujours** les dégradations plus petites que $T$ et jamais les autres.\n- « Accepter une fois sur deux » : ne tient compte ni de $\\Delta E$ ni de $T$.\n- « Accepter si $r > e^{-\\Delta E/T}$ » : inégalité à l'envers ; une grosse dégradation (petit $P$) serait alors acceptée presque toujours.\n\n**À retenir :** accepter si $r < e^{-\\Delta E/T}$, avec $r$ tiré dans $[0, 1[$."
   },
   {
     "question": "Pourquoi la première proposition $P = e^{-1/T}$ est-elle abandonnée ?",
@@ -63,7 +63,7 @@
       "Elle n'utilise pas de hasard"
     ],
     "reponse": 0,
-    "explication": "Avec $e^{-1/T}$, une petite et une énorme dégradation ont la même chance de passer. La règle de Metropolis fait intervenir $\\Delta E$."
+    "explication": "**Règle :** une bonne règle d'acceptation doit refuser plus souvent les **grosses** dégradations que les petites. La formule $e^{-1/T}$ ne contient pas $\\Delta E$ : elle donne la même probabilité à toutes les dégradations.\n\n**Pas à pas :** à $T = 10$, $e^{-1/T} = e^{-0{,}1} \\approx 0{,}905$.\n\n- dégradation de 1 : acceptée 90,5 % du temps ;\n- dégradation de 1 000 : acceptée aussi 90,5 % du temps.\n\nUne catastrophe passerait aussi souvent qu'un petit écart. La règle de Metropolis $e^{-\\Delta E/T}$ corrige cela : à $T = 10$, une dégradation de 1 passe à 90,5 %, une de 50 presque jamais.\n\n**Les autres réponses :**\n\n- « probabilités négatives » : une exponentielle est toujours positive.\n- « trop lente à calculer » : c'est un seul calcul d'exponentielle, très rapide.\n- « n'utilise pas de hasard » : on tirerait $r$ de la même façon, ce n'est pas le problème.\n\n**À retenir :** la probabilité d'acceptation doit dépendre de la taille de la dégradation, d'où $e^{-\\Delta E/T}$."
   },
   {
     "question": "Quelle loi de refroidissement est la plus courante en pratique ?",
@@ -74,7 +74,7 @@
       "Exponentielle croissante"
     ],
     "reponse": 0,
-    "explication": "La loi géométrique, avec $\\alpha \\in [0{,}95 ; 0{,}999]$, est simple et efficace. La loi logarithmique garantit la convergence mais est beaucoup trop lente."
+    "explication": "**Règle :** la loi **géométrique** $T \\leftarrow \\alpha T$ multiplie la température par $\\alpha$ (entre 0,95 et 0,999) à chaque palier, soit $T(k) = T_0 \\alpha^k$. C'est la plus utilisée : simple, et on règle la vitesse avec un seul nombre.\n\n**Pas à pas :** avec $T_0 = 100$ et $\\alpha = 0{,}99$ : après 1 palier $T = 99$, après 2 paliers $T = 98{,}01$, après 100 paliers $T \\approx 36{,}6$. La température baisse doucement, sans jamais devenir négative.\n\n**Les autres réponses :**\n\n- « Logarithmique » : c'est la loi du théorème de Hajek ; elle garantit l'optimum mais est beaucoup trop lente.\n- « Aucune : $T$ reste constante » : la recherche ne se stabiliserait jamais, elle accepterait des dégradations sans fin.\n- « Exponentielle croissante » : la température monterait, ce qui est le contraire d'un refroidissement.\n\n**À retenir :** en pratique, $T \\leftarrow \\alpha T$ avec $\\alpha$ proche de 1."
   },
   {
     "question": "Avec $T \\leftarrow \\alpha T$, que se passe-t-il si $\\alpha$ est trop petit (par exemple 0,93) ?",
@@ -85,7 +85,7 @@
       "La température augmente"
     ],
     "reponse": 0,
-    "explication": "Un $\\alpha$ petit fait chuter $T$ très vite : la recherche cesse d'explorer avant d'avoir trouvé une bonne vallée."
+    "explication": "**Règle :** avec $T \\leftarrow \\alpha T$, on perd une fraction $1 - \\alpha$ de la température à chaque palier. Plus $\\alpha$ est petit, plus $T$ chute vite.\n\n**Pas à pas :** on part de $T_0 = 100$ et on regarde après 50 paliers.\n\n| $\\alpha$ | Perte par palier | $T(50) = 100 \\times \\alpha^{50}$ |\n|---|---|---|\n| 0,99 | 1 % | $\\approx 60{,}5$ |\n| 0,95 | 5 % | $\\approx 7{,}7$ |\n| 0,93 | 7 % | $\\approx 2{,}7$ |\n\nAvec 0,93, il fait froid très vite : la recherche cesse d'accepter des dégradations avant d'avoir exploré, et reste dans la première vallée venue. C'est la **trempe** : le métal refroidi trop vite se fige avec des défauts.\n\n**Les autres réponses :**\n\n- « La recherche n'en finit pas » : c'est le risque d'un $\\alpha$ **trop proche de 1**.\n- « Toutes les solutions sont acceptées » : ça arrive quand il fait très chaud, pas quand on refroidit vite.\n- « La température augmente » : avec $\\alpha < 1$, elle baisse toujours.\n\n**À retenir :** $\\alpha$ trop petit = trempe = gel trop tôt dans un minimum local."
   },
   {
     "question": "Que dit le théorème de **Hajek** (1988) ?",
@@ -96,7 +96,7 @@
       "Il faut toujours choisir $\\alpha = 0{,}5$"
     ],
     "reponse": 0,
-    "explication": "C'est une garantie théorique : pour diviser $T$ par 2, il faut élever le nombre d'itérations au carré. En pratique, on refroidit géométriquement."
+    "explication": "**Règle :** le théorème de **Hajek** (1988) dit qu'avec un refroidissement **logarithmique** $T(k) = \\dfrac{c}{\\log(k+1)}$ (et $c$ assez grand), le recuit converge **en probabilité** vers l'optimum global. Mais ce refroidissement est extrêmement lent.\n\n**Pas à pas :** à $k = 9$, $T = \\dfrac{c}{\\log 10}$. Pour diviser $T$ par 2, il faut doubler $\\log(k+1)$ : $\\log(k'+1) = 2 \\log 10 = \\log 100$, donc $k' = 99$. Pour la diviser encore par 2, il faut $k' + 1 = 100^2 = 10\\,000$. Chaque division par 2 **élève au carré** le nombre d'itérations.\n\n**Les autres réponses :**\n\n- « trouve toujours l'optimum en temps polynomial » : faux, la convergence est seulement en probabilité, et le temps est énorme.\n- « Le recuit est inutile » : le théorème dit le contraire (il converge), et en pratique le recuit marche très bien avec une loi géométrique.\n- « choisir $\\alpha = 0{,}5$ » : Hajek parle d'une loi logarithmique, pas de $\\alpha$ ; et 0,5 serait une trempe.\n\n**À retenir :** Hajek = garantie théorique avec $c / \\log(k+1)$, inutilisable en pratique."
   },
   {
     "question": "Que retourne le recuit simulé à la fin ?",
@@ -107,7 +107,7 @@
       "Une solution au hasard"
     ],
     "reponse": 0,
-    "explication": "Pendant les phases chaudes, la solution courante peut se dégrader : on mémorise la meilleure rencontrée et c'est elle qu'on retourne."
+    "explication": "**Règle :** le recuit accepte des dégradations : la solution courante peut devenir moins bonne qu'une solution déjà vue. On garde donc en mémoire la **meilleure** solution rencontrée, et c'est elle qu'on retourne.\n\n**Pas à pas :** courante d'erreur 30, puis on accepte un voisin d'erreur 27, puis une dégradation vers 29, et on s'arrête.\n\n1. Meilleure après le premier pas : 27.\n2. La courante passe à 29, mais 29 n'est pas sous 27 : la meilleure reste 27.\n3. On retourne 27, pas 29.\n\n**Les autres réponses :**\n\n- « La dernière solution courante » : elle peut être moins bonne que la meilleure (29 contre 27 ici).\n- « La solution initiale » : elle a en général été améliorée.\n- « Une solution au hasard » : le hasard sert à décider des acceptations, pas à choisir le résultat.\n\n**À retenir :** retourne la **meilleure** solution vue, pas la dernière."
   },
   {
     "question": "Qui a proposé le recuit simulé, et quand ?",
@@ -118,7 +118,7 @@
       "Cook, en 1971"
     ],
     "reponse": 0,
-    "explication": "Kirkpatrick, Gelatt et Vecchi ont transposé le recuit métallurgique à l'optimisation en 1983."
+    "explication": "**Règle :** le recuit simulé (*simulated annealing*) a été proposé par **Kirkpatrick, Gelatt et Vecchi** en **1983**, en transposant le recuit des métallurgistes à l'optimisation.\n\n**Pas à pas :** pour ne pas mélanger les dates du cours :\n\n| Nom | Date | Ce qu'on lui doit |\n|---|---|---|\n| Darwin | 1859 | la sélection naturelle, source des algorithmes génétiques |\n| Croes | 1958 | le 2-opt pour le voyageur de commerce |\n| Cook | 1971 | le théorème de Cook (le premier problème NP-complet) |\n| Kirkpatrick, Gelatt, Vecchi | 1983 | le recuit simulé |\n| Hajek | 1988 | la convergence du recuit avec un refroidissement logarithmique |\n\n**Les autres réponses :** Darwin, Croes et Cook ont chacun leur rôle dans le cours, mais aucun n'a proposé le recuit simulé.\n\n**À retenir :** recuit simulé = Kirkpatrick, Gelatt et Vecchi, 1983."
   },
   {
     "question": "Comment choisir la température initiale $T_0$ ?",
@@ -129,6 +129,6 @@
       "Égale au nombre d'itérations"
     ],
     "reponse": 0,
-    "explication": "Au départ, on veut explorer : $T_0$ doit être assez grande pour que presque toutes les dégradations passent."
+    "explication": "**Règle :** au départ, on veut **explorer** : la température initiale $T_0$ doit être assez grande pour accepter environ **80 à 100 %** des dégradations. Si une dégradation typique vaut $\\Delta E$ et qu'on veut l'accepter avec la probabilité $P_0$ : $T_0 = \\dfrac{-\\Delta E}{\\ln P_0}$.\n\n**Pas à pas :** dégradation typique $\\Delta E = 10$, on vise $P_0 = 0{,}9$.\n\n1. On veut $e^{-10/T_0} = 0{,}9$.\n2. $\\ln 0{,}9 \\approx -0{,}105$, donc $T_0 = \\dfrac{-10}{-0{,}105} \\approx 95$.\n\n**Les autres réponses :**\n\n- « Toujours $T_0 = 1$ » : la bonne valeur dépend de la taille des dégradations du problème ; avec $\\Delta E = 10$, $T_0 = 1$ donnerait $e^{-10} \\approx 0{,}00005$, presque tout refusé.\n- « Pour refuser toutes les dégradations » : ce serait une descente dès le départ, sans exploration.\n- « Égale au nombre d'itérations » : les deux n'ont aucun lien.\n\n**À retenir :** choisis $T_0$ pour accepter 80 à 100 % des dégradations typiques au départ."
   }
 ]

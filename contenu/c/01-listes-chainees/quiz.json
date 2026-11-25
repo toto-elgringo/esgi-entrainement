@@ -1,244 +1,244 @@
 [
-    {
-        "question": "Quelle est la principale différence entre un tableau et une liste chaînée ?",
-        "choix": [
-            "La liste chaînée ne peut contenir que des entiers",
-            "Les éléments d'une liste chaînée ne sont pas rangés les uns à côté des autres en mémoire",
-            "Un tableau n'a pas d'ordre",
-            "Une liste chaînée ne peut pas changer de taille"
-        ],
-        "reponse": 1,
-        "explication": "Les cases d'un tableau sont contiguës (collées). Les maillons d'une liste chaînée sont éparpillés dans la mémoire, et chacun garde l'adresse du suivant."
-    },
-    {
-        "question": "Comment reconnaît-on une liste vide ?",
-        "choix": [
-            "`start->value == 0`",
-            "`start == NULL`",
-            "`start->next == NULL`",
-            "`taille(start) == 1`"
-        ],
-        "reponse": 1,
-        "explication": "Une liste vide n'a aucun maillon : le pointeur vers le premier maillon vaut `NULL`. Attention, `start->next == NULL` décrit une liste d'**un** maillon."
-    },
-    {
-        "question": "Pourquoi utilise-t-on un pointeur `cur` pour parcourir la liste au lieu d'avancer `start` ?",
-        "choix": [
-            "`start` ne peut pas être modifié en C",
-            "Pour ne pas perdre l'accès au début de la liste",
-            "C'est plus rapide",
-            "Pour éviter une fuite de pile"
-        ],
-        "reponse": 1,
-        "explication": "`start` est le seul moyen d'atteindre la liste. Si on l'avance, les maillons déjà passés ne sont plus accessibles."
-    },
-    {
-        "question": "Quelle condition fait tourner la boucle de parcours sur tous les maillons ?",
-        "choix": [
-            "`while (cur->next != NULL)`",
-            "`while (cur != NULL)`",
-            "`while (cur->value != 0)`",
-            "`while (start != NULL)`"
-        ],
-        "reponse": 1,
-        "explication": "Avec `cur != NULL`, on traite aussi le dernier maillon. `cur->next != NULL` s'arrête **sur** le dernier sans le traiter (et plante sur une liste vide)."
-    },
-    {
-        "question": "Dans `sommeRec`, que se passe-t-il si on oublie le test `if (c == NULL)` ?",
-        "choix": [
-            "La fonction renvoie 0",
-            "La fonction tourne sans fin sans planter",
-            "Le programme lit `c->value` sur `NULL` et plante",
-            "Le compilateur refuse le code"
-        ],
-        "reponse": 2,
-        "explication": "Sans cas d'arrêt, l'appel sur le `next` du dernier maillon reçoit `NULL` et essaie de lire `c->value` : erreur de segmentation."
-    },
-    {
-        "question": "Pourquoi la version récursive du parcours peut-elle planter sur une très longue liste alors que la version avec `while` non ?",
-        "choix": [
-            "Elle visite les maillons deux fois",
-            "Chaque appel attend le suivant sur la pile d'appels, qui peut déborder",
-            "Elle fait des `malloc`",
-            "Elle modifie la liste"
-        ],
-        "reponse": 1,
-        "explication": "Il y a un appel en attente par maillon. Avec des centaines de milliers de maillons, la pile d'appels déborde. La boucle `while` n'utilise que quelques variables."
-    },
-    {
-        "question": "Dans l'insertion en début, quel est le bon ordre ?",
-        "choix": [
-            "`start = nouveau;` puis `nouveau->next = start;`",
-            "`nouveau->next = start;` puis `start = nouveau;`",
-            "L'ordre n'a pas d'importance",
-            "`nouveau->next = NULL;` puis `start = nouveau;`"
-        ],
-        "reponse": 1,
-        "explication": "On accroche d'abord le nouveau maillon à l'ancien premier, puis on déplace la tête. Dans l'autre ordre, le nouveau maillon pointe sur lui-même et l'ancienne liste est perdue."
-    },
-    {
-        "question": "Avec `Cell *insererDebut(Cell *start, int valeur)`, quel appel ajoute vraiment 5 au début de la liste `l` ?",
-        "choix": [
-            "`insererDebut(l, 5);`",
-            "`l = insererDebut(l, 5);`",
-            "`insererDebut(&l, 5);`",
-            "`*l = insererDebut(l, 5);`"
-        ],
-        "reponse": 1,
-        "explication": "La fonction renvoie le nouveau premier maillon : il faut le récupérer dans `l`. Sans le `l =`, le maillon est créé puis perdu."
-    },
-    {
-        "question": "Pourquoi une fonction `void insererDebutPtr(Cell **start, int valeur)` prend-elle un `Cell **` ?",
-        "choix": [
-            "Parce qu'un maillon contient deux pointeurs",
-            "Pour pouvoir modifier la variable `start` de l'appelant",
-            "Pour insérer deux valeurs",
-            "Parce que `malloc` renvoie un `Cell **`"
-        ],
-        "reponse": 1,
-        "explication": "Les paramètres sont copiés. En recevant l'adresse de la variable `start`, la fonction peut écrire `*start = nouveau;` et l'appelant voit le nouveau début."
-    },
-    {
-        "question": "Quelle est la complexité de l'insertion en début dans un tableau et dans une liste chaînée ?",
-        "choix": [
-            "O(1) pour les deux",
-            "Tableau O(N), liste O(1)",
-            "Tableau O(1), liste O(N)",
-            "O(N) pour les deux"
-        ],
-        "reponse": 1,
-        "explication": "Le tableau doit décaler toutes ses cases d'un cran. La liste crée un maillon et change deux pointeurs, quelle que soit sa longueur."
-    },
-    {
-        "question": "Quelle est la complexité de l'accès au i-ème élément (accès aléatoire) ?",
-        "choix": [
-            "Tableau O(1), liste O(N)",
-            "Tableau O(N), liste O(1)",
-            "O(1) pour les deux",
-            "O(log N) pour les deux"
-        ],
-        "reponse": 0,
-        "explication": "Un tableau calcule directement l'adresse de `t[i]`. Une liste doit suivre les `next` un par un depuis le début."
-    },
-    {
-        "question": "Une liste chaînée est triée. Quelle est la complexité de la recherche d'une valeur ?",
-        "choix": [
-            "O(1)",
-            "O(log N) grâce à la dichotomie",
-            "O(N)",
-            "O(N²)"
-        ],
-        "reponse": 2,
-        "explication": "La dichotomie doit sauter au milieu d'un coup, ce qu'une liste ne sait pas faire. On compare les maillons un par un : O(N). Sur un tableau trié, ce serait O(log N)."
-    },
-    {
-        "question": "On programme quand même une recherche par dichotomie sur une liste chaînée triée de N maillons. Quelle complexité obtient-on ?",
-        "choix": [
-            "O(log N), comme sur un tableau",
-            "O(N log N) : chaque saut au milieu coûte déjà O(N)",
-            "O(1)",
-            "O(N²)"
-        ],
-        "reponse": 1,
-        "explication": "Atteindre le maillon du milieu oblige à suivre les flèches une par une (O(N)), et on fait log N sauts : O(N log N), pire que la recherche maillon par maillon en O(N)."
-    },
-    {
-        "question": "Avec `while (cur->next != NULL) cur = cur->next;`, où s'arrête `cur` ?",
-        "choix": [
-            "Sur `NULL`, après le dernier maillon",
-            "Sur le dernier maillon",
-            "Sur l'avant-dernier maillon",
-            "Sur le premier maillon"
-        ],
-        "reponse": 1,
-        "explication": "La boucle s'arrête dès que le suivant est `NULL` : `cur` est alors **sur** le dernier maillon. C'est la condition qu'on utilise pour insérer en fin. Attention, sur une liste vide, `cur->next` plante."
-    },
-    {
-        "question": "Qu'apporte un pointeur vers le **dernier** maillon, gardé à côté de `start` ?",
-        "choix": [
-            "La suppression en fin devient O(1)",
-            "L'insertion en fin devient O(1)",
-            "La recherche devient O(log N)",
-            "L'accès à la position i devient O(1)"
-        ],
-        "reponse": 1,
-        "explication": "On accroche directement le nouveau maillon derrière le dernier. Mais pour supprimer en fin, il faudrait l'avant-dernier : cela reste O(N)."
-    },
-    {
-        "question": "Dans une liste **doublement chaînée**, chaque maillon contient...",
-        "choix": [
-            "Deux valeurs",
-            "Un pointeur vers le suivant et un pointeur vers le précédent",
-            "Deux pointeurs vers le suivant",
-            "L'adresse du premier et du dernier maillon"
-        ],
-        "reponse": 1,
-        "explication": "Le pointeur vers le précédent permet de reculer. On peut alors supprimer le dernier maillon en O(1) quand on connaît la fin."
-    },
-    {
-        "question": "Dans une liste chaînée **circulaire**, que contient le `next` du dernier maillon ?",
-        "choix": [
-            "`NULL`",
-            "L'adresse du premier maillon",
-            "L'adresse de l'avant-dernier",
-            "Sa propre adresse"
-        ],
-        "reponse": 1,
-        "explication": "La chaîne se referme sur elle-même. Attention : un parcours `while (cur != NULL)` ne s'arrête alors jamais, il faut s'arrêter en revenant au premier."
-    },
-    {
-        "question": "Pourquoi double-t-on la **capacité** d'un tableau quand il est plein, au lieu d'ajouter une seule case ?",
-        "choix": [
-            "Pour que la recherche soit plus rapide",
-            "Pour que les recopies, qui coûtent O(N), deviennent de plus en plus rares",
-            "Parce qu'un tableau doit avoir une taille paire",
-            "Pour pouvoir insérer en début en O(1)"
-        ],
-        "reponse": 1,
-        "explication": "Agrandir oblige à tout recopier. En doublant, on recopie à 8, 16, 32, 64... éléments : la plupart des ajouts en fin se font alors sans recopie."
-    },
-    {
-        "question": "Quelle est la complexité de la recherche du minimum dans une liste chaînée **non triée** ?",
-        "choix": [
-            "O(1)",
-            "O(log N)",
-            "O(N)",
-            "O(N²)"
-        ],
-        "reponse": 2,
-        "explication": "Le minimum peut être n'importe où : il faut regarder chaque maillon une fois. Triée dans l'ordre croissant, il serait sur le premier maillon : O(1)."
-    },
-    {
-        "question": "Une liste chaînée est triée dans l'ordre croissant, sans pointeur de fin. Quelle est la complexité de la recherche du **maximum** ?",
-        "choix": [
-            "O(1)",
-            "O(log N)",
-            "O(N)",
-            "O(N²)"
-        ],
-        "reponse": 2,
-        "explication": "Le maximum est sur le dernier maillon, et pour y arriver il faut parcourir toute la liste. Dans un tableau trié, il serait en `tab[n - 1]` : O(1)."
-    },
-    {
-        "question": "Pour quelle opération une liste chaînée est-elle plus performante qu'un tableau ?",
-        "choix": [
-            "L'accès à une case au hasard",
-            "L'ajout d'un élément au début",
-            "La recherche dichotomique",
-            "La lecture de la i-ème valeur"
-        ],
-        "reponse": 1,
-        "explication": "Dans une liste, on crée un maillon et on change un pointeur : O(1). Dans un tableau, il faut décaler toutes les cases : O(N). Les trois autres opérations sont meilleures avec un tableau."
-    },
-    {
-        "question": "Quelle est la complexité du parcours de toutes les valeurs, dans un tableau de N cases et dans une liste chaînée de N maillons ?",
-        "choix": [
-            "O(1) pour les deux",
-            "O(N) pour le tableau, O(N²) pour la liste",
-            "O(N) pour les deux",
-            "O(log N) pour le tableau, O(N) pour la liste"
-        ],
-        "reponse": 2,
-        "explication": "Dans les deux cas, on passe une fois sur chaque valeur. C'est une des rares opérations qui coûtent pareil dans les deux structures."
-    }
+  {
+    "question": "Quelle est la principale différence entre un tableau et une liste chaînée ?",
+    "choix": [
+      "La liste chaînée ne peut contenir que des entiers",
+      "Les éléments d'une liste chaînée ne sont pas rangés les uns à côté des autres en mémoire",
+      "Un tableau n'a pas d'ordre",
+      "Une liste chaînée ne peut pas changer de taille"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** dans un tableau, les cases sont **collées** les unes aux autres en mémoire. Dans une liste chaînée, les maillons sont **éparpillés** : chacun garde l'adresse du suivant dans son champ `next`.\n\n**Pas à pas :**\n\n| | Tableau `[10, 20, 30]` | Liste `10 -> 20 -> 30` |\n|---|---|---|\n| Où est le 20 ? | juste après le 10 | n'importe où, son adresse est dans le `next` du 10 |\n| Comment passer au suivant ? | case d'à côté | suivre `next` |\n\n**Les autres réponses :**\n- « ne peut contenir que des entiers » : le champ `value` peut avoir n'importe quel type (un `double`, une structure...).\n- « un tableau n'a pas d'ordre » : faux, ses cases ont un ordre (`t[0]`, `t[1]`...), comme les maillons d'une liste.\n- « ne peut pas changer de taille » : c'est l'inverse, ajouter ou retirer un maillon est justement facile.\n\n**À retenir :** tableau = cases contiguës ; liste chaînée = maillons dispersés reliés par des pointeurs."
+  },
+  {
+    "question": "Comment reconnaît-on une liste vide ?",
+    "choix": [
+      "`start->value == 0`",
+      "`start == NULL`",
+      "`start->next == NULL`",
+      "`taille(start) == 1`"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** une liste vide n'a **aucun** maillon. Le pointeur vers le premier maillon ne désigne donc rien : `start == NULL`.\n\n**Pas à pas :**\n\n| Liste | `start` | `start->next` |\n|---|---|---|\n| vide | `NULL` | interdit à lire (on suivrait `NULL`) |\n| `5` | adr. du 5 | `NULL` |\n| `5 -> 8` | adr. du 5 | adr. du 8 |\n\n**Les autres réponses :**\n- `start->value == 0` : une liste peut très bien commencer par la valeur 0, et sur une liste vide, lire `start->value` plante.\n- `start->next == NULL` décrit une liste d'**un** maillon (le premier est aussi le dernier).\n- `taille(start) == 1` : là aussi, un maillon, pas zéro.\n\n**À retenir :** liste vide ⇔ `start == NULL`, et dans ce cas on ne fait jamais `start->...`."
+  },
+  {
+    "question": "Pourquoi utilise-t-on un pointeur `cur` pour parcourir la liste au lieu d'avancer `start` ?",
+    "choix": [
+      "`start` ne peut pas être modifié en C",
+      "Pour ne pas perdre l'accès au début de la liste",
+      "C'est plus rapide",
+      "Pour éviter une fuite de pile"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** `start` est la **seule** variable qui connaît l'adresse du premier maillon. Un maillon dont plus personne ne connaît l'adresse est perdu.\n\n**Pas à pas :** sur `1 -> 2 -> 3`, si on parcourt avec `start = start->next` :\n\n| Tour | `start` sur | Maillons encore accessibles |\n|---|---|---|\n| départ | 1 | 1, 2, 3 |\n| 1 | 2 | 2, 3 (le 1 est perdu) |\n| 2 | 3 | 3 |\n| 3 | `NULL` | aucun |\n\nÀ la fin, impossible de relire la liste ou de la libérer : fuite mémoire. Avec `cur = start` puis `cur = cur->next`, `start` reste sur le 1.\n\n**Les autres réponses :** `start` peut tout à fait être modifié en C, c'est justement le danger ; `cur` n'est pas plus rapide, il fait exactement les mêmes pas ; une « fuite de pile » n'existe pas (on parle de fuite **mémoire** sur le tas, ou de débordement de pile).\n\n**À retenir :** on parcourt avec une copie (`cur`), jamais avec `start`."
+  },
+  {
+    "question": "Quelle condition fait tourner la boucle de parcours sur tous les maillons ?",
+    "choix": [
+      "`while (cur->next != NULL)`",
+      "`while (cur != NULL)`",
+      "`while (cur->value != 0)`",
+      "`while (start != NULL)`"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** pour traiter **tous** les maillons, on continue tant que `cur` désigne un maillon, c'est-à-dire tant que `cur != NULL`.\n\n**Pas à pas :** sur `4 -> 7` :\n\n| Condition | Tours effectués | Dernier maillon traité ? | Liste vide |\n|---|---|---|---|\n| `cur != NULL` | 4, puis 7, puis arrêt sur `NULL` | **oui** | 0 tour, pas de plantage |\n| `cur->next != NULL` | 4, puis arrêt **sur** le 7 | non, le 7 n'est pas traité dans la boucle | plante (lit `NULL->next`) |\n\n**Les autres réponses :**\n- `cur->next != NULL` s'arrête sur le dernier sans le traiter, et plante sur une liste vide.\n- `cur->value != 0` s'arrêterait au premier 0 rencontré, et planterait en arrivant sur `NULL` si la liste ne contient pas de 0.\n- `start != NULL` : `start` ne bouge pas dans la boucle, donc la condition reste vraie pour toujours (boucle infinie).\n\n**À retenir :** `while (cur != NULL)` = tous les maillons, y compris le dernier."
+  },
+  {
+    "question": "Dans `sommeRec`, que se passe-t-il si on oublie le test `if (c == NULL)` ?",
+    "choix": [
+      "La fonction renvoie 0",
+      "La fonction tourne sans fin sans planter",
+      "Le programme lit `c->value` sur `NULL` et plante",
+      "Le compilateur refuse le code"
+    ],
+    "reponse": 2,
+    "explication": "**Règle :** une fonction récursive sur une liste a besoin d'un **cas d'arrêt** (`c == NULL`) testé en premier. Sans lui, elle continue jusqu'à recevoir `NULL` et lit `c->value` dessus.\n\n**Pas à pas :** sans le test, sur `0 -> 1 -> 2` :\n\n| Appel | `c` | Ce qui se passe |\n|---|---|---|\n| 1 | maillon 0 | lit `0`, appelle sur le 1 |\n| 2 | maillon 1 | lit `1`, appelle sur le 2 |\n| 3 | maillon 2 | lit `2`, appelle sur son `next`, qui vaut `NULL` |\n| 4 | `NULL` | lit `c->value` sur `NULL` : **erreur de segmentation** |\n\n**Les autres réponses :** rien ne renvoie 0, c'était justement le rôle du cas d'arrêt ; la fonction ne tourne pas sans fin, elle plante dès qu'elle atteint `NULL` ; le compilateur accepte le code, l'erreur n'apparaît qu'à l'exécution.\n\n**À retenir :** en récursif, la première ligne est toujours `if (c == NULL) return ...;`."
+  },
+  {
+    "question": "Pourquoi la version récursive du parcours peut-elle planter sur une très longue liste alors que la version avec `while` non ?",
+    "choix": [
+      "Elle visite les maillons deux fois",
+      "Chaque appel attend le suivant sur la pile d'appels, qui peut déborder",
+      "Elle fait des `malloc`",
+      "Elle modifie la liste"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** chaque appel récursif qui n'est pas fini reste **en attente** sur la **pile d'appels**, une zone de mémoire de taille limitée (souvent quelques Mo).\n\n**Pas à pas :** pour une liste de N maillons :\n\n| | Boucle `while` | Récursif |\n|---|---|---|\n| Variables utilisées | `cur` et le résultat, réutilisés à chaque tour | un appel en attente par maillon |\n| Pour 1 000 000 de maillons | 2 variables | 1 000 000 d'appels empilés |\n\nAvec des centaines de milliers d'appels, la pile est pleine : c'est le **débordement de pile**, le programme plante.\n\n**Les autres réponses :** la version récursive visite chaque maillon **une** fois, comme la boucle ; elle ne fait aucun `malloc` (la pile d'appels n'est pas le tas) ; elle ne modifie pas la liste, elle la lit.\n\n**À retenir :** récursif = O(N) de mémoire en plus sur la pile ; boucle = presque rien."
+  },
+  {
+    "question": "Dans l'insertion en début, quel est le bon ordre ?",
+    "choix": [
+      "`start = nouveau;` puis `nouveau->next = start;`",
+      "`nouveau->next = start;` puis `start = nouveau;`",
+      "L'ordre n'a pas d'importance",
+      "`nouveau->next = NULL;` puis `start = nouveau;`"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** on **accroche d'abord** le nouveau maillon à l'ancien premier, puis on **déplace la tête** : `nouveau->next = start;` puis `start = nouveau;`.\n\n**Pas à pas :** on ajoute 3 devant `0 -> 1`.\n\n| Ordre | Après la 1re ligne | Après la 2e ligne |\n|---|---|---|\n| `nouveau->next = start;` puis `start = nouveau;` | le 3 pointe sur le 0 | `start` sur le 3 : `3 -> 0 -> 1` |\n| `start = nouveau;` puis `nouveau->next = start;` | `start` sur le 3, plus personne ne connaît le 0 | le 3 pointe sur **lui-même** |\n\n**Les autres réponses :**\n- `start = nouveau;` en premier : au moment de `nouveau->next = start`, `start` vaut déjà l'adresse du 3, d'où la boucle sur soi et la liste perdue.\n- « l'ordre n'a pas d'importance » : le tableau ci-dessus montre le contraire.\n- `nouveau->next = NULL;` puis `start = nouveau;` : le 3 devient le premier mais n'est relié à rien, l'ancienne liste est perdue (il ne reste que `3`).\n\n**À retenir :** accrocher d'abord, bouger la tête ensuite."
+  },
+  {
+    "question": "Avec `Cell *insererDebut(Cell *start, int valeur)`, quel appel ajoute vraiment 5 au début de la liste `l` ?",
+    "choix": [
+      "`insererDebut(l, 5);`",
+      "`l = insererDebut(l, 5);`",
+      "`insererDebut(&l, 5);`",
+      "`*l = insererDebut(l, 5);`"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** la fonction reçoit une **copie** de `l`. Elle ne peut pas changer `l` elle-même : elle **renvoie** l'adresse du nouveau premier maillon, et c'est à l'appelant de la ranger dans `l`.\n\n**Pas à pas :** `l = insererDebut(l, 5);`\n\n1. La fonction crée le maillon 5 et l'accroche devant l'ancien premier.\n2. Elle renvoie l'adresse du 5.\n3. `l = ...` range cette adresse dans `l` : la liste commence maintenant par 5.\n\n**Les autres réponses :**\n- `insererDebut(l, 5);` : l'adresse renvoyée est jetée. Le maillon existe sur le tas mais personne ne le connaît (fuite mémoire), et `l` n'a pas changé.\n- `insererDebut(&l, 5);` : `&l` est un `Cell **`, alors que la fonction attend un `Cell *`. Ça ne correspond pas à son type (c'est l'appel d'une **autre** version, `void insererDebut(Cell **start, ...)`).\n- `*l = insererDebut(l, 5);` : `*l` est le premier **maillon** (une structure `Cell`), pas un pointeur : on ne peut pas y ranger une adresse.\n\n**À retenir :** une fonction qui renvoie le nouveau début s'appelle toujours `l = f(l, ...)`."
+  },
+  {
+    "question": "Pourquoi une fonction `void insererDebutPtr(Cell **start, int valeur)` prend-elle un `Cell **` ?",
+    "choix": [
+      "Parce qu'un maillon contient deux pointeurs",
+      "Pour pouvoir modifier la variable `start` de l'appelant",
+      "Pour insérer deux valeurs",
+      "Parce que `malloc` renvoie un `Cell **`"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** les paramètres sont copiés. Pour qu'une fonction modifie une variable de l'appelant, il faut lui donner l'**adresse** de cette variable. Ici la variable à modifier est `start`, de type `Cell *` ; son adresse est donc de type `Cell **`.\n\n**Pas à pas :** avec l'appel `insererDebutPtr(&liste, 3);` :\n\n| Dans la fonction | Désigne | Type |\n|---|---|---|\n| `start` | l'adresse de la variable `liste` | `Cell **` |\n| `*start` | la variable `liste` elle-même | `Cell *` |\n\nEn écrivant `*start = nouveau;`, la fonction écrit directement dans `liste` : l'appelant voit le nouveau début, sans `liste =` à l'appel.\n\n**Les autres réponses :** le maillon ne contient qu'un pointeur (`next`), et de toute façon le paramètre n'est pas un maillon ; les deux étoiles n'ont rien à voir avec « deux valeurs » ; `malloc` renvoie une adresse de zone (ici un `Cell *`), jamais un `Cell **`.\n\n**À retenir :** pour modifier un `T` de l'appelant, on passe un `T *` ; pour modifier un `Cell *`, on passe un `Cell **`."
+  },
+  {
+    "question": "Quelle est la complexité de l'insertion en début dans un tableau et dans une liste chaînée ?",
+    "choix": [
+      "O(1) pour les deux",
+      "Tableau O(N), liste O(1)",
+      "Tableau O(1), liste O(N)",
+      "O(N) pour les deux"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** insérer au début d'un tableau oblige à **décaler** chaque case d'un cran vers la droite. Dans une liste, on crée un maillon et on change deux pointeurs, sans parcours.\n\n**Pas à pas :** insérer 5 devant 4 valeurs.\n\n| Structure | Travail | Pour N éléments |\n|---|---|---|\n| tableau `[8, 2, 6, 1]` | 4 décalages (`t[4] = t[3]`, ..., `t[1] = t[0]`) puis `t[0] = 5` | N décalages : **O(N)** |\n| liste `8 -> 2 -> 6 -> 1` | créer le 5, `nouveau->next = start`, `start = nouveau` | 3 instructions : **O(1)** |\n\n**Les autres réponses :** « O(1) pour les deux » oublie les décalages du tableau ; « tableau O(1), liste O(N) » inverse les deux (c'est vrai pour l'accès par position, pas pour l'insertion en début) ; « O(N) pour les deux » oublie que la liste n'a rien à décaler.\n\n**À retenir :** insertion en début : tableau O(N) (décalage), liste O(1)."
+  },
+  {
+    "question": "Quelle est la complexité de l'accès au i-ème élément (accès aléatoire) ?",
+    "choix": [
+      "Tableau O(1), liste O(N)",
+      "Tableau O(N), liste O(1)",
+      "O(1) pour les deux",
+      "O(log N) pour les deux"
+    ],
+    "reponse": 0,
+    "explication": "**Règle :** un tableau calcule directement l'adresse de `t[i]` (adresse de début + i × taille d'une case). Une liste n'a pas ce raccourci : il faut suivre les `next` un par un depuis `start`.\n\n**Pas à pas :** pour atteindre la position 3 :\n\n| Structure | Opérations |\n|---|---|\n| tableau | une seule : aller à « début + 3 cases » |\n| liste | `start`, puis `->next` trois fois : 3 pas |\n\nPour la position i, la liste fait i pas, jusqu'à N pour la dernière : **O(N)**. Le tableau fait toujours un seul calcul : **O(1)**.\n\n**Les autres réponses :** « tableau O(N), liste O(1) » inverse les deux ; « O(1) pour les deux » oublie que la liste doit marcher de maillon en maillon ; O(log N) correspond à une dichotomie, pas à un accès direct.\n\n**À retenir :** accès par position : tableau O(1), liste O(N)."
+  },
+  {
+    "question": "Une liste chaînée est triée. Quelle est la complexité de la recherche d'une valeur ?",
+    "choix": [
+      "O(1)",
+      "O(log N) grâce à la dichotomie",
+      "O(N)",
+      "O(N²)"
+    ],
+    "reponse": 2,
+    "explication": "**Règle :** la dichotomie (couper en deux) demande d'aller **directement** à l'élément du milieu. Une liste ne sait aller qu'au maillon suivant : la seule recherche raisonnable est de regarder les maillons un par un.\n\n**Pas à pas :** chercher 40 dans `10 -> 20 -> 30 -> 40 -> 50` :\n\n| Pas | Maillon | Égal à 40 ? |\n|---|---|---|\n| 1 | 10 | non |\n| 2 | 20 | non |\n| 3 | 30 | non |\n| 4 | 40 | **oui** |\n\nAu pire (valeur au bout ou absente), on regarde les N maillons : **O(N)**, même si la liste est triée. Le tri permet seulement de s'arrêter plus tôt quand on dépasse la valeur cherchée, ce qui ne change pas le pire cas.\n\n**Les autres réponses :** O(1) supposerait de trouver la valeur sans rien regarder ; O(log N) est la dichotomie, possible sur un **tableau** trié mais pas sur une liste ; O(N²) supposerait de reparcourir la liste pour chaque maillon, ce qu'on ne fait pas.\n\n**À retenir :** recherche dans une liste chaînée, triée ou non : O(N)."
+  },
+  {
+    "question": "On programme quand même une recherche par dichotomie sur une liste chaînée triée de N maillons. Quelle complexité obtient-on ?",
+    "choix": [
+      "O(log N), comme sur un tableau",
+      "O(N log N) : chaque saut au milieu coûte déjà O(N)",
+      "O(1)",
+      "O(N²)"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** la dichotomie fait log N étapes. Sur une liste, chaque étape doit atteindre le maillon du milieu en suivant les `next` depuis le début, ce qui coûte jusqu'à O(N) pas.\n\n**Pas à pas :** avec N = 1 024 maillons :\n\n| | Nombre d'étapes | Coût d'une étape | Total |\n|---|---|---|---|\n| dichotomie sur tableau | log₂ 1 024 = 10 | 1 lecture | 10 |\n| dichotomie forcée sur liste | 10 | jusqu'à des centaines de pas (512 pour le premier milieu) | bien plus que 1 024 |\n| simple parcours de la liste | 1 passage | | au plus 1 024 |\n\nEn notation O : log N étapes × O(N) = **O(N log N)**, pire que le simple parcours en O(N).\n\n**Les autres réponses :** O(log N) suppose que sauter au milieu coûte 1, ce qui n'est vrai que pour un tableau ; O(1) est impossible pour une recherche ; O(N²) compterait N étapes de N pas, or la dichotomie ne fait que log N étapes.\n\n**À retenir :** une dichotomie n'a d'intérêt que si l'accès au milieu est en O(1), donc sur un tableau."
+  },
+  {
+    "question": "Avec `while (cur->next != NULL) cur = cur->next;`, où s'arrête `cur` ?",
+    "choix": [
+      "Sur `NULL`, après le dernier maillon",
+      "Sur le dernier maillon",
+      "Sur l'avant-dernier maillon",
+      "Sur le premier maillon"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** `while (cur->next != NULL)` continue tant que le maillon courant **a un suivant**. Elle s'arrête donc quand `cur` est sur le maillon dont le `next` vaut `NULL` : le dernier.\n\n**Pas à pas :** sur `4 -> 7 -> 1` :\n\n| `cur` sur | `cur->next` | On continue ? |\n|---|---|---|\n| 4 | adr. du 7 | oui |\n| 7 | adr. du 1 | oui |\n| 1 | `NULL` | **non** : `cur` reste sur le 1, le dernier |\n\n**Les autres réponses :**\n- « sur `NULL`, après le dernier » : c'est ce que fait `while (cur != NULL)`.\n- « sur l'avant-dernier » : il faudrait regarder deux maillons plus loin (`cur->next->next != NULL`).\n- « sur le premier » : seulement si la liste n'a qu'un maillon, qui est alors aussi le dernier.\n\nAttention : sur une liste vide, `cur` vaut `NULL` et lire `cur->next` plante. Il faut écarter ce cas avant la boucle.\n\n**À retenir :** `cur->next != NULL` → `cur` s'arrête **sur** le dernier maillon."
+  },
+  {
+    "question": "Qu'apporte un pointeur vers le **dernier** maillon, gardé à côté de `start` ?",
+    "choix": [
+      "La suppression en fin devient O(1)",
+      "L'insertion en fin devient O(1)",
+      "La recherche devient O(log N)",
+      "L'accès à la position i devient O(1)"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** avec un pointeur vers le dernier maillon, on n'a plus besoin de parcourir pour **atteindre** la fin. Mais supprimer le dernier demande de modifier l'**avant-dernier** (mettre son `next` à `NULL`), que ce pointeur ne donne pas.\n\n**Pas à pas :**\n\n| Opération | Ce qu'il faut | Avec un pointeur de fin |\n|---|---|---|\n| insérer en fin | le dernier : `dernier->next = nouveau`, puis `dernier = nouveau` | connu tout de suite : **O(1)** |\n| supprimer en fin | l'avant-dernier, pour mettre son `next` à `NULL` | inconnu : parcours depuis `start`, O(N) |\n\n**Les autres réponses :** la suppression en fin reste O(N), pour la raison du tableau ; la recherche reste O(N), un pointeur de fin ne permet pas de sauter au milieu ; l'accès à la position i reste O(N), il faut toujours suivre i flèches.\n\n**À retenir :** pointeur de fin = insertion en fin O(1), mais pas suppression en fin."
+  },
+  {
+    "question": "Dans une liste **doublement chaînée**, chaque maillon contient...",
+    "choix": [
+      "Deux valeurs",
+      "Un pointeur vers le suivant et un pointeur vers le précédent",
+      "Deux pointeurs vers le suivant",
+      "L'adresse du premier et du dernier maillon"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** dans une liste **doublement chaînée**, chaque maillon a deux pointeurs : `next` vers le **suivant** et `prev` vers le **précédent**.\n\n**Pas à pas :**\n\n```text\nNULL <-- [prev|10|next] <--> [prev|20|next] <--> [prev|30|next] --> NULL\n```\n\nDepuis le 30, `prev` mène au 20, puis au 10 : on peut reculer. Si on connaît le dernier maillon, `dernier->prev` donne l'avant-dernier tout de suite, et la suppression en fin devient O(1).\n\n**Les autres réponses :** un maillon garde **une** valeur, « doublement » parle des liens ; deux pointeurs vers le suivant seraient inutiles (ils auraient la même valeur) ; l'adresse du premier et du dernier maillon se garde **une fois** pour toute la liste (dans une structure `Liste`), pas dans chaque maillon.\n\n**À retenir :** doublement chaînée = `next` + `prev` dans chaque maillon."
+  },
+  {
+    "question": "Dans une liste chaînée **circulaire**, que contient le `next` du dernier maillon ?",
+    "choix": [
+      "`NULL`",
+      "L'adresse du premier maillon",
+      "L'adresse de l'avant-dernier",
+      "Sa propre adresse"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** dans une liste **circulaire**, il n'y a pas de fin : le `next` du dernier maillon contient l'adresse du **premier**, et la chaîne se referme.\n\n**Pas à pas :**\n\n```text\nstart --> [10|*] --> [20|*] --> [30|*] --+\n           ^                             |\n           +-----------------------------+\n```\n\nAprès le 30, on revient sur le 10. Conséquence : `while (cur != NULL)` ne s'arrête jamais (il n'y a aucun `NULL`). On arrête le parcours quand `cur` revient sur `start`.\n\n**Les autres réponses :** `NULL` est le cas d'une liste ordinaire, pas circulaire ; pointer sur l'avant-dernier ferait reculer d'un cran, ce n'est pas un cercle complet ; pointer sur soi-même n'est juste que pour une liste circulaire d'**un seul** maillon (avec plusieurs maillons, c'est le symptôme du mauvais ordre d'insertion).\n\n**À retenir :** circulaire = le dernier pointe sur le premier, donc on s'arrête en revenant au départ, pas sur `NULL`."
+  },
+  {
+    "question": "Pourquoi double-t-on la **capacité** d'un tableau quand il est plein, au lieu d'ajouter une seule case ?",
+    "choix": [
+      "Pour que la recherche soit plus rapide",
+      "Pour que les recopies, qui coûtent O(N), deviennent de plus en plus rares",
+      "Parce qu'un tableau doit avoir une taille paire",
+      "Pour pouvoir insérer en début en O(1)"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** quand un tableau est plein, l'agrandir oblige à réserver une nouvelle zone et à **tout recopier** : O(N). En **doublant** la capacité, on repousse loin la prochaine recopie.\n\n**Pas à pas :** capacité 8 au départ, on ajoute en fin.\n\n| Ajout qui déclenche une recopie | Éléments recopiés | Nouvelle capacité |\n|---|---|---|\n| le 9e | 8 | 16 |\n| le 17e | 16 | 32 |\n| le 33e | 32 | 64 |\n\nSur 64 ajouts, seuls 3 recopient. En ajoutant une seule case à chaque fois, **chaque** ajout après le 8e recopierait tout (8, 9, 10, ... éléments).\n\n**Les autres réponses :** la capacité ne change rien à la recherche ; aucune règle n'oblige un tableau à avoir une taille paire ; l'insertion en début reste O(N), car il faut toujours décaler les cases.\n\n**À retenir :** doubler la capacité rend les recopies rares, donc l'ajout en fin presque toujours O(1)."
+  },
+  {
+    "question": "Quelle est la complexité de la recherche du minimum dans une liste chaînée **non triée** ?",
+    "choix": [
+      "O(1)",
+      "O(log N)",
+      "O(N)",
+      "O(N²)"
+    ],
+    "reponse": 2,
+    "explication": "**Règle :** dans une liste **non triée**, rien n'indique où se trouve le minimum : il faut regarder **chaque** maillon une fois en gardant le plus petit vu jusque-là.\n\n**Pas à pas :** sur `6 -> 2 -> 9 -> 4` :\n\n| Maillon | Plus petit vu jusque-là |\n|---|---|\n| 6 | 6 |\n| 2 | 2 |\n| 9 | 2 |\n| 4 | 2 |\n\n4 maillons regardés pour 4 maillons : N pas, donc **O(N)**. On ne peut pas s'arrêter avant : le dernier maillon pourrait être encore plus petit.\n\n**Les autres réponses :** O(1) serait vrai pour une liste triée dans l'ordre croissant (minimum sur le premier maillon) ; O(log N) supposerait une dichotomie, impossible ici (et inutile sans tri) ; O(N²) supposerait de comparer chaque maillon à tous les autres, alors qu'un seul passage suffit.\n\n**À retenir :** minimum ou maximum d'une liste non triée : un parcours complet, O(N)."
+  },
+  {
+    "question": "Une liste chaînée est triée dans l'ordre croissant, sans pointeur de fin. Quelle est la complexité de la recherche du **maximum** ?",
+    "choix": [
+      "O(1)",
+      "O(log N)",
+      "O(N)",
+      "O(N²)"
+    ],
+    "reponse": 2,
+    "explication": "**Règle :** dans une liste triée dans l'ordre croissant, le maximum est sur le **dernier** maillon. Sans pointeur de fin, la seule façon d'atteindre le dernier maillon est de suivre tous les `next` depuis `start`.\n\n**Pas à pas :** sur `1 -> 3 -> 8 -> 12` :\n\n| Pas | `cur` sur | A un suivant ? |\n|---|---|---|\n| 1 | 1 | oui |\n| 2 | 3 | oui |\n| 3 | 8 | oui |\n| 4 | 12 | non : c'est le maximum |\n\nOn sait **où** il est, mais il faut quand même N pas pour y arriver : **O(N)**.\n\n**Les autres réponses :** O(1) serait vrai pour le **minimum** (premier maillon), pour un tableau trié (`t[n - 1]`) ou avec un pointeur de fin ; O(log N) supposerait une dichotomie, impossible sur une liste ; O(N²) compterait beaucoup trop, un seul passage suffit.\n\n**À retenir :** dans une liste, tout ce qui est « au bout » coûte un parcours, O(N), sauf si on garde un pointeur de fin."
+  },
+  {
+    "question": "Pour quelle opération une liste chaînée est-elle plus performante qu'un tableau ?",
+    "choix": [
+      "L'accès à une case au hasard",
+      "L'ajout d'un élément au début",
+      "La recherche dichotomique",
+      "La lecture de la i-ème valeur"
+    ],
+    "reponse": 1,
+    "explication": "**Règle :** une liste chaînée gagne quand on **ajoute ou retire au début** : on change un ou deux pointeurs, en O(1). Un tableau gagne pour tout ce qui demande d'aller à une **position** précise.\n\n**Pas à pas :**\n\n| Opération | Tableau | Liste |\n|---|---|---|\n| ajout au début | O(N) (décaler toutes les cases) | **O(1)** |\n| accès à une case au hasard | O(1) | O(N) |\n| recherche dichotomique | O(log N) sur un tableau trié | impossible (ou O(N log N) forcée) |\n| lecture de la i-ème valeur | O(1) | O(N) |\n\n**Les autres réponses :** l'accès à une case au hasard, la dichotomie et la lecture de la i-ème valeur reposent tous sur le saut direct à une position, ce que seul le tableau sait faire en O(1).\n\n**À retenir :** liste chaînée = rapide aux bouts (surtout au début) ; tableau = rapide par position."
+  },
+  {
+    "question": "Quelle est la complexité du parcours de toutes les valeurs, dans un tableau de N cases et dans une liste chaînée de N maillons ?",
+    "choix": [
+      "O(1) pour les deux",
+      "O(N) pour le tableau, O(N²) pour la liste",
+      "O(N) pour les deux",
+      "O(log N) pour le tableau, O(N) pour la liste"
+    ],
+    "reponse": 2,
+    "explication": "**Règle :** un parcours passe **une fois** sur chaque valeur, quelle que soit la structure. Passer d'une valeur à la suivante coûte O(1) dans les deux cas : case d'à côté pour le tableau, `cur = cur->next` pour la liste.\n\n**Pas à pas :**\n\n| Structure | Pas pour N valeurs | Complexité |\n|---|---|---|\n| tableau, `for (i = 0; i < n; i++)` | N | O(N) |\n| liste, `while (cur != NULL)` | N | O(N) |\n\n**Les autres réponses :** O(1) est impossible, on doit lire N valeurs ; O(N²) pour la liste serait vrai seulement si on repartait de `start` pour chaque position (accès à la position i dans une boucle), ce que le parcours avec `cur` évite ; O(log N) pour le tableau supposerait de sauter des valeurs, alors qu'il faut toutes les lire.\n\n**À retenir :** parcourir N valeurs coûte O(N), dans un tableau comme dans une liste."
+  }
 ]

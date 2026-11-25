@@ -1,69 +1,124 @@
 [
   {
     "question": "Comment Python délimite-t-il un bloc de code (corps d'un `if`, d'une boucle...) ?",
-    "choix": ["Avec des accolades `{ }`", "Avec l'indentation", "Avec `begin` et `end`", "Avec des points-virgules"],
+    "choix": [
+      "Avec des accolades `{ }`",
+      "Avec l'indentation",
+      "Avec `begin` et `end`",
+      "Avec des points-virgules"
+    ],
     "reponse": 1,
-    "explication": "Les blocs sont définis par l'indentation (4 espaces par niveau). La ligne qui ouvre le bloc se termine par `:`."
+    "explication": "**Règle :** en Python, un bloc (le corps d'un `if`, d'une boucle, d'une fonction) est fait de toutes les lignes **décalées** sous la ligne qui l'ouvre. Cette ligne se termine par `:`, et le décalage habituel est de 4 espaces.\n\n**Pas à pas :**\n\n```python\nif x > 0:\n    print(\"positif\")\n    print(\"toujours dans le if\")\nprint(\"après le if\")\n```\n\n- `if x > 0:` ouvre le bloc (les deux-points).\n- Les deux lignes décalées de 4 espaces font partie du bloc : elles ne s'exécutent que si `x > 0`.\n- La dernière ligne est revenue au bord gauche : elle est **après** le bloc et s'exécute toujours.\n\n**Les autres réponses :** les accolades `{ }` délimitent les blocs en C, Java ou Rust, pas en Python (en Python, `{}` sert aux dictionnaires et aux ensembles). `begin` / `end` viennent de Pascal ou Ruby. Le point-virgule sépare des instructions dans d'autres langages ; en Python on écrit simplement une instruction par ligne.\n\n**À retenir :** en Python, c'est l'indentation qui fait le bloc ; un mauvais décalage change le sens du programme ou donne une `IndentationError`."
   },
   {
     "question": "Que vaut `10 // 2.5` ?",
-    "choix": ["`4`", "`4.0`", "`4.5`", "`2.5`"],
+    "choix": [
+      "`4`",
+      "`4.0`",
+      "`4.5`",
+      "`2.5`"
+    ],
     "reponse": 1,
-    "explication": "`//` est le quotient de la division entière, mais dès qu'un des nombres est un `float`, le résultat est un `float` : `4.0`."
+    "explication": "**Règle :** `//` donne le **quotient** de la division (le nombre de fois que le second nombre « rentre » dans le premier, arrondi vers le bas). Si l'un des deux nombres est un `float`, le résultat est écrit en `float`.\n\n**Pas à pas :**\n\n1. Combien de fois 2.5 rentre dans 10 ? 2.5 × 4 = 10 tout juste : le quotient est 4.\n2. Le reste est 10 − 4 × 2.5 = 0, rien ne dépasse.\n3. 2.5 est un `float` : le résultat est le `float` `4.0`, pas l'entier `4`.\n\n**Les autres réponses :** `4` serait le résultat avec deux entiers (par exemple `12 // 3`), mais ici 2.5 est un `float`. `4.5` n'est pas possible : `//` ne garde jamais de partie après la virgule. `2.5` est le diviseur, pas le résultat.\n\n**À retenir :** `//` et `%` gardent le type `float` dès qu'un des nombres est un `float` ; `/` donne toujours un `float`."
   },
   {
     "question": "Que vaut `10 / 2` ?",
-    "choix": ["`5`", "`5.0`", "`2`", "Une erreur"],
+    "choix": [
+      "`5`",
+      "`5.0`",
+      "`2`",
+      "Une erreur"
+    ],
     "reponse": 1,
-    "explication": "La division `/` renvoie toujours un `float`, même quand le résultat tombe juste."
+    "explication": "**Règle :** l'opérateur `/` fait la vraie division et renvoie **toujours** un `float`, même quand la division tombe juste.\n\n**Pas à pas :**\n\n1. 10 divisé par 2 vaut 5 : la division tombe juste.\n2. Mais `/` écrit toujours son résultat en `float` : Python affiche `5.0`.\n3. Pour obtenir l'entier `5`, il faut le quotient : `10 // 2`.\n\n**Les autres réponses :** `5` est le résultat de `10 // 2` (ou de Python 2, plus utilisé). `2` est le reste ou le quotient d'une autre opération (`10 % 4` vaut 2, `10 // 4` vaut 2). Il n'y a pas d'erreur : seule une division **par zéro** lève une `ZeroDivisionError`.\n\n**À retenir :** `/` → toujours un `float` ; `//` → le quotient entier (en `int` si les deux nombres sont des `int`)."
   },
   {
     "question": "Laquelle de ces valeurs est considérée comme **vraie** dans un `if` ?",
-    "choix": ["`0`", "`\"\"`", "`[0]`", "`None`"],
+    "choix": [
+      "`0`",
+      "`\"\"`",
+      "`[0]`",
+      "`None`"
+    ],
     "reponse": 2,
-    "explication": "`[0]` est une liste qui contient un élément : elle n'est pas vide, donc vraie. `0`, `\"\"` et `None` sont faux."
+    "explication": "**Règle :** dans un `if`, une valeur est **fausse** si elle est nulle (`0`, `0.0`, `False`, `None`) ou **vide** (`\"\"`, `[]`, `()`, `{}`, `set()`). Tout le reste est vrai.\n\n**Pas à pas :** on teste chaque proposition.\n\n| Valeur | Nulle ou vide ? | Dans un `if` |\n|---|---|---|\n| `0` | nulle | faux |\n| `\"\"` | chaîne vide | faux |\n| `None` | « rien » | faux |\n| `[0]` | liste avec **une** case | **vrai** |\n\n`[0]` contient un élément : la liste n'est pas vide, donc elle est vraie. Peu importe que cet élément soit lui-même `0` : on regarde la liste, pas ce qu'il y a dedans.\n\n**Les autres réponses :** `0`, `\"\"` et `None` sont exactement les cas « nul ou vide » de la règle : ils sont faux.\n\n**À retenir :** un conteneur (liste, chaîne, dictionnaire...) est vrai dès qu'il contient au moins un élément."
   },
   {
     "question": "Quelles valeurs produit `range(2, 6)` ?",
-    "choix": ["2, 3, 4, 5, 6", "2, 3, 4, 5", "3, 4, 5, 6", "0, 1, 2, 3, 4, 5"],
+    "choix": [
+      "2, 3, 4, 5, 6",
+      "2, 3, 4, 5",
+      "3, 4, 5, 6",
+      "0, 1, 2, 3, 4, 5"
+    ],
     "reponse": 1,
-    "explication": "Le début est inclus et la fin est exclue : 2, 3, 4, 5."
+    "explication": "**Règle :** `range(debut, fin)` compte de `debut` (inclus) jusqu'à `fin` **exclue**, de 1 en 1.\n\n**Pas à pas :** on part de 2 et on avance tant qu'on reste strictement en dessous de 6.\n\n- 2 < 6 : on garde 2.\n- 3 < 6 : on garde 3.\n- 4 < 6 : on garde 4.\n- 5 < 6 : on garde 5.\n- 6 < 6 est faux : on s'arrête, 6 n'est pas produit.\n\nRésultat : 2, 3, 4, 5, soit 6 − 2 = 4 valeurs.\n\n**Les autres réponses :** 2, 3, 4, 5, 6 inclut la fin, alors qu'elle est exclue. 3, 4, 5, 6 décale tout d'un cran (début exclu, fin incluse : c'est l'inverse de la règle). 0, 1, 2, 3, 4, 5 ignore le début : c'est `range(6)`.\n\n**À retenir :** dans `range(a, b)`, `a` est inclus, `b` jamais atteint, et il y a `b - a` valeurs."
   },
   {
     "question": "Avec `l = [1, 2, 3, 4, 5]`, que vaut `l[1:4]` ?",
-    "choix": ["`[1, 2, 3, 4]`", "`[2, 3, 4, 5]`", "`[2, 3, 4]`", "`[1, 2, 3]`"],
+    "choix": [
+      "`[1, 2, 3, 4]`",
+      "`[2, 3, 4, 5]`",
+      "`[2, 3, 4]`",
+      "`[1, 2, 3]`"
+    ],
     "reponse": 2,
-    "explication": "On part de l'indice 1 (la valeur 2) et on s'arrête **avant** l'indice 4 : `[2, 3, 4]`."
+    "explication": "**Règle :** dans une tranche `l[debut:fin]`, l'indice `debut` est **inclus**, l'indice `fin` est **exclu**, et les indices commencent à 0.\n\n**Pas à pas :** on numérote `l = [1, 2, 3, 4, 5]`.\n\n| Indice | 0 | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|---|\n| Valeur | 1 | 2 | 3 | 4 | 5 |\n\n`l[1:4]` prend les indices 1, 2 et 3 (on s'arrête **avant** 4), donc les valeurs 2, 3, 4 : `[2, 3, 4]`. On vérifie le nombre d'éléments : 4 − 1 = 3.\n\n**Les autres réponses :** `[1, 2, 3, 4]` compte les positions à partir de 1 au lieu de 0. `[2, 3, 4, 5]` inclut l'indice 4, alors que la fin est exclue. `[1, 2, 3]` est `l[0:3]` : il décale tout d'un cran.\n\n**À retenir :** pour une tranche, numérote depuis 0, prends le début, et arrête-toi juste avant la fin."
   },
   {
     "question": "Que donne `s = \"Hello\"` puis `s[0] = \"J\"` ?",
-    "choix": ["`s` vaut `\"Jello\"`", "Une `TypeError`", "Une `IndexError`", "`s` vaut `\"J\"`"],
+    "choix": [
+      "`s` vaut `\"Jello\"`",
+      "Une `TypeError`",
+      "Une `IndexError`",
+      "`s` vaut `\"J\"`"
+    ],
     "reponse": 1,
-    "explication": "Une `str` n'est pas modifiable. Il faut créer une nouvelle chaîne : `s = \"J\" + s[1:]`."
+    "explication": "**Règle :** une `str` est **non modifiable** : on ne peut pas changer un de ses caractères. Toute tentative d'écrire `s[i] = ...` lève une `TypeError` (« 'str' object does not support item assignment »).\n\n**Pas à pas :**\n\n1. `s = \"Hello\"` : `s` désigne une chaîne.\n2. `s[0] = \"J\"` demande de remplacer le caractère d'indice 0 : c'est interdit pour une chaîne, Python lève une `TypeError` et `s` reste `\"Hello\"`.\n3. La bonne façon : construire une **nouvelle** chaîne, `s = \"J\" + s[1:]`, qui vaut `\"Jello\"`.\n\n**Les autres réponses :** `\"Jello\"` serait le résultat avec une liste de caractères, pas avec une chaîne. `IndexError` signale un indice qui n'existe pas ; ici l'indice 0 existe bien. `\"J\"` voudrait dire que tout le texte a été remplacé, ce que `s[0] = ...` ne fait jamais.\n\n**À retenir :** on ne modifie pas une chaîne, on en fabrique une nouvelle (tranches et `+`, ou `replace`)."
   },
   {
     "question": "Quel est le type de `(\"one\")` ?",
-    "choix": ["`tuple`", "`str`", "`list`", "`set`"],
+    "choix": [
+      "`tuple`",
+      "`str`",
+      "`list`",
+      "`set`"
+    ],
     "reponse": 1,
-    "explication": "Les parenthèses seules ne font pas un tuple : c'est la virgule. Le tuple à un élément s'écrit `(\"one\",)`."
+    "explication": "**Règle :** ce sont les **virgules** qui fabriquent un tuple, pas les parenthèses. Des parenthèses sans virgule servent seulement à grouper, comme dans `(2 + 3) * 4`.\n\n**Pas à pas :**\n\n1. `(\"one\")` : il n'y a aucune virgule. Les parenthèses entourent juste la chaîne `\"one\"`.\n2. C'est donc exactement la même chose que `\"one\"` : `type((\"one\"))` affiche `<class 'str'>`.\n3. Avec une virgule, `(\"one\",)` (ou même `\"one\",`) est un tuple d'un élément : `<class 'tuple'>`.\n\n**Les autres réponses :** `tuple` est le piège : il faudrait la virgule. `list` s'écrit avec des crochets `[\"one\"]`. `set` s'écrit avec des accolades `{\"one\"}`.\n\n**À retenir :** un tuple d'un seul élément s'écrit avec une virgule finale : `(\"one\",)`."
   },
   {
     "question": "Comment crée-t-on un ensemble **vide** ?",
-    "choix": ["`{}`", "`set()`", "`[]`", "`()`"],
+    "choix": [
+      "`{}`",
+      "`set()`",
+      "`[]`",
+      "`()`"
+    ],
     "reponse": 1,
-    "explication": "`{}` crée un dictionnaire vide. L'ensemble vide s'écrit `set()`."
+    "explication": "**Règle :** `{}` (accolades vides) crée un **dictionnaire** vide, pas un ensemble. L'ensemble vide n'a pas d'écriture avec des symboles : on appelle `set()`.\n\n**Pas à pas :**\n\n```python\nprint(type({}))\nprint(type(set()))\nprint(type({1, 2}))\n```\n\nAffiche `<class 'dict'>`, puis `<class 'set'>`, puis `<class 'set'>`. Les accolades donnent un ensemble seulement quand elles contiennent des valeurs **sans** `:` (comme `{1, 2}`). Vides, Python choisit le dictionnaire, plus ancien dans le langage.\n\n**Les autres réponses :** `{}` est le piège (dictionnaire vide). `[]` est une liste vide. `()` est un tuple vide.\n\n**À retenir :** ensemble vide = `set()`, dictionnaire vide = `{}`."
   },
   {
     "question": "Que vaut `len({1, 45, 8, 45})` ?",
-    "choix": ["4", "3", "2", "Une erreur"],
+    "choix": [
+      "4",
+      "3",
+      "2",
+      "Une erreur"
+    ],
     "reponse": 1,
-    "explication": "Un ensemble ne garde pas les doublons : il contient 1, 45 et 8, donc 3 éléments."
+    "explication": "**Règle :** un ensemble ne garde **pas les doublons**, et `len` compte les éléments différents qu'il contient.\n\n**Pas à pas :** on lit les valeurs de `{1, 45, 8, 45}` une par une.\n\n- 1 : nouvelle, gardée.\n- 45 : nouvelle, gardée.\n- 8 : nouvelle, gardée.\n- 45 : déjà présente, ignorée.\n\nL'ensemble vaut `{1, 45, 8}` (dans un ordre quelconque) : `len` donne **3**.\n\n**Les autres réponses :** 4 compte les valeurs écrites, doublon compris. 2 enlève une valeur de trop (les deux 45 ne disparaissent pas, il en reste un). Il n'y a pas d'erreur : écrire un doublon dans un ensemble est permis, il est simplement ignoré.\n\n**À retenir :** pour la taille d'un ensemble, raye les doublons puis compte ce qui reste."
   },
   {
     "question": "Avec `d = {\"a\": 1}`, que renvoie `d.get(\"z\", 0)` ?",
-    "choix": ["`None`", "Une `KeyError`", "`0`", "`\"z\"`"],
+    "choix": [
+      "`None`",
+      "Une `KeyError`",
+      "`0`",
+      "`\"z\"`"
+    ],
     "reponse": 2,
-    "explication": "`get` renvoie la valeur par défaut donnée (ici `0`) quand la clé est absente, sans erreur. `d[\"z\"]` lèverait une `KeyError`."
+    "explication": "**Règle :** `d.get(cle, defaut)` renvoie la valeur associée à `cle` si la clé existe, sinon la valeur `defaut`, **sans jamais lever d'erreur**.\n\n**Pas à pas :**\n\n1. `d = {\"a\": 1}` n'a qu'une clé, `\"a\"`.\n2. `d.get(\"z\", 0)` : `\"z\"` n'est pas une clé de `d`.\n3. `get` renvoie donc la valeur par défaut donnée en second argument : `0`.\n\n**Les autres réponses :** `None` est ce que renverrait `d.get(\"z\")` **sans** second argument ; ici on a donné `0`. La `KeyError` est levée par `d[\"z\"]` (avec des crochets), pas par `get`. `\"z\"` est la clé cherchée, `get` ne la renvoie pas.\n\n**À retenir :** `d[cle]` plante si la clé manque, `d.get(cle, defaut)` renvoie `defaut` ; d'où le schéma de comptage `d[x] = d.get(x, 0) + 1`."
   },
   {
     "question": "À quoi sert `if __name__ == \"__main__\":` ?",
@@ -74,42 +129,72 @@
       "À accélérer le programme"
     ],
     "reponse": 1,
-    "explication": "`__name__` vaut `\"__main__\"` seulement quand le fichier est lancé directement. Quand il est importé (comme par les tests du site), le bloc n'est pas exécuté."
+    "explication": "**Règle :** la variable spéciale `__name__` vaut `\"__main__\"` quand le fichier est **lancé directement** (`python fichier.py`), et le nom du module quand il est **importé** par un autre fichier.\n\n**Pas à pas :**\n\n1. Tu lances le fichier : `__name__ == \"__main__\"` est vrai, le bloc s'exécute (affichages, `input()`, essais).\n2. Un autre fichier fait `import fichier` (c'est ce que font les tests du site) : `__name__` vaut `\"fichier\"`, la condition est fausse, le bloc est sauté. Les fonctions sont quand même définies et utilisables.\n\n**Les autres réponses :** ce n'est pas une fonction principale obligatoire : un programme Python marche très bien sans ce `if` (rien à voir avec le `main` obligatoire du C). Il n'importe aucun module `main` : c'est une simple comparaison de texte. Il ne rend rien plus rapide.\n\n**À retenir :** mets sous `if __name__ == \"__main__\":` tout ce qui ne doit se lancer que quand tu exécutes le fichier toi-même."
   },
   {
     "question": "Comment obtient-on le nombre de clés d'un dictionnaire `d` en Python ?",
-    "choix": ["`d.length`", "`d.size()`", "`len(d)`", "`d.count()`"],
+    "choix": [
+      "`d.length`",
+      "`d.size()`",
+      "`len(d)`",
+      "`d.count()`"
+    ],
     "reponse": 2,
-    "explication": "`len()` est une **fonction** qui marche sur tous les conteneurs : liste, chaîne, tuple, ensemble, dictionnaire. `length` et `size()` viennent d'autres langages."
+    "explication": "**Règle :** en Python, la taille d'un conteneur se demande avec la **fonction** `len(...)`, qui marche pour les listes, chaînes, tuples, ensembles et dictionnaires. Pour un dictionnaire, elle compte les items, donc les clés.\n\n**Pas à pas :**\n\n```python\nd = {\"nom\": \"Ada\", \"age\": 20, \"ville\": \"Paris\"}\nprint(len(d))\n```\n\nIl y a trois couples clé-valeur (`nom`, `age`, `ville`) : `len(d)` vaut `3`.\n\n**Les autres réponses :** `d.length` vient de JavaScript, `d.size()` de Java : ils n'existent pas en Python (`AttributeError`). `d.count()` n'existe pas pour un dictionnaire ; pour une liste, `count(x)` compte les occurrences d'**une** valeur, ce n'est pas la taille.\n\n**À retenir :** la taille de n'importe quel conteneur, c'est `len(conteneur)`."
   },
   {
     "question": "Comment teste-t-on si la clé `\"nom\"` existe dans un dictionnaire `d` ?",
-    "choix": ["`d.contains(\"nom\")`", "`d.has(\"nom\")`", "`\"nom\" in d`", "`d.indexOf(\"nom\") != -1`"],
+    "choix": [
+      "`d.contains(\"nom\")`",
+      "`d.has(\"nom\")`",
+      "`\"nom\" in d`",
+      "`d.indexOf(\"nom\") != -1`"
+    ],
     "reponse": 2,
-    "explication": "L'opérateur `in` teste l'appartenance : aux clés pour un dictionnaire, aux éléments pour une liste ou un ensemble, aux sous-chaînes pour une chaîne."
+    "explication": "**Règle :** l'opérateur `in` teste l'appartenance. Sur un dictionnaire, il regarde **les clés** (pas les valeurs). Il marche aussi sur une liste (les éléments), un ensemble (les éléments) et une chaîne (les morceaux de texte).\n\n**Pas à pas :**\n\n```python\nd = {\"nom\": \"Ada\", \"age\": 20}\nprint(\"nom\" in d)\nprint(\"Ada\" in d)\nprint(\"Ada\" in d.values())\n```\n\n1. `\"nom\"` est une clé : `True`.\n2. `\"Ada\"` est une **valeur**, pas une clé : `False`.\n3. Pour chercher parmi les valeurs, on écrit `in d.values()` : `True`.\n\n**Les autres réponses :** `d.contains(...)`, `d.has(...)` et `indexOf` viennent d'autres langages (Java, JavaScript) : aucune de ces méthodes n'existe sur un dictionnaire Python.\n\n**À retenir :** « la clé est-elle là ? » s'écrit `cle in d` ; c'est aussi le test à faire avant `d[cle]` pour éviter une `KeyError`."
   },
   {
     "question": "Laquelle de ces boucles **n'existe pas** en Python ?",
-    "choix": ["`while condition:`", "`for x in liste:`", "`do ... while condition`", "`for i in range(5):`"],
+    "choix": [
+      "`while condition:`",
+      "`for x in liste:`",
+      "`do ... while condition`",
+      "`for i in range(5):`"
+    ],
     "reponse": 2,
-    "explication": "Python n'a que `while` et `for`. Pour exécuter le corps au moins une fois, on écrit `while True:` avec un `break` quand la condition est remplie."
+    "explication": "**Règle :** Python n'a que **deux** boucles : `while condition:` (tant que la condition est vraie) et `for x in sequence:` (pour chaque élément). Il n'y a pas de `do ... while`.\n\n**Pas à pas :** pour imiter un `do ... while` (corps exécuté au moins une fois, test à la fin), on écrit une boucle sans fin et on sort avec `break` :\n\n```python\nn = 0\nwhile True:\n    n += 1\n    print(n)\n    if n >= 3:\n        break\n```\n\nLe corps s'exécute (1, 2, 3), et c'est seulement **après** chaque tour que le `if` décide de sortir.\n\n**Les autres réponses :** `while condition:` existe. `for x in liste:` existe. `for i in range(5):` est aussi un `for`, qui parcourt les nombres 0 à 4.\n\n**À retenir :** pas de `do ... while` en Python : `while True:` + `if ...: break` à la fin du corps."
   },
   {
     "question": "Avec `s = \"Bonjour\"`, comment récupère-t-on `\"jour\"` ?",
-    "choix": ["`s[3:7]`", "`s.slice(3, 7)`", "`s(3:7)`", "`s[3, 7]`"],
+    "choix": [
+      "`s[3:7]`",
+      "`s.slice(3, 7)`",
+      "`s(3:7)`",
+      "`s[3, 7]`"
+    ],
     "reponse": 0,
-    "explication": "Une tranche s'écrit entre crochets avec `:` : `s[debut:fin]`, la fin étant exclue. `s[3:]` marche aussi. `s[3, 7]` cherche l'indice `(3, 7)` et lève `TypeError`."
+    "explication": "**Règle :** une tranche s'écrit entre **crochets** avec deux-points : `s[debut:fin]`. Le début est inclus, la fin exclue, les indices partent de 0.\n\n**Pas à pas :** on numérote `\"Bonjour\"`.\n\n| Indice | 0 | 1 | 2 | 3 | 4 | 5 | 6 |\n|---|---|---|---|---|---|---|---|\n| Lettre | B | o | n | j | o | u | r |\n\n`\"jour\"` occupe les indices 3, 4, 5, 6. On commence à 3 et on s'arrête **avant** 7 : `s[3:7]`. Comme 6 est le dernier indice, `s[3:]` (« de 3 jusqu'au bout ») donne aussi `\"jour\"`.\n\n**Les autres réponses :** `s.slice(3, 7)` vient de JavaScript, les chaînes Python n'ont pas de méthode `slice`. `s(3:7)` utilise des parenthèses : c'est une erreur de syntaxe. `s[3, 7]` avec une virgule cherche l'indice `(3, 7)` (un tuple) et lève une `TypeError`.\n\n**À retenir :** tranche = crochets et deux-points, `s[debut:fin]`, avec `fin` = dernier indice voulu + 1."
   },
   {
     "question": "Comment calcule-t-on 2 puissance 10 en Python ?",
-    "choix": ["`2 ^ 10`", "`2 ** 10`", "`pow[2, 10]`", "`2 ^^ 10`"],
+    "choix": [
+      "`2 ^ 10`",
+      "`2 ** 10`",
+      "`pow[2, 10]`",
+      "`2 ^^ 10`"
+    ],
     "reponse": 1,
-    "explication": "La puissance s'écrit `**` (ou `pow(2, 10)`). `^` existe mais c'est le « ou exclusif » sur les bits : `2 ^ 10` vaut 8, sans aucune erreur."
+    "explication": "**Règle :** la puissance s'écrit `**` (ou avec la fonction `pow(2, 10)`). Le symbole `^` existe, mais il fait le **ou exclusif bit à bit**, une tout autre opération.\n\n**Pas à pas :**\n\n1. `2 ** 10` = 2 × 2 × ... × 2 (dix fois) = `1024`.\n2. `2 ^ 10` : on écrit les nombres en binaire, 2 = `0010` et 10 = `1010`. On garde un 1 là où les bits sont **différents** : `1000`, soit 8.\n3. `2 ^ 10` vaut donc 8, sans aucune erreur : le piège est qu'on ne s'aperçoit de rien.\n\n**Les autres réponses :** `2 ^ 10` donne 8, pas une puissance. `pow[2, 10]` utilise des crochets : `pow` est une fonction, il faut des parenthèses, `pow(2, 10)`. `2 ^^ 10` n'existe pas (erreur de syntaxe).\n\n**À retenir :** puissance = `**` ; `^` n'est jamais une puissance en Python."
   },
   {
     "question": "Laquelle de ces instructions ne crée **pas** une liste vide ?",
-    "choix": ["`l = []`", "`l = list()`", "`l = {}`", "`l = [x for x in \"\"]`"],
+    "choix": [
+      "`l = []`",
+      "`l = list()`",
+      "`l = {}`",
+      "`l = [x for x in \"\"]`"
+    ],
     "reponse": 2,
-    "explication": "`{}` crée un **dictionnaire** vide. `[]` et `list()` créent tous les deux une liste vide, tout comme une compréhension sur une chaîne vide."
+    "explication": "**Règle :** une liste vide s'écrit `[]` ou `list()`. Les accolades vides `{}` créent un **dictionnaire** vide.\n\n**Pas à pas :** on vérifie chaque instruction.\n\n| Instruction | Ce qu'elle crée |\n|---|---|\n| `l = []` | une liste vide (littéral) |\n| `l = list()` | une liste vide (appel du type `list` sans rien) |\n| `l = [x for x in \"\"]` | une compréhension sur une chaîne vide : aucun tour, donc une liste vide |\n| `l = {}` | un **dictionnaire** vide (`type(l)` affiche `<class 'dict'>`) |\n\n**Les autres réponses :** `[]`, `list()` et la compréhension donnent toutes une vraie liste vide ; seule `{}` donne autre chose. Le nom `l` ne change rien : c'est la valeur qui a un type, pas la variable.\n\n**À retenir :** `[]` = liste, `{}` = dictionnaire, `set()` = ensemble, `()` = tuple."
   }
 ]

@@ -921,6 +921,16 @@ pre code.hljs {
   font-size: 14px;
 }
 
+.explication pre code {
+  padding: 0;
+  background: none;
+}
+
+.explication > :last-child,
+.explication-question > :last-child {
+  margin-bottom: 0;
+}
+
 .explication strong {
   color: var(--texte);
 }
@@ -1143,6 +1153,29 @@ pre code.hljs {
 [data-etat="illisible"] .retour {
   color: var(--attention);
   font-weight: 500;
+}
+
+.explication-question {
+  margin-top: 8px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--accent);
+  border-radius: var(--rayon);
+  background: var(--panneau);
+  font-size: 14px;
+}
+
+[data-etat="juste"] .explication-question {
+  border-left-color: var(--succes);
+}
+
+[data-etat="faux"] .explication-question {
+  border-left-color: var(--erreur);
+}
+
+.explication-question .explication-titre {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 700;
 }
 
 .options {

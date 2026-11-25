@@ -1,74 +1,134 @@
 [
   {
     "question": "Quel programme installe et met à jour les outils Rust ?",
-    "choix": ["`cargo`", "`rustup`", "`rustc`", "`clippy`"],
+    "choix": [
+      "`cargo`",
+      "`rustup`",
+      "`rustc`",
+      "`clippy`"
+    ],
     "reponse": 1,
-    "explication": "`rustup` installe le compilateur, Cargo et les autres outils, et gère plusieurs versions (toolchains)."
+    "explication": "**Règle :** `rustup` est l'**installateur** de Rust : il télécharge, installe et met à jour tous les outils (compilateur, Cargo, Clippy...), et il peut garder plusieurs versions côte à côte (les *toolchains*).\n\n**Pas à pas :** on se demande pour chaque outil s'il **installe** quelque chose.\n\n| Outil | Rôle | Installe les outils ? |\n|---|---|---|\n| `rustup` | installateur, gère les toolchains | oui |\n| `cargo` | crée, compile, teste le projet | non, il les utilise |\n| `rustc` | compile le code | non |\n| `clippy` | donne des conseils | non |\n\n**Les autres réponses :** `cargo` télécharge les **bibliothèques** de ton projet (les crates), pas les outils Rust eux-mêmes ; `rustc` et `clippy` sont des outils **installés par** `rustup`.\n\n**À retenir :** `rustup update` pour mettre Rust à jour, `cargo` pour travailler sur ton projet."
   },
   {
     "question": "À quoi sert `rustc` ?",
-    "choix": ["À créer un projet", "À compiler le code", "À formater le code", "À télécharger des bibliothèques"],
+    "choix": [
+      "À créer un projet",
+      "À compiler le code",
+      "À formater le code",
+      "À télécharger des bibliothèques"
+    ],
     "reponse": 1,
-    "explication": "`rustc` est le compilateur. En pratique, on passe par `cargo`, qui l'appelle pour nous."
+    "explication": "**Règle :** `rustc` est le **compilateur** : il lit ton code source et le transforme en programme exécutable. En pratique, on ne l'appelle presque jamais soi-même : `cargo build` ou `cargo run` l'appellent pour nous, avec les bons réglages.\n\n**Pas à pas :** on associe chaque action proposée à l'outil qui la fait vraiment.\n\n- créer un projet : `cargo new` ;\n- **compiler le code** : `rustc` (souvent via `cargo`) ;\n- formater le code : `rustfmt` (`cargo fmt`) ;\n- télécharger des bibliothèques : `cargo` (`cargo add`, puis `cargo build`).\n\nSeule « compiler le code » correspond à `rustc`.\n\n**Les autres réponses :** les trois autres actions sont faites par `cargo` ou `rustfmt`. Le `c` final de `rustc` veut dire *compiler*, comme `gcc` en C.\n\n**À retenir :** `rustc` = compilateur ; `cargo` = celui qui le pilote."
   },
   {
     "question": "Quel outil donne des conseils pour améliorer le code ?",
-    "choix": ["`rustfmt`", "`rustup`", "`clippy`", "`rust-docs`"],
+    "choix": [
+      "`rustfmt`",
+      "`rustup`",
+      "`clippy`",
+      "`rust-docs`"
+    ],
     "reponse": 2,
-    "explication": "`cargo clippy` propose plus de 700 conseils (« lints »). `rustfmt` ne fait que la mise en forme."
+    "explication": "**Règle :** `clippy` analyse ton code et propose plus de 700 conseils (appelés *lints*) : code inutilement compliqué, erreur probable, façon plus idiomatique d'écrire. On le lance avec `cargo clippy`.\n\n**Pas à pas :** on regarde ce que fait chaque outil proposé.\n\n| Outil | Ce qu'il fait | Donne des conseils ? |\n|---|---|---|\n| `rustfmt` | aligne et indente le code | non, il change seulement la présentation |\n| `rustup` | installe les outils | non |\n| `clippy` | analyse le code et suggère des améliorations | **oui** |\n| `rust-docs` | documentation hors ligne | non |\n\n**Erreur fréquente :** confondre `rustfmt` et `clippy`. `rustfmt` ne touche jamais au sens du code, il le rend juste joli. `clippy` peut te dire « ce `vec!` est inutile, un tableau suffit ».\n\n**À retenir :** mise en forme = `cargo fmt`, conseils = `cargo clippy`."
   },
   {
     "question": "Tous les combien sort une nouvelle version stable de Rust ?",
-    "choix": ["Tous les jours", "Toutes les 6 semaines", "Tous les ans", "Tous les 3 ans"],
+    "choix": [
+      "Tous les jours",
+      "Toutes les 6 semaines",
+      "Tous les ans",
+      "Tous les 3 ans"
+    ],
     "reponse": 1,
-    "explication": "Une stable sort toutes les 6 semaines. Ce qui change tous les 3 ans environ, c'est l'édition."
+    "explication": "**Règle :** Rust sort une nouvelle version **stable** toutes les **6 semaines** (le « train des versions » : stable, beta, nightly).\n\n**Pas à pas :** on sépare les trois rythmes à ne pas confondre.\n\n- tous les jours : une nouvelle **nightly** (version expérimentale) ;\n- toutes les 6 semaines : une nouvelle **stable** (1.98, 1.99, 1.100...) ;\n- environ tous les 3 ans : une nouvelle **édition** (2018, 2021, 2024).\n\nLa question porte sur la stable : 6 semaines.\n\n**Les autres réponses :** « tous les jours » est le rythme de nightly ; « tous les 3 ans » est celui des éditions ; « tous les ans » ne correspond à rien en Rust.\n\n**À retenir :** nightly chaque jour, stable toutes les 6 semaines, édition tous les 3 ans environ."
   },
   {
     "question": "Qu'est-ce qu'une **édition** (2018, 2021, 2024) ?",
-    "choix": ["La version du compilateur", "Un jeu de règles de syntaxe choisi par le projet", "Un canal comme nightly", "Une bibliothèque officielle"],
+    "choix": [
+      "La version du compilateur",
+      "Un jeu de règles de syntaxe choisi par le projet",
+      "Un canal comme nightly",
+      "Une bibliothèque officielle"
+    ],
     "reponse": 1,
-    "explication": "L'édition est choisie dans `Cargo.toml`. Des crates d'éditions différentes fonctionnent ensemble."
+    "explication": "**Règle :** une **édition** (2015, 2018, 2021, 2024) est un **jeu de règles de syntaxe** que chaque projet choisit dans son `Cargo.toml` (ligne `edition = \"2024\"`). Des crates d'éditions différentes fonctionnent ensemble.\n\n**Pas à pas :** on compare avec les autres notions.\n\n| Notion | Exemple | Ce que c'est |\n|---|---|---|\n| version | Rust 1.99 | la version de l'**outil** `rustc` |\n| canal | stable, beta, nightly | la « branche » de l'outil |\n| **édition** | 2021, 2024 | les **règles de syntaxe** du projet |\n| bibliothèque | une crate | du code réutilisable |\n\nUn compilateur 1.99 sait compiler un projet en édition 2015 comme un projet en 2024 : c'est le projet qui dit quelles règles il suit.\n\n**Les autres réponses :** la version du compilateur est un numéro comme 1.99, pas une année ; nightly est un canal ; une bibliothèque officielle s'appelle une crate (comme `std`).\n\n**À retenir :** édition = règles de syntaxe choisies dans `Cargo.toml`, version = numéro de l'outil."
   },
   {
     "question": "Comment Rust libère-t-il la mémoire ?",
-    "choix": ["Avec un ramasse-miettes", "Avec `free()` écrit à la main", "Grâce à l'ownership, vérifié à la compilation", "Il ne la libère jamais"],
+    "choix": [
+      "Avec un ramasse-miettes",
+      "Avec `free()` écrit à la main",
+      "Grâce à l'ownership, vérifié à la compilation",
+      "Il ne la libère jamais"
+    ],
     "reponse": 2,
-    "explication": "Chaque valeur a un propriétaire ; quand il disparaît, la mémoire est libérée. Le compilateur vérifie les règles."
+    "explication": "**Règle :** Rust n'a **ni ramasse-miettes ni `free()` à la main**. Il utilise l'**ownership** (la propriété) : chaque valeur a un seul propriétaire, et quand ce propriétaire sort de son bloc `{ }`, la valeur est libérée automatiquement. Le compilateur vérifie ces règles avant que le programme tourne.\n\n**Pas à pas :** avec\n\n```rust\n{\n    let s = String::from(\"salut\");\n    println!(\"{s}\");\n}\n```\n\n1. `s` est créé et possède le texte ;\n2. on l'affiche ;\n3. à l'accolade `}`, `s` disparaît : le texte est libéré **à cet endroit précis**, décidé à la compilation.\n\n**Les autres réponses :** le ramasse-miettes est la méthode de Java, Python ou JavaScript (Rust l'a abandonné avant la 1.0) ; `free()` à la main est la méthode du C ; « ne jamais libérer » provoquerait des fuites de mémoire.\n\n**À retenir :** en Rust, la mémoire est libérée quand son propriétaire disparaît, et c'est vérifié à la compilation."
   },
   {
     "question": "Quel est l'ordre des priorités de Rust ?",
-    "choix": ["Performance, Safety, Productivity", "Productivity, Performance, Safety", "Safety, Performance, Productivity", "Safety, Productivity, Performance"],
+    "choix": [
+      "Performance, Safety, Productivity",
+      "Productivity, Performance, Safety",
+      "Safety, Performance, Productivity",
+      "Safety, Productivity, Performance"
+    ],
     "reponse": 2,
-    "explication": "La sûreté passe avant tout, puis la performance, puis le confort du développeur."
+    "explication": "**Règle :** les trois priorités de Rust, dans l'ordre : **Safety** (sûreté), puis **Performance**, puis **Productivity** (confort du développeur). En cas de conflit, la priorité la plus haute gagne.\n\n**Pas à pas :** on vérifie chaque ordre proposé en regardant le premier mot.\n\n- « Performance, Safety, Productivity » : commence par la vitesse, faux, la sûreté passe avant.\n- « Productivity, Performance, Safety » : met la sûreté en dernier, c'est l'inverse.\n- « Safety, Performance, Productivity » : sûreté d'abord, puis vitesse, puis confort : **juste**.\n- « Safety, Productivity, Performance » : bon début, mais la vitesse passe avant le confort.\n\nC'est pour ça que le compilateur refuse parfois du code qui te semble correct : il préfère être pénible (Productivity) que risquer un bug mémoire (Safety).\n\n**À retenir :** S > P > P : la sûreté d'abord, la vitesse ensuite, le confort en dernier."
   },
   {
     "question": "Que se passe-t-il en Rust si on lit après la fin d'un tableau (`v[10]` sur 3 éléments) ?",
-    "choix": ["On lit une valeur au hasard", "Le programme s'arrête proprement (panique)", "La valeur vaut 0", "Le compilateur l'ajoute au tableau"],
+    "choix": [
+      "On lit une valeur au hasard",
+      "Le programme s'arrête proprement (panique)",
+      "La valeur vaut 0",
+      "Le compilateur l'ajoute au tableau"
+    ],
     "reponse": 1,
-    "explication": "Rust vérifie les bornes : au lieu de lire la mémoire voisine comme en C, le programme panique avec un message clair."
+    "explication": "**Règle :** Rust **vérifie les indices** quand on accède à un tableau ou à un `Vec`. Si l'indice est en dehors, le programme **panique** : il s'arrête proprement avec un message clair, au lieu de lire la mémoire voisine.\n\n**Pas à pas :** avec 3 éléments, les indices valides sont 0, 1 et 2.\n\n1. On demande l'indice 10 : il n'est pas dans 0, 1, 2.\n2. Rust s'en rend compte et arrête le programme avec : `index out of bounds: the len is 3 but the index is 10`.\n3. Le message donne la longueur (3), l'indice demandé (10) et la ligne du problème.\n\n**Les autres réponses :** « une valeur au hasard » est ce qui arrive en **C** (on lit chez le voisin) ; Rust n'invente jamais de 0 ; il n'agrandit jamais un tableau tout seul. Pour demander sans paniquer, on utilise `v.get(10)`, qui renvoie `None`.\n\n**À retenir :** indice hors du tableau = panique (arrêt propre) ; `get(i)` pour obtenir `None` à la place."
   },
   {
     "question": "Qu'utilise Rust à la place de `null` ?",
-    "choix": ["`0`", "`None` du type `Option`", "`undefined`", "Rien, `null` existe aussi"],
+    "choix": [
+      "`0`",
+      "`None` du type `Option`",
+      "`undefined`",
+      "Rien, `null` existe aussi"
+    ],
     "reponse": 1,
-    "explication": "Une valeur qui peut manquer a le type `Option<T>` : `Some(valeur)` ou `None`. Le compilateur oblige à traiter les deux cas."
+    "explication": "**Règle :** Rust n'a pas de `null`. Une valeur qui peut manquer a le type `Option<T>`, qui vaut soit `Some(valeur)`, soit `None` (rien). Le compilateur oblige à traiter les deux cas avant d'utiliser la valeur.\n\n**Pas à pas :** chercher un nombre pair dans `[3, 7, 5]` :\n\n1. 3, 7 et 5 sont impairs : rien n'est trouvé ;\n2. le résultat est `None` (et pas `null`, ni `0`) ;\n3. pour utiliser le résultat, il faut un `match` avec un bras `Some(n)` **et** un bras `None` : impossible d'oublier le cas « rien trouvé ».\n\n**Les autres réponses :** `0` est une vraie valeur (on ne pourrait plus distinguer « trouvé 0 » de « rien trouvé ») ; `undefined` est du JavaScript ; et `null` n'existe pas en Rust, c'est justement la source de plantage qu'il voulait supprimer.\n\n**À retenir :** valeur absente = `None`, valeur présente = `Some(valeur)`, le tout dans un `Option`."
   },
   {
     "question": "Comment appelle-t-on un paquet Rust publié sur crates.io ?",
-    "choix": ["Un module", "Un package npm", "Une crate", "Un trait"],
+    "choix": [
+      "Un module",
+      "Un package npm",
+      "Une crate",
+      "Un trait"
+    ],
     "reponse": 2,
-    "explication": "Une crate est l'unité de compilation de Rust : un programme ou une bibliothèque."
+    "explication": "**Règle :** une **crate** est un paquet Rust : un programme ou une bibliothèque. C'est l'unité que le compilateur compile d'un coup, et c'est ce qu'on publie sur **crates.io**.\n\n**Pas à pas :** on regarde ce que désigne chaque mot proposé.\n\n| Mot | Ce que c'est |\n|---|---|\n| module | un **morceau** d'une crate (un fichier ou un bloc `mod`) |\n| package npm | un paquet **JavaScript** |\n| **crate** | un paquet **Rust**, publié sur crates.io |\n| trait | une notion du langage (un ensemble de méthodes), pas un paquet |\n\nLe nom du site le dit : *crates*.io.\n\n**À retenir :** crate = paquet Rust, crates.io = où on les publie, docs.rs = leur documentation."
   },
   {
     "question": "En quelle année est sortie Rust 1.0 ?",
-    "choix": ["2006", "2010", "2015", "2021"],
+    "choix": [
+      "2006",
+      "2010",
+      "2015",
+      "2021"
+    ],
     "reponse": 2,
-    "explication": "Rust 1.0 est sorti le 15 mai 2015, avec la promesse de ne plus casser le code existant."
+    "explication": "**Règle :** **Rust 1.0** est sorti le **15 mai 2015**, avec la promesse de stabilité : un code qui compile avec la 1.0 compile encore avec les versions suivantes.\n\n**Pas à pas :** on replace chaque année proposée sur la frise.\n\n- 2006 : début du projet personnel de Graydon Hoare ;\n- 2010 : le projet est chez Mozilla (adopté en 2009), encore loin d'être stable ;\n- **2015 : Rust 1.0** ;\n- 2021 : création de la Rust Foundation.\n\n**Les autres réponses :** 2006 est la naissance de l'idée, pas une version utilisable ; 2010 est une étape de développement ; 2021 est la fondation (et une édition), pas la 1.0.\n\n**À retenir :** 2006 idée, 2009 Mozilla, **2015 Rust 1.0**, 2021 fondation."
   },
   {
     "question": "Quel est le principal défaut de Rust cité dans le cours ?",
-    "choix": ["Il est lent", "Il n'a pas de bibliothèques", "Il est difficile à apprendre", "Il ne marche pas sous Windows"],
+    "choix": [
+      "Il est lent",
+      "Il n'a pas de bibliothèques",
+      "Il est difficile à apprendre",
+      "Il ne marche pas sous Windows"
+    ],
     "reponse": 2,
-    "explication": "La courbe d'apprentissage (surtout l'ownership) est la première cause d'abandon. La compilation longue est le deuxième défaut."
+    "explication": "**Règle :** le défaut n°1 de Rust est d'être **difficile à apprendre**, surtout à cause de l'ownership (quelques semaines d'efforts). C'est la première cause d'abandon. Le défaut n°2 est la **compilation longue** sur les gros projets.\n\n**Pas à pas :** on vérifie chaque proposition par rapport au cours.\n\n- « Il est lent » : faux, Rust vise la vitesse du C (c'est sa 2e priorité).\n- « Il n'a pas de bibliothèques » : faux, crates.io en contient des milliers.\n- « Il est difficile à apprendre » : **vrai**, c'est le défaut cité en premier.\n- « Il ne marche pas sous Windows » : faux, rustup l'installe sous Windows, macOS et Linux.\n\n**À retenir :** le vrai prix de Rust, c'est l'apprentissage (puis le temps de compilation), pas la vitesse."
   }
 ]

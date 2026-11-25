@@ -8,25 +8,40 @@
       "Pour obtenir un résultat en secondes"
     ],
     "reponse": 1,
-    "explication": "Le temps dépend de la machine (ou de la vitesse de lecture dans l'exemple du dictionnaire). Le nombre d'opérations élémentaires en fonction de `n` ne dépend que de l'algorithme."
+    "explication": "**Règle :** la complexité compte les **opérations élémentaires** (comparer, lire une case, écrire une case) en fonction de la taille `n` des données. Ce nombre ne dépend que de l'algorithme.\n\n**Pas à pas :**\n\n1. Un chronomètre mesure un temps en secondes.\n2. Ce temps change avec l'ordinateur (vieux portable ou serveur), les autres programmes ouverts, ou, dans l'exemple du dictionnaire, la vitesse de lecture de la personne.\n3. Le nombre d'opérations, lui, est le même partout : chercher un mot absent parmi 1 000 mots coûte 1 000 comparaisons, sur n'importe quelle machine.\n4. On compare donc deux algorithmes par leur nombre d'opérations : c'est juste, et ça ne dépend que de la méthode.\n\n**Les autres réponses :** « pas assez précis » : le problème n'est pas la précision mais ce qu'on mesure en plus de l'algorithme. « Le C ne sait pas mesurer le temps » : faux, il le sait (`clock()`), ce n'est juste pas la bonne mesure. « Un résultat en secondes » : c'est justement ce qu'on évite, la complexité s'exprime en nombre d'opérations (O(n), O(n²)...).\n\n**À retenir :** on compte les opérations pour mesurer l'algorithme seul, indépendamment de la machine."
   },
   {
     "question": "Un algorithme fait `4n + 100` opérations. Quelle est sa complexité ?",
-    "choix": ["O(1)", "O(n)", "O(4n + 100)", "O(n²)"],
+    "choix": [
+      "O(1)",
+      "O(n)",
+      "O(4n + 100)",
+      "O(n²)"
+    ],
     "reponse": 1,
-    "explication": "On garde le terme qui grandit le plus vite (`4n`) et on enlève la constante : O(n)."
+    "explication": "**Règle :** en notation grand O, on garde le terme qui grandit le plus vite et on efface le nombre qui le multiplie.\n\n**Pas à pas :**\n\n1. Les termes de `4n + 100` : `4n` (grandit avec n) et `100` (ne bouge pas).\n2. Pour n = 1 000 000 : `4n` = 4 000 000 et `100` reste 100. Le `100` ne compte presque plus.\n3. On garde `4n`, puis on enlève le `4` : il reste `n`.\n4. Complexité : **O(n)**.\n\n**Les autres réponses :** O(1) voudrait dire que le nombre d'opérations ne dépend pas de `n`, or `4n` grandit avec lui. O(4n + 100) est la formule exacte, pas une notation grand O : on n'y écrit ni constante ni petit terme. O(n²) demanderait un terme en `n × n`, il n'y en a pas.\n\n**À retenir :** grand O = le plus gros terme, sans le nombre devant."
   },
   {
     "question": "Quelle est la complexité de deux boucles `for` imbriquées qui font chacune `n` tours, avec une opération simple à l'intérieur ?",
-    "choix": ["O(n)", "O(2n)", "O(n²)", "O(log n)"],
+    "choix": [
+      "O(n)",
+      "O(2n)",
+      "O(n²)",
+      "O(log n)"
+    ],
     "reponse": 2,
-    "explication": "Pour chacun des `n` tours de la boucle extérieure, la boucle intérieure fait `n` tours : `n × n` opérations, donc O(n²)."
+    "explication": "**Règle :** deux boucles imbriquées : la boucle intérieure fait **tous** ses tours pour **chaque** tour de la boucle extérieure. On multiplie les nombres de tours.\n\n**Pas à pas,** avec n = 3 :\n\n| Tour extérieur `i` | Tours intérieurs `j` | Opérations |\n|---|---|---|\n| 0 | 0, 1, 2 | 3 |\n| 1 | 0, 1, 2 | 3 |\n| 2 | 0, 1, 2 | 3 |\n\nTotal : 3 × 3 = 9 = n². Pour n = 1 000 : 1 000 × 1 000 = un million. La complexité est **O(n²)**.\n\n**Les autres réponses :** O(n) compterait une seule boucle. O(2n) additionne les deux boucles au lieu de les multiplier : ce serait le cas de deux boucles l'une **après** l'autre (et O(2n) s'écrit de toute façon O(n)). O(log n) correspond à une boucle qui divise par deux à chaque tour.\n\n**À retenir :** boucles l'une dans l'autre = on multiplie ; boucles l'une après l'autre = on additionne (et on garde la plus grosse)."
   },
   {
     "question": "Une boucle divise par deux la quantité de données restante à chaque tour. Avec un million de données, combien de tours environ ?",
-    "choix": ["20", "1 000", "500 000", "1 000 000"],
+    "choix": [
+      "20",
+      "1 000",
+      "500 000",
+      "1 000 000"
+    ],
     "reponse": 0,
-    "explication": "2²⁰ vaut environ un million : après 20 divisions par deux, il ne reste plus qu'une donnée. C'est une complexité en O(log n)."
+    "explication": "**Règle :** diviser `n` par deux jusqu'à arriver à 1 prend environ **log₂(n)** tours, l'exposant `x` tel que 2ˣ = n.\n\n**Pas à pas :**\n\n1. On connaît 2¹⁰ = 1 024, environ mille.\n2. 2²⁰ = 2¹⁰ × 2¹⁰ ≈ 1 000 × 1 000 = un million (exactement 1 048 576).\n3. Donc un million, divisé 20 fois par deux, donne environ 1 : 1 000 000 → 500 000 → 250 000 → ... → 1 en une vingtaine de tours.\n4. C'est une complexité **O(log n)** : environ **20** tours.\n\n**Les autres réponses :** 1 000 serait la racine carrée d'un million, rien à voir avec une division par deux. 500 000, c'est ce qui reste après **un seul** tour. 1 000 000 tours, c'est le parcours case par case, en O(n).\n\n**À retenir :** 2¹⁰ ≈ mille, 2²⁰ ≈ un million, 2³⁰ ≈ un milliard : couper en deux un million de données prend environ 20 tours."
   },
   {
     "question": "Pourquoi accéder à `tab[i]` coûte-t-il O(1) ?",
@@ -37,7 +52,7 @@
       "Ça coûte O(i), pas O(1)"
     ],
     "reponse": 1,
-    "explication": "Adresse de `tab[i]` = adresse de `tab[0]` + `i` × taille d'une case. Un seul calcul, quelle que soit la valeur de `i`."
+    "explication": "**Règle :** les cases d'un tableau sont **collées** et ont **toutes la même taille**. L'adresse d'une case se calcule : adresse de `tab[0]` + `i` × taille d'une case.\n\n**Pas à pas,** avec des `int` de 4 octets et `tab[0]` à l'adresse 1000 :\n\n| Case | Calcul | Adresse |\n|---|---|---|\n| `tab[2]` | 1000 + 2 × 4 | 1008 |\n| `tab[500]` | 1000 + 500 × 4 | 3000 |\n\nDans les deux cas, une multiplication et une addition, puis une lecture. Le coût ne dépend ni de `i` ni de `n` : **O(1)**.\n\n**Les autres réponses :** le C ne parcourt pas le tableau pour aller à la case `i`, il saute directement à la bonne adresse. Le tableau n'a pas besoin d'être trié : le calcul marche pour n'importe quelles valeurs. O(i) serait le coût d'une structure où il faut passer case par case (une liste chaînée, par exemple), pas d'un tableau.\n\n**À retenir :** cases collées et de même taille = adresse calculée = accès en O(1)."
   },
   {
     "question": "Dans une fonction `void f(int *tab)`, que vaut `sizeof tab` ?",
@@ -48,7 +63,7 @@
       "Une erreur de compilation"
     ],
     "reponse": 2,
-    "explication": "Un tableau passé à une fonction devient un pointeur vers sa première case. La taille est perdue : il faut la passer en paramètre."
+    "explication": "**Règle :** en C, un tableau passé à une fonction devient un **pointeur vers sa première case**. Dans la fonction, `sizeof tab` mesure ce pointeur, pas le tableau.\n\n**Pas à pas :**\n\n1. Dans `main`, `int notes[4]` est un vrai tableau : `sizeof notes` vaut 4 × 4 = 16 octets.\n2. On appelle `f(notes)` : la fonction reçoit seulement l'**adresse** de `notes[0]`.\n3. Dans `f`, `tab` est de type `int *` : `sizeof tab` vaut la taille d'une adresse, **8 octets** sur une machine 64 bits, que le tableau ait 4 cases ou un million.\n4. C'est pour ça qu'on passe toujours la taille en paramètre (`size_t n`).\n\n**Les autres réponses :** « le nombre de cases » et « le nombre d'octets du tableau » ne sont vrais que dans la fonction qui a **déclaré** le tableau. Il n'y a pas d'erreur de compilation : `sizeof` d'un pointeur est permis, il donne juste une valeur inutile ici.\n\n**À retenir :** dans une fonction, `sizeof tab` donne la taille d'un pointeur ; la taille du tableau doit arriver par un paramètre."
   },
   {
     "question": "Pour insérer une valeur à la position `p`, dans quel sens décale-t-on les cases ?",
@@ -59,13 +74,18 @@
       "On ne décale pas, on écrase `tab[p]`"
     ],
     "reponse": 1,
-    "explication": "En partant de `p`, chaque copie écrase la valeur suivante avant qu'elle soit déplacée. En partant de la fin, la dernière valeur va dans la case libre, puis chaque case libère la place pour la précédente."
+    "explication": "**Règle :** pour insérer à la position `p`, on décale les cases d'un cran vers la droite **en partant de la fin** : la dernière case va dans la case libre, puis l'avant-dernière dans la dernière, jusqu'à libérer `p`.\n\n**Pas à pas :** insérer 9 en position 1 dans `4 6 8` (n = 3).\n\n| Étape | Copie | Tableau |\n|---|---|---|\n| 1 | `tab[3] = tab[2]` | `4 6 8 8` |\n| 2 | `tab[2] = tab[1]` | `4 6 6 8` |\n| 3 | `tab[1] = 9` | `4 9 6 8` |\n\nDans l'autre sens (en partant de `p`) : `tab[2] = tab[1]` donne `4 6 6 _`, le 8 est **écrasé** avant d'avoir bougé ; puis `tab[3] = tab[2]` recopie encore 6 : `4 6 6 6`, et on finit avec `4 9 6 6`.\n\n**Les autres réponses :** « de `p` vers la fin » est le piège montré ci-dessus. « Peu importe » est faux pour la même raison. « Écraser `tab[p]` » remplace une valeur au lieu d'en ajouter une : le 6 disparaîtrait.\n\n**À retenir :** insertion = décaler de la fin vers `p` ; suppression = décaler de `p` vers la fin."
   },
   {
     "question": "Avec `size_t n = 0;`, que vaut `n - 1` ?",
-    "choix": ["-1", "0", "Un très grand nombre positif", "Une erreur à la compilation"],
+    "choix": [
+      "-1",
+      "0",
+      "Un très grand nombre positif",
+      "Une erreur à la compilation"
+    ],
     "reponse": 2,
-    "explication": "`size_t` est non signé : il ne peut pas être négatif. `0 - 1` « fait le tour » et donne la plus grande valeur possible. Une boucle `i < n - 1` déborderait alors du tableau."
+    "explication": "**Règle :** `size_t` est un entier **non signé** : il ne peut pas être négatif. Quand on descend sous 0, il « fait le tour » et donne la plus grande valeur possible.\n\n**Pas à pas :**\n\n1. `n` vaut 0.\n2. `n - 1` devrait donner -1, mais -1 n'existe pas en `size_t`.\n3. Le calcul repart du haut : on obtient `18446744073709551615` sur une machine 64 bits (environ 1,8 × 10¹⁹).\n4. Conséquence : une boucle `for (size_t i = 0; i < n - 1; i++)` sur un tableau vide croit qu'il y a des milliards de milliards de cases et lit hors du tableau.\n\n**Les autres réponses :** -1 serait vrai avec un `int`, pas avec un `size_t`. 0 supposerait que la soustraction s'arrête à zéro, ce n'est pas le cas. Il n'y a pas d'erreur de compilation : le calcul est permis, c'est son résultat qui piège (gcc ne prévient pas toujours).\n\n**À retenir :** avec un `size_t`, réécris `i < n - 1` en `i + 1 < n` pour ne jamais soustraire sous zéro."
   },
   {
     "question": "Quelle boucle inverse correctement un tableau de taille `n` ?",
@@ -76,13 +96,18 @@
       "`for (i = 1; i < n / 2; i++) echanger(&t[i], &t[n - 1 - i]);`"
     ],
     "reponse": 1,
-    "explication": "On s'arrête au milieu (sinon chaque paire est échangée deux fois et rien ne change). La case symétrique de `i` est `n - 1 - i` : `n - i` sort du tableau quand `i == 0`."
+    "explication": "**Règle :** pour inverser, on échange `tab[i]` avec sa case symétrique `tab[n - 1 - i]`, et on s'arrête **au milieu** (`i < n / 2`).\n\n**Pas à pas,** avec `t = 1 2 3 4` (n = 4, donc n / 2 = 2 tours) :\n\n| `i` | Case symétrique `n - 1 - i` | Tableau après |\n|---|---|---|\n| 0 | 3 | `4 2 3 1` |\n| 1 | 2 | `4 3 2 1` |\n\nDeux tours, tableau inversé. La bonne boucle est donc celle avec `i < n / 2` et `t[n - 1 - i]`, en partant de `i = 0`.\n\n**Les autres réponses :**\n\n- Aller jusqu'à `i < n` : les tours `i = 2` et `i = 3` refont les mêmes échanges et le tableau redevient `1 2 3 4`.\n- `t[n - i]` : au tour `i = 0`, on lit `t[4]`, qui est **après** la fin (cases 0 à 3).\n- Partir de `i = 1` : `t[0]` et `t[n - 1]` ne sont jamais échangés, on obtient `1 3 2 4`.\n\n**À retenir :** symétrique de `i` = `n - 1 - i`, et on s'arrête à `n / 2`."
   },
   {
     "question": "Quelle est la complexité d'une suppression au **début** d'un tableau de `n` cases ?",
-    "choix": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+    "choix": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n²)"
+    ],
     "reponse": 2,
-    "explication": "Il faut décaler les `n - 1` cases suivantes d'un cran vers la gauche : O(n). Seule la suppression à la fin est en O(1)."
+    "explication": "**Règle :** supprimer la case `p` oblige à décaler d'un cran vers la gauche **toutes** les cases qui la suivent, soit `n - 1 - p` copies.\n\n**Pas à pas :** supprimer la case 0 de `8 3 5 1` (n = 4).\n\n| Copie | Tableau |\n|---|---|\n| `tab[0] = tab[1]` | `3 3 5 1` |\n| `tab[1] = tab[2]` | `3 5 5 1` |\n| `tab[2] = tab[3]` | `3 5 1 1` |\n\nPuis la taille passe à 3 : `3 5 1`. Il a fallu 3 copies = n - 1. Pour un million de cases, presque un million de copies : **O(n)**.\n\n**Les autres réponses :** O(1), c'est la suppression à la **fin** (on diminue juste la taille, rien à décaler). O(log n) supposerait qu'on coupe le travail en deux à chaque étape, ce n'est pas le cas. O(n²) serait le coût de `n` suppressions de ce genre, pas d'une seule.\n\n**À retenir :** supprimer (ou insérer) au début d'un tableau = décaler tout le reste = O(n)."
   },
   {
     "question": "On veut retirer toutes les cases qui valent 0 d'un tableau. Quelle méthode est en O(n) ?",
@@ -93,7 +118,7 @@
       "Aucune, c'est forcément O(n²)"
     ],
     "reponse": 1,
-    "explication": "Chaque appel à `supprimer` décale tout le reste (O(n)), donc O(n²) au total. Avec deux indices, chaque case est lue une fois et écrite au plus une fois : O(n)."
+    "explication": "**Règle :** pour retirer plusieurs cases d'un tableau, on fait **une seule passe** avec deux indices : `lecture` passe sur toutes les cases, `ecriture` indique où ranger la prochaine valeur gardée.\n\n**Pas à pas :** retirer les 0 de `5 0 0 7`.\n\n| `lecture` | Valeur | Gardée ? | `ecriture` après | Tableau |\n|---|---|---|---|---|\n| 0 | 5 | oui, `tab[0] = 5` | 1 | `5 0 0 7` |\n| 1 | 0 | non | 1 | `5 0 0 7` |\n| 2 | 0 | non | 1 | `5 0 0 7` |\n| 3 | 7 | oui, `tab[1] = 7` | 2 | `5 7 0 7` |\n\nNouvelle taille : 2 (`5 7`). Chaque case est lue une fois et écrite au plus une fois : **O(n)**.\n\n**Les autres réponses :**\n\n- Appeler `supprimer` à chaque 0 : chaque appel décale tout le reste (O(n)), et il peut y avoir jusqu'à `n` zéros : O(n²).\n- Trier puis enlever le début : le tri coûte au moins O(n log n), mélange l'ordre des valeurs, et les 0 ne sont au début que si toutes les autres valeurs sont positives.\n- « Forcément O(n²) » : faux, la méthode à deux indices est en O(n).\n\n**À retenir :** filtrer un tableau = un indice de lecture, un indice d'écriture, une seule passe."
   },
   {
     "question": "En algorithmique, la complexité d'un algorithme mesure :",
@@ -104,30 +129,50 @@
       "le temps qu'il a fallu pour l'écrire"
     ],
     "reponse": 1,
-    "explication": "La complexité décrit la vitesse d'un algorithme **en fonction de la taille des données**, sans dépendre de la machine."
+    "explication": "**Règle :** la complexité décrit **comment le nombre d'opérations grandit** quand la taille `n` des données grandit. Elle ne dépend pas de la machine.\n\n**Pas à pas :** un parcours fait `n` opérations.\n\n| n | Opérations |\n|---|---|\n| 1 000 | 1 000 |\n| 2 000 | 2 000 |\n| 1 000 000 | 1 000 000 |\n\nDoubler les données double le travail : c'est ce qu'exprime O(n). Une double boucle (O(n²)) multiplierait le travail par 4 pour des données doublées.\n\n**Les autres réponses :** le nombre de lignes du code ne dit rien du coût (trois lignes peuvent contenir deux boucles imbriquées). Le nombre d'ordinateurs et le temps d'écriture du programme n'ont rien à voir avec la complexité.\n\n**À retenir :** complexité = vitesse de croissance du nombre d'opérations en fonction de `n`."
   },
   {
     "question": "Quelle est la complexité de la recherche du maximum dans un tableau **non trié** ?",
-    "choix": ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+    "choix": [
+      "O(1)",
+      "O(log N)",
+      "O(N)",
+      "O(N²)"
+    ],
     "reponse": 2,
-    "explication": "Le maximum peut être dans n'importe quelle case : il faut toutes les regarder une fois."
+    "explication": "**Règle :** dans un tableau **non trié**, une valeur peut être dans n'importe quelle case. Pour le maximum, on garde le plus grand vu jusque-là et on le compare à chaque case : un seul parcours.\n\n**Pas à pas** sur `3 9 2 11 5` :\n\n| Case lue | Plus grand vu jusque-là |\n|---|---|\n| 3 | 3 |\n| 9 | 9 |\n| 2 | 9 |\n| 11 | 11 |\n| 5 | 11 |\n\n5 cases, 5 lectures (4 comparaisons) : le nombre d'opérations suit `n`, **O(N)**. On ne peut pas faire moins : si on sautait une case, ce pourrait être justement elle, le maximum.\n\n**Les autres réponses :** O(1) n'est possible que si le tableau est **trié** (le maximum est alors dans la dernière case). O(log N) demande aussi un tableau trié. O(N²) serait la méthode qui compare chaque case à toutes les autres : elle marche mais fait beaucoup trop de travail.\n\n**À retenir :** tableau non trié = il faut tout regarder une fois = O(N) pour le maximum comme pour le minimum."
   },
   {
     "question": "Quelle est la complexité de la recherche d'une valeur quelconque dans un tableau non trié ?",
-    "choix": ["O(N log N)", "O(log N)", "O(1)", "O(N)"],
+    "choix": [
+      "O(N log N)",
+      "O(log N)",
+      "O(1)",
+      "O(N)"
+    ],
     "reponse": 3,
-    "explication": "Sans ordre, on ne peut rien éliminer d'avance : dans le pire cas, on regarde toutes les cases. La recherche dichotomique, en O(log N), demande un tableau trié."
+    "explication": "**Règle :** dans un tableau non trié, on cherche case par case (recherche séquentielle). La complexité se donne dans le **pire cas**.\n\n**Pas à pas :** chercher 6 dans `4 1 8 2`.\n\n1. On compare avec 4 : non. Avec 1 : non. Avec 8 : non. Avec 2 : non.\n2. 4 comparaisons pour 4 cases : on ne peut dire « absent » qu'après avoir tout vu.\n3. Le pire cas (valeur absente, ou dans la dernière case) fait `N` comparaisons : **O(N)**.\n\n**Les autres réponses :** O(log N) est la recherche **dichotomique**, qui coupe en deux à chaque étape mais n'est juste que sur un tableau **trié**. O(1) est le meilleur cas (valeur dans la première case), pas la complexité annoncée. O(N log N) est le coût d'un bon tri, pas d'une recherche.\n\n**À retenir :** chercher dans un tableau non trié = O(N) ; pour faire mieux, il faut un tableau trié."
   },
   {
     "question": "Quelle est la complexité de l'ajout d'une valeur **à la fin** d'un tableau qui a encore de la place, quand on connaît sa taille ?",
-    "choix": ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+    "choix": [
+      "O(1)",
+      "O(log N)",
+      "O(N)",
+      "O(N²)"
+    ],
     "reponse": 0,
-    "explication": "On écrit dans `tab[n]` et on augmente `n` : rien à décaler. C'est l'ajout au **début** qui coûte O(N)."
+    "explication": "**Règle :** ajouter à la fin d'un tableau dont on connaît la taille `n`, et qui a encore une case libre, c'est écrire dans la case `n` puis augmenter la taille.\n\n**Pas à pas :** `tab` a une capacité de 6 et contient `2 5 7` (n = 3). On ajoute 9.\n\n1. La case libre suivante est `tab[3]` (indice = taille).\n2. `tab[3] = 9;` : une écriture.\n3. `n++;` : n vaut 4.\n\nDeux opérations, que le tableau ait 3 cases ou un million : **O(1)**. Rien à décaler, aucune case existante ne bouge.\n\n**Les autres réponses :** O(N) est le coût d'un ajout au **début** (ou au milieu), qui décale les cases suivantes, ou d'un ajout dans un tableau plein qu'il faut recopier ailleurs. O(log N) et O(N²) ne correspondent à aucun travail fait ici.\n\n**À retenir :** ajouter à la fin avec de la place = O(1) ; ajouter au début = O(N)."
   },
   {
     "question": "Pour de très grandes données, laquelle de ces complexités est la plus rapide ?",
-    "choix": ["O(N)", "O(N log N)", "O(log N)", "O(N²)"],
+    "choix": [
+      "O(N)",
+      "O(N log N)",
+      "O(log N)",
+      "O(N²)"
+    ],
     "reponse": 2,
-    "explication": "O(1) < O(log N) < O(N) < O(N log N) < O(N²). Pour un million de données, log N vaut environ 20."
+    "explication": "**Règle :** pour de grandes données, l'ordre du plus rapide au plus lent est : O(1) < O(log N) < O(N) < O(N log N) < O(N²).\n\n**Pas à pas** avec N = 1 000 000 :\n\n| Complexité | Opérations environ |\n|---|---|\n| O(log N) | 20 |\n| O(N) | 1 000 000 |\n| O(N log N) | 20 000 000 |\n| O(N²) | 1 000 000 000 000 |\n\nLa plus petite valeur est celle de **O(log N)** : c'est la plus rapide des quatre.\n\n**Les autres réponses :** O(N) fait un million d'opérations, 50 000 fois plus. O(N log N) multiplie encore par 20. O(N²) est de loin la plus lente.\n\n**À retenir :** log N reste minuscule (20 pour un million) : O(log N) bat O(N), qui bat O(N log N), qui bat O(N²)."
   }
 ]

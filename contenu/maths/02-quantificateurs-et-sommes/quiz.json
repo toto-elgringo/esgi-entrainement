@@ -1,80 +1,145 @@
 [
   {
     "question": "Avec $P(x) : x^2 \\geq 4$, que vaut $P(-3)$ ?",
-    "choix": ["Faux, car $-3 < 4$", "Vrai, car $9 \\geq 4$", "On ne peut pas savoir", "Ce n'est pas un prédicat"],
+    "choix": [
+      "Faux, car $-3 < 4$",
+      "Vrai, car $9 \\geq 4$",
+      "On ne peut pas savoir",
+      "Ce n'est pas un prédicat"
+    ],
     "reponse": 1,
-    "explication": "On remplace $x$ par $-3$ : $(-3)^2 = 9$ et $9 \\geq 4$, donc $P(-3)$ est vrai."
+    "explication": "**Règle :** un prédicat devient vrai ou faux quand on remplace la variable par une valeur. On remplace, on calcule, puis on compare.\n\n**Pas à pas :**\n\n1. On remplace $x$ par $-3$ : $(-3)^2 = (-3) \\times (-3) = 9$ (moins par moins donne plus).\n2. On compare à 4 : $9 \\geq 4$ est vrai.\n3. Donc $P(-3)$ est **vrai**, car $9 \\geq 4$.\n\n**Les autres réponses :**\n\n- « Faux, car $-3 < 4$ » compare $x$ à 4 au lieu de comparer $x^2$ : on a oublié de mettre au carré.\n- « On ne peut pas savoir » : si, dès qu'on fixe la valeur de $x$, le prédicat a une valeur.\n- « Ce n'est pas un prédicat » : c'est une phrase avec une variable qui devient vraie ou fausse, c'est exactement la définition d'un prédicat.\n\n**À retenir :** un carré n'est jamais négatif ; calcule $x^2$ avant de comparer."
   },
   {
     "question": "$R(x, y)$ : « $y$ est le manager de $x$ ». Que signifie $\\exists y\\ \\forall x\\ R(x, y)$ ?",
-    "choix": ["Chaque employé a un manager", "Aucun employé n'a de manager", "Une seule personne manage tout le monde", "Chaque manager a au moins un employé"],
+    "choix": [
+      "Chaque employé a un manager",
+      "Aucun employé n'a de manager",
+      "Une seule personne manage tout le monde",
+      "Chaque manager a au moins un employé"
+    ],
     "reponse": 2,
-    "explication": "Le $\\exists y$ est devant : on choisit **un** $y$ qui doit marcher pour **tous** les $x$. C'est bien plus fort que $\\forall x\\ \\exists y$, où chacun peut avoir un manager différent."
+    "explication": "**Règle :** on lit les quantificateurs de gauche à droite. Celui de gauche est choisi **en premier** : dans $\\exists y\\ \\forall x$, on choisit un $y$ **avant** de connaître $x$, et ce même $y$ doit marcher pour tous les $x$.\n\n**Pas à pas :**\n\n1. $\\exists y$ : « il existe une personne $y$… »\n2. $\\forall x$ : « … telle que, pour tout employé $x$… »\n3. $R(x, y)$ : « … $y$ est le manager de $x$ ».\n\nPhrase complète : « il existe une personne qui est le manager de tous les employés », donc **une seule personne manage tout le monde**.\n\n**Les autres réponses :**\n\n- « Chaque employé a un manager » s'écrit $\\forall x\\ \\exists y\\ R(x, y)$ : l'ordre est inversé, et chacun peut avoir un manager différent. C'est plus faible.\n- « Aucun employé n'a de manager » serait $\\forall x\\ \\forall y\\ \\neg R(x, y)$ : il y a une négation, absente ici.\n- « Chaque manager a au moins un employé » parlerait de « pour tout manager, il existe un employé », une autre phrase.\n\n**À retenir :** $\\exists y\\ \\forall x$ = un même $y$ pour tous ; $\\forall x\\ \\exists y$ = chacun son $y$."
   },
   {
     "question": "Quelle est la négation de $\\forall x\\ \\exists y\\ R(x, y)$ ?",
-    "choix": ["$\\exists x\\ \\forall y\\ \\neg R(x, y)$", "$\\forall x\\ \\exists y\\ \\neg R(x, y)$", "$\\exists x\\ \\exists y\\ \\neg R(x, y)$", "$\\forall x\\ \\forall y\\ \\neg R(x, y)$"],
+    "choix": [
+      "$\\exists x\\ \\forall y\\ \\neg R(x, y)$",
+      "$\\forall x\\ \\exists y\\ \\neg R(x, y)$",
+      "$\\exists x\\ \\exists y\\ \\neg R(x, y)$",
+      "$\\forall x\\ \\forall y\\ \\neg R(x, y)$"
+    ],
     "reponse": 0,
-    "explication": "On nie couche par couche : $\\forall$ devient $\\exists$, $\\exists$ devient $\\forall$, puis on nie le prédicat."
+    "explication": "**Règle :** pour nier, on avance de l'extérieur vers l'intérieur : chaque $\\forall$ devient $\\exists$, chaque $\\exists$ devient $\\forall$, **l'ordre ne bouge pas**, et on nie le prédicat à la fin.\n\n**Pas à pas :**\n\n1. $\\forall x$ devient $\\exists x$.\n2. $\\exists y$ devient $\\forall y$.\n3. $R(x, y)$ devient $\\neg R(x, y)$.\n\nRésultat : $\\exists x\\ \\forall y\\ \\neg R(x, y)$. En mots, si $R(x, y)$ est « $y$ est le manager de $x$ » : la phrase « chaque employé a un manager » se nie en « il existe un employé qui n'a **aucun** manager ».\n\n**Les autres réponses :**\n\n- $\\forall x\\ \\exists y\\ \\neg R(x, y)$ : on a nié le prédicat mais oublié de changer les quantificateurs.\n- $\\exists x\\ \\exists y\\ \\neg R(x, y)$ : le $\\exists y$ n'a pas été changé en $\\forall y$.\n- $\\forall x\\ \\forall y\\ \\neg R(x, y)$ : le $\\forall x$ n'a pas été changé en $\\exists x$ ; c'est « personne n'a de manager », bien trop fort.\n\n**À retenir :** chaque quantificateur change de sorte (aucun n'est oublié), puis $\\neg$ sur le prédicat."
   },
   {
     "question": "Quelle est la négation de « Tous les champs du formulaire sont remplis » ?",
-    "choix": ["Aucun champ n'est rempli", "Tous les champs sont vides", "Au moins un champ est rempli", "Il existe un champ qui n'est pas rempli"],
+    "choix": [
+      "Aucun champ n'est rempli",
+      "Tous les champs sont vides",
+      "Au moins un champ est rempli",
+      "Il existe un champ qui n'est pas rempli"
+    ],
     "reponse": 3,
-    "explication": "Nier « tous » donne « il en existe au moins un qui ne... pas ». Il suffit d'un seul champ vide pour que la phrase soit fausse."
+    "explication": "**Règle :** la négation de « pour tout $x$, $P(x)$ » est « il existe **au moins un** $x$ tel que **non** $P(x)$ ». Une négation est vraie exactement quand la phrase de départ est fausse.\n\n**Pas à pas :**\n\n1. « Tous les champs sont remplis » s'écrit $\\forall c,\\ \\text{rempli}(c)$.\n2. $\\forall$ devient $\\exists$ : « il existe un champ… »\n3. On nie « rempli » : « … qui n'est pas rempli ».\n\nRésultat : **« Il existe un champ qui n'est pas rempli »**. C'est logique : il suffit d'un seul champ vide pour que la phrase de départ soit fausse.\n\n**Les autres réponses :**\n\n- « Aucun champ n'est rempli » et « Tous les champs sont vides » disent la même chose, beaucoup trop forte. Avec un formulaire à moitié rempli, la phrase de départ est fausse, mais ces deux phrases aussi : ce ne sont donc pas des négations.\n- « Au moins un champ est rempli » change le quantificateur mais oublie de nier « rempli ». Elle est vraie pour un formulaire complètement rempli, en même temps que la phrase de départ.\n\n**À retenir :** « tous » se nie en « au moins un… ne… pas », jamais en « aucun »."
   },
   {
     "question": "Que vaut $\\sum_{k=1}^{20} k$ ?",
-    "choix": ["$200$", "$210$", "$400$", "$420$"],
+    "choix": [
+      "$200$",
+      "$210$",
+      "$400$",
+      "$420$"
+    ],
     "reponse": 1,
-    "explication": "$\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$, donc $\\frac{20 \\times 21}{2} = 210$."
+    "explication": "**Règle :** $\\displaystyle\\sum_{k=1}^{n} k = 1 + 2 + \\dots + n = \\frac{n(n+1)}{2}$.\n\n**Pas à pas :**\n\n1. La somme part de $k = 1$ et va jusqu'à 20 : $n = 20$.\n2. On remplace : $\\frac{20 \\times (20 + 1)}{2} = \\frac{20 \\times 21}{2}$.\n3. $20 \\times 21 = 420$, puis $\\frac{420}{2} = 210$.\n\nPourquoi la formule marche : on range les nombres par paires, $1 + 20 = 21$, $2 + 19 = 21$, …, $10 + 11 = 21$. Il y a 10 paires de 21, soit $210$.\n\n**Les autres réponses :**\n\n- 420 oublie de diviser par 2.\n- 200 vient de $\\frac{20 \\times 20}{2}$ : on a pris $n$ au lieu de $n + 1$.\n- 400 vaut $20 \\times 20$ : ni la bonne formule, ni la division.\n\n**À retenir :** repère $n$, puis calcule $\\frac{n(n+1)}{2}$ sans oublier le « $+1$ » ni la division par 2."
   },
   {
     "question": "Combien de termes contient la somme $\\sum_{k=4}^{15} a_k$ ?",
-    "choix": ["$11$", "$15$", "$12$", "$19$"],
+    "choix": [
+      "$11$",
+      "$15$",
+      "$12$",
+      "$19$"
+    ],
     "reponse": 2,
-    "explication": "De $k = p$ à $k = q$, il y a $q - p + 1$ termes : $15 - 4 + 1 = 12$."
+    "explication": "**Règle :** de $k = p$ à $k = q$, il y a $q - p + 1$ termes. On compte les **deux** bornes, d'où le $+1$.\n\n**Pas à pas :**\n\n1. Ici $p = 4$ et $q = 15$.\n2. $15 - 4 + 1 = 12$.\n3. Vérification en comptant : les termes sont $a_4, a_5, \\dots, a_{15}$. De $a_1$ à $a_{15}$ il y en aurait 15, on enlève $a_1, a_2, a_3$ (3 termes), il en reste $15 - 3 = 12$.\n\n**Les autres réponses :**\n\n- 11 vaut $15 - 4$ : on a oublié de compter une des deux bornes.\n- 15 fait comme si la somme partait de $k = 1$.\n- 19 vaut $15 + 4$ : on a additionné les bornes.\n\n**À retenir :** nombre de termes = borne du haut $-$ borne du bas $+ 1$."
   },
   {
     "question": "Que vaut $\\sum_{k=1}^{10} 7$ ?",
-    "choix": ["$70$", "$7$", "$385$", "$55$"],
+    "choix": [
+      "$70$",
+      "$7$",
+      "$385$",
+      "$55$"
+    ],
     "reponse": 0,
-    "explication": "On additionne 10 fois le nombre 7 : $\\sum_{k=1}^{n} c = n\\,c = 10 \\times 7 = 70$."
+    "explication": "**Règle :** quand le terme ne dépend pas de $k$, c'est une constante $c$ écrite **une fois par terme** : $\\displaystyle\\sum_{k=1}^{n} c = c + c + \\dots + c = n\\,c$.\n\n**Pas à pas :**\n\n1. Le terme vaut 7, quel que soit $k$ : il n'y a pas de $k$ dedans.\n2. De $k = 1$ à 10, il y a $10 - 1 + 1 = 10$ termes.\n3. $7 + 7 + \\dots + 7$ (10 fois) $= 10 \\times 7 = 70$.\n\n**Les autres réponses :**\n\n- 7 oublie qu'il y a 10 termes : le 7 n'est écrit qu'une fois.\n- 55 vaut $\\sum_{k=1}^{10} k = \\frac{10 \\times 11}{2}$ : on a additionné les $k$ au lieu des 7.\n- 385 vaut $\\sum_{k=1}^{10} k^2$ : la somme des carrés, sans rapport ici.\n\n**À retenir :** une constante seule dans une somme est multipliée par le nombre de termes."
   },
   {
     "question": "L'égalité $\\sum a_k b_k = \\left(\\sum a_k\\right)\\left(\\sum b_k\\right)$ est :",
-    "choix": ["toujours vraie", "vraie seulement si les $a_k$ sont positifs", "vraie seulement pour les sommes doubles", "fausse en général"],
+    "choix": [
+      "toujours vraie",
+      "vraie seulement si les $a_k$ sont positifs",
+      "vraie seulement pour les sommes doubles",
+      "fausse en général"
+    ],
     "reponse": 3,
-    "explication": "Contre-exemple : $1 \\times 1 + 2 \\times 2 = 5$ mais $(1 + 2)(1 + 2) = 9$. Seules l'addition et la multiplication par une constante passent à travers la somme."
+    "explication": "**Règle :** la somme est **linéaire** : on peut couper une somme ($\\sum (a_k + b_k) = \\sum a_k + \\sum b_k$) et sortir une **constante** ($\\sum c\\,a_k = c \\sum a_k$). Mais la somme d'un **produit** n'est pas le produit des sommes.\n\n**Pas à pas (contre-exemple) :** on prend $a_1 = b_1 = 1$ et $a_2 = b_2 = 2$.\n\n| Calcul | Valeur |\n|---|---|\n| $\\sum a_k b_k = 1 \\times 1 + 2 \\times 2$ | $1 + 4 = 5$ |\n| $\\left(\\sum a_k\\right)\\left(\\sum b_k\\right) = (1 + 2)(1 + 2)$ | $3 \\times 3 = 9$ |\n\n$5 \\neq 9$ : un seul contre-exemple suffit, l'égalité est **fausse en général**. Le produit des sommes contient en plus les termes croisés $a_1 b_2 + a_2 b_1 = 2 + 2 = 4$, d'où $5 + 4 = 9$.\n\n**Les autres réponses :**\n\n- « Toujours vraie » : le contre-exemple ci-dessus le contredit.\n- « Vraie seulement si les $a_k$ sont positifs » : dans le contre-exemple, tous les nombres sont positifs, et ça ne marche quand même pas.\n- « Vraie seulement pour les sommes doubles » : les sommes doubles n'ont rien à voir, la question porte sur une somme simple.\n\n**À retenir :** on coupe les sommes et on sort les constantes, mais on ne coupe jamais un produit $a_k b_k$."
   },
   {
     "question": "Dans $\\sum_{k=5}^{n+4} (k - 4)$, on pose $j = k - 4$. Quelles sont les nouvelles bornes ?",
-    "choix": ["De $j = 5$ à $j = n + 4$", "De $j = 1$ à $j = n$", "De $j = 0$ à $j = n$", "De $j = 1$ à $j = n + 4$"],
+    "choix": [
+      "De $j = 5$ à $j = n + 4$",
+      "De $j = 1$ à $j = n$",
+      "De $j = 0$ à $j = n$",
+      "De $j = 1$ à $j = n + 4$"
+    ],
     "reponse": 1,
-    "explication": "Quand $k = 5$, $j = 1$ ; quand $k = n + 4$, $j = n$. Les deux bornes se décalent de 4."
+    "explication": "**Règle :** dans un changement d'indice, on calcule la nouvelle variable pour la borne du bas **et** pour la borne du haut.\n\n**Pas à pas :** on utilise $j = k - 4$.\n\n| Borne | Valeur de $k$ | $j = k - 4$ |\n|---|---|---|\n| bas | 5 | $5 - 4 = 1$ |\n| haut | $n + 4$ | $n + 4 - 4 = n$ |\n\nLes nouvelles bornes vont **de $j = 1$ à $j = n$**. Le terme $k - 4$ devient simplement $j$, et la somme vaut $\\sum_{j=1}^{n} j$. Vérification du nombre de termes : $(n + 4) - 5 + 1 = n$ avant, $n - 1 + 1 = n$ après.\n\n**Les autres réponses :**\n\n- « De $j = 5$ à $j = n + 4$ » garde les anciennes bornes : on a changé de variable sans décaler.\n- « De $j = 0$ à $j = n$ » se trompe sur le bas ($5 - 4 = 1$, pas 0) et donnerait $n + 1$ termes.\n- « De $j = 1$ à $j = n + 4$ » ne décale que la borne du bas.\n\n**À retenir :** applique $j = k - 4$ aux deux bornes ; le nombre de termes ne doit pas changer."
   },
   {
     "question": "Que vaut la somme télescopique $\\sum_{k=1}^{n} (u_{k+1} - u_k)$ ?",
-    "choix": ["$u_n - u_1$", "$0$", "$u_{n+1} - u_1$", "$n\\,(u_{n+1} - u_1)$"],
+    "choix": [
+      "$u_n - u_1$",
+      "$0$",
+      "$u_{n+1} - u_1$",
+      "$n\\,(u_{n+1} - u_1)$"
+    ],
     "reponse": 2,
-    "explication": "Chaque $u_k$ du milieu apparaît une fois avec $+$ et une fois avec $-$ : il ne reste que le dernier, $u_{n+1}$, et le premier, $-u_1$."
+    "explication": "**Règle :** dans une somme télescopique, chaque terme est une différence de deux termes qui se suivent, et presque tout s'annule : $\\displaystyle\\sum_{k=1}^{n} (u_{k+1} - u_k) = u_{n+1} - u_1$.\n\n**Pas à pas :** on écrit les termes.\n\n$$(u_2 - u_1) + (u_3 - u_2) + (u_4 - u_3) + \\dots + (u_{n+1} - u_n)$$\n\n- $-u_1$ (premier terme) : rien ne l'annule, il reste.\n- $+u_2$ et $-u_2$ s'annulent, puis $+u_3$ et $-u_3$, et ainsi de suite jusqu'à $u_n$.\n- $+u_{n+1}$ (dernier terme) : rien ne l'annule, il reste.\n\nIl reste $u_{n+1} - u_1$. Petit test avec $u_k = k$ et $n = 3$ : $(2 - 1) + (3 - 2) + (4 - 3) = 3$, et $u_4 - u_1 = 4 - 1 = 3$.\n\n**Les autres réponses :**\n\n- $u_n - u_1$ s'arrête trop tôt : le dernier terme contient $u_{n+1}$, pas $u_n$ (et $u_n$ s'est annulé).\n- $0$ croit que **tout** s'annule, en oubliant le premier et le dernier.\n- $n\\,(u_{n+1} - u_1)$ multiplie par le nombre de termes, comme pour une constante, alors que les termes ne sont pas tous égaux.\n\n**À retenir :** télescopage = « le dernier moins le premier », $u_{n+1} - u_1$."
   },
   {
     "question": "Que vaut $\\prod_{k=1}^{4} k$ ?",
-    "choix": ["$10$", "$24$", "$16$", "$4$"],
+    "choix": [
+      "$10$",
+      "$24$",
+      "$16$",
+      "$4$"
+    ],
     "reponse": 1,
-    "explication": "$\\prod_{k=1}^{4} k = 1 \\times 2 \\times 3 \\times 4 = 4! = 24$."
+    "explication": "**Règle :** $\\Pi$ multiplie les termes, comme $\\Sigma$ les additionne : $\\displaystyle\\prod_{k=1}^{n} k = 1 \\times 2 \\times \\dots \\times n = n!$ (factorielle $n$).\n\n**Pas à pas :**\n\n1. On écrit les facteurs pour $k = 1, 2, 3, 4$ : $1 \\times 2 \\times 3 \\times 4$.\n2. $1 \\times 2 = 2$, puis $2 \\times 3 = 6$, puis $6 \\times 4 = 24$.\n3. Donc $\\prod_{k=1}^{4} k = 4! = 24$.\n\n**Les autres réponses :**\n\n- 10 vaut $1 + 2 + 3 + 4$ : c'est la **somme** $\\sum$, pas le produit.\n- 16 vaut $4 \\times 4$ : on a multiplié 4 par lui-même au lieu de multiplier $1 \\times 2 \\times 3 \\times 4$.\n- 4 ne garde que le dernier facteur.\n\n**À retenir :** $\\prod_{k=1}^{n} k = n!$, on multiplie tous les entiers de 1 à $n$."
   },
   {
     "question": "Quel mot-clé SQL applique une condition sur le **résultat** d'une somme ?",
-    "choix": ["`WHERE`", "`GROUP BY`", "`ORDER BY`", "`HAVING`"],
+    "choix": [
+      "`WHERE`",
+      "`GROUP BY`",
+      "`ORDER BY`",
+      "`HAVING`"
+    ],
     "reponse": 3,
-    "explication": "`WHERE` filtre les lignes **avant** l'agrégation ; `HAVING` filtre **après**, sur des valeurs comme `SUM(montant)`."
+    "explication": "**Règle :** SQL travaille dans cet ordre : `WHERE` filtre les **lignes**, puis `GROUP BY` forme les groupes et calcule les sommes, puis `HAVING` filtre les **groupes** à partir de leurs résultats (comme `SUM(montant)`).\n\n**Pas à pas :** dans `GROUP BY magasin HAVING SUM(montant) > 5000`, la somme de chaque magasin est d'abord calculée, puis `HAVING` garde les magasins dont la somme dépasse 5000. C'est bien une condition sur le **résultat** d'une somme : **`HAVING`**.\n\n**Les autres réponses :**\n\n- `WHERE` arrive **avant** les sommes : au moment où il s'applique, `SUM(montant)` n'existe pas encore. `WHERE SUM(montant) > 5000` est refusé par SQL.\n- `GROUP BY` forme les groupes mais ne filtre rien.\n- `ORDER BY` trie les lignes du résultat, il n'en enlève aucune.\n\n**À retenir :** condition sur une ligne = `WHERE` ; condition sur un total = `HAVING`."
   },
   {
     "question": "Une sous-requête qui recalcule `SUM(...)` sur toute la table pour **chacune** des $n$ lignes lit environ :",
-    "choix": ["$n$ lignes", "$n^2$ lignes", "$2n$ lignes", "$\\log n$ lignes"],
+    "choix": [
+      "$n$ lignes",
+      "$n^2$ lignes",
+      "$2n$ lignes",
+      "$\\log n$ lignes"
+    ],
     "reponse": 1,
-    "explication": "$n$ exécutions de $n$ lignes chacune : $n \\times n = n^2$. Un seul `GROUP BY` lit la table une fois ($n$ lignes)."
+    "explication": "**Règle :** le travail total = nombre d'exécutions $\\times$ lignes lues à chaque exécution. Une sous-requête relancée pour chaque ligne et qui relit toute la table fait une **somme double** : $n \\times n = n^2$.\n\n**Pas à pas :**\n\n1. La table a $n$ lignes, donc la sous-requête est exécutée $n$ fois (une par ligne).\n2. Chaque exécution recalcule `SUM(...)` sur toute la table : elle lit $n$ lignes.\n3. Total : $n \\times n = n^2$ lignes lues. Par exemple, avec $n = 1\\,000$ : $1\\,000\\,000$ lignes.\n\n**Les autres réponses :**\n\n- $n$ lignes : c'est le coût d'un seul `GROUP BY`, qui lit la table une fois.\n- $2n$ lignes : on a **additionné** les deux lectures au lieu de les multiplier.\n- $\\log n$ lignes : c'est le coût d'une recherche dans un index, rien à voir avec une somme refaite à chaque ligne.\n\n**À retenir :** une boucle de $n$ tours qui lit $n$ lignes à chaque tour coûte $n^2$ ; si $n$ est multiplié par 10, le coût l'est par 100."
   }
 ]

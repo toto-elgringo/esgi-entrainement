@@ -1,32 +1,57 @@
 [
   {
     "question": "Quel est le point commun des usages pompiers, police et livraisons ?",
-    "choix": ["Croiser des données de lieux pour optimiser des déplacements", "Dessiner des logos", "Stocker des mots de passe", "Compresser des fichiers"],
+    "choix": [
+      "Croiser des données de lieux pour optimiser des déplacements",
+      "Dessiner des logos",
+      "Stocker des mots de passe",
+      "Compresser des fichiers"
+    ],
     "reponse": 0,
-    "explication": "Routes, positions et adresses sont croisées pour mieux décider."
+    "explication": "**Règle :** un SIG sert à **croiser des données de lieux** (routes, positions, adresses) pour prendre une décision. Les exemples du cours (pompiers, police, livraisons) parlent tous de **déplacements** à organiser au mieux.\n\n**Pas à pas :** on regarde ce que fait chaque métier.\n\n| Métier | Données croisées | Décision |\n|---|---|---|\n| Pompiers | casernes, routes, adresse de l'appel | chemin le plus rapide |\n| Police | secteurs, rues, incidents | patrouilles optimisées |\n| Livraison | adresses, routes | tournée la plus courte |\n\nLes trois croisent des lieux avec un réseau pour optimiser des trajets.\n\n**Les autres réponses :** dessiner des logos relève du graphisme ; stocker des mots de passe relève de la sécurité informatique ; compresser des fichiers (comme avec 7-Zip) ne fait aucune analyse. Aucun ne dépend de la position des objets.\n\n**À retenir :** un SIG = croiser des lieux pour décider (souvent : comment se déplacer au mieux)."
   },
   {
     "question": "Qu'est-ce que le **recyclage urbain** ?",
-    "choix": ["Reconstruire sur des terrains déjà urbanisés", "Trier les déchets", "Supprimer des routes", "Recycler des cartes papier"],
+    "choix": [
+      "Reconstruire sur des terrains déjà urbanisés",
+      "Trier les déchets",
+      "Supprimer des routes",
+      "Recycler des cartes papier"
+    ],
     "reponse": 0,
-    "explication": "Il limite la consommation d'espaces agricoles et naturels."
+    "explication": "**Règle :** le **recyclage urbain** consiste à **reconstruire sur des terrains déjà urbanisés** (anciennes usines, friches, parkings) au lieu de construire sur des champs ou des forêts. Il limite la consommation d'espaces agricoles et naturels, un enjeu central d'un SCoT.\n\n**Pas à pas :** deux projets de logements.\n\n- Projet 1 : sur une ancienne usine. Le terrain était déjà construit : recyclage urbain.\n- Projet 2 : sur un champ en bordure de ville. Le terrain était naturel : c'est l'inverse, l'étalement urbain.\n\n**Les autres réponses :** trier les déchets est le recyclage au sens courant, pas en urbanisme (le mot est un piège) ; supprimer des routes n'est pas reconstruire ; recycler des cartes papier n'a rien à voir avec l'aménagement.\n\n**À retenir :** recyclage urbain = construire sur du déjà construit pour épargner la nature."
   },
   {
     "question": "Quelle donnée pour étudier l'évolution du bâti par rapport aux espaces naturels ?",
-    "choix": ["Le MOS", "Le réseau cyclable", "Les logements étudiants", "Une photo de la gare"],
+    "choix": [
+      "Le MOS",
+      "Le réseau cyclable",
+      "Les logements étudiants",
+      "Une photo de la gare"
+    ],
     "reponse": 0,
-    "explication": "Le MOS décrit l'occupation du sol sur 11 millésimes."
+    "explication": "**Règle :** le **MOS** (Mode d'occupation du sol) découpe l'Île-de-France en **surfaces** classées par usage (forêt, agricole, habitat, activités…), et il existe en **plusieurs millésimes** (éditions datées). Comparer deux millésimes montre ce qui a changé.\n\n**Pas à pas :**\n\n1. La question parle d'**évolution** : il faut une donnée qui existe à plusieurs dates.\n2. Elle compare le **bâti** et les **espaces naturels** : il faut une donnée qui classe chaque surface par usage.\n3. Le MOS remplit les deux conditions : on compare la surface « naturel » et la surface « bâti » d'un millésime à l'autre.\n\n**Les autres réponses :** le réseau cyclable est fait de lignes (des itinéraires), sans information sur les forêts ou le bâti ; les logements étudiants sont des points, ils ne disent rien des espaces naturels ; une photo de la gare n'est pas une donnée qu'on peut mesurer.\n\n**À retenir :** évolution des usages du sol en Île-de-France = comparer deux millésimes du MOS."
   },
   {
     "question": "Quelle est la première étape d'un projet SIG ?",
-    "choix": ["Poser la question à traiter", "Exporter la carte", "Choisir les couleurs", "Installer une extension"],
+    "choix": [
+      "Poser la question à traiter",
+      "Exporter la carte",
+      "Choisir les couleurs",
+      "Installer une extension"
+    ],
     "reponse": 0,
-    "explication": "La question détermine les données et les outils."
+    "explication": "**Règle :** un projet SIG suit cinq étapes : **poser la question**, trouver les données, préparer, analyser, présenter. La question vient en premier parce qu'elle décide de tout le reste.\n\n**Pas à pas :** avec la question « quelles écoles sont à moins de 500 m d'un parc ? »\n\n1. Elle dit quelles couches charger : écoles et parcs.\n2. Elle dit quel outil utiliser : « 500 m » appelle un tampon, puis une sélection par localisation.\n3. Elle dit quoi montrer sur la carte : les écoles sélectionnées.\n\nSans question, on ne sait ni quoi télécharger ni quoi calculer.\n\n**Les autres réponses :** exporter la carte est la toute dernière étape ; choisir les couleurs fait partie de la présentation, à la fin ; installer une extension (QuickOSM par exemple) ne sert que si la question demande des données qu'elle fournit.\n\n**À retenir :** écris d'abord ta question en une phrase : elle te donne les couches et les outils."
   },
   {
     "question": "Le réseau cyclable structurant est représenté par…",
-    "choix": ["des lignes", "des points", "des surfaces", "un tableau seul"],
+    "choix": [
+      "des lignes",
+      "des points",
+      "des surfaces",
+      "un tableau seul"
+    ],
     "reponse": 0,
-    "explication": "Un itinéraire est un tracé : une ligne."
+    "explication": "**Règle :** on choisit la géométrie d'après l'objet : une **zone** avec une aire est une **surface**, un **tracé** qu'on suit est une **ligne**, une simple **position** est un **point**.\n\n**Pas à pas :**\n\n1. Le réseau cyclable structurant est fait d'**itinéraires** : on roule d'un endroit à un autre en suivant un chemin.\n2. Ce qu'on mesure dessus est une **longueur** (des kilomètres de pistes), pas une aire.\n3. C'est donc un ensemble de **lignes**.\n\n**Les autres réponses :** des points ne montreraient que des emplacements isolés, sans le chemin entre eux ; des surfaces auraient une aire, ce qui n'a pas de sens pour une piste (on la mesure en km, pas en m²) ; un tableau seul n'aurait aucune forme sur la carte.\n\n**À retenir :** un itinéraire (route, piste, voie ferrée) = une ligne."
   }
 ]

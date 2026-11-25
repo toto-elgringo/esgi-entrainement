@@ -8,7 +8,7 @@
       "Il copie le thread"
     ],
     "reponse": 1,
-    "explication": "`join` bloque jusqu'à la fin du thread et renvoie un `Result` : `Ok(valeur)`, ou `Err` si le thread a paniqué."
+    "explication": "**Règle :** `thread::spawn` renvoie un `JoinHandle` (le « ticket » du thread). `handle.join()` **bloque** le thread courant jusqu'à la fin de ce thread, puis renvoie un `Result` : `Ok(valeur renvoyée par la closure)`, ou `Err` si le thread a paniqué.\n\n**Pas à pas :** avec `let h = thread::spawn(|| 2 + 3);` :\n\n1. `spawn` lance le calcul dans un nouveau thread et rend la main tout de suite.\n2. `h.join()` attend que le thread ait fini.\n3. Il rend `Ok(5)` ; `.unwrap()` donne `5`.\n\n**Les autres réponses :** « il arrête le thread » est faux, `join` n'interrompt rien, il **attend** la fin normale (Rust n'a pas de moyen d'arrêter un thread de force). « Il crée un nouveau thread » : c'est le rôle de `spawn`. « Il copie le thread » ne veut rien dire : un thread ne se copie pas.\n\n**À retenir :** `spawn` lance, `join` attend la fin et rend le résultat dans un `Result`."
   },
   {
     "question": "Pourquoi `thread::spawn` demande-t-il souvent une closure `move` ?",
@@ -19,7 +19,7 @@
       "Pour partager la mémoire sans règle"
     ],
     "reponse": 1,
-    "explication": "Le thread peut continuer après la fin de la fonction. Il ne peut donc pas emprunter ses variables locales : `move` lui en donne la propriété."
+    "explication": "**Règle :** un thread lancé par `thread::spawn` peut continuer à tourner **après** la fin de la fonction qui l'a créé. Il n'a donc pas le droit d'emprunter les variables locales de cette fonction (elles pourraient être détruites avant lui). `move` **déplace** ces variables dans la closure : le thread en devient propriétaire.\n\n**Pas à pas :** avec `let nom = String::from(\"Ada\"); thread::spawn(|| println!(\"{nom}\"));` :\n\n1. Sans `move`, la closure emprunte `nom`.\n2. Le compilateur ne sait pas si le thread finira avant que `nom` soit détruit : il refuse (« closure may outlive the current function »).\n3. Avec `move ||`, `nom` est donné au thread : plus de problème de durée de vie.\n\n**Les autres réponses :** `move` ne rend rien plus rapide, il change seulement **qui possède** les données. Il ne désactive aucune vérification du compilateur. Et il ne permet pas de « partager sans règle » : c'est l'inverse, chaque donnée a un seul propriétaire (pour partager, il faut `Arc`).\n\n**À retenir :** avec `thread::spawn`, le thread doit posséder ce qu'il utilise : `move`."
   },
   {
     "question": "Qu'est-ce qui rend `thread::scope` différent de `thread::spawn` ?",
@@ -30,7 +30,7 @@
       "Il ne marche qu'avec des canaux"
     ],
     "reponse": 1,
-    "explication": "Le bloc attend tous ses threads avant de se terminer. Les emprunts restent donc valides, sans `move` ni `Arc`."
+    "explication": "**Règle :** `thread::scope(|s| { ... })` attend **tous** les threads lancés avec `s.spawn` avant de se terminer. Comme ces threads ne peuvent pas survivre au bloc, ils ont le droit d'**emprunter** les variables locales.\n\n**Pas à pas :** avec `let v = vec![1, 2, 3];` :\n\n1. `thread::spawn(|| v.len())` est refusé sans `move` : le thread pourrait vivre plus longtemps que `v`.\n2. `thread::scope(|s| { s.spawn(|| v.len()); })` est accepté : le bloc ne se termine qu'après la fin du thread, donc `v` existe encore pendant toute la vie du thread.\n3. Après le bloc, `v` est toujours utilisable : il n'a été ni déplacé ni copié.\n\n**Les autres réponses :** `scope` n'est pas plus lent (il lance de vrais threads, comme `spawn`). « Il n'a pas besoin de compilateur » n'a pas de sens. Il marche avec n'importe quel code, pas seulement avec des canaux.\n\n**À retenir :** `scope` = threads attendus à la fin du bloc, donc ils peuvent emprunter sans `move` ni `Arc`."
   },
   {
     "question": "Que veut dire `mpsc` ?",
@@ -41,7 +41,7 @@
       "Multi-thread process scheduler"
     ],
     "reponse": 0,
-    "explication": "Plusieurs producteurs (on clone le `Sender`), un seul consommateur (un seul `Receiver`)."
+    "explication": "**Règle :** le module des canaux s'appelle `mpsc` pour **m**ultiple **p**roducers, **s**ingle **c**onsumer : plusieurs producteurs, un seul consommateur.\n\n**Pas à pas :** on le retrouve dans l'utilisation :\n\n- « multiple producers » : on peut cloner l'émetteur (`tx.clone()`) autant de fois qu'on veut, un par thread producteur.\n- « single consumer » : le récepteur `rx` ne se clone pas, un seul endroit lit les messages.\n\n**Les autres réponses :** « Mutex per shared channel », « Message passing safe channel » et « Multi-thread process scheduler » sont inventés : un canal ne contient pas de `Mutex` à manipuler, et ce n'est pas un ordonnanceur de processus.\n\n**À retenir :** `mpsc` = plusieurs `Sender` (clonés), un seul `Receiver`."
   },
   {
     "question": "Pourquoi `for m in rx` peut-il ne jamais se terminer ?",
@@ -52,7 +52,7 @@
       "`for` ne marche pas avec les canaux"
     ],
     "reponse": 1,
-    "explication": "Le canal se ferme quand tous les `Sender` sont détruits. Il faut penser à faire `drop(tx)` sur l'émetteur d'origine."
+    "explication": "**Règle :** `for m in rx` (ou `rx.iter()`) lit les messages **jusqu'à la fermeture** du canal. Le canal se ferme seulement quand **tous** les émetteurs (`Sender`) sont détruits et qu'il est vide.\n\n**Pas à pas :** on compte les émetteurs vivants.\n\n| Moment | Émetteurs vivants |\n|---|---|\n| `let (tx, rx) = mpsc::channel();` | 1 (dans `main`) |\n| 2 threads reçoivent chacun un `tx.clone()` | 3 |\n| les 2 threads finissent | 1 (celui de `main`) |\n\nIl reste un émetteur, donc le canal n'est pas fermé : la boucle attend un message qui ne viendra jamais. `drop(tx)` dans `main` fait tomber le compte à 0 et la boucle s'arrête.\n\n**Les autres réponses :** le `Receiver` n'est pas « cassé », il fait exactement son travail (attendre). `join` n'y change rien : on peut attendre les threads, l'émetteur de `main` est toujours là. Et `for` marche très bien avec un canal.\n\n**À retenir :** un canal reste ouvert tant qu'un `Sender` existe : pense à `drop(tx)` sur l'original."
   },
   {
     "question": "Quel type permet de partager un `Mutex` entre plusieurs threads ?",
@@ -63,7 +63,7 @@
       "`&mut Mutex<T>`"
     ],
     "reponse": 2,
-    "explication": "`Arc` est un compteur de références atomique, sûr entre threads. `Rc` n'est pas `Send` et le compilateur le refuse."
+    "explication": "**Règle :** pour partager une donnée entre threads, chaque thread doit en être **propriétaire**, et le compteur de propriétaires doit être sûr entre threads. C'est le rôle d'`Arc` (Atomic Reference Counted) : `Arc::clone` ajoute un propriétaire avec un compteur atomique.\n\n**Pas à pas :**\n\n1. `let c = Arc::new(Mutex::new(0));`\n2. Pour chaque thread : `let c = Arc::clone(&c);` puis `thread::spawn(move || ...)`.\n3. Chaque thread a son `Arc`, tous pointent vers le même `Mutex`, et `lock()` fait passer les threads un par un.\n\n**Les autres réponses :**\n\n- `Rc<Mutex<T>>` : le compteur de `Rc` n'est pas atomique, `Rc` n'est pas `Send` et `thread::spawn` le refuse à la compilation.\n- `Box<Mutex<T>>` : une `Box` a **un seul** propriétaire, on ne peut pas la donner à plusieurs threads.\n- `&mut Mutex<T>` : une référence mutable est unique (un seul `&mut` à la fois), et avec `thread::spawn` le thread ne peut pas emprunter une variable locale.\n\n**À retenir :** partager entre threads = `Arc` ; partager **et** modifier = `Arc<Mutex<T>>`."
   },
   {
     "question": "Quand le verrou d'un `Mutex` est-il libéré ?",
@@ -74,7 +74,7 @@
       "Au prochain `lock()`"
     ],
     "reponse": 1,
-    "explication": "Il n'y a pas de méthode `unlock` : le garde (`MutexGuard`) libère le verrou en sortant de sa portée ou avec `drop`."
+    "explication": "**Règle :** `lock()` renvoie un **garde** (`MutexGuard`). Le verrou reste pris tant que le garde existe, et il est relâché **automatiquement** quand le garde est détruit : à la fin de son bloc, ou plus tôt avec `drop(garde)`.\n\n**Pas à pas :**\n\n```text\n{\n    let mut g = m.lock().unwrap();   // verrou pris\n    *g += 1;\n}                                    // g détruit : verrou relâché\n```\n\nAvec `*m.lock().unwrap() += 1;` sur une seule ligne, le garde est un temporaire détruit à la fin de la ligne : le verrou est relâché tout de suite.\n\n**Les autres réponses :** il n'y a pas de méthode `unlock()` en Rust stable (c'est justement le garde qui s'en charge, on ne peut pas oublier). Attendre la fin du programme bloquerait tous les autres threads. Et le prochain `lock()` ne libère rien : si le garde existe encore, il **attend** (et se bloque pour toujours si c'est le même thread).\n\n**À retenir :** le verrou vit aussi longtemps que le garde ; ferme son bloc ou fais `drop` pour le relâcher."
   },
   {
     "question": "Dans quel cas un `RwLock` est-il plus intéressant qu'un `Mutex` ?",
@@ -85,7 +85,7 @@
       "Quand on écrit tout le temps"
     ],
     "reponse": 0,
-    "explication": "`RwLock` laisse plusieurs lecteurs travailler en même temps. Un `Mutex` les ferait passer un par un."
+    "explication": "**Règle :** un `RwLock` accepte **plusieurs lecteurs en même temps** (`read()`) ou **un seul écrivain** (`write()`). Un `Mutex` ne laisse passer qu'un thread à la fois, même pour lire.\n\n**Pas à pas :** 8 threads lisent une configuration, un thread la change de temps en temps.\n\n| Outil | 8 lectures en même temps ? | Écriture |\n|---|---|---|\n| `Mutex` | non, une par une | seule |\n| `RwLock` | oui, toutes ensemble | seule, attend la fin des lectures |\n\nAvec beaucoup de lectures, le `RwLock` évite que les lecteurs fassent la queue.\n\n**Les autres réponses :** avec un seul thread, aucun verrou n'est utile. Un `RwLock` ne dispense pas d'`Arc` : pour le partager entre threads lancés par `spawn`, il faut `Arc<RwLock<T>>`. Et si on écrit tout le temps, chaque `write()` est seul de toute façon : le `RwLock` n'apporte rien par rapport au `Mutex`.\n\n**À retenir :** beaucoup de lectures, peu d'écritures → `RwLock` ; sinon un `Mutex` suffit."
   },
   {
     "question": "Quelle opération est correcte pour incrémenter un `AtomicUsize` depuis plusieurs threads ?",
@@ -96,7 +96,7 @@
       "`*x += 1`"
     ],
     "reponse": 1,
-    "explication": "`fetch_add` fait la lecture et l'écriture en une seule opération indivisible. Lire puis écrire séparément peut perdre des incréments."
+    "explication": "**Règle :** `fetch_add(n, ordre)` lit, ajoute `n` et écrit **en une seule opération indivisible** : aucun autre thread ne peut passer au milieu.\n\n**Pas à pas : pourquoi `load` puis `store` perd des incréments.** `x` vaut 5, deux threads font `x.store(x.load(..) + 1, ..)` :\n\n| Moment | Thread A | Thread B | `x` |\n|---|---|---|---|\n| 1 | `load` → 5 | | 5 |\n| 2 | | `load` → 5 | 5 |\n| 3 | `store(6)` | | 6 |\n| 4 | | `store(6)` | 6 |\n\nDeux incréments, mais `x` vaut 6 au lieu de 7. Avec `fetch_add(1, ..)`, chaque ajout est entier : 5 → 6 → 7.\n\n**Les autres réponses :** `x += 1` et `*x += 1` ne compilent pas : un atomique n'a pas d'opérateur `+=`, et on ne le modifie qu'avec ses méthodes (`fetch_add`, `store`…). La version `load` + `store` compile mais est fausse, comme le montre le tableau.\n\n**À retenir :** pour incrémenter un atomique partagé, toujours `fetch_add`, jamais `load` puis `store`."
   },
   {
     "question": "Quelle est la meilleure façon d'éviter un interblocage entre deux `Mutex` ?",
@@ -107,7 +107,7 @@
       "Utiliser `unwrap` partout"
     ],
     "reponse": 1,
-    "explication": "Si tous les threads prennent les verrous dans le même ordre, aucun cycle d'attente ne peut se former."
+    "explication": "**Règle :** un interblocage est un **cycle d'attente** : A attend un verrou tenu par B, et B attend un verrou tenu par A. Si **tous** les threads prennent les verrous dans le **même ordre**, ce cycle ne peut pas se former.\n\n**Pas à pas :** verrous 1 et 2, règle « toujours 1 avant 2 ».\n\n1. A prend le verrou 1.\n2. B veut le verrou 1 aussi (même ordre) : il attend, **sans tenir** le verrou 2.\n3. A prend le verrou 2 (libre), fait son travail, relâche les deux.\n4. B obtient le verrou 1 puis le 2. Tout le monde avance.\n\nSans la règle, B aurait pu prendre le verrou 2 pendant que A tenait le 1 : chacun attend l'autre pour toujours.\n\n**Les autres réponses :** un `sleep` rend le blocage plus rare, mais pas impossible (et ralentit tout). Prendre les verrous au hasard, c'est justement ce qui crée des ordres différents, donc des cycles. `unwrap` gère seulement l'erreur d'empoisonnement, il n'empêche aucune attente.\n\n**À retenir :** même ordre de verrouillage pour tout le monde (par exemple numéro croissant) = pas d'interblocage."
   },
   {
     "question": "Que fait `tx.send(v)` sur un canal créé avec `mpsc::sync_channel(2)` quand 2 messages attendent déjà ?",
@@ -118,7 +118,7 @@
       "Il renvoie toujours une erreur"
     ],
     "reponse": 1,
-    "explication": "Un canal borné garde au plus `n` messages : quand il est plein, `send` attend. Un producteur trop rapide est freiné et la mémoire ne déborde pas."
+    "explication": "**Règle :** `mpsc::sync_channel(n)` crée un canal **borné** : au plus `n` messages en attente. Quand la file est pleine, `send` **attend** que le consommateur retire un message.\n\n**Pas à pas :** avec `sync_channel(2)` :\n\n| Action | File | Résultat |\n|---|---|---|\n| `send(a)` | `[a]` | continue |\n| `send(b)` | `[a, b]` | continue (pleine) |\n| `send(c)` | `[a, b]` | **attend** |\n| le consommateur fait `recv()` → `a` | `[b]` | `c` entre : `[b, c]` |\n\nAucun message n'est perdu : le producteur est seulement freiné.\n\n**Les autres réponses :** le message n'est jamais perdu, il attend sa place. La file ne s'agrandit pas toute seule (c'est tout l'intérêt de la borne, sinon on aurait `mpsc::channel`). `send` ne renvoie une erreur que si le récepteur a été détruit, pas parce que la file est pleine.\n\n**À retenir :** canal borné plein → `send` attend ; ça protège la mémoire sans rien perdre."
   },
   {
     "question": "Avec rayon, que change `par_iter()` à la place de `iter()` dans `liste.iter().map(f).collect()` ?",
@@ -129,6 +129,6 @@
       "Il faut entourer la liste d'un `Mutex`"
     ],
     "reponse": 1,
-    "explication": "rayon découpe le travail entre les cœurs puis `collect` remet les morceaux dans l'ordre : même résultat, plus vite pour un calcul lourd."
+    "explication": "**Règle :** `par_iter()` de rayon découpe la liste en morceaux, les traite sur plusieurs cœurs, puis `collect` **remet les résultats dans l'ordre** de départ. Le résultat est identique à la version `iter()`.\n\n**Pas à pas :** `liste = [1, 2, 3, 4]`, `f = |x| x * 10`.\n\n1. `iter().map(f).collect()` donne `[10, 20, 30, 40]`, un élément après l'autre.\n2. `par_iter().map(f).collect()` peut calculer `30` et `40` sur un cœur pendant que `10` et `20` sont calculés sur un autre.\n3. `collect` range chaque résultat à la place de son élément : `[10, 20, 30, 40]`, exactement pareil.\n\n**Les autres réponses :** l'ordre n'est **pas** aléatoire, `collect` le garde. Ce n'est pas de l'asynchrone (`async`) : ce sont des threads qui calculent en parallèle. Pas besoin de `Mutex` autour de la liste : chaque élément est lu sans être modifié, et rayon vérifie avec `Send` / `Sync` que c'est sûr.\n\n**À retenir :** `par_iter()` = même résultat, même ordre, réparti sur les cœurs (utile pour un calcul lourd)."
   }
 ]

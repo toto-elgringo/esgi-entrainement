@@ -1,9 +1,14 @@
 [
   {
     "question": "Que renvoie `\"a  b c\".split(' ').count()` ?",
-    "choix": ["`3`", "`4`", "`2`", "`5`"],
+    "choix": [
+      "`3`",
+      "`4`",
+      "`2`",
+      "`5`"
+    ],
     "reponse": 1,
-    "explication": "Les deux espaces qui se suivent créent un morceau vide : `[\"a\", \"\", \"b\", \"c\"]`. `split_whitespace()` aurait donné 3."
+    "explication": "**Règle :** `split(' ')` coupe le texte à **chaque** espace. Entre deux espaces collés, il n'y a rien : on obtient un morceau **vide** `\"\"`, qui compte quand même. `split_whitespace()`, lui, traite plusieurs espaces de suite comme un seul séparateur.\n\n**Pas à pas :** le texte est `a`, espace, espace, `b`, espace, `c`.\n1. Avant le premier espace : `\"a\"`.\n2. Entre les deux espaces collés : `\"\"` (morceau vide).\n3. Entre le deuxième espace et le troisième : `\"b\"`.\n4. Après le dernier espace : `\"c\"`.\n\nOn obtient `[\"a\", \"\", \"b\", \"c\"]` : **4** morceaux.\n\n**Les autres réponses :** `3` est le résultat de `split_whitespace()` (ou de quelqu'un qui oublie le morceau vide). `2` et `5` ne correspondent à aucun découpage : il y a 3 espaces, donc 3 coupures et 4 morceaux.\n\n**À retenir :** `split(' ')` donne `nombre d'espaces + 1` morceaux, vides compris ; pour des colonnes alignées, utilise `split_whitespace()`."
   },
   {
     "question": "Ton entrée a été copiée depuis Windows (`\\r\\n`). Pourquoi `texte.split(\"\\n\\n\")` ne trouve-t-il aucun bloc ?",
@@ -14,19 +19,29 @@
       "Parce que `lines()` doit être appelé avant"
     ],
     "reponse": 1,
-    "explication": "Entre les deux `\\n` il y a un `\\r`. On remplace d'abord : `texte.replace(\"\\r\\n\", \"\\n\")`."
+    "explication": "**Règle :** sous Windows, une fin de ligne s'écrit `\\r\\n` (deux caractères). Une ligne vide entre deux blocs s'écrit donc `\\r\\n\\r\\n` : entre les deux `\\n`, il y a un `\\r`.\n\n**Pas à pas :** le texte `1\\r\\n2\\r\\n\\r\\n3` contient `\\n\\r\\n` à l'endroit de la ligne vide, mais jamais `\\n\\n` collés. `split(\"\\n\\n\")` ne trouve aucune coupure et renvoie le texte entier comme **un seul** morceau. La correction : `let texte = entree.replace(\"\\r\\n\", \"\\n\");` d'abord, puis `texte.split(\"\\n\\n\")`.\n\n**Les autres réponses :** `split` marche très bien sur un `String` (il passe par `&str`). `split('\\n\\n')` ne compile même pas : entre apostrophes, on écrit **un seul** caractère, et `\\n\\n` en fait deux. Appeler `lines()` avant ferait perdre les lignes vides qui séparent justement les blocs.\n\n**À retenir :** avant de découper sur `\"\\n\\n\"`, remplace `\"\\r\\n\"` par `\"\\n\"`."
   },
   {
     "question": "Quelle structure choisir pour savoir rapidement si une position a **déjà été visitée** ?",
-    "choix": ["`Vec<(i32, i32)>`", "`HashSet<(i32, i32)>`", "`VecDeque<(i32, i32)>`", "`BinaryHeap<(i32, i32)>`"],
+    "choix": [
+      "`Vec<(i32, i32)>`",
+      "`HashSet<(i32, i32)>`",
+      "`VecDeque<(i32, i32)>`",
+      "`BinaryHeap<(i32, i32)>`"
+    ],
     "reponse": 1,
-    "explication": "`HashSet::contains` est quasi instantané. Chercher dans un `Vec` oblige à parcourir toute la liste."
+    "explication": "**Règle :** `HashSet::contains` répond en un temps quasi constant, quelle que soit la taille de l'ensemble, et l'ensemble ne garde chaque élément qu'une fois. C'est la structure faite pour « déjà vu ? ».\n\n**Pas à pas :** dans un parcours, on fait à chaque case `if visitees.contains(&position) { … }` puis `visitees.insert(position)`. Avec 100 000 positions déjà vues :\n- `HashSet` : une seule vérification rapide par question ;\n- `Vec` : `contains` parcourt la liste, jusqu'à 100 000 comparaisons à **chaque** question.\n\n**Les autres réponses :** `Vec<(i32, i32)>` marche, mais devient très lent quand la liste grandit, et garde les doublons. `VecDeque` est une file (on ajoute à un bout, on retire à l'autre) : elle sert au BFS, pas à chercher un élément. `BinaryHeap` sert à sortir toujours le plus grand élément : aucune recherche rapide.\n\n**À retenir :** « est-ce que j'ai déjà vu ça ? » → `HashSet`."
   },
   {
     "question": "Que vaut `0usize.checked_add_signed(-1)` ?",
-    "choix": ["`-1`", "`Some(usize::MAX)`", "`None`", "Le programme panique"],
+    "choix": [
+      "`-1`",
+      "`Some(usize::MAX)`",
+      "`None`",
+      "Le programme panique"
+    ],
     "reponse": 2,
-    "explication": "Un `usize` ne peut pas être négatif : `checked_add_signed` renvoie `None` au lieu de paniquer. Pratique pour les bords d'une grille."
+    "explication": "**Règle :** `x.checked_add_signed(d)` ajoute un nombre signé `d` à un `usize` `x`. Si le résultat tient dans un `usize`, on obtient `Some(résultat)` ; sinon (en dessous de 0 ou au-dessus du maximum), on obtient `None`, sans paniquer.\n\n**Pas à pas :** `0 + (-1)` vaut `-1`. Un `usize` ne peut pas être négatif : le résultat ne tient pas, donc **`None`**. Dans une grille, c'est exactement le cas « sortir par le haut ou par la gauche », que le `?` élimine : `let l = ligne.checked_add_signed(dl)?;`.\n\n**Les autres réponses :** `-1` n'est pas un `usize` possible. `Some(usize::MAX)` est ce que donnerait `0usize.wrapping_sub(1)` (qui « fait le tour »), mais sans le `Some`. Une panique, c'est ce que ferait `0usize - 1` en mode debug, justement ce que `checked_…` évite.\n\n**À retenir :** `checked_…` renvoie `None` au lieu de déborder ; `wrapping_…` fait le tour ; l'opérateur simple panique en debug."
   },
   {
     "question": "Pour trouver le chemin le plus court dans un labyrinthe où **chaque pas coûte 1**, on utilise :",
@@ -37,7 +52,7 @@
       "Un `BinaryHeap` obligatoirement"
     ],
     "reponse": 0,
-    "explication": "Le BFS explore les cases par distance croissante : la première fois qu'il atteint l'arrivée, c'est par le plus court chemin. Essayer tous les chemins exploserait."
+    "explication": "**Règle :** quand chaque pas coûte 1, le **parcours en largeur** (BFS) trouve le plus court chemin. Il range les cases à visiter dans une file (`VecDeque` : on retire au début, on ajoute à la fin), donc il traite toutes les cases à distance 1, puis toutes celles à distance 2, etc.\n\n**Pas à pas :**\n1. On met le départ dans la file, à distance 0.\n2. On retire la première case de la file, on ajoute à la fin ses voisins jamais atteints, avec la distance + 1.\n3. On recommence. La première fois qu'on retire l'arrivée, sa distance est la plus petite possible, car toutes les cases plus proches sont sorties avant.\n\n**Les autres réponses :** trier les cases par distance suppose de connaître déjà les distances, ce qui est justement la question. Une récursion qui essaie **tous** les chemins explose : leur nombre grandit exponentiellement avec la taille du labyrinthe. Un `BinaryHeap` (Dijkstra) marche aussi, mais il n'est **pas obligatoire** quand tous les pas coûtent pareil : la file simple suffit et elle est plus rapide.\n\n**À retenir :** pas de coût 1 → BFS avec une `VecDeque` ; coûts différents → Dijkstra avec un `BinaryHeap`."
   },
   {
     "question": "Pourquoi Dijkstra met-il les coûts dans `Reverse(...)` avant de les ranger dans un `BinaryHeap` ?",
@@ -48,19 +63,29 @@
       "Pour éviter les débordements"
     ],
     "reponse": 2,
-    "explication": "`Reverse` inverse la comparaison : le plus petit coût devient « le plus grand » pour le tas, qui le sort en premier."
+    "explication": "**Règle :** un `BinaryHeap` sort toujours le **plus grand** élément. Dijkstra veut traiter d'abord la case au coût **le plus petit**. `std::cmp::Reverse(x)` enveloppe une valeur et **inverse** sa comparaison : `Reverse(3) > Reverse(5)`.\n\n**Pas à pas :** dans le tas, on met `Reverse((4, case_a))` et `Reverse((9, case_b))`. Pour le tas, `Reverse((4, …))` est « plus grand » que `Reverse((9, …))`, puisque 4 < 9 et que `Reverse` inverse. `pop()` sort donc d'abord le coût 4 : la case la moins chère, comme le veut Dijkstra.\n\n**Les autres réponses :** `Reverse` ne parcourt pas la grille à l'envers : il ne change que l'ordre de comparaison. `BinaryHeap` sait très bien ranger des nombres (et tout ce qui implémente `Ord`). Et `Reverse` n'a aucun rapport avec les débordements : la valeur rangée est la même.\n\n**À retenir :** `BinaryHeap` + `Reverse` = une file qui sort toujours le plus petit."
   },
   {
     "question": "Une population double chaque jour. Combien d'individus après 60 jours, en partant d'un seul ?",
-    "choix": ["Environ 120", "Environ 3 600", "Environ un million", "Plus d'un milliard de milliards"],
+    "choix": [
+      "Environ 120",
+      "Environ 3 600",
+      "Environ un million",
+      "Plus d'un milliard de milliards"
+    ],
     "reponse": 3,
-    "explication": "2^60 ≈ 1,15 × 10^18. Impossible de garder chaque individu : on compte combien il y en a de chaque sorte."
+    "explication": "**Règle :** une population qui **double** chaque jour à partir d'un individu en compte 2ⁿ après n jours. Repère utile : 2¹⁰ = 1 024 ≈ mille.\n\n**Pas à pas :**\n- 2¹⁰ ≈ mille (10³) ;\n- 2²⁰ ≈ un million (10⁶) ;\n- 2³⁰ ≈ un milliard (10⁹) ;\n- 2⁶⁰ = (2³⁰)² ≈ un milliard de milliards (10¹⁸). Plus précisément, 2⁶⁰ ≈ 1,15 × 10¹⁸.\n\nC'est donc **plus d'un milliard de milliards**.\n\n**Les autres réponses :** « environ 120 » calcule 2 × 60 : c'est une croissance qui **ajoute** 2 chaque jour, pas qui double. « Environ 3 600 » calcule 60 × 60. « Environ un million », c'est 2²⁰, seulement 20 jours de doublement.\n\n**À retenir :** 10 doublements ≈ × 1 000 ; une telle croissance oblige à compter les individus par état au lieu de les stocker un par un."
   },
   {
     "question": "Ta réponse vaut environ 5 milliards. Quel type choisir ?",
-    "choix": ["`u32`", "`i32`", "`u64`", "`u8`"],
+    "choix": [
+      "`u32`",
+      "`i32`",
+      "`u64`",
+      "`u8`"
+    ],
     "reponse": 2,
-    "explication": "Un `u32` s'arrête à environ 4,29 milliards et un `i32` à 2,1 milliards. En debug, un débordement fait paniquer le programme."
+    "explication": "**Règle :** chaque type entier a une valeur maximale : `u8` 255 ; `i32` environ 2,1 milliards ; `u32` environ 4,29 milliards ; `u64` environ 1,8 × 10¹⁹. En mode debug, dépasser le maximum fait **paniquer** le programme.\n\n**Pas à pas :** 5 milliards = 5 000 000 000.\n- `u8` : 255 maximum, beaucoup trop petit.\n- `i32` : 2 147 483 647 maximum, trop petit.\n- `u32` : 4 294 967 295 maximum, encore trop petit (de peu !).\n- `u64` : 18 446 744 073 709 551 615 maximum, largement assez.\n\n**Les autres réponses :** `u32` est le piège : on pense « 4 milliards, c'est presque 5 », mais il manque environ 700 millions. `i32` et `u8` sont encore plus petits.\n\n**À retenir :** dans l'Advent of Code, prends `u64` (ou `i64` si des négatifs sont possibles) par défaut pour les réponses."
   },
   {
     "question": "Qu'est-ce que la **mémoïsation** ?",
@@ -71,13 +96,18 @@
       "Lire toute l'entrée en mémoire d'un coup"
     ],
     "reponse": 1,
-    "explication": "On range chaque résultat dans un cache (souvent une `HashMap`) : un même sous-calcul n'est fait qu'une fois."
+    "explication": "**Règle :** la **mémoïsation**, c'est retenir (mémoriser) le résultat d'un calcul déjà fait, pour le relire au lieu de le refaire. On range les résultats dans un **cache**, souvent une `HashMap` : la clé est la question (les paramètres), la valeur est la réponse.\n\n**Pas à pas :** dans `facons(n) = facons(n - 1) + facons(n - 2)`, sans cache, `facons(2)` est recalculé des milliers de fois. Avec un cache :\n1. avant de calculer, on regarde `cache.get(&n)` : si la réponse y est, on la renvoie ;\n2. sinon, on calcule, puis `cache.insert(n, resultat)`.\n\nChaque `facons(k)` n'est alors calculé qu'**une** fois : `facons(80)` passe de milliards de milliards d'appels à environ 80.\n\n**Les autres réponses :** écrire dans un fichier n'est pas le principe (le cache reste en mémoire). « Libérer la mémoire » dit presque l'inverse : on **garde** des résultats. Lire toute l'entrée d'un coup n'a rien à voir avec le fait d'éviter les calculs répétés.\n\n**À retenir :** une récursion qui retombe sur les mêmes questions → un cache `HashMap<question, réponse>`."
   },
   {
     "question": "Les intervalles `(2, 4)` et `(4, 7)` (bornes comprises) se chevauchent-ils ?",
-    "choix": ["Oui, ils partagent le 4", "Non, ils se touchent seulement", "Ça dépend de l'ordre", "Non, car 4 < 7"],
+    "choix": [
+      "Oui, ils partagent le 4",
+      "Non, ils se touchent seulement",
+      "Ça dépend de l'ordre",
+      "Non, car 4 < 7"
+    ],
     "reponse": 0,
-    "explication": "Avec des bornes comprises, la condition `a.0 <= b.1 && b.0 <= a.1` est vraie : 2 ≤ 7 et 4 ≤ 4. Le nombre 4 est dans les deux."
+    "explication": "**Règle :** avec des bornes comprises, deux intervalles `a` et `b` se chevauchent s'ils ont au moins un nombre en commun, c'est-à-dire si `a.0 <= b.1` **et** `b.0 <= a.1` (chacun commence avant ou au moment où l'autre finit).\n\n**Pas à pas :** `a = (2, 4)` et `b = (4, 7)`.\n- `a.0 <= b.1` : `2 <= 7`, vrai.\n- `b.0 <= a.1` : `4 <= 4`, vrai (le `<=` compte l'égalité).\n\nLes deux conditions sont vraies : **oui**, ils se chevauchent. Vérification directe : `(2, 4)` contient 2, 3, 4 et `(4, 7)` contient 4, 5, 6, 7 ; le 4 est dans les deux.\n\n**Les autres réponses :** « ils se touchent seulement » serait vrai avec une fin **exclue** (`2..4` et `4..7`), mais ici les bornes sont comprises. « Ça dépend de l'ordre » : la condition est symétrique, échanger `a` et `b` donne la même réponse. « Non, car 4 < 7 » ne regarde qu'une seule comparaison, qui ne suffit pas à décider.\n\n**À retenir :** bornes comprises → chevauchement = `a.0 <= b.1 && b.0 <= a.1`, avec des `<=`."
   },
   {
     "question": "Ton programme passe l'exemple mais donne une mauvaise réponse sur ta vraie entrée. Le plus probable ?",
@@ -88,12 +118,17 @@
       "L'exemple est faux"
     ],
     "reponse": 1,
-    "explication": "L'exemple est petit et ne montre pas tout. Relis l'énoncé mot par mot et cherche ce que ta vraie entrée contient de différent."
+    "explication": "**Règle :** l'exemple d'une énigme est petit et ne montre pas tous les cas. Quand il passe mais que la vraie entrée donne une mauvaise réponse, la cause est presque toujours un cas que l'exemple ne contient pas.\n\n**Pas à pas :** compare l'exemple et ta vraie entrée :\n1. Des **nombres à plusieurs chiffres** alors que l'exemple n'en avait qu'un ? (lecture caractère par caractère qui coupe `12` en `1` et `2`)\n2. Des **négatifs** ? (`parse::<u32>()` échoue sur `-5`)\n3. Des résultats énormes ? (**débordement** d'un `u32`)\n4. Une **ligne vide** à la fin, des espaces multiples ?\n5. Un mot de l'énoncé mal lu ? Relis-le mot par mot, puis affiche les étapes de ton programme sur une petite partie de ta vraie entrée.\n\n**Les autres réponses :** le site et l'exemple ont été vérifiés par des milliers de joueurs : l'erreur est presque toujours dans le code. Compiler en release accélère le programme, mais ne change pas sa réponse (sauf débordement, qui ne panique plus et donne alors un résultat faux sans prévenir).\n\n**À retenir :** exemple bon, vraie entrée fausse → cherche ce que la vraie entrée a de **différent**."
   },
   {
     "question": "Une double boucle sur 100 000 éléments (chaque élément comparé à tous les autres) fait environ combien d'opérations ?",
-    "choix": ["200 000", "100 millions", "10 milliards", "1 million"],
+    "choix": [
+      "200 000",
+      "100 millions",
+      "10 milliards",
+      "1 million"
+    ],
     "reponse": 2,
-    "explication": "100 000 × 100 000 = 10^10. Bien trop long : il faut une meilleure méthode (tri, `HashMap`, intervalles…)."
+    "explication": "**Règle :** si chaque élément est comparé à tous les autres, le nombre d'opérations est à peu près `n × n` (deux boucles imbriquées de `n` tours chacune).\n\n**Pas à pas :**\n- `n = 100 000 = 10⁵` ;\n- `n × n = 10⁵ × 10⁵ = 10¹⁰` = **10 milliards**.\n\nÀ environ 100 millions d'opérations par seconde (et bien moins en debug), il faudrait plus d'une minute et demie, alors que l'exercice est coupé au bout de 10 secondes.\n\n**Les autres réponses :** `200 000` est `n + n` (deux boucles l'une **après** l'autre, pas l'une **dans** l'autre). `100 millions` (10⁸) correspond à `n = 10 000`. `1 million` (10⁶) correspond à `n = 1 000`.\n\n**À retenir :** deux boucles imbriquées sur `n` éléments ≈ `n²` opérations ; au-delà de quelques dizaines de milliers d'éléments, cherche une autre méthode (tri, `HashMap`, `HashSet`, intervalles)."
   }
 ]

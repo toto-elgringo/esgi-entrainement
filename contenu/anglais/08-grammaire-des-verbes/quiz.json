@@ -8,7 +8,7 @@
       "have been seeing"
     ],
     "reponse": 1,
-    "explication": "*Five minutes ago* est une date précise et terminée : prétérit."
+    "explication": "**Règle :** *ago* (il y a) donne une **date passée et terminée** : on utilise le **prétérit** (past simple). Le present perfect est interdit avec une date finie.\n\n**Pas à pas :**\n1. Mot-repère : *five minutes ago* = il y a cinq minutes, un moment précis et fini.\n2. Moment fini → prétérit de *see* : *see* → ***saw*** → *seen*.\n3. Phrase : *I saw him five minutes ago.*\n\n**Les autres réponses :**\n- *have seen* : present perfect, impossible avec *ago* (même si c'était il y a très peu de temps).\n- *had seen* : past perfect, il faudrait une autre action passée plus récente (*when you arrived, I had seen him*).\n- *have been seeing* : forme continue, sans sens ici.\n\n**À retenir :** *ago*, *yesterday*, *last…* → prétérit, toujours."
   },
   {
     "question": "*...... you ever ...... to Canada?*",
@@ -19,7 +19,7 @@
       "Had / gone"
     ],
     "reponse": 1,
-    "explication": "Expérience sans date avec *ever* : present perfect."
+    "explication": "**Règle :** pour une **expérience de vie** (« déjà, une fois dans ta vie ? »), on utilise le **present perfect** avec *ever* : *Have you ever* + participe passé ?\n\n**Pas à pas :**\n1. Mot-repère : *ever* = « déjà, au moins une fois jusqu'à maintenant ». Pas de date.\n2. Present perfect en question : *Have* + sujet + *ever* + participe passé.\n3. « Aller dans un pays (et en revenir) » se dit *be to* : participe *been* → ***Have*** *you ever* ***been*** *to Canada?*\n\n**Les autres réponses :**\n- *Did / go* : prétérit, il faudrait une date (*Did you go to Canada last year?*).\n- *Were / going* : past continuous, sans sens ici.\n- *Had / gone* : past perfect, il faudrait un autre moment passé ; et *gone* voudrait dire « parti et pas revenu ».\n\n**À retenir :** *Have you ever been to…?* = es-tu déjà allé à… ?"
   },
   {
     "question": "*How long ...... each other?*",
@@ -30,7 +30,7 @@
       "have you been knowing"
     ],
     "reponse": 2,
-    "explication": "Situation qui dure jusqu'à maintenant + verbe d'état (*know*) : present perfect simple."
+    "explication": "**Règle :** *How long…?* (depuis combien de temps) pour une situation qui **dure encore** → **present perfect**. Et *know* est un **verbe d'état** : pas de forme en -ing.\n\n**Pas à pas :**\n1. *How long* + situation actuelle → present perfect.\n2. *know* est un verbe d'état → present perfect **simple** (pas continu).\n3. Participe passé de *know* : *known* → *How long* ***have you known*** *each other?*\n\n**Les autres réponses :**\n- *do you know* : présent, c'est l'erreur française (« depuis combien de temps vous connaissez-vous ? »). C'est l'erreur relevée dans le corrigé du cours.\n- *are you knowing* : forme continue impossible avec *know*.\n- *have you been knowing* : bon temps mais forme continue impossible avec un verbe d'état.\n\n**À retenir :** *How long have you known…?* (present perfect simple, jamais *knowing*)."
   },
   {
     "question": "*Call me as soon as you ...... at the hotel.*",
@@ -41,7 +41,7 @@
       "arrived"
     ],
     "reponse": 1,
-    "explication": "Après *as soon as* (futur), on met le présent simple."
+    "explication": "**Règle :** après *when, as soon as, once, until, before, after*, on met le **présent** même si l'action est future. Le *will* va seulement dans l'autre partie de la phrase.\n\n**Pas à pas :**\n1. La phrase a deux parties : *Call me* (ordre) et *as soon as you …… at the hotel*.\n2. Après *as soon as* → présent simple : ***arrive***.\n3. Phrase : *Call me as soon as you arrive at the hotel.*\n\n**Les autres réponses :**\n- *will arrive* : la faute classique (*will* après *as soon as* est interdit).\n- *are arriving* : present continuous, on ne l'utilise pas après *as soon as* pour une action ponctuelle.\n- *arrived* : prétérit, on parle du futur.\n\n**À retenir :** *as soon as* / *when* + présent, même pour le futur."
   },
   {
     "question": "*When I got to the station, the train ...... .*",
@@ -52,7 +52,7 @@
       "was already leaving"
     ],
     "reponse": 2,
-    "explication": "Action plus ancienne qu'une autre action passée : past perfect."
+    "explication": "**Règle :** le **past perfect** (*had* + participe passé) exprime une action **plus ancienne** qu'une autre action passée.\n\n**Pas à pas :**\n1. Deux actions passées : j'arrive à la gare (*got*, prétérit) et le train part.\n2. Le train est parti **avant** mon arrivée (*already* le confirme) → past perfect.\n3. *had* + *already* + participe de *leave* (*left*) → ***had already left***.\n\n**Les autres réponses :**\n- *already left* : prétérit ; le train serait parti au même moment ou après, l'ordre n'est plus clair.\n- *has already left* : present perfect, impossible dans un récit au passé (*got*).\n- *was already leaving* : past continuous = « était en train de partir » (il serait encore à quai) : le sens change.\n\n**À retenir :** passé plus ancien qu'un autre passé → *had* + participe passé."
   },
   {
     "question": "*This time tomorrow, I ...... on a beach.*",
@@ -63,7 +63,7 @@
       "have lain"
     ],
     "reponse": 1,
-    "explication": "*This time tomorrow* = action en cours à un moment du futur : future continuous."
+    "explication": "**Règle :** le **future continuous** (*will be* + -ing) exprime une action **en cours** à un moment précis du futur. Mot-repère : *this time tomorrow* (demain à la même heure).\n\n**Pas à pas :**\n1. Mot-repère : *This time tomorrow* → un moment précis du futur.\n2. À ce moment, l'action « être allongé sur une plage » sera **en cours**.\n3. *will be* + *lying* (*lie* → *lying*, le *ie* devient *y*) → ***will be lying***.\n\n**Les autres réponses :**\n- *lie* : présent simple, pas de futur ici.\n- *will have lain* : future perfect, l'action serait **terminée** avant demain.\n- *have lain* : present perfect, ne parle pas du futur.\n\n**À retenir :** *this time tomorrow / next week* → *will be* + -ing."
   },
   {
     "question": "*By 2030, the company ...... 50 new stores.*",
@@ -74,7 +74,7 @@
       "is opening"
     ],
     "reponse": 1,
-    "explication": "*By 2030* : action terminée avant un moment du futur : future perfect."
+    "explication": "**Règle :** le **future perfect** (*will have* + participe passé) exprime une action **terminée avant** un moment du futur. Mot-repère : *by* + date.\n\n**Pas à pas :**\n1. Mot-repère : *By 2030* = d'ici 2030, au plus tard en 2030.\n2. Les 50 magasins seront **déjà ouverts** à ce moment-là → action finie avant une date future.\n3. *will have* + participe de *open* (*opened*) → ***will have opened***.\n\n**Les autres réponses :**\n- *will open* : futur simple, il dit « ouvrira », mais pas « aura ouvert d'ici là » ; avec *by* + date, le TOEIC attend le future perfect.\n- *opens* : présent simple, pas de futur ici.\n- *is opening* : rendez-vous organisé, pas « terminé avant ».\n\n**À retenir :** *by* + date future → *will have* + participe passé."
   },
   {
     "question": "*I have worked here ...... 2019.*",
@@ -85,7 +85,7 @@
       "ago"
     ],
     "reponse": 1,
-    "explication": "*Since* + point de départ (2019) ; *for* + durée (*for six years*)."
+    "explication": "**Règle :** avec le present perfect, *for* est suivi d'une **durée** (combien de temps), *since* d'un **point de départ** (depuis quand).\n\n**Pas à pas :**\n1. Après le trou : *2019*, une **année** = un moment de départ.\n2. « Depuis quand ? Depuis 2019 » → ***since***.\n\n**Les autres réponses :**\n- *for* : il faudrait une durée (*for five years*).\n- *during* : « pendant » une période (*during the summer*), pas « depuis ».\n- *ago* : « il y a », se place **après** une durée et va avec le prétérit (*five years ago*).\n\n**À retenir :** *since* + date / moment ; *for* + durée."
   },
   {
     "question": "*Have you finished the report ......?*",
@@ -96,7 +96,7 @@
       "since"
     ],
     "reponse": 1,
-    "explication": "Dans une question au present perfect, « déjà » en fin de phrase = *yet*."
+    "explication": "**Règle :** *yet* = **déjà ?** dans une question, **pas encore** dans une négation. Il se place **à la fin** de la phrase, avec le present perfect.\n\n**Pas à pas :**\n1. C'est une question : *Have you finished the report …?*\n2. Le trou est **à la fin** de la phrase.\n3. « Déjà ? » en fin de question → ***yet***.\n\n**Les autres réponses :**\n- *already* : « déjà » dans une phrase affirmative, placé avant le participe (*I've already finished*). En fin de question, il marque la surprise (« déjà ?! »), ce n'est pas la question neutre attendue.\n- *still* : « encore, toujours » (*I'm still working*), pas « déjà ».\n- *since* : il faudrait un point de départ après (*since Monday*).\n\n**À retenir :** question ou négation → *yet* en fin de phrase ; affirmatif → *already* avant le participe."
   },
   {
     "question": "Lequel de ces verbes ne se met normalement **pas** à la forme en -ing ?",
@@ -107,7 +107,7 @@
       "write"
     ],
     "reponse": 1,
-    "explication": "*Understand* est un verbe d'état (comme *know, believe, want, own*)."
+    "explication": "**Règle :** les **verbes d'état** (savoir, croire, comprendre, aimer, vouloir, posséder…) ne se mettent normalement pas à la forme en -ing : ils décrivent une situation, pas une activité.\n\n**Pas à pas :** on teste chaque verbe avec « être en train de » :\n\n| Verbe | « être en train de… » | Type |\n|---|---|---|\n| *work* (travailler) | oui | action |\n| ***understand*** (comprendre) | non, on comprend ou pas | **état** |\n| *run* (courir) | oui | action |\n| *write* (écrire) | oui | action |\n\nDonc on dit *I understand* (même « en ce moment »), jamais *I am understanding*.\n\n**Les autres réponses :** *work*, *run* et *write* sont des actions : *I'm working*, *he's running*, *she's writing* sont corrects.\n\n**À retenir :** verbes d'état (*know, understand, want, belong, like…*) → pas de -ing."
   },
   {
     "question": "*We ...... a new manager next month: the decision has been made.*",
@@ -118,7 +118,7 @@
       "have hired"
     ],
     "reponse": 1,
-    "explication": "Projet déjà décidé : *be going to*."
+    "explication": "**Règle :** *be going to* + verbe exprime un **projet déjà décidé** (une intention). *Will* sert plutôt pour une décision prise **à l'instant** ou une prédiction.\n\n**Pas à pas :**\n1. Indice : *the decision has been made* (la décision a été prise) → c'est décidé **avant** de parler.\n2. Projet décidé → *be going to* : *We* ***are going to hire*** *a new manager next month.*\n\n**Les autres réponses :**\n- *will hire* : n'est pas faux en anglais courant, mais *will* présente plutôt une décision du moment ou une prévision ; l'indice « la décision a été prise » demande *going to*.\n- *hire* : présent simple, pas pour un projet (seulement pour un horaire officiel).\n- *have hired* : present perfect, l'embauche serait déjà faite, alors que c'est *next month*.\n\n**À retenir :** décision déjà prise, intention → *be going to*."
   },
   {
     "question": "*I ...... for an hour when the bus finally came.*",
@@ -129,6 +129,6 @@
       "was wait"
     ],
     "reponse": 2,
-    "explication": "Action qui durait avant un moment du passé : past perfect continuous."
+    "explication": "**Règle :** le **past perfect continuous** (*had been* + -ing) exprime une action qui **durait** jusqu'à un moment du passé. Mot-repère : *for* + durée dans un récit au passé.\n\n**Pas à pas :**\n1. Le récit est au passé : *the bus finally came* (prétérit).\n2. L'attente a **duré** une heure **avant** l'arrivée du bus (*for an hour*).\n3. Durée avant un moment passé → ***had been waiting***.\n\n**Les autres réponses :**\n- *waited* : prétérit, il ne montre pas que l'attente durait **jusqu'à** l'arrivée du bus.\n- *have been waiting* : present perfect continuous, il irait si on attendait encore **maintenant** ; ici, le récit est au passé.\n- *was wait* : forme fautive (il faudrait *was waiting*).\n\n**À retenir :** durée jusqu'à un moment passé → *had been* + -ing."
   }
 ]

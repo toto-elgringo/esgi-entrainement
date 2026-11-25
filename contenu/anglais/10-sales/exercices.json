@@ -5,16 +5,101 @@
     "difficulte": 1,
     "enonce": "Traduis en anglais (un mot ou une expression courte).",
     "questions": [
-      { "intitule": "le ticket de caisse", "type": "texte", "reponse": ["receipt", "a receipt", "the receipt"], "refuses": ["recipe", "recipient"] },
-      { "intitule": "l'allée (d'un magasin)", "type": "texte", "reponse": ["aisle", "an aisle", "the aisle"] },
-      { "intitule": "le caissier", "type": "texte", "reponse": ["cashier", "a cashier", "the cashier"] },
-      { "intitule": "le centre commercial", "type": "texte", "reponse": ["mall", "a mall", "the mall", "shopping centre", "shopping center", "a shopping centre", "a shopping center"] },
-      { "intitule": "la monnaie (qu'on rend)", "type": "texte", "reponse": ["change", "the change", "some change"] },
-      { "intitule": "le bon de réduction", "type": "texte", "reponse": ["coupon", "a coupon", "voucher", "a voucher"] },
-      { "intitule": "les produits laitiers", "type": "texte", "reponse": ["dairy products", "dairy"] },
-      { "intitule": "le chariot (de supermarché)", "type": "texte", "reponse": ["cart", "a cart", "shopping cart", "a shopping cart", "trolley", "a trolley"] }
+      {
+        "intitule": "le ticket de caisse",
+        "type": "texte",
+        "reponse": [
+          "receipt",
+          "a receipt",
+          "the receipt"
+        ],
+        "refuses": [
+          "recipe",
+          "recipient"
+        ],
+        "explication": "**Règle :** le ticket de caisse = **receipt**, le papier qui prouve que tu as payé. Le *p* ne se prononce pas (on dit « ri-sîte »).\n\n**Pas à pas :**\n\n1. On cherche le papier que donne la caisse après le paiement.\n2. En anglais : *a receipt* (*Keep your receipt* = garde ton ticket).\n3. Réponses acceptées : *receipt*, *a receipt*, *the receipt*.\n\n**Erreurs fréquentes :** *recipe* = une recette de cuisine ; *recipient* = un destinataire ; *ticket* = un billet (de train, de concert), pas un ticket de caisse.\n\n**À retenir :** *receipt* = ticket de caisse ; *recipe* = recette ; *recipient* = destinataire."
+      },
+      {
+        "intitule": "l'allée (d'un magasin)",
+        "type": "texte",
+        "reponse": [
+          "aisle",
+          "an aisle",
+          "the aisle"
+        ],
+        "explication": "**Règle :** une allée de magasin, entre deux rayons = **aisle**. Le *s* est muet : on prononce « aïle ».\n\n**Pas à pas :**\n\n1. On cherche le passage où l'on marche entre les rayons.\n2. En anglais : *an aisle* (*The pasta is in aisle 5* = les pâtes sont dans l'allée 5).\n3. Avec *a* devant une voyelle prononcée, on dit *an aisle*.\n\n**Erreurs fréquentes :** écrire *isle* (une petite île) ou *alley* (une ruelle dehors, entre des bâtiments) ; *shelf* est l'étagère, pas l'allée.\n\n**À retenir :** *aisle* = allée (magasin, avion, église), le *s* est muet."
+      },
+      {
+        "intitule": "le caissier",
+        "type": "texte",
+        "reponse": [
+          "cashier",
+          "a cashier",
+          "the cashier"
+        ],
+        "explication": "**Règle :** la personne qui tient la caisse = **cashier**. Le suffixe *-ier* (comme *-er*) désigne une **personne** qui fait un métier.\n\n**Pas à pas :**\n\n1. Base : *cash* = l'argent liquide.\n2. On ajoute le suffixe de la personne : *cash* + *-ier* = *cashier*.\n3. Ce mot sert pour un homme comme pour une femme (caissier, caissière).\n\n**Erreurs fréquentes :** *cash register* est la machine (la caisse), pas la personne ; *checkout* est l'endroit où l'on paie.\n\n**À retenir :** *cashier* = la personne ; *checkout / cash register* = la caisse."
+      },
+      {
+        "intitule": "le centre commercial",
+        "type": "texte",
+        "reponse": [
+          "mall",
+          "a mall",
+          "the mall",
+          "shopping centre",
+          "shopping center",
+          "a shopping centre",
+          "a shopping center"
+        ],
+        "explication": "**Règle :** le centre commercial = **mall** (anglais américain) ou **shopping centre** (britannique ; *shopping center* en orthographe américaine).\n\n**Pas à pas :**\n\n1. On cherche le grand bâtiment qui regroupe beaucoup de magasins.\n2. Américain : *a mall* (*Let's meet at the mall*). Britannique : *a shopping centre*.\n3. Toutes ces formes sont acceptées, avec ou sans *a* / *the*.\n\n**Erreurs fréquentes :** traduire mot à mot *commercial centre* (ça ne se dit pas) ; confondre *mall* avec *market* (un marché).\n\n**À retenir :** centre commercial = *mall* = *shopping centre*."
+      },
+      {
+        "intitule": "la monnaie (qu'on rend)",
+        "type": "texte",
+        "reponse": [
+          "change",
+          "the change",
+          "some change"
+        ],
+        "explication": "**Règle :** la monnaie qu'on te rend à la caisse = **change**. Dans ce sens, il est **indénombrable** : pas de *a*, pas de pluriel.\n\n**Pas à pas :**\n\n1. Tu paies 20 € pour un achat de 15 € : on te rend 5 €, c'est la monnaie.\n2. En anglais : *Here's your change* (voici votre monnaie), *some change*.\n3. Réponses acceptées : *change*, *the change*, *some change*.\n\n**Erreurs fréquentes :** écrire *a change* (ça voudrait dire « un changement ») ; *money* est l'argent en général, pas la monnaie rendue ; *currency* est la monnaie d'un pays (l'euro, le dollar).\n\n**À retenir :** *change* (indénombrable) = la monnaie rendue ; *currency* = la devise."
+      },
+      {
+        "intitule": "le bon de réduction",
+        "type": "texte",
+        "reponse": [
+          "coupon",
+          "a coupon",
+          "voucher",
+          "a voucher"
+        ],
+        "explication": "**Règle :** le bon de réduction = **coupon** ; en anglais britannique on dit aussi **voucher** (bon d'achat, bon de réduction).\n\n**Pas à pas :**\n\n1. On cherche le petit papier ou code qui donne droit à une réduction.\n2. *a coupon* (*Use this coupon to get 10% off*) ou *a voucher*.\n3. Les deux sont acceptés, avec ou sans *a*.\n\n**Erreurs fréquentes :** *discount* est la réduction elle-même, pas le bon qui la donne ; *receipt* est le ticket de caisse.\n\n**À retenir :** le bon = *coupon* / *voucher* ; la réduction obtenue = *discount*."
+      },
+      {
+        "intitule": "les produits laitiers",
+        "type": "texte",
+        "reponse": [
+          "dairy products",
+          "dairy"
+        ],
+        "explication": "**Règle :** les produits laitiers = **dairy products** ; le rayon s'appelle simplement **dairy**.\n\n**Pas à pas :**\n\n1. *dairy* = ce qui vient du lait (lait, beurre, yaourt, fromage).\n2. *dairy* + *products* = les produits laitiers.\n3. Réponses acceptées : *dairy products* ou *dairy*.\n\n**Erreurs fréquentes :** écrire *diary* (un agenda, un journal intime : les lettres *a* et *i* sont inversées) ; dire *milk products*, compréhensible mais pas le mot attendu ; confondre avec *produce* (les fruits et légumes).\n\n**À retenir :** *dairy* = laitier ; *diary* = agenda."
+      },
+      {
+        "intitule": "le chariot (de supermarché)",
+        "type": "texte",
+        "reponse": [
+          "cart",
+          "a cart",
+          "shopping cart",
+          "a shopping cart",
+          "trolley",
+          "a trolley"
+        ],
+        "explication": "**Règle :** le chariot de supermarché = **cart** ou **shopping cart** (américain), **trolley** (britannique).\n\n**Pas à pas :**\n\n1. On cherche l'objet à roulettes qu'on pousse dans le magasin.\n2. Américain : *a (shopping) cart* ; britannique : *a trolley*.\n3. Toutes ces formes sont acceptées.\n\n**Erreurs fréquentes :** *basket* est le panier qu'on porte à la main ; *forklift truck* est le chariot élévateur de l'entrepôt, pas celui des clients.\n\n**À retenir :** chariot du client = *cart* / *trolley* ; chariot élévateur = *forklift*."
+      }
     ],
-    "indices": ["Ils sont tous dans le tableau « Retail » du cours."],
+    "indices": [
+      "Ils sont tous dans le tableau « Retail » du cours."
+    ],
     "correction": "ticket de caisse = *receipt* ; allée = *aisle* ; caissier = *cashier* ; centre commercial = *mall* (*shopping centre*) ; monnaie = *change* ; bon de réduction = *coupon* ; produits laitiers = *dairy products* ; chariot = *cart*."
   },
   {
@@ -26,38 +111,74 @@
       {
         "intitule": "*You can find the yoghurts and the butter in the ...... section.*",
         "type": "choix",
-        "choix": ["produce", "dairy", "appliance", "checkout"],
-        "reponse": 1
+        "choix": [
+          "produce",
+          "dairy",
+          "appliance",
+          "checkout"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **dairy** = le rayon des produits laitiers (lait, beurre, yaourt, fromage).\n\n**Pas à pas :**\n\n1. Indice de sens : *the yoghurts and the butter* = les yaourts et le beurre.\n2. Ce sont des produits faits avec du lait → produits laitiers.\n3. Le rayon des produits laitiers = the **dairy** section.\n\n**Les autres réponses :** *produce* = les fruits et légumes (le faux ami qui ressemble à « produits ») ; *appliance* = un appareil électroménager ; *checkout* = la caisse, ce n'est pas un rayon.\n\n**À retenir :** lait, beurre, fromage → *dairy* ; fruits et légumes → *produce*."
       },
       {
         "intitule": "*Our greengrocer sells the freshest ...... in the neighbourhood.*",
         "type": "choix",
-        "choix": ["products", "production", "produce", "producers"],
-        "reponse": 2
+        "choix": [
+          "products",
+          "production",
+          "produce",
+          "producers"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** **produce** (nom indénombrable) = les fruits et légumes frais. Faux ami : *products* veut dire « des produits » en général.\n\n**Pas à pas :**\n\n1. Indice de sens : *Our greengrocer* = notre marchand de fruits et légumes.\n2. *the freshest ......* : les plus frais, donc des aliments frais.\n3. Ce que vend un *greengrocer* : des fruits et légumes → **produce**.\n\n**Les autres réponses :** *products* = des produits de tout type (trop général, et un *greengrocer* vend du frais) ; *production* = la fabrication ; *producers* = les producteurs (des personnes, on ne les vend pas).\n\n**À retenir :** *greengrocer* + *fresh* → *produce* (fruits et légumes)."
       },
       {
         "intitule": "*A ...... refills the shelves every morning before the store opens.*",
         "type": "choix",
-        "choix": ["shelf stocker", "cashier", "store", "supplier"],
-        "reponse": 0
+        "choix": [
+          "shelf stocker",
+          "cashier",
+          "store",
+          "supplier"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** le **shelf stocker** est l'employé qui remplit les rayons (*shelf* = l'étagère, *stock* = approvisionner).\n\n**Pas à pas :**\n\n1. Indice de sens : *refills the shelves* = remplit les étagères.\n2. *A ......* : on cherche une **personne** (le verbe *refills* a un sujet humain).\n3. La personne qui remplit les étagères = **shelf stocker**.\n\n**Les autres réponses :** *cashier* = le caissier (il encaisse, il ne remplit pas les rayons) ; *store* = le magasin, ce n'est pas une personne ; *supplier* = le fournisseur, une entreprise extérieure qui livre, pas un employé du magasin.\n\n**À retenir :** *shelf* (étagère) + *stocker* (celui qui remplit) = l'employé de mise en rayon."
       },
       {
         "intitule": "*Fridges, washing machines and ovens are all household ......*",
         "type": "choix",
-        "choix": ["produce", "displays", "outlets", "appliances"],
-        "reponse": 3
+        "choix": [
+          "produce",
+          "displays",
+          "outlets",
+          "appliances"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** **appliances** = les appareils électroménagers ; *household appliances* = l'électroménager de la maison (aussi appelé *white goods*).\n\n**Pas à pas :**\n\n1. Indice de sens : *Fridges, washing machines and ovens* = frigos, lave-linge et fours.\n2. *household ......* : de la maison.\n3. Ce sont des appareils électriques de la maison → **appliances**.\n\n**Les autres réponses :** *produce* = fruits et légumes ; *displays* = les présentoirs (où l'on expose les articles) ; *outlets* = les points de vente (les magasins eux-mêmes).\n\n**À retenir :** frigo, four, lave-linge → *appliances* / *white goods*."
       },
       {
         "intitule": "*All winter coats have a 40% ...... this week.*",
         "type": "choix",
-        "choix": ["markdown", "receipt", "custom", "aisle"],
-        "reponse": 0
+        "choix": [
+          "markdown",
+          "receipt",
+          "custom",
+          "aisle"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **markdown** = une baisse de prix, une démarque (le verbe : *mark down*).\n\n**Pas à pas :**\n\n1. Indice de sens : *a 40% ......* : un pourcentage, donc une réduction.\n2. *this week* : une promotion limitée dans le temps.\n3. Réduction de prix → **markdown**.\n\n**Les autres réponses :** *receipt* = ticket de caisse ; *custom* = la clientèle fidèle ; *aisle* = l'allée : aucun ne se combine avec un pourcentage.\n\n**À retenir :** pourcentage + prix → *markdown*, *discount*, *reduction*."
       },
       {
         "intitule": "*\"Can I help you?\" - \"No thanks, I'm just ......\"*",
         "type": "choix",
-        "choix": ["browse", "browsed", "browsing", "browser"],
-        "reponse": 2
+        "choix": [
+          "browse",
+          "browsed",
+          "browsing",
+          "browser"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** *I'm just browsing* = je regarde seulement, sans forcément acheter. Après *I'm* (*I am*), on met le verbe en **-ing** : c'est le présent continu (ce que je fais en ce moment).\n\n**Pas à pas :**\n\n1. Indice de sens : le vendeur propose de l'aide, le client répond *No thanks* : il veut juste regarder.\n2. Indice de grammaire : *I'm just ......* → *am* + verbe en *-ing*.\n3. *browse* + *-ing* = **browsing**.\n\n**Les autres réponses :** *browse* est la base verbale (*I'm browse* est faux) ; *browsed* est le passé (*I'm browsed* est faux) ; *browser* est un nom (un navigateur internet).\n\n**À retenir :** *be* + verbe en *-ing* = ce qu'on fait maintenant : *I'm just browsing*."
       }
     ],
     "indices": [
@@ -72,12 +193,60 @@
     "difficulte": 2,
     "enonce": "Complète avec la bonne particule (*down, on, around, off, out*).",
     "questions": [
-      { "intitule": "*Can I try ...... these jeans in a bigger size?*", "type": "texte", "reponse": ["on"] },
-      { "intitule": "*The bookshop on the corner is closing ...... after 40 years.*", "type": "texte", "reponse": ["down"] },
-      { "intitule": "*Before buying a new TV, it's worth shopping ...... for the best price.*", "type": "texte", "reponse": ["around"] },
-      { "intitule": "*The new smartphone sold ...... on the first day: there are none left.*", "type": "texte", "reponse": ["out"], "refuses": ["off"] },
-      { "intitule": "*We are selling ...... last season's shoes to make room for the new collection.*", "type": "texte", "reponse": ["off"], "refuses": ["out"] },
-      { "intitule": "*All the summer dresses have been marked ...... by 30%.*", "type": "texte", "reponse": ["down"] }
+      {
+        "intitule": "*Can I try ...... these jeans in a bigger size?*",
+        "type": "texte",
+        "reponse": [
+          "on"
+        ],
+        "explication": "**Règle :** **try on** = essayer un vêtement (le mettre pour voir s'il va bien).\n\n**Pas à pas :**\n\n1. Indice de sens : *these jeans in a bigger size* = ce jean dans une taille au-dessus.\n2. Avec un vêtement et une taille, on veut l'**essayer**.\n3. *try* + *on* → *try on these jeans* (ou *try these jeans on*).\n\n**Erreurs fréquentes :** *try out* = tester un appareil, une méthode, pas un vêtement ; *try* seul veut dire « essayer de faire quelque chose ».\n\n**À retenir :** vêtement à essayer → *try on*."
+      },
+      {
+        "intitule": "*The bookshop on the corner is closing ...... after 40 years.*",
+        "type": "texte",
+        "reponse": [
+          "down"
+        ],
+        "explication": "**Règle :** **close down** = fermer **définitivement**, cesser l'activité.\n\n**Pas à pas :**\n\n1. Indice de sens : *after 40 years* = après 40 ans d'activité.\n2. Une librairie qui ferme après 40 ans ne rouvrira pas demain : elle ferme pour de bon.\n3. Fermer définitivement → *closing **down***.\n\n**Erreurs fréquentes :** *close* seul peut vouloir dire fermer pour la nuit ou le week-end ; *close off* = bloquer l'accès (une rue) ; *close up* = fermer à clé pour la nuit.\n\n**À retenir :** fermeture pour toujours → *close down*."
+      },
+      {
+        "intitule": "*Before buying a new TV, it's worth shopping ...... for the best price.*",
+        "type": "texte",
+        "reponse": [
+          "around"
+        ],
+        "explication": "**Règle :** **shop around** = faire le tour des magasins pour **comparer les prix** avant d'acheter.\n\n**Pas à pas :**\n\n1. Indice de sens : *Before buying* (avant d'acheter) et *for the best price* (pour le meilleur prix).\n2. On va voir plusieurs magasins pour comparer.\n3. Comparer en allant d'un magasin à l'autre → *shopping **around***.\n\n**Erreurs fréquentes :** *shop out* et *shop off* n'existent pas dans ce sens ; *around* garde l'idée de « tout autour », d'un magasin à l'autre.\n\n**À retenir :** comparer les prix → *shop around*."
+      },
+      {
+        "intitule": "*The new smartphone sold ...... on the first day: there are none left.*",
+        "type": "texte",
+        "reponse": [
+          "out"
+        ],
+        "refuses": [
+          "off"
+        ],
+        "explication": "**Règle :** **sell out** = tout vendre ; *sold out* = épuisé, il n'en reste plus.\n\n**Pas à pas :**\n\n1. Indice de sens : *there are none left* = il n'en reste aucun.\n2. *on the first day* : tout est parti dès le premier jour.\n3. Tout vendu → *sold **out***.\n\n**Erreurs fréquentes :** *sell off* = brader pour vider le stock : c'est le magasin qui baisse ses prix, pas les clients qui achètent tout ; *sell down* n'existe pas dans ce sens.\n\n**À retenir :** *none left* → *sold out*."
+      },
+      {
+        "intitule": "*We are selling ...... last season's shoes to make room for the new collection.*",
+        "type": "texte",
+        "reponse": [
+          "off"
+        ],
+        "refuses": [
+          "out"
+        ],
+        "explication": "**Règle :** **sell off** = brader, vendre à prix réduit pour **se débarrasser** du stock.\n\n**Pas à pas :**\n\n1. Indice de sens : *to make room for the new collection* = pour faire de la place pour la nouvelle collection.\n2. Le magasin veut vider ses étagères des vieilles chaussures, même à bas prix.\n3. Vendre pour vider le stock → *selling **off***.\n\n**Erreurs fréquentes :** *sell out* voudrait dire qu'il n'en reste plus du tout, parce que les clients ont tout acheté ; ici, c'est le magasin qui veut s'en débarrasser.\n\n**À retenir :** vider le stock, faire de la place → *sell off*."
+      },
+      {
+        "intitule": "*All the summer dresses have been marked ...... by 30%.*",
+        "type": "texte",
+        "reponse": [
+          "down"
+        ],
+        "explication": "**Règle :** **mark down** = baisser le prix d'un article (démarquer). Le nom correspondant est *a markdown*.\n\n**Pas à pas :**\n\n1. Indice de sens : *by 30%* = de 30 %.\n2. *have been marked ......* : le prix des robes a été changé, d'un certain pourcentage.\n3. Le prix baisse → *marked **down*** (*down* = vers le bas).\n\n**Erreurs fréquentes :** *mark up* = augmenter un prix (le contraire) ; *mark out* = délimiter (un terrain).\n\n**À retenir :** *mark down* = baisser le prix ; *mark up* = l'augmenter."
+      }
     ],
     "indices": [
       "Fermer définitivement = *close down* ; baisser un prix = *mark down*.",
@@ -91,14 +260,63 @@
     "difficulte": 2,
     "enonce": "Donne un synonyme du mot en gras (vu dans le cours).",
     "questions": [
-      { "intitule": "*We don't **carry** that brand.* (un verbe)", "type": "texte", "reponse": ["stock", "sell"] },
-      { "intitule": "*a new **mall*** (deux mots)", "type": "texte", "reponse": ["shopping centre", "shopping center"] },
-      { "intitule": "*kitchen **appliances*** (deux mots)", "type": "texte", "reponse": ["white goods"] },
-      { "intitule": "*a 20% **markdown***", "type": "texte", "reponse": ["reduction", "discount"] },
-      { "intitule": "*a retail **store***", "type": "texte", "reponse": ["outlet", "shop"] },
-      { "intitule": "*Please pay at the **cash register**.*", "type": "texte", "reponse": ["checkout", "till"] }
+      {
+        "intitule": "*We don't **carry** that brand.* (un verbe)",
+        "type": "texte",
+        "reponse": [
+          "stock",
+          "sell"
+        ],
+        "explication": "**Règle :** dans un magasin, **carry** = **stock** : avoir en rayon, vendre. *sell* (vendre) est aussi accepté.\n\n**Pas à pas :**\n\n1. *We don't carry that brand* = on ne vend pas cette marque.\n2. On cherche un verbe de même sens : *We don't **stock** that brand*.\n3. Réponses acceptées : *stock* ou *sell*.\n\n**Erreurs fréquentes :** *wear* (porter un vêtement) ou *bring* (apporter) : ils traduisent le sens général de *carry* (porter), pas son sens commercial.\n\n**À retenir :** *carry* = *stock* = avoir en rayon."
+      },
+      {
+        "intitule": "*a new **mall*** (deux mots)",
+        "type": "texte",
+        "reponse": [
+          "shopping centre",
+          "shopping center"
+        ],
+        "explication": "**Règle :** **mall** = **shopping centre** (orthographe britannique) ou **shopping center** (américaine).\n\n**Pas à pas :**\n\n1. *a new mall* = un nouveau centre commercial.\n2. La consigne demande deux mots : *shopping* + *centre / center*.\n3. Les deux orthographes sont acceptées.\n\n**Erreurs fréquentes :** écrire *commercial centre* (calque du français) ou *shopping mall* (qui reprend le mot *mall* au lieu de le remplacer).\n\n**À retenir :** *mall* = *shopping centre*."
+      },
+      {
+        "intitule": "*kitchen **appliances*** (deux mots)",
+        "type": "texte",
+        "reponse": [
+          "white goods"
+        ],
+        "explication": "**Règle :** **appliances** (l'électroménager) = **white goods** : on les appelle ainsi parce que frigos et lave-linge sont souvent blancs.\n\n**Pas à pas :**\n\n1. *kitchen appliances* = l'électroménager de cuisine.\n2. Synonyme en deux mots vu en cours : *white* (blanc) + *goods* (marchandises).\n3. Réponse : **white goods**.\n\n**Erreurs fréquentes :** *white good* au singulier (*goods* est toujours pluriel) ; *household goods* (articles ménagers en général, plus large).\n\n**À retenir :** *appliances* = *white goods*."
+      },
+      {
+        "intitule": "*a 20% **markdown***",
+        "type": "texte",
+        "reponse": [
+          "reduction",
+          "discount"
+        ],
+        "explication": "**Règle :** **markdown** = **reduction** (réduction de prix) ; *discount* est aussi accepté.\n\n**Pas à pas :**\n\n1. *a 20% markdown* = une réduction de 20 %.\n2. Synonyme du cours : *a 20% reduction*.\n3. Réponses acceptées : *reduction* ou *discount*.\n\n**Erreurs fréquentes :** *rebate* (argent rendu **après** l'achat, ce n'est pas une baisse du prix affiché) ; *sale* (les soldes, la période, pas la réduction elle-même).\n\n**À retenir :** *markdown* = *reduction* = *discount*."
+      },
+      {
+        "intitule": "*a retail **store***",
+        "type": "texte",
+        "reponse": [
+          "outlet",
+          "shop"
+        ],
+        "explication": "**Règle :** **store** = **outlet** (point de vente) ; *shop* est aussi accepté.\n\n**Pas à pas :**\n\n1. *a retail store* = un magasin de vente au détail.\n2. Synonyme du cours : *a retail **outlet***.\n3. Réponses acceptées : *outlet* ou *shop*.\n\n**Erreurs fréquentes :** *mall* (un centre commercial entier, pas un seul magasin) ; *storage* (le stockage, faux ami de *store*).\n\n**À retenir :** *store* = *shop* = *outlet*."
+      },
+      {
+        "intitule": "*Please pay at the **cash register**.*",
+        "type": "texte",
+        "reponse": [
+          "checkout",
+          "till"
+        ],
+        "explication": "**Règle :** **cash register** (la caisse enregistreuse) = **checkout** ; le mot britannique **till** est aussi accepté.\n\n**Pas à pas :**\n\n1. *Please pay at the cash register* = merci de payer à la caisse.\n2. Synonyme du cours : *Please pay at the **checkout***.\n3. Réponses acceptées : *checkout* ou *till*.\n\n**Erreurs fréquentes :** *cashier* (la personne, pas la caisse) ; *counter* (le comptoir, plus général).\n\n**À retenir :** la caisse = *checkout* = *cash register* = *till* ; la personne = *cashier*."
+      }
     ],
-    "indices": ["L'électroménager est souvent blanc."],
+    "indices": [
+      "L'électroménager est souvent blanc."
+    ],
     "correction": "*carry* = *stock* ; *mall* = *shopping centre* ; *appliances* = *white goods* ; *markdown* = *reduction* ; *store* = *outlet* ; *cash register* = *checkout*."
   },
   {
@@ -107,16 +325,106 @@
     "difficulte": 1,
     "enonce": "Traduis en anglais.",
     "questions": [
-      { "intitule": "le fournisseur", "type": "texte", "reponse": ["supplier", "a supplier", "the supplier", "provider", "a provider"] },
-      { "intitule": "le grossiste", "type": "texte", "reponse": ["wholesaler", "a wholesaler", "the wholesaler"], "refuses": ["retailer"] },
-      { "intitule": "le détaillant", "type": "texte", "reponse": ["retailer", "a retailer", "the retailer"], "refuses": ["wholesaler"] },
-      { "intitule": "le devis", "type": "texte", "reponse": ["quote", "a quote", "the quote", "quotation", "a quotation", "estimate", "an estimate"] },
-      { "intitule": "la garantie", "type": "texte", "reponse": ["warranty", "a warranty", "the warranty", "guarantee", "a guarantee"] },
-      { "intitule": "le SAV", "type": "texte", "reponse": ["after-sales service", "the after-sales service", "after sales service", "customer service"] },
-      { "intitule": "passer commande", "type": "texte", "reponse": ["place an order", "to place an order", "order", "to order"] },
-      { "intitule": "le remboursement", "type": "texte", "reponse": ["refund", "a refund", "the refund"] }
+      {
+        "intitule": "le fournisseur",
+        "type": "texte",
+        "reponse": [
+          "supplier",
+          "a supplier",
+          "the supplier",
+          "provider",
+          "a provider"
+        ],
+        "explication": "**Règle :** le fournisseur = **supplier** : celui qui *supplies*, qui fournit des marchandises à une entreprise. *provider* est aussi accepté.\n\n**Pas à pas :**\n\n1. Base : le verbe *to supply* = fournir.\n2. On ajoute le suffixe de la personne (ou de l'entreprise) : *supply* → *supplier* (le *y* devient *i*).\n3. Réponses acceptées : *supplier*, *provider*, avec ou sans *a* / *the*.\n\n**Erreurs fréquentes :** écrire *furnisher* (calque du français) ; confondre avec *wholesaler* (un grossiste, qui est un type de fournisseur particulier) ou *purchaser* (l'acheteur, le contraire).\n\n**À retenir :** *to supply* = fournir → *supplier* = fournisseur."
+      },
+      {
+        "intitule": "le grossiste",
+        "type": "texte",
+        "reponse": [
+          "wholesaler",
+          "a wholesaler",
+          "the wholesaler"
+        ],
+        "refuses": [
+          "retailer"
+        ],
+        "explication": "**Règle :** le grossiste = **wholesaler** : il achète en grande quantité et revend **en gros** aux magasins (*wholesale* = la vente en gros).\n\n**Pas à pas :**\n\n1. *whole* = entier ; *sale* = vente : on vend par lots entiers, en gros.\n2. La personne ou l'entreprise : *wholesale* + *-r* = *wholesaler*.\n3. Réponses acceptées : *wholesaler*, *a wholesaler*, *the wholesaler*.\n\n**Erreurs fréquentes :** *retailer* = le détaillant, qui vend au public article par article : c'est l'inverse.\n\n**À retenir :** *wholesaler* vend aux magasins ; *retailer* vend au public."
+      },
+      {
+        "intitule": "le détaillant",
+        "type": "texte",
+        "reponse": [
+          "retailer",
+          "a retailer",
+          "the retailer"
+        ],
+        "refuses": [
+          "wholesaler"
+        ],
+        "explication": "**Règle :** le détaillant = **retailer** : il vend **au détail**, au public (*retail* = la vente au détail).\n\n**Pas à pas :**\n\n1. *retail* = la vente au détail (dans un magasin, à un client).\n2. La personne ou l'entreprise : *retail* + *-er* = *retailer*.\n3. Réponses acceptées : *retailer*, *a retailer*, *the retailer*.\n\n**Erreurs fréquentes :** *wholesaler* = le grossiste (vend en gros aux magasins) ; *detailer* n'existe pas dans ce sens (calque du français).\n\n**À retenir :** au détail = *retail* → *retailer* ; en gros = *wholesale* → *wholesaler*."
+      },
+      {
+        "intitule": "le devis",
+        "type": "texte",
+        "reponse": [
+          "quote",
+          "a quote",
+          "the quote",
+          "quotation",
+          "a quotation",
+          "estimate",
+          "an estimate"
+        ],
+        "explication": "**Règle :** le devis = **quote** ; *quotation* et *estimate* sont aussi acceptés. Le verbe *to quote a price* = indiquer, annoncer un prix.\n\n**Pas à pas :**\n\n1. Un devis est le document qui annonce le prix **avant** de signer.\n2. En anglais courant : *a quote* (*Can you send me a quote?*).\n3. Plus formel : *a quotation* ; pour des travaux : *an estimate*.\n\n**Erreurs fréquentes :** *invoice* = la facture (envoyée **après** la vente, pour être payée) ; *devise* n'existe pas en anglais dans ce sens.\n\n**À retenir :** devis (avant) = *quote* ; facture (après) = *invoice*."
+      },
+      {
+        "intitule": "la garantie",
+        "type": "texte",
+        "reponse": [
+          "warranty",
+          "a warranty",
+          "the warranty",
+          "guarantee",
+          "a guarantee"
+        ],
+        "explication": "**Règle :** la garantie = **warranty** ; *guarantee* est aussi accepté.\n\n**Pas à pas :**\n\n1. La garantie est la promesse du vendeur de réparer ou remplacer un produit qui tombe en panne.\n2. En anglais commercial : *a warranty* (*a two-year warranty*).\n3. Expression utile : *covered by the warranty* = couvert par la garantie.\n\n**Erreurs fréquentes :** écrire *garanty* (orthographe française) ; *insurance* = l'assurance, ce n'est pas la même chose.\n\n**À retenir :** garantie = *warranty* (*under warranty* = sous garantie)."
+      },
+      {
+        "intitule": "le SAV",
+        "type": "texte",
+        "reponse": [
+          "after-sales service",
+          "the after-sales service",
+          "after sales service",
+          "customer service"
+        ],
+        "explication": "**Règle :** le SAV (service après-vente) = **after-sales service** ; *customer service* (service client) est aussi accepté.\n\n**Pas à pas :**\n\n1. On traduit morceau par morceau : « après » = *after*, « vente » = *sales*, « service » = *service*.\n2. En anglais, le mot qui décrit vient **avant** : *after-sales* + *service*.\n3. Réponses acceptées : *after-sales service*, *after sales service*, *customer service*.\n\n**Erreurs fréquentes :** écrire *service after sales* (ordre du français) ; *aftersale service* sans *s* (on dit *sales*).\n\n**À retenir :** en anglais, le mot qui décrit se place avant : *after-sales service*."
+      },
+      {
+        "intitule": "passer commande",
+        "type": "texte",
+        "reponse": [
+          "place an order",
+          "to place an order",
+          "order",
+          "to order"
+        ],
+        "explication": "**Règle :** passer commande = **place an order** : en anglais, on « place » une commande. Le verbe simple *order* est aussi accepté.\n\n**Pas à pas :**\n\n1. « commande » = *an order*.\n2. Le verbe qui va avec *order* dans ce sens est *place* : *to place an order*.\n3. Exemple : *I'd like to place an order for 50 chairs.*\n\n**Erreurs fréquentes :** traduire mot à mot *pass an order* (ça ne se dit pas) ; *make an order* se comprend mais n'est pas la formule professionnelle.\n\n**À retenir :** passer commande = *place an order*."
+      },
+      {
+        "intitule": "le remboursement",
+        "type": "texte",
+        "reponse": [
+          "refund",
+          "a refund",
+          "the refund"
+        ],
+        "explication": "**Règle :** le remboursement = **refund** (nom), et rembourser = *to refund* (verbe). C'est le même mot.\n\n**Pas à pas :**\n\n1. Le client rend l'article et récupère **tout** son argent : c'est un remboursement.\n2. En anglais : *a refund* (*I'd like a refund, please*).\n3. Réponses acceptées : *refund*, *a refund*, *the refund*.\n\n**Erreurs fréquentes :** *rebate* = une remise, on récupère seulement une **partie** du prix après l'achat ; *reimbursement* existe mais sert surtout pour des frais (frais de déplacement remboursés par l'entreprise).\n\n**À retenir :** tout l'argent rendu = *refund* ; une partie rendue = *rebate*."
+      }
     ],
-    "indices": ["Ils sont dans le tableau « Ordering » du cours."],
+    "indices": [
+      "Ils sont dans le tableau « Ordering » du cours."
+    ],
     "correction": "fournisseur = *supplier* ; grossiste = *wholesaler* ; détaillant = *retailer* ; devis = *quote* ; garantie = *warranty* ; SAV = *after-sales service* ; passer commande = *place an order* ; remboursement = *refund*."
   },
   {
@@ -128,38 +436,74 @@
       {
         "intitule": "*If the blender stops working within two years, it is covered by the ......*",
         "type": "choix",
-        "choix": ["warranty", "quote", "batch", "deadline"],
-        "reponse": 0
+        "choix": [
+          "warranty",
+          "quote",
+          "batch",
+          "deadline"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **warranty** = la garantie : le fabricant répare ou remplace le produit s'il tombe en panne pendant une durée donnée.\n\n**Pas à pas :**\n\n1. Indice de sens : *If the blender stops working within two years* = si le mixeur tombe en panne dans les deux ans.\n2. *it is covered by the ......* : il est couvert par quelque chose qui protège l'acheteur.\n3. Protection en cas de panne pendant deux ans → **warranty**.\n\n**Les autres réponses :** *quote* = devis (avant l'achat) ; *batch* = lot de production ; *deadline* = date limite : aucun ne « couvre » une panne.\n\n**À retenir :** *covered by the warranty* = couvert par la garantie."
       },
       {
         "intitule": "*All the printers from ...... number 4411 have the same fault.*",
         "type": "choix",
-        "choix": ["item", "batch", "stock", "rebate"],
-        "reponse": 1
+        "choix": [
+          "item",
+          "batch",
+          "stock",
+          "rebate"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **batch** = un **lot** : un groupe de produits fabriqués ensemble, qui porte souvent un numéro.\n\n**Pas à pas :**\n\n1. Indice de sens : *All the printers from ...... number 4411* = toutes les imprimantes du ... numéro 4411.\n2. *have the same fault* : elles ont le même défaut, donc elles ont été fabriquées ensemble.\n3. Groupe de produits fabriqués ensemble, avec un numéro → **batch**.\n\n**Les autres réponses :** *item* = un seul article (pas un groupe) ; *stock* = toute la marchandise en réserve, pas un groupe numéroté ; *rebate* = une remise.\n\n**À retenir :** *batch number* = numéro de lot."
       },
       {
         "intitule": "*Order online today, then ...... your parcel from any of our shops.*",
         "type": "choix",
-        "choix": ["place", "return", "click and collect", "deliver"],
-        "reponse": 2
+        "choix": [
+          "place",
+          "return",
+          "click and collect",
+          "deliver"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** **click and collect** = commander en ligne puis **retirer** sa commande dans un magasin.\n\n**Pas à pas :**\n\n1. Indice de sens : *Order online today* = commandez en ligne aujourd'hui.\n2. *then ...... your parcel from any of our shops* = puis ... votre colis dans un de nos magasins.\n3. Commande en ligne + retrait en magasin → **click and collect**.\n\n**Les autres réponses :** *place* a besoin du mot *an order* (*place an order*) et on ne « place » pas un colis ; *return* = retourner un article (le rendre, pas le récupérer) ; *deliver* = livrer, ce que fait le magasin, pas le client qui vient chercher son colis.\n\n**À retenir :** *click* (commander en ligne) *and collect* (retirer) = le retrait en magasin."
       },
       {
         "intitule": "*Before we sign, could you send us a ...... for the whole project?*",
         "type": "choix",
-        "choix": ["refund", "quote", "warranty", "supplier"],
-        "reponse": 1
+        "choix": [
+          "refund",
+          "quote",
+          "warranty",
+          "supplier"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **quote** = le **devis** : le document qui annonce le prix avant de s'engager.\n\n**Pas à pas :**\n\n1. Indice de sens : *Before we sign* = avant de signer.\n2. *for the whole project* = pour tout le projet : on veut connaître le prix.\n3. Document qui donne le prix avant de signer → a **quote**.\n\n**Les autres réponses :** *refund* = remboursement (après un achat) ; *warranty* = garantie (après l'achat, en cas de panne) ; *supplier* = le fournisseur, une entreprise : on n'envoie pas un fournisseur.\n\n**À retenir :** avant de signer, on demande *a quote*."
       },
       {
         "intitule": "*Mail us the coupon with your receipt and get a $30 ......*",
         "type": "choix",
-        "choix": ["discount", "deadline", "rebate", "purchaser"],
-        "reponse": 2
+        "choix": [
+          "discount",
+          "deadline",
+          "rebate",
+          "purchaser"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** **rebate** = on paie le prix complet, puis on récupère une **partie** de l'argent **après** l'achat (souvent en envoyant un coupon et le ticket).\n\n**Pas à pas :**\n\n1. Indice de sens : *Mail us the coupon with your receipt* = envoyez-nous le coupon avec votre ticket de caisse.\n2. Le ticket prouve que l'achat est **déjà fait**.\n3. *and get a $30 ......* : on récupère 30 $ après coup → **rebate**.\n\n**Les autres réponses :** *discount* = réduction faite **à la caisse**, pas besoin de renvoyer quoi que ce soit (c'est le piège) ; *deadline* = date limite ; *purchaser* = acheteur (une personne).\n\n**À retenir :** renvoyer une preuve d'achat pour récupérer de l'argent = *rebate*."
       },
       {
         "intitule": "*The ...... for sending your order form is Friday at noon.*",
         "type": "choix",
-        "choix": ["deadline", "batch", "item", "goods"],
-        "reponse": 0
+        "choix": [
+          "deadline",
+          "batch",
+          "item",
+          "goods"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **deadline** = la **date limite**, le dernier moment pour faire quelque chose.\n\n**Pas à pas :**\n\n1. Indice de sens : *for sending your order form* = pour envoyer votre bon de commande.\n2. *is Friday at noon* = c'est vendredi à midi : un moment précis à ne pas dépasser.\n3. Moment limite → **deadline**.\n\n**Les autres réponses :** *batch* (lot), *item* (article) et *goods* (marchandise) désignent des choses qu'on vend : aucune ne peut « être vendredi à midi ».\n\n**À retenir :** *The deadline for ... is ...* = la date limite pour ... est ..."
       }
     ],
     "indices": [
@@ -174,12 +518,46 @@
     "difficulte": 2,
     "enonce": "Complète avec *in*, *on* ou *out of*.",
     "questions": [
-      { "intitule": "*Sorry, the blue model is ...... stock. We'll have more next week.*", "type": "texte", "reponse": ["out of"], "refuses": ["in"] },
-      { "intitule": "*Good news: we have three of them ...... stock.*", "type": "texte", "reponse": ["in"] },
-      { "intitule": "*Restaurants usually buy flour and sugar ...... bulk.*", "type": "texte", "reponse": ["in"] },
-      { "intitule": "*You can use the software ...... a trial basis for 30 days.*", "type": "texte", "reponse": ["on"] }
+      {
+        "intitule": "*Sorry, the blue model is ...... stock. We'll have more next week.*",
+        "type": "texte",
+        "reponse": [
+          "out of"
+        ],
+        "refuses": [
+          "in"
+        ],
+        "explication": "**Règle :** **out of stock** = en rupture de stock, il n'y en a plus ; **in stock** = disponible.\n\n**Pas à pas :**\n\n1. Indice de sens : *Sorry* (on s'excuse) et *We'll have more next week* (on en aura d'autres la semaine prochaine).\n2. Donc aujourd'hui, il n'y en a plus.\n3. Plus disponible → **out of** stock.\n\n**Erreurs fréquentes :** mettre *in* (*in stock* dirait qu'on en a, le contraire) ; écrire *out stock* sans *of*.\n\n**À retenir :** *in stock* = disponible ; *out of stock* = épuisé, en rupture."
+      },
+      {
+        "intitule": "*Good news: we have three of them ...... stock.*",
+        "type": "texte",
+        "reponse": [
+          "in"
+        ],
+        "explication": "**Règle :** **in stock** = en stock, disponible tout de suite.\n\n**Pas à pas :**\n\n1. Indice de sens : *Good news* (bonne nouvelle) et *we have three of them* (on en a trois).\n2. Les articles sont disponibles.\n3. Disponible → **in** stock.\n\n**Erreurs fréquentes :** *on stock* (calque d'autres langues, faux en anglais) ; *out of* dirait le contraire, ce qui ne colle pas avec *Good news*.\n\n**À retenir :** en stock = *in stock*."
+      },
+      {
+        "intitule": "*Restaurants usually buy flour and sugar ...... bulk.*",
+        "type": "texte",
+        "reponse": [
+          "in"
+        ],
+        "explication": "**Règle :** **in bulk** = en gros, en grande quantité (souvent moins cher à l'unité).\n\n**Pas à pas :**\n\n1. Indice de sens : *Restaurants usually buy flour and sugar* = les restaurants achètent farine et sucre.\n2. Un restaurant en utilise beaucoup : il les achète en grosse quantité.\n3. En grande quantité → **in** bulk.\n\n**Erreurs fréquentes :** *on bulk* ou *by bulk* (la préposition est toujours *in*) ; confondre *bulk* avec *batch* (un lot de fabrication).\n\n**À retenir :** *buy in bulk* = acheter en gros."
+      },
+      {
+        "intitule": "*You can use the software ...... a trial basis for 30 days.*",
+        "type": "texte",
+        "reponse": [
+          "on"
+        ],
+        "explication": "**Règle :** avec le mot **basis**, la préposition est toujours **on** : *on a trial basis* = à l'essai, *on a daily basis* = tous les jours.\n\n**Pas à pas :**\n\n1. Indice de sens : *for 30 days* = pendant 30 jours, pour l'essayer.\n2. Utiliser un logiciel à l'essai = *use it on a trial basis*.\n3. Avec *basis* → **on**.\n\n**Erreurs fréquentes :** *in a trial basis* (influence de « à l'essai » ou de *in stock*) ; *for a trial basis*.\n\n**À retenir :** *on a ... basis* : toujours *on*."
+      }
     ],
-    "indices": ["en stock = *in stock* ; en rupture = *out of stock*.", "à l'essai = *on a trial basis* ; en gros = *in bulk*."],
+    "indices": [
+      "en stock = *in stock* ; en rupture = *out of stock*.",
+      "à l'essai = *on a trial basis* ; en gros = *in bulk*."
+    ],
     "correction": "*out of stock* (en rupture), *in stock* (en stock), *in bulk* (en gros), *on a trial basis* (à l'essai)."
   },
   {
@@ -188,14 +566,62 @@
     "difficulte": 2,
     "enonce": "Remplace le mot en gras par un synonyme du cours (un mot).",
     "questions": [
-      { "intitule": "*a 10% **reduction***", "type": "texte", "reponse": ["discount"] },
-      { "intitule": "*our main **provider***", "type": "texte", "reponse": ["supplier"] },
-      { "intitule": "*five **articles** in your basket*", "type": "texte", "reponse": ["items"] },
-      { "intitule": "*the builder's **estimate***", "type": "texte", "reponse": ["quote", "quotation"] },
-      { "intitule": "*a **faulty** cable*", "type": "texte", "reponse": ["defective"] },
-      { "intitule": "*a **free** bottle of water*", "type": "texte", "reponse": ["complimentary"], "refuses": ["complementary"] }
+      {
+        "intitule": "*a 10% **reduction***",
+        "type": "texte",
+        "reponse": [
+          "discount"
+        ],
+        "explication": "**Règle :** **reduction** = **discount** : une baisse du prix au moment de l'achat.\n\n**Pas à pas :**\n\n1. *a 10% reduction* = une réduction de 10 %.\n2. Synonyme d'un mot vu dans la partie « commande » : *a 10% **discount***.\n\n**Erreurs fréquentes :** *rebate* (argent rendu **après** l'achat) ou *markdown* (c'est un synonyme de la partie « magasin », mais la réponse attendue ici est *discount*, le mot de la commande).\n\n**À retenir :** *reduction* = *discount*."
+      },
+      {
+        "intitule": "*our main **provider***",
+        "type": "texte",
+        "reponse": [
+          "supplier"
+        ],
+        "explication": "**Règle :** **provider** = **supplier** : le fournisseur.\n\n**Pas à pas :**\n\n1. *our main provider* = notre fournisseur principal.\n2. *to provide* et *to supply* veulent tous les deux dire « fournir ».\n3. Synonyme : *our main **supplier***.\n\n**Erreurs fréquentes :** *wholesaler* (un grossiste, sens plus étroit) ; *purchaser* (l'acheteur, l'inverse).\n\n**À retenir :** *provider* = *supplier*."
+      },
+      {
+        "intitule": "*five **articles** in your basket*",
+        "type": "texte",
+        "reponse": [
+          "items"
+        ],
+        "explication": "**Règle :** **articles** = **items** : en anglais, un article dans un panier ou sur une liste se dit *an item*.\n\n**Pas à pas :**\n\n1. *five articles in your basket* = cinq articles dans votre panier.\n2. En anglais naturel : *five **items** in your basket*.\n3. Le mot est au pluriel, comme *articles* : *items* avec un *s*.\n\n**Erreurs fréquentes :** oublier le *s* (*item*) ; *goods* (la marchandise en général, on ne la compte pas une par une).\n\n**À retenir :** un article à acheter = *an item* (*an article* est plutôt un article de journal)."
+      },
+      {
+        "intitule": "*the builder's **estimate***",
+        "type": "texte",
+        "reponse": [
+          "quote",
+          "quotation"
+        ],
+        "explication": "**Règle :** **estimate** = **quote** (le devis) ; *quotation* est aussi accepté.\n\n**Pas à pas :**\n\n1. *the builder's estimate* = le devis du maçon.\n2. Synonyme du cours : *the builder's **quote***.\n\n**Erreurs fréquentes :** *invoice* (la facture, envoyée après le travail, pas avant) ; *price* (trop général).\n\n**À retenir :** *estimate* = *quote* = *quotation*."
+      },
+      {
+        "intitule": "*a **faulty** cable*",
+        "type": "texte",
+        "reponse": [
+          "defective"
+        ],
+        "explication": "**Règle :** **faulty** = **defective** : défectueux, qui ne marche pas bien.\n\n**Pas à pas :**\n\n1. *a faulty cable* = un câble défectueux.\n2. Le mot *fault* veut dire « un défaut » ; *defect* aussi. L'adjectif de *defect* est *defective*.\n3. Synonyme : *a **defective** cable*.\n\n**Erreurs fréquentes :** écrire le nom *defect* au lieu de l'adjectif *defective* (devant un nom, il faut un adjectif) ; *damaged* (abîmé, par un choc) est proche, mais ce n'est pas le synonyme du cours.\n\n**À retenir :** *faulty* = *defective* (adjectifs)."
+      },
+      {
+        "intitule": "*a **free** bottle of water*",
+        "type": "texte",
+        "reponse": [
+          "complimentary"
+        ],
+        "refuses": [
+          "complementary"
+        ],
+        "explication": "**Règle :** **free** (gratuit, offert) = **complimentary**, avec un *i*.\n\n**Pas à pas :**\n\n1. *a free bottle of water* = une bouteille d'eau offerte.\n2. Synonyme du cours, plus professionnel : *a **complimentary** bottle of water*.\n\n**Erreurs fréquentes :** écrire *complementary* (avec un *e*) : ça veut dire « complémentaire ». Astuce : un compl**i**ment se donne gratuitement, comme un produit compl**i**mentary.\n\n**À retenir :** *free* = *complimentary* (avec un *i*)."
+      }
     ],
-    "indices": ["Attention à l'orthographe de « offert » : avec un *i*."],
+    "indices": [
+      "Attention à l'orthographe de « offert » : avec un *i*."
+    ],
     "correction": "*discount*, *supplier*, *items*, *quote*, *defective*, *complimentary* (et non *complementary*, complémentaire)."
   },
   {
@@ -204,16 +630,94 @@
     "difficulte": 2,
     "enonce": "Traduis en anglais.",
     "questions": [
-      { "intitule": "la facture", "type": "texte", "reponse": ["invoice", "an invoice", "the invoice", "bill", "a bill", "the bill"] },
-      { "intitule": "les modalités de paiement", "type": "texte", "reponse": ["terms of payment", "payment terms", "the terms of payment"] },
-      { "intitule": "le papier à en-tête", "type": "texte", "reponse": ["letterhead", "headed paper", "the letterhead"] },
-      { "intitule": "la somme due", "type": "texte", "reponse": ["amount due", "the amount due"] },
-      { "intitule": "les frais de port et de manutention", "type": "texte", "reponse": ["shipping and handling", "postage and packing", "p&p"] },
-      { "intitule": "les petits caractères (d'un contrat)", "type": "texte", "reponse": ["fine print", "the fine print", "small print", "the small print"] },
-      { "intitule": "la relance (de paiement)", "type": "texte", "reponse": ["reminder", "a reminder", "the reminder"] },
-      { "intitule": "le créancier", "type": "texte", "reponse": ["creditor", "a creditor", "the creditor"] }
+      {
+        "intitule": "la facture",
+        "type": "texte",
+        "reponse": [
+          "invoice",
+          "an invoice",
+          "the invoice",
+          "bill",
+          "a bill",
+          "the bill"
+        ],
+        "explication": "**Règle :** la facture = **invoice** (document commercial d'une entreprise) ou **bill** (l'addition au restaurant, une facture courante : électricité, téléphone).\n\n**Pas à pas :**\n\n1. On cherche le document qui dit combien payer après une vente.\n2. Dans une entreprise : *an invoice* ; dans la vie courante : *a bill*.\n3. Les deux sont acceptés, avec ou sans *a* / *the*.\n\n**Erreurs fréquentes :** *facture* n'existe pas en anglais ; *receipt* est le ticket de caisse (preuve qu'on **a payé**, alors que la facture demande de payer) ; *quote* est le devis (avant la vente).\n\n**À retenir :** devis → *quote* ; facture → *invoice / bill* ; preuve de paiement → *receipt*."
+      },
+      {
+        "intitule": "les modalités de paiement",
+        "type": "texte",
+        "reponse": [
+          "terms of payment",
+          "payment terms",
+          "the terms of payment"
+        ],
+        "explication": "**Règle :** les modalités de paiement = **terms of payment** ou **payment terms** : ici *terms* veut dire « conditions ».\n\n**Pas à pas :**\n\n1. « modalités, conditions » = *terms* (au pluriel).\n2. « de paiement » = *of payment*, ou *payment* placé devant : *payment terms*.\n3. Exemple : *Our terms of payment are 30 days* (nos conditions : paiement sous 30 jours).\n\n**Erreurs fréquentes :** *payment modalities* (calque du français, rare) ; oublier le *s* de *terms*.\n\n**À retenir :** *terms* = les conditions d'un contrat : *terms of payment*, *terms and conditions*."
+      },
+      {
+        "intitule": "le papier à en-tête",
+        "type": "texte",
+        "reponse": [
+          "letterhead",
+          "headed paper",
+          "the letterhead"
+        ],
+        "explication": "**Règle :** le papier à en-tête = **letterhead** : le haut de la page avec le nom, le logo et l'adresse de l'entreprise ; *headed paper* (britannique) est aussi accepté.\n\n**Pas à pas :**\n\n1. *letter* = la lettre ; *head* = la tête, le haut.\n2. Le haut de la lettre, imprimé à l'avance → *letterhead*.\n3. Réponses acceptées : *letterhead*, *the letterhead*, *headed paper*.\n\n**Erreurs fréquentes :** *header* seul (l'en-tête d'un document informatique, pas le papier) ; *heading* (un titre).\n\n**À retenir :** *letterhead* = papier à en-tête."
+      },
+      {
+        "intitule": "la somme due",
+        "type": "texte",
+        "reponse": [
+          "amount due",
+          "the amount due"
+        ],
+        "explication": "**Règle :** la somme due = **amount due** : *amount* = la somme, *due* = dû, à payer.\n\n**Pas à pas :**\n\n1. « la somme » = *the amount*.\n2. « due » = *due*, et il se place **après** le nom (*the amount due*, comme *the balance due*).\n3. Réponses acceptées : *amount due*, *the amount due*.\n\n**Erreurs fréquentes :** *due amount* (ordre inversé, rare) ; *the sum owed* se comprend mais n'est pas la formule des factures.\n\n**À retenir :** *amount due* = somme à payer ; *due* = dû, à régler."
+      },
+      {
+        "intitule": "les frais de port et de manutention",
+        "type": "texte",
+        "reponse": [
+          "shipping and handling",
+          "postage and packing",
+          "p&p"
+        ],
+        "explication": "**Règle :** les frais de port et de manutention = **shipping and handling** (américain) ou **postage and packing**, abrégé **p&p** (britannique).\n\n**Pas à pas :**\n\n1. « port » = le transport : *shipping* (ou *postage*, la poste).\n2. « manutention » = la manipulation, l'emballage : *handling* (ou *packing*).\n3. On les relie par *and* : *shipping and handling*.\n\n**Erreurs fréquentes :** *port* veut dire un port (pour les bateaux), pas des frais d'envoi ; *manutention* n'existe pas en anglais.\n\n**À retenir :** frais d'envoi = *shipping and handling* = *postage and packing*."
+      },
+      {
+        "intitule": "les petits caractères (d'un contrat)",
+        "type": "texte",
+        "reponse": [
+          "fine print",
+          "the fine print",
+          "small print",
+          "the small print"
+        ],
+        "explication": "**Règle :** les petits caractères d'un contrat = **fine print** ou **small print**. Ici *fine* veut dire « fin, petit », pas « amende ».\n\n**Pas à pas :**\n\n1. « petits » = *fine* ou *small* ; « caractères imprimés » = *print*.\n2. *the fine print* = les lignes écrites tout petit en bas d'un contrat, qu'on oublie souvent de lire.\n3. Réponses acceptées : *fine print*, *small print*, avec ou sans *the*.\n\n**Erreurs fréquentes :** *little characters* (calque du français) ; confondre avec *a fine* (une amende).\n\n**À retenir :** *read the fine print* = lis les petits caractères."
+      },
+      {
+        "intitule": "la relance (de paiement)",
+        "type": "texte",
+        "reponse": [
+          "reminder",
+          "a reminder",
+          "the reminder"
+        ],
+        "explication": "**Règle :** la relance de paiement = **reminder** (un rappel), du verbe *to remind* (rappeler quelque chose à quelqu'un).\n\n**Pas à pas :**\n\n1. Une relance rappelle au client qu'il n'a pas encore payé.\n2. *remind* + *-er* = *a reminder*.\n3. Elle finit souvent par *If you have already paid, please disregard this reminder.*\n\n**Erreurs fréquentes :** *relaunch* (relancer un produit sur le marché, pas un paiement) ; *recall* (rappel d'un produit défectueux).\n\n**À retenir :** relance = *reminder*."
+      },
+      {
+        "intitule": "le créancier",
+        "type": "texte",
+        "reponse": [
+          "creditor",
+          "a creditor",
+          "the creditor"
+        ],
+        "explication": "**Règle :** le créancier = **creditor** : celui à qui l'on **doit** de l'argent. Le contraire est le **debtor** (le débiteur, celui qui doit l'argent).\n\n**Pas à pas :**\n\n1. Base : *credit* (le crédit).\n2. La personne : *credit* + *-or* = *creditor* (suffixe *-or*, comme *director*).\n3. Exemple : la banque qui t'a prêté de l'argent est ton *creditor*.\n\n**Erreurs fréquentes :** confondre avec *debtor* (l'inverse) ; écrire *crediter*.\n\n**À retenir :** *creditor* attend l'argent ; *debtor* doit l'argent."
+      }
     ],
-    "indices": ["Ils sont dans le tableau « Invoicing » du cours.", "petits caractères : *fine* ou *small* + *print*."],
+    "indices": [
+      "Ils sont dans le tableau « Invoicing » du cours.",
+      "petits caractères : *fine* ou *small* + *print*."
+    ],
     "correction": "facture = *invoice* ou *bill* ; modalités de paiement = *terms of payment* ; papier à en-tête = *letterhead* ; somme due = *amount due* ; frais de port = *shipping and handling* ; petits caractères = *fine print* ; relance = *reminder* ; créancier = *creditor*."
   },
   {
@@ -225,38 +729,74 @@
       {
         "intitule": "*Your payment is ......: we are waiting for confirmation from your bank.*",
         "type": "choix",
-        "choix": ["void", "pending", "payable", "outstanding"],
-        "reponse": 1
+        "choix": [
+          "void",
+          "pending",
+          "payable",
+          "outstanding"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **pending** = en attente : quelque chose est en cours et pas encore terminé.\n\n**Pas à pas :**\n\n1. Indice de sens : *we are waiting for confirmation from your bank* = nous attendons la confirmation de votre banque.\n2. Le paiement a été lancé, mais il n'est pas encore validé : il est en attente.\n3. En attente → **pending**.\n\n**Les autres réponses :** *outstanding* = impayé, en retard (ici le client a payé, on attend juste la banque) ; *void* = annulé, nul ; *payable* = à payer, ou « à l'ordre de » sur un chèque.\n\n**À retenir :** *pending* = en cours, on attend ; *outstanding* = pas payé, en retard."
       },
       {
         "intitule": "*Please make all cheques ...... to Brightwell Ltd.*",
         "type": "choix",
-        "choix": ["payable", "paid", "payment", "paying"],
-        "reponse": 0
+        "choix": [
+          "payable",
+          "paid",
+          "payment",
+          "paying"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** sur un chèque, « à l'ordre de » = **payable to** : *make a cheque payable to ...*\n\n**Pas à pas :**\n\n1. Indice : *make all cheques ...... to Brightwell Ltd.* : on dit au client à quel nom il doit écrire son chèque.\n2. La formule toute faite : *make (something) payable to (someone)*.\n3. Il faut l'adjectif → **payable**.\n\n**Les autres réponses :** *paid* = payé (le chèque n'est pas encore payé) ; *payment* est un nom (le paiement) ; *paying* est une forme du verbe : aucun ne forme l'expression *make ... to*.\n\n**À retenir :** *Please make your cheque payable to ...* = libellez votre chèque à l'ordre de ..."
       },
       {
         "intitule": "*This coupon is ...... after 31 December.*",
         "type": "choix",
-        "choix": ["pending", "due", "void", "issued"],
-        "reponse": 2
+        "choix": [
+          "pending",
+          "due",
+          "void",
+          "issued"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** **void** = nul, sans valeur, qui ne marche plus (un coupon expiré, un contrat annulé).\n\n**Pas à pas :**\n\n1. Indice de sens : *after 31 December* = après le 31 décembre.\n2. Après cette date, le coupon ne marche plus.\n3. Qui ne vaut plus rien → **void**.\n\n**Les autres réponses :** *pending* = en attente ; *due* = dû, à payer (on ne « paie » pas un coupon) ; *issued* = émis, délivré (un coupon est émis **avant**, pas après une date limite).\n\n**À retenir :** *void* = nul, expiré (synonyme : *invalid*)."
       },
       {
         "intitule": "*We will ...... a new invoice with the correct address.*",
         "type": "choix",
-        "choix": ["disregard", "issue", "fine", "charge"],
-        "reponse": 1
+        "choix": [
+          "disregard",
+          "issue",
+          "fine",
+          "charge"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **issue** (verbe) = émettre, délivrer un document officiel : *issue an invoice, a cheque, a passport*.\n\n**Pas à pas :**\n\n1. Indice de grammaire : après *We will*, il faut un **verbe** de base.\n2. Indice de sens : *a new invoice with the correct address* = une nouvelle facture avec la bonne adresse : on va la **créer et l'envoyer**.\n3. Émettre une facture → **issue** an invoice.\n\n**Les autres réponses :** *disregard* = ne pas tenir compte de (on ne va pas ignorer la nouvelle facture) ; *charge* = facturer **un montant** à quelqu'un (*charge you $20*), pas émettre un document ; *fine* = mettre une amende.\n\n**À retenir :** *issue* + document (facture, chèque, billet) = émettre."
       },
       {
         "intitule": "*There is a $5 ...... for orders of fewer than ten units.*",
         "type": "choix",
-        "choix": ["fine", "fee", "reminder", "creditor"],
-        "reponse": 1
+        "choix": [
+          "fine",
+          "fee",
+          "reminder",
+          "creditor"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** un **fee** est un **frais** normal, demandé pour un service ou une situation prévue. Une **fine** est une amende, une punition.\n\n**Pas à pas :**\n\n1. Indice de sens : *There is a $5 ......* : on parle d'une somme d'argent.\n2. *for orders of fewer than ten units* = pour les commandes de moins de dix unités : ce n'est pas interdit, c'est juste une petite commande qui coûte plus cher à traiter.\n3. Frais normal → **fee**.\n\n**Les autres réponses :** *fine* = une amende (personne n'a enfreint de règle) ; *reminder* = une relance (ce n'est pas une somme) ; *creditor* = un créancier (une personne).\n\n**À retenir :** pas de faute → *fee* ; une faute punie → *fine*."
       },
       {
         "intitule": "*The ...... is printed at the top of every page of the invoice, with our logo and address.*",
         "type": "choix",
-        "choix": ["fine print", "amount due", "letterhead", "reminder"],
-        "reponse": 2
+        "choix": [
+          "fine print",
+          "amount due",
+          "letterhead",
+          "reminder"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** **letterhead** = l'en-tête imprimé en haut des documents d'une entreprise (nom, logo, adresse).\n\n**Pas à pas :**\n\n1. Indice de sens : *printed at the top of every page* = imprimé en haut de chaque page.\n2. *with our logo and address* = avec notre logo et notre adresse.\n3. Le haut de la page avec logo et adresse → **letterhead**.\n\n**Les autres réponses :** *fine print* = les petits caractères (en bas, pas en haut) ; *amount due* = la somme due (un chiffre, pas un logo) ; *reminder* = une relance (une lettre entière, pas une partie de page).\n\n**À retenir :** en haut avec le logo = *letterhead* ; en petit en bas = *fine print*."
       }
     ],
     "indices": [
@@ -274,50 +814,90 @@
       {
         "intitule": "*The latest **issue** of the magazine is about online shopping.*",
         "type": "choix",
-        "choix": ["un problème", "un numéro", "une émission"],
-        "reponse": 1
+        "choix": [
+          "un problème",
+          "un numéro",
+          "une émission"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **issue** a trois sens : un **problème** ; **émettre** (un document) ; un **numéro** (d'un magazine, d'un journal). Les mots voisins décident.\n\n**Pas à pas :**\n\n| Sens testé | Ça colle avec *The latest ...... of the magazine* ? |\n|---|---|\n| un problème | non : « le dernier problème du magazine » ne veut rien dire ici |\n| un numéro | **oui** : le dernier numéro du magazine |\n| une émission | non : une émission se dit *a programme / a show* |\n\nDonc *issue* = **un numéro**.\n\n**Les autres réponses :** « un problème » est un vrai sens de *issue*, mais pas avec *magazine* ; « une émission » est un faux ami (le verbe *issue* veut dire émettre un document, pas une émission de télé).\n\n**À retenir :** *issue* + magazine / journal = un numéro."
       },
       {
         "intitule": "*We have a technical **issue** with the payment page.*",
         "type": "choix",
-        "choix": ["un problème", "un numéro", "une sortie"],
-        "reponse": 0
+        "choix": [
+          "un problème",
+          "un numéro",
+          "une sortie"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **issue** a trois sens : un **problème** ; **émettre** (un document) ; un **numéro** (de magazine). Les mots voisins décident.\n\n**Pas à pas :**\n\n1. Indice de sens : *technical* (technique) et *with the payment page* (avec la page de paiement).\n2. Une page web qui a un souci technique : ça ne marche pas bien.\n3. Donc *issue* = **un problème**.\n\n**Les autres réponses :** « un numéro » n'a pas de sens sans magazine ; « une sortie » est un faux ami (une sortie = *an exit*).\n\n**À retenir :** *a technical issue* = un problème technique (synonyme : *a problem*)."
       },
       {
         "intitule": "*Our sales team did an **outstanding** job this year.*",
         "type": "choix",
-        "choix": ["impayé", "en retard", "excellent"],
-        "reponse": 2
+        "choix": [
+          "impayé",
+          "en retard",
+          "excellent"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** **outstanding** a deux sens : **impayé** (avec de l'argent) et **excellent** (avec un travail, un résultat).\n\n**Pas à pas :**\n\n1. Indice de sens : *did an ...... job this year* = a fait un ... travail cette année.\n2. On parle d'un **travail**, pas d'une facture.\n3. Un travail *outstanding* = **excellent**, remarquable.\n\n**Les autres réponses :** « impayé » et « en retard » sont le sens « facture » du mot : un travail ne peut pas être impayé dans cette phrase.\n\n**À retenir :** *outstanding* + *job / result / performance* = excellent."
       },
       {
         "intitule": "*Two invoices are still **outstanding**.*",
         "type": "choix",
-        "choix": ["impayées", "excellentes", "annulées"],
-        "reponse": 0
+        "choix": [
+          "impayées",
+          "excellentes",
+          "annulées"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **outstanding** a deux sens : **impayé** (avec de l'argent) et **excellent** (avec un travail, un résultat).\n\n**Pas à pas :**\n\n1. Indice de sens : *Two invoices* = deux factures.\n2. *are still ......* : sont **toujours** ... : on attend encore quelque chose.\n3. Des factures qu'on attend encore = **impayées**.\n\n**Les autres réponses :** « excellentes » est l'autre sens du mot, mais une facture n'est pas excellente ; « annulées » se dirait *void* ou *cancelled*.\n\n**À retenir :** *outstanding* + *invoice / payment / balance* = impayé."
       },
       {
         "intitule": "*Don't forget to **charge** your phone before the trip.*",
         "type": "choix",
-        "choix": ["facturer", "recharger", "inculper"],
-        "reponse": 1
+        "choix": [
+          "facturer",
+          "recharger",
+          "inculper"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **charge** a trois sens : **facturer** (un montant) ; **recharger** (une batterie) ; **inculper** (en justice).\n\n**Pas à pas :**\n\n1. Indice de sens : *your phone* (ton téléphone) et *before the trip* (avant le voyage).\n2. Ce qu'on fait à un téléphone avant de partir : on le branche pour la batterie.\n3. Donc *charge* = **recharger**.\n\n**Les autres réponses :** « facturer » demande un montant et une personne (*charge you $20*) ; « inculper » est un sens juridique (*charged with theft*), sans lien avec un téléphone.\n\n**À retenir :** *charge* + appareil / batterie = recharger."
       },
       {
         "intitule": "*The hotel will **charge** you $20 for parking.*",
         "type": "choix",
-        "choix": ["facturer", "recharger", "charger"],
-        "reponse": 0
+        "choix": [
+          "facturer",
+          "recharger",
+          "charger"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **charge** a trois sens : **facturer** (un montant) ; **recharger** (une batterie) ; **inculper** (en justice).\n\n**Pas à pas :**\n\n1. Indice de sens : *will charge you $20 for parking* = va te ... 20 $ pour le parking.\n2. Une personne (*you*) + un montant (*$20*) + un service (*parking*) : on fait payer un service.\n3. Donc *charge* = **facturer**.\n\n**Les autres réponses :** « recharger » demande une batterie ou un appareil ; « charger » (porter, mettre un poids dans) est un faux ami : en anglais, charger un camion se dit *load*.\n\n**À retenir :** *charge* + personne + montant = facturer."
       },
       {
         "intitule": "*If you are late with your tax return, you will pay a **fine**.*",
         "type": "choix",
-        "choix": ["des frais", "une amende", "un beau temps"],
-        "reponse": 1
+        "choix": [
+          "des frais",
+          "une amende",
+          "un beau temps"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **fine** a plusieurs sens : une **amende** (nom) ; beau (temps) ; fin, petit (*fine print*). Avec de l'argent à payer pour une faute, c'est l'amende.\n\n**Pas à pas :**\n\n1. Indice de sens : *If you are late with your tax return* = si tu es en retard pour ta déclaration d'impôts.\n2. Être en retard est une faute : on est puni.\n3. *you will pay a fine* = tu paieras **une amende**.\n\n**Les autres réponses :** « des frais » se dirait *a fee* (pas de faute) ; « un beau temps » est un autre sens de *fine* (*the weather is fine*), mais on ne « paie » pas du beau temps.\n\n**À retenir :** *pay a fine* = payer une amende."
       },
       {
         "intitule": "*The contract is **void** because it was never signed.*",
         "type": "choix",
-        "choix": ["vide", "nul, sans valeur", "en attente"],
-        "reponse": 1
+        "choix": [
+          "vide",
+          "nul, sans valeur",
+          "en attente"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **void** a deux sens : **nul, sans valeur** (un contrat, un coupon) et **vide** (un espace).\n\n**Pas à pas :**\n\n1. Indice de sens : *because it was never signed* = parce qu'il n'a jamais été signé.\n2. Un contrat non signé n'a aucune valeur légale.\n3. Donc *void* = **nul, sans valeur**.\n\n**Les autres réponses :** « vide » est un vrai sens de *void*, mais un contrat écrit n'est pas vide ; « en attente » se dirait *pending*.\n\n**À retenir :** *void* + contrat / coupon / billet = nul, sans valeur (*null and void*)."
       }
     ],
     "indices": [
@@ -332,13 +912,52 @@
     "difficulte": 2,
     "enonce": "Donne le synonyme vu en cours (un mot).",
     "questions": [
-      { "intitule": "**bill** (une facture)", "type": "texte", "reponse": ["invoice"] },
-      { "intitule": "**charge** (le nom : des frais)", "type": "texte", "reponse": ["fee", "fees"] },
-      { "intitule": "**overdue** (en retard)", "type": "texte", "reponse": ["outstanding", "late"] },
-      { "intitule": "**invalid**", "type": "texte", "reponse": ["void"] },
-      { "intitule": "**ignore**", "type": "texte", "reponse": ["disregard"] }
+      {
+        "intitule": "**bill** (une facture)",
+        "type": "texte",
+        "reponse": [
+          "invoice"
+        ],
+        "explication": "**Règle :** **bill** = **invoice** : la facture.\n\n**Pas à pas :**\n\n1. *bill* (une facture) : mot courant, aussi l'addition au restaurant.\n2. Synonyme plus professionnel du cours : **invoice**.\n\n**Erreurs fréquentes :** *receipt* (le ticket de caisse, preuve qu'on a déjà payé) ; *quote* (le devis, avant la vente).\n\n**À retenir :** *bill* = *invoice*."
+      },
+      {
+        "intitule": "**charge** (le nom : des frais)",
+        "type": "texte",
+        "reponse": [
+          "fee",
+          "fees"
+        ],
+        "explication": "**Règle :** **charge** (nom) = **fee** : des frais, la somme demandée pour un service.\n\n**Pas à pas :**\n\n1. *charge* est ici un **nom** (*a delivery charge* = des frais de livraison).\n2. Synonyme du cours : *a delivery **fee***.\n3. Réponses acceptées : *fee* ou *fees*.\n\n**Erreurs fréquentes :** *fine* (une amende, une punition) ; *price* (le prix d'un article, plus général).\n\n**À retenir :** *charge* (nom) = *fee*."
+      },
+      {
+        "intitule": "**overdue** (en retard)",
+        "type": "texte",
+        "reponse": [
+          "outstanding",
+          "late"
+        ],
+        "explication": "**Règle :** **overdue** = **outstanding** : en retard de paiement, pas encore payé. *late* est aussi accepté.\n\n**Pas à pas :**\n\n1. *overdue* : *over* (dépassé) + *due* (date à laquelle on doit payer) = la date est passée.\n2. Synonyme du cours : **outstanding** (impayé).\n3. Réponses acceptées : *outstanding* ou *late*.\n\n**Erreurs fréquentes :** *pending* (en attente, le paiement est en cours : pas de retard) ; *void* (annulé).\n\n**À retenir :** *overdue* = *outstanding* = en retard, impayé."
+      },
+      {
+        "intitule": "**invalid**",
+        "type": "texte",
+        "reponse": [
+          "void"
+        ],
+        "explication": "**Règle :** **invalid** = **void** : nul, qui n'a pas de valeur.\n\n**Pas à pas :**\n\n1. *invalid* : *in-* (pas) + *valid* (valable) = pas valable.\n2. Synonyme du cours : **void** (*This ticket is void* = ce billet n'est plus valable).\n\n**Erreurs fréquentes :** *empty* (vide : c'est l'autre sens de *void*, mais pas un synonyme de *invalid*) ; *pending*.\n\n**À retenir :** *invalid* = *void*."
+      },
+      {
+        "intitule": "**ignore**",
+        "type": "texte",
+        "reponse": [
+          "disregard"
+        ],
+        "explication": "**Règle :** **ignore** = **disregard** : ne pas tenir compte de.\n\n**Pas à pas :**\n\n1. *ignore* = ne pas faire attention à quelque chose.\n2. Synonyme du cours : **disregard** (*dis-* inverse le sens de *regard*, « tenir compte de »).\n3. Formule typique : *please disregard this reminder*.\n\n**Erreurs fréquentes :** *regard* (le contraire) ; *forget* (oublier, sens différent).\n\n**À retenir :** *ignore* = *disregard*."
+      }
     ],
-    "indices": ["Ils sont tous dans le tableau « Invoicing »."],
+    "indices": [
+      "Ils sont tous dans le tableau « Invoicing »."
+    ],
     "correction": "*bill* = *invoice* ; *charge* = *fee* ; *overdue* = *outstanding* ; *invalid* = *void* ; *ignore* = *disregard*."
   },
   {
@@ -347,16 +966,108 @@
     "difficulte": 1,
     "enonce": "Traduis en anglais.",
     "questions": [
-      { "intitule": "l'entrepôt", "type": "texte", "reponse": ["warehouse", "a warehouse", "the warehouse"] },
-      { "intitule": "le transporteur (l'entreprise)", "type": "texte", "reponse": ["carrier", "a carrier", "the carrier"], "refuses": ["courier"] },
-      { "intitule": "le destinataire", "type": "texte", "reponse": ["recipient", "a recipient", "the recipient", "addressee"], "refuses": ["receipt"] },
-      { "intitule": "le colis", "type": "texte", "reponse": ["package", "a package", "the package", "parcel", "a parcel", "the parcel"] },
-      { "intitule": "le chariot élévateur", "type": "texte", "reponse": ["forklift truck", "a forklift truck", "forklift", "a forklift"] },
-      { "intitule": "peser", "type": "texte", "reponse": ["weigh", "to weigh"], "refuses": ["weight"] },
-      { "intitule": "expédier", "type": "texte", "reponse": ["dispatch", "to dispatch", "ship", "to ship", "send", "to send"] },
-      { "intitule": "une caisse en bois", "type": "texte", "reponse": ["crate", "a crate", "wooden crate", "a wooden crate"] }
+      {
+        "intitule": "l'entrepôt",
+        "type": "texte",
+        "reponse": [
+          "warehouse",
+          "a warehouse",
+          "the warehouse"
+        ],
+        "explication": "**Règle :** l'entrepôt = **warehouse** : *ware* (la marchandise) + *house* (la maison) = la maison des marchandises.\n\n**Pas à pas :**\n\n1. On cherche le grand bâtiment où l'on stocke la marchandise avant de l'expédier.\n2. En anglais : *a warehouse* (*The goods are stored in our warehouse*).\n3. Réponses acceptées : *warehouse*, *a warehouse*, *the warehouse*.\n\n**Erreurs fréquentes :** *storage* (le stockage, l'action ou l'espace, pas le bâtiment) ; *depot* existe aussi mais n'est pas le mot du cours.\n\n**À retenir :** *warehouse* = entrepôt."
+      },
+      {
+        "intitule": "le transporteur (l'entreprise)",
+        "type": "texte",
+        "reponse": [
+          "carrier",
+          "a carrier",
+          "the carrier"
+        ],
+        "refuses": [
+          "courier"
+        ],
+        "explication": "**Règle :** le transporteur (l'**entreprise** de transport) = **carrier**.\n\n**Pas à pas :**\n\n1. Base : *to carry* = porter, transporter.\n2. Celui qui transporte : *carry* → *carrier* (le *y* devient *i*).\n3. Exemple : *The carrier will deliver your order on Monday.*\n\n**Erreurs fréquentes :** *courier* = le coursier, une **personne** qui livre elle-même (souvent à vélo) ; *transporter* existe, mais le mot du cours est *carrier*.\n\n**À retenir :** l'entreprise = *carrier* ; la personne = *courier*."
+      },
+      {
+        "intitule": "le destinataire",
+        "type": "texte",
+        "reponse": [
+          "recipient",
+          "a recipient",
+          "the recipient",
+          "addressee"
+        ],
+        "refuses": [
+          "receipt"
+        ],
+        "explication": "**Règle :** le destinataire = **recipient** : la personne qui **reçoit** (*receive*) le colis ou la lettre. *addressee* est aussi accepté.\n\n**Pas à pas :**\n\n1. *recipient* vient de la même famille que *receive* (recevoir).\n2. *addressee* = la personne à qui c'est adressé (*address* + *-ee*, le suffixe de celui qui reçoit l'action).\n3. Réponses acceptées : *recipient*, *addressee*, avec ou sans *a* / *the*.\n\n**Erreurs fréquentes :** *receipt* (ticket de caisse) ; *recipe* (recette) ; *destinatary* n'existe pas.\n\n**À retenir :** destinataire = *recipient* ; expéditeur = *sender*."
+      },
+      {
+        "intitule": "le colis",
+        "type": "texte",
+        "reponse": [
+          "package",
+          "a package",
+          "the package",
+          "parcel",
+          "a parcel",
+          "the parcel"
+        ],
+        "explication": "**Règle :** le colis = **package** (américain) ou **parcel** (britannique) : les deux sont acceptés.\n\n**Pas à pas :**\n\n1. On cherche le paquet envoyé par la poste ou un transporteur.\n2. *a package* ou *a parcel* (*I'm waiting for a parcel*).\n\n**Erreurs fréquentes :** *colis* n'existe pas en anglais ; *packaging* est l'emballage (le carton, le plastique), pas le colis entier.\n\n**À retenir :** colis = *package* = *parcel*."
+      },
+      {
+        "intitule": "le chariot élévateur",
+        "type": "texte",
+        "reponse": [
+          "forklift truck",
+          "a forklift truck",
+          "forklift",
+          "a forklift"
+        ],
+        "explication": "**Règle :** le chariot élévateur = **forklift truck**, ou simplement **forklift** (*fork* = la fourche, *lift* = soulever).\n\n**Pas à pas :**\n\n1. On décrit l'engin : il soulève les palettes avec une fourche.\n2. *fork* + *lift* = *forklift*, et on ajoute souvent *truck* (le véhicule).\n3. Réponses acceptées : *forklift truck*, *forklift*, avec ou sans *a*.\n\n**Erreurs fréquentes :** *cart* ou *trolley* (le chariot du supermarché, poussé à la main).\n\n**À retenir :** *forklift* = chariot élévateur (*fork* + *lift*)."
+      },
+      {
+        "intitule": "peser",
+        "type": "texte",
+        "reponse": [
+          "weigh",
+          "to weigh"
+        ],
+        "refuses": [
+          "weight"
+        ],
+        "explication": "**Règle :** peser = **weigh** (verbe). Le nom « le poids » est **weight**, avec un *t*.\n\n**Pas à pas :**\n\n1. On demande un **verbe** : peser.\n2. *to weigh* (*Could you weigh this parcel?*).\n3. Réponses acceptées : *weigh*, *to weigh*.\n\n**Erreurs fréquentes :** écrire *weight* (le nom) ; *wait* (attendre), qui se prononce presque pareil.\n\n**À retenir :** *weigh* = peser (verbe) ; *weight* = le poids (nom)."
+      },
+      {
+        "intitule": "expédier",
+        "type": "texte",
+        "reponse": [
+          "dispatch",
+          "to dispatch",
+          "ship",
+          "to ship",
+          "send",
+          "to send"
+        ],
+        "explication": "**Règle :** expédier = **dispatch** ; *ship* et *send* sont aussi acceptés.\n\n**Pas à pas :**\n\n1. Expédier = faire partir une commande vers le client.\n2. Mot du cours : *to dispatch* (*Your order was dispatched today*).\n3. Aussi : *to ship* (même pour un envoi par camion, pas seulement par bateau) et *to send* (envoyer).\n\n**Erreurs fréquentes :** *expedite* est un faux ami : il veut dire « accélérer, faire avancer plus vite », pas expédier.\n\n**À retenir :** expédier = *dispatch* = *ship* ; *expedite* = accélérer."
+      },
+      {
+        "intitule": "une caisse en bois",
+        "type": "texte",
+        "reponse": [
+          "crate",
+          "a crate",
+          "wooden crate",
+          "a wooden crate"
+        ],
+        "explication": "**Règle :** une caisse en bois (pour transporter des marchandises) = **crate** (*a wooden crate*).\n\n**Pas à pas :**\n\n1. On cherche une grande boîte en bois, pour le transport.\n2. *a crate*, ou plus précis *a wooden crate* (*wooden* = en bois).\n\n**Erreurs fréquentes :** *cash register* ou *checkout* (la caisse d'un magasin, où l'on paie) : le mot français « caisse » a deux sens, l'anglais a deux mots ; *box* (une boîte, souvent en carton).\n\n**À retenir :** caisse pour transporter = *crate* ; caisse pour payer = *checkout*."
+      }
     ],
-    "indices": ["Ils sont dans le tableau « Delivery » du cours.", "Le verbe « peser » n'a pas de *t* final."],
+    "indices": [
+      "Ils sont dans le tableau « Delivery » du cours.",
+      "Le verbe « peser » n'a pas de *t* final."
+    ],
     "correction": "entrepôt = *warehouse* ; transporteur = *carrier* ; destinataire = *recipient* ; colis = *package* (*parcel*) ; chariot élévateur = *forklift truck* ; peser = *weigh* (*weight* = le poids) ; expédier = *dispatch* ; caisse en bois = *crate*."
   },
   {
@@ -368,38 +1079,74 @@
       {
         "intitule": "*For ...... delivery, the parcel must be ordered before 3 p.m.*",
         "type": "choix",
-        "choix": ["overnight", "overweight", "overdue", "overall"],
-        "reponse": 0
+        "choix": [
+          "overnight",
+          "overweight",
+          "overdue",
+          "overall"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **overnight delivery** = livraison en une nuit, reçue le lendemain (en 24 heures).\n\n**Pas à pas :**\n\n1. Indice de sens : *the parcel must be ordered before 3 p.m.* = il faut commander avant 15 h.\n2. Une heure limite dans la journée : si on commande à temps, le colis voyage pendant la nuit.\n3. Livraison pendant la nuit, reçue le lendemain → **overnight** delivery.\n\n**Les autres réponses :** les quatre choix commencent par *over-*, c'est le piège : *overweight* = trop lourd ; *overdue* = en retard ; *overall* = global, dans l'ensemble.\n\n**À retenir :** *overnight* = en une nuit ; ne te laisse pas piéger par les autres mots en *over-*."
       },
       {
         "intitule": "*Express delivery is possible if you pay a ......*",
         "type": "choix",
-        "choix": ["rush fee", "freight", "load", "storage"],
-        "reponse": 0
+        "choix": [
+          "rush fee",
+          "freight",
+          "load",
+          "storage"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **rush fee** = les frais d'envoi express : *rush* = urgence, hâte ; *fee* = frais.\n\n**Pas à pas :**\n\n1. Indice de sens : *Express delivery is possible* = la livraison express est possible.\n2. *if you pay a ......* = si vous payez un(e) ... : il faut un supplément pour aller plus vite.\n3. Frais d'urgence → **rush fee**.\n\n**Les autres réponses :** *freight* = le fret, les marchandises transportées ; *load* = le chargement ; *storage* = le stockage : aucun ne se « paie » pour aller plus vite.\n\n**À retenir :** livraison express = supplément *rush fee*."
       },
       {
         "intitule": "*In the city centre, a bike ...... is often faster than a van.*",
         "type": "choix",
-        "choix": ["carrier", "courier", "recipient", "warehouse"],
-        "reponse": 1
+        "choix": [
+          "carrier",
+          "courier",
+          "recipient",
+          "warehouse"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **courier** = le coursier, une **personne** qui livre elle-même (souvent à vélo ou à moto en ville). **carrier** = l'entreprise de transport.\n\n**Pas à pas :**\n\n1. Indice de sens : *a bike ......* = un ... à vélo : quelqu'un qui roule à vélo.\n2. *In the city centre* et *faster than a van* : en ville, plus rapide qu'une camionnette.\n3. Une personne qui livre à vélo → **courier**.\n\n**Les autres réponses :** *carrier* = l'entreprise de transport (une société ne roule pas à vélo) ; *recipient* = le destinataire (il reçoit, il ne livre pas) ; *warehouse* = l'entrepôt (un bâtiment).\n\n**À retenir :** à vélo, à moto, en personne → *courier*."
       },
       {
         "intitule": "*The driver checked that the truck's ...... was not too heavy.*",
         "type": "choix",
-        "choix": ["load", "loaded", "loader", "loading"],
-        "reponse": 0
+        "choix": [
+          "load",
+          "loaded",
+          "loader",
+          "loading"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** après un **possessif** (*the truck's* = « du camion »), il faut un **nom**. Le nom de la famille *load* est *load* lui-même : le chargement.\n\n**Pas à pas :**\n\n1. Indice de grammaire : *the truck's ......* : le *'s* veut dire « de », donc « le ... du camion ». Après, il faut un nom.\n2. Indice de sens : *was not too heavy* = n'était pas trop lourd : on parle de ce que porte le camion.\n3. Ce que porte un camion = le chargement → **load**.\n\n**Les autres réponses :** *loaded* = chargé (participe passé, ce n'est pas un nom) ; *loader* = celui qui charge, une personne ou une machine (le camion ne « possède » pas une personne trop lourde) ; *loading* = l'action de charger, qui ne peut pas être « lourde ».\n\n**À retenir :** *'s* + trou → un nom ; ce que porte un camion = *its load*."
       },
       {
         "intitule": "*The ...... of 200 laptops left the factory this morning.*",
         "type": "choix",
-        "choix": ["shipment", "ship", "shipper", "shipped"],
-        "reponse": 0
+        "choix": [
+          "shipment",
+          "ship",
+          "shipper",
+          "shipped"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** entre *The* et *of*, il faut un **nom**. Pour l'objet envoyé, le nom de chose est **shipment** (suffixe *-ment*).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *The ...... of 200 laptops* : il faut un nom.\n2. Indice de sens : *left the factory this morning* = a quitté l'usine ce matin : c'est un envoi de marchandises.\n3. L'envoi, la cargaison → **shipment**.\n\n**Les autres réponses :** *ship* = un navire, ou le verbe expédier (un navire « de 200 ordinateurs » ne veut rien dire) ; *shipper* = l'expéditeur, une personne ou une entreprise ; *shipped* = participe passé, pas un nom.\n\n**À retenir :** la chose envoyée = *shipment* (*-ment*) ; la personne = *shipper* (*-er*)."
       },
       {
         "intitule": "*Please don't ...... heavy boxes on top of the glasses.*",
         "type": "choix",
-        "choix": ["weigh", "stack", "dispatch", "drop off"],
-        "reponse": 1
+        "choix": [
+          "weigh",
+          "stack",
+          "dispatch",
+          "drop off"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **stack** = empiler, mettre des objets les uns sur les autres.\n\n**Pas à pas :**\n\n1. Indice de sens : *heavy boxes on top of the glasses* = des boîtes lourdes **au-dessus** des verres.\n2. Mettre des boîtes les unes sur les autres = empiler.\n3. Empiler → **stack** (*Please don't stack...*).\n\n**Les autres réponses :** *weigh* = peser (on ne pèse pas « sur » des verres) ; *dispatch* = expédier ; *drop off* = déposer quelque part (une adresse, un lieu), pas poser les uns sur les autres.\n\n**À retenir :** *on top of* → *stack* (empiler) ; *a stack* = une pile."
       }
     ],
     "indices": [
@@ -414,13 +1161,51 @@
     "difficulte": 2,
     "enonce": "Complète avec *by*, *in* ou *up*.",
     "questions": [
-      { "intitule": "*We sent the signed contract ...... courier.*", "type": "texte", "reponse": ["by"] },
-      { "intitule": "*Your order will arrive ...... Friday at the latest.*", "type": "texte", "reponse": ["by"] },
-      { "intitule": "*While the shop is being renovated, the furniture is ...... storage.*", "type": "texte", "reponse": ["in"] },
-      { "intitule": "*You can pick ...... your parcel at the post office after 2 p.m.*", "type": "texte", "reponse": ["up"] },
-      { "intitule": "*Leave the empty boxes ...... a pile near the door.*", "type": "texte", "reponse": ["in"] }
+      {
+        "intitule": "*We sent the signed contract ...... courier.*",
+        "type": "texte",
+        "reponse": [
+          "by"
+        ],
+        "explication": "**Règle :** **by** + moyen de transport ou d'envoi = « par » : *by courier*, *by post*, *by email*, *by plane*.\n\n**Pas à pas :**\n\n1. Indice : *sent ...... courier* : on dit comment le contrat a été envoyé.\n2. Le moyen d'envoi → **by** (sans *a* ni *the* devant *courier*).\n\n**Erreurs fréquentes :** *with courier* (calque de « avec ») ; *per courier* (rare et vieilli) ; ajouter *a* (*by a courier*), qui n'est pas la tournure figée.\n\n**À retenir :** *by* + moyen : *by courier, by post, by email*."
+      },
+      {
+        "intitule": "*Your order will arrive ...... Friday at the latest.*",
+        "type": "texte",
+        "reponse": [
+          "by"
+        ],
+        "explication": "**Règle :** **by** + date = **au plus tard** à cette date ; **until** = jusqu'à, pour une situation qui dure.\n\n**Pas à pas :**\n\n1. Indice de sens : *at the latest* = au plus tard.\n2. La commande arrive une fois, avant ou le vendredi : c'est une limite.\n3. Limite à ne pas dépasser → **by** Friday.\n\n**Erreurs fréquentes :** *until Friday* voudrait dire que la commande « continue d'arriver » sans arrêt jusqu'à vendredi ; *before Friday* exclurait vendredi lui-même, et ne va pas avec *at the latest*.\n\n**À retenir :** *by* + date = d'ici, au plus tard ; *until* = jusqu'à (durée)."
+      },
+      {
+        "intitule": "*While the shop is being renovated, the furniture is ...... storage.*",
+        "type": "texte",
+        "reponse": [
+          "in"
+        ],
+        "explication": "**Règle :** **in storage** = au garde-meuble, mis en stockage.\n\n**Pas à pas :**\n\n1. Indice de sens : *While the shop is being renovated* = pendant les travaux du magasin.\n2. Les meubles sont rangés ailleurs, dans un lieu de stockage.\n3. Être stocké → **in** storage (comme *in stock*, *in a box*).\n\n**Erreurs fréquentes :** *on storage* ou *at storage* : avec *storage*, la préposition est *in*.\n\n**À retenir :** *in storage* = stocké, au garde-meuble."
+      },
+      {
+        "intitule": "*You can pick ...... your parcel at the post office after 2 p.m.*",
+        "type": "texte",
+        "reponse": [
+          "up"
+        ],
+        "explication": "**Règle :** **pick up** = passer prendre, récupérer quelque chose (un colis) ou quelqu'un.\n\n**Pas à pas :**\n\n1. Indice de sens : *your parcel at the post office* = ton colis à la poste.\n2. *after 2 p.m.* : à partir de 14 h, tu peux aller le chercher.\n3. Aller chercher → *pick **up***.\n\n**Erreurs fréquentes :** *pick out* (choisir) ; *drop off* (déposer, le contraire : on laisse le colis au lieu de le prendre).\n\n**À retenir :** *pick up* = récupérer ; *drop off* = déposer."
+      },
+      {
+        "intitule": "*Leave the empty boxes ...... a pile near the door.*",
+        "type": "texte",
+        "reponse": [
+          "in"
+        ],
+        "explication": "**Règle :** **in a pile** = en pile, en tas.\n\n**Pas à pas :**\n\n1. Indice de sens : *Leave the empty boxes ...... a pile near the door* = laisse les cartons vides ... une pile près de la porte.\n2. Les cartons forment une pile : ils sont « dans » cette forme.\n3. En pile → **in** a pile (comme *in a row* = en rang, *in a circle* = en cercle).\n\n**Erreurs fréquentes :** *on a pile* (ça voudrait dire « posés sur une pile déjà existante ») ; *by a pile* (« à côté d'une pile »).\n\n**À retenir :** une forme qu'on fait avec des objets → *in* : *in a pile, in a row*."
+      }
     ],
-    "indices": ["*by* + moyen de transport ; *by* + date = au plus tard.", "au garde-meuble = *in storage* ; passer prendre = *pick up*."],
+    "indices": [
+      "*by* + moyen de transport ; *by* + date = au plus tard.",
+      "au garde-meuble = *in storage* ; passer prendre = *pick up*."
+    ],
     "correction": "*by courier* (par coursier), *by Friday* (d'ici vendredi, au plus tard), *in storage* (au garde-meuble), *pick up* (récupérer), *in a pile* (en pile)."
   },
   {
@@ -429,13 +1214,55 @@
     "difficulte": 2,
     "enonce": "Donne le synonyme vu en cours (un mot).",
     "questions": [
-      { "intitule": "**wrap** (emballer)", "type": "texte", "reponse": ["pack", "package"] },
-      { "intitule": "**consignment**", "type": "texte", "reponse": ["shipment"] },
-      { "intitule": "**parcel**", "type": "texte", "reponse": ["package"] },
-      { "intitule": "**transporter**", "type": "texte", "reponse": ["carrier"], "refuses": ["courier"] },
-      { "intitule": "**send**", "type": "texte", "reponse": ["dispatch", "ship"] }
+      {
+        "intitule": "**wrap** (emballer)",
+        "type": "texte",
+        "reponse": [
+          "pack",
+          "package"
+        ],
+        "explication": "**Règle :** **wrap** (emballer) = **pack** ; *package* (verbe) est aussi accepté.\n\n**Pas à pas :**\n\n1. *wrap* = envelopper, emballer (dans du papier, du plastique).\n2. Synonyme du cours : **pack** (*pack the items carefully*).\n3. Réponses acceptées : *pack* ou *package*.\n\n**Erreurs fréquentes :** *unpack* (déballer, le contraire) ; *stack* (empiler).\n\n**À retenir :** *wrap* = *pack*."
+      },
+      {
+        "intitule": "**consignment**",
+        "type": "texte",
+        "reponse": [
+          "shipment"
+        ],
+        "explication": "**Règle :** **consignment** = **shipment** : un envoi, une cargaison de marchandises.\n\n**Pas à pas :**\n\n1. *consignment* = un lot de marchandises envoyé à quelqu'un.\n2. Synonyme du cours : **shipment** (*ship* + *-ment*, la chose envoyée).\n\n**Erreurs fréquentes :** *consigne* (en français, une instruction ou une consigne à bagages) n'a rien à voir ; *shipping* est l'activité d'expédier, pas l'envoi lui-même.\n\n**À retenir :** *consignment* = *shipment*."
+      },
+      {
+        "intitule": "**parcel**",
+        "type": "texte",
+        "reponse": [
+          "package"
+        ],
+        "explication": "**Règle :** **parcel** (colis, britannique) = **package** (américain).\n\n**Pas à pas :**\n\n1. *parcel* = un colis.\n2. Synonyme du cours : **package**.\n\n**Erreurs fréquentes :** *packaging* (l'emballage seul) ; *packet* (un petit paquet, comme un paquet de chips).\n\n**À retenir :** *parcel* = *package*."
+      },
+      {
+        "intitule": "**transporter**",
+        "type": "texte",
+        "reponse": [
+          "carrier"
+        ],
+        "refuses": [
+          "courier"
+        ],
+        "explication": "**Règle :** **transporter** = **carrier** : l'entreprise de transport.\n\n**Pas à pas :**\n\n1. *transporter* = celui qui transporte.\n2. Synonyme du cours : **carrier** (de *carry*, porter, transporter).\n\n**Erreurs fréquentes :** *courier* : c'est le coursier, une personne qui livre, pas une entreprise de transport.\n\n**À retenir :** *transporter* = *carrier* ≠ *courier*."
+      },
+      {
+        "intitule": "**send**",
+        "type": "texte",
+        "reponse": [
+          "dispatch",
+          "ship"
+        ],
+        "explication": "**Règle :** **send** = **dispatch** : envoyer, expédier ; *ship* est aussi accepté.\n\n**Pas à pas :**\n\n1. *send* = envoyer (le mot courant).\n2. Synonyme professionnel du cours : **dispatch** (*Your order has been dispatched*).\n3. Réponses acceptées : *dispatch* ou *ship*.\n\n**Erreurs fréquentes :** *expedite* (accélérer, faux ami de « expédier ») ; *deliver* (livrer, c'est l'arrivée chez le client, pas le départ).\n\n**À retenir :** *send* = *dispatch* = *ship*."
+      }
     ],
-    "indices": ["Ils sont dans le tableau « Delivery »."],
+    "indices": [
+      "Ils sont dans le tableau « Delivery »."
+    ],
     "correction": "*wrap* = *pack* ; *consignment* = *shipment* ; *parcel* = *package* ; *transporter* = *carrier* ; *send* = *dispatch*."
   },
   {
@@ -447,50 +1274,98 @@
       {
         "intitule": "*Our shop is hiring a part-time ...... for the weekends.*",
         "type": "choix",
-        "choix": ["cash", "cashing", "cashier", "cashed"],
-        "reponse": 2
+        "choix": [
+          "cash",
+          "cashing",
+          "cashier",
+          "cashed"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** après un article (*a*) et un adjectif (*part-time*), il faut un **nom**. Pour une personne qui fait un métier, on utilise le suffixe **-er / -ier**.\n\n**Pas à pas :**\n\n1. Indice de grammaire : *a part-time ......* : il faut un nom.\n2. Indice de sens : *Our shop is hiring* = notre magasin embauche : on embauche une **personne**.\n3. Personne qui tient la caisse : *cash* + *-ier* → **cashier**.\n\n**Les autres réponses :** *cash* est un nom, mais c'est l'argent liquide (on n'embauche pas de l'argent) ; *cashing* et *cashed* sont des formes du verbe *to cash* (encaisser), pas des noms de personne.\n\n**À retenir :** on embauche une personne → suffixe *-er / -ier / -or*."
       },
       {
         "intitule": "*Winter boots are on ...... until the end of January.*",
         "type": "choix",
-        "choix": ["sale", "sell", "sold", "seller"],
-        "reponse": 0
+        "choix": [
+          "sale",
+          "sell",
+          "sold",
+          "seller"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** « en promotion » = **on sale**. Après la préposition *on*, il faut un **nom** : *sale* (une vente, une promotion).\n\n**Pas à pas :**\n\n1. Indice de sens : *Winter boots are on ...... until the end of January* = les bottes d'hiver sont ... jusqu'à fin janvier : une période limitée, c'est une promo.\n2. Indice de grammaire : après *on*, un nom.\n3. Le nom de la famille *sell* qui veut dire « vente, promotion » → **sale** (*on sale*).\n\n**Les autres réponses :** *sell* est le verbe (vendre) ; *sold* son participe passé (vendu) ; *seller* est la personne qui vend.\n\n**À retenir :** *on sale* = en promotion ; *for sale* = à vendre."
       },
       {
         "intitule": "*A well-...... pharmacy should never run out of basic medicine.*",
         "type": "choix",
-        "choix": ["stock", "stocks", "stocking", "stocked"],
-        "reponse": 3
+        "choix": [
+          "stock",
+          "stocks",
+          "stocking",
+          "stocked"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** un adjectif composé avec **well-** se forme avec un **participe passé** en *-ed* : *well-paid* (bien payé), *well-known* (bien connu), *well-stocked* (bien approvisionné).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *A well-...... pharmacy* : le mot entre *well-* et *pharmacy* décrit la pharmacie, il forme un adjectif.\n2. *well* + participe passé = « bien + participe » : bien approvisionnée.\n3. Participe passé de *stock* (approvisionner) → **stocked** : *a well-stocked pharmacy*.\n\n**Les autres réponses :** *stock* est le nom ou la base verbale ; *stocks* est un pluriel ou une 3e personne ; *stocking* est la forme en *-ing* (et *stocking* veut aussi dire « bas », le vêtement).\n\n**À retenir :** *well-* + participe passé (*-ed*) = un adjectif « bien ... »."
       },
       {
         "intitule": "*Too many ...... were found in the last batch of chairs.*",
         "type": "choix",
-        "choix": ["defective", "defects", "defectively", "defect"],
-        "reponse": 1
+        "choix": [
+          "defective",
+          "defects",
+          "defectively",
+          "defect"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** après **too many** (trop de), il faut un **nom au pluriel**, car on compte des choses.\n\n**Pas à pas :**\n\n1. Indice de grammaire : *Too many ......* → nom pluriel.\n2. Indice de sens : *were found in the last batch of chairs* = ont été trouvés dans le dernier lot de chaises : on a trouvé des défauts.\n3. Nom pluriel de « défaut » → **defects**.\n\n**Les autres réponses :** *defect* est le bon nom, mais au singulier (*too many defect* est faux, et le verbe *were* est au pluriel) ; *defective* est un adjectif (défectueux) ; *defectively* est un adverbe.\n\n**À retenir :** *too many / several / a lot of* + nom au pluriel."
       },
       {
         "intitule": "*Ms. Ward has just joined the ...... department as a buyer.*",
         "type": "choix",
-        "choix": ["purchase", "purchaser", "purchased", "purchasing"],
-        "reponse": 3
+        "choix": [
+          "purchase",
+          "purchaser",
+          "purchased",
+          "purchasing"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** devant le nom **department**, on met le nom de l'**activité** en *-ing* : *the purchasing department* = le service achats.\n\n**Pas à pas :**\n\n1. Indice de grammaire : *the ...... department* : le mot dit **quel** service.\n2. Un service porte le nom de son activité : l'achat → *purchasing*.\n3. Indice de sens : *as a buyer* (comme acheteuse) confirme qu'il s'agit du service achats.\n\n**Les autres réponses :** *purchase* est l'achat lui-même ou le verbe ; *purchaser* est la personne (Ms. Ward est la *purchaser*, pas le service) ; *purchased* est un participe passé.\n\n**À retenir :** service = activité en *-ing* + *department*."
       },
       {
         "intitule": "*This new vacuum cleaner ...... at $149.*",
         "type": "choix",
-        "choix": ["retail", "retails", "retailer", "retailing"],
-        "reponse": 1
+        "choix": [
+          "retail",
+          "retails",
+          "retailer",
+          "retailing"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** avec un sujet **singulier** (*he, she, it*, ou un nom au singulier), le verbe au présent prend un **-s**. *to retail at* + prix = se vendre à ce prix au détail.\n\n**Pas à pas :**\n\n1. Le sujet : *This new vacuum cleaner* (cet aspirateur) : singulier, comme *it*.\n2. Il manque le verbe (après le sujet, avant *at $149*).\n3. Présent + sujet singulier → *retail* + *-s* = **retails** : *it retails at $149* (il se vend à 149 $).\n\n**Les autres réponses :** *retail* sans *s* (oubli du *-s* de la 3e personne) ; *retailer* est un nom (le détaillant) ; *retailing* tout seul, sans *is*, ne peut pas être le verbe de la phrase.\n\n**À retenir :** sujet singulier + présent → verbe en *-s*."
       },
       {
         "intitule": "*The price they ...... us last month was much lower.*",
         "type": "choix",
-        "choix": ["quote", "quotes", "quoted", "quotation"],
-        "reponse": 2
+        "choix": [
+          "quote",
+          "quotes",
+          "quoted",
+          "quotation"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** un marqueur du passé (*last month*, *yesterday*, *ago*) impose le **prétérit** : verbe régulier + *-ed*. *to quote a price* = indiquer, annoncer un prix.\n\n**Pas à pas :**\n\n1. Indice de grammaire : *they ......* : après le sujet *they*, il faut un **verbe**.\n2. Indice de temps : *last month* (le mois dernier) → prétérit.\n3. *quote* + *-d* → **quoted** : *the price they quoted us last month* (le prix qu'ils nous ont annoncé le mois dernier).\n\n**Les autres réponses :** *quote* et *quotes* sont au présent, impossible avec *last month* ; *quotation* est un nom (le devis), il ne peut pas suivre *they* comme verbe.\n\n**À retenir :** *last month / yesterday / ago* → prétérit en *-ed*."
       },
       {
         "intitule": "*If the service is bad, customers will take their ...... elsewhere.*",
         "type": "choix",
-        "choix": ["busy", "business", "busily", "businesses"],
-        "reponse": 1
+        "choix": [
+          "busy",
+          "business",
+          "busily",
+          "businesses"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **take one's business elsewhere** est une expression figée : aller chez un concurrent. *business* y est un **nom** au singulier (la clientèle, les achats du client).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *take their ......* : après le possessif *their*, il faut un nom.\n2. Indice de sens : *If the service is bad* : si le service est mauvais, les clients partent ailleurs.\n3. Expression du cours → *take their **business** elsewhere*.\n\n**Les autres réponses :** *busy* est un adjectif (occupé) ; *busily* un adverbe ; *businesses* (des entreprises, au pluriel) change le sens : les clients n'ont pas d'entreprises à emmener.\n\n**À retenir :** *take your business elsewhere* = aller acheter chez un concurrent (*business* au singulier)."
       }
     ],
     "indices": [
@@ -508,50 +1383,98 @@
       {
         "intitule": "*The ...... of the cheque must sign it before giving it to the supplier.*",
         "type": "choix",
-        "choix": ["issue", "issued", "issuer", "issuing"],
-        "reponse": 2
+        "choix": [
+          "issue",
+          "issued",
+          "issuer",
+          "issuing"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** entre *The* et *of*, il faut un **nom**. Pour une **personne**, on utilise le suffixe **-er** : *issue* (émettre) → *issuer* (l'émetteur, celui qui fait le chèque).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *The ...... of the cheque* : il faut un nom.\n2. Indice de sens : *must sign it* : celui-là doit **signer**, donc c'est une personne.\n3. La personne qui émet le chèque → **issuer**.\n\n**Les autres réponses :** *issue* est un nom, mais c'est l'émission, un problème ou un numéro : un « problème » ne signe pas ; *issued* est un participe passé ; *issuing* est l'activité d'émettre, pas la personne.\n\n**À retenir :** un nom qui fait une action humaine (signer, payer) → la personne en *-er*."
       },
       {
         "intitule": "*...... customers is a problem: the store loses money on every sale.*",
         "type": "choix",
-        "choix": ["Overcharging", "Undercharging", "Charged", "Charges"],
-        "reponse": 1
+        "choix": [
+          "Overcharging",
+          "Undercharging",
+          "Charged",
+          "Charges"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** le préfixe **over-** veut dire « trop » (*overcharge* = facturer trop cher) ; **under-** veut dire « pas assez » (*undercharge* = ne pas facturer assez). Un mot en *-ing* peut être le **sujet** de la phrase.\n\n**Pas à pas :**\n\n1. Indice de sens : *the store loses money on every sale* = le magasin **perd** de l'argent à chaque vente.\n2. On perd de l'argent quand on fait payer **moins** que ce qu'il faudrait → pas assez.\n3. Pas assez + facturer, en sujet → **Undercharging** customers is a problem.\n\n**Les autres réponses :** *Overcharging* = faire payer trop cher : le client y perd, pas le magasin (c'est le piège de sens) ; *Charged* (participe) et *Charges* (nom pluriel ou verbe) ne peuvent pas être suivis de *customers is* de façon correcte.\n\n**À retenir :** *over-* = trop, *under-* = pas assez ; verbe en *-ing* = peut servir de sujet."
       },
       {
         "intitule": "*I'm calling ...... the invoice you sent on Monday.*",
         "type": "choix",
-        "choix": ["regard", "regards", "regarding", "regarded"],
-        "reponse": 2
+        "choix": [
+          "regard",
+          "regards",
+          "regarding",
+          "regarded"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** « au sujet de, concernant » = **regarding**, toujours en *-ing*, placé devant un nom.\n\n**Pas à pas :**\n\n1. Indice de sens : *I'm calling ...... the invoice* = j'appelle ... la facture : on dit **pourquoi** on appelle.\n2. « au sujet de » → **regarding**.\n3. Phrase : *I'm calling regarding the invoice you sent on Monday.*\n\n**Les autres réponses :** *regards* sert dans la formule de fin de lettre (*Kind regards*) ; *regard* est le verbe ou le nom « égard » ; *regarded* est un participe passé (« considéré »).\n\n**À retenir :** *regarding* = au sujet de (synonymes : *about*, *concerning*)."
       },
       {
         "intitule": "*...... on the size of your order, delivery takes two to five days.*",
         "type": "choix",
-        "choix": ["Depend", "Depending", "Dependent", "Dependence"],
-        "reponse": 1
+        "choix": [
+          "Depend",
+          "Depending",
+          "Dependent",
+          "Dependence"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** « selon, en fonction de » = **Depending on**, en *-ing*, souvent en début de phrase.\n\n**Pas à pas :**\n\n1. Indice de sens : *...... on the size of your order, delivery takes two to five days* = ... la taille de la commande, la livraison prend 2 à 5 jours : le délai change selon la taille.\n2. « selon » = *depending on*.\n3. En début de phrase, avec une majuscule → **Depending**.\n\n**Les autres réponses :** *Depend* est le verbe de base, il ne peut pas commencer cette phrase sans sujet ; *Dependent* est un adjectif (*dependent on* = dépendant de, une personne ou une chose) ; *Dependence* est un nom (la dépendance).\n\n**À retenir :** *depending on* = selon, en fonction de."
       },
       {
         "intitule": "*Frozen food must be kept in cold ......*",
         "type": "choix",
-        "choix": ["store", "stored", "storage", "storing"],
-        "reponse": 2
+        "choix": [
+          "store",
+          "stored",
+          "storage",
+          "storing"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** après un **adjectif** (*cold*), il faut un **nom**. « Chambre froide » = **cold storage** (*storage* = le stockage, suffixe *-age*).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *in cold ......* : *cold* est un adjectif, il décrit un nom qui suit.\n2. Indice de sens : *Frozen food must be kept* = les surgelés doivent être gardés : dans un lieu de stockage froid.\n3. Nom de la chose « stockage » → **storage** : *cold storage*.\n\n**Les autres réponses :** *store* est un magasin, ou le verbe stocker (*a cold store* existe, mais ce n'est pas l'expression du cours) ; *stored* est un participe passé ; *storing* est l'action.\n\n**À retenir :** adjectif + trou → un nom ; *cold storage* = chambre froide."
       },
       {
         "intitule": "*These plastic boxes are designed to be ......, so they take less space.*",
         "type": "choix",
-        "choix": ["stack", "stacking", "stackable", "stacks"],
-        "reponse": 2
+        "choix": [
+          "stack",
+          "stacking",
+          "stackable",
+          "stacks"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** après **to be**, il faut un **adjectif**. Le suffixe **-able** fabrique un adjectif « qu'on peut ... » : *stack* (empiler) → *stackable* (empilable).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *designed to be ......* : après *be*, un adjectif.\n2. Indice de sens : *so they take less space* = donc elles prennent moins de place : on peut les mettre les unes sur les autres.\n3. Qu'on peut empiler → **stackable**.\n\n**Les autres réponses :** *stack* est le verbe ou le nom (une pile) ; *stacking* et *stacks* sont des formes du verbe : aucun n'est un adjectif qui dit « qu'on peut empiler ».\n\n**À retenir :** *be* + trou → adjectif ; *-able* = « qu'on peut »."
       },
       {
         "intitule": "*The ...... of the box is printed on the label: 12 kg.*",
         "type": "choix",
-        "choix": ["weigh", "weighed", "weighing", "weight"],
-        "reponse": 3
+        "choix": [
+          "weigh",
+          "weighed",
+          "weighing",
+          "weight"
+        ],
+        "reponse": 3,
+        "explication": "**Règle :** entre *The* et *of*, il faut un **nom**. Le nom de la famille *weigh* (peser) est **weight** (le poids).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *The ...... of the box* → un nom.\n2. Indice de sens : *printed on the label: 12 kg* = imprimé sur l'étiquette : 12 kg. Un nombre de kilos, c'est un poids.\n3. Le poids → **weight**.\n\n**Les autres réponses :** *weigh* est le verbe (peser) ; *weighed* son participe passé ; *weighing* est l'action de peser (la pesée), pas le chiffre.\n\n**À retenir :** *weigh* (verbe) → *weight* (nom, le poids)."
       },
       {
         "intitule": "*Trucks unload at the ...... bay behind the warehouse.*",
         "type": "choix",
-        "choix": ["load", "loaded", "loading", "loads"],
-        "reponse": 2
+        "choix": [
+          "load",
+          "loaded",
+          "loading",
+          "loads"
+        ],
+        "reponse": 2,
+        "explication": "**Règle :** devant un nom, on met souvent le nom de l'**activité** en *-ing* pour dire à quoi il sert : **loading bay** = quai de chargement (l'endroit qui sert à charger).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *the ...... bay* : le mot décrit *bay* (un quai, un emplacement).\n2. Indice de sens : *Trucks unload* = les camions déchargent : c'est l'endroit où l'on charge et décharge.\n3. Activité de charger → **loading** bay.\n\n**Les autres réponses :** *load* est le chargement (*the load bay* ne se dit pas) ; *loaded* = chargé (un quai n'est pas « chargé ») ; *loads* est un pluriel ou une 3e personne.\n\n**À retenir :** activité en *-ing* + nom = « qui sert à » : *loading bay, shipping costs, parking space*."
       }
     ],
     "indices": [
@@ -566,13 +1489,69 @@
     "difficulte": 3,
     "enonce": "Écris le mot demandé (un seul mot, formé à partir du verbe donné).",
     "questions": [
-      { "intitule": "La **personne** qui achète pour une entreprise (*to purchase*)", "type": "texte", "reponse": ["purchaser", "buyer"] },
-      { "intitule": "La **personne** qui expédie les commandes (*to dispatch*)", "type": "texte", "reponse": ["dispatcher"] },
-      { "intitule": "La **personne** à qui l'on doit de l'argent (*credit*)", "type": "texte", "reponse": ["creditor"], "refuses": ["debtor"] },
-      { "intitule": "L'**activité** : la facturation (*to invoice*)", "type": "texte", "reponse": ["invoicing", "billing"] },
-      { "intitule": "L'**activité** : l'emballage (*to package*)", "type": "texte", "reponse": ["packaging", "packing"] },
-      { "intitule": "La **chose** : l'envoi, la cargaison (*to ship*)", "type": "texte", "reponse": ["shipment", "consignment"] },
-      { "intitule": "La **chose** : l'abonnement (*to subscribe*)", "type": "texte", "reponse": ["subscription"] }
+      {
+        "intitule": "La **personne** qui achète pour une entreprise (*to purchase*)",
+        "type": "texte",
+        "reponse": [
+          "purchaser",
+          "buyer"
+        ],
+        "explication": "**Règle :** la **personne** qui fait l'action se forme souvent avec **-er** : *purchase* (acheter) → *purchaser* (l'acheteur). *buyer* est aussi accepté.\n\n**Pas à pas :**\n\n1. Verbe donné : *to purchase* = acheter (pour une entreprise).\n2. On veut la personne → suffixe *-er*. Le verbe finit déjà par *e* : on ajoute seulement *-r*.\n3. *purchase* + *r* = **purchaser**.\n\n**Erreurs fréquentes :** *purchasing* (l'activité, le service achats) ; *purchaseer* (deux *e*).\n\n**À retenir :** la personne = *-er* (si le verbe finit par *e*, on ajoute juste *-r*)."
+      },
+      {
+        "intitule": "La **personne** qui expédie les commandes (*to dispatch*)",
+        "type": "texte",
+        "reponse": [
+          "dispatcher"
+        ],
+        "explication": "**Règle :** la **personne** qui fait l'action = verbe + **-er** : *dispatch* (expédier) → *dispatcher*.\n\n**Pas à pas :**\n\n1. Verbe donné : *to dispatch* = expédier.\n2. La personne → *dispatch* + *-er*.\n3. Résultat : **dispatcher** (la personne qui organise l'expédition des commandes).\n\n**Erreurs fréquentes :** *dispatching* (l'activité) ; *dispatchment* (n'existe pas).\n\n**À retenir :** verbe + *-er* = la personne qui fait l'action."
+      },
+      {
+        "intitule": "La **personne** à qui l'on doit de l'argent (*credit*)",
+        "type": "texte",
+        "reponse": [
+          "creditor"
+        ],
+        "refuses": [
+          "debtor"
+        ],
+        "explication": "**Règle :** certaines personnes se forment avec **-or** au lieu de *-er* : *credit* → *creditor* (le créancier, celui à qui l'on doit de l'argent).\n\n**Pas à pas :**\n\n1. Mot donné : *credit* (le crédit).\n2. La personne à qui l'on doit de l'argent : celle qui a fait crédit.\n3. *credit* + *-or* = **creditor**.\n\n**Erreurs fréquentes :** *crediter* (mauvais suffixe) ; *debtor* (le débiteur, celui qui **doit** l'argent, l'inverse).\n\n**À retenir :** *-or* = personne aussi (*creditor, director, investor*)."
+      },
+      {
+        "intitule": "L'**activité** : la facturation (*to invoice*)",
+        "type": "texte",
+        "reponse": [
+          "invoicing",
+          "billing"
+        ],
+        "explication": "**Règle :** l'**activité** se forme avec **-ing** : *invoice* (facturer) → *invoicing* (la facturation). *billing* est aussi accepté.\n\n**Pas à pas :**\n\n1. Verbe donné : *to invoice* = facturer.\n2. On veut l'activité, le service → suffixe *-ing*. Le *e* final tombe : *invoic(e)* + *-ing*.\n3. Résultat : **invoicing** (*the invoicing department*).\n\n**Erreurs fréquentes :** *invoiceing* (garder le *e*) ; *invoicer* (la personne).\n\n**À retenir :** l'activité = *-ing* (le *e* muet final disparaît : *invoice* → *invoicing*)."
+      },
+      {
+        "intitule": "L'**activité** : l'emballage (*to package*)",
+        "type": "texte",
+        "reponse": [
+          "packaging",
+          "packing"
+        ],
+        "explication": "**Règle :** l'**activité** se forme avec **-ing** : *package* (emballer) → *packaging* (l'emballage). *packing* est aussi accepté.\n\n**Pas à pas :**\n\n1. Verbe donné : *to package* = emballer.\n2. Activité → *-ing*, et le *e* final tombe : *packag(e)* + *-ing*.\n3. Résultat : **packaging**.\n\n**Erreurs fréquentes :** *packageing* ; *package* (le colis lui-même, pas l'activité) ; *packager* (la personne).\n\n**À retenir :** *-ing* = l'activité (*packaging, shipping, invoicing*)."
+      },
+      {
+        "intitule": "La **chose** : l'envoi, la cargaison (*to ship*)",
+        "type": "texte",
+        "reponse": [
+          "shipment",
+          "consignment"
+        ],
+        "explication": "**Règle :** la **chose** se forme souvent avec **-ment** : *ship* (expédier) → *shipment* (l'envoi, la cargaison). *consignment* est aussi accepté.\n\n**Pas à pas :**\n\n1. Verbe donné : *to ship* = expédier.\n2. On veut la chose envoyée → suffixe *-ment*.\n3. *ship* + *-ment* = **shipment** (pas de lettre doublée devant *-ment*).\n\n**Erreurs fréquentes :** *shipping* (l'activité d'expédier, ou les frais) ; *shipper* (l'expéditeur).\n\n**À retenir :** la chose = *-ment / -tion / -age*."
+      },
+      {
+        "intitule": "La **chose** : l'abonnement (*to subscribe*)",
+        "type": "texte",
+        "reponse": [
+          "subscription"
+        ],
+        "explication": "**Règle :** la **chose** se forme aussi avec **-tion** : *subscribe* (s'abonner) → *subscription* (l'abonnement). L'orthographe change : le *b* devient *p*.\n\n**Pas à pas :**\n\n1. Verbe donné : *to subscribe* = s'abonner.\n2. On veut la chose → suffixe *-tion*.\n3. Les verbes en *-scribe* donnent des noms en *-scription* : *describe* → *description*, *prescribe* → *prescription*, donc *subscribe* → **subscription**.\n\n**Erreurs fréquentes :** *subscribtion* (garder le *b*) ; *subscriber* (la personne abonnée) ; *subscribing* (l'action).\n\n**À retenir :** *-scribe* → *-scription* (le *b* devient *p*)."
+      }
     ],
     "indices": [
       "*-er* / *-or* = la personne ; *-ing* = l'activité.",
@@ -589,44 +1568,79 @@
       {
         "intitule": "*Keep your ...... : you'll need it to return the item.*",
         "type": "choix",
-        "choix": ["recipe", "receipt", "recipient"],
-        "reponse": 1
+        "choix": [
+          "recipe",
+          "receipt",
+          "recipient"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **receipt** = le ticket de caisse, la preuve d'achat. Il ressemble à **recipe** (recette de cuisine) et **recipient** (destinataire).\n\n**Pas à pas :**\n\n1. Indice de sens : *you'll need it to return the item* = tu en auras besoin pour retourner l'article.\n2. Pour rendre un article, le magasin demande la **preuve d'achat**.\n3. Preuve d'achat → **receipt**.\n\n**Les autres réponses :** *recipe* = une recette de cuisine ; *recipient* = le destinataire d'un colis, une personne qu'on ne « garde » pas dans sa poche.\n\n**À retenir :** *receipt* = ticket ; *recipe* = recette ; *recipient* = destinataire."
       },
       {
         "intitule": "*Every guest receives a ...... breakfast.*",
         "type": "choix",
-        "choix": ["complimentary", "complementary", "compliment"],
-        "reponse": 0
+        "choix": [
+          "complimentary",
+          "complementary",
+          "compliment"
+        ],
+        "reponse": 0,
+        "explication": "**Règle :** **complimentary** (avec un *i*) = offert, gratuit ; **complementary** (avec un *e*) = complémentaire ; **compliment** = un compliment (nom).\n\n**Pas à pas :**\n\n1. Indice de sens : *Every guest receives* = chaque client de l'hôtel reçoit : le petit-déjeuner est donné, offert.\n2. Indice de grammaire : *a ...... breakfast* : il faut un adjectif devant le nom *breakfast*.\n3. Adjectif « offert » → **complimentary**.\n\n**Les autres réponses :** *complementary* = complémentaire (un petit-déjeuner « complémentaire » n'a pas de sens ici) ; *compliment* est un nom, pas un adjectif.\n\n**À retenir :** compl**i**mentary = gratuit ; compl**e**mentary = qui complète."
       },
       {
         "intitule": "*Our two products are ......: one works best with the other.*",
         "type": "choix",
-        "choix": ["complimentary", "complementary", "compliments"],
-        "reponse": 1
+        "choix": [
+          "complimentary",
+          "complementary",
+          "compliments"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **complementary** (avec un *e*) = complémentaire : deux choses qui se complètent, qui vont bien ensemble.\n\n**Pas à pas :**\n\n1. Indice de sens : *one works best with the other* = l'un marche mieux avec l'autre.\n2. Deux produits qui se complètent = complémentaires.\n3. Complémentaire → **complementary** (avec un *e*, comme « complet »).\n\n**Les autres réponses :** *complimentary* = offerts, gratuits (rien ne dit qu'ils sont gratuits) ; *compliments* est un nom pluriel (des compliments).\n\n**À retenir :** « l'un va avec l'autre » → *complementary*."
       },
       {
         "intitule": "*All parcels sent abroad must go through ......*",
         "type": "choix",
-        "choix": ["custom", "customs", "customers"],
-        "reponse": 1
+        "choix": [
+          "custom",
+          "customs",
+          "customers"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **customs** (toujours avec un *s*) = la douane. **custom** = la clientèle fidèle ou une coutume ; **customers** = les clients.\n\n**Pas à pas :**\n\n1. Indice de sens : *All parcels sent abroad* = tous les colis envoyés à l'étranger.\n2. *must go through ......* = doivent passer par ... : à la frontière, les colis passent par la douane.\n3. Douane → **customs**.\n\n**Les autres réponses :** *custom* sans *s* = la clientèle fidèle ou une coutume ; *customers* = les clients (les colis ne « passent » pas par les clients).\n\n**À retenir :** *go through customs* = passer la douane."
       },
       {
         "intitule": "*Could you ...... this letter? I think it's over 100 g.*",
         "type": "choix",
-        "choix": ["weight", "weigh", "wait"],
-        "reponse": 1
+        "choix": [
+          "weight",
+          "weigh",
+          "wait"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** après **Could you** (pourrais-tu), il faut un **verbe** de base. Peser = **weigh** ; le poids = *weight* (nom).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *Could you ......* → un verbe.\n2. Indice de sens : *I think it's over 100 g* = je pense qu'elle fait plus de 100 g : on veut connaître son poids, donc la peser.\n3. Peser (verbe) → **weigh**.\n\n**Les autres réponses :** *weight* est le nom (le poids), il ne suit pas *Could you* ; *wait* (attendre) se prononce presque pareil, mais « attendre cette lettre » ne colle pas avec *over 100 g*.\n\n**À retenir :** *Could you* + verbe : *weigh* (peser), pas *weight* (le poids)."
       },
       {
         "intitule": "*The ...... is broken: please return it to the shop.*",
         "type": "choix",
-        "choix": ["goods", "merchandise", "items"],
-        "reponse": 1
+        "choix": [
+          "goods",
+          "merchandise",
+          "items"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **merchandise** est **indénombrable** : il ne prend pas de *s* et son verbe est au **singulier** (*the merchandise is*). **goods** et **items** sont au **pluriel** (*are*).\n\n**Pas à pas :**\n\n1. Indice de grammaire : *The ...... is broken* : le verbe *is* est au singulier.\n2. On cherche donc un nom singulier.\n3. Parmi les choix, seul *merchandise* se conjugue au singulier → **merchandise**.\n\n**Les autres réponses :** *goods* est toujours pluriel (*the goods are broken*) ; *items* est un pluriel (*the items are broken*) : avec *is*, ils sont faux.\n\n**À retenir :** *is* → *merchandise* ; *are* → *goods* / *items*."
       },
       {
         "intitule": "*I couldn't decide, so the shop assistant helped me ...... a gift.*",
         "type": "choix",
-        "choix": ["pick up", "pick out", "drop off"],
-        "reponse": 1
+        "choix": [
+          "pick up",
+          "pick out",
+          "drop off"
+        ],
+        "reponse": 1,
+        "explication": "**Règle :** **pick out** = choisir ; **pick up** = passer prendre, récupérer ; **drop off** = déposer.\n\n**Pas à pas :**\n\n1. Indice de sens : *I couldn't decide* = je n'arrivais pas à me décider.\n2. *the shop assistant helped me ...... a gift* = la vendeuse m'a aidé à ... un cadeau : elle m'a aidé à **choisir**.\n3. Choisir → **pick out**.\n\n**Les autres réponses :** *pick up* = récupérer (on récupère un cadeau déjà choisi, ce qui ne colle pas avec *I couldn't decide*) ; *drop off* = déposer.\n\n**À retenir :** *pick out* = choisir ; *pick up* = récupérer ; *drop off* = déposer."
       }
     ],
     "indices": [
@@ -641,12 +1655,34 @@
     "difficulte": 3,
     "enonce": "Traduis en anglais puis compare avec la réponse modèle.",
     "questions": [
-      { "intitule": "Ce modèle est en rupture de stock, mais nous pouvons le commander.", "type": "auto", "reponse": "*This model is out of stock, but we can order it for you.*" },
-      { "intitule": "Si vous avez déjà payé, ne tenez pas compte de cette relance.", "type": "auto", "reponse": "*If you have already paid, please disregard this reminder.*" },
-      { "intitule": "La facture doit être réglée sous 30 jours.", "type": "auto", "reponse": "*The invoice must be paid within 30 days.* (ou *Payment is due within 30 days.*)" },
-      { "intitule": "Le transporteur passera prendre le colis demain matin.", "type": "auto", "reponse": "*The carrier will pick up the package (parcel) tomorrow morning.*" }
+      {
+        "intitule": "Ce modèle est en rupture de stock, mais nous pouvons le commander.",
+        "type": "auto",
+        "reponse": "*This model is out of stock, but we can order it for you.*",
+        "explication": "**Ce qu'une bonne réponse doit contenir, morceau par morceau :**\n\n1. « Ce modèle » → *This model* (*this* pour un objet proche dont on parle).\n2. « est en rupture de stock » → *is out of stock* : l'expression figée du cours, avec *out of*.\n3. « mais » → *but*, qui relie les deux idées.\n4. « nous pouvons le commander » → *we can order it* : *can* + verbe de base, puis *it* pour « le ». Ajouter *for you* (pour vous) rend la phrase plus naturelle dans la bouche d'un vendeur.\n\n**Erreurs fréquentes :** *is not in stock* se comprend mais *out of stock* est la formule attendue ; *in rupture of stock* (calque du français) ; *we can command it* (*command* = donner un ordre, pas passer commande) ; oublier *it*.\n\n**À retenir :** en rupture = *out of stock* ; commander = *order*."
+      },
+      {
+        "intitule": "Si vous avez déjà payé, ne tenez pas compte de cette relance.",
+        "type": "auto",
+        "reponse": "*If you have already paid, please disregard this reminder.*",
+        "explication": "**Ce qu'une bonne réponse doit contenir, morceau par morceau :**\n\n1. « Si vous avez déjà payé » → *If you have already paid* : avec *already* (déjà) et un résultat qui compte maintenant, on utilise le **present perfect** (*have* + participe passé *paid*).\n2. « ne tenez pas compte de » → *disregard* (ou *ignore*), à l'impératif, précédé de *please* pour la politesse.\n3. « cette relance » → *this reminder*.\n\n**Erreurs fréquentes :** *If you already paid* (prétérit, admis en américain mais pas la tournure du cours) ; *don't take account of* (calque du français) ; traduire « relance » par *relaunch* ; oublier *please*, qui rend la phrase sèche.\n\n**À retenir :** la formule toute faite : *If you have already paid, please disregard this reminder.*"
+      },
+      {
+        "intitule": "La facture doit être réglée sous 30 jours.",
+        "type": "auto",
+        "reponse": "*The invoice must be paid within 30 days.* (ou *Payment is due within 30 days.*)",
+        "explication": "**Ce qu'une bonne réponse doit contenir, morceau par morceau :**\n\n1. « La facture » → *The invoice*.\n2. « doit être réglée » → obligation + passif : *must be paid* (*must* + *be* + participe passé). La facture ne paie pas, elle **est payée** : d'où le passif.\n3. « sous 30 jours » → *within 30 days* (dans un délai de).\n\nTournure aussi acceptée, très courante sur les factures : *Payment is due within 30 days* (le paiement est dû sous 30 jours).\n\n**Erreurs fréquentes :** *under 30 days* (calque de « sous ») ; *in 30 days* (= dans 30 jours, à partir de maintenant, pas « au plus tard ») ; *must pay* sans *be* (la facture ne paie pas elle-même).\n\n**À retenir :** délai à ne pas dépasser = *within* ; obligation au passif = *must be* + participe passé."
+      },
+      {
+        "intitule": "Le transporteur passera prendre le colis demain matin.",
+        "type": "auto",
+        "reponse": "*The carrier will pick up the package (parcel) tomorrow morning.*",
+        "explication": "**Ce qu'une bonne réponse doit contenir, morceau par morceau :**\n\n1. « Le transporteur » : ici l'entreprise de transport → *The carrier*.\n2. « passera prendre » → futur avec *will* + *pick up* (passer prendre).\n3. « le colis » → *the package* ou *the parcel*.\n4. « demain matin » → *tomorrow morning*, en fin de phrase.\n\nOrdre : *The carrier will pick up the package tomorrow morning* (ou *pick the package up*).\n\n**Erreurs fréquentes :** *courier* (le coursier, une personne : le mot attendu pour « transporteur » est *carrier*) ; *will pass to take* (calque de « passer prendre ») ; *drop off* (déposer, le contraire).\n\n**À retenir :** passer prendre = *pick up* ; transporteur = *carrier*."
+      }
     ],
-    "indices": ["en rupture = *out of stock* ; relance = *reminder* ; sous 30 jours = *within 30 days* ; passer prendre = *pick up*."],
+    "indices": [
+      "en rupture = *out of stock* ; relance = *reminder* ; sous 30 jours = *within 30 days* ; passer prendre = *pick up*."
+    ],
     "correction": "Vérifie surtout : *out of stock*, *disregard this reminder*, *within 30 days*, *carrier* (et non *courier*), *pick up*."
   },
   {
@@ -658,7 +1694,8 @@
       {
         "intitule": "Ton e-mail",
         "type": "auto",
-        "reponse": "Exemple :\n\n*Dear Sir or Madam,*\n\n*I am writing about our order no. 5832 of 20 office chairs, which was delivered yesterday. Unfortunately, three of the chairs were damaged during transport. In addition, the invoice includes a rush fee, although we chose standard delivery. Could you please send us three replacement chairs and a corrected invoice? We look forward to hearing from you.*\n\n*Kind regards,*\n*Sam Leroy, Purchasing Department*"
+        "reponse": "Exemple :\n\n*Dear Sir or Madam,*\n\n*I am writing about our order no. 5832 of 20 office chairs, which was delivered yesterday. Unfortunately, three of the chairs were damaged during transport. In addition, the invoice includes a rush fee, although we chose standard delivery. Could you please send us three replacement chairs and a corrected invoice? We look forward to hearing from you.*\n\n*Kind regards,*\n*Sam Leroy, Purchasing Department*",
+        "explication": "**Ce qu'une bonne réponse doit contenir, dans l'ordre :**\n\n1. **Salutation** : *Dear Sir or Madam,* (on ne connaît pas le nom du destinataire).\n2. **Référence** : la phrase d'ouverture dit de quoi on parle, avec le **numéro de commande** et ce qui a été livré : *I am writing about / regarding our order no. ... of 20 office chairs.*\n3. **Premier problème** : *Unfortunately, three of the chairs were damaged* (ou *are defective*). *Unfortunately* (malheureusement) annonce poliment la mauvaise nouvelle.\n4. **Deuxième problème**, relié par un mot de liaison (*In addition*, *Also*) : l'erreur de facture, avec le mot *charge* : *you charged us a rush fee / an express delivery fee that we did not request* (des frais d'express que nous n'avons pas demandés).\n5. **Demande claire et polie** : *Could you please send us three replacement chairs and a corrected invoice?* (ou *refund the fee*).\n6. **Conclusion** : *We look forward to hearing from you.* puis *Kind regards,* et ta signature.\n\n**Erreurs fréquentes :** oublier le numéro de commande ; ne pas utiliser tous les mots imposés (*order*, *damaged / defective*, *invoice*, *charge*, *refund / replacement*) ; décrire les problèmes sans rien demander ; être trop direct (*Send me new chairs.*) ; calques du français comme *I write you for* au lieu de *I am writing about*.\n\n**À retenir :** salutation → référence → problèmes → demande polie → formule de fin."
       }
     ],
     "indices": [

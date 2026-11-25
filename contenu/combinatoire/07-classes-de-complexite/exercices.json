@@ -21,7 +21,8 @@
         "refuses": [
           "{1, 2, 3}",
           "{1, 2, 3, 4, 5}"
-        ]
+        ],
+        "explication": "**Règle :** un problème est dans **P** si on connaît un algorithme qui le **résout** en temps polynomial. Si $P \\neq NP$, aucun problème NP-complet n'est dans P.\n\n**Pas à pas :** on passe en revue les 13 problèmes.\n\n| # | Problème | Algorithme polynomial connu ? | Dans P ? |\n|---|---|---|---|\n| 1 | chemin eulérien | oui (Euler : connexe, 0 ou 2 degrés impairs) | oui |\n| 2 | plus court chemin | oui (Dijkstra) | oui |\n| 3 | programmation linéaire continue | oui (Khachiyan, 1979) | oui |\n| 4 | toujours oui | oui (on répond sans calculer) | oui |\n| 5, 6 | factorisation, isomorphisme | aucun connu | non (pas connu) |\n| 7 à 11 | SAT, TSP, sac à dos, 3-coloration, hamiltonien | NP-complets, donc non si $P \\neq NP$ | non |\n| 12, 13 | TSP optimisation, arrêt | hors de NP | non |\n\nDonc P contient $\\{1, 2, 3, 4\\}$.\n\n**Erreurs fréquentes :** oublier le 4 (un problème trivial est bien un problème de P) ; ajouter la factorisation (5), dont on ne connaît aucun algorithme polynomial ; confondre chemin eulérien (arêtes, facile) et circuit hamiltonien (sommets, NP-complet).\n\n**À retenir :** pour mettre un problème dans P, il faut pouvoir citer un algorithme polynomial."
       },
       {
         "intitule": "Problèmes NP-complets.",
@@ -39,7 +40,8 @@
         "refuses": [
           "{7, 8, 9, 10, 11, 12}",
           "{7, 8, 9, 10}"
-        ]
+        ],
+        "explication": "**Règle :** **NP-complet** = dans NP **et** NP-difficile. Les deux conditions sont obligatoires.\n\n**Pas à pas :**\n\n| # | Problème | Dans NP ? | NP-difficile ? | NP-complet ? |\n|---|---|---|---|---|\n| 7 | SAT | oui (une affectation) | oui (Cook-Levin) | oui |\n| 8 | TSP décision | oui (une tournée) | oui (Karp) | oui |\n| 9 | sac à dos décision | oui (les objets choisis) | oui (Karp) | oui |\n| 10 | 3-coloration | oui (une couleur par sommet) | oui (Karp) | oui |\n| 11 | circuit hamiltonien | oui (l'ordre des sommets) | oui (Karp) | oui |\n| 12 | TSP optimisation | **non** (la réponse est une tournée) | oui | non |\n| 13 | arrêt | **non** (indécidable) | oui | non |\n\nLes problèmes 1 à 4 sont dans P, donc pas NP-complets si $P \\neq NP$ ; 5 et 6 ne sont pas connus NP-complets. Réponse : $\\{7, 8, 9, 10, 11\\}$.\n\n**Erreurs fréquentes :** ajouter le TSP en **optimisation** (12) : il est NP-difficile, mais ce n'est pas un problème de décision, donc pas dans NP. Oublier le circuit hamiltonien (11).\n\n**À retenir :** NP-complet = deux « oui » : dans NP **et** NP-difficile."
       },
       {
         "intitule": "Problèmes de NP dont on ne sait pas s'ils sont dans P ou NP-complets (candidats NP-intermédiaires).",
@@ -51,7 +53,8 @@
         "refuses": [
           "{5}",
           "{12, 13}"
-        ]
+        ],
+        "explication": "**Règle :** si $P \\neq NP$, le **théorème de Ladner** dit qu'il existe des problèmes de NP ni dans P ni NP-complets (NP-intermédiaires). On n'en connaît aucun avec certitude, seulement des candidats.\n\n**Pas à pas :** on cherche les problèmes **de NP** dont on ne connaît ni algorithme polynomial, ni preuve de NP-complétude.\n\n1. **Factorisation (5)** : dans NP (un diviseur est un certificat, on vérifie par une division), mais aucun algorithme polynomial connu et aucune preuve de NP-complétude.\n2. **Isomorphisme de graphes (6)** : dans NP (le renommage des sommets est un certificat), même situation.\n3. Les autres sont soit dans P (1 à 4), soit NP-complets (7 à 11), soit hors de NP (12, 13).\n\nRéponse : $\\{5, 6\\}$.\n\n**Erreurs fréquentes :** n'en citer qu'un seul ; mettre 12 et 13, qui ne sont pas « entre P et NP-complet » : ils sont **hors** de NP.\n\n**À retenir :** les deux candidats NP-intermédiaires du cours sont la factorisation et l'isomorphisme de graphes."
       },
       {
         "intitule": "Problèmes hors de NP.",
@@ -63,7 +66,8 @@
         "refuses": [
           "{13}",
           "{11, 12, 13}"
-        ]
+        ],
+        "explication": "**Règle :** un problème est hors de NP s'il n'est pas un problème de décision, ou s'il est **indécidable** (tout problème de NP se décide en essayant ses certificats, en nombre fini).\n\n**Pas à pas :**\n\n1. **TSP en optimisation (12)** : la réponse est une tournée, pas oui / non. Ce n'est pas un problème de décision : hors de NP.\n2. **Arrêt (13)** : Turing (1936) a montré qu'aucun algorithme ne le décide. Indécidable : hors de NP.\n3. Tous les autres (1 à 11) sont des problèmes de décision avec un certificat vérifiable vite : dans NP.\n\nRéponse : $\\{12, 13\\}$. Ces deux problèmes sont pourtant NP-difficiles : NP-difficile « déborde » de NP.\n\n**Erreurs fréquentes :** oublier le 12 (il est difficile, mais ce n'est pas la question : son format de réponse l'exclut) ; ajouter le circuit hamiltonien (11), qui est bien dans NP (l'ordre des sommets se vérifie vite).\n\n**À retenir :** hors de NP = pas oui / non, ou indécidable."
       }
     ],
     "indices": [
@@ -99,7 +103,8 @@
         "refuses": [
           "{7, 8, 9, 10, 11}",
           "{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}"
-        ]
+        ],
+        "explication": "**Règle :** si $P = NP$, tout problème de NP **non trivial** (au moins une instance oui et au moins une instance non) devient NP-complet. La réduction a le droit de **résoudre** l'instance en temps polynomial, puis de renvoyer une instance oui ou non fixée à l'avance.\n\n**Pas à pas :**\n\n| # | Dans NP ? | Non trivial ? | NP-complet si $P = NP$ ? |\n|---|---|---|---|\n| 1, 2, 3 | oui (dans P) | oui | oui |\n| 4 | oui | **non** (jamais de réponse non) | non |\n| 5, 6 | oui | oui | oui |\n| 7 à 11 | oui | oui | oui (ils l'étaient déjà) |\n| 12, 13 | **non** | | non |\n\nRéponse : $\\{1, 2, 3, 5, 6, 7, 8, 9, 10, 11\\}$.\n\n**Erreurs fréquentes :** ne garder que 7 à 11 (c'est la figure $P \\neq NP$) ; ajouter le 4, qui n'a aucune instance non ; ajouter 12 ou 13, qui ne sont pas dans NP (NP-complet impose d'être dans NP).\n\n**À retenir :** si $P = NP$, NP-complet = tout NP sauf les problèmes triviaux."
       },
       {
         "intitule": "Problèmes de NP qui ne sont **pas** NP-complets.",
@@ -110,7 +115,8 @@
         "refuses": [
           "{}",
           "{1, 4}"
-        ]
+        ],
+        "explication": "**Règle :** pour réduire SAT à un problème B quand $P = NP$, il faut pouvoir renvoyer une instance **non** de B pour chaque formule insatisfiable. Un problème sans instance non ne peut donc pas être NP-complet.\n\n**Pas à pas :**\n\n1. Le 4 (« toujours oui ») : toutes ses instances ont la réponse oui. Une formule insatisfiable (réponse non) n'a nulle part où aller : SAT ne s'y réduit pas, il n'est pas NP-difficile, donc pas NP-complet.\n2. Tous les autres problèmes de NP de la liste (1, 2, 3, 5 à 11) ont des oui et des non : ils deviennent NP-complets.\n3. 12 et 13 ne sont pas dans NP, ils ne comptent pas ici.\n\nRéponse : $\\{4\\}$.\n\n**Erreurs fréquentes :** répondre l'ensemble vide (on oublie l'exception triviale) ; ajouter le chemin eulérien (1) : il est non trivial (certains graphes en ont un, d'autres non), donc il devient NP-complet.\n\n**À retenir :** si $P = NP$, seuls « toujours oui » et « toujours non » restent dans NP sans être NP-complets."
       },
       {
         "intitule": "Problèmes hors de NP.",
@@ -122,7 +128,8 @@
         "refuses": [
           "{}",
           "{13}"
-        ]
+        ],
+        "explication": "**Règle :** l'hypothèse $P = NP$ ne parle que des problèmes **de NP**. Ce qui n'est pas dans NP le reste : problèmes qui ne sont pas de décision, et problèmes indécidables.\n\n**Pas à pas :**\n\n1. **TSP en optimisation (12)** : sa réponse est toujours une tournée, même si $P = NP$. Toujours pas un problème de décision : hors de NP.\n2. **Arrêt (13)** : toujours indécidable (le résultat de Turing ne dépend pas de P = NP) : hors de NP.\n3. Les autres sont dans NP dans les deux figures.\n\nRéponse : $\\{12, 13\\}$, comme dans la figure $P \\neq NP$.\n\n**Erreurs fréquentes :** répondre l'ensemble vide en croyant que « tout devient pareil » si $P = NP$ ; oublier le 12 et ne garder que l'arrêt.\n\n**À retenir :** P = NP ou non, l'optimisation et l'indécidable restent hors de NP."
       }
     ],
     "indices": [
@@ -145,7 +152,8 @@
           "Hors de NP",
           "P"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** un problème est dans **P** si un algorithme le résout en temps polynomial. Pour la 2-coloration, chaque couleur est **forcée** : on colorie un sommet, puis ses voisins de l'autre couleur, et ainsi de suite (parcours en largeur).\n\n**Pas à pas :**\n\n1. On choisit un sommet et on lui donne la couleur A.\n2. Tous ses voisins prennent B (aucun choix possible).\n3. Leurs voisins prennent A, et ainsi de suite : chaque sommet et chaque arête sont regardés une fois, c'est un temps **linéaire**.\n4. Si deux voisins reçoivent la même couleur, on répond non ; sinon, oui.\n\nDonc la 2-coloration est dans **P** (et donc aussi dans NP, puisque $P \\subseteq NP$).\n\n**Les autres réponses :** « NP-complet » vaut pour la **3**-coloration, pas la 2 (si $P \\neq NP$, un problème de P n'est pas NP-complet) ; « hors de NP » est impossible : c'est un problème de décision, et une coloration se vérifie vite.\n\n**À retenir :** 2 couleurs = couleurs forcées, pas de choix : polynomial."
       },
       {
         "intitule": "Une 2-coloration est impossible si et seulement si le graphe contient…",
@@ -156,7 +164,8 @@
           "un cycle de longueur paire",
           "un sommet isolé"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** le long d'un cycle, les couleurs alternent A, B, A, B… On revient à la couleur de départ seulement après un nombre **pair** d'arêtes.\n\n**Pas à pas :**\n\n- Cycle de 4 arêtes (un carré) : A, B, A, B, puis retour au premier sommet (A) depuis un B : pas de conflit.\n- Cycle de 3 arêtes (un triangle) : A, B, puis le troisième sommet est voisin d'un A et d'un B. Il ne peut prendre ni A ni B : conflit.\n\nUn cycle de longueur **impaire** rend la 2-coloration impossible ; sans cycle impair, le parcours en largeur ne crée jamais de conflit.\n\n**Les autres réponses :** « plus de 10 sommets » : le nombre de sommets ne gêne pas (un long chemin se colorie A, B, A, B…) ; « un cycle de longueur paire » : c'est le cas qui marche ; « un sommet isolé » : il n'a aucun voisin, n'importe quelle couleur convient.\n\n**À retenir :** 2-coloriable ⇔ aucun cycle impair."
       },
       {
         "intitule": "Si P ≠ NP, la 2-coloration est-elle NP-complète ?",
@@ -165,7 +174,8 @@
           "Non",
           "Oui"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** si $P \\neq NP$, aucun problème de P n'est NP-complet.\n\n**Pas à pas :**\n\n1. Supposons la 2-coloration NP-complète. Alors tout problème de NP se réduit à elle.\n2. Elle est dans P : on résoudrait tout problème de NP en « transformant, puis en coloriant avec 2 couleurs », en temps polynomial.\n3. On aurait donc $P = NP$, ce qui contredit l'hypothèse $P \\neq NP$.\n\nDonc **non**, elle n'est pas NP-complète.\n\n**Erreur fréquente :** répondre oui parce que la 3-coloration l'est. Le nombre de couleurs change tout : 2 couleurs = P, 3 couleurs = NP-complet.\n\n**À retenir :** si $P \\neq NP$, P et NP-complet ne se touchent pas."
       },
       {
         "intitule": "Si P = NP, la 2-coloration est-elle NP-complète ?",
@@ -174,7 +184,8 @@
           "Oui, c'est un problème non trivial de P",
           "Non"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** si $P = NP$, tout problème **non trivial** de P devient NP-complet (non trivial = au moins une instance oui et au moins une instance non).\n\n**Pas à pas :**\n\n1. Instance oui : un carré (cycle de 4 arêtes) se colorie avec 2 couleurs.\n2. Instance non : un triangle ne se colorie pas avec 2 couleurs.\n3. La 2-coloration est donc non triviale. Pour y réduire SAT : on résout la formule (possible en temps polynomial si $P = NP$), puis on renvoie le carré si elle est satisfiable, le triangle sinon.\n\nDonc **oui**, elle devient NP-complète, exactement comme le chemin eulérien.\n\n**Erreur fréquente :** répondre non parce qu'elle est « facile ». Si $P = NP$, être facile n'empêche plus d'être NP-complet ; seuls les problèmes triviaux font exception.\n\n**À retenir :** si $P = NP$, facile et non trivial ⇒ NP-complet."
       },
       {
         "intitule": "Et la 3-coloration ?",
@@ -184,7 +195,8 @@
           "Hors de NP",
           "NP-complète dans les deux cas"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** la 3-coloration fait partie des problèmes NP-complets de Karp. NP-complet est un **fait prouvé** (une réduction existe), il ne dépend pas de P = NP.\n\n**Pas à pas :**\n\n1. **Dans NP** : le certificat est la couleur de chaque sommet ; on vérifie chaque arête (deux couleurs différentes ?) en temps polynomial.\n2. **NP-difficile** : prouvé par réduction depuis un NP-complet connu.\n3. Donc NP-complète si $P \\neq NP$ **et** si $P = NP$.\n\nAvec 3 couleurs, un voisin de A peut être B **ou** C : les couleurs ne sont plus forcées, il faut faire des choix, d'où la difficulté.\n\n**Les autres réponses :** « dans P dans les deux cas » : on ne connaît aucun algorithme polynomial, et si $P \\neq NP$ il n'y en a pas ; « hors de NP » : une coloration se vérifie vite.\n\n**À retenir :** un problème NP-complet le reste dans les deux figures ; ce sont les problèmes de P qui changent."
       }
     ],
     "indices": [
@@ -206,7 +218,8 @@
           "Non",
           "Oui"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un algorithme est **polynomial** si son temps est borné par un polynôme de la **taille** de l'instance, c'est-à-dire de son nombre de **bits**. Un nombre $C$ ne prend qu'environ $\\log_2 C$ bits.\n\n**Pas à pas :**\n\n1. $O(n \\times C)$ dépend de la **valeur** de $C$.\n2. Si $C$ s'écrit avec $b$ bits, $C$ peut valoir jusqu'à $2^b - 1$ : le temps peut aller jusqu'à $n \\times 2^b$, exponentiel en $b$.\n3. Ce n'est donc pas un algorithme polynomial pour un problème NP-complet, et cela ne prouve **pas** $P = NP$.\n\n**Erreur fréquente :** voir « $n \\times C$ », un simple produit, et conclure « polynomial ». Il faut toujours se demander : polynomial **en quoi** ? En la valeur, oui ; en la taille, non.\n\n**À retenir :** le temps doit être polynomial en le nombre de **bits**, pas en la valeur des nombres."
       },
       {
         "intitule": "Taille de l'instance en bits (50 poids, 50 valeurs, 1 capacité, 64 bits chacun).",
@@ -219,13 +232,14 @@
         "refuses": [
           "3200",
           "6400"
-        ]
+        ],
+        "explication": "**Règle :** la taille d'une instance est la somme des bits de tout ce qu'on écrit. Chaque nombre écrit sur 64 bits compte pour 64.\n\n**Pas à pas :**\n\n| Partie de l'instance | Nombre | Bits chacun | Total |\n|---|---|---|---|\n| poids | 50 | 64 | $50 \\times 64 = 3\\,200$ |\n| valeurs | 50 | 64 | $50 \\times 64 = 3\\,200$ |\n| capacité | 1 | 64 | $64$ |\n\nTaille $= 3\\,200 + 3\\,200 + 64 = 6\\,464$ bits.\n\n**Erreurs fréquentes :** oublier les valeurs (on trouve 3 200 ou 3 264) ; oublier la capacité (on trouve 6 400).\n\n**À retenir :** taille = (nombre de nombres) × (bits par nombre), en n'oubliant aucune partie de l'instance."
       },
       {
         "intitule": "Nombre maximal de cases de la table : $50 \\times (2^{64} - 1)$. Donne un ordre de grandeur (tu peux écrire `9.2*10^20`).",
         "type": "nombre",
         "reponse": "50*(2^64-1)",
-        "tolerance": 1e+19,
+        "tolerance": 10000000000000000000,
         "acceptes": [
           "9.2*10^20",
           "50*2^64"
@@ -233,7 +247,8 @@
         "refuses": [
           "6464",
           "10^19"
-        ]
+        ],
+        "explication": "**Règle :** avec $b$ bits, on écrit tous les nombres de $0$ à $2^b - 1$. La table de la programmation dynamique a environ $n \\times C$ cases.\n\n**Pas à pas :**\n\n1. $C$ est écrit sur 64 bits, donc $C \\le 2^{64} - 1 \\approx 1{,}8 \\times 10^{19}$.\n2. Nombre de cases : $50 \\times (2^{64} - 1) \\approx 50 \\times 1{,}84 \\times 10^{19} \\approx 9{,}2 \\times 10^{20}$.\n3. On compare à la taille de l'instance : seulement 6 464 bits. La table est des milliards de milliards de fois plus grande que l'instance.\n\n**Erreurs fréquentes :** donner 6 464 (c'est la **taille** de l'instance, pas la table) ; donner $10^{19}$ (on a oublié de multiplier par les 50 objets).\n\n**À retenir :** une capacité sur $b$ bits peut valoir près de $2^b$ : la table peut exploser alors que l'instance reste petite."
       },
       {
         "intitule": "Ajouter un bit à l'écriture de $C$…",
@@ -243,7 +258,8 @@
           "ne change rien",
           "double sa valeur maximale, donc la taille de la table"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** avec $b$ bits, la plus grande valeur est $2^b - 1$. Avec $b + 1$ bits, c'est $2^{b+1} - 1$, environ **deux fois plus**.\n\n**Pas à pas :**\n\n1. Avec 64 bits, $C$ va jusqu'à environ $1{,}8 \\times 10^{19}$.\n2. Avec 65 bits, $C$ va jusqu'à environ $3{,}7 \\times 10^{19}$ : le double.\n3. La table a environ $n \\times C$ cases : son nombre de colonnes double aussi.\n\nUn bit de plus dans l'entrée double le travail : le temps est **exponentiel** en le nombre de bits de $C$.\n\n**Les autres réponses :** « ajoute une case » confond la valeur avec la taille (ce serait vrai si on ajoutait 1 à $C$, pas un bit) ; « ne change rien » ignore que la valeur maximale de $C$ change.\n\n**À retenir :** ajouter un bit à un nombre double sa valeur maximale."
       },
       {
         "intitule": "Comment appelle-t-on un algorithme polynomial en la **valeur** des nombres mais pas en la **taille** de l'instance ?",
@@ -259,7 +275,8 @@
         "refuses": [
           "polynomial",
           "exponentiel"
-        ]
+        ],
+        "explication": "**Règle :** un algorithme polynomial en la **valeur** des nombres mais pas en leur **taille** (nombre de bits) s'appelle **pseudo-polynomial**. Un problème NP-complet qui en a un est dit **faiblement** NP-complet, comme le sac à dos.\n\n**Pas à pas :** $O(n \\times C)$ est un polynôme en $n$ et en la valeur $C$ (d'où « polynomial »), mais exponentiel en le nombre de bits de $C$ (d'où « pseudo »).\n\n**Erreurs fréquentes :** répondre « polynomial » (faux au sens de la taille de l'instance) ou « exponentiel » (quand les nombres restent petits, l'algorithme est rapide en pratique, ce mot ne décrit pas le cas).\n\n**À retenir :** pseudo-polynomial = polynomial en la valeur, exponentiel en le nombre de bits."
       }
     ],
     "indices": [
@@ -281,7 +298,8 @@
           "P = NP",
           "P ≠ NP"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un problème NP-complet est NP-difficile : **tout** problème de NP se réduit à lui. Si $A \\le_p B$ et $B \\in P$, alors $A \\in P$.\n\n**Pas à pas :**\n\n1. La 3-coloration est NP-complète, donc tout problème A de NP vérifie $A \\le_p$ 3-coloration.\n2. Avec l'algorithme polynomial publié, on résout A en transformant son instance, puis en appliquant cet algorithme : polynomial.\n3. Tout NP est donc dans P, et comme $P \\subseteq NP$, on a **$P = NP$**.\n\n**Erreur fréquente :** croire que seule la 3-coloration change de classe. Les réductions transportent la facilité à tout NP d'un coup.\n\n**À retenir :** un seul NP-complet polynomial suffit pour $P = NP$."
       },
       {
         "intitule": "Le voyageur de commerce en décision devient…",
@@ -291,7 +309,8 @@
           "indécidable",
           "inchangé"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** si $P = NP$, tout problème de NP est dans P, c'est-à-dire **polynomial**.\n\n**Pas à pas :**\n\n1. Le TSP en décision (« existe-t-il une tournée de coût au plus $K$ ? ») est dans NP : la tournée est un certificat.\n2. Il se réduit donc à la 3-coloration (comme tout problème de NP).\n3. On transforme l'instance du TSP en graphe, puis on applique l'algorithme polynomial : le TSP décision devient **polynomial**.\n\n**Les autres réponses :** « indécidable » est impossible (on peut toujours essayer toutes les tournées, c'est long mais ça s'arrête) ; « inchangé » oublie que $P = NP$ fait tomber tout NP dans P.\n\n**À retenir :** tout problème de NP profite d'un algorithme polynomial pour un NP-complet."
       },
       {
         "intitule": "Le coût d'une tournée est entre 0 et $100 \\times 10^6 = 10^8$. Combien de questions de décision faut-il pour trouver le coût optimal par dichotomie ? ($\\lceil \\log_2(10^8 + 1) \\rceil$)",
@@ -301,7 +320,8 @@
           "26",
           "100",
           "8"
-        ]
+        ],
+        "explication": "**Règle :** par **dichotomie**, chaque question coupe l'intervalle des valeurs possibles en deux. Avec $q$ questions, on distingue $2^q$ valeurs : il faut $2^q \\ge$ nombre de valeurs, soit $q = \\lceil \\log_2(\\text{nombre de valeurs}) \\rceil$ (arrondi au-dessus).\n\n**Pas à pas :**\n\n1. Le coût est un entier entre $0$ et $10^8$ : il y a $10^8 + 1$ valeurs possibles.\n2. On teste les puissances de 2 : $2^{26} = 67\\,108\\,864$, plus petit que $100\\,000\\,001$ : pas assez.\n3. $2^{27} = 134\\,217\\,728$, plus grand que $100\\,000\\,001$ : suffisant.\n4. Il faut donc **27** questions « existe-t-il une tournée de coût au plus $K$ ? ».\n\n**Erreurs fréquentes :** répondre 26 (arrondi vers le bas, ce qui laisse des valeurs non distinguées) ; 100 (le nombre de villes, sans rapport) ; 8 (l'exposant de $10^8$ en base 10, pas en base 2).\n\n**À retenir :** dichotomie sur $N$ valeurs = plus petit $q$ tel que $2^q \\ge N$."
       },
       {
         "intitule": "Pour retrouver la tournée elle-même, on teste chaque arête une fois. Combien d'arêtes entre 100 villes ?",
@@ -314,7 +334,8 @@
         "refuses": [
           "9900",
           "10000"
-        ]
+        ],
+        "explication": "**Règle :** entre $n$ villes, chaque **paire** de villes forme une arête : il y en a $\\frac{n(n-1)}{2}$.\n\n**Pas à pas :**\n\n1. Chaque ville peut être reliée aux $n - 1 = 99$ autres : $100 \\times 99 = 9\\,900$ couples.\n2. Mais le couple A-B et le couple B-A sont la **même** arête : chaque arête est comptée deux fois.\n3. On divise par 2 : $\\frac{100 \\times 99}{2} = 4\\,950$ arêtes.\n\nPour chacune, on l'interdit et on demande si le coût optimal est encore atteignable : si oui, elle n'est pas utile ; si non, elle fait partie de la tournée.\n\n**Erreurs fréquentes :** 9 900 (chaque arête comptée deux fois) ; $10\\,000 = 100^2$ (on compte en plus une ville reliée à elle-même).\n\n**À retenir :** nombre d'arêtes entre $n$ points $= \\frac{n(n-1)}{2}$."
       },
       {
         "intitule": "Nombre total de questions posées à l'algorithme polynomial.",
@@ -327,7 +348,8 @@
         "refuses": [
           "4950",
           "27"
-        ]
+        ],
+        "explication": "**Règle :** le nombre total de questions est la somme des deux phases : trouver le coût optimal, puis retrouver la tournée.\n\n**Pas à pas :**\n\n1. Phase 1 (dichotomie sur le coût) : 27 questions.\n2. Phase 2 (une question par arête) : 4 950 questions.\n3. Total : $27 + 4\\,950 = 4\\,977$ questions.\n\nChaque question est résolue en temps polynomial, et leur nombre est polynomial : le TSP en **optimisation** devient lui aussi polynomial.\n\n**Erreurs fréquentes :** ne compter qu'une phase (4 950 ou 27) ; multiplier au lieu d'additionner (les deux phases se font l'une après l'autre).\n\n**À retenir :** des phases faites l'une après l'autre s'additionnent."
       }
     ],
     "indices": [
@@ -350,7 +372,8 @@
           "Non",
           "Oui"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** **NP-complet** = NP-difficile **et** dans NP. Les deux conditions sont obligatoires.\n\n**Pas à pas :**\n\n1. NP-difficile ? Oui, c'est donné dans l'énoncé.\n2. Dans NP ? Non : aucun algorithme ne décide l'arrêt (Turing, 1936), alors que tout problème de NP se décide.\n3. Une condition manque : il n'est **pas** NP-complet.\n\n**Erreur fréquente :** répondre oui parce qu'il est « très difficile ». NP-complet ne veut pas dire « le plus difficile possible » : un NP-complet doit rester dans NP.\n\n**À retenir :** NP-difficile sans être dans NP ⇒ pas NP-complet."
       },
       {
         "intitule": "Pourquoi ?",
@@ -361,7 +384,8 @@
           "Il est trop facile",
           "Il n'est pas dans NP : aucun algorithme ne le décide"
         ],
-        "reponse": 3
+        "reponse": 3,
+        "explication": "**Règle :** tout problème de NP est **décidable** : ses certificats ont une longueur polynomiale, donc il y en a un nombre fini, et on peut tous les essayer (lentement, mais l'algorithme s'arrête).\n\n**Pas à pas :**\n\n1. Turing (1936) : aucun algorithme ne décide l'arrêt, il est **indécidable**.\n2. S'il était dans NP, l'essai de tous les certificats le déciderait : contradiction.\n3. Donc il n'est pas dans NP, et c'est ce qui l'empêche d'être NP-complet.\n\n**Les autres réponses :** « il est dans P » et « il est trop facile » : c'est l'inverse, aucun algorithme ne le résout ; « il n'est pas NP-difficile » contredit l'énoncé (on y réduit SAT).\n\n**À retenir :** indécidable ⇒ hors de NP."
       },
       {
         "intitule": "Si P = NP, où tombe-t-il ?",
@@ -371,12 +395,14 @@
           "Dans P",
           "NP-complet"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** l'hypothèse $P = NP$ ne déplace que les problèmes **de NP**. Un problème indécidable reste indécidable, quoi qu'on suppose sur P et NP.\n\n**Pas à pas :**\n\n1. L'arrêt est indécidable (Turing) : ce résultat ne dépend pas de P = NP.\n2. Il reste donc hors de NP.\n3. SAT se réduit toujours à lui : il reste NP-difficile.\n\n**Les autres réponses :** « dans P » est impossible pour un problème qu'aucun algorithme ne résout ; « NP-complet » exigerait d'être dans NP.\n\n**À retenir :** l'arrêt est NP-difficile et hors de NP dans les deux figures."
       },
       {
         "intitule": "Explique comment on réduit SAT au problème de l'arrêt.",
         "type": "auto",
-        "reponse": "À une formule $\\varphi$, on associe un programme qui essaie toutes les affectations des variables, s'arrête s'il en trouve une qui rend $\\varphi$ vraie, et boucle indéfiniment sinon. **Écrire** ce programme prend un temps polynomial (c'est l'exécuter qui serait long), et il s'arrête si et seulement si $\\varphi$ est satisfiable."
+        "reponse": "À une formule $\\varphi$, on associe un programme qui essaie toutes les affectations des variables, s'arrête s'il en trouve une qui rend $\\varphi$ vraie, et boucle indéfiniment sinon. **Écrire** ce programme prend un temps polynomial (c'est l'exécuter qui serait long), et il s'arrête si et seulement si $\\varphi$ est satisfiable.",
+        "explication": "**Ce qu'il faut montrer :** une réduction $SAT \\le_p$ Arrêt, c'est-à-dire une transformation **polynomiale** qui envoie chaque formule sur un couple (programme, entrée) **de même réponse**.\n\n**Une bonne réponse contient, dans l'ordre :**\n\n1. **La construction** : à une formule $\\varphi$, on associe un programme qui passe en revue toutes les affectations vrai / faux de ses variables.\n2. **Le comportement** : le programme **s'arrête** dès qu'une affectation rend $\\varphi$ vraie, et **boucle sans fin** s'il n'en trouve aucune.\n3. **Même réponse** : le programme s'arrête **si et seulement si** $\\varphi$ est satisfiable (oui donne oui, non donne non).\n4. **Temps polynomial** : on ne fait qu'**écrire** ce programme (sa taille est proportionnelle à celle de la formule) ; on ne le lance pas. Son exécution serait exponentielle, mais ce n'est pas elle qu'on compte.\n\n**Erreurs fréquentes :** réduire dans le mauvais sens (l'arrêt vers SAT) ; oublier la boucle infinie (sinon le programme s'arrête toujours et la réponse n'est plus la même) ; dire que la réduction est exponentielle parce que le programme essaie $2^n$ affectations : c'est le temps d'**exécution**, pas le temps d'**écriture**.\n\n**À retenir :** une réduction se juge sur le temps pour **construire** l'instance de B, et sur l'équivalence « oui ⇔ oui »."
       }
     ],
     "indices": [
@@ -398,7 +424,8 @@
         "refuses": [
           "12",
           "13"
-        ]
+        ],
+        "explication": "**Règle :** le coût d'une tournée est la somme des distances de ses trajets, **retour à la ville de départ compris**.\n\n**Pas à pas :** tournée A → C → B → D → A.\n\n| Trajet | Distance |\n|---|---|\n| A → C | AC = 5 |\n| C → B | BC = 2 |\n| B → D | BD = 6 |\n| D → A | AD = 4 |\n\nTotal : $5 + 2 + 6 + 4 = 17$.\n\n**Erreurs fréquentes :** répondre 12 (c'est la valeur de $K$, pas le coût de cette tournée) ; répondre 13 (on a oublié le retour D → A, $5 + 2 + 6 = 13$).\n\n**À retenir :** une tournée de $n$ villes a $n$ trajets, le dernier ramène au départ."
       },
       {
         "intitule": "Cette tournée de coût 17 prouve-t-elle que la réponse est « non » ?",
@@ -407,7 +434,8 @@
           "Non : une seule tournée ne dit rien des autres",
           "Oui"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** NP demande une preuve courte pour les réponses **oui** seulement. Prouver « non » demande de montrer qu'**aucune** tournée ne convient.\n\n**Pas à pas :**\n\n1. La question est « existe-t-il **une** tournée de coût au plus 12 ? ».\n2. Cette tournée coûte 17 > 12 : elle ne convient pas.\n3. Mais une autre tournée pourrait convenir : on ne sait encore rien pour elles.\n\nDonc **non**, une seule tournée trop chère ne prouve pas que la réponse est non.\n\n**Erreur fréquente :** croire qu'un mauvais candidat suffit à répondre non. Pour « existe-t-il ? », un seul bon exemple prouve oui, mais un mauvais exemple ne prouve rien.\n\n**À retenir :** un candidat qui échoue ne dit rien des autres candidats."
       },
       {
         "intitule": "Coût de la tournée A → B → C → D → A.",
@@ -415,7 +443,8 @@
         "reponse": 12,
         "refuses": [
           "17"
-        ]
+        ],
+        "explication": "**Règle :** même calcul que pour la première tournée : somme des 4 trajets, retour compris.\n\n**Pas à pas :** tournée A → B → C → D → A.\n\n| Trajet | Distance |\n|---|---|\n| A → B | AB = 3 |\n| B → C | BC = 2 |\n| C → D | CD = 3 |\n| D → A | AD = 4 |\n\nTotal : $3 + 2 + 3 + 4 = 12$.\n\n**Erreurs fréquentes :** oublier le retour D → A (on trouve 8) ; prendre la distance BD au lieu de CD.\n\n**À retenir :** lis les trajets dans l'ordre de la tournée, et termine toujours par le retour au départ."
       },
       {
         "intitule": "Cette deuxième tournée est-elle un certificat de la réponse « oui » ?",
@@ -424,7 +453,8 @@
           "Oui",
           "Non"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** un **certificat** d'une réponse oui est une preuve qu'on vérifie en temps polynomial. Pour cette question, c'est une tournée de coût au plus $K$.\n\n**Pas à pas :**\n\n1. Chaque ville apparaît une fois : A, B, C, D. Oui.\n2. Coût : 12 (question précédente).\n3. Comparaison : $12 \\le K = 12$. Oui (« au plus » accepte l'égalité).\n4. La vérification a demandé 4 additions et une comparaison : temps polynomial.\n\nDonc **oui**, c'est un certificat : la réponse à la question est oui.\n\n**Erreur fréquente :** répondre non en lisant « au plus 12 » comme « moins de 12 ». « Au plus » veut dire $\\le$, l'égalité compte.\n\n**À retenir :** un certificat se vérifie en recalculant, et « au plus $K$ » veut dire $\\le K$."
       },
       {
         "intitule": "Combien de tournées distinctes faudrait-il examiner pour être sûr d'une réponse « non » sur 4 villes ?",
@@ -436,7 +466,8 @@
         "refuses": [
           "24",
           "6"
-        ]
+        ],
+        "explication": "**Règle :** avec $n$ villes, le nombre de tournées distinctes est $\\frac{(n-1)!}{2}$ : on fixe la ville de départ (une même boucle peut commencer n'importe où), et on divise par 2 car le sens de parcours ne change pas le coût.\n\n**Pas à pas :**\n\n1. On fixe A comme départ. Il reste B, C, D à ordonner : $3! = 6$ ordres.\n2. Ces 6 ordres vont par paires « aller / retour » : A → B → C → D → A et A → D → C → B → A sont la même tournée.\n3. Il reste $\\frac{6}{2} = 3$ tournées distinctes : A-B-C-D, A-B-D-C et A-C-B-D.\n\n**Erreurs fréquentes :** $4! = 24$ (on ne fixe pas le départ, chaque tournée est comptée 8 fois) ; $3! = 6$ (on ne divise pas par 2 pour le sens).\n\n**À retenir :** tournées distinctes de $n$ villes $= \\frac{(n-1)!}{2}$ ; ce nombre explose, d'où l'absence de preuve courte pour « non »."
       }
     ],
     "indices": [
@@ -458,7 +489,8 @@
         "refuses": [
           "5",
           "9"
-        ]
+        ],
+        "explication": "**Règle :** si $f$ est en $O(n^a)$, l'instance de B a une taille $m$ en $O(n^a)$. On remplace $m$ par $n^a$ dans $m^b$ et on utilise $(n^a)^b = n^{a \\times b}$.\n\n**Pas à pas :**\n\n1. $a = 2$ : l'instance de B a une taille de l'ordre de $n^2$.\n2. B coûte $m^3$, donc $(n^2)^3$.\n3. $(n^2)^3 = n^2 \\times n^2 \\times n^2 = n^{2 \\times 3} = n^6$.\n\nL'exposant vaut **6**.\n\n**Erreurs fréquentes :** 5 (on a additionné $2 + 3$) ; 9 ($3^2$, une puissance au lieu d'un produit).\n\n**À retenir :** exposant final = produit des deux exposants."
       },
       {
         "intitule": "$f$ en $O(n)$ et B en $O(m^2)$.",
@@ -467,7 +499,8 @@
         "refuses": [
           "3",
           "1"
-        ]
+        ],
+        "explication": "**Règle :** même règle, $(n^a)^b = n^{a \\times b}$, avec ici $a = 1$ (transformation linéaire).\n\n**Pas à pas :**\n\n1. $f$ en $O(n)$ : l'instance de B a une taille de l'ordre de $n$.\n2. B coûte $m^2$, donc $(n^1)^2 = n^{1 \\times 2} = n^2$.\n\nL'exposant vaut **2** : une transformation linéaire ne fait pas grossir l'instance, le coût reste celui de B.\n\n**Erreurs fréquentes :** 3 (on a additionné $1 + 2$) ; 1 (on a gardé seulement l'exposant de $f$).\n\n**À retenir :** avec une transformation linéaire, A coûte autant que B."
       },
       {
         "intitule": "$f$ en $O(n^3)$ et B en $O(m^2)$.",
@@ -476,7 +509,8 @@
         "refuses": [
           "5",
           "8"
-        ]
+        ],
+        "explication": "**Règle :** $(n^a)^b = n^{a \\times b}$, avec $a = 3$ et $b = 2$.\n\n**Pas à pas :**\n\n1. $f$ en $O(n^3)$ : l'instance de B a une taille de l'ordre de $n^3$.\n2. B coûte $m^2$, donc $(n^3)^2 = n^3 \\times n^3 = n^{3 \\times 2} = n^6$.\n\nL'exposant vaut **6**. Le temps de $f$ lui-même ($n^3$) est plus petit, il ne change pas l'exposant.\n\n**Erreurs fréquentes :** 5 (somme $3 + 2$) ; 8 ($2^3$, une puissance d'exposants).\n\n**À retenir :** l'ordre des exposants ne compte pas pour le produit : $(n^2)^3$ et $(n^3)^2$ donnent tous deux $n^6$."
       },
       {
         "intitule": "Que conclure si B est dans P ?",
@@ -486,7 +520,8 @@
           "A est NP-complet",
           "On ne peut rien dire"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** si $A \\le_p B$ et $B \\in P$, alors $A \\in P$.\n\n**Pas à pas :**\n\n1. On résout une instance de A en deux étapes : calculer $f(x)$, polynomial ; résoudre $f(x)$ avec l'algorithme de B, polynomial en la taille de $f(x)$.\n2. Comme $f(x)$ a une taille polynomiale, un polynôme appliqué à un polynôme reste un polynôme (les exercices précédents : les exposants se multiplient).\n3. Donc **A est dans P**.\n\n**Les autres réponses :** « A est NP-complet » : rien dans l'énoncé ne dit que A est difficile ; la réduction transporte la **facilité** de B vers A, pas la difficulté. « On ne peut rien dire » oublie cette propriété.\n\n**À retenir :** $A \\le_p B$ et B facile ⇒ A facile."
       }
     ],
     "indices": [
@@ -508,7 +543,8 @@
         "refuses": [
           "10",
           "4"
-        ]
+        ],
+        "explication": "**Règle :** une tournée de $n$ villes a exactement **$n$ trajets**. On choisit $K$ pour que seules les tournées faites uniquement de trajets à distance 1 (donc d'arêtes du graphe) aient un coût au plus $K$.\n\n**Pas à pas :**\n\n1. Avec 5 villes, une tournée a 5 trajets, chacun vaut 1 ou 2.\n2. Coût le plus petit possible : tous les trajets à 1, soit $5 \\times 1 = 5$.\n3. Dès qu'un trajet vaut 2, le coût est au moins 6 (question suivante).\n4. On prend $K = 5$ : on accepte exactement les tournées dont tous les trajets valent 1.\n\n**Erreurs fréquentes :** $K = 4$ (aucune tournée n'y arrive, la réponse serait toujours non) ; $K = 10$ (même une tournée toute à 2 y arrive, la réponse serait toujours oui).\n\n**À retenir :** $K$ = nombre de trajets × la plus petite distance."
       },
       {
         "intitule": "Coût minimal possible d'une tournée qui utilise au moins une distance 2 (graphe à 5 sommets).",
@@ -517,7 +553,8 @@
         "refuses": [
           "5",
           "10"
-        ]
+        ],
+        "explication": "**Règle :** le coût d'une tournée est la somme de ses $n$ trajets. Pour le plus petit coût avec au moins un trajet à 2, on met **un seul** trajet à 2 et tous les autres à 1.\n\n**Pas à pas :**\n\n1. 5 trajets en tout.\n2. Un trajet à 2, les 4 autres à 1.\n3. Coût : $4 \\times 1 + 2 = 6$.\n\nComme $6 > K = 5$, toute tournée qui passe par une paire non reliée dans le graphe est refusée.\n\n**Erreurs fréquentes :** 5 (c'est le coût quand tous les trajets valent 1, sans trajet à 2) ; 10 (c'est le coût quand **tous** les trajets valent 2, pas le minimum).\n\n**À retenir :** pour trouver le minimum sous une contrainte, ne mets que le strict nécessaire de « mauvais » trajets."
       },
       {
         "intitule": "Que montre cette réduction ?",
@@ -527,12 +564,14 @@
           "Le TSP est dans P",
           "Le TSP (décision) est au moins aussi difficile que le circuit hamiltonien"
         ],
-        "reponse": 2
+        "reponse": 2,
+        "explication": "**Règle :** $A \\le_p B$ veut dire que B est **au moins aussi difficile** que A. Le sens de la réduction est celui de la transformation : on part d'une instance de A et on fabrique une instance de B.\n\n**Pas à pas :**\n\n1. On part d'un graphe (instance du circuit hamiltonien).\n2. On fabrique des villes et des distances (instance du TSP décision).\n3. Donc circuit hamiltonien $\\le_p$ TSP : le TSP (décision) est au moins aussi difficile que le circuit hamiltonien. Comme le circuit hamiltonien est NP-complet, le TSP décision est NP-difficile.\n\n**Les autres réponses :** « le circuit hamiltonien est plus difficile que le TSP » inverse le sens ; « le TSP est dans P » : une réduction **vers** le TSP ne donne aucun algorithme pour lui.\n\n**À retenir :** on transforme A **en** B ⇒ B est au moins aussi difficile que A."
       },
       {
         "intitule": "Explique pourquoi la réponse est la même pour les deux problèmes.",
         "type": "auto",
-        "reponse": "Une tournée de 5 villes a 5 trajets, chacun de coût 1 ou 2. Elle coûte au plus $K = 5$ si et seulement si tous ses trajets valent 1, c'est-à-dire si elle n'utilise que des arêtes du graphe : c'est alors exactement un circuit hamiltonien. La transformation se calcule en temps polynomial (on remplit une table de $n^2$ distances)."
+        "reponse": "Une tournée de 5 villes a 5 trajets, chacun de coût 1 ou 2. Elle coûte au plus $K = 5$ si et seulement si tous ses trajets valent 1, c'est-à-dire si elle n'utilise que des arêtes du graphe : c'est alors exactement un circuit hamiltonien. La transformation se calcule en temps polynomial (on remplit une table de $n^2$ distances).",
+        "explication": "**Ce qu'il faut montrer :** la transformation est une réduction, c'est-à-dire : même réponse dans les deux sens, et calcul en temps polynomial.\n\n**Une bonne réponse contient :**\n\n1. **Le décompte des trajets** : une tournée de 5 villes a 5 trajets, chacun de coût 1 (paire reliée dans le graphe) ou 2 (paire non reliée).\n2. **Le sens « graphe oui ⇒ TSP oui »** : un circuit hamiltonien n'utilise que des arêtes du graphe, donc la tournée correspondante coûte $5 \\le K$.\n3. **Le sens « TSP oui ⇒ graphe oui »** : une tournée de coût au plus 5 a forcément ses 5 trajets à 1 (un seul trajet à 2 donne déjà 6), donc elle n'utilise que des arêtes du graphe : c'est un circuit hamiltonien.\n4. **Le temps polynomial** : on remplit une table de distances, une case par paire de villes, soit environ $n^2$ cases.\n\n**Erreurs fréquentes :** ne justifier qu'un seul sens de l'équivalence ; oublier de dire que la transformation est polynomiale ; parler de **résoudre** le TSP alors qu'on se contente de **construire** son instance.\n\n**À retenir :** une réduction se justifie par « oui ⇒ oui », « oui ⇐ oui » et « construction polynomiale »."
       }
     ],
     "indices": [
@@ -559,7 +598,8 @@
         "refuses": [
           "100",
           "20"
-        ]
+        ],
+        "explication": "**Règle :** $\\log_{10}(a^b) = b \\times \\log_{10} a$. Le $\\log_{10}$ d'un nombre donne son « exposant de 10 ».\n\n**Pas à pas :**\n\n1. $\\log_{10}(20^{100}) = 100 \\times \\log_{10} 20$.\n2. $\\log_{10} 20 = \\log_{10} 2 + \\log_{10} 10 \\approx 0{,}301 + 1 = 1{,}301$.\n3. $100 \\times 1{,}301 = 130{,}1$.\n\nDonc $20^{100} \\approx 10^{130{,}1}$, un nombre de 131 chiffres.\n\n**Erreurs fréquentes :** répondre 100 (on a gardé l'exposant sans multiplier par $\\log_{10} 20$) ; répondre 20 (on a confondu avec la base).\n\n**À retenir :** pour une puissance, le log fait descendre l'exposant devant : $\\log(a^b) = b \\log a$."
       },
       {
         "intitule": "$\\log_{10}(20!)$",
@@ -572,7 +612,8 @@
         "refuses": [
           "130.1",
           "20"
-        ]
+        ],
+        "explication": "**Règle :** $\\log_{10}(a \\times b) = \\log_{10} a + \\log_{10} b$. Comme $20! = 1 \\times 2 \\times \\dots \\times 20$, son log est la somme des logs de 1 à 20.\n\n**Pas à pas :**\n\n1. Avec la calculatrice : $20! = 2\\,432\\,902\\,008\\,176\\,640\\,000 \\approx 2{,}43 \\times 10^{18}$.\n2. $\\log_{10}(2{,}43 \\times 10^{18}) = \\log_{10} 2{,}43 + 18 \\approx 0{,}386 + 18 = 18{,}4$.\n3. On retrouve la même valeur en additionnant $\\log_{10} 1 + \\log_{10} 2 + \\dots + \\log_{10} 20$.\n\n**Erreurs fréquentes :** répondre 130,1 (c'est $20^{100}$) ; répondre 20 (on confond $20!$ avec $20$).\n\n**À retenir :** $\\log_{10}(c \\times 10^k) = k + \\log_{10} c$."
       },
       {
         "intitule": "Pour $n = 20$, lequel est le plus grand ?",
@@ -581,7 +622,8 @@
           "$20^{100}$",
           "$20!$"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour comparer deux nombres positifs, on peut comparer leurs $\\log_{10}$ : le plus grand log correspond au plus grand nombre.\n\n**Pas à pas :**\n\n1. $\\log_{10}(20^{100}) \\approx 130{,}1$ et $\\log_{10}(20!) \\approx 18{,}4$.\n2. $130{,}1 > 18{,}4$, donc $20^{100} > 20!$.\n3. L'écart des logs vaut $130{,}1 - 18{,}4 \\approx 111{,}7$ : $20^{100}$ est environ $10^{111}$ fois plus grand.\n\nPour $n = 20$, l'algorithme « polynomial » en $n^{100}$ serait bien plus lent que la force brute en $n!$.\n\n**Erreur fréquente :** croire qu'une factorielle est toujours plus grande qu'un polynôme. C'est vrai pour $n$ **assez grand**, mais avec un exposant de 100, il faut un $n$ énorme avant que $n!$ dépasse $n^{100}$.\n\n**À retenir :** compare des nombres géants par leurs log ; « polynomial » peut être plus lent qu'« exponentiel » pour les tailles réelles."
       },
       {
         "intitule": "Même si P = NP, les métaheuristiques deviendraient-elles inutiles du jour au lendemain ?",
@@ -590,7 +632,8 @@
           "Non, un algorithme polynomial peut rester inutilisable",
           "Oui"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** polynomial veut dire « croissance maîtrisée quand $n$ devient très grand », pas « rapide » en pratique.\n\n**Pas à pas :**\n\n1. Une preuve de $P = NP$ pourrait donner un algorithme en $n^{100}$.\n2. Pour $n = 20$, cela fait environ $10^{130}$ opérations : aucun ordinateur ne le finira jamais.\n3. Une métaheuristique donne une bonne solution en quelques secondes : elle resterait utile.\n\nDonc **non**, les métaheuristiques ne deviendraient pas inutiles du jour au lendemain.\n\n**Erreur fréquente :** croire que $P = NP$ rendrait automatiquement tous les problèmes rapides à résoudre. Cela dépend de l'exposant (et des constantes) de l'algorithme trouvé.\n\n**À retenir :** polynomial ≠ utilisable ; un gros exposant peut rendre l'algorithme inutile."
       }
     ],
     "indices": [
@@ -612,7 +655,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** **NP-difficile** = tout problème de NP se réduit à lui. La définition n'exige **pas** d'être dans NP.\n\n**Pas à pas :** un seul contre-exemple suffit à rendre la phrase fausse.\n\n- TSP en optimisation : NP-difficile, mais sa réponse est une tournée, donc hors de NP.\n- Problème de l'arrêt : NP-difficile (on y réduit SAT), mais indécidable, donc hors de NP.\n\nL'affirmation est **fausse**.\n\n**Erreur fréquente :** confondre NP-difficile et NP-complet. C'est NP-complet qui impose d'être dans NP.\n\n**À retenir :** NP-difficile peut déborder de NP."
       },
       {
         "intitule": "« Un problème NP-complet est NP-difficile. »",
@@ -621,7 +665,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** **NP-complet** = NP-difficile **et** dans NP.\n\n**Pas à pas :** si un problème est NP-complet, il vérifie les deux conditions, donc en particulier la première : il est NP-difficile. L'affirmation est **vraie**.\n\n**Erreur fréquente :** lire la phrase à l'envers. « Tout NP-difficile est NP-complet » est **faux** (l'arrêt est NP-difficile sans être NP-complet).\n\n**À retenir :** NP-complet ⇒ NP-difficile, mais pas l'inverse."
       },
       {
         "intitule": "« Pour prouver que mon problème X est NP-difficile, je réduis SAT à X. »",
@@ -630,7 +675,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 0
+        "reponse": 0,
+        "explication": "**Règle :** pour prouver qu'un problème X est NP-difficile, on transforme un problème **déjà connu** NP-difficile **en** X.\n\n**Pas à pas :**\n\n1. On montre $SAT \\le_p X$ : X est au moins aussi difficile que SAT.\n2. Tout problème A de NP se réduit à SAT (Cook-Levin) : $A \\le_p SAT$.\n3. En enchaînant les deux transformations (polynomial puis polynomial), $A \\le_p X$ pour tout A de NP.\n\nX est NP-difficile : l'affirmation est **vraie**.\n\n**Erreur fréquente :** se tromper de sens et croire qu'il faut transformer X en SAT (c'est l'affirmation suivante, qui est fausse).\n\n**À retenir :** pour prouver X difficile, la flèche va du connu vers X : $SAT \\le_p X$."
       },
       {
         "intitule": "« Pour prouver que X est NP-difficile, il suffit de réduire X à SAT. »",
@@ -639,7 +685,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** $X \\le_p SAT$ veut dire que SAT est au moins aussi difficile que X, donc que X n'est **pas plus difficile** que SAT. Cela ne dit rien de la difficulté de X.\n\n**Pas à pas :** exemple qui montre que la phrase est fausse. Le plus court chemin est dans NP, donc il se réduit à SAT ; pourtant il est dans P (Dijkstra). Réduire X à SAT n'a donc pas prouvé que X est difficile.\n\nL'affirmation est **fausse** : c'est le mauvais sens.\n\n**Erreur fréquente :** croire qu'une réduction « dans n'importe quel sens » relie les difficultés. Le sens est essentiel.\n\n**À retenir :** $X \\le_p SAT$ montre que X est **au plus** aussi dur que SAT, jamais qu'il est dur."
       },
       {
         "intitule": "« On sait aujourd'hui que P ≠ NP. »",
@@ -648,7 +695,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** une affirmation est un fait connu seulement si quelqu'un l'a **prouvée**.\n\n**Pas à pas :**\n\n1. La question « P = NP ? » est posée depuis 1971 (Cook).\n2. Personne n'a prouvé ni $P = NP$ ni $P \\neq NP$ : c'est l'un des sept problèmes du millénaire, avec un million de dollars de prix.\n3. La grande majorité des chercheurs **parie** sur $P \\neq NP$, mais un pari n'est pas une preuve.\n\nL'affirmation est **fausse**.\n\n**Erreur fréquente :** confondre « ce que tout le monde pense » avec « ce qu'on sait ».\n\n**À retenir :** P = NP est une question **ouverte**."
       },
       {
         "intitule": "« Un algorithme en $O(n \\times C)$ pour le sac à dos prouve que P = NP. »",
@@ -657,7 +705,8 @@
           "Vrai",
           "Faux"
         ],
-        "reponse": 1
+        "reponse": 1,
+        "explication": "**Règle :** pour prouver $P = NP$, il faudrait un algorithme **polynomial en la taille** (nombre de bits) pour un problème NP-complet. $O(n \\times C)$ est seulement **pseudo-polynomial**.\n\n**Pas à pas :**\n\n1. $C$ s'écrit avec environ $\\log_2 C$ bits : notons $b$ ce nombre.\n2. $C$ peut valoir jusqu'à $2^b - 1$, donc $n \\times C$ peut aller jusqu'à $n \\times 2^b$ : exponentiel en $b$.\n3. Ce n'est pas un algorithme polynomial pour le sac à dos : rien n'est prouvé sur P = NP.\n\nL'affirmation est **fausse**.\n\n**Erreur fréquente :** juger « polynomial » d'après la formule $n \\times C$ sans se demander si $C$ est une taille ou une valeur.\n\n**À retenir :** polynomial en la valeur des nombres ne suffit pas ; il faut être polynomial en leur nombre de bits."
       }
     ],
     "indices": [

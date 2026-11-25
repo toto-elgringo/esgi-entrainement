@@ -1,68 +1,123 @@
 [
   {
     "question": "Qu'est-ce qu'une **référence pendante** ?",
-    "choix": ["Une référence modifiable", "Une référence vers une valeur déjà détruite", "Une référence vers un texte vide", "Une référence `'static`"],
+    "choix": [
+      "Une référence modifiable",
+      "Une référence vers une valeur déjà détruite",
+      "Une référence vers un texte vide",
+      "Une référence `'static`"
+    ],
     "reponse": 1,
-    "explication": "Elle pointerait vers de la mémoire libérée. Rust refuse ce code à la compilation."
+    "explication": "**Règle :** une référence emprunte une valeur qui appartient à quelqu'un d'autre. Elle est **pendante** (*dangling*) si la valeur a déjà été détruite alors que la référence existe encore : elle pointerait vers de la mémoire libérée.\n\n**Pas à pas :** dans `let r; { let x = 5; r = &x; } println!(\"{r}\");` :\n\n1. `r = &x` : `r` regarde `x`.\n2. À l'accolade `}`, `x` est détruit.\n3. Au `println!`, `r` regarderait une valeur morte : c'est une référence pendante, et Rust refuse ce code **à la compilation** (E0597).\n\n**Les autres réponses :** une référence modifiable (`&mut`) est un emprunt tout à fait valide ; une référence vers un texte vide (`\"\"`) est valide aussi, le texte existe ; une référence `'static` est au contraire valable pendant tout le programme, elle ne peut jamais pendre.\n\n**À retenir :** pendante = la valeur est morte, la référence non."
   },
   {
     "question": "Que fait l'annotation `'a` à l'exécution du programme ?",
-    "choix": ["Elle prolonge la vie de la valeur", "Elle copie la valeur", "Rien : elle sert seulement au compilateur", "Elle libère la valeur plus tôt"],
+    "choix": [
+      "Elle prolonge la vie de la valeur",
+      "Elle copie la valeur",
+      "Rien : elle sert seulement au compilateur",
+      "Elle libère la valeur plus tôt"
+    ],
     "reponse": 2,
-    "explication": "Les durées de vie sont vérifiées uniquement à la compilation. Elles décrivent des liens entre références sans rien changer au programme."
+    "explication": "**Règle :** les durées de vie (`'a`) sont des **annotations pour le compilateur**. Elles sont vérifiées à la compilation, puis effacées : le programme produit est exactement le même avec ou sans elles.\n\n**Pas à pas :** dans `fn plus_long<'a>(a: &'a str, b: &'a str) -> &'a str`, `'a` dit seulement « le résultat est lié à `a` et à `b` ». Le compilateur s'en sert pour vérifier que l'appelant n'utilise pas le résultat après la mort de `a` ou de `b`. À l'exécution, aucune instruction n'est ajoutée.\n\n**Les autres réponses :** « prolonger la vie » est le piège classique : une valeur meurt toujours à la fin de son bloc, quoi qu'on écrive ; rien n'est copié (une référence ne copie jamais la valeur) ; rien n'est libéré plus tôt non plus.\n\n**À retenir :** `'a` décrit un lien, il ne change rien au programme qui tourne."
   },
   {
     "question": "Pourquoi `fn plus_long(a: &str, b: &str) -> &str` ne compile pas ?",
-    "choix": ["`&str` ne peut pas être renvoyé", "Le compilateur ne sait pas si le résultat vient de `a` ou de `b`", "Il manque `mut`", "`len()` n'existe pas sur `&str`"],
+    "choix": [
+      "`&str` ne peut pas être renvoyé",
+      "Le compilateur ne sait pas si le résultat vient de `a` ou de `b`",
+      "Il manque `mut`",
+      "`len()` n'existe pas sur `&str`"
+    ],
     "reponse": 1,
-    "explication": "Erreur E0106 : avec deux paramètres références, les règles d'élision ne suffisent pas. Il faut écrire `<'a>`."
+    "explication": "**Règle :** quand une fonction renvoie une référence, le compilateur doit savoir **de quel paramètre** elle vient, pour savoir combien de temps elle reste valable. Les règles d'élision le devinent seulement s'il y a **un seul** paramètre référence (ou un `&self`).\n\n**Pas à pas :**\n\n1. Paramètres références : `a` et `b`, donc **deux**.\n2. Règle 2 (un seul paramètre référence) : ne s'applique pas. Règle 3 (`&self`) : pas de `self`.\n3. Le résultat peut être `a` ou `b` selon les longueurs : le compilateur ne peut pas choisir, erreur **E0106** (*missing lifetime specifier*).\n4. Correction : `fn plus_long<'a>(a: &'a str, b: &'a str) -> &'a str`.\n\n**Les autres réponses :** renvoyer un `&str` est permis (il suffit de dire d'où il vient) ; `mut` n'a rien à voir, on ne modifie rien ; `len()` existe bien sur `&str` (longueur en octets).\n\n**À retenir :** deux paramètres références et un résultat référence : il faut écrire `'a`."
   },
   {
     "question": "Dans `fn plus_long<'a>(a: &'a str, b: &'a str) -> &'a str`, combien de temps le résultat est-il valable ?",
-    "choix": ["Pendant tout le programme", "Tant que `a` existe", "Tant que les deux textes existent", "Seulement dans la fonction"],
+    "choix": [
+      "Pendant tout le programme",
+      "Tant que `a` existe",
+      "Tant que les deux textes existent",
+      "Seulement dans la fonction"
+    ],
     "reponse": 2,
-    "explication": "`'a` devient la plus courte des deux durées de vie : le résultat est utilisable tant que `a` et `b` existent."
+    "explication": "**Règle :** quand plusieurs paramètres portent le même `'a`, le compilateur choisit pour `'a` la **plus courte** de leurs durées de vie. Le résultat ne peut donc servir que tant que **tous** ces paramètres existent.\n\n**Pas à pas :**\n\n```rust\nlet a = String::from(\"bonjour\");\nlet resultat;\n{\n    let b = String::from(\"salut\");\n    resultat = plus_long(&a, &b);\n}\nprintln!(\"{resultat}\");   // E0597 : b est mort\n```\n\n1. `a` vit jusqu'à la fin de `main`, `b` seulement jusqu'à l'accolade `}`.\n2. `'a` = la plus courte des deux = celle de `b`.\n3. Même si le résultat est en réalité `\"bonjour\"` (donc `a`), le compilateur ne regarde que la signature : il refuse l'usage après la mort de `b`.\n\n**Les autres réponses :** « tout le programme » serait `'static` ; « tant que `a` existe » oublie que le résultat peut être `b` ; « seulement dans la fonction » est faux, on peut utiliser le résultat chez l'appelant.\n\n**À retenir :** même `'a` sur plusieurs paramètres = le résultat vit aussi peu que le plus court d'entre eux."
   },
   {
     "question": "Pourquoi `fn premier_mot(phrase: &str) -> &str` compile sans `'a` ?",
-    "choix": ["Grâce aux règles d'élision : un seul paramètre référence", "Parce que le résultat est `'static`", "Parce que `phrase` est copiée", "Ça ne compile pas"],
+    "choix": [
+      "Grâce aux règles d'élision : un seul paramètre référence",
+      "Parce que le résultat est `'static`",
+      "Parce que `phrase` est copiée",
+      "Ça ne compile pas"
+    ],
     "reponse": 0,
-    "explication": "Règle 2 : s'il n'y a qu'un paramètre référence, sa durée de vie est donnée au résultat."
+    "explication": "**Règle :** règle d'élision n°2 : s'il y a **un seul** paramètre référence, le compilateur donne sa durée de vie au résultat, sans qu'on l'écrive.\n\n**Pas à pas :**\n\n1. Paramètres références : `phrase` seulement, donc **un**.\n2. Règle 2 : le résultat reçoit la durée de vie de `phrase`.\n3. Le compilateur comprend donc seul `fn premier_mot<'a>(phrase: &'a str) -> &'a str` : le mot renvoyé est une vue sur `phrase`.\n\n**Les autres réponses :** le résultat n'est pas `'static`, c'est un morceau de `phrase`, qui peut être une `String` détruite plus tard ; `phrase` n'est pas copiée, c'est un emprunt ; et ça compile bel et bien.\n\n**À retenir :** un seul paramètre référence (ou `&self`) : pas besoin d'écrire `'a`."
   },
   {
     "question": "Que signifie `&'static str` ?",
-    "choix": ["Un texte modifiable", "Un texte valable pendant tout le programme", "Un texte rangé sur le tas", "Un texte vide"],
+    "choix": [
+      "Un texte modifiable",
+      "Un texte valable pendant tout le programme",
+      "Un texte rangé sur le tas",
+      "Un texte vide"
+    ],
     "reponse": 1,
-    "explication": "Les textes écrits directement dans le code sont rangés dans le programme lui-même : ils existent du début à la fin."
+    "explication": "**Règle :** `'static` est la durée de vie qui dure **tout le programme**. Les textes écrits directement dans le code (`\"bonjour\"`) sont des `&'static str` : leurs octets sont rangés dans le fichier du programme lui-même.\n\n**Pas à pas :** dans `fn nom_du_jour(n: u32) -> &'static str { match n { 1 => \"lundi\", _ => \"autre\" } }`, `\"lundi\"` et `\"autre\"` existent avant l'appel et après : on peut renvoyer une référence vers eux sans aucun paramètre référence.\n\n**Les autres réponses :** un `&str` (même `'static`) est une vue en lecture seule, il n'est pas modifiable ; les textes `'static` sont dans le programme lui-même, pas sur le tas (c'est la `String` qui va sur le tas) ; un texte `'static` peut contenir n'importe quoi, il n'est pas vide.\n\n**À retenir :** `&'static str` = texte écrit dans le code, valable du début à la fin."
   },
   {
     "question": "Une fonction crée `let s = format!(\"...\");` et renvoie `&s`. Comment corriger ?",
-    "choix": ["Ajouter `'static`", "Ajouter `<'a>` partout", "Renvoyer `s` directement, avec le type `String`", "Mettre `mut`"],
+    "choix": [
+      "Ajouter `'static`",
+      "Ajouter `<'a>` partout",
+      "Renvoyer `s` directement, avec le type `String`",
+      "Mettre `mut`"
+    ],
     "reponse": 2,
-    "explication": "`s` meurt à la fin de la fonction (E0515). Aucune annotation ne la sauve : on renvoie la valeur possédée."
+    "explication": "**Règle :** une variable créée dans une fonction est détruite à la fin de la fonction. Renvoyer une référence vers elle donne l'erreur **E0515** (*cannot return reference to local variable*). La seule solution : renvoyer la valeur elle-même (possédée).\n\n**Pas à pas :**\n\n1. `let s = format!(\"...\")` : `s` est une `String` qui appartient à la fonction.\n2. `&s` regarde `s`, qui meurt à l'accolade finale : la référence serait pendante.\n3. On change le type de retour en `String` et on écrit `s` (sans `&`) : la `String` est **donnée** à l'appelant, qui en devient propriétaire. Elle survit donc.\n\n**Les autres réponses :** `'static` est faux, une `String` créée à l'exécution n'existe pas pendant tout le programme ; ajouter `<'a>` ne prolonge la vie de rien ; `mut` ne change pas la durée de vie.\n\n**À retenir :** valeur fabriquée dans la fonction → la renvoyer par valeur (`String`), jamais par référence."
   },
   {
     "question": "Que veut dire `struct Extrait<'a> { texte: &'a str }` ?",
-    "choix": ["L'Extrait possède le texte", "Un Extrait ne peut pas vivre plus longtemps que le texte qu'il regarde", "Le texte est copié dans l'Extrait", "Le texte doit être `'static`"],
+    "choix": [
+      "L'Extrait possède le texte",
+      "Un Extrait ne peut pas vivre plus longtemps que le texte qu'il regarde",
+      "Le texte est copié dans l'Extrait",
+      "Le texte doit être `'static`"
+    ],
     "reponse": 1,
-    "explication": "La struct contient un emprunt : elle doit mourir avant la valeur empruntée."
+    "explication": "**Règle :** une struct qui contient une référence doit déclarer une durée de vie : `struct Extrait<'a> { texte: &'a str }`. Cela veut dire que l'`Extrait` **emprunte** le texte et ne doit pas lui survivre.\n\n**Pas à pas :**\n\n```rust\nlet extrait;\n{\n    let livre = String::from(\"Il était une fois.\");\n    extrait = Extrait { texte: &livre };\n}\n// utiliser extrait ici : E0597, livre est mort\n```\n\n1. `extrait.texte` regarde `livre`.\n2. `livre` meurt à l'accolade `}`.\n3. Utiliser `extrait` après serait utiliser une référence pendante : refusé.\n\n**Les autres réponses :** l'`Extrait` ne possède pas le texte (il possèderait une `String`, sans `'a`) ; rien n'est copié, c'est tout l'intérêt ; le texte n'a pas besoin d'être `'static`, n'importe quelle `String` qui vit assez longtemps convient.\n\n**À retenir :** `<'a>` sur une struct = elle contient un emprunt et doit mourir avant la valeur empruntée."
   },
   {
     "question": "Quelle erreur obtient-on si une valeur est détruite alors qu'une référence vers elle est encore utilisée ?",
-    "choix": ["E0106", "E0384", "E0597", "E0004"],
+    "choix": [
+      "E0106",
+      "E0384",
+      "E0597",
+      "E0004"
+    ],
     "reponse": 2,
-    "explication": "E0597 : `x` does not live long enough. Solution : faire vivre la valeur plus longtemps, ou utiliser la référence plus tôt."
+    "explication": "**Règle :** **E0597** (*does not live long enough*) : une valeur est détruite (fin de son bloc) alors qu'une référence vers elle sert encore après.\n\n**Pas à pas :** `let r; { let x = 5; r = &x; } println!(\"{r}\");` donne « `x` does not live long enough » : `x` meurt à `}` et `r` sert au `println!`. Deux corrections : déclarer `x` dans le même bloc que `r` (elle vit plus longtemps), ou utiliser `r` avant l'accolade.\n\n**Les autres réponses :** E0106 est l'oubli d'une durée de vie dans une **signature** (*missing lifetime specifier*) ; E0384 est la modification d'une variable non `mut` ; E0004 est un `match` qui oublie des cas.\n\n**À retenir :** E0597 = « la valeur meurt trop tôt » : fais-la vivre plus longtemps ou utilise la référence plus tôt."
   },
   {
     "question": "Que provoque `let mot = texte.to_uppercase().split_whitespace().next();` si on utilise `mot` à la ligne suivante ?",
-    "choix": ["Rien, c'est correct", "E0716 : la `String` temporaire est détruite à la fin de la ligne", "E0384", "Une panique"],
+    "choix": [
+      "Rien, c'est correct",
+      "E0716 : la `String` temporaire est détruite à la fin de la ligne",
+      "E0384",
+      "Une panique"
+    ],
     "reponse": 1,
-    "explication": "`to_uppercase()` crée une `String` temporaire. Il faut la ranger dans une variable avant de l'emprunter."
+    "explication": "**Règle :** une **valeur temporaire** est créée au milieu d'une ligne sans être rangée dans une variable ; elle est détruite à la fin de la ligne (au `;`). Garder une référence vers elle donne **E0716** (*temporary value dropped while borrowed*).\n\n**Pas à pas :**\n\n1. `texte.to_uppercase()` fabrique une **nouvelle** `String`, jamais rangée dans une variable : c'est une temporaire.\n2. `.split_whitespace().next()` renvoie une vue **dans** cette temporaire.\n3. Au `;`, la temporaire est détruite ; `mot` la regarde encore à la ligne suivante : E0716.\n4. Correction : `let majuscules = texte.to_uppercase();` puis `let mot = majuscules.split_whitespace().next();`.\n\n**Les autres réponses :** ce n'est pas correct, le compilateur refuse ; E0384 concerne une variable non `mut` modifiée ; ce n'est pas une panique, car le problème est détecté **avant** l'exécution.\n\n**À retenir :** emprunter le résultat d'une méthode qui crée une `String` ? Range d'abord cette `String` avec `let`."
   },
   {
     "question": "Dans `fn trouver<'a>(mots: &[&'a str], prefixe: &str) -> Option<&'a str>`, peut-on détruire `prefixe` avant d'utiliser le résultat ?",
-    "choix": ["Oui, le résultat ne dépend que de `mots`", "Non, jamais", "Seulement si `prefixe` est vide", "Seulement en mode release"],
+    "choix": [
+      "Oui, le résultat ne dépend que de `mots`",
+      "Non, jamais",
+      "Seulement si `prefixe` est vide",
+      "Seulement en mode release"
+    ],
     "reponse": 0,
-    "explication": "`'a` n'est mis que sur `mots` : le compilateur sait que le résultat ne vient pas de `prefixe`."
+    "explication": "**Règle :** le compilateur ne relie le résultat qu'aux paramètres qui portent **le même** nom de durée de vie. Un paramètre sans `'a` n'a aucun lien avec le résultat.\n\n**Pas à pas :**\n\n1. `mots: &[&'a str]` : les textes de la liste vivent pendant `'a`.\n2. `prefixe: &str` : pas de `'a`, il reçoit sa propre durée de vie (règle 1), sans lien avec le résultat.\n3. `-> Option<&'a str>` : le résultat vient des textes de `mots`.\n4. Donc on peut détruire `prefixe` puis utiliser le résultat : le compilateur accepte, tant que les mots existent.\n\nSi on avait écrit `prefixe: &'a str`, ce même code donnerait E0597.\n\n**Les autres réponses :** « non, jamais » oublie que `'a` n'est pas sur `prefixe` ; la valeur de `prefixe` (vide ou non) ne compte pas, seule la signature compte ; le mode release ne change rien aux règles d'emprunt.\n\n**À retenir :** mets `'a` seulement sur le paramètre d'où vient vraiment le résultat ; les autres peuvent mourir avant."
   }
 ]

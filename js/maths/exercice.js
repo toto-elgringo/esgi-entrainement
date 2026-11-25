@@ -58,6 +58,7 @@ function blocQuestion(question, index, total, saisie, options) {
       ${intitule}
       ${champ(question, index, saisie, options, etiquettesQuestion(index, total, avecIntitule))}
       <div class="retour" id="retour-${index}" data-retour="${index}" role="status"></div>
+      <div class="explication-question markdown" data-explication="${index}" hidden></div>
     </div>`;
 }
 
@@ -132,6 +133,16 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
     marquerChamps(index, etat === 'faux');
     const symboles = { juste: '✓ ', faux: '✗ ', illisible: '? ', attente: '' };
     trouver(`[data-retour="${index}"]`).textContent = message ? `${symboles[etat] ?? ''}${message}` : '';
+    montrerExplication(index, etat === 'juste' || etat === 'faux');
+  }
+
+  function montrerExplication(index, visible) {
+    const zone = trouver(`[data-explication="${index}"]`);
+    const texte = exercice.questions[index].explication;
+    zone.hidden = !visible || !texte;
+    if (zone.hidden) return;
+    zone.innerHTML = `<span class="explication-titre">Pourquoi ?</span>${rendreMarkdown(texte, options)}`;
+    colorerCode(zone);
   }
 
   function effacerMarque(index) {
@@ -139,6 +150,7 @@ export function afficherExerciceMaths(ctx, chapitre, exercice) {
     delete bloc.dataset.etat;
     marquerChamps(index, false);
     trouver(`[data-retour="${index}"]`).textContent = '';
+    montrerExplication(index, false);
   }
 
   function montrerModele(index) {

@@ -1,74 +1,134 @@
 [
   {
     "question": "Qu'est-ce qu'un trait ?",
-    "choix": ["Une variable globale", "Une liste de méthodes qu'un type promet de fournir", "Un type de nombre", "Une macro"],
+    "choix": [
+      "Une variable globale",
+      "Une liste de méthodes qu'un type promet de fournir",
+      "Un type de nombre",
+      "Une macro"
+    ],
     "reponse": 1,
-    "explication": "Un trait décrit un comportement (des méthodes). Chaque type qui l'implémente avec `impl Trait for Type` doit fournir ces méthodes."
+    "explication": "**Règle :** un **trait** décrit un comportement : une liste de méthodes (nom, paramètres, type de retour). Chaque type qui veut avoir ce comportement l'implémente avec `impl Trait for Type` et doit fournir ces méthodes. C'est l'équivalent d'une **interface**.\n\n**Pas à pas :**\n\n```rust\ntrait Mesurable {\n    fn taille(&self) -> u32;\n}\nstruct Mot { texte: String }\nimpl Mesurable for Mot {\n    fn taille(&self) -> u32 { self.texte.len() as u32 }\n}\n```\n\nLe trait promet `taille`, l'`impl` tient la promesse pour `Mot`.\n\n**Les autres réponses :** une variable globale s'écrit avec `static` ou `const` ; un type de nombre, c'est `i32`, `f64`... ; une macro se reconnaît au `!` (`println!`, `vec!`). Rien à voir avec un trait.\n\n**À retenir :** trait = liste de méthodes promises ; `impl Trait for Type` = la promesse tenue."
   },
   {
     "question": "Que se passe-t-il si un `impl` oublie une méthode du trait qui n'a pas de version par défaut ?",
-    "choix": ["Elle renvoie `()`", "Le programme panique à l'appel", "Le code ne compile pas", "Elle est ignorée"],
+    "choix": [
+      "Elle renvoie `()`",
+      "Le programme panique à l'appel",
+      "Le code ne compile pas",
+      "Elle est ignorée"
+    ],
     "reponse": 2,
-    "explication": "Le compilateur exige toutes les méthodes sans version par défaut (erreur E0046 : missing trait item)."
+    "explication": "**Règle :** dans un `impl Trait for Type`, toutes les méthodes du trait **sans version par défaut** sont obligatoires. Le compilateur le vérifie : erreur **E0046** (« not all trait items implemented, missing: … »).\n\n**Pas à pas :** si le trait déclare `fn nom(&self) -> String;` et `fn son(&self) -> String;`, et que l'`impl` n'écrit que `nom`, la compilation s'arrête avec « missing: `son` ». Le programme n'est jamais lancé.\n\n**Les autres réponses :**\n- Elle renvoie `()` : Rust n'invente jamais de corps de méthode.\n- Le programme panique à l'appel : l'erreur arrive **avant**, à la compilation ; c'est tout l'intérêt.\n- Elle est ignorée : une promesse non tenue n'est jamais ignorée.\n\n**À retenir :** méthode du trait oubliée dans l'`impl` → E0046, le code ne compile pas."
   },
   {
     "question": "Un type peut-il remplacer une méthode par défaut de son trait ?",
-    "choix": ["Non, jamais", "Oui, en l'écrivant dans son bloc `impl`", "Seulement avec `unsafe`", "Seulement si le trait est `pub`"],
+    "choix": [
+      "Non, jamais",
+      "Oui, en l'écrivant dans son bloc `impl`",
+      "Seulement avec `unsafe`",
+      "Seulement si le trait est `pub`"
+    ],
     "reponse": 1,
-    "explication": "Il suffit d'écrire la méthode dans `impl Trait for Type` : sa version remplace celle par défaut pour ce type."
+    "explication": "**Règle :** une méthode **par défaut** est écrite (avec son corps) dans le trait. Chaque type l'obtient automatiquement, mais peut la **remplacer** en écrivant sa propre version dans son bloc `impl Trait for Type`.\n\n**Pas à pas :**\n\n```rust\ntrait Salut {\n    fn bonjour(&self) -> String { \"Bonjour\".to_string() }\n}\nstruct Fr;\nstruct En;\nimpl Salut for Fr {}\nimpl Salut for En {\n    fn bonjour(&self) -> String { \"Hello\".to_string() }\n}\n```\n\n`Fr.bonjour()` utilise la version par défaut (`\"Bonjour\"`), `En.bonjour()` utilise la sienne (`\"Hello\"`).\n\n**Les autres réponses :** « jamais » est faux (c'est justement le rôle d'une méthode par défaut) ; `unsafe` sert aux opérations dangereuses sur la mémoire, rien à voir ; `pub` règle la visibilité, pas le droit de remplacer.\n\n**À retenir :** pour remplacer une méthode par défaut, écris-la simplement dans l'`impl` du type."
   },
   {
     "question": "Quel trait faut-il pour afficher une valeur avec `{:?}` ?",
-    "choix": ["`Display`", "`Debug`", "`Clone`", "`ToString`"],
+    "choix": [
+      "`Display`",
+      "`Debug`",
+      "`Clone`",
+      "`ToString`"
+    ],
     "reponse": 1,
-    "explication": "`{:?}` utilise `Debug`, qu'on obtient souvent avec `#[derive(Debug)]`. `{}` utilise `Display`, à écrire à la main."
+    "explication": "**Règle :** `{:?}` utilise le trait `Debug` (affichage « pour le développeur »), qu'on obtient avec `#[derive(Debug)]`. `{}` utilise le trait `Display`, à écrire à la main.\n\n**Pas à pas :**\n\n```rust\n#[derive(Debug)]\nstruct Point { x: i32, y: i32 }\n// println!(\"{:?}\", Point { x: 1, y: 2 }) affiche Point { x: 1, y: 2 }\n```\n\nSans le `derive`, l'erreur dit « `Point` doesn't implement `Debug` ».\n\n**Les autres réponses :**\n- `Display` sert à `{}`, pas à `{:?}`.\n- `Clone` permet `.clone()`, il n'affiche rien.\n- `ToString` donne `.to_string()` ; on l'obtient automatiquement avec `Display`.\n\n**À retenir :** `{:?}` → `Debug` (dérivable), `{}` → `Display` (à la main)."
   },
   {
     "question": "Quel trait faut-il pour comparer deux valeurs avec `==` ?",
-    "choix": ["`PartialOrd`", "`Eq` seulement", "`PartialEq`", "`Hash`"],
+    "choix": [
+      "`PartialOrd`",
+      "`Eq` seulement",
+      "`PartialEq`",
+      "`Hash`"
+    ],
     "reponse": 2,
-    "explication": "`PartialEq` fournit `==` et `!=`. `PartialOrd` fournit `<`, `>`, `<=`, `>=`."
+    "explication": "**Règle :** `PartialEq` fournit `==` et `!=`. On l'obtient avec `#[derive(PartialEq)]` : deux valeurs sont égales si tous leurs champs sont égaux.\n\n**Pas à pas :** sans `PartialEq`, `a == b` donne « binary operation `==` cannot be applied to type … ». Avec `#[derive(PartialEq)]`, la comparaison compile et compare champ par champ.\n\n**Les autres réponses :**\n- `PartialOrd` fournit `<`, `>`, `<=`, `>=` (et demande d'ailleurs `PartialEq`).\n- `Eq` seulement : `Eq` est une promesse en plus (« l'égalité est toujours parfaite », ce qui est faux pour les `f64` à cause de `NaN`) ; il ne marche pas sans `PartialEq`, c'est `PartialEq` qui fournit l'opérateur.\n- `Hash` sert à ranger une valeur comme clé de `HashMap`.\n\n**À retenir :** `==` → `PartialEq` ; `<` et `>` → `PartialOrd`."
   },
   {
     "question": "Pourquoi `Display` ne peut-il pas être dérivé avec `#[derive]` ?",
-    "choix": ["Parce qu'il est lent", "Parce que l'affichage pour un humain est un choix : Rust ne peut pas le deviner", "Parce qu'il est réservé aux nombres", "Il peut l'être"],
+    "choix": [
+      "Parce qu'il est lent",
+      "Parce que l'affichage pour un humain est un choix : Rust ne peut pas le deviner",
+      "Parce qu'il est réservé aux nombres",
+      "Il peut l'être"
+    ],
     "reponse": 1,
-    "explication": "Comment afficher une fraction : `1/2`, `0.5`, `un demi` ? C'est à toi de l'écrire avec `impl fmt::Display`."
+    "explication": "**Règle :** `derive` écrit un code **mécanique**, le même pour toutes les structures (afficher chaque champ, comparer chaque champ...). L'affichage pour un humain (`{}`) n'est pas mécanique : c'est un **choix** de présentation.\n\n**Pas à pas :** pour une fraction de numérateur 1 et dénominateur 2, faut-il afficher `1/2`, `0.5` ou « un demi » ? Pour une température, `21.5 °C` ou `21,46 degrés` ? Rust ne peut pas deviner : c'est toi qui l'écris avec `impl fmt::Display for Type` et un `write!`.\n\n**Les autres réponses :**\n- Parce qu'il est lent : la vitesse n'a rien à voir.\n- Réservé aux nombres : n'importe quel type peut implémenter `Display`, même un texte ou une structure.\n- Il peut l'être : non, `#[derive(Display)]` n'existe pas dans la bibliothèque standard (erreur « cannot find derive macro `Display` »).\n\n**À retenir :** `Debug` se dérive, `Display` s'écrit toujours à la main."
   },
   {
     "question": "Que veut dire `fn f<T: PartialOrd>(a: T, b: T)` ?",
-    "choix": ["`T` doit être un nombre", "`T` peut être n'importe quel type qui sait se comparer", "`T` est forcément `i32`", "`a` et `b` peuvent être de types différents"],
+    "choix": [
+      "`T` doit être un nombre",
+      "`T` peut être n'importe quel type qui sait se comparer",
+      "`T` est forcément `i32`",
+      "`a` et `b` peuvent être de types différents"
+    ],
     "reponse": 1,
-    "explication": "`T` est un paramètre de type, et `: PartialOrd` est une contrainte. `a` et `b` ont le même type `T`."
+    "explication": "**Règle :** dans `fn f<T: PartialOrd>(a: T, b: T)`, `T` est un **paramètre de type** (il sera remplacé par un vrai type à chaque appel) et `: PartialOrd` est une **contrainte** : `T` doit savoir se comparer.\n\n**Pas à pas :**\n\n| Appel | `T` vaut | Accepté ? |\n|---|---|---|\n| `f(3, 7)` | `i32` | oui |\n| `f(\"kiwi\", \"abricot\")` | `&str` | oui : le texte se compare (ordre alphabétique) |\n| `f(3, 2.5)` | ? | non : `a` et `b` doivent avoir **le même** `T` |\n\n**Les autres réponses :**\n- `T` doit être un nombre : non, du texte ou des `char` se comparent aussi.\n- `T` est forcément `i32` : tout l'intérêt d'un générique est d'accepter plusieurs types.\n- `a` et `b` peuvent être de types différents : non, ils sont tous les deux de type `T`. Pour deux types différents, il faudrait `<T, U>`.\n\n**À retenir :** `<T: Trait>` = « n'importe quel type, à condition qu'il implémente ce trait »."
   },
   {
     "question": "À quoi sert `where` dans une signature ?",
-    "choix": ["À écrire les contraintes des types génériques de façon plus lisible", "À indiquer où la fonction est rangée", "À gérer les erreurs", "À créer une boucle"],
+    "choix": [
+      "À écrire les contraintes des types génériques de façon plus lisible",
+      "À indiquer où la fonction est rangée",
+      "À gérer les erreurs",
+      "À créer une boucle"
+    ],
     "reponse": 0,
-    "explication": "`where T: Display, U: Debug` est équivalent aux contraintes écrites dans les `< >`, mais plus lisible quand il y en a beaucoup."
+    "explication": "**Règle :** `where` sert seulement à écrire les **contraintes** des types génériques après la signature, quand elles rendraient les `< >` trop longs. Le sens est exactement le même.\n\n**Pas à pas :** ces deux signatures sont identiques :\n\n```rust\nuse std::fmt::{Debug, Display};\nfn a<T: Display, U: Debug>(x: T, y: U) -> String { format!(\"{x} {y:?}\") }\nfn b<T, U>(x: T, y: U) -> String\nwhere\n    T: Display,\n    U: Debug,\n{\n    format!(\"{x} {y:?}\")\n}\n```\n\n**Les autres réponses :** `where` n'indique pas un emplacement (ça, ce sont les modules), ne gère pas les erreurs (`Result`, `?`) et ne crée pas de boucle (`for`, `while`, `loop`).\n\n**À retenir :** `where` = les contraintes génériques rangées après la signature, pour la lisibilité."
   },
   {
     "question": "`fn annoncer(a: &impl Animal)` est un raccourci pour...",
-    "choix": ["`fn annoncer(a: &Animal)`", "`fn annoncer<T: Animal>(a: &T)`", "`fn annoncer(a: Box<dyn Animal>)`", "`fn annoncer(a: Vec<Animal>)`"],
+    "choix": [
+      "`fn annoncer(a: &Animal)`",
+      "`fn annoncer<T: Animal>(a: &T)`",
+      "`fn annoncer(a: Box<dyn Animal>)`",
+      "`fn annoncer(a: Vec<Animal>)`"
+    ],
     "reponse": 1,
-    "explication": "`impl Trait` en paramètre est une écriture courte d'un générique avec contrainte."
+    "explication": "**Règle :** `impl Trait` en **paramètre** est une écriture courte d'un générique avec contrainte : « n'importe quel type qui implémente ce trait ».\n\n**Pas à pas :** `fn annoncer(a: &impl Animal)` et `fn annoncer<T: Animal>(a: &T)` acceptent exactement les mêmes appels (`annoncer(&chien)`, `annoncer(&chat)`), et dans les deux cas le compilateur crée une version par type (monomorphisation).\n\n**Les autres réponses :**\n- `fn annoncer(a: &Animal)` : sans `impl` ni `dyn`, c'est refusé depuis l'édition 2021 (« expected a type, found a trait »).\n- `Box<dyn Animal>` : c'est un autre mécanisme (choix de la méthode à l'exécution, valeur dans une boîte), pas l'équivalent de `impl`.\n- `Vec<Animal>` : refusé, un trait n'est pas un type ; et une liste n'a rien à voir avec un seul paramètre.\n\n**À retenir :** `x: &impl Trait` = `<T: Trait>(x: &T)`."
   },
   {
     "question": "Comment ranger un `Chien` et un `Chat` (qui implémentent `Animal`) dans le même `Vec` ?",
-    "choix": ["`Vec<Animal>`", "`Vec<impl Animal>`", "`Vec<Box<dyn Animal>>`", "C'est impossible"],
+    "choix": [
+      "`Vec<Animal>`",
+      "`Vec<impl Animal>`",
+      "`Vec<Box<dyn Animal>>`",
+      "C'est impossible"
+    ],
     "reponse": 2,
-    "explication": "Un `Vec` contient un seul type. `Box<dyn Animal>` est ce type commun : une boîte vers « quelque chose qui est un Animal »."
+    "explication": "**Règle :** un `Vec` ne contient qu'**un seul type**, et tous ses éléments doivent avoir la même taille. `Box<dyn Animal>` est ce type commun : une boîte (une adresse, toujours la même taille) vers « quelque chose qui implémente `Animal` ».\n\n**Pas à pas :**\n\n```rust\nlet animaux: Vec<Box<dyn Animal>> = vec![Box::new(Chien), Box::new(Chat)];\n```\n\nChaque valeur est mise en boîte avec `Box::new`, et la liste est de type `Vec<Box<dyn Animal>>`.\n\n**Les autres réponses :**\n- `Vec<Animal>` : refusé, un trait n'est pas un type (sa taille n'est pas connue).\n- `Vec<impl Animal>` : `impl Trait` n'est permis qu'en paramètre ou en retour de fonction, et il désignerait de toute façon **un seul** type caché.\n- C'est impossible : c'est justement le rôle de `dyn`.\n\n**À retenir :** plusieurs types différents dans une liste → `Vec<Box<dyn Trait>>`."
   },
   {
     "question": "Avec `Box<dyn Animal>`, quand est choisie la méthode `cri()` à appeler ?",
-    "choix": ["À la compilation", "À l'exécution", "Jamais", "Au moment du `derive`"],
+    "choix": [
+      "À la compilation",
+      "À l'exécution",
+      "Jamais",
+      "Au moment du `derive`"
+    ],
     "reponse": 1,
-    "explication": "Avec `dyn`, le programme regarde à l'exécution quel est le vrai type pour appeler la bonne méthode. Avec un générique, c'est décidé à la compilation."
+    "explication": "**Règle :** avec `dyn`, le compilateur ne sait pas quel vrai type se trouve dans chaque boîte. Le programme le regarde **à l'exécution** et appelle la méthode de ce type (on parle de *dispatch dynamique*). Avec un générique, le type est connu et le choix est fait à la compilation.\n\n**Pas à pas :** dans `for a in &animaux { a.cri(); }`, la boucle ne sait pas si `a` est un chien ou un chat. Au premier tour, le programme voit un `Chien` et appelle son `cri` (« Wouf ») ; au second, un `Chat` (« Miaou »).\n\n**Les autres réponses :**\n- À la compilation : c'est le cas des génériques (`<T: Animal>`), pas de `dyn`.\n- Jamais : la méthode est bien appelée.\n- Au moment du `derive` : `derive` écrit des traits comme `Debug`, il ne choisit pas les méthodes à appeler.\n\n**À retenir :** `dyn` = méthode choisie à l'exécution ; générique = choisie à la compilation."
   },
   {
     "question": "Qu'est-ce que la monomorphisation ?",
-    "choix": ["Une erreur de compilation", "Le compilateur crée une version de la fonction générique pour chaque type utilisé", "Transformer un trait en struct", "Supprimer les génériques inutilisés"],
+    "choix": [
+      "Une erreur de compilation",
+      "Le compilateur crée une version de la fonction générique pour chaque type utilisé",
+      "Transformer un trait en struct",
+      "Supprimer les génériques inutilisés"
+    ],
     "reponse": 1,
-    "explication": "C'est ce qui rend les génériques gratuits à l'exécution : `plus_grand::<i32>` et `plus_grand::<f64>` deviennent deux fonctions distinctes."
+    "explication": "**Règle :** la **monomorphisation** : pour chaque type avec lequel une fonction (ou structure) générique est utilisée, le compilateur fabrique une version spéciale, comme si tu l'avais écrite à la main pour ce type.\n\n**Pas à pas :** si le programme appelle `plus_grand(3, 7)` et `plus_grand(2.5, 1.5)`, le compilateur crée `plus_grand::<i32>` et `plus_grand::<f64>`, deux fonctions distinctes. À l'exécution, aucun choix à faire : c'est aussi rapide que du code écrit pour un seul type. Contrepartie : un programme un peu plus gros.\n\n**Les autres réponses :** ce n'est pas une erreur de compilation ; ça ne transforme pas un trait en struct ; et ça ne « supprime » rien : au contraire, ça **crée** des versions.\n\n**À retenir :** monomorphisation = une copie par type utilisé, donc des génériques sans coût à l'exécution."
   }
 ]
