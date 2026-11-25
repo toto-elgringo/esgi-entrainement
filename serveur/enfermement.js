@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { lireAdresses } from './reglages.js';
 
 export const BWRAP = '/usr/bin/bwrap';
 
@@ -15,8 +16,15 @@ export function modeEnfermement() {
   return process.env.ESGI_ENFERMEMENT === 'bwrap' ? 'bwrap' : null;
 }
 
-export function verifierEnfermement({ chemin = BWRAP } = {}) {
-  if (modeEnfermement() !== 'bwrap') return;
+export function verifierEnfermement({ chemin = BWRAP, plateforme = process.platform, adresses = lireAdresses(process.env.ESGI_ADRESSES) } = {}) {
+  const valeur = process.env.ESGI_ENFERMEMENT;
+  if (valeur && valeur !== 'bwrap') throw new Error(`ESGI_ENFERMEMENT inconnu : « ${valeur} » (seule valeur possible : bwrap)`);
+  if (modeEnfermement() !== 'bwrap') {
+    if (plateforme === 'linux' && adresses.length > 0) {
+      throw new Error('ESGI_ADRESSES ouvre le serveur au réseau : ESGI_ENFERMEMENT=bwrap obligatoire sous Linux');
+    }
+    return;
+  }
   try {
     fs.accessSync(chemin, fs.constants.X_OK);
   } catch {

@@ -84,6 +84,22 @@ describe('enfermement des programmes', () => {
     assert.doesNotThrow(() => verifierEnfermement({ chemin: '/inexistant/bwrap' }));
   });
 
+  it('refuse une valeur d’enfermement inconnue', () => {
+    for (const valeur of ['Bwrap', 'bubblewrap', 'bwrap ', 'oui']) {
+      process.env.ESGI_ENFERMEMENT = valeur;
+      assert.throws(() => verifierEnfermement({ chemin: process.execPath }), /ESGI_ENFERMEMENT inconnu/, valeur);
+    }
+  });
+
+  it('refuse d’ouvrir le serveur au réseau sans enfermement sous Linux', () => {
+    delete process.env.ESGI_ENFERMEMENT;
+    assert.throws(() => verifierEnfermement({ plateforme: 'linux', adresses: ['hermes'] }), /ESGI_ENFERMEMENT=bwrap obligatoire/);
+    assert.doesNotThrow(() => verifierEnfermement({ plateforme: 'linux', adresses: [] }));
+    assert.doesNotThrow(() => verifierEnfermement({ plateforme: 'win32', adresses: ['hermes'] }));
+    process.env.ESGI_ENFERMEMENT = 'bwrap';
+    assert.doesNotThrow(() => verifierEnfermement({ chemin: process.execPath, plateforme: 'linux', adresses: ['hermes'] }));
+  });
+
   it('lance les programmes par bwrap quand le mode est actif', { skip: fs.existsSync(BWRAP) && 'bwrap présent : couvert par les essais réels' }, async () => {
     process.env.ESGI_ENFERMEMENT = 'bwrap';
     const resultat = await lancer(process.execPath, ['--version'], { delai: 15_000 });

@@ -106,6 +106,14 @@ describe('déploiement sur hermes', () => {
     }
   });
 
+  it('le service de hermes active l’enfermement, coupe la synchro et liste les adresses', async () => {
+    const service = await fs.readFile(new URL('../scripts/hermes/esgi-entrainement.service', import.meta.url), 'utf8');
+    assert.match(service, /^Environment=ESGI_ENFERMEMENT=bwrap$/m);
+    assert.match(service, /^Environment=ESGI_SYNCHRO=desactivee$/m);
+    assert.match(service, /^Environment=ESGI_ADRESSES=hermes,100\.75\.25\.89,hermes\.tail8c471a\.ts\.net$/m);
+    assert.match(service, /^Environment=PORT=3000$/m);
+  });
+
   it('refuse une autre branche que main', () => {
     assert.throws(() => verifierBranche('dev'), { message: 'Déploiement refusé : branche "dev", il faut être sur main.' });
     assert.doesNotThrow(() => verifierBranche('main'));
