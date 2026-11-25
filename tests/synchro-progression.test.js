@@ -81,12 +81,110 @@ describe('synchronisation de la progression', () => {
     const envois = serveur.envois();
     assert.equal(envois.length, 1);
     const envoyes = envois[0].corps.changements.map(({ partie, cle, faitLe }) => `${partie}/${cle}/${faitLe}`).sort();
-    assert.deepEqual(envoyes, ['affichages/s', 'codes/c', 'exercices/a', 'partiesQuiz/p', 'quiz/q', 'saisies/s'].map((id) => `${id}/${MAINTENANT}`));
+    assert.deepEqual(envoyes, ['affichages/s', 'codes/c', 'exercices/a', 'partiesQuiz/p', 'quiz/q', 'saisies/s'].map((id) => `${id}/1`));
     assert.equal(memoire.getItem(SYNCHRONISE), '1');
     assert.deepEqual(attenteLue(), []);
     assert.deepEqual(serveur.etat.progression.exercices, { a: { essais: 2, reussi: true } });
     assert.deepEqual(stockage.progression().quiz, { q: { score: 3, total: 4 } });
     assert.equal(stockage.theme(), 'clair');
+  });
+
+  it('première synchronisation : hermes reste la référence (remise à zéro et valeur plus récente gardées, clé inconnue ajoutée)', async () => {
+    const serveur = fauxServeur({
+      progression: { codes: { x: 'hermes' } },
+      dates: { 'codes/x': 100 },
+      supprimes: { 'exercices/a': 100 },
+    });
+    const local = { exercices: { a: { essais: 3, reussi: true } }, codes: { x: 'appareil', y: 'nouveau' } };
+    const { synchro, stockage, attenteLue } = preparer({ serveur, local, synchronise: false });
+    await synchro.demarrer();
+    assert.deepEqual(stockage.progression().exercices, {});
+    assert.deepEqual(serveur.etat.progression.exercices, {});
+    assert.deepEqual(stockage.progression().codes, { x: 'hermes', y: 'nouveau' });
+    assert.deepEqual(serveur.etat.progression.codes, { x: 'hermes', y: 'nouveau' });
+    assert.deepEqual(attenteLue(), []);
+  });
+
+  it('première synchronisation : ne remplace pas un changement déjà en attente', async () => {
+    const serveur = fauxServeur({ progression: { codes: { x: 'hermes' } }, dates: { 'codes/x': 100 } });
+    const attente = [{ partie: 'codes', cle: 'x', valeur: 'appareil', faitLe: MAINTENANT }];
+    const { synchro, stockage } = preparer({ serveur, local: { codes: { x: 'appareil' } }, attente, synchronise: false });
+    await synchro.demarrer();
+    assert.equal(stockage.code('x'), 'appareil');
+    assert.equal(serveur.etat.progression.codes.x, 'appareil');
+  });
+
+  it('première synchronisation : si l’attente ne peut pas être écrite, garde l’état local et ne note pas synchronise', async () => {
+    const serveur = fauxServeur({ progression: { codes: { x: 'hermes' } }, dates: { 'codes/x': 100 } });
+    const memoire = fausseMemoire({ 'esgi-entrainement': JSON.stringify({ codes: { x: 'appareil' }, exercices: { a: { essais: 1, reussi: true } } }) });
+    const ecrireVraiment = memoire.setItem;
+    memoire.setItem = (cle, valeur) => {
+      if (cle === ATTENTE) throw new Error('stockage plein');
+      ecrireVraiment(cle, valeur);
+    };
+    const stockage = creerStockage({ memoire });
+    const signalerErreur = mock.fn();
+    const synchro = creerSynchroProgression({ stockage, memoire, requete: serveur.requete, maintenant: () => MAINTENANT, signalerErreur });
+    await synchro.demarrer();
+    assert.equal(memoire.getItem(SYNCHRONISE), null);
+    assert.deepEqual(stockage.progression().codes, { x: 'appareil' });
+    assert.deepEqual(stockage.progression().exercices, { a: { essais: 1, reussi: true } });
+    assert.equal(signalerErreur.mock.callCount(), 1);
+    assert.equal(serveur.envois().length, 0);
+  });
+
+  it('une relecture ne remet pas une ancienne valeur si un envoi aboutit pendant le GET', async () => {
+    const serveur = fauxServeur({ progression: { codes: { x: 'ancien' } }, dates: { 'codes/x': MAINTENANT - 10 } });
+    let retenir = false;
+    let repondre;
+    const requete = async (methode, ...reste) => {
+      if (methode === 'GET' && retenir) {
+        retenir = false;
+        const photo = await serveur.requete(methode, ...reste);
+        return new Promise((resoudre) => { repondre = () => resoudre(photo); });
+      }
+      return serveur.requete(methode, ...reste);
+    };
+    const { synchro, stockage, attenteLue } = preparer({ serveur: { requete } });
+    await synchro.demarrer();
+    retenir = true;
+    const relecture = synchro.demarrer();
+    await laisserFinir();
+    stockage.enregistrerCode('x', 'nouveau');
+    stockage.ecrireMaintenant();
+    await synchro.envoyer();
+    assert.equal(serveur.etat.progression.codes.x, 'nouveau');
+    repondre();
+    await relecture;
+    assert.equal(stockage.code('x'), 'nouveau');
+    assert.deepEqual(attenteLue(), []);
+  });
+
+  it('attend l’envoi en cours avant de relire le serveur', async () => {
+    const serveur = fauxServeur({ progression: { codes: { x: 'ancien' } }, dates: { 'codes/x': MAINTENANT - 10 } });
+    let liberer;
+    let retenir = false;
+    const requete = async (methode, ...reste) => {
+      if (methode === 'POST' && retenir) {
+        retenir = false;
+        await new Promise((resoudre) => { liberer = resoudre; });
+      }
+      return serveur.requete(methode, ...reste);
+    };
+    const { synchro, stockage } = preparer({ serveur: { requete } });
+    await synchro.demarrer();
+    retenir = true;
+    stockage.enregistrerCode('x', 'nouveau');
+    stockage.ecrireMaintenant();
+    const envoi = synchro.envoyer();
+    const relecture = synchro.demarrer();
+    await laisserFinir();
+    assert.equal(serveur.appels.filter((appel) => appel.methode === 'GET').length, 1);
+    liberer();
+    await envoi;
+    await relecture;
+    assert.equal(serveur.appels.filter((appel) => appel.methode === 'GET').length, 2);
+    assert.equal(stockage.code('x'), 'nouveau');
   });
 
   it('à l’ouverture, l’état du serveur remplace l’état local, avec l’attente réappliquée par-dessus', async () => {

@@ -5,6 +5,7 @@ const CLE_SYNCHRONISE = 'esgi-entrainement-synchronise';
 const MAX_PAR_ENVOI = 2000;
 const DELAI_ENVOI = 300;
 const LIMITE_KEEPALIVE = 64 * 1024;
+const FAIT_LE_PREMIERE_SYNCHRO = 1;
 
 const estObjet = (valeur) => typeof valeur === 'object' && valeur !== null && !Array.isArray(valeur);
 const identifiant = ({ partie, cle }) => JSON.stringify([partie, cle]);
@@ -26,6 +27,8 @@ export function creerSynchroProgression({
   let relecture = null;
   let erreurSignalee = false;
   let ecouteursPage = false;
+  let envoiFermeture = null;
+  let reponsesTraitees = 0;
 
   function lire(cle) {
     try {
@@ -38,7 +41,10 @@ export function creerSynchroProgression({
   function ecrire(cle, valeur) {
     try {
       memoire?.setItem(cle, valeur);
-    } catch {}
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   function lireAttente() {
@@ -50,15 +56,16 @@ export function creerSynchroProgression({
     }
   }
 
-  function mettreEnAttente(changements) {
+  function mettreEnAttente(changements, { remplacer = true } = {}) {
     const valides = changements.filter(changementValide);
-    if (valides.length === 0) return;
+    if (valides.length === 0) return true;
     const parCle = new Map(lireAttente().map((changement) => [identifiant(changement), changement]));
     for (const changement of valides) {
+      if (!remplacer && parCle.has(identifiant(changement))) continue;
       parCle.delete(identifiant(changement));
       parCle.set(identifiant(changement), changement);
     }
-    ecrire(CLE_ATTENTE, JSON.stringify([...parCle.values()]));
+    return ecrire(CLE_ATTENTE, JSON.stringify([...parCle.values()]));
   }
 
   function retirerEnvoyes(lot) {
@@ -69,7 +76,7 @@ export function creerSynchroProgression({
 
   function contenuLocal() {
     const progression = stockage.progression();
-    const faitLe = maintenant();
+    const faitLe = FAIT_LE_PREMIERE_SYNCHRO;
     return PARTIES.flatMap((partie) => Object.entries(estObjet(progression[partie]) ? progression[partie] : {})
       .map(([cle, valeur]) => ({ partie, cle, valeur, faitLe })));
   }
@@ -120,6 +127,7 @@ export function creerSynchroProgression({
       echec();
       return false;
     }
+    reponsesTraitees += 1;
     retirerEnvoyes(lot);
     recopier(reponse.donnees?.retenus);
     return true;
@@ -138,9 +146,13 @@ export function creerSynchroProgression({
     const lot = lireAttente().slice(0, MAX_PAR_ENVOI);
     if (lot.length === 0) return Promise.resolve();
     if (new TextEncoder().encode(JSON.stringify({ changements: lot })).length > LIMITE_KEEPALIVE) return Promise.resolve();
-    return poster(lot, true).then((reponse) => {
+    const envoi = poster(lot, true).then((reponse) => {
       traiterReponse(lot, reponse);
-    }, () => {});
+    }, () => {}).finally(() => {
+      if (envoiFermeture === envoi) envoiFermeture = null;
+    });
+    envoiFermeture = envoi;
+    return envoi;
   }
 
   function envoyer({ keepalive = false } = {}) {
@@ -199,13 +211,33 @@ export function creerSynchroProgression({
     return etat;
   }
 
-  async function relireMaintenant() {
-    let reponse;
+  async function attendreEnvois() {
+    while (envoiEnCours || envoiFermeture) await Promise.all([envoiEnCours, envoiFermeture]);
+  }
+
+  const envoisEnCours = () => Boolean(envoiEnCours || envoiFermeture);
+
+  async function demanderEtat() {
     try {
-      reponse = await requete('GET');
+      return await requete('GET');
     } catch {
-      reponse = null;
+      return null;
     }
+  }
+
+  async function lireServeur() {
+    if (envoisEnCours()) await attendreEnvois();
+    const avant = reponsesTraitees;
+    const reponse = await demanderEtat();
+    if (reponsesTraitees === avant) return { reponse, fiable: true };
+    if (envoisEnCours()) await attendreEnvois();
+    const deuxieme = reponsesTraitees;
+    const nouvelle = await demanderEtat();
+    return { reponse: nouvelle, fiable: reponsesTraitees === deuxieme };
+  }
+
+  async function relireMaintenant() {
+    const { reponse, fiable } = await lireServeur();
     if (reponse?.statut === 200 && reponse.donnees?.active === false) {
       mode = 'inactif';
       enMemoire = [];
@@ -214,8 +246,12 @@ export function creerSynchroProgression({
     const enCoursDeChargement = mode === 'inconnu';
     mode = 'actif';
     if (enCoursDeChargement) {
-      mettreEnAttente(enMemoire);
+      const garde = mettreEnAttente(enMemoire);
       enMemoire = [];
+      if (!garde) {
+        echec();
+        return;
+      }
     }
     stockage.ecrireMaintenant();
     if (reponse?.statut !== 200 || !estObjet(reponse.donnees)) {
@@ -223,8 +259,15 @@ export function creerSynchroProgression({
       return;
     }
     if (lire(CLE_SYNCHRONISE) !== '1') {
-      mettreEnAttente(contenuLocal());
+      if (!mettreEnAttente(contenuLocal(), { remplacer: false })) {
+        echec();
+        return;
+      }
       ecrire(CLE_SYNCHRONISE, '1');
+    }
+    if (!fiable) {
+      await envoyer();
+      return;
     }
     const etat = etatDuServeur(reponse.donnees);
     for (const changement of lireAttente()) appliquerChangement(etat, changement);
