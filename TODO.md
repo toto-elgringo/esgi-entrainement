@@ -24,6 +24,7 @@
 
 ## Site
 
+- [ ] Hermes : première mise en ligne sur http://hermes/esgi-entrainement/ (Rust installé, essai enfermé, fusion dans main), puis import de l'avancement
 - [ ] Supports : ajouter ceux des nouveaux chapitres dans `chapitre.json` (`supports`) au fil du cours
 
 - [x] Exporter / importer sa progression (pour changer d'ordinateur)

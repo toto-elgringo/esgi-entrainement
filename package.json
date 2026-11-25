@@ -10,7 +10,8 @@
     "test:rapide": "node scripts/test-rapide.js",
     "couverture": "node --test --experimental-test-coverage",
     "sommaire": "node scripts/sommaire.js",
-    "verifier-contenu": "node scripts/verifier-contenu.js"
+    "verifier-contenu": "node scripts/verifier-contenu.js",
+    "deployer": "node scripts/deployer.mjs"
   },
   "engines": {
     "node": ">=20"

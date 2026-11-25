@@ -1,0 +1,18 @@
+[Unit]
+Description=ESGI Entraînement (127.0.0.1:3000)
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/dev/esgi-entrainement
+ExecStart=/usr/bin/node serveur/index.js --sans-navigateur
+Environment=PORT=3000
+Environment=ESGI_ADRESSES=hermes,100.75.25.89,hermes.tail8c471a.ts.net
+Environment=ESGI_SYNCHRO=desactivee
+Environment=ESGI_ENFERMEMENT=bwrap
+Environment=DOSSIER_SUPPORTS=%h/esgi-entrainement-supports
+Environment=PATH=%h/.cargo/bin:/usr/local/bin:/usr/bin:/bin
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
