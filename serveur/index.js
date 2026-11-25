@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { creerSynchro } from './myges/synchro.js';
 import { creerSynchroSchooding } from './schooding/synchro.js';
 import { prechauffer } from './rust.js';
+import { lireAdresses } from './reglages.js';
 import { creerServeur } from './serveur.js';
 import { creerVerrou } from './synchro.js';
 
@@ -46,7 +47,7 @@ const schooding = creerSynchroSchooding({
   claude: commandeClaude(),
   verrou,
 });
-const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchros: { myges, schooding } });
+const serveur = creerServeur({ racine, dossierContenu: path.join(racine, 'contenu'), dossierSupports, synchros: { myges, schooding }, adresses: lireAdresses(process.env.ESGI_ADRESSES) });
 
 function quitter() {
   myges.couper();

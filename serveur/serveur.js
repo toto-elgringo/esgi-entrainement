@@ -106,18 +106,18 @@ async function etatOutils(rafraichir) {
   return { ...outilsRust, ...outilsPython, ...outilsC };
 }
 
-function hotesLocaux(requete) {
+function hotesPermis(requete, adresses) {
   const port = requete.socket.localPort;
-  return [`localhost:${port}`, `127.0.0.1:${port}`];
+  return [`localhost:${port}`, `127.0.0.1:${port}`, ...adresses];
 }
 
-function hoteLocal(requete) {
-  return hotesLocaux(requete).includes(requete.headers.host);
+function hotePermis(requete, adresses) {
+  return hotesPermis(requete, adresses).includes(requete.headers.host);
 }
 
-function origineAcceptee(requete) {
+function origineAcceptee(requete, adresses) {
   const origine = requete.headers.origin;
-  return origine === undefined || hotesLocaux(requete).some((hote) => origine === `http://${hote}`);
+  return origine === undefined || hotesPermis(requete, adresses).some((hote) => origine === `http://${hote}`);
 }
 
 function nomCookie(requete) {
@@ -132,9 +132,9 @@ function lireCookie(requete, nom) {
   return null;
 }
 
-function creerGardes(jeton) {
+function creerGardes(jeton, adresses) {
   function lecture(requete) {
-    if (!origineAcceptee(requete)) throw new ErreurHttp(403, 'Requête refusée');
+    if (!origineAcceptee(requete, adresses)) throw new ErreurHttp(403, 'Requête refusée');
   }
 
   function ecriture(requete) {
@@ -396,9 +396,9 @@ function lireUrl(requete) {
   }
 }
 
-export function creerServeur({ racine, dossierContenu, dossierSupports, synchros = {} }) {
+export function creerServeur({ racine, dossierContenu, dossierSupports, synchros = {}, adresses = [] }) {
   const jeton = randomUUID();
-  const gardes = creerGardes(jeton);
+  const gardes = creerGardes(jeton, adresses);
   const sommaires = creerSommaires(dossierContenu);
   const fichiersPrives = new Set(
     [...Object.values(synchros).flatMap((synchro) => synchro?.fichiersPrives ?? []), FICHIER_OBSIDIAN].map((nom) => nom.toLowerCase()),
@@ -408,7 +408,7 @@ export function creerServeur({ racine, dossierContenu, dossierSupports, synchros
   const serveur = http.createServer(async (requete, reponse) => {
     for (const [nom, valeur] of Object.entries(ENTETES_SECURITE)) reponse.setHeader(nom, valeur);
     try {
-      if (!hoteLocal(requete)) throw new ErreurHttp(403, 'Requête refusée');
+      if (!hotePermis(requete, adresses)) throw new ErreurHttp(403, 'Requête refusée');
       const url = lireUrl(requete);
       const trouvee = trouverRoute(routes, requete.method, url.pathname);
       if (!trouvee) throw new ErreurHttp(404, url.pathname.startsWith('/api/') ? 'Route inconnue' : 'Fichier introuvable');
