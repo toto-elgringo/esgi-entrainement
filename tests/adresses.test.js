@@ -48,6 +48,11 @@ describe('adresses permises', () => {
     assert.equal(await demander(port, { entetes: { Host: '100.75.25.89' } }), 200);
   });
 
+  it('répond aux requêtes HEAD comme aux GET', async () => {
+    assert.equal(await demander(port, { methode: 'HEAD', entetes: { Host: '100.75.25.89' } }), 200);
+    assert.equal(await demander(port, { methode: 'HEAD', chemin: '/absent', entetes: { Host: 'hermes' } }), 404);
+  });
+
   it('refuse un hôte hors de la liste', async () => {
     assert.equal(await demander(port, { entetes: { Host: 'pirate.test' } }), 403);
   });
