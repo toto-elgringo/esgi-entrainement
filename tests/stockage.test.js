@@ -199,3 +199,116 @@ describe('anciens résultats de compilation', () => {
     assert.ok(onglet.tailleUtilisee() < avant);
   });
 });
+
+describe('signalement des changements', () => {
+  function espion(depart) {
+    const onglet = creerStockage({ memoire: fausseMemoire(depart), delai: 0 });
+    const appels = [];
+    onglet.surChangementLocal((touches, options) => appels.push({ touches, options }));
+    return { onglet, appels };
+  }
+
+  it('enregistrerEssai signale exercices/<cle> avec la valeur entière, tout de suite', () => {
+    const { onglet, appels } = espion();
+    onglet.enregistrerEssai('rust/01/a', true);
+    assert.equal(appels.length, 1);
+    assert.deepEqual(appels[0].touches, [{ partie: 'exercices', cle: 'rust/01/a', valeur: { essais: 1, reussi: true } }]);
+    assert.equal(appels[0].options.immediat, true);
+  });
+
+  it('enregistrerCode signale codes/<cle> après le délai, une seule touche', async () => {
+    const { onglet, appels } = espion();
+    onglet.enregistrerCode('rust/01/a', 'un');
+    onglet.enregistrerCode('rust/01/a', 'deux');
+    assert.equal(appels.length, 0);
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    assert.equal(appels.length, 1);
+    assert.deepEqual(appels[0].touches, [{ partie: 'codes', cle: 'rust/01/a', valeur: 'deux' }]);
+    assert.equal(appels[0].options.immediat, false);
+  });
+
+  it('reinitialiserExercice signale les quatre parties de la clé avec la valeur null', () => {
+    const { onglet, appels } = espion();
+    onglet.enregistrerCode('rust/01/a', 'x');
+    onglet.ecrireMaintenant();
+    appels.length = 0;
+    onglet.reinitialiserExercice('rust/01/a');
+    const touches = appels[0].touches;
+    assert.deepEqual(touches.map((t) => t.partie).sort(), ['affichages', 'codes', 'exercices', 'saisies']);
+    assert.ok(touches.every((t) => t.cle === 'rust/01/a' && t.valeur === null));
+  });
+
+  it('reinitialiser signale null pour chaque clé qui existait', () => {
+    const { onglet, appels } = espion();
+    onglet.enregistrerEssai('a', true);
+    onglet.enregistrerQuiz('c', 1, 2);
+    appels.length = 0;
+    onglet.reinitialiser();
+    const touches = appels.flatMap((a) => a.touches);
+    assert.deepEqual(touches.map((t) => `${t.partie}/${t.cle}`).sort(), ['exercices/a', 'quiz/c']);
+    assert.ok(touches.every((t) => t.valeur === null));
+  });
+
+  it('importer signale chaque clé du fichier importé, sans aucun null', () => {
+    const { onglet, appels } = espion();
+    onglet.enregistrerEssai('ancien', true);
+    appels.length = 0;
+    const fichier = JSON.stringify({ format: 'esgi-entrainement', version: 1, progression: { exercices: { b: { essais: 2, reussi: false } }, codes: { b: 'fn' } } });
+    onglet.importer(fichier);
+    const touches = appels.flatMap((a) => a.touches);
+    assert.deepEqual(touches.map((t) => `${t.partie}/${t.cle}`).sort(), ['codes/b', 'exercices/b']);
+    assert.ok(touches.every((t) => t.valeur !== null));
+  });
+
+  it('effacerResultats signale les affichages dont le résultat a été retiré', () => {
+    const { onglet, appels } = espion();
+    onglet.enregistrerAffichage('a', { resultat: { statut: 'ok' }, indices: 1 });
+    onglet.enregistrerAffichage('b', { indices: 1 });
+    onglet.ecrireMaintenant();
+    appels.length = 0;
+    onglet.effacerResultats();
+    assert.deepEqual(appels.flatMap((x) => x.touches), [{ partie: 'affichages', cle: 'a', valeur: { indices: 1 } }]);
+  });
+
+  it('choisirTheme et choisirMatiere ne signalent rien', () => {
+    const { onglet, appels } = espion();
+    onglet.choisirTheme('clair');
+    onglet.choisirMatiere('rust');
+    onglet.ecrireMaintenant();
+    assert.equal(appels.length, 0);
+  });
+
+  it('remplacerParties ne signale rien et garde theme, matiere et menuRange', () => {
+    const { onglet, appels } = espion();
+    onglet.choisirTheme('clair');
+    onglet.choisirMatiere('rust');
+    onglet.rangerMenu(true);
+    const externes = [];
+    onglet.surChangementExterne(() => externes.push(1));
+    onglet.remplacerParties({ exercices: { a: { essais: 1, reussi: true } }, quiz: {}, saisies: {}, codes: { a: 'x' }, partiesQuiz: {}, affichages: {} });
+    assert.equal(appels.length, 0);
+    assert.equal(externes.length, 1);
+    assert.equal(onglet.code('a'), 'x');
+    assert.equal(onglet.theme(), 'clair');
+    assert.equal(onglet.matiere(), 'rust');
+    assert.equal(onglet.menuRange(), true);
+    assert.deepEqual(onglet.progression().exercices, { a: { essais: 1, reussi: true } });
+  });
+
+  it('remplacerParties n’appelle pas les écouteurs externes si rien ne change', () => {
+    const { onglet } = espion();
+    const parties = { exercices: {}, quiz: {}, saisies: {}, codes: { a: 'x' }, partiesQuiz: {}, affichages: {} };
+    onglet.remplacerParties(parties);
+    let nombre = 0;
+    onglet.surChangementExterne(() => nombre++);
+    onglet.remplacerParties(parties);
+    assert.equal(nombre, 0);
+  });
+
+  it('remplacerParties écrit tout de suite dans la mémoire', () => {
+    const memoireLocale = fausseMemoire();
+    const onglet = creerStockage({ memoire: memoireLocale, delai: 0 });
+    onglet.remplacerParties({ exercices: {}, quiz: {}, saisies: {}, codes: { a: 'x' }, partiesQuiz: {}, affichages: {} });
+    assert.equal(JSON.parse(memoireLocale.getItem('esgi-entrainement')).codes.a, 'x');
+  });
+});
