@@ -410,7 +410,7 @@ export function creerServeur({ racine, dossierContenu, dossierSupports, synchros
     try {
       if (!hotePermis(requete, adresses)) throw new ErreurHttp(403, 'Requête refusée');
       const url = lireUrl(requete);
-      const trouvee = trouverRoute(routes, requete.method, url.pathname);
+      const trouvee = trouverRoute(routes, requete.method === 'HEAD' ? 'GET' : requete.method, url.pathname);
       if (!trouvee) throw new ErreurHttp(404, url.pathname.startsWith('/api/') ? 'Route inconnue' : 'Fichier introuvable');
       const { route, parametres } = trouvee;
       route.garde(requete);
