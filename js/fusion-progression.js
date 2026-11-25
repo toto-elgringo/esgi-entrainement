@@ -8,6 +8,15 @@ export function progressionVide() {
   return Object.fromEntries(PARTIES.map((partie) => [partie, {}]));
 }
 
+const entierPositif = (n) => Number.isInteger(n) && n >= 0;
+
+const exerciceValide = (valeur) => estObjet(valeur) && entierPositif(valeur.essais) && typeof valeur.reussi === 'boolean';
+
+const quizValide = (valeur) => estObjet(valeur)
+  && typeof valeur.score === 'number' && Number.isFinite(valeur.score) && valeur.score >= 0
+  && Number.isInteger(valeur.total) && valeur.total > 0
+  && valeur.score <= valeur.total;
+
 export function changementValide(changement) {
   if (!estObjet(changement)) return false;
   const { partie, cle, valeur, faitLe } = changement;
@@ -15,7 +24,9 @@ export function changementValide(changement) {
   if (typeof cle !== 'string' || cle === '' || CLES_INTERDITES.includes(cle)) return false;
   if (typeof faitLe !== 'number' || !Number.isFinite(faitLe)) return false;
   if (valeur === undefined) return false;
-  if ((partie === 'exercices' || partie === 'quiz') && valeur !== null && !estObjet(valeur)) return false;
+  if (valeur === null) return true;
+  if (partie === 'exercices') return exerciceValide(valeur);
+  if (partie === 'quiz') return quizValide(valeur);
   return true;
 }
 
@@ -59,6 +70,5 @@ export function appliquerChangement(etat, { partie, cle, valeur, faitLe }) {
     progression[partie][cle] = valeur;
     dates[id] = faitLe;
   }
-  delete supprimes[id];
   return { retenu: true, valeur: progression[partie][cle] };
 }
