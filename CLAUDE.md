@@ -4,7 +4,7 @@
 
 Site d'entraînement pour **tous les cours de l'ESGI** : Maths pour l'informatique, Maths pour le big data, Combinatoire et complexité, Algorithmique avancée (C), Scripting Python, Rust, Rust avancé, Anglais professionnel (TOEIC) et Cours électif (SIG). Chaque chapitre propose un cours résumé, un quiz et des exercices corrigés automatiquement. Dépôt public partagé avec la classe.
 
-- En local (`npm start`) et sur hermes (`http://hermes/esgi-entrainement/`, derrière le Caddy du hub hermes-sites, service `esgi-entrainement` sur `127.0.0.1:3000`). Plus de GitHub Pages. La synchro MyGES / Schooding se fait seulement en local ; `/commit -merge` met hermes à jour (voir « Déploiement sur hermes »). Le code des exercices et des exemples du cours est compilé ou lancé par les outils de la machine (cargo, Python 3, gcc), et les erreurs s'affichent en couleur dans la page.
+- En local (`npm start`) et sur hermes (`https://hermes.tail8c471a.ts.net/esgi-entrainement/`, derrière le Caddy du hub hermes-sites, service `esgi-entrainement` sur `127.0.0.1:3000`). Plus de GitHub Pages. La synchro MyGES / Schooding se fait seulement en local ; `/commit -merge` met hermes à jour (voir « Déploiement sur hermes »). Le code des exercices et des exemples du cours est compilé ou lancé par les outils de la machine (cargo, Python 3, gcc), et les erreurs s'affichent en couleur dans la page.
 - Les notes sources sont dans le vault Obsidian : `C:\Users\totoa\Obsidian\Claude Note\Cours - ESGI\<matière>\`.
 
 ## Stack technique
@@ -124,10 +124,11 @@ CONTENU.md          format exact du contenu (code et réponses)
 
 ## Déploiement sur hermes
 
+- Ordre : déployer le hub hermes-sites (HTTPS) avant ce dépôt, car `installer.sh` vérifie l'adresse en HTTPS.
 - `scripts/deployer.mjs` : envoie les supports déclarés dans les `chapitre.json` (champ `fichier`) absents ou changés (taille) vers `~/esgi-entrainement-supports/`, dans un seul flux SSH (une ligne « taille chemin » puis les octets, rangés par le petit programme Python `RECEPTEUR`, qui refuse tout chemin sortant du dossier), puis sur hermes dans `~/dev/esgi-entrainement` : `git fetch`, mise de côté des modifications suivies (`git stash`, jamais les fichiers non suivis), `checkout` + `pull --ff-only` de `main`, `bash scripts/hermes/installer.sh`.
-- `scripts/hermes/` : fiches du hub (`esgi-entrainement.caddy`, `.json`), service systemd utilisateur (`esgi-entrainement.service`, réglages ci-dessus) et `installer.sh` (installe, redémarre, `sites-hermes-appliquer`, vérifie `http://100.75.25.89/esgi-entrainement/`).
+- `scripts/hermes/` : fiches du hub (`esgi-entrainement.caddy`, `.json`), service systemd utilisateur (`esgi-entrainement.service`, réglages ci-dessus) et `installer.sh` (installe, redémarre, `sites-hermes-appliquer`, vérifie `https://hermes.tail8c471a.ts.net/esgi-entrainement/`).
 - Rust sur hermes : rustup dans `~/.cargo` et `~/.rustup` (sans sudo).
-- Avancement : propre à chaque adresse (`localStorage`) : utiliser toujours `http://hermes/esgi-entrainement/` et importer la sauvegarde JSON une fois.
+- Avancement : propre à chaque adresse (`localStorage`) : utiliser toujours `https://hermes.tail8c471a.ts.net/esgi-entrainement/` et importer la sauvegarde JSON une fois.
 
 ## Installation des outils (Windows)
 

@@ -65,6 +65,8 @@ describe('adresses permises', () => {
       corps: '{}',
     });
     assert.notEqual(await demander(port, requete('http://hermes')), 403);
+    assert.notEqual(await demander(port, requete('https://hermes')), 403);
+    assert.equal(await demander(port, requete('https://pirate.test')), 403);
     assert.equal(await demander(port, requete('http://pirate.test')), 403);
   });
 

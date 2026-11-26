@@ -5,7 +5,7 @@ SOURCE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 APPLIQUER="$HOME/.local/bin/sites-hermes-appliquer"
 SITES="$HOME/.config/sites"
 UNITES="$HOME/.config/systemd/user"
-ADRESSE="http://100.75.25.89/esgi-entrainement/"
+ADRESSE="https://hermes.tail8c471a.ts.net/esgi-entrainement/"
 
 if [[ ! -x "$APPLIQUER" ]]; then
   echo "Installer d'abord hermes-sites" >&2
@@ -29,4 +29,4 @@ if ! curl -fsS -o /dev/null --retry 10 --retry-connrefused --retry-delay 1 --ret
   exit 1
 fi
 
-echo "ESGI Entraînement en ligne : http://hermes/esgi-entrainement/"
+echo "ESGI Entraînement en ligne : https://hermes.tail8c471a.ts.net/esgi-entrainement/"

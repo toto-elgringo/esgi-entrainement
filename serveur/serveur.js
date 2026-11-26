@@ -117,7 +117,7 @@ function hotePermis(requete, adresses) {
 
 function origineAcceptee(requete, adresses) {
   const origine = requete.headers.origin;
-  return origine === undefined || hotesPermis(requete, adresses).some((hote) => origine === `http://${hote}`);
+  return origine === undefined || hotesPermis(requete, adresses).some((hote) => origine === `http://${hote}` || origine === `https://${hote}`);
 }
 
 function nomCookie(requete) {
