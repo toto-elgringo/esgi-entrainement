@@ -961,6 +961,10 @@ Voici `Arme` octet par octet (sur la machine du cours ; sans attribut `#[repr]`,
 
 Les variantes **se partagent** les mêmes octets ; l'octet 0 dit lesquels sont valides.
 
+Sur l'image (la même enum en anglais : `Sword` = `Epee`, `Axe` = `Hache`, `Bow` = `Arc`, `damage` = `degats`, `range` = `portee`) : la colonne orange (octet 0) est l'**étiquette**, 0, 1 ou 2. Chaque ligne est une variante posée sur les **mêmes** 8 octets ; les cases hachurées ne servent pas pour cette variante.
+
+![L'enum WeaponType octet par octet : étiquette 0, 1 ou 2 dans l'octet 0, damage dans l'octet 1, range dans les octets 4 à 7 pour Bow](images/enum-en-memoire-etiquette.webp "Une enum = une étiquette (octet 0) + la place de la plus grosse variante : 8 octets pour toutes")
+
 **L'alignement, en deux phrases.** Le processeur lit plus vite un `u32` rangé à une adresse multiple de 4 : un champ de `n` octets (`u8` : 1, `u16` : 2, `u32` / `char` : 4, `u64` / référence : 8) est placé sur un multiple de `n`, quitte à laisser des octets vides. Et la taille totale est arrondie au multiple de l'alignement du plus gros champ.
 
 **Exemple résolu : la taille de `enum Signal { Arret, Vitesse(u16), Position { x: u8, y: u32 } }`**

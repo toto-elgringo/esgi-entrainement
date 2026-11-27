@@ -4,6 +4,10 @@
 
 Un **trait** est une liste de méthodes qu'un type promet de fournir. C'est l'équivalent d'une **interface** dans d'autres langages. Le trait dit **quoi** (le nom et la signature des méthodes), chaque type dit **comment** (le corps des méthodes).
 
+![Schéma : le trait Statistique en haut (nom, calculer), trois types Moyenne, Min et Max qui signent le contrat, et une fonction afficher qui accepte n'importe lequel](images/trait-contrat.webp "Un trait = un contrat : chaque type qui le signe fournit les méthodes promises")
+
+Sur l'image (exemple du cours) : le trait `Statistique` demande deux méthodes, `nom()` et `calculer(...)`. `Moyenne`, `Min` et `Max` « signent le contrat » chacun avec un `impl Statistique`. La fonction `afficher<S: Statistique>` accepte alors n'importe quel type qui a signé. On voit ce même principe en code juste en dessous avec des instruments.
+
 ```rust
 trait Instrument {
     fn nom(&self) -> String;

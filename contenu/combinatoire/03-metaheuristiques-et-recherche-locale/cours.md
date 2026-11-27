@@ -44,11 +44,17 @@ Une fois ces trois choses écrites, n'importe quelle métaheuristique du chapitr
 
 On empile **27 cubes** (9 de chaque couleur) en 3 lignes de 9. **But : une seule couleur par ligne.**
 
+![27 cubes empilés en 3 lignes de 9 : une ligne bleue, une ligne verte, une ligne rouge](images/cubes-etat-resolu.webp "L'état résolu : chaque ligne n'a qu'une couleur")
+
 - **Variables** : la position de chaque cube (une permutation des 27 cubes).
 - **Objectif** : minimiser une **erreur** qui vaut 0 quand le casse-tête est résolu.
 - **Contraintes** : un cube par position ; les couleurs sont **données** (on déplace les cubes, on ne les repeint pas).
 
 Le joueur est **aveugle** : il ne voit pas les couleurs. Il connaît seulement l'erreur de la situation et dispose d'un seul mouvement : **échanger deux cubes voisins**.
+
+![À gauche, 27 cubes de couleurs mélangées ; à droite, les mêmes 27 cubes tous dessinés en noir](images/cubes-joueur-aveugle.webp "À gauche, le vrai état de départ (erreur 192) ; à droite, ce que voit le joueur : rien")
+
+Sur l'image : à gauche, ce qu'il y a vraiment sur la table ; à droite, ce que le joueur « voit ». Il doit avancer à l'aveugle, guidé seulement par le nombre que lui donne l'erreur.
 
 **L'erreur** : la somme des écarts de ligne entre cubes de même couleur, chaque paire comptée dans les deux sens :
 
@@ -68,11 +74,19 @@ Total pour les rouges : $0 + 2 + 2 = 4$. On fait la même chose pour chaque coul
 
 **À retenir :** l'erreur ne regarde que les **numéros de ligne** ; deux cubes de même couleur sur la même ligne ne coûtent rien, et chaque paire compte deux fois.
 
+![Trois grilles de cubes : la première bien rangée, la deuxième avec un cube rouge et un cube vert échangés, la troisième très mélangée](images/cubes-trois-erreurs.webp "Trois situations : résolu (erreur 0), un seul échange (erreur 32), très mélangé (erreur 184)")
+
+Sur l'image : plus les couleurs sont mélangées entre les lignes, plus l'erreur est grande. Au milieu, un seul échange entre la ligne verte et la ligne rouge suffit déjà à faire monter l'erreur à 32.
+
 > [!tip] D'où vient l'erreur 32 ?
 > Si on échange deux cubes de deux lignes voisines, chacun se retrouve à 1 ligne de ses **8** partenaires de couleur, et chaque paire compte **2** fois : $2 \times 8 \times 2 = 32$.
 
 > [!warning] Le plateau
 > L'erreur ne dépend que des **lignes** : échanger deux cubes d'une même ligne ne la change pas. Une zone où le coût ne bouge pas s'appelle un **plateau**. Les échanges horizontaux servent seulement à préparer des échanges verticaux.
+
+![En haut, deux cubes voisins d'une même ligne sont échangés et l'erreur reste à 196 ; en bas, deux cubes l'un au-dessus de l'autre sont échangés et l'erreur passe de 196 à 188](images/cubes-permutations.webp "Échange horizontal : l'erreur ne bouge pas (plateau). Échange vertical : elle baisse de 196 à 188")
+
+Sur l'image : les deux cubes entourés en orange sont ceux qu'on échange. En haut, ils restent sur la même ligne, donc rien ne change pour l'erreur. En bas, le cube rouge descend et le bleu monte : chacun se rapproche de sa ligne, l'erreur baisse.
 
 Sur la grille 3 × 9, il y a $3 \times 8 = 24$ échanges horizontaux et $2 \times 9 = 18$ échanges verticaux : **42** mouvements possibles.
 
@@ -177,7 +191,15 @@ Erreur fréquente : s'arrêter sur une solution qui a encore une voisine moins c
 
 Dans certaines configurations, **aucun** mouvement ne fait baisser l'erreur (ex. : un état d'erreur 112 dont les 42 échanges laissent l'erreur égale ou la font monter). La descente s'arrête alors **sans avoir résolu** le problème, et le résultat **dépend de l'état initial**.
 
+![Grille de cubes presque rangée : deux cubes rouges sont dans la ligne bleue et deux cubes bleus dans la ligne rouge](images/cubes-minimum-local-112.webp "Un minimum local à erreur 112 : aucun des 42 échanges ne fait baisser l'erreur")
+
+Sur l'image : les rouges égarés en haut et les bleus égarés en bas sont à **deux** lignes de chez eux. Un seul échange de voisins ne peut les faire monter ou descendre que d'une ligne, en l'échangeant avec un cube vert : le vert chassé de sa ligne coûte plus cher que ce que gagne le cube égaré, l'erreur monterait. Les échanges horizontaux, eux, ne changent rien (plateau). Aucun échange n'améliore : la descente reste bloquée.
+
 Image : une bille qui roule dans un paysage de collines. Elle s'arrête au fond de la première vallée, même si une vallée voisine est bien plus profonde.
+
+![Courbe du coût en fonction des solutions, avec deux creux : un départ 1 qui glisse dans le petit creux (minimum local) et un départ 2 qui glisse dans le grand creux (minimum global)](images/paysage-redemarrages.webp "Le même algorithme, deux départs : deux vallées, deux résultats")
+
+Sur l'image : la flèche pointillée montre la bille qui descend. Partie du départ 1, elle tombe dans le petit creux rouge et ne peut plus en sortir ; partie du départ 2, elle atteint le creux vert, le plus profond. C'est l'idée des redémarrages juste en dessous.
 
 > [!tip] La rustine : le multi-start
 > Relancer la descente depuis **plusieurs états initiaux au hasard** et garder la meilleure solution. Bon marché, souvent efficace, mais **sans garantie**.

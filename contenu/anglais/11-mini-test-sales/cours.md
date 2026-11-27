@@ -148,6 +148,12 @@ Dans le mini test, la lettre remerciait un transporteur d'avoir accepté **en ur
 - un **mot de liaison** : ***otherwise*** = sinon (*We must deliver fast, **otherwise** we lose clients.*) ;
 - une **phrase à insérer** : elle doit continuer l'idée d'avant (ici, expliquer comment profiter de la réduction).
 
+La vraie lettre du mini test :
+
+![Lettre d'Esteban Jones à Mr. Fratelli avec quatre trous numérotés 18 à 21 et leurs choix de réponses](images/partie6-lettre-transporteur.webp "La lettre de la partie 6 : remerciement au transporteur, puis offre de réduction")
+
+Sur l'image : 18 → ***offering*** (*thank you for* + -ing) ; 20 → ***otherwise*** (livrer vite, **sinon** on perd les clients) ; 21 → la phrase **B** (*this discount* renvoie aux 20 % offerts juste avant). Pour 19, il faut un mot qui décrit *needs* : nos besoins en **transport de marchandises** (*freight*).
+
 > [!tip] Méthode partie 6
 > Lire la phrase **avant** et **après** le trou. Pour une phrase entière à choisir, chercher le mot qui fait le **lien** avec le texte (*this discount* renvoie à l'offre de réduction).
 
@@ -220,6 +226,16 @@ Une **relance** (*reminder*) rappelle à un client qu'il n'a pas encore payé.
 
 - **Publicité d'une boutique** : on devine le type de magasin grâce aux indices (*wardrobe*, *fashion*, *sizes* → vêtements). Piège : ***weeknight*** = un soir de **semaine** (lundi à vendredi), pas le week-end.
 - **FAQ de livraison** : une question **NOT** (quel facteur **n'est pas** cité ?), une question de **moment** (quand choisit-on le jour de livraison ?) et une **phrase à placer** dans le texte.
+
+Les deux documents du mini test :
+
+![Publicité de la boutique Tina's on Main avec son adresse et ses horaires, suivie des questions 22 et 23](images/partie7-publicite-tinas-on-main.webp "La publicité : de quel commerce s'agit-il, et quels jours est-il ouvert le soir ?")
+
+Sur l'image : *wardrobe* (garde-robe), *fashion experts*, *colours, styles, sizes* → un **magasin de vêtements** (22 : C). *Open till 9 p.m. every weeknight* → les soirs de semaine, donc **du lundi au vendredi** (23 : B).
+
+![FAQ de livraison avec quatre emplacements numérotés de 1 à 4, suivie des questions 24 à 26](images/partie7-faq-livraison.webp "La FAQ de livraison : une question NOT, une question de moment et une phrase à placer")
+
+Sur l'image : le texte cite le traitement de la commande, l'emballage, l'envoi au transporteur et le trajet ; **le choix du transporteur**, jamais (24 : A). Le jour se choisit quand le transporteur **a reçu** la commande et appelle le client (25 : D). La phrase à placer parle d'*an approximate time window* : elle va juste avant *the time window provided*, donc en **[4]** (26 : D).
 
 ### Deviner le type de commerce
 

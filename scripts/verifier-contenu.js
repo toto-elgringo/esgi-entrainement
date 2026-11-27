@@ -1,5 +1,7 @@
+import { access } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { imagesDuCours } from '../js/figures.js';
 import { avecFormules, DOMAINES_CODE, DOMAINES_REPONSES } from '../js/domaines.js';
 import { dollarsEquilibres, validerChapitre, validerExercices, validerProgramme, validerQuiz } from '../js/maths/validation.js';
 import * as contenuCode from '../serveur/contenu-code.js';
@@ -32,6 +34,14 @@ async function enParallele(taches, limite) {
   return resultats;
 }
 
+async function imagesManquantes(dossier, cours) {
+  const manquantes = [];
+  for (const src of imagesDuCours(cours ?? '')) {
+    await access(path.join(dossier, ...src.split('/'))).catch(() => manquantes.push(`cours.md : image introuvable « ${src} »`));
+  }
+  return manquantes;
+}
+
 async function verifierChapitreReponses(domaine, chapitreId, idsMatieres) {
   const dossier = path.join(dossierContenu, domaine, chapitreId);
   const options = { formules: avecFormules(domaine) };
@@ -41,6 +51,7 @@ async function verifierChapitreReponses(domaine, chapitreId, idsMatieres) {
     const cours = await contenuCode.lireTexte(path.join(dossier, 'cours.md'));
     if (cours === null) problemes.push('cours.md manquant');
     else if (options.formules && !dollarsEquilibres(cours)) problemes.push('cours.md : un « $ » n\'est pas fermé');
+    problemes.push(...(await imagesManquantes(dossier, cours)));
     problemes.push(...validerQuiz((await contenuCode.lireJson(path.join(dossier, 'quiz.json'))) ?? [], options));
     const exercices = await contenuCode.lireJson(path.join(dossier, 'exercices.json'));
     if (exercices === null) problemes.push('exercices.json manquant');
@@ -104,7 +115,8 @@ async function problemesChapitreCode(dossier, chapitreId) {
   try {
     problemes.push(...validerMetaChapitre(await contenuCode.lireMetaChapitre(dossier, chapitreId)));
     problemes.push(...validerQuizCode(await contenuCode.lireQuiz(dossier, chapitreId)));
-    await contenuCode.lireCours(dossier, chapitreId).catch(() => problemes.push('cours.md manquant'));
+    const cours = await contenuCode.lireCours(dossier, chapitreId).catch(() => problemes.push('cours.md manquant'));
+    if (typeof cours === 'string') problemes.push(...(await imagesManquantes(path.join(dossier, chapitreId), cours)));
   } catch (erreur) {
     problemes.push(erreur.message);
   }

@@ -725,6 +725,10 @@ print(addition(2, 3))
 - `@decor` au-dessus de `def addition` équivaut à écrire `addition = decor(addition)` après la définition.
 - `*args, **kwargs` dans le wrapper permettent de décorer **n'importe quelle** fonction, quels que soient ses paramètres : on les retransmet tels quels.
 
+Sur l'image : à gauche, on décore « à la main » en réaffectant le nom (`my_func = deco(my_func)`) ; à droite, la même chose avec `@deco` posé juste au-dessus du `def`. Les deux font exactement pareil, le `@` est juste plus court.
+
+![À gauche une fonction my_func puis la ligne my_func = deco(my_func), à droite la même fonction précédée de @deco](images/decorateur-arobase.webp "@deco au-dessus du def = my_func = deco(my_func) après le def")
+
 **Exemple résolu : que se passe-t-il, ligne par ligne ?**
 
 1. Python lit `def addition`, puis applique `@decor` : il appelle `decor(addition)`. Dans `decor`, `func` désigne l'addition d'origine ; `decor` renvoie `wrapper`.

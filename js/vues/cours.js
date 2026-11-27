@@ -2,6 +2,7 @@ import { activerAnimations } from '../animations/index.js';
 import { chargerCours } from '../catalogue.js';
 import { activerExemples } from '../code/exemples.js';
 import { avecFormules, estDomaineCode, langageDe, LANGAGES, langueDe } from '../domaines.js';
+import { preparerFigures } from '../figures.js';
 import { etiquetteSource } from '../menu.js';
 import { colorerCode, echapper, rendreMarkdown } from '../outils.js';
 import { bandeauSupports } from './supports.js';
@@ -29,6 +30,7 @@ export async function afficherCours(ctx, chapitre) {
     </div>`;
   const article = ctx.conteneur.querySelector('article');
   marquerLangue(article, langueDe(chapitre.domaine));
+  preparerFigures(article, chapitre);
   activerAnimations(article, chapitre.domaine);
   if (estCode) activerExemples(article, langageDe(chapitre.domaine));
   colorerCode(ctx.conteneur, estCode ? LANGAGES[langageDe(chapitre.domaine)].surligneur : undefined);

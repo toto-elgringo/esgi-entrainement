@@ -9,6 +9,10 @@ Le risque : deux threads qui touchent à la même donnée en même temps donnent
 > [!info] Concurrence et parallélisme
 > Concurrence : plusieurs tâches avancent chacune leur tour. Parallélisme : plusieurs tâches avancent vraiment en même temps. Les threads de Rust sont de vrais threads du système, donc les deux sont possibles.
 
+![Deux frises : en haut un seul cœur alterne A et B, en bas deux cœurs font A et B en même temps](images/concurrence-ou-parallelisme.webp "Concurrence : un cœur, A et B chacun leur tour. Parallélisme : deux cœurs, fini deux fois plus tôt")
+
+Sur l'image : en concurrence, A et B se partagent **un seul** cœur (ils avancent par petits bouts). En parallélisme, chacun a **son** cœur : les deux finissent au même moment, deux fois plus tôt.
+
 **Exemple : pourquoi deux threads sur une même donnée posent problème.** Deux threads font chacun `compteur = compteur + 1` sur un compteur qui vaut 0. Cette ligne se fait en trois temps : **lire**, **ajouter 1**, **écrire**. Le système peut couper un thread entre deux temps :
 
 | Moment | Thread A | Thread B | Compteur en mémoire |
@@ -247,6 +251,10 @@ println!("Reçu : {message}");
 - `send` envoie une valeur (elle est **déplacée** : l'émetteur ne peut plus l'utiliser).
 - `recv` attend un message ; il renvoie `Err` quand tous les émetteurs ont disparu et que le canal est vide.
 - `rx.iter()` (ou `for m in rx`) lit les messages jusqu'à la fermeture du canal.
+
+![Schéma : trois threads producteurs envoient des messages dans une file, lue par le thread principal](images/canal-plusieurs-producteurs.webp "Plusieurs producteurs (tx.clone), une file FIFO, un seul consommateur (for msg in rx)")
+
+Sur l'image : chaque thread a sa copie de `tx` et fait `send()`. Les messages font la queue dans l'ordre d'arrivée (premier entré, premier sorti). Seul le thread `main` lit, avec `for msg in rx`. Quand le dernier `tx` est détruit, la boucle `for` s'arrête.
 
 **Pas à pas :**
 
@@ -690,6 +698,8 @@ Un **interblocage** arrive quand des threads s'attendent les uns les autres pour
 | 3 | veut le verrou 2 → attend B | |
 | 4 | | veut le verrou 1 → attend A |
 | 5 | attend toujours | attend toujours |
+
+![Schéma : le thread A verrouille le Mutex mesures, le thread B le Mutex capteurs, puis chacun attend le verrou de l'autre](images/deadlock-deux-verrous.webp "Les flèches pleines : verrou pris. Les pointillés rouges : verrou attendu… pour toujours")
 
 Chacun attend l'autre : c'est un **cycle d'attente**. Avec la règle « toujours le verrou 1 avant le verrou 2 », B commencerait aussi par le verrou 1 : il attendrait que A ait **fini** (A tient alors les deux verrous et peut avancer), et aucun cycle ne se forme.
 

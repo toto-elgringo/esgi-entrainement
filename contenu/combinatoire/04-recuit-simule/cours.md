@@ -26,6 +26,10 @@ Deux mots à bien distinguer :
 
 Une première idée, $P = e^{-1/T}$, ne convient pas : elle est très sensible au réglage quand $T < 1$, et pour $T$ grand elle accepte presque tout **quelle que soit la taille** de la dégradation. On tient donc compte de l'écart de coût.
 
+![Deux courbes de la probabilité P en fonction de T : à gauche, pour T entre 0 et 1, P monte de 0 à environ 0,37 ; à droite, pour T entre 10 et 100, P reste entre 0,88 et 1](images/acceptation-premiere-idee.webp "La première idée, P = exp(−1/T) : trop sensible quand T est petit, presque toujours 1 quand T est grand")
+
+Sur l'image : à gauche, un tout petit changement de $T$ (de 0,2 à 0,4) fait passer $P$ de presque 0 à 0,1 : le réglage est très délicat. À droite (attention, l'axe vertical commence à 0,85), dès que $T$ dépasse 20, $P$ est collée à 1 : on accepte tout, petites et grosses dégradations confondues.
+
 On propose un voisin $s'$ de la solution courante $s$ et on note $\Delta E = \text{erreur}(s') - \text{erreur}(s)$.
 
 $$P(\text{accepter } s') = e^{-\Delta E / T}$$
@@ -74,6 +78,10 @@ Erreurs fréquentes : calculer $\Delta E$ à l'envers (courante − voisin) ; co
 > [!tip] Lire le tableau
 > Tout dépend du rapport $\dfrac{\Delta E}{T}$. Quand $\Delta E = T$, $P = e^{-1} \approx 36{,}8$ %. À $T = 100$ la recherche **explore** (même une dégradation de 50 passe 6 fois sur 10) ; à $T = 1$ elle **exploite** (une dégradation de 5 passe 7 fois sur 1 000).
 
+![Courbe de la probabilité d'accepter une dégradation de 10 en fonction de la température T, de 1 à 100 : elle part de 0 %, monte vite puis s'aplatit près de 100 % ; un point rouge marque T = 30, P = 71,7 %](images/acceptation-selon-temperature.webp "La règle de Metropolis pour une dégradation de 10 : à T = 30, elle passe 71,7 % du temps")
+
+Sur l'image : on suit le point rouge. Pour la même dégradation $\Delta E = 10$, plus $T$ est grand (vers la droite), plus on accepte : $e^{-10/30} \approx 0{,}717$. Si on fait glisser $T$ vers la gauche (on refroidit), le point descend vers 0 % : la recherche gèle.
+
 Pour trouver la température qui donne exactement $P = e^{-1}$ à une dégradation donnée, il suffit que $\Delta E / T = 1$, donc $T = \Delta E$. Par exemple, une dégradation de 8 passe avec la probabilité $e^{-1}$ quand $T = 8$ (on prend l'**écart** de coût, pas l'erreur du voisin).
 
 > [!warning] Le signe de ΔE
@@ -94,6 +102,10 @@ Plusieurs façons de faire baisser $T$ :
 - selon une **loi géométrique** (la plus courante) : $T \leftarrow \alpha \times T$, soit $T(k) = T_0 \times \alpha^k$, avec $\alpha \in [0{,}95 ; 0{,}999]$.
 
 Plus $\alpha$ est proche de 1, plus le refroidissement est **lent** (on explore plus longtemps). Avec $\alpha$ trop petit (par exemple 0,93), la recherche gèle trop tôt : c'est la **trempe**.
+
+![Température T en fonction des itérations k, de 0 à 200, en partant de 100 : une droite pointillée qui descend jusqu'à 0 (linéaire) et trois courbes géométriques ; avec alpha = 0,995 la température reste vers 37, avec 0,98 elle approche 0 vers 200, avec 0,93 elle tombe presque à 0 dès 50 itérations](images/refroidissement-courbes.webp "Quatre façons de refroidir depuis 100 : plus α est proche de 1, plus la courbe descend lentement")
+
+Sur l'image : la courbe orange ($\alpha = 0{,}93$) s'écrase au sol en 50 itérations, c'est la trempe ; la bleue ($\alpha = 0{,}995$) descend doucement et laisse le temps d'explorer. La droite pointillée est la loi linéaire : elle enlève la même quantité à chaque pas et touche 0 pile à la fin.
 
 Multiplier par $\alpha$, c'est perdre une fraction $1 - \alpha$ de la température à chaque palier : avec $\alpha = 0{,}98$, on perd 2 % de ce qui reste ; avec $\alpha = 0{,}999$, seulement 0,1 %.
 

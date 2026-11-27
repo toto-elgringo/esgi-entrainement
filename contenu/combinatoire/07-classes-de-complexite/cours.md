@@ -232,6 +232,10 @@ Avec **3 couleurs**, les couleurs ne sont plus forcées (un voisin de A peut êt
 
 ### Si P ≠ NP (ce que parie la grande majorité des chercheurs)
 
+![Diagramme si P différent de NP : disque P (problèmes 1 à 4) dans le disque NP, problèmes 5 et 6 entre P et la zone NP-complet (7 à 11), problèmes 12 et 13 dans NP-difficile hors de NP](images/classes-si-p-different-de-np.webp "Si P ≠ NP : chaque numéro est une ligne du tableau ci-dessus")
+
+Sur l'image : les numéros sont ceux du tableau. 1 à 4 dans P (vert), 7 à 11 dans la zone violette NP-complet, 12 et 13 dans NP-difficile mais **hors** de NP. Entre les deux, 5 et 6 : les candidats NP-intermédiaires (le « ? » rappelle qu'on n'en est pas sûr).
+
 - **P et NP-difficile n'ont rien en commun** : aucun problème NP-difficile n'a d'algorithme polynomial.
 - **Théorème de Ladner (1975)** : il existe alors des problèmes **NP-intermédiaires**, ni dans P ni NP-complets. On n'en connaît aucun avec certitude ; candidats : la factorisation et l'isomorphisme de graphes.
 
@@ -240,6 +244,10 @@ Pourquoi un problème de P ne peut pas être NP-complet si $P \neq NP$, pas à p
 **À retenir :** si $P \neq NP$, trois zones dans NP : P, NP-complet, et entre les deux les candidats NP-intermédiaires (factorisation, isomorphisme).
 
 ### Si P = NP
+
+![Diagramme si P égal NP : un seul disque P = NP presque entièrement recouvert par NP-complet, sauf le problème 4 resté à gauche ; 12 et 13 restent dans NP-difficile hors du disque](images/classes-si-p-egal-np.webp "Si P = NP : P, NP et NP-complet se confondent, sauf le problème 4")
+
+Sur l'image : comparée à la figure précédente, P et NP ne font plus qu'un seul disque, et la zone NP-complet l'avale presque entier (1 à 11). Seul 4 (« toujours oui / toujours non ») reste à l'écart. 12 et 13 ne bougent pas : ils ne sont toujours pas dans NP.
 
 - **Tout problème non trivial de P devient NP-complet** (même le chemin eulérien) : la réduction a le droit de **résoudre** elle-même l'instance en temps polynomial, puis de renvoyer une instance *oui* ou *non* fixée de B.
 - **Exceptions** : « toujours oui » et « toujours non ». On ne peut pas y réduire SAT : il faudrait envoyer une formule insatisfiable sur une instance *non*, et il n'y en a pas.

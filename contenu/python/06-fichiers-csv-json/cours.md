@@ -99,6 +99,10 @@ print(premiere_ligne("exemple.txt"))
 
 Sans `with`, il faudrait penser à un `close()` avant **chaque** `return`. Avec `with`, il n'y a rien à faire.
 
+Sur l'image : à gauche, sans `with`, il faut écrire `f.close()` deux fois, une avant chaque `return` (et en oublier un suffit à laisser le fichier ouvert). À droite, avec `with`, plus aucun `close()` : la fermeture se fait toute seule, par n'importe quelle sortie.
+
+![À gauche une fonction qui ouvre un fichier et appelle f.close() avant chacun de ses deux return, à droite la même fonction avec with open(...) as f et sans aucun close](images/sans-with-et-avec-with.webp "Sans with : un close() avant chaque return. Avec with : aucun")
+
 **Pas à pas :**
 
 1. Le premier `with` écrit 4 lignes : deux lignes vides, `la vraie première ligne`, `la suite`. En sortant du bloc, le fichier est fermé (et son contenu bien enregistré).
@@ -527,6 +531,10 @@ Marc;Brest;31
 | CSV | petite | oui | non (un tableau plat) |
 | XML | grosse (chaque balise est écrite deux fois) | non | oui |
 | JSON | moyenne | avec le module `json`, oui | oui, et très utilisé sur le web |
+
+Le même récapitulatif dans les diapos, en couleurs : vert = point fort, rouge = point faible. « Parsing » veut dire « relire le fichier pour en retrouver les données » : difficile à faire **à la main** pour XML et JSON, mais en Python le module `json` le fait pour toi.
+
+![Tableau en couleurs comparant CSV, XML et JSON : taille, facilité de lecture (parsing) et données structurées](images/comparatif-csv-xml-json.webp "CSV petit et simple mais plat ; XML et JSON plus gros mais acceptent les données imbriquées")
 
 **Exemple résolu : quel format pour quelles données ?**
 

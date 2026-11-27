@@ -25,6 +25,10 @@ print(result)
 
 La forme générale : `[traitement(e) for e in source if test(e)]`. Se lit : « ce que je mets » `for` « d'où ça vient » `if` « la condition pour garder ». Le `if` est facultatif.
 
+Sur l'image, chaque morceau de la boucle a sa couleur, et on retrouve la même couleur dans la compréhension : le `for` (orange) reste un `for`, le `if` (vert) passe à la fin, et ce qu'on ajoute avec `append` (bleu) passe **au début**, entre les crochets.
+
+![Une boucle for avec if et append, puis la compréhension équivalente sur une ligne, avec les mêmes couleurs pour le traitement, le for et le test](images/boucle-vers-comprehension.webp "Les 4 lignes de la boucle deviennent 1 ligne : traitement en bleu, for en orange, test en vert")
+
 **Exemple résolu : que vaut `[v * 10 for v in range(6) if v % 3 == 0]` ?**
 
 On fait tourner la boucle à la main, une valeur de `v` à la fois :
@@ -45,6 +49,10 @@ print([v * 10 for v in range(6) if v % 3 == 0])
 ```
 
 **À retenir :** lis d'abord le `for` (d'où viennent les valeurs), puis le `if` (lesquelles on garde), et seulement à la fin le début (ce qu'on met dans la liste).
+
+Les variantes possibles, avec les mêmes couleurs : on peut garder l'élément tel quel (pas de traitement), enlever le `if`, ou enchaîner deux `for` (toutes les paires `x`, `y`), avec ou sans test.
+
+![Cinq formes de listes en compréhension : avec ou sans traitement, avec ou sans if, avec un ou deux for](images/variantes-comprehension.webp "Bleu = ce qu'on met, orange = le ou les for, vert = le if facultatif")
 
 D'autres exemples :
 

@@ -654,6 +654,10 @@ Pour fabriquer une bibliothèque utilisable par C, on met dans `Cargo.toml` : `c
 
 **PyO3** est une bibliothèque (crate) qui permet d'écrire des modules Python en Rust, par exemple pour accélérer un calcul. **maturin** compile le projet et l'installe dans Python.
 
+![Quatre étages empilés : Python, CPython et son API C, le code généré par PyO3, puis ta fonction Rust](images/pyo3-les-couches.webp "Ton appel Python descend jusqu'à ton Rust ; PyO3 écrit pour toi l'étage extern C")
+
+Sur l'image : on lit de haut en bas. Python appelle une fonction ; CPython (l'interpréteur, écrit en C) passe par son API C ; PyO3 **génère** l'étage du milieu (`extern "C"`, conversions, erreurs) ; tout en bas, ta fonction Rust reçoit de simples `Vec<f64>`. La partie `unsafe` (le pont par l'ABI C), c'est PyO3 qui l'écrit, pas toi.
+
 ```text
 #[pyfunction]  : expose une fonction à Python
 #[pymodule]    : un module Rust devient un module Python
@@ -684,12 +688,22 @@ python -c "import metriques; print(metriques.somme([1.0, 2.5]))"
 
 `maturin develop` compile et installe dans l'environnement virtuel actif : la première fois c'est lent, ensuite quelques secondes.
 
+![Quatre étapes en chaîne : code Rust, cargo build, paquet Python (wheel), import dans le venv](images/maturin-trois-etapes.webp "maturin develop enchaîne compilation, emballage et installation d'un coup")
+
 **Exemple résolu : le trajet de `metriques.somme([1.0, 2.5])`**
 
 1. Python appelle `somme` avec une liste.
 2. PyO3 convertit la liste Python en `Vec<f64>` : `vec![1.0, 2.5]`.
 3. Le code Rust calcule `1.0 + 2.5 = 3.5`.
 4. PyO3 convertit le `f64` en nombre Python : le terminal affiche `3.5`.
+
+**Est-ce vraiment plus rapide ?** Le cours a mesuré moyenne + min + max sur un million de valeurs :
+
+![Graphique en barres : Python pur 17 ms, Python natif 20 ms, NumPy avec conversion 20 ms, Rust via PyO3 9 ms, NumPy sur un tableau déjà prêt 0,4 ms](images/pyo3-plus-rapide.webp "Plus la barre est courte, plus c'est rapide : Rust divise le temps par deux")
+
+Sur l'image : Rust via PyO3 est environ **deux fois** plus rapide que Python. Mais regarde la dernière ligne : NumPy sur un tableau déjà prêt ne met que 0,4 ms. Ce qui coûte cher, c'est surtout de **convertir** la liste Python (étape 2 ci-dessus), pas le calcul.
+
+![Mème Panik, Kalm, Panik : 17 ms en Python, 9 ms en Rust, puis NumPy le faisait en 0,4 ms](images/panik-conversion.webp "Le même message en mème : avant de tout réécrire en Rust, regarde ce qui coûte vraiment")
 
 > [!info] Alternative simple
 > Sans PyO3, une fonction `extern "C"` compilée en `cdylib` peut être appelée depuis Python avec le module `ctypes`.

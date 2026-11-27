@@ -23,6 +23,10 @@ Problème réel  →  Modèle  →  Méthode  →  Solution
                   objectif)
 ```
 
+![Schéma en quatre cases reliées par des flèches : problème réel, modèle, méthode, solution](images/demarche-ro.webp "La démarche RO : on traduit le problème en modèle, on choisit une méthode, on obtient une solution")
+
+Sur l'image : on lit de gauche à droite. Le modèle (variables, contraintes, objectif) vient **avant** la méthode : on ne choisit pas d'algorithme tant que le problème n'est pas écrit proprement.
+
 Domaines typiques : gestion de projets, emplois du temps, tournées de livraison, production, transport et réseaux.
 
 Ce que la RO n'est **pas** : imiter un humain (c'est plutôt l'IA), stocker des données (c'est une base de données) ou prouver des théorèmes de logique. La RO **décide** : parmi plusieurs choix possibles, lequel donne le meilleur résultat chiffré ?
@@ -159,6 +163,10 @@ Dans quel ordre visiter $n$ villes (chacune une fois, avec retour au départ) po
 - Objectif : minimiser la somme des distances.
 - Contraintes : chaque ville exactement une fois, retour au point de départ.
 
+![Huit villes A à H reliées par une boucle bleue qui part de A en orange et y revient](images/tournee-tsp-8-villes.webp "Une tournée sur 8 villes : chaque ville une seule fois, retour au point de départ A")
+
+Sur l'image : la boucle passe par A, B, C, D, E, F, G, H puis revient en A. C'est **une** tournée parmi beaucoup d'autres : en partant de A, il reste 7 villes à ordonner, soit $7! = 5\,040$ ordres possibles. Le TSP cherche celle dont la longueur totale est la plus petite.
+
 Il y a $n!$ ordres de visite, mais seulement $\dfrac{(n-1)!}{2}$ **tournées distinctes** : on peut fixer la ville de départ (on divise par $n$) et le sens de parcours ne compte pas (on divise par 2).
 
 Rappel : la **factorielle** $n!$ (« factorielle $n$ ») est le produit $1 \times 2 \times 3 \times \dots \times n$. Par exemple $3! = 6$, $4! = 24$. Elle compte les ordres de $n$ éléments : $n$ choix pour le 1er, $n - 1$ pour le 2e, etc.
@@ -193,6 +201,10 @@ Des objets ont chacun un poids $p_i$ et une valeur $v_i$ ; le sac a une capacit�
 - Contrainte : $\sum_i p_i x_i \le C$.
 
 Avec $n$ objets, il y a $2^n$ choix possibles (chaque objet : pris ou non).
+
+![Un sac de capacité 15 kg qui contient les objets A, B et E, à côté de la liste des 5 objets avec leur poids et leur valeur](images/sac-a-dos-15-kg.webp "Sac de 15 kg : on prend A, B et E (15 kg, 45 €), on laisse C et D")
+
+Sur l'image : 5 objets, donc $2^5 = 32$ choix possibles. Le choix montré prend A, B et E : $4 + 5 + 6 = 15$ kg (pile la capacité) pour $10 + 13 + 22 = 45$ €. Remarque : C est l'objet qui vaut le plus (20 €), et pourtant on le laisse. Il pèse 7 kg, et avec lui on n'arrive pas à 45 €.
 
 Comment lire ces formules : $\sum_i v_i x_i$ veut dire « $v_1 x_1 + v_2 x_2 + \dots$ ». Comme $x_i$ vaut 1 si l'objet est pris et 0 sinon, le produit $v_i x_i$ vaut $v_i$ pour un objet pris et 0 pour un objet laissé : la somme est donc **la valeur totale des objets pris**. De même, $\sum_i p_i x_i$ est **le poids total des objets pris**, et la contrainte dit qu'il ne doit pas dépasser $C$.
 

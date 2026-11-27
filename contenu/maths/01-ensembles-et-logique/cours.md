@@ -60,6 +60,10 @@ Si **aucune** valeur ne convient, l'ensemble est **vide**. Exemple : $\{x \in \m
 
 $A \subset B$ veut dire : **chaque** élément de $A$ est dans $B$. $B$ peut avoir des éléments en plus, ça ne gêne pas.
 
+![Deux cercles emboîtés : le petit cercle A est entièrement dans le grand cercle B](images/inclusion-a-dans-b.webp "A inclus dans B : le cercle A est tout entier dans le cercle B")
+
+Sur l'image : le cercle $A$ ne déborde jamais du cercle $B$. Tout ce qui est dans $A$ est donc aussi dans $B$. L'anneau autour de $A$, ce sont les éléments « en plus » de $B$.
+
 **Exemple résolu :** a-t-on $\{1, 4\} \subset \{1, 2, 3, 4, 5\}$ ? Et $\{1, 6\} \subset \{1, 2, 3, 4, 5\}$ ?
 
 | Ensemble testé | Élément | Dans $\{1, 2, 3, 4, 5\}$ ? |
@@ -94,6 +98,10 @@ Pour montrer $A \subset B$ : on prend un élément $x$ **quelconque** de $A$ et 
 | Intersection $A \cap B$ | les éléments de $A$ **et** de $B$ | `INTERSECT` |
 | Différence $A \setminus B$ | les éléments de $A$ qui ne sont **pas** dans $B$ | `EXCEPT` |
 | Complémentaire $\overline{A}$ | les éléments de l'ensemble de référence $E$ qui ne sont pas dans $A$ | |
+
+![Diagramme de Venn : deux cercles A et B qui se chevauchent, la zone commune est coloriée](images/venn-intersection.webp "Diagramme de Venn : la zone coloriée est l'intersection, les éléments qui sont à la fois dans A et dans B")
+
+Sur l'image : chaque cercle est un ensemble. La partie coloriée, commune aux deux cercles, c'est $A \cap B$. Tout ce qui est coloré ou non à l'intérieur d'au moins un cercle, c'est $A \cup B$. Le croissant de gauche (dans $A$, hors de la zone coloriée), c'est $A \setminus B$.
 
 Exemple avec $A = \{1, 2, 3, 4\}$ et $B = \{3, 4, 5, 6\}$ :
 

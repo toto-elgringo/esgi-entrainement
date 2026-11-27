@@ -59,6 +59,12 @@ Pour un test, `expected = "..."` doit être un **morceau** du message de panique
 
 ## 3. `Result<T, E>` : réussir ou échouer avec une raison
 
+Le problème de `panic!` pour un échec **prévisible** : la signature ment. Une fonction `-> String` promet de toujours rendre un texte, alors qu'elle peut aussi tout arrêter, et rien ne dit **quelles** erreurs sont possibles.
+
+![Tampon « LIAR » (menteur) à côté d'une fonction process_data qui renvoie String mais contient trois panic! différents](images/panic-menteur.webp "La signature dit -> String, mais trois panic! se cachent dedans : l'appelant ne peut pas le deviner")
+
+`Result` règle ça : l'échec est écrit **dans le type de retour**, visible par tous ceux qui appellent la fonction.
+
 ```rust
 enum Result<T, E> {
     Ok(T),    // succès, avec la valeur de type T

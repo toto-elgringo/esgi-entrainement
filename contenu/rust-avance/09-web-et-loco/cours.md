@@ -12,6 +12,10 @@ Un serveur web reçoit une **requête** (`GET /users/42`) et renvoie une **répo
 
 **Loco** ajoute tout cela avec des **conventions** et des **générateurs** de code. Tu écris la logique métier. C'est « le Rails de Rust », dans la même famille que Django (Python), Laravel (PHP) ou NestJS (TypeScript).
 
+![Pile de quatre étages : ton code en haut, puis ce que Loco ajoute (config, ORM, générateurs, auth, jobs, tests), puis Axum, puis Tokio et Hyper tout en bas](images/axum-ou-loco-couches.webp "Loco est un étage posé sur Axum, lui-même posé sur Tokio et Hyper")
+
+Sur l'image : on lit de bas en haut. **Tokio** et **Hyper** font tourner le serveur, **Axum** gère les routes et les extracteurs, **Loco** ajoute la boîte verte (config, base, auth, tâches de fond, tests), et toi tu écris seulement l'étage du haut.
+
 > [!info] Axum ou Loco ?
 > - **Axum seul** : un petit service, quelques routes, tu veux tout choisir (exemple : exposer un modèle d'IA derrière une route `/predict`).
 > - **Loco** : une vraie application avec base de données, utilisateurs et plusieurs ressources, ou une équipe qui doit retrouver les mêmes conventions.
@@ -27,6 +31,8 @@ On pose la même question à chaque fois : « est-ce qu'il me faut une base, des
 | Une appli de suivi de capteurs : capteurs, mesures, utilisateurs connectés | oui | oui | oui | **Loco** : base, auth, migrations et tests sont déjà prêts |
 
 Ce qui fait pencher vers Loco, ce n'est pas la vitesse (les deux tournent sur le même Axum, donc à la même vitesse), c'est la quantité de **code répétitif** que tu n'as pas à écrire : config, base, auth, tests.
+
+![Tableau du cours : pour chaque besoin, ce qu'il faut écrire avec Axum seul et ce que Loco fournit déjà](images/bilan-axum-loco.webp "Le bilan : avec Axum seul, presque tout est « à écrire » ; avec Loco, presque tout est déjà coché")
 
 **À retenir :** Axum = la bibliothèque HTTP, tu branches tout toi-même. Loco = Axum + tout le reste déjà branché, avec des conventions. Petit service : Axum ; vraie appli avec base et utilisateurs : Loco.
 
@@ -159,6 +165,10 @@ pub fn routes() -> Routes {
 }
 ```
 
+La commande `cargo loco routes` affiche toutes les routes de l'appli sous forme d'arbre : celles du scaffold (le CRUD des capteurs) et celles qu'on a ajoutées.
+
+![Arbre des routes affiché par cargo loco routes : GET et POST sur /api/capteurs, GET PUT DELETE sur /api/capteurs/{id}, plus mesures, stats et import](images/cargo-loco-routes.webp "À gauche l'arbre, à droite l'adresse complète de chaque route")
+
 Un contrôleur fait uniquement du HTTP : **extraire** les données de la requête, **appeler** la logique, **traduire** le résultat en code HTTP et en JSON.
 
 ```text
@@ -176,6 +186,8 @@ Les arguments (`State`, `Json`) sont des **extracteurs**. `CapteurDto::from(item
 
 > [!info] Architecture en couches
 > Routes, contrôleur (HTTP seulement), service (la logique, ni HTTP ni SQL), repository (l'accès aux données, derrière un trait). Chaque couche ne connaît que celle du dessous. Un trait permet deux versions du repository : SQLite en production, une simple table en mémoire dans les tests.
+
+![Quatre couches empilées traversées par GET /api/capteurs/1/stats : Routes, Contrôleur, Service, Repository, qui mène à SQLite en production ou à une BTreeMap en test](images/architecture-en-couches.webp "La requête descend couche par couche ; le repository a deux versions derrière le même trait")
 
 **Exemple résolu : le trajet de `GET /api/capteurs/3/stats`**
 

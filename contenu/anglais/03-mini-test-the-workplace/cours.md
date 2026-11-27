@@ -5,6 +5,12 @@
 > [!info] Et la partie écoute ?
 > Les questions d'écoute ont besoin de l'audio du manuel, qui n'est pas disponible ici. Pour s'entraîner à l'écoute, voir les sites du chapitre « Conseils TOEIC ». La section 4 montre quand même des questions des parties 2 et 3 **écrites sur papier**, pour travailler la logique des réponses.
 
+Voici quand même la photo de la **partie 1** du mini test, pour s'entraîner à l'observer avant l'écoute.
+
+![Photo en noir et blanc d'une réunion : trois personnes assises autour d'une table, un homme debout en costume devant un tableau blanc, une carafe d'eau et des verres sur la table](images/partie1-photo-reunion.webp "Partie 1 du mini test : avant l'écoute, repère qui est assis, qui est debout, et les objets")
+
+Sur la photo : une **réunion** (*a meeting*). Trois personnes sont **assises** (*seated at a table*), un homme est **debout** (*standing*) près d'un **tableau blanc** (*a whiteboard*) vide ; sur la table, une **carafe** et des **verres** (*a carafe, glasses*), des documents. Une phrase comme *A man is writing on the whiteboard* serait fausse : le tableau est vide et personne n'écrit.
+
 ## 1. Partie 5 : les pièges du mini test
 
 | Piège | Ce qu'il faut voir | Exemple |
@@ -179,6 +185,12 @@ Dans le mini test, l'e-mail invitait un candidat à un entretien. Les réponses 
 - ***provide** the contact details of two references* (fournir les coordonnées de deux références)
 - *I look forward **to meeting** you* : *to* + verbe en **-ing**
 
+Le vrai e-mail du mini test :
+
+![E-mail de Thania Pank à Jonathan Duszinski, objet Job application, avec quatre trous numérotés 18 à 21 et leurs choix de réponses](images/partie6-email-entretien.webp "L'e-mail de la partie 6 : quatre trous, chacun avec quatre choix")
+
+Les bonnes réponses : 18 → ***position*** (*application for the position of*), 19 → ***when it is convenient for you***, 20 → ***provide*** (*provide the contact details*), 21 → ***to meeting*** (*look forward to* + -ing).
+
 D'autres mots reviennent souvent dans les e-mails et notes de service :
 
 | Anglais | Français | Attention |
@@ -209,6 +221,19 @@ Le mini test donnait un **compte-rendu de réunion**, une **petite annonce** et 
 - **qui** est le destinataire de l'e-mail ? → son adresse et son rôle (il reçoit les candidatures) ;
 - **que va-t-il se passer le lendemain** de l'e-mail ? → la date de l'e-mail + la date de la prochaine réunion dans le compte-rendu ;
 - **quelle info N'EST PAS donnée** ? → vérifier chaque réponse dans les trois documents (heures, domaine d'études, niveau... mais pas le salaire).
+
+Les trois documents du mini test. Lis-les dans l'ordre : le compte-rendu (1), l'annonce (2), puis l'e-mail (3).
+
+![Compte-rendu de réunion du comité de la bibliothèque de Newport du 10 octobre, avec les présents, les absents et les décisions](images/partie7-compte-rendu.webp "Document 1 : le compte-rendu (minutes) de la réunion du 10 octobre")
+
+![Petite annonce Library-studies students, we need you, puis un e-mail du 5 novembre au sujet du recrutement des stagiaires](images/partie7-annonce-et-email.webp "Documents 2 et 3 : l'annonce pour recruter des stagiaires et l'e-mail sur les candidatures")
+
+Ce qu'il faut relier :
+
+- **Qui a écrit l'annonce ?** Dans le compte-rendu : *Ms. O'Malley offered to prepare an advertisement* → **Jacinda O'Malley**.
+- **Que se passe-t-il le lendemain de l'e-mail ?** L'e-mail date du **5 novembre** ; le compte-rendu dit *Next meeting is scheduled on November 6th* → le **comité se réunit** à nouveau (d'où *We'll be able to discuss our impressions in the meeting*).
+- **Quelle info N'EST PAS donnée sur le stage ?** Les heures (*10 to 15 hours per week*), le domaine (*Library Management or Library Science*), le niveau (*final-year student*) sont dans l'annonce ; le **salaire**, nulle part.
+- **Pourquoi des stagiaires ?** Le public se plaint des horaires, il n'y a pas le budget : les stagiaires permettent d'**ouvrir plus longtemps**.
 
 ### Un seul document : les questions de détail
 

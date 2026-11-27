@@ -293,6 +293,10 @@ Un tour complet vaut $2\pi$, un demi-tour $\pi$, un quart de tour $\dfrac{\pi}{2
 - $\sin$ et $\cos$ sont définies et continues sur $\mathbb{R}$, à valeurs dans $[-1, 1]$, et **périodiques** de période $2\pi$ (elles se répètent tous les $2\pi$) : $\cos(x + 2\pi) = \cos x$. Par exemple $\sin\left(2\pi + \dfrac{\pi}{2}\right) = \sin\left(\dfrac{\pi}{2}\right) = 1$.
 - $\tan x = \dfrac{\sin x}{\cos x}$ n'est **pas définie** quand $\cos x = 0$, c'est-à-dire en $x = \dfrac{\pi}{2} + k\pi$ ($k$ entier). Sur $[0, 2\pi]$ : en $\dfrac{\pi}{2}$ et $\dfrac{3\pi}{2}$.
 
+![Courbes du sinus en bleu et du cosinus en rouge : deux vagues identiques, décalées l'une par rapport à l'autre](images/courbes-sinus-cosinus.webp "Sinus en bleu, cosinus en rouge : deux vagues entre −1 et 1 qui se répètent sans fin")
+
+Sur l'image : la courbe bleue (sinus) passe par 0 au centre, la rouge (cosinus) y est à son maximum 1, car $\sin 0 = 0$ et $\cos 0 = 1$. Les deux vagues restent toujours entre $-1$ et $1$ et recommencent le même motif tous les $2\pi$ : c'est ça, être **périodique**. Le cosinus, c'est le sinus décalé d'un quart de tour.
+
 | $x$ | $0$ | $\dfrac{\pi}{2}$ | $\pi$ | $\dfrac{3\pi}{2}$ | $2\pi$ |
 |---|---|---|---|---|---|
 | $\sin x$ | $0$ | $1$ | $0$ | $-1$ | $0$ |

@@ -46,6 +46,10 @@ print("Total Employee %d" % Employee.emp_count)
 - Pour créer une instance, on **appelle la classe** avec les paramètres de `__init__`, sans `self`.
 - On accède aux attributs avec le **point** : `emp1.name`, `emp1.display()`.
 
+Sur l'image, la même classe tirée des diapos, avec une flèche vers chaque partie : le nom de la classe, la docstring (le texte qui la décrit), la variable de classe `emp_count`, la méthode d'initialisation `__init__` et les variables d'instance rangées dans `self`.
+
+![La classe Employee annotée par des flèches : nom de la classe, doc string, variable de classe, méthode d'initialisation, variables d'instance](images/classe-employee-annotee.webp "Les morceaux d'une classe : nom, docstring, variable de classe, __init__ et variables d'instance")
+
 La syntaxe : le mot-clé `class`, le nom de la classe (avec une majuscule au début de chaque mot, par convention : `CompteBancaire`), deux-points, puis le corps **indenté**. Pas d'accolades, pas de `new` : on crée un objet en écrivant `Employee(...)` comme un appel de fonction.
 
 **Exemple résolu : ce qui se passe pendant `emp1 = Employee("Tom", 2000)`.**
