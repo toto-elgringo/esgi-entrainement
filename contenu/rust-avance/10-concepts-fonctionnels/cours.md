@@ -655,6 +655,10 @@ Les mots **foncteur** et **monade** viennent de la *théorie des catégories*, u
 
 En JavaScript, le projet **Fantasy Land** est une spécification qui nomme ces interfaces pour que les bibliothèques soient compatibles entre elles. L'équivalent en Rust ressemble à un **trait**, même si le langage ne permet pas (encore) d'écrire un trait « Monade » général.
 
+![Carte de Fantasy Land : Functor en haut, d'où partent Apply, Alt, Extend et d'autres ; plus bas Applicative et Chain mènent à Monad ; à droite Semigroup, Monoid, Setoid et Ord](images/fantasy-land-categories.webp "Une flèche de A vers B : B sait tout faire de A, et plus encore. Une Monad est donc aussi un Functor")
+
+Sur l'image : chaque mot est une interface, et une flèche relie une interface à une autre **plus riche** qui la contient. Suis le chemin de gauche : `Functor` (sait faire `map`) → `Apply` → `Chain` (sait faire `and_then`) → `Monad`. Donc toute monade est aussi un foncteur, comme `Option` qui a à la fois `map` et `and_then`. Pas besoin de retenir toute la carte !
+
 **Exemple résolu :** reconnaître un foncteur et une monade dans du code Rust.
 
 | Code | Ce qu'on fait | Vocabulaire |

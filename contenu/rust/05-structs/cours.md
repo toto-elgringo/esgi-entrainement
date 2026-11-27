@@ -975,6 +975,10 @@ alignement : 4
 - une valeur doit commencer à une adresse **multiple** de son alignement : dans `MixteC`, `b` ne peut commencer qu'à l'octet 4, d'où 3 octets vides après `a` ;
 - la struct prend l'alignement de son plus grand champ (4) et sa taille en est un **multiple** : 3 octets vides après `c`, pour que les éléments d'un tableau de `MixteC` restent alignés.
 
+Sur l'image (les mêmes structs, en anglais : `Mixed` = `Mixte`) : chaque case est un octet, numéroté de 0 à 11. Les cases **hachurées** sont le remplissage : de la place perdue. `MixedC` garde l'ordre écrit (`a`, `b`, `c`) et gâche 6 octets ; `Mixed`, rangé par Rust (`b` d'abord), n'en gâche que 2.
+
+![Disposition octet par octet : MixedC occupe 12 octets dont 6 hachurés, Mixed occupe 8 octets dont 2 hachurés](images/alignement-remplissage-octets.webp "Mêmes champs, 12 octets avec #[repr(C)] contre 8 sans : les cases hachurées sont du remplissage")
+
 Sans attribut, Rust **choisit l'ordre des champs** : ici il place `b` en tête et n'a besoin que de 2 octets de remplissage. Cet ordre n'est **pas garanti** : un programme ne doit jamais le supposer.
 
 `offset_of!(Type, champ)` donne la **position** du champ, en octets depuis le début de la struct ; `size_of::<Type>()` sa taille totale.

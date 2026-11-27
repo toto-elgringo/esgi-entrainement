@@ -22,6 +22,10 @@ répéter :
 jusqu'au critère d'arrêt (générations, stagnation, temps)
 ```
 
+![Schéma en boîtes : Initialisation, puis Évaluation, Sélection, Croisements, Mutations, avec une flèche qui revient de Mutations à Évaluation pour la génération suivante](images/cycle-generation.webp "Une génération : évaluer, sélectionner, croiser, muter, puis on reboucle")
+
+Sur l'image : l'initialisation n'a lieu qu'**une** fois, au tout début. Ensuite, la flèche du bas ramène les enfants à l'évaluation : c'est la boucle qui tourne une fois par génération.
+
 Les deux probabilités se lisent ainsi :
 
 - $p_c \approx 0{,}8$ : pour chaque couple de parents choisi, on fait un croisement avec 80 % de chances ; dans les 20 % restants, les enfants sont de simples copies des parents.
@@ -142,6 +146,10 @@ Le symbole $\sum_j f_j$ veut dire « la somme des fitness de **tous** les indivi
 
 La meilleure est favorite, mais la pire garde presque une chance sur cinq : la **diversité** est préservée.
 
+![Roue partagée en quatre parts : 31,5 % pour la tournée 1 (longueur 100), 26,3 % pour la tournée 2 (120), 22,5 % pour la tournée 3 (140), 19,7 % pour la tournée 4 (160)](images/roulette-quatre-tournees.webp "La roue de la fortune du tableau : chaque part est proportionnelle à la fitness")
+
+Sur l'image : on fait tourner la roue, et la flèche du haut désigne le parent choisi. La part bleue (la tournée la plus courte) est la plus grande, mais la part rouge (la plus longue) reste bien visible : elle sera tirée environ une fois sur cinq.
+
 **Exemple résolu : une roulette à trois tournées.** Longueurs 50, 100 et 200, fitness $f = 1000/L$.
 
 1. **Fitness** : $1000/50 = 20$, $1000/100 = 10$, $1000/200 = 5$.
@@ -246,6 +254,10 @@ Erreur classique : remplir à partir de la position 1. On obtiendrait `5 4 1 8 2
 
 **À retenir :** OX = segment du parent 1 en place, liste des villes manquantes dans l'ordre du parent 2, remplissage à partir de la case qui suit le segment, puis retour au début.
 
+![Trois rangées de 8 cases : le parent 1 avec le segment 6 1 5 en orange, l'enfant 4 8 6 1 5 3 7 2, et le parent 2 1 3 5 7 2 4 6 8 où les villes 1, 5 et 6 sont grisées](images/croisement-ox.webp "Un deuxième exemple d'OX : segment 6 1 5 recopié, puis 3 7 2 4 8 pris dans l'ordre du parent 2")
+
+Sur l'image, un autre exemple avec la même méthode : (1) le segment orange `6 1 5` descend tel quel dans l'enfant ; (2) on lit le parent 2 de gauche à droite en sautant les villes grisées (1, 5, 6, déjà placées) : `3 7 2 4 8`. On remplit après le segment (`3 7 2`), puis on revient au début (`4 8`). Enfant : `4 8 6 1 5 3 7 2`, chaque ville une seule fois.
+
 **Mutation** : petite perturbation **rare** (environ 1 % des individus) : inverser un bit, échanger deux villes. Son rôle : **maintenir la diversité** et réintroduire des gènes perdus. Elle est aveugle : elle ne cherche pas à améliorer un individu précis.
 
 **Exemple résolu : deux mutations.**
@@ -263,6 +275,10 @@ croisement
 ## 6. Diversité et convergence prématurée
 
 La richesse d'un AG est **toute sa population** : des individus **divers** et **plutôt bons**. Sans diversité, les croisements ne fabriquent que des copies.
+
+![Trois petits graphiques de fitness : à la génération 0 les points sont éparpillés, à la génération k ils sont regroupés en un petit tas, à la génération k+n il ne reste qu'un seul point](images/diversite-trois-moments.webp "La même population à trois moments : éparpillée, puis resserrée, puis réduite à des clones")
+
+Sur l'image : chaque point est un individu. Tant qu'ils sont éparpillés (à gauche), deux parents différents peuvent donner un enfant nouveau. À droite, tous les individus sont identiques (un seul point) : croiser deux clones redonne le même clone, plus rien ne bouge.
 
 | Phénomène | Cause | Remède |
 |---|---|---|

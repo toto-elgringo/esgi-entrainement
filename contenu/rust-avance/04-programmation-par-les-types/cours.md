@@ -205,6 +205,14 @@ Résultat : toute fonction qui reçoit une `Note` **sait** qu'elle est entre 0 e
 | `Option<Note>` | `Some(note)` ou `None` | on ne sait pas **pourquoi** c'est refusé |
 | `Result<Note, E>` | `Ok(note)` ou `Err(raison)` | aucun : la valeur **et** la raison du refus |
 
+Le cours le montre avec la division et un mème du « cerveau qui grandit ». Étape 1 : `divide` panique si `b` vaut zéro. Étape 2 : elle renvoie un `Result`, c'est mieux… mais chaque appel doit encore gérer l'erreur.
+
+![Mème du cerveau qui grandit : divide avec panic!, puis divide qui renvoie un Result, avec la mention « On peut mieux faire »](images/cerveau-panic-result.webp "Niveau 1 : panic!, niveau 2 : Result… et ce n'est pas fini")
+
+Étape 3 : on déplace la vérification dans un type. `divide` reçoit un `PositiveNumber`, qui ne peut être créé que par `PositiveNumber::new` (champ privé, refus si la valeur est négative ou nulle). La division elle-même n'a plus **aucune** erreur possible.
+
+![Niveau suprême du mème : divide prend un PositiveNumber, créé par un new qui renvoie un Result](images/cerveau-type-positif.webp "Niveau 3 : le type garantit b > 0, divide ne peut plus échouer")
+
 **À retenir :** constructeur validé = champ privé + `new` qui renvoie `Result<Self, E>` ; la vérification est faite une fois, puis le type la garantit.
 
 ### Un type d'erreur précis

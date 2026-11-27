@@ -61,6 +61,23 @@ Mots utiles : *fix* (réparer), *window display* (vitrine), *graduate* (obtenir 
 
 **À retenir :** sigle = initiales dans l'ordre **anglais** ; sinon, on coupe le début du mot (*memo*, *temp*, *rep*).
 
+### En partie 1 : décrire une photo de travail
+
+Le vocabulaire des postes et des lieux de travail sert aussi à décrire des **photos** (partie 1 du TOEIC). Le cours a fait écouter quatre phrases sur cette photo ; la bonne réponse était la D.
+
+![Photo en noir et blanc d'une femme qui prend un livre sur une étagère, un autre livre ouvert dans l'autre main](images/partie1-photo-bibliotheque.webp "Partie 1 : une femme attrape un livre sur une étagère")
+
+Sur la photo : une femme **attrape un livre** sur une **étagère** (*a shelf*), dans une bibliothèque ou une librairie. Quelques phrases pour s'entraîner :
+
+| Phrase | Vrai ? |
+|---|---|
+| *She's reaching for a book on the shelf.* (elle tend le bras vers un livre) | **oui** |
+| *She's holding an open book.* (elle tient un livre ouvert) | **oui** (détail en bas) |
+| *She's stacking boxes.* (elle empile des cartons) | non : il n'y a pas de cartons |
+| *The shelves are empty.* (les étagères sont vides) | non : elles sont pleines de livres |
+
+**À retenir :** en partie 1, vérifie que l'**action** et les **objets** de la phrase se voient vraiment sur la photo.
+
 ## 2. Human Resources : RH et recrutement
 
 | Anglais | Français | Anglais | Français |

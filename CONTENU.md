@@ -53,6 +53,18 @@ Pas de `$` dans un bloc `anim`. Le code est dans `js/animations/` (`maths.js`, `
 
 Certaines acceptent un `mode:` ou `scenario:` pour choisir l'exemple montré : voir la fonction `creer…` correspondante.
 
+## Captures des supports dans les cours (tous les domaines)
+
+Les bonnes illustrations des supports (schémas, figures, courbes, exemples dessinés) sont reprises telles quelles dans le cours : on les découpe en `.webp` (largeur 1 200 px au plus) dans `contenu/<domaine>/<chapitre>/images/` et on les place à l'endroit où la notion est expliquée, **seules dans leur paragraphe** :
+
+```markdown
+![Les 27 cubes rangés : une couleur par ligne](images/cubes-etat-resolu.webp "L'état résolu : chaque ligne est d'une seule couleur")
+```
+
+Le texte entre crochets décrit l'image (lecteur d'écran) ; le titre entre guillemets devient la légende, précédée du badge « Extrait du cours ». Un clic agrandit l'image. Pas de `"` ni de `$` dans la légende (utiliser « »). On ne capture pas les pages de titre, les diapos de texte pur ni le code seul. `npm run verifier-contenu` signale une image introuvable.
+
+Outil de découpe (Python + PyMuPDF + Pillow ; Chrome pour les diapos `.svg`) : `python -W ignore scripts/captures.py texte <pdf>` (repérer les pages), `planche <pdf | dossier de .svg> <dossier>` (vignettes numérotées), `page <pdf> <N> <sortie.jpg>` (page avec une grille au dixième), `capture <pdf> <N> <x0> <y0> <x1> <y1> <sortie.webp>` (zone en fractions de la page, marges rognées).
+
 ## Domaines de code (Rust, Python, C)
 
 Les trois langages ont **le même format**, seule l'extension des fichiers change : `.rs` (Rust), `.py` (Python), `.c` (C). Les exemples ci-dessous sont en Rust. **Après chaque ajout ou modification, lance `npm run sommaire`** : le site lit la liste des chapitres et des exercices dans `contenu/<langage>/sommaire.json`.
@@ -92,7 +104,7 @@ Les noms de dossiers : minuscules, chiffres et tirets uniquement (`04-tarif`, pa
 
 ### Supports originaux (`supports`, facultatif)
 
-Les PDF et pages HTML des profs ne sont **pas** dans le dépôt : le serveur les lit dans le dossier des cours (`DOSSIER_SUPPORTS`, par défaut `~/Obsidian/Claude Note/Cours - ESGI`) et les sert sous `/supports/…`. Chaque chapitre liste les siens, avec un chemin relatif à ce dossier (des `/`, uniquement `.pdf` ou `.html`) :
+Les PDF et pages HTML entiers des profs restent hors du dépôt (seules des captures d'illustrations y sont, voir plus haut) : le serveur les lit dans le dossier des cours (`DOSSIER_SUPPORTS`, par défaut `~/Obsidian/Claude Note/Cours - ESGI`) et les sert sous `/supports/…`. Chaque chapitre liste les siens, avec un chemin relatif à ce dossier (des `/`, uniquement `.pdf` ou `.html`) :
 
 ```json
 "supports": [

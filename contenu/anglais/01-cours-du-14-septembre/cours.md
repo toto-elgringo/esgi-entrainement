@@ -48,6 +48,10 @@ Pourquoi répondre au hasard plutôt que laisser vide ? Avec 4 choix, une répon
 | 6 | Reading | **Textes à compléter** (e-mails, notes de service), 4 trous par texte | 16 | ~8 min |
 | 7 | Reading | **Lecture** de 1, 2 ou 3 documents | 54 | 45-50 min |
 
+Voici la vraie **feuille de réponses** : on noircit une bulle par question. Sur l'image : à gauche les questions 1 à 100 (Listening), à droite 101 à 200 (Reading). Les questions 7 à 31 (la partie 2) n'ont que trois bulles A, B, C.
+
+![Feuille de réponses du TOEIC avec deux colonnes, Listening section (1 à 100) et Reading section (101 à 200), chaque question suivie de bulles A B C D](images/grille-de-reponses.webp "La grille de réponses : une bulle à noircir par question, seulement A B C pour la partie 2")
+
 Contrôle : 6 + 25 + 39 + 30 = 100 questions d'écoute, et 30 + 16 + 54 = 100 questions de lecture. Toutes les parties ont **4 choix**, sauf la partie 2 qui n'en a que **3** (A, B, C).
 
 Les thèmes reviennent toujours : vie sociale (restaurant, sport, cinéma), économie, **emploi et RH**, **finance**, industrie et logistique, informatique, marketing, **vente**, **vie de l'entreprise** (réunions, service client, fournitures), **voyages**.
@@ -71,6 +75,12 @@ La forme *is being* + participe passé (*is being prepared*, *are being loaded*)
 
 > [!tip] Méthode
 > Observer la photo **avant** l'écoute : personnes, objets, lieu, actions, positions. La bonne réponse peut décrire un **détail secondaire**, pas l'action principale.
+
+Un vrai exemple du cours. On ne voit que la photo ; les quatre phrases sont dites à l'oral.
+
+![Photo d'une femme au téléphone derrière un ordinateur portable ouvert, entourée de fleurs, avec les quatre phrases A à D ; la D est entourée](images/partie1-exemple-photo.webp "Exemple de partie 1 : la bonne réponse est D (des fleurs sont dans le panier)")
+
+Pourquoi D ? *A* parle d'un jardin (on est dans une boutique), *B* d'un jardinier qui coupe des fleurs (personne ne coupe), *C* dit que l'ordinateur est fermé (il est ouvert). *D* décrit un **détail secondaire** visible : des fleurs dans le panier, à droite.
 
 **Exemple résolu.** Photo : *une femme est assise à un bureau et tape sur un ordinateur ; à côté de l'écran, une plante verte.*
 
@@ -135,6 +145,12 @@ Les questions sont souvent **reformulées** : le texte dit une chose, la bonne r
 | *a fee of 5 pounds* (des frais de 5 livres) | *it costs 5 pounds* |
 | *bike* | *bicycle* |
 | *Why don't you…? / You should… / If you need…, …* | ce que la personne **suggère** |
+
+Un exemple de partie 4 tiré du cours : la publicité d'un opticien, puis trois questions.
+
+![Texte d'une publicité pour Maynard's Optical Shop, suivi de trois questions avec les réponses C, A et B entourées](images/partie4-exemple-annonce.webp "Exemple de partie 4 : regarde comment chaque bonne réponse reformule le texte")
+
+Sur l'image : *glasses* (lunettes) devient *eyeglasses* ; *a twenty percent discount* devient *a product discount* ; *our recently opened shop* (notre boutique ouverte récemment, parmi *three locations*) devient *the newest of three stores*.
 
 **Exemple résolu.** Annonce : *Attention, passengers. Flight BA 214 to Dublin will now leave from gate 12 instead of gate 8. Boarding starts at 3:40.*
 
@@ -236,6 +252,20 @@ Pour lire une facture (*invoice*, *bill*) : *2 @ $3.00* veut dire « 2 articles 
 
 **À retenir :** lis la question, trouve la **ligne** du document qui y répond, refais le calcul toi-même ; pour NOT, raye les trois réponses présentes dans le texte.
 
+Un vrai exercice de partie 7 du cours : un **ticket de caisse** (document 1) et un **questionnaire de satisfaction** sur la livraison (document 2), puis les questions corrigées.
+
+![Ticket du Buy Better Supermarket avec les articles, sous-total, livraison et total de 28,30 dollars, à côté d'un questionnaire de livraison rempli par Anita Kerkhoven](images/partie7-ticket-et-questionnaire.webp "Deux documents à relier : le ticket (1) et le questionnaire rempli par la cliente (2)")
+
+![Exercices 12 et 13 : vocabulaire à retrouver dans les documents et cinq questions de compréhension, bonnes réponses entourées](images/partie7-questions-corrigees.webp "Les questions sur ces deux documents, avec les bonnes réponses entourées")
+
+Sur l'image, deux réponses à comprendre :
+
+- Question 2 (*frozen food*, les surgelés) : sur le ticket, *Frozen pizza, 3@$4.20* = 3 pizzas à 4,20 dollars, donc 3 × 4,20 = **12,60** dollars (réponse B).
+- Question 4 (*NOT a problem*) : la cliente se plaint du retard (*A little late*), des pizzas qui décongèlent et des pommes manquantes ; elle a répondu *Yes* pour les produits laitiers (*dairy products*). Ce qui n'a **pas** posé problème : la qualité des produits laitiers (D).
+
+> [!warning] Attention à l'orthographe
+> Dans le corrigé du support, « laitier » est écrit *diary* : c'est une faute. *Dairy* = laitier ; *diary* = journal intime, agenda.
+
 ## 3. Les mots de liaison
 
 | Fonction | Mots | Traduction |
@@ -248,6 +278,10 @@ Pour lire une facture (*invoice*, *bill*) : *2 @ $3.00* veut dire « 2 articles 
 | **Nuancer** | but, however, **although** (even though, though), **unless**, except, apart from, as long as | mais, cependant, **bien que**, **à moins que**, sauf, à part, tant que |
 | **Opposer** | **whereas** (while, whilst), **instead of**, **otherwise** (or else), **unlike** (contrary to), on the other hand, conversely | **alors que**, **au lieu de**, **sinon**, **contrairement à**, d'un autre côté, inversement |
 | **Insister** | above all, in particular, especially, indeed, notably | surtout, en particulier, en effet, notamment |
+
+Le tableau du cours, avec les mots rangés par couleur selon leur fonction :
+
+![Tableau de mots de liaison en huit colonnes colorées : adding, sequencing, illustrating, cause and effect, comparing, qualifying, contrasting, emphasising](images/mots-de-liaison-tableau.webp "Les mots de liaison rangés par fonction, avec quelques traductions notées en couleur")
 
 Quelques sens à bien comprendre :
 

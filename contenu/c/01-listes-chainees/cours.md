@@ -11,6 +11,10 @@ La grande différence est dans la mémoire :
 | Place en mémoire | cases **collées** les unes aux autres | éléments **éparpillés** n'importe où |
 | Trouver l'élément suivant | il est juste à côté | on suit un **pointeur** |
 
+Sur l'image : les quatre valeurs sont posées en mémoire dans le désordre (valeur 4, valeur 2, valeur 1, valeur 3). Rien ne dit qui vient après qui.
+
+![Quatre cases valeur 4, valeur 2, valeur 1, valeur 3 rangées dans le désordre dans un cadre Mémoire](images/memoire-valeurs-eparpillees.webp "Les valeurs sont éparpillées en mémoire, sans ordre")
+
 Puisque les valeurs sont dispersées, chacune emporte avec elle **l'adresse de la suivante**. Les valeurs forment ainsi une **chaîne**.
 
 > [!info] Le maillon
@@ -40,6 +44,10 @@ Une seule variable, `start`, garde l'adresse du **premier** maillon : `0x300`. E
 
 L'ordre de la liste (10, 20, 30, 40) n'a rien à voir avec l'ordre des adresses (le maillon `0x100` est le **dernier** de la liste). Seuls les `next` décident de l'ordre.
 
+Le même genre de situation, dessiné par le cours : chaque maillon a maintenant une deuxième case (son `next`) d'où part une flèche. `start` pointe sur valeur 1 ; en suivant les flèches on lit valeur 1, valeur 2, valeur 3, valeur 4, alors qu'en mémoire elles sont dans le désordre.
+
+![Variable start qui pointe sur valeur 1, et flèches qui relient valeur 1, 2, 3 puis 4, éparpillées dans la mémoire](images/memoire-chaine-start.webp "En vrai : start pointe sur le premier maillon, puis chaque next pointe sur le suivant, où qu'il soit")
+
 **À retenir :** pour lire une liste, pars de `start` et suis les `next` un par un jusqu'à `NULL` ; l'emplacement des maillons en mémoire ne compte pas.
 
 ### Comment on la dessine
@@ -51,6 +59,10 @@ start --> [10|*] --> [20|*] --> [30|*] --> [40|*] --> NULL
 ```
 
 `[10|*]` est un maillon : sa valeur à gauche, son pointeur `next` à droite. Le dernier maillon a `next = NULL` : il n'y a rien après.
+
+Le dessin « propre » du cours, avec les maillons remis dans l'ordre de la chaîne :
+
+![start pointe sur valeur 1, qui pointe sur valeur 2, puis valeur 3, puis valeur 4 dont la case next est vide](images/liste-dessinee-en-ordre.webp "Pour la lisibilité, on dessine les maillons alignés dans l'ordre des flèches")
 
 > [!info] La liste vide
 > Une liste vide, c'est simplement `start == NULL` : aucun maillon.
@@ -195,6 +207,12 @@ Les étapes sur la liste `0 -> 1 -> 2` :
                                              ^
                                             cur  (NULL : on s'arrête)
 ```
+
+Les mêmes étapes, dessinées par le cours. Regarde la flèche de `cur` : elle avance d'un maillon à chaque tour, alors que celle de `start` ne bouge jamais.
+
+![Trois étapes : cur pointe sur le maillon 0, puis 1, puis 2, start reste sur 0](images/parcours-cur-etapes-1-a-3.webp "Étapes 1 à 3 : cur avance, start reste sur le premier maillon")
+
+![Étape 4 : cur pointe sur null après le maillon 2](images/parcours-cur-etape-4-null.webp "Étape 4 : cur vaut null, la boucle s'arrête")
 
 Pourquoi `cur` et pas `start` ? `start` est la **seule** variable qui connaît le premier maillon. Si on écrivait `start = start->next` pour avancer, une fois arrivé au bout, plus personne ne connaîtrait l'adresse des maillons déjà passés : impossible de relire la liste ou de la libérer (fuite mémoire). `cur` est une copie qu'on peut user sans risque.
 
@@ -425,6 +443,16 @@ Les étapes (on ajoute 3 devant `0 -> 1 -> 2`) :
 
    start --> [3|*] --> [0|*] --> [1|*] --> [2|*] --> NULL
 ```
+
+Les mêmes étapes dans les schémas du cours (là, le nouveau maillon s'appelle `new`). La zone grise est la liste telle qu'on la lit depuis `start`.
+
+![Étape 1 : new pointe sur un maillon 3 créé à part, start pointe toujours sur 0](images/insertion-debut-etape-1.webp "Étape 1 : on crée le maillon 3, encore relié à rien")
+
+![Étape 2 : le next du maillon 3 pointe sur le maillon 0](images/insertion-debut-etape-2.webp "Étape 2 : le next du 3 pointe sur l'ancien premier maillon (0)")
+
+![Étape 3 : start pointe maintenant sur le maillon 3](images/insertion-debut-etape-3.webp "Étape 3 : start pointe sur le 3")
+
+![Étape 4 : le maillon 3 fait partie de la zone grise, la liste est 3, 0, 1, 2](images/insertion-debut-etape-4.webp "Étape 4 : le 3 est devenu le premier maillon de la liste")
 
 **Complexité** : trois instructions quelle que soit la longueur de la liste : **O(1)**.
 

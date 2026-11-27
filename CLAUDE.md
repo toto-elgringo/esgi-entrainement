@@ -44,6 +44,7 @@ js/
   synchro-progression.js  envoi et relecture de la progression sur hermes (/api/progression)
   parcours.js       filtrage par matière, voisins, progression (clés « domaine/chapitre/exercice »)
   menu.js, outils.js (Markdown, formules KaTeX, encarts Obsidian)
+  figures.js        captures des supports dans les cours (chemin des images, figure + légende, agrandissement)
   animations/       blocs ```anim``` des cours (graphiques, schémas, pas à pas) : index.js (registre, lireBloc,
                     lancement quand le cadre devient visible), outils.js (SVG, curseurs, boucle), maths.js,
                     combinatoire.js, code.js (C, Rust, Python), anglais.js (anglais + SIG) ; styles dans css/animations*.css
@@ -91,7 +92,7 @@ CONTENU.md          format exact du contenu (code et réponses)
 - `GET api/etat` renvoie les versions de cargo, clippy, Python et gcc : l'accueil d'une matière de code prévient si l'outil manque ou si le serveur ne répond plus.
 - Dossiers de travail dans `<tmp>/esgi-entrainement-<outil>/<pid>/atelier-N`, réutilisés et supprimés à l'arrêt du processus.
 - Réglages (variables d'environnement, absents en local) : `ESGI_ADRESSES` (adresses permises, `serveur/reglages.js`), `ESGI_SYNCHRO=desactivee` (`serveur/synchro-desactivee.js` : `api/<source>/etat` renvoie `{ etape: 'desactivee' }`, les POST répondent 403 « Synchro impossible sur hermes, à faire en local », boutons grisés `bouton grise` qui affichent ce message au clic), `ESGI_ENFERMEMENT=bwrap` (`serveur/enfermement.js` : chaque programme lancé par `lancer` passe par `/usr/bin/bwrap`, `/home` caché sauf `~/.rustup` et `~/.cargo/bin` en lecture seule, seul l'atelier en écriture, pas de réseau, environnement vidé ; bwrap absent → le serveur refuse de démarrer).
-- Supports originaux (PDF, HTML des profs) : jamais copiés dans le dépôt public. Déclarés dans `chapitre.json` (`supports`), servis par `/supports/<chemin>` depuis `DOSSIER_SUPPORTS` (par défaut le vault Obsidian `Cours - ESGI`), affichés dans la vue `#/supports/<domaine>/<chapitre>` (`js/vues/supports.js`, `js/supports.js`).
+- Supports originaux (PDF, HTML des profs) : les fichiers entiers restent dans le vault. Déclarés dans `chapitre.json` (`supports`), servis par `/supports/<chemin>` depuis `DOSSIER_SUPPORTS` (par défaut le vault Obsidian `Cours - ESGI`), affichés dans la vue `#/supports/<domaine>/<chapitre>` (`js/vues/supports.js`, `js/supports.js`).
 - Synchro MyGES (bouton « Télécharger les nouveaux cours » sur la page de choix de la matière, `js/vues/myges.js`) : connexion au site myges.fr avec `.env` (`MYGES_IDENTIFIANT` = identifiant MyGES, pas l'e-mail, et `MYGES_MOT_DE_PASSE`), lecture de `student/courses-files`, téléchargement des nouveaux supports dans `<vault>/<Matière>/Sources/` (`.zip` extraits), puis `claude -p "/obsidian -esgi …"` en arrière-plan avec la liste des fichiers (`--permission-mode acceptEdits`, listes `OUTILS_AUTORISES_CLAUDE` / `OUTILS_INTERDITS_CLAUDE` dans `serveur/synchro.js` : pas de WebFetch, curl, git push ni lecture de `.env` ; `.claude/settings.json` du projet interdit aussi la lecture des secrets). Journaux : 20 gardés. Rien de nouveau : « Aucun nouveau cours », Claude n'est pas lancé. Méthode détaillée : `docs/myges-api.md`.
   - Doublons : `myges-suivi.json` (non versionné, identifiant MyGES → chemin) et comparaison des noms déjà présents dans `Sources\` (casse, accents, ponctuation et `[Mot] X` / `Mot - X` ignorés).
   - Reprise après coupure : `myges-a-integrer.json` (non versionné, jamais servi) liste les fichiers téléchargés pas encore intégrés (ajout après chaque téléchargement, `tentatives`, `arretee`). Il n'est vidé que si Claude finit sans erreur, écrit `SYNCHRO TERMINÉE` dans sa réponse finale et n'a aucun sous-agent coupé (`subagent_stats.killed`). Sinon : reprise automatique au `npm start` suivant (`reprendreAuDemarrage`, consigne « Reprise : … » dans le prompt), sauf après « Arrêter » ou 3 tentatives ; bouton « Reprendre l'intégration » (`POST api/myges/reprendre`). Un « Télécharger » sans nouveau cours intègre aussi les fichiers en attente. Ctrl+C sur le serveur coupe Claude sans le marquer arrêté.
@@ -108,7 +109,7 @@ CONTENU.md          format exact du contenu (code et réponses)
 - Code, noms et textes en **français**, pas de commentaires dans le code.
 - Après toute modification du contenu de code : `npm run sommaire` (garde les `sommaire.json` à jour pour `verifier-contenu`, le site calcule le sien).
 - Solutions sans aucun avertissement (cargo + clippy, gcc `-Wall -Wextra`) ; LaTeX des JSON avec `\` doublés.
-- Contenu reformulé à partir des cours (dépôt public), jamais recopié mot pour mot.
+- Captures des supports bienvenues : les bonnes illustrations des PDF / diapos (schémas, figures, exemples dessinés) sont découpées en `.webp` dans `contenu/<domaine>/<chapitre>/images/` et insérées dans `cours.md` (`![description](images/x.webp "Légende")`, seule dans son paragraphe). `js/figures.js` en fait une figure cliquable (agrandissement) avec le badge « Extrait du cours » ; `verifier-contenu` signale une image introuvable.
 
 ## Commandes utiles
 

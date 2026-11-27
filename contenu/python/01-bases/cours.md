@@ -45,6 +45,10 @@ def facto(x):
 print(facto(5))
 ```
 
+Sur l'image : la même fonction factorielle écrite en C (à gauche) et en Python (à droite). En C, ce sont les accolades `{ }` et les `;` qui délimitent les blocs ; en Python, il n'y a plus que les `:` et le décalage des lignes.
+
+![La fonction factorielle écrite en C avec accolades et points-virgules, à côté de la même fonction en Python avec deux-points et indentation](images/factorielle-c-et-python.webp "Même fonction, deux langages : en Python, l'indentation remplace les accolades")
+
 - **Une instruction par ligne**, pas de point-virgule.
 - Les **blocs** se font par **indentation** (4 espaces), pas avec des accolades. Une ligne qui ouvre un bloc (`def`, `if`, `for`, `while`...) se termine par `:`.
 - Les **commentaires** commencent par `#`.
@@ -236,6 +240,10 @@ else:
 | `==`, `!=` | égal, différent | `and` | ET |
 | `<`, `<=`, `>`, `>=` | ordre | `or` | OU |
 | `x in l`, `x not in l` | appartenance | `not` | NON |
+
+Les deux tableaux ci-dessous donnent le résultat de `and` et de `or` pour toutes les combinaisons : on lit la ligne (valeur de gauche) et la colonne (valeur de droite). `and` ne donne `True` que si les **deux** sont vrais ; `or` donne `True` dès qu'**un** des deux est vrai.
+
+![Tables de vérité de and et de or : and vaut True seulement pour True et True, or vaut False seulement pour False et False](images/tables-and-or.webp "Tables de vérité : and veut les deux vrais, or en veut au moins un")
 
 `if` teste sa condition ; si elle est fausse, Python essaie le `elif` suivant (« sinon si »), et ainsi de suite ; `else` (« sinon ») attrape tout ce qui reste. **Un seul** bloc est exécuté : le premier dont la condition est vraie.
 
@@ -435,6 +443,12 @@ Pas à pas (`end=""` empêche `print` d'aller à la ligne après chaque lettre) 
 1. Première boucle : à chaque `"o"`, `continue` saute le `print` et passe à la lettre suivante. Les deux `o` disparaissent : `Hell wrld !`.
 2. Deuxième boucle : au premier `"o"` (le 5e caractère), `break` arrête **toute** la boucle : seules les lettres d'avant sont affichées, `Hell`.
 3. Le `print()` final, sans rien dedans, passe juste à la ligne.
+
+Dans les diapos du cours, la même boucle est écrite **sans** `end=""` : chaque lettre s'affiche sur sa propre ligne. Sur la première image, les deux `o` manquent dans la sortie (`continue` les a sautés) ; sur la seconde, la sortie s'arrête net avant le premier `o` (`break`).
+
+![Boucle sur Hello world avec continue sur la lettre o, et sa sortie où les o ont disparu](images/continue-sortie.webp "continue : les o sont sautés, la boucle continue jusqu'au bout")
+
+![Boucle sur Hello world avec break sur la lettre o, et sa sortie qui s'arrête à H e l l](images/break-sortie.webp "break : la boucle s'arrête au premier o")
 
 **Exemple résolu : chercher le premier élément qui convient.**
 
@@ -1628,6 +1642,10 @@ Ce n'est **pas** une fonction principale obligatoire (comme le `main` du C) : un
 
 - **Module** : un fichier `.py`. **Package** : un dossier de modules avec un fichier `__init__.py`.
 - Trois façons d'importer : `import sound.formats.wav` (puis `sound.formats.wav.read()`), `from sound.formats import wav` (puis `wav.read()`), `from sound.formats.wav import read` (puis `read()`).
+
+Sur l'image : le package `sound` est un dossier qui contient son `__init__.py` et deux sous-dossiers (`formats` et `effects`), eux-mêmes des packages avec leur propre `__init__.py`. Le fichier `wav.py` rangé dans `sound/formats/` est le module qu'on appelle `sound.formats.wav` : le chemin des dossiers devient le nom avec des points.
+
+![Arborescence du package sound avec ses sous-packages formats et effects et leurs modules wav.py, mp3.py, echo.py, surround.py, reverse.py](images/package-sound.webp "Un package = un dossier avec __init__.py ; sound/formats/wav.py devient sound.formats.wav")
 
 ```python
 import math

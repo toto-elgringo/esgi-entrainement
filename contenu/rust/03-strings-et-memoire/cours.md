@@ -139,6 +139,10 @@ Le texte Rust est toujours en **UTF-8** : une façon de transformer chaque carac
 | autres symboles | 3 | `€` |
 | émojis | 4 | `🦀` |
 
+Sur l'image : chaque case est un caractère, et les nombres dessous sont ses octets (écrits en hexadécimal). `H`, `i` et l'espace prennent une case d'un octet chacun ; le crabe prend à lui seul **4 octets** (F0 9F A6 80).
+
+![La chaîne « Hi 🦀 » découpée en octets : H, i et l'espace font 1 octet chacun, le crabe en fait 4](images/utf8-octets-du-crabe.webp "« Hi 🦀 » : 4 caractères mais 7 octets")
+
 ```rust
 assert_eq!("Hello, 🦀".len(), 11);           // nombre d'OCTETS
 assert_eq!("Hello, 🦀".chars().count(), 8);  // nombre de CARACTÈRES
@@ -216,6 +220,10 @@ Une coupe juste au milieu du crabe (`&s[0..8]`) arrête le programme :
 thread 'main' panicked at src/main.rs:2:15:
 byte index 8 is not a char boundary; it is inside '🦀' (bytes 7..11) of `Hello, 🦀`
 ```
+
+Sur l'image : le crabe commence à l'octet 7 et occupe les octets 7, 8, 9 et 10. Couper à l'octet 8 tombe **au milieu** du crabe : Rust refuse et panique.
+
+![Les octets de « Hello, 🦀 » numérotés de 0 à 7 ; une coupe à l'octet 8 tombe dans le crabe et provoque une erreur](images/explorateur-utf8-couper.webp "Couper à l'octet 8 : en plein milieu du crabe, donc panique")
 
 > [!warning] Piège
 > Couper au milieu d'un caractère fait **paniquer** le programme : `byte index 8 is not a char boundary`. Outils sûrs :
@@ -357,6 +365,10 @@ println!("{total}");
 | `&str` | 16 octets (adresse + longueur) | rien, il emprunte |
 | `String` | 24 octets (adresse + longueur + capacité) | le texte + de la place libre |
 | `Box<u64>` | 8 octets (adresse) | la valeur |
+
+Sur l'image : à gauche, ce qui est rangé sur la **pile** (petit et de taille fixe) ; à droite, le texte lui-même. Le `&str` n'a que 2 cases (adresse `ptr` + longueur `len`), la `String` en a 3 (avec en plus la capacité `cap`). Les flèches montrent que la case `ptr` « pointe » vers le texte. Petite précision : le texte d'un `&str` écrit entre guillemets dans le code vit dans le programme lui-même (« binaire »), pas vraiment sur le tas.
+
+![Schéma pile et tas : un &str de 16 octets et une String de 24 octets sur la pile, chacun avec une flèche vers le texte « Hello, World! »](images/str-et-string-pile-tas.webp "&str = une vue (adresse + longueur), String = un propriétaire (adresse + longueur + capacité)")
 
 La **capacité** d'une `String` est la place réservée : le texte peut grandir sans redemander de la mémoire à chaque caractère. `std::mem::size_of::<T>()` donne la taille d'un type sur la pile.
 

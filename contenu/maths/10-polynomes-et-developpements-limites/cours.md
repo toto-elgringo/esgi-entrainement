@@ -290,6 +290,10 @@ Pour s'en souvenir : $\ln(1 + x)$ n'a **pas de constante** et un **moins** devan
 
 **Exemple.** $e^{0{,}1} \approx 1 + 0{,}1 + \dfrac{0{,}01}{2} = 1{,}105$, alors que la vraie valeur est $1{,}10517\dots$ : erreur inférieure à $0{,}0002$.
 
+![Courbe de l'exponentielle en trait plein bleu et courbe de son développement limité d'ordre 2 en 0 en pointillés rouges : elles se superposent autour de 0 puis s'écartent à gauche et à droite](images/dl-ordre-2-exponentielle.webp "Exponentielle (bleu) et son DL d'ordre 2 en 0 (pointillés rouges) : collées près de 0, écartées plus loin")
+
+Sur l'image : autour de $x = 0$, les deux courbes sont collées, l'approximation est excellente. Plus on s'éloigne de $0$ (à droite comme à gauche), plus elles s'écartent : le DL n'est fiable que pour $x$ **proche de 0**.
+
 **Exemple résolu : $\ln(0{,}9)$ et $\dfrac{1}{0{,}9}$.**
 
 1. On écrit le nombre sous la forme du DL : $0{,}9 = 1 + (-0{,}1)$, donc pour le logarithme $x = -0{,}1$.

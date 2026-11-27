@@ -53,6 +53,10 @@ $$a^x = \left(e^{\ln a}\right)^x = e^{x \ln a}$$
 
 ### Variations et limites
 
+![Courbe de la fonction exponentielle : collée à l'axe à gauche, elle monte de plus en plus vite à droite](images/courbe-exponentielle.webp "La courbe de e^x : toujours au-dessus de l'axe, et elle grimpe de plus en plus vite")
+
+Sur l'image : à gauche, la courbe s'approche de l'axe sans jamais le toucher (limite 0, et $e^x > 0$ toujours). Elle coupe l'axe vertical à la hauteur 1, car $e^0 = 1$. À droite, elle monte de plus en plus fort (limite $+\infty$).
+
 - $\exp$ est **strictement croissante** sur $\mathbb{R}$ : si $a < b$ alors $e^a < e^b$.
 - $\lim\limits_{x \to +\infty} e^x = +\infty$ et $\lim\limits_{x \to -\infty} e^x = 0$.
 - Sa dérivée est elle-même : $(e^x)' = e^x$.
@@ -143,6 +147,10 @@ $\ln 10 + \ln\frac{1}{5} = \ln\left(10 \times \frac{1}{5}\right) = \ln 2$. Autre
 - $\lim\limits_{x \to +\infty} \ln x = +\infty$ (mais **très lentement**) et $\lim\limits_{x \to 0^+} \ln x = -\infty$.
 - Sa dérivée : $(\ln x)' = \dfrac{1}{x}$. Pour une composée : $\left(\ln u(x)\right)' = \dfrac{u'(x)}{u(x)}$.
 - Signe : $\ln x < 0$ si $0 < x < 1$, $\ln x = 0$ si $x = 1$, $\ln x > 0$ si $x > 1$.
+
+![Courbe du logarithme népérien : elle plonge vers le bas près de 0, coupe l'axe en 1, puis monte lentement](images/courbe-logarithme.webp "La courbe de ln x : elle n'existe que pour x > 0, coupe l'axe en x = 1 et monte de plus en plus lentement")
+
+Sur l'image : rien à gauche de l'axe vertical ($\ln$ n'est défini que pour $x > 0$). Près de 0, la courbe plonge vers $-\infty$. Elle passe sous l'axe entre 0 et 1, le coupe en $x = 1$, puis reste au-dessus en montant tout doucement.
 
 « Très lentement » ne veut pas dire « avec un plafond ». Par exemple, $\ln x$ dépasse 100 dès que $x > e^{100}$ : c'est un nombre gigantesque, mais il existe. Quelle que soit la valeur choisie, $\ln x$ finit par la dépasser.
 
@@ -329,6 +337,10 @@ $$\ln x \ll x \ll e^x \qquad \text{c'est-à-dire} \qquad \lim_{x \to +\infty} \f
 
 Le symbole $\ll$ se lit « est négligeable devant ».
 
+![Les courbes de ln x, x et e^x tracées ensemble : e^x s'envole, x monte en ligne droite, ln x reste presque à plat](images/croissances-comparees.webp "Course entre ln x (rouge), x (bleu) et e^x (vert) : l'exponentielle gagne de très loin, le logarithme est le plus lent")
+
+Sur l'image : les trois courbes montent, mais la verte ($e^x$) décolle très vite, la bleue ($x$) monte régulièrement et la rouge ($\ln x$) s'aplatit. Plus on va à droite, plus l'écart se creuse.
+
 Plus précisément :
 
 - $\ln x$ est négligeable devant **n'importe quelle puissance** $x^a$ avec $a > 0$, même petite : $x^2$, $x$, mais aussi $\sqrt{x} = x^{1/2}$ ou $x^{1/3}$.
@@ -387,6 +399,10 @@ $O(\dots)$ indique en gros **combien d'opérations** fait un algorithme quand il
 - **Concave** : la courbe est **au-dessus** de ses cordes. Dérivée seconde négative.
 
 Une **corde**, c'est le segment qui relie deux points de la courbe. La **dérivée seconde** $f''$, c'est la dérivée de la dérivée : on dérive deux fois.
+
+![Deux encadrés du cours : à gauche une courbe convexe en forme de U avec une corde en pointillés, à droite une courbe concave en forme de bosse avec une corde en pointillés](images/convexe-concave.webp "Convexe (en U) : la corde rouge passe au-dessus de la courbe. Concave (en bosse) : la corde passe en dessous")
+
+Sur l'image : les pointillés rouges sont des cordes. Courbe en U (convexe) : la corde est **au-dessus**, la courbe est en dessous. Courbe en bosse (concave) : c'est l'inverse.
 
 | Fonction | Dérivée seconde | Forme |
 |---|---|---|
@@ -491,6 +507,10 @@ Le détail de chaque étape :
 - **Étape 4** : en $0^+$, $\ln x \to -\infty$ et on divise par un $x$ positif minuscule : le résultat part vers $-\infty$ (ce n'est pas une forme indéterminée). En $+\infty$, $\ln x \ll x$ : le bas l'emporte, la limite est 0.
 
 Le tableau de variations résume tout :
+
+![Tableau de variations de ln(x)/x : f' positive puis négative, flèche qui monte jusqu'à 1/e en x = e, puis flèche qui descend](images/tableau-variations-lnx-sur-x.webp "Le tableau du cours : signe + puis −, flèche qui monte jusqu'au maximum 1/e, puis flèche qui descend")
+
+La même chose en version détaillée, avec les limites aux bornes :
 
 | $x$ | $0$ | | $e$ | | $+\infty$ |
 |---|---|---|---|---|---|

@@ -643,6 +643,80 @@ pre code.hljs {
   margin: 6px 0;
 }
 
+.markdown figure.capture {
+  margin: 22px 0;
+  padding: 0;
+}
+
+.capture-cadre {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: #fff;
+  cursor: zoom-in;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.capture-cadre:hover,
+.capture-cadre:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-doux);
+}
+
+.capture-cadre img {
+  display: block;
+  max-width: 100%;
+  max-height: 520px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.markdown figure.capture figcaption {
+  margin-top: 8px;
+  color: var(--texte-doux);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.capture-badge {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--accent-doux);
+  color: var(--accent);
+  font-size: 11.5px;
+  font-weight: 600;
+  vertical-align: 1px;
+}
+
+.markdown p img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.capture-agrandie {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.82);
+  cursor: zoom-out;
+}
+
+.capture-agrandie img {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 12px;
+  border-radius: var(--rayon);
+  background: #fff;
+}
+
 .encart-titre {
   display: block;
   margin-bottom: 4px;

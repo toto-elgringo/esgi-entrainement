@@ -135,6 +135,12 @@ Pour s'y retrouver dans les quatre classes :
 | NP-difficile | est-il au moins aussi dur que tout NP ? | voyageur de commerce, sac à dos, coloration |
 | NP-complet | NP **et** NP-difficile | voyageur de commerce (version décision) |
 
+Le dessin qui résume tout (version où $P \neq NP$, celle que croient la plupart des chercheurs) :
+
+![Diagramme : un disque P à l'intérieur d'un grand disque NP, et une zone NP-difficile à droite qui chevauche le bord de NP ; la partie commune s'appelle NP-complet](images/classes-si-p-different-de-np.webp "Les classes si P ≠ NP : P est dans NP, NP-complet est la zone commune à NP et à NP-difficile")
+
+Sur l'image : P (vert) est **à l'intérieur** de NP (bleu), car résoudre vite permet de vérifier vite. La zone rose NP-difficile **déborde** de NP : elle contient aussi des problèmes d'optimisation, qui ne sont pas des problèmes de décision. La zone violette, à cheval sur les deux, ce sont les NP-complets. Les disques numérotés sont des exemples de problèmes, détaillés au chapitre « Classes de complexité ».
+
 **À retenir :** P = résoudre vite ; NP = vérifier vite ; $P \subseteq NP$ est certain, $P = NP$ est inconnu ; NP-complet = dans NP **et** NP-difficile.
 
 ## 3. Deux stratégies de résolution

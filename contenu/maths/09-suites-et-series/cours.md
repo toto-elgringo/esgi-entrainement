@@ -341,6 +341,10 @@ Pour voir une suite $u_{n+1} = f(u_n)$, on trace la courbe $y = f(x)$ et la droi
 - Si la pente est **négative** (entre $-1$ et $0$), les valeurs passent alternativement au-dessus et en dessous du point fixe : on obtient une **spirale** qui s'enroule vers lui.
 - Si la pente est plus grande que $1$ en valeur absolue, l'escalier ou la spirale **s'éloigne** du point fixe : la suite diverge.
 
+![Diagramme en escalier : une droite rouge peu pentue, une droite bleue y = x qui passe par l'origine, et un escalier vert qui part de l'axe horizontal et monte par marches de plus en plus petites jusqu'au croisement des deux droites](images/diagramme-escalier.webp "Diagramme en escalier de u(n+1) = 0,5 u(n) + 3 : les marches rétrécissent jusqu'au point fixe")
+
+Sur l'image (exemple $u_{n+1} = 0{,}5\,u_n + 3$, $u_0 = 0$) : la droite **rouge** est la courbe $y = f(x) = 0{,}5\,x + 3$, la droite **bleue** est $y = x$ (elle passe par l'origine ; les étiquettes du support sont un peu décalées). L'escalier vert monte jusqu'au rouge, part à l'horizontale jusqu'au bleu, et recommence. La pente $0{,}5$ est positive et plus petite que $1$ : les marches rétrécissent et s'arrêtent au croisement des deux droites, le point fixe $(6, 6)$.
+
 **Exemple résolu :** $u_{n+1} = -0{,}25\,u_n + 10$ avec $u_0 = 0$.
 
 1. **Termes** : $u_1 = 10$, $u_2 = -2{,}5 + 10 = 7{,}5$, $u_3 = -0{,}25 \times 7{,}5 + 10 = 8{,}125$, $u_4 = -0{,}25 \times 8{,}125 + 10 = 7{,}96875$.

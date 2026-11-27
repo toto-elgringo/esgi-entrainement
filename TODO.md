@@ -51,3 +51,6 @@
 - [x] Schooding : installer `yt-dlp` (`py -m pip install --user "yt-dlp[default]"`, installé le 17/11/2026) pour télécharger les vidéos YouTube des séances
 - [ ] Schooding : installer `ffmpeg` (`scoop install ffmpeg`) pour avoir les vidéos en 720p au lieu de 360p
 - [ ] Schooding : retélécharger un document modifié par le prof (aujourd'hui un document n'est lu qu'une fois)
+
+- Captures : Électif (SIG) sans support PDF, et Algo C sans schéma hors listes chaînées (seulement des vidéos .mp4) : à reprendre si de nouveaux supports arrivent.
+- Captures anglais : vérifier les phrases de la partie 1 inventées (02-the-workplace) et les réponses déduites du mini test Sales (11).

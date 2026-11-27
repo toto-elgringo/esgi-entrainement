@@ -28,6 +28,10 @@ Deux façons d'éviter de rester bloqué :
 
 Le temps est passé à **attendre**, pas à calculer : un seul fil suffit à surveiller les trois attentes. Avec 10 000 pages, 10 000 threads coûteraient très cher en mémoire, alors que 10 000 tâches async restent légères.
 
+![Frises du temps : en haut trois threads qui dorment pendant l'attente de la base, en bas un seul thread async qui calcule A, B, C puis reste libre pendant que le runtime surveille les trois attentes](images/threads-ou-async.webp "En vert : le calcul. En gris : l'attente. Async : un seul thread pour trois requêtes")
+
+Sur l'image : en haut, chaque thread passe presque tout son temps à **dormir** (gris) en attendant la base. En bas, un seul thread fait les petits calculs de A, B et C, puis il est **libre** : c'est le runtime qui surveille les trois attentes et réveille chaque tâche quand sa réponse arrive.
+
 **À retenir :** beaucoup d'attentes → async ; beaucoup de calcul → threads.
 
 ## 2. `async fn` et `.await`
@@ -643,6 +647,10 @@ async fn telecharger(nom: &str) -> String {
 
 `#[tokio::main]` démarre un **runtime** : quelques threads « workers » (un par cœur) font avancer des milliers de tâches. Un worker sans travail **vole** des tâches aux autres (work stealing). Le runtime surveille aussi les entrées-sorties et les minuteurs, et réveille une tâche (`wake`) quand ce qu'elle attend est prêt.
 
+![Schéma du runtime Tokio : quatre workers avec leurs files de tâches, un pool bloquant à part pour spawn_blocking](images/runtime-tokio.webp "Quatre workers se partagent les tâches ; les calculs lourds partent dans le pool bloquant")
+
+Sur l'image : chaque **worker** (un par cœur) a sa file de tâches ; un worker qui n'a plus rien à faire vole des tâches à un voisin (flèche). En bas, les « drivers » surveillent le réseau et les minuteurs et appellent `wake()`. À droite, le **pool bloquant** : de vrais threads à part, pour `spawn_blocking`.
+
 ```text
 #[tokio::main]
 async fn main() {
@@ -665,6 +673,10 @@ async fn main() {
 > Un calcul long ou un `std::thread::sleep` dans une tâche async fige le worker qui l'exécute, et toutes les tâches qui attendent ce worker prennent du retard.
 
 **Exemple :** un worker fait avancer 1 000 tâches à tour de rôle. L'une d'elles appelle `std::thread::sleep(1 s)` : pendant cette seconde, le worker ne fait **rien d'autre**, et les 999 autres attendent. Avec `tokio::time::sleep(...).await`, la tâche répond `Pending` et le worker passe tout de suite aux autres ; le minuteur la réveillera dans une seconde.
+
+![Mème Pikachu surpris : un std::thread::sleep dans un handler async, et plus personne ne répond sur un serveur à 8 cœurs](images/piege-bloquer-runtime.webp "8 requêtes qui dorment avec std::thread::sleep = 8 workers bloqués = serveur figé")
+
+Sur l'image : le serveur a 8 workers (8 cœurs). Si 8 requêtes appellent chacune `std::thread::sleep`, les 8 workers dorment en même temps : il n'en reste **aucun** pour répondre aux autres.
 
 ### Sortir le calcul : `spawn_blocking`
 
