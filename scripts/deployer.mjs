@@ -8,7 +8,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const RACINE = fileURLToPath(new URL('..', import.meta.url));
 const OPTIONS_SSH = ['-o', 'BatchMode=yes', '-o', 'ConnectTimeout=20'];
 const DOSSIER_SUPPORTS_DISTANT = 'esgi-entrainement-supports';
-const URL_SITE = 'http://hermes/esgi-entrainement/';
+const URL_SITE = 'https://hermes.tail8c471a.ts.net/esgi-entrainement/';
 
 export function verifierBranche(nom) {
   if (nom !== 'main') throw new Error(`Déploiement refusé : branche "${nom}", il faut être sur main.`);
